@@ -1,0 +1,41 @@
+{
+  "objectName" : "v-ancientturret",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "Creates a vortex that sucks in anything nearby.",
+  "shortdescription" : "Abyss Vortex",
+  "race" : "generic",
+  "health" : 50,
+
+  "category" : "wire",
+  "price" : 100,
+
+  "floranDescription" : "Createss a vortex that suckss in anything nearby.",
+  "glitchDescription" : "Intimidated. Creates a vortex that sucks in anything nearby.",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "base.png",
+      "imagePosition" : [-8, -8],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+
+      "metaBoundBox" : [-10, -10, 10, 10]
+    }
+  ],
+
+  "scripts" : [ "/objects/mission/ancientstronghold/v-ancientturret/ancientturret.lua" ],
+  "scriptDelta" : 1,
+
+  "animation" : "/objects/mission/ancientstronghold/v-ancientturret/ancientturret.animation",
+
+  "animationParts" : {
+    "base" : "base.png",
+    "gun" : "gun.png"
+  },
+  "animationPosition" : [-8, -8]
+}

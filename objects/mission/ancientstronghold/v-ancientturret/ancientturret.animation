@@ -1,0 +1,83 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "padState" : {
+        "default" : "closed",
+        "states" : {
+          "closed" : {},
+          "open" : {
+            "frames" : 9,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "openloop",
+            "properties" : {
+              "immediateSound" : "/sfx/projectiles/gravitymine_detonate.ogg"
+            }
+          },
+          "openloop" : {
+            "frames" : 2,
+            "cycle" : 0.1,
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/npc/boss/tentacleboss_portal_loop.ogg"
+            }
+          },
+          "close" : {
+            "frames" : 9,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "closed",
+            "properties" : {
+              "immediateSound" : "/sfx/projectiles/astraltear_stop2.ogg"
+            }
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "forcepad" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 2,
+          "fullbright" : true,
+          "offset" : [-6.625, -6.625]
+        },
+
+        "partStates" : {
+          "padState" : {
+            "open" : {
+              "properties" : {
+                "image" : "<partImage>:open.<frame>"
+              }
+            },
+            "openloop" : {
+              "properties" : {
+                "image" : "<partImage>:openloop.<frame>"
+              }
+            },
+            "close" : {
+              "properties" : {
+                "image" : "<partImage>:close.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "fg" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1,
+          "image" : "<partImage>"
+        }
+      },
+      "bg" : {
+        "properties" : {
+          "centered" : false,
+          "image" : "<partImage>",
+          "fullbright" : true
+        }
+      }
+    }
+  }
+}
