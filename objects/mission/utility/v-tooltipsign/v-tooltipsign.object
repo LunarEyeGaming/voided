@@ -1,0 +1,46 @@
+{
+  "objectName" : "v-tooltipsign",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "description" : "A sign that provides a useful tooltip.",
+  "shortdescription" : "Tooltip Sign",
+  "race" : "generic",
+
+  "category" : "decorative",
+  "price" : 140,
+
+  "inventoryIcon" : "/objects/outpost/outpostmonitor/icon.png",
+  "orientations" : [
+    {
+      "image" : "/objects/outpost/outpostmonitor/outpostmonitor.png:<color>.on",
+      "imagePosition" : [-16, -8],
+      "flipImages" : true,
+      "direction" : "left",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    },
+    {
+      "image" : "/objects/outpost/outpostmonitor/outpostmonitor.png:<color>.on",
+      "imagePosition" : [-16, -8],
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "soundEffect" : "/sfx/objects/outpostmonitor_static.ogg",
+
+  "animation" : "/objects/outpost/outpostmonitor/outpostmonitor.animation",
+  "animationParts" : {
+    "bg" : "/objects/outpost/outpostmonitor/outpostmonitor.png",
+    "fg" : "/objects/outpost/outpostmonitor/outpostmonitorlit.png"
+  },
+  "animationPosition" : [-16, -8],
+  
+  "scripts" : ["tooltipsign.lua"],
+  "scriptDelta" : 10,
+  
+  "tooltip" : "<HELPFUL INFORMATION>"
+}

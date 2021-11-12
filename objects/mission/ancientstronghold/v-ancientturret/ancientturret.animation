@@ -1,83 +1,96 @@
 {
   "animatedParts" : {
     "stateTypes" : {
-      "padState" : {
-        "default" : "closed",
+      "gun" : {
+        "default" : "idle",
         "states" : {
-          "closed" : {},
-          "open" : {
-            "frames" : 9,
+          "idle" : {},
+          "fire" : {
+            "frames" : 3,
             "cycle" : 0.3,
             "mode" : "transition",
-            "transition" : "openloop",
-            "properties" : {
-              "immediateSound" : "/sfx/projectiles/gravitymine_detonate.ogg"
-            }
-          },
-          "openloop" : {
-            "frames" : 2,
-            "cycle" : 0.1,
-            "mode" : "loop",
-            "properties" : {
-              "persistentSound" : "/sfx/npc/boss/tentacleboss_portal_loop.ogg"
-            }
-          },
-          "close" : {
-            "frames" : 9,
-            "cycle" : 0.3,
-            "mode" : "transition",
-            "transition" : "closed",
-            "properties" : {
-              "immediateSound" : "/sfx/projectiles/astraltear_stop2.ogg"
-            }
+            "transition" : "idle"
           }
         }
       }
     },
 
     "parts" : {
-      "forcepad" : {
+      "base" : {
         "properties" : {
-          "centered" : false,
+          "centered" : true,
           "zLevel" : 2,
-          "fullbright" : true,
-          "offset" : [-6.625, -6.625]
+          "fullbright" : false,
+          "image" : "<partImage>",
+          "offset" : [0, 0],
+          "cameraPos" : [2, 2]
+        }
+      },
+      "gun" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 2,
+          "fullbright" : false,
+          "image" : "<partImage>",
+          "offset" : [0, 0],
+          "transformationGroups" : ["gun"]
         },
 
         "partStates" : {
-          "padState" : {
-            "open" : {
+          "gun" : {
+            "idle" : {
               "properties" : {
-                "image" : "<partImage>:open.<frame>"
+                "image" : "<partImage>:idle.<frame>"
               }
             },
-            "openloop" : {
+            "fire" : {
               "properties" : {
-                "image" : "<partImage>:openloop.<frame>"
-              }
-            },
-            "close" : {
-              "properties" : {
-                "image" : "<partImage>:close.<frame>"
+                "image" : "<partImage>:fire.<frame>"
               }
             }
           }
         }
-      },
-      "fg" : {
+      }/*,
+      "gunfullbright" : {
         "properties" : {
-          "centered" : false,
-          "zLevel" : 1,
-          "image" : "<partImage>"
-        }
-      },
-      "bg" : {
-        "properties" : {
-          "centered" : false,
+          "centered" : true,
+          "zLevel" : 2,
+          "fullbright" : true,
           "image" : "<partImage>",
-          "fullbright" : true
+          "offset" : [0, 0],
+          "transformationGroups" : ["gun"]
+        },
+
+        "partStates" : {
+          "gun" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
         }
-      }
+      }*/
     }
+  },
+  
+  "lights" : {
+    "flashlight" : {
+      "transformationGroups" : ["gun"],
+      "color" : [153, 142, 121],
+      "pointLight" : true,
+      "pointBeam" : 5,
+      "pointAngle" : 0,
+      "beamAmbience" : 0.35
+    }
+  },
+    
+  "transformationGroups" : {
+    "gun" : {"interpolated" : true}
   }
 }

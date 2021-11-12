@@ -1,5 +1,5 @@
 {
-  "objectName" : "v-ancientturret",
+  "objectName" : "v-ancientturret2",  // Because it is impossible to make wider beam angles without making a new object
   "objectType" : "physics",
   "colonyTags" : ["wired"],
   "printable" : false,
@@ -79,7 +79,6 @@
   "angles" : [0, 90, 180, 90],
   "fov" : 45,
   "sightRadius" : 15,
-  "notFovSightRadius" : 50,
   "outOfSightRadius" : 30,
   "waitTime" : 0.7,
   "turnTime" : 0.3,
@@ -92,6 +91,13 @@
   },
 
   "animation" : "/objects/mission/ancientstronghold/v-ancientturret/ancientturret.animation",
+  "animationCustom" : {
+    "lights" : {
+      "flashlight" : {
+        "pointBeam" : 2
+      }
+    }
+  },
 
   "animationParts" : {
     "base" : "base.png",
