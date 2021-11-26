@@ -32,8 +32,8 @@ function processWireInput()
     object.setInteractive(false)
     storage.state = (object.getInputNodeLevel(0) and 1 or 0) + (object.getInputNodeLevel(1) and 1 or 0)  -- Set to the number of active inputs.
     setLightState(storage.state)
-  elseif self.interactive then
-    object.setInteractive(true)  -- Maybe make this cycle between the three states if no inputs are given. Have this be a spare input that alternates between true and false otherwise. If both are connected, make this not interactive.
+  --elseif self.interactive then
+  --  object.setInteractive(true)  -- Maybe make this cycle between the three states if no inputs are given. Have this be a spare input that alternates between true and false otherwise. If both are connected, make this not interactive.
   end
 end
 

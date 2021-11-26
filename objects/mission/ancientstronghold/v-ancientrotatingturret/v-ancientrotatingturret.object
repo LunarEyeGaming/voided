@@ -1,0 +1,62 @@
+{
+  "objectName" : "v-ancientrotatingturret",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "speeeeeeeeeeeeeeeeeeen",
+  "shortdescription" : "Spinning Turret",
+  "race" : "generic",
+  "health" : 1,
+
+  "category" : "wire",
+  "price" : 100,
+
+  "floranDescription" : "spin spien ei s p spin spin spin spis n pi ns psnisn is",
+  "glitchDescription" : "HAHAHAHAH SPEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEN",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "base.png",
+      "imagePosition" : [0, 0],
+      
+      "animationParts" : {
+        "base" : "base.png",
+        "flashlight" : "flashlight.png"
+      },
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/mission/ancientstronghold/v-ancientrotatingturret/ancientrotatingturret.lua" ],
+  "scriptDelta" : 1,
+  
+  "inputNodes" : [ [0, 0], [1, 0] ],
+
+  "fov" : 45,
+  "sightRadius" : 15,
+  "notFovSightRadius" : 50,
+  "outOfSightRadius" : 30,
+  "notFovOutOfSightRadius" : 60,
+  "angularVelocity" : 75,
+  "resetTime" : 0.3,
+  "fireInterval" : 0.1,
+  "exposureTime" : 0.25,
+  
+  "projectileType" : "v-ancientturretshot",
+  "projectileParameters" : {
+    "power" : 50,
+    "speed" : 200
+  },
+
+  "animation" : "/objects/mission/ancientstronghold/v-ancientrotatingturret/ancientrotatingturret.animation",
+
+  "animationParts" : {
+    "base" : "base.png",
+    "flashlight" : "flashlight.png"
+  },
+  "animationPosition" : [16, 16]
+}

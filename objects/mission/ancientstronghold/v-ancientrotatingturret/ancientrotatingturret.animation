@@ -1,0 +1,81 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "base" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "fire" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "base" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 2,
+          "fullbright" : false,
+          "image" : "<partImage>",
+          "offset" : [0, 0],
+          "cameraPos" : [2, 2]
+        }
+      },
+      "flashlight" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 2,
+          "fullbright" : false,
+          "image" : "<partImage>",
+          "offset" : [2, 0],
+          "transformationGroups" : ["flashlights"]
+        }
+      }/*,
+      "gunfullbright" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 2,
+          "fullbright" : true,
+          "image" : "<partImage>",
+          "offset" : [0, 0],
+          "transformationGroups" : ["gun"]
+        },
+
+        "partStates" : {
+          "gun" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      }*/
+    }
+  },
+  
+  "lights" : {
+    "flashlight" : {
+      "transformationGroups" : ["flashlights"],
+      "color" : [153, 142, 121],
+      "pointLight" : true,
+      "pointBeam" : 5,
+      "pointAngle" : 0,
+      "beamAmbience" : 0.35
+    }
+  },
+    
+  "transformationGroups" : {
+    "flashlights" : {"interpolated" : true}
+  }
+}

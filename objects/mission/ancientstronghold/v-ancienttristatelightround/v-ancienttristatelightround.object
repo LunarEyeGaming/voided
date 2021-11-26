@@ -3,7 +3,7 @@
   "colonyTags" : ["ancient","light"],
   "rarity" : "Common",
   "description" : "A round wall light.",
-  "shortdescription" : "Round Ancient Wall Light",
+  "shortdescription" : "Round Ancient Tristate Light",
   "race" : "ancient",
 
   "apexDescription" : "What has been supplying this light's power for so many years?",
@@ -17,7 +17,6 @@
   "category" : "light",
   "price" : 0,
   "printable" : false,
-  "lightColor" : [204, 184, 143],
 
   "inventoryIcon" : "ancienttristatelightroundicon.png",
   "orientations" : [
@@ -33,16 +32,16 @@
     }
   ],
 
-  "animation" : "/objects/wired/light/lighttogglebgfullbright.animation",
+  "animation" : "ancienttristatelightround.animation",
   "animationParts" : {
     "bg" : "ancienttristatelightround.png",
     "fg" : "ancienttristatelightroundlit.png"
   },
 
-  "scripts" : [ "/objects/wired/light/light.lua" ],
+  "scripts" : [ "/objects/wired/light/v-tristatelight.lua" ],
   "scriptDelta" : 60,
 
   "interactive" : false,
 
-  "inputNodes" : [ [0, 0] ]
+  "inputNodes" : [ [-1, 0], [0, 0] ]
 }

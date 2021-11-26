@@ -1,0 +1,101 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "light" : {
+        "default" : "state0",
+        "states" : {
+          "state0" : {
+            "properties" : {
+              "lightsOff" : ["state1", "state2"]
+            }
+          },
+          "state1" : {
+            "properties" : {
+              "lightsOff" : ["state2"],
+              "lightsOn" : ["state1"]
+            }
+          },
+          "state2" : {
+            "properties" : {
+              "lightsOff" : ["state1"],
+              "lightsOn" : ["state2"]
+            }
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "bg" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : true
+        },
+
+        "partStates" : {
+          "light" : {
+            "state0" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.state0"
+              }
+            },
+
+            "state1" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.state1"
+              }
+            },
+
+            "state2" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.state2"
+              }
+            }
+          }
+        }
+      },
+      "fg" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1
+        },
+
+        "partStates" : {
+          "light" : {
+            "state0" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.state0"
+              }
+            },
+
+            "state1" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.state1"
+              }
+            },
+
+            "state2" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.state2"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  
+  "lights" : {
+    "state1" : {
+      "color" : [204, 184, 143],
+      "flickerPeriod" : 0.01,
+      "flickerMinIntensity" : 0.55,
+      "flickerMaxIntensity" : 0.65,
+      "flickerPeriodVariance" : 0.0,
+      "flickerIntensityVariance" : 0.05
+    },
+    "state2" : {
+      "color" : [204, 184, 143]
+    }
+  }
+}

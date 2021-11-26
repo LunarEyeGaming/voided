@@ -1,39 +1,19 @@
 {
-  "type" : "v-ancientturret2",
-  "shortdescription" : "Ancient Turret",
-  "description" : "An extremely hostile automation.",
+  "type" : "v-ancientshielder",
+  "shortdescription" : "Ancient Shielder",
+  "description" : "lol",
 
-  "categories" : [ "v-ancientturret" ],
+  "categories" : [ "v-ancientshielder" ],
   "parts" : [ "body" ],
 
-  "animation" : "ancientturret2.animation",
+  "animation" : "ancientshielder.animation",
 
   "dropPools" : [  ],
 
   "baseParameters" : {
     "scripts" : [
-      "/monsters/monster.lua",
-      "/monsters/renderlaserbeam.lua"
+      "/monsters/monster.lua"
     ],
-    
-    "animationScripts" : [
-      "/monsters/effects/laserbeam.lua"
-    ],
-    
-    "beams" : [
-      {
-        "offset" : [2.875, 0],
-        "color" : [255, 0, 0, 128],
-        "length" : 60,
-        "segments" : 6,
-        "angle" : 0,
-        "sourcePart" : "turret",
-        "endPart" : "turret"
-      }
-    ],
-    
-    "initialScriptDelta" : 2,
-    "behaviorUpdateDelta" : 1,
 
     "behavior" : "monster",
     "deathBehavior" : "monster-death",
@@ -45,56 +25,17 @@
 
       "hurtWaitForGround" : false,
 
-      "targetQueryRange" : 50,
+      "targetQueryRange" : 40,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
       "keepTargetInRange" : 200,
       "targetOutOfSightTime" : 5.0,
 
-      "foundTargetActions" : [
-        {
-          "name" : "action-animate",
-          "parameters" : {
-            "stateType" : "body",
-            "state" : "wake",
-            "animationTimer" : 0.5
-          }
-        }
-      ],
+      "foundTargetActions" : [],
 
       "fleeActions" : [ ],
 
-      "hostileActions" : [
-        {
-          "name" : "action-fire",
-          "parameters" : {
-            "requireLineOfSight" : true,
-            "maximumRange" : 70,
-            "minimumRange" : 2,
-            "windupTime" : 3.0,
-            "windupState" : "windup1",
-
-            "projectileCount" : 1,
-            "projectileType" : "v-ancientturretshot",
-            "projectileParameters" : {
-              "speed" : 150,
-              "power" : 15
-            },
-
-            "fireOffset" : [1.5, -0.125],
-            "rotationCenter" : [0.0, 0.5],
-            "fireSound" : "fire",
-            "fireState" : "fire",
-            "fireDelay" : 0.0,
-            "faceTarget" : true,
-            "rotateAim" : true,
-            "holdAim" : true,
-
-            "winddownState" : "idle",
-            "winddownTime" : 0.0
-          }
-        }
-      ],
+      "hostileActions" : [],
 
       "periodicActions" : [ ],
 
@@ -118,10 +59,11 @@
           }
         },
         {
-          "name" : "action-globaltag",
+          "name" : "v-action-statusaura",
           "parameters" : {
-            "tagName" : "aggro",
-            "tag" : ""
+            "auraRadius" : 10,
+            "auraEffectArgs": ["v-ancientshield"],
+            "auraEntityTypes": ["monster"]
           }
         }
       ],
@@ -134,10 +76,11 @@
           }
         },
         {
-          "name" : "action-globaltag",
+          "name" : "v-action-statusaura",
           "parameters" : {
-            "tagName" : "aggro",
-            "tag" : ".aggro"
+            "auraRadius" : 20,
+            "auraEffectArgs": ["v-ancientshield"],
+            "auraEntityTypes": ["monster"]
           }
         }
       ]
@@ -209,7 +152,7 @@
           "baseValue" : 9
         },
         "maxHealth" : {
-          "baseValue" : 75
+          "baseValue" : 10
         },
         "protection" : {
           "baseValue" : 0.0

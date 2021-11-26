@@ -1,0 +1,54 @@
+{
+  "name": "v-action-statusaura",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/query.lua",
+    "/scripts/actions/world.lua"
+  ],
+  "parameters": {
+    "auraRadius": null,
+    "auraEffectArgs": null,
+    "auraEntityTypes": null
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "queryEntity",
+        "type": "action",
+        "name": "queryEntity",
+        "parameters": {
+          "entityTypes": {"key": "<auraEntityTypes>"},
+          "orderBy": {"value": "nearest"},
+          "range": {"key": "<auraRadius>"},
+          "withoutEntity": {"key": "self"}
+        },
+        "output": {
+          "list": "auraTargets"
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "auraTargets"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"key": "<auraEffectArgs>"},
+            "entity": {"key": "eachItem"},
+            "message": {"value": "applyStatusEffect"}
+          }
+        }
+      }
+    ]
+  }
+}

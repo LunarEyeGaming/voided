@@ -79,7 +79,9 @@
   "angles" : [0, 90, 180, 90],
   "fov" : 45,
   "sightRadius" : 15,
+  "notFovSightRadius" : 50,
   "outOfSightRadius" : 30,
+  "notFovOutOfSightRadius" : 60,
   "waitTime" : 0.7,
   "turnTime" : 0.3,
   "fireInterval" : 0.1,
@@ -87,7 +89,8 @@
   
   "projectileType" : "v-ancientturretshot",
   "projectileParameters" : {
-    "power" : 50
+    "power" : 200,
+    "speed" : 200
   },
 
   "animation" : "/objects/mission/ancientstronghold/v-ancientturret/ancientturret.animation",

@@ -117,7 +117,9 @@
         "properties" : {
           "transformationGroups" : [ "aim", "facing", "body" ],
           "offset" : [0.0, 0.625],
-          "zLevel" : 2
+          "zLevel" : 2,
+          "beamSource" : [2, 0],
+          "beamEnd" : [3, 0]
         },
         "partStates" : {
           "body" : {

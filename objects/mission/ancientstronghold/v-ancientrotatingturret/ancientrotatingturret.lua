@@ -3,19 +3,13 @@ require "/scripts/vec2.lua"
 
 function init()
   -- Initialize parameters
-  self.angleOffset = config.getParameter("angleOffset")
-  self.angles = config.getParameter("angles")
-  for i, angle in ipairs(self.angles) do
-    self.angles[i] = util.toRadians(angle + self.angleOffset)
-  end
-  self.currentAngle = self.angles[1]
+  self.angularVelocity = util.toRadians(config.getParameter("angularVelocity"))
+  self.currentAngle = 0
   self.halfFov = util.toRadians(config.getParameter("fov")) / 2
   self.sightRadius = config.getParameter("sightRadius")
   self.notFovSightRadius = config.getParameter("notFovSightRadius") -- sightRadius for when storage.useFov is false
   self.outOfSightRadius = config.getParameter("outOfSightRadius")
   self.notFovOutOfSightRadius = config.getParameter("notFovOutOfSightRadius")
-  self.waitTime = config.getParameter("waitTime")
-  self.turnTime = config.getParameter("turnTime")
   self.fireInterval = config.getParameter("fireInterval")
   self.exposureTime = config.getParameter("exposureTime")
   
@@ -147,7 +141,7 @@ function states.attack()
   local dt = script.updateDt()
   while hasTarget() do
     local aimVec = world.distance(world.entityPosition(self.target), self.cameraPos)
-    setAngle(vec2.angle(aimVec))
+    --setAngle(vec2.angle(aimVec))
     if timer <= 0 then
       fire(aimVec)
       timer = self.fireInterval
@@ -161,17 +155,14 @@ end
 
 function states.activate()
   while true do
-    for _, angle in pairs(self.angles) do
-      turn(angle, self.turnTime)
-      wait()
-    end
+    setAngle(self.currentAngle + self.angularVelocity * script.updateDt())
     coroutine.yield()
   end
 end
 
 function states.deactivate()
   self.target = nil
-  turn(self.angles[1], self.turnTime)
+  turn(self.angles[1], self.resetTime)
   states.noop()
 end
 
@@ -195,8 +186,8 @@ end
 
 function setAngle(angle)
   self.currentAngle = angle
-  animator.resetTransformationGroup("gun")
-  animator.rotateTransformationGroup("gun", angle)
+  animator.resetTransformationGroup("flashlights")
+  animator.rotateTransformationGroup("flashlights", angle)
 end
 
 function getTarget()

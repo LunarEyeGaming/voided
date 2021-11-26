@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-ancientstronghold",
  "spacing":0,
- "tilecount":4,
+ "tilecount":6,
  "tileheight":32,
  "tileproperties":
     {
@@ -38,6 +38,20 @@
          "imagePositionX":"0",
          "imagePositionY":"0",
          "object":"v-ancientturret",
+         "tilesetDirection":"right"
+        },
+     "4":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-ancienttristatelightround",
+         "tilesetDirection":"right"
+        },
+     "5":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientrotatingturret",
          "tilesetDirection":"right"
         }
     },
@@ -70,6 +84,20 @@
          "imagePositionY":"string",
          "object":"string",
          "tilesetDirection":"string"
+        },
+     "4":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "5":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
         }
     },
  "tiles":
@@ -95,6 +123,18 @@
      "3":
         {
          "image":"..\/images\/objects\/ancientturretup.png",
+         "imageheight":32,
+         "imagewidth":32
+        },
+     "4":
+        {
+         "image":"..\/images\/objects\/ancienttristatelightround.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "5":
+        {
+         "image":"..\/images\/objects\/ancientrotatingturret.png",
          "imageheight":32,
          "imagewidth":32
         }
