@@ -1,0 +1,38 @@
+{
+  "name": "v-strongholdboss-phasetransition",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/boss/v-strongholdboss.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/world.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "v_resetLasers",
+        "type": "action",
+        "name": "v_resetLasers",
+        "parameters": {
+          "h1Id": {"key": "laserH1Id"},
+          "v1Id": {"key": "laserV1Id"},
+          "h2Id": {"key": "laserH2Id"},
+          "v2Id": {"key": "laserV2Id"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "invisible"},
+          "type": {"value": "rail"}
+        }
+      }
+    ]
+  }
+}

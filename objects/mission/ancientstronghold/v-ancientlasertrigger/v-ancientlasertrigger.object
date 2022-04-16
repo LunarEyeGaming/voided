@@ -1,0 +1,108 @@
+{
+  "objectName" : "v-ancientlasertrigger",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "no description",
+  "shortdescription" : "ancient laser trigger",
+  "race" : "generic",
+  "health" : 1,
+
+  "category" : "wire",
+  "price" : 100,
+
+  "floranDescription" : "b",
+  "glitchDescription" : "a",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "pointerbottom.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "pointer" : "pointerbottom.png",
+        "rail" : "railbottom.png",
+        "laser" : "laservertical.png"
+      },
+      "pointerOffset" : [0.5, 0.375],
+      "railOffset" : [0, 0.125],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+      "pointerAnchor" : "bottom"
+    },
+    {
+      "image" : "pointerleft.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "pointer" : "pointerleft.png",
+        "rail" : "railleft.png",
+        "laser" : "laserhorizontal.png"
+      },
+      "pointerOffset" : [0.375, 0.5],
+      "railOffset" : [0.125, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left" ],
+      "pointerAnchor" : "left"
+    },
+    {
+      "image" : "pointerright.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "pointer" : "pointerright.png",
+        "rail" : "railright.png",
+        "laser" : "laserhorizontal.png"
+      },
+      "pointerOffset" : [0.625, 0.5],
+      "railOffset" : [0.625, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "right" ],
+      "pointerAnchor" : "right"
+    },
+    {
+      "image" : "pointertop.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "pointer" : "pointertop.png",
+        "rail" : "railtop.png",
+        "laser" : "laservertical.png"
+      },
+      "pointerOffset" : [0.5, 0.625],
+      "railOffset" : [0, 0.625],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ],
+      "pointerAnchor" : "top"
+    }
+  ],
+
+  "scripts" : [ "/objects/mission/ancientstronghold/v-ancientlasertrigger/ancientlasertrigger.lua" ],
+  "scriptDelta" : 1,
+  
+  "outputNodes" : [ [0, 0] ],
+  
+  "distance" : 51,
+  "travelTime" : 3,
+  "pointerOffset" : [0.5, 0.375],
+  "railOffset" : [0, 0.375],
+  "maxLength" : 100,
+
+  "animation" : "/objects/mission/ancientstronghold/v-ancientlasertrigger/ancientlasertrigger.animation"
+
+  /* "animationParts" : {
+    "base" : "base.png",
+    "flashlight" : "flashlight.png"
+  },
+  "animationPosition" : [16, 16] */
+}

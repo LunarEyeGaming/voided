@@ -1,0 +1,528 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "core" : {
+        "default" : "purple",
+        "states" : {
+          "invisible" : {},
+          "purple" : {},
+          "blue" : {},
+          "ptob" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "blue"
+          },
+          "btop" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "purple"
+          },
+          "tele" : {
+            "frames" : 5,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "purple"
+          },
+          "dying" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "dying2"
+          },
+          "dying2" : {
+            "frames" : 2,
+            "cycle" : 0.1,
+            "mode" : "loop"
+          },
+          "teleportstartpurple" : {
+            "frames" : 4,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "invisible"
+          },
+          "teleportendpurple" : {
+            "frames" : 4,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "purple"
+          },
+          "teleportstartblue" : {
+            "frames" : 4,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "invisible"
+          },
+          "teleportendblue" : {
+            "frames" : 4,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "blue"
+          }
+        }
+      },
+      "cables" : {
+        "default" : "idle",
+        "states" : {
+          "invisible" : {},
+          "appear" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "idle" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "loop"
+          },
+          "disappear" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "invisible"
+          }
+        }
+      },
+      "shell" : {
+        "default" : "idle",
+        "states" : {
+          "invisible" : {},
+          "idle" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          },
+          "shuffle" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "activate" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "active",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/guardian_openhand.ogg"
+            }
+          },
+          "active" : {},
+          "deactivate" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/guardian_closehand.ogg"
+            }
+          },
+          "dying" : {
+            "frames" : 6,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
+          "teleportstart" : {
+            "frames" : 3,
+            "cycle" : 0.125,
+            "mode" : "transition",
+            "transition" : "invisible"
+          },
+          "teleportend" : {
+            "frames" : 3,
+            "cycle" : 0.125,
+            "mode" : "transition",
+            "transition" : "active"
+          }
+        }
+      },
+      "lid" : {
+        "default" : "closed",
+        "states" : {
+          "closed" : {},
+          "opening" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "open"
+          },
+          "open" : {}
+        }
+      },
+      "laser1" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "windup" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "active",
+            "properties" : {
+              "immediateSound" : "/sfx/melee/charge_up15.ogg"
+            }
+          },
+          "active" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/gun/aegisaltpistol_start.ogg",
+              "persistentSound" : "/sfx/gun/aegisaltpistol_loop.ogg"
+            }
+          },
+          "winddown" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "inactive",
+            "properties" : {
+              "immediateSound" : "/sfx/gun/erchiuseyebeam_stop.ogg"
+            }
+          }
+        }
+      },
+      "laser2" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "windup" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "active"
+          },
+          "active" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
+          "winddown" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "inactive"
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "core" : {
+        "properties" : {
+          //"transformationGroups" : [ "body" ],
+          "beamSource" : [0, 0],
+          "offset" : [0, 0],
+          "zLevel" : 0,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "core" : {
+            "purple" : {
+              "properties" : {
+                "image" : "<partImage>:purple.<frame>"
+              }
+            },
+            "blue" : {
+              "properties" : {
+                "image" : "<partImage>:blue.<frame>"
+              }
+            },
+            "ptob" : {
+              "properties" : {
+                "image" : "<partImage>:ptob.<frame>"
+              }
+            },
+            "btop" : {
+              "properties" : {
+                "image" : "<partImage>:btop.<frame>"
+              }
+            },
+            "tele" : {
+              "properties" : {
+                "image" : "<partImage>:tele.<frame>"
+              }
+            },
+            "dying" : {
+              "properties" : {
+                "image" : "<partImage>:dying.<frame>"
+              }
+            },
+            "dying2" : {
+              "properties" : {
+                "image" : "<partImage>:dying2.<frame>"
+              }
+            },
+            "teleportstartpurple" : {
+              "properties" : {
+                "image" : "<partImage>:teleportstartpurple.<frame>"
+              }
+            },
+            "teleportendpurple" : {
+              "properties" : {
+                "image" : "<partImage>:teleportendpurple.<frame>"
+              }
+            },
+            "teleportstartblue" : {
+              "properties" : {
+                "image" : "<partImage>:teleportstartblue.<frame>"
+              }
+            },
+            "teleportendblue" : {
+              "properties" : {
+                "image" : "<partImage>:teleportendblue.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "cables" : {
+        "properties" : {
+          //"transformationGroups" : [ "body" ],
+          "offset" : [0, 0],
+          "zLevel" : 1,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "cables" : {
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
+              }
+            },
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "disappear" : {
+              "properties" : {
+                "image" : "<partImage>:disappear.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "shell" : {
+        "properties" : {
+          "transformationGroups" : [ "shell" ],
+          "offset" : [0, 0],
+          "zLevel" : 2
+        },
+        "partStates" : {
+          "shell" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "shuffle" : {
+              "properties" : {
+                "image" : "<partImage>:shuffle.<frame>"
+              }
+            },
+            "activate" : {
+              "properties" : {
+                "image" : "<partImage>:activate.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            },
+            "deactivate" : {
+              "properties" : {
+                "image" : "<partImage>:deactivate.<frame>"
+              }
+            },
+            "dying" : {
+              "properties" : {
+                "image" : "<partImage>:dying.<frame>"
+              }
+            },
+            "teleportstart" : {
+              "properties" : {
+                "image" : "<partImage>:teleportstart.<frame>"
+              }
+            },
+            "teleportend" : {
+              "properties" : {
+                "image" : "<partImage>:teleportend.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "shellfullbright" : {
+        "properties" : {
+          "transformationGroups" : [ "shell" ],
+          "offset" : [0, 0],
+          "zLevel" : 3,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "shell" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "shuffle" : {
+              "properties" : {
+                "image" : "<partImage>:shuffle.<frame>"
+              }
+            },
+            "activate" : {
+              "properties" : {
+                "image" : "<partImage>:activate.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            },
+            "deactivate" : {
+              "properties" : {
+                "image" : "<partImage>:deactivate.<frame>"
+              }
+            },
+            "dying" : {
+              "properties" : {
+                "image" : "<partImage>:dying.<frame>"
+              }
+            },
+            "teleportstart" : {
+              "properties" : {
+                "image" : "<partImage>:teleportstart.<frame>"
+              }
+            },
+            "teleportend" : {
+              "properties" : {
+                "image" : "<partImage>:teleportend.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "lid" : {
+        "properties" : {
+          "offset" : [0, 0],
+          "zLevel" : 4
+        },
+        "partStates" : {
+          "lid" : {
+            "closed" : {
+              "properties" : {
+                "image" : "<partImage>:closed.<frame>"
+              }
+            },
+            "opening" : {
+              "properties" : {
+                "image" : "<partImage>:opening.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "laser1" : {
+        "properties" : {
+          "offset" : [25, 0],
+          "zLevel" : 4,
+          "transformationGroups" : [ "laser" ],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "laser1" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>",
+                "damageArea" : [[-25, 0], [25, 0]]
+              }
+            },
+            "winddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "laser2" : {
+        "properties" : {
+          "offset" : [-25, 0],
+          "zLevel" : 4,
+          "transformationGroups" : [ "laser" ],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "laser2" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>?flipx"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>?flipx",
+                "damageArea" : [[-25, 0], [25, 0]]
+              }
+            },
+            "winddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>?flipx"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "shell" : { "interpolated" : true },
+    "laser" : {"interpolated" : true}
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [ ]
+    }
+  },
+
+  "sounds" : {
+    "aggroHop" : [ ],
+    "deathPuff" : [ ],
+    "open" : [ "/sfx/objects/airlock_open.ogg" ],
+    "fire1" : [ "/sfx/gun/aegisaltpistol_start.ogg" ],
+    "deathShrink" : [ "/sfx/npc/boss/guardian_death_shrink.ogg" ]
+  }
+}

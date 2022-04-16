@@ -1,0 +1,245 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "gun" : {
+        "default" : "idle",
+        "states" : {
+          "reload" : {
+            "frames" : 8,
+            "cycle" : 0.8,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "lightsOff" : ["fire", "idle"],
+              "particleEmittersOn" : ["reload"],
+              "particleEmittersOff" : ["fire"]
+            },
+            "frameProperties" : {
+              "immediateSound" : ["/sfx/gun/reload/rocket_reload_clip1.ogg", "", "", "", "/sfx/gun/mech_gravitymine_reload.ogg"]
+            }
+          },
+          "idle" : {
+            "frames" : 12,
+            "cycle" : 1.2,
+            "mode" : "loop",
+            "properties" : {
+              "lightsOff" : ["fire"],
+              "lightsOn" : ["idle"],
+              "particleEmittersOff" : ["reload"]
+            }
+          },
+          "fire" : {
+            "frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "loop",
+            "properties" : {
+              "lightsOff" : ["idle"],
+              "lightsOn" : ["fire"],
+              "particleEmittersOn" : ["fire"]
+            }
+          }
+        }
+      },
+         
+      "firing" : {
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "fire" : {
+            "frames" : 2,
+            "cycle" : 0.07,
+            "mode" : "transition",
+            "transition" : "off"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "gun" : {
+        "properties" : {
+          "centered" : true,
+          "offset" : [0.25, 0.5],
+          "transformationGroups" : ["weapon"]
+        },
+
+        "partStates" : {
+          "gun" : {
+            "reload" : {
+              "properties" : {
+                "image" : "<partImage>:reload.<frame>"
+              }
+            },
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "gunfullbright" : {
+        "properties" : {
+          "centered" : true,
+          "fullbright" : true,
+          "offset" : [0.25, 0.5],
+          "zLevel" : 1,
+          
+          "transformationGroups" : ["weapon"]
+        },
+
+        "partStates" : {
+          "gun" : {
+            "reload" : {
+              "properties" : {
+                "image" : "<partImage>:reload.<frame>"
+              }
+            },
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "beamorigin" : {
+        "properties" : {
+          "zLevel" : 2,
+          "centered" : true,
+          "offset" : [2.375, 0.625],
+          "fullbright" : true,
+          "transformationGroups" : ["weapon"]
+        },
+
+        "partStates" : {
+          "gun" : {
+            "idle" : {},
+            "squirm" : {},
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "weapon" : {},
+    "beamEnd" : {},
+    "muzzle" : {}
+  },
+
+  "lights" : {
+    "idle" : {
+      "active" : false,
+      "color" : [59, 217, 215],
+      "position" : [0, 0],
+
+      "flickerPeriod" : 4,
+      "flickerPeriodVariance" : 1,
+      "flickerMinIntensity" : 0.4,
+      "flickerMaxIntensity" : 0.5,
+      "flickerIntensityVariance" : 0.0
+    },
+    "fire" : {
+      "active" : false,
+      "color" : [59, 217, 215],
+      "position" : [0, 0],
+
+      "flickerPeriod" : 1,
+      "flickerPeriodVariance" : 0.1,
+      "flickerMinIntensity" : 0.6,
+      "flickerMaxIntensity" : 0.8,
+      "flickerIntensityVariance" : 0.0
+    }
+  },
+
+  "particleEmitters" : {
+    "beamCollision" : {
+      "active" : false,
+      "transformationGroups" : ["muzzle", "beamEnd"],
+      "emissionRate" : 30,
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/plasmapoof/plasmapoof.animation",
+            "position" : [0, 0],
+            "initialVelocity" : [0, 0.0],
+            "finalVelocity" : [0, 0.0],
+            "approach" : [0, 10],
+            "fade" : 1,
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.3,
+            "size" : 0.6,
+            "timeToLive" : 0.5,
+            "fullbright" : true,
+            "layer" : "front",
+            "light" : [59, 217, 215],
+            "collidesForeground" : false,
+            "variance" : {
+              "position" : [0.0, 0.0],
+              "initialVelocity" : [0, 0]
+            }
+          }
+        }
+      ]
+    },
+    "reload" : {
+      "active" : false,
+      "transformationGroups" : ["weapon"],
+      "emissionRate" : 1.25,
+      "particles" : [
+        {
+          "particle" : "v-ioncannonreload"
+        }
+      ]
+    },
+    "fire" : {
+      "active" : false,
+      "emissionRate" : 100,
+      "offsetRegion" : [0.5, 0.25, 1, 0.25],
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "looping" : true,
+            "animation" : "/animations/v-ionfire/v-ionfire.animation",
+            "position" : [1, 0],
+            "initialVelocity" : [3, 0],
+            "finalVelocity" : [0, 5],
+            "approach" : [3, 5],
+            "light" : [0, 97, 91],
+            "fade" : 1,
+            "timeToLive" : 0.85,
+            "fullbright" : true,
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.85,
+            "size" : 1.0
+          }
+        }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "fireStart" : [],
+    "fireLoop" : [],
+    "fireEnd" : [],
+    "beamImpact" : []
+  }
+}

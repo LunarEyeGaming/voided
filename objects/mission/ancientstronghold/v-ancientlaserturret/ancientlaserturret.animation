@@ -1,0 +1,124 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "gun" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "fire" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      },
+      "laser" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "windup" : {
+            "frames" : 1,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "active"
+          },
+          "active" : {},
+          "winddown" : {
+            "frames" : 1,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "inactive"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "base" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 2,
+          "fullbright" : false,
+          "image" : "<partImage>",
+          "offset" : [0, 0],
+          "cameraPos" : [2, 2]
+        }
+      },
+      "gun" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 3,
+          "fullbright" : false,
+          "image" : "<partImage>",
+          "offset" : [0, 0],
+          "transformationGroups" : ["gun"]
+        },
+
+        "partStates" : {
+          "gun" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "laser" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 4,
+          "fullbright" : true,
+          "offset" : [25, 0],
+          "transformationGroups" : ["gun"]
+        },
+
+        "partStates" : {
+          "laser" : {
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+            }
+          }
+        }
+      }
+      /*,
+      "gunfullbright" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 2,
+          "fullbright" : true,
+          "image" : "<partImage>",
+          "offset" : [0, 0],
+          "transformationGroups" : ["gun"]
+        },
+
+        "partStates" : {
+          "gun" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      }*/
+    }
+  },
+    
+  "transformationGroups" : {
+    "gun" : {"interpolated" : true}
+  }
+}

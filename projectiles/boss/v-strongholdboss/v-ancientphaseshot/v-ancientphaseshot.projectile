@@ -1,0 +1,28 @@
+{
+  "projectileName" : "v-ancientphaseshot",
+  "image" : "ancientphaseshot.png",
+  "animationCycle" : 0.2,
+  "lightColor" : [150, 100, 100],
+  "frameNumber" : 4,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "illusion",
+  "emitters" : [ ],
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/gun/pulsecannon_blast1.ogg" ]
+    }
+  ],
+  "damagePoly" : [ [-8, 0], [2, 3], [8, 0], [2, -3] ],
+  "damageKind" : "plasma",
+  "piercing" : true,
+
+  "speed" : 100,
+
+  "scripts" : [ "/projectiles/tracksourcestatus.lua" ],
+  "scriptDelta" : 1
+}

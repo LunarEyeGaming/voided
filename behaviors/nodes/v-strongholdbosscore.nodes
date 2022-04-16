@@ -1,0 +1,45 @@
+{
+  "v_rotateLaser": {
+    "type": "action",
+    "name": "v_rotateLaser",
+    "title": "v_rotateLaser",
+    "properties": {
+      "maxAngularVelocity": {"type": "number", "value": null},
+      "duration": {"type": "number", "value": null}
+    },
+    "category": "v-strongholdbosscore",
+    "script": "/scripts/actions/boss/v-strongholdbosscore.lua",
+    "output": {}
+  },
+  "v_teleAngle": {
+    "type": "action",
+    "name": "v_teleAngle",
+    "title": "v_teleAngle",
+    "properties": {
+      "center": {"type": "position", "key": "self"},
+      "xLength": {"type": "number", "value": null},
+      "yLength": {"type": "number", "value": null},
+      "angle": {"type": "number", "value": null},
+      "angleOffset": {"type": "number", "value": 0},
+      "rotations": {"type": "number", "value": null},
+      "teleTime": {"type": "number", "value": null}
+    },
+    "category": "v-strongholdbosscore",
+    "script": "/scripts/actions/boss/v-strongholdbosscore.lua",
+    "output": {
+      "headingVector": {"type": "vec2", "key": null}
+    }
+  },
+  "v_teleportToPosition": {
+    "type": "action",
+    "name": "v_teleportToPosition",
+    "title": "v_teleportToPosition",
+    "properties": {
+      "position": {"type": "position", "value": null},
+      "color": {"type": "string", "value": "purple"}
+    },
+    "category": "v-strongholdbosscore",
+    "script": "/scripts/actions/boss/v-strongholdbosscore.lua",
+    "output": {}
+  }
+}

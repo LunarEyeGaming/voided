@@ -1,0 +1,1646 @@
+{
+  "name": "v-strongholdboss",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/entity.lua",
+    "/scripts/actions/boss/apeboss.lua",
+    "/scripts/actions/boss/v-strongholdboss.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/behavior/bdata.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/status.lua",
+    "/scripts/actions/monster.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/behavior.lua"
+  ],
+  "parameters": {
+    // "projectorCount": 4,
+    // "projectorDistance": 10,
+    // "spawnTime": 3
+  },
+  "root": {
+    "title": "Reset",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setDying",
+        "type": "action",
+        "name": "setDying",
+        "parameters": {
+          "shouldDie": {"value": false}
+        }
+      },
+      {
+        "title": "v_spawnStrongholdParts",
+        "type": "action",
+        "name": "v_spawnStrongholdParts",
+        "parameters": {
+          //"count": {"key": "<projectorCount>"},
+          //"distance": {"key": "<projectorDistance>"},
+          //"monsterType": {"value": "apebossprojector"}
+          "laserH1Offset": {"value": [-20, 11]},
+          "laserH2Offset": {"value": [20, -11]},
+          "laserV1Offset": {"value": [-14, 17]},
+          "laserV2Offset": {"value": [14, -17]},
+          "coreXOffsets": {"value": [-14, 0, 14]},
+          "coreYOffsets": {"value": [-11, 0, 11]}
+        },
+        "output": {
+          "laserH1Id": "laserH1Id",
+          "laserH2Id": "laserH2Id",
+          "laserV1Id": "laserV1Id",
+          "laserV2Id": "laserV2Id",
+          "coreIds": "coreIds"
+        }
+      },
+      {
+        "title": "v_partitionCores",
+        "type": "action",
+        "name": "v_partitionCores",
+        "parameters": {
+          "coreIds": {"key": "coreIds"},
+          "nRows": {"value": 3},
+          "nCols": {"value": 3}
+        },
+        "output": {
+          "result": "corePartition"
+        }
+      },
+      /* {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "projectors"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "succeeder",
+          "type": "decorator",
+          "name": "succeeder",
+          "parameters": {},
+          "child": {
+            "title": "sendEntityMessage",
+            "type": "action",
+            "name": "sendEntityMessage",
+            "parameters": {
+              "entity": {"key": "eachItem"},
+              "message": {"value": "startSpawnSequence"}
+            }
+          }
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "spawnidle"},
+          "type": {"value": "body"}
+        }
+      }, */
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": -1}
+        },
+        "children": [
+          {
+            "title": "monster-targeting",
+            "type": "module",
+            "name": "monster-targeting",
+            "parameters": {
+              "targetQueryRange": {"value": 80},
+              "keepTargetInRange": {"value": 100},
+              "targetEntityTypes": {"value": ["player"]},
+              "keepTargetInSight": {"value": true},
+              "queryTargets": {"value": true},
+              "targetOnDamage": {"value": true},
+              "targetOutOfSightTime": {"value": 9999}
+            }
+          },
+          /* {
+            "title": "each",
+            "type": "decorator",
+            "name": "each",
+            "parameters": {
+              "list": {"key": "projectors"},
+              "type": {"value": "entity"}
+            },
+            "child": {
+              "title": "succeeder",
+              "type": "decorator",
+              "name": "succeeder",
+              "parameters": {},
+              "child": {
+                "title": "keepEntityLoaded",
+                "type": "action",
+                "name": "keepEntityLoaded",
+                "parameters": {
+                  "entity": {"key": "eachItem"},
+                  "region": {"value": [-16, -16, 16, 16]}
+                }
+              }
+            }
+          }, */
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "filter",
+                "type": "decorator",
+                "name": "filter",
+                "parameters": {
+                  "list": {"key": "coreIds"},
+                  "type": {"value": "entity"}
+                },
+                "child": {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "entityExists",
+                      "type": "action",
+                      "name": "entityExists",
+                      "parameters": {
+                        "entity": {"key": "filterItem"}
+                      }
+                    },
+                    {
+                      "title": "entityHealth",
+                      "type": "action",
+                      "name": "entityHealth",
+                      "parameters": {
+                        "entity": {"key": "filterItem"}
+                      },
+                      "output": {
+                        "number": "coreHealth"
+                      }
+                    },
+                    {
+                      "title": "greaterThan",
+                      "type": "action",
+                      "name": "greaterThan",
+                      "parameters": {
+                        "first": {"key": "coreHealth"},
+                        "second": {"value": 0}
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "filter",
+                "type": "decorator",
+                "name": "filter",
+                "parameters": {
+                  "list": {"key": "activeCoreIds"},
+                  "type": {"value": "entity"}
+                },
+                "child": {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "entityExists",
+                      "type": "action",
+                      "name": "entityExists",
+                      "parameters": {
+                        "entity": {"key": "filterItem"}
+                      }
+                    },
+                    {
+                      "title": "entityHealth",
+                      "type": "action",
+                      "name": "entityHealth",
+                      "parameters": {
+                        "entity": {"key": "filterItem"}
+                      },
+                      "output": {
+                        "number": "coreHealth"
+                      }
+                    },
+                    {
+                      "title": "greaterThan",
+                      "type": "action",
+                      "name": "greaterThan",
+                      "parameters": {
+                        "first": {"key": "coreHealth"},
+                        "second": {"value": 0}
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "listSize",
+                "type": "action",
+                "name": "listSize",
+                "parameters": {
+                  "list": {"key": "coreIds"}
+                },
+                "output": {
+                  "number": "coreCount"
+                }
+              }
+            ]
+          },
+          {
+            "title": "faceDirection",
+            "type": "action",
+            "name": "faceDirection",
+            "parameters": {
+              "direction": {"value": 1}
+            }
+          },
+          {
+            "title": "dynamic",
+            "type": "composite",
+            "name": "dynamic",
+            "parameters": {},
+            "children": [
+              {
+                "title": "parallel",
+                "type": "composite",
+                "name": "parallel",
+                "parameters": {
+                  "fail": {"value": 1},
+                  "success": {"value": -1}
+                },
+                "children": [
+                  {
+                    "title": "entityExists",
+                    "type": "action",
+                    "name": "entityExists",
+                    "parameters": {
+                      "entity": {"key": "target"}
+                    }
+                  },
+                  {
+                    "title": "Reset",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "projectorHealthPercentage",
+                        "type": "action",
+                        "name": "projectorHealthPercentage",
+                        "parameters": {
+                          "count": {"value": 9},
+                          "projectorList": {"key": "coreIds"}
+                        },
+                        "output": {
+                          "healthPercentage": "healthPercentage"
+                        }
+                      },
+                      {
+                        "title": "setResourcePercentage",
+                        "type": "action",
+                        "name": "setResourcePercentage",
+                        "parameters": {
+                          "percentage": {"key": "healthPercentage"},
+                          "resource": {"value": "health"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "setDamageBar",
+                        "type": "action",
+                        "name": "setDamageBar",
+                        "parameters": {
+                          "type": {"value": "Special"}
+                        }
+                      },
+                      {
+                        "title": "battleMusic",
+                        "type": "action",
+                        "name": "battleMusic",
+                        "parameters": {
+                          "enable": {"value": true}
+                        }
+                      },
+                      {
+                        "title": "Spiderboss",
+                        "type": "composite",
+                        "name": "dynamic",
+                        "parameters": {},
+                        "children": [
+                          /* {
+                            "title": "failer",
+                            "type": "decorator",
+                            "name": "failer",
+                            "parameters": {},
+                            "child": {
+                              "title": "limiter",
+                              "type": "decorator",
+                              "name": "limiter",
+                              "parameters": {
+                                "limit": {"value": 1}
+                              },
+                              "child": {
+                                "title": "sequence",
+                                "type": "composite",
+                                "name": "sequence",
+                                "parameters": {},
+                                "children": [
+                                  {
+                                    "title": "setProjectorSpeeds",
+                                    "type": "action",
+                                    "name": "setProjectorSpeeds",
+                                    "parameters": {
+                                      "projectorList": {"key": "projectors"},
+                                      "speed": {"value": 10}
+                                    }
+                                  },
+                                  {
+                                    "title": "each",
+                                    "type": "decorator",
+                                    "name": "each",
+                                    "parameters": {
+                                      "list": {"key": "projectors"},
+                                      "type": {"value": "entity"}
+                                    },
+                                    "child": {
+                                      "title": "succeeder",
+                                      "type": "decorator",
+                                      "name": "succeeder",
+                                      "parameters": {},
+                                      "child": {
+                                        "title": "sendEntityMessage",
+                                        "type": "action",
+                                        "name": "sendEntityMessage",
+                                        "parameters": {
+                                          "entity": {"key": "eachItem"},
+                                          "message": {"value": "stopSpawnSequence"}
+                                        }
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "title": "timer",
+                                    "type": "action",
+                                    "name": "timer",
+                                    "parameters": {
+                                      "time": {"value": "<spawnTime>"}
+                                    },
+                                    "output": {
+                                      "ratio": "1.0"
+                                    }
+                                  },
+                                  {
+                                    "title": "setAnimationState",
+                                    "type": "action",
+                                    "name": "setAnimationState",
+                                    "parameters": {
+                                      "state": {"value": "spawn"},
+                                      "type": {"value": "body"}
+                                    }
+                                  },
+                                  {
+                                    "title": "timer",
+                                    "type": "action",
+                                    "name": "timer",
+                                    "parameters": {
+                                      "time": {"value": "<spawnTime>"}
+                                    }
+                                  },
+                                  {
+                                    "title": "setFlag",
+                                    "type": "action",
+                                    "name": "setFlag",
+                                    "parameters": {
+                                      "name": {"value": "hasSpawned"}
+                                    }
+                                  },
+                                  {
+                                    "title": "each",
+                                    "type": "decorator",
+                                    "name": "each",
+                                    "parameters": {
+                                      "list": {"key": "projectors"},
+                                      "type": {"value": "entity"}
+                                    },
+                                    "child": {
+                                      "title": "succeeder",
+                                      "type": "decorator",
+                                      "name": "succeeder",
+                                      "parameters": {},
+                                      "child": {
+                                        "title": "sendEntityMessage",
+                                        "type": "action",
+                                        "name": "sendEntityMessage",
+                                        "parameters": {
+                                          "entity": {"key": "eachItem"},
+                                          "message": {"value": "heal"}
+                                        }
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }, */
+                          {
+                            "title": "parallel",
+                            "type": "composite",
+                            "name": "parallel",
+                            "parameters": {
+                              "fail": {"value": 1},
+                              "success": {"value": -1}
+                            },
+                            "children": [
+                              {
+                                "title": "greaterThan",
+                                "type": "action",
+                                "name": "greaterThan",
+                                "parameters": {
+                                  "first": {"key": "coreCount"},
+                                  "second": {"value": 6}
+                                }
+                              },
+                              {
+                                "title": "sequence",
+                                "type": "composite",
+                                "name": "sequence",
+                                "parameters": {},
+                                "children": [
+                                  {
+                                    "title": "v_activateCores",
+                                    "type": "action",
+                                    "name": "v_activateCores",
+                                    "parameters": {
+                                      //"coreIds": {"key": "coreIds"},
+                                      //"nResults": {"value": 3}
+                                      "corePartition": {"key": "corePartition"},
+                                      "phase": {"value": 1}
+                                    },
+                                    "output": {
+                                      "coreIds": "activeCoreIds"
+                                    }
+                                  },
+                                  {
+                                    "title": "timer",
+                                    "type": "action",
+                                    "name": "timer",
+                                    "parameters": {
+                                      "time": {"value": 2.0}
+                                    }
+                                  },
+                                  {
+                                    "title": "repeater",
+                                    "type": "decorator",
+                                    "name": "repeater",
+                                    "parameters": {
+                                      "maxLoops": {"value": -1},
+                                      "untilSuccess": {"value": false}
+                                    },
+                                    "child": {
+                                      "title": "randomize",
+                                      "type": "composite",
+                                      "name": "randomize",
+                                      "parameters": {},
+                                      "children": [
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack",
+                                            "type": "action",
+                                            "name": "v_laserAttack",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH1Id"},
+                                              "v1Id": {"key": "laserV1Id"},
+                                              "h2Id": {"key": "laserH2Id"},
+                                              "v2Id": {"key": "laserV2Id"},
+                                              "hOffsets": {"value": [[0, -11], [0, 0], [0, 11]]},
+                                              "vOffsets": {"value": [[-14, 0], [0, 0], [14, 0]]},
+                                              "hTeleProjectile": {"value": "v-laserwarninghorizontal"},
+                                              "vTeleProjectile": {"value": "v-laserwarningvertical"},
+                                              "loops": {"value": 5},
+                                              "phase": {"value": 1},
+                                              "waitTime": {"value": 0.25}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack2",
+                                            "type": "action",
+                                            "name": "v_laserAttack2",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH1Id"},
+                                              "v1Id": {"key": "laserV1Id"},
+                                              "h1Offsets": {"value": [[0, 11], [0, 0]]},
+                                              "v1Offsets": {"value": [[14, 0], [0, 0]]},
+                                              "hTeleProjectile": {"value": "v-laserwarninghorizontal"},
+                                              "vTeleProjectile": {"value": "v-laserwarningvertical"},
+                                              "waitTime": {"value": 0.0}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack2",
+                                            "type": "action",
+                                            "name": "v_laserAttack2",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH2Id"},
+                                              "v1Id": {"key": "laserV2Id"},
+                                              "h1Offsets": {"value": [[0, -11], [0, 0]]},
+                                              "v1Offsets": {"value": [[-14, 0], [0, 0]]},
+                                              "hTeleProjectile": {"value": "v-laserwarninghorizontal"},
+                                              "vTeleProjectile": {"value": "v-laserwarningvertical"},
+                                              "waitTime": {"value": 0.0}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack3",
+                                            "type": "action",
+                                            "name": "v_laserAttack3",
+                                            "parameters": {
+                                              "attackSet": {"value": [
+                                                {"idKey": "laserH1Id", "startOffset": [0, -3], "endOffset": [0, 11],
+                                                 "teleProjectile": "v-laserwarninghorizontal2", "teleOffset": [0, 4.5]},
+                                                {"idKey": "laserV1Id", "startOffset": [-6, 0], "endOffset": [14, 0],
+                                                 "teleProjectile": "v-laserwarningvertical2", "teleOffset": [5, 0]},
+                                                {"idKey": "laserH2Id", "startOffset": [0, 3], "endOffset": [0, -11],
+                                                 "teleProjectile": "v-laserwarninghorizontal2", "teleOffset": [0, -4.5]},
+                                                {"idKey": "laserV2Id", "startOffset": [6, 0], "endOffset": [-14, 0],
+                                                 "teleProjectile": "v-laserwarningvertical2", "teleOffset": [-5, 0]}
+                                              ]},
+                                              "sampleSize": {"value": 2},
+                                              "waitTime": {"value": 0.25}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack4",
+                                            "type": "action",
+                                            "name": "v_laserAttack4",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH1Id"},
+                                              "h2Id": {"key": "laserH2Id"},
+                                              "v1Id": {"key": "laserV1Id"},
+                                              "v2Id": {"key": "laserV2Id"},
+                                              "hBounds": {"value": [-11, 11]},
+                                              "vBounds": {"value": [-14, 14]},
+                                              "target": {"key": "target"},
+                                              "targetProjectile": {"value": "v-targetwarning"},
+                                              "loops": {"value": 3},
+                                              "waitTime": {"value": 0.25}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack1",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack1",
+                                            "parameters": {
+                                              "loops": {"value": 4},
+                                              "fireInterval": {"value": 0.6}
+                                            }
+                                          }
+                                        },
+                                        /* {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack2",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack2",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack3",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack3",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack4",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack4",
+                                            "parameters": {}
+                                          }
+                                        }, */
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack6",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack6",
+                                            "parameters": {}
+                                          }
+                                        }/* ,
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 20}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-turretattack1",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-turretattack1",
+                                            "parameters": {}
+                                          }
+                                        } */
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "title": "parallel",
+                            "type": "composite",
+                            "name": "parallel",
+                            "parameters": {
+                              "fail": {"value": 1},
+                              "success": {"value": -1}
+                            },
+                            "children": [
+                              {
+                                "title": "greaterThan",
+                                "type": "action",
+                                "name": "greaterThan",
+                                "parameters": {
+                                  "first": {"key": "coreCount"},
+                                  "second": {"value": 3}
+                                }
+                              },
+                              {
+                                "title": "sequence",
+                                "type": "composite",
+                                "name": "sequence",
+                                "parameters": {},
+                                "children": [
+                                  {
+                                    "title": "v-strongholdboss-phasetransition",
+                                    "type": "module",
+                                    "name": "v-strongholdboss-phasetransition",
+                                    "parameters": {}
+                                  },
+                                  {
+                                    "title": "v_activateCores",
+                                    "type": "action",
+                                    "name": "v_activateCores",
+                                    "parameters": {
+                                      //"coreIds": {"key": "coreIds"},
+                                      //"nResults": {"value": 3}
+                                      "corePartition": {"key": "corePartition"},
+                                      "phase": {"value": 2}
+                                    },
+                                    "output": {
+                                      "coreIds": "activeCoreIds"
+                                    }
+                                  },
+                                  {
+                                    "title": "timer",
+                                    "type": "action",
+                                    "name": "timer",
+                                    "parameters": {
+                                      "time": {"value": 2.0}
+                                    }
+                                  },
+                                  {
+                                    "title": "repeater",
+                                    "type": "decorator",
+                                    "name": "repeater",
+                                    "parameters": {
+                                      "maxLoops": {"value": -1},
+                                      "untilSuccess": {"value": false}
+                                    },
+                                    "child": {
+                                      "title": "randomize",
+                                      "type": "composite",
+                                      "name": "randomize",
+                                      "parameters": {},
+                                      "children": [
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack",
+                                            "type": "action",
+                                            "name": "v_laserAttack",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH1Id"},
+                                              "v1Id": {"key": "laserV1Id"},
+                                              "h2Id": {"key": "laserH2Id"},
+                                              "v2Id": {"key": "laserV2Id"},
+                                              "hOffsets": {"value": [[0, -11], [0, 0], [0, 11]]},
+                                              "vOffsets": {"value": [[-14, 0], [0, 0], [14, 0]]},
+                                              "hTeleProjectile": {"value": "v-laserwarninghorizontal"},
+                                              "vTeleProjectile": {"value": "v-laserwarningvertical"},
+                                              "loops": {"value": 6},
+                                              "phase": {"value": 2},
+                                              "waitTime": {"value": 0.0}
+                                            }
+                                          }
+                                        },
+                                        /* {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack2",
+                                            "type": "action",
+                                            "name": "v_laserAttack2",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH1Id"},
+                                              "v1Id": {"key": "laserV1Id"},
+                                              "h1Offsets": {"value": [[0, 11], [0, 0]]},
+                                              "v1Offsets": {"value": [[14, 0], [0, 0]]},
+                                              "hTeleProjectile": {"value": "v-laserwarninghorizontal"},
+                                              "vTeleProjectile": {"value": "v-laserwarningvertical"},
+                                              "waitTime": {"value": 0.0}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack2",
+                                            "type": "action",
+                                            "name": "v_laserAttack2",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH2Id"},
+                                              "v1Id": {"key": "laserV2Id"},
+                                              "h1Offsets": {"value": [[0, -11], [0, 0]]},
+                                              "v1Offsets": {"value": [[-14, 0], [0, 0]]},
+                                              "hTeleProjectile": {"value": "v-laserwarninghorizontal"},
+                                              "vTeleProjectile": {"value": "v-laserwarningvertical"},
+                                              "waitTime": {"value": 0.0}
+                                            }
+                                          }
+                                        }, */
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack2",
+                                            "type": "action",
+                                            "name": "v_laserAttack2",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH1Id"},
+                                              "v1Id": {"key": "laserV1Id"},
+                                              "h2Id": {"key": "laserH2Id"},
+                                              "v2Id": {"key": "laserV2Id"},
+                                              "h1Offsets": {"value": [[0, 11], [0, 0]]},
+                                              "v1Offsets": {"value": [[14, 0], [0, 0]]},
+                                              "h2Offsets": {"value": [[0, -11], [0, 0]]},
+                                              "v2Offsets": {"value": [[-14, 0], [0, 0]]},
+                                              "hTeleProjectile": {"value": "v-laserwarninghorizontal"},
+                                              "vTeleProjectile": {"value": "v-laserwarningvertical"},
+                                              "waitTime": {"value": 0.0}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack3",
+                                            "type": "action",
+                                            "name": "v_laserAttack3",
+                                            "parameters": {
+                                              "attackSet": {"value": [
+                                                {"idKey": "laserH1Id", "startOffset": [0, -3], "endOffset": [0, 11],
+                                                 "teleProjectile": "v-laserwarninghorizontal2", "teleOffset": [0, 4.5]},
+                                                {"idKey": "laserV1Id", "startOffset": [-6, 0], "endOffset": [14, 0],
+                                                 "teleProjectile": "v-laserwarningvertical2", "teleOffset": [5, 0]},
+                                                {"idKey": "laserH2Id", "startOffset": [0, 3], "endOffset": [0, -11],
+                                                 "teleProjectile": "v-laserwarninghorizontal2", "teleOffset": [0, -4.5]},
+                                                {"idKey": "laserV2Id", "startOffset": [6, 0], "endOffset": [-14, 0],
+                                                 "teleProjectile": "v-laserwarningvertical2", "teleOffset": [-5, 0]}
+                                              ]},
+                                              "sampleSize": {"value": 3},
+                                              "waitTime": {"value": 0.0}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack4",
+                                            "type": "action",
+                                            "name": "v_laserAttack4",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH1Id"},
+                                              "h2Id": {"key": "laserH2Id"},
+                                              "v1Id": {"key": "laserV1Id"},
+                                              "v2Id": {"key": "laserV2Id"},
+                                              "hBounds": {"value": [-11, 11]},
+                                              "vBounds": {"value": [-14, 14]},
+                                              "target": {"key": "target"},
+                                              "targetProjectile": {"value": "v-targetwarning"},
+                                              "loops": {"value": 6},
+                                              "phase": {"value": 2},
+                                              "waitTime": {"value": 1.5}
+                                            }
+                                          }
+                                        },
+                                        /* {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack5",
+                                            "type": "action",
+                                            "name": "v_laserAttack5",
+                                            "parameters": {
+                                              "attackSet": {"value": [
+                                                {"idKey": "laserH1Id", "startOffset": [0, 11], "endOffset": [0, 9],
+                                                 "teleProjectile": "v-laserwarninghorizontal", "teleOffset": [0, 11]},
+                                                {"idKey": "laserV1Id", "startOffset": [-14, 0], "endOffset": [-9, 0],
+                                                 "teleProjectile": "v-laserwarningvertical", "teleOffset": [-14, 0]},
+                                                {"idKey": "laserH2Id", "startOffset": [0, -11], "endOffset": [0, -9],
+                                                 "teleProjectile": "v-laserwarninghorizontal", "teleOffset": [0, -11]},
+                                                {"idKey": "laserV2Id", "startOffset": [14, 0], "endOffset": [9, 0],
+                                                 "teleProjectile": "v-laserwarningvertical", "teleOffset": [14, 0]}
+                                              ]},
+                                              "waitTime": {"value": 0.5}
+                                            }
+                                          }
+                                        }, */
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack1",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack1",
+                                            "parameters": {
+                                              "loops": {"value": 4},
+                                              "fireInterval": {"value": 0.5}
+                                            }
+                                          }
+                                        },
+                                        /* {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack2",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack2",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack3",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack3",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack4",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack4",
+                                            "parameters": {}
+                                          }
+                                        }, */
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack5",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack5",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack6",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack6",
+                                            "parameters": {
+                                              "teleTime": {"value": 2},
+                                              "loops": {"value": 3}
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "title": "parallel",
+                            "type": "composite",
+                            "name": "parallel",
+                            "parameters": {
+                              "fail": {"value": 1},
+                              "success": {"value": -1}
+                            },
+                            "children": [
+                              {
+                                "title": "greaterThan",
+                                "type": "action",
+                                "name": "greaterThan",
+                                "parameters": {
+                                  "first": {"key": "coreCount"},
+                                  "second": {"value": 0}
+                                }
+                              },
+                              {
+                                "title": "sequence",
+                                "type": "composite",
+                                "name": "sequence",
+                                "parameters": {},
+                                "children": [
+                                  {
+                                    "title": "v-strongholdboss-phasetransition",
+                                    "type": "module",
+                                    "name": "v-strongholdboss-phasetransition",
+                                    "parameters": {}
+                                  },
+                                  {
+                                    "title": "v_activateCores",
+                                    "type": "action",
+                                    "name": "v_activateCores",
+                                    "parameters": {
+                                      //"coreIds": {"key": "coreIds"},
+                                      //"nResults": {"value": 3}
+                                      "corePartition": {"key": "corePartition"},
+                                      "phase": {"value": 3}
+                                    },
+                                    "output": {
+                                      "coreIds": "activeCoreIds"
+                                    }
+                                  },
+                                  {
+                                    "title": "timer",
+                                    "type": "action",
+                                    "name": "timer",
+                                    "parameters": {
+                                      "time": {"value": 2.0}
+                                    }
+                                  },
+                                  {
+                                    "title": "repeater",
+                                    "type": "decorator",
+                                    "name": "repeater",
+                                    "parameters": {
+                                      "maxLoops": {"value": -1},
+                                      "untilSuccess": {"value": false}
+                                    },
+                                    "child": {
+                                      "title": "randomize",
+                                      "type": "composite",
+                                      "name": "randomize",
+                                      "parameters": {},
+                                      "children": [
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack",
+                                            "type": "action",
+                                            "name": "v_laserAttack",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH1Id"},
+                                              "v1Id": {"key": "laserV1Id"},
+                                              "h2Id": {"key": "laserH2Id"},
+                                              "v2Id": {"key": "laserV2Id"},
+                                              "hOffsets": {"value": [[0, -11], [0, 0], [0, 11]]},
+                                              "vOffsets": {"value": [[-14, 0], [0, 0], [14, 0]]},
+                                              "hTeleProjectile": {"value": "v-laserwarninghorizontal"},
+                                              "vTeleProjectile": {"value": "v-laserwarningvertical"},
+                                              "loops": {"value": 6},
+                                              "phase": {"value": 3},
+                                              "waitTime": {"value": 0.0}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack2",
+                                            "type": "action",
+                                            "name": "v_laserAttack2",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH1Id"},
+                                              "v1Id": {"key": "laserV1Id"},
+                                              "h2Id": {"key": "laserH2Id"},
+                                              "v2Id": {"key": "laserV2Id"},
+                                              "h1Offsets": {"value": [[0, 11], [0, 0]]},
+                                              "v1Offsets": {"value": [[14, 0], [0, 0]]},
+                                              "h2Offsets": {"value": [[0, -11], [0, 0]]},
+                                              "v2Offsets": {"value": [[-14, 0], [0, 0]]},
+                                              "hTeleProjectile": {"value": "v-laserwarninghorizontal"},
+                                              "vTeleProjectile": {"value": "v-laserwarningvertical"},
+                                              "waitTime": {"value": 0.0}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack3",
+                                            "type": "action",
+                                            "name": "v_laserAttack3",
+                                            "parameters": {
+                                              "attackSet": {"value": [
+                                                {"idKey": "laserH1Id", "startOffset": [0, -3], "endOffset": [0, 11],
+                                                 "teleProjectile": "v-laserwarninghorizontal2", "teleOffset": [0, 4.5]},
+                                                {"idKey": "laserV1Id", "startOffset": [-6, 0], "endOffset": [14, 0],
+                                                 "teleProjectile": "v-laserwarningvertical2", "teleOffset": [5, 0]},
+                                                {"idKey": "laserH2Id", "startOffset": [0, 3], "endOffset": [0, -11],
+                                                 "teleProjectile": "v-laserwarninghorizontal2", "teleOffset": [0, -4.5]},
+                                                {"idKey": "laserV2Id", "startOffset": [6, 0], "endOffset": [-14, 0],
+                                                 "teleProjectile": "v-laserwarningvertical2", "teleOffset": [-5, 0]}
+                                              ]},
+                                              "sampleSize": {"value": 4},
+                                              "waitTime": {"value": 0.0}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack4",
+                                            "type": "action",
+                                            "name": "v_laserAttack4",
+                                            "parameters": {
+                                              "h1Id": {"key": "laserH1Id"},
+                                              "h2Id": {"key": "laserH2Id"},
+                                              "v1Id": {"key": "laserV1Id"},
+                                              "v2Id": {"key": "laserV2Id"},
+                                              "hBounds": {"value": [-11, 11]},
+                                              "vBounds": {"value": [-13, 13]},
+                                              "target": {"key": "target"},
+                                              "targetProjectile": {"value": "v-targetwarning"},
+                                              "loops": {"value": 4},
+                                              "phase": {"value": 3},
+                                              "waitTime": {"value": 0.25}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack5",
+                                            "type": "action",
+                                            "name": "v_laserAttack5",
+                                            "parameters": {
+                                              "attackSet": {"value": [
+                                                {"idKey": "laserH1Id", "startOffset": [0, 11], "endOffset": [0, 9],
+                                                 "teleProjectile": "v-laserwarninghorizontal", "teleOffset": [0, 11]},
+                                                {"idKey": "laserV1Id", "startOffset": [-14, 0], "endOffset": [-8, 0],
+                                                 "teleProjectile": "v-laserwarningvertical", "teleOffset": [-14, 0]},
+                                                {"idKey": "laserH2Id", "startOffset": [0, -11], "endOffset": [0, -9],
+                                                 "teleProjectile": "v-laserwarninghorizontal", "teleOffset": [0, -11]},
+                                                {"idKey": "laserV2Id", "startOffset": [14, 0], "endOffset": [8, 0],
+                                                 "teleProjectile": "v-laserwarningvertical", "teleOffset": [14, 0]}
+                                              ]},
+                                              "waitTime": {"value": 0.5}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack1",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack1",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        /* {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack2",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack2",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack3",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack3",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack4",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack4",
+                                            "parameters": {}
+                                          }
+                                        }, */
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack5",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack5",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v-strongholdboss-coreattack6",
+                                            "type": "module",
+                                            "name": "v-strongholdboss-coreattack6",
+                                            "parameters": {
+                                              "teleTime": {"value": 1.5},
+                                              "loops": {"value": 4}
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "title": "Reset",
+                            "type": "composite",
+                            "name": "sequence",
+                            "parameters": {},
+                            "children": [
+                              /* {
+                                "title": "setScreenStates",
+                                "type": "action",
+                                "name": "setScreenStates",
+                                "parameters": {
+                                  "state": {"value": "blue"}
+                                }
+                              },
+                              {
+                                "title": "setVelocity",
+                                "type": "action",
+                                "name": "setVelocity",
+                                "parameters": {
+                                  "velocity": {"value": [0, 0]}
+                                }
+                              },
+                              {
+                                "title": "setAnimationState",
+                                "type": "action",
+                                "name": "setAnimationState",
+                                "parameters": {
+                                  "state": {"value": "death"},
+                                  "type": {"value": "body"}
+                                }
+                              },
+                              {
+                                "title": "playSound",
+                                "type": "action",
+                                "name": "playSound",
+                                "parameters": {
+                                  "sound": {"value": "death"}
+                                }
+                              },
+                              {
+                                "title": "timer",
+                                "type": "action",
+                                "name": "timer",
+                                "parameters": {
+                                  "time": {"value": 1.5}
+                                }
+                              }, */
+                              {
+                                "title": "setResourcePercentage",
+                                "type": "action",
+                                "name": "setResourcePercentage",
+                                "parameters": {
+                                  "percentage": {"value": 0},
+                                  "resource": {"value": "health"}
+                                }
+                              },
+                              {
+                                "title": "battleMusic",
+                                "type": "action",
+                                "name": "battleMusic",
+                                "parameters": {
+                                  "enable": {"value": false}
+                                }
+                              },
+                              {
+                                "title": "setDying",
+                                "type": "action",
+                                "name": "setDying",
+                                "parameters": {
+                                  "shouldDie": {"value": true}
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Reset",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  /* {
+                    "title": "succeeder",
+                    "type": "decorator",
+                    "name": "succeeder",
+                    "parameters": {},
+                    "child": {
+                      "title": "Reset",
+                      "type": "composite",
+                      "name": "sequence",
+                      "parameters": {},
+                      "children": [
+                        {
+                          "title": "hasFlag",
+                          "type": "action",
+                          "name": "hasFlag",
+                          "parameters": {
+                            "name": {"key": "hasSpawned"}
+                          }
+                        },
+                        {
+                          "title": "setAnimationState",
+                          "type": "action",
+                          "name": "setAnimationState",
+                          "parameters": {
+                            "state": {"value": "idle"},
+                            "type": {"value": "body"}
+                          }
+                        }
+                      ]
+                    }
+                  }, */
+                  /* {
+                    "title": "setGlobalTag",
+                    "type": "action",
+                    "name": "setGlobalTag",
+                    "parameters": {
+                      "tag": {"value": "stage1"},
+                      "type": {"value": "stage"}
+                    }
+                  }, */
+                  {
+                    "title": "battleMusic",
+                    "type": "action",
+                    "name": "battleMusic",
+                    "parameters": {
+                      "enable": {"value": false}
+                    }
+                  },
+                  /* {
+                    "title": "setProjectorSpeeds",
+                    "type": "action",
+                    "name": "setProjectorSpeeds",
+                    "parameters": {
+                      "projectorList": {"key": "projectors"},
+                      "speed": {"value": 10}
+                    }
+                  }, */
+                  {
+                    "title": "succeeder",
+                    "type": "decorator",
+                    "name": "succeeder",
+                    "parameters": {},
+                    "child": {
+                      "title": "selector",
+                      "type": "composite",
+                      "name": "selector",
+                      "parameters": {},
+                      "children": [
+                        {
+                          "title": "Reset",
+                          "type": "composite",
+                          "name": "sequence",
+                          "parameters": {},
+                          "children": [
+                            {
+                              "title": "greaterThan",
+                              "type": "action",
+                              "name": "greaterThan",
+                              "parameters": {
+                                "first": {"key": "coreCount"},
+                                "second": {"value": 8}
+                              }
+                            },
+                            {
+                              "title": "each",
+                              "type": "decorator",
+                              "name": "each",
+                              "parameters": {
+                                "list": {"key": "coreIds"},
+                                "type": {"value": "entity"}
+                              },
+                              "child": {
+                                "title": "succeeder",
+                                "type": "decorator",
+                                "name": "succeeder",
+                                "parameters": {},
+                                "child": {
+                                  "title": "sendEntityMessage",
+                                  "type": "action",
+                                  "name": "sendEntityMessage",
+                                  "parameters": {
+                                    "entity": {"key": "eachItem"},
+                                    "message": {"value": "heal"}
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "title": "Reset",
+                          "type": "composite",
+                          "name": "sequence",
+                          "parameters": {},
+                          "children": [
+                            {
+                              "title": "each",
+                              "type": "decorator",
+                              "name": "each",
+                              "parameters": {
+                                "list": {"key": "coreIds"},
+                                "type": {"value": "entity"}
+                              },
+                              "child": {
+                                "title": "sendEntityMessage",
+                                "type": "action",
+                                "name": "sendEntityMessage",
+                                "parameters": {
+                                  "entity": {"key": "eachItem"},
+                                  "message": {"value": "destroy"}
+                                }
+                              }
+                            },
+                            {
+                              "title": "v_spawnStrongholdParts2",
+                              "type": "action",
+                              "name": "v_spawnStrongholdParts2",
+                              "parameters": {
+                                "coreXOffsets": {"value": [-14, 0, 14]},
+                                "coreYOffsets": {"value": [-11, 0, 11]}
+                              },
+                              "output": {
+                                "coreIds": "coreIds"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  /* {
+                    "title": "flyToPosition",
+                    "type": "action",
+                    "name": "flyToPosition",
+                    "parameters": {
+                      "position": {"key": "spawn"},
+                      "tolerance": {"value": 1}
+                    }
+                  },
+                  {
+                    "title": "setVelocity",
+                    "type": "action",
+                    "name": "setVelocity",
+                    "parameters": {
+                      "velocity": {"value": [0, 0]}
+                    }
+                  }, */
+                  {
+                    "title": "setResourcePercentage",
+                    "type": "action",
+                    "name": "setResourcePercentage",
+                    "parameters": {
+                      "percentage": {"value": 1},
+                      "resource": {"value": "health"}
+                    }
+                  },
+                  {
+                    "title": "runner",
+                    "type": "action",
+                    "name": "runner",
+                    "parameters": {}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

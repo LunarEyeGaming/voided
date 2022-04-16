@@ -1,0 +1,21 @@
+{
+  "frameGrid" : {
+    "size" : [38, 38],
+    "dimensions" : [6, 5],
+    "names" : [
+      [ null, "idle.2", "idle.3", "idle.4" ],
+      [ "idle.1", "shuffle.1", "shuffle.2", "shuffle.3", "shuffle.4", "shuffle.5" ],
+      [ "activate.1", "activate.2", "activate.3", "active.1" ],
+      [ "teleportstart.1", "teleportstart.2", "teleportstart.3" ],
+      [ "dying.1", "dying.2", "dying.3", "dying.4", "dying.5", "dying.6" ]
+    ]
+  },
+  "aliases" : {
+    "deactivate.1" : "activate.3",
+    "deactivate.2" : "activate.2",
+    "deactivate.3" : "activate.1",
+    "teleportend.1" : "teleportstart.3",
+    "teleportend.2" : "teleportstart.2",
+    "teleportend.3" : "teleportstart.1"
+  }
+}

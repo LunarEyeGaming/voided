@@ -1,0 +1,60 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "laser" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 2,
+            "cycle" : 1,
+            "mode" : "loop"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "pointer" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 1,
+          "fullbright" : false,
+          "image" : "<partImage>",
+          "offset" : [0, 0],
+          "transformationGroups" : ["pointer"]
+        }
+      },
+      "laser" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 0,
+          "fullbright" : true,
+          "offset" : [0, 0],
+          "transformationGroups" : ["laser", "pointer"]
+        },
+
+        "partStates" : {
+          "laser" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  
+  "lights" : {
+    "pointer" : {
+      "transformationGroups" : ["pointer"],
+      "color" : [83, 28, 97]
+    }
+  },
+    
+  "transformationGroups" : {
+    "pointer" : {"interpolated" : true},
+    "laser" : {"interpolated" : false}
+  }
+}

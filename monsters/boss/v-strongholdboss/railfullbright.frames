@@ -1,0 +1,20 @@
+{
+  "frameGrid" : {
+    "size" : [242, 194],
+    "dimensions" : [7, 3],
+    "names" : [
+      [ "invisible.1" ],
+      [ "appear.1", "appear.2", "appear.3", "appear.4", "appear.5", "appear.6", "appear.7" ],
+      [ "visible.1", "visible.2", "visible.3", "visible.4" ]
+    ]
+  },
+  "aliases" : {
+    "disappear.1" : "appear.7",
+    "disappear.2" : "appear.6",
+    "disappear.3" : "appear.5",
+    "disappear.4" : "appear.4",
+    "disappear.5" : "appear.3",
+    "disappear.6" : "appear.2",
+    "disappear.7" : "appear.1"
+  }
+}

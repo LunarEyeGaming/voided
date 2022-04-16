@@ -1,0 +1,163 @@
+{
+  "name": "v-strongholdboss-coreattack6",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/notification.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/voidedutil.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/behavior/bdata.lua",
+    "/scripts/behavior.lua"
+  ],
+  "parameters": {
+    "loops": 2,
+    "teleTime": 3
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "activeCoreIds"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "succeeder",
+          "type": "decorator",
+          "name": "succeeder",
+          "parameters": {},
+          "child": {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "entityExists",
+                "type": "action",
+                "name": "entityExists",
+                "parameters": {
+                  "entity": {"key": "eachItem"}
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "eachItem"},
+                  "target": {"key": "target"},
+                  "type": {"value": "openshell"}
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "appear"},
+          "type": {"value": "rail"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.0}
+        }
+      },
+      {
+        "title": "v_coreAttack6",
+        "type": "action",
+        "name": "v_coreAttack6",
+        "parameters": {
+          "coreIds": {"key": "activeCoreIds"},
+          "loops": {"value": "<loops>"},
+          "waitTime": {"value": 0.3},
+          "teleTime": {"value": "<teleTime>"},
+          "centerOffset": {"value": [0, 0]},
+          "target": {"key": "target"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "disappear"},
+          "type": {"value": "rail"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.5}
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "activeCoreIds"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "succeeder",
+          "type": "decorator",
+          "name": "succeeder",
+          "parameters": {},
+          "child": {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "entityExists",
+                "type": "action",
+                "name": "entityExists",
+                "parameters": {
+                  "entity": {"key": "eachItem"}
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "eachItem"},
+                  "target": {"key": "target"},
+                  "type": {"value": "closeshell"}
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.75}
+        }
+      }
+    ]
+  }
+}

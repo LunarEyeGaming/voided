@@ -1,0 +1,133 @@
+{
+  "type" : "v-strongholdbosslaservertical2",
+  "shortdescription" : "laser",
+
+  "categories" : [ "v-strongholdbosslaservertical" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-strongholdbosslaservertical2.animation",
+  "dropPools" : [ ],
+  "reversed" : true,
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/boss/v-strongholdboss/lasers/v-strongholdbosslaser.lua"
+    ],
+    "initialScriptDelta" : 1,
+
+    "sticky" : 1, // 0 = horizontal, 1 = vertical; determines which axis to lock
+
+    "damageBar" : "None",
+
+    "knockoutTime" : 0,
+    "knockoutEffect" : "blink",
+    "deathParticles" : "",
+
+    // "portraitIcon" : "/monsters/boss/apeboss/apeboss.png:stage1.idle.1",
+
+    "metaBoundBox" : [-50, -50, 50, 50],
+    "scale" : 1.0,
+
+    "selfDamagePoly" : [ ],
+
+    "movementSettings" : {
+      "gravityEnabled" : false,
+      "collisionEnabled" : false,
+      "collisionPoly" : [ [2.5, 5.375], [4.5, 3.375], [4.5, -3.375], [2.5, -5.375], [-2.5, -5.375], [-4.5, -3.375], [-4.5, 3.375], [-2.5, 5.375] ],
+
+      "mass" : 4.0,
+      "walkSpeed" : 5,
+      "runSpeed" : 13,
+      "flySpeed" : 11,
+      "airFriction" : 0.5,
+      "airForce" : 800.0,
+      "airJumpProfile" : {
+        "jumpControlForce" : 0,
+        "jumpInitialPercentage" : 0
+      },
+      "physicsEffectCategories" : ["boss"]
+    },
+
+    "touchDamage" : {
+      "poly" : [ [3.5, 30], [3.5, 0], [-3.5, 0], [-3.5, 30] ],
+      "damage" : 12,
+      "damageSourceKind" : "plasma",
+
+      "teamType" : "enemy",
+      "statusEffects" : [ ]
+    },
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : false,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "knockbackStunTime" : {
+          "baseValue" : 0.25
+        },
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "maxHealth" : {
+          "baseValue" : 1000
+        },
+        "protection" : {
+          "baseValue" : 0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "specialStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "healingStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "stunImmunity" : {
+          "baseValue" : 1.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0,
+          "maxValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 1.0
+        }
+      }
+    },
+
+    "mouthOffset" : [1.0, -1.5],
+    "feetOffset" : [0, -21]
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "objectName" : "v-ancientlaserturret",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "turret",
+  "shortdescription" : "Laser Turret",
+  "race" : "generic",
+  "health" : 1,
+
+  "category" : "wire",
+  "price" : 100,
+
+  "floranDescription" : "become turret",
+  "glitchDescription" : "my turret",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "base.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "base" : "base.png",
+        "gun" : "gun.png",
+        "laser" : "laser.png"
+      },
+      
+      "defaultAngle" : 90,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "baseleft.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "base" : "baseleft.png",
+        "gun" : "gun.png",
+        "laser" : "laser.png"
+      },
+      
+      "defaultAngle" : 0,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left" ]
+    },
+    {
+      "image" : "baseright.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "base" : "baseright.png",
+        "gun" : "gun.png",
+        "laser" : "laser.png"
+      },
+      
+      "defaultAngle" : 180,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "right" ]
+    },
+    {
+      "image" : "baseup.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "base" : "baseup.png",
+        "gun" : "gun.png",
+        "laser" : "laser.png"
+      },
+      
+      "defaultAngle" : -90,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/mission/ancientstronghold/v-ancientlaserturret/ancientlaserturret.lua" ],
+  "scriptDelta" : 1,
+  
+  "turnTime1" : 0.5,
+  "turnTime2" : 3.0,
+  "resetTime" : 0.5,
+  "endDelay" : 0.5,
+  "windupTime" : 0.5,
+  "defaultAngle" : 0,
+  "beamLength" : 50,
+  "beamOffset" : [1, 1],
+  "damageConfig" : {
+    "damage" : 50.0,
+    "damageSourceKind" : "plasma",
+    "teamType" : "enemy"
+  },
+
+  "animation" : "/objects/mission/ancientstronghold/v-ancientlaserturret/ancientlaserturret.animation",
+
+  "animationParts" : {
+    "base" : "base.png",
+    "gun" : "gun.png",
+    "laser" : "laser.png"
+  },
+  "animationPosition" : [8, 8]
+}

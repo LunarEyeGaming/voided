@@ -162,7 +162,7 @@ end
 
 function states.deactivate()
   self.target = nil
-  turn(self.angles[1], self.resetTime)
+  setAngle(0)
   states.noop()
 end
 

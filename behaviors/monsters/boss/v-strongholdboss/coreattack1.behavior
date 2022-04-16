@@ -1,0 +1,201 @@
+{
+  "name": "v-strongholdboss-coreattack1",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/behavior/bdata.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/notification.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/projectiles.lua"
+  ],
+  "parameters": {
+    "loops": 5,
+    "fireInterval": 0.4
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "listShuffle",
+        "type": "action",
+        "name": "listShuffle",
+        "parameters": {
+          "list": {"key": "activeCoreIds"}
+        },
+        "output": {
+          "list": "attackOrder"
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "attackOrder"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "succeeder",
+          "type": "decorator",
+          "name": "succeeder",
+          "parameters": {},
+          "child": {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "entityExists",
+                "type": "action",
+                "name": "entityExists",
+                "parameters": {
+                  "entity": {"key": "eachItem"}
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "eachItem"},
+                  "target": {"key": "target"},
+                  "type": {"value": "openshell"}
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.0}
+        }
+      },
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": "<loops>"},
+          "untilSuccess": {"value": false}
+        },
+        "child": {
+          "title": "each",
+          "type": "decorator",
+          "name": "each",
+          "parameters": {
+            "list": {"key": "attackOrder"},
+            "type": {"value": "entity"}
+          },
+          "child": {
+            "title": "succeeder",
+            "type": "decorator",
+            "name": "succeeder",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "entityExists",
+                  "type": "action",
+                  "name": "entityExists",
+                  "parameters": {
+                    "entity": {"key": "eachItem"}
+                  }
+                },
+                {
+                  "title": "sendNotification",
+                  "type": "action",
+                  "name": "sendNotification",
+                  "parameters": {
+                    "entity": {"key": "eachItem"},
+                    "target": {"key": "target"},
+                    "type": {"value": "attack1"}
+                  }
+                },
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"value": "<fireInterval>"}
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.25}
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "attackOrder"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "succeeder",
+          "type": "decorator",
+          "name": "succeeder",
+          "parameters": {},
+          "child": {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "entityExists",
+                "type": "action",
+                "name": "entityExists",
+                "parameters": {
+                  "entity": {"key": "eachItem"}
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "eachItem"},
+                  "target": {"key": "target"},
+                  "type": {"value": "closeshell"}
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.75}
+        }
+      }
+    ]
+  }
+}

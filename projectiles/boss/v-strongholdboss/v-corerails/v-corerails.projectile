@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-corerails",
+  "image" : "corerails.png",
+  "animationCycle" : 0.25,
+  "timeToLive" : 9999,
+  "frameNumber" : 1,
+  "speed" : 0,
+  "orientationLocked" : true,
+  "animationLoops" : true,
+  "piercing" : true,
+  "bounces" : -1,
+  "physics" : "illusion",
+  "flippable" : true,
+  "onlyHitTerrain" : true,
+  "fullbright" : true,
+  
+  "scripts" : ["/projectiles/killable.lua"],
+  "scriptDelta" : 1
+}

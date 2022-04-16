@@ -1,0 +1,21 @@
+{
+  "projectileName" : "v-plasmashockwave",
+  "image" : "plasmashockwave.png",
+  "animationCycle" : 1.0,
+  "timeToLive" : 1.0,
+  "frameNumber" : 5,
+  "speed" : 50,
+  "orientationLocked" : true,
+  "damagePoly" : [ [-8, 26], [39, 26], [39, -26], [-8, -26] ],
+  "animationLoops" : true,
+  "piercing" : true,
+  "bounces" : 0,
+  "flippable" : true,
+  "damageKind" : "plasma",
+  "emitters" : [ ],
+  "lightColor" : [90, 50, 120],
+  "fullbright" : true,
+  "statusEffects" : [],
+  "knockback" : 10,
+  "knockbackDirectional" : true
+}

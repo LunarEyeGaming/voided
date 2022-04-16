@@ -1,0 +1,37 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "hole" : {
+        "default" : "normal",
+        "states" : {
+          "normal" : {} //,
+          //"on" : {}
+        }
+      }
+    },
+
+    "parts" : {
+      "hole" : {
+        "properties" : {
+          "centered" : false
+        },
+
+        "partStates" : {
+          "hole" : {
+            "normal" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.normal"
+              }
+            } //,
+
+            /* "on" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.on"
+              }
+            } */
+          }
+        }
+      }
+    }
+  }
+}

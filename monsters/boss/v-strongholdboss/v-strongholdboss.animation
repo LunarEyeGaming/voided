@@ -1,0 +1,138 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "rail" : {
+        "default" : "invisible",
+        "states" : {
+          "invisible" : {},
+          "appear" : {
+            "frames" : 7,
+            "cycle" : 0.7,
+            "mode" : "transition",
+            "transition" : "visible"
+          },
+          "visible" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          },
+          "disappear" : {
+            "frames" : 7,
+            "cycle" : 0.7,
+            "mode" : "transition",
+            "transition" : "invisible"
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          "offset" : [0, 0],
+          "zLevel" : 0,
+          "image" : "<partImage>"
+        }
+      },
+      "rail" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          "offset" : [0, 0],
+          "zLevel" : 0
+        },
+        "partStates" : {
+          "rail" : {
+            "invisible" : {
+              "properties" : {
+                "image" : "<partImage>:invisible.<frame>"
+              }
+            },
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
+              }
+            },
+            "visible" : {
+              "properties" : {
+                "image" : "<partImage>:visible.<frame>"
+              }
+            },
+            "disappear" : {
+              "properties" : {
+                "image" : "<partImage>:disappear.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "railfullbright" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          "offset" : [0, 0],
+          "zLevel" : 1,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "rail" : {
+            "invisible" : {
+              "properties" : {
+                "image" : "<partImage>:invisible.<frame>"
+              }
+            },
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
+              }
+            },
+            "visible" : {
+              "properties" : {
+                "image" : "<partImage>:visible.<frame>"
+              }
+            },
+            "disappear" : {
+              "properties" : {
+                "image" : "<partImage>:disappear.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "body" : { "interpolated" : true }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [ ]
+    }
+  },
+
+  "sounds" : {
+    "aggroHop" : [ ],
+    "deathPuff" : [ ]
+  }
+}

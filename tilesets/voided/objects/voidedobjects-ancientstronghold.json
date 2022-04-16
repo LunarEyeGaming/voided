@@ -8,8 +8,8 @@
  "margin":0,
  "name":"voidedobjects-ancientstronghold",
  "spacing":0,
- "tilecount":6,
- "tileheight":32,
+ "tilecount":19,
+ "tileheight":64,
  "tileproperties":
     {
      "0":
@@ -24,6 +24,69 @@
          "imagePositionX":"0",
          "imagePositionY":"0",
          "object":"v-ancientturret",
+         "tilesetDirection":"right"
+        },
+     "10":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlasertrigger",
+         "tilesetDirection":"right"
+        },
+     "11":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlasertrigger",
+         "tilesetDirection":"right"
+        },
+     "12":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlasertrigger",
+         "tilesetDirection":"right"
+        },
+     "13":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlasertrigger",
+         "tilesetDirection":"right"
+        },
+     "14":
+        {
+         "imagePositionX":"-32",
+         "imagePositionY":"-24",
+         "object":"v-strongholdcorehole",
+         "tilesetDirection":"right"
+        },
+     "15":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlaserturret",
+         "tilesetDirection":"right"
+        },
+     "16":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlaserturret",
+         "tilesetDirection":"right"
+        },
+     "17":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlaserturret",
+         "tilesetDirection":"right"
+        },
+     "18":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlaserturret",
          "tilesetDirection":"right"
         },
      "2":
@@ -53,6 +116,34 @@
          "imagePositionY":"0",
          "object":"v-ancientrotatingturret",
          "tilesetDirection":"right"
+        },
+     "6":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlasertrigger2",
+         "tilesetDirection":"right"
+        },
+     "7":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlasertrigger2",
+         "tilesetDirection":"right"
+        },
+     "8":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlasertrigger2",
+         "tilesetDirection":"right"
+        },
+     "9":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientlasertrigger2",
+         "tilesetDirection":"right"
         }
     },
  "tilepropertytypes":
@@ -65,6 +156,69 @@
          "tilesetDirection":"string"
         },
      "1":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "10":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "11":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "12":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "13":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "14":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "15":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "16":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "17":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "18":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -98,6 +252,34 @@
          "imagePositionY":"string",
          "object":"string",
          "tilesetDirection":"string"
+        },
+     "6":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "7":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "8":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "9":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
         }
     },
  "tiles":
@@ -113,6 +295,60 @@
          "image":"..\/images\/objects\/ancientturretleft.png",
          "imageheight":32,
          "imagewidth":32
+        },
+     "10":
+        {
+         "image":"..\/images\/objects\/ancientlasertriggerbottom.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "11":
+        {
+         "image":"..\/images\/objects\/ancientlasertriggerleft.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "12":
+        {
+         "image":"..\/images\/objects\/ancientlasertriggerright.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "13":
+        {
+         "image":"..\/images\/objects\/ancientlasertriggertop.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "14":
+        {
+         "image":"..\/images\/objects\/strongholdcorehole.png",
+         "imageheight":64,
+         "imagewidth":64
+        },
+     "15":
+        {
+         "image":"..\/images\/objects\/ancientlaserturret.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "16":
+        {
+         "image":"..\/images\/objects\/ancientlaserturretleft.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "17":
+        {
+         "image":"..\/images\/objects\/ancientlaserturretright.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "18":
+        {
+         "image":"..\/images\/objects\/ancientlaserturretup.png",
+         "imageheight":16,
+         "imagewidth":16
         },
      "2":
         {
@@ -137,8 +373,32 @@
          "image":"..\/images\/objects\/ancientrotatingturret.png",
          "imageheight":32,
          "imagewidth":32
+        },
+     "6":
+        {
+         "image":"..\/images\/objects\/ancientlasertrigger2bottom.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "7":
+        {
+         "image":"..\/images\/objects\/ancientlasertrigger2left.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "8":
+        {
+         "image":"..\/images\/objects\/ancientlasertrigger2right.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "9":
+        {
+         "image":"..\/images\/objects\/ancientlasertrigger2top.png",
+         "imageheight":8,
+         "imagewidth":8
         }
     },
- "tilewidth":32,
+ "tilewidth":64,
  "type":"tileset"
 }

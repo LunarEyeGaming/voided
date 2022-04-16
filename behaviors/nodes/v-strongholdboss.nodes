@@ -1,0 +1,195 @@
+{
+  "v_spawnStrongholdParts": {
+    "type": "action",
+    "name": "v_spawnStrongholdParts",
+    "title": "v_spawnStrongholdParts",
+    "properties": {
+      "laserH1Offset": {"type": "vec2", "value": null},
+      "laserH2Offset": {"type": "vec2", "value": null},
+      "laserV1Offset": {"type": "vec2", "value": null},
+      "laserV2Offset": {"type": "vec2", "value": null},
+      "turretUpOffset": {"type": "vec2", "value": null},
+      "turretLeftOffset": {"type": "vec2", "value": null},
+      "turretRightOffset": {"type": "vec2", "value": null},
+      "turretDownOffset": {"type": "vec2", "value": null},
+      "coreXOffsets": {"type": "list", "value": null},
+      "coreYOffsets": {"type": "list", "value": null}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {
+      "laserH1Id": {"type": "entity", "key": null},
+      "laserV1Id": {"type": "entity", "key": null},
+      "laserH2Id": {"type": "entity", "key": null},
+      "laserV2Id": {"type": "entity", "key": null},
+      "turretUpId": {"type": "entity", "key": null},
+      "turretLeftId": {"type": "entity", "key": null},
+      "turretRightId": {"type": "entity", "key": null},
+      "turretDownId": {"type": "entity", "key": null},
+      "coreIds": {"type": "list", "key": null}
+    }
+  },
+  "v_spawnStrongholdParts2": {
+    "type": "action",
+    "name": "v_spawnStrongholdParts2",
+    "title": "v_spawnStrongholdParts2",
+    "properties": {
+      "coreXOffsets": {"type": "vec2", "value": null},
+      "coreYOffsets": {"type": "vec2", "value": null}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {
+      "coreIds": {"type": "list", "key": null}
+    }
+  },
+  "v_laserAttack": {
+    "type": "action",
+    "name": "v_laserAttack",
+    "title": "v_laserAttack",
+    "properties": {
+      "h1Id": {"type": "entity", "value": null},
+      "h2Id": {"type": "entity", "value": null},
+      "v1Id": {"type": "entity", "value": null},
+      "v2Id": {"type": "entity", "value": null},
+      "hOffsets": {"type": "list", "value": null},
+      "vOffsets": {"type": "list", "value": null},
+      "hTeleProjectile": {"type": "string", "value": null},
+      "vTeleProjectile": {"type": "string", "value": null},
+      "loops": {"type": "number", "value": 1},
+      "phase": {"type": "number", "value": 1},
+      "waitTime": {"type": "number", "value": 0.0}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {}
+  },
+  "v_laserAttack2": {
+    "type": "action",
+    "name": "v_laserAttack2",
+    "title": "v_laserAttack2",
+    "properties": {
+      "h1Id": {"type": "entity", "value": null},
+      "h2Id": {"type": "entity", "value": null},
+      "v1Id": {"type": "entity", "value": null},
+      "v2Id": {"type": "entity", "value": null},
+      "h1Offsets": {"type": "list", "value": null},
+      "v1Offsets": {"type": "list", "value": null},
+      "h2Offsets": {"type": "list", "value": null},
+      "v2Offsets": {"type": "list", "value": null},
+      "hTeleProjectile": {"type": "string", "value": null},
+      "vTeleProjectile": {"type": "string", "value": null},
+      "waitTime": {"type": "number", "value": 0.0}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {}
+  },
+  "v_laserAttack3": {
+    "type": "action",
+    "name": "v_laserAttack3",
+    "title": "v_laserAttack3",
+    "properties": {
+      "attackSet": {"type": "json", "value": null},
+      "sampleSize": {"type": "number", "value": 1},
+      "waitTime": {"type": "number", "value": 0.0}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {}
+  },
+  "v_laserAttack4": {
+    "type": "action",
+    "name": "v_laserAttack4",
+    "title": "v_laserAttack4",
+    "properties": {
+      "h1Id": {"type": "entity", "value": null},
+      "h2Id": {"type": "entity", "value": null},
+      "v1Id": {"type": "entity", "value": null},
+      "v2Id": {"type": "entity", "value": null},
+      "hBounds": {"type": "vec2", "value": null},
+      "vBounds": {"type": "vec2", "value": null},
+      "target": {"type": "entity", "key": "target"},
+      "targetProjectile": {"type": "string", "value": null},
+      "loops": {"type": "number", "value": 1},
+      "phase": {"type": "number", "value": 1},
+      "waitTime": {"type": "number", "value": 0.0}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {}
+  },
+  "v_laserAttack5": {
+    "type": "action",
+    "name": "v_laserAttack5",
+    "title": "v_laserAttack5",
+    "properties": {
+      "attackSet": {"type": "json", "value": null},
+      "waitTime": {"type": "number", "value": 0.0}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {}
+  },
+  "v_activateCores": {
+    "type": "action",
+    "name": "v_activateCores",
+    "title": "v_activateCores",
+    "properties": {
+      //"coreIds": {"type": "list", "value": null},
+      //"nResults": {"type": "number", "value": 1}
+      "corePartition": {"type": "list", "value": null},
+      "phase": {"type": "number", "value": 1}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {
+      "coreIds": {"type": "list", "key": null}
+    }
+  },
+  "v_partitionCores": {
+    "type": "action",
+    "name": "v_partitionCores",
+    "title": "v_partitionCores",
+    "properties": {
+      "nRows": {"type": "number", "value": 1},
+      "nCols": {"type": "number", "value": 1},
+      "coreIds": {"type": "list", "value": null}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {
+      "result": {"type": "list", "key": null}
+    }
+  },
+  "v_resetLasers": {
+    "type": "action",
+    "name": "v_resetLasers",
+    "title": "v_resetLasers",
+    "properties": {
+      "h1Id": {"type": "entity", "value": null},
+      "h2Id": {"type": "entity", "value": null},
+      "v1Id": {"type": "entity", "value": null},
+      "v2Id": {"type": "entity", "value": null}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {}
+  },
+  "v_coreAttack6": {
+    "type": "action",
+    "name": "v_coreAttack6",
+    "title": "v_coreAttack6",
+    "properties": {
+      "coreIds": {"type": "list", "value": null},
+      "loops": {"type": "number", "value": 1},
+      "centerOffset": {"type": "vec2", "value": [0, 0]},
+      "waitTime": {"type": "number", "value": 0.0},
+      "teleTime": {"type": "number", "value": 3.0},
+      "target": {"type": "entity", "key": "target"}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {}
+  }
+}

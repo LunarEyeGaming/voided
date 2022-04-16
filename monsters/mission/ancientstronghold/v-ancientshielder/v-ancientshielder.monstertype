@@ -14,6 +14,8 @@
     "scripts" : [
       "/monsters/monster.lua"
     ],
+    "initialScriptDelta" : 2,
+    "behaviorUpdateDelta" : 1,
 
     "behavior" : "monster",
     "deathBehavior" : "monster-death",
@@ -61,7 +63,7 @@
         {
           "name" : "v-action-statusaura",
           "parameters" : {
-            "auraRadius" : 20,
+            "auraRadius" : 18,
             "auraEffectArgs": ["v-ancientshield"],
             "auraEntityTypes": ["monster"]
           }
@@ -78,7 +80,7 @@
         {
           "name" : "v-action-statusaura",
           "parameters" : {
-            "auraRadius" : 20,
+            "auraRadius" : 18,
             "auraEffectArgs": ["v-ancientshield"],
             "auraEntityTypes": ["monster"]
           }

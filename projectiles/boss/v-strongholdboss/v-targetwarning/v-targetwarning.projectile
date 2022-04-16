@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-targetwarning",
+  "image" : "targetwarning.png",
+  "animationCycle" : 0.25,
+  "timeToLive" : 0.5,
+  "frameNumber" : 2,
+  "speed" : 50,
+  "orientationLocked" : true,
+  "animationLoops" : true,
+  "piercing" : true,
+  "bounces" : -1,
+  "physics" : "illusion",
+  "flippable" : true,
+  "onlyHitTerrain" : true,
+  "fullbright" : true,
+  
+  "scripts" : ["/projectiles/killable.lua"],
+  "scriptDelta" : 1
+}

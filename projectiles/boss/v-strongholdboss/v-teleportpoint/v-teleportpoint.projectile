@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-teleportpoint",
+  "image" : "teleportpoint.png",
+  "animationCycle" : 0.2,
+  "timeToLive" : 9999,
+  "frameNumber" : 4,
+  "speed" : 0,
+  "orientationLocked" : true,
+  "animationLoops" : true,
+  "piercing" : true,
+  "bounces" : -1,
+  "physics" : "illusion",
+  "flippable" : true,
+  "onlyHitTerrain" : true,
+  "fullbright" : true,
+  
+  "scripts" : ["/projectiles/killable.lua"],
+  "scriptDelta" : 1
+}

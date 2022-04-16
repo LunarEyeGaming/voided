@@ -1,0 +1,98 @@
+{
+  "objectName" : "v-ancientlasertrigger2",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "no description",
+  "shortdescription" : "ancient laser trigger",
+  "race" : "generic",
+  "health" : 1,
+
+  "category" : "wire",
+  "price" : 100,
+
+  "floranDescription" : "b",
+  "glitchDescription" : "a",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "pointerbottom2.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "pointer" : "pointerbottom2.png",
+        "laser" : "laservertical.png"
+      },
+      "pointerOffset" : [0.5, 0.25],
+      "railOffset" : [0, 0.125],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+      "pointerAnchor" : "bottom"
+    },
+    {
+      "image" : "pointerleft2.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "pointer" : "pointerleft2.png",
+        "laser" : "laserhorizontal.png"
+      },
+      "pointerOffset" : [0.25, 0.5],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left" ],
+      "pointerAnchor" : "left"
+    },
+    {
+      "image" : "pointerright2.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "pointer" : "pointerright2.png",
+        "laser" : "laserhorizontal.png"
+      },
+      "pointerOffset" : [0.75, 0.5],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "right" ],
+      "pointerAnchor" : "right"
+    },
+    {
+      "image" : "pointertop2.png",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "pointer" : "pointertop2.png",
+        "laser" : "laservertical.png"
+      },
+      "pointerOffset" : [0.5, 0.75],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ],
+      "pointerAnchor" : "top"
+    }
+  ],
+
+  "scripts" : [ "/objects/mission/ancientstronghold/v-ancientlasertrigger/ancientlasertrigger2.lua" ],
+  "scriptDelta" : 1,
+  
+  "outputNodes" : [ [0, 0] ],
+
+  "pointerOffset" : [0, 0.375],
+  "maxLength" : 100,
+
+  "animation" : "/objects/mission/ancientstronghold/v-ancientlasertrigger/ancientlasertrigger2.animation"
+
+  /* "animationParts" : {
+    "base" : "base.png",
+    "flashlight" : "flashlight.png"
+  },
+  "animationPosition" : [16, 16] */
+}

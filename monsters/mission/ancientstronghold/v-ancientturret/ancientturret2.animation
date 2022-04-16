@@ -17,8 +17,7 @@
           "windup1" : {
             "frames" : 1,
             "cycle" : 2.5,
-            "mode" : "transition",
-            "transition" : "windup2"
+            "mode" : "end"
           },
           "windup2" : {
             "frames" : 1,
@@ -159,6 +158,15 @@
             }
           }
         }
+      },
+      "laserbeam" : {
+        "properties" : {
+          "transformationGroups" : [ "aim", "facing", "body", "laserbeam" ],
+          "offset" : [0.0, 0.625],
+          "zLevel" : 2,
+          "beamSource" : [2, 0],
+          "beamEnd" : [3, 0]
+        }
       }
     }
   },
@@ -169,7 +177,8 @@
   "transformationGroups" : {
     "body" : { "interpolated" : true },
     "facing" : { "interpolated" : false },
-    "aim" : { "interpolated" : true }
+    "aim" : { "interpolated" : true },
+    "laserbeam" : { "interpolated" : true }
   },
 
   "effects" : {

@@ -1,0 +1,216 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "laser" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {
+            "frames" : 1
+          },
+          "windup" : {
+            "frames" : 7,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "active"
+          },
+          "active" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
+          "winddown" : {
+            "frames" : 3,
+            "cycle" : 0.15,
+            "mode" : "transition",
+            "transition" : "inactive"
+          }
+        }
+      },
+      "pad" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {
+            "frames" : 1
+          },
+          "activate" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "active"
+          },
+          "active" : {
+            "frames" : 1
+          },
+          "deactivate" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "inactive"
+          },
+          "windup" : {
+            "frames" : 3,
+            "cycle" : 0.3
+          },
+          "winddown" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "active"
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "pad" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          "offset" : [0, 1],
+          "zLevel" : 1
+        },
+        "partStates" : {
+          "pad" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive.<frame>"
+              }
+            },
+            "activate" : {
+              "properties" : {
+                "image" : "<partImage>:activate.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            },
+            "deactivate" : {
+              "properties" : {
+                "image" : "<partImage>:deactivate.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "winddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "padfullbright" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          "offset" : [0, 1],
+          "fullbright" : true,
+          "zLevel" : 2
+        },
+        "partStates" : {
+          "pad" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive.<frame>"
+              }
+            },
+            "activate" : {
+              "properties" : {
+                "image" : "<partImage>:activate.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            },
+            "deactivate" : {
+              "properties" : {
+                "image" : "<partImage>:deactivate.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "winddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "laser" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          "offset" : [0, 19],
+          "zLevel" : 0,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "laser" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            },
+            "winddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "body" : { "interpolated" : true }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [ ]
+    }
+  },
+
+  "sounds" : {
+    "aggroHop" : [ ],
+    "deathPuff" : [ ],
+    "windup" : [ "/sfx/npc/boss/cultistboss_beamwindup.ogg" ],
+    "fire" : [ "/sfx/objects/crystaltrap_on1.ogg" ],
+    "loop" : [ "/sfx/objects/crystaltrap_loop.ogg" ],
+    "fireend" : [ "/sfx/objects/crystaltrap_off.ogg" ]
+  }
+}

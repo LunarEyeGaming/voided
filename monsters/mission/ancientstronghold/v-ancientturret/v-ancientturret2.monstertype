@@ -27,8 +27,8 @@
         "length" : 60,
         "segments" : 6,
         "angle" : 0,
-        "sourcePart" : "turret",
-        "endPart" : "turret"
+        "sourcePart" : "laserbeam",
+        "endPart" : "laserbeam"
       }
     ],
     
@@ -66,13 +66,15 @@
 
       "hostileActions" : [
         {
-          "name" : "action-fire",
+          "name" : "v-ancientturret2-fire",
           "parameters" : {
             "requireLineOfSight" : true,
             "maximumRange" : 70,
             "minimumRange" : 2,
-            "windupTime" : 3.0,
+            "windupTime" : 2.5,
             "windupState" : "windup1",
+            "windupTime2" : 0.5,
+            "windupState2" : "windup2",
 
             "projectileCount" : 1,
             "projectileType" : "v-ancientturretshot",

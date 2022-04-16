@@ -1,0 +1,24 @@
+{
+  "projectileName" : "v-strongholdcorefragment",
+  "image" : "strongholdcorefragment.png",
+  "physics" : "largeGrenade",
+  "animationCycle" : 2,
+  "frameNumber" : 1,
+  "renderLayer" : "Object+1",
+  "power" : 0,
+  "speed" : 50,
+  "piercing" : true,
+  "timeToLive" : 10,
+  "bounces" : -1,
+  "flippable" : true,
+  "orientationLocked" : true,
+
+  /* "actionOnCollide" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/melee/blunt_hit_stone1.ogg", "/sfx/melee/blunt_hit_stone2.ogg", "/sfx/melee/blunt_hit_stone3.ogg", "/sfx/melee/blunt_hit_stone4.ogg" ]
+    }
+  ], */
+  "damageType" : "NoDamage",
+  "damageKind" : "default"
+}

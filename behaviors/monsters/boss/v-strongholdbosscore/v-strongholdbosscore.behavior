@@ -1,0 +1,2573 @@
+{
+  "name": "v-strongholdbosscore",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/entity.lua",
+    "/scripts/actions/boss/v-strongholdbosscore.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/notification.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/status.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/voidedutil.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/behavior/bdata.lua"
+  ],
+  "parameters": {
+    // "projectorCount": 4,
+    // "projectorDistance": 10,
+    // "spawnTime": 3
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setDying",
+        "type": "action",
+        "name": "setDying",
+        "parameters": {
+          "shouldDie": {"value": false}
+        }
+      },
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "inactive"}
+        }
+      },
+      {
+        "title": "loadUniqueEntity",
+        "type": "action",
+        "name": "loadUniqueEntity",
+        "parameters": {
+          "uniqueId": {"value": "laserposl1"}
+        },
+        "output": {
+          "entity": "laserposl1Ent"
+        }
+      },
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "laserposl1Ent"}
+        },
+        "output": {
+          "position": "laserPosL1"
+        }
+      },
+      {
+        "title": "loadUniqueEntity",
+        "type": "action",
+        "name": "loadUniqueEntity",
+        "parameters": {
+          "uniqueId": {"value": "laserposl2"}
+        },
+        "output": {
+          "entity": "laserposl2Ent"
+        }
+      },
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "laserposl2Ent"}
+        },
+        "output": {
+          "position": "laserPosL2"
+        }
+      },
+      {
+        "title": "loadUniqueEntity",
+        "type": "action",
+        "name": "loadUniqueEntity",
+        "parameters": {
+          "uniqueId": {"value": "laserposl3"}
+        },
+        "output": {
+          "entity": "laserposl3Ent"
+        }
+      },
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "laserposl3Ent"}
+        },
+        "output": {
+          "position": "laserPosL3"
+        }
+      },
+      {
+        "title": "loadUniqueEntity",
+        "type": "action",
+        "name": "loadUniqueEntity",
+        "parameters": {
+          "uniqueId": {"value": "laserposr1"}
+        },
+        "output": {
+          "entity": "laserposr1Ent"
+        }
+      },
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "laserposr1Ent"}
+        },
+        "output": {
+          "position": "laserPosR1"
+        }
+      },
+      {
+        "title": "loadUniqueEntity",
+        "type": "action",
+        "name": "loadUniqueEntity",
+        "parameters": {
+          "uniqueId": {"value": "laserposr2"}
+        },
+        "output": {
+          "entity": "laserposr2Ent"
+        }
+      },
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "laserposr2Ent"}
+        },
+        "output": {
+          "position": "laserPosR2"
+        }
+      },
+      {
+        "title": "loadUniqueEntity",
+        "type": "action",
+        "name": "loadUniqueEntity",
+        "parameters": {
+          "uniqueId": {"value": "laserposr3"}
+        },
+        "output": {
+          "entity": "laserposr3Ent"
+        }
+      },
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "laserposr3Ent"}
+        },
+        "output": {
+          "position": "laserPosR3"
+        }
+      },
+      {
+        "title": "loadUniqueEntity",
+        "type": "action",
+        "name": "loadUniqueEntity",
+        "parameters": {
+          "uniqueId": {"value": "laserposc"}
+        },
+        "output": {
+          "entity": "laserposcEnt"
+        }
+      },
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "laserposcEnt"}
+        },
+        "output": {
+          "position": "laserPosC"
+        }
+      },
+      {
+        "title": "behaviorloop",
+        "type": "composite",
+        "name": "dynamic",
+        "parameters": {},
+        "children": [
+          {
+            "title": "parallel",
+            "type": "composite",
+            "name": "parallel",
+            "parameters": {
+              "fail": {"value": 1},
+              "success": {"value": -1}
+            },
+            "children": [
+              {
+                "title": "resourcePercentage",
+                "type": "action",
+                "name": "resourcePercentage",
+                "parameters": {
+                  "percentage": {"value": 0},
+                  "resource": {"value": "health"}
+                }
+              },
+              {
+                "title": "parallel",
+                "type": "composite",
+                "name": "parallel",
+                "parameters": {
+                  "fail": {"value": -1},
+                  "success": {"value": -1}
+                },
+                "children": [
+                  {
+                    "title": "invul",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "hasFlag",
+                        "type": "action",
+                        "name": "hasFlag",
+                        "parameters": {
+                          "name": {"key": "inactive"}
+                        }
+                      },
+                      {
+                        "title": "addEphemeralEffect",
+                        "type": "action",
+                        "name": "addEphemeralEffect",
+                        "parameters": {
+                          "duration": {"value": 10},
+                          "name": {"value": "invulnerable"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "activate",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "activate"}
+                        }
+                      },
+                      {
+                        "title": "unsetFlag",
+                        "type": "action",
+                        "name": "unsetFlag",
+                        "parameters": {
+                          "name": {"value": "inactive"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "opening"},
+                          "type": {"value": "lid"}
+                        }
+                      },
+                      {
+                        "title": "playSound",
+                        "type": "action",
+                        "name": "playSound",
+                        "parameters": {
+                          "sound": {"value": "open"}
+                        }
+                      },
+                      {
+                        "title": "removeEphemeralEffect",
+                        "type": "action",
+                        "name": "removeEphemeralEffect",
+                        "parameters": {
+                          "name": {"value": "invulnerable"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "deactivate",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "deactivate"}
+                        }
+                      },
+                      {
+                        "title": "setFlag",
+                        "type": "action",
+                        "name": "setFlag",
+                        "parameters": {
+                          "name": {"value": "inactive"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "closed"},
+                          "type": {"value": "lid"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "idle"},
+                          "type": {"value": "shell"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "purple"},
+                          "type": {"value": "core"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack1",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "attack1"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "entityDirection",
+                        "type": "action",
+                        "name": "entityDirection",
+                        "parameters": {
+                          "target": {"key": "target"}
+                        },
+                        "output": {
+                          "vector": "aimVector"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "tele"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.2}
+                        }
+                      },
+                      {
+                        "title": "playSound",
+                        "type": "action",
+                        "name": "playSound",
+                        "parameters": {
+                          "sound": {"value": "fire1"}
+                        }
+                      },
+                      {
+                        "title": "spawnProjectile",
+                        "type": "action",
+                        "name": "spawnProjectile",
+                        "parameters": {
+                          "aimVector": {"key": "aimVector"},
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "self"},
+                          "projectileConfig": {"value": {}},
+                          "projectileType": {"value": "v-ancientrocket"},
+                          "scalePower": {"value": true},
+                          "sourceEntity": {"key": "self"},
+                          "trackSource": {"value": false}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack2",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "attack2"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "repeater",
+                        "type": "decorator",
+                        "name": "repeater",
+                        "parameters": {
+                          "maxLoops": {"value": 3}
+                        },
+                        "child": {
+                          "title": "sequence",
+                          "type": "composite",
+                          "name": "sequence",
+                          "parameters": {},
+                          "children": [
+                            {
+                              "title": "setAnimationState",
+                              "type": "action",
+                              "name": "setAnimationState",
+                              "parameters": {
+                                "state": {"value": "tele"},
+                                "type": {"value": "core"}
+                              }
+                            },
+                            {
+                              "title": "timer",
+                              "type": "action",
+                              "name": "timer",
+                              "parameters": {
+                                "time": {"value": 0.4}
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "title": "spawnProjectile",
+                        "type": "action",
+                        "name": "spawnProjectile",
+                        "parameters": {
+                          "aimVector": {"value": [0, 1]},
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "self"},
+                          "projectileConfig": {"value": {}},
+                          "projectileType": {"value": "v-plasmashockwave"},
+                          "scalePower": {"value": true},
+                          "sourceEntity": {"key": "self"},
+                          "trackSource": {"value": false}
+                        }
+                      },
+                      {
+                        "title": "spawnProjectile",
+                        "type": "action",
+                        "name": "spawnProjectile",
+                        "parameters": {
+                          "aimVector": {"value": [1, 0]},
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "self"},
+                          "projectileConfig": {"value": {}},
+                          "projectileType": {"value": "v-plasmashockwave"},
+                          "scalePower": {"value": true},
+                          "sourceEntity": {"key": "self"},
+                          "trackSource": {"value": false}
+                        }
+                      },
+                      {
+                        "title": "spawnProjectile",
+                        "type": "action",
+                        "name": "spawnProjectile",
+                        "parameters": {
+                          "aimVector": {"value": [0, -1]},
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "self"},
+                          "projectileConfig": {"value": {}},
+                          "projectileType": {"value": "v-plasmashockwave"},
+                          "scalePower": {"value": true},
+                          "sourceEntity": {"key": "self"},
+                          "trackSource": {"value": false}
+                        }
+                      },
+                      {
+                        "title": "spawnProjectile",
+                        "type": "action",
+                        "name": "spawnProjectile",
+                        "parameters": {
+                          "aimVector": {"value": [-1, 0]},
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "self"},
+                          "projectileConfig": {"value": {}},
+                          "projectileType": {"value": "v-plasmashockwave"},
+                          "scalePower": {"value": true},
+                          "sourceEntity": {"key": "self"},
+                          "trackSource": {"value": false}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack3",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "attack3"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "repeater",
+                        "type": "decorator",
+                        "name": "repeater",
+                        "parameters": {
+                          "maxLoops": {"value": 2}
+                        },
+                        "child": {
+                          "title": "sequence",
+                          "type": "composite",
+                          "name": "sequence",
+                          "parameters": {},
+                          "children": [
+                            {
+                              "title": "setAnimationState",
+                              "type": "action",
+                              "name": "setAnimationState",
+                              "parameters": {
+                                "state": {"value": "tele"},
+                                "type": {"value": "core"}
+                              }
+                            },
+                            {
+                              "title": "timer",
+                              "type": "action",
+                              "name": "timer",
+                              "parameters": {
+                                "time": {"value": 0.3}
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "title": "repeater",
+                        "type": "decorator",
+                        "name": "repeater",
+                        "parameters": {
+                          "maxLoops": {"value": 4}
+                        },
+                        "child": {
+                          "title": "sequence",
+                          "type": "composite",
+                          "name": "sequence",
+                          "parameters": {},
+                          "children": [
+                            {
+                              "title": "timer",
+                              "type": "action",
+                              "name": "timer",
+                              "parameters": {
+                                "time": {"value": 0.35}
+                              }
+                            },
+                            {
+                              "title": "entityDirection",
+                              "type": "action",
+                              "name": "entityDirection",
+                              "parameters": {
+                                "target": {"key": "target"}
+                              },
+                              "output": {
+                                "vector": "aimVector"
+                              }
+                            },
+                            {
+                              "title": "repeater",
+                              "type": "decorator",
+                              "name": "repeater",
+                              "parameters": {
+                                "maxLoops": {"value": 5}
+                              },
+                              "child": {
+                                "title": "sequence",
+                                "type": "composite",
+                                "name": "sequence",
+                                "parameters": {},
+                                "children": [
+                                  {
+                                    "title": "spawnProjectile",
+                                    "type": "action",
+                                    "name": "spawnProjectile",
+                                    "parameters": {
+                                      "aimVector": {"key": "aimVector"},
+                                      "offset": {"value": [0, 0]},
+                                      "position": {"key": "self"},
+                                      "projectileConfig": {"value": {"speed" : 75, "power" : 10}},
+                                      "projectileType": {"value": "v-ancientphaseshot"},
+                                      "scalePower": {"value": true},
+                                      "sourceEntity": {"key": "self"},
+                                      "trackSource": {"value": false}
+                                    }
+                                  },
+                                  {
+                                    "title": "timer",
+                                    "type": "action",
+                                    "name": "timer",
+                                    "parameters": {
+                                      "time": {"value": 0.1}
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack4",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "attack4"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "tele"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "entityDirection",
+                        "type": "action",
+                        "name": "entityDirection",
+                        "parameters": {
+                          "target": {"key": "target"}
+                        },
+                        "output": {
+                          "vector": "aimVector"
+                        }
+                      },
+                      {
+                        "title": "repeater",
+                        "type": "decorator",
+                        "name": "repeater",
+                        "parameters": {
+                          "maxLoops": {"value": 3}
+                        },
+                        "child": {
+                          "title": "sequence",
+                          "type": "composite",
+                          "name": "sequence",
+                          "parameters": {},
+                          "children": [
+                            {
+                              "title": "timer",
+                              "type": "action",
+                              "name": "timer",
+                              "parameters": {
+                                "time": {"value": 1.5}
+                              }
+                            },
+                            {
+                              "title": "entityDirection",
+                              "type": "action",
+                              "name": "entityDirection",
+                              "parameters": {
+                                "target": {"key": "target"}
+                              },
+                              "output": {
+                                "vector": "aimVector"
+                              }
+                            },
+                            {
+                              "title": "spawnProjectile",
+                              "type": "action",
+                              "name": "spawnProjectile",
+                              "parameters": {
+                                "aimVector": {"key": "aimVector"},
+                                "offset": {"value": [0, 0]},
+                                "position": {"key": "self"},
+                                "projectileConfig": {"value": {"power": 10}},
+                                "projectileType": {"value": "v-ancientbouncingshot"},
+                                "scalePower": {"value": true},
+                                "sourceEntity": {"key": "self"},
+                                "trackSource": {"value": false}
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack5l",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "attack5l"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "ptob"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "disappear"},
+                          "type": {"value": "cables"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "laserPosL1"},
+                          "color": {"value": "blue"}
+                        }
+                      },
+                      {
+                        "title": "resetTransformationGroup",
+                        "type": "action",
+                        "name": "resetTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"}
+                        }
+                      },
+                      {
+                        "title": "vecAngle",
+                        "type": "action",
+                        "name": "vecAngle",
+                        "parameters": {
+                          "vector": {"value": [0, -1]}
+                        },
+                        "output": {
+                          "angle": "targetAngle"
+                        }
+                      },
+                      {
+                        "title": "rotateTransformationGroup",
+                        "type": "action",
+                        "name": "rotateTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"},
+                          "angle": {"key": "targetAngle"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "windup"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "flyToPosition",
+                        "type": "action",
+                        "name": "flyToPosition",
+                        "parameters": {
+                          "speed": {"value": 2},
+                          "tolerance": {"value": 0.2},
+                          "position": {"key": "laserPosL2"}
+                        }
+                      },
+                      {
+                        "title": "setVelocity",
+                        "type": "action",
+                        "name": "setVelocity",
+                        "parameters": {
+                          "velocity": {"value": [0, 0]}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "winddown"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.25}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "btop"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.35}
+                        }
+                      },
+                      {
+                        "title": "resetTransformationGroup",
+                        "type": "action",
+                        "name": "resetTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "spawn"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.2}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "appear"},
+                          "type": {"value": "cables"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack5l2",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "attack5l2"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "ptob"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "disappear"},
+                          "type": {"value": "cables"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "laserPosL1"},
+                          "color": {"value": "blue"}
+                        }
+                      },
+                      {
+                        "title": "resetTransformationGroup",
+                        "type": "action",
+                        "name": "resetTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"}
+                        }
+                      },
+                      {
+                        "title": "vecAngle",
+                        "type": "action",
+                        "name": "vecAngle",
+                        "parameters": {
+                          "vector": {"value": [0, -1]}
+                        },
+                        "output": {
+                          "angle": "targetAngle"
+                        }
+                      },
+                      {
+                        "title": "rotateTransformationGroup",
+                        "type": "action",
+                        "name": "rotateTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"},
+                          "angle": {"key": "targetAngle"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "windup"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "flyToPosition",
+                        "type": "action",
+                        "name": "flyToPosition",
+                        "parameters": {
+                          "speed": {"value": 10},
+                          "tolerance": {"value": 0.2},
+                          "position": {"key": "laserPosL3"}
+                        }
+                      },
+                      {
+                        "title": "setVelocity",
+                        "type": "action",
+                        "name": "setVelocity",
+                        "parameters": {
+                          "velocity": {"value": [0, 0]}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "winddown"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 1.0}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "windup"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.8}
+                        }
+                      },
+                      {
+                        "title": "flyToPosition",
+                        "type": "action",
+                        "name": "flyToPosition",
+                        "parameters": {
+                          "speed": {"value": 10},
+                          "tolerance": {"value": 0.2},
+                          "position": {"key": "laserPosR2"}
+                        }
+                      },
+                      {
+                        "title": "setVelocity",
+                        "type": "action",
+                        "name": "setVelocity",
+                        "parameters": {
+                          "velocity": {"value": [0, 0]}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "winddown"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.25}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "btop"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.35}
+                        }
+                      },
+                      {
+                        "title": "resetTransformationGroup",
+                        "type": "action",
+                        "name": "resetTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "spawn"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.2}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "appear"},
+                          "type": {"value": "cables"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack5r",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "attack5r"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "ptob"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "disappear"},
+                          "type": {"value": "cables"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "laserPosR1"},
+                          "color": {"value": "blue"}
+                        }
+                      },
+                      {
+                        "title": "resetTransformationGroup",
+                        "type": "action",
+                        "name": "resetTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"}
+                        }
+                      },
+                      {
+                        "title": "vecAngle",
+                        "type": "action",
+                        "name": "vecAngle",
+                        "parameters": {
+                          "vector": {"value": [0, -1]}
+                        },
+                        "output": {
+                          "angle": "targetAngle"
+                        }
+                      },
+                      {
+                        "title": "rotateTransformationGroup",
+                        "type": "action",
+                        "name": "rotateTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"},
+                          "angle": {"key": "targetAngle"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "windup"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "flyToPosition",
+                        "type": "action",
+                        "name": "flyToPosition",
+                        "parameters": {
+                          "speed": {"value": 2},
+                          "tolerance": {"value": 0.2},
+                          "position": {"key": "laserPosR2"}
+                        }
+                      },
+                      {
+                        "title": "setVelocity",
+                        "type": "action",
+                        "name": "setVelocity",
+                        "parameters": {
+                          "velocity": {"value": [0, 0]}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "winddown"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.25}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "btop"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.35}
+                        }
+                      },
+                      {
+                        "title": "resetTransformationGroup",
+                        "type": "action",
+                        "name": "resetTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "spawn"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.2}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "appear"},
+                          "type": {"value": "cables"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack5r2",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "attack5r2"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "ptob"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "disappear"},
+                          "type": {"value": "cables"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "laserPosR1"},
+                          "color": {"value": "blue"}
+                        }
+                      },
+                      {
+                        "title": "resetTransformationGroup",
+                        "type": "action",
+                        "name": "resetTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"}
+                        }
+                      },
+                      {
+                        "title": "vecAngle",
+                        "type": "action",
+                        "name": "vecAngle",
+                        "parameters": {
+                          "vector": {"value": [0, -1]}
+                        },
+                        "output": {
+                          "angle": "targetAngle"
+                        }
+                      },
+                      {
+                        "title": "rotateTransformationGroup",
+                        "type": "action",
+                        "name": "rotateTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"},
+                          "angle": {"key": "targetAngle"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "windup"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.8}
+                        }
+                      },
+                      {
+                        "title": "flyToPosition",
+                        "type": "action",
+                        "name": "flyToPosition",
+                        "parameters": {
+                          "speed": {"value": 10},
+                          "tolerance": {"value": 0.2},
+                          "position": {"key": "laserPosR3"}
+                        }
+                      },
+                      {
+                        "title": "setVelocity",
+                        "type": "action",
+                        "name": "setVelocity",
+                        "parameters": {
+                          "velocity": {"value": [0, 0]}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "winddown"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 1.0}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "windup"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.8}
+                        }
+                      },
+                      {
+                        "title": "flyToPosition",
+                        "type": "action",
+                        "name": "flyToPosition",
+                        "parameters": {
+                          "speed": {"value": 10},
+                          "tolerance": {"value": 0.2},
+                          "position": {"key": "laserPosL2"}
+                        }
+                      },
+                      {
+                        "title": "setVelocity",
+                        "type": "action",
+                        "name": "setVelocity",
+                        "parameters": {
+                          "velocity": {"value": [0, 0]}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "winddown"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.25}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "btop"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.35}
+                        }
+                      },
+                      {
+                        "title": "resetTransformationGroup",
+                        "type": "action",
+                        "name": "resetTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "spawn"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.2}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "appear"},
+                          "type": {"value": "cables"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack5c",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "attack5c"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "ptob"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "disappear"},
+                          "type": {"value": "cables"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "laserPosC"},
+                          "color": {"value": "blue"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "windup"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "windup"},
+                          "type": {"value": "laser2"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "v_rotateLaser",
+                        "type": "action",
+                        "name": "v_rotateLaser",
+                        "parameters": {
+                          "maxAngularVelocity": {"value": 220},
+                          "duration": {"value": 5}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "winddown"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "winddown"},
+                          "type": {"value": "laser2"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.25}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "btop"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.35}
+                        }
+                      },
+                      {
+                        "title": "resetTransformationGroup",
+                        "type": "action",
+                        "name": "resetTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "spawn"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.2}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "appear"},
+                          "type": {"value": "cables"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack5c2",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "attack5c2"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "ptob"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "disappear"},
+                          "type": {"value": "cables"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "laserPosC"},
+                          "color": {"value": "blue"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "windup"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "windup"},
+                          "type": {"value": "laser2"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.5}
+                        }
+                      },
+                      {
+                        "title": "v_rotateLaser",
+                        "type": "action",
+                        "name": "v_rotateLaser",
+                        "parameters": {
+                          "maxAngularVelocity": {"value": 240},
+                          "duration": {"value": 8}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "winddown"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "winddown"},
+                          "type": {"value": "laser2"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.25}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "btop"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.35}
+                        }
+                      },
+                      {
+                        "title": "resetTransformationGroup",
+                        "type": "action",
+                        "name": "resetTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "laser"}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "spawn"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.2}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "appear"},
+                          "type": {"value": "cables"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "resetPos",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "resetPos"}
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "spawn"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.2}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "appear"},
+                          "type": {"value": "cables"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack6",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "v_receivedNotification2",
+                        "type": "action",
+                        "name": "v_receivedNotification2",
+                        "parameters": {
+                          "type": {"value": "attack6"}
+                        },
+                        "output": {
+                          "data": "attack6Data"
+                        }
+                      },
+                      {
+                        "title": "v_getJsonKey",
+                        "type": "action",
+                        "name": "v_getJsonKey",
+                        "parameters": {
+                          "object": {"key": "attack6Data"},
+                          "key": {"value": "target"}
+                        },
+                        "output": {
+                          "entity": "target"
+                        }
+                      },
+                      {
+                        "title": "v_getJsonKey",
+                        "type": "action",
+                        "name": "v_getJsonKey",
+                        "parameters": {
+                          "object": {"key": "attack6Data"},
+                          "key": {"value": "endAngle"}
+                        },
+                        "output": {
+                          "number": "endAngle"
+                        }
+                      },
+                      {
+                        "title": "v_getJsonKey",
+                        "type": "action",
+                        "name": "v_getJsonKey",
+                        "parameters": {
+                          "object": {"key": "attack6Data"},
+                          "key": {"value": "center"}
+                        },
+                        "output": {
+                          "position": "teleCenter"
+                        }
+                      },
+                      {
+                        "title": "v_getJsonKey",
+                        "type": "action",
+                        "name": "v_getJsonKey",
+                        "parameters": {
+                          "object": {"key": "attack6Data"},
+                          "key": {"value": "sourceId"}
+                        },
+                        "output": {
+                          "entity": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "v_getJsonKey",
+                        "type": "action",
+                        "name": "v_getJsonKey",
+                        "parameters": {
+                          "object": {"key": "attack6Data"},
+                          "key": {"value": "teleTime"}
+                        },
+                        "output": {
+                          "number": "teleTime"
+                        }
+                      },
+                      {
+                        "title": "v_getJsonKey",
+                        "type": "action",
+                        "name": "v_getJsonKey",
+                        "parameters": {
+                          "object": {"key": "attack6Data"},
+                          "key": {"value": "angleOffset"}
+                        },
+                        "output": {
+                          "number": "angleOffset"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "disappear"},
+                          "type": {"value": "cables"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "v_ellipsePoint",
+                        "type": "action",
+                        "name": "v_ellipsePoint",
+                        "parameters": {
+                          "xRadius": {"value": 15},
+                          "yRadius": {"value": 12},
+                          "angle": {"key": "angleOffset"}
+                        },
+                        "output": {
+                          "result": "startOffset"
+                        }
+                      },
+                      {
+                        "title": "offsetPosition",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"key": "startOffset"},
+                          "position": {"key": "teleCenter"}
+                        },
+                        "output": {
+                          "position": "startPos"
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "startPos"}
+                        }
+                      },
+                      {
+                        "title": "parallel",
+                        "type": "composite",
+                        "name": "parallel",
+                        "parameters": {
+                          "fail": {"value": -1},
+                          "success": {"value": 1}
+                        },
+                        "children": [
+                          {
+                            "title": "v_teleAngle",
+                            "type": "action",
+                            "name": "v_teleAngle",
+                            "parameters": {
+                              "center": {"key": "teleCenter"},
+                              "xLength": {"value": 30},
+                              "yLength": {"value": 24},
+                              "angle": {"key": "endAngle"},
+                              "angleOffset": {"key": "angleOffset"},
+                              "rotations": {"value": 3},
+                              "teleTime": {"key": "teleTime"}
+                            },
+                            "output": {
+                              "headingVector": "aimVector"
+                            }
+                          },
+                          {
+                            "title": "failer",
+                            "type": "decorator",
+                            "name": "failer",
+                            "parameters": {},
+                            "child": {
+                              "title": "sequence",
+                              "type": "composite",
+                              "name": "sequence",
+                              "parameters": {},
+                              "children": [
+                                {
+                                  "title": "spawnProjectile",
+                                  "type": "action",
+                                  "name": "spawnProjectile",
+                                  "parameters": {
+                                    "aimVector": {"key": "aimVector"},
+                                    "offset": {"value": [0, 0]},
+                                    "position": {"key": "self"},
+                                    "projectileConfig": {"value": {"speed" : 1, "acceleration" : 75, "power" : 10}},
+                                    "projectileType": {"value": "v-ancientturretshot"},
+                                    "scalePower": {"value": true},
+                                    "sourceEntity": {"key": "self"},
+                                    "trackSource": {"value": false}
+                                  }
+                                },
+                                {
+                                  "title": "timer",
+                                  "type": "action",
+                                  "name": "timer",
+                                  "parameters": {
+                                    "time": {"value": 0.05}
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "ptob"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "entityDirection",
+                        "type": "action",
+                        "name": "entityDirection",
+                        "parameters": {
+                          "target": {"key": "target"}
+                        },
+                        "output": {
+                          "vector": "aimVector"
+                        }
+                      },
+                      {
+                        "title": "repeater",
+                        "type": "decorator",
+                        "name": "repeater",
+                        "parameters": {
+                          "maxLoops": {"value": 5}
+                        },
+                        "child": {
+                          "title": "sequence",
+                          "type": "composite",
+                          "name": "sequence",
+                          "parameters": {},
+                          "children": [
+                            {
+                              "title": "spawnProjectile",
+                              "type": "action",
+                              "name": "spawnProjectile",
+                              "parameters": {
+                                "aimVector": {"key": "aimVector"},
+                                "offset": {"value": [0, 0]},
+                                "position": {"key": "self"},
+                                "projectileConfig": {"value": {"speed" : 1, "acceleration" : 50, "power" : 10}},
+                                "projectileType": {"value": "v-ancientphaseshot"},
+                                "scalePower": {"value": true},
+                                "sourceEntity": {"key": "self"},
+                                "trackSource": {"value": false}
+                              }
+                            },
+                            {
+                              "title": "timer",
+                              "type": "action",
+                              "name": "timer",
+                              "parameters": {
+                                "time": {"value": 0.1}
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.25}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "btop"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.25}
+                        }
+                      },
+                      {
+                        "title": "sendNotification",
+                        "type": "action",
+                        "name": "sendNotification",
+                        "parameters": {
+                          "entity": {"key": "sourceId"},
+                          "type": {"value": "finishedcore"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "openshell",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "openshell"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "activate"},
+                          "type": {"value": "shell"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.4}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "closeshell",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "receivedNotification",
+                        "type": "action",
+                        "name": "receivedNotification",
+                        "parameters": {
+                          "type": {"value": "closeshell"}
+                        },
+                        "output": {
+                          "target": "target",
+                          "source": "sourceId"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "deactivate"},
+                          "type": {"value": "shell"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.4}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "faceDirection",
+                    "type": "action",
+                    "name": "faceDirection",
+                    "parameters": {
+                      "direction": {"value": 1}
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "die",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "inverter",
+                "type": "decorator",
+                "name": "inverter",
+                "parameters": {},
+                "child": {
+                  "title": "resourcePercentage",
+                  "type": "action",
+                  "name": "resourcePercentage",
+                  "parameters": {
+                    "resource": {"value": "health"},
+                    "percentage": {"value": 0.0}
+                  }
+                }
+              },
+              {
+                "title": "succeeder",
+                "type": "decorator",
+                "name": "succeeder",
+                "parameters": {},
+                "child": {
+                  "title": "sendNotification",
+                  "type": "action",
+                  "name": "sendNotification",
+                  "parameters": {
+                    "entity": {"key": "sourceId"},
+                    "type": {"value": "finishedcore"}
+                  }
+                }
+              },
+              {
+                "title": "setAnimationState",
+                "type": "action",
+                "name": "setAnimationState",
+                "parameters": {
+                  "state": {"value": "disappear"},
+                  "type": {"value": "cables"}
+                }
+              },
+              {
+                "title": "setAnimationState",
+                "type": "action",
+                "name": "setAnimationState",
+                "parameters": {
+                  "state": {"value": "dying"},
+                  "type": {"value": "core"}
+                }
+              },
+              {
+                "title": "setAnimationState",
+                "type": "action",
+                "name": "setAnimationState",
+                "parameters": {
+                  "state": {"value": "dying"},
+                  "type": {"value": "shell"}
+                }
+              },
+              {
+                "title": "playSound",
+                "type": "action",
+                "name": "playSound",
+                "parameters": {
+                  "sound": {"value": "deathShrink"}
+                }
+              },
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 1.2}
+                }
+              },
+              {
+                "title": "spawnProjectile",
+                "type": "action",
+                "name": "spawnProjectile",
+                "parameters": {
+                  "angle": {"value": 0},
+                  "offset": {"value": [0, 0]},
+                  "position": {"key": "self"},
+                  "projectileConfig": {"value": {"speed": 0, "timeToLive": 0, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/v-strongholdcoreexplosion/strongholdcoreexplosion.config"}]}},
+                  "projectileType": {"value": "orbitalup"},
+                  "scalePower": {"value": false},
+                  "sourceEntity": {"key": "self"},
+                  "trackSource": {"value": false}
+                }
+              },
+              {
+                "title": "setDying",
+                "type": "action",
+                "name": "setDying",
+                "parameters": {
+                  "shouldDie": {"value": true}
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
