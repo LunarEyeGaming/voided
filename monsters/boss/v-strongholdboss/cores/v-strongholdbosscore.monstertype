@@ -39,14 +39,14 @@
       //"fistLauncherGroups" : 4
     },
 
-    // "damageBar" : "None",
+    "damageBar" : "None",
 
     "forceRegions" : {
     },
 
     "damageParts" : {
       "laser1" : {
-        "damage" : 10,
+        "damage" : 18,
 
         "teamType" : "enemy",
         "damageSourceKind" : "plasma",
@@ -54,7 +54,7 @@
         "damageRepeatTimeout" : 1.0
       },
       "laser2" : {
-        "damage" : 10,
+        "damage" : 18,
 
         "teamType" : "enemy",
         "damageSourceKind" : "plasma",
@@ -93,7 +93,7 @@
       "physicsEffectCategories" : ["boss"]
     },
 
-    "renderLayer" : "Projectile-20",
+    "renderLayer" : "Projectile-10",
 
     "touchDamage" : {
       "poly" : [ [-4, -3], [0, -3], [0, 0], [-4, 0] ],

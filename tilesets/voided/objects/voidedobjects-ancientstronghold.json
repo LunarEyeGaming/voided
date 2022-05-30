@@ -8,8 +8,8 @@
  "margin":0,
  "name":"voidedobjects-ancientstronghold",
  "spacing":0,
- "tilecount":19,
- "tileheight":64,
+ "tilecount":31,
+ "tileheight":176,
  "tileproperties":
     {
      "0":
@@ -89,6 +89,13 @@
          "object":"v-ancientlaserturret",
          "tilesetDirection":"right"
         },
+     "19":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-strongholdbossbarrierhorizontal",
+         "tilesetDirection":"right"
+        },
      "2":
         {
          "imagePositionX":"0",
@@ -96,11 +103,88 @@
          "object":"v-ancientturret",
          "tilesetDirection":"right"
         },
+     "20":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-strongholdbossbarriervertical",
+         "tilesetDirection":"right"
+        },
+     "21":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-64",
+         "object":"v-strongholdbosswall",
+         "tilesetDirection":"right"
+        },
+     "22":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-strongholdbossbarrierhorizontal2",
+         "tilesetDirection":"right"
+        },
+     "23":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-24",
+         "object":"v-strongholdbossceiling",
+         "tilesetDirection":"right"
+        },
+     "24":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-strongholdbossdoor",
+         "tilesetDirection":"right"
+        },
+     "25":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-strongholdbossdoor",
+         "tilesetDirection":"left"
+        },
+     "26":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-strongholdbossfloor",
+         "tilesetDirection":"right"
+        },
+     "27":
+        {
+         "imagePositionX":"-48",
+         "imagePositionY":"-48",
+         "object":"v-ancientcodeconsole",
+         "tilesetDirection":"right"
+        },
+     "28":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientcodepiece1",
+         "tilesetDirection":"right"
+        },
+     "29":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientcodepiece2",
+         "tilesetDirection":"right"
+        },
      "3":
         {
          "imagePositionX":"0",
          "imagePositionY":"0",
          "object":"v-ancientturret",
+         "tilesetDirection":"right"
+        },
+     "30":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-ancientcodepiece3",
          "tilesetDirection":"right"
         },
      "4":
@@ -225,6 +309,13 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "19":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "2":
         {
          "imagePositionX":"string",
@@ -232,7 +323,84 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "20":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "21":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "22":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "23":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "24":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "25":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "26":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "27":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "28":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "29":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "3":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "30":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -350,17 +518,89 @@
          "imageheight":16,
          "imagewidth":16
         },
+     "19":
+        {
+         "image":"..\/images\/objects\/strongholdbossbarrierhorizontal.png",
+         "imageheight":16,
+         "imagewidth":288
+        },
      "2":
         {
          "image":"..\/images\/objects\/ancientturretright.png",
          "imageheight":32,
          "imagewidth":32
         },
+     "20":
+        {
+         "image":"..\/images\/objects\/strongholdbossbarriervertical.png",
+         "imageheight":176,
+         "imagewidth":8
+        },
+     "21":
+        {
+         "image":"..\/images\/objects\/strongholdbosswall.png",
+         "imageheight":72,
+         "imagewidth":288
+        },
+     "22":
+        {
+         "image":"..\/images\/objects\/strongholdbossbarrierhorizontal2.png",
+         "imageheight":16,
+         "imagewidth":288
+        },
+     "23":
+        {
+         "image":"..\/images\/objects\/strongholdbossceiling.png",
+         "imageheight":32,
+         "imagewidth":328
+        },
+     "24":
+        {
+         "image":"..\/images\/objects\/strongholdbossdoor.png",
+         "imageheight":72,
+         "imagewidth":48
+        },
+     "25":
+        {
+         "image":"..\/images\/objects\/strongholdbossdoorleft.png",
+         "imageheight":72,
+         "imagewidth":48
+        },
+     "26":
+        {
+         "image":"..\/images\/objects\/strongholdbossfloor.png",
+         "imageheight":16,
+         "imagewidth":296
+        },
+     "27":
+        {
+         "image":"..\/images\/objects\/ancientcodeconsole.png",
+         "imageheight":96,
+         "imagewidth":96
+        },
+     "28":
+        {
+         "image":"..\/images\/objects\/ancientcodepiece1.png",
+         "imageheight":80,
+         "imagewidth":40
+        },
+     "29":
+        {
+         "image":"..\/images\/objects\/ancientcodepiece2.png",
+         "imageheight":48,
+         "imagewidth":56
+        },
      "3":
         {
          "image":"..\/images\/objects\/ancientturretup.png",
          "imageheight":32,
          "imagewidth":32
+        },
+     "30":
+        {
+         "image":"..\/images\/objects\/ancientcodepiece3.png",
+         "imageheight":40,
+         "imagewidth":72
         },
      "4":
         {
@@ -399,6 +639,6 @@
          "imagewidth":8
         }
     },
- "tilewidth":64,
+ "tilewidth":328,
  "type":"tileset"
 }

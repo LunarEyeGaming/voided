@@ -2,7 +2,7 @@
   "animatedParts" : {
     "stateTypes" : {
       "core" : {
-        "default" : "purple",
+        "default" : "invisible",
         "states" : {
           "invisible" : {},
           "purple" : {},
@@ -63,7 +63,7 @@
         }
       },
       "cables" : {
-        "default" : "idle",
+        "default" : "invisible",
         "states" : {
           "invisible" : {},
           "appear" : {
@@ -86,7 +86,7 @@
         }
       },
       "shell" : {
-        "default" : "idle",
+        "default" : "invisible",
         "states" : {
           "invisible" : {},
           "idle" : {
@@ -139,7 +139,7 @@
         }
       },
       "lid" : {
-        "default" : "closed",
+        "default" : "open",
         "states" : {
           "closed" : {},
           "opening" : {
@@ -515,6 +515,92 @@
   "particleEmitters" : {
     "deathPoof" : {
       "particles" : [ ]
+    },
+    "steam" : {
+      "active" : false,
+      "emissionRate" : 5,
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/dust2/dust2.animation",
+            "position" : [-1.5, -1.5],
+            "initialVelocity" : [-5, -5],
+            "finalVelocity" : [0, 4],
+            "approach" : [7, 7],
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.85,
+            "fade" : 1,
+            "size" : 1,
+            "layer" : "front",
+            "timeToLive" : 0.45,
+            "variance" : {
+              "initialVelocity" : [3.0, 3.0],
+              "rotation" : 180
+            }
+          }
+        },
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/dust2/dust2.animation",
+            "position" : [-1.5, 1.5],
+            "initialVelocity" : [-5, 5],
+            "finalVelocity" : [0, 4],
+            "approach" : [7, 7],
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.85,
+            "fade" : 1,
+            "size" : 1,
+            "layer" : "front",
+            "timeToLive" : 0.45,
+            "variance" : {
+              "initialVelocity" : [3.0, 3.0],
+              "rotation" : 180
+            }
+          }
+        },
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/dust2/dust2.animation",
+            "position" : [1.5, 1.5],
+            "initialVelocity" : [5, 5],
+            "finalVelocity" : [0, 4],
+            "approach" : [7, 7],
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.85,
+            "fade" : 1,
+            "size" : 1,
+            "layer" : "front",
+            "timeToLive" : 0.45,
+            "variance" : {
+              "initialVelocity" : [3.0, 3.0],
+              "rotation" : 180
+            }
+          }
+        },
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/dust2/dust2.animation",
+            "position" : [1.5, -1.5],
+            "initialVelocity" : [5, -5],
+            "finalVelocity" : [0, 4],
+            "approach" : [7, 7],
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.85,
+            "fade" : 1,
+            "size" : 1,
+            "layer" : "front",
+            "timeToLive" : 0.45,
+            "variance" : {
+              "initialVelocity" : [3.0, 3.0],
+              "rotation" : 180
+            }
+          }
+        }
+      ]
     }
   },
 
@@ -523,6 +609,8 @@
     "deathPuff" : [ ],
     "open" : [ "/sfx/objects/airlock_open.ogg" ],
     "fire1" : [ "/sfx/gun/aegisaltpistol_start.ogg" ],
-    "deathShrink" : [ "/sfx/npc/boss/guardian_death_shrink.ogg" ]
+    "fire2" : [ "/sfx/gun/erchiuseyebeam_start.ogg" ],
+    "deathShrink" : [ "/sfx/npc/boss/guardian_death_shrink.ogg" ],
+    "steamRelease" : [ "/sfx/npc/boss/v_strongholdcore_steamrelease.ogg" ]
   }
 }

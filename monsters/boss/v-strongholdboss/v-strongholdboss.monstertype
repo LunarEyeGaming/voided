@@ -17,7 +17,7 @@
 
     "behavior" : "v-strongholdboss",
     
-    "renderLayer" : "Projectile-10",
+    "renderLayer" : "Projectile-20",
 
     "behaviorConfig" : {
       //"fistLauncherGroups" : 4
@@ -47,7 +47,7 @@
 
     "movementSettings" : {
       "gravityEnabled" : false,
-      "collisionPoly" : [ [2.5, 5.375], [4.5, 3.375], [4.5, -3.375], [2.5, -5.375], [-2.5, -5.375], [-4.5, -3.375], [-4.5, 3.375], [-2.5, 5.375] ],
+      "collisionPoly" : [ [0, 0] ],
 
       "mass" : 4.0,
       "walkSpeed" : 5,

@@ -1,0 +1,55 @@
+{
+  "objectName" : "v-strongholdbossfloor",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "These bricks have certainly survived the test of time.",
+  "shortdescription" : "floor",
+  "race" : "generic",
+  "health" : 1,
+
+  "category" : "wire",
+  "price" : 100,
+
+  "floranDescription" : "hmmm yes the floor here is made of floor",
+  "glitchDescription" : "ITS A FLOOR",
+  
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "strongholdbossfloor.png:1",
+      "imagePosition" : [-8, 0],
+      "direction" : "right",
+
+      "renderLayer" : "ForegroundTile",
+      
+      "animationParts" : {
+        "wall" : "strongholdbossfloor.png"
+      },
+      "anchors" : [ "background" ]
+      //"spaceScan" : 0.1
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/v-slidingdoor/slidingdoor.lua" ],
+  "scriptDelta" : 1,
+  
+  "translationConfig" : {
+    "duration" : 1,
+    "distance" : 36,
+    "direction" : -1,
+    "useHorizontal" : true,
+    "isSolid" : false,
+    "frames" : 1
+  },
+  
+  "inputNodes" : [ [0, 0] ],
+
+  "animation" : "/objects/wired/v-slidingdoor/slidingdoor.animation",
+
+  "animationParts" : {
+    "wall" : "strongholdbossceiling.png"
+  },
+  "animationPosition" : [-8, 0]
+}

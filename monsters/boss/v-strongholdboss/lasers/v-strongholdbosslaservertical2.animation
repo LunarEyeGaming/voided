@@ -56,6 +56,9 @@
             "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "active"
+          },
+          "destroyed" : {
+            "frames" : 1
           }
         }
       },
@@ -111,6 +114,11 @@
               "properties" : {
                 "image" : "<partImage>:winddown.<frame>"
               }
+            },
+            "destroyed" : {
+              "properties" : {
+                "image" : "<partImage>:destroyed.<frame>"
+              }
             }
           }
         }
@@ -152,6 +160,11 @@
             "winddown" : {
               "properties" : {
                 "image" : "<partImage>:winddown.<frame>"
+              }
+            },
+            "destroyed" : {
+              "properties" : {
+                "image" : "<partImage>:destroyed.<frame>"
               }
             }
           }
@@ -208,9 +221,21 @@
   "sounds" : {
     "aggroHop" : [ ],
     "deathPuff" : [ ],
-    "windup" : [ "/sfx/npc/boss/cultistboss_beamwindup.ogg" ],
-    "fire" : [ "/sfx/objects/crystaltrap_on1.ogg" ],
-    "loop" : [ "/sfx/objects/crystaltrap_loop.ogg" ],
-    "fireend" : [ "/sfx/objects/crystaltrap_off.ogg" ]
+    "windup" : {
+      "pool" : [ "/sfx/npc/boss/cultistboss_beamwindup.ogg" ],
+      "rangeMultiplier" : 2.0
+    },
+    "fire" : {
+      "pool" : [ "/sfx/objects/crystaltrap_on1.ogg" ],
+      "rangeMultiplier" : 2.0
+    },
+    "loop" : {
+      "pool" : [ "/sfx/objects/crystaltrap_loop.ogg" ],
+      "rangeMultiplier" : 2.0
+    },
+    "fireend" : {
+      "pool" : [ "/sfx/objects/crystaltrap_off.ogg" ],
+      "rangeMultiplier" : 2.0
+    }
   }
 }

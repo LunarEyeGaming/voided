@@ -2,9 +2,10 @@
   "name": "v-strongholdboss-phasetransition",
   "description": "",
   "scripts": [
+    "/scripts/actions/animator.lua",
     "/scripts/actions/boss/v-strongholdboss.lua",
     "/scripts/actions/time.lua",
-    "/scripts/actions/world.lua"
+    "/scripts/behavior/bdata.lua"
   ],
   "parameters": {},
   "root": {
@@ -13,6 +14,14 @@
     "name": "sequence",
     "parameters": {},
     "children": [
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "coresAttacking"}
+        }
+      },
       {
         "title": "v_resetLasers",
         "type": "action",
@@ -31,6 +40,80 @@
         "parameters": {
           "state": {"value": "invisible"},
           "type": {"value": "rail"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.5}
+        }
+      },
+      {
+        "title": "v_setLightsActive",
+        "type": "action",
+        "name": "v_setLightsActive",
+        "parameters": {
+          "lightIds": {"key": "lightIds"},
+          "active": {"value": false}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "sound": {"value": "powerdown"}
+        }
+      },
+      {
+        "title": "setDamageBar",
+        "type": "action",
+        "name": "setDamageBar",
+        "parameters": {
+          "type": {"value": "None"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 8.0}
+        }
+      },
+      {
+        "title": "setDamageBar",
+        "type": "action",
+        "name": "setDamageBar",
+        "parameters": {
+          "type": {"value": "Special"}
+        }
+      },
+      {
+        "title": "v_setLightsActive",
+        "type": "action",
+        "name": "v_setLightsActive",
+        "parameters": {
+          "lightIds": {"key": "lightIds"},
+          "active": {"value": true}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "sound": {"value": "powerup"}
+        }
+      },
+      {
+        "title": "unsetFlag",
+        "type": "action",
+        "name": "unsetFlag",
+        "parameters": {
+          "name": {"value": "coresAttacking"}
         }
       }
     ]

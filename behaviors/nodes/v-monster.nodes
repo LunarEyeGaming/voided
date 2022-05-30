@@ -1,0 +1,18 @@
+{
+  "v_rangedFlyApproach": {
+    "type": "action",
+    "name": "v_rangedFlyApproach",
+    "title": "v_rangedFlyApproach",
+    "properties": {
+      "maxRange": {"type": "number", "value": null},
+      "minRange": {"type": "number", "value": 0},
+      "position": {"type": "position", "value": null},
+      "speed": {"type": "number", "value": 1},
+      "controlForce": {"type": "number", "value": 100},
+      "correctionStepSize": {"type": "number", "value": 0.03}
+    },
+    "category": "v-monster",
+    "script": "/scripts/actions/v-monster.lua",
+    "output": {}
+  }
+}

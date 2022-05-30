@@ -67,7 +67,7 @@ function v_teleportToPosition(args, board)
   chain.sourcePart = "core"
   chain.endPosition = args.position
   
-  local projId1 = world.spawnProjectile("v-teleportpoint", args.position)
+  local projId1 = world.spawnProjectile("v-teleportpoint", args.position, entity.id())
   monster.setAnimationParameter("chains", {chain})
   
   util.run(0.125, function() end)
@@ -77,7 +77,7 @@ function v_teleportToPosition(args, board)
   
   util.run(0.1, function() end)
 
-  local projId2 = world.spawnProjectile("v-teleportpoint", mcontroller.position())
+  local projId2 = world.spawnProjectile("v-teleportpoint", mcontroller.position(), entity.id())
   mcontroller.setPosition(args.position)
   
   util.run(0.1, function() end)
@@ -91,4 +91,18 @@ function v_teleportToPosition(args, board)
   world.sendEntityMessage(projId2, "kill")
   
   return true
+end
+
+-- param noShieldDuration
+-- param monsterType
+function v_controlShieldCore(args, board)
+  local shieldCoreId = world.spawnMonster(args.monsterType, world.entityPosition(entity.id()), {level = monster.level(), target = entity.id()})
+  while true do
+    while world.entityExists(shieldCoreId) do
+      coroutine.yield()
+    end
+    util.run(args.noShieldDuration, function() end)
+    shieldCoreId = world.spawnMonster(args.monsterType, world.entityPosition(entity.id()), {level = monster.level(), target = entity.id()})
+    coroutine.yield()
+  end
 end

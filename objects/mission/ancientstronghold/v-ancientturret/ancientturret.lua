@@ -62,19 +62,19 @@ function update(dt)
   self.moveState:update()
   self.attackState:update()
 
-  world.debugText("currentAngle: %s\ntarget: %s\nactive: %s\nuseFov: %s", self.currentAngle, self.target, storage.active, storage.useFov, self.cameraPos, "green")
-  if self.target then
-    world.debugPoint(world.entityPosition(self.target), "blue")
-  end
-  if storage.useFov then
-    world.debugPoly({
-      self.cameraPos,
-      vec2.add(self.cameraPos, vec2.rotate({self.sightRadius, 0}, self.currentAngle + self.halfFov)),
-      vec2.add(self.cameraPos, vec2.rotate({self.sightRadius, 0}, self.currentAngle)),
-      vec2.add(self.cameraPos, vec2.rotate({self.sightRadius, 0}, self.currentAngle - self.halfFov))
-    }, "blue")
-  end
-  world.debugLine(self.cameraPos, vec2.add(self.cameraPos, vec2.rotate({storage.useFov and self.sightRadius or self.notFovSightRadius, 0}, self.currentAngle)), "green")
+  -- world.debugText("currentAngle: %s\ntarget: %s\nactive: %s\nuseFov: %s", self.currentAngle, self.target, storage.active, storage.useFov, self.cameraPos, "green")
+  -- if self.target then
+    -- world.debugPoint(world.entityPosition(self.target), "blue")
+  -- end
+  -- if storage.useFov then
+    -- world.debugPoly({
+      -- self.cameraPos,
+      -- vec2.add(self.cameraPos, vec2.rotate({self.sightRadius, 0}, self.currentAngle + self.halfFov)),
+      -- vec2.add(self.cameraPos, vec2.rotate({self.sightRadius, 0}, self.currentAngle)),
+      -- vec2.add(self.cameraPos, vec2.rotate({self.sightRadius, 0}, self.currentAngle - self.halfFov))
+    -- }, "blue")
+  -- end
+  -- world.debugLine(self.cameraPos, vec2.add(self.cameraPos, vec2.rotate({storage.useFov and self.sightRadius or self.notFovSightRadius, 0}, self.currentAngle)), "green")
   --world.debugText([[halfFov: %s
 --sightRadius: %s
 --outOfSightRadius: %s
@@ -187,7 +187,7 @@ function turn(angle, turnTime)
     timer = math.min(timer + dt, turnTime)
     local curAngle = util.lerp(timer / turnTime, startAngle, angle)
     setAngle(curAngle)
-    world.debugText("Turning", vec2.add(self.cameraPos, {0, -1.25}), "green")
+    -- world.debugText("Turning", vec2.add(self.cameraPos, {0, -1.25}), "green")
   end)
 end
 
@@ -215,8 +215,8 @@ function getTarget()
           vec2.angle(world.distance(world.entityPosition(qItem), self.cameraPos))
         )
       )
-      world.debugText("sightCloseness: %s", sightCloseness, vec2.add(self.cameraPos, {0, -3.75}), "green")
-      world.debugText("targetAngle: %s", vec2.angle(world.distance(world.entityPosition(qItem), self.cameraPos)), vec2.add(self.cameraPos, {0, -2.5}), "green")
+      -- world.debugText("sightCloseness: %s", sightCloseness, vec2.add(self.cameraPos, {0, -3.75}), "green")
+      -- world.debugText("targetAngle: %s", vec2.angle(world.distance(world.entityPosition(qItem), self.cameraPos)), vec2.add(self.cameraPos, {0, -2.5}), "green")
       if isValidTarget(qItem) and sightCloseness <= self.halfFov then
         updateQueried(qItem)
         if self.queriedTimings[qItem] < 0 then

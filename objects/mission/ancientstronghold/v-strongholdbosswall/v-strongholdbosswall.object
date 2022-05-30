@@ -1,0 +1,54 @@
+{
+  "objectName" : "v-strongholdbosswall",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "wall",
+  "shortdescription" : "wall",
+  "race" : "generic",
+  "health" : 1,
+
+  "category" : "wire",
+  "price" : 100,
+
+  "floranDescription" : "wallss keep me up at night",
+  "glitchDescription" : "ITS A WA L L  L L ",
+  
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "strongholdbosswall.png:1",
+      "imagePosition" : [0, -64],
+      "direction" : "right",
+
+      "renderLayer" : "Object-1",
+      
+      "animationParts" : {
+        "wall" : "strongholdbosswall.png"
+      },
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/v-slidingdoor/slidingdoor.lua" ],
+  "scriptDelta" : 1,
+  
+  "translationConfig" : {
+    "duration" : 0.3,
+    "distance" : 11,
+    "direction" : -1,
+    "useHorizontal" : false,
+    "isSolid" : false,
+    "frames" : 1
+  },
+  
+  "inputNodes" : [ [0, 0] ],
+
+  "animation" : "/objects/wired/v-slidingdoor/slidingdoor.animation",
+
+  "animationParts" : {
+    "wall" : "strongholdbosswall.png"
+  },
+  "animationPosition" : [0, -64]
+}

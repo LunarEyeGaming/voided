@@ -1,0 +1,64 @@
+{
+  "objectName" : "v-strongholdbossdoor",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "door",
+  "shortdescription" : "door",
+  "race" : "generic",
+  "health" : 1,
+
+  "category" : "wire",
+  "price" : 100,
+
+  "floranDescription" : "the door here is made out of door",
+  "glitchDescription" : "ITS A DOOR",
+  
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "strongholdbossdoor.png:1",
+      "imagePosition" : [0, -8],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "wall" : "strongholdbossdoor.png"
+      },
+      "anchors" : [ "background" ],
+      "spaceScan" : 0.4
+    },
+    {
+      "image" : "strongholdbossdoorleft.png",
+      "imagePosition" : [0, -8],
+      "direction" : "left",
+      
+      "animationParts" : {
+        "wall" : "strongholdbossdoorleft_flipped.png"
+      },
+      "anchors" : [ "background" ],
+      "spaceScan" : 0.4
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/v-slidingdoor/slidingdoor.lua" ],
+  "scriptDelta" : 1,
+  
+  "translationConfig" : {
+    "duration" : 0.3,
+    "distance" : 8,
+    "direction" : 1,
+    "useHorizontal" : false,
+    "isSolid" : true,
+    "frames" : 1
+  },
+  
+  "inputNodes" : [ [0, 0] ],
+
+  "animation" : "/objects/wired/v-slidingdoor/slidingdoor.animation",
+
+  "animationParts" : {
+    "wall" : "strongholdbossdoor.png"
+  },
+  "animationPosition" : [0, -8]
+}

@@ -22,7 +22,7 @@
     "behaviorConfig" : {
       "damageOnTouch" : false,
 
-      "targetQueryRange" : 50,
+      "targetQueryRange" : 20,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
       "keepTargetInRange" : 100,
@@ -145,17 +145,17 @@
         "powerMultiplier" : {
           "baseValue" : 1.0
         },
+        "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 0.5
+        },
         "fireStatusImmunity" : {
           "baseValue" : 1.0
         },
-        "iceStatusImmunity" : {
-          "baseValue" : 1.0
-        },
-        "electricStatusImmunity" : {
-          "baseValue" : 1.0
-        },
-        "poisonStatusImmunity" : {
-          "baseValue" : 1.0
+        "fireResistance" : {
+          "baseValue" : 0.5
         }
       },
 

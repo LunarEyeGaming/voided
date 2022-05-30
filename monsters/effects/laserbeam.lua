@@ -30,7 +30,7 @@ function update()
 
     if beam.endPart then
       local beamEnd = animationConfig.partPoint(beam.endPart, "beamEnd")
-      world.debugPoint(vec2.add(entity.position(), beamEnd), "red")
+      -- world.debugPoint(vec2.add(entity.position(), beamEnd), "red")
       if beamEnd then
         aimVector = vec2.norm(vec2.sub(beamEnd, beamSource))
       end
@@ -72,9 +72,9 @@ function update()
       end
       local startPosition = vec2.mul(aimVector, maxLength * i / segmentCount)
       local endPosition = vec2.mul(aimVector, math.min(vec2.mag(lineEnd), maxLength * (i+1) / segmentCount))
-      world.debugPoint(vec2.add(beamPosition, endPosition), "green")
-      world.debugPoint(vec2.add(beamPosition, startPosition), "blue")
-      world.debugPoint(vec2.add(beamPosition, lineEnd), "yellow")
+      -- world.debugPoint(vec2.add(beamPosition, endPosition), "green")
+      -- world.debugPoint(vec2.add(beamPosition, startPosition), "blue")
+      -- world.debugPoint(vec2.add(beamPosition, lineEnd), "yellow")
 
       local segmentColor = copy(color)
       segmentColor[4] = segmentColor[4] * (1 - i/segmentCount)

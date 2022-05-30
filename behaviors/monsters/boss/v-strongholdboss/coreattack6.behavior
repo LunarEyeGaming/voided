@@ -22,6 +22,22 @@
     "parameters": {},
     "children": [
       {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "coresAttacking"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.25}
+        }
+      },
+      {
         "title": "each",
         "type": "decorator",
         "name": "each",
@@ -148,6 +164,14 @@
               }
             ]
           }
+        }
+      },
+      {
+        "title": "unsetFlag",
+        "type": "action",
+        "name": "unsetFlag",
+        "parameters": {
+          "name": {"value": "coresAttacking"}
         }
       },
       {

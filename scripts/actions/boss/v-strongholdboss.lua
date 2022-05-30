@@ -25,11 +25,14 @@ end
 -- param nRows
 -- param nCols
 -- param coreIds
--- output result
+-- param corePositions
+-- output coreIds, corePositions
 -- Randomly partition the cores by phase such that at least one core is active in every row in every phase. Pre-condition: nCols = the number of phases
 function v_partitionCores(args, board)
+  math.randomseed(os.time())
   local phaseMatrix = {}
-  local res = {}
+  local resIds = {}
+  local resPositions = {}
   for i = 1, args.nRows do
     phaseMatrix[i] = {}
     for j = 1, args.nCols do
@@ -40,31 +43,31 @@ function v_partitionCores(args, board)
 
   for i, row in ipairs(phaseMatrix) do
     for j, phase in ipairs(row) do
-      if not res[phase] then
-        res[phase] = {}
+      if not resIds[phase] then
+        resIds[phase] = {}
       end
-      table.insert(res[phase], args.coreIds[(i - 1) * args.nCols + j])  -- TODO: Verify that this indexing works.
-      --sb.logInfo("%s", res)
+      if not resPositions[phase] then
+        resPositions[phase] = {}
+      end
+      table.insert(resIds[phase], args.coreIds[(i - 1) * args.nCols + j])  -- TODO: Verify that this indexing works.
+      table.insert(resPositions[phase], args.corePositions[(i - 1) * args.nCols + j])
     end
   end
 
-  return true, {result = res}
+  return true, {coreIds = resIds, corePositions = resPositions}
 end
 
 -- param laserH1Offset
 -- param laserV1Offset
 -- param laserH2Offset
 -- param laserV2Offset
--- param turretUpOffset
--- param turretLeftOffset
--- param turretRightOffset
--- param turretDownOffset
 -- param coreXOffsets
 -- param coreYOffsets
--- output laserH1Id, laserV1Id, coreIds
+-- output laserH1Id, laserV1Id, laserH2Id, laserV2Id, coreIds, corePositions
 function v_spawnStrongholdParts(args, board)
   local laserIds = {}
   local coreIds = {}
+  local corePositions = {}
 
   local center = mcontroller.position()
 
@@ -91,8 +94,10 @@ function v_spawnStrongholdParts(args, board)
 
   for i = 1, #args.coreXOffsets do
     for j = 1, #args.coreYOffsets do
-      local coreId = world.spawnMonster("v-strongholdbosscore", vec2.add(center, {args.coreXOffsets[i], args.coreYOffsets[j]}), {level = monster.level()})
+      local corePosition = vec2.add(center, {args.coreXOffsets[i], args.coreYOffsets[j]})
+      local coreId = world.spawnMonster("v-strongholdbosscore", corePosition, {level = monster.level()})
       table.insert(coreIds, coreId)
+      table.insert(corePositions, corePosition)
     end
   end
 
@@ -101,19 +106,17 @@ function v_spawnStrongholdParts(args, board)
     laserV1Id = laserV1Id,
     laserH2Id = laserH2Id,
     laserV2Id = laserV2Id,
-    turretUpId = turretUpId,
-    turretLeftId = turretLeftId,
-    turretRightId = turretRightId,
-    turretDownId = turretDownId,
-    coreIds = coreIds
+    coreIds = coreIds,
+    corePositions = corePositions
   }
 end
 
 -- param coreXOffsets
 -- param coreYOffsets
--- output coreIds
+-- output coreIds, corePositions
 function v_spawnStrongholdParts2(args, board)
   local coreIds = {}
+  local corePositions = {}
 
   --laserH1Offset = {-18, 0}
   --laserV1Offset = {0, 15}
@@ -127,12 +130,14 @@ function v_spawnStrongholdParts2(args, board)
 
   for i = 1, #args.coreXOffsets do
     for j = 1, #args.coreYOffsets do
-      local coreId = world.spawnMonster("v-strongholdbosscore", vec2.add(center, {args.coreXOffsets[i], args.coreYOffsets[j]}), {level = monster.level()})
+      local corePosition = vec2.add(center, {args.coreXOffsets[i], args.coreYOffsets[j]})
+      local coreId = world.spawnMonster("v-strongholdbosscore", corePosition, {level = monster.level()})
       table.insert(coreIds, coreId)
+      table.insert(corePositions, corePosition)
     end
   end
 
-  return true, {coreIds = coreIds}
+  return true, {coreIds = coreIds, corePositions = corePositions}
 end
 
 -- param h1Id
@@ -350,6 +355,7 @@ end
 -- param loops
 -- param target
 -- param targetProjectile
+-- param phase3WarningProjectile
 -- param phase
 -- param waitTime
 function v_laserAttack4(args, board)
@@ -357,6 +363,11 @@ function v_laserAttack4(args, board)
 
   local hPosBounds = {center[2] + args.hBounds[1], center[2] + args.hBounds[2]}
   local vPosBounds = {center[1] + args.vBounds[1], center[1] + args.vBounds[2]}
+  
+  if args.phase == 3 then
+    world.spawnProjectile(args.phase3WarningProjectile, mcontroller.position(), entity.id(), {0, 0})
+    util.run(args.phase3WarningTime, function() end)
+  end
 
   for i = 1, args.loops do
     local targetPos = _getCappedTargetPos(args.target, hPosBounds, vPosBounds)
@@ -365,7 +376,7 @@ function v_laserAttack4(args, board)
     local vId = i % 2 == 0 and args.v1Id or args.v2Id
 
     if args.phase == 1 then
-      world.spawnProjectile(args.targetProjectile, targetPos, args.target, {0, 0})
+      world.spawnProjectile(args.targetProjectile, targetPos, entity.id(), {0, 0})
       world.sendEntityMessage(hId, "move", targetPos)
       world.sendEntityMessage(vId, "move", targetPos)
 
@@ -377,12 +388,12 @@ function v_laserAttack4(args, board)
       _v_awaitNotification("finished", 2)
     elseif args.phase == 2 then
 
-      world.spawnProjectile(args.targetProjectile, targetPos, args.target, {0, 0})
+      world.spawnProjectile(args.targetProjectile, targetPos, entity.id(), {0, 0})
       world.sendEntityMessage(hId, "moveandpulse", targetPos)
       util.run(args.waitTime, function() end)
 
       targetPos = _getCappedTargetPos(args.target, hPosBounds, vPosBounds)
-      world.spawnProjectile(args.targetProjectile, targetPos, args.target, {0, 0})
+      world.spawnProjectile(args.targetProjectile, targetPos, entity.id(), {0, 0})
       world.sendEntityMessage(vId, "moveandpulse", targetPos)
     elseif args.phase == 3 then
       world.spawnProjectile(args.targetProjectile, targetPos, entity.id(), {0, 0})
@@ -439,10 +450,15 @@ function v_laserAttack5(args, board)
     local startPosition = vec2.add(center, attack.startOffset)
     local endPosition = vec2.add(center, attack.endOffset)
 
-    world.spawnProjectile(attack.teleProjectile, vec2.add(center, attack.teleOffset))
-
     world.sendEntityMessage(id, "move", startPosition)
-    _v_awaitNotification("finished")
+  end
+
+  _v_awaitNotification("finished", #args.attackSet)
+  
+  for i, attack in ipairs(args.attackSet) do
+    local id = board:getEntity(attack.idKey)
+
+    world.spawnProjectile(attack.teleProjectile, vec2.add(center, attack.teleOffset))
 
     world.sendEntityMessage(id, "activate")
     _v_awaitNotification("finished")
@@ -494,10 +510,10 @@ function v_resetLasers(args, board)
   return true
 end
 
-
 -- param coreIds  -- DEPRECATED
 -- param nResults  -- DEPRECATED
 -- param corePartition
+-- param corePositionPartition
 -- param phase
 -- output coreIds
 function v_activateCores(args, board)
@@ -513,6 +529,7 @@ function v_activateCores(args, board)
     -- })
   -- end
   local selected = args.corePartition[args.phase]
+  local selectedPositions = args.corePositionPartition[args.phase]
   for _, id in ipairs(selected) do
     world.sendEntityMessage(id, "notify", {
       sourceId = entity.id(),
@@ -520,7 +537,48 @@ function v_activateCores(args, board)
     })
   end
 
-  return true, {coreIds = selected}
+  return true, {coreIds = selected, corePositions = selectedPositions}
+end
+
+-- param lightIds
+-- param intensities
+-- param coreCount
+-- param prevCoreCount
+-- param duration
+function v_flickerLights(args, board)
+  if args.prevCoreCount <= args.coreCount then return false end
+  animator.playSound("flicker")
+  for _, id in ipairs(args.lightIds) do
+    world.sendEntityMessage(id, "flicker", args.intensities[args.coreCount + 1], args.duration)
+  end
+  
+  return true
+end
+
+-- param lightIds
+-- param active
+function v_setLightsActive(args, board)
+  for _, id in ipairs(args.lightIds) do
+    world.sendEntityMessage(id, "setActive", args.active)
+  end
+  
+  return true
+end
+
+-- param coreIds
+-- param teleportPool
+function v_moveCoresAroundRandomly(args, board)
+  local teleportPool = args.teleportPool
+  shuffle(teleportPool)
+  for i, coreId in ipairs(args.coreIds) do
+    local teleportPos = teleportPool[i]
+    world.sendEntityMessage(coreId, "notify", {
+      type = "teleport",
+      targetPosition = teleportPos
+    })
+  end
+  
+  return true
 end
 
 -- param coreIds
@@ -564,6 +622,21 @@ function v_coreAttack6(args, board)
   end
 
   return true
+end
+
+-- param coreIds
+-- param monsterType
+-- output shieldCoreIds
+function v_spawnShieldCores(args, board)
+  --local shieldCoreIds = {}
+  for _, coreId in ipairs(args.coreIds) do
+    --local shieldCoreId = world.spawnMonster(args.monsterType, world.entityPosition(coreId), {level = monster.level(), target = coreId})
+    --table.insert(shieldCoreIds, shieldCoreId)
+    world.sendEntityMessage(coreId, "notify", {type = "activateShieldCore"})
+  end
+  
+  --return true, {shieldCoreIds = shieldCoreIds}
+  return true, {shieldCoreIds = {}}
 end
 
 function _v_awaitNotification(type_, count)

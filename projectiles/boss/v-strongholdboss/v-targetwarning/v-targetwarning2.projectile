@@ -1,0 +1,28 @@
+{
+  "projectileName" : "v-targetwarning2",
+  "image" : "targetwarning2.png",
+  "animationCycle" : 0.25,
+  "timeToLive" : 1.0,
+  "frameNumber" : 2,
+  "speed" : 50,
+  "orientationLocked" : true,
+  "animationLoops" : true,
+  "piercing" : true,
+  "bounces" : -1,
+  "physics" : "illusion",
+  "flippable" : true,
+  "onlyHitTerrain" : true,
+  "fullbright" : true,
+  
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/interface/nav_insufficient_fuel.ogg" ]
+    }
+  ],
+  
+  "scripts" : ["/projectiles/killable.lua"],
+  "scriptDelta" : 1
+}

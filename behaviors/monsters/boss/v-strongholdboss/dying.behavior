@@ -1,0 +1,262 @@
+{
+  "name": "v-strongholdboss-dying",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/boss/v-strongholdboss.lua",
+    "/scripts/actions/monster.lua",
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/behavior/bdata.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "battleMusic",
+        "type": "action",
+        "name": "battleMusic",
+        "parameters": {
+          "enable": {"value": false}
+        }
+      },
+      {
+        "title": "v_resetLasers",
+        "type": "action",
+        "name": "v_resetLasers",
+        "parameters": {
+          "h1Id": {"key": "laserH1Id"},
+          "v1Id": {"key": "laserV1Id"},
+          "h2Id": {"key": "laserH2Id"},
+          "v2Id": {"key": "laserV2Id"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "invisible"},
+          "type": {"value": "rail"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.5}
+        }
+      },
+      {
+        "title": "v_setLightsActive",
+        "type": "action",
+        "name": "v_setLightsActive",
+        "parameters": {
+          "lightIds": {"key": "lightIds"},
+          "active": {"value": false}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "sound": {"value": "powerdown"}
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "lightIds"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "entityPosition",
+              "type": "action",
+              "name": "entityPosition",
+              "parameters": {
+                "entity": {"key": "eachItem"}
+              },
+              "output": {
+                "position": "lightPos"
+              }
+            },
+            {
+              "title": "spawnProjectile",
+              "type": "action",
+              "name": "spawnProjectile",
+              "parameters": {
+                "position": {"key": "lightPos"},
+                "projectileConfig": {"value": {"speed": 0, "power": 0, "timeToLive": 0, "onlyHitTerrain": true, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/regularexplosion2/v-glowingregularexplosion.config"}]}},
+                "projectileType": {"value": "orbitalup"},
+                "sourceEntity": {"key": "self"},
+                "trackSource": {"value": false}
+              },
+              "output": {
+                "position": "lightPos"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.75}
+        }
+      },
+      {
+        "title": "sendEntityMessage",
+        "type": "action",
+        "name": "sendEntityMessage",
+        "parameters": {
+          "entity": {"key": "laserH1Id"},
+          "message": {"value": "explode"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.3}
+        }
+      },
+      {
+        "title": "sendEntityMessage",
+        "type": "action",
+        "name": "sendEntityMessage",
+        "parameters": {
+          "entity": {"key": "laserH2Id"},
+          "message": {"value": "explode"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.3}
+        }
+      },
+      {
+        "title": "sendEntityMessage",
+        "type": "action",
+        "name": "sendEntityMessage",
+        "parameters": {
+          "entity": {"key": "laserV1Id"},
+          "message": {"value": "explode"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.3}
+        }
+      },
+      {
+        "title": "sendEntityMessage",
+        "type": "action",
+        "name": "sendEntityMessage",
+        "parameters": {
+          "entity": {"key": "laserV2Id"},
+          "message": {"value": "explode"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.5}
+        }
+      },
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": 8}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": 8},
+                "min": {"value": -8}
+              },
+              "output": {
+                "number": "explodeX"
+              }
+            },
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": 8},
+                "min": {"value": -8}
+              },
+              "output": {
+                "number": "explodeY"
+              }
+            },
+            {
+              "title": "spawnProjectile",
+              "type": "action",
+              "name": "spawnProjectile",
+              "parameters": {
+                "aimVector": {"value": [0, 0]},
+                "offset": {"value": ["explodeX", "explodeY"]},
+                "projectileConfig": {"value": {"timeToLive": 0, "power": 0, "speed": 0, "onlyHitTerrain": true, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/regularexplosion2/v-glowingregularexplosion.config"}]}},
+                "projectileType": {"value": "orbitalup"}
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "setResourcePercentage",
+        "type": "action",
+        "name": "setResourcePercentage",
+        "parameters": {
+          "percentage": {"value": 0},
+          "resource": {"value": "health"}
+        }
+      },
+      {
+        "title": "setDying",
+        "type": "action",
+        "name": "setDying",
+        "parameters": {
+          "shouldDie": {"value": true}
+        }
+      }
+    ]
+  }
+}

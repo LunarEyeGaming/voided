@@ -1,0 +1,140 @@
+{
+  "name": "v-approach-rangedfly",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/v-monster.lua",
+    "/scripts/actions/query.lua",
+    "/scripts/actions/world.lua"
+  ],
+  "parameters": {
+    "minRange": 10,
+    "maxRange": 20,
+    "speed": 20,
+    "controlForce": 50,
+    "flyState": "fly",
+    "usePathfinding": true,
+    "idleState": ""
+  },
+  "root": {
+    "title": "parallel",
+    "type": "composite",
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": 1},
+      "success": {"value": 1}
+    },
+    "children": [
+      {
+        "title": "animate",
+        "type": "action",
+        "name": "animate",
+        "parameters": {
+          "fallback": {"value": "<idleState>"},
+          "state": {"value": "<flyState>"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": -1}
+        },
+        "children": [
+          {
+            "title": "entityPosition",
+            "type": "action",
+            "name": "entityPosition",
+            "parameters": {
+              "entity": {"key": "target"}
+            },
+            "output": {
+              "position": "targetPosition"
+            }
+          },
+          {
+            "title": "dynamic",
+            "type": "composite",
+            "name": "dynamic",
+            "parameters": {},
+            "children": [
+              {
+                "title": "parallel",
+                "type": "composite",
+                "name": "parallel",
+                "parameters": {
+                  "fail": {"value": 1},
+                  "success": {"value": -1}
+                },
+                "children": [
+                  {
+                    "title": "entityInSight",
+                    "type": "action",
+                    "name": "entityInSight",
+                    "parameters": {
+                      "entity": {"key": "target"}
+                    }
+                  },
+                  {
+                    "title": "v_rangedFlyApproach",
+                    "type": "action",
+                    "name": "v_rangedFlyApproach",
+                    "parameters": {
+                      "minRange": {"key": "<minRange>"},
+                      "maxRange": {"key": "<maxRange>"},
+                      "position": {"key": "targetPosition"},
+                      "speed": {"key": "<speed>"},
+                      "controlForce": {"key": "<controlForce>"}
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "optional",
+                "type": "decorator",
+                "name": "optional",
+                "parameters": {
+                  "shouldRun": {"key": "<usePathfinding>"}
+                },
+                "child": {
+                  "title": "inverter",
+                  "type": "decorator",
+                  "name": "inverter",
+                  "parameters": {},
+                  "child": {
+                    "title": "moveToPosition",
+                    "type": "action",
+                    "name": "moveToPosition",
+                    "parameters": {
+                      "avoidLiquid": {"value": false},
+                      "groundPosition": {"value": false},
+                      "maxGround": {"value": 5},
+                      "minGround": {"value": -5},
+                      "position": {"key": "targetPosition"},
+                      "run": {"value": false}
+                    }
+                  }
+                }
+              },
+              {
+                "title": "v_rangedFlyApproach",
+                "type": "action",
+                "name": "v_rangedFlyApproach",
+                "parameters": {
+                  "minRange": {"key": "<minRange>"},
+                  "maxRange": {"key": "<maxRange>"},
+                  "position": {"key": "targetPosition"},
+                  "speed": {"key": "<speed>"},
+                  "controlForce": {"key": "<controlForce>"}
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

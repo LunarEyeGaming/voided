@@ -9,6 +9,28 @@ function _anyTypeTable(value)
   return results
 end
 
+function _resolveRefs(table_, board)
+  --[[
+    Resolve references to blackboard variables in a table and its nested tables. References are denoted with $<type>:<var>
+
+    param table_: A table potentially containing references to blackboard variables
+    param board: The blackboard to use
+    return: table_ with all references resolved
+  ]]
+  local newTable = {}
+  for k, v in pairs(table_) do
+    if type(v) == "table" then
+      newTable[k] = _resolveRefs(v, board)
+    elseif type(v) == "string" and strStartsWith(v, "$") then
+      local ref = util.split(v:sub(2, #v), ":")
+      newTable[k] = board:get(ref[1], ref[2])  -- Lookup variable name on the blackboard
+    else
+      newTable[k] = v
+    end
+  end
+  return newTable
+end
+
 -- param list
 -- param index
 -- output entity
@@ -35,7 +57,7 @@ function v_receivedNotification2(args, board)
   return false
 end
 
--- Sets data of the specified key in a JSON object to value.
+-- Set data of the specified key in a JSON object to value.
 -- param object
 -- param key
 -- Refer to ListTypes in bdata.lua for info on the types of values that can be inserted.
@@ -53,7 +75,7 @@ function v_setJsonKey(args, board)
   return false, {object = object}
 end
 
--- Removes a key from a JSON object
+-- Remove a key from a JSON object
 -- param object
 -- param key
 -- output object
@@ -65,7 +87,7 @@ function v_removeJsonKey(args, board)
   return true, {object = newObject}
 end
 
--- Gets the value of a specified key in a JSON object.
+-- Get the value of a specified key in a JSON object.
 -- param object
 -- param key
 -- output value
@@ -85,4 +107,16 @@ end
 function v_ellipsePoint(args, board)
   if args.xRadius == nil or args.yRadius == nil or args.angle == nil then return false end
   return true, {result = {args.xRadius * math.cos(args.angle), args.yRadius * math.sin(args.angle)}}
+end
+
+-- param msg
+-- param formatArgs
+function v_logInfo(args, board)
+  if args.formatArgs and next(args.formatArgs) ~= nil then  -- If args.formatArgs is defined and is not empty
+    sb.logInfo(args.msg, table.unpack(_resolveRefs(args.formatArgs, board)))
+  else
+    sb.logInfo(args.msg)
+  end
+  
+  return true
 end

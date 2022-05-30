@@ -2,10 +2,10 @@
   "animatedParts" : {
     "stateTypes" : {
       "hole" : {
-        "default" : "normal",
+        "default" : "closed",
         "states" : {
-          "normal" : {} //,
-          //"on" : {}
+          "open" : {},
+          "closed" : {}
         }
       }
     },
@@ -18,17 +18,16 @@
 
         "partStates" : {
           "hole" : {
-            "normal" : {
+            "open" : {
               "properties" : {
-                "image" : "<partImage>:<color>.normal"
+                "image" : "<partImage>:<color>.open"
               }
-            } //,
-
-            /* "on" : {
+            },
+            "closed" : {
               "properties" : {
-                "image" : "<partImage>:<color>.on"
+                "image" : "<partImage>:<color>.closed"
               }
-            } */
+            }
           }
         }
       }

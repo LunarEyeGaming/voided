@@ -133,6 +133,18 @@
 
   "sounds" : {
     "aggroHop" : [ ],
-    "deathPuff" : [ ]
+    "deathPuff" : [ ],
+    "powerdown" : {
+      "pool" : ["/sfx/npc/boss/v_stronghold_powerdown.ogg"],
+      "rangeMultiplier" : 2.0
+    },
+    "powerup" : {
+      "pool" : ["/sfx/interface/ship_powerup.ogg"],
+      "rangeMultiplier" : 2.0
+    },
+    "flicker" : {
+      "pool" : ["/sfx/npc/boss/v_stronghold_powerstrain.ogg"],
+      "rangeMultiplier" : 2.0
+    }
   }
 }

@@ -164,6 +164,23 @@
                 "parameters": {},
                 "children": [
                   {
+                    "title": "resetTransformationGroup",
+                    "type": "action",
+                    "name": "resetTransformationGroup",
+                    "parameters": {
+                      "transformationGroup": {"value": "laserbeam"}
+                    }
+                  },
+                  {
+                    "title": "scaleTransformationGroup",
+                    "type": "action",
+                    "name": "scaleTransformationGroup",
+                    "parameters": {
+                      "transformationGroup": {"value": "laserbeam2"},
+                      "scale": {"value": [0, 0]}
+                    }
+                  },
+                  {
                     "title": "parallel",
                     "type": "composite",
                     "name": "parallel",
@@ -226,6 +243,14 @@
                     }
                   },
                   {
+                    "title": "resetTransformationGroup",
+                    "type": "action",
+                    "name": "resetTransformationGroup",
+                    "parameters": {
+                      "transformationGroup": {"value": "laserbeam2"}
+                    }
+                  },
+                  {
                     "title": "distance",
                     "type": "action",
                     "name": "distance",
@@ -264,6 +289,15 @@
                     "name": "resetTransformationGroup",
                     "parameters": {
                       "transformationGroup": {"value": "laserbeam"}
+                    }
+                  },
+                  {
+                    "title": "scaleTransformationGroup",
+                    "type": "action",
+                    "name": "scaleTransformationGroup",
+                    "parameters": {
+                      "transformationGroup": {"value": "laserbeam2"},
+                      "scale": {"value": [0, 0]}
                     }
                   },
                   {

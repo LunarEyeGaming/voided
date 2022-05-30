@@ -26,6 +26,8 @@
       "animationPosition" : [-32, -24],
 
       "direction" : "right",
+  
+      "renderLayer" : "Object-2",
 
       "spaceScan" : 0.1,
       "anchors" : [ "background" ]
@@ -37,8 +39,8 @@
     "hole" : "strongholdcorehole.png"
   },
 
-  //"scripts" : [ "/objects/wired/light/light.lua" ],
-  //"scriptDelta" : 60,
+  "scripts" : [ "strongholdcorehole.lua" ],
+  "scriptDelta" : 60,
 
   "interactive" : false
 }

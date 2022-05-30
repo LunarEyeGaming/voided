@@ -1,0 +1,23 @@
+{
+  "metadata" : {
+    "name" : "v-strongholdgateway",
+    "species" : "generic",
+    "rules" : [
+    ],
+    "protected" : true,
+    "anchor" : [ "strongholdgateway" ],
+    "maxRadius" : 1000000,
+    "maxParts" : 1,
+    "extendSurfaceFreeSpace" : 100
+  },
+
+  "parts" : [
+    {
+      "name" : "strongholdgateway",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "strongholdgateway.json" ]
+    }
+  ]
+}

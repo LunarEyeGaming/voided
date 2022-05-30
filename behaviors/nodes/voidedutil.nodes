@@ -98,5 +98,18 @@
     "output": {
       "result": {"type": "vec2", "key": null}
     }
+  },
+  
+  "v_logInfo": {
+    "type": "action",
+    "name": "v_logInfo",
+    "title": "v_logInfo",
+    "properties": {
+      "formatArgs": {"type": "list", "value": null},
+      "msg": {"type": "string", "value": null}
+    },
+    "category": "voidedutil",
+    "script": "/scripts/actions/voidedutil.lua",
+    "output": {}
   }
 }

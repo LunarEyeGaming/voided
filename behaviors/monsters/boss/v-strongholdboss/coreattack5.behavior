@@ -20,6 +20,22 @@
     "parameters": {},
     "children": [
       {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "coresAttacking"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.25}
+        }
+      },
+      {
         "title": "each",
         "type": "decorator",
         "name": "each",
@@ -109,6 +125,36 @@
                   "index": {"value": 1}
                 },
                 "output": {
+                  "entity": "coreC"
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "coreC"},
+                  "target": {"key": "target"},
+                  "type": {"value": "attack5c"}
+                }
+              },
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 6}
+                }
+              },
+              {
+                "title": "v_listGet2",
+                "type": "action",
+                "name": "v_listGet2",
+                "parameters": {
+                  "list": {"key": "activeCoreIds"},
+                  "index": {"value": 2}
+                },
+                "output": {
                   "entity": "coreL"
                 }
               },
@@ -128,7 +174,7 @@
                 "name": "v_listGet2",
                 "parameters": {
                   "list": {"key": "activeCoreIds"},
-                  "index": {"value": 2}
+                  "index": {"value": 3}
                 },
                 "output": {
                   "entity": "coreR"
@@ -145,33 +191,11 @@
                 }
               },
               {
-                "title": "v_listGet2",
-                "type": "action",
-                "name": "v_listGet2",
-                "parameters": {
-                  "list": {"key": "activeCoreIds"},
-                  "index": {"value": 3}
-                },
-                "output": {
-                  "entity": "coreC"
-                }
-              },
-              {
-                "title": "sendNotification",
-                "type": "action",
-                "name": "sendNotification",
-                "parameters": {
-                  "entity": {"key": "coreC"},
-                  "target": {"key": "target"},
-                  "type": {"value": "attack5c"}
-                }
-              },
-              {
                 "title": "timer",
                 "type": "action",
                 "name": "timer",
                 "parameters": {
-                  "time": {"value": 8}
+                  "time": {"value": 8.5}
                 }
               }
             ]
@@ -221,7 +245,7 @@
                 "parameters": {
                   "entity": {"key": "coreL"},
                   "target": {"key": "target"},
-                  "type": {"value": "attack5l2"}
+                  "type": {"value": "attack5l"}
                 }
               },
               {
@@ -243,7 +267,7 @@
                 "parameters": {
                   "entity": {"key": "coreR"},
                   "target": {"key": "target"},
-                  "type": {"value": "attack5r2"}
+                  "type": {"value": "attack5r"}
                 }
               },
               {
@@ -335,6 +359,14 @@
               }
             ]
           }
+        }
+      },
+      {
+        "title": "unsetFlag",
+        "type": "action",
+        "name": "unsetFlag",
+        "parameters": {
+          "name": {"value": "coresAttacking"}
         }
       },
       {

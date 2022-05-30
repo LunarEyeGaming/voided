@@ -1,5 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
+require "/scripts/rect.lua"
 
 function init()
   self.moveState = FSM:new()
@@ -16,6 +17,7 @@ function init()
   HORIZONTAL = 0
   VERTICAL = 1
   self.sticky = config.getParameter("sticky")  -- 0 = horizontal, 1 = vertical; determines which axis to lock
+  self.explosionSpecs = config.getParameter("explosionSpecs")
   monster.setDamageBar(config.getParameter("damageBar"))
   
   self.spawnPos = mcontroller.position()
@@ -52,6 +54,8 @@ function init()
   message.setHandler("pulse", function()
     self.attackState:set(states.pulse)
   end)
+  
+  message.setHandler("explode", explode)
 end
 
 function shouldDie()
@@ -187,6 +191,14 @@ function _notifySource(msg)
     type = msg
   }
   world.sendEntityMessage(self.masterId, "notify", notification)
+end
+
+function explode()
+  for i = 1, self.explosionSpecs.count do
+    local offset = rect.randomPoint(self.explosionSpecs.offsetRegion)
+    world.spawnProjectile(self.explosionSpecs.projectileType, vec2.add(mcontroller.position(), offset), entity.id(), {0, 0}, false, self.explosionSpecs.projectileConfig)
+  end
+  animator.setAnimationState("pad", "destroyed")
 end
 
 function despawn()

@@ -1,0 +1,363 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "input1" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "0" : {},
+          "1" : {},
+          "2" : {}
+        }
+      },
+      "input2" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "0" : {},
+          "1" : {},
+          "2" : {}
+        }
+      },
+      "input3" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "0" : {},
+          "1" : {},
+          "2" : {}
+        }
+      },
+      "input4" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "0" : {},
+          "1" : {},
+          "2" : {}
+        }
+      },
+      "input5" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "0" : {},
+          "1" : {},
+          "2" : {}
+        }
+      },
+      "input6" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "0" : {},
+          "1" : {},
+          "2" : {}
+        }
+      },
+      "input7" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "0" : {},
+          "1" : {},
+          "2" : {}
+        }
+      },
+      "input8" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "0" : {},
+          "1" : {},
+          "2" : {}
+        }
+      },
+      "input9" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "0" : {},
+          "1" : {},
+          "2" : {}
+        }
+      }
+    },
+
+    "parts" : {
+      "dial" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : -1,
+          "fullbright" : false,
+          "offset" : [0, 0],
+          "image" : "<partImage>"
+        }
+      },
+      "input1" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 0,
+          "fullbright" : true,
+          "offset" : [0, 0],
+          "transformationGroups" : ["input1"]
+        },
+        "partStates" : {
+          "input1" : {
+            "0" : {
+              "properties" : {
+                "image" : "<partImage>:0.<frame>"
+              }
+            },
+            "1" : {
+              "properties" : {
+                "image" : "<partImage>:1.<frame>"
+              }
+            },
+            "2" : {
+              "properties" : {
+                "image" : "<partImage>:2.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "input2" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 0,
+          "fullbright" : true,
+          "offset" : [0, 0],
+          "transformationGroups" : ["input2"]
+        },
+        "partStates" : {
+          "input2" : {
+            "0" : {
+              "properties" : {
+                "image" : "<partImage>:0.<frame>"
+              }
+            },
+            "1" : {
+              "properties" : {
+                "image" : "<partImage>:1.<frame>"
+              }
+            },
+            "2" : {
+              "properties" : {
+                "image" : "<partImage>:2.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "input3" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 0,
+          "fullbright" : true,
+          "offset" : [0, 0],
+          "transformationGroups" : ["input3"]
+        },
+        "partStates" : {
+          "input3" : {
+            "0" : {
+              "properties" : {
+                "image" : "<partImage>:0.<frame>"
+              }
+            },
+            "1" : {
+              "properties" : {
+                "image" : "<partImage>:1.<frame>"
+              }
+            },
+            "2" : {
+              "properties" : {
+                "image" : "<partImage>:2.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "input4" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 0,
+          "fullbright" : true,
+          "offset" : [0, 0],
+          "transformationGroups" : ["input4"]
+        },
+        "partStates" : {
+          "input4" : {
+            "0" : {
+              "properties" : {
+                "image" : "<partImage>:0.<frame>"
+              }
+            },
+            "1" : {
+              "properties" : {
+                "image" : "<partImage>:1.<frame>"
+              }
+            },
+            "2" : {
+              "properties" : {
+                "image" : "<partImage>:2.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "input5" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 0,
+          "fullbright" : true,
+          "offset" : [0, 0],
+          "transformationGroups" : ["input5"]
+        },
+        "partStates" : {
+          "input5" : {
+            "0" : {
+              "properties" : {
+                "image" : "<partImage>:0.<frame>"
+              }
+            },
+            "1" : {
+              "properties" : {
+                "image" : "<partImage>:1.<frame>"
+              }
+            },
+            "2" : {
+              "properties" : {
+                "image" : "<partImage>:2.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "input6" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 0,
+          "fullbright" : true,
+          "offset" : [0, 0],
+          "transformationGroups" : ["input6"]
+        },
+        "partStates" : {
+          "input6" : {
+            "0" : {
+              "properties" : {
+                "image" : "<partImage>:0.<frame>"
+              }
+            },
+            "1" : {
+              "properties" : {
+                "image" : "<partImage>:1.<frame>"
+              }
+            },
+            "2" : {
+              "properties" : {
+                "image" : "<partImage>:2.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "input7" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 0,
+          "fullbright" : true,
+          "offset" : [0, 0],
+          "transformationGroups" : ["input7"]
+        },
+        "partStates" : {
+          "input7" : {
+            "0" : {
+              "properties" : {
+                "image" : "<partImage>:0.<frame>"
+              }
+            },
+            "1" : {
+              "properties" : {
+                "image" : "<partImage>:1.<frame>"
+              }
+            },
+            "2" : {
+              "properties" : {
+                "image" : "<partImage>:2.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "input8" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 0,
+          "fullbright" : true,
+          "offset" : [0, 0],
+          "transformationGroups" : ["input8"]
+        },
+        "partStates" : {
+          "input8" : {
+            "0" : {
+              "properties" : {
+                "image" : "<partImage>:0.<frame>"
+              }
+            },
+            "1" : {
+              "properties" : {
+                "image" : "<partImage>:1.<frame>"
+              }
+            },
+            "2" : {
+              "properties" : {
+                "image" : "<partImage>:2.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "input9" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 0,
+          "fullbright" : true,
+          "offset" : [0, 0],
+          "transformationGroups" : ["input9"]
+        },
+        "partStates" : {
+          "input9" : {
+            "0" : {
+              "properties" : {
+                "image" : "<partImage>:0.<frame>"
+              }
+            },
+            "1" : {
+              "properties" : {
+                "image" : "<partImage>:1.<frame>"
+              }
+            },
+            "2" : {
+              "properties" : {
+                "image" : "<partImage>:2.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+    
+  "transformationGroups" : {
+    "input1" : {"interpolated" : true},
+    "input2" : {"interpolated" : true},
+    "input3" : {"interpolated" : true},
+    "input4" : {"interpolated" : true},
+    "input5" : {"interpolated" : true},
+    "input6" : {"interpolated" : true},
+    "input7" : {"interpolated" : true},
+    "input8" : {"interpolated" : true},
+    "input9" : {"interpolated" : true}
+  }
+}

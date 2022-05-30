@@ -56,6 +56,9 @@
             "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "active"
+          },
+          "destroyed" : {
+            "frames" : 1
           }
         }
       },
@@ -111,6 +114,11 @@
               "properties" : {
                 "image" : "<partImage>:winddown.<frame>"
               }
+            },
+            "destroyed" : {
+              "properties" : {
+                "image" : "<partImage>:destroyed.<frame>"
+              }
             }
           }
         }
@@ -152,6 +160,11 @@
             "winddown" : {
               "properties" : {
                 "image" : "<partImage>:winddown.<frame>"
+              }
+            },
+            "destroyed" : {
+              "properties" : {
+                "image" : "<partImage>:destroyed.<frame>"
               }
             }
           }

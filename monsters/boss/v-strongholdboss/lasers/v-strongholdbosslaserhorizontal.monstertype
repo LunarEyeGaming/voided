@@ -17,6 +17,22 @@
 
     "sticky" : 0, // 0 = horizontal, 1 = vertical; determines which axis to lock
 
+    "explosionSpecs" : {
+      "offsetRegion" : [-4, -1, 4, 1],
+      "projectileType" : "orbitalup",
+      "projectileConfig" : {
+        "timeToLive" : 0,
+        "speed" : 0,
+        "actionOnReap" : [
+          {
+            "action" : "config",
+            "file" : "/projectiles/explosions/regularexplosion2/v-glowingregularexplosion.config"
+          }
+        ]
+      },
+      "count" : 3
+    },
+
     "damageBar" : "None",
 
     "knockoutTime" : 0,
@@ -33,7 +49,7 @@
     "movementSettings" : {
       "gravityEnabled" : false,
       "collisionEnabled" : false,
-      "collisionPoly" : [ [2.5, 5.375], [4.5, 3.375], [4.5, -3.375], [2.5, -5.375], [-2.5, -5.375], [-4.5, -3.375], [-4.5, 3.375], [-2.5, 5.375] ],
+      "collisionPoly" : [ [0, 0] ],
 
       "mass" : 4.0,
       "walkSpeed" : 5,
@@ -49,7 +65,7 @@
     },
 
     "touchDamage" : {
-      "poly" : [ [0, 3.75], [36, 3.5], [36, -3.75], [0, -3.5] ],
+      "poly" : [ [0, 3.75], [40, 3.5], [40, -3.75], [0, -3.5] ],
       "damage" : 12,
       "damageSourceKind" : "plasma",
 

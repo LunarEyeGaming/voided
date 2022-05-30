@@ -1,0 +1,68 @@
+{
+  "objectName" : "v-ancientcodeconsole",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "no description",
+  "shortdescription" : "ancient code console",
+  "race" : "generic",
+  "health" : 1,
+
+  "category" : "wire",
+  "price" : 100,
+
+  "floranDescription" : "b",
+  "glitchDescription" : "a",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "dial.png",
+      "imagePosition" : [-48, -48],
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ],
+      "animationParts" : {
+        "dial" : "dial.png",
+        "input1" : "digit.png",
+        "input2" : "digit.png",
+        "input3" : "digit.png",
+        "input4" : "digit.png",
+        "input5" : "digit.png",
+        "input6" : "digit.png",
+        "input7" : "digit.png",
+        "input8" : "digit.png",
+        "input9" : "digit.png"
+      }
+    }
+  ],
+  
+  "animation" : "ancientcodeconsole.animation",
+  "animationPosition" : [0, 0],
+  "animationParts" : {
+    "dial" : "dial.png",
+    "input1" : "digit.png",
+    "input2" : "digit.png",
+    "input3" : "digit.png",
+    "input4" : "digit.png",
+    "input5" : "digit.png",
+    "input6" : "digit.png",
+    "input7" : "digit.png",
+    "input8" : "digit.png",
+    "input9" : "digit.png"
+  },
+
+  "scripts" : [ "ancientcodeconsole.lua" ],
+  "scriptDelta" : 1,
+  
+  "inputNodes" : [ [0, 0], [0, -1], [0, -2] ],
+  
+  "outputNodes" : [ [1, 0], [1, -1], [1, -2], [1, -3], [1, -4] ],
+  
+  "expectedCode" : [2, 0, 1, 1, 2, 1, 0, 1, 2],
+  "wrongPulseDuration" : 1.0,
+  "digitRevolveRadius" : 5.0,
+  "digitRevolvePeriod" : 10
+}

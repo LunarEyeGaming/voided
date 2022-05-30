@@ -23,12 +23,21 @@
     "beams" : [
       {
         "offset" : [2.875, 0],
-        "color" : [255, 0, 0, 128],
+        "color" : [255, 0, 255, 128],
         "length" : 60,
         "segments" : 6,
         "angle" : 0,
         "sourcePart" : "laserbeam",
         "endPart" : "laserbeam"
+      },
+      {
+        "offset" : [2.875, 0],
+        "color" : [0, 0, 255, 128],
+        "length" : 60,
+        "segments" : 6,
+        "angle" : 0,
+        "sourcePart" : "laserbeam2",
+        "endPart" : "laserbeam2"
       }
     ],
     
@@ -224,6 +233,15 @@
         },
         "poisonStatusImmunity" : {
           "baseValue" : 1.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 0.5
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "fireResistance" : {
+          "baseValue" : 0.5
         }
       },
 

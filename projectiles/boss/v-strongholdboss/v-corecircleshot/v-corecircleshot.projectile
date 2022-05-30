@@ -1,0 +1,23 @@
+{
+  "projectileName" : "v-corecircleshot",
+  "image" : "corecircleshot.png",
+  "animationCycle" : 0.2,
+  "lightColor" : [150, 50, 150],
+  "frameNumber" : 1,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "emitters" : [ ],
+  "damagePoly" : [ [4, 4], [4, -4], [-4, -4], [-4, 4] ],
+  "damageKind" : "plasma",
+  "piercing" : true,
+
+  "speed" : 1,
+  "acceleration" : 75,
+  "timeToLive" : 1,
+
+  "scripts" : [ "/projectiles/tracksourcestatus.lua" ],
+  "scriptDelta" : 1
+}

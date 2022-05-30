@@ -44,3 +44,7 @@ function polarRect(xLength, yLength, angle)
     error("Could not resolve output for angle " .. angle)
   end
 end
+
+function strStartsWith(str, start)
+  return str:sub(1, #start) == start
+end

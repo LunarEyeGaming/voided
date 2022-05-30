@@ -1,0 +1,22 @@
+{
+  "globalTagDefaults" : {
+    "doorProgress" : "1"
+  },
+  "animatedParts" : {
+    "parts" : {
+      "wall" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : false,
+          "image" : "<partImage>:<doorProgress>",
+          "transformationGroups" : ["door"],
+          "offset" : [0, 0]
+        }
+      }
+    }
+  },
+    
+  "transformationGroups" : {
+    "door" : {"interpolated" : true}
+  }
+}

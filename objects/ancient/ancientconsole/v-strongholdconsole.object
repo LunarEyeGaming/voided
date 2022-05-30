@@ -1,0 +1,79 @@
+{
+  "objectName" : "v-strongholdconsole",
+  "colonyTags" : ["ancient"],
+  "rarity" : "Legendary",
+  "category" : "other",
+  "price" : 0,
+  "printable" : false,
+
+  "description" : "<todo>",
+  "shortdescription" : "Ancient Console",
+  "offeredQuests" : [ ],
+  "race" : "ancient",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "lightColor" : [113, 89, 128],
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "v-strongholdconsole.png:<color>.<frame>", "fullbright" : true }, { "image" : "v-strongholdconsolelit.png:<color>.<frame>" } ],
+      "imagePosition" : [-46, 0],
+      "animationPosition" : [1, 14],
+
+      "direction" : "left",
+      "flipImages" : true,
+
+      "lightPosition" : [0, 1],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+      "collision" : "solid",
+      "collisionSpaces" : [ [-3, 0], [-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0] ],
+
+      "detectArea" : [ [-2, 0], [2.3, 5] ]
+    },
+    {
+      "imageLayers" : [ { "image" : "v-strongholdconsole.png:<color>.<frame>", "fullbright" : true }, { "image" : "v-strongholdconsolelit.png:<color>.<frame>" } ],
+      "imagePosition" : [-33, 0],
+      "animationPosition" : [14, 14],
+
+      "direction" : "right",
+
+      "lightPosition" : [0, 1],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+      "collision" : "solid",
+      "collisionSpaces" : [ [-1, 0], [0, 0], [1, 0], [2, 0], [3, 0], [4, 0] ],
+
+      "detectArea" : [ [-0.3, 0], [4, 5] ]
+    }
+  ],
+
+  "animation" : "/objects/ancient/ancientconsole/v-strongholdconsole.animation",
+  "animationParts" : {
+    "bg" : "v-strongholdconsole.png",
+    "fg" : "v-strongholdconsolelit.png",
+    "portal" : "portal.png"
+  },
+
+  "scripts" : [ "/objects/ancient/ancientconsole/v-strongholdconsole.lua" ],
+  "scriptDelta" : 20,
+
+  "interactAction" : "OpenTeleportDialog",
+  "interactData" : "/interface/warping/v-strongholdwarp.config",
+
+  "inactiveInteractAction" : "ScriptPane",
+  "inactiveInteractData" : "/interface/scripted/ancientconsole/ancientconsolegui.config",
+  
+  "overheatedInteractAction" : "ScriptPane",
+  "overheatedInteractData" : "/interface/scripted/ancientconsole/v-overheatedconsolegui.config"
+}

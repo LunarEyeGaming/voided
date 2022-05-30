@@ -41,5 +41,17 @@
     "category": "v-strongholdbosscore",
     "script": "/scripts/actions/boss/v-strongholdbosscore.lua",
     "output": {}
+  },
+  "v_controlShieldCore": {
+    "type": "action",
+    "name": "v_controlShieldCore",
+    "title": "v_controlShieldCore",
+    "properties": {
+      "noShieldDuration": {"type": "number", "value": null},
+      "monsterType": {"type": "string", "value": null}
+    },
+    "category": "v-strongholdbosscore",
+    "script": "/scripts/actions/boss/v-strongholdbosscore.lua",
+    "output": {}
   }
 }

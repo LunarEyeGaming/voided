@@ -167,6 +167,15 @@
           "beamSource" : [2, 0],
           "beamEnd" : [3, 0]
         }
+      },
+      "laserbeam2" : {
+        "properties" : {
+          "transformationGroups" : [ "aim", "facing", "body", "laserbeam2" ],
+          "offset" : [0.0, 0.625],
+          "zLevel" : 2,
+          "beamSource" : [2, 0],
+          "beamEnd" : [3, 0]
+        }
       }
     }
   },
@@ -178,7 +187,8 @@
     "body" : { "interpolated" : true },
     "facing" : { "interpolated" : false },
     "aim" : { "interpolated" : true },
-    "laserbeam" : { "interpolated" : true }
+    "laserbeam" : { "interpolated" : false },
+    "laserbeam2" : { "interpolated" : false }
   },
 
   "effects" : {
@@ -191,26 +201,18 @@
 
   "particleEmitters" : {
     "deathPoof" : {
+      "offsetRegion" : [-0.75, -0.75, 0.75, 0.75],
+      "burstCount" : 5,
       "particles" : [
-        { "particle" : "electricswoosh1" },
-        { "particle" : "electricswoosh2" },
-        { "particle" : "electricswoosh1" },
-        { "particle" : "electricswoosh2" },
-        { "particle" : "deathfizz1left" },
-        { "particle" : "deathfizz1right" },
-        { "particle" : "deathfizz2left" },
-        { "particle" : "deathfizz2right" },
-        { "particle" : "deathfizz3left" },
-        { "particle" : "deathfizz3right" },
-        { "particle" : "deathfizz4left" },
-        { "particle" : "deathfizz4right" }
+        { "particle" : "dust2" },
+        { "particle" : "potshard", "count" : 2 }
       ]
     }
   },
 
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+    "deathPuff" : [ "/sfx/melee/blunt_kill_stone1.ogg" ],
     "fire" : [ "/sfx/gun/plasma_sniper3.ogg" ]
   }
 }

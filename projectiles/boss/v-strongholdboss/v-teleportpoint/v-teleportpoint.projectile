@@ -2,7 +2,7 @@
   "projectileName" : "v-teleportpoint",
   "image" : "teleportpoint.png",
   "animationCycle" : 0.2,
-  "timeToLive" : 9999,
+  "timeToLive" : 5,
   "frameNumber" : 4,
   "speed" : 0,
   "orientationLocked" : true,
@@ -14,6 +14,6 @@
   "onlyHitTerrain" : true,
   "fullbright" : true,
   
-  "scripts" : ["/projectiles/killable.lua"],
+  "scripts" : ["/projectiles/killable.lua", "/projectiles/tracksourcestatus.lua"],
   "scriptDelta" : 1
 }

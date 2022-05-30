@@ -1,0 +1,382 @@
+{
+  "name": "v-strongholdboss-coreattack5b",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/notification.lua",
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/voidedutil.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/behavior/bdata.lua",
+    "/scripts/behavior.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "coresAttacking"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.25}
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "activeCoreIds"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "succeeder",
+          "type": "decorator",
+          "name": "succeeder",
+          "parameters": {},
+          "child": {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "entityExists",
+                "type": "action",
+                "name": "entityExists",
+                "parameters": {
+                  "entity": {"key": "eachItem"}
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "eachItem"},
+                  "target": {"key": "target"},
+                  "type": {"value": "openshell"}
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.0}
+        }
+      },
+      {
+        "title": "selector",
+        "type": "composite",
+        "name": "selector",
+        "parameters": {},
+        "children": [
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "listSize",
+                "type": "action",
+                "name": "listSize",
+                "parameters": {
+                  "list": {"key": "activeCoreIds"}
+                },
+                "output": {
+                  "number": "nActiveCores"
+                }
+              },
+              {
+                "title": "greaterThan",
+                "type": "action",
+                "name": "greaterThan",
+                "parameters": {
+                  "first": {"key": "nActiveCores"},
+                  "second": {"value": 2}
+                }
+              },
+              {
+                "title": "v_listGet2",
+                "type": "action",
+                "name": "v_listGet2",
+                "parameters": {
+                  "list": {"key": "activeCoreIds"},
+                  "index": {"value": 1}
+                },
+                "output": {
+                  "entity": "coreC"
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "coreC"},
+                  "target": {"key": "target"},
+                  "type": {"value": "attack5c2"}
+                }
+              },
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 10.75}
+                }
+              },
+              {
+                "title": "v_listGet2",
+                "type": "action",
+                "name": "v_listGet2",
+                "parameters": {
+                  "list": {"key": "activeCoreIds"},
+                  "index": {"value": 2}
+                },
+                "output": {
+                  "entity": "coreL"
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "coreL"},
+                  "target": {"key": "target"},
+                  "type": {"value": "attack5l2"}
+                }
+              },
+              {
+                "title": "v_listGet2",
+                "type": "action",
+                "name": "v_listGet2",
+                "parameters": {
+                  "list": {"key": "activeCoreIds"},
+                  "index": {"value": 3}
+                },
+                "output": {
+                  "entity": "coreR"
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "coreR"},
+                  "target": {"key": "target"},
+                  "type": {"value": "attack5r2"}
+                }
+              },
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 8}
+                }
+              }
+            ]
+          },
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "listSize",
+                "type": "action",
+                "name": "listSize",
+                "parameters": {
+                  "list": {"key": "activeCoreIds"}
+                },
+                "output": {
+                  "number": "nActiveCores"
+                }
+              },
+              {
+                "title": "greaterThan",
+                "type": "action",
+                "name": "greaterThan",
+                "parameters": {
+                  "first": {"key": "nActiveCores"},
+                  "second": {"value": 1}
+                }
+              },
+              {
+                "title": "v_listGet2",
+                "type": "action",
+                "name": "v_listGet2",
+                "parameters": {
+                  "list": {"key": "activeCoreIds"},
+                  "index": {"value": 1}
+                },
+                "output": {
+                  "entity": "coreL"
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "coreL"},
+                  "target": {"key": "target"},
+                  "type": {"value": "attack5l2"}
+                }
+              },
+              {
+                "title": "v_listGet2",
+                "type": "action",
+                "name": "v_listGet2",
+                "parameters": {
+                  "list": {"key": "activeCoreIds"},
+                  "index": {"value": 2}
+                },
+                "output": {
+                  "entity": "coreR"
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "coreR"},
+                  "target": {"key": "target"},
+                  "type": {"value": "attack5r2"}
+                }
+              },
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 7.75}
+                }
+              }
+            ]
+          },
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "v_listGet2",
+                "type": "action",
+                "name": "v_listGet2",
+                "parameters": {
+                  "list": {"key": "activeCoreIds"},
+                  "index": {"value": 1}
+                },
+                "output": {
+                  "entity": "coreC"
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "coreC"},
+                  "target": {"key": "target"},
+                  "type": {"value": "attack5c2"}
+                }
+              },
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 10.75}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "activeCoreIds"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "succeeder",
+          "type": "decorator",
+          "name": "succeeder",
+          "parameters": {},
+          "child": {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "entityExists",
+                "type": "action",
+                "name": "entityExists",
+                "parameters": {
+                  "entity": {"key": "eachItem"}
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "eachItem"},
+                  "target": {"key": "target"},
+                  "type": {"value": "closeshell"}
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "title": "unsetFlag",
+        "type": "action",
+        "name": "unsetFlag",
+        "parameters": {
+          "name": {"value": "coresAttacking"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.75}
+        }
+      }
+    ]
+  }
+}

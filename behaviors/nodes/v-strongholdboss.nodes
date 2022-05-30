@@ -26,7 +26,8 @@
       "turretLeftId": {"type": "entity", "key": null},
       "turretRightId": {"type": "entity", "key": null},
       "turretDownId": {"type": "entity", "key": null},
-      "coreIds": {"type": "list", "key": null}
+      "coreIds": {"type": "list", "key": null},
+      "corePositions": {"type": "list", "key": null}
     }
   },
   "v_spawnStrongholdParts2": {
@@ -34,8 +35,8 @@
     "name": "v_spawnStrongholdParts2",
     "title": "v_spawnStrongholdParts2",
     "properties": {
-      "coreXOffsets": {"type": "vec2", "value": null},
-      "coreYOffsets": {"type": "vec2", "value": null}
+      "coreXOffsets": {"type": "list", "value": null},
+      "coreYOffsets": {"type": "list", "value": null}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
@@ -111,6 +112,8 @@
       "vBounds": {"type": "vec2", "value": null},
       "target": {"type": "entity", "key": "target"},
       "targetProjectile": {"type": "string", "value": null},
+      "phase3WarningProjectile": {"type": "string", "value": null},
+      "phase3WarningTime": {"type": "number", "value": 0.0},
       "loops": {"type": "number", "value": 1},
       "phase": {"type": "number", "value": 1},
       "waitTime": {"type": "number", "value": 0.0}
@@ -139,13 +142,42 @@
       //"coreIds": {"type": "list", "value": null},
       //"nResults": {"type": "number", "value": 1}
       "corePartition": {"type": "list", "value": null},
+      "corePositionPartition": {"type": "list", "value": null},
       "phase": {"type": "number", "value": 1}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
     "output": {
-      "coreIds": {"type": "list", "key": null}
+      "coreIds": {"type": "list", "key": null},
+      "corePositions": {"type": "list", "key": null}
     }
+  },
+  "v_flickerLights": {
+    "type": "action",
+    "name": "v_flickerLights",
+    "title": "v_flickerLights",
+    "properties": {
+      "lightIds": {"type": "list", "value": null},
+      "intensities": {"type": "list", "value": null},
+      "prevCoreCount": {"type": "number", "value": null},
+      "coreCount": {"type": "number", "value": null},
+      "duration": {"type": "number", "value": null}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {}
+  },
+  "v_setLightsActive": {
+    "type": "action",
+    "name": "v_setLightsActive",
+    "title": "v_setLightsActive",
+    "properties": {
+      "lightIds": {"type": "list", "value": null},
+      "active": {"type": "bool", "value": true}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {}
   },
   "v_partitionCores": {
     "type": "action",
@@ -154,13 +186,27 @@
     "properties": {
       "nRows": {"type": "number", "value": 1},
       "nCols": {"type": "number", "value": 1},
+      "corePositions": {"type": "list", "value": null},
       "coreIds": {"type": "list", "value": null}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
     "output": {
-      "result": {"type": "list", "key": null}
+      "coreIds": {"type": "list", "key": null},
+      "corePositions": {"type": "list", "key": null}
     }
+  },
+  "v_moveCoresAroundRandomly": {
+    "type": "action",
+    "name": "v_moveCoresAroundRandomly",
+    "title": "v_moveCoresAroundRandomly",
+    "properties": {
+      "coreIds": {"type": "list", "value": null},
+      "teleportPool": {"type": "list", "value": null}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {}
   },
   "v_resetLasers": {
     "type": "action",
@@ -191,5 +237,19 @@
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
     "output": {}
+  },
+  "v_spawnShieldCores": {
+    "type": "action",
+    "name": "v_spawnShieldCores",
+    "title": "v_spawnShieldCores",
+    "properties": {
+      "coreIds": {"type": "list", "value": null},
+      "monsterType": {"type": "string", "value": null}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {
+      "shieldCoreIds": {"type": "list", "key": null}
+    }
   }
 }
