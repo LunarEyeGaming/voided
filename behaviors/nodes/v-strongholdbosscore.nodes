@@ -11,6 +11,22 @@
     "script": "/scripts/actions/boss/v-strongholdbosscore.lua",
     "output": {}
   },
+  "v_rotateWithLaser": {
+    "type": "action",
+    "name": "v_rotateWithLaser",
+    "title": "v_rotateWithLaser",
+    "properties": {
+      "maxAngularVelocity": {"type": "number", "value": null},
+      "duration": {"type": "number", "value": null},
+      "startingAngle": {"type": "number", "value": 0},
+      "xRadius": {"type": "number", "value": null},
+      "yRadius": {"type": "number", "value": null},
+      "center": {"type": "position", "value": null}
+    },
+    "category": "v-strongholdbosscore",
+    "script": "/scripts/actions/boss/v-strongholdbosscore.lua",
+    "output": {}
+  },
   "v_teleAngle": {
     "type": "action",
     "name": "v_teleAngle",

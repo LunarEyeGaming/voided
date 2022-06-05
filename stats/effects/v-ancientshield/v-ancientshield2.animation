@@ -1,0 +1,38 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "shield" : {
+        "priority" : 2,
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          }
+        }
+      }
+    },
+
+    "parts" : {      
+      "shield" : {
+        "properties" : {
+          "zLevel" : 5,
+          "centered" : true,
+          "fullbright" : true,
+          "offset" : [0, 0]
+        },
+
+        "partStates" : {
+          "shield" : {
+            "idle" : {
+              "properties" : {
+                "image" : "ancientshield.png:<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

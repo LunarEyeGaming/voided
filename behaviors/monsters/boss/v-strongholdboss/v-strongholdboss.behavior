@@ -570,7 +570,8 @@
                                                  "teleProjectile": "v-laserwarningvertical2", "teleOffset": [-5, 0]}
                                               ]},
                                               "sampleSize": {"value": 2},
-                                              "waitTime": {"value": 0.25}
+                                              "waitTime": {"value": 0.25},
+                                              "fireDelay": {"value": 0.25}
                                             }
                                           }
                                         },
@@ -846,7 +847,8 @@
                                                  "teleProjectile": "v-laserwarningvertical2", "teleOffset": [-5, 0]}
                                               ]},
                                               "sampleSize": {"value": 3},
-                                              "waitTime": {"value": 0.0}
+                                              "waitTime": {"value": 0.0},
+                                              "fireDelay": {"value": 0.25}
                                             }
                                           }
                                         },
@@ -1099,7 +1101,8 @@
                                               "vTeleProjectile": {"value": "v-laserwarningvertical"},
                                               "loops": {"value": 7},
                                               "phase": {"value": 3},
-                                              "waitTime": {"value": 0.0}
+                                              "waitTime": {"value": 0.0},
+                                              "fireDelay": {"value": 0.25}
                                             }
                                           }
                                         },
@@ -1152,35 +1155,8 @@
                                                  "teleProjectile": "v-laserwarningvertical2", "teleOffset": [-5, 0]}
                                               ]},
                                               "sampleSize": {"value": 4},
+                                              "fireDelay": {"value": 0.25},
                                               "waitTime": {"value": 0.0}
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "title": "cooldown",
-                                          "type": "decorator",
-                                          "name": "cooldown",
-                                          "parameters": {
-                                            "cooldown": {"value": 40}
-                                          },
-                                          "child": {
-                                            "title": "v_laserAttack4",
-                                            "type": "action",
-                                            "name": "v_laserAttack4",
-                                            "parameters": {
-                                              "h1Id": {"key": "laserH1Id"},
-                                              "h2Id": {"key": "laserH2Id"},
-                                              "v1Id": {"key": "laserV1Id"},
-                                              "v2Id": {"key": "laserV2Id"},
-                                              "hBounds": {"value": [-11, 11]},
-                                              "vBounds": {"value": [-13, 13]},
-                                              "target": {"key": "target"},
-                                              "targetProjectile": {"value": "v-targetwarning"},
-                                              "phase3WarningProjectile": {"value": "v-targetwarning2"},
-                                              "phase3WarningTime": {"value": 2.0},
-                                              "loops": {"value": 4},
-                                              "phase": {"value": 3},
-                                              "waitTime": {"value": 0.25}
                                             }
                                           }
                                         },
@@ -1207,6 +1183,36 @@
                                                  "teleProjectile": "v-laserwarningvertical", "teleOffset": [14, 0]}
                                               ]},
                                               "waitTime": {"value": 0.5}
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 40}
+                                          },
+                                          "child": {
+                                            "title": "v_laserAttack6",
+                                            "type": "action",
+                                            "name": "v_laserAttack6",
+                                            "parameters": {
+                                              "attackSetH": {"value": [
+                                                {"idKey": "laserH1Id", "startOffset": [0, -3], "endOffset": [0, 11],
+                                                 "teleProjectile": "v-laserwarninghorizontal2", "teleOffset": [0, 4.5]},
+                                                {"idKey": "laserH2Id", "startOffset": [0, 3], "endOffset": [0, -11],
+                                                 "teleProjectile": "v-laserwarninghorizontal2", "teleOffset": [0, -4.5]}
+                                              ]},
+                                              "attackSetV": {"value": [
+                                                {"idKey": "laserV1Id", "startOffset": [-6, 0], "endOffset": [14, 0],
+                                                 "teleProjectile": "v-laserwarningvertical2", "teleOffset": [5, 0]},
+                                                {"idKey": "laserV2Id", "startOffset": [6, 0], "endOffset": [-14, 0],
+                                                 "teleProjectile": "v-laserwarningvertical2", "teleOffset": [-5, 0]}
+                                              ]},
+                                              "loops": {"value": 4},
+                                              "fireDelay": {"value": 0.25},
+                                              "waitTime": {"value": 0.0}
                                             }
                                           }
                                         },
@@ -1354,6 +1360,15 @@
                       "v1Id": {"key": "laserV1Id"},
                       "h2Id": {"key": "laserH2Id"},
                       "v2Id": {"key": "laserV2Id"}
+                    }
+                  },
+                  {
+                    "title": "listClear",
+                    "type": "action",
+                    "name": "listClear",
+                    "parameters": {},
+                    "output": {
+                      "list": "teleportPool"
                     }
                   },
                   {

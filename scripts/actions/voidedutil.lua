@@ -57,6 +57,19 @@ function v_receivedNotification2(args, board)
   return false
 end
 
+-- param entity
+-- param type
+-- param data
+function v_sendNotification2(args, board)
+  if args.type == nil or args.entity == nil then return false end
+  
+  notification = _resolveRefs(args.data, board)
+  notification.type = args.type
+  
+  world.callScriptedEntity(args.entity, "notify", notification)
+  return true
+end
+
 -- Set data of the specified key in a JSON object to value.
 -- param object
 -- param key

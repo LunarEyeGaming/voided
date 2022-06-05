@@ -44,7 +44,8 @@
             "windupState" : "firewindup",
             "windupTime" : 0.75,
 
-            "projectileType" : "v-ancientturretshot",
+            "projectileType" : "v-ancientrocket",
+            "projectileParameters" : {"speed" : 25},
             "fireOffset" : [0.5, 0],
             "aimAtTarget" : true,
             "onGround" : false,

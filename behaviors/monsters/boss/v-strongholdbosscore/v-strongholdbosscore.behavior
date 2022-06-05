@@ -384,7 +384,7 @@
                         "type": "action",
                         "name": "v_controlShieldCore",
                         "parameters": {
-                          "noShieldDuration": {"value": 15},
+                          "noShieldDuration": {"value": 30},
                           "monsterType": {"value": "v-shieldcore"}
                         }
                       }
@@ -524,6 +524,14 @@
                         }
                       },
                       {
+                        "title": "setAggressive",
+                        "type": "action",
+                        "name": "setAggressive",
+                        "parameters": {
+                          "aggressive": {"value": true}
+                        }
+                      },
+                      {
                         "title": "setParticleEmitterActive",
                         "type": "action",
                         "name": "setParticleEmitterActive",
@@ -570,6 +578,14 @@
                         "name": "setFlag",
                         "parameters": {
                           "name": {"value": "inactive"}
+                        }
+                      },
+                      {
+                        "title": "setAggressive",
+                        "type": "action",
+                        "name": "setAggressive",
+                        "parameters": {
+                          "aggressive": {"value": false}
                         }
                       },
                       {
@@ -1046,7 +1062,7 @@
                           "source": "sourceId"
                         }
                       },
-                      {
+                      /* {
                         "title": "setAnimationState",
                         "type": "action",
                         "name": "setAnimationState",
@@ -1071,7 +1087,7 @@
                         "parameters": {
                           "time": {"value": 0.3}
                         }
-                      },
+                      }, */
                       {
                         "title": "v_teleportToPosition",
                         "type": "action",
@@ -1299,7 +1315,7 @@
                           "source": "sourceId"
                         }
                       },
-                      {
+                      /* {
                         "title": "setAnimationState",
                         "type": "action",
                         "name": "setAnimationState",
@@ -1324,7 +1340,7 @@
                         "parameters": {
                           "time": {"value": 0.3}
                         }
-                      },
+                      }, */
                       {
                         "title": "v_teleportToPosition",
                         "type": "action",
@@ -1508,7 +1524,7 @@
                           "source": "sourceId"
                         }
                       },
-                      {
+                      /* {
                         "title": "setAnimationState",
                         "type": "action",
                         "name": "setAnimationState",
@@ -1533,7 +1549,7 @@
                         "parameters": {
                           "time": {"value": 0.3}
                         }
-                      },
+                      }, */
                       {
                         "title": "v_teleportToPosition",
                         "type": "action",
@@ -1753,7 +1769,7 @@
                           "source": "sourceId"
                         }
                       },
-                      {
+                      /* {
                         "title": "setAnimationState",
                         "type": "action",
                         "name": "setAnimationState",
@@ -1778,7 +1794,7 @@
                         "parameters": {
                           "time": {"value": 0.3}
                         }
-                      },
+                      }, */
                       {
                         "title": "v_teleportToPosition",
                         "type": "action",
@@ -2127,6 +2143,130 @@
                     ]
                   },
                   {
+                    "title": "attack5cr",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "v_receivedNotification2",
+                        "type": "action",
+                        "name": "v_receivedNotification2",
+                        "parameters": {
+                          "type": {"value": "attack5cr"}
+                        },
+                        "output": {
+                          "data": "attack5crData"
+                        }
+                      },
+                      {
+                        "title": "v_getJsonKey",
+                        "type": "action",
+                        "name": "v_getJsonKey",
+                        "parameters": {
+                          "object": {"key": "attack5crData"},
+                          "key": {"value": "startingAngle"}
+                        },
+                        "output": {
+                          "number": "startingAngle"
+                        }
+                      },
+                      {
+                        "title": "v_getJsonKey",
+                        "type": "action",
+                        "name": "v_getJsonKey",
+                        "parameters": {
+                          "object": {"key": "attack5crData"},
+                          "key": {"value": "center"}
+                        },
+                        "output": {
+                          "position": "revolveCenter"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "ptob"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "disappear"},
+                          "type": {"value": "cables"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "v_ellipsePoint",
+                        "type": "action",
+                        "name": "v_ellipsePoint",
+                        "parameters": {
+                          "xRadius": {"value": 15},
+                          "yRadius": {"value": 15},
+                          "angle": {"key": "startingAngle"}
+                        },
+                        "output": {
+                          "result": "startOffset"
+                        }
+                      },
+                      {
+                        "title": "offsetPosition",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"key": "startOffset"},
+                          "position": {"key": "teleCenter"}
+                        },
+                        "output": {
+                          "position": "startPos"
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "startPos"},
+                          "color": {"value": "blue"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 1.0}
+                        }
+                      },
+                      {
+                        "title": "v_rotateWithLaser",
+                        "type": "action",
+                        "name": "v_rotateWithLaser",
+                        "parameters": {
+                          "maxAngularVelocity": {"value": 180},
+                          "duration": {"value": 5},
+                          "center": {"key": "revolveCenter"},
+                          "startingAngle": {"key": "startingAngle"},
+                          "xRadius": {"value": 15},
+                          "yRadius": {"value": 15}
+                        }
+                      }
+                    ]
+                  },
+                  {
                     "title": "attack5c2",
                     "type": "composite",
                     "name": "sequence",
@@ -2296,6 +2436,130 @@
                         "parameters": {
                           "state": {"value": "appear"},
                           "type": {"value": "cables"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "attack5cr2",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "v_receivedNotification2",
+                        "type": "action",
+                        "name": "v_receivedNotification2",
+                        "parameters": {
+                          "type": {"value": "attack5cr2"}
+                        },
+                        "output": {
+                          "data": "attack5cr2Data"
+                        }
+                      },
+                      {
+                        "title": "v_getJsonKey",
+                        "type": "action",
+                        "name": "v_getJsonKey",
+                        "parameters": {
+                          "object": {"key": "attack5cr2Data"},
+                          "key": {"value": "startingAngle"}
+                        },
+                        "output": {
+                          "number": "startingAngle"
+                        }
+                      },
+                      {
+                        "title": "v_getJsonKey",
+                        "type": "action",
+                        "name": "v_getJsonKey",
+                        "parameters": {
+                          "object": {"key": "attack5cr2Data"},
+                          "key": {"value": "center"}
+                        },
+                        "output": {
+                          "position": "revolveCenter"
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "ptob"},
+                          "type": {"value": "core"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "disappear"},
+                          "type": {"value": "cables"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 0.3}
+                        }
+                      },
+                      {
+                        "title": "v_ellipsePoint",
+                        "type": "action",
+                        "name": "v_ellipsePoint",
+                        "parameters": {
+                          "xRadius": {"value": 15},
+                          "yRadius": {"value": 15},
+                          "angle": {"key": "startingAngle"}
+                        },
+                        "output": {
+                          "result": "startOffset"
+                        }
+                      },
+                      {
+                        "title": "offsetPosition",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"key": "startOffset"},
+                          "position": {"key": "teleCenter"}
+                        },
+                        "output": {
+                          "position": "startPos"
+                        }
+                      },
+                      {
+                        "title": "v_teleportToPosition",
+                        "type": "action",
+                        "name": "v_teleportToPosition",
+                        "parameters": {
+                          "position": {"key": "startPos"},
+                          "color": {"value": "blue"}
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 1.0}
+                        }
+                      },
+                      {
+                        "title": "v_rotateWithLaser",
+                        "type": "action",
+                        "name": "v_rotateWithLaser",
+                        "parameters": {
+                          "maxAngularVelocity": {"value": 240},
+                          "duration": {"value": 8},
+                          "center": {"key": "revolveCenter"},
+                          "startingAngle": {"key": "startingAngle"},
+                          "xRadius": {"value": 15},
+                          "yRadius": {"value": 15}
                         }
                       }
                     ]

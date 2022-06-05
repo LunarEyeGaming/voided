@@ -5,7 +5,6 @@ function init()
   self.numInputs = #config.getParameter("inputNodes")
   self.wrongPulseDuration = config.getParameter("wrongPulseDuration")
   self.digitRevolveRadius = config.getParameter("digitRevolveRadius")
-  self.digitRevolvePeriod = config.getParameter("digitRevolvePeriod")
   self.pulseTimer = nil
   self.nextPartNum = 1
   self.timer = 0

@@ -7,8 +7,8 @@
 
         "states" : {
           "idle" : {
-            "frames" : 8,
-            "cycle" : 0.8,
+            "frames" : 9,
+            "cycle" : 0.4,
             "mode" : "loop"
           }
         }
@@ -31,8 +31,7 @@
     "parts" : {
       "body" : {
         "properties" : {
-          "image" : "<partImage>"
-        }/* ,
+        },
         "partStates" : {
           "movement" : {
             "idle" : {
@@ -41,13 +40,13 @@
               }
             }
           }
-        } */
+        }
       },
       "bodyfullbright" : {
         "properties" : {
           "fullbright" : true,
           "zLevel" : 20
-        }/* ,
+        },
         "partStates" : {
           "movement" : {
             "idle" : {
@@ -56,7 +55,7 @@
               }
             }
           }
-        } */
+        }
       }
     }
   },

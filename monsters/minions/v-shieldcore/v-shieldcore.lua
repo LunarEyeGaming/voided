@@ -11,9 +11,9 @@ function init()
   message.setHandler("despawn", despawn)
   
   self.target = config.getParameter("target")
-  self.orbitRadius = 2
-  self.orbitPeriod = 1.5
-  self.shieldStatusEffect = "v-ancientshield"
+  self.orbitRadius = config.getParameter("orbitRadius", 2)
+  self.orbitPeriod = config.getParameter("orbitPeriod", 1.5)
+  self.shieldStatusEffect = config.getParameter("shieldStatusEffect", "v-ancientshield")
   self.timer = 0
 end
 

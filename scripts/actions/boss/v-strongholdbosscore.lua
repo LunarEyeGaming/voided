@@ -3,6 +3,7 @@ require "/scripts/interp.lua"
 require "/scripts/vec2.lua"
 
 -- param duration
+-- param maxAngularVelocity
 function v_rotateLaser(args, board)
   local maxAngularVelocity = util.toRadians(args.maxAngularVelocity) * script.updateDt()
   local timer = 0
@@ -22,6 +23,34 @@ function v_rotateLaser(args, board)
     angle = angle + angularVelocity
     animator.resetTransformationGroup("laser")
     animator.rotateTransformationGroup("laser", angle)
+  end)
+  
+  return true
+end
+
+-- param duration
+-- param xRadius
+-- param yRadius
+-- param center
+-- param startingAngle
+-- param maxAngularVelocity
+function v_rotateWithLaser(args, board)
+  local maxAngularVelocity = util.toRadians(args.maxAngularVelocity) * script.updateDt()
+  local timer = 0
+  local angle = util.toRadians(args.startingAngle)
+
+  util.run(args.duration / 2, function(dt)
+    timer = timer + dt
+    local angularVelocity = util.lerp(timer / args.duration, 0, maxAngularVelocity)
+    angle = angle + angularVelocity
+    mcontroller.setPosition(vec2.add(args.center, {args.xRadius * math.cos(angle), args.yRadius * math.sin(angle)}))
+  end)
+  
+  util.run(args.duration / 2, function(dt)
+    timer = timer + dt
+    local angularVelocity = interp.reverse(util.lerp)(timer / args.duration, 0, maxAngularVelocity)
+    angle = angle + angularVelocity
+    mcontroller.setPosition(vec2.add(args.center, {args.xRadius * math.cos(angle), args.yRadius * math.sin(angle)}))
   end)
   
   return true

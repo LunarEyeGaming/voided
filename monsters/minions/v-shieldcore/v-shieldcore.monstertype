@@ -13,6 +13,12 @@
     "scripts" : [
       "/monsters/minions/v-shieldcore/v-shieldcore.lua"
     ],
+    
+    "orbitRadius" : 3,
+    "orbitPeriod" : 2.0,
+    "shieldStatusEffect" : "v-ancientshield2",
+
+    "renderLayer" : "Projectile-10",
 
     "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
     "scale" : 1.0,

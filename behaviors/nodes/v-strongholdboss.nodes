@@ -59,7 +59,8 @@
       "vTeleProjectile": {"type": "string", "value": null},
       "loops": {"type": "number", "value": 1},
       "phase": {"type": "number", "value": 1},
-      "waitTime": {"type": "number", "value": 0.0}
+      "waitTime": {"type": "number", "value": 0.0},
+      "fireDelay": {"type": "number", "value": 0.0}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
@@ -93,7 +94,8 @@
     "properties": {
       "attackSet": {"type": "json", "value": null},
       "sampleSize": {"type": "number", "value": 1},
-      "waitTime": {"type": "number", "value": 0.0}
+      "waitTime": {"type": "number", "value": 0.0},
+      "fireDelay": {"type": "number", "value": 0.0}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
@@ -129,6 +131,21 @@
     "properties": {
       "attackSet": {"type": "json", "value": null},
       "waitTime": {"type": "number", "value": 0.0}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {}
+  },
+  "v_laserAttack6": {
+    "type": "action",
+    "name": "v_laserAttack6",
+    "title": "v_laserAttack6",
+    "properties": {
+      "attackSetH": {"type": "json", "value": null},
+      "attackSetV": {"type": "json", "value": null},
+      "loops": {"type": "number", "value": 1},
+      "waitTime": {"type": "number", "value": 0.0},
+      "fireDelay": {"type": "number", "value": 0.0}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",

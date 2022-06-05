@@ -16,6 +16,23 @@
       "vector": {"type": "vec2", "key": null}
     }
   },
+
+  "v_sendNotification2": {
+    "type": "action",
+    "name": "v_sendNotification2",
+    "title": "v_sendNotification2",
+    "properties": {
+      "type": {"type": "string", "value": null},
+      "entity": {"type": "entity", "value": null},
+      "data": {"type": "json", "value": {}}
+    },
+    "category": "voidedutil",
+    "script": "/scripts/actions/voidedutil.lua",
+    "output": {
+      "data": {"type": "json", "key": null}
+    }
+  },
+
   "v_receivedNotification2": {
     "type": "action",
     "name": "v_receivedNotification2",

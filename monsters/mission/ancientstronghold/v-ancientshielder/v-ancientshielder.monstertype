@@ -63,7 +63,7 @@
         {
           "name" : "v-action-statusaura",
           "parameters" : {
-            "auraRadius" : 18,
+            "auraRadius" : 16,
             "auraEffectArgs": ["v-ancientshield"],
             "auraEntityTypes": ["monster"]
           }
@@ -80,13 +80,15 @@
         {
           "name" : "v-action-statusaura",
           "parameters" : {
-            "auraRadius" : 18,
+            "auraRadius" : 16,
             "auraEffectArgs": ["v-ancientshield"],
             "auraEntityTypes": ["monster"]
           }
         }
       ]
     },
+    
+    "damageBar" : "None",
 
     "touchDamage" : {
       "poly" : [ [0.41, 1.0],  [1.0, 0.41],  [1.0, -0.41],  [0.41, -1.0],  [-0.41, -1.0],  [-1.0, -0.41],  [-1.0, 0.41],  [-0.41, 1.0] ],

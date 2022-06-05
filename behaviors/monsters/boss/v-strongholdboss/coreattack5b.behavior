@@ -32,7 +32,7 @@
         "type": "action",
         "name": "timer",
         "parameters": {
-          "time": {"value": 0.25}
+          "time": {"value": 0.425}
         }
       },
       {
@@ -129,24 +129,6 @@
                 }
               },
               {
-                "title": "sendNotification",
-                "type": "action",
-                "name": "sendNotification",
-                "parameters": {
-                  "entity": {"key": "coreC"},
-                  "target": {"key": "target"},
-                  "type": {"value": "attack5c2"}
-                }
-              },
-              {
-                "title": "timer",
-                "type": "action",
-                "name": "timer",
-                "parameters": {
-                  "time": {"value": 10.75}
-                }
-              },
-              {
                 "title": "v_listGet2",
                 "type": "action",
                 "name": "v_listGet2",
@@ -159,16 +141,6 @@
                 }
               },
               {
-                "title": "sendNotification",
-                "type": "action",
-                "name": "sendNotification",
-                "parameters": {
-                  "entity": {"key": "coreL"},
-                  "target": {"key": "target"},
-                  "type": {"value": "attack5l2"}
-                }
-              },
-              {
                 "title": "v_listGet2",
                 "type": "action",
                 "name": "v_listGet2",
@@ -178,6 +150,54 @@
                 },
                 "output": {
                   "entity": "coreR"
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "coreC"},
+                  "target": {"key": "target"},
+                  "type": {"value": "attack5c2"}
+                }
+              },
+              {
+                "title": "v_sendNotification2",
+                "type": "action",
+                "name": "v_sendNotification2",
+                "parameters": {
+                  "entity": {"key": "coreL"},
+                  "data": {"value": {"center": "$position:self", "startingAngle": 0}},
+                  "type": {"value": "attack5cr2"}
+                }
+              },
+              {
+                "title": "v_sendNotification2",
+                "type": "action",
+                "name": "v_sendNotification2",
+                "parameters": {
+                  "entity": {"key": "coreR"},
+                  "data": {"value": {"center": "$position:self", "startingAngle": 180}},
+                  "type": {"value": "attack5cr2"}
+                }
+              },
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 10.75}
+                }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "coreL"},
+                  "target": {"key": "target"},
+                  "type": {"value": "attack5l2"}
                 }
               },
               {

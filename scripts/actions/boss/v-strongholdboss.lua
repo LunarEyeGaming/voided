@@ -151,6 +151,7 @@ end
 -- param loops
 -- param phase
 -- param waitTime
+-- param fireDelay
 function v_laserAttack(args, board)
   local center = mcontroller.position()
   local randGenH = UniqueRand:new()
@@ -196,6 +197,8 @@ function v_laserAttack(args, board)
     --sb.logInfo("IDs: %s, %s, %s, %s", hId, vId, extraId1, extraId2)
 
     _v_awaitNotification("finished", activeLasers)
+    
+    util.run(args.fireDelay, function() end)
 
     world.sendEntityMessage(hId, "pulse")
     world.sendEntityMessage(vId, "pulse")
@@ -306,6 +309,7 @@ end
   -- field teleProjectile
 -- param sampleSize
 -- param waitTime
+-- param fireDelay
 function v_laserAttack3(args, board)
   local center = mcontroller.position()
   local attackSet = copy(args.attackSet)
@@ -323,6 +327,8 @@ function v_laserAttack3(args, board)
 
     world.sendEntityMessage(id, "move", startPosition)
     _v_awaitNotification("finished")
+
+    util.run(args.fireDelay, function() end)
 
     world.sendEntityMessage(id, "activate")
     _v_awaitNotification("finished")
@@ -496,6 +502,66 @@ function v_laserAttack5(args, board)
   return true
 end
 
+-- param attackSetH
+-- param attackSetV
+-- param fireDelay
+-- param waitTime
+-- param loops
+function v_laserAttack6(args, board)
+  local center = mcontroller.position()
+
+  for i = 1, args.loops do
+    local nextAttackH = util.randomFromList(args.attackSetH)
+    local nextAttackV = util.randomFromList(args.attackSetV)
+    
+    local hId = board:getEntity(nextAttackH.idKey)
+    local hStartPosition = vec2.add(center, nextAttackH.startOffset)
+    local hEndPosition = vec2.add(center, nextAttackH.endOffset)
+    
+    local vId = board:getEntity(nextAttackV.idKey)
+    local vStartPosition = vec2.add(center, nextAttackV.startOffset)
+    local vEndPosition = vec2.add(center, nextAttackV.endOffset)
+
+    world.spawnProjectile(nextAttackH.teleProjectile, vec2.add(center, nextAttackH.teleOffset))
+    world.spawnProjectile(nextAttackV.teleProjectile, vec2.add(center, nextAttackV.teleOffset))
+
+    world.sendEntityMessage(hId, "move", hStartPosition)
+    world.sendEntityMessage(vId, "move", vStartPosition)
+    _v_awaitNotification("finished", 2)
+
+    util.run(args.fireDelay, function() end)
+
+    world.sendEntityMessage(hId, "activate")
+    world.sendEntityMessage(vId, "activate")
+    _v_awaitNotification("finished", 2)
+
+    world.sendEntityMessage(hId, "move", hEndPosition)
+    world.sendEntityMessage(vId, "move", vEndPosition)
+    _v_awaitNotification("finished", 2)
+
+    world.sendEntityMessage(hId, "deactivate")
+    world.sendEntityMessage(vId, "deactivate")
+    _v_awaitNotification("finished", 2)
+
+    util.run(args.waitTime, function() end)
+  end
+  
+  for _, attack in ipairs(args.attackSetH) do
+    local id = board:getEntity(attack.idKey)
+    world.sendEntityMessage(id, "reset")
+  end
+  
+  for _, attack in ipairs(args.attackSetV) do
+    local id = board:getEntity(attack.idKey)
+    world.sendEntityMessage(id, "reset")
+  end
+
+  _v_awaitNotification("finished", #args.attackSetH)
+
+  _v_awaitNotification("finished", #args.attackSetV)
+  
+  return true
+end
 -- param h1Id
 -- param v1Id
 -- param h2Id
