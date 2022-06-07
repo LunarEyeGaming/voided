@@ -12,6 +12,39 @@
             "transition" : "idle"
           }
         }
+      },
+      "laser" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "windup" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "active",
+            "properties" : {
+              "immediateSound" : "/sfx/melee/charge_up15.ogg"
+            }
+          },
+          "active" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/gun/aegisaltpistol_start.ogg",
+              "persistentSound" : "/sfx/gun/aegisaltpistol_loop.ogg"
+            }
+          },
+          "winddown" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "inactive",
+            "properties" : {
+              "immediateSound" : "/sfx/gun/erchiuseyebeam_stop.ogg"
+            }
+          }
+        }
       }
     },
 
@@ -46,6 +79,33 @@
             "fire" : {
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "laser" : {
+        "properties" : {
+          "offset" : [20, 0],
+          "zLevel" : 4,
+          "transformationGroups" : [ "gun" ],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "laser" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            },
+            "winddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
               }
             }
           }

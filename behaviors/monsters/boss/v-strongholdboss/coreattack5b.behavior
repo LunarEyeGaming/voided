@@ -32,7 +32,7 @@
         "type": "action",
         "name": "timer",
         "parameters": {
-          "time": {"value": 0.425}
+          "time": {"value": 0.725}
         }
       },
       {
@@ -188,6 +188,22 @@
                 "name": "timer",
                 "parameters": {
                   "time": {"value": 10.75}
+                }
+              },
+              {
+                "title": "entityExists",
+                "type": "action",
+                "name": "entityExists",
+                "parameters": {
+                  "entity": {"key": "coreL"}
+                }
+              },
+              {
+                "title": "entityExists",
+                "type": "action",
+                "name": "entityExists",
+                "parameters": {
+                  "entity": {"key": "coreR"}
                 }
               },
               {

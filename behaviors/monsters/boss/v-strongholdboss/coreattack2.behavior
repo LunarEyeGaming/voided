@@ -31,7 +31,7 @@
         "type": "action",
         "name": "timer",
         "parameters": {
-          "time": {"value": 0.25}
+          "time": {"value": 0.725}
         }
       },
       {
@@ -95,61 +95,52 @@
         }
       },
       {
-        "title": "repeater",
+        "title": "each",
         "type": "decorator",
-        "name": "repeater",
+        "name": "each",
         "parameters": {
-          "maxLoops": {"value": 3},
-          "untilSuccess": {"value": false}
+          "list": {"key": "attackOrder"},
+          "type": {"value": "entity"}
         },
         "child": {
-          "title": "each",
+          "title": "succeeder",
           "type": "decorator",
-          "name": "each",
-          "parameters": {
-            "list": {"key": "attackOrder"},
-            "type": {"value": "entity"}
-          },
+          "name": "succeeder",
+          "parameters": {},
           "child": {
-            "title": "succeeder",
-            "type": "decorator",
-            "name": "succeeder",
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
             "parameters": {},
-            "child": {
-              "title": "sequence",
-              "type": "composite",
-              "name": "sequence",
-              "parameters": {},
-              "children": [
-                {
-                  "title": "entityExists",
-                  "type": "action",
-                  "name": "entityExists",
-                  "parameters": {
-                    "entity": {"key": "eachItem"}
-                  }
-                },
-                {
-                  "title": "sendNotification",
-                  "type": "action",
-                  "name": "sendNotification",
-                  "parameters": {
-                    "entity": {"key": "eachItem"},
-                    "target": {"key": "target"},
-                    "type": {"value": "attack2"}
-                  }
-                },
-                {
-                  "title": "timer",
-                  "type": "action",
-                  "name": "timer",
-                  "parameters": {
-                    "time": {"value": 1.0}
-                  }
+            "children": [
+              {
+                "title": "entityExists",
+                "type": "action",
+                "name": "entityExists",
+                "parameters": {
+                  "entity": {"key": "eachItem"}
                 }
-              ]
-            }
+              },
+              {
+                "title": "sendNotification",
+                "type": "action",
+                "name": "sendNotification",
+                "parameters": {
+                  "entity": {"key": "eachItem"},
+                  "target": {"key": "target"},
+                  "type": {"value": "attack2"}
+                }
+              }
+            ]
           }
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 2.0}
         }
       },
       {

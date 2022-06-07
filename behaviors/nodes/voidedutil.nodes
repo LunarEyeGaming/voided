@@ -108,7 +108,8 @@
     "properties": {
       "xRadius": {"type": "number", "value": null},
       "yRadius": {"type": "number", "value": null},
-      "angle": {"type": "number", "value": null}
+      "angle": {"type": "number", "value": null},
+      "useDegrees": {"type": "bool", "value": false}
     },
     "category": "voidedutil",
     "script": "/scripts/actions/voidedutil.lua",

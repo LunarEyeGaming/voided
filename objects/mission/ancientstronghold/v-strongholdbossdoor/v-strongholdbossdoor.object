@@ -52,6 +52,26 @@
     "isSolid" : true,
     "frames" : 1
   },
+
+  "useAntiCrush" : true,
+  "queryArea" : [0, -1, 6, 7],
+  
+  "physicsForces" : {
+    "doorRight" : {
+      "type" : "DirectionalForceRegion",
+      "rectRegion" : [0, -1, 6, 7],
+      "xTargetVelocity" : 100,
+      "controlForce" : 3000,
+      "categoryWhitelist" : [ "player", "monster", "npc" ]
+    },
+    "doorLeft" : {
+      "type" : "DirectionalForceRegion",
+      "rectRegion" : [0, -1, 6, 7],
+      "xTargetVelocity" : -100,
+      "controlForce" : 3000,
+      "categoryWhitelist" : [ "player", "monster", "npc" ]
+    }
+  },
   
   "inputNodes" : [ [0, 0] ],
 

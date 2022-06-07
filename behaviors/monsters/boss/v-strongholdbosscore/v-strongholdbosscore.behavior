@@ -725,6 +725,29 @@
                         }
                       },
                       {
+                        "title": "spawnProjectile",
+                        "type": "action",
+                        "name": "spawnProjectile",
+                        "parameters": {
+                          "aimVector": {"value": [0, 0]},
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "self"},
+                          "projectileConfig": {"value": {}},
+                          "projectileType": {"value": "v-coreexplosionwindup"},
+                          "scalePower": {"value": true},
+                          "sourceEntity": {"key": "self"},
+                          "trackSource": {"value": false}
+                        }
+                      },
+                      {
+                        "title": "playSound",
+                        "type": "action",
+                        "name": "playSound",
+                        "parameters": {
+                          "sound": {"value": "explosionWindup"}
+                        }
+                      },
+                      {
                         "title": "repeater",
                         "type": "decorator",
                         "name": "repeater",
@@ -762,56 +785,11 @@
                         "type": "action",
                         "name": "spawnProjectile",
                         "parameters": {
-                          "aimVector": {"value": [0, 1]},
+                          "aimVector": {"value": [0, 0]},
                           "offset": {"value": [0, 0]},
                           "position": {"key": "self"},
-                          "projectileConfig": {"value": {}},
-                          "projectileType": {"value": "v-plasmashockwave"},
-                          "scalePower": {"value": true},
-                          "sourceEntity": {"key": "self"},
-                          "trackSource": {"value": false}
-                        }
-                      },
-                      {
-                        "title": "spawnProjectile",
-                        "type": "action",
-                        "name": "spawnProjectile",
-                        "parameters": {
-                          "aimVector": {"value": [1, 0]},
-                          "offset": {"value": [0, 0]},
-                          "position": {"key": "self"},
-                          "projectileConfig": {"value": {}},
-                          "projectileType": {"value": "v-plasmashockwave"},
-                          "scalePower": {"value": true},
-                          "sourceEntity": {"key": "self"},
-                          "trackSource": {"value": false}
-                        }
-                      },
-                      {
-                        "title": "spawnProjectile",
-                        "type": "action",
-                        "name": "spawnProjectile",
-                        "parameters": {
-                          "aimVector": {"value": [0, -1]},
-                          "offset": {"value": [0, 0]},
-                          "position": {"key": "self"},
-                          "projectileConfig": {"value": {}},
-                          "projectileType": {"value": "v-plasmashockwave"},
-                          "scalePower": {"value": true},
-                          "sourceEntity": {"key": "self"},
-                          "trackSource": {"value": false}
-                        }
-                      },
-                      {
-                        "title": "spawnProjectile",
-                        "type": "action",
-                        "name": "spawnProjectile",
-                        "parameters": {
-                          "aimVector": {"value": [-1, 0]},
-                          "offset": {"value": [0, 0]},
-                          "position": {"key": "self"},
-                          "projectileConfig": {"value": {}},
-                          "projectileType": {"value": "v-plasmashockwave"},
+                          "projectileConfig": {"value": {"power": 25, "timeToLive": 0, "speed": 0, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/v-ancientexplosionlarge/ancientexplosionlarge.config"}]}},
+                          "projectileType": {"value": "orbitalup"},
                           "scalePower": {"value": true},
                           "sourceEntity": {"key": "self"},
                           "trackSource": {"value": false}
@@ -1070,7 +1048,7 @@
                           "state": {"value": "ptob"},
                           "type": {"value": "core"}
                         }
-                      },
+                      }, */
                       {
                         "title": "setAnimationState",
                         "type": "action",
@@ -1081,13 +1059,31 @@
                         }
                       },
                       {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "inactive"},
+                          "type": {"value": "laser1"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "inactive"},
+                          "type": {"value": "laser2"}
+                        }
+                      },
+                      {
                         "title": "timer",
                         "type": "action",
                         "name": "timer",
                         "parameters": {
                           "time": {"value": 0.3}
                         }
-                      }, */
+                      },
                       {
                         "title": "v_teleportToPosition",
                         "type": "action",
@@ -1323,7 +1319,7 @@
                           "state": {"value": "ptob"},
                           "type": {"value": "core"}
                         }
-                      },
+                      }, */
                       {
                         "title": "setAnimationState",
                         "type": "action",
@@ -1334,13 +1330,22 @@
                         }
                       },
                       {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "inactive"},
+                          "type": {"value": "laser2"}
+                        }
+                      },
+                      {
                         "title": "timer",
                         "type": "action",
                         "name": "timer",
                         "parameters": {
                           "time": {"value": 0.3}
                         }
-                      }, */
+                      },
                       {
                         "title": "v_teleportToPosition",
                         "type": "action",
@@ -1532,7 +1537,7 @@
                           "state": {"value": "ptob"},
                           "type": {"value": "core"}
                         }
-                      },
+                      }, */
                       {
                         "title": "setAnimationState",
                         "type": "action",
@@ -1543,13 +1548,22 @@
                         }
                       },
                       {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "inactive"},
+                          "type": {"value": "laser2"}
+                        }
+                      },
+                      {
                         "title": "timer",
                         "type": "action",
                         "name": "timer",
                         "parameters": {
                           "time": {"value": 0.3}
                         }
-                      }, */
+                      },
                       {
                         "title": "v_teleportToPosition",
                         "type": "action",
@@ -1777,7 +1791,7 @@
                           "state": {"value": "ptob"},
                           "type": {"value": "core"}
                         }
-                      },
+                      }, */
                       {
                         "title": "setAnimationState",
                         "type": "action",
@@ -1788,13 +1802,22 @@
                         }
                       },
                       {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "inactive"},
+                          "type": {"value": "laser2"}
+                        }
+                      },
+                      {
                         "title": "timer",
                         "type": "action",
                         "name": "timer",
                         "parameters": {
                           "time": {"value": 0.3}
                         }
-                      }, */
+                      },
                       {
                         "title": "v_teleportToPosition",
                         "type": "action",
@@ -2216,7 +2239,8 @@
                         "parameters": {
                           "xRadius": {"value": 15},
                           "yRadius": {"value": 15},
-                          "angle": {"key": "startingAngle"}
+                          "angle": {"key": "startingAngle"},
+                          "useDegrees": {"value": true}
                         },
                         "output": {
                           "result": "startOffset"
@@ -2228,7 +2252,7 @@
                         "name": "offsetPosition",
                         "parameters": {
                           "offset": {"key": "startOffset"},
-                          "position": {"key": "teleCenter"}
+                          "position": {"key": "revolveCenter"}
                         },
                         "output": {
                           "position": "startPos"
@@ -2514,7 +2538,8 @@
                         "parameters": {
                           "xRadius": {"value": 15},
                           "yRadius": {"value": 15},
-                          "angle": {"key": "startingAngle"}
+                          "angle": {"key": "startingAngle"},
+                          "useDegrees": {"value": true}
                         },
                         "output": {
                           "result": "startOffset"
@@ -2526,7 +2551,7 @@
                         "name": "offsetPosition",
                         "parameters": {
                           "offset": {"key": "startOffset"},
-                          "position": {"key": "teleCenter"}
+                          "position": {"key": "revolveCenter"}
                         },
                         "output": {
                           "position": "startPos"

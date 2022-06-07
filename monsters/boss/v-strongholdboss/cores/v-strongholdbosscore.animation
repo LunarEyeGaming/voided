@@ -442,7 +442,7 @@
       },
       "laser1" : {
         "properties" : {
-          "offset" : [25, 0],
+          "offset" : [20, 0],
           "zLevel" : 4,
           "transformationGroups" : [ "laser" ],
           "fullbright" : true
@@ -457,7 +457,7 @@
             "active" : {
               "properties" : {
                 "image" : "<partImage>:active.<frame>",
-                "damageArea" : [[-25, 0], [25, 0]]
+                "damageArea" : [[-20, 0], [20, 0]]
               }
             },
             "winddown" : {
@@ -470,7 +470,7 @@
       },
       "laser2" : {
         "properties" : {
-          "offset" : [-25, 0],
+          "offset" : [-20, 0],
           "zLevel" : 4,
           "transformationGroups" : [ "laser" ],
           "fullbright" : true
@@ -485,7 +485,7 @@
             "active" : {
               "properties" : {
                 "image" : "<partImage>:active.<frame>?flipx",
-                "damageArea" : [[-25, 0], [25, 0]]
+                "damageArea" : [[-20, 0], [20, 0]]
               }
             },
             "winddown" : {
@@ -610,6 +610,7 @@
     "open" : [ "/sfx/objects/airlock_open.ogg" ],
     "fire1" : [ "/sfx/gun/aegisaltpistol_start.ogg" ],
     "fire2" : [ "/sfx/gun/erchiuseyebeam_start.ogg" ],
+    "explosionWindup" : [ "/sfx/npc/boss/v_coreexplosion_windup.ogg" ],
     "deathShrink" : [ "/sfx/npc/boss/guardian_death_shrink.ogg" ],
     "steamRelease" : [ "/sfx/npc/boss/v_strongholdcore_steamrelease.ogg" ]
   }

@@ -84,13 +84,14 @@
   "notFovOutOfSightRadius" : 60,
   "waitTime" : 0.7,
   "turnTime" : 0.3,
-  "fireInterval" : 0.1,
   "exposureTime" : 0.25,
   
-  "projectileType" : "v-ancientturretshot",
-  "projectileParameters" : {
-    "power" : 200,
-    "speed" : 200
+  "windupTime" : 0.5,
+  "beamLength" : 40,
+  "damageConfig" : {
+    "damage" : 20.0,
+    "damageSourceKind" : "plasma",
+    "teamType" : "enemy"
   },
 
   "animation" : "/objects/mission/ancientstronghold/v-ancientturret/ancientturret.animation",
@@ -104,7 +105,8 @@
 
   "animationParts" : {
     "base" : "base.png",
-    "gun" : "gun.png"
+    "gun" : "gun.png",
+    "laser" : "laser.png"
   },
   "animationPosition" : [16, 16]
 }

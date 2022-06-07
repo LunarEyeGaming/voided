@@ -1,5 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
+require "/scripts/poly.lua"
 
 function init()
   -- Initialize parameters
@@ -16,11 +17,12 @@ function init()
   self.notFovOutOfSightRadius = config.getParameter("notFovOutOfSightRadius")
   self.waitTime = config.getParameter("waitTime")
   self.turnTime = config.getParameter("turnTime")
-  self.fireInterval = config.getParameter("fireInterval")
   self.exposureTime = config.getParameter("exposureTime")
-  
-  self.projectileType = config.getParameter("projectileType")
-  self.projectileParameters = config.getParameter("projectileParameters")
+
+  self.windupTime = config.getParameter("windupTime", 0.5)
+  self.beamLength = config.getParameter("beamLength", 50)
+  self.beamOffset = config.getParameter("beamOffset", {2, 2})
+  self.damageConfig = config.getParameter("damageConfig")
   
   self.cameraPos = vec2.add(object.position(), animator.partPoint("base", "cameraPos"))
 
@@ -136,26 +138,55 @@ function states.target()
   while true do
     self.target = getTarget()
     if self.target then
-      self.attackState:set(states.attack)
+      self.attackState:set(states.windup)
     end
     coroutine.yield()
   end
 end
 
-function states.attack()
-  local timer = self.fireInterval
+function states.windup()
+  local timer = self.windupTime
   local dt = script.updateDt()
-  while hasTarget() do
+
+  animator.setAnimationState("laser", "windup")
+
+  while timer > 0 do
     local aimVec = world.distance(world.entityPosition(self.target), self.cameraPos)
-    setAngle(vec2.angle(aimVec))
-    if timer <= 0 then
-      fire(aimVec)
-      timer = self.fireInterval
+
+    if not hasTarget() then
+      animator.setAnimationState("laser", "inactive")
+      object.setDamageSources()
+      self.attackState:set(states.target)
     end
+
+    setAngle(vec2.angle(aimVec))
     timer = timer - dt
     coroutine.yield()
   end
+  
+  self.attackState:set(states.attack)
+end
+
+function states.attack()
+  animator.setAnimationState("laser", "active")
+
+  while hasTarget() do
+    local aimVec = world.distance(world.entityPosition(self.target), self.cameraPos)
+    local targetAngle = vec2.angle(aimVec)
+    local damageConfig = copy(self.damageConfig)
+
+    damageConfig.poly = poly.translate({{0, 0}, vec2.rotate({self.beamLength, 0}, targetAngle)}, self.beamOffset)
+    damageConfig.damage = damageConfig.damage * root.evalFunction("monsterLevelPowerMultiplier", object.level())
+    object.setDamageSources({damageConfig})
+
+    setAngle(targetAngle)
+    coroutine.yield()
+  end
   self.target = nil
+
+  animator.setAnimationState("laser", "winddown")
+  object.setDamageSources()
+
   self.attackState:set(states.target)
 end
 

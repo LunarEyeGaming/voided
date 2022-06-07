@@ -556,9 +556,7 @@ function v_laserAttack6(args, board)
     world.sendEntityMessage(id, "reset")
   end
 
-  _v_awaitNotification("finished", #args.attackSetH)
-
-  _v_awaitNotification("finished", #args.attackSetV)
+  _v_awaitNotification("finished", #args.attackSetH + #args.attackSetV)
   
   return true
 end

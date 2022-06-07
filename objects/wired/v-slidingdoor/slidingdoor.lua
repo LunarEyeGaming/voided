@@ -1,4 +1,5 @@
 require "/scripts/util.lua"
+require "/scripts/rect.lua"
 
 function init()
   self.translationConfig = config.getParameter("translationConfig")
@@ -23,14 +24,23 @@ function init()
   if storage.active == nil then
     updateActive()
   end
+  
+  self.useAntiCrush = config.getParameter("useAntiCrush", false)
+  if self.useAntiCrush then
+    self.forceRegion = object.direction() == 1 and "doorLeft" or "doorRight"
+    self.queryArea = rect.translate(config.getParameter("queryArea"), object.position())
+  end
 end
 
 function update(dt)
   if storage.active then
     self.translationTimer = math.min(self.translationTime, self.translationTimer + dt)
   else
-    self.translationTimer = math.max(0, self.translationTimer - dt)
+    if not self.useAntiCrush or #world.entityQuery(rect.ll(self.queryArea), rect.ur(self.queryArea), {includedTypes = {"monster", "npc", "player"}}) <= 0 then
+      self.translationTimer = math.max(0, self.translationTimer - dt)
+    end
   end
+  
   local progress = self.translationTimer / self.translationTime
   
   -- TODO: Consider investigating the storage of util.easeInOutSin(progress, 0, 1) 
@@ -46,6 +56,10 @@ function update(dt)
     util.lerp(progress, 0, self.endOffset[1]),
     util.lerp(progress, 0, self.endOffset[2])
   })
+  
+  if self.useAntiCrush then
+    physics.setForceEnabled(self.forceRegion, storage.active)
+  end
 end
 
 function onNodeConnectionChange(args)
@@ -119,7 +133,7 @@ function getYRange(poly)
     if point[2] > maxY then
       maxY = point[2]
     end
-    if point[1] < minY then
+    if point[2] < minY then
       minY = point[2]
     end
   end

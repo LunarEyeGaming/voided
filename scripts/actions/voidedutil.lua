@@ -119,6 +119,9 @@ end
 
 function v_ellipsePoint(args, board)
   if args.xRadius == nil or args.yRadius == nil or args.angle == nil then return false end
+  if args.useDegrees then
+    args.angle = util.toRadians(args.angle)
+  end
   return true, {result = {args.xRadius * math.cos(args.angle), args.yRadius * math.sin(args.angle)}}
 end
 
