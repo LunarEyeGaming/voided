@@ -24,7 +24,7 @@
       {
         "offset" : [2.875, 0],
         "color" : [255, 0, 255, 128],
-        "length" : 60,
+        "length" : 120,
         "segments" : 6,
         "angle" : 0,
         "sourcePart" : "laserbeam",
@@ -33,7 +33,7 @@
       {
         "offset" : [2.875, 0],
         "color" : [0, 0, 255, 128],
-        "length" : 60,
+        "length" : 120,
         "segments" : 6,
         "angle" : 0,
         "sourcePart" : "laserbeam2",
@@ -54,7 +54,7 @@
 
       "hurtWaitForGround" : false,
 
-      "targetQueryRange" : 50,
+      "targetQueryRange" : 120,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
       "keepTargetInRange" : 200,
@@ -78,7 +78,7 @@
           "name" : "v-ancientturret2-fire",
           "parameters" : {
             "requireLineOfSight" : true,
-            "maximumRange" : 70,
+            "maximumRange" : 150,
             "minimumRange" : 2,
             "windupTime" : 2.5,
             "windupState" : "windup1",

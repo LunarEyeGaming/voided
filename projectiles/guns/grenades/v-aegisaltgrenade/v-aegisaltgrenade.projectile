@@ -1,0 +1,21 @@
+{
+  "projectileName" : "v-aegisaltgrenade",
+  "image" : "aegisaltgrenade.png",
+  "fullbright" : true,
+  "flippable" : true,
+  "animationCycle" : 0.25,
+  "frameNumber" : 2,
+  "physics" : "grenade",
+  "timeToLive" : 1,
+  "bounces" : 0,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/guns/grenades/v-aegisaltgrenade/v-aegisaltgrenadefiring.config"
+    }
+  ],
+  "power" : 0,
+  "speed" : 45,
+  "lightColor" : [83, 28, 97],
+  "damageType" : "nodamage"
+}
