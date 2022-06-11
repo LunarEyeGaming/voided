@@ -88,7 +88,7 @@
         "properties" : {
           "offset" : [20, 0],
           "zLevel" : 4,
-          "transformationGroups" : [ "gun" ],
+          "transformationGroups" : [ "gun", "laser" ],
           "fullbright" : true
         },
         "partStates" : {
@@ -151,6 +151,7 @@
   },
     
   "transformationGroups" : {
-    "gun" : {"interpolated" : true}
+    "gun" : {"interpolated" : true},
+    "laser" : {"interpolated" : true}
   }
 }

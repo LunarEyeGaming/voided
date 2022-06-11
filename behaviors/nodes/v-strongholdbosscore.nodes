@@ -64,7 +64,9 @@
     "title": "v_controlShieldCore",
     "properties": {
       "noShieldDuration": {"type": "number", "value": null},
-      "monsterType": {"type": "string", "value": null}
+      "monsterType": {"type": "string", "value": null},
+      "warningDuration": {"type": "number", "value": 5},
+      "warningStatusEffect": {"type": "string", "value": "v-ancientshieldwarning"}
     },
     "category": "v-strongholdbosscore",
     "script": "/scripts/actions/boss/v-strongholdbosscore.lua",

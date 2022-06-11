@@ -1,0 +1,38 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "shield" : {
+        "priority" : 2,
+        "default" : "warning",
+        "states" : {
+          "warning" : {
+            "frames" : 2,
+            "cycle" : 0.5,
+            "mode" : "loop"
+          }
+        }
+      }
+    },
+
+    "parts" : {      
+      "shield" : {
+        "properties" : {
+          "zLevel" : 5,
+          "centered" : true,
+          "fullbright" : true,
+          "offset" : [0, 0]
+        },
+
+        "partStates" : {
+          "shield" : {
+            "warning" : {
+              "properties" : {
+                "image" : "ancientshieldwarning.png:<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

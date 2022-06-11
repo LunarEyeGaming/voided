@@ -6,25 +6,36 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
+          "activate" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "fly"
           },
           "windup" : {
-            "frames" : 3,
-            "cycle" : 0.15,
+            "frames" : 5,
+            "cycle" : 0.5,
             "mode" : "transition",
-            "transition" : "fire"
+            "transition" : "fire",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_ancientexploder_windup.ogg"
+            }
           },
           "fly" : {
-            "frames" : 6,
-            "cycle" : 0.6,
+            "frames" : 4,
+            "cycle" : 0.4,
             "mode" : "loop"
           },
           "fire" : {
             "frames" : 1
           },
           "winddown" : {
-            "frames" : 3,
-            "cycle" : 0.15,
+            "frames" : 5,
+            "cycle" : 0.5,
             "mode" : "transition",
             "transition" : "idle"
           }
@@ -58,6 +69,11 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
+            "activate" : {
+              "properties" : {
+                "image" : "<partImage>:activate.<frame>"
+              }
+            },
             "windup" : {
               "properties" : {
                 "image" : "<partImage>:windup.<frame>"
@@ -70,7 +86,7 @@
             },
             "fire" : {
               "properties" : {
-                "image" : "<partImage>:hurt.<frame>"
+                "image" : "<partImage>:fire.<frame>"
               }
             },
             "winddown" : {
@@ -101,6 +117,16 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
+            "activate" : {
+              "properties" : {
+                "image" : "<partImage>:activate.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
             "fly" : {
               "properties" : {
                 "image" : "<partImage>:fly.<frame>"
@@ -108,7 +134,108 @@
             },
             "fire" : {
               "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            },
+            "winddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
                 "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "orbiters" : {
+        "properties" : {
+          "zLevel" : 30,
+          "transformationGroups" : [ "orbiters" ],
+          "offset" : [0.0, 0.0]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "activate" : {
+              "properties" : {
+                "image" : "<partImage>:activate.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "fly" : {
+              "properties" : {
+                "image" : "<partImage>:fly.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            },
+            "winddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "orbitersfullbright" : {
+        "properties" : {
+          "zLevel" : 40,
+          "anchorPart" : "orbiters",
+          "fullbright" : true
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "activate" : {
+              "properties" : {
+                "image" : "<partImage>:activate.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "fly" : {
+              "properties" : {
+                "image" : "<partImage>:fly.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            },
+            "winddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
               }
             }
           },
@@ -128,6 +255,7 @@
 
   "transformationGroups" : {
     "body" : { "interpolated" : true },
+    "orbiters" : { "interpolated" : true},
     "facing" : { "interpolated" : false }
   },
 

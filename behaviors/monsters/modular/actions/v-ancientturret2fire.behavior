@@ -269,10 +269,10 @@
                     "parameters": {
                       "windupState": {"value": "<windupState2>"},
                       "windupTime": {"value": "<windupTime2>"},
-                      "faceTarget": {"key": "<faceTarget>"},
                       "skillName": {"value": "<skillName>"},
                       "rotateToTarget": {"value": false},
-                      "aimAtTarget": {"value": false}
+                      "aimAtTarget": {"value": false},
+                      "faceTarget": {"value": false}
                     }
                   },
                   /* {
@@ -514,23 +514,11 @@
                                               "parameters": {},
                                               "children": [
                                                 {
-                                                  "title": "distance",
-                                                  "type": "action",
-                                                  "name": "distance",
-                                                  "parameters": {
-                                                    "from": {"key": "origin"},
-                                                    "to": {"key": "targetPosition"}
-                                                  },
-                                                  "output": {
-                                                    "vector": "toTarget"
-                                                  }
-                                                },
-                                                {
                                                   "title": "vecMultiply",
                                                   "type": "action",
                                                   "name": "vecMultiply",
                                                   "parameters": {
-                                                    "first": {"key": "toTarget"},
+                                                    "first": {"key": "aimVectorFinal"},
                                                     "second": {"value": ["facingDirection", 1]}
                                                   },
                                                   "output": {
@@ -874,7 +862,7 @@
                     ]
                   }
                 ]
-              },
+              }/* ,
               {
                 "title": "succeeder",
                 "type": "decorator",
@@ -917,7 +905,7 @@
                     ]
                   }
                 }
-              }
+              } */
             ]
           }
         ]

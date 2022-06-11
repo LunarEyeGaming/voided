@@ -1,6 +1,6 @@
 {
   "type" : "v-ancientturret",
-  "shortdescription" : "Ancient Turret",
+  "shortdescription" : "Stronghold Burster",
   "description" : "An extremely hostile automation.",
 
   "categories" : [ "v-ancientturret" ],
@@ -33,17 +33,6 @@
       "keepTargetInRange" : 200,
       "targetOutOfSightTime" : 5.0,
 
-      "foundTargetActions" : [
-        {
-          "name" : "action-animate",
-          "parameters" : {
-            "stateType" : "body",
-            "state" : "wake",
-            "animationTimer" : 0.5
-          }
-        }
-      ],
-
       "fleeActions" : [ ],
 
       "hostileActions" : [
@@ -64,7 +53,7 @@
             },
             "projectileInterval" : 0.1,
 
-            "fireOffset" : [1.5, -0.125],
+            "fireOffset" : [2.0, -0.125],
             "rotationCenter" : [0.0, 0.5],
             "fireSound" : "fire",
             "fireState" : "fire",
@@ -99,13 +88,6 @@
           "parameters" : {
             "stopForce" : 500
           }
-        },
-        {
-          "name" : "action-globaltag",
-          "parameters" : {
-            "tagName" : "aggro",
-            "tag" : ""
-          }
         }
       ],
 
@@ -114,13 +96,6 @@
           "name" : "idle-crawl",
           "parameters" : {
             "stopForce" : 500
-          }
-        },
-        {
-          "name" : "action-globaltag",
-          "parameters" : {
-            "tagName" : "aggro",
-            "tag" : ".aggro"
           }
         }
       ]

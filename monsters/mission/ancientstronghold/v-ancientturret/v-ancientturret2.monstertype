@@ -1,9 +1,9 @@
 {
   "type" : "v-ancientturret2",
-  "shortdescription" : "Ancient Turret",
+  "shortdescription" : "Stronghold Longshot",
   "description" : "An extremely hostile automation.",
 
-  "categories" : [ "v-ancientturret" ],
+  "categories" : [ "v-ancientturret2" ],
   "parts" : [ "body" ],
 
   "animation" : "ancientturret2.animation",
@@ -60,17 +60,6 @@
       "keepTargetInRange" : 200,
       "targetOutOfSightTime" : 5.0,
 
-      "foundTargetActions" : [
-        {
-          "name" : "action-animate",
-          "parameters" : {
-            "stateType" : "body",
-            "state" : "wake",
-            "animationTimer" : 0.5
-          }
-        }
-      ],
-
       "fleeActions" : [ ],
 
       "hostileActions" : [
@@ -80,8 +69,8 @@
             "requireLineOfSight" : true,
             "maximumRange" : 150,
             "minimumRange" : 2,
-            "windupTime" : 2.5,
-            "windupState" : "windup1",
+            "windupTime" : 2.3,
+            "windupState" : "idle",
             "windupTime2" : 0.5,
             "windupState2" : "windup2",
 
@@ -91,7 +80,7 @@
               "power" : 15
             },
 
-            "fireOffset" : [1.5, -0.125],
+            "fireOffset" : [3, 0.0],
             "rotationCenter" : [0.0, 0.5],
             "fireSound" : "fire",
             "fireState" : "fire",
@@ -100,8 +89,8 @@
             "rotateAim" : true,
             "holdAim" : true,
 
-            "winddownState" : "idle",
-            "winddownTime" : 0.0
+            "winddownState" : "fire",
+            "winddownTime" : 0.2
           }
         }
       ],
@@ -126,13 +115,6 @@
           "parameters" : {
             "stopForce" : 500
           }
-        },
-        {
-          "name" : "action-globaltag",
-          "parameters" : {
-            "tagName" : "aggro",
-            "tag" : ""
-          }
         }
       ],
 
@@ -141,13 +123,6 @@
           "name" : "idle-crawl",
           "parameters" : {
             "stopForce" : 500
-          }
-        },
-        {
-          "name" : "action-globaltag",
-          "parameters" : {
-            "tagName" : "aggro",
-            "tag" : ".aggro"
           }
         }
       ]

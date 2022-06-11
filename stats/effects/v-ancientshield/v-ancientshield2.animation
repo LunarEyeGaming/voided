@@ -8,7 +8,19 @@
           "idle" : {
             "frames" : 4,
             "cycle" : 0.4,
-            "mode" : "loop"
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/tech/forcefield_loop.ogg"
+            }
+          },
+          "appear" : {
+            "frames" : 4,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/v_coreshield_appear.ogg"
+            }
           }
         }
       }
@@ -25,9 +37,14 @@
 
         "partStates" : {
           "shield" : {
+            "appear" : {
+              "properties" : {
+                "image" : "ancientshield.png:appear.<frame>"
+              }
+            },
             "idle" : {
               "properties" : {
-                "image" : "ancientshield.png:<frame>"
+                "image" : "ancientshield.png:idle.<frame>"
               }
             }
           }

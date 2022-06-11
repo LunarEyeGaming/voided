@@ -1,0 +1,41 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "shield" : {
+        "priority" : 2,
+        "default" : "disappear",
+        "states" : {
+          "disappear" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/v_coreshield_disappear.ogg"
+            }
+          }
+        }
+      }
+    },
+
+    "parts" : {      
+      "shield" : {
+        "properties" : {
+          "zLevel" : 5,
+          "centered" : true,
+          "fullbright" : true,
+          "offset" : [0, 0]
+        },
+
+        "partStates" : {
+          "shield" : {
+            "disappear" : {
+              "properties" : {
+                "image" : "ancientshielddisappear.png:<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

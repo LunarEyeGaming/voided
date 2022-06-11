@@ -1,23 +1,15 @@
 {
   "projectileName" : "v-ancientturretshot",
   "image" : "ancientturretshot.png",
-  "animationCycle" : 0.2,
+  "animationCycle" : 0.5,
   "lightColor" : [150, 100, 100],
-  "frameNumber" : 4,
+  "frameNumber" : 2,
   "flippable" : false,
   "fullbright" : true,
   "damageKindImage" : "icon.png",
-  "physics" : "boomerang",
+  "physics" : "laser",
+  "bounces" : 0,
   "emitters" : [ ],
-  "periodicActions" : [
-    {
-      "time" : 0,
-      "repeat" : false,
-      "action" : "sound",
-      "options" : [ "/sfx/gun/pulsecannon_blast1.ogg" ]
-    }
-  ],
-  "damagePoly" : [ [-8, 0], [2, 3], [8, 0], [2, -3] ],
   "damageKind" : "plasma",
   "piercing" : true,
 

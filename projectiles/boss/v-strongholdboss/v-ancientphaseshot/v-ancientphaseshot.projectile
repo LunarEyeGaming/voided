@@ -1,9 +1,9 @@
 {
   "projectileName" : "v-ancientphaseshot",
   "image" : "ancientphaseshot.png",
-  "animationCycle" : 0.2,
+  "animationCycle" : 0.5,
   "lightColor" : [100, 150, 150],
-  "frameNumber" : 4,
+  "frameNumber" : 2,
   "flippable" : false,
   "fullbright" : true,
   "damageKindImage" : "icon.png",
@@ -17,9 +17,12 @@
       "options" : [ "/sfx/gun/pulsecannon_blast1.ogg" ]
     }
   ],
-  "damagePoly" : [ [-8, 0], [2, 3], [8, 0], [2, -3] ],
   "damageKind" : "plasma",
   "piercing" : true,
+  
+  "bounces" : 0,
+  
+  "timeToLive" : 1.5,
 
   "speed" : 100,
 

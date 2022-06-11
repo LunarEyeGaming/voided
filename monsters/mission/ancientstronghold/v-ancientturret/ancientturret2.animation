@@ -6,21 +6,12 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1
-          },
-          "wake" : {
-            "frames" : 5,
+            "frames" : 8,
             "cycle" : 0.5,
-            "mode" : "transition",
-            "transition" : "idle"
-          },
-          "windup1" : {
-            "frames" : 1,
-            "cycle" : 2.5,
-            "mode" : "end"
+            "mode" : "loop"
           },
           "windup2" : {
-            "frames" : 1,
+            "frames" : 5,
             "cycle" : 0.5,
             "mode" : "transition",
             "transition" : "fire",
@@ -29,9 +20,10 @@
             }
           },
           "fire" : {
-            "frames" : 9,
-            "cycle" : 0.51,
-            "mode" : "end"
+            "frames" : 5,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "idle"
           }
         }
       },
@@ -67,32 +59,44 @@
           }
         }
       },
+      "bodyfullbright" : {
+        "properties" : {
+          "anchorPart" : "body",
+          "zLevel" : 2,
+          "fullbright" : true,
+          "image" : "<partImage>:idle.1"
+        },
+        "partStates" : {
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      },
       "turretfullbright" : {
         "properties" : {
           "anchorPart" : "turret",
-          "zLevel" : 3,
+          "zLevel" : 4,
           "fullbright" : true
         },
         "partStates" : {
           "body" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame><aggro>"
-              }
-            },
-            "wake" : {
-              "properties" : {
-                "image" : "<partImage>:wake.<frame>"
+                "image" : "<partImage>:idle.<frame>"
               }
             },
             "windup1" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame><aggro>"
+                "image" : "<partImage>:idle.<frame>"
               }
             },
             "windup2" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame><aggro>"
+                "image" : "<partImage>:windup.<frame>"
               }
             },
             "fire" : {
@@ -115,8 +119,8 @@
       "turret" : {
         "properties" : {
           "transformationGroups" : [ "aim", "facing", "body" ],
-          "offset" : [0.0, 0.625],
-          "zLevel" : 2,
+          "offset" : [1.0, 0.625],
+          "zLevel" : 3,
           "beamSource" : [2, 0],
           "beamEnd" : [3, 0]
         },
@@ -124,22 +128,17 @@
           "body" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame><aggro>"
-              }
-            },
-            "wake" : {
-              "properties" : {
-                "image" : "<partImage>:wake.<frame>"
+                "image" : "<partImage>:idle.<frame>"
               }
             },
             "windup1" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame><aggro>"
+                "image" : "<partImage>:idle.<frame>"
               }
             },
             "windup2" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame><aggro>"
+                "image" : "<partImage>:windup.<frame>"
               }
             },
             "fire" : {
@@ -147,8 +146,6 @@
                 "image" : "<partImage>:fire.<frame>"
               }
             }
-          },
-          "attack" : {
           },
           "damage" : {
             "stunned" : {
@@ -161,26 +158,25 @@
       },
       "laserbeam" : {
         "properties" : {
-          "transformationGroups" : [ "aim", "facing", "body", "laserbeam" ],
-          "offset" : [0.0, 0.625],
+          "anchorPart" : "turret",
+          "transformationGroups" : [ "laserbeam" ],
           "zLevel" : 2,
-          "beamSource" : [2, 0],
+          "beamSource" : [1.75, 0],
           "beamEnd" : [3, 0]
         }
       },
       "laserbeam2" : {
         "properties" : {
-          "transformationGroups" : [ "aim", "facing", "body", "laserbeam2" ],
-          "offset" : [0.0, 0.625],
+          "anchorPart" : "turret",
+          "transformationGroups" : [ "laserbeam2" ],
           "zLevel" : 2,
-          "beamSource" : [2, 0],
+          "beamSource" : [1.75, 0],
           "beamEnd" : [3, 0]
         }
       }
     }
   },
   "globalTagDefaults" : {
-    "aggro" : ""
   },
 
   "transformationGroups" : {

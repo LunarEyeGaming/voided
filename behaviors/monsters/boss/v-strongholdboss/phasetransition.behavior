@@ -7,7 +7,9 @@
     "/scripts/actions/time.lua",
     "/scripts/behavior/bdata.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "waves": []
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -80,7 +82,24 @@
         "type": "action",
         "name": "timer",
         "parameters": {
-          "time": {"value": 8.0}
+          "time": {"value": 3.0}
+        }
+      },
+      {
+        "title": "v_turretAttack",
+        "type": "action",
+        "name": "v_turretAttack",
+        "parameters": {
+          "monsterType": {"value": "v-ancientturretboss"},
+          "waves": {"key": "<waves>"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 5.0}
         }
       },
       {

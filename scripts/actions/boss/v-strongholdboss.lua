@@ -164,6 +164,8 @@ function v_laserAttack(args, board)
     local hPosition = vec2.add(center, util.randomFromList(args.hOffsets, randGenH))
     local vPosition = vec2.add(center, util.randomFromList(args.vOffsets, randGenV))
 
+    animator.playSound("warning")
+    
     world.spawnProjectile(args.hTeleProjectile, hPosition)
     world.spawnProjectile(args.vTeleProjectile, vPosition)
 
@@ -249,6 +251,7 @@ function v_laserAttack2(args, board)
       v2Position = vec2.add(center, args.v2Offsets[i])
     end
 
+    animator.playSound("warning")
     world.spawnProjectile(args.hTeleProjectile, h1Position)
     world.spawnProjectile(args.vTeleProjectile, v1Position)
     if useFourLasers then
@@ -323,6 +326,8 @@ function v_laserAttack3(args, board)
     local startPosition = vec2.add(center, attack.startOffset)
     local endPosition = vec2.add(center, attack.endOffset)
 
+    animator.playSound("warning")
+    
     world.spawnProjectile(attack.teleProjectile, vec2.add(center, attack.teleOffset))
 
     world.sendEntityMessage(id, "move", startPosition)
@@ -382,6 +387,7 @@ function v_laserAttack4(args, board)
     local vId = i % 2 == 0 and args.v1Id or args.v2Id
 
     if args.phase == 1 then
+      
       world.spawnProjectile(args.targetProjectile, targetPos, entity.id(), {0, 0})
       world.sendEntityMessage(hId, "move", targetPos)
       world.sendEntityMessage(vId, "move", targetPos)
@@ -464,6 +470,8 @@ function v_laserAttack5(args, board)
   for i, attack in ipairs(args.attackSet) do
     local id = board:getEntity(attack.idKey)
 
+    animator.playSound("warning")
+    
     world.spawnProjectile(attack.teleProjectile, vec2.add(center, attack.teleOffset))
 
     world.sendEntityMessage(id, "activate")
@@ -522,6 +530,8 @@ function v_laserAttack6(args, board)
     local vStartPosition = vec2.add(center, nextAttackV.startOffset)
     local vEndPosition = vec2.add(center, nextAttackV.endOffset)
 
+    animator.playSound("warning")
+    
     world.spawnProjectile(nextAttackH.teleProjectile, vec2.add(center, nextAttackH.teleOffset))
     world.spawnProjectile(nextAttackV.teleProjectile, vec2.add(center, nextAttackV.teleOffset))
 
@@ -689,7 +699,6 @@ function v_coreAttack6(args, board)
 end
 
 -- param coreIds
--- param monsterType
 -- output shieldCoreIds
 function v_spawnShieldCores(args, board)
   --local shieldCoreIds = {}
@@ -701,6 +710,50 @@ function v_spawnShieldCores(args, board)
   
   --return true, {shieldCoreIds = shieldCoreIds}
   return true, {shieldCoreIds = {}}
+end
+
+-- param monsterType
+-- param spawnCenter
+-- param waves
+function v_turretAttack(args, board)
+  local turretIds = {}
+
+  for _, wave in ipairs(args.waves) do
+    while _v_anyTurretsExist(turretIds) do
+      coroutine.yield()
+    end
+
+    util.run(wave.delay, function() end)
+    
+    turretIds = {}
+
+    for _, turret in ipairs(wave.turrets) do
+      local pos = vec2.add(args.spawnCenter, turret.offset)
+      local turretId = world.spawnMonster(args.monsterType, pos, {angles = turret.angles, turnTime = turret.turnTime, waitTime = turret.waitTime, level = monster.level()})
+
+      table.insert(turretIds, turretId)
+
+      if wave.interval then
+        util.run(wave.interval, function() end)
+      end
+    end
+  end
+    
+  while _v_anyTurretsExist(turretIds) do
+    coroutine.yield()
+  end
+  
+  return true
+end
+
+function _v_anyTurretsExist(turrets)
+  for _, turret in ipairs(turrets) do
+    if world.entityExists(turret) then
+      return true
+    end
+  end
+  
+  return false
 end
 
 function _v_awaitNotification(type_, count)

@@ -1,21 +1,15 @@
 {
   "projectileName" : "v-ancientsniperturretshot",
   "image" : "ancientsniperturretshot.png",
-  "animationCycle" : 0.2,
+  "animationCycle" : 1,
   "lightColor" : [150, 100, 100],
-  "frameNumber" : 4,
+  "frameNumber" : 1,
   "flippable" : false,
   "fullbright" : true,
   "damageKindImage" : "icon.png",
-  "physics" : "boomerang",
+  "physics" : "laser",
   "emitters" : [ ],
   "periodicActions" : [
-    {
-      "time" : 0,
-      "repeat" : false,
-      "action" : "sound",
-      "options" : [ "/sfx/gun/pulsecannon_blast1.ogg" ]
-    },
     {
       "time" : 0.01,
       "action" : "particle",
@@ -32,7 +26,6 @@
       }
     }
   ],
-  "damagePoly" : [ [-8, 0], [2, 3], [8, 0], [2, -3] ],
   "damageKind" : "plasma",
   "piercing" : true,
   

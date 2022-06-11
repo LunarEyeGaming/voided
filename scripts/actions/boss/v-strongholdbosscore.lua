@@ -123,6 +123,8 @@ function v_teleportToPosition(args, board)
 end
 
 -- param noShieldDuration
+-- param warningDuration
+-- param warningStatusEffect
 -- param monsterType
 function v_controlShieldCore(args, board)
   local shieldCoreId = world.spawnMonster(args.monsterType, world.entityPosition(entity.id()), {level = monster.level(), target = entity.id()})
@@ -130,7 +132,12 @@ function v_controlShieldCore(args, board)
     while world.entityExists(shieldCoreId) do
       coroutine.yield()
     end
-    util.run(args.noShieldDuration, function() end)
+
+    util.run(args.noShieldDuration - args.warningDuration, function() end)
+    status.addEphemeralEffect(args.warningStatusEffect, args.warningDuration)
+    util.run(args.warningDuration, function() end)
+
+    status.removeEphemeralEffect(args.warningStatusEffect)
     shieldCoreId = world.spawnMonster(args.monsterType, world.entityPosition(entity.id()), {level = monster.level(), target = entity.id()})
     coroutine.yield()
   end

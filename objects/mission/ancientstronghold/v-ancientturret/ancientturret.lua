@@ -21,15 +21,17 @@ function init()
 
   self.windupTime = config.getParameter("windupTime", 0.5)
   self.beamLength = config.getParameter("beamLength", 50)
-  self.beamOffset = config.getParameter("beamOffset", {2, 2})
+  self.beamCenter = config.getParameter("beamCenter", {2, 2})
+  self.beamOffset = config.getParameter("beamOffset", {0, 0})
   self.damageConfig = config.getParameter("damageConfig")
+  self.damageConfig.damage = self.damageConfig.damage * root.evalFunction("monsterLevelPowerMultiplier", object.level())
   
   self.cameraPos = vec2.add(object.position(), animator.partPoint("base", "cameraPos"))
+  self.beamCenterPos = vec2.add(object.position(), self.beamCenter)
 
   -- Initialize variables
   self.queriedTimings = {}
   self.target = nil
-  self.isAttacking = false
 
   self.moveState = FSM:new()
   self.attackState = FSM:new()
@@ -83,6 +85,7 @@ function update(dt)
 --waitTime: %s
 --turnTime: %s
 --fireInterval: %s]], self.halfFov, self.sightRadius, self.outOfSightRadius, self.waitTime, self.turnTime, self.fireInterval, vec2.add(self.cameraPos, {0, -7.5}), "blue")
+  updateLaser()
 end
 
 function onNodeConnectionChange(args)
@@ -151,7 +154,7 @@ function states.windup()
   animator.setAnimationState("laser", "windup")
 
   while timer > 0 do
-    local aimVec = world.distance(world.entityPosition(self.target), self.cameraPos)
+    local aimVec = world.distance(world.entityPosition(self.target), self.beamCenterPos)
 
     if not hasTarget() then
       animator.setAnimationState("laser", "inactive")
@@ -171,12 +174,17 @@ function states.attack()
   animator.setAnimationState("laser", "active")
 
   while hasTarget() do
-    local aimVec = world.distance(world.entityPosition(self.target), self.cameraPos)
+    local aimVec = world.distance(world.entityPosition(self.target), self.beamCenterPos)
     local targetAngle = vec2.angle(aimVec)
     local damageConfig = copy(self.damageConfig)
 
-    damageConfig.poly = poly.translate({{0, 0}, vec2.rotate({self.beamLength, 0}, targetAngle)}, self.beamOffset)
-    damageConfig.damage = damageConfig.damage * root.evalFunction("monsterLevelPowerMultiplier", object.level())
+    damageConfig.poly = poly.translate(
+      {
+        vec2.rotate(self.beamOffset, targetAngle),
+        vec2.rotate(vec2.add(self.beamOffset, {self.beamLength, 0}), targetAngle)
+      },
+      self.beamCenter
+    )
     object.setDamageSources({damageConfig})
 
     setAngle(targetAngle)
@@ -258,15 +266,6 @@ function getTarget()
   end
 end
 
-function fire(aimVec)
-  aimVec = shakeVector(aimVec, 0.05)
-  world.spawnProjectile(self.projectileType, self.cameraPos, entity.id(), aimVec, false, self.projectileParameters)
-end
-
-function shakeVector(vector, inaccuracy)
-  return vec2.rotate(vector, sb.nrand(inaccuracy, 0))
-end
-
 function updateQueried(qItem)
   if self.queriedTimings[qItem] then
     self.queriedTimings[qItem] = self.queriedTimings[qItem] - script.updateDt()
@@ -282,4 +281,9 @@ end
 function isValidTarget(target)
   local outOfSightRadius = storage.useFov and self.outOfSightRadius or self.notFovOutOfSightRadius
   return world.entityExists(target) and not (world.lineTileCollision(self.cameraPos, world.entityPosition(target)) or world.magnitude(self.cameraPos, world.entityPosition(target)) > outOfSightRadius)
+end
+
+function updateLaser()
+  animator.resetTransformationGroup("laser")
+  animator.translateTransformationGroup("laser", vec2.rotate(self.beamOffset, self.currentAngle))
 end

@@ -268,5 +268,20 @@
     "output": {
       "shieldCoreIds": {"type": "list", "key": null}
     }
+  },
+  "v_turretAttack": {
+    "type": "action",
+    "name": "v_turretAttack",
+    "title": "v_turretAttack",
+    "properties": {
+      "waves": {"type": "list", "value": null},
+      "monsterType": {"type": "string", "value": null},
+      "spawnCenter": {"type": "position", "key": "self"}
+    },
+    "category": "v-strongholdboss",
+    "script": "/scripts/actions/boss/v-strongholdboss.lua",
+    "output": {
+      "shieldCoreIds": {"type": "list", "key": null}
+    }
   }
 }

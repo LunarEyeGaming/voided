@@ -14,6 +14,15 @@
   "onlyHitTerrain" : true,
   "fullbright" : true,
   
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/interface/nav_select.ogg" ]
+    }
+  ],
+  
   "scripts" : ["/projectiles/killable.lua"],
   "scriptDelta" : 1
 }

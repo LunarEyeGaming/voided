@@ -1,7 +1,7 @@
 {
   "type" : "v-ancientexploder",
-  "shortdescription" : "ancientexploder",
-  "description" : "i dont know...some kind of monster that sends out a pulse wave",
+  "shortdescription" : "Stronghold Bomber",
+  "description" : "A machine designed to send out deadly shockwaves through its glowing lights.",
 
   "categories" : [ "v-ancientexploder" ],
   "parts" : [ "body" ],
@@ -14,6 +14,9 @@
     "scripts" : [
       "/monsters/monster.lua"
     ],
+    
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 3,
 
     "behavior" : "monster",
     "deathBehavior" : "monster-death",
@@ -22,7 +25,7 @@
     "behaviorConfig" : {
       "damageOnTouch" : false,
 
-      "targetQueryRange" : 20,
+      "targetQueryRange" : 50,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
       "keepTargetInRange" : 100,
@@ -30,6 +33,17 @@
 
       "hurtWaitForGround" : false,
 
+      "foundTargetActions" : [
+        {
+          "name" : "action-animate",
+          "parameters" : {
+            "stateType" : "body",
+            "state" : "activate",
+            "animationTimer" : 0.4
+          }
+        }
+      ],
+      
       "wanderActions" : [
         {
           "name" : "action-stop",
@@ -42,24 +56,32 @@
       "hostileActions" : [
         {
           "name" : "action-fire",
-          "cooldown" : 2.0,
+          "cooldown" : 2.5,
           "parameters" : {
             "requireLineOfSight" : true,
             "maximumRange" : 7,
             "minimumRange" : 0,
             "windupStopForce" : 75,
-            "windupTime" : 0.5,
+            "windupTime" : 0.6,
             "windupState" : "windup",
 
             "projectileCount" : 1,
-            "projectileType" : "spacemineexplosion",
+            "projectileType" : "orbitalup",
             "projectileParameters" : {
               "speed" : 0,
+              "timeToLive" : 0,
+              "onlyHitTerrain" : true,
+              "actionOnReap" : [
+                {
+                  "action" : "config",
+                  "file" : "/projectiles/explosions/v-ancientexplosion/ancientexplosion.config"
+                }
+              ],
               "power" : 20
             },
 
             "fireSound" : "fire",
-            "fireState" : "fly",
+            "fireState" : "fire",
             "fireDelay" : 0.0,
             "aimAtTarget" : false,
             "faceTarget" : false,
@@ -75,6 +97,16 @@
         {
           "name" : "approach-fly",
           "parameters" : {}
+        }
+      ],
+      
+      "concurrentHostileActions" : [
+        {
+          "name" : "rotate-part",
+          "parameters" : {
+            "group" : "orbiters",
+            "speed" : 2.0
+          }
         }
       ]
     },

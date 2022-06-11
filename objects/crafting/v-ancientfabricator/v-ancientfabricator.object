@@ -1,0 +1,55 @@
+{
+  "objectName" : "v-ancientfabricator",
+  "colonyTags" : ["crafting"],
+  "category" : "crafting",
+  "rarity" : "Essential",
+  "description" : "An ancient fabricator.",
+  "shortdescription" : "^orange;Ancient Fabricator^reset;",
+  "race" : "ancient",
+  "interactAction" : "OpenCraftingInterface",
+  "interactData" : {
+    "config" : "/interface/windowconfig/v-ancientfabricator.config",
+    "filter" : [ "v-ancientfabricator" ]
+  },
+  "price" : 500,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "ancientfabricator.png:<frame>", "fullbright" : true }, { "image" : "ancientfabricatorlit.png:<frame>" } ],
+      "flipImages" : true,
+      "direction" : "left",
+      "lightPosition" : [0, 1],
+
+      "imagePosition" : [-16, 0],
+      "frames" : 4,
+      "animationCycle" : 0.4,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "imageLayers" : [ { "image" : "ancientfabricator.png:<frame>", "fullbright" : true }, { "image" : "ancientfabricatorlit.png:<frame>" } ],
+      "direction" : "right",
+      "lightPosition" : [0, 1],
+
+      "imagePosition" : [-16, 0],
+      "frames" : 4,
+      "animationCycle" : 0.4,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+  
+  "soundEffect" : "/sfx/objects/scififurnace.ogg",
+  "soundEffectRangeMultiplier" : 1.0
+}
