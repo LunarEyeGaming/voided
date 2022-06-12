@@ -17,6 +17,7 @@ function init()
   self.turnTime = config.getParameter("turnTime", 0.5)
   self.exposureTime = config.getParameter("exposureTime", 0.8)
   self.activationTime = config.getParameter("activationTime", 0.0)
+  self.deactivationTime = config.getParameter("deactivationTime", 0.0)
   
   self.projectileType = config.getParameter("projectileType")
   self.projectileOffset = config.getParameter("projectileOffset", {0, 0})
@@ -26,6 +27,8 @@ function init()
   self.inaccuracy = config.getParameter("inaccuracy", 0.0)
   
   self.cameraPos = vec2.add(mcontroller.position(), animator.partPoint("body", "cameraPos"))
+  
+  self.rotationCenter = config.getParameter("rotationCenter", {0, 0})
 
   -- Initialize variables
   monster.setDamageBar("none")
@@ -92,6 +95,9 @@ function states.attack()
 end
 
 function states.activate()
+  animator.setAnimationState("body", "appear")
+  animator.setAnimationState("gun", "appear")
+
   util.wait(self.activationTime)
 
   for _, angle in pairs(self.angles) do
@@ -108,6 +114,11 @@ function states.deactivate()
   end
 
   turn(self.angles[1], self.turnTime)
+  
+  animator.setAnimationState("body", "disappear")
+  animator.setAnimationState("gun", "disappear")
+  
+  util.wait(self.deactivationTime)
   
   status.setResourcePercentage("health", 0.0)
 end
@@ -156,8 +167,21 @@ function getTarget()
 end
 
 function fire(aimVec)
+  animator.setAnimationState("gun", "fire")
+  animator.playSound("fire")
+
+  local angle = vec2.angle(aimVec)
+  local position = vec2.add(
+    mcontroller.position(), 
+    vec2.add(
+      vec2.rotate(self.projectileOffset, angle),
+      self.rotationCenter
+    )
+  )
+
   aimVec = shakeVector(aimVec, self.inaccuracy)
-  world.spawnProjectile(self.projectileType, self.cameraPos, entity.id(), aimVec, false, self.projectileParameters)
+
+  world.spawnProjectile(self.projectileType, position, entity.id(), aimVec, false, self.projectileParameters)
 end
 
 function shakeVector(vector, inaccuracy)

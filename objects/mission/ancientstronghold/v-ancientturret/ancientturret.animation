@@ -1,15 +1,13 @@
 {
   "animatedParts" : {
     "stateTypes" : {
-      "gun" : {
+      "base" : {
         "default" : "idle",
         "states" : {
-          "idle" : {},
-          "fire" : {
-            "frames" : 3,
-            "cycle" : 0.3,
-            "mode" : "transition",
-            "transition" : "idle"
+          "idle" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
           }
         }
       },
@@ -53,41 +51,62 @@
         "properties" : {
           "centered" : true,
           "zLevel" : 2,
-          "fullbright" : false,
-          "image" : "<partImage>",
+          "fullbright" : true,
           "offset" : [0, 0],
           "cameraPos" : [2, 2]
-        }
-      },
-      "gun" : {
-        "properties" : {
-          "centered" : true,
-          "zLevel" : 2,
-          "fullbright" : false,
-          "image" : "<partImage>",
-          "offset" : [0, 0],
-          "transformationGroups" : ["gun"]
         },
 
         "partStates" : {
-          "gun" : {
+          "base" : {
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
-              }
-            },
-            "fire" : {
-              "properties" : {
-                "image" : "<partImage>:fire.<frame>"
               }
             }
           }
         }
       },
+      "baselit" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 3,
+          "fullbright" : false,
+          "anchorPart" : "base"
+        },
+
+        "partStates" : {
+          "base" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "gun" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 4,
+          "fullbright" : true,
+          "image" : "<partImage>",
+          "offset" : [0.125, 0],
+          "transformationGroups" : ["gun"]
+        }
+      },
+      "gunlit" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 5,
+          "fullbright" : false,
+          "image" : "<partImage>",
+          "anchorPart" : "gun"
+        }
+      },
       "laser" : {
         "properties" : {
           "offset" : [20, 0],
-          "zLevel" : 4,
+          "zLevel" : 6,
           "transformationGroups" : [ "gun", "laser" ],
           "fullbright" : true
         },
@@ -142,6 +161,7 @@
   "lights" : {
     "flashlight" : {
       "transformationGroups" : ["gun"],
+      "position" : [0.5, 0.5],
       "color" : [153, 142, 121],
       "pointLight" : true,
       "pointBeam" : 5,

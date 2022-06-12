@@ -4,13 +4,56 @@
       "gun" : {
         "default" : "idle",
         "states" : {
-          "idle" : {},
+          "invisible" : {},
+          "appear" : {
+            "frames" : 10,
+            "cycle" : 1.0,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/monster_grow.ogg"
+            }
+          },
+          "disappear" : {
+            "frames" : 10,
+            "cycle" : 1.0,
+            "mode" : "transition",
+            "transition" : "invisible",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/monster_grow.ogg",
+              "lightsOff" : ["flashlight"]
+            }
+          },
+          "idle" : {
+            "properties" : {
+              "lightsOn" : ["flashlight"]
+            }
+          },
           "fire" : {
             "frames" : 3,
             "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "idle"
           }
+        }
+      },
+      "body" : {
+        "default" : "idle",
+        "states" : {
+          "invisible" : {},
+          "appear" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "disappear" : {
+            "frames" : 10,
+            "cycle" : 1.0,
+            "mode" : "transition",
+            "transition" : "invisible"
+          },
+          "idle" : {}
         }
       }
     },
@@ -21,23 +64,79 @@
           "centered" : true,
           "zLevel" : 2,
           "fullbright" : false,
-          "image" : "<partImage>",
           "offset" : [0, 0],
           "cameraPos" : [0, 0]
+        },
+
+        "partStates" : {
+          "body" : {
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
+              }
+            },
+            "disappear" : {
+              "properties" : {
+                "image" : "<partImage>:disappear.<frame>"
+              }
+            },
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 3,
+          "fullbright" : true,
+          "anchorPart" : "body"
+        },
+
+        "partStates" : {
+          "body" : {
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
+              }
+            },
+            "disappear" : {
+              "properties" : {
+                "image" : "<partImage>:disappear.<frame>"
+              }
+            },
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
         }
       },
       "gun" : {
         "properties" : {
           "centered" : true,
-          "zLevel" : 3,
+          "zLevel" : 4,
           "fullbright" : false,
-          "image" : "<partImage>",
-          "offset" : [0, 0],
+          "offset" : [0.125, 0],
           "transformationGroups" : ["gun"]
         },
 
         "partStates" : {
           "gun" : {
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
+              }
+            },
+            "disappear" : {
+              "properties" : {
+                "image" : "<partImage>:disappear.<frame>"
+              }
+            },
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
@@ -50,19 +149,27 @@
             }
           }
         }
-      }/*,
+      },
       "gunfullbright" : {
         "properties" : {
           "centered" : true,
-          "zLevel" : 2,
+          "zLevel" : 5,
           "fullbright" : true,
-          "image" : "<partImage>",
-          "offset" : [0, 0],
-          "transformationGroups" : ["gun"]
+          "anchorPart" : "gun"
         },
 
         "partStates" : {
           "gun" : {
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
+              }
+            },
+            "disappear" : {
+              "properties" : {
+                "image" : "<partImage>:disappear.<frame>"
+              }
+            },
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
@@ -75,7 +182,7 @@
             }
           }
         }
-      }*/
+      }
     }
   },
   
@@ -83,6 +190,7 @@
     "flashlight" : {
       "transformationGroups" : ["gun"],
       "color" : [153, 142, 121],
+      "position" : [0.375, 0.625],
       "pointLight" : true,
       "pointBeam" : 5,
       "pointAngle" : 0,
@@ -110,6 +218,7 @@
 
   "sounds" : {
     "aggroHop" : [ ],
-    "deathPuff" : [ ]
+    "deathPuff" : [ ],
+    "fire" : [ "/sfx/gun/plasma_sniper4.ogg" ]
   }
 }

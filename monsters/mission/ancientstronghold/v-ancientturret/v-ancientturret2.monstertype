@@ -24,7 +24,7 @@
       {
         "offset" : [2.875, 0],
         "color" : [255, 0, 255, 128],
-        "length" : 120,
+        "length" : 60,
         "segments" : 6,
         "angle" : 0,
         "sourcePart" : "laserbeam",
@@ -33,7 +33,7 @@
       {
         "offset" : [2.875, 0],
         "color" : [0, 0, 255, 128],
-        "length" : 120,
+        "length" : 60,
         "segments" : 6,
         "angle" : 0,
         "sourcePart" : "laserbeam2",
@@ -54,10 +54,10 @@
 
       "hurtWaitForGround" : false,
 
-      "targetQueryRange" : 120,
+      "targetQueryRange" : 60,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
-      "keepTargetInRange" : 200,
+      "keepTargetInRange" : 100,
       "targetOutOfSightTime" : 5.0,
 
       "fleeActions" : [ ],

@@ -9,6 +9,7 @@ function init()
   self.frames = self.translationConfig.frames or 1
   self.isSolid = self.translationConfig.isSolid
   self.useHorizontal = self.translationConfig.useHorizontal
+  self.openMaterial = self.translationConfig.openMaterial
   
   if self.useHorizontal then
     self.endOffset = {self.direction * self.translationLength, 0}
@@ -47,7 +48,7 @@ function update(dt)
   -- and applying the result instead of calling util.easeInOutSin multiple times.
   
   if self.isSolid then
-    object.setMaterialSpaces(storage.spaceStates[math.floor(util.lerp(progress, 1, #storage.spaceStates + 1))])
+    object.setMaterialSpaces(storage.spaceStates[math.floor(util.lerp(progress, 1, #storage.spaceStates))])
   end
   
   animator.setGlobalTag("doorProgress", math.floor(util.lerp(progress, 1, self.frames)))
@@ -90,6 +91,8 @@ function setupMaterialSpaces()
       for _, space in ipairs(spaces) do
         if (self.direction == -1 and space[1] <= x) or (self.direction == 1 and space[1] >= x) then
           table.insert(spaceState, {space, "metamaterial:door"})
+        elseif self.openMaterial then
+          table.insert(spaceState, {space, self.openMaterial})
         end
       end
       table.insert(storage.spaceStates, spaceState)
@@ -105,11 +108,23 @@ function setupMaterialSpaces()
       for _, space in ipairs(spaces) do
         if (self.direction == -1 and space[2] <= y) or (self.direction == 1 and space[2] >= y) then
           table.insert(spaceState, {space, "metamaterial:door"})
+        elseif self.openMaterial then
+          table.insert(spaceState, {space, self.openMaterial})
         end
       end
       table.insert(storage.spaceStates, spaceState)
     end
   end
+  
+  local spaceState = {}
+
+  if self.openMaterial then
+    for _, space in ipairs(spaces) do
+      table.insert(spaceState, {space, self.openMaterial})
+    end
+  end
+
+  table.insert(storage.spaceStates, spaceState)
 end
 
 function getXRange(poly)

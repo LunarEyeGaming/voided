@@ -23,11 +23,12 @@
   "inventoryIcon" : "icon.png",
   "orientations" : [
     {
-      "image" : "base.png",
+      "image" : "base.png:idle.1",
       "imagePosition" : [0, 0],
       
       "animationParts" : {
         "base" : "base.png",
+        "baselit" : "baselit.png",
         "gun" : "gun.png"
       },
 
@@ -36,12 +37,13 @@
       "angleOffset" : 0
     },
     {
-      "image" : "baseleft.png",
+      "image" : "baseleft.png:idle.1",
       "imagePosition" : [0, 0],
       "angleOffset" : -90,
       
       "animationParts" : {
         "base" : "baseleft.png",
+        "baselit" : "baseleftlit.png",
         "gun" : "gun.png"
       },
 
@@ -49,12 +51,13 @@
       "anchors" : [ "left" ]
     },
     {
-      "image" : "baseright.png",
+      "image" : "baseright.png:idle.1",
       "imagePosition" : [0, 0],
       "angleOffset" : 90,
       
       "animationParts" : {
         "base" : "baseright.png",
+        "baselit" : "baserightlit.png",
         "gun" : "gun.png"
       },
 
@@ -62,12 +65,13 @@
       "anchors" : [ "right" ]
     },
     {
-      "image" : "baseup.png",
+      "image" : "baseup.png:idle.1",
       "imagePosition" : [0, 0],
       "angleOffset" : 180,
       
       "animationParts" : {
         "base" : "baseup.png",
+        "baselit" : "baseuplit.png",
         "gun" : "gun.png"
       },
 
@@ -98,6 +102,8 @@
     "damageSourceKind" : "plasma",
     "teamType" : "enemy"
   },
+  
+  "beamOffset" : [1.75, 0],
 
   "animation" : "/objects/mission/ancientstronghold/v-ancientturret/ancientturret.animation",
   "animationCustom" : {
@@ -110,7 +116,9 @@
 
   "animationParts" : {
     "base" : "base.png",
+    "baselit" : "baselit.png",
     "gun" : "gun.png",
+    "gunlit" : "gunlit.png",
     "laser" : "laser.png"
   },
   "animationPosition" : [16, 16]

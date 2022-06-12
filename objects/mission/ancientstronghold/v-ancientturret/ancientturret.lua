@@ -210,6 +210,7 @@ end
 
 function states.deactivate()
   self.target = nil
+  animator.setAnimationState("laser", "inactive")
   turn(self.angles[1], self.turnTime)
   states.noop()
 end
