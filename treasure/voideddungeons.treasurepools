@@ -1,0 +1,20 @@
+{
+  "v-ancientstrongholdReward" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.1, "item" : [ "techcard", 1]},
+        {"weight" : 0.1, "item" : [ "solariumstar", 20]},
+        {"weight" : 0.1, "item" : [ "money", 1000]},
+        {"weight" : 0.1, "pool" : "rareGun"},
+        {"weight" : 0.15, "pool" : "rareMelee"},
+        {"weight" : 0.1, "pool" : "shield"}
+      ],
+      "poolRounds" : [
+        [0.5, 4],
+        [0.5, 5]
+      ],
+      "allowDuplication" : false
+    }]
+  ]
+}

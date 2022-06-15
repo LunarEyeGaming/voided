@@ -1,0 +1,108 @@
+{
+  "globalTagDefaults" : {
+  },
+
+  "animatedParts" : {
+    "stateTypes" : {
+      "teleporter" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "activate" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "active"
+          },
+          "active" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
+          "deactivate" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "bg" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : true
+        },
+
+        "partStates" : {
+          "teleporter" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.idle.<frame>"
+              }
+            },
+
+            "activate" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.activate.<frame>"
+              }
+            },
+
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.active.<frame>"
+              }
+            },
+
+            "deactivate" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.deactivate.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "fg" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1
+        },
+
+        "partStates" : {
+          "teleporter" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.idle.<frame>"
+              }
+            },
+
+            "activate" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.activate.<frame>"
+              }
+            },
+
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.active.<frame>"
+              }
+            },
+
+            "deactivate" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.deactivate.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "sounds" : {
+    "on" : [],
+    "off" : []
+  }
+}

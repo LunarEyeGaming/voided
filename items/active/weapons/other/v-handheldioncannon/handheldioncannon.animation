@@ -160,9 +160,9 @@
       "color" : [59, 217, 215],
       "position" : [0, 0],
 
-      "flickerPeriod" : 1,
-      "flickerPeriodVariance" : 0.1,
-      "flickerMinIntensity" : 0.6,
+      "flickerPeriod" : 0.1,
+      "flickerPeriodVariance" : 0.05,
+      "flickerMinIntensity" : 0.75,
       "flickerMaxIntensity" : 0.8,
       "flickerIntensityVariance" : 0.0
     }
@@ -181,19 +181,31 @@
             "position" : [0, 0],
             "initialVelocity" : [0, 0.0],
             "finalVelocity" : [0, 0.0],
-            "approach" : [0, 10],
             "fade" : 1,
             "destructionAction" : "shrink",
             "destructionTime" : 0.3,
             "size" : 0.6,
-            "timeToLive" : 0.5,
+            "timeToLive" : 0.0,
             "fullbright" : true,
             "layer" : "front",
             "light" : [59, 217, 215],
+            "collidesForeground" : false
+          }
+        },
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/transparentpoof/transparentpoof.animation",
+            "position" : [0, 0],
+            "initialVelocity" : [0, 0.0],
+            "finalVelocity" : [0, 0.0],
+            "approach" : [4, 4],
+            "size" : 1.0,
+            "timeToLive" : 0.45,
+            "layer" : "front",
             "collidesForeground" : false,
             "variance" : {
-              "position" : [0.0, 0.0],
-              "initialVelocity" : [0, 0]
+              "initialVelocity" : [2, 2]
             }
           }
         }

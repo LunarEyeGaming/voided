@@ -1,0 +1,97 @@
+{
+  "projectileName" : "v-ancientclusterball",
+  "physics" : "hover",
+  "bounces" : 3,
+  "speed" : 30,
+  "timeToLive" : 5,
+  "lightColor" : [83, 28, 97],
+  "image" : "ancientclusterball.png",
+  "animationCycle" : 1.0,
+  "frameNumber" : 2,
+  "fullbright" : true,
+  "power" : 10,
+  "damagePoly" : [ [-5, 5], [-5, -5], [5, -5], [5, 5] ],
+  "supportsProcessing" : true,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-ancientexplosion/ancientexplosion.config"
+    }
+  ],
+  "actionOnTimeout" : [
+    {
+      "action" : "projectile",
+      "type" : "v-ancientorbsmallg",
+      "inheritDamageFactor" : 0.2,
+      "angleAdjust" : 0,
+      "config" : {
+        "damageType" : "nodamage"
+      }
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-ancientorbsmallg",
+      "inheritDamageFactor" : 0.2,
+      "angleAdjust" : 45,
+      "config" : {
+        "damageType" : "nodamage"
+      }
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-ancientorbsmallg",
+      "inheritDamageFactor" : 0.2,
+      "angleAdjust" : 90,
+      "config" : {
+        "damageType" : "nodamage"
+      }
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-ancientorbsmallg",
+      "inheritDamageFactor" : 0.2,
+      "angleAdjust" : 135,
+      "config" : {
+        "damageType" : "nodamage"
+      }
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-ancientorbsmallg",
+      "inheritDamageFactor" : 0.2,
+      "angleAdjust" : 180,
+      "config" : {
+        "damageType" : "nodamage"
+      }
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-ancientorbsmallg",
+      "inheritDamageFactor" : 0.2,
+      "angleAdjust" : 225,
+      "config" : {
+        "damageType" : "nodamage"
+      }
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-ancientorbsmallg",
+      "inheritDamageFactor" : 0.2,
+      "angleAdjust" : 270,
+      "config" : {
+        "damageType" : "nodamage"
+      }
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-ancientorbsmallg",
+      "inheritDamageFactor" : 0.2,
+      "angleAdjust" : 315,
+      "config" : {
+        "damageType" : "nodamage"
+      }
+    }
+  ],
+  "damageKind" : "plasma",
+  "damageType" : "nodamage"
+}

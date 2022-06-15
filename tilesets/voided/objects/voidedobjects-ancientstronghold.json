@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-ancientstronghold",
  "spacing":0,
- "tilecount":31,
+ "tilecount":33,
  "tileheight":176,
  "tileproperties":
     {
@@ -185,6 +185,20 @@
          "imagePositionX":"0",
          "imagePositionY":"0",
          "object":"v-ancientcodepiece3",
+         "tilesetDirection":"right"
+        },
+     "31":
+        {
+         "imagePositionX":"-24",
+         "imagePositionY":"0",
+         "object":"v-strongholdremoteteleporter",
+         "tilesetDirection":"right"
+        },
+     "32":
+        {
+         "imagePositionX":"-24",
+         "imagePositionY":"0",
+         "object":"v-strongholdspawnteleporter",
          "tilesetDirection":"right"
         },
      "4":
@@ -407,6 +421,20 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "31":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "32":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "4":
         {
          "imagePositionX":"string",
@@ -581,14 +609,14 @@
      "28":
         {
          "image":"..\/images\/objects\/ancientcodepiece1.png",
-         "imageheight":80,
-         "imagewidth":40
+         "imageheight":32,
+         "imagewidth":80
         },
      "29":
         {
          "image":"..\/images\/objects\/ancientcodepiece2.png",
-         "imageheight":48,
-         "imagewidth":56
+         "imageheight":32,
+         "imagewidth":80
         },
      "3":
         {
@@ -599,8 +627,20 @@
      "30":
         {
          "image":"..\/images\/objects\/ancientcodepiece3.png",
-         "imageheight":40,
-         "imagewidth":72
+         "imageheight":32,
+         "imagewidth":80
+        },
+     "31":
+        {
+         "image":"..\/images\/objects\/strongholdremoteteleporter.png",
+         "imageheight":64,
+         "imagewidth":48
+        },
+     "32":
+        {
+         "image":"..\/images\/objects\/strongholdspawnteleporter.png",
+         "imageheight":64,
+         "imagewidth":48
         },
      "4":
         {

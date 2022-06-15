@@ -1,0 +1,21 @@
+{
+  "name" : "v-ancientstrongholdteleport",
+
+  "effectConfig" : {
+    "targetUid" : "checkpoint",
+    "cinematicTime" : 0.75,
+    "teleportTime" : 1.5,
+    "appearTime" : 1.5,
+    "teleportCinematic" : "/cinematics/v-teleportfade.cinematic",
+    "teleportOffset" : [0, 3.5],
+
+    "beamInStatusEffect" : "v-ancientstrongholdbeamin"
+  },
+  "defaultDuration" : 5.0,
+
+  "scripts" : [
+    "v-ancientstrongholdteleport.lua"
+  ],
+  
+  "animationConfig" : "v-ancientstrongholdteleport.animation"
+}

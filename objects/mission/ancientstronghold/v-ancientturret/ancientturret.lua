@@ -221,7 +221,7 @@ function wait()
 end
 
 function turn(angle, turnTime)
-  local startAngle = self.currentAngle
+  local startAngle = findClosestAngle(self.currentAngle, angle)
   local timer = 0
   util.wait(turnTime, function(dt)
     timer = math.min(timer + dt, turnTime)
@@ -287,4 +287,14 @@ end
 function updateLaser()
   animator.resetTransformationGroup("laser")
   animator.translateTransformationGroup("laser", vec2.rotate(self.beamOffset, self.currentAngle))
+end
+
+function findClosestAngle(angle, targetAngle)
+  if math.abs(angle + 2 * math.pi - targetAngle) < math.abs(angle - targetAngle) then
+    return angle + 2 * math.pi
+  elseif math.abs(angle - 2 * math.pi - targetAngle) < math.abs(angle - targetAngle) then
+    return angle - 2 * math.pi
+  else
+    return angle
+  end
 end

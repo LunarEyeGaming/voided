@@ -1,0 +1,20 @@
+{
+  "projectileName" : "v-ancientorbsmallg",
+  "image" : "ancientorbsmallg.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "fullbright" : true,
+  "power" : 10,
+  "physics" : "grenade",
+  "damageKind" : "plasma",
+  "lightColor" : [39, 13, 46],
+  "actionOnReap" : [ 
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-ancientlaserexplosion/ancientlaserexplosion.config"
+    }
+  ],
+
+  "speed" : 40,
+  "timeToLive" : 5.0
+}

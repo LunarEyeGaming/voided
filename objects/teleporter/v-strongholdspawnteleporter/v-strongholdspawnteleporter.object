@@ -1,0 +1,75 @@
+{
+  "objectName" : "v-strongholdspawnteleporter",
+  "objectType" : "teleporter",
+  "colonyTags" : ["misc"],
+  "printable" : false,
+  "price" : 3000,
+  "rarity" : "Common",
+  "description" : "This teleporter should get me back to the Stronghold's entrance.",
+  "shortdescription" : "Stronghold Spawn Teleporter",
+  "race" : "ancient",
+
+  "apexDescription" : "This looks like it might be linked to this stronghold's entrance.",
+  "avianDescription" : "This teleporter looks like it might provide a quick route to this stronghold's entrance.",
+  "floranDescription" : "Thisss might take Floran ssstraight to the entranccce.",
+  "glitchDescription" : "Analytical. I believe this teleporter is connected to the entrance.",
+  "humanDescription" : "Judging by the look of this teleporter, I'd guess it connects right to the entrance.",
+  "hylotlDescription" : "I believe this teleporter might lead to the entrance.",
+  "novakidDescription" : "A handy way to get back to the entrance and on to the next section!",
+
+  "category" : "teleporter",
+  "lightColor" : [56, 102, 124],
+
+  "interactable" : true,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "strongholdspawnteleporter.png:<color>.<frame>", "fullbright" : true }, { "image" : "strongholdspawnteleporterlit.png:<color>.<frame>" } ],
+
+      "imagePosition" : [-24, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+      "collision" : "solid",
+      "collisionSpaces" : [ [-3, 0], [-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0] ]
+    }
+  ],
+  
+  "teleporterFootPosition" : [0, 1],
+  
+  "chains" : {
+    "startOffsets" : [[-2.25, 6.75], [0, 7.5], [2.25, 6.75]],
+    "activeDuration" : 0.75,
+    "properties" : {
+      "startSegmentImage" : "/objects/teleporter/v-strongholdspawnteleporter/lasersegment.png",
+      "segmentImage" : "/objects/teleporter/v-strongholdspawnteleporter/lasersegment.png",
+      "endSegmentImage" : "/objects/teleporter/v-strongholdspawnteleporter/lasersegment.png",
+      "segmentSize" : 0.48,
+      "overdrawLength" : 0.2,
+      "taper" : 0,
+      "waveform" : {
+        "frequency" : 2,
+        "amplitude" : 0.12,
+        "movement" : 10
+      },
+      "fullbright" : true
+    }
+  },
+  
+  "beamDelay" : 0.5,
+  "deactivationDelay" : 0.5,
+  
+  "scripts" : [ "/objects/teleporter/v-strongholdspawnteleporter/v-strongholdspawnteleporter.lua" ],
+  
+  "animationScripts" : [ "/items/active/effects/chain.lua" ],
+
+  "animation" : "v-strongholdspawnteleporter.animation",
+
+  "animationParts" : {
+    "fg" : "strongholdspawnteleporterlit.png",
+    "bg" : "strongholdspawnteleporter.png"
+  },
+  "animationPosition" : [-24, 0]
+
+}

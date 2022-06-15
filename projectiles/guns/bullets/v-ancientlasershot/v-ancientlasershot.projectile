@@ -1,5 +1,5 @@
 {
-  "projectileName" : "v-ancientlasershoterratic",
+  "projectileName" : "v-ancientlasershot",
   "physics" : "laser",
   "image" : "ancientlasershot.png",
   "damageKindImage" : "icon.png",
@@ -7,7 +7,7 @@
   "animationCycle" : 0.5,
   "frameNumber" : 2,
   "power" : 50,
-  "timeToLive" : 2,
+  "timeToLive" : 5,
   "fullbright" : true,
   "periodicActions" : [
     {
@@ -39,11 +39,5 @@
   ],
   "emitters" : [ ],
   "damageKind" : "plasmabullet",
-  "lightColor" : [83, 28, 97],
-  
-  "scripts" : ["v-ancientlasershoterratic.lua"],
-  "scriptDelta" : 1,
-  
-  "turnRate" : 0.2,
-  "turnEndTime" : 1.5
+  "lightColor" : [83, 28, 97]
 }

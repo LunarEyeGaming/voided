@@ -1,0 +1,113 @@
+{
+  "itemName" : "v-ancientshotgun",
+  "price" : 1080,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "description" : "An ancient gun that fires large bursts of bullets, fabricated by you.",
+  "shortdescription" : "^magenta;Ancient Shotgun^reset;",
+  "tooltipKind" : "gun",
+  "category" : "shotgun",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged","shotgun"],
+  "level" : 8,
+  
+  //"critChance" : 2,
+  //"critBonus" : 5,
+
+  "inventoryIcon" : [
+    { "image" : "ancientshotgunicon.png" }
+  ],
+
+  "animation" : "v-ancientshotgun.animation",
+  "animationParts" : {
+    "gun" : "gun.png",
+    "gunFullbright" : "gunfullbright.png",
+    "shells" : "shells.png",
+    "muzzleFlash" : "/items/active/weapons/ranged/v-muzzleflashes/ancientmuzzleflash.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : ["/sfx/gun/v_ancientshotgun_fire.ogg"], "altFire" : ["/sfx/gun/v_ancientshotgun_altfire.ogg"]
+    } /*,
+    "lights" : {
+      "muzzleFlash" : {
+        "color" : [150, 0, 150]
+      }
+    }*/
+  },
+
+  "baseOffset" : [0.0, 0.0],
+  "muzzleOffset" : [3.875, 0.8125],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+
+  "elementalType" : "physical",
+
+  "primaryAbility" : {
+    "scripts" : ["/items/active/weapons/ranged/gunfire.lua"],
+    "class" : "GunFire",
+
+    "fireTime" : 1.0,
+    "baseDps" : 9,
+    "energyUsage" : 60,
+    "projectileCount" : 5,
+    "inaccuracy" : 0.07,
+    "fireType" : "auto",
+
+    "projectileType" : "v-ancientlasershot",
+    "projectileParameters" : {},
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 8,
+        "weaponRotation" : 8,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+
+        "animationStates" : {
+          "gun" : "fire",
+          "shells" : "fire"
+        }
+      },
+      "cooldown" : {
+        "duration" : 0.2,
+        "armRotation" : 8,
+        "weaponRotation" : 8,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  },
+
+  "altAbilityType" : "explosiveshot",
+  "altAbility" : {
+    "name" : "Cluster Ball",
+    "elementalConfig" : {
+      "physical" : {
+        "projectileType" : "v-ancientclusterball"
+      }
+    },
+    "energyUsage" : 125,
+    "fireTime" : 2.0,
+    "projectileCount" : 1,
+    "inaccuracy" : 0.03,
+    "baseDamage" : 8,
+    "baseDps" : 5,
+    "useParticleEmitter" : false
+  },
+
+  "builder" : "/items/buildscripts/buildunrandweapon.lua"
+}

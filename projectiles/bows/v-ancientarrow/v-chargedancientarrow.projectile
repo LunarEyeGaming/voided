@@ -1,0 +1,56 @@
+{
+  "projectileName" : "v-chargedancientarrow",
+
+  "image" : "chargedancientarrow.png",
+  "animationCycle" : 0.5,
+  "frameNumber" : 2,
+
+  "physics" : "laser",
+  "bounces" : 0,
+  "scripts" : [ "/scripts/projectiles/homingprojectile.lua" ],
+  "scriptDelta" : 1,
+  "lightColor" : [130, 70, 160],
+  "fullbright" : true,
+  "timeToLive" : 10,
+  "damagePoly" : [ [-10, 0], [2, 4], [10, 0], [2, -4] ],
+  "power" : 20,
+  "knockback" : 10,
+  "knockbackDirectional" : true,
+  "damageKind" : "bow",
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "config",
+      "file" : "/projectiles/bows/v-ancientarrow/fire.config"
+    },
+    {
+      "action" : "particle",
+      "specification" : "ancientenergy1",
+      "time" : 0.05,
+      "repeat" : true
+    },
+    {
+      "action" : "particle",
+      "specification" : "ancientenergy2",
+      "time" : 0.05,
+      "repeat" : true
+    },
+    {
+      "action" : "particle",
+      "specification" : "ancientenergy3",
+      "time" : 0.05,
+      "repeat" : true
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-chargedancientarrowexplosion/chargedancientarrowexplosion.config"
+    }
+  ],
+
+  "homingDistance" : 20,
+  "rotationRate" : 2,
+  "trackingLimit" : 3
+}

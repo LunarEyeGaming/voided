@@ -1,0 +1,87 @@
+{
+  "itemName" : "v-ancientpistol",
+  "price" : 480,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "description" : "A small sidearm that fires ancient lasers.",
+  "shortdescription" : "^magenta;Ancient Pistol^reset;",
+  "tooltipKind" : "gun",
+  "category" : "Pistol",
+  "twoHanded" : false,
+  "itemTags" : ["weapon","ranged","pistol"],
+  "level" : 8,
+
+  "inventoryIcon" : "ancientpistol.png",
+
+  "animation" : "v-ancientpistol.animation",
+  "animationParts" : {
+    "gun" : "ancientpistol.png",
+    "gunFullbright" : "ancientpistolfullbright.png",
+    "muzzleFlash" : "/items/active/weapons/ranged/v-muzzleflashes/ancientmuzzleflash.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : ["/sfx/gun/v_ancientpistol_fire.ogg"]
+    },
+    "lights" : {
+      "muzzleFlash" : {
+        "color" : [100, 0, 100]
+      }
+    }
+  },
+
+  "baseOffset" : [1.0, 0.25],
+  "muzzleOffset" : [1.25, 0.25],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+
+  "elementalType" : "physical",
+
+  "primaryAbility" : {
+    "scripts" : ["/items/active/weapons/ranged/gunfire.lua"],
+    "class" : "GunFire",
+
+    "fireTime" : 0.3,
+    "baseDps" : 8.0,
+    "energyUsage" : 40,
+    "inaccuracy" : 0.02,
+
+    "projectileCount" : 1,
+    "fireType" : "auto",
+
+    "projectileType" : "v-ancientlasershot",
+    "projectileParameters" : {
+      "knockback" : 2
+    },
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : false,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 3,
+        "weaponRotation" : 3,
+        "twoHanded" : false,
+
+        "allowRotate" : false,
+        "allowFlip" : true
+      },
+      "cooldown" : {
+        "duration" : 0.11,
+        "armRotation" : 3,
+        "weaponRotation" : 3,
+        "twoHanded" : false,
+
+        "allowRotate" : false,
+        "allowFlip" : true
+      }
+    }
+  },
+
+  "builder" : "/items/buildscripts/buildunrandweapon.lua"
+}

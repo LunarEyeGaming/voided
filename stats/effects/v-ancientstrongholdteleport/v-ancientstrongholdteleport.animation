@@ -1,0 +1,47 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "teleport" : {
+        "default" : "none",
+        "states" : {
+          "none" : { },
+          "beamOut" : {
+            "frames" : 11,
+            "cycle" : 0.75,
+            "mode" : "transition",
+            "transition" : "none",
+            "properties" : {
+              "immediateSound" : "/sfx/tools/v_strongholdteleport.ogg"
+            },
+            "frameProperties" : {
+              "multiply" : [ "ffffffff", "ffffffff", "ffffffff", "ffffffff", "ffffff00", "ffffff00", "ffffff00", "ffffff00", "ffffff00", "ffffff00", "ffffff00" ]
+            }
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "base" : {
+        "properties" : {
+          "fullbright" : true,
+          "centered" : true
+        },
+        "partStates" : {
+          "teleport" : {
+            "none" : { },
+            "beamOut" : {
+              "properties" : {
+                "image" : "/animations/teleport/v-strongholdteleport.png:<frame><effectDirectives>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "globalTagDefaults" : {
+    "effectDirectives" : "",
+    "species" : ""
+  }
+}

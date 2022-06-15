@@ -1,0 +1,77 @@
+{
+  "itemName" : "v-ancientbow",
+  "price" : 960,
+  "inventoryIcon" : "ancientbowicon.png",
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "tooltipKind" : "bow",
+  "category" : "bow",
+  "description" : "An antique yet powerful hunting bow.",
+  "shortdescription" : "^magenta;Ancient Bow^reset;",
+  "twoHanded" : true,
+  "itemTags" : ["weapon", "ranged", "bow"],
+  
+  "critChance" : 10,
+  "critBonus" : 10,
+  
+  "radioMessagesOnPickup" : [ "pickupbow" ],
+
+  "level" : 8,
+
+  "animation" : "/items/active/weapons/bow/energybow.animation",
+  "animationParts" : {
+    "bow" : "ancientbow.png",
+    "bowFullbright" : "ancientbowfullbright.png"
+  },
+  "animationCustom" : {
+    "animatedParts" : {
+      "parts" : {
+        "bow" : {
+          "properties" : {
+            "offset" : [0, 0]
+          }
+        },
+        "bowFullbright" : { 
+          "properties" : {
+            "offset" : [0, 0]
+          }
+        }
+      }
+    },
+    "sounds" : {
+      "draw" : [ "/sfx/gun/v_ancientbow_draw.ogg" ],
+      "cue" : [ "/sfx/interface/sniper_mark_pitch7.ogg" ],
+      "release" : [ "/sfx/gun/v_ancientbow_fire.ogg" ],
+      "perfectRelease" : [ "/sfx/gun/v_ancientbow_fire_perfect.ogg" ]
+    }
+  },
+
+  "scripts" : ["/items/active/weapons/bow/bow.lua"],
+
+  "primaryAbilityType" : "v-bowshotimproved",
+  "primaryAbility" : {
+    "drawSpeedMultiplier" : "constant",
+    "projectileType" : "v-ancientarrow",
+    "powerProjectileType" : "v-chargedancientarrow",
+    "energyPerShot" : 50,
+    "projectileParameters" : {
+      "power" : 8,
+      "speed" : 90
+    }
+  },
+
+  "altAbilityType" : "v-bowshotimproved",
+  "altAbility" : {
+    "name" : "Sentry Arrow",
+    "energyPerShot" : 100,
+    "drawSpeedMultiplier" : "constant",
+    "projectileType" : "v-ancienttargetarrow",
+    "powerProjectileType" : "v-ancientsentryarrowtele",
+    "projectileParameters" : {
+      "power" : 6,
+      "speed" : 50
+    }
+  },
+
+  "builder" : "/items/buildscripts/buildbow.lua"
+}
