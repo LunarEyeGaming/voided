@@ -2,8 +2,8 @@
   "objectName" : "v-ancientfabricator",
   "colonyTags" : ["crafting"],
   "category" : "crafting",
-  "rarity" : "Essential",
-  "description" : "An ancient fabricator.",
+  "rarity" : "Legendary",
+  "description" : "An ancient machine used to craft ancient weapons and armor.",
   "shortdescription" : "^orange;Ancient Fabricator^reset;",
   "race" : "ancient",
   "interactAction" : "OpenCraftingInterface",
@@ -13,13 +13,13 @@
   },
   "price" : 500,
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "This ancient machine can be used to craft ancient weapons and armor.",
+  "avianDescription" : "An old piece of machinery that can be used to craft ancient weapons and armor.",
+  "floranDescription" : "Floran can make old weaponsss and armor.",
+  "glitchDescription" : "Excited. I can make antique, yet powerful, weapons and armor here!",
+  "humanDescription" : "I can make some old and powerful stuff with this machine.",
+  "hylotlDescription" : "I can make some old, yet technologically advanced, weapons and armor using this station.",
+  "novakidDescription" : "The guns outta this old machine will be pretty powerful.",
 
   "inventoryIcon" : "icon.png",
   "orientations" : [
@@ -30,8 +30,8 @@
       "lightPosition" : [0, 1],
 
       "imagePosition" : [-16, 0],
-      "frames" : 4,
-      "animationCycle" : 0.4,
+      "frames" : 8,
+      "animationCycle" : 0.8,
 
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]
@@ -42,8 +42,8 @@
       "lightPosition" : [0, 1],
 
       "imagePosition" : [-16, 0],
-      "frames" : 4,
-      "animationCycle" : 0.4,
+      "frames" : 8,
+      "animationCycle" : 0.8,
 
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]

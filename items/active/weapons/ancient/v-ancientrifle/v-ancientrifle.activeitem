@@ -3,8 +3,9 @@
   "price" : 1080,
   "maxStack" : 1,
   "rarity" : "Legendary",
+  "customRarity" : "Mythical",
   "description" : "An ancient rifle fabricated under your own hands.",
-  "shortdescription" : "^magenta;Ancient Rifle^reset;",
+  "shortdescription" : "Ancient Rifle",
   "tooltipKind" : "gun",
   "category" : "assaultRifle",
   "twoHanded" : true,
@@ -49,7 +50,7 @@
     "class" : "GunFire",
 
     "fireTime" : 0.1,
-    "baseDps" : 12,
+    "baseDps" : 6,
     "energyUsage" : 40,
     "projectileCount" : 1,
     "inaccuracy" : 0.02,
@@ -90,5 +91,5 @@
 
   "altAbilityType" : "v-ancientriflemodes",
 
-  "builder" : "/items/buildscripts/buildunrandweapon.lua"
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
 }

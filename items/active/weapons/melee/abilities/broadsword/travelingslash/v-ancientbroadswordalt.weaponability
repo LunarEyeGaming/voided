@@ -1,0 +1,47 @@
+{
+  "animationParts" : { },
+  "animationCustom" : {
+    "sounds" : {
+      "physicalTravelSlash" : [ "/sfx/melee/charge_full_swing2.ogg" ]
+    }
+  },
+
+  "ability" : {
+    "name" : "Crystal Slash",
+    "type" : "v-ancientbroadswordalt",
+    "scripts" : ["/items/active/weapons/melee/abilities/broadsword/travelingslash/v-ancientbroadswordalt.lua"],
+    "class" : "TravelingSlash",
+
+    "projectileOffset" : [0,0],
+    "elementalConfig" : {
+      "physical" : {
+        "projectileType" : "v-ancientbroadswordswoosh"
+      }
+    },
+
+    "baseDamage" : 7,
+    "energyUsage" : 300,
+    "cooldownTime" : 1.5,
+
+    "stances" : {
+      "windup" : {
+        "duration" : 0.25,
+        "armRotation" : 45,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : false
+      },
+      "fire" : {
+        "duration" : 0.4,
+        "armRotation" : -45,
+        "weaponRotation" : -90,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  }
+}

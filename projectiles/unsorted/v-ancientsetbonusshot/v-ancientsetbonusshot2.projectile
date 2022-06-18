@@ -1,0 +1,35 @@
+{
+  "projectileName" : "v-ancientsetbonusshot2",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/melee/laser_weapon_swing1.ogg", "/sfx/melee/laser_weapon_swing2.ogg", "/sfx/melee/laser_weapon_swing3.ogg" ]
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-ancientlaserexplosion/ancientlaserexplosion.config"
+    }
+  ],
+  "scripts" : [ "v-ancientsetbonusshot.lua" ],
+  "scriptDelta" : 1,
+  "renderLayer" : "ForegroundEntity+1",
+  "speed" : 75,
+  "image" : "ancientsetbonusshot2.png",
+  "animationCycle" : 0.1,
+  "frameNumber" : 1,
+  "orientationLocked" : true,
+  "lightColor" : [130, 70, 160],
+  "fullbright" : true,
+  "timeToLive" : 10,
+  "damagePoly" : [ [0, 3], [1.5, 1.5], [3, 0], [1.5, -1.5], [0, -3], [-1.5, -1.5], [-3, 0], [-1.5, 1.5] ],
+  "power" : 20,
+  "knockback" : 10,
+  "knockbackDirectional" : true,
+  "damageKind" : "plasma"
+}

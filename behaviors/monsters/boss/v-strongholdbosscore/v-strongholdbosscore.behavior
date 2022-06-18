@@ -3250,6 +3250,24 @@
                 "type": "action",
                 "name": "setAnimationState",
                 "parameters": {
+                  "state": {"value": "inactive"},
+                  "type": {"value": "laser1"}
+                }
+              },
+              {
+                "title": "setAnimationState",
+                "type": "action",
+                "name": "setAnimationState",
+                "parameters": {
+                  "state": {"value": "inactive"},
+                  "type": {"value": "laser2"}
+                }
+              },
+              {
+                "title": "setAnimationState",
+                "type": "action",
+                "name": "setAnimationState",
+                "parameters": {
                   "state": {"value": "disappear"},
                   "type": {"value": "cables"}
                 }

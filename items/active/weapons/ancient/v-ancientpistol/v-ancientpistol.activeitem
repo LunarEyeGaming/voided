@@ -3,8 +3,9 @@
   "price" : 480,
   "maxStack" : 1,
   "rarity" : "Legendary",
-  "description" : "A small sidearm that fires ancient lasers.",
-  "shortdescription" : "^magenta;Ancient Pistol^reset;",
+  "customRarity" : "Mythical",
+  "description" : "A small sidearm that fires ancient lasers, made by you.",
+  "shortdescription" : "Ancient Pistol",
   "tooltipKind" : "gun",
   "category" : "Pistol",
   "twoHanded" : false,
@@ -42,7 +43,7 @@
     "class" : "GunFire",
 
     "fireTime" : 0.3,
-    "baseDps" : 8.0,
+    "baseDps" : 5.0,
     "energyUsage" : 40,
     "inaccuracy" : 0.02,
 
@@ -83,5 +84,5 @@
     }
   },
 
-  "builder" : "/items/buildscripts/buildunrandweapon.lua"
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
 }

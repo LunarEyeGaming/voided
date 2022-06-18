@@ -3,8 +3,9 @@
   "price" : 1080,
   "maxStack" : 1,
   "rarity" : "Legendary",
+  "customRarity" : "Mythical",
   "description" : "An ancient gun that fires large bursts of bullets, fabricated by you.",
-  "shortdescription" : "^magenta;Ancient Shotgun^reset;",
+  "shortdescription" : "Ancient Shotgun",
   "tooltipKind" : "gun",
   "category" : "shotgun",
   "twoHanded" : true,
@@ -37,7 +38,7 @@
   },
 
   "baseOffset" : [0.0, 0.0],
-  "muzzleOffset" : [3.875, 0.8125],
+  "muzzleOffset" : [3.625, 0.5625],
 
   "scripts" : ["/items/active/weapons/ranged/gun.lua"],
 
@@ -48,7 +49,7 @@
     "class" : "GunFire",
 
     "fireTime" : 1.0,
-    "baseDps" : 9,
+    "baseDps" : 7,
     "energyUsage" : 60,
     "projectileCount" : 5,
     "inaccuracy" : 0.07,
@@ -109,5 +110,5 @@
     "useParticleEmitter" : false
   },
 
-  "builder" : "/items/buildscripts/buildunrandweapon.lua"
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
 }

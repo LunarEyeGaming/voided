@@ -1,0 +1,14 @@
+{
+  "name" : "v-ancienthead",
+
+  "effectConfig" : {
+    "chestEffect" : "v-ancientchestplate",
+    "pantsEffect" : "v-ancientpants",
+    "setBonuses" : [{"effect" : "v-ancientsetbonus", "duration" : 1}]
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "v-setbonuscheck.lua"
+  ]
+}

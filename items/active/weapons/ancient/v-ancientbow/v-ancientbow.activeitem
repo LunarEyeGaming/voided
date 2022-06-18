@@ -4,10 +4,11 @@
   "inventoryIcon" : "ancientbowicon.png",
   "maxStack" : 1,
   "rarity" : "Legendary",
+  "customRarity" : "Mythical",
   "tooltipKind" : "bow",
   "category" : "bow",
   "description" : "An antique yet powerful hunting bow.",
-  "shortdescription" : "^magenta;Ancient Bow^reset;",
+  "shortdescription" : "Ancient Bow",
   "twoHanded" : true,
   "itemTags" : ["weapon", "ranged", "bow"],
   
@@ -73,5 +74,5 @@
     }
   },
 
-  "builder" : "/items/buildscripts/buildbow.lua"
+  "builder" : "/items/buildscripts/v-buildbow.lua"
 }

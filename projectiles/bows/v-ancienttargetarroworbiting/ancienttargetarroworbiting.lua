@@ -5,7 +5,7 @@ function init()
   self.orbitPeriod = config.getParameter("orbitPeriod")
   self.orbitControlForce = config.getParameter("orbitControlForce")
   self.masterId = config.getParameter("masterId")
-  self.startAngle = config.getParameter("startAngle")
+  self.startAngle = config.getParameter("startAngle", 0)
   self.orbitAngle = self.startAngle
 
   self.projectileType = config.getParameter("firedProjectile")

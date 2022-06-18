@@ -1,0 +1,31 @@
+{
+  "projectileName" : "v-ancientbroadswordswoosh",
+  "image" : "ancientbroadswordswoosh.png",
+  "animationCycle" : 0.3,
+  "timeToLive" : 0.3,
+  "frameNumber" : 5,
+  "speed" : 100,
+  "orientationLocked" : true,
+  "damagePoly" : [ [-8, 26], [39, 26], [39, -26], [-8, -26] ],
+  "animationLoops" : true,
+  "piercing" : true,
+  "bounces" : 0,
+  "flippable" : true,
+  "damageKind" : "plasma",
+  "emitters" : [ ],
+  "lightColor" : [130, 70, 160],
+  "fullbright" : true,
+  "statusEffects" : [],
+  "knockback" : 10,
+  "knockbackDirectional" : true,
+  
+  "periodicActions" : [
+    {
+      "time" : 0.03,
+      "action" : "projectile",
+      "type" : "v-ancientbroadswordcrystal",
+      "offsetRange" : [-2, -2, 2, 2],
+      "inheritDamageFactor" : 0.3
+    }
+  ]
+}

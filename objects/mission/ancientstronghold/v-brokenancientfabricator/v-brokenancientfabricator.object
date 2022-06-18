@@ -1,0 +1,48 @@
+{
+  "objectName" : "v-brokenancientfabricator",
+  "colonyTags" : ["misc"],
+  "printable" : false,
+  "price" : 3000,
+  "rarity" : "Common",
+  "description" : "An old object of unknown purpose with glowing core in its center.",
+  "shortdescription" : "Broken Ancient Fabricator",
+  "race" : "ancient",
+
+  "apexDescription" : "A broken machine with a small orb inside it. Maybe I should collect it.",
+  "avianDescription" : "The small orb inside this broken machine could prove useful to me.",
+  "floranDescription" : "Floran can't usse machine, but Floran sssees shiny orb.",
+  "glitchDescription" : "Observant. This machine no longer works, but that small orb could be useful.",
+  "humanDescription" : "This old object doesn't work anymore, but I could use that small orb inside it.",
+  "hylotlDescription" : "An old machine that has long lost its functionality. I might be able to use the small orb in its center.",
+  "novakidDescription" : "This thing's broken, but I might be able to do somethin' with that lil' orb floatin' inside it.",
+
+  "category" : "decorative",
+
+  "interactable" : true,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "brokenancientfabricator.png:<frame>", "fullbright" : true }, { "image" : "brokenancientfabricatorlit.png:<frame>" } ],
+
+      "imagePosition" : [-16, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+  
+  "scripts" : [ "/objects/mission/ancientstronghold/v-brokenancientfabricator/v-brokenancientfabricator.lua" ],
+
+  "animation" : "v-brokenancientfabricator.animation",
+
+  "animationParts" : {
+    "fg" : "brokenancientfabricatorlit.png",
+    "bg" : "brokenancientfabricator.png"
+  },
+  "animationPosition" : [-16, 0],
+  
+  "itemDrop" : "v-ancientfabricatorcore",
+  "itemSpawnOffset" : [0, 2]
+
+}

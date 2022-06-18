@@ -1,28 +1,22 @@
 {
   "projectileName" : "v-ancientbroadswordcrystal",
-  "physics" : "hover",
-  "timeToLive" : 6.35,
+  "physics" : "laser",
+  "timeToLive" : 3,
   "image" : "ancientbroadswordcrystal.png",
-  "animationCycle" : 0.35,
-  "lightColor" : [90, 60, 110],
-  "frameNumber" : 6,
+  "flippable" : true,
+  "animationCycle" : 0.1,
+  "lightColor" : [90, 60, 90],
+  "frameNumber" : 1,
   "windupFrames" : 3,
-  "periodicActions" : [
-    {
-      "time" : 0,
-      "repeat" : false,
-      "action" : "sound",
-      "options" : [ "/sfx/melee/giantsword_charge_full.ogg" ]
-    }
-  ],
+  "periodicActions" : [ ],
   "actionOnReap" : [
     {
       "action" : "config",
-      "file" : "/projectiles/explosions/v-ancientexplosion/ancientexplosion.config"
-    },
-    {
+      "file" : "/projectiles/explosions/v-ancientlaserexplosion/ancientlaserexplosion.config"
+    }
+    /* {
       "action" : "loop",
-      "count" : 10,
+      "count" : 4,
       "body" : [
         {
           "action" : "particle",
@@ -32,7 +26,7 @@
     },
     {
       "action" : "loop",
-      "count" : 10,
+      "count" : 4,
       "body" : [
         {
           "action" : "particle",
@@ -42,28 +36,15 @@
     },
     {
       "action" : "sound",
-      "options" : [ "/sfx/objects/prism_break_large1.ogg", "/sfx/objects/prism_break_large2.ogg" ]
-    }
+      "options" : [ "/sfx/objects/prism_break_small1.ogg", "/sfx/objects/prism_break_small2.ogg", "/sfx/objects/prism_break_small3.ogg" ]
+    } */
   ],
   "speed" : 0,
-  "power" : 5,
-  "damagePoly" : [],
+  "power" : 2,
+  "damageKind" : "plasma",
+  "damagePoly" : [ [-6, 0], [-4, -4], [0, -6], [4, -4], [6, 0], [4, 4], [0, 6], [-4, 4] ],
 
   "fullbright" : true,
-  "emitters" : [],
 
-  "renderLayer" : "Projectile-1",
-  "orientationLocked" : true,
-
-  "bounces" : -1,
-  "onlyHitTerrain" : true,
-
-  "scripts" : [ "v-ancientbroadswordcrystal.lua" ],
-
-  "projectileType" : "v-ancientbroadswordcrystal2",
-  "projectileParameters" : {},
-  "spawnRate" : 0.33,
-  "offsetRegion" : [-6, -6, 6, 6],
-
-  "persistentAudio" : "/sfx/environmental/space_loop2.ogg"
+  "bounces" : 0
 }
