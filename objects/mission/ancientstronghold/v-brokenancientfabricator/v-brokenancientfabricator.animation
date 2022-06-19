@@ -16,9 +16,26 @@
             "frames" : 3,
             "cycle" : 0.3,
             "mode" : "transition",
-            "transition" : "deactivated"
+            "transition" : "deactivated",
+            "properties" : {
+              "immediateSound" : "/sfx/objects/ancientenergy_pickup2.ogg"
+            }
           },
-          "deactivated" : {}
+          "deactivated" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "deactivated2",
+            "properties" : {
+              "particleEmittersOn" : ["impact"],
+              "immediateSound" : "/sfx/objects/v_brokenancientfabricator_impact.ogg"
+            }
+          },
+          "deactivated2" : {
+            "properties" : {
+              "particleEmittersOff" : ["impact"]
+            }
+          }
         }
       }
     },
@@ -45,6 +62,12 @@
             },
 
             "deactivated" : {
+              "properties" : {
+                "image" : "<partImage>:deactivated.<frame>"
+              }
+            },
+
+            "deactivated2" : {
               "properties" : {
                 "image" : "<partImage>:deactivated.<frame>"
               }
@@ -76,10 +99,45 @@
               "properties" : {
                 "image" : "<partImage>:deactivated.<frame>"
               }
+            },
+
+            "deactivated2" : {
+              "properties" : {
+                "image" : "<partImage>:deactivated.<frame>"
+              }
             }
           }
         }
       }
+    }
+  },
+  
+  "particleEmitters" : {
+    "impact" : {
+      "offsetRegion" : [1, 1, 3, 1],
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/dust2/dust2.animation",
+            "position" : [0, 0],
+            "initialVelocity" : [4, 0],
+            "finalVelocity" : [0, 4],
+            "approach" : [7, 7],
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.85,
+            "fade" : 1,
+            "size" : 1,
+            "layer" : "front",
+            "timeToLive" : 0.45,
+            "variance" : {
+              "initialVelocity" : [8, 0],
+              "rotation" : 180
+            }
+          },
+          "count" : 5
+        }
+      ]
     }
   },
 

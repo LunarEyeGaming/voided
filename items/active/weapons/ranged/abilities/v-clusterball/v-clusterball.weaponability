@@ -1,0 +1,50 @@
+{
+  "animationParts" : { },
+  "animationCustom" : {
+    "sounds" : {
+      "altFire" : ["/sfx/gun/v_ancientshotgun_altfire.ogg"]
+    }
+  },
+
+  "ability" : {
+    "name" : "Cluster Ball",
+    "type" : "v-clusterball",
+    "scripts" : ["/items/active/weapons/ranged/abilities/altfire.lua"],
+    "class" : "AltFireAttack",
+
+    "projectileType" : "v-ancientclusterball",
+    "projectileParameters" : {},
+
+    // use baseDps and fireTime from primary fire
+
+    "baseDamageMultiplier" : 1.75,
+    "energyUsage" : 125,
+    "fireTime" : 2.0,
+    "projectileCount" : 1,
+    "inaccuracy" : 0.03,
+    "baseDamage" : 8,
+    "baseDps" : 5,
+    "useParticleEmitter" : false,
+
+    "stances" : {
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "cooldown" : {
+        "duration" : 0.11,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  }
+}

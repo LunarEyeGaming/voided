@@ -23,6 +23,7 @@ function init()
   self.beamLength = config.getParameter("beamLength", 50)
   self.beamCenter = config.getParameter("beamCenter", {2, 2})
   self.beamOffset = config.getParameter("beamOffset", {0, 0})
+  self.beamDimensions = config.getParameter("beamDimensions")
   self.damageConfig = config.getParameter("damageConfig")
   self.damageConfig.damage = self.damageConfig.damage * root.evalFunction("monsterLevelPowerMultiplier", object.level())
   
@@ -108,6 +109,7 @@ function updateActive()
       self.attackState:set(states.noop)
     end
     animator.setLightActive("flashlight", active)
+    animator.setAnimationState("flashlight", active and "on" or "off")
     --[[if active then
       storage.timer = 0
       animator.setAnimationState("trapState", "on")
@@ -286,7 +288,19 @@ end
 
 function updateLaser()
   animator.resetTransformationGroup("laser")
+  -- animator.resetTransformationGroup("laserLength")
   animator.translateTransformationGroup("laser", vec2.rotate(self.beamOffset, self.currentAngle))
+
+  -- local startPoint = vec2.add(self.beamCenterPos, vec2.rotate(self.beamOffset, self.currentAngle))
+  -- local endPoint = vec2.add(self.beamCenterPos, vec2.rotate({self.beamOffset[1] + self.beamLength, self.beamOffset[2]}, self.currentAngle))
+  -- local collidePoint = world.lineCollision(startPoint, endPoint)
+  -- if collidePoint then
+    -- endPoint = collidePoint
+  -- end
+  
+  -- local beamLength = world.magnitude(startPoint, endPoint)
+  -- animator.setGlobalTag("beamDirectives", string.format("?crop=0;0;%s;%s", math.floor(self.beamDimensions[1] * beamLength / self.beamLength), self.beamDimensions[2]))
+  -- animator.translateTransformationGroup("laserLength", vec2.rotate({(beamLength - self.beamLength) / 2, 0}, self.currentAngle))
 end
 
 function findClosestAngle(angle, targetAngle)

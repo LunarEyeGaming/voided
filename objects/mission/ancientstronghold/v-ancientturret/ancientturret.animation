@@ -11,6 +11,13 @@
           }
         }
       },
+      "flashlight" : {
+        "default" : "on",
+        "states" : {
+          "on" : {},
+          "off" : {}
+        }
+      },
       "laser" : {
         "default" : "inactive",
         "states" : {
@@ -89,9 +96,22 @@
           "centered" : true,
           "zLevel" : 4,
           "fullbright" : true,
-          "image" : "<partImage>",
           "offset" : [0.125, 0],
           "transformationGroups" : ["gun"]
+        },
+        "partStates" : {
+          "flashlight" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>:on"
+              }
+            },
+            "off" : {
+              "properties" : {
+                "image" : "<partImage>:off"
+              }
+            }
+          }
         }
       },
       "gunlit" : {
@@ -99,8 +119,21 @@
           "centered" : true,
           "zLevel" : 5,
           "fullbright" : false,
-          "image" : "<partImage>",
           "anchorPart" : "gun"
+        },
+        "partStates" : {
+          "flashlight" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>:on"
+              }
+            },
+            "off" : {
+              "properties" : {
+                "image" : "<partImage>:off"
+              }
+            }
+          }
         }
       },
       "laser" : {

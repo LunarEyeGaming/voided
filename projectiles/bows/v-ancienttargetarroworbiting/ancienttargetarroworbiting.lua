@@ -40,6 +40,7 @@ function destroy()
   if projectile.sourceEntity() and world.entityExists(projectile.sourceEntity())
     and targetId and world.entityExists(targetId) then
     world.spawnProjectile(self.projectileType, selfPosition, projectile.sourceEntity(), world.distance(world.entityPosition(targetId), selfPosition), false, self.projectileConfig)
+
     local foundTargetAction = config.getParameter("foundTargetAction")
     if next(foundTargetAction) ~= nil then
       projectile.processAction(foundTargetAction)

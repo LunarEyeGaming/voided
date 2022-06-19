@@ -233,7 +233,7 @@
               "parameters": {
                 "aimVector": {"value": [0, 0]},
                 "offset": {"value": ["explodeX", "explodeY"]},
-                "projectileConfig": {"value": {"timeToLive": 0, "power": 0, "speed": 0, "onlyHitTerrain": true, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/regularexplosion2/v-glowingregularexplosion.config"}, {"action": "loop", "count": 3, "body": [{"action": "item", "name": "v-ancientfragment", "count": 2}]}]}},
+                "projectileConfig": {"value": {"timeToLive": 0, "power": 0, "speed": 0, "onlyHitTerrain": true, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/regularexplosion2/v-glowingregularexplosion.config"}, {"action": "loop", "count": 3, "body": [{"action": "item", "name": "v-ancientfragment", "count": 1}]}]}},
                 "projectileType": {"value": "orbitalup"}
               }
             }

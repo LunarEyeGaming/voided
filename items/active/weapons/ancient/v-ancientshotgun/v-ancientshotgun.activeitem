@@ -28,7 +28,7 @@
   },
   "animationCustom" : {
     "sounds" : {
-      "fire" : ["/sfx/gun/v_ancientshotgun_fire.ogg"], "altFire" : ["/sfx/gun/v_ancientshotgun_altfire.ogg"]
+      "fire" : ["/sfx/gun/v_ancientshotgun_fire.ogg"]
     } /*,
     "lights" : {
       "muzzleFlash" : {
@@ -93,22 +93,8 @@
     }
   },
 
-  "altAbilityType" : "explosiveshot",
-  "altAbility" : {
-    "name" : "Cluster Ball",
-    "elementalConfig" : {
-      "physical" : {
-        "projectileType" : "v-ancientclusterball"
-      }
-    },
-    "energyUsage" : 125,
-    "fireTime" : 2.0,
-    "projectileCount" : 1,
-    "inaccuracy" : 0.03,
-    "baseDamage" : 8,
-    "baseDps" : 5,
-    "useParticleEmitter" : false
-  },
+  "altAbilityType" : "v-clusterball",
+  "altAbility" : {},
 
   "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
 }
