@@ -1,7 +1,7 @@
 {
   "itemName" : "v-ancientbroadsword",
   "price" : 1000,
-  "level" : 8,
+  "level" : 7,
   "maxStack" : 1,
   "rarity" : "Legendary",
   "customRarity" : "Mythical",
@@ -48,8 +48,8 @@
   "primaryAbilityType" : "broadswordcombo",
   "primaryAbility" : {
     "damageConfig" : {"damageSourceKind" : "broadsword", "knockbackMode" : "facing", "timeout" : 0.5},
-    "fireTime" : 0.8,
-    "baseDps" : 6,
+    "fireTime" : 0.83,
+    "baseDps" : 6.86,
     "comboSteps" : 9,
     "swooshOffsetRegions" : [[0.75, 0.0, 4.25, 5.0], [-0.75, 0.0, -4.25, -5.0], [0.75, 0.0, 4.25, 5.0], [-0.75, 0.0, -4.25, -5.0], [3.0, -0.5, 6.5, 2.0], [1.5, -1.0, 5.5, 1.0], [0.75, 0.0, 4.25, 5.0], [-0.75, 0.0, -4.25, -5.0], [0.75, 0.0, 4.25, 5.0]],
     "stepDamageConfig" : [{"baseDamageFactor" : 1.0, "knockback" : 15}, {"baseDamageFactor" : 1.0, "knockback" : 15}, {"baseDamageFactor" : 1.0, "knockback" : 15}, {"baseDamageFactor" : 1.0, "knockback" : 15}, {"baseDamageFactor" : 0.5, "knockback" : 10}, {"baseDamageFactor" : 1.5, "knockback" : 25}, {"baseDamageFactor" : 1.5, "knockback" : 40}, {"baseDamageFactor" : 1.5, "knockback" : 40}, {"baseDamageFactor" : 2.5, "knockback" : 40}],

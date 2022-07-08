@@ -1,0 +1,71 @@
+{
+  "name" : "v-ancientpod",
+  "script" : "v-ancientpodcontrol.lua",
+  "boundBox" : [-5, -5, 5, 5],
+  "slaveControlTimeout" : 2.0,
+  "slaveControlHeartbeat" : 1.0,
+  "canBeHit" : true,
+  "animation" : "v-ancientpod.animation",
+  
+  "moveSpeed" : 26,
+  "airForce" : 250,
+
+  "explodeTime" : 0.5,
+  "explodeProjectile" : "mechexplosion",
+  
+  "projectileSpecs" : {
+    "type" : "v-ancientlasershot"
+  },
+  
+  "fireInterval" : 0.1,
+  "ringRotationFactor" : 0.05,
+  
+  "beamSpecs" : {
+    "length" : 50,
+    "height" : 0.5,
+    "damageRadius" : 3,
+    "damageAmount" : 0.2,
+    "sourceOffset" : [0.5, -0.5]
+  },
+  
+  "level" : 8,
+  
+  "energyUsages" : {
+    "passive" : 1,
+    "move" : 2,
+    "fire" : 4,
+    "altFire" : 4
+  },
+
+  "health" : 5000,
+  "energy" : 1000,
+  "protection" : 50,
+  
+  "loungePositions" : {
+    "seat" : {
+      "part" : "pod",
+      "partAnchor" : "seatPosition",
+      "orientation" : "sit",
+      "statusEffects" : ["highprotection"],
+      "cameraFocus" : true,
+      "armorCosmeticOverrides" : {
+        "head" : "mechpilothead"
+      }
+    }
+  },
+
+  "movementSettings" : {
+    "collisionPoly" : [ [2.125, -3.0], [6.0, -1.25], [6.0, 0.0], [3.5, 2.0], [-3.5, 2.0], [-6.0, 0.0], [-6.0, -1.25], [-2.125, -3.0] ],
+    "mass" : 4,
+    "airFriction" : 2,
+    "ignorePlatformCollision" : true,
+    "gravityEnabled" : true,
+    "collisionEnabled" : true
+  },
+
+  "occupiedMovementSettings" : {
+    "mass" : 4,
+    "gravityEnabled" : false,
+    "collisionEnabled" : true
+  }
+}

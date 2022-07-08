@@ -32,5 +32,73 @@
         }
       }
     }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-voltagetest",
+    "value" : {
+      "type" : "Terrestrial",
+      "planetType" : "v-voltage",
+      "planetSize" : "medium",
+
+      "skyParameters" : {
+        "spaceLevel" : 3000,
+        "ambientLightLevel" : [ 24, 28, 24 ],
+        "skyColoring" : {
+          // Gray
+          "mainColor" : [255, 255, 255],
+
+          "morningColors" : [ [99, 12, 12, 200], [131, 33, 12, 255] ],
+          "dayColors" : [ [131, 131, 131, 200], [188, 188, 188, 255] ],
+          "eveningColors" : [ [99, 12, 12, 200], [131, 33, 12, 255] ],
+          "nightColors" : [ [33, 33, 33, 200], [33, 33, 33, 255] ],
+
+          "morningLightColor" : [199, 101, 101],
+          "dayLightColor" : [183, 183, 183],
+          "eveningLightColor" : [199, 101, 101],
+          "nightLightColor" : [66, 66, 66]
+        },
+        "satellites" : [ {
+          "pos" : [ 0.310561, 0.35497 ],
+          "layers" : [ {
+            "scale" : 0.055,
+            "image" : "/celestial/system/terrestrial/liquids/water.png"
+          }, {
+            "scale" : 0.055,
+            "image" : "/celestial/system/terrestrial/biomes/forest/maskie3.png?hueshift=-45?addmask=/celestial/system/terrestrial/dynamics/temperate/2.png"
+          }, {
+            "scale" : 0.055,
+            "image" : "/celestial/system/terrestrial/biomes/forest/maskie2.png?hueshift=-45?addmask=/celestial/system/terrestrial/dynamics/temperate/20.png"
+          }, {
+            "scale" : 0.055,
+            "image" : "/celestial/system/terrestrial/biomes/forest/maskie1.png?hueshift=-45?addmask=/celestial/system/terrestrial/dynamics/temperate/5.png"
+          }, {
+            "scale" : 0.055,
+            "image" : "/celestial/system/terrestrial/shadows/9.png"
+          } ]
+        } ],
+        "planet" : {
+          "pos" : [ 0.00538729, 0.46961 ],
+          "layers" : [ {
+            "scale" : 0.15,
+            "image" : "/celestial/system/gas_giant/gas_giant_base.png?hueshift=-80"
+          }, {
+            "scale" : 0.15,
+            "image" : "/celestial/system/gas_giant/gas_giant_clouds_0.png?hueshift=-70?addmask=/celestial/system/gas_giant/gas_giant_dynamics/3.png+/celestial/system/gas_giant/gas_giant_dynamics/29.png"
+          }, {
+            "scale" : 0.15,
+            "image" : "/celestial/system/gas_giant/gas_giant_clouds_1.png?hueshift=-77?addmask=/celestial/system/gas_giant/gas_giant_dynamics/28.png+/celestial/system/gas_giant/gas_giant_dynamics/29.png"
+          }, {
+            "scale" : 0.15,
+            "image" : "/celestial/system/gas_giant/shadows/9.png"
+          } ]
+        },
+        "skyType" : "atmospheric",
+        "horizonImages" : [ ],
+        "dayLength" : 1000,
+        "surfaceLevel" : 800,
+        "seed" : -5288806180628666923
+      }
+    }
   }
 ]

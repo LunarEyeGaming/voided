@@ -3,5 +3,138 @@
     "op": "add",
     "path": "/planetTypes/magma/layers/surface/dungeons",
     "value": [[1.0, "v-strongholdgateway"]]
+  },
+  {
+    "op" : "add",
+    "path" : "/planetTypes/v-voltage",
+    "value" : {
+      "threatRange" : [8, 8],
+      "gravityRange" : [80, 100],
+      "layers" : {
+        "surface" : {
+          "primaryRegion" : [ "v-voltage" ],
+          "secondaryRegions" : [ "v-voltagespikes", "v-voltagewastes" ],
+          "secondaryRegionCount" : [0, 2],
+
+          "dungeons" : [ ]
+        },
+        "subsurface" : {
+          "primaryRegion" : ["v-shallowundergroundvoltage"]
+        },
+        "underground1" : {
+          "primaryRegion" : ["v-shallowundergroundvoltage"],
+          "secondaryRegions" : [],
+
+          "dungeons" : [[1.0, "v-voltagelabyrinth"]]
+        },
+        "underground2" : {
+          "primaryRegion" : ["v-undergroundvoltage"],
+          "secondaryRegions" : []
+        },
+        "underground3" : {
+          "primaryRegion" : ["v-deepundergroundvoltage"],
+          "secondaryRegions" : []
+        }
+      }
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-voltage",
+    "value" : {
+      "blockSelector" : [ "remixedMildSurface", "remixedStepsSurface", "remixedSurface" ],
+      "fgCaveSelector" : [ "surfaceCaves", "normalCaves", "sparseCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-voltage", "v-voltagerusty" ]]
+      ],
+      "subRegion" : ["v-voltagedesert", "v-voltagewastes", "rust", "v-voltageforest"]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-voltagespikes",
+    "value" : {
+      "blockSelector" : [ "remixedSpikesSurface", "spikesSurface", "remixedSpikesSurface2" ],
+      "fgCaveSelector" : [ "surfaceCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-voltage", "v-voltagerusty" ]]
+      ],
+      "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-voltagedesert",
+    "value" : {
+      "blockSelector" : [ "lowHillsSurface", "medHillsSurface", "flatsSurface" ],
+      "fgCaveSelector" : [ "surfaceCaves", "sparseCaves", "empty" ],
+      "bgCaveSelector" : [ "empty" ],
+      "subBlockSelector" : ["lowHillsSurface"],
+      "biome" : [
+        [0, [ "v-voltagedesert" ]]
+      ],
+      "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-voltagewastes",
+    "value" : {
+      "blockSelector" : [ "lowHillsSurface", "mixedSurface" ],
+      "fgCaveSelector" : [ "surfaceCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-voltagewastes" ]]
+      ],
+      "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-voltageforest",
+    "value" : {
+      "blockSelector" : [ "lowHillsSurface", "mixedSurface" ],
+      "fgCaveSelector" : [ "surfaceCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-voltageforest" ]]
+      ],
+      "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-shallowundergroundvoltage",
+    "value" : {
+      "fgCaveSelector" : [ "normalCaves", "denseCaves", "sparseCaves" ],
+      //"caveLiquid" : ["water"],
+      "biome": [
+        [1,["v-shallowundergroundvoltage"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-undergroundvoltage",
+    "value" : {
+      "fgCaveSelector" : [ "normalCaves", "denseCaves", "sparseCaves" ],
+      //"caveLiquid" : ["water"],
+      "biome": [
+        [1,["v-undergroundvoltage"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-deepundergroundvoltage",
+    "value" : {
+      "fgCaveSelector" : [ "normalCaves", "denseCaves", "sparseCaves" ],
+      //"caveLiquid" : ["water"],
+      "biome": [
+        [1,["v-deepundergroundvoltage"]]
+      ]
+    }
   }
 ]

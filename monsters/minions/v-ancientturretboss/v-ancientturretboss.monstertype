@@ -28,7 +28,7 @@
     
     "projectileType" : "v-ancientrocket",
     "projectileOffset" : [1.5, 0],
-    "projectileParameters" : {"speed" : 100, "rotationRate" : 2.0},
+    "projectileParameters" : {"speed" : 100, "rotationRate" : 2.0, "power" : 13},
     "fireInterval" : 1.5,
 
     "renderLayer" : "Projectile-10",
@@ -88,7 +88,7 @@
           "baseValue" : 9999
         },
         "maxHealth" : {
-          "baseValue" : 48
+          "baseValue" : 60
         },
         "protection" : {
           "baseValue" : 50.0

@@ -1,0 +1,24 @@
+{
+  "materialId" : 1189,
+  "materialName" : "v-ironrock",
+  "particleColor" : [122, 122, 122, 255],
+  "itemDrop" : "v-ironrockmaterial",
+  "description" : "<todo>",
+  "shortdescription" : "Iron Rock",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_stone3.ogg",
+  "health" : 16,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-ironrock.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1600
+  }
+}

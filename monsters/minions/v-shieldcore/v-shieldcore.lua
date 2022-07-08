@@ -22,7 +22,7 @@ function shouldDie()
 end
 
 function update(dt)
-  if not world.entityExists(self.target) then
+  if not self.target or not world.entityExists(self.target) then
     status.setResourcePercentage("health", 0)
     return
   end

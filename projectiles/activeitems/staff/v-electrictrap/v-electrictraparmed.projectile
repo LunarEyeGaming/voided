@@ -1,0 +1,36 @@
+{
+  "projectileName" : "v-electrictraparmed",
+  "physics" : "laser",
+  "timeToLive" : 30,
+  "image" : "electrictrap.png",
+  "animationCycle" : 0.6,
+  "frameNumber" : 6,
+  "fullbright" : true,
+
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 10,
+      "body" : [
+        {
+          "action" : "projectile",
+          "inheritDamageFactor" : 0.1,
+          "type" : "railgunlightning",
+          "fuzzAngle" : 180
+        }
+      ]
+    },
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/electricexplosionknockbackstatus.config"
+    }
+  ],
+  "speed" : 0,
+  "power" : 30,
+  "damageType" : "NoDamage",
+  "damagePoly" : [ [-10, 0], [-7, -7], [0, -10], [7, -7], [10, 0], [7, 7], [0, 10], [-7, 7] ],
+  "damageRepeatTimeout" : 0.25,
+
+  "orientationLocked" : true,
+  "bounces" : -1
+}

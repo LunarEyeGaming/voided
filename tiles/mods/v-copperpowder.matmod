@@ -1,0 +1,16 @@
+{
+  "modId" : 360,
+  "modName" : "v-copperpowder",
+  "description" : "Copper powder.",
+  "footstepSound" : "/sfx/blocks/footstep_ash.ogg",
+  "health" : 0,
+  "breaksWithTile" : false,
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-copperpowder.png",
+    "variants" : 5,
+    "multiColored" : false,
+    "zLevel" : 0
+  }
+}

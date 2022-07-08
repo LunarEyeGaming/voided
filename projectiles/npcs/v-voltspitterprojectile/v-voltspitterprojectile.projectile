@@ -1,0 +1,31 @@
+{
+  "projectileName" : "v-voltspitterprojectile",
+  "image" : "voltspitterprojectile.png",
+  "animationCycle" : 1,
+  "lightColor" : [150, 100, 100],
+  "frameNumber" : 1,
+  "timeToLive" : 5,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "grenade",
+  "bounces" : 0,
+  "emitters" : [ ],
+  "damageKind" : "electric",
+  "piercing" : false,
+  
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/electricexplosionknockback.config"
+    }
+  ],
+
+  "speed" : 20,
+  
+  "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
+  
+  "monsterType" : "v-shockwave",
+  "spawnOffset" : [0, -1],
+  "shockwaveDamageFactor" : 0.5
+}

@@ -1,0 +1,63 @@
+{
+  "animationParts" : { },
+  "animationCustom" : {
+    "sounds" : {
+      "altFire" : ["/sfx/gun/shockblast.ogg"]
+    },
+    "lights" : {
+      "muzzleFlash" : {
+        "color" : [0, 0, 0]
+      }
+    }
+  },
+
+  "ability" : {
+    "name" : "Electric Burst",
+    "type" : "v-lightninggunalt",
+    "scripts" : ["/items/active/weapons/ranged/abilities/altfire.lua"],
+    "class" : "AltFireAttack",
+
+    "projectileType" : "v-electricburst",
+    "projectileParameters" : {
+      "knockback" : 50
+    },
+
+    // use baseDps and fireTime from primary fire
+
+    "baseDamageMultiplier" : 1.75,
+    "energyUsage" : 50,
+    "fireTime" : 2.0,
+    "projectileCount" : 1,
+    "inaccuracy" : 0.03,
+    "baseDamage" : 8,
+    "baseDps" : 5,
+    "useParticleEmitter" : false,
+    "hidePrimaryMuzzleFlash" : true,
+    "fireType" : "auto",
+
+    "stances" : {
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "weaponOffset" : [-0.25, 0],
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "frontArmFrame" : "swimIdle.2"
+      },
+      "cooldown" : {
+        "duration" : 0.11,
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "weaponOffset" : [-0.25, 0],
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "frontArmFrame" : "swimIdle.2"
+      }
+    }
+  }
+}

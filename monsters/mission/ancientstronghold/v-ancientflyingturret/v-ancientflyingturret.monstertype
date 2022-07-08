@@ -45,7 +45,7 @@
             "windupTime" : 0.75,
 
             "projectileType" : "v-ancientrocket",
-            "projectileParameters" : {"speed" : 25},
+            "projectileParameters" : {"speed" : 25, "power" : 13},
             "fireOffset" : [0.5, 0],
             "aimAtTarget" : true,
             "onGround" : false,
@@ -54,8 +54,6 @@
             "fireDelay" : 0.1,
 
             "fireArc": false,
-            "projectileSpeed": 50,
-            "gravityMultiplier": 0.6,
 
             "winddownState" : "",
             "winddownTime" : 1.0
@@ -159,7 +157,7 @@
           "baseValue" : 9
         },
         "maxHealth" : {
-          "baseValue" : 48
+          "baseValue" : 60
         },
         "protection" : {
           "baseValue" : 0.0

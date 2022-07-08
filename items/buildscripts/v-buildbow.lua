@@ -21,6 +21,9 @@ function build(directory, config, parameters, level, seed)
   
   if configParameter("customRarity") == "Mythical" then
     config.shortdescription = string.format("^#a600cc;%s^reset;", config.shortdescription)
+    if not config.tooltipFields then
+      config.tooltipFields = {}
+    end
     config.tooltipFields.rarityLabel = "^#a600cc;Mythical"
   end
 

@@ -1,0 +1,22 @@
+{
+  "name" : "v-aimabledash",
+  "type" : "body",
+
+  "scripts" : ["v-aimabledash.lua"],
+  "animator" : "v-aimabledash.animation",
+
+  "description" : "Double tap ^green;[W] ^white;to dash at your cursor! Cooldown: 0.8s",
+  "shortDescription" : "Aimable Dash",
+  "rarity" : "Uncommon",
+  "icon" : "/tech/v-aimabledash.png",
+
+  "chipCost" : 2,
+
+  "maximumDoubleTapTime" : 0.25,
+  "dashControlForce" : 2000,
+  "dashSpeed" : 100,
+  "dashDuration" : 0.15,
+  "dashCooldown" : 0.8,
+  "stopAfterDash" : true,
+  "groundOnly" : false
+}

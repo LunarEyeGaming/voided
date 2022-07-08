@@ -698,7 +698,7 @@
                           "aimVector": {"key": "aimVector"},
                           "offset": {"value": [0, 0]},
                           "position": {"key": "self"},
-                          "projectileConfig": {"value": {}},
+                          "projectileConfig": {"value": {"power" : 13}},
                           "projectileType": {"value": "v-ancientrocket"},
                           "scalePower": {"value": true},
                           "sourceEntity": {"key": "self"},
@@ -789,236 +789,11 @@
                           "aimVector": {"value": [0, 0]},
                           "offset": {"value": [0, 0]},
                           "position": {"key": "self"},
-                          "projectileConfig": {"value": {"power": 25, "timeToLive": 0, "speed": 0, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/v-ancientexplosionlarge/ancientexplosionlarge.config"}]}},
+                          "projectileConfig": {"value": {"power": 32, "timeToLive": 0, "speed": 0, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/v-ancientexplosionlarge/ancientexplosionlarge.config"}]}},
                           "projectileType": {"value": "orbitalup"},
                           "scalePower": {"value": true},
                           "sourceEntity": {"key": "self"},
                           "trackSource": {"value": false}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "title": "attack3",
-                    "type": "composite",
-                    "name": "sequence",
-                    "parameters": {},
-                    "children": [
-                      {
-                        "title": "receivedNotification",
-                        "type": "action",
-                        "name": "receivedNotification",
-                        "parameters": {
-                          "type": {"value": "attack3"}
-                        },
-                        "output": {
-                          "target": "target",
-                          "source": "sourceId"
-                        }
-                      },
-                      {
-                        "title": "repeater",
-                        "type": "decorator",
-                        "name": "repeater",
-                        "parameters": {
-                          "maxLoops": {"value": 2}
-                        },
-                        "child": {
-                          "title": "sequence",
-                          "type": "composite",
-                          "name": "sequence",
-                          "parameters": {},
-                          "children": [
-                            {
-                              "title": "setAnimationState",
-                              "type": "action",
-                              "name": "setAnimationState",
-                              "parameters": {
-                                "state": {"value": "tele"},
-                                "type": {"value": "core"}
-                              }
-                            },
-                            {
-                              "title": "timer",
-                              "type": "action",
-                              "name": "timer",
-                              "parameters": {
-                                "time": {"value": 0.3}
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "title": "repeater",
-                        "type": "decorator",
-                        "name": "repeater",
-                        "parameters": {
-                          "maxLoops": {"value": 4}
-                        },
-                        "child": {
-                          "title": "sequence",
-                          "type": "composite",
-                          "name": "sequence",
-                          "parameters": {},
-                          "children": [
-                            {
-                              "title": "timer",
-                              "type": "action",
-                              "name": "timer",
-                              "parameters": {
-                                "time": {"value": 0.35}
-                              }
-                            },
-                            {
-                              "title": "entityDirection",
-                              "type": "action",
-                              "name": "entityDirection",
-                              "parameters": {
-                                "target": {"key": "target"}
-                              },
-                              "output": {
-                                "vector": "aimVector"
-                              }
-                            },
-                            {
-                              "title": "repeater",
-                              "type": "decorator",
-                              "name": "repeater",
-                              "parameters": {
-                                "maxLoops": {"value": 5}
-                              },
-                              "child": {
-                                "title": "sequence",
-                                "type": "composite",
-                                "name": "sequence",
-                                "parameters": {},
-                                "children": [
-                                  {
-                                    "title": "spawnProjectile",
-                                    "type": "action",
-                                    "name": "spawnProjectile",
-                                    "parameters": {
-                                      "aimVector": {"key": "aimVector"},
-                                      "offset": {"value": [0, 0]},
-                                      "position": {"key": "self"},
-                                      "projectileConfig": {"value": {"speed" : 75, "power" : 10}},
-                                      "projectileType": {"value": "v-ancientphaseshot"},
-                                      "scalePower": {"value": true},
-                                      "sourceEntity": {"key": "self"},
-                                      "trackSource": {"value": false}
-                                    }
-                                  },
-                                  {
-                                    "title": "timer",
-                                    "type": "action",
-                                    "name": "timer",
-                                    "parameters": {
-                                      "time": {"value": 0.1}
-                                    }
-                                  }
-                                ]
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "title": "attack4",
-                    "type": "composite",
-                    "name": "sequence",
-                    "parameters": {},
-                    "children": [
-                      {
-                        "title": "receivedNotification",
-                        "type": "action",
-                        "name": "receivedNotification",
-                        "parameters": {
-                          "type": {"value": "attack4"}
-                        },
-                        "output": {
-                          "target": "target",
-                          "source": "sourceId"
-                        }
-                      },
-                      {
-                        "title": "setAnimationState",
-                        "type": "action",
-                        "name": "setAnimationState",
-                        "parameters": {
-                          "state": {"value": "tele"},
-                          "type": {"value": "core"}
-                        }
-                      },
-                      {
-                        "title": "timer",
-                        "type": "action",
-                        "name": "timer",
-                        "parameters": {
-                          "time": {"value": 0.3}
-                        }
-                      },
-                      {
-                        "title": "entityDirection",
-                        "type": "action",
-                        "name": "entityDirection",
-                        "parameters": {
-                          "target": {"key": "target"}
-                        },
-                        "output": {
-                          "vector": "aimVector"
-                        }
-                      },
-                      {
-                        "title": "repeater",
-                        "type": "decorator",
-                        "name": "repeater",
-                        "parameters": {
-                          "maxLoops": {"value": 3}
-                        },
-                        "child": {
-                          "title": "sequence",
-                          "type": "composite",
-                          "name": "sequence",
-                          "parameters": {},
-                          "children": [
-                            {
-                              "title": "timer",
-                              "type": "action",
-                              "name": "timer",
-                              "parameters": {
-                                "time": {"value": 1.5}
-                              }
-                            },
-                            {
-                              "title": "entityDirection",
-                              "type": "action",
-                              "name": "entityDirection",
-                              "parameters": {
-                                "target": {"key": "target"}
-                              },
-                              "output": {
-                                "vector": "aimVector"
-                              }
-                            },
-                            {
-                              "title": "spawnProjectile",
-                              "type": "action",
-                              "name": "spawnProjectile",
-                              "parameters": {
-                                "aimVector": {"key": "aimVector"},
-                                "offset": {"value": [0, 0]},
-                                "position": {"key": "self"},
-                                "projectileConfig": {"value": {"power": 10}},
-                                "projectileType": {"value": "v-ancientbouncingshot"},
-                                "scalePower": {"value": true},
-                                "sourceEntity": {"key": "self"},
-                                "trackSource": {"value": false}
-                              }
-                            }
-                          ]
                         }
                       }
                     ]
@@ -2815,7 +2590,7 @@
                                     "aimVector": {"key": "aimVector"},
                                     "offset": {"value": [0, 0]},
                                     "position": {"key": "self"},
-                                    "projectileConfig": {"value": {"power" : 10}},
+                                    "projectileConfig": {"value": {"power" : 13}},
                                     "projectileType": {"value": "v-corecircleshot"},
                                     "scalePower": {"value": true},
                                     "sourceEntity": {"key": "self"},
@@ -2892,7 +2667,7 @@
                                 "aimVector": {"key": "aimVector"},
                                 "offset": {"value": [0, 0]},
                                 "position": {"key": "self"},
-                                "projectileConfig": {"value": {"speed" : 1, "acceleration" : 50, "power" : 10}},
+                                "projectileConfig": {"value": {"speed" : 1, "acceleration" : 50, "power" : 13}},
                                 "projectileType": {"value": "v-ancientphaseshot"},
                                 "scalePower": {"value": true},
                                 "sourceEntity": {"key": "self"},

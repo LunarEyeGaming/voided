@@ -1,0 +1,34 @@
+[
+  {
+    "op": "add",
+    "path": "/v-voltage",
+    "value": [
+      [0.6, "clear"],
+      [0.3, "v-copperstormlight"],
+      [0.1, "v-copperstorm"],
+      [0.05, "v-lightningstorm"]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-voltageStormy",
+    "value": [
+      [0.75, "v-copperstorm"],
+      [0.25, "v-lightningstorm"]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-voltageDormant",
+    "value": [
+      [1.0, "clear"]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-voltageTest",
+    "value": [
+      [1.0, "v-lightningstorm"]
+    ]
+  }
+]

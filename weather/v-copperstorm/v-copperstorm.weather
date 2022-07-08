@@ -1,0 +1,67 @@
+{
+  "name" : "v-copperstorm",
+
+  "particles" : [
+    {
+
+      "density" : 0.02,
+      "autoRotate" : true,
+
+      "particle" : {
+        "type" : "textured",
+        "image" : "/particles/v-coppercloud/1.png",
+        "velocity" : [0, -25],
+        "approach" : [15, 15],
+        "angularVelocity" : 0,
+        "timeToLive" : 20,
+        "collidesForeground" : true,
+        "collidesLiquid" : true,
+        "destructionAction" : "shrink",
+        "destructionTime" : 2,
+        "ignoreWind" : false
+      }
+    },
+    {
+      "density" : 0.05,
+      "particle" : {
+        "type" : "textured",
+        "image" : "/particles/images/v-copperparticle.png",
+        "size" : 1.0,
+        "velocity" : [0, -25],
+        "timeToLive" : 20,
+        "collidesForeground" : true,
+        "collidesLiquid" : true,
+        "ignoreWind" : false
+      }
+    }
+  ],
+
+  "projectiles" : [
+    {
+      "projectile" : "v-copperstorm",
+      "parameters" : {
+        "power" : 600
+      },
+      "velocity" : [0, -25],
+      "ratePerX" : 0.01,
+      "spawnAboveRegion" : 10,
+      "spawnHorizontalPad" : 10,
+      "windAffectAmount" : 1
+    },
+    {
+      "projectile" : "v-settlingcopperpowder",
+      "parameters" : {
+        "power" : 0
+      },
+      "velocity" : [0, 0],
+      "ratePerX" : 0.01,
+      "spawnAboveRegion" : 10,
+      "spawnHorizontalPad" : 10,
+      "windAffectAmount" : 1
+    }
+  ],
+
+  "duration" : [50, 240],
+  "maximumWind" : 42.0,
+  "weatherNoises" : [ "/sfx/weather/sandstorm.ogg" ]
+}

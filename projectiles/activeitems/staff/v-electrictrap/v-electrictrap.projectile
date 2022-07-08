@@ -1,0 +1,30 @@
+{
+  "projectileName" : "v-electrictrap",
+  "physics" : "laser",
+  "timeToLive" : 10,
+  "image" : "electrictrap.png",
+  "animationCycle" : 0.6,
+  "frameNumber" : 6,
+  "fullbright" : true,
+  
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-electrictraparmed",
+      "inheritDamageFactor" : 1
+    }
+  ],
+  "speed" : 0,
+  "power" : 30,
+  "onlyHitTerrain" : true,
+
+  "orientationLocked" : true,
+  "bounces" : -1,
+
+  "scripts" : [ "/projectiles/activeitems/staff/staffprojectile.lua" ],
+
+  "controlMovement" : {
+    "maxSpeed" : 15,
+    "controlForce" : 500
+  }
+}

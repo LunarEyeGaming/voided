@@ -1,0 +1,84 @@
+{
+  "v-electricWeapon" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 3, "pool" : "v-uncommonElectricGun"},
+        {"weight" : 4.5, "pool" : "v-uncommonElectricMelee"},
+        {"weight" : 1, "pool" : "v-rareElectricGun"},
+        {"weight" : 1.5, "pool" : "v-rareElectricMelee"},
+
+        {"weight" : 0.3, "item" : {"name" : "rarestaff", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.3, "item" : {"name" : "rarewand", "parameters" : {"elementalType" : "electric"}}}
+      ]
+    }]
+  ],
+  
+  
+
+  "v-uncommonElectricMelee" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.007, "item" : {"name" : "uncommonbroadsword", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonaxe", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonspear", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonhammer", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommondagger", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonshortsword", "parameters" : {"elementalType" : "electric"}}}
+      ]
+    }]
+  ],
+
+  "v-rareElectricMelee" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.007, "item" : {"name" : "rarebroadsword", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.007, "item" : {"name" : "rareaxe", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.007, "item" : {"name" : "rarespear", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.007, "item" : {"name" : "rarehammer", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.007, "item" : {"name" : "raredagger", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.007, "item" : {"name" : "rareshortsword", "parameters" : {"elementalType" : "electric"}}}
+      ]
+    }]
+  ],
+
+  "v-uncommonElectricGun" : [
+    [0, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "uncommonpistol", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonmachinepistol", "parameters" : {"elementalType" : "electric"}}}
+      ]
+    }],
+    [1.9, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "uncommongrenadelauncher", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonassaultrifle", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonshotgun", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonsniperrifle", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonpistol", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonmachinepistol", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.7, "item" : {"name" : "uncommonrocketlauncher", "parameters" : {"elementalType" : "electric"}}}
+      ]
+    }]
+  ],
+
+  "v-rareElectricGun" : [
+    [0, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "rarepistol", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "raremachinepistol", "parameters" : {"elementalType" : "electric"}}}
+      ]
+    }],
+    [1.9, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "rareassaultrifle", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "rareshotgun", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "raresniperrifle", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "rarepistol", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "raremachinepistol", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 1.0, "item" : {"name" : "raregrenadelauncher", "parameters" : {"elementalType" : "electric"}}},
+        {"weight" : 0.7, "item" : {"name" : "rarerocketlauncher", "parameters" : {"elementalType" : "electric"}}}
+      ]
+    }]
+  ]
+}

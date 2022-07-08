@@ -1,0 +1,152 @@
+[
+  // unique monsters
+
+  // VOLTAGE CAVES
+
+  {
+    "name" : "v-electricelemental",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 2],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-electricelemental"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-dischargemonster",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-dischargemonster"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-amperecharger",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-amperecharger"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-metalmite",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-metalmite"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-currentcrawler",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "v-currentcrawler"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-voltspitter",
+
+    "spawnParameters" : {
+      "area" : "surface",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "v-voltspitter"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    // Spawntype introduced by Voided. To be replaced b/c this is pretty lazy.
+    "name" : "v-electricvoltip",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "electricvoltip"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    // Spawntype introduced by Voided. To be replaced b/c this is pretty lazy.
+    "name" : "v-electricignome",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "electricignome"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  }
+]

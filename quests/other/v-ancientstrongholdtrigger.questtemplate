@@ -1,0 +1,34 @@
+{
+  "id" : "v-ancientstrongholdtrigger", // Trigger quest to make exploring the Ancient Stronghold a prerequisite.
+  "mainQuest" : true,
+  "prerequisites" : [ ],
+  "title" : "^orange;Ancient Stronghold",
+  "text" : "You have explored the Ancient Stronghold. New quests may be unlocked.",
+  "completionText" : "This text should not be seen.",
+  "moneyRange" : [0, 0],
+  "rewards" : [],
+  "speaker" : "questGiver",
+  "canBeAbandoned" : false,
+  "showCompleteDialog" : false,
+  
+  "updateDelta" : 10,
+  "script" : "/quests/scripts/main.lua",
+  "scriptConfig" : {
+
+    "portraits" : {
+      "questStarted" : "questGiver",
+      "questComplete" : "questGiver"
+    },
+    
+    "requireTurnIn" : false,
+    
+    "conditions" : [
+      {
+        "type" : "gatherItem",
+        "itemName" : "v-ancientfragment",
+        "count" : 1,
+        "consume" : false
+      }
+    ]
+  }
+}

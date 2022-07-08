@@ -1,0 +1,93 @@
+{
+  "metadata" : {
+    "name" : "v-voltagelabyrinth",
+    "species" : "generic",
+    "rules" : [
+    ],
+    "anchor" : [ "portalentrance1" ],
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 15,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "cornerBL1",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ]
+      ],
+      "def" : [ "tmx", "cornerBL1.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "vertical1",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ]
+      ],
+      "def" : [ "tmx", "vertical1.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "endcapT1",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "portalentrance1" ] ]
+      ],
+      "def" : [ "tmx", "endcapT1.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "endcapB1",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "portalentrance1" ] ]
+      ],
+      "def" : [ "tmx", "endcapB1.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "endcapL1",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "portalentrance1" ] ]
+      ],
+      "def" : [ "tmx", "endcapL1.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "endcapR1",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "portalentrance1" ] ]
+      ],
+      "def" : [ "tmx", "endcapR1.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "portalentrance1",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ]
+        [ "doNotCombineWith", [ "portalentrance1" ] ]
+      ],
+      "def" : [ "tmx", "portalentrance1.json" ]
+    },
+    {
+      "name" : "horizontal1",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ]
+      ],
+      "def" : [ "tmx", "horizontal1.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "junction1",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ],
+        // [ "doNotConnectToPart", [ "junction1b", "junction1d", "junction2b", "junction2d", "junction3b", "junction3f", "junction4b", "junction4f" ] ]
+      ],
+      "def" : [ "tmx", "junction1.json" ],
+      "chance" : 1
+    }
+  ]
+}

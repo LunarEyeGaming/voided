@@ -39,7 +39,8 @@ function fireOrbiters(target)
 end
 
 function validTarget(pos, x)
-  return world.entityExists(x) and not world.lineCollision(pos, world.entityPosition(x)) and entity.isValidTarget(x)
+  local entityPos = world.nearestTo(pos, world.entityPosition(x))  -- Fix extreme lag near world edges
+  return world.entityExists(x) and not world.lineCollision(pos, entityPos) and entity.isValidTarget(x)
 end
 
 function addOrbiter()

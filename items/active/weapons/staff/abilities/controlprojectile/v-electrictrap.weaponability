@@ -1,0 +1,17 @@
+{
+  "ability" : {
+    "type" : "v-electrictrap",
+    "name" : "Electric Trap",
+    "scripts" : ["/items/active/weapons/staff/abilities/controlprojectile/controlprojectile.lua"],
+    "class" : "ControlProjectile",
+
+    "energyCost" : 580,
+
+    "maxCastRange" : 25,
+
+    "projectileType" : "v-electrictrap",
+    "projectileParameters" : {
+      "baseDamage" : 40
+    }
+  }
+}

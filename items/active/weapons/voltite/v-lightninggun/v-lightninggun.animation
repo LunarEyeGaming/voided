@@ -1,0 +1,109 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "firing" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          },
+          "fire" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "gun" : {
+        "properties" : {
+          "centered" : true,
+          "offset" : [0.875, -1.0],
+          "transformationGroups" : ["weapon"]
+        },
+
+        "partStates" : {
+          "firing" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "gunfullbright" : {
+        "properties" : {
+          "centered" : true,
+          "anchorPart" : "gun",
+          "zLevel" : 1,
+          "fullbright" : true
+        },
+
+        "partStates" : {
+          "firing" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  
+  "particleEmitters" : {
+    "beamCollision" : {
+      "active" : false,
+      "transformationGroups" : ["muzzle", "beamEnd"],
+      "emissionRate" : 50,
+      "particles" : [
+        {
+          "particle" : "electricswoosh1"
+        },
+        {
+          "particle" : "electricswoosh2"
+        },
+        {
+          "particle" : "electricenergy"
+        },
+        {
+          "particle" : "smallelectriccloud1"
+        },
+        {
+          "particle" : "smallelectriccloud2"
+        },
+        {
+          "particle" : "electricalburn"
+        }
+      ]
+    }
+  },
+
+  "transformationGroups" : {
+    "weapon" : {},
+    "muzzle" : {},
+    "beamEnd" : {}
+  },
+
+  "sounds" : {
+    "fire" : ["/sfx/gun/elemental_lance.ogg"],
+    "fire2" : ["/sfx/gun/pulsecannon2.ogg"],
+    "fire3" : ["/sfx/gun/lightninggun_fire3.ogg"]
+  }
+}

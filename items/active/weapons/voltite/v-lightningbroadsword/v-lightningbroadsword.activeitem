@@ -1,0 +1,73 @@
+{
+  "itemName" : "v-lightningbroadsword",
+  "price" : 1000,
+  "level" : 8,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "A hilt with a blade made of electrical plasma.",
+  "shortdescription" : "Lightning Broadsword",
+  "tooltipKind" : "sword",
+  "category" : "broadsword",
+  "twoHanded" : true,
+  "itemTags" : ["weapon", "melee", "broadsword"],
+
+  "inventoryIcon" : "lightningbroadswordicon.png",
+
+  "animation" : "v-lightningbroadsword.animation",
+  "animationParts" : {
+    "sword" : "lightningbroadsword.png",
+    "swordFullbright" : "lightningbroadswordunlit.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : ["/sfx/melee/v_lightningbroadsword_swing1.ogg", "/sfx/melee/v_lightningbroadsword_swing2.ogg", "/sfx/melee/v_lightningbroadsword_swing3.ogg", "/sfx/melee/v_lightningbroadsword_swing4.ogg", "/sfx/melee/v_lightningbroadsword_swing5.ogg", "/sfx/melee/v_lightningbroadsword_swing6.ogg", "/sfx/melee/v_lightningbroadsword_swing7.ogg", "/sfx/melee/v_lightningbroadsword_swing8.ogg", "/sfx/melee/v_lightningbroadsword_swing9.ogg"],
+      "fire2" : ["/sfx/melee/v_lightningbroadsword_swing1.ogg", "/sfx/melee/v_lightningbroadsword_swing2.ogg", "/sfx/melee/v_lightningbroadsword_swing3.ogg", "/sfx/melee/v_lightningbroadsword_swing4.ogg", "/sfx/melee/v_lightningbroadsword_swing5.ogg", "/sfx/melee/v_lightningbroadsword_swing6.ogg", "/sfx/melee/v_lightningbroadsword_swing7.ogg", "/sfx/melee/v_lightningbroadsword_swing8.ogg", "/sfx/melee/v_lightningbroadsword_swing9.ogg"],
+      "fire3" : ["/sfx/melee/v_lightningbroadsword_swing1.ogg", "/sfx/melee/v_lightningbroadsword_swing2.ogg", "/sfx/melee/v_lightningbroadsword_swing3.ogg", "/sfx/melee/v_lightningbroadsword_swing4.ogg", "/sfx/melee/v_lightningbroadsword_swing5.ogg", "/sfx/melee/v_lightningbroadsword_swing6.ogg", "/sfx/melee/v_lightningbroadsword_swing7.ogg", "/sfx/melee/v_lightningbroadsword_swing8.ogg", "/sfx/melee/v_lightningbroadsword_swing9.ogg"],
+      "fire4" : ["/sfx/melee/v_lightningbroadsword_swing1.ogg", "/sfx/melee/v_lightningbroadsword_swing2.ogg", "/sfx/melee/v_lightningbroadsword_swing3.ogg", "/sfx/melee/v_lightningbroadsword_swing4.ogg", "/sfx/melee/v_lightningbroadsword_swing5.ogg", "/sfx/melee/v_lightningbroadsword_swing6.ogg", "/sfx/melee/v_lightningbroadsword_swing7.ogg", "/sfx/melee/v_lightningbroadsword_swing8.ogg", "/sfx/melee/v_lightningbroadsword_swing9.ogg"],
+      "fire5" : ["/sfx/gun/grenadeblast_electric1.ogg", "/sfx/gun/grenadeblast_electric2.ogg", "/sfx/gun/grenadeblast_electric3.ogg"]
+    }
+  },
+
+  "scripts" : ["/items/active/weapons/melee/energymeleeweapon.lua"],
+
+  "activeTime" : 3.0,
+
+  "elementalType" : "electric",
+
+  "primaryAbilityType" : "broadswordcombo",
+  "primaryAbility" : {
+    "damageConfig" : {"damageSourceKind" : "electricbroadsword", "statusEffects" : [ "electrified" ], "knockbackMode" : "facing", "timeout" : 0.5},
+    "fireTime" : 0.83,
+    "baseDps" : 8,
+    "comboSteps" : 5,
+    "swooshOffsetRegions" : [[0.75, 0.0, 4.25, 5.0], [-0.75, 0.0, -4.25, -5.0], [0.75, 0.0, 4.25, 5.0], [-0.75, 0.0, -4.25, -5.0], [1.5, -1.0, 5.5, 1.0]],
+    "stepDamageConfig" : [{"baseDamageFactor" : 1.0,"knockback" : 15}, {"baseDamageFactor" : 1.0,"knockback" : 15}, {"baseDamageFactor" : 1.0,"knockback" : 15}, {"baseDamageFactor" : 1.0,"knockback" : 15}, {"baseDamageFactor" : 2.5,"knockback" : 40}],
+
+    "stances" : {
+      "windup1" : {"duration" : 0.15},
+      "fire1" : {"duration" : 0.3},
+      "wait1" : {"duration" : 0.3},
+
+      "windup2" : {"duration" : 0.15, "armRotation" : -150, "weaponRotation" : -85, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true},
+      "preslash2" : {"duration" : 0.025, "armRotation" : -100, "weaponRotation" : -85, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
+      "fire2" : {"duration" : 0.3, "armRotation" : 50, "weaponRotation" : -90, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true},
+      "wait2" : {"duration" : 0.3, "armRotation" : 50, "weaponRotation" : -90, "allowRotate" : false, "allowFlip" : true, "twoHanded" : true},
+      
+      "windup3" : {"duration" : 0.15, "armRotation" : 90, "weaponRotation" : -10, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true},
+      "preslash3" : {"duration" : 0.025, "armRotation" : 55, "weaponRotation" : -45, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
+      "fire3" : {"duration" : 0.3, "armRotation" : -45, "weaponRotation" : -55, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
+      "wait3" : {"duration" : 0.3, "armRotation" : -45, "weaponRotation" : -55, "allowRotate" : false, "allowFlip" : true, "twoHanded" : true},
+
+      "windup4" : {"duration" : 0.15, "armRotation" : -150, "weaponRotation" : -85, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true},
+      "preslash4" : {"duration" : 0.025, "armRotation" : -100, "weaponRotation" : -85, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
+      "fire4" : {"duration" : 0.3, "armRotation" : 50, "weaponRotation" : -90, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true},
+      "wait4" : {"duration" : 0.3, "armRotation" : 50, "weaponRotation" : -90, "allowRotate" : false, "allowFlip" : true, "twoHanded" : true},
+
+      "windup5" : {"duration" : 0.75, "armRotation" : -120, "weaponRotation" : 25, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true, "weaponAngularVelocity" : 40, "armAngularVelocity" : -40, "animationStates" : {"sfx" : "fire5windup"}}, 
+      "fire5" : {"duration" : 0.3, "armRotation" : 0, "weaponRotation" : -90, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true}
+    }
+  },
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

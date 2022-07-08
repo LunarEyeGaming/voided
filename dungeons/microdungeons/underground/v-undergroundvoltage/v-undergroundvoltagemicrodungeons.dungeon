@@ -1,0 +1,53 @@
+{
+  "metadata" : {
+    "name" : "v-undergroundvoltagemicrodungeons",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "open1", "open2", "tunnel1", "tunnel2", "tunnel3" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "open1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "open1.json" ]
+    },
+    {
+      "name" : "open2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "open2.json" ]
+    },
+    {
+      "name" : "tunnel1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnel1.json" ]
+    },
+    {
+      "name" : "tunnel2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnel2.json" ]
+    },
+    {
+      "name" : "tunnel3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnel3.json" ]
+    }
+  ]
+}

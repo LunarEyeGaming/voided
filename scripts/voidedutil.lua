@@ -52,3 +52,20 @@ end
 function strStartsWith(str, start)
   return str:sub(1, #start) == start
 end
+
+-- #animator
+-- Update a circular display of a stat.
+-- Precondition: 0.0 <= cur / max <= 1.0
+function updateCircleBar(lPart, rPart, cur, max)
+  local progress = cur / max
+  animator.resetTransformationGroup(lPart)
+  animator.resetTransformationGroup(rPart)
+
+  if progress < 0.5 then
+    animator.setAnimationState(rPart, "invisible")
+    animator.rotateTransformationGroup(lPart, util.lerp((0.5 - progress) * 2, 0, -math.pi))
+  else
+    animator.setAnimationState(rPart, "visible")
+    animator.rotateTransformationGroup(rPart, util.lerp((0.5 - (progress - 0.5)) * 2, 0, -math.pi))
+  end
+end

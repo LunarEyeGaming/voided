@@ -1,0 +1,24 @@
+{
+  "materialId" : 1190,
+  "materialName" : "v-rustedironrock",
+  "particleColor" : [123, 61, 40, 255],
+  "itemDrop" : "v-rustedironrockmaterial",
+  "description" : "<todo>",
+  "shortdescription" : "Rusted Iron Rock",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_stone3.ogg",
+  "health" : 12,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-rustedironrock.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1600
+  }
+}

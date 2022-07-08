@@ -1,0 +1,368 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "thrust" : {
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "on" : {
+            "frames" : 6,
+            "cycle" : 0.3,
+            "mode" : "loop"
+          }
+        }
+      },
+      "blinds" : {
+        "default" : "opened",
+        "states" : {
+          "closed" : {},
+          "open" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "opened"
+          },
+          "opened" : {},
+          "close" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "closed"
+          }
+        }
+      },
+      "frontcannon" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "fire" : {
+            "frames" : 1,
+            "cycle" : 0.05,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      },
+      "backcannon" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "fire" : {
+            "frames" : 1,
+            "cycle" : 0.05,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      },
+      "beamcannon" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "fire" : {}
+        }
+      },
+      "beam" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "active" : {}
+        }
+      },
+      "energyR" : {
+        "default" : "visible",
+        "states" : {
+          "visible" : {},
+          "invisible" : {}
+        }
+      },
+      "healthR" : {
+        "default" : "visible",
+        "states" : {
+          "visible" : {},
+          "invisible" : {}
+        }
+      }
+    },
+
+    "parts" : {
+      "pod" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 8,
+          "transformationGroups" : ["rotation"],
+          "image" : "ancientpod.png",
+          "seatPosition" : [0, 0]
+        }
+      },
+      "ring" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 9,
+          "transformationGroups" : ["rotation", "ring"],
+          "image" : "ring.png"
+        }
+      },
+      "frontcannon" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 10,
+          "rotationCenter" : [0.0, 0.1875],
+          "transformationGroups" : ["rotation", "frontcannon"],
+          "offset" : [5.75, 0.0],
+          "fireOffset" : [0.0, 0.0],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "frontcannon" : {
+            "idle" : {
+              "properties" : {
+                "image" : "cannon.png:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "cannon.png:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "backcannon" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 10,
+          "rotationCenter" : [0.0, 0.1875],
+          "transformationGroups" : ["rotation", "backcannon"],
+          "offset" : [-5.75, 0.0],
+          "fireOffset" : [0.0, 0.0],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "backcannon" : {
+            "idle" : {
+              "properties" : {
+                "image" : "cannon.png:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "cannon.png:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "beamcannon" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 11,
+          "transformationGroups" : ["beamcannon"],
+          "offset" : [6, 0.0],
+          "fireOffset" : [0.0, 0.0]
+        },
+        "partStates" : {
+          "beamcannon" : {
+            "idle" : {
+              "properties" : {
+                "image" : "beamcannon.png:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "beamcannon.png:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "beam" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 12,
+          "anchorPart" : "beamcannon",
+          "transformationGroups" : ["beam"],
+          "offset" : [0.5, -0.5],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "beam" : {
+            "active" : {
+              "properties" : {
+                "image" : "beam.png"
+              }
+            }
+          }
+        }
+      },
+      "healthL" : {
+        "properties" : {
+          "offset" : [0, 0],
+          "centered" : true,
+          "zLevel" : 5,
+          "fullbright" : true,
+          "transformationGroups" : ["rotation", "healthL"],
+          "image" : "healthl.png"
+        }
+      },
+      "healthLBack" : {
+        "properties" : {
+          "offset" : [0, 0],
+          "centered" : true,
+          "zLevel" : 4,
+          "transformationGroups" : ["rotation"],
+          "image" : "healthlback.png"
+        }
+      },
+      "healthR" : {
+        "properties" : {
+          "offset" : [0, 0],
+          "centered" : true,
+          "zLevel" : 7,
+          "fullbright" : true,
+          "transformationGroups" : ["rotation", "healthR"]
+        },
+        "partStates" : {
+          "healthR" : {
+            "visible" : {
+              "properties" : {
+                "image" : "healthr.png"
+              }
+            }
+          }
+        }
+      },
+      "healthRBack" : {
+        "properties" : {
+          "offset" : [0, 0],
+          "centered" : true,
+          "zLevel" : 6,
+          "transformationGroups" : ["rotation"],
+          "image" : "healthrback.png"
+        }
+      },
+      "energyL" : {
+        "properties" : {
+          "offset" : [0, 0],
+          "centered" : true,
+          "zLevel" : 1,
+          "fullbright" : true,
+          "transformationGroups" : ["rotation", "energyL"],
+          "image" : "energyl.png"
+        }
+      },
+      "energyLBack" : {
+        "properties" : {
+          "offset" : [0, 0],
+          "centered" : true,
+          "zLevel" : 0,
+          "transformationGroups" : ["rotation"],
+          "image" : "energylback.png"
+        }
+      },
+      "energyR" : {
+        "properties" : {
+          "offset" : [0, 0],
+          "centered" : true,
+          "zLevel" : 3,
+          "fullbright" : true,
+          "transformationGroups" : ["rotation", "energyR"]
+        },
+        "partStates" : {
+          "energyR" : {
+            "visible" : {
+              "properties" : {
+                "image" : "energyr.png"
+              }
+            }
+          }
+        }
+      },
+      "energyRBack" : {
+        "properties" : {
+          "offset" : [0, 0],
+          "centered" : true,
+          "zLevel" : 2,
+          "transformationGroups" : ["rotation"],
+          "image" : "energyrback.png"
+        }
+      }
+    }
+  },
+  "globalTagDefaults" : {
+    "colour" : ""
+  },
+
+  "transformationGroups" : {
+    "rotation" : {
+      "interpolated" : true
+    },
+    "ring" : {
+      "interpolated" : true
+    },
+    "frontcannon" : {
+      "interpolated" : true
+    },
+    "backcannon" : {
+      "interpolated" : true
+    },
+    "beamcannon" : {
+      "interpolated" : true
+    },
+    "beam" : {},
+    "healthL" : {
+      "interpolated" : true
+    },
+    "healthR" : {
+      "interpolated" : true
+    },
+    "energyL" : {
+      "interpolated" : true
+    },
+    "energyR" : {
+      "interpolated" : true
+    }
+  },
+
+  "particleEmitters" : {
+    "ventralThrusterIdle" : {
+      "transformationGroups" : ["rotation"],
+      "emissionRate" : 5.0,
+      "offsetRegion" : [-0.5, -1.5, 0.5, -1.55],
+      "particles" : [ { "particle" : "hoverbikedownthrust"} ]
+    },
+    "smoke" : {
+      "transformationGroups" : ["rotation"],
+      "emissionRate" : 0.0,
+      "offsetRegion" : [-1.5, -1.5, 0.5, -1],
+      "particles" : [ { "particle" : "burningvehiclesmokefront"} ]
+    },
+    
+    "damageShards" : {
+      "transformationGroups" : ["rotation"],
+      "emissionRate" : 0.0,
+      "burstCount"  : 60,
+      "offsetRegion" : [-5.0, -2.0, 5.0, 1],
+      "particles" : [
+        { "particle" : "hoverbikekhakishard" },
+        { "particle" : "fireshard"}
+      ]
+    }
+  },
+
+ "lights" : {
+  },
+
+  "sounds" : {
+    "explode" : [
+      "/sfx/gun/grenadeblast_small_fire1.ogg",
+      "/sfx/gun/grenadeblast_small_fire2.ogg",
+      "/sfx/gun/grenadeblast_small_fire3.ogg"
+    ],
+
+    "engineStart" : [ "/sfx/tools/teleport_up.ogg" ],
+    "engineLoop" : [ "/sfx/tech/hoverbike_drive_loop.ogg" ],
+
+    "fire" : [ "/sfx/gun/v_ancientrifle_fire.ogg" ]
+  }
+}

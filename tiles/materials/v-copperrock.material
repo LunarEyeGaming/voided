@@ -1,0 +1,24 @@
+{
+  "materialId" : 1191,
+  "materialName" : "v-copperrock",
+  "particleColor" : [135, 97, 76, 255],
+  "itemDrop" : "v-copperrockmaterial",
+  "description" : "<todo>",
+  "shortdescription" : "Copper Rock",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_stone3.ogg",
+  "health" : 9,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-copperrock.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1600
+  }
+}

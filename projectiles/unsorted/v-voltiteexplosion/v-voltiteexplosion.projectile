@@ -1,0 +1,34 @@
+{
+  "projectileName" : "v-voltiteexplosion",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 100,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "timeToLive" : 0,
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 3,
+      "body" : [
+        {
+          "action" : "projectile",
+          "type" : "whipshock",
+          "fuzzAngle" : 180,
+          "inheritDamageFactor" : 1,
+          "config" : {
+            "speed" : 100
+          }
+        }
+      ]
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/melee/travelingslash_electric1.ogg", "/sfx/melee/travelingslash_electric2.ogg", "/sfx/melee/travelingslash_electric3.ogg" ]
+    }
+  ]
+}

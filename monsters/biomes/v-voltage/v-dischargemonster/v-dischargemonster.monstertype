@@ -1,0 +1,129 @@
+{
+  "type" : "v-dischargemonster",
+  "shortdescription" : "Batterjaw",
+
+  "categories" : [ "v-dischargemonster" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-dischargemonster.animation",
+  "reversed" : true,
+
+  "dropPools" : [ "empty" ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/biomes/v-voltage/v-dischargemonster/v-dischargemonster.lua"
+    ],
+
+    "animationScripts" : [
+      "/monsters/biomes/v-voltage/v-dischargemonster/v-dischargemonsteranim.lua"
+    ],
+    
+    "warningRange" : 30,
+    "dischargeRange" : 15,
+    
+    "dischargeProjectile" : {
+      "type" : "electricplasmaexplosion",
+      "config" : {
+        "power" : 50
+      }
+    },
+    
+    "animationConfig" : {
+      "warningDistance" : 15,
+      "minRange" : 15,
+      "maxRange" : 30,
+      "minOpacity" : 0,
+      "maxOpacity" : 1,
+      "warningImage" : "/monsters/biomes/v-voltage/v-dischargemonster/warning.png"
+    },
+    
+    "cooldownTime" : 5.0,
+    "warningTime" : 0.5,
+
+    "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "gravityEnabled" : false,
+      "collisionPoly" : [ [-1.0, -1.0], [1.0, -1.0], [1.0, 1.0], [-1.0, 1.0] ],
+
+      "mass" : 1.0,
+      "flySpeed" : 20,
+      "airFriction" : 0.25,
+      "airForce" : 200.0,
+      "physicsEffectCategories" : ["boss"]
+    },
+
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "knockoutEffect" : "",
+    "deathParticles" : "deathPoof",
+
+    "touchDamage" : {
+      "poly" : [ [-1.0, -1.0], [1.0, -1.0], [1.0, 1.0], [-1.0, 1.0] ],
+      "damage" : 15,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "hammer",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "robotic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : false,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0.0
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9999
+        },
+        "maxHealth" : {
+          "baseValue" : 300
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8]
+  }
+}

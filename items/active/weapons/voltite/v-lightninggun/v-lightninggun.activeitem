@@ -1,0 +1,132 @@
+{
+  "itemName" : "v-lightninggun",
+  "price" : 1500,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "A gun that shoots extremely high voltage electricity.",
+  "shortdescription" : "Lightning Gun",
+  "tooltipKind" : "gun",
+  "category" : "uniqueWeapon",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged"],
+  "level" : 8,
+
+  "inventoryIcon" : "lightninggun.png:idle.1",
+
+  "animation" : "v-lightninggun.animation",
+  "animationParts" : {
+    "gun" : "lightninggun.png",
+    "gunfullbright" : "lightninggunfullbright.png",
+    "beamorigin" : ""
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fireStart" : [ "/sfx/objects/crystaltrap_on2.ogg" ],
+      "fireLoop" : [ "/sfx/gun/v_lightninggun_beamfire.ogg" ],
+      "fireEnd" : [ "/sfx/objects/crystaltrap_off.ogg" ],
+      "beamImpact" : [ "/sfx/gun/lightningcoil1.ogg", "/sfx/gun/lightningcoil2.ogg", "/sfx/gun/lightningcoil3.ogg" ]
+    }
+  },
+  "muzzleOffset" : [3.0, -1.0],
+  "animationScripts" : ["/items/active/effects/lightning.lua"],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+
+  "elementalType" : "electric",
+
+  "primaryAbility" : {
+    "scripts" : ["/items/active/weapons/voltite/v-lightninggun/v-lightninggunability.lua"],
+    "class" : "TeslaStream",
+    "name" : "Lightning Stream",
+
+    "fireTime" : 0.1,
+    "baseDps" : 40,
+    "energyUsage" : 60,
+
+    "damageConfig" : {
+      "statusEffects" : [ "electrified" ],
+      "damageSourceKind" : "electric",
+      "knockback" : 5
+    },
+
+    "inaccuracy" : 0.0,
+    "connectRadius" : 25,
+    "maxConnections" : 12,
+    
+    "fov" : 90,
+    
+    "lightningStartColor" : [225, 225, 255, 220],
+    "lightningEndColor" : [115, 115, 255, 0],
+
+    "groundLightningConfig" : {
+      "displacement" : 0.5,
+      "minDisplacement" : 0.125,
+      "forks" : 0,
+      "forkAngleRange" : 0.45,
+      "width" : 1.0,
+      "color" : [196, 196, 245, 220]
+    },
+    
+    "groundLightningInterval" : 0.1,
+    "groundLightningLength" : 15,
+    "groundLightningTtl" : 0.5,
+
+    "lightningConfig" : {
+      "displacement" : 1.0,
+      "minDisplacement" : 0.125,
+      "forks" : 0,
+      "forkAngleRange" : 0.45,
+      "width" : 1.5,
+      "color" : [225, 225, 255, 255]
+    },
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true,
+        "frontArmFrame" : "swimIdle.2",
+
+        "animationStates" : {
+          "firing" : "idle"
+        }
+      },
+      "fire" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true,
+        "frontArmFrame" : "swimIdle.2",
+
+        "animationStates" : {
+          "firing" : "fire"
+        }
+      },
+      "winddown" : {
+        "duration" : 0.5,
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+        "frontArmFrame" : "swimIdle.2",
+
+        "allowRotate" : true,
+        "allowFlip" : true,
+
+        "animationStates" : {
+          "firing" : "idle"
+        }
+      }
+    }
+  },
+  
+  "altAbilityType" : "v-lightninggunalt",
+  "altAbility" : {},
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

@@ -1,0 +1,191 @@
+{
+  "itemName" : "v-lightningharpoongun",
+  "price" : 1080,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "Military-grade fish hunter.",
+  "shortdescription" : "Electric Executioner",
+  "tooltipKind" : "gun",
+  "category" : "uniqueWeapon",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged"],
+  "level" : 8,
+  
+  //"critChance" : 2,
+  //"critBonus" : 5,
+
+  "inventoryIcon" : [
+    { "image" : "lightningharpoongun.png:idle.1" }
+  ],
+
+  "animation" : "v-lightningharpoongun.animation",
+  "animationParts" : {
+    "gun" : "lightningharpoongun.png",
+    "gunFullbright" : "lightningharpoongunfullbright.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : ["/sfx/gun/crossbow1.ogg"]
+    } /*,
+    "lights" : {
+      "muzzleFlash" : {
+        "color" : [150, 0, 150]
+      }
+    }*/
+  },
+
+  "baseOffset" : [0.0, 0.0],
+  "muzzleOffset" : [2.5, 0.125],
+
+  "animationScripts" : ["/items/active/effects/chain.lua"],
+  
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+
+  "elementalType" : "electric",
+
+  "primaryAbility" : {
+    "scripts" : ["/items/active/weapons/voltite/v-lightningharpoongun/v-lightningharpoongunfire.lua"],
+    "class" : "HarpoonGunFire",
+
+    "fireTime" : 1.0,
+    "baseDps" : 7,
+    "energyUsage" : 60,
+    "activeEnergyUsage" : 30,
+    "inaccuracy" : 0.0,
+    
+    "maxChainLength" : 100,
+
+    "projectileType" : "v-lightningharpoongun",
+    "projectileParameters" : {},
+    
+    "chain" : {
+      "startOffset" : [0, 0],
+      "startSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chain.png",
+      "segmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chain.png",
+      "endSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chain.png",
+      "segmentSize" : 0.75,
+      "taper" : 0,
+      "renderLayer" : "Projectile-10"
+    },
+    
+    "chainAnchored" : {
+      "startOffset" : [0, 0],
+      "startSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
+      "segmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
+      "endSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
+      "segmentSize" : 0.75,
+      "taper" : 0,
+      "fullbright" : true,
+      "renderLayer" : "Projectile-10"
+    },
+
+    "damageConfig" : {
+      "statusEffects" : [ "electrified" ],
+      "damageSourceKind" : "electric",
+      "knockback" : 0
+    },
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 8,
+        "weaponRotation" : 8,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "cooldown" : {
+        "duration" : 0.2,
+        "armRotation" : 8,
+        "weaponRotation" : 8,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  },
+
+  "altAbility" : {
+    "name" : "Bursting Chain",
+    "scripts" : ["/items/active/weapons/voltite/v-lightningharpoongun/v-lightningharpoongunfirealt.lua"],
+    "class" : "HarpoonGunFire",
+
+    "fireTime" : 3.0,
+    "baseDps" : 7,
+    "energyUsage" : 90,
+    "inaccuracy" : 0.0,
+    
+    "maxChainLength" : 100,
+
+    "projectileType" : "v-lightningharpoongun",
+    "projectileParameters" : {},
+    
+    "propagateStepDuration" : 0.05,
+    "propagateStepDistance" : 5,
+    "propagateProjectile" : "electricplasmaexplosion",
+    "propagateProjectileParameters" : {},
+    
+    "chain" : {
+      "startOffset" : [0, 0],
+      "startSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chain.png",
+      "segmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chain.png",
+      "endSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chain.png",
+      "segmentSize" : 0.75,
+      "taper" : 0,
+      "renderLayer" : "Projectile-10"
+    },
+    
+    "chainAnchored" : {
+      "startOffset" : [0, 0],
+      "startSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
+      "segmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
+      "endSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
+      "segmentSize" : 0.75,
+      "taper" : 0,
+      "fullbright" : true,
+      "renderLayer" : "Projectile-10"
+    },
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 8,
+        "weaponRotation" : 8,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "cooldown" : {
+        "duration" : 0.2,
+        "armRotation" : 8,
+        "weaponRotation" : 8,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  },
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

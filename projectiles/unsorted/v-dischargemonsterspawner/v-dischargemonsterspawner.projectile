@@ -1,0 +1,25 @@
+{
+  "projectileName" : "v-dischargemonsterspawner",
+  "image" : "dischargemonsterspawner.png",
+  "fullbright" : true,
+  "animationCycle" : 1.00,
+  "frameNumber" : 1,
+  "physics" : "grenade",
+  "timeToLive" : 0.55,
+  "bounces" : 0,
+  "actionOnReap" : [
+    {
+      "action" : "spawnmonster",
+      "type" : "v-dischargemonster",
+      "level" : 8
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/tech/mech_activate4.ogg" ]
+    }
+  ],
+  "power" : 0.0,
+  "speed" : 0,
+  "damageType" : "ignoresdef",
+  "damageKind" : "nodamage"
+}
