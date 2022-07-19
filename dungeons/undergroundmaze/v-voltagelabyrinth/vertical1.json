@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztz0EBACAMAKHVsH+9hTDHKQ8CsDOz5JxHeLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1\/PKi4QLLNnPD",
+         "data":"eJzt2kEOwBAURVHLaJdifbZrEe2ksyZ+efjqDu4URwxE5BBCpuU6xcW7o1DsMO9uriTK6lJlcZXWY8niUoULFy5cuHDh8mEa5RptGuGaYertmmWyumrv07NMX1wz14jLr6v2zL\/lzaUYJ+HChQvX4i6VzaNLYfPqarV5drXYvLse2+r3KOVe7OxS5cnFOxsuXLhw4cKFCxeuXVx\/\/PelyupSz7uLi9boAv5MovU=",
          "encoding":"base64",
          "height":54,
          "name":"back",
@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztz7ENwDAMBDGvkf0XzQhuYgSUj8DX0q0V0XNof9+b3qWqy1KXpS5LXZa6LHVZ6rLUZanLUpelLktdlrosdVnqstRlqctSl6UuS12Wuix1WW7t+nq7P07fm9oVwwuKDyMp",
+         "data":"eJzt2MkNwkAQRNEfhgnF+adBMHDgNALkpbp6LNeX6oY0fuLgBdIVe4i3vrf8OW\/5\/EZ9bly1LtVmcqk2k0tVXHHFVVdccd3N5TKBz+U0gcflNkG9q8ME213rwXWYYJ\/ryDN1V3tdjutxvqe47zuqzeZS3V\/iqi2uuOKqrcI21uECvW2sywVa21inC3S2sW4XnHu2mtkF9c+9qlVX\/V75bTO5VIvrXHHFFVddccUVV11xxbXF9fwx9\/d51\/\/l\/j7vdqnPvYsrXaMXw++mDw==",
          "encoding":"base64",
          "height":54,
          "name":"front",
@@ -43,7 +43,79 @@
          "color":"#ff0000",
          "draworder":"topdown",
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":687,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":280
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":688,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":384
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":689,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":272
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":690,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":168
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":691,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":160
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":692,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":56
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -65,7 +137,64 @@
          "color":"#ff0000",
          "draworder":"topdown",
          "name":"monsters & npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "height":8,
+                 "id":693,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"v-amperecharger2"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":336,
+                 "y":104
+                }, 
+                {
+                 "height":8,
+                 "id":694,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"v-amperecharger2"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":88,
+                 "y":216
+                }, 
+                {
+                 "height":8,
+                 "id":695,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"v-amperecharger2"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":336,
+                 "y":328
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -137,7 +266,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":687,
+ "nextobjectid":696,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

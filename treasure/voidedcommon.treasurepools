@@ -1,4 +1,20 @@
 {
+  "v-electricWeaponChestTreasure" : [
+    [0, {
+      "fill" : [
+        {"pool" : "v-electricWeapon"}
+      ],
+      "poolRounds" : [
+        [0.5, 2],
+        [0.3, 3],
+        [0.2, 4]
+      ],
+      "pool" : [
+        {"weight" : 1.0, "pool" : "basicTreasure"}
+      ]
+    }]
+  ],
+
   "v-electricWeapon" : [
     [1, {
       "fill" : [],
@@ -13,8 +29,6 @@
       ]
     }]
   ],
-  
-  
 
   "v-uncommonElectricMelee" : [
     [0, {
@@ -78,6 +92,16 @@
         {"weight" : 1.0, "item" : {"name" : "raremachinepistol", "parameters" : {"elementalType" : "electric"}}},
         {"weight" : 1.0, "item" : {"name" : "raregrenadelauncher", "parameters" : {"elementalType" : "electric"}}},
         {"weight" : 0.7, "item" : {"name" : "rarerocketlauncher", "parameters" : {"elementalType" : "electric"}}}
+      ]
+    }]
+  ],
+
+  "v-dischargetrapTreasure" : [
+    [0, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.9, "item" : "v-copperrockmaterial"},
+        {"weight" : 0.1, "item" : "v-dischargetrappiece"}
       ]
     }]
   ]

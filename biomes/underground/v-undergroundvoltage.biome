@@ -23,7 +23,7 @@
   "parallax" : "/parallax/underground/underground0a.parallax",
 
   "mainBlock" : "v-ironrock",
-  "subBlocks" : [ "v-copperrock", "junktech" ],
+  "subBlocks" : [ "v-copperrock", "v-chargedstone", "v-copperrock" ],
   "ores" : "v-undergroundvoltage",
 
   "ambientNoises" : {
@@ -104,7 +104,7 @@
         "distribution" : "/biomes/distributions.config:undergroundweaponChests",
 
         "type" : "treasureBox",
-        "treasureBoxSets" : [ "weaponChest" ]
+        "treasureBoxSets" : [ "v-electricWeaponChest" ]
       },
       {
         "mode" : "floor",

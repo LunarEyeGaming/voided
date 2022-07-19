@@ -1,0 +1,31 @@
+{
+  "projectileName" : "v-electrojellyprojectile",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+
+  "onlyHitTerrain" : true,
+
+  "physics" : "default",
+  "speed" : 50,
+  "periodicActions" : [
+    {
+      "time" : 0.07,
+      "action" : "projectile",
+      "type" : "v-electrojellytrail",
+      "inheritDamageFactor" : 1
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-electrojellytrail2",
+      "inheritDamageFactor" : 1
+    }
+  ],
+  "timeToLive" : 5.0,
+
+  "scripts" : [ "/scripts/projectiles/homingprojectile.lua" ],
+  "scriptDelta" : 1,
+
+  "rotationRate" : 2.0,
+  "trackingLimit" : 2.0
+}

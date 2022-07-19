@@ -1,0 +1,162 @@
+{
+  "name": "v-action-lightningcharge",
+  "description": "",
+  "scripts": [
+    "/scripts/behavior.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/monster.lua",
+    "/scripts/actions/projectiles.lua",
+    "/scripts/behavior/bdata.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/status.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {
+    "windupState": "chargewindup",
+    "winddownState": "chargewinddown",
+    "aimAtTarget": false,
+    "inaccuracy": 0,
+    "aimDirection": [1, 0],
+    "rotateToTarget": false,
+    "chargeStateType": "body",
+    "rotationOffset": 0,
+    "skillName": "",
+    "wallCrashVelocity": [-10, 20],
+    "wallKnockback": false,
+    
+    "trailProjectile": "teslabolt",
+    "trailProjectileConfig": {},
+    "trailOffset": [0, 0],
+    "trailDirection": [0, 0],
+    "trailStepDistance": 5,
+    "trailStepCount": 10
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "action-windup",
+        "type": "module",
+        "name": "action-windup",
+        "parameters": {
+          "windupState": {"value": "<windupState>"},
+          "windupStateType": {"value": "<chargeStateType>"},
+          "skillName": {"value": "<skillName>"}
+        }
+      },
+      {
+        "title": "offsetPosition",
+        "type": "action",
+        "name": "offsetPosition",
+        "parameters": {
+          "offset": {"value": [0, 0]},
+          "position": {"key": "self"}
+        },
+        "output": {
+          "position": "stepPos"
+        }
+      },
+      {
+        "title": "entityDirection",
+        "type": "action",
+        "name": "entityDirection",
+        "parameters": {
+          "entity": {"key": "self"},
+          "target": {"key": "target"}
+        },
+        "output": {
+          "direction": "targetDirection"
+        }
+      },
+      {
+        "title": "setNumber",
+        "type": "action",
+        "name": "setNumber",
+        "parameters": {
+          "number": {"value": "<trailStepDistance>"}
+        },
+        "output": {
+          "number": "trailStepDistance"
+        }
+      },
+      {
+        "title": "vecMultiply",
+        "type": "action",
+        "name": "vecMultiply",
+        "parameters": {
+          "first": {"value": ["trailStepDistance", 0]},
+          "number": {"key": "targetDirection"}
+        },
+        "output": {
+          "vector": "stepOffset"
+        }
+      },
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": "<trailStepCount>"}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "spawnProjectile",
+              "type": "action",
+              "name": "spawnProjectile",
+              "parameters": {
+                "aimVector": {"value": "<trailDirection>"},
+                "offset": {"value": "<trailOffset>"},
+                "position": {"key": "stepPos"},
+                "projectileConfig": {"value": "<trailProjectileConfig>"},
+                "projectileType": {"value": "<trailProjectile>"},
+                "scalePower": {"value": true},
+                "sourceEntity": {"key": "self"},
+                "trackSource": {"value": false}
+              }
+            },
+            {
+              "title": "offsetPosition",
+              "type": "action",
+              "name": "offsetPosition",
+              "parameters": {
+                "offset": {"key": "stepOffset"},
+                "position": {"key": "stepPos"}
+              },
+              "output": {
+                "position": "stepPos"
+              }
+            },
+            {
+              "title": "setPosition",
+              "type": "action",
+              "name": "setPosition",
+              "parameters": {
+                "position": {"key": "stepPos"}
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "action-winddown",
+        "type": "module",
+        "name": "action-winddown",
+        "parameters": {
+          "winddownState": {"value": "<winddownState>"},
+          "winddownStateType": {"value": "<chargeStateType>"}
+        }
+      }
+    ]
+  }
+}

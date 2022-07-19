@@ -1,0 +1,30 @@
+{
+  "projectileName" : "v-electrojellytrail2",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "frameNumber" : 4,
+  "cycle" : 0.5,
+  "fullbright" : true,
+  "lightColor" : [17, 17, 41],
+
+  "onlyHitTerrain" : true,
+
+  "physics" : "illusion",
+  "bounces" : -1,
+  "speed" : 0,
+  "actionOnReap" : [
+    {
+      "action" : "sound",
+      "options" : ["/sfx/gun/lightningcoil1.ogg", "/sfx/gun/lightningcoil2.ogg", "/sfx/gun/lightningcoil3.ogg"]
+    }
+  ],
+  "timeToLive" : 1.0,
+  
+  "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
+  
+  "monsterType" : "v-shockwave",
+  "spawnOffset" : [0, 0],
+  "shockwaveDamageFactor" : 0.5,
+  "monsterParameters" : {
+    "maxArea" : 200
+  }
+}

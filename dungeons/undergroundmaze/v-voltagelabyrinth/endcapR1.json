@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztz0EBACAMAKHVsH+9hTDHKQ8CsDOz5JxHeLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1\/PKi4QLLNnPD",
+         "data":"eJzt18ENgCAQAEHK0FLsvx2K8GVifOhp5GB1H\/tngISjllKq4Zo\/0t9cC7SIa4Kli5UuVrpY6WKli5UuVrpYZbie\/p8IrvlmLV0t9i7TtXV0vXnXs+\/hvlau3ulipYuVLlat3uUenb3Lzr3jpYtV1JU5p0bWHOnKlfGveHoWkXTp0qVLly5dunT1cWWW5Rq5v7iM0Qq+hYal",
          "encoding":"base64",
          "height":54,
          "name":"back",
@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt1TERwEAMBDHTCH+iKR5A2uxbmjkA29gzFD2XbFtXla4WXS26WnS16GrR1aKrRVeLrpZtXQAc9Tu57X\/p+iddLbpadLXoatHVoqtFV4uulq+u+rZ00fACig8jKQ==",
+         "data":"eJztmUEKgDAMBH2G4kPE\/3\/Mg3gRoaZttonOwOJBpJ1S2gSnCTKyfCR\/89qT5o3XnCwWryzghVcE8MIrAnjhFQG88IqAwqu1Lq8dU+FV2z9l8FqM8fTyWDul15Wn9732unofts7bOobi3AAA6E3Ws6k07x53yQhK9zL1fCzwilP39P6f4lmnWrDU0SUv777CQk3fcwcvvFrBCy+8\/MALrzde23p+6\/Uc5aWI2ksZlVfk\/MULcnAA0pd\/7w==",
          "encoding":"base64",
          "height":54,
          "name":"front",
@@ -43,7 +43,103 @@
          "color":"#ff0000",
          "draworder":"topdown",
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":692,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":56
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":693,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":56
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":694,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":152,
+                 "y":152
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":695,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":152,
+                 "y":208
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":696,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":272,
+                 "y":208
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":697,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":272,
+                 "y":152
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":698,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":280
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":699,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":280
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -65,7 +161,64 @@
          "color":"#ff0000",
          "draworder":"topdown",
          "name":"monsters & npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "height":8,
+                 "id":687,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"v-amperecharger2"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":72,
+                 "y":248
+                }, 
+                {
+                 "height":8,
+                 "id":688,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"v-amperecharger2"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":352,
+                 "y":248
+                }, 
+                {
+                 "height":8,
+                 "id":689,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"v-amperecharger2"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":216,
+                 "y":120
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -125,7 +278,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":687,
+ "nextobjectid":702,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

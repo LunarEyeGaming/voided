@@ -1,0 +1,21 @@
+{
+  "projectileName" : "v-dischargetrap",
+
+  "image" : "dischargetrap.png",
+  "lightColor" : [74, 74, 181],
+  "fullbright" : true,
+  "animationCycle" : 0.6,
+  "frameNumber" : 8,
+
+  "physics" : "gravitybomb",
+  "speed" : 20,
+  "timeToLive" : 0.75,
+  "bounces" : 5,
+
+  "power" : 50,
+  "knockback" : 0,
+  "damagePoly" : [ [-18, 0], [-12, -12], [0, -18], [12, -12], [18, 0], [12, 12], [0, 18], [-12, 12] ],
+  "piercing" : true,
+  "damageKind" : "electric",
+  "damageType" : "Environment"
+}

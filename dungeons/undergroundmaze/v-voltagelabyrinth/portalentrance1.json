@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztz0EBACAMAKHVsH+9hTDHKQ8CsDOz5JxHeLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1\/PKi4QLLNnPD",
+         "data":"eJzt2LERgzAQBVGVYUpR\/+1QhAkZB0iGD2hHG7z4bgOGg7WUsgpnCaubT0O9Ye5sXTWopyulp6u1z2jsYrGLxS4Wu1jsYrGLxS4Wu1iOuv75zh3Nfvffrrd3S7GLxS4Wu1hm6Tr7Xr7y7\/nI2R1Sd9T+hkm5soNd83aN8Hylu0ZgF4tdLHax2MViF4tdLL1dT93kyVmtrpTervTcWbrE8AXDaIcB",
          "encoding":"base64",
          "height":54,
          "name":"back",
@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt2DEOQDAAQFHXcP+LGiwmhCC\/3kssTar9S0WniaL5oefr9UbvqtLVoqtFV4uuFl0tulp0tehq0dXyty4AVlfOyafuou\/s5ez4mXeN1rWd92XT3v7r32tdLbpadLXoatHVoqtFV4uulqOut\/5731pv1C4aFiOmJ6c=",
+         "data":"eJztmcENgCAQBC0DS7H\/NixGH76IwoGrWcJMsi9N7uYBcrgsMCKrONuZVKiXrnfUdWfz2oSJeKkS8UrClLxUafEaBbzwcgAvvBzACy8H8MLLAbzwcqDmFZ1z3cjn7rvnkTnXjVH7BgD4m579Unm32XKn2tJ3z3dZfRet6CGn5xz11b+DNz3gNa+Xw\/pSeznsh2ovB\/DCywG88HIAL7wcwEt7xtsfoqwR9frjTK6eBWpeqkS91HVn8YIxOAD9XG3r",
          "encoding":"base64",
          "height":54,
          "name":"front",
@@ -55,6 +55,124 @@
                  "width":32,
                  "x":200,
                  "y":240
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":686,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":304,
+                 "y":240
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":687,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":304,
+                 "y":304
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":688,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":120,
+                 "y":304
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":689,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":120,
+                 "y":240
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":690,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":384
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":691,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":384
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":692,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":56
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":693,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":56
+                }, 
+                {
+                 "gid":7700,
+                 "height":24,
+                 "id":695,
+                 "name":"",
+                 "properties":
+                    {
+                     "object":"v-tooltipsign",
+                     "parameters":"{\"tooltip\" : \"This is a placeholder entrance.\"}"
+                    },
+                 "propertytypes":
+                    {
+                     "object":"string",
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":232,
+                 "y":216
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -173,7 +291,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":686,
+ "nextobjectid":696,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -278,6 +396,10 @@
         {
          "firstgid":7635,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-type\/teleporter.json"
+        }, 
+        {
+         "firstgid":7662,
+         "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-colonytag\/outpost.json"
         }],
  "tilewidth":8,
  "type":"map",

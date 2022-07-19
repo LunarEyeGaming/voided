@@ -74,7 +74,7 @@ end
 
 function placeWave()
   -- Animation parameters seem to update at a rate much less than 60 times per second, so if this script updates
-  -- faster than that, the wave appears broken.
+  -- faster than that, the wave appears broken without this code segment.
   self.animTickTimer = self.animTickTimer - 1
   if self.animTickTimer <= 0 then
     monster.setAnimationParameter("nextBlocks", self.animNextBlocks)

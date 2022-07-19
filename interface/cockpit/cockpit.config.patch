@@ -1,6 +1,100 @@
 [
-  {"op": "test", "path": "/displayDungeons"},
-  {"op": "add", "path": "/displayDungeons/v-strongholdgateway", "value": {
-    "description": "A large, unknown structure engulfed in magma. Heavy energy readings resonate from this area.", "icon": "/interface/cockpit/dungeons/v-strongholdgateway.png"
-  }}
+  // More Planet Info Support
+  [
+    {"op" : "test", "path" : "/displayDungeons"},
+    {"op" : "add", "path" : "/displayDungeons/v-strongholdgateway", "value" : {
+      "description" : "A large, unknown structure engulfed in magma. Heavy energy readings resonate from this area.", "icon" : "/interface/cockpit/dungeons/v-strongholdgateway.png"
+    }},
+
+    {"op" : "add", "path" : "/wordsList/v-voltage", "value" : {"word" : "v-voltage", "friendlyWord" : " Voltage"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagedesert", "value" : {"word" : "v-voltagedesert", "friendlyWord" : " Copper Desert"}},
+    {"op" : "add", "path" : "/wordsList/v-voltageforest", "value" : {"word" : "v-voltageforest", "friendlyWord" : " Electric Forest"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagerusty", "value" : {"word" : "v-voltagerusty", "friendlyWord" : " Rusted Voltage"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagewastes", "value" : {"word" : "v-voltagewastes", "friendlyWord" : " Voltage Wastes"}},
+
+    {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomeelectric", "value" : {"displayName" : "Dangerously Conductive", "icon" : "/interface/cockpit/hazards/v-biomeelectric.png"}},
+
+    {"op" : "add", "path": "/weatherThreatValues/v-copperstorm", "value": 2.5},
+    {"op" : "add", "path": "/weatherThreatValues/v-copperstormlight", "value": 0.3},
+    {"op" : "add", "path": "/weatherThreatValues/v-lightningstorm", "value": 3.0}
+  ],
+  // Normal Stuff
+  [
+    {
+      "op" : "add",
+      "path" : "/visitableTypeDescription/v-voltage",
+      "value" : [
+        "Scans show a surface filled with copper deserts and metallic spikes. This ^#a083df;voltage^reset; world is ^red;dangerously conductive^reset;.",
+        "This ^#a083df;voltage^reset; world has a powerful amount of electricity circulating through it. Protection against its ^red;dangerously conductive^reset; atmosphere is advised.",
+        "The electrical conductivity of this ^#a083df;voltage^reset; world is ^red;dangerously high^reset;. Its indigenous lifeforms have adapted a resistance to this kind of environment."
+      ]
+    },
+
+    {
+      "op" : "add",
+      "path" : "/planetTypeNames/v-voltage",
+      "value" : "Voltage"
+    },
+    {
+      "op": "add",
+      "path": "/planetTypeColors/v-voltage",
+      "value" : [160, 131, 223]
+    },
+
+    {
+      "op": "add",
+      "path": "/starTypeColors/v-extradimensional",
+      "value" : [204, 74, 244]
+    },
+    {
+      "op": "add",
+      "path": "/starTypeNames/v-extradimensional",
+      "value" : "Extradimensional Star"
+    },
+
+    {
+      "op": "replace",
+      "path": "/threatLevelText/default/7",
+      "value": "Lethal"
+    },
+    {
+      "op": "replace",
+      "path": "/threatLevelColor/default/7",
+      "value": [235, 66, 0]
+    },
+
+    {
+      "op" : "add",
+      "path" : "/displayOres/v-voltite",
+      "value" : {
+        "displayName" : "Voltite",
+        "icon" : "/items/generic/crafting/v-voltiteore.png"
+      }
+    },
+
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-lightningstorm",
+      "value" : {
+        "displayName" : "Lightning Storm",
+        "icon" : "/interface/cockpit/weather/v-lightningstorm.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-copperstorm",
+      "value" : {
+        "displayName" : "Copper Storm",
+        "icon" : "/interface/cockpit/weather/v-copperstorm.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-copperstormlight",
+      "value" : {
+        "displayName" : "Light Copper Storm",
+        "icon" : "/interface/cockpit/weather/v-copperstormlight.png"
+      }
+    }
+  ]
 ]

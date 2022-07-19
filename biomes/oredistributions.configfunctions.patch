@@ -26,5 +26,12 @@
     "value": [
       [4.5, [ [ "coal", 0.2 ], [ "copper", 1.4 ], [ "gold", 1.25 ], [ "v-voltite", 1.0 ] ] ]
     ]
+  },
+  {
+    "op": "add",
+    "path": "/v-voltagecore",
+    "value": [
+      [4.5, [ [ "coal", 0.2 ], [ "copper", 1.4 ], [ "gold", 1.25 ], [ "v-voltite", 1.0 ], ["corefragment", 1.0] ] ]
+    ]
   }
 ]

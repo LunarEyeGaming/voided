@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztz0EBACAMAKHVsH+9hTDHKQ8CsDOz5JxHeLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1eLV4tXi1\/PKi4QLLNnPD",
+         "data":"eJzt1kESQDAMRuEeg6P0\/tdxCNZmopWm5Oct3sogX9WwlVI2kmsNrh4tjeqE++Jqz2\/V44pqhqs1\/+xw4cKFCxcuXLhw4cLld1ktA8eiXVdzXmU9R2s9zvOMPP9e18h1s7mi9sGd+Z5wRb23o\/s5u6s3j0PJpbIPceHC9X1XLTHfD68ral2f+I\/ylt0167wMLmv\/4XrXZb0n3mMZXG+HSytcWuHSCpdWuLT6u0uxlku9v7hIox23tpHB",
          "encoding":"base64",
          "height":54,
          "name":"back",
@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztz8EJACAQA0HbsP9GrUJkvF3IO8xaJbYv7fXf7y61XFa5rHJZ5bLKZZXLKpdVLqtcVtNcermscllNc+neXFa5rHJZ5bLKZZXLKpdVLqtcVlNd+qa4yugAXScjKQ==",
+         "data":"eJzt2MsRgzAMBFCXYUqh\/zZSTDhwYmJZklexNOzO7C3BPPM1rTEVc4B7Xu3CeP3+DXpcuub7P6rGhWqEqwuVXKhGunaFLrroigtddNEVF7roeoML\/d77UTbSNap3nWI5\/lqXtJ9SrefnaF0Z6VpZ\/2Rzoc4Dy\/z8w6W93i0ub5Eub1a\/v4yOq3d8VFAu1Pio0EXXyvioZHeh3s+yuc6GeX54XVH3ee\/8ZX8uR7gyvEdFudD\/m23nGbp+b9d6nexYV1rv81Kl\/ZGK\/g5gna\/doYuuDKGLrgyhi64MsboqVeuq2Jmret\/iYmrkCwXWu+0=",
          "encoding":"base64",
          "height":54,
          "name":"front",
@@ -43,7 +43,127 @@
          "color":"#ff0000",
          "draworder":"topdown",
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":687,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":384
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":688,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":384
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":689,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":56
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":690,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":144,
+                 "y":56
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":691,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":144,
+                 "y":144
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":692,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":296,
+                 "y":144
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":693,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":296,
+                 "y":312
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":694,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":128,
+                 "y":312
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":695,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":184
+                }, 
+                {
+                 "gid":6464,
+                 "height":8,
+                 "id":696,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":120,
+                 "y":184
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -65,7 +185,64 @@
          "color":"#ff0000",
          "draworder":"topdown",
          "name":"monsters & npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "height":8,
+                 "id":697,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"v-amperecharger2"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":208,
+                 "y":288
+                }, 
+                {
+                 "height":8,
+                 "id":698,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"v-amperecharger2"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":288,
+                 "y":216
+                }, 
+                {
+                 "height":8,
+                 "id":699,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"v-amperecharger2"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":208,
+                 "y":152
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -137,7 +314,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":687,
+ "nextobjectid":700,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

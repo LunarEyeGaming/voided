@@ -2,16 +2,14 @@
   "name" : "v-voltage",
   "friendlyName" : "Voltage",
 
-  "statusEffects" : [ "v-biomeelectric" ],
+  "statusEffects" : [ "v-biomeelectric", "v-quickhealnerf" ],
 
   "spawnProfile" : {
     "groups" : [
       {
-        "select" : 3,
+        "select" : 1,
         "pool" : [
           [ 1.0, "v-electricelemental" ],
-          [ 1.0, "bobot" ],
-          [ 1.0, "scandroid" ],
           [ 1.0, "v-amperecharger" ]
         ]
       },
@@ -173,7 +171,7 @@
         "distribution" : "/biomes/distributions.config:undergroundweaponChests",
 
         "type" : "treasureBox",
-        "treasureBoxSets" : [ "weaponChest" ]
+        "treasureBoxSets" : [ "v-electricWeaponChest" ]
       },
       {
         "mode" : "floor",
@@ -315,7 +313,7 @@
         "distribution" : "/biomes/distributions.config:undergroundweaponChests",
 
         "type" : "treasureBox",
-        "treasureBoxSets" : [ "weaponChest" ]
+        "treasureBoxSets" : [ "v-electricWeaponChest" ]
       },
       {
         "mode" : "floor",

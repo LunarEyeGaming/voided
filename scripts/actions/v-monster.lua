@@ -52,6 +52,7 @@ function _correctAngle(angle, speed, step, dt)
   return angle + angleOffset
 end
 
+-- This makes enemies very unpredictable for some reason.
 function _getFleeAngle(targetAngle, speed, step, dt)
   local initialFleeAngle = util.wrapAngle(targetAngle + math.pi)
   -- fleeAngle1 will be evaluated. If it ends up making it approach the target, simply return the angle correction in the other direction.

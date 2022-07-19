@@ -2,7 +2,7 @@
   "name" : "v-voltagerusty",
   "friendlyName" : "Rusted Voltage",
 
-  "statusEffects" : [ "v-biomeelectric" ],
+  "statusEffects" : [ "v-biomeelectric", "v-quickhealnerf" ],
 
   "spawnProfile" : {
     "groups" : [
@@ -172,7 +172,7 @@
         "distribution" : "/biomes/distributions.config:undergroundweaponChests",
 
         "type" : "treasureBox",
-        "treasureBoxSets" : [ "weaponChest" ]
+        "treasureBoxSets" : [ "v-electricWeaponChest" ]
       },
       {
         "mode" : "floor",
@@ -314,7 +314,7 @@
         "distribution" : "/biomes/distributions.config:undergroundweaponChests",
 
         "type" : "treasureBox",
-        "treasureBoxSets" : [ "weaponChest" ]
+        "treasureBoxSets" : [ "v-electricWeaponChest" ]
       },
       {
         "mode" : "floor",

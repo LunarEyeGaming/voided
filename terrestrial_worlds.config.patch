@@ -34,6 +34,10 @@
         "underground3" : {
           "primaryRegion" : ["v-deepundergroundvoltage"],
           "secondaryRegions" : []
+        },
+        "core" : {
+          "primaryRegion" : ["v-voltagecorelayer"],
+          "secondaryRegions" : []
         }
       }
     }
@@ -134,6 +138,21 @@
       //"caveLiquid" : ["water"],
       "biome": [
         [1,["v-deepundergroundvoltage"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-voltagecorelayer",
+    "value" : {
+      "caveLiquid" : ["lava"],
+      "oceanLiquid" : ["lava"],
+      "fgCaveSelector" : [ "coreCaves" ],
+      "bgCaveSelector" : [ "coreBackgroundCaves" ],
+      "oceanLevelOffset" : -20,
+      "caveLiquidSeedDensityRange" : [4.0, 4.0],
+      "biome": [
+        [1,["v-voltagecorelayer"]]
       ]
     }
   }

@@ -2,6 +2,7 @@ require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
 -- Overengineered, but it works
+-- Random integer generator that avoids consecutive repeats.
 UniqueRand = {}
 function UniqueRand:new()
   local instance = {}
@@ -27,7 +28,7 @@ end
 -- param coreIds
 -- param corePositions
 -- output coreIds, corePositions
--- Randomly partition the cores by phase such that at least one core is active in every row in every phase. Pre-condition: nCols = the number of phases
+-- Randomly partition the cores by phase such that at least one core is active in every column in every phase. Pre-condition: nCols = the number of phases
 function v_partitionCores(args, board)
   math.randomseed(os.time())
   local phaseMatrix = {}
@@ -64,6 +65,7 @@ end
 -- param coreXOffsets
 -- param coreYOffsets
 -- output laserH1Id, laserV1Id, laserH2Id, laserV2Id, coreIds, corePositions
+-- Spawn the lasers and cores.
 function v_spawnStrongholdParts(args, board)
   local laserIds = {}
   local coreIds = {}
@@ -114,6 +116,7 @@ end
 -- param coreXOffsets
 -- param coreYOffsets
 -- output coreIds, corePositions
+-- Spawn just the cores.
 function v_spawnStrongholdParts2(args, board)
   local coreIds = {}
   local corePositions = {}
@@ -152,12 +155,14 @@ end
 -- param phase
 -- param waitTime
 -- param fireDelay
+-- Move the lasers to random positions without consecutive repeats.
 function v_laserAttack(args, board)
   local center = mcontroller.position()
   local randGenH = UniqueRand:new()
   local randGenV = UniqueRand:new()
   local activeLasers = args.phase + 1
   for i = 1, args.loops do
+    -- Alternate between the pairs of lasers.
     local hId = i % 2 == 0 and args.h1Id or args.h2Id
     local vId = i % 2 == 0 and args.v1Id or args.v2Id
 
@@ -238,6 +243,7 @@ end
 -- param hTeleProjectile
 -- param vTeleProjectile
 -- param waitTime
+-- Fire lasers along outer borders, then at the center. Use one pair of lasers if there is no second set of fire offsets.
 function v_laserAttack2(args, board)
   local center = mcontroller.position()
   local useFourLasers = args.h2Offsets and args.v2Offsets
@@ -313,6 +319,7 @@ end
 -- param sampleSize
 -- param waitTime
 -- param fireDelay
+-- Pick multiple random lasers to sweep from one position to another.
 function v_laserAttack3(args, board)
   local center = mcontroller.position()
   local attackSet = copy(args.attackSet)
@@ -369,6 +376,7 @@ end
 -- param phase3WarningProjectile
 -- param phase
 -- param waitTime
+-- Target lasers at the player.
 function v_laserAttack4(args, board)
   local center = mcontroller.position()
 
@@ -453,6 +461,7 @@ end
   -- field teleOffset
   -- field teleProjectile
 -- param waitTime
+-- Activate lasers one by one, then move them all to their end offsets at once.
 function v_laserAttack5(args, board)
   local center = mcontroller.position()
 
@@ -515,6 +524,7 @@ end
 -- param fireDelay
 -- param waitTime
 -- param loops
+-- Sweep lasers such that a random corner is safe. Includes consecutive repeats.
 function v_laserAttack6(args, board)
   local center = mcontroller.position()
 
@@ -574,6 +584,7 @@ end
 -- param v1Id
 -- param h2Id
 -- param v2Id
+-- Reset lasers to their spawn positions.
 function v_resetLasers(args, board)
   world.sendEntityMessage(args.h1Id, "reset")
   world.sendEntityMessage(args.v1Id, "reset")
@@ -590,6 +601,7 @@ end
 -- param corePositionPartition
 -- param phase
 -- output coreIds
+-- Activate cores based on the input phase and the result of v_partitionCores
 function v_activateCores(args, board)
   -- local randGen = UniqueRand:new()
   -- local selected = {}
@@ -619,6 +631,7 @@ end
 -- param coreCount
 -- param prevCoreCount
 -- param duration
+-- Flicker the lights, with the intensity based on the input coreCount.
 function v_flickerLights(args, board)
   if args.prevCoreCount <= args.coreCount then return false end
   animator.playSound("flicker")
@@ -631,6 +644,7 @@ end
 
 -- param lightIds
 -- param active
+-- Activate or deactivate lights.
 function v_setLightsActive(args, board)
   for _, id in ipairs(args.lightIds) do
     world.sendEntityMessage(id, "setActive", args.active)
@@ -641,6 +655,7 @@ end
 
 -- param coreIds
 -- param teleportPool
+-- Teleport cores around in random positions such that no two cores share a position.
 function v_moveCoresAroundRandomly(args, board)
   local teleportPool = args.teleportPool
   shuffle(teleportPool)
@@ -660,6 +675,7 @@ end
 -- param waitTime
 -- param centerOffset
 -- param target
+-- Instruct the cores to activate attack 6 (circle around the center then fire at the player)
 function v_coreAttack6(args, board)
   local center = vec2.add(mcontroller.position(), args.centerOffset)
   for i = 1, args.loops do
@@ -700,6 +716,7 @@ end
 
 -- param coreIds
 -- output shieldCoreIds
+-- Instruct the cores to start spawning shields.
 function v_spawnShieldCores(args, board)
   --local shieldCoreIds = {}
   for _, coreId in ipairs(args.coreIds) do
@@ -715,6 +732,7 @@ end
 -- param monsterType
 -- param spawnCenter
 -- param waves
+-- Spawn waves of turrets. This is the attack between phases.
 function v_turretAttack(args, board)
   local turretIds = {}
 
@@ -746,6 +764,7 @@ function v_turretAttack(args, board)
   return true
 end
 
+-- Return whether any entities within the input list exist.
 function _v_anyTurretsExist(turrets)
   for _, turret in ipairs(turrets) do
     if world.entityExists(turret) then
@@ -756,6 +775,7 @@ function _v_anyTurretsExist(turrets)
   return false
 end
 
+-- Coroutine function that waits until it receives <count> notifications of the specified type (default is 1).
 function _v_awaitNotification(type_, count)
   count = count or 1
   local notifications = {}
@@ -779,6 +799,7 @@ function _v_awaitNotification(type_, count)
   return notifications
 end
 
+-- Get the position of the target within the confines of the arena.
 function _getCappedTargetPos(target, hPosBounds, vPosBounds)
   local targetPos = world.entityPosition(target)
   return {math.max(vPosBounds[1], math.min(targetPos[1], vPosBounds[2])), math.max(hPosBounds[1], math.min(targetPos[2], hPosBounds[2]))}

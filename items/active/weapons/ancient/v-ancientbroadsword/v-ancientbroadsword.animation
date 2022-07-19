@@ -116,29 +116,6 @@
             }
           }
         }
-      },
-      "charge" : {
-        "default" : "idle",
-        "states" : {
-          "idle" : {},
-          "charge" : {
-            "frames" : 6,
-            "cycle" : 1,
-            "mode" : "transition",
-            "transition" : "charged"
-          },
-          "charged" : {
-            "frames" : 4,
-            "cycle" : 0.75,
-            "mode" : "loop"
-          },
-          "winddown" : {
-            "frames" : 6,
-            "cycle" : 0.5,
-            "mode" : "transition",
-            "transition" : "idle"
-          }
-        }
       }
     },
 
@@ -148,10 +125,8 @@
           "zLevel" : 3,
           "centered" : true,
           "fullbright" : true,
-          "offset" : [0, 1.875],
-          "transformationGroups" : ["weapon"],
-          "rotationCenter" : [0, 0],
-          "damageArea" : [[-0.7, -1.0], [-0.7, 2.5], [0.5, 2.5], [0.5, -1.0]]
+          "anchorPart" : "sword",
+          "rotationCenter" : [0, 0]
         },
 
         "partStates" : {
@@ -183,11 +158,9 @@
         "properties" : {
           "zLevel" : 2,
           "centered" : true,
-          "offset" : [0, 1.875],
+          "offset" : [0, 2.125],
           "transformationGroups" : ["weapon"],
-          "rotationCenter" : [0, 0],
-          "focalPoint" : [0.0, 2.5],
-          "damageArea" : [[-0.7, -1.0], [-0.7, 2.5], [0.5, 2.5], [0.5, -1.0]]
+          "rotationCenter" : [0, 0]
         },
 
         "partStates" : {
@@ -210,36 +183,6 @@
             "retract" : {
               "properties" : {
                 "image" : "<partImage>:retract.<frame>?<directives>?<bladeDirectives>"
-              }
-            }
-          }
-        }
-      },
-      "charge" : {
-        "properties" : {
-          "zLevel" : 4,
-          "fullbright" : true,
-          "centered" : true,
-          "offset" : [0, 1.875],
-          "transformationGroups" : ["weapon"],
-          "rotationCenter" : [0, 0]
-        },
-
-        "partStates" : {
-          "charge" : {
-            "charge" : {
-              "properties" : {
-                "image" : "<partImage>:charge.<frame>?<directives>?<bladeDirectives>"
-              }
-            },
-            "charged" : {
-              "properties" : {
-                "image" : "<partImage>:charged.<frame>?<directives>?<bladeDirectives>"
-              }
-            },
-            "winddown" : {
-              "properties" : {
-                "image" : "<partImage>:winddown.<frame>?<directives>?<bladeDirectives>"
               }
             }
           }
@@ -325,7 +268,7 @@
               "properties" : {
                 "image" : "ancientexplosion.png:<frame>",
                 "offset" : [-2.5, -2.5],
-                "damageArea" : [[-4.0, 0], [-2.5, -2.5], [0, -4.0], [2.5, -2.5], [4.0, 0], [2.5, 2.5], [0, 4.0], [-2.5, 2.5]], 
+                "damageArea" : [[-5.0, 0], [-3.125, -3.125], [0, -5.0], [3.125, -3.125], [5.0, 0], [3.125, 3.125], [0, 5.0], [-3.125, 3.125]], 
                 "transformationGroups" : ["swoosh"]
               }
             }
