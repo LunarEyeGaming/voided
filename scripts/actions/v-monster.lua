@@ -39,6 +39,44 @@ function v_rangedFlyApproach(args, board, _, dt)
   end
 end
 
+-- param position1
+-- param position2
+-- param speed
+-- param tolerance
+function v_flyToNearerPosition(args, board)
+  if not args.position1 then
+    sb.logInfo("args.position1 not defined. Failing")
+    return false
+  end
+  
+  if not args.position2 then
+    sb.logInfo("args.position2 not defined. Failing")
+    return false
+  end
+  
+  if not args.tolerance then
+    sb.logInfo("args.tolerance not defined. Failing")
+    return false
+  end
+  
+  while true do
+    local speed = args.speed or mcontroller.baseParameters().flySpeed
+
+    local position, distance = _getCloserPositionAndMagnitude(mcontroller.position(), args.position1, args.position2)
+    if distance <= args.tolerance then break end
+
+    local toTarget = vec2.norm(world.distance(position, mcontroller.position()))
+    mcontroller.controlApproachVelocity(vec2.mul(toTarget, speed), mcontroller.baseParameters().airForce)
+    mcontroller.controlFace(util.toDirection(toTarget[1]))
+    mcontroller.controlDown()
+
+    coroutine.yield(nil, {vector = toTarget})
+  end
+
+  mcontroller.controlFly({0,0})
+  return true
+end
+
 function _correctAngle(angle, speed, step, dt)
   local collisionPoly = mcontroller.collisionBody()
   local pos = mcontroller.position()
@@ -61,4 +99,14 @@ function _getFleeAngle(targetAngle, speed, step, dt)
     return _correctAngle(initialFleeAngle, speed, -step, dt)
   end
   return fleeAngle1
+end
+
+function _getCloserPositionAndMagnitude(position, target1, target2)
+  local distance1 = world.magnitude(position, target1)
+  local distance2 = world.magnitude(position, target2)
+  if distance1 < distance2 then
+    return target1, distance1
+  else
+    return target2, distance2
+  end
 end

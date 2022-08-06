@@ -43,7 +43,8 @@
       "kind" : "v-voltage/spikesfront",
       "offset" : [0, 180],
       "parallax" : [7, 7],
-      "nohueshift" : true
+      "nohueshift" : true,
+      "fadePercent" : 0.03
     },
     {
       "kind" : "clouds1",
@@ -60,13 +61,14 @@
       "noRandomOffset" : true,
       "parallax" : [10, 9.001],
       "nohueshift" : true,
-      "fadePercent" : 0.05
+      "fadePercent" : 0.04
     },
     {
       "kind" : "v-voltage/spikesback2",
       "baseCount" : 1,
       "offset" : [0, 200],
-      "parallax" : 15
+      "parallax" : 15,
+      "fadePercent" : 0.05
     },
     {
       "kind" : "clouds3",

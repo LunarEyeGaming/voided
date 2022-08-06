@@ -1,6 +1,9 @@
 require "/scripts/vec2.lua"
 
+local oldUpdate = update or function() end
+
 function update()
+  oldUpdate()
   localAnimator.clearDrawables()
   
   self.params = animationConfig.animationParameter("animationConfig") 

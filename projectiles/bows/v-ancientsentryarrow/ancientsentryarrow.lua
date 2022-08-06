@@ -5,8 +5,9 @@ function init()
   self.fireTime = config.getParameter("fireTime")
   self.orbiterCount = config.getParameter("orbiterCount")
   self.projectile = config.getParameter("orbiterProjectile")
-  self.projectileConfig = config.getParameter("orbiterProjectileConfig")
-  self.projectileConfig.power = self.projectileConfig.power or projectile.power()
+  self.projectileConfig = config.getParameter("orbiterProjectileConfig", {})
+  self.orbiterDamageFactor = config.getParameter("orbiterDamageFactor", 1.0)
+  self.projectileConfig.power = (self.projectileConfig.power or projectile.power()) * self.orbiterDamageFactor
   self.projectileConfig.powerMultiplier = self.projectileConfig.powerMultiplier or projectile.powerMultiplier()
   self.projectileConfig.masterId = entity.id()
 

@@ -18,13 +18,13 @@
       "/monsters/unsorted/v-shockwave/v-shockwaveanim.lua"
     ],
     
-    "validMats" : ["ironblock", "copperblock", "v-ironrock", "v-rustedironrock", "v-copperrock"],
+    "validMats" : ["ironblock", "copperblock", "v-ironrock", "v-rustedironrock", "v-copperrock", "v-chargedstone"],
     "projectileType" : "v-shockwavedamage",
     "projectileParameters" : {},
     "damage" : 20,
     "maxArea" : 500,
     
-    "dissipationTime" : 0.25,
+    "dissipationTime" : 0.15,
     "animationConfig" : {
       "startColor" : [196, 196, 245, 255],
       "endColor" : [74, 74, 181, 0]

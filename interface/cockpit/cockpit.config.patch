@@ -63,6 +63,18 @@
       "value": [235, 66, 0]
     },
 
+    // TODO: Change this so that it is compatible with other mods that define a threat color and text for T6+ space objects
+    {
+      "op": "add",
+      "path": "/objectThreatColors/available/-",
+      "value": [235, 66, 0]  // T7
+    },
+    {
+      "op": "add",
+      "path": "/objectThreatText/available/-",
+      "value": "Lethal"  // T7
+    },
+
     {
       "op" : "add",
       "path" : "/displayOres/v-voltite",

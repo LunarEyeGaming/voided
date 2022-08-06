@@ -133,6 +133,12 @@
         "healthRegen" : {
           "baseValue" : 0.0
         },
+        "poisonResistance" : {
+          "baseValue" : 0.5
+        },
+        "fireResistance" : {
+          "baseValue" : 0.5
+        },
         "fireStatusImmunity" : {
           "baseValue" : 1.0
         },
@@ -156,6 +162,21 @@
         },
         "powerMultiplier" : {
           "baseValue" : 1.0
+        },
+        "demonicStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "holyStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "bleedStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "shadowImmunity" : {
+         "baseValue" : 1
+        },
+        "radiationburnImmunity" : { 
+          "baseValue" : 1
         }
       },
 

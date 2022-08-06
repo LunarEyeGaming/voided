@@ -14,5 +14,19 @@
     "category": "v-monster",
     "script": "/scripts/actions/v-monster.lua",
     "output": {}
+  },
+  "v_flyToNearerPosition": {
+    "type": "action",
+    "name": "v_flyToNearerPosition",
+    "title": "v_flyToNearerPosition",
+    "properties": {
+      "position1": {"type": "position", "value": null},
+      "position2": {"type": "position", "value": null},
+      "speed": {"type": "number", "value": null},
+      "tolerance": {"type": "number", "value": 1}
+    },
+    "category": "v-monster",
+    "script": "/scripts/actions/v-monster.lua",
+    "output": {}
   }
 }

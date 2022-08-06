@@ -78,13 +78,15 @@ function placeWave()
   self.animTickTimer = self.animTickTimer - 1
   if self.animTickTimer <= 0 then
     monster.setAnimationParameter("nextBlocks", self.animNextBlocks)
+    for _, block in ipairs(self.animNextBlocks) do
+      if isExposed(vec2.add(self.center, block)) then
+        world.spawnProjectile(self.projectileType, vec2.add(self.center, block), entity.id(), {0, 0}, false, self.projectileParameters)
+      end
+    end
     self.animTickTimer = self.animTicks
     self.animNextBlocks = {}
   end
   for _, block in ipairs(self.nextBlocks) do
-    if isExposed(vec2.add(self.center, block)) then
-      world.spawnProjectile(self.projectileType, vec2.add(self.center, block), entity.id(), {0, 0}, false, self.projectileParameters)
-    end
     table.insert(self.animNextBlocks, block)
   end
 end

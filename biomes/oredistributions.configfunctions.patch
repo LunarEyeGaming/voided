@@ -3,35 +3,35 @@
     "op": "add",
     "path": "/v-voltage",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "copper", 0.75 ], [ "gold", 0.5 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.5 ], [ "copper", 0.25 ], [ "silver", 0.125 ], [ "gold", 0.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-shallowundergroundvoltage",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "copper", 1 ], [ "gold", 0.75 ], [ "v-voltite", 0.25 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "iron", 1.0 ], [ "copper", 0.5 ], [ "silver", 0.375 ], [ "gold", 0.25 ], [ "v-voltite", 0.25 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-undergroundvoltage",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "copper", 1.2 ], [ "gold", 1.0 ], [ "v-voltite", 0.5 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.75 ], [ "copper", 0.75 ], [ "silver", 0.625 ], [ "gold", 0.5 ], [ "v-voltite", 0.5 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-deepundergroundvoltage",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "copper", 1.4 ], [ "gold", 1.25 ], [ "v-voltite", 1.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.5 ], [ "copper", 1.0 ], [ "silver", 0.875 ], [ "gold", 0.75 ], [ "v-voltite", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-voltagecore",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "copper", 1.4 ], [ "gold", 1.25 ], [ "v-voltite", 1.0 ], ["corefragment", 1.0] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.25 ], [ "copper", 1.0 ], [ "silver", 0.875 ], [ "gold", 0.75 ], [ "v-voltite", 1.0 ], ["corefragment", 1.0] ] ]
     ]
   }
 ]

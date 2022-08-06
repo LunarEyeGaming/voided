@@ -12,7 +12,8 @@
     "/scripts/behavior/bdata.lua",
     "/scripts/actions/sensor.lua",
     "/scripts/actions/status.lua",
-    "/scripts/actions/time.lua"
+    "/scripts/actions/time.lua",
+    "/scripts/actions/v-monster.lua"
   ],
   "parameters": {
     "windupState": "chargewindup",
@@ -24,8 +25,14 @@
     "chargeStateType": "body",
     "rotationOffset": 0,
     "skillName": "",
-    "wallCrashVelocity": [-10, 20],
     "wallKnockback": false,
+    
+    "leftOffset": [-10, 0],
+    "rightOffset": [10, 0],
+    "tolerance": 2,
+    
+    "chargeSound": "charge",
+    "postChargeVelocity": [50, 0],
     
     "trailProjectile": "teslabolt",
     "trailProjectileConfig": {},
@@ -41,6 +48,76 @@
     "parameters": {},
     "children": [
       {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "entityPosition",
+                  "type": "action",
+                  "name": "entityPosition",
+                  "parameters": {
+                    "entity": {"key": "target"}
+                  },
+                  "output": {
+                    "position": "targetPos"
+                  }
+                },
+                {
+                  "title": "offsetPosition",
+                  "type": "action",
+                  "name": "offsetPosition",
+                  "parameters": {
+                    "offset": {"value": "<leftOffset>"},
+                    "position": {"key": "targetPos"}
+                  },
+                  "output": {
+                    "position": "leftPos"
+                  }
+                },
+                {
+                  "title": "offsetPosition",
+                  "type": "action",
+                  "name": "offsetPosition",
+                  "parameters": {
+                    "offset": {"value": "<rightOffset>"},
+                    "position": {"key": "targetPos"}
+                  },
+                  "output": {
+                    "position": "rightPos"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "v_flyToNearerPosition",
+            "type": "action",
+            "name": "v_flyToNearerPosition",
+            "parameters": {
+              "position1": {"key": "leftPos"},
+              "position2": {"key": "rightPos"},
+              "tolerance": {"value": "<tolerance>"}
+            }
+          }
+        ]
+      },
+      {
         "title": "action-windup",
         "type": "module",
         "name": "action-windup",
@@ -48,6 +125,14 @@
           "windupState": {"value": "<windupState>"},
           "windupStateType": {"value": "<chargeStateType>"},
           "skillName": {"value": "<skillName>"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "sound": {"value": "<chargeSound>"}
         }
       },
       {
@@ -146,6 +231,26 @@
               }
             }
           ]
+        }
+      },
+      {
+        "title": "vecMultiply",
+        "type": "action",
+        "name": "vecMultiply",
+        "parameters": {
+          "first": {"value": "<postChargeVelocity>"},
+          "number": {"key": "targetDirection"}
+        },
+        "output": {
+          "vector": "postChargeVelocity"
+        }
+      },
+      {
+        "title": "setVelocity",
+        "type": "action",
+        "name": "setVelocity",
+        "parameters": {
+          "velocity": {"key": "postChargeVelocity"}
         }
       },
       {

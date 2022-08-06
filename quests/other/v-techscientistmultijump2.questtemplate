@@ -1,0 +1,39 @@
+{
+  "id" : "v-techscientistmultijump2",
+  "prerequisites" : [ "v-ancientstrongholdtrigger" ],
+  "title" : "^orange;Multi Jump Mk II Quest",
+  "text" : "<todo>",
+  "completionText" : "<todo>",
+  "moneyRange" : [1200, 1200],
+  "rewards" : [ ],
+
+  "updateDelta" : 10,
+  "script" : "/quests/scripts/main.lua",
+  "scriptConfig" : {
+    "portraits" : {
+      "questStarted" : {
+        "portrait" : [ {"image" : "/objects/outpost/techlab/techlabscientistportrait.png"} ],
+        "title" : "Elliott"
+      },
+      "questComplete" : {
+        "portrait" : [ {"image" : "/objects/outpost/techlab/techlabscientistportrait.png"} ],
+        "title" : "Elliott"
+      }
+    },
+    "requireTurnIn" : true,
+
+    "turnInDescription" : "Speak to ^orange;Elliott^reset; at the ^orange;Outpost^reset;",
+    "conditions" : [
+      {
+        "type" : "gatherItem",
+        "itemName" : "v-ancientfragment",
+        "count" : 24,
+        "consume" : true
+      }
+    ],
+    
+    "enableTech" : [
+      "v-multijump2"
+    ]
+  }
+}

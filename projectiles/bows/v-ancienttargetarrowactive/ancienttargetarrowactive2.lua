@@ -20,7 +20,6 @@ function init()
 end
 
 function update(dt)
-  mcontroller.resetParameters()
   local pos = mcontroller.position()
   local candidates = world.entityQuery(pos, self.homingDistance, self.queryParameters)
   
@@ -29,6 +28,8 @@ function update(dt)
       shouldCollide = true
     end
     mcontroller.applyParameters({collisionEnabled = false})
+  else
+    mcontroller.applyParameters({collisionEnabled = true})
   end
 
   if #candidates == 0 then return end

@@ -145,8 +145,8 @@
     "op" : "add",
     "path" : "/regionTypes/v-voltagecorelayer",
     "value" : {
-      "caveLiquid" : ["lava"],
-      "oceanLiquid" : ["lava"],
+      "caveLiquid" : ["v-electricity"],
+      "oceanLiquid" : ["v-coreelectricity"],
       "fgCaveSelector" : [ "coreCaves" ],
       "bgCaveSelector" : [ "coreBackgroundCaves" ],
       "oceanLevelOffset" : -20,

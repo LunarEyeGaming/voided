@@ -23,10 +23,11 @@ function update(dt)
   end
   
   local pos = mcontroller.position()
-  local queried = world.entityQuery(pos, self.attackRange, {includedTypes = {"creature"}})
+  local queried = world.entityQuery(pos, self.attackRange, {includedTypes = {"creature"}, order = "nearest"})
   for _, entity in ipairs(queried) do
     if validTarget(pos, entity) then
       fireOrbiters(entity)
+      break
     end
   end
 end

@@ -56,7 +56,7 @@ function TeslaStream:fire()
       if i <= self.maxConnections and not entCollidePoint and sightCloseness <= self.halfFov then
         table.insert(targeted, monster)
         if self.arcCooldownTimer == 0 then
-          world.spawnProjectile("v-lightningguncurrent", entityPos, entity.id(), {0, 0}, false, {power = power, timeToLive = 0})
+          world.spawnProjectile("v-lightningguncurrent", entityPos, entity.id(), {0, 0}, false, {power = power, timeToLive = 0, powerMultiplier = activeItem.ownerPowerMultiplier()})
         end
       end
     end

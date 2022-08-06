@@ -1,0 +1,164 @@
+{
+  "objectName" : "v-electricpairingtrap",
+  "colonyTags" : ["evil"],
+  "printable" : false,
+  "rarity" : "Legendary",
+  "description" : "<todo>",
+  "shortdescription" : "Pairing Trap",
+  "race" : "generic",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "trap",
+  "price" : 0,
+
+  "inventoryIcon" : "electricpairingtrapicon.png",
+  "orientations" : [
+    {
+      "image" : "electricpairingtrap.png:<color>.<frame>",
+      "imagePosition" : [-8, 0],
+      "direction" : "left",
+      "flipImages" : true,
+      
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "bg" : "electricpairingtrap.png",
+        "fg" : "electricpairingtrap.png"
+      },
+
+      "projectileDirection" : [0, 1],
+      "projectilePosition" : [0, 1.2],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "electricpairingtrap.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationPosition" : [0, 0],
+      "animationParts" : {
+        "bg" : "electricpairingtrap.png",
+        "fg" : "electricpairingtrap.png"
+      },
+
+      "projectileDirection" : [0, 1],
+      "projectilePosition" : [1, 1.2],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "electricpairingtrapleft.png:<color>.<frame>",
+      "imagePosition" : [0, -8],
+      "direction" : "right",
+      
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "electricpairingtrapleft.png",
+        "fg" : "electricpairingtrapleft.png"
+      },
+
+      "projectileDirection" : [1, 0],
+      "projectilePosition" : [1.2, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left" ]
+    },
+    {
+      "image" : "electricpairingtrapright.png:<color>.<frame>",
+      "imagePosition" : [0, -8],
+      "direction" : "right",
+      
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "electricpairingtrapright.png",
+        "fg" : "electricpairingtrapright.png"
+      },
+
+      "projectileDirection" : [-1, 0],
+      "projectilePosition" : [-0.2, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "right" ]
+    },
+    {
+      "image" : "electricpairingtrapceiling.png:<color>.<frame>",
+      "imagePosition" : [-8, 0],
+      "direction" : "left",
+      "flipImages" : true,
+      
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "bg" : "electricpairingtrapceiling.png",
+        "fg" : "electricpairingtrapceiling.png"
+      },
+
+      "projectileDirection" : [0, -1],
+      "projectilePosition" : [0, -0.2],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    },
+    {
+      "image" : "electricpairingtrapceiling.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationPosition" : [0, 0],
+      "animationParts" : {
+        "bg" : "electricpairingtrapceiling.png",
+        "fg" : "electricpairingtrapceiling.png"
+      },
+
+      "projectileDirection" : [0, -1],
+      "projectilePosition" : [1, -0.2],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    }
+  ],
+
+  "scripts" : [ "v-electricpairingtrap.lua" ],
+  "scriptDelta" : 2,
+
+  "animation" : "/objects/wired/projectiletrap/projectiletrap.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "shoot" : [ "/sfx/objects/v_voltagedischarge.ogg" ],
+      "on" : [ ],
+      "off" : [ ]
+    },
+    "lights" : {
+      "glow" : {
+        "active" : true,
+        "color" : [27, 27, 84]
+      }
+    }
+  },
+
+  "projectileType" : "teslaboltsmall",
+  "projectileParameters" : {
+    "damageTeam" : {"type" : "Environment"},
+    "damageType" : "Environment"
+  },
+  "cooldownTime" : [4.0, 6.0],
+  "windupTime" : 0.5,
+  "pairingRadius" : 20,
+  "fireOffset" : [0, 1],
+  
+  "health" : 5,
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
+  "smashParticles" : [ { "count" : 6, "particle" : "greystoneshard" } ],
+  "breakDropPool" : "v-dischargetrapTreasure",
+  "smashDropPool" : "v-dischargetrapTreasure"
+}

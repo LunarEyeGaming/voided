@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-amperechargertrail",
+  "image" : "amperechargertrail.png",
+  "renderLayer" : "foregroundEntity",
+  "animationCycle" : 0.25,
+  "timeToLive" : 0.25,
+  "frameNumber" : 5,
+  "speed" : 0,
+  "damagePoly" : [[20, 15], [20, -15], [-20, -15], [-20, 15]],
+  "animationLoops" : false,
+  "fullbright" : true,
+  "piercing" : true,
+  "flippable" : true,
+  "damageKind" : "electric",
+  "lightColor" : [131, 131, 223],
+  "pointLight" : true,
+  "physics" : "illusion",
+  "bounces" : -1
+}

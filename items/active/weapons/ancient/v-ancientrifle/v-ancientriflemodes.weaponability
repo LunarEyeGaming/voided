@@ -134,9 +134,11 @@
   "ability" : {
     "type" : "v-ancientriflemodes",
     "name" : "Switch Fire Mode",
-    "scripts" : ["/items/active/weapons/other/adaptablecrossbow/adaptableammo.lua"],
-    "class" : "AdaptableAmmo",
+    "scripts" : ["/items/active/weapons/ancient/v-ancientrifle/v-ancientriflemodes.lua"],
+    "class" : "AncientRifleModes",
 
+    "baseIcon" : "/items/active/weapons/ancient/v-ancientrifle/ancientrifleicons.png",
+    
     "adaptedAbilityIndex" : 1,
 
     "ammoTypes" : [
@@ -145,7 +147,7 @@
         "energyUsage" : 50,
         "fireTime" : 0.1,
         "fireType" : "auto",
-        "baseDps" : 6.86
+        "baseDps" : 13.0
       },
       {
         "projectileType" : "v-ancientlasershot",
@@ -154,14 +156,14 @@
         "burstCount" : 3,
         "burstTime" : 0.08,
         "fireTime" : 0.2,
-        "baseDps" : 6.86
+        "baseDps" : 13.0
       },
       {
         "projectileType" : "v-ancientgrenade",
-        "energyUsage" : 65,
+        "energyUsage" : 50,
         "fireTime" : 3.0,
         "fireType" : "auto",
-        "baseDps" : 1.71
+        "baseDps" : 6.5
       }
     ],
 

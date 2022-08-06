@@ -1,0 +1,66 @@
+{
+  "animationParts" : { },
+  "animationCustom" : {
+    "animatedParts" : {
+      "parts" : {
+        "lightningPoint" : {
+          "properties" : {
+            "lightningPoint" : [0, 5],
+            "transformationGroups" : ["weapon"]
+          }
+        }
+      }
+    },
+    "sounds" : {
+      "proximityZap" : [ "/sfx/melee/travelingslash_electric4.ogg" ]
+    }
+  },
+
+  "ability" : {
+    "name" : "Electrocution",
+    "type" : "v-proximityzap",
+    "scripts" : ["/items/active/weapons/melee/abilities/broadsword/v-proximityzap/v-proximityzap.lua"],
+    "class" : "ProximityZap",
+
+    "queryOffset" : [0, 0],
+
+    "baseDamage" : 7,
+    "energyUsage" : 120,
+    "cooldownTime" : 1.5,
+    
+    "shockRadius" : 15,
+
+    "extraLightningCount" : 10,
+    
+    "lightningConfig" : {
+      "displacement" : 1.0,
+      "minDisplacement" : 0.125,
+      "forks" : 0,
+      "forkAngleRange" : 0.5,
+      "width" : 1.5,
+      "startColor" : [225, 225, 255, 220],
+      "endColor" : [115, 115, 255, 0]
+    },
+
+    "stances" : {
+      "windup" : {
+        "duration" : 0.25,
+        "armRotation" : -20,
+        "weaponRotation" : -45,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "fire" : {
+        "duration" : 0.4,
+        "armRotation" : 45,
+        "weaponRotation" : -45,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  }
+}

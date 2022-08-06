@@ -156,7 +156,10 @@ function states.windup()
   animator.setAnimationState("laser", "windup")
 
   while timer > 0 do
-    local aimVec = world.distance(world.entityPosition(self.target), self.beamCenterPos)
+    local aimVec
+    if world.entityExists(self.target) then
+      aimVec = world.distance(world.entityPosition(self.target), self.beamCenterPos)
+    end
 
     if not hasTarget() then
       animator.setAnimationState("laser", "inactive")

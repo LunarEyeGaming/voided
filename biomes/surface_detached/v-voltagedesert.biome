@@ -30,7 +30,20 @@
       }
     ],
     "monsterParameters" : {
-      "colors" : "desert"
+      "colors" : "v-voltagecopper",
+      "statusSettings" : {
+        "stats" : {
+          "electricResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonResistance" : {
+            "baseValue" : -0.5
+          },
+          "electricStatusImmunity" : {
+            "baseValue" : 1.0
+          }
+        }
+      }
     }
   },
 

@@ -1,0 +1,36 @@
+{
+  "layers" : [
+    {
+      "kind" : "v-deepundergroundvoltage/front",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.2,
+      "repeatY" : true
+    },
+    {
+      "kind" : "v-deepundergroundvoltage/mid",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.35,
+      "repeatY" : true
+    },
+    {
+      "kind" : "v-undergroundvoltage/backunlit",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 2,
+      "noRandomOffset" : true,
+      "repeatY" : true,
+      "unlit" : true
+    },
+    {
+      "kind" : "v-deepundergroundvoltage/back",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 2,
+      "repeatY" : true,
+      "noRandomOffset" : true,
+      "unlit" : false
+    }
+  ]
+}

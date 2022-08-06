@@ -1,14 +1,14 @@
 {
   "type" : "v-amperecharger2",
   "shortdescription" : "Ampere Charger",
-  "description" : "<todo>",
+  "description" : "An offshoot of the Skimbus, this creature has evolved to charge at lightning speeds.",
 
-  "categories" : [ "electricskimbus" ],
+  "categories" : [ "v-amperecharger" ],
   "parts" : [ "body" ],
 
-  "animation" : "/monsters/ghosts/skimbus/electricskimbus.animation",
+  "animation" : "v-amperecharger.animation",
 
-  "dropPools" : [ { "default" : "skimbusTreasure", "bow" : "skimbusHunting" } ],
+  "dropPools" : [ { "default" : "v-amperechargerTreasure", "bow" : "v-amperechargerHunting" } ],
 
   "baseParameters" : {
     "scripts" : [
@@ -23,13 +23,13 @@
     "renderLayer" : "foregroundEntity",
 
     "behaviorConfig" : {
-      "damageOnTouch" : false,
+      "damageOnTouch" : true,
 
       "targetQueryRange" : 20,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
       "keepTargetInRange" : 80,
-      "targetOutOfSightTime" : 5.0,
+      "targetOutOfSightTime" : 8.0,
 
       "hurtTime" : 0.4,
       "hurtWaitForGround" : false,
@@ -47,8 +47,9 @@
             "maximumRange" : 40,
             "maxYRange" : 3,
             "windupStopForce" : 50,
-            "windupTime" : 1.0,
+            "windupTime" : 1.2,
 
+            "requireLineOfSight" : false,
             "onGround" : false,
             "wallCollide" : false,
             "aimAtTarget" : true,
@@ -57,12 +58,23 @@
             "chargeControlForce" : 10000,
 
             "winddownState" : "idle",
-            "winddownStopForce" : 10000,
-            "winddownTime" : 1.5,
+            "winddownStopForce" : 100,
+            "winddownTime" : 1.0,
             
-            "trailProjectile" : "teslabolt",
+            "trailProjectile" : "v-amperechargertrail",
+            "trailStepCount" : 5,
             "trailDirection" : [0, 0],
-            "trailProjectileConfig" : {}
+            "trailProjectileConfig" : {
+              "power" : 15,
+              "periodicActions" : [
+                {
+                  "time" : 0,
+                  "repeat" : false,
+                  "action" : "sound",
+                  "options" : ["/sfx/gun/lightningcoil1.ogg", "/sfx/gun/lightningcoil2.ogg", "/sfx/gun/lightningcoil3.ogg"]
+                }
+              ]
+            }
           }
         }
       ],
@@ -113,7 +125,7 @@
       "teamType" : "enemy",
       "damageSourceKind" : "electrichammer",
       "knockback" : 20,
-      "statusEffects" : [ "electrified" ]
+      "statusEffects" : [ ]
     },
 
     "metaBoundBox" : [-4, -4, 4, 4],

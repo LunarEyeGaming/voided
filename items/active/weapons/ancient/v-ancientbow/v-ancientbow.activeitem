@@ -41,7 +41,7 @@
     },
     "sounds" : {
       "draw" : [ "/sfx/gun/v_ancientbow_draw.ogg" ],
-      "cue" : [ "/sfx/interface/sniper_mark_pitch7.ogg" ],
+      "cue" : [ "/sfx/gun/v_bow_perfectcue.ogg" ],
       "release" : [ "/sfx/gun/v_ancientbow_fire.ogg" ],
       "perfectRelease" : [ "/sfx/gun/v_ancientbow_fire_perfect.ogg" ]
     }
@@ -64,7 +64,7 @@
   "altAbilityType" : "v-bowshotimproved",
   "altAbility" : {
     "name" : "Sentry Arrow",
-    "energyPerShot" : 100,
+    "energyPerShot" : 83.3,
     "drawSpeedMultiplier" : "constant",
     "projectileType" : "v-ancienttargetarrow",
     "powerProjectileType" : "v-ancientsentryarrowtele",

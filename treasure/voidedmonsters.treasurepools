@@ -11,5 +11,21 @@
       ],
       "allowDuplication" : false
     }]
+  ],
+
+  "v-amperechargerTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.799, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : "staticcell"},
+        {"weight" : 0.100, "item" : "phasematter"},
+        {"weight" : 0.001, "item" : "skimbusaf"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
   ]
 }

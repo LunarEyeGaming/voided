@@ -6,7 +6,7 @@
   "rarity" : "Legendary",
   "customRarity" : "Mythical",
   "description" : "A hilt with a blade made of electrical plasma.",
-  "shortdescription" : "Lightning Broadsword",
+  "shortdescription" : "Electric Edge",
   "tooltipKind" : "sword",
   "category" : "broadsword",
   "twoHanded" : true,
@@ -28,6 +28,8 @@
       "fire5" : ["/sfx/gun/grenadeblast_electric1.ogg", "/sfx/gun/grenadeblast_electric2.ogg", "/sfx/gun/grenadeblast_electric3.ogg"]
     }
   },
+  
+  "animationScripts" : ["/items/active/effects/lightning.lua"],
 
   "scripts" : ["/items/active/weapons/melee/energymeleeweapon.lua"],
 
@@ -42,7 +44,7 @@
     "baseDps" : 8,
     "comboSteps" : 5,
     "swooshOffsetRegions" : [[0.75, 0.0, 4.25, 5.0], [-0.75, 0.0, -4.25, -5.0], [0.75, 0.0, 4.25, 5.0], [-0.75, 0.0, -4.25, -5.0], [1.5, -1.0, 5.5, 1.0]],
-    "stepDamageConfig" : [{"baseDamageFactor" : 1.0,"knockback" : 15}, {"baseDamageFactor" : 1.0,"knockback" : 15}, {"baseDamageFactor" : 1.0,"knockback" : 15}, {"baseDamageFactor" : 1.0,"knockback" : 15}, {"baseDamageFactor" : 2.5,"knockback" : 40}],
+    "stepDamageConfig" : [{"baseDamageFactor" : 1.0,"knockback" : 25}, {"baseDamageFactor" : 1.0,"knockback" : 25}, {"baseDamageFactor" : 1.0,"knockback" : 25}, {"baseDamageFactor" : 1.0,"knockback" : 25}, {"baseDamageFactor" : 2.5,"knockback" : 55}],
 
     "stances" : {
       "windup1" : {"duration" : 0.15},
@@ -68,6 +70,8 @@
       "fire5" : {"duration" : 0.3, "armRotation" : 0, "weaponRotation" : -90, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true}
     }
   },
+  
+  "altAbilityType" : "v-proximityzap",
 
   "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
 }

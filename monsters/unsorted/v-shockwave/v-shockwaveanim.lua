@@ -1,14 +1,19 @@
 require "/scripts/vec2.lua"
 
 local dt
+local animConfig
+local startColor
+local endColor
+local blocks
 
 function init()
-  self.ttl = animationConfig.animationParameter("ttl")
-  self.animationConfig = animationConfig.animationParameter("animationConfig")
-  self.startColor = self.animationConfig.startColor
-  self.endColor = self.animationConfig.endColor
+  script.setUpdateDelta(3)
+  ttl = animationConfig.animationParameter("ttl")
+  animConfig = animationConfig.animationParameter("animationConfig")
+  startColor = animConfig.startColor
+  endColor = animConfig.endColor
 
-  self.blocks = {}
+  blocks = {}
   
   dt = script.updateDt()
 end
@@ -21,16 +26,16 @@ function update()
   local nextBlocks = animationConfig.animationParameter("nextBlocks")
 
   if nextBlocks then
-    table.insert(self.blocks, {self.ttl, nextBlocks})
+    table.insert(blocks, {ttl, nextBlocks})
   end
 
   local i = 1
-  while i <= #self.blocks do
-    local blockSet = self.blocks[i]
+  while i <= #blocks do
+    local blockSet = blocks[i]
     if blockSet[1] <= 0 then
-      table.remove(self.blocks, i)
+      table.remove(blocks, i)
     else
-      local color = lerpColor(blockSet[1] / self.ttl, self.endColor, self.startColor)
+      local color = lerpColor(blockSet[1] / ttl, endColor, startColor)
       for _, block in ipairs(blockSet[2]) do
         localAnimator.addDrawable({
           line = {{-0.5, 0}, {0.5, 0}},

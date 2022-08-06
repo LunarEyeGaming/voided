@@ -5,7 +5,7 @@
   "rarity" : "Legendary",
   "description" : "<todo>",
   "shortdescription" : "Discharge Trap",
-  "race" : "ancient",
+  "race" : "generic",
 
   "apexDescription" : "<todo>",
   "avianDescription" : "<todo>",
@@ -167,6 +167,7 @@
           {
             "action" : "projectile",
             "type" : "v-dischargetrap",
+            "inheritDamageFactor" : 1,
             "angle" : 90,
             "fuzzAngle" : 45
           }

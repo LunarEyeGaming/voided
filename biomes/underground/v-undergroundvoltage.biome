@@ -17,10 +17,26 @@
         "select" : 1,
         "pool" : "generatedGroundAggroDay"
       }
-    ]
+    ],
+    "monsterParameters" : {
+      "colors" : "v-voltage",
+      "statusSettings" : {
+        "stats" : {
+          "electricResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonResistance" : {
+            "baseValue" : -0.5
+          },
+          "electricStatusImmunity" : {
+            "baseValue" : 1.0
+          }
+        }
+      }
+    }
   },
 
-  "parallax" : "/parallax/underground/underground0a.parallax",
+  "parallax" : "/parallax/underground/v-undergroundvoltage.parallax",
 
   "mainBlock" : "v-ironrock",
   "subBlocks" : [ "v-copperrock", "v-chargedstone", "v-copperrock" ],

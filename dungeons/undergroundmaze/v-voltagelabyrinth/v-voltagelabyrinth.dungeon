@@ -45,6 +45,38 @@
       "chance" : 1
     },
     {
+      "name" : "cornerBL2",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ]
+      ],
+      "def" : [ "tmx", "cornerBL2.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "cornerBR2",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ]
+      ],
+      "def" : [ "tmx", "cornerBR2.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "cornerTL2",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ]
+      ],
+      "def" : [ "tmx", "cornerTL2.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "cornerTR2",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ]
+      ],
+      "def" : [ "tmx", "cornerTR2.json" ],
+      "chance" : 1
+    },
+    {
       "name" : "vertical1",
       "rules" : [
         //[ "maxSpawnCount", [3] ]
@@ -145,10 +177,18 @@
       "chance" : 2
     },
     {
+      "name" : "horizontal5",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ]
+      ],
+      "def" : [ "tmx", "horizontal5.json" ],
+      "chance" : 2
+    },
+    {
       "name" : "junction1",
       "rules" : [
         //[ "maxSpawnCount", [3] ],
-        [ "doNotConnectToPart", [ "junction2" ] ]
+        [ "doNotConnectToPart", [ "junction2", "junction3", "junction4", "junction5" ] ]
       ],
       "def" : [ "tmx", "junction1.json" ],
       "chance" : 1
@@ -157,9 +197,36 @@
       "name" : "junction2",
       "rules" : [
         //[ "maxSpawnCount", [3] ],
-        [ "doNotConnectToPart", [ "junction1" ] ]
+        [ "doNotConnectToPart", [ "junction1", "junction3", "junction4", "junction5" ] ]
       ],
       "def" : [ "tmx", "junction2.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "junction3",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ],
+        [ "doNotConnectToPart", [ "junction1", "junction2", "junction4", "junction5" ] ]
+      ],
+      "def" : [ "tmx", "junction3.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "junction4",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ],
+        [ "doNotConnectToPart", [ "junction1", "junction2", "junction3", "junction5" ] ]
+      ],
+      "def" : [ "tmx", "junction4.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "junction5",
+      "rules" : [
+        //[ "maxSpawnCount", [3] ],
+        [ "doNotConnectToPart", [ "junction1", "junction2", "junction3", "junction4" ] ]
+      ],
+      "def" : [ "tmx", "junction5.json" ],
       "chance" : 1
     }
   ]
