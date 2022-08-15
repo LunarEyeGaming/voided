@@ -15,6 +15,15 @@
     ],
     "initialScriptDelta" : 1,
 
+    "speed" : 40,
+    "controlForce" : 350,
+    "tolerance" : 0.5,
+    
+    "pulseDuration" : 0.25,
+    "teleDuration" : 0.5,
+    "windupDuration" : 0.5,
+    "winddownDuration" : 0.4,
+
     "sticky" : 0, // 0 = horizontal, 1 = vertical; determines which axis to lock
     
     "explosionSpecs" : {
@@ -23,6 +32,7 @@
       "projectileConfig" : {
         "timeToLive" : 0,
         "speed" : 0,
+        "onlyHitTerrain" : true,
         "actionOnReap" : [
           {
             "action" : "config",

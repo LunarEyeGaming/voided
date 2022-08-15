@@ -1,15 +1,17 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
+local itemDrop
+local itemSpawnPosition
+
 function init()
-  self.itemDrop = config.getParameter("itemDrop", "dirtmaterial")
-  self.itemSpawnOffset = config.getParameter("itemSpawnOffset", {0, 0})
-  self.itemSpawnPosition = vec2.add(object.position(), self.itemSpawnOffset)
+  itemDrop = config.getParameter("itemDrop", "dirtmaterial")
+  itemSpawnPosition = vec2.add(object.position(), config.getParameter("itemSpawnOffset", {0, 0}))
   object.setInteractive(true)
 end
 
 function onInteraction(args)
-  world.spawnItem(self.itemDrop, self.itemSpawnPosition)
+  world.spawnItem(itemDrop, itemSpawnPosition)
   animator.setAnimationState("body", "deactivate")
   object.setInteractive(false)
 end

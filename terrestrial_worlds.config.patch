@@ -52,7 +52,7 @@
       "biome" : [
         [0, [ "v-voltage", "v-voltagerusty" ]]
       ],
-      "subRegion" : ["v-voltagedesert", "v-voltagewastes", "rust", "v-voltageforest"]
+      "subRegion" : ["v-voltagedesert", "rust", "v-voltageforest"]
     }
   },
   {
@@ -75,9 +75,23 @@
       "blockSelector" : [ "lowHillsSurface", "medHillsSurface", "flatsSurface" ],
       "fgCaveSelector" : [ "surfaceCaves", "sparseCaves", "empty" ],
       "bgCaveSelector" : [ "empty" ],
-      "subBlockSelector" : ["lowHillsSurface"],
+      "subBlockSelector" : ["v-copperDesertSubBlocks"],
       "biome" : [
         [0, [ "v-voltagedesert" ]]
+      ],
+      "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-voltagedesertruins",
+    "value" : {
+      "blockSelector" : [ "lowHillsSurface", "medHillsSurface", "flatsSurface" ],
+      "fgCaveSelector" : [ "surfaceCaves", "sparseCaves", "empty" ],
+      "bgCaveSelector" : [ "empty" ],
+      "subBlockSelector" : ["v-copperDesertSubBlocks"],
+      "biome" : [
+        [0, [ "v-voltagedesertruins" ]]
       ],
       "subRegion" : []
     }
@@ -115,7 +129,7 @@
       "fgCaveSelector" : [ "normalCaves", "denseCaves", "sparseCaves" ],
       //"caveLiquid" : ["water"],
       "biome": [
-        [1,["v-shallowundergroundvoltage"]]
+        [1,["v-shallowundergroundvoltage", "v-shallowundergroundvoltageruins", "v-shallowundergroundvoltagetraps"]]
       ]
     }
   },
@@ -126,7 +140,7 @@
       "fgCaveSelector" : [ "normalCaves", "denseCaves", "sparseCaves" ],
       //"caveLiquid" : ["water"],
       "biome": [
-        [1,["v-undergroundvoltage"]]
+        [1,["v-undergroundvoltage", "v-undergroundvoltagetraps"]]
       ]
     }
   },

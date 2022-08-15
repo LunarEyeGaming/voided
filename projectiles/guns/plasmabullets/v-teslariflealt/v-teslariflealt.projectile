@@ -1,0 +1,37 @@
+{
+  "projectileName" : "v-teslariflealt",
+
+  "image" : "teslariflealt.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "lightColor" : [187, 143, 204],
+  "fullbright" : true,
+
+  "timeToLive" : 10,
+
+  "speed" : 70,
+
+  "piercing" : false,
+  "power" : 50,
+  "damagePoly" : [ [-15, 3], [-15, -3], [15, -3], [15, 3] ],
+  "damageKind" : "electric",
+  
+  "periodicActions" : [
+    {
+      "time" : 0.01,
+      "action" : "projectile",
+      "type" : "teslaboltsmall",
+      "config" : {
+        "speed" : 0,
+        "power" : 0
+      }
+    }
+  ],
+  
+  "scripts" : ["v-teslariflealt.lua"],
+  "scriptDelta" : 1,
+
+  "detonateRadius" : 3,
+  "detonateDelay" : 0,
+  "detonateDamageMultiplier" : 4.0
+}

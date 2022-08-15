@@ -1,5 +1,8 @@
 -- "asymmetric timer"; script for timers with differing intervals when on vs off
 
+local onDuration
+local offDuration
+
 function init()
   if storage.state == nil then
     output(false)
@@ -9,8 +12,8 @@ function init()
   if storage.timer == nil then
     storage.timer = 0
   end
-  self.onDuration = config.getParameter("onDuration")
-  self.offDuration = config.getParameter("offDuration")
+  onDuration = config.getParameter("onDuration")
+  offDuration = config.getParameter("offDuration")
 end
 
 function output(state)
@@ -30,9 +33,9 @@ function update(dt)
   if (not object.isInputNodeConnected(0)) or object.getInputNodeLevel(0) then
     if storage.timer == 0 then
       if storage.state then
-        storage.timer = self.offDuration
+        storage.timer = offDuration
       else
-        storage.timer = self.onDuration
+        storage.timer = onDuration
       end
       output(not storage.state)
     else

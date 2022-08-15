@@ -63,7 +63,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{ \"projectile\" : \"orbitalup\", \"projectileConfig\" : { \"timeToLive\" : 0, \"speed\" : 0, \"power\" : 50, \"actionOnReap\" : [ { \"action\" : \"loop\", \"count\" : 10, \"body\" : [ { \"action\" : \"projectile\", \"type\" : \"electricplasmagrenade\", \"fuzzAngle\" : 180, \"inheritDamageFactor\" : 1 } ] } ] } }"
+                     "parameters":"{ \"projectile\" : \"orbitalup\", \"projectileConfig\" : { \"timeToLive\" : 0, \"speed\" : 0, \"power\" : 50, \"onlyHitTerrain\" : true, \"actionOnReap\" : [ { \"action\" : \"loop\", \"count\" : 10, \"body\" : [ { \"action\" : \"projectile\", \"type\" : \"electricplasmagrenade\", \"fuzzAngle\" : 180, \"inheritDamageFactor\" : 1 } ] } ] } }"
                     },
                  "propertytypes":
                     {

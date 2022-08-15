@@ -1,0 +1,97 @@
+{
+  "projectileName" : "v-teslariflelargeorb",
+  "image" : "teslariflelargeorb.png",
+  "frameNumber" : 4,
+  "animationCycle" : 0.3,
+  "fullbright" : true,
+
+  "speed" : 25,
+  "physics" : "laser",
+  "bounces" : 10,
+
+  "damagePoly" : [ [-36, 0], [-24, -24], [0, -36], [24, -24], [36, 0], [24, 24], [0, 36], [-24, 24] ],
+  "damageKind" : "electric",
+  "piercing" : true,
+  "damageRepeatTimeout" : 0.25,
+  
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/electricexplosionknockback.config"
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-teslarifleorb",
+      "inheritDamageFactor" : 0.125,
+      "angleAdjust" : 0
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-teslarifleorb",
+      "inheritDamageFactor" : 0.125,
+      "angleAdjust" : 45
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-teslarifleorb",
+      "inheritDamageFactor" : 0.125,
+      "angleAdjust" : 90
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-teslarifleorb",
+      "inheritDamageFactor" : 0.125,
+      "angleAdjust" : 135
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-teslarifleorb",
+      "inheritDamageFactor" : 0.125,
+      "angleAdjust" : 180
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-teslarifleorb",
+      "inheritDamageFactor" : 0.125,
+      "angleAdjust" : 225
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-teslarifleorb",
+      "inheritDamageFactor" : 0.125,
+      "angleAdjust" : 270
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-teslarifleorb",
+      "inheritDamageFactor" : 0.125,
+      "angleAdjust" : 315
+    }
+  ],
+  
+  "actionOnCollide" : [
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "spark"
+        },
+        {
+          "action" : "particle",
+          "specification" : "electricswoosh1"
+        },
+        {
+          "action" : "particle",
+          "specification" : "electricswoosh2"
+        }
+      ]
+    },
+    {
+      "action" : "sound",
+      "options" : ["/sfx/projectiles/v_teslariflelargeorb_impact.ogg"]
+    }
+  ],
+  
+  "scripts" : ["/projectiles/guns/plasmabullets/v-teslarifleorb/v-teslarifleorb.lua"]
+}

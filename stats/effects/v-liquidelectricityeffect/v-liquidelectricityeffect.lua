@@ -1,3 +1,7 @@
+local tickTime
+local tickTimer
+local tickDamage
+
 function init()
   animator.setParticleEmitterOffsetRegion("zappies", mcontroller.boundBox())
   animator.setParticleEmitterActive("zappies", true)
@@ -5,18 +9,18 @@ function init()
 
   script.setUpdateDelta(5)
 
-  self.tickTime = 0.25
-  self.tickTimer = self.tickTime
-  self.damage = 20
+  tickTime = 0.25
+  tickTimer = tickTime
+  tickDamage = 20
 end
 
 function update(dt)
-  self.tickTimer = self.tickTimer - dt
-  if self.tickTimer <= 0 then
-    self.tickTimer = self.tickTime
+  tickTimer = tickTimer - dt
+  if tickTimer <= 0 then
+    tickTimer = tickTime
     status.applySelfDamageRequest({
         damageType = "IgnoresDef",
-        damage = self.damage,
+        damage = tickDamage,
         damageSourceKind = "electric",
         sourceEntityId = entity.id()
       })

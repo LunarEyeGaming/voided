@@ -7,7 +7,7 @@
       {
         "select" : 2,
         "pool" : [
-          [ 1.0, "v-electricvoltip" ],
+          [ 1.0, "voltip" ],
           [ 1.0, "v-electricignome" ],
           [ 1.0, "scandroid" ]
         ]
@@ -30,15 +30,31 @@
       }
     ],
     "monsterParameters" : {
-      "colors" : "v-voltage"
+      "colors" : "v-voltage",
+      "statusSettings" : {
+        "stats" : {
+          "electricResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonResistance" : {
+            "baseValue" : -0.25
+          },
+          "electricStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 15.0
+          }
+        }
+      }
     }
   },
 
   "mainBlock" : "v-ironrock",
-  "subBlocks" : [ "junk" ],
+  "subBlocks" : [ "v-copperrock", "rock17" ],
   "ores" : "v-voltage",
   
-  "hueShiftOptions" : [0],
+  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15],
 
   "surfacePlaceables" : {
     "grassMod" : [ "v-copperpowder" ],
@@ -76,7 +92,78 @@
         "treeStemHueShiftMax" : 40,
         "treeStemList" : [ "v-electrictree" ],
         "treeFoliageList" : [ "v-electricfoliage" ]
+      },
+      
+      // CROPS
+
+      {
+        "mode" : "floor",
+        "priority" : 0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCrops",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "wildautomatoseed" ] ],
+            "parameters" : {
+              "startingStage" : 4
+            }
+          }
+        ]
+      },
+      
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCrops",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "wildboltbulbseed" ] ],
+            "parameters" : {
+              "startingStage" : 3
+            }
+          }
+        ]
+      },
+      
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCrops",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "wildcurrentcornseed" ] ],
+            "parameters" : {
+              "startingStage" : 3
+            }
+          }
+        ]
+      },
+      
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCrops",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "wilddiodiaseed" ] ],
+            "parameters" : {
+              "startingStage" : 3
+            }
+          }
+        ]
       }
+
       /* ,
       {
         "mode" : "floor",
@@ -130,24 +217,7 @@
             "parameters" : { }
           }
         ]
-      },
-
-      {
-        "mode" : "floor",
-        "priority" : 0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:surfaceCrops",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1, "wildgrapesseed" ] ],
-            "parameters" : {
-              "startingStage" : 4
-            }
-          }
-        ]
-      } */
+      }*/
     ]
   },
 

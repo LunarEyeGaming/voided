@@ -1,19 +1,22 @@
+local activateItem
+local required
+
 function init()
-  self.activateItem = config.getParameter("activateItem")
-  self.required = config.getParameter("requiredCount")
+  activateItem = config.getParameter("activateItem")
+  required = config.getParameter("requiredCount")
 
   update()
 end
 
 function update(dt)
-  local current = player.hasCountOfItem(self.activateItem)
-  widget.setText("costLabel", string.format("%s / %s", current, self.required))
-  widget.setFontColor("costLabel", current >= self.required and {255, 255, 255} or {255, 0, 0})
-  widget.setButtonEnabled("activateButton", current >= self.required)
+  local current = player.hasCountOfItem(activateItem)
+  widget.setText("costLabel", string.format("%s / %s", current, required))
+  widget.setFontColor("costLabel", current >= required and {255, 255, 255} or {255, 0, 0})
+  widget.setButtonEnabled("activateButton", current >= required)
 end
 
 function cooldown()
-  if player.consumeItem({name = self.activateItem, count = self.required}) then
+  if player.consumeItem({name = activateItem, count = required}) then
     world.sendEntityMessage(pane.sourceEntity(), "cooldown")
     pane.dismiss()
   end

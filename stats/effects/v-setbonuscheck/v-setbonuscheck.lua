@@ -1,32 +1,38 @@
 require "/scripts/voidedutil.lua"
 
+local setBonuses
+local chestEffect
+local pantsEffect
+local setBonusStats
+local bonusStatsAdded
+
 function init()
   -- Initialize parameters
-  self.setBonuses = config.getParameter("setBonuses")
-  self.chestEffect = config.getParameter("chestEffect")
-  self.pantsEffect = config.getParameter("pantsEffect")
-  self.setBonusStats = config.getParameter("setBonusStats")
-  self.bonusStatsAdded = false
+  setBonuses = config.getParameter("setBonuses")
+  chestEffect = config.getParameter("chestEffect")
+  pantsEffect = config.getParameter("pantsEffect")
+  setBonusStats = config.getParameter("setBonusStats")
+  bonusStatsAdded = false
 end
 
 function update(dt)
-  chestSlotEquipped = hasStatusEffect(self.chestEffect)
-  pantsSlotEquipped = hasStatusEffect(self.pantsEffect)
+  chestSlotEquipped = hasStatusEffect(chestEffect)
+  pantsSlotEquipped = hasStatusEffect(pantsEffect)
   -- If the chest and pants slots are equipped, then execute the code below
   if chestSlotEquipped and pantsSlotEquipped then
-    status.addEphemeralEffects(self.setBonuses)
+    status.addEphemeralEffects(setBonuses)
     -- When stats are not added yet, if they exist. These are stats, not status effects.
-    if self.setBonusStats and not self.bonusStatsAdded then
-      for _, stat in pairs(self.setBonusStats) do
+    if setBonusStats and not bonusStatsAdded then
+      for _, stat in pairs(setBonusStats) do
         effect.addStatModifierGroup({{stat = stat["stat"], amount = stat["amount"]}})
-        self.bonusStatsAdded = true
+        bonusStatsAdded = true
       end
     end
-  elseif self.setBonusStats then
-    self.bonusStatsAdded = false
+  elseif setBonusStats then
+    bonusStatsAdded = false
   else
     -- Remove set bonus effects
-    for _, bonusEffect in pairs(self.setBonuses) do
+    for _, bonusEffect in pairs(setBonuses) do
       if type(bonusEffect) == "table" then
         setBonusEffect = bonusEffect["effect"]
       else

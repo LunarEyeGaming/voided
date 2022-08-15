@@ -1,29 +1,38 @@
 require "/scripts/util.lua"
 
+local level
+local spawnInterval
+local maxCount
+local orbiterTypes
+local attackRange
+local orbiterConfig
+local tickTimer
+local orbiters
+
 function init()
   -- Initialize parameters
-  self.level = config.getParameter("level")
-  self.spawnInterval = config.getParameter("spawnInterval")
-  self.maxCount = config.getParameter("maxCount")
-  self.orbiterTypes = config.getParameter("orbiterTypes")
-  self.attackRange = config.getParameter("attackRange")
-  self.orbiterConfig = config.getParameter("orbiterConfig")
-  self.orbiterConfig.power = (self.orbiterConfig.power or 10) * root.evalFunction("weaponDamageLevelMultiplier", self.level)
+  level = config.getParameter("level")
+  spawnInterval = config.getParameter("spawnInterval")
+  maxCount = config.getParameter("maxCount")
+  orbiterTypes = config.getParameter("orbiterTypes")
+  attackRange = config.getParameter("attackRange")
+  orbiterConfig = config.getParameter("orbiterConfig")
+  orbiterConfig.power = (orbiterConfig.power or 10) * root.evalFunction("weaponDamageLevelMultiplier", level)
 
   -- Initialize variables
-  self.tickTimer = self.spawnInterval
-  self.orbiters = {}
+  tickTimer = spawnInterval
+  orbiters = {}
 end
 
 function update(dt)
-  self.tickTimer = self.tickTimer - dt
+  tickTimer = tickTimer - dt
   
-  if self.tickTimer <= 0 and #self.orbiters < self.maxCount then
+  if tickTimer <= 0 and #orbiters < maxCount then
     addOrbiter()
   end
   
   local pos = mcontroller.position()
-  local queried = world.entityQuery(pos, self.attackRange, {includedTypes = {"creature"}, order = "nearest"})
+  local queried = world.entityQuery(pos, attackRange, {includedTypes = {"creature"}, order = "nearest"})
   for _, entity in ipairs(queried) do
     if validTarget(pos, entity) then
       fireOrbiters(entity)
@@ -33,10 +42,10 @@ function update(dt)
 end
 
 function fireOrbiters(target)
-  for _, orbiter in ipairs(self.orbiters) do
+  for _, orbiter in ipairs(orbiters) do
     world.sendEntityMessage(orbiter, "kill", target)
   end
-  self.orbiters = {}
+  orbiters = {}
 end
 
 function validTarget(pos, x)
@@ -45,19 +54,19 @@ function validTarget(pos, x)
 end
 
 function addOrbiter()
-  for i, orbiter in ipairs(self.orbiters) do
-    local angleOffset = 2 * math.pi * i / (#self.orbiters + 1)
+  for i, orbiter in ipairs(orbiters) do
+    local angleOffset = 2 * math.pi * i / (#orbiters + 1)
     world.sendEntityMessage(orbiter, "reset", angleOffset)
   end
 
-  local orbiterId = world.spawnProjectile(util.randomFromList(self.orbiterTypes), mcontroller.position(), entity.id(), {0, 0}, false, self.orbiterConfig)
-  table.insert(self.orbiters, orbiterId)
+  local orbiterId = world.spawnProjectile(util.randomFromList(orbiterTypes), mcontroller.position(), entity.id(), {0, 0}, false, orbiterConfig)
+  table.insert(orbiters, orbiterId)
   
-  self.tickTimer = self.spawnInterval
+  tickTimer = spawnInterval
 end
 
 function onExpire()
-  for _, orbiter in ipairs(self.orbiters) do
+  for _, orbiter in ipairs(orbiters) do
     world.sendEntityMessage(orbiter, "kill")
   end
 end

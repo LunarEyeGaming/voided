@@ -5,7 +5,7 @@ require "/scripts/interp.lua"
 HarpoonGunFire = WeaponAbility:new()
 
 function HarpoonGunFire:init()
-  self.damageConfig.baseDamage = self.baseDps * self.fireTime
+  self.damageConfig.baseDamage = self.baseDps * self.fireTime * self.chainDamageFactor
   self.weapon:setStance(self.stances.idle)
 
   self.cooldownTimer = 0

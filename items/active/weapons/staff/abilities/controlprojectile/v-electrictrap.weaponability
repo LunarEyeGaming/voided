@@ -1,17 +1,17 @@
 {
   "ability" : {
     "type" : "v-electrictrap",
-    "name" : "Electric Airmines",
+    "name" : "Electric Air Mines",
     "scripts" : ["/items/active/weapons/staff/abilities/controlprojectile/controlprojectile.lua"],
     "class" : "ControlProjectile",
 
-    "energyCost" : 580,
+    "energyCost" : 440,
 
     "maxCastRange" : 25,
 
     "projectileType" : "v-electrictrap",
     "projectileParameters" : {
-      "baseDamage" : 40
+      "baseDamage" : 20
     }
   }
 }

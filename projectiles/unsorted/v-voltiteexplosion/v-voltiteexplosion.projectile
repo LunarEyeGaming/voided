@@ -13,16 +13,13 @@
   "actionOnReap" : [
     {
       "action" : "loop",
-      "count" : 3,
+      "count" : 1,
       "body" : [
         {
           "action" : "projectile",
-          "type" : "whipshock",
+          "type" : "v-voltiteexplosionbolt",
           "fuzzAngle" : 180,
-          "inheritDamageFactor" : 1,
-          "config" : {
-            "speed" : 100
-          }
+          "inheritDamageFactor" : 1
         }
       ]
     },

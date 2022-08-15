@@ -1,3 +1,7 @@
+local tickTime
+local tickTimer
+local tickDamage
+
 function init()
   animator.setParticleEmitterOffsetRegion("flames", mcontroller.boundBox())
   animator.setParticleEmitterActive("flames", true)
@@ -5,26 +9,26 @@ function init()
 
   script.setUpdateDelta(5)
 
-  self.tickTime = 0.5
-  self.tickTimer = self.tickTime
-  self.damage = 10
+  tickTime = 0.5
+  tickTimer = tickTime
+  tickDamage = 10
 
   status.applySelfDamageRequest({
       damageType = "IgnoresDef",
-      damage = self.damage,
+      damage = tickDamage,
       damageSourceKind = "v-ionplasma",
       sourceEntityId = entity.id()
     })
 end
 
 function update(dt)
-  self.tickTimer = self.tickTimer - dt
-  if self.tickTimer <= 0 then
-    self.tickTimer = self.tickTime
-    self.damage = self.damage + 8
+  tickTimer = tickTimer - dt
+  if tickTimer <= 0 then
+    tickTimer = tickTime
+    tickDamage = tickDamage + 8
     status.applySelfDamageRequest({
         damageType = "IgnoresDef",
-        damage = self.damage,
+        damage = tickDamage,
         damageSourceKind = "v-ionplasma",
         sourceEntityId = entity.id()
       })

@@ -1,0 +1,13 @@
+{
+  "projectileName" : "v-lightningbolt",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "frameNumber" : 1,
+  "timeToLive" : 0.25,
+  "speed" : 0,
+  "bounces" : -1,
+  "physics" : "illusion",
+  "damagePoly" : [ [-40, 0], [-40, 1000], [40, 1000], [40, 0] ],
+  "animationLoops" : false,
+  "flippable" : true,
+  "damageKind" : "electric"
+}

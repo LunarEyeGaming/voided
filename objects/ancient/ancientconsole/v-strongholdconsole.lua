@@ -1,13 +1,15 @@
 require "/scripts/util.lua"
 
-function init()
-  OVERHEATED = 0
-  INACTIVE = 1
-  ACTIVE = 2
+local OVERHEATED = 0
+local INACTIVE = 1
+local ACTIVE = 2
 
-  self.detectArea = config.getParameter("detectArea")
-  self.detectArea[1] = object.toAbsolutePosition(self.detectArea[1])
-  self.detectArea[2] = object.toAbsolutePosition(self.detectArea[2])
+local detectArea
+
+function init()
+  detectArea = config.getParameter("detectArea")
+  detectArea[1] = object.toAbsolutePosition(detectArea[1])
+  detectArea[2] = object.toAbsolutePosition(detectArea[2])
 
   storage.state = storage.state or config.getParameter("startingState", OVERHEATED)
 
@@ -52,7 +54,7 @@ end
 
 function update(dt)
   if storage.state == ACTIVE then
-    local players = world.entityQuery(self.detectArea[1], self.detectArea[2], {
+    local players = world.entityQuery(detectArea[1], detectArea[2], {
         includedTypes = {"player"},
         boundMode = "CollisionArea"
       })

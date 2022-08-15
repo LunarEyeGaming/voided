@@ -5,4 +5,6 @@ Your hint as to how to access the Ancient Stronghold is: Explore the surface of 
 
 Alternatively, you can just enter `/warp instanceworld:v-ancientstronghold` into the console, but I recommend trying to follow the above hint first.
 
-The only way to access the Voltage biome at the moment is through `/warp instanceworld:v-voltagetest`.
+The Voltage biome is accessible through the Extradimensional Star systems, or through `/warp instanceworld:v-voltagetest`.
+
+Credits are given in [CREDITS.md](CREDITS.md)

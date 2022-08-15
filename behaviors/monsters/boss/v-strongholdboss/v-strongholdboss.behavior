@@ -1443,122 +1443,56 @@
                     "name": "succeeder",
                     "parameters": {},
                     "child": {
-                      "title": "selector",
+                      "title": "Reset",
                       "type": "composite",
-                      "name": "selector",
+                      "name": "sequence",
                       "parameters": {},
                       "children": [
                         {
-                          "title": "Reset",
-                          "type": "composite",
-                          "name": "sequence",
-                          "parameters": {},
-                          "children": [
-                            {
-                              "title": "greaterThan",
-                              "type": "action",
-                              "name": "greaterThan",
-                              "parameters": {
-                                "first": {"key": "coreCount"},
-                                "second": {"value": 8}
-                              }
-                            },
-                            {
-                              "title": "each",
-                              "type": "decorator",
-                              "name": "each",
-                              "parameters": {
-                                "list": {"key": "coreIds"},
-                                "type": {"value": "entity"}
-                              },
-                              "child": {
-                                "title": "succeeder",
-                                "type": "decorator",
-                                "name": "succeeder",
-                                "parameters": {},
-                                "child": {
-                                  "title": "sequence",
-                                  "type": "composite",
-                                  "name": "sequence",
-                                  "parameters": {},
-                                  "children": [
-                                    {
-                                      "title": "sendNotification",
-                                      "type": "action",
-                                      "name": "sendNotification",
-                                      "parameters": {
-                                        "entity": {"key": "eachItem"},
-                                        "type": {"value": "heal"}
-                                      }
-                                    },
-                                    {
-                                      "title": "sendNotification",
-                                      "type": "action",
-                                      "name": "sendNotification",
-                                      "parameters": {
-                                        "entity": {"key": "eachItem"},
-                                        "type": {"value": "deactivate"}
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
+                          "title": "each",
+                          "type": "decorator",
+                          "name": "each",
+                          "parameters": {
+                            "list": {"key": "coreIds"},
+                            "type": {"value": "entity"}
+                          },
+                          "child": {
+                            "title": "sendNotification",
+                            "type": "action",
+                            "name": "sendNotification",
+                            "parameters": {
+                              "entity": {"key": "eachItem"},
+                              "type": {"value": "destroy"}
                             }
-                          ]
+                          }
                         },
                         {
-                          "title": "Reset",
-                          "type": "composite",
-                          "name": "sequence",
-                          "parameters": {},
-                          "children": [
-                            {
-                              "title": "each",
-                              "type": "decorator",
-                              "name": "each",
-                              "parameters": {
-                                "list": {"key": "coreIds"},
-                                "type": {"value": "entity"}
-                              },
-                              "child": {
-                                "title": "sendNotification",
-                                "type": "action",
-                                "name": "sendNotification",
-                                "parameters": {
-                                  "entity": {"key": "eachItem"},
-                                  "type": {"value": "destroy"}
-                                }
-                              }
-                            },
-                            {
-                              "title": "v_spawnStrongholdParts2",
-                              "type": "action",
-                              "name": "v_spawnStrongholdParts2",
-                              "parameters": {
-                                "coreXOffsets": {"value": [-14, 0, 14]},
-                                "coreYOffsets": {"value": [-11, 0, 11]}
-                              },
-                              "output": {
-                                "coreIds": "coreIds",
-                                "corePositions": "corePositions"
-                              }
-                            },
-                            {
-                              "title": "v_partitionCores",
-                              "type": "action",
-                              "name": "v_partitionCores",
-                              "parameters": {
-                                "coreIds": {"key": "coreIds"},
-                                "corePositions": {"key": "corePositions"},
-                                "nRows": {"value": 3},
-                                "nCols": {"value": 3}
-                              },
-                              "output": {
-                                "coreIds": "corePartition",
-                                "corePositions": "corePositionPartition"
-                              }
-                            }
-                          ]
+                          "title": "v_spawnStrongholdParts2",
+                          "type": "action",
+                          "name": "v_spawnStrongholdParts2",
+                          "parameters": {
+                            "coreXOffsets": {"value": [-14, 0, 14]},
+                            "coreYOffsets": {"value": [-11, 0, 11]}
+                          },
+                          "output": {
+                            "coreIds": "coreIds",
+                            "corePositions": "corePositions"
+                          }
+                        },
+                        {
+                          "title": "v_partitionCores",
+                          "type": "action",
+                          "name": "v_partitionCores",
+                          "parameters": {
+                            "coreIds": {"key": "coreIds"},
+                            "corePositions": {"key": "corePositions"},
+                            "nRows": {"value": 3},
+                            "nCols": {"value": 3}
+                          },
+                          "output": {
+                            "coreIds": "corePartition",
+                            "corePositions": "corePositionPartition"
+                          }
                         }
                       ]
                     }

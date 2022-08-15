@@ -1,21 +1,32 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
+local targetUid
+local cinematicTime
+local teleportTime
+local appearTime
+local teleportCinematic
+local teleportOffset
+local beamInStatusEffect
+
+local searchPromise
+local teleportState
+
 function init()
   -- Initialize parameters
-  self.targetUid = config.getParameter("targetUid")
-  self.cinematicTime = config.getParameter("cinematicTime")
-  self.teleportTime = config.getParameter("teleportTime")
-  self.appearTime = config.getParameter("appearTime")
-  self.teleportCinematic = config.getParameter("teleportCinematic")
-  self.teleportOffset = config.getParameter("teleportOffset")
+  targetUid = config.getParameter("targetUid")
+  cinematicTime = config.getParameter("cinematicTime")
+  teleportTime = config.getParameter("teleportTime")
+  appearTime = config.getParameter("appearTime")
+  teleportCinematic = config.getParameter("teleportCinematic")
+  teleportOffset = config.getParameter("teleportOffset")
 
-  self.beamInStatusEffect = config.getParameter("beamInStatusEffect")
+  beamInStatusEffect = config.getParameter("beamInStatusEffect")
 
   -- Prepare async
-  self.promise = world.findUniqueEntity(self.targetUid)
-  self.state = FSM:new()
-  self.state:set(teleport)
+  searchPromise = world.findUniqueEntity(targetUid)
+  teleportState = FSM:new()
+  teleportState:set(teleport)
 
   -- Begin animation
   animator.setAnimationState("teleport", "beamOut")
@@ -23,7 +34,7 @@ function init()
 end
 
 function update(dt)
-  self.state:update()
+  teleportState:update()
   effect.setParentDirectives(string.format("?multiply=%s", animator.animationStateProperty("teleport", "multiply") or "ffffff00"))
   
   -- Freeze player
@@ -35,34 +46,34 @@ function update(dt)
 end
 
 function teleport()
-  while not self.promise:finished() do
+  while not searchPromise:finished() do
     coroutine.yield()
   end
   
-  if not self.promise:succeeded() then
-    sb.logWarn("In-world teleport not successful: no such entity with unique ID '%s'", self.targetUid)
-    self.state:set(noop)
+  if not searchPromise:succeeded() then
+    sb.logWarn("In-world teleport not successful: no such entity with unique ID '%s'", targetUid)
+    teleportState:set(noop)
     coroutine.yield()
   end
   
-  self.targetPosition = self.promise:result()
+  targetPosition = searchPromise:result()
   
-  util.wait(self.cinematicTime)
+  util.wait(cinematicTime)
   
-  world.sendEntityMessage(entity.id(), "playCinematic", self.teleportCinematic)
+  world.sendEntityMessage(entity.id(), "playCinematic", teleportCinematic)
   
-  util.wait(self.teleportTime)
+  util.wait(teleportTime)
   
-  mcontroller.setPosition(vec2.add(self.targetPosition, self.teleportOffset))
-  world.sendEntityMessage(self.targetUid, "preactivate")
+  mcontroller.setPosition(vec2.add(targetPosition, teleportOffset))
+  world.sendEntityMessage(targetUid, "preactivate")
   
-  util.wait(self.appearTime)
+  util.wait(appearTime)
   
-  world.sendEntityMessage(self.targetUid, "activate", entity.id())
-  status.addEphemeralEffect(self.beamInStatusEffect)
+  world.sendEntityMessage(targetUid, "activate", entity.id())
+  status.addEphemeralEffect(beamInStatusEffect)
   effect.expire()
   
-  self.state:set(noop)
+  teleportState:set(noop)
 end
 
 function noop()

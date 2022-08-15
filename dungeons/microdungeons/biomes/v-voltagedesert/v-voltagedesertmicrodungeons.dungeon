@@ -1,0 +1,53 @@
+{
+  "metadata" : {
+    "name" : "v-voltagedesertmicrodungeons",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "buriedchest", "singleroom", "singleroomceiling", "twofloors", "twofloorsceiling" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "buriedchest",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "buriedchest.json" ]
+    },
+    {
+      "name" : "singleroom",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "singleroom.json" ]
+    },
+    {
+      "name" : "singleroomceiling",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "singleroomceiling.json" ]
+    },
+    {
+      "name" : "twofloors",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "twofloors.json" ]
+    },
+    {
+      "name" : "twofloorsceiling",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "twofloorsceiling.json" ]
+    }
+  ]
+}

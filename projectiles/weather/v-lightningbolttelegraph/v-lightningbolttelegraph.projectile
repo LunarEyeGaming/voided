@@ -9,7 +9,7 @@
   "power" : 100,
   "speed" : 0,
   "onlyHitTerrain" : true,
-  "timeToLive" : 5,
+  "timeToLive" : 2,
   "periodicActions" : [
     {
       "time" : 0.01,
@@ -50,6 +50,6 @@
   "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
   
   "monsterType" : "v-shockwave",
-  "monsterParameters" : {"maxArea" : 1000},
+  "monsterParameters" : {"maxArea" : 1000, "projectileParameters" : {"damageTeam" : {"type" : "indiscriminate"}}},
   "spawnOffset" : [0, -1]
 }

@@ -79,6 +79,8 @@
       "fullbright" : true,
       "renderLayer" : "Projectile-10"
     },
+    
+    "chainDamageFactor" : 0.5,
 
     "damageConfig" : {
       "statusEffects" : [ "electrified" ],
@@ -123,7 +125,7 @@
 
     "fireTime" : 3.0,
     "baseDps" : 7,
-    "energyUsage" : 90,
+    "energyUsage" : 60,
     "inaccuracy" : 0.0,
     
     "maxChainLength" : 100,

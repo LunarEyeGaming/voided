@@ -1,0 +1,23 @@
+{
+  "projectileName" : "v-voltiteexplosionbolt",
+  "image" : "voltiteexplosionbolt.png",
+  "animationCycle" : 0.15,
+  "timeToLive" : 0.2,
+  "frameNumber" : 6,
+  "speed" : 250,
+  "animationLoops" : false,
+  "flippable" : true,
+  "onlyHitTerrain" : true,
+  "lightColor" : [80, 40, 140],
+  
+  "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
+  
+  "boltPower" : 1,
+  
+  "monsterType" : "v-shockwave",
+  "spawnOffset" : [0, 0],
+  "shockwaveDamageFactor" : 0.5,
+  "monsterParameters" : {
+    "maxArea" : 200
+  }
+}

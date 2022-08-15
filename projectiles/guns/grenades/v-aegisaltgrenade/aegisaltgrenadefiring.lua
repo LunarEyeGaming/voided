@@ -1,13 +1,17 @@
 require "/scripts/util.lua"
 
+local endAngle
+local timer
+local interpTime
+
 function init()
-  self.endAngle = util.toRadians(config.getParameter("endAngle"))
-  self.timer = 0
-  self.interpTime = config.getParameter("interpTime") or config.getParameter("timeToLive")
+  endAngle = util.toRadians(config.getParameter("endAngle"))
+  timer = 0
+  interpTime = config.getParameter("interpTime") or config.getParameter("timeToLive")
 end
 
 function update(dt)
-  self.timer = self.timer + dt
+  timer = timer + dt
 
-  mcontroller.setRotation(util.easeInOutSin(self.timer / self.interpTime, 0, self.endAngle))
+  mcontroller.setRotation(util.easeInOutSin(timer / interpTime, 0, endAngle))
 end

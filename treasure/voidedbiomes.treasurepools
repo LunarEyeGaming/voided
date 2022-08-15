@@ -1,0 +1,34 @@
+{
+  "v-voltagedesertChestTreasure" : [
+    [1, {
+      "fill" : [
+        {"pool" : "valuableTreasure"}
+      ],
+      "pool" : [
+        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.5, "pool" : "v-voltagedesertTreasure"}
+      ],
+      "poolRounds" : [
+        [0.05, 1],
+        [0.40, 2],
+        [0.30, 3],
+        [0.15, 4],
+        [0.10, 5]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  
+  "v-voltagedesertTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 1.0, "item" : ["v-coppersandmaterial", 25]},
+        {"weight" : 1.0, "item" : ["v-copperrockmaterial", 10]},
+        {"weight" : 0.5, "item" : ["medkit", 3]},
+        {"weight" : 0.5, "item" : ["nanowrap", 2]},
+        {"weight" : 0.25, "item" : "automato"},
+        {"weight" : 0.1, "pool" : "v-electricWeapon"}
+      ]
+    }]
+  ]
+}

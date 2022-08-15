@@ -17,8 +17,7 @@
     "animationScripts" : [
       "/monsters/unsorted/v-shockwave/v-shockwaveanim.lua"
     ],
-    
-    "validMats" : ["ironblock", "copperblock", "v-ironrock", "v-rustedironrock", "v-copperrock", "v-chargedstone"],
+
     "projectileType" : "v-shockwavedamage",
     "projectileParameters" : {},
     "damage" : 20,
@@ -38,11 +37,7 @@
       "collisionEnabled" : false,
       "collisionPoly" : [ [0, 0] ],
 
-      "mass" : 1.0,
-      "flySpeed" : 20,
-      "airFriction" : 0.25,
-      "airForce" : 200.0,
-      "physicsEffectCategories" : ["boss"]
+      "physicsEffectCategories" : ["stationarymonster"]
     },
 
     "knockoutTime" : 0.0,
@@ -66,51 +61,7 @@
 
       "appliesEnvironmentStatusEffects" : false,
       "appliesWeatherStatusEffects" : false,
-      "minimumLiquidStatusEffectPercentage" : 0.1,
-
-      "primaryScriptSources" : [
-        "/stats/monster_primary.lua"
-      ],
-      "primaryScriptDelta" : 5,
-
-      "stats" : {
-        "grit" : {
-          "baseValue" : 1.0
-        },
-        "knockbackStunTime" : {
-          "baseValue" : 0.0
-        },
-        "knockbackThreshold" : {
-          "baseValue" : 9999
-        },
-        "maxHealth" : {
-          "baseValue" : 1
-        },
-        "protection" : {
-          "baseValue" : 0.0
-        },
-        "healthRegen" : {
-          "baseValue" : 0.0
-        },
-        "powerMultiplier" : {
-          "baseValue" : 1.0
-        },
-        "invulnerable" : {
-          "baseValue" : 1.0
-        }
-      },
-
-      "resources" : {
-        "stunned" : {
-          "deltaValue" : -1.0,
-          "initialValue" : 0.0
-        },
-        "health" : {
-          "maxStat" : "maxHealth",
-          "deltaStat" : "healthRegen",
-          "defaultPercentage" : 100
-        }
-      }
+      "minimumLiquidStatusEffectPercentage" : 1.0
     },
 
     "mouthOffset" : [0, 0],

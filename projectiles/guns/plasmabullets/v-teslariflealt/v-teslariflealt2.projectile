@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-teslariflealt2",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+
+  "speed" : 0,
+  "bounces" : -1,
+  "physics" : "illusion",
+  "onlyHitTerrain" : true,
+  
+  "timeToLive" : 0.1,
+  
+  "scripts" : ["v-teslariflealt.lua"],
+  "scriptDelta" : 1,
+
+  "detonateRadius" : 10,  
+  "detonateDelay" : 0.01
+}

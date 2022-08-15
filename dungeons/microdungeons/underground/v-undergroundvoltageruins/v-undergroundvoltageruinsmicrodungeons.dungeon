@@ -1,0 +1,53 @@
+{
+  "metadata" : {
+    "name" : "v-undergroundvoltageruinsmicrodungeons",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "basement", "farm", "restaurant", "storagehouse", "twofloors" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "basement",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "basement.json" ]
+    },
+    {
+      "name" : "farm",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "farm.json" ]
+    },
+    {
+      "name" : "restaurant",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "restaurant.json" ]
+    },
+    {
+      "name" : "storagehouse",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "storagehouse.json" ]
+    },
+    {
+      "name" : "twofloors",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "twofloors.json" ]
+    }
+  ]
+}

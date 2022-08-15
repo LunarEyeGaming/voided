@@ -1,0 +1,52 @@
+{
+  "name" : "v-copperDesertSubBlocks",
+
+  //surface roughness
+  "type" : "displacement",
+  "xType" : "perlin",
+  "xOctaves" : 2,
+  "xFreq" : 0.2,
+  "xAmp" : 1,
+  "xXInfluence" : 0,
+  "yType" : "perlin",
+  "yOctaves" : 3,
+  "yFreq" : 0.05,
+  "yAmp" : 5,
+  "yYInfluence" : 0,
+  "yBias" : 0.5,
+  "yClamp" : [0, 1],
+
+  "source" : {
+    //low rolling hills
+    "type" : "displacement",
+    "xType" : "perlin",
+    "xOctaves" : 2,
+    "xFreq" : 0.02,
+    "xAmp" : 0,
+    "yType" : "perlin",
+    "yOctaves" : 1,
+    "yFreq" : 0.01,
+    "yAmp" : 40,
+    "yYInfluence" : 0.1,
+
+    "source" : {
+      //base terrain height variation
+      "type" : "displacement",
+      "xType" : "perlin",
+      "xOctaves" : 2,
+      "xFreq" : 0.02,
+      "xAmp" : 0,
+      "yType" : "perlin",
+      "yOctaves" : 2,
+      "yFreq" : 0.001,
+      "yAmp" : 40,
+      "yYInfluence" : 0,
+
+      "source" : {
+        "type" : "flatSurface",
+
+        "adjustment" : -50
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "name" : "v-voltage",
   "friendlyName" : "Voltage",
 
-  "statusEffects" : [ "v-biomeelectric", "v-quickhealnerf" ],
+  "statusEffects" : [ "v-biomeelectric", "v-quickhealnerf", "v-monsterresistance" ],
 
   "spawnProfile" : {
     "groups" : [
@@ -60,10 +60,13 @@
             "baseValue" : 0.5
           },
           "poisonResistance" : {
-            "baseValue" : -0.5
+            "baseValue" : -0.25
           },
           "electricStatusImmunity" : {
             "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 15.0
           }
         }
       }
@@ -77,7 +80,8 @@
       // "/weather.config:v-voltageTest"
       "/weather.config:v-voltage",
       "/weather.config:v-voltageStormy",
-      "/weather.config:v-voltageDormant"
+      "/weather.config:v-voltageDormant",
+      "/weather.config:v-voltageEternalStorm"
     ]]
   ],
 
@@ -127,17 +131,17 @@
   ],
 
   "mainBlock" : "v-ironrock",
-  "subBlocks" : [ "v-copperrock", "junk" ],
+  "subBlocks" : [ "v-copperrock", "rock17" ],
   "ores" : "v-voltage",
 
   "parallax" : "/parallax/surface/v-voltage.parallax",
 
   "ambientNoises" : {
     "day" : {
-      "tracks" : [ "/sfx/environmental/tundra_night.ogg" ]
+      "tracks" : [ "/sfx/environmental/arid_day.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/sfx/environmental/tundra_night.ogg" ]
+      "tracks" : [ "/sfx/environmental/arid_night.ogg" ]
     }
   },
 
@@ -208,10 +212,10 @@
         "distribution" : "/biomes/distributions.config:potsRare",
 
         "type" : "tree",
-        "treeFoliageHueShiftMax" : 0,
-        "treeStemHueShiftMax" : 15,
-        "treeStemList" : [ "rust" ],
-        "treeFoliageList" : [ "" ]
+        "treeFoliageHueShiftMax" : 120,
+        "treeStemHueShiftMax" : 40,
+        "treeStemList" : [ "v-electrictree" ],
+        "treeFoliageList" : [ "v-electricfoliage" ]
       },
       {
         "mode" : "floor",
@@ -248,7 +252,7 @@
 
         "type" : "grass",
         "grasses" : [ "magmaflower", "magmaflower2", "magmaflower3", "magmaflower4", "testflower8", "magmaflower5" ]
-      },
+      }
       /* {
         "mode" : "floor",
         "priority" : 1.0,
@@ -263,22 +267,6 @@
           }
         ]
       }, */
-      {
-        "mode" : "floor",
-        "priority" : 0.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:surfaceCrops",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1, "wildboltbulbseed" ] ],
-            "parameters" : {
-              "startingStage" : 3
-            }
-          }
-        ]
-      }
     ]
   },
 

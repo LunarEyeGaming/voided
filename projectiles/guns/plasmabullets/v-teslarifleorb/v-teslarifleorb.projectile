@@ -1,0 +1,55 @@
+{
+  "projectileName" : "v-teslarifleorb",
+  "image" : "teslarifleorb.png",
+  "frameNumber" : 4,
+  "animationCycle" : 0.3,
+  "fullbright" : true,
+
+  "speed" : 25,
+  "physics" : "laser",
+  "bounces" : 3,
+
+  "damagePoly" : [ [-20, 0], [-16, -16], [0, -20], [16, -16], [20, 0], [16, 16], [0, 20], [-16, 16] ],
+  "damageKind" : "electric",
+  "piercing" : true,
+  "damageRepeatTimeout" : 0.25,
+  
+  "actionOnCollide" : [
+    {
+      "action" : "loop",
+      "count" : 2,
+      "body" : [
+        {
+          "action" : "spark"
+        },
+        {
+          "action" : "particle",
+          "specification" : "electricswoosh1"
+        },
+        {
+          "action" : "particle",
+          "specification" : "electricswoosh2"
+        }
+      ]
+    },
+    {
+      "action" : "sound",
+      "options" : ["/sfx/projectiles/v_teslarifleorb_impact.ogg"]
+    }
+  ],
+  
+  "scripts" : ["v-teslarifleorb.lua"],
+  
+  "detonationProjectileType" : "orbitalup",
+  "detonationParameters" : {
+    "timeToLive" : 0,
+    "speed" : 0,
+    "onlyHitTerrain" : true,
+    "actionOnReap" : [
+      {
+        "action" : "config",
+        "file" : "/projectiles/explosions/v-teslarifleorbexplosion/teslarifleorbexplosion.config"
+      }
+    ]
+  }
+}

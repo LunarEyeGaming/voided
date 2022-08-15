@@ -1,0 +1,31 @@
+{
+  "objectName" : "v-brokenopensign",
+  "colonyTags" : ["hylotl","hylotloceancity","pretty","commerce"],
+  "rarity" : "Common",
+  "category" : "decorative",
+  "price" : 90,
+
+  "description" : "A neon \"open\" sign. It does not work anymore.",
+  "shortdescription" : "Broken Open Sign",
+  "race" : "hylotl",
+
+  "apexDescription" : "A bright neon \"open\" sign. It no longer works.",
+  "avianDescription" : "An \"open\" sign that used to work long ago.",
+  "floranDescription" : "Broken \"open\" sssign.",
+  "glitchDescription" : "Disinterested. An \"open\" sign. It no longer works",
+  "humanDescription" : "A neon \"open\" sign. It seems that it doesn't work.",
+  "hylotlDescription" : "A sign indicating whether or not this place is open. It used to work long ago.",
+  "novakidDescription" : "An \"open\" sign. It ain't workin' anymore.",
+
+  "inventoryIcon" : "opensignicon.png",
+  "orientations" : [
+    {
+      "image" : "opensign.png:<color>.off",
+      "imagePosition" : [-16, -8],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+
+    }
+  ]
+}

@@ -6,11 +6,17 @@
       "description" : "A large, unknown structure engulfed in magma. Heavy energy readings resonate from this area.", "icon" : "/interface/cockpit/dungeons/v-strongholdgateway.png"
     }},
 
-    {"op" : "add", "path" : "/wordsList/v-voltage", "value" : {"word" : "v-voltage", "friendlyWord" : " Voltage"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagedesert", "value" : {"word" : "v-voltagedesert", "friendlyWord" : " Copper Desert"}},
-    {"op" : "add", "path" : "/wordsList/v-voltageforest", "value" : {"word" : "v-voltageforest", "friendlyWord" : " Electric Forest"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagerusty", "value" : {"word" : "v-voltagerusty", "friendlyWord" : " Rusted Voltage"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagewastes", "value" : {"word" : "v-voltagewastes", "friendlyWord" : " Voltage Wastes"}},
+    {"op" : "add", "path" : "/planetTypeNames/v-voltagerusty", "value" : "Rusted Voltage"},
+    
+    //{"op" : "add", "path" : "/wordsList/v-voltage", "value" : {"word" : "v%-voltage", "friendlyWord" : "Voltage"}},
+
+    // There is a bug in MPI where the word substitution method is always used for sub-biomes. This will have to be a workaround.
+    {"op" : "add", "path" : "/wordsList/v-voltageforest", "value" : {"word" : "v%-voltageforest", "friendlyWord" : "Electric Forest"}},
+    {"op" : "add", "path" : "/wordsList/v-voltageforest2", "value" : {"word" : "v%-voltage Forest", "friendlyWord" : "Electric Forest"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagedesert", "value" : {"word" : "v%-voltagedesert", "friendlyWord" : "Copper Desert"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagedesert2", "value" : {"word" : "v%-voltage Desert", "friendlyWord" : "Copper Desert"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagewastes", "value" : {"word" : "v%-voltagewastes", "friendlyWord" : "Charged Wastes"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagewastes2", "value" : {"word" : "v%-voltage Wastes", "friendlyWord" : "Charged Wastes"}},
 
     {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomeelectric", "value" : {"displayName" : "Dangerously Conductive", "icon" : "/interface/cockpit/hazards/v-biomeelectric.png"}},
 
@@ -24,7 +30,7 @@
       "op" : "add",
       "path" : "/visitableTypeDescription/v-voltage",
       "value" : [
-        "Scans show a surface filled with copper deserts and metallic spikes. This ^#a083df;voltage^reset; world is ^red;dangerously conductive^reset;.",
+        "Scans show a surface filled with copper deserts and metallic spikes, indicating that this is a ^#a083df;voltage^reset; world and therefore it is ^red;dangerously conductive^reset;.",
         "This ^#a083df;voltage^reset; world has a powerful amount of electricity circulating through it. Protection against its ^red;dangerously conductive^reset; atmosphere is advised.",
         "The electrical conductivity of this ^#a083df;voltage^reset; world is ^red;dangerously high^reset;. Its indigenous lifeforms have adapted a resistance to this kind of environment."
       ]

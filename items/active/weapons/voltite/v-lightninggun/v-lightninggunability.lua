@@ -49,11 +49,19 @@ function TeslaStream:fire()
     local targeted = {}
   
     local power = self:damagePerShot()
-    for i, monster in ipairs(entities) do
-      local entityPos = world.nearestTo(beamStart, world.entityPosition(monster))
+
+    entities = util.filter(entities, function(x)
+      local entityPos = world.nearestTo(beamStart, world.entityPosition(x))
       local entCollidePoint = world.lineCollision(beamStart, entityPos)
+      
+      -- The angle, in radians, between the gun's aim vector and the target vector.
       local sightCloseness = math.abs(util.angleDiff(vec2.angle(self:aimVector(0)), vec2.angle(world.distance(entityPos, beamStart))))
-      if i <= self.maxConnections and not entCollidePoint and sightCloseness <= self.halfFov then
+      return world.entityCanDamage(entity.id(), x) and not entCollidePoint and sightCloseness <= self.halfFov
+    end)
+
+    for i, monster in ipairs(entities) do
+      if i <= self.maxConnections then
+        local entityPos = world.entityPosition(monster)
         table.insert(targeted, monster)
         if self.arcCooldownTimer == 0 then
           world.spawnProjectile("v-lightningguncurrent", entityPos, entity.id(), {0, 0}, false, {power = power, timeToLive = 0, powerMultiplier = activeItem.ownerPowerMultiplier()})

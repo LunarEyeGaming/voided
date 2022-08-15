@@ -1,0 +1,24 @@
+{
+  "materialId" : 1194,
+  "materialName" : "v-rubberblock",
+  "particleColor" : [31, 31, 31, 255],
+  "itemDrop" : "v-rubberblockmaterial",
+  "shortdescription" : "Rubber Block",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_gravel.ogg",
+  "health" : 6,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/slopedmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-rubberblock.png",
+    "variants" : 1,
+    "lightTransparent" : false,
+    "occludesBelow" : false,
+    "multiColored" : true,
+    "zLevel" : 1000
+  }
+}

@@ -1,53 +1,62 @@
 require "/scripts/util.lua"
 
-function init()
-  self.fireRadius = config.getParameter("fireRadius")
-  self.fireTime = config.getParameter("fireTime")
-  self.orbiterCount = config.getParameter("orbiterCount")
-  self.projectile = config.getParameter("orbiterProjectile")
-  self.projectileConfig = config.getParameter("orbiterProjectileConfig", {})
-  self.orbiterDamageFactor = config.getParameter("orbiterDamageFactor", 1.0)
-  self.projectileConfig.power = (self.projectileConfig.power or projectile.power()) * self.orbiterDamageFactor
-  self.projectileConfig.powerMultiplier = self.projectileConfig.powerMultiplier or projectile.powerMultiplier()
-  self.projectileConfig.masterId = entity.id()
+local fireRadius
+local fireTime
+local orbiterCount
+local orbiterProjectile
+local orbiterProjectileConfig
+local orbiterDamageFactor
+local orbiters
+local fireTimer
 
-  self.orbiters = {}
-  for i = 1, self.orbiterCount do
-    local orbiterParams = copy(self.projectileConfig)
-    orbiterParams.startAngle = 2 * math.pi * i / self.orbiterCount
-    local orbiter = world.spawnProjectile(self.projectile, mcontroller.position(), projectile.sourceEntity(), {0, 0}, false, orbiterParams)
-    table.insert(self.orbiters, orbiter)
+function init()
+  fireRadius = config.getParameter("fireRadius")
+  fireTime = config.getParameter("fireTime")
+  orbiterCount = config.getParameter("orbiterCount")
+  orbiterProjectile = config.getParameter("orbiterProjectile")
+  orbiterProjectileConfig = config.getParameter("orbiterProjectileConfig", {})
+  orbiterDamageFactor = config.getParameter("orbiterDamageFactor", 1.0)
+  orbiterProjectileConfig.power = (orbiterProjectileConfig.power or projectile.power()) * orbiterDamageFactor
+  orbiterProjectileConfig.powerMultiplier = orbiterProjectileConfig.powerMultiplier or projectile.powerMultiplier()
+  orbiterProjectileConfig.masterId = entity.id()
+
+  orbiters = {}
+  for i = 1, orbiterCount do
+    local orbiterParams = copy(orbiterProjectileConfig)
+    orbiterParams.startAngle = 2 * math.pi * i / orbiterCount
+    local orbiter = world.spawnProjectile(orbiterProjectile, mcontroller.position(), projectile.sourceEntity(), {0, 0}, false, orbiterParams)
+    table.insert(orbiters, orbiter)
   end
-  self.fireTimer = self.fireTime
+  fireTimer = fireTime
   message.setHandler("kill", projectile.die)
 end
 
 function update(dt)
-  if #self.orbiters == 0 then
+  if #orbiters == 0 then
     projectile.die()
   end
 
-  self.fireTimer = math.max(0, self.fireTimer - dt)
-  local near = world.entityQuery(mcontroller.position(), self.fireRadius, { includedTypes = {"monster", "npc"}, order = "nearest" })
+  fireTimer = math.max(0, fireTimer - dt)
+  local near = world.entityQuery(mcontroller.position(), fireRadius, { includedTypes = {"monster", "npc"}, order = "nearest" })
   
   near = util.filter(near, function(x)
     return entity.isValidTarget(x)
   end)
   
-  if #near > 0 and #self.orbiters > 0 and self.fireTimer == 0 then
-    local orbiterNum = math.random(1, #self.orbiters)
-    local orbiter = table.remove(self.orbiters, orbiterNum)
+  if #near > 0 and #orbiters > 0 and fireTimer == 0 then
+    local orbiterNum = math.random(1, #orbiters)
+    local orbiter = table.remove(orbiters, orbiterNum)
     if world.entityExists(orbiter) and not world.lineTileCollision(mcontroller.position(), world.entityPosition(near[1])) then
       world.sendEntityMessage(orbiter, "kill", near[1])
     else
-      table.insert(self.orbiters, orbiter)
+      table.insert(orbiters, orbiter)
     end
-    self.fireTimer = self.fireTime
+    fireTimer = fireTime
   end
 end
 
 function destroy()
-  for _, orbiter in pairs(self.orbiters) do
+  for _, orbiter in pairs(orbiters) do
     world.sendEntityMessage(orbiter, "kill")
   end
 end

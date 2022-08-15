@@ -27,10 +27,13 @@
             "baseValue" : 0.5
           },
           "poisonResistance" : {
-            "baseValue" : -0.5
+            "baseValue" : -0.25
           },
           "electricStatusImmunity" : {
             "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 35.0
           }
         }
       }
@@ -167,5 +170,5 @@
     ]
   },
 
-  "hueShiftOptions" : [0]
+  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15]
 }

@@ -22,13 +22,9 @@
     
     "warningRange" : 30,
     "dischargeRange" : 15,
-    
-    "dischargeProjectile" : {
-      "type" : "electricplasmaexplosion",
-      "config" : {
-        "power" : 50
-      }
-    },
+
+    "dischargeProjectileType" : "electricplasmaexplosion",
+    "dischargeProjectileParameters" : {"power" : 30},
     
     "animationConfig" : {
       "warningDistance" : 15,

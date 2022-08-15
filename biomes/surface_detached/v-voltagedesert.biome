@@ -37,10 +37,13 @@
             "baseValue" : 0.5
           },
           "poisonResistance" : {
-            "baseValue" : -0.5
+            "baseValue" : -0.25
           },
           "electricStatusImmunity" : {
             "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 15.0
           }
         }
       }
@@ -51,7 +54,7 @@
   "subBlocks" : [ "v-copperrock" ],
   "ores" : "v-voltage",
   
-  "hueShiftOptions" : [0],
+  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15, 85, 90, 95, 100, 105, 110, 115],
 
   "surfacePlaceables" : {
     "grassMod" : [ "v-copperpowder" ],
@@ -77,7 +80,16 @@
             "parameters" : { }
           }
         ]
-      } // ,
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-voltagedesertmicrodungeons" ]
+      }
       /* {
         "mode" : "floor",
         "priority" : 1,

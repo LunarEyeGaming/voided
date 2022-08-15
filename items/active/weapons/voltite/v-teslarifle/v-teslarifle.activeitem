@@ -1,0 +1,124 @@
+{
+  "itemName" : "v-teslarifle",
+  "price" : 1500,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "A gun that shoots slow-moving lightning orbs.",
+  "shortdescription" : "Tesla Rifle",
+  "tooltipKind" : "base",
+  "category" : "uniqueWeapon",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged"],
+  "level" : 8,
+
+  "inventoryIcon" : "teslarifleicon.png",
+
+  "animation" : "v-teslarifle.animation",
+  "animationParts" : {
+    "gun" : "teslarifle.png",
+    "gunfullbright" : "teslariflefullbright.png"
+  },
+  "muzzleOffset" : [2.5, 0.5],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+
+  "elementalType" : "electric",
+
+  "primaryAbilityType" : "chargefire",
+  "primaryAbility" : {
+    "chargeLevels" : [
+      {
+        "time" : 0,
+        "energyCost" : 10,
+        "cooldown" : 0.15,
+        "projectileType" : "v-teslarifleorb",
+        "projectileCount" : 1,
+        "projectileParameters" : {},
+        "inaccuracy" : 0,
+        "baseDamage" : 1,
+        "fireSound" : "fire",
+        "fireAnimationState" : "fire1"
+      },
+      {
+        "time" : 0.8,
+        "energyCost" : 30,
+        "cooldown" : 0.25,
+        "projectileType" : "v-teslarifleorb",
+        "projectileCount" : 2,
+        "spreadAngle" : 10,
+        "projectileParameters" : {},
+        "inaccuracy" : 0,
+        "baseDamage" : 2,
+        "fireSound" : "fire2",
+        "fireAnimationState" : "fire1"
+      },
+      {
+        "time" : 1.6,
+        "energyCost" : 90,
+        "cooldown" : 0.25,
+        "projectileType" : "v-teslarifleorb",
+        "projectileCount" : 3,
+        "spreadAngle" : 20,
+        "projectileParameters" : {},
+        "inaccuracy" : 0,
+        "baseDamage" : 7,
+        "fireSound" : "fire2",
+        "fireAnimationState" : "fire2"
+      },
+      {
+        "time" : 2.4,
+        "energyCost" : 180,
+        "cooldown" : 0.5,
+        "projectileType" : "v-teslariflelargeorb",
+        "projectileCount" : 1,
+        "projectileParameters" : {},
+        "inaccuracy" : 0.0,
+        "baseDamage" : 10,
+        "fireSound" : "fire3",
+        "fireAnimationState" : "fire3"
+      }
+    ],
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "charge" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "cooldown" : {
+        "duration" : 0.25,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  },
+  
+  "altAbilityType" : "v-teslariflealt",
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

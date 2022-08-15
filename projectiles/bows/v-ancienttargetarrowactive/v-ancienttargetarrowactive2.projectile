@@ -31,7 +31,7 @@
       "file" : "/projectiles/explosions/v-chargedancientarrowexplosion/chargedancientarrowexplosion.config"
     }
   ],
-  "scripts" : [ "ancienttargetarrowactive2.lua" ],
+  "scripts" : [ "/scripts/projectiles/homingprojectile.lua", "ancienttargetarrowactive2.lua" ],
   "scriptDelta" : 1,
   "image" : "ancienttargetarrowactive.png",
   "animationCycle" : 0.1,

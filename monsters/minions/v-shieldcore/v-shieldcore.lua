@@ -1,5 +1,11 @@
 require "/scripts/vec2.lua"
 
+local target
+local orbitRadius
+local orbitPeriod
+local shieldStatusEffect
+local timer
+
 function init()
   monster.setDeathParticleBurst("deathPoof")
   animator.setAnimationState("movement", "idle")
@@ -10,11 +16,11 @@ function init()
 
   message.setHandler("despawn", despawn)
   
-  self.target = config.getParameter("target")
-  self.orbitRadius = config.getParameter("orbitRadius", 2)
-  self.orbitPeriod = config.getParameter("orbitPeriod", 1.5)
-  self.shieldStatusEffect = config.getParameter("shieldStatusEffect", "v-ancientshield")
-  self.timer = 0
+  target = config.getParameter("target")
+  orbitRadius = config.getParameter("orbitRadius", 2)
+  orbitPeriod = config.getParameter("orbitPeriod", 1.5)
+  shieldStatusEffect = config.getParameter("shieldStatusEffect", "v-ancientshield")
+  timer = 0
 end
 
 function shouldDie()
@@ -22,21 +28,21 @@ function shouldDie()
 end
 
 function update(dt)
-  if not self.target or not world.entityExists(self.target) then
+  if not target or not world.entityExists(target) then
     status.setResourcePercentage("health", 0)
     return
   end
-  self.timer = self.timer + dt
+  timer = timer + dt
   mcontroller.setPosition(
     vec2.add(
-      world.entityPosition(self.target),
+      world.entityPosition(target),
       {
-        self.orbitRadius * math.cos(2 * math.pi * self.timer / self.orbitPeriod),
-        self.orbitRadius * math.sin(2 * math.pi * self.timer / self.orbitPeriod)
+        orbitRadius * math.cos(2 * math.pi * timer / orbitPeriod),
+        orbitRadius * math.sin(2 * math.pi * timer / orbitPeriod)
       }
     )
   )
-  world.sendEntityMessage(self.target, "applyStatusEffect", self.shieldStatusEffect)
+  world.sendEntityMessage(target, "applyStatusEffect", shieldStatusEffect)
 end
 
 function despawn()
