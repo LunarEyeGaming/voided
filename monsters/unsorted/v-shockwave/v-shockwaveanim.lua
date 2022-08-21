@@ -6,6 +6,8 @@ local startColor
 local endColor
 local blocks
 
+local testVar
+
 function init()
   script.setUpdateDelta(3)
   ttl = animationConfig.animationParameter("ttl")
@@ -16,6 +18,8 @@ function init()
   blocks = {}
   
   dt = script.updateDt()
+  
+  testVar = false
 end
 
 function update()

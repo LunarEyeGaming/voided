@@ -6,8 +6,11 @@
 
   "v-biomeelectric" : {
     "unique" : false,
-    "text" : "WARNING! THIS PLANET'S ATMOSPHERE HAS HAZARDOUSLY HIGH ELECTRIC CONDUCTIVITY!\nYou should not attempt further exploration without proper protective equipment!",
-    "portraitImage" : "yell.<frame>",
-    "textSpeed" : 70
+    "text" : "Caution! This planet's atmosphere has hazardously high electric conductivity. Electrically-insulating equipment is recommended."
+  },
+
+  "v-biomepoison" : {
+    "unique" : false,
+    "text" : "It should be noted that this biome's atmosphere is very toxic. There is no known antidote, but mitigation equipment is strongly advised."
   }
 }

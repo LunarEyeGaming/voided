@@ -1,0 +1,64 @@
+{
+  "objectName" : "v-wilddotefruitseed",
+  "colonyTags" : ["nature"],
+  "rarity" : "Common",
+  "category" : "seed",
+  "description" : "Plant these seeds and watch them grow.",
+  "shortdescription" : "'Dotefruit Seed",
+  "objectType" : "farmable",
+  "printable" : false,
+  "price" : 15,
+  "hasObjectItem" : false,
+
+  "biomePlaced" : true,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "dotefruitseedicon.png",
+  "orientations" : [
+    {
+      "dualImage" : "dotefruitseed.png:<color>.<stage>.<alt>",
+      "imagePosition" : [0, 0],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaces" : [ [1, 0], [0, 0], [1, 1], [0, 1], [1, 2], [0, 2], [1, 3], [0, 3] ],
+      "requireTilledAnchors" : false,
+      "anchors" : [ "bottom" ]
+
+    }
+  ],
+
+  "radioMessagesOnPickup" : [ "pickupseed" ],
+
+  "stages" : [
+    {
+      "duration" : [280, 320]
+    },
+    {
+      "duration" : [280, 320]
+    },
+    {
+      "alts" : 5,
+      "duration" : [1170, 1230]
+    },
+    {
+      "alts" : 5,
+      "harvestPool" : "v-dotefruitHarvest",
+      "resetToStage" : 2
+    }
+  ],
+
+  "breakDropOptions" : [
+    [ [ "v-dotefruitseed", 1, { } ] ]
+  ],
+
+  "maxImmersion" : 0.125,
+  "consumeSoilMoisture" : false
+}

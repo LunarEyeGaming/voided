@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt1rENgDAMBVGPAaN4\/3UYAhokRBMLHJxPrrgyNq9J2MxsI7nW5PxoaeQd9s7m8sQirqwirtb3jBYurXBphUsrXFrhis\/rWaVr7RQuXLhwVbnc3t2v1a6zuys6Y0TXNVy4cOHCNZfL7Z\/v8tN5o7jOc7hw4cJV5epZlWuUcGmFSytcWuHSanbXV\/9Bmbtarqyiruy9s7hIox2Rfo4T",
+         "data":"eJzt2DsOgCAQRdFZhjbuf1WugEUYChJjoUSGz4Nb3E6B0+DEYGaB5NqdOw+zzd6Lz3jvu5or7uVVjsurHNfXeUYLl1a4tMKlFS6tcOWvV7OeLu+5tfQcuHDhwlXqKr1fe7tST1fuGiO67uHChQsXrrVcs36X\/643iiu9hwsXLly9XDP+ZxslXFrh0gqXVri0Wt3Vag7y3OvL1XJurTE3r+IijS5V8VEi",
          "encoding":"base64",
          "height":54,
          "name":"back",
@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt1sENhDAMRNGUEUpJ\/21sMXDgyLJ2GCfO8keaE0jhCYRdClkxm7jtaL05r573qM99m6sJa3GpanFVYe9cqnpcqwQXrgzBhStDcNlcyrnaM9cjXco9yLuHRbu2oOLChQvXLFcrz\/6vnue1tmfeXF1\/Mg+970E5lz33R7uyBheuDME11\/Wv\/\/needjjslYxl73fySp7FC5cuHCNckV2lmtER7uyBBeuDMGFK0Nwaefq50uVZ1hdI\/Yg9R72y6Wq1aU+9y0uskZ2EzuhLQ==",
+         "data":"eJzt2EEKwzAMRFEdw93k\/ocqPUsJTTelOHI9dqX4D2gVg\/UI2ErMSMbcxPXYzEplv3KsUe+7mmvfS1Uel6o8rmK6qrlU1eLKEly4IgQXrgjB9Vp7PynlvVorTx\/K96Weg1rnsM8+1C713NrbBy5cuHD1unrP15Z+R5zz7\/r23POdq3Apvrd\/7Xu0K2pw4YoQXP91XfWcv+q93Du\/qIv5EBcuXNlc2f6zrfpfNEpw4YoQXLgiBNece1W5h9c1Yw5Sz2Fnrllz66i5eRUXyZEndNGO+A==",
          "encoding":"base64",
          "height":54,
          "name":"front",
@@ -184,63 +184,6 @@
          "objects":[
                 {
                  "height":8,
-                 "id":698,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":136,
-                 "y":48
-                }, 
-                {
-                 "height":8,
-                 "id":699,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":376,
-                 "y":136
-                }, 
-                {
-                 "height":8,
-                 "id":701,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":216,
-                 "y":320
-                }, 
-                {
-                 "height":8,
                  "id":702,
                  "name":"",
                  "properties":
@@ -257,25 +200,6 @@
                  "width":8,
                  "x":104,
                  "y":216
-                }, 
-                {
-                 "height":8,
-                 "id":703,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":216,
-                 "y":104
                 }, 
                 {
                  "height":8,
@@ -312,8 +236,27 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":288,
-                 "y":376
+                 "x":376,
+                 "y":288
+                }, 
+                {
+                 "height":8,
+                 "id":722,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"v-currentcrawler"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":272,
+                 "y":104
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -410,7 +353,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":722,
+ "nextobjectid":723,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -519,6 +462,10 @@
         {
          "firstgid":7662,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
+        }, 
+        {
+         "firstgid":7896,
+         "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }],
  "tilewidth":8,
  "type":"map",

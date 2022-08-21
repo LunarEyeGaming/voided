@@ -1,0 +1,17 @@
+{
+  "name" : "v-biomepoison",
+  "blockingStat" : "v-biomepoisonImmunity",
+  "effectConfig" : {
+    "poisonRate" : 1
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "v-biomepoison.lua"
+  ],
+
+  // "animationConfig" : "starving.animation",
+
+  "label" : "Poison Exposure - Lack of protection to the atmospheric poison makes it more deadly",
+  "icon" : "/interface/statuses/poison.png"
+}

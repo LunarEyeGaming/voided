@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt2LENwzAMBVGNkYzC+bKuh0jKdGJxBj6tK640qNdYhK611mXjesPVr9emumHuaa4C67g+UB3X7jxU1CxdunTp0qVL13NdxK6VuEfV33cp6dKVkK57\/4dUpCslXbPSNStds9I1q9NdKZGulHTpSkhXz0W9exUQ7aLulKT7S5cuXbp06dKV5aL2qM55qHYuqq6LnnuKy2b0BQ2VsYs=",
+         "data":"eJzt2DESQEAQRNE5BoHT7nWFDqA2EzFVGj32Bz9TZl\/CsEbESuWaxW1LxBTn9WvUc0dz9VmqMq4WmjKuq\/OoUs3ChQsXLly4cP3Xpdi1HPeoJ\/bWJ\/deXN87cOFSfoPeTelyCVetcNUKV61w1Wp0l0tKl0u4cDmEK+dS\/fdyex625L0ys5zeX7hw4cKFCxcuL5dqj8qc563\/82\/urcfzqBrFRTXaAdv\/eLo=",
          "encoding":"base64",
          "height":54,
          "name":"back",
@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt2DEKgDAQRNEcYz3K3v9iWlhYSJpM1on5A78TkgeCYGtsxR3i8io658X9jPrc3VwpzM0Vwtxcs4cLF655w4ULV\/9eo7m6UpCrS30vXLhw\/d\/lktLlktLlMly4HIYLl8Nwff+dfaZ0uaR0uYQLl0O4al0pyNXl9P2qfo9GhwsXrnnDhQvX+30q\/\/dWulKYm0t97i4utsZOfWa3qQ==",
+         "data":"eJzt2DEOgDAMQ9Ecowzc\/4IcACExMKAuOMFtvyVvSMlbaNUIMmI2cY89onXmtfsb9dzVXNcsVd1cLXR1c2UHFy5cecGFC1d\/r691dSnuWq4u9V64cOGa3+VSpculSpdLcOFyCC5cDsH1\/zn7rNLlUqXLpbhwORRXrWvW\/6HqHHR1ZQcXLlx5wYUL1\/s+le+9la7K9\/lql3ruKi4yRk5L337Y",
          "encoding":"base64",
          "height":54,
          "name":"front",
@@ -140,25 +140,6 @@
          "objects":[
                 {
                  "height":8,
-                 "id":705,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":48,
-                 "y":176
-                }, 
-                {
-                 "height":8,
                  "id":722,
                  "name":"",
                  "properties":
@@ -175,25 +156,6 @@
                  "width":8,
                  "x":216,
                  "y":240
-                }, 
-                {
-                 "height":8,
-                 "id":723,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":376,
-                 "y":248
                 }, 
                 {
                  "height":8,
@@ -251,25 +213,6 @@
                  "width":8,
                  "x":48,
                  "y":64
-                }, 
-                {
-                 "height":8,
-                 "id":727,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":272,
-                 "y":184
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -447,6 +390,10 @@
         {
          "firstgid":7635,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-type\/teleporter.json"
+        }, 
+        {
+         "firstgid":7662,
+         "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }],
  "tilewidth":8,
  "type":"map",

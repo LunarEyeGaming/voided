@@ -1,0 +1,17 @@
+{
+  "name" : "v-depthpoison",
+  "effectConfig" : {
+    "poisonDepthRate" : 0.001,
+    "minPoisonDepth" : 1000
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "v-depthpoison.lua"
+  ],
+
+  // "animationConfig" : "starving.animation",
+
+  "label" : "Toxic Atmosphere - The toxic gas is slowly killing you",
+  "icon" : "/interface/statuses/poison.png"
+}

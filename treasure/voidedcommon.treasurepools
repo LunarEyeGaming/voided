@@ -95,6 +95,103 @@
       ]
     }]
   ],
+  
+  "v-poisonWeaponChestTreasure" : [
+    [0, {
+      "fill" : [
+        {"pool" : "v-poisonWeapon"}
+      ],
+      "poolRounds" : [
+        [0.5, 2],
+        [0.3, 3],
+        [0.2, 4]
+      ],
+      "pool" : [
+        {"weight" : 1.0, "pool" : "basicTreasure"}
+      ]
+    }]
+  ],
+
+  "v-poisonWeapon" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 3, "pool" : "v-uncommonPoisonGun"},
+        {"weight" : 4.5, "pool" : "v-uncommonPoisonMelee"},
+        {"weight" : 1, "pool" : "v-rarePoisonGun"},
+        {"weight" : 1.5, "pool" : "v-rarePoisonMelee"},
+
+        {"weight" : 0.3, "item" : {"name" : "rarestaff", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.3, "item" : {"name" : "rarewand", "parameters" : {"elementalType" : "poison"}}}
+      ]
+    }]
+  ],
+
+  "v-uncommonPoisonMelee" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.007, "item" : {"name" : "uncommonbroadsword", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonaxe", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonspear", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonhammer", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommondagger", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonshortsword", "parameters" : {"elementalType" : "poison"}}}
+      ]
+    }]
+  ],
+
+  "v-rarePoisonMelee" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.007, "item" : {"name" : "rarebroadsword", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.007, "item" : {"name" : "rareaxe", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.007, "item" : {"name" : "rarespear", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.007, "item" : {"name" : "rarehammer", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.007, "item" : {"name" : "raredagger", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.007, "item" : {"name" : "rareshortsword", "parameters" : {"elementalType" : "poison"}}}
+      ]
+    }]
+  ],
+
+  "v-uncommonPoisonGun" : [
+    [0, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "uncommonpistol", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonmachinepistol", "parameters" : {"elementalType" : "poison"}}}
+      ]
+    }],
+    [1.9, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "uncommongrenadelauncher", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonassaultrifle", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonshotgun", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonsniperrifle", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonpistol", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonmachinepistol", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.7, "item" : {"name" : "uncommonrocketlauncher", "parameters" : {"elementalType" : "poison"}}}
+      ]
+    }]
+  ],
+
+  "v-rarePoisonGun" : [
+    [0, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "rarepistol", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "raremachinepistol", "parameters" : {"elementalType" : "poison"}}}
+      ]
+    }],
+    [1.9, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "rareassaultrifle", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "rareshotgun", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "raresniperrifle", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "rarepistol", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "raremachinepistol", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 1.0, "item" : {"name" : "raregrenadelauncher", "parameters" : {"elementalType" : "poison"}}},
+        {"weight" : 0.7, "item" : {"name" : "rarerocketlauncher", "parameters" : {"elementalType" : "poison"}}}
+      ]
+    }]
+  ],
 
   "v-dischargetrapTreasure" : [
     [0, {

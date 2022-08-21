@@ -1,0 +1,19 @@
+{
+  "itemName" : "v-depthpoisonantidote",
+  "price" : 100,
+  "rarity" : "Common",
+  "category" : "medicine",
+  "inventoryIcon" : "v-depthpoisonantidote.png",
+  "description" : "Greatly mitigates the effects of atmospheric poison.",
+  "shortdescription" : "Gas Antidote",
+  "maxStack" : 1,
+  "effects" : [ [
+    "v-depthpoisonantidote2",
+    "v-depthpoisonantidotecooldown"
+  ] ],
+  "blockingEffects" : [
+    "v-depthpoisonantidotecooldown"
+  ],
+  "emote" : "",
+  "emitters" : [ "drinking" ]
+}

@@ -1,0 +1,24 @@
+{
+  "materialId" : 1196,
+  "materialName" : "v-toxicstone",
+  "particleColor" : [30, 84, 40, 255],
+  "itemDrop" : "v-toxicstonematerial",
+  "description" : "A piece of stone that is toxic.",
+  "shortdescription" : "Toxic Stone",
+  "glitchDescription" : "Afraid. This piece of stone contains a diverse range of toxins.",
+  "floranDescription" : "Green rockssss.",
+  "novakidDescription" : "This piece of stone ain't no ordinary stone.",
+  "footstepSound" : "/sfx/blocks/footstep_stone3.ogg",
+  "health" : 8,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-toxicstone.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "multiColored" : true,
+    "occludesBelow" : true,
+    "zLevel" : 20
+  }
+}

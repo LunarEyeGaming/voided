@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt1bENwCAMBVGPEUZh\/3UYIlWkKE1QImQOrriSL73GtIhohqss0m6uCq3HdcDSxUoXK12sdLHS1b83skxXGZQuXbp0Zblq\/Luv2a6rp6t3Y0bXPV26dOnStZerxpr\/8te9WVzXO126dOnKco0syzVLuljpYqWLlS5Wu7uIvbno7eIyRiei849D",
+         "data":"eJzt2DEOgCAQAEGeoYX\/\/xylD7AiMTYSDTmW22JLLpkGyNVSSjVc+yJlc50Hsx7XVljpYqWLlS5Wuljp6p83skjXqP+rLl26dEW5\/t6v0a7W09U7Y0bXPV26dOnSlcu16rv8dd4srnZOly5duqJcK+7ZZkkXK12sdLHSxSq7i9ibi14WlzG6APIGbhI=",
          "encoding":"base64",
          "height":54,
          "name":"back",
@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt2EEOgCAMRNEeQ4\/C\/S\/mip2JIJR24E8yK4PxbVqiGVHMvUlPcxXRtrgusfa4VIILV4bgwpUhuNpcq3ZuhMv7bhTpup2KCxcuXFGuYmPzNdpV+\/Z8ZB9Gunq+W8U1O7hw4fKLimvXOV9sz738931ZXPUcLly4cEW5PBvl2vG\/aJbgwpUhuHBlCK51O3dWW12K\/XKp9xQX0cgDcISlJQ==",
+         "data":"eJzt2EEKgCAUhGGPUYvuf6mO0QFahNAiUPOpb\/QfmFUlfggahkAUs0\/S1VzXodkc1xa0WuJSCS5cHoILl4fget49E+115ubMw3K94ngtWzIPa1er\/1dcuHDhGuWq3V9Hu2K\/nr+r5CqZt4rLOrhw4WoXFdes+\/ys5\/Lf8by44ne4cOHCNcqlds+26r2ol+DC5SG4cHkIrn5nrlVzXYpNudS7ioto5AaXVJ90",
          "encoding":"base64",
          "height":54,
          "name":"front",
@@ -183,25 +183,6 @@
                 }, 
                 {
                  "height":8,
-                 "id":698,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":216,
-                 "y":48
-                }, 
-                {
-                 "height":8,
                  "id":700,
                  "name":"",
                  "properties":
@@ -221,25 +202,6 @@
                 }, 
                 {
                  "height":8,
-                 "id":701,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":216,
-                 "y":320
-                }, 
-                {
-                 "height":8,
                  "id":702,
                  "name":"",
                  "properties":
@@ -256,44 +218,6 @@
                  "width":8,
                  "x":104,
                  "y":216
-                }, 
-                {
-                 "height":8,
-                 "id":703,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":216,
-                 "y":104
-                }, 
-                {
-                 "height":8,
-                 "id":704,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":216,
-                 "y":376
                 }, 
                 {
                  "height":8,
@@ -490,6 +414,10 @@
         {
          "firstgid":7635,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-type\/teleporter.json"
+        }, 
+        {
+         "firstgid":7662,
+         "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }],
  "tilewidth":8,
  "type":"map",

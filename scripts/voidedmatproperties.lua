@@ -11,6 +11,11 @@ local matchedMods
 local cuedRadioMessage
 
 function init()
+  -- for k, v in pairs(_ENV) do
+    -- if type(v) == "table" then
+      -- sb.logInfo("%s", k)
+    -- end
+  -- end
   oldInit()
   tickDelta = 4
   tickTimer = tickDelta

@@ -1,0 +1,25 @@
+{
+  "itemName" : "v-dotefruit",
+  "rarity" : "Common",
+  "price" : 20,
+  "category" : "food",
+  "inventoryIcon" : "v-dotefruit.png",
+  "description" : "Named after its poison treatment properties, this fruit mitigates the effects of poisonous gases.",
+  "shortdescription" : "'Dotefruit",
+  "foodValue" : 5,
+  "effects" : [ [
+    {
+      "effect" : "v-depthpoisonantidote",
+      "duration" : 0.1
+    }
+  ] ],
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/buildfood.lua",
+  "maxStack" : 1,
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 1.0,
+  "blockingEffects" : [
+    "wellfed"
+  ],
+  "learnBlueprintsOnPickup" : ["v-depthpoisonantidote"]
+}

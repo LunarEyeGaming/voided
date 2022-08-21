@@ -1,0 +1,12 @@
+{
+  // This stagehand applies status effects.
+  "type" : "v-statuseffectzone",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-statuseffectzone/v-statuseffectzone.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-5, -5, 5, 5],
+
+  "statusEffects" : [ ]
+}

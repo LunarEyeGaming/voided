@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt1rERgCAQRFHK0FKoz3YpQkMzcGZ1dr0f\/BCOlzA3WmuD4trF9attUn9hbjVXF7biOkStuGbvUaWahQsXLly4cOH6r0uxaznuUf12ziVcuBzC9e5\/qErpcglXVriywpUVrqyqu1xSulzChcshXLX\/wyf3uYQrK1xZ4coKV1bVXV\/tQcpZM5eqVZd6bhUXZXQCdTyi9Q==",
+         "data":"eJzt17ENgDAMBVGPAQ3LsicTMATKAmCJn8SOr7gOyX4NmNvMbkrXLu46zDZ7rz2jnlvN1Wap8rhO0+Rxfe2jSjULFy5cuHDhwrWuS3FrRbyjetytPe9eXPMduHAp\/0H\/pnRFCVeucOUKV65w5aq6K0pKV5Rw4YoQrtrvw5W\/X7P3xIULV5xw5QpXrkbfUZ59VI26e70u9dwqLsrRA75LcjQ=",
          "encoding":"base64",
          "height":54,
          "name":"back",
@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt1kEOREAURVHL+JZS+9+GxTAgMfEJr3il7kvurFs56YQeBtbiRnFlKZLzYv2M+tzeXEWYmyuEublqDxcuXPWGCxeu\/L6e5uoqglxd6vvChQvX\/10uKV0uKV0uw4XLYbhwOQzX9+\/ZfUqXS0qXS7hwOYSr7+fhdj2X1K5WhguXw3Dhchgu7Xt1Okh5xtv\/o7LfPZLv3enMpeqqS31uLy7WxmYpKbMd",
+         "data":"eJzt1kEKgDAQQ9E5xrjx\/ocSzyKCCzcWwbSm7Q9kJ0wfQjsRpMcs4u5rRBbm5fWNeu5srnOWqm6uDF3dXLWDCxeuesGFC1f5XF\/r6lLsWq4u9blw4cI1vsulSpdLlS6X4MLlEFy4HILr\/3f2XqXLpUqXS3Hhciiuue\/Dkd+vkfeNXoILl0Nw4XLIX+\/y9lDljNZ7VOm\/p3hWq733rUs9dxYX6SMHcjiCXA==",
          "encoding":"base64",
          "height":54,
          "name":"front",
@@ -199,26 +199,7 @@
                  "visible":true,
                  "width":8,
                  "x":48,
-                 "y":176
-                }, 
-                {
-                 "height":8,
-                 "id":722,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":216,
-                 "y":240
+                 "y":88
                 }, 
                 {
                  "height":8,
@@ -276,25 +257,6 @@
                  "width":8,
                  "x":176,
                  "y":104
-                }, 
-                {
-                 "height":8,
-                 "id":727,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-currentcrawler"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":272,
-                 "y":184
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -476,6 +438,10 @@
         {
          "firstgid":7662,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
+        }, 
+        {
+         "firstgid":7896,
+         "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }],
  "tilewidth":8,
  "type":"map",
