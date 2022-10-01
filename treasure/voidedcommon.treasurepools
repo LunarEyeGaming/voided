@@ -201,5 +201,20 @@
         {"weight" : 0.1, "item" : "v-dischargetrappiece"}
       ]
     }]
+  ],
+
+  "v-rottenfoodPool" : [
+    [0, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 1.0, "item" : "rottenfood"}
+      ],
+      "poolRounds" : [
+        [0.1, 1],
+        [0.5, 2],
+        [0.3, 3],
+        [0.1, 4]
+      ]
+    }]
   ]
 }

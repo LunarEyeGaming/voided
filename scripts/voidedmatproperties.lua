@@ -1,9 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
-local oldInit = init or function() end
-local oldUpdate = update or function() end
-
 local tickDelta
 local tickTimer
 local queryRange
@@ -16,7 +13,6 @@ function init()
       -- sb.logInfo("%s", k)
     -- end
   -- end
-  oldInit()
   tickDelta = 4
   tickTimer = tickDelta
   queryRange = 25  -- Matter manipulator can reach 17 blocks away at most, and there is a planned increase of up to 25 blocks.
@@ -27,7 +23,6 @@ function init()
 end
 
 function update(dt)
-  oldUpdate(dt)
   tickTimer = tickTimer - 1
   if tickTimer <= 0 then
     matUpdate(dt)

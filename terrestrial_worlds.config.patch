@@ -15,6 +15,8 @@
           "primaryRegion" : [ "v-voltage" ],
           "secondaryRegions" : [ "v-voltagespikes", "v-voltagewastes" ],
           "secondaryRegionCount" : [0, 2],
+          //"secondaryRegions" : [ "v-voltagespikes" ],
+          //"secondaryRegionCount" : [1, 1],
 
           "dungeons" : [ ]
         },
@@ -46,7 +48,7 @@
     "op" : "add",
     "path" : "/regionTypes/v-voltage",
     "value" : {
-      "blockSelector" : [ "remixedMildSurface", "remixedStepsSurface", "remixedSurface" ],
+      "blockSelector" : [ "remixedMildSurface", "remixedStepsSurface", "remixedStepsSurfaceLarge", "remixedSurface" ],
       "fgCaveSelector" : [ "surfaceCaves", "normalCaves", "sparseCaves" ],
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
@@ -59,7 +61,8 @@
     "op" : "add",
     "path" : "/regionTypes/v-voltagespikes",
     "value" : {
-      "blockSelector" : [ "remixedSpikesSurface", "spikesSurface", "remixedSpikesSurface2" ],
+      //"blockSelector" : [ "v-remixedGiantSpikesSurface" ],
+      "blockSelector" : [ "remixedSpikesSurface", "spikesSurface", "remixedSpikesSurface2", "v-remixedGiantSpikesSurface" ],
       "fgCaveSelector" : [ "surfaceCaves" ],
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
@@ -77,21 +80,7 @@
       "bgCaveSelector" : [ "empty" ],
       "subBlockSelector" : ["v-copperDesertSubBlocks"],
       "biome" : [
-        [0, [ "v-voltagedesert" ]]
-      ],
-      "subRegion" : []
-    }
-  },
-  {
-    "op" : "add",
-    "path" : "/regionTypes/v-voltagedesertruins",
-    "value" : {
-      "blockSelector" : [ "lowHillsSurface", "medHillsSurface", "flatsSurface" ],
-      "fgCaveSelector" : [ "surfaceCaves", "sparseCaves", "empty" ],
-      "bgCaveSelector" : [ "empty" ],
-      "subBlockSelector" : ["v-copperDesertSubBlocks"],
-      "biome" : [
-        [0, [ "v-voltagedesertruins" ]]
+        [0, [ "v-voltagedesert", "v-voltagedesertruins" ]]
       ],
       "subRegion" : []
     }

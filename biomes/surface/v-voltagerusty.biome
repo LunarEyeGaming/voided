@@ -88,7 +88,7 @@
 
   "skyOptions" : [
     {
-      // Blurple
+      // Blue
       "mainColor" : [255, 255, 255],
 
       "morningColors" : [ [131, 131, 223, 144], [165, 165, 240, 200] ],
@@ -100,6 +100,34 @@
       "dayLightColor" : [183, 183, 232],
       "eveningLightColor" : [101, 101, 199],
       "nightLightColor" : [24, 24, 71]
+    },
+    {
+      // Yellow, purple, yellow, blue
+      "mainColor" : [255, 255, 255],
+
+      "morningColors" : [ [255, 222, 89, 144], [178, 255, 89, 200] ],
+      "dayColors" : [ [218, 166, 255, 255], [245, 133, 255, 255] ],
+      "eveningColors" : [ [255, 222, 89, 144], [178, 255, 89, 200] ],
+      "nightColors" : [ [33, 33, 99, 80], [33, 33, 99, 160] ],
+
+      "morningLightColor" : [199, 192, 101],
+      "dayLightColor" : [227, 181, 230],
+      "eveningLightColor" : [199, 192, 101],
+      "nightLightColor" : [24, 24, 71]
+    },
+    {
+      // Pink, blurple, pink, yellow
+      "mainColor" : [255, 255, 255],
+
+      "morningColors" : [ [255, 87, 190, 144], [255, 71, 71, 200] ],
+      "dayColors" : [ [228, 219, 255, 255], [211, 175, 240, 255] ],
+      "eveningColors" : [ [255, 87, 190, 144], [255, 71, 71, 200] ],
+      "nightColors" : [ [97, 85, 33, 80], [97, 85, 33, 160] ],
+
+      "morningLightColor" : [199, 101, 126],
+      "dayLightColor" : [209, 181, 230],
+      "eveningLightColor" : [199, 101, 126],
+      "nightLightColor" : [69, 60, 23]
     },
     {
       // Gray
@@ -116,7 +144,21 @@
       "nightLightColor" : [66, 66, 66]
     },
     {
-      // Gray with orange sunset
+      // Orange, gray, orange, gray
+      "mainColor" : [255, 255, 255],
+
+      "morningColors" : [ [99, 12, 12, 200], [131, 131, 12, 255] ],
+      "dayColors" : [ [131, 131, 131, 200], [188, 188, 188, 255] ],
+      "eveningColors" : [ [99, 12, 12, 200], [131, 131, 12, 255] ],
+      "nightColors" : [ [33, 33, 33, 200], [33, 33, 33, 255] ],
+
+      "morningLightColor" : [199, 155, 101],
+      "dayLightColor" : [183, 183, 183],
+      "eveningLightColor" : [199, 155, 101],
+      "nightLightColor" : [66, 66, 66]
+    },
+    {
+      // Gray with red sunset and sunrise
       "mainColor" : [255, 255, 255],
 
       "morningColors" : [ [99, 12, 12, 200], [131, 33, 12, 255] ],
@@ -124,9 +166,9 @@
       "eveningColors" : [ [99, 12, 12, 200], [131, 33, 12, 255] ],
       "nightColors" : [ [33, 33, 33, 200], [33, 33, 33, 255] ],
 
-      "morningLightColor" : [199, 101, 101],
+      "morningLightColor" : [199, 125, 101],
       "dayLightColor" : [183, 183, 183],
-      "eveningLightColor" : [199, 101, 101],
+      "eveningLightColor" : [199, 125, 101],
       "nightLightColor" : [66, 66, 66]
     }
   ],
@@ -135,7 +177,7 @@
   "subBlocks" : [ "v-copperrock", "rustyblock" ],
   "ores" : "v-voltage",
 
-  "parallax" : "/parallax/surface/v-voltage.parallax",
+  "parallax" : "/parallax/surface/v-voltagerusty.parallax",
 
   "ambientNoises" : {
     "day" : {
@@ -156,7 +198,7 @@
   },
 
   "surfacePlaceables" : {
-    "grassMod" : [ "v-copperpowder" ],
+    "grassMod" : [ "v-copperpowder", "v-copperpowder2" ],
     "grassModDensity" : 0.9,
 
     "items" : [

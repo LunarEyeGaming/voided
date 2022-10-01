@@ -1,0 +1,36 @@
+{
+  "name" : "v-copperstormlight2",
+
+  "particles" : [
+    {
+      "density" : 0.01,
+      "particle" : {
+        "type" : "textured",
+        "image" : "/particles/images/v-copperparticle2.png",
+        "size" : 1.0,
+        "velocity" : [0, -25],
+        "timeToLive" : 20,
+        "collidesForeground" : true,
+        "collidesLiquid" : true,
+        "ignoreWind" : false
+      }
+    }
+  ],
+
+  "projectiles" : [
+    {
+      "projectile" : "v-settlingcopperpowder2",
+      "parameters" : {
+        "power" : 0
+      },
+      "velocity" : [0, 0],
+      "ratePerX" : 0.002,
+      "spawnAboveRegion" : 10,
+      "spawnHorizontalPad" : 10,
+      "windAffectAmount" : 1
+    }
+  ],
+
+  "duration" : [50, 240],
+  "maximumWind" : 21.0
+}

@@ -1,15 +1,15 @@
 {
-  "name" : "v-voltageforest",
-  "friendlyName" : "Electric Forest",
+  "name" : "v-voltagedesertruins",
+  "friendlyName" : "Copper Desert (Ruins)",
 
   "spawnProfile" : {
     "groups" : [
       {
-        "select" : 2,
+        "select" : 1,
         "pool" : [
-          [ 1.0, "voltip" ],
-          [ 1.0, "v-electricignome" ],
-          [ 1.0, "scandroid" ]
+          [ 0.1, "v-amperecharger" ],
+          [ 1.0, "v-electricelemental" ],
+          [ 1.0, "v-dischargemonster" ]
         ]
       },
       {
@@ -30,7 +30,7 @@
       }
     ],
     "monsterParameters" : {
-      "colors" : "v-voltage",
+      "colors" : "v-voltagecopper",
       "statusSettings" : {
         "stats" : {
           "electricResistance" : {
@@ -50,14 +50,14 @@
     }
   },
 
-  "mainBlock" : "v-ironrock",
-  "subBlocks" : [ "v-copperrock", "rock17" ],
+  "mainBlock" : "v-coppersand",
+  "subBlocks" : [ "v-copperrock" ],
   "ores" : "v-voltage",
   
-  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15],
+  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15, 85, 90, 95, 100, 105, 110, 115],
 
   "surfacePlaceables" : {
-    "grassMod" : [ "v-copperpowder", "v-copperpowder2" ],
+    "grassMod" : [ "v-copperpowder" ],
     "grassModDensity" : 0.75,
 
     "ceilingGrassMod" : [ "roots" ],
@@ -83,89 +83,14 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 3,
-        "distribution" : "/biomes/distributions.config:denseLarge",
-
-        "type" : "tree",
-        "treeFoliageHueShiftMax" : 120,
-        "treeStemHueShiftMax" : 40,
-        "treeStemList" : [ "v-electrictree" ],
-        "treeFoliageList" : [ "v-electricfoliage" ]
-      },
-      
-      // CROPS
-
-      {
-        "mode" : "floor",
-        "priority" : 0,
+        "priority" : 1,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:surfaceCrops",
+        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
 
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1, "wildautomatoseed" ] ],
-            "parameters" : {
-              "startingStage" : 4
-            }
-          }
-        ]
-      },
-      
-      {
-        "mode" : "floor",
-        "priority" : 0.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:surfaceCrops",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1, "wildboltbulbseed" ] ],
-            "parameters" : {
-              "startingStage" : 3
-            }
-          }
-        ]
-      },
-      
-      {
-        "mode" : "floor",
-        "priority" : 0.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:surfaceCrops",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1, "wildcurrentcornseed" ] ],
-            "parameters" : {
-              "startingStage" : 3
-            }
-          }
-        ]
-      },
-      
-      {
-        "mode" : "floor",
-        "priority" : 0.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:surfaceCrops",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1, "wilddiodiaseed" ] ],
-            "parameters" : {
-              "startingStage" : 3
-            }
-          }
-        ]
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-voltagedesertmicrodungeons" ]
       }
-
-      /* ,
-      {
+      /* {
         "mode" : "floor",
         "priority" : 1,
         "variants" : 1,
@@ -217,7 +142,24 @@
             "parameters" : { }
           }
         ]
-      }*/
+      },
+
+      {
+        "mode" : "floor",
+        "priority" : 0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCrops",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "wildgrapesseed" ] ],
+            "parameters" : {
+              "startingStage" : 4
+            }
+          }
+        ]
+      } */
     ]
   },
 
@@ -242,7 +184,7 @@
             "parameters" : { }
           }
         ]
-      } /* ,
+      }/* ,
       {
         "mode" : "ceiling",
         "priority" : 2.0,
@@ -253,7 +195,7 @@
         "treeFoliageHueShiftMax" : 120,
         "treeStemHueShiftMax" : 15,
         "treeStemList" : [ "colourfulvine" ],
-        "treeFoliageList" : [ "colourfulleaves" ] 
+        "treeFoliageList" : [ "colourfulleaves" ]
       },
       {
         "mode" : "floor",

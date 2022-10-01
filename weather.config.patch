@@ -33,6 +33,31 @@
   },
   {
     "op": "add",
+    "path": "/v-voltage2",
+    "value": [
+      [0.6, "clear"],
+      [0.3, "v-copperstormlight2"],
+      [0.1, "v-copperstorm2"],
+      [0.05, "v-lightningstorm"]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-voltageStormy2",
+    "value": [
+      [0.75, "v-copperstorm2"],
+      [0.25, "v-lightningstorm"]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-voltageEternalStorm2",
+    "value": [
+      [1.0, "v-copperstorm2"]
+    ]
+  },
+  {
+    "op": "add",
     "path": "/v-voltageTest",
     "value": [
       [1.0, "v-lightningstorm"]
