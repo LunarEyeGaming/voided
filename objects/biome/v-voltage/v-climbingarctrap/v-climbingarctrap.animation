@@ -1,0 +1,50 @@
+{
+  "transformationGroups" : {
+    "leftpoint" : {"interpolated" : true},
+    "rightpoint" : {"interpolated" : true},
+    "midpoint" : {"interpolated" : true}
+  },
+  "lights" : {
+    "leftLight" : {
+      "active" : false,
+      "transformationGroups" : ["leftpoint"],
+      "color" : [131, 131, 223]
+    },
+    "rightLight" : {
+      "active" : false,
+      "transformationGroups" : ["rightpoint"],
+      "color" : [131, 131, 223]
+    },
+    "midLight" : {
+      "active" : false,
+      "transformationGroups" : ["midpoint"],
+      "color" : [131, 131, 223]
+    }
+  },
+  "particleEmitters" : {
+    "impactLeft" : {
+      "transformationGroups" : ["leftpoint"],
+      "emissionRate" : 10.0,
+      "particles" : [
+        {
+          "particle" : "v-climbingarcimpact"
+        }
+      ]
+    },
+    "impactRight" : {
+      "transformationGroups" : ["rightpoint"],
+      "emissionRate" : 10.0,
+      "particles" : [
+        {
+          "particle" : "v-climbingarcimpact"
+        }
+      ]
+    }
+  },
+  "sounds" : {
+    "ambient" : {
+      "pool" : ["/sfx/npc/boss/ufo_stunned.ogg"],
+      "rangeMultiplier" : 3.0
+    }
+  }
+}

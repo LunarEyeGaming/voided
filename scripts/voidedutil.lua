@@ -54,8 +54,15 @@ function strStartsWith(str, start)
 end
 
 -- #animator
--- Update a circular display of a stat.
--- Precondition: 0.0 <= cur / max <= 1.0
+
+--[[
+  Updates a circular display of a stat. The circular display must have two parts.
+  lPart: The left part name of the display
+  rPart: The right part name of the display
+  cur: Current stat value
+  max: Max stat value
+  Precondition: 0.0 <= cur / max <= 1.0
+]]
 function updateCircleBar(lPart, rPart, cur, max)
   local progress = cur / max
   animator.resetTransformationGroup(lPart)
@@ -68,4 +75,22 @@ function updateCircleBar(lPart, rPart, cur, max)
     animator.setAnimationState(rPart, "visible")
     animator.rotateTransformationGroup(rPart, util.lerp((0.5 - (progress - 0.5)) * 2, 0, -math.pi))
   end
+end
+
+-- #animator
+--[[ 
+  Returns the linear interpolation between two RGBA colors with a given ratio. Result is in integer form and capped
+  between 0 and 255.
+  ratio: The amount of progress in the interpolation
+  colorA: Starting color
+  colorB: Ending color
+]]
+function lerpColor(ratio, colorA, colorB)
+  -- Return the linear interpolation of colorA and colorB with ratio, capped between 0 and 255 and in integer form.
+  return {
+    math.floor(math.max(math.min(colorA[1] + (colorB[1] - colorA[1]) * ratio, 255), 0)),
+    math.floor(math.max(math.min(colorA[2] + (colorB[2] - colorA[2]) * ratio, 255), 0)),
+    math.floor(math.max(math.min(colorA[3] + (colorB[3] - colorA[3]) * ratio, 255), 0)),
+    math.floor(math.max(math.min(colorA[4] + (colorB[4] - colorA[4]) * ratio, 255), 0))
+  }
 end

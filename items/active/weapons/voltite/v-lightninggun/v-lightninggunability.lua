@@ -150,7 +150,6 @@ function TeslaStream:drawLightning(startPos, monsters)
   end
 
   activeItem.setScriptedAnimationParameter("lightning", self.lightning)
-  activeItem.setScriptedAnimationParameter("lightningSeed", math.floor((os.time() + (os.clock() % 1)) * 1000))
 end
 
 function TeslaStream:makeGroundLightning(startPos)

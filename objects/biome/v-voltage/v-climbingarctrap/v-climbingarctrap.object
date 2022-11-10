@@ -1,0 +1,67 @@
+{
+  "objectName" : "v-climbingarctrap",
+  "colonyTags" : ["evil"],
+  "printable" : false,
+  "rarity" : "Legendary",
+  "description" : "<todo>",
+  "shortdescription" : "Climbing Arc Trap",
+  "race" : "generic",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "trap",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "image.png",
+      "imagePosition" : [0, 0],
+
+      "spaceScan" : 0.1
+    }
+  ],
+
+  "scripts" : [ "v-climbingarctrap.lua" ],
+  "scriptDelta" : 1,
+  
+  "animation" : "v-climbingarctrap.animation",
+
+  "animationScripts" : ["/items/active/effects/lightning.lua"],
+  
+  "overriddenParams" : [],
+  
+  "minArcWidth" : 0.1,
+  "maxArcWidth" : 50.0,
+  "maxHeight" : 100.0,
+  "climbingSpeed" : 10.0,
+  "waitTime" : 2.0,
+  "shouldRollDown" : true,
+
+  "damageSourceConfig" : {
+    "damage" : 100.0,
+
+    "teamType" : "enemy",
+    "damageSourceKind" : "electric",
+
+    "damageRepeatTimeout" : 0.1
+  },
+  
+  "lightningConfig" : {
+    "displacement" : 2.0,
+    "minDisplacement" : 0.125,
+    "forks" : 0,
+    "forkAngleRange" : 0.45,
+    "width" : 2.5,
+    "color" : [225, 225, 255, 255]
+  },
+  
+  "health" : 5,
+  "smashOnBreak" : true
+}

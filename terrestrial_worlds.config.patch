@@ -35,7 +35,8 @@
         },
         "underground3" : {
           "primaryRegion" : ["v-deepundergroundvoltage"],
-          "secondaryRegions" : []
+          "secondaryRegions" : [ "v-pairingcaves" ],
+          "secondaryRegionCount" : [1, 1]
         },
         "core" : {
           "primaryRegion" : ["v-voltagecorelayer"],
@@ -66,7 +67,7 @@
       "fgCaveSelector" : [ "surfaceCaves" ],
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
-        [0, [ "v-voltage", "v-voltagerusty" ]]
+        [0, [ "v-voltage", "v-voltagerusty", "v-voltagespikes", "v-voltagespikesrusty" ]]
       ],
       "subRegion" : []
     }
@@ -141,6 +142,17 @@
       //"caveLiquid" : ["water"],
       "biome": [
         [1,["v-deepundergroundvoltage"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-pairingcaves",
+    "value" : {
+      "fgCaveSelector" : [ "normalCaves" ],
+      //"caveLiquid" : ["water"],
+      "biome": [
+        [1,["v-pairingcaves"]]
       ]
     }
   },

@@ -1,4 +1,5 @@
 require "/scripts/vec2.lua"
+require "/scripts/voidedutil.lua"
 
 local dt
 local animConfig
@@ -53,14 +54,4 @@ function update()
       i = i + 1
     end
   end
-end
-
-function lerpColor(ratio, colorA, colorB)
-  -- Return the linear interpolation of colorA and colorB with ratio, capped between 0 and 255 and in integer form.
-  return {
-    math.floor(math.max(math.min(colorA[1] + (colorB[1] - colorA[1]) * ratio, 255), 0)),
-    math.floor(math.max(math.min(colorA[2] + (colorB[2] - colorA[2]) * ratio, 255), 0)),
-    math.floor(math.max(math.min(colorA[3] + (colorB[3] - colorA[3]) * ratio, 255), 0)),
-    math.floor(math.max(math.min(colorA[4] + (colorB[4] - colorA[4]) * ratio, 255), 0))
-  }
 end

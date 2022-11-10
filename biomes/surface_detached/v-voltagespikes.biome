@@ -1,20 +1,16 @@
 {
-  "name" : "v-voltagerusty",
-  "friendlyName" : "Rusted Voltage",
-
-  "statusEffects" : [ "v-biomeelectric", "v-quickhealnerf", "v-monsterresistance" ],
+  "name" : "v-voltagespikes",
+  "friendlyName" : "Voltage (Spikes)",
 
   "spawnProfile" : {
     "groups" : [
-      {
-        "select" : 3,
+      /* {
+        "select" : 1,
         "pool" : [
           [ 1.0, "v-electricelemental" ],
-          [ 1.0, "bobot" ],
-          [ 1.0, "scandroid" ],
           [ 1.0, "v-amperecharger" ]
         ]
-      },
+      }, */
       {
         "select" : 1,
         "pool" : "generatedGroundAggroDay"
@@ -55,7 +51,7 @@
       }*/
     ],
     "monsterParameters" : {
-      "colors" : "v-voltagerusty",
+      "colors" : "v-voltage",
       "statusSettings" : {
         "stats" : {
           "electricResistance" : {
@@ -77,128 +73,9 @@
 
   "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15],
 
-  "weather" : [
-    [0, [
-      "/weather.config:v-voltage",
-      "/weather.config:v-voltage2",
-      "/weather.config:v-voltageStormy",
-      "/weather.config:v-voltageStormy2",
-      "/weather.config:v-voltageDormant",
-      "/weather.config:v-voltageEternalStorm",
-      "/weather.config:v-voltageEternalStorm2"
-    ]]
-  ],
-
-  "skyOptions" : [
-    {
-      // Blue
-      "mainColor" : [255, 255, 255],
-
-      "morningColors" : [ [131, 131, 223, 144], [165, 165, 240, 200] ],
-      "dayColors" : [ [217, 217, 255, 255], [232, 232, 255, 255] ],
-      "eveningColors" : [ [131, 131, 223, 144], [165, 165, 240, 200] ],
-      "nightColors" : [ [33, 33, 99, 80], [33, 33, 99, 160] ],
-
-      "morningLightColor" : [101, 101, 199],
-      "dayLightColor" : [183, 183, 232],
-      "eveningLightColor" : [101, 101, 199],
-      "nightLightColor" : [24, 24, 71]
-    },
-    {
-      // Yellow, purple, yellow, blue
-      "mainColor" : [255, 255, 255],
-
-      "morningColors" : [ [255, 222, 89, 144], [178, 255, 89, 200] ],
-      "dayColors" : [ [218, 166, 255, 255], [245, 133, 255, 255] ],
-      "eveningColors" : [ [255, 222, 89, 144], [178, 255, 89, 200] ],
-      "nightColors" : [ [33, 33, 99, 80], [33, 33, 99, 160] ],
-
-      "morningLightColor" : [199, 192, 101],
-      "dayLightColor" : [227, 181, 230],
-      "eveningLightColor" : [199, 192, 101],
-      "nightLightColor" : [24, 24, 71]
-    },
-    {
-      // Pink, blurple, pink, yellow
-      "mainColor" : [255, 255, 255],
-
-      "morningColors" : [ [255, 87, 190, 144], [255, 71, 71, 200] ],
-      "dayColors" : [ [228, 219, 255, 255], [211, 175, 240, 255] ],
-      "eveningColors" : [ [255, 87, 190, 144], [255, 71, 71, 200] ],
-      "nightColors" : [ [97, 85, 33, 80], [97, 85, 33, 160] ],
-
-      "morningLightColor" : [199, 101, 126],
-      "dayLightColor" : [209, 181, 230],
-      "eveningLightColor" : [199, 101, 126],
-      "nightLightColor" : [69, 60, 23]
-    },
-    {
-      // Gray
-      "mainColor" : [255, 255, 255],
-
-      "morningColors" : [ [99, 44, 44, 200], [131, 99, 99, 255] ],
-      "dayColors" : [ [131, 131, 131, 200], [188, 188, 188, 255] ],
-      "eveningColors" : [ [99, 44, 44, 200], [131, 99, 99, 255] ],
-      "nightColors" : [ [33, 33, 33, 200], [33, 33, 33, 255] ],
-
-      "morningLightColor" : [199, 101, 101],
-      "dayLightColor" : [183, 183, 183],
-      "eveningLightColor" : [199, 101, 101],
-      "nightLightColor" : [66, 66, 66]
-    },
-    {
-      // Orange, gray, orange, gray
-      "mainColor" : [255, 255, 255],
-
-      "morningColors" : [ [99, 12, 12, 200], [131, 131, 12, 255] ],
-      "dayColors" : [ [131, 131, 131, 200], [188, 188, 188, 255] ],
-      "eveningColors" : [ [99, 12, 12, 200], [131, 131, 12, 255] ],
-      "nightColors" : [ [33, 33, 33, 200], [33, 33, 33, 255] ],
-
-      "morningLightColor" : [199, 155, 101],
-      "dayLightColor" : [183, 183, 183],
-      "eveningLightColor" : [199, 155, 101],
-      "nightLightColor" : [66, 66, 66]
-    },
-    {
-      // Gray with red sunset and sunrise
-      "mainColor" : [255, 255, 255],
-
-      "morningColors" : [ [99, 12, 12, 200], [131, 33, 12, 255] ],
-      "dayColors" : [ [131, 131, 131, 200], [188, 188, 188, 255] ],
-      "eveningColors" : [ [99, 12, 12, 200], [131, 33, 12, 255] ],
-      "nightColors" : [ [33, 33, 33, 200], [33, 33, 33, 255] ],
-
-      "morningLightColor" : [199, 125, 101],
-      "dayLightColor" : [183, 183, 183],
-      "eveningLightColor" : [199, 125, 101],
-      "nightLightColor" : [66, 66, 66]
-    }
-  ],
-
-  "mainBlock" : "v-rustedironrock",
-  "subBlocks" : [ "v-copperrock", "rustyblock" ],
+  "mainBlock" : "v-ironrock",
+  "subBlocks" : [ "v-copperrock", "rock17" ],
   "ores" : "v-voltage",
-
-  "parallax" : "/parallax/surface/v-voltagerusty.parallax",
-
-  "ambientNoises" : {
-    "day" : {
-      "tracks" : [ "/sfx/environmental/arid_day.ogg" ]
-    },
-    "night" : {
-      "tracks" : [ "/sfx/environmental/arid_night.ogg" ]
-    }
-  },
-
-  "musicTrack" : {
-    "day" : {
-      "tracks" : [ "/music/body-electric-loop.ogg", "/music/desert-exploration1.ogg", "/music/inviolate-loop.ogg", "/music/lava-exploration1.ogg" ]
-    },
-    "night" : {
-      "tracks" : [ "/music/mira.ogg", "/music/horsehead-nebula.ogg", "/music/mercury.ogg", "/music/Nomads.ogg", "/music/jupiter.ogg" ]
-    }
-  },
 
   "surfacePlaceables" : {
     "grassMod" : [ "v-copperpowder", "v-copperpowder2" ],
@@ -258,10 +135,10 @@
         "distribution" : "/biomes/distributions.config:potsRare",
 
         "type" : "tree",
-        "treeFoliageHueShiftMax" : 0,
-        "treeStemHueShiftMax" : 15,
-        "treeStemList" : [ "rust" ],
-        "treeFoliageList" : [ "" ]
+        "treeFoliageHueShiftMax" : 120,
+        "treeStemHueShiftMax" : 40,
+        "treeStemList" : [ "v-electrictree" ],
+        "treeFoliageList" : [ "v-electricfoliage" ]
       },
       {
         "mode" : "floor",
@@ -297,22 +174,22 @@
         "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "grass",
-        "grasses" : [ "rustflower" ]
-      }
-      /* {
+        "grasses" : [ "magmaflower", "magmaflower2", "magmaflower3", "magmaflower4", "testflower8", "magmaflower5" ]
+      },
+      {
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseMedium",
+        "distribution" : "/biomes/distributions.config:denseLarge",
 
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [0.35, "shadowrock1" ], [0.35, "shadowrock2" ], [0.35, "shadowrock3" ], [0.35, "shadowrock4" ], [0.35, "shadowrock5" ]],
-            "parameters" : { }
+            "pool" : [ [1.0, "v-climbingarctrap" ] ],
+            "parameters" : { "shouldRollDown" : true }
           }
         ]
-      } */
+      }
     ]
   },
 
@@ -363,18 +240,6 @@
           }
         ]
       },
-      /* {
-        "mode" : "ceiling",
-        "priority" : 2.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSmall",
-
-        "type" : "tree",
-        "treeFoliageHueShiftMax" : 0,
-        "treeStemHueShiftMax" : 0,
-        "treeStemList" : [ "darkvine" ],
-        "treeFoliageList" : [ "" ]
-      }, */
       {
         "mode" : "floor",
         "priority" : 1.0,
@@ -396,7 +261,7 @@
         "distribution" : "/biomes/distributions.config:scatteredSmall",
 
         "type" : "grass",
-        "grasses" : [ "rustflower" ]
+        "grasses" : [ "magmaflower", "magmaflower2", "magmaflower3", "magmaflower4", "testflower8", "magmaflower5" ]
       }
     ]
   }

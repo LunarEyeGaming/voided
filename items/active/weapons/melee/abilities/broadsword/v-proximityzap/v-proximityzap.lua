@@ -1,5 +1,6 @@
 require "/items/active/weapons/weapon.lua"
 require "/scripts/util.lua"
+require "/scripts/voidedutil.lua"
 
 ProximityZap = WeaponAbility:new()
 
@@ -36,7 +37,7 @@ function ProximityZap:fire()
 
   local timer = 0
   util.wait(self.stances.fire.duration, function(dt)
-    local color = self:lerpColor(timer / self.stances.fire.duration, self.lightningConfig.startColor, self.lightningConfig.endColor)
+    local color = lerpColor(timer / self.stances.fire.duration, self.lightningConfig.startColor, self.lightningConfig.endColor)
     self:drawLightning(endPositions, color)
     timer = timer + dt
   end)
@@ -87,16 +88,6 @@ end
 
 function ProximityZap:damageAmount()
   return self.baseDamage * config.getParameter("damageLevelMultiplier")
-end
-
-function ProximityZap:lerpColor(ratio, colorA, colorB)
-  -- Return the linear interpolation of colorA and colorB with ratio, capped between 0 and 255 and in integer form.
-  return {
-    math.floor(math.max(math.min(colorA[1] + (colorB[1] - colorA[1]) * ratio, 255), 0)),
-    math.floor(math.max(math.min(colorA[2] + (colorB[2] - colorA[2]) * ratio, 255), 0)),
-    math.floor(math.max(math.min(colorA[3] + (colorB[3] - colorA[3]) * ratio, 255), 0)),
-    math.floor(math.max(math.min(colorA[4] + (colorB[4] - colorA[4]) * ratio, 255), 0))
-  }
 end
 
 function ProximityZap:drawLightning(endPositions, color)

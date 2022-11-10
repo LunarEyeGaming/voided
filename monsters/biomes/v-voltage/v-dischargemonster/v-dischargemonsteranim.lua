@@ -9,8 +9,9 @@ local position
 local warningVectors
 
 function update()
-  oldUpdate()
   localAnimator.clearDrawables()
+
+  oldUpdate()
   
   params = animationConfig.animationParameter("animationConfig") 
   position = animationConfig.animationParameter("ownPosition")

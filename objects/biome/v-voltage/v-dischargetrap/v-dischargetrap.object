@@ -153,7 +153,7 @@
 
   "fireTime" : 2.0, // rate of fire
   "fireTimeVariance" : 0.5, // variation in rate of fire
-  "projectile" : "orbitalup", // name of projectile (required)
+  /* "projectile" : "orbitalup", // name of projectile (required)
   "projectileConfig" : { 
     "damageTeam" : { "type" : "environment" },
     "power" : 50,
@@ -169,12 +169,16 @@
             "action" : "projectile",
             "type" : "v-dischargetrap",
             "inheritDamageFactor" : 1,
-            "angle" : 90,
             "fuzzAngle" : 45
           }
         ]
       }
     ]
+  }, */
+  "projectile" : "v-stormdischarge", // name of projectile (required)
+  "projectileConfig" : { 
+    "damageTeam" : { "type" : "environment" },
+    "power" : 50
   },
   
   "health" : 5,

@@ -1,0 +1,18 @@
+{
+  "kind" : "v-climbingarcimpact",
+  "definition" : {
+    "type" : "animated",
+    "animation" : "/animations/lightningsparks/lightningsparks.animation",
+    "size" : 1,
+    "angularVelocity" : 0,
+    "fullbright" : true,
+    "fade" : 1.5,
+    "light" : [74, 74, 181],
+    "position" : [0, 0],
+    "initialVelocity" : [0, 0],
+    "timeToLive" : 0.7,
+    "layer" : "middle",
+    "destructionTime" : 0.5,
+    "destructionAction" : "fade"
+  }
+}

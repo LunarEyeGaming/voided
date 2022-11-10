@@ -1,9 +1,9 @@
 {
   "projectileName" : "v-stormdischarge",
   "image" : "stormdischarge.png",
-  "timeToLive" : 0.5,
-  "animationCycle" : 1,
-  "frameNumber" : 1,
+  "timeToLive" : 0.25,
+  "animationCycle" : 0.25,
+  "frameNumber" : 5,
   "fullbright" : true,
   "speed" : 0,
   "damagePoly" : [ [-40, 0], [-25, -25], [0, -40], [25, -25], [40, 0], [25, 25], [0, 40], [-25, 25] ],
@@ -11,7 +11,7 @@
   "piercing" : true,
   "bounces" : -1,
   "flippable" : true,
-  "lightColor" : [211, 250, 250],
+  "lightColor" : [131, 131, 223],
   "power" : 2,
   "damageKind" : "electric"
 }

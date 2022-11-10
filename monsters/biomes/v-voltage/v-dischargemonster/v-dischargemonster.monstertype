@@ -14,6 +14,7 @@
     "scripts" : [
       "/monsters/biomes/v-voltage/v-dischargemonster/v-dischargemonster.lua"
     ],
+    "updateDelta" : 1,
 
     "animationScripts" : [
       "/items/active/effects/lightning.lua",
@@ -34,7 +35,18 @@
       "maxOpacity" : 1,
       "warningImage" : "/monsters/biomes/v-voltage/v-dischargemonster/warning.png"
     },
+  
+    "lightningConfig" : {
+      "displacement" : 2.0,
+      "minDisplacement" : 0.125,
+      "forks" : 0,
+      "forkAngleRange" : 0.45,
+      "width" : 2.5,
+      "startColor" : [225, 225, 255, 255],
+      "endColor" : [74, 74, 181, 0]
+    },
     
+    "dischargeTime" : 0.2,
     "cooldownTime" : 5.0,
     "warningTime" : 0.5,
 

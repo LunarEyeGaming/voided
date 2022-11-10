@@ -73,7 +73,7 @@
     }
   },
 
-  "hueShiftOptions" : [0, 0, 0, 0],
+  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15],
 
   "weather" : [
     [0, [
@@ -296,22 +296,8 @@
         "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "grass",
-        "grasses" : [ "magmaflower", "magmaflower2", "magmaflower3", "magmaflower4", "testflower8", "magmaflower5" ]
+        "grasses" : [ "rustflower" ]
       }
-      /* {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseMedium",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [0.35, "shadowrock1" ], [0.35, "shadowrock2" ], [0.35, "shadowrock3" ], [0.35, "shadowrock4" ], [0.35, "shadowrock5" ]],
-            "parameters" : { }
-          }
-        ]
-      }, */
     ]
   },
 
@@ -362,18 +348,6 @@
           }
         ]
       },
-      /* {
-        "mode" : "ceiling",
-        "priority" : 2.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSmall",
-
-        "type" : "tree",
-        "treeFoliageHueShiftMax" : 0,
-        "treeStemHueShiftMax" : 0,
-        "treeStemList" : [ "darkvine" ],
-        "treeFoliageList" : [ "" ]
-      }, */
       {
         "mode" : "floor",
         "priority" : 1.0,
@@ -395,7 +369,7 @@
         "distribution" : "/biomes/distributions.config:scatteredSmall",
 
         "type" : "grass",
-        "grasses" : [ "magmaflower", "magmaflower2", "magmaflower3", "magmaflower4", "testflower8", "magmaflower5" ]
+        "grasses" : [ "rustflower" ]
       }
     ]
   }
