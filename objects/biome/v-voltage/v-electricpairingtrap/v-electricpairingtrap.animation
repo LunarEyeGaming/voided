@@ -2,10 +2,20 @@
   "animatedParts" : {
     "stateTypes" : {
       "trapState" : {
-        "default" : "off",
+        "default" : "idle",
         "states" : {
-          "off" : {},
-          "on" : {}
+          "idle" : {},
+          "windup" : {
+            "frames" : 4,
+            "cycle" : 0.5,
+            "mode" : "end"
+          },
+          "fire" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
         }
       }
     },
@@ -13,21 +23,27 @@
     "parts" : {
       "bg" : {
         "properties" : {
-          "centered" : false
+          "centered" : false,
+          "fullbright" : true
         },
 
         "partStates" : {
           "trapState" : {
-            "off" : {
+            "idle" : {
               "properties" : {
-                "image" : "<partImage>:<color>.off"
+                "image" : "<partImage>:idle"
               }
             },
 
-            "on" : {
+            "windup" : {
               "properties" : {
-                "image" : "<partImage>:<color>.<frame>",
-                "fullbright" : true
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
               }
             }
           }
@@ -41,15 +57,21 @@
 
         "partStates" : {
           "trapState" : {
-            "off" : {
+            "idle" : {
               "properties" : {
-                "image" : "<partImage>:<color>.off"
+                "image" : "<partImage>:idle"
               }
             },
 
-            "on" : {
+            "windup" : {
               "properties" : {
-                "image" : "<partImage>:<color>.<frame>"
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
               }
             }
           }

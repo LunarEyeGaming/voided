@@ -4,12 +4,19 @@
     "dimensions" : [2, 1],
 
     "names" : [
-      [ "default.1", "default.off" ]
+      [ "idle", "fire.1" ]
     ]
   },
 
   "aliases" : {
-    "default.default" : "default.off",
-    "default.on" : "default.1"
+    "windup.1" : "idle",
+    "windup.2" : "idle",
+    "windup.3" : "idle",
+    "windup.4" : "idle",
+    
+    "fire.2" : "idle",
+    "fire.3" : "idle",
+    "fire.4" : "idle",
+    "fire.5" : "idle"
   }
 }

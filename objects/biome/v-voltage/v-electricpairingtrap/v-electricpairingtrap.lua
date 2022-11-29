@@ -3,29 +3,42 @@ require "/scripts/vec2.lua"
 require "/scripts/voidedutil.lua"
 
 -- script name: v-electricpairingtrap
-local fireTime
-local windupTime
 local pairingRadius
+local windupTime
+local windupLightningConfig
+
 local damageSourceConfig
 local lightningConfig
+local dischargeProjectile
+local dischargeProjectileParams
 local dischargeTime
+local damageTime
+
+local cooldownTime
 
 local isPairable
 local target
 local ownPosition
-local pairingPosition
+
 local trapState
 
+local pairingPosition
+
 function init()
-  fireTime = config.getParameter("cooldownTime")
-  windupTime = config.getParameter("windupTime")
   pairingRadius = config.getParameter("pairingRadius")
+  windupTime = config.getParameter("windupTime")
+  windupLightningConfig = config.getParameter("windupLightningConfig")
+
   damageSourceConfig = config.getParameter("damageSourceConfig")
   damageSourceConfig.damage = (damageSourceConfig.damage or 10) * root.evalFunction("monsterLevelPowerMultiplier",
       object.level())
   lightningConfig = config.getParameter("lightningConfig")
-  windupLightningConfig = config.getParameter("windupLightningConfig")
+  dischargeProjectile = config.getParameter("dischargeProjectile")
+  dischargeProjectileParams = config.getParameter("dischargeProjectileParams")
   dischargeTime = config.getParameter("dischargeTime")
+  damageTime = config.getParameter("damageTime")
+  
+  cooldownTime = config.getParameter("cooldownTime")
 
   isPairable = true
   target = nil
@@ -35,8 +48,12 @@ function init()
   trapState:set(states.wait)
 
   message.setHandler("becomePair", function()
-    trapState:set(states.wait)
+    trapState:set(states.animate)
     return ownPosition
+  end)
+  
+  message.setHandler("trigger", function()
+    trapState:set(states.search)
   end)
 end
 
@@ -49,7 +66,7 @@ states = {}
 function states.wait()
   isPairable = true
   target = nil
-  util.wait(util.randomInRange(fireTime))
+  util.wait(util.randomInRange(cooldownTime))
 
   trapState:set(states.search)
 end
@@ -88,7 +105,7 @@ function states.windup()
   end
 
   animator.playSound("windup")
-  -- animator.setAnimationState("trap", "windup")
+  animator.setAnimationState("trapState", "windup")
 
   pairingPosition = world.nearestTo(ownPosition, promise:result())
 
@@ -108,12 +125,17 @@ function states.fire()
   end
 
   animator.playSound("fire")
-  -- animator.setAnimationState("trap", "fire")
+  animator.setAnimationState("trapState", "fire")
+  
+  -- Spawn a discharge projectile at the position of the other trap, in a direction away from it.
+  -- Also make the source entity "target" because the other trap will be the one "firing" it.
+  world.spawnProjectile(dischargeProjectile, pairingPosition, target, world.distance(pairingPosition, ownPosition),
+      false, dischargeProjectileParams)
 
   local timer = 0
   util.wait(dischargeTime, function(dt)
     -- Brief damage arc
-    if timer < 0.1 then
+    if timer < damageTime then
       setDamageArc(ownPosition, pairingPosition)
     else
       object.setDamageSources()
@@ -129,6 +151,21 @@ function states.fire()
 end
 
 --[[
+  Variant of the states.windup and states.fire functions combined that only includes the visual animations.
+]]
+function states.animate()
+  animator.setAnimationState("trapState", "windup")
+  
+  util.wait(windupTime)
+  
+  animator.setAnimationState("trapState", "fire")
+  
+  util.wait(dischargeTime)
+  
+  trapState:set(states.wait)
+end
+
+--[[
   Returns true if there is no collision between the requester's position and the current object's position and the
   current object has not already paired with an existing trap.
   pos: The position of the requester
@@ -136,6 +173,13 @@ end
 function pairable(pos)
   local correctedPos = world.nearestTo(ownPosition, pos)
   return isPairable and not world.lineCollision(ownPosition, correctedPos)
+end
+
+--[[
+  A variant of the pairable callScript function that ignores tile collisions.
+]]
+function pairableNoCollision()
+  return isPairable
 end
 
 --[[
@@ -155,7 +199,7 @@ end
 
 --[[
   Draws lightning with a specific color progress from startPos to endPos.
-  progress: How close to the end value each parameter of the lightning should be
+  progress: How close to the end value the color of the lightning should be
   startPos: The starting absolute position of the lightning
   endPos: The ending absolute position of the lightning
 ]]

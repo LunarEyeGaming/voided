@@ -180,10 +180,12 @@ end
 function updateEffects(left, mid, right)
   local pos = object.position()
   local dir = object.direction()
+
   local relativeLeft = world.distance(left, pos)
   local relativeMid = world.distance(mid, pos)
   local relativeRight = world.distance(right, pos)
 
+  -- Update transformation groups, accounting for the object's direction so that particle positions are correct.
   animator.resetTransformationGroup("leftpoint")
   animator.translateTransformationGroup("leftpoint", vec2.mul(relativeLeft, {dir, 1}))
   

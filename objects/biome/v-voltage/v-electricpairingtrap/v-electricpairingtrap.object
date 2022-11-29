@@ -21,7 +21,7 @@
   "inventoryIcon" : "electricpairingtrapicon.png",
   "orientations" : [
     {
-      "image" : "electricpairingtrap.png:<color>.<frame>",
+      "image" : "electricpairingtrap.png:idle",
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
@@ -29,7 +29,7 @@
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "electricpairingtrap.png",
-        "fg" : "electricpairingtrap.png"
+        "fg" : "electricpairingtraplit.png"
       },
 
       "fireOffset" : [0, 1],
@@ -38,14 +38,14 @@
       "anchors" : [ "bottom" ]
     },
     {
-      "image" : "electricpairingtrap.png:<color>.<frame>",
+      "image" : "electricpairingtrap.png:idle",
       "imagePosition" : [0, 0],
       "direction" : "right",
       
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "electricpairingtrap.png",
-        "fg" : "electricpairingtrap.png"
+        "fg" : "electricpairingtraplit.png"
       },
 
       "fireOffset" : [1, 1],
@@ -54,14 +54,14 @@
       "anchors" : [ "bottom" ]
     },
     {
-      "image" : "electricpairingtrapleft.png:<color>.<frame>",
+      "image" : "electricpairingtrapleft.png:idle",
       "imagePosition" : [0, -8],
       "direction" : "right",
       
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "electricpairingtrapleft.png",
-        "fg" : "electricpairingtrapleft.png"
+        "fg" : "electricpairingtrapleftlit.png"
       },
 
       "fireOffset" : [1, 0],
@@ -70,14 +70,14 @@
       "anchors" : [ "left" ]
     },
     {
-      "image" : "electricpairingtrapright.png:<color>.<frame>",
+      "image" : "electricpairingtrapright.png:idle",
       "imagePosition" : [0, -8],
       "direction" : "right",
       
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "electricpairingtrapright.png",
-        "fg" : "electricpairingtrapright.png"
+        "fg" : "electricpairingtraprightlit.png"
       },
 
       "fireOffset" : [0, 0],
@@ -86,7 +86,7 @@
       "anchors" : [ "right" ]
     },
     {
-      "image" : "electricpairingtrapceiling.png:<color>.<frame>",
+      "image" : "electricpairingtrapceiling.png:idle",
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
@@ -94,7 +94,7 @@
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "electricpairingtrapceiling.png",
-        "fg" : "electricpairingtrapceiling.png"
+        "fg" : "electricpairingtrapceilinglit.png"
       },
 
       "fireOffset" : [0, 0],
@@ -103,14 +103,14 @@
       "anchors" : [ "top" ]
     },
     {
-      "image" : "electricpairingtrapceiling.png:<color>.<frame>",
+      "image" : "electricpairingtrapceiling.png:idle",
       "imagePosition" : [0, 0],
       "direction" : "right",
       
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "electricpairingtrapceiling.png",
-        "fg" : "electricpairingtrapceiling.png"
+        "fg" : "electricpairingtrapceilinglit.png"
       },
 
       "fireOffset" : [1, 0],
@@ -127,7 +127,7 @@
 
   "animation" : "v-electricpairingtrap.animation",
 
-  "cooldownTime" : [4.0, 6.0],
+  "cooldownTime" : [6.0, 20.0],
   "windupTime" : 0.5,
   "pairingRadius" : 20,
   "dischargeTime" : 0.25,
@@ -141,6 +141,7 @@
 
     "damageRepeatTimeout" : 0.1
   },
+  "damageTime" : 0.1,
   
   "windupLightningConfig" : {
     "startDisplacement" : 0.1,
@@ -163,6 +164,9 @@
     "startColor" : [225, 225, 255, 255],
     "endColor" : [74, 74, 181, 0]
   },
+  
+  "dischargeProjectile" : "v-pairingtrapdischarge",
+  "dischargeProjectileParams" : {},
   
   "health" : 5
 }
