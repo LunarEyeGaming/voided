@@ -174,7 +174,7 @@
         "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "grass",
-        "grasses" : [ "magmaflower", "magmaflower2", "magmaflower3", "magmaflower4", "testflower8", "magmaflower5" ]
+        "grasses" : [ "rustflower" ]
       },
       {
         "mode" : "floor",
@@ -256,12 +256,12 @@
       },
       {
         "mode" : "floor",
-        "priority" : 2.0,
+        "priority" : 3.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredSmall",
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "grass",
-        "grasses" : [ "magmaflower", "magmaflower2", "magmaflower3", "magmaflower4", "testflower8", "magmaflower5" ]
+        "grasses" : [ "rustflower" ]
       }
     ]
   }

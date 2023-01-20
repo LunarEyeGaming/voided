@@ -12,7 +12,7 @@
           [ 1.0, "v-electricelemental" ],
           [ 1.0, "bobot" ],
           [ 1.0, "scandroid" ],
-          [ 1.0, "v-amperecharger" ]
+          [ 1.0, "v-amperechargerrusty" ]
         ]
       },
       {
@@ -177,7 +177,7 @@
   ],
 
   "mainBlock" : "v-rustedironrock",
-  "subBlocks" : [ "v-copperrock", "rustyblock" ],
+  "subBlocks" : [ "v-oxidizedcopperrock", "rustyblock" ],
   "ores" : "v-voltage",
 
   "parallax" : "/parallax/surface/v-voltagerusty.parallax",
@@ -247,6 +247,20 @@
         "objectSets" : [
           {
             "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseSmall",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-ironspikesrusty1" ], [1.0, "v-ironspikesrusty2" ], [1.0, "v-ironspikesrusty3" ], [1.0, "v-ironspikesrusty4" ], [1.0, "v-ironspikesrusty5" ] ],
             "parameters" : { }
           }
         ]

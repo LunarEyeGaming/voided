@@ -1,0 +1,39 @@
+{
+  "name" : "v-windy",
+
+  "particles" : [
+    {
+      "density" : 0.00025,
+      "particle" : {
+        "type" : "animated",
+        "animation" : "/animations/windstorm/windstorm1.animation",
+        "velocity" : [0, 0],
+        "fade" : 0.5,
+        "looping" : true,
+        "destructionTime" : 20,
+        "timeToLive" : 20,
+        "collidesForeground" : false,
+        "collidesLiquid" : true,
+        "ignoreWind" : false
+      }
+    },
+    {
+      "density" : 0.00025,
+      "particle" : {
+        "type" : "animated",
+        "animation" : "/animations/windstorm/windstorm2.animation",
+        "velocity" : [0, 0],
+        "fade" : 0.5,
+        "looping" : true,
+        "destructionTime" : 20,
+        "timeToLive" : 20,
+        "collidesForeground" : false,
+        "collidesLiquid" : true,
+        "ignoreWind" : false
+      }
+    }
+  ],
+
+  "duration" : [50, 240],
+  "maximumWind" : 30.0
+}

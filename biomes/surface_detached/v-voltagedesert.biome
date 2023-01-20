@@ -54,7 +54,7 @@
   "subBlocks" : [ "v-copperrock" ],
   "ores" : "v-voltage",
   
-  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15, 85, 90, 95, 100, 105, 110, 115],
+  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15],
 
   "surfacePlaceables" : {
     "grassMod" : [ "v-copperpowder" ],
@@ -77,6 +77,20 @@
         "objectSets" : [
           {
             "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseMedium",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-copperpowderemitter" ] ],
             "parameters" : { }
           }
         ]

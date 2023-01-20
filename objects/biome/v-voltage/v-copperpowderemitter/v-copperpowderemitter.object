@@ -1,0 +1,62 @@
+{
+  "objectName" : "v-copperpowderemitter",
+  "rarity" : "Common",
+  "category" : "decorative",
+  "price" : 0,
+  "scannable" : false,
+  "printable" : false,
+
+  "description" : "Not intended to be obtained",
+  "shortdescription" : "Copper Powder Emitter",
+  "race" : "generic",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "image.png",
+      "imagePosition" : [0, 0],
+      "fullbright" : true,
+
+      "direction" : "left",
+      "flipImages" : true,
+      "anchors" : ["bottom"]
+    },
+    {
+      "image" : "image.png",
+      "imagePosition" : [0, 0],
+      "fullbright" : true,
+
+      "direction" : "right",
+      "anchors" : ["bottom"]
+    }
+  ],
+
+  "smashOnBreak" : true,
+  
+  "scripts" : ["v-copperpowderemitter.lua"],
+  "scriptDelta" : 1,
+
+  // Script parameters.
+  "windParticleEmitter" : {
+    "emissionWindFactor" : 0.05,
+    "emissionVarianceWindFactor" : 0.025,
+    "windThreshold" : 10,
+
+    "particle" : {
+      "type" : "textured",
+      "image" : "/particles/images/v-copperparticle.png",
+      "size" : 1.0,
+      "initialVelocity" : [0, 10],
+      "timeToLive" : 20,
+      "position" : [0, 0],
+      "angularVelocity" : 180,
+      "collidesForeground" : true,
+      "variance" : {
+        "initialVelocity" : [5.0, 0.0],
+        "position" : [1, 0],
+        "angularVelocity" : 90,
+        "rotation" : 180
+      }
+    }
+  }
+}

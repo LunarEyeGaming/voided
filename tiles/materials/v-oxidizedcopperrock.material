@@ -1,0 +1,24 @@
+{
+  "materialId" : 1197,
+  "materialName" : "v-oxidizedcopperrock",
+  "particleColor" : [76, 135, 84, 255],
+  "itemDrop" : "v-oxidizedcopperrockmaterial",
+  "description" : "<todo>",
+  "shortdescription" : "Oxidized Copper Rock",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_stone3.ogg",
+  "health" : 9,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-oxidizedcopperrock.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1600
+  }
+}

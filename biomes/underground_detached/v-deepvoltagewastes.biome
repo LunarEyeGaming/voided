@@ -1,0 +1,104 @@
+{
+  "name" : "v-deepvoltagewastes",
+  "friendlyName" : "Deep Charged Wastes",
+
+  "spawnProfile" : {
+    "groups" : [
+      {
+        "select" : 1,
+        "pool" : [
+          [ 1.0, "v-electricelemental" ]
+        ]
+      }
+    ],
+    "monsterParameters" : {
+      "statusSettings" : {
+        "stats" : {
+          "electricResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonResistance" : {
+            "baseValue" : -0.25
+          },
+          "electricStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "v-liquidElectricityEffectImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 20.0
+          }
+        }
+      }
+    }
+  },
+
+  "mainBlock" : "v-copperrock",
+  "subBlocks" : [ "v-copperrock" ],
+  "ores" : "v-shallowundergroundvoltage",
+
+  "undergroundPlaceables" : {
+    "grassMod" : [ "v-copperpowder" ],
+    "grassModDensity" : 0.8,
+
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundOreRocks",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.18, "copperrocksmall" ], [0.06, "copperrock" ], [0.48, "silverrocksmall" ], [0.16, "silverrock" ], [0.09, "goldrocksmall" ], [0.03, "goldrock" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-dischargetrap"] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-dischargetrap"] ],
+            "parameters" : { }
+          }
+        ]
+      }
+    ]
+  }
+}

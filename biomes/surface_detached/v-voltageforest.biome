@@ -83,7 +83,7 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1.0,
+        "priority" : 2.0,
         "variants" : 3,
         "distribution" : "/biomes/distributions.config:denseLarge",
 
@@ -98,7 +98,7 @@
 
       {
         "mode" : "floor",
-        "priority" : 0,
+        "priority" : 1,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:surfaceCrops",
 
@@ -115,7 +115,7 @@
       
       {
         "mode" : "floor",
-        "priority" : 0.0,
+        "priority" : 1.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:surfaceCrops",
 
@@ -132,7 +132,7 @@
       
       {
         "mode" : "floor",
-        "priority" : 0.0,
+        "priority" : 1.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:surfaceCrops",
 
@@ -149,7 +149,7 @@
       
       {
         "mode" : "floor",
-        "priority" : 0.0,
+        "priority" : 1.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:surfaceCrops",
 
@@ -160,6 +160,29 @@
             "parameters" : {
               "startingStage" : 3
             }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "grass",
+        "grasses" : [ "rustflower" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseSmall",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-ironspikes1" ], [1.0, "v-ironspikes2" ], [1.0, "v-ironspikes3" ], [1.0, "v-ironspikes4" ], [1.0, "v-ironspikes5" ] ],
+            "parameters" : { }
           }
         ]
       }
@@ -242,6 +265,15 @@
             "parameters" : { }
           }
         ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "grass",
+        "grasses" : [ "rustflower" ]
       } /* ,
       {
         "mode" : "ceiling",

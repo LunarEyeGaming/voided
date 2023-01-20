@@ -1,15 +1,12 @@
 {
   "name" : "v-pairingcaves",
-  "friendlyName" : "Pairing Caves",
+  "friendlyName" : "Pairing Hollows",
 
   "mainBlock" : "v-chargedstone",
-  "subBlocks" : [ "v-chargedstone", "v-chargedstone" ],
+  "subBlocks" : [ "v-chargedstone" ],
   "ores" : "v-deepundergroundvoltage",
 
   "undergroundPlaceables" : {
-    "grassMod" : [ "v-copperpowder" ],
-    "grassModDensity" : 0.8,
-
     "items" : [
       {
         "mode" : "ceiling",

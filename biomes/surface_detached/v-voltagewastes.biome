@@ -9,20 +9,9 @@
         "pool" : [
           [ 1.0, "v-electricelemental" ]
         ]
-      },
-      {
-        "select" : 3,
-        "pool" : [
-          [ 0.20, "bowbirdcritter" ],
-          [ 0.20, "sluggreencritter" ],
-          [ 0.20, "slugbluecritter" ],
-          [ 0.20, "slugcritter" ],
-          [ 0.20, "leafscabcritter" ]
-        ]
       }
     ],
     "monsterParameters" : {
-      "colors" : "desert",
       "statusSettings" : {
         "stats" : {
           "electricResistance" : {
@@ -34,6 +23,9 @@
           "electricStatusImmunity" : {
             "baseValue" : 1.0
           },
+          "v-liquidElectricityEffectImmunity" : {
+            "baseValue" : 1.0
+          },
           "protection" : {
             "baseValue" : 15.0
           }
@@ -42,11 +34,11 @@
     }
   },
 
-  "mainBlock" : "copperblock",
+  "mainBlock" : "v-copperrock",
   "subBlocks" : [ "v-copperrock" ],
   "ores" : "v-voltage",
   
-  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15, 85, 90, 95, 100, 105, 110, 115],
+  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15],
 
   "surfacePlaceables" : {
     "grassMod" : [ "v-copperpowder" ],
@@ -163,9 +155,6 @@
   "undergroundPlaceables" : {
     "grassMod" : [ "v-copperpowder" ],
     "grassModDensity" : 0.8,
-
-    "ceilingGrassMod" : [ "roots" ],
-    "ceilingGrassModDensity" : 0.6,
 
     "items" : [
       {

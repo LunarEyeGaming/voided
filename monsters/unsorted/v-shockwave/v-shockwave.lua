@@ -3,18 +3,24 @@ require "/scripts/vec2.lua"
 -- Script for a damaging wave that propagates through a specific set of blocks.
 
 local animTicks
+
 local validMats
 local validMatMods
+
 local projectileType
 local projectileParameters
 local maxArea
 local disappearDelay
+local sourceEntity
+
 local area
 local disappearTimer
 local animTickTimer
+
 local previousBlocks
 local nextBlocks
 local animNextBlocks
+
 local center
 local shouldDieVar
 
@@ -22,15 +28,17 @@ function init()
   script.setUpdateDelta(1)
   animTicks = 3
 
-  local matAttributes = root.assetJson("/v-matattributes.config")
-  
+  local matAttributes = root.assetJson("/v-matattributes.config")  
   validMats = matAttributes.conductiveMaterials
   validMatMods = matAttributes.conductiveMatMods
+
   projectileType = config.getParameter("projectileType", "v-shockwavedamage")
   projectileParameters = config.getParameter("projectileParameters", {})
   projectileParameters.power = config.getParameter("damage", 0) * root.evalFunction("monsterLevelPowerMultiplier", monster.level())
   maxArea = config.getParameter("maxArea", 200)
   disappearDelay = config.getParameter("dissipationTime", 0.25)
+  -- Used so that monsters can target whoever fired a projectile that created a shockwave
+  sourceEntity = config.getParameter("sourceEntity", entity.id())
   
   monster.setAnimationParameter("ttl", disappearDelay)
   
@@ -44,6 +52,8 @@ function init()
   nextBlocks = {{0, 0}}
   animNextBlocks = {}
   local ownPos = mcontroller.position()
+
+  -- Lock position to center of tile
   center = {math.floor(ownPos[1]) + 0.5, math.floor(ownPos[2]) + 0.5}
   mcontroller.setPosition(center)
   
@@ -101,8 +111,9 @@ function placeWave()
   if animTickTimer <= 0 then
     monster.setAnimationParameter("nextBlocks", animNextBlocks)
     for _, block in ipairs(animNextBlocks) do
-      if isExposed(vec2.add(center, block)) then
-        world.spawnProjectile(projectileType, vec2.add(center, block), entity.id(), {0, 0}, false, projectileParameters)
+      local blockPos = vec2.add(center, block)
+      if isExposed(blockPos) or containsCreature(blockPos) then
+        world.spawnProjectile(projectileType, blockPos, sourceEntity, {0, 0}, false, projectileParameters)
       end
     end
     animTickTimer = animTicks
@@ -143,4 +154,11 @@ function isExposed(position)
   end
   
   return false
+end
+
+function containsCreature(position)
+  -- Return true if the area within a one-block radius of the given position contains at least one entity that matches
+  -- the "creature" type.
+  
+  return #world.entityQuery(position, 1, {includedTypes = {"creature"}}) > 0
 end

@@ -1,7 +1,17 @@
 [
   {
-    "op": "replace",
-    "path": "/scripts/0",
-    "value": "v-quickheal.lua"
+    "op": "add",
+    "path": "/effectConfig/v-detectStatusEffect",
+    "value": "v-quickhealnerf"
+  },
+  {
+    "op": "add",
+    "path": "/effectConfig/v-cooldownStatusEffect",
+    "value": "v-quickhealblock"
+  },
+  {
+    "op": "add",
+    "path": "/scripts/-",
+    "value": "v-nerfedhealplugin.lua"
   }
 ]

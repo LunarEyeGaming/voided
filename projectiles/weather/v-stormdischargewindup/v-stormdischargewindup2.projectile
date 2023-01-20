@@ -1,0 +1,26 @@
+{
+  "projectileName" : "v-stormdischargewindup2",
+  "image" : "stormdischargewindup.png",
+  "animationCycle" : 1,
+  "lightColor" : [74, 74, 181],
+  "frameNumber" : 10,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "sticky",
+  "bounces" : -1,
+  "emitters" : [ ],
+  "onlyHitTerrain" : true,
+  "piercing" : true,
+
+  "speed" : 25,
+  
+  "timeToLive" : 1.0,
+  
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-stormdischarge/stormdischarge2.config"
+    }
+  ]
+}

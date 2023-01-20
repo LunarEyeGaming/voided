@@ -58,6 +58,37 @@
     }
   },
   {
+    "name" : "v-amperechargerrusty",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-amperecharger"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true,
+      "colorSwap" : {
+        // Gray to red
+        "323232" : "330f09",
+        "565656" : "572417",
+        "7a7a7a" : "7b3d28",
+        "9f9f9f" : "b45c3d",
+        
+        // Brown to teal
+        "35211b" : "1b351b",
+        "52362b" : "2b522c",
+        "6f4b3a" : "3a6f3e",
+        "87614c" : "4c8752"
+      }
+    }
+  },
+  {
     "name" : "v-metalmite",
 
     "spawnParameters" : {
@@ -109,6 +140,49 @@
     ],
     "monsterParameters" : {
       "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-bulbhead",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-bulbhead"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-bulbheadrusty",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-bulbhead"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true,
+      "colorSwap" : {
+        // Gray to red
+        "323232" : "330f09",
+        "565656" : "572417",
+        "7a7a7a" : "7b3d28",
+        "9f9f9f" : "b45c3d"
+      }
     }
   },
   {

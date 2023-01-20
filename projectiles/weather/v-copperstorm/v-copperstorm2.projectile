@@ -1,0 +1,28 @@
+{
+  "projectileName" : "v-copperstorm2",
+  "image" : "copperstorm.png",
+  "animationCycle" : 1,
+  "lightColor" : [74, 74, 181],
+  "frameNumber" : 1,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "bullet",
+  "bounces" : 0,
+  "emitters" : [ ],
+  "onlyHitTerrain" : true,
+  "piercing" : true,
+
+  "speed" : 25,
+  
+  "timeToLive" : 1.0,
+  
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-stormdischargewindup2",
+      "inheritDamageFactor" : 1,
+      "inheritSpeedFactor" : 1
+    }
+  ]
+}

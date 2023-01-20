@@ -12,7 +12,11 @@ function init()
   damageFactor = config.getParameter("shockwaveDamageFactor", 1.0)
   monsterType = config.getParameter("monsterType")
   monsterParameters = config.getParameter("monsterParameters", {})
-  monsterParameters.damage = projectile.power() * damageFactor
+  monsterParameters.damage = (monsterParameters.damage or (projectile.power() * damageFactor))
+      * projectile.powerMultiplier()
+  monsterParameters.damageTeamType = monsterParameters.damageTeamType or entity.damageTeam().type
+  monsterParameters.damageTeam = monsterParameters.damageTeam or entity.damageTeam().team
+  monsterParameters.sourceEntity = projectile.sourceEntity()
 end
 
 function destroy()

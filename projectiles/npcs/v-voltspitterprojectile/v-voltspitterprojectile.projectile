@@ -1,9 +1,9 @@
 {
   "projectileName" : "v-voltspitterprojectile",
   "image" : "voltspitterprojectile.png",
-  "animationCycle" : 1,
+  "animationCycle" : 0.4,
   "lightColor" : [100, 100, 150],
-  "frameNumber" : 1,
+  "frameNumber" : 4,
   "timeToLive" : 5,
   "flippable" : false,
   "fullbright" : true,
@@ -26,6 +26,6 @@
   "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
   
   "monsterType" : "v-shockwave",
-  "spawnOffset" : [0, -1],
+  "spawnOffset" : [0, 0],
   "shockwaveDamageFactor" : 0.75
 }

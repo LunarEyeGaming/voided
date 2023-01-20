@@ -7,18 +7,26 @@
 
         "states" : {
           "active" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop",
             "properties" : {
               "persistentSound" : "/sfx/npc/monsters/v_dischargemonster_active.ogg"
             }
           },
           "discharge" : {
-            "frames" : 1,
+            "frames" : 4,
             "cycle" : 0.5,
             "mode" : "transition",
             "transition" : "inactive"
           },
           "inactive" : {},
-          "warning" : {}
+          "warning" : {
+            "frames" : 6,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "active"
+          }
         }
       },
       "damage" : {

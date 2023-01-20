@@ -1,0 +1,40 @@
+{
+  "objectName" : "v-ironspikesrusty4",
+  "colonyTags" : ["bone"],
+  "printable" : false,
+  "rarity" : "Common",
+  "category" : "breakable",
+  "price" : 80,
+
+  "description" : "<todo>",
+  "shortdescription" : "Rusted Iron Spikes",
+  "race" : "generic",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "ironspikesrusty4.png",
+      "imagePosition" : [-8, 0],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+
+    }
+  ],
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/capsule_break1.ogg", "/sfx/objects/capsule_break2.ogg", "/sfx/objects/capsule_break3.ogg" ],
+  "smashParticles" : [ { "count" : 4, "particle" : "greystoneshard" } ],
+
+  "biomePlaced" : true
+}

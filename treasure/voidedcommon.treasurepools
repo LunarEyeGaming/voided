@@ -203,6 +203,16 @@
     }]
   ],
 
+  "v-oxidizeddischargetrapTreasure" : [
+    [0, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.95, "item" : "v-oxidizedcopperrockmaterial"},
+        {"weight" : 0.05, "item" : "v-dischargetrappiece"}
+      ]
+    }]
+  ],
+
   "v-rottenfoodPool" : [
     [0, {
       "fill" : [],
@@ -214,6 +224,29 @@
         [0.5, 2],
         [0.3, 3],
         [0.1, 4]
+      ]
+    }]
+  ],
+
+  "v-coilrockTreasure" : [
+    [0, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.5, "pool" : "empty"},
+        {"weight" : 0.5, "pool" : "v-coilrockMinerals"}
+      ]
+    }]
+  ],
+
+  "v-coilrockMinerals" : [
+    [0, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.75, "item" : "v-ironrockmaterial"},
+        {"weight" : 0.140625, "item" : "ironore"},
+        {"weight" : 0.0625, "item" : "copperore"},
+        {"weight" : 0.03125, "item" : "silverore"},
+        {"weight" : 0.015625, "item" : "goldore"}
       ]
     }]
   ]

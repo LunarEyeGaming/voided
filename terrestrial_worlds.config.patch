@@ -15,13 +15,16 @@
           "primaryRegion" : [ "v-voltage" ],
           "secondaryRegions" : [ "v-voltagespikes", "v-voltagewastes" ],
           "secondaryRegionCount" : [0, 2],
-          //"secondaryRegions" : [ "v-voltagespikes" ],
-          //"secondaryRegionCount" : [1, 1],
+          // "secondaryRegions" : [ "v-voltagewastes" ],
+          // "secondaryRegionCount" : [1, 1],
 
           "dungeons" : [ ]
         },
         "subsurface" : {
-          "primaryRegion" : ["v-shallowundergroundvoltage"]
+          "primaryRegion" : ["v-shallowundergroundvoltage"],
+          "secondaryRegions" : [ "v-deepvoltagewastes", "v-coilcaves", "v-barrencaves" ],
+          //"secondaryRegions" : [ "v-coilcaves" ],
+          "secondaryRegionCount" : [1, 1]
         },
         "underground1" : {
           "primaryRegion" : ["v-shallowundergroundvoltage"],
@@ -56,14 +59,16 @@
         [0, [ "v-voltage", "v-voltagerusty" ]]
       ],
       "subRegion" : ["v-voltagedesert", "rust", "v-voltageforest"]
+      //"subRegion" : ["v-voltagedesert"]
     }
   },
   {
     "op" : "add",
     "path" : "/regionTypes/v-voltagespikes",
     "value" : {
-      //"blockSelector" : [ "v-remixedGiantSpikesSurface" ],
-      "blockSelector" : [ "remixedSpikesSurface", "spikesSurface", "remixedSpikesSurface2", "v-remixedGiantSpikesSurface" ],
+      //"blockSelector" : [ "v-remixedColossalSpikesSurface" ],
+      "blockSelector" : [ "remixedSpikesSurface", "spikesSurface", "remixedSpikesSurface2",
+          "v-remixedGiantSpikesSurface", "v-remixedColossalSpikesSurface" ],
       "fgCaveSelector" : [ "surfaceCaves" ],
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
@@ -81,7 +86,7 @@
       "bgCaveSelector" : [ "empty" ],
       "subBlockSelector" : ["v-copperDesertSubBlocks"],
       "biome" : [
-        [0, [ "v-voltagedesert", "v-voltagedesertruins" ]]
+        [0, [ "v-voltagedesert", "v-voltagedesertruins", "v-voltagedesertoxidized", "v-voltagedesertruinsoxidized" ]]
       ],
       "subRegion" : []
     }
@@ -93,8 +98,11 @@
       "blockSelector" : [ "lowHillsSurface", "mixedSurface" ],
       "fgCaveSelector" : [ "surfaceCaves" ],
       "bgCaveSelector" : [ "empty" ],
+      "caveLiquid" : ["v-electricity"],
+      "caveLiquidSeedDensityRange" : [1, 3],
+      "encloseLiquids" : true,
       "biome" : [
-        [0, [ "v-voltagewastes" ]]
+        [0, [ "v-voltagewastes", "v-voltagewastesoxidized" ]]
       ],
       "subRegion" : []
     }
@@ -117,7 +125,6 @@
     "path" : "/regionTypes/v-shallowundergroundvoltage",
     "value" : {
       "fgCaveSelector" : [ "normalCaves", "denseCaves", "sparseCaves" ],
-      //"caveLiquid" : ["water"],
       "biome": [
         [1,["v-shallowundergroundvoltage", "v-shallowundergroundvoltageruins", "v-shallowundergroundvoltagetraps"]]
       ]
@@ -125,10 +132,45 @@
   },
   {
     "op" : "add",
+    "path" : "/regionTypes/v-deepvoltagewastes",
+    "value" : {
+      "fgCaveSelector" : ["normalCaves", "denseCaves"],
+      "caveLiquid" : ["v-electricity"],
+      "caveLiquidSeedDensityRange" : [1, 3],
+      "encloseLiquids" : true,
+      "biome" : [
+        [0, ["v-deepvoltagewastes"]]
+      ],
+      "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-coilcaves",
+    "value" : {
+      "fgCaveSelector" : ["normalCaves"],
+      "biome" : [
+        [0, ["v-coilcaves"]]
+      ],
+      "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-barrencaves",
+    "value" : {
+      "fgCaveSelector" : ["normalCaves"],
+      "biome" : [
+        [0, ["v-barrencaves"]]
+      ],
+      "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/regionTypes/v-undergroundvoltage",
     "value" : {
       "fgCaveSelector" : [ "normalCaves", "denseCaves", "sparseCaves" ],
-      //"caveLiquid" : ["water"],
       "biome": [
         [1,["v-undergroundvoltage", "v-undergroundvoltagetraps"]]
       ]
@@ -139,7 +181,6 @@
     "path" : "/regionTypes/v-deepundergroundvoltage",
     "value" : {
       "fgCaveSelector" : [ "normalCaves", "denseCaves", "sparseCaves" ],
-      //"caveLiquid" : ["water"],
       "biome": [
         [1,["v-deepundergroundvoltage"]]
       ]
@@ -150,7 +191,6 @@
     "path" : "/regionTypes/v-pairingcaves",
     "value" : {
       "fgCaveSelector" : [ "normalCaves" ],
-      //"caveLiquid" : ["water"],
       "biome": [
         [1,["v-pairingcaves"]]
       ]

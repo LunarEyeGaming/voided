@@ -1,0 +1,62 @@
+{
+  "projectileName" : "v-coilrock",
+  "image" : "coilrock.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "animationLoops" : false,
+
+  "timeToLive" : 5,
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "greyrockshard"
+        }
+      ]
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/melee/blunt_kill_stone1.ogg", "/sfx/melee/blunt_kill_stone2.ogg", "/sfx/melee/blunt_kill_stone3.ogg" ]
+    }
+  ],
+  
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "greyrockshard"
+        }
+      ]
+    },
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/objects/rock_crumble1.ogg" ]
+    }
+  ],
+  
+  "damageTeam" : {"type" : "indiscriminate"},
+
+  "physics" : "grenade",
+  "bounces" : 10,
+  "speed" : 100,
+
+  "damagePoly" : [ [4, 4], [4, -4], [-4, -4], [-4, 4] ],
+  "damageKind" : "hammer",
+  "piercing" : false,
+  
+  "scripts" : ["v-coilrock.lua"],
+  "scriptDelta" : 1,
+  
+  "smashableRange" : 5,
+  "smashTreasurePool" : "v-coilrockTreasure"
+}

@@ -1,0 +1,66 @@
+{
+  "globalTagDefaults" : {
+    "glowOpacity" : "00"
+  },
+
+  "animatedParts" : {
+    "parts" : {
+      "coil" : {
+        "properties" : {
+          "centered" : false,
+          "image" : "<partImage>"
+        }
+      },
+      "glow" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : true,
+          "zLevel" : 1,
+          "image" : "<partImage>?multiply=ffffff<glowOpacity>"
+        }
+      }
+    }
+  },
+  
+  "lights" : {
+    "glow" : {
+      "position" : [5, 5],
+      "active" : false,
+      "color" : [0, 0, 0]
+    }
+  },
+  
+  "particleEmitters" : {
+    "spark" : {
+      "offsetRegion" : [2, 0, 6, 10],
+      "burstCount" : 15,
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/electroshock/electroshock.animation",
+            "timeToLive" : 0.2,
+            "rotation" : 0,
+            "initialVelocity" : [0, 0],
+            "fullbright" : true,
+            "layer" : "front",
+            "variance" : {
+              "rotation" : 180
+            }
+          }
+        }
+      ]
+    }
+  },
+  
+  "sounds" : {
+    "whir" : {
+      "pool" : ["/sfx/interface/hyperspace_loop.ogg"],
+      "rangeMultiplier" : 1.5
+    },
+    "spark" : {
+      "pool" : ["/sfx/melee/tesla_shock_kill.ogg"],
+      "rangeMultiplier" : 1.5
+    }
+  }
+}

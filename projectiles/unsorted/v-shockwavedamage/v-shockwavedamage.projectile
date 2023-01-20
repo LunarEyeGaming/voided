@@ -9,5 +9,18 @@
   "movementSettings" : {
     "collisionEnabled" : false
   },
+  "actionOnReap" : [
+    {
+      "action" : "particle",
+      "specification" : {
+        "type" : "ember",
+        "color" : [0, 0, 0, 0],
+        "light" : [100, 100, 150],
+        "collidesForeground" : false,
+        "fade" : 10,
+        "timeToLive" : 0.1
+      }
+    }
+  ],
   "timeToLive" : 0.0
 }
