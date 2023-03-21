@@ -13,5 +13,5 @@ function update(dt)
   if poisonAmount > poisonTolerance then
     status.modifyResource("health", -(poisonAmount - poisonTolerance) * damageRate * dt)
   end
-  world.debugText("poisonAmount: %s / %s \ndamage: %s", string.format("%.1f", poisonAmount), poisonTolerance, math.max(0, (poisonAmount - poisonTolerance) * damageRate * dt), mcontroller.position(), "green")
+  --world.debugText("poisonAmount: %s / %s \ndamage: %s", string.format("%.1f", poisonAmount), poisonTolerance, math.max(0, (poisonAmount - poisonTolerance) * damageRate * dt), mcontroller.position(), "green")
 end

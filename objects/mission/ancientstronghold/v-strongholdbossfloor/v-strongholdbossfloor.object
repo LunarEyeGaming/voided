@@ -20,7 +20,7 @@
   "orientations" : [
     {
       "image" : "strongholdbossfloor.png:1",
-      "imagePosition" : [-8, 0],
+      "imagePosition" : [-16, 0],
       "direction" : "right",
 
       "renderLayer" : "ForegroundTile",
@@ -44,7 +44,7 @@
   "translationConfig" : {
     "duration" : 1,
     "distance" : 36,
-    "direction" : -1,
+    "direction" : 1,
     "useHorizontal" : true,
     "isSolid" : true,
     "openMaterial" : "metamaterial:objectsolid",
@@ -58,5 +58,5 @@
   "animationParts" : {
     "wall" : "strongholdbossceiling.png"
   },
-  "animationPosition" : [-8, 0]
+  "animationPosition" : [-16, 0]
 }

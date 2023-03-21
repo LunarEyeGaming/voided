@@ -1,7 +1,19 @@
+--[[
+  Script for a giant electromagnetic coil. Handles the behavior of the coil and the rendering of the warning zone. The script is used solely by the v-giantcoil object. While active, the coil attracts rocks to its center, which drop a variety of minerals, and it cycles between active and inactive on its own. This transition between active and inactive is gradual. Throughout a cycle, the variable "powerLevel" controls a variety of factors and can range from 0 to 1, inclusive. The following variables are directly proportional to powerLevel, with their possible value ranges listed in parentheses: attractSpeed (0 to maxAttractSpeed), attractForce (0 to maxAttractForce), attractRange (0 to maxAttractRange), the volume and pitch of the "whir" sound (whirStartVolume to whirEndVolume and whirStartPitch to whirEndPitch respectively), the alpha value of the "glow" part (0 to 255), the brightness of the "glow" light (0 red, 0 green, 0 blue to the corresponding channels of glowLightColor), and the time interval to which to spawn the rocks (startSpawnRockInterval to endSpawnRockInterval).
+  The following describes the behavior of the coil:
+    1. On initialization, waits until a player is in close proximity; waits inactiveTime seconds and then activates.
+    2. It spends a certain amount of time powering up.
+    3. Spends a certain amount of time at maximum power
+    4. Spends a certain amount of time powering down.
+    5. Waits inactiveTime seconds and repeats step 2.
+  All time-based values are represented in seconds.
+]]
+
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/voidedutil.lua"
 
+-- Declare *a lot* of script variables.
 local inactiveTime
 local activationTime
 local activeTime
@@ -52,8 +64,7 @@ function init()
   maxAttractForce = config.getParameter("maxAttractForce")  -- Maximum control force to apply to projectiles
   -- Maximum target speed of the affected projectiles (in blocks per second)
   maxAttractSpeed = config.getParameter("maxAttractSpeed")
-  -- The maximum range (in blocks) of the magnetic attraction. This determines the maximum range to spawn and attract
-  -- projectiles.
+  -- The maximum range of the magnetic attraction. This determines the maximum range to spawn and attract projectiles.
   maxAttractRange = config.getParameter("maxAttractRange")
 
   centerOffset = config.getParameter("centerOffset")

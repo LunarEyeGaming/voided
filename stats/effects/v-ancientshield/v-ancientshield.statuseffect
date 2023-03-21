@@ -1,7 +1,12 @@
 {
   "name" : "v-ancientshield",
 
-  "effectConfig" : {},
+  "effectConfig" : {
+    "pulseOpacity" : 0.2,
+    "pulseDarkColor" : [106, 34, 132],
+    "pulseBrightColor" : [210, 156, 231],
+    "pulsePeriod" : 0.5
+  },
   "defaultDuration" : 1.0,
 
   "scripts" : [

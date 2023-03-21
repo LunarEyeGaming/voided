@@ -9,7 +9,8 @@
       "position": {"type": "position", "value": null},
       "speed": {"type": "number", "value": 1},
       "controlForce": {"type": "number", "value": 100},
-      "correctionStepSize": {"type": "number", "value": 0.03}
+      "correctionStepSize": {"type": "number", "value": 0.03},
+      "avoidSurfaces": {"type": "bool", "value": false}
     },
     "category": "v-monster",
     "script": "/scripts/actions/v-monster.lua",

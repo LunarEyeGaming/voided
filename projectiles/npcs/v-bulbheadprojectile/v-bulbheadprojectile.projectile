@@ -1,0 +1,34 @@
+{
+  "projectileName" : "v-bulbheadprojectile",
+  "image" : "bulbheadprojectile.png",
+  "animationCycle" : 0.1,
+  "lightColor" : [100, 100, 150],
+  "frameNumber" : 1,
+  "timeToLive" : 5,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "grenade",
+  "bounces" : 0,
+  "emitters" : [ "electricswoosh" ],
+  "damageKind" : "electric",
+  "piercing" : false,
+  
+  "actionOnReap" : [
+    {
+      "action" : "sound",
+      "options" : ["/sfx/gun/lightningcoil1.ogg", "/sfx/gun/lightningcoil2.ogg", "/sfx/gun/lightningcoil3.ogg"]
+    }
+  ],
+
+  "speed" : 20,
+  
+  "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
+  
+  "monsterType" : "v-shockwave",
+  "spawnOffset" : [0, 0],
+  "shockwaveDamageFactor" : 0.75,
+  "monsterParameters" : {
+    "maxArea" : 200
+  }
+}

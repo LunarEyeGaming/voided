@@ -1,0 +1,49 @@
+{
+  "name" : "v-voltageatmosphere",
+  "friendlyName" : "Electrified Atmosphere",
+
+  "parallax" : "/parallax/atmosphere/atmosphere.parallax",
+
+  "spawnProfile" : {
+    "groups" : [
+      {
+        "select" : 2,
+        "pool" : [
+          [ 1.0, "v-electricelemental" ],
+          [ 1.0, "v-bulbhead" ]
+        ]
+      },
+      {
+        "select" : 1,
+        "pool" : "generatedFlying"
+      },
+      {
+        "select" : 1,
+        "pool" : [
+          [ 0.3, "passiveLargeFlying" ],
+          [ 0.7, "aggroLargeFlying" ]
+        ]
+      }
+    ],
+    "monsterParameters" : {
+      "statusSettings" : {
+        "stats" : {
+          "electricResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonResistance" : {
+            "baseValue" : -0.25
+          },
+          "electricStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 15.0
+          }
+        }
+      }
+    }
+  },
+
+  "hueShiftOptions" : [0]
+}

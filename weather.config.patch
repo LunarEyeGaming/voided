@@ -14,7 +14,8 @@
     "path": "/v-voltageStormy",
     "value": [
       [0.75, "v-copperstorm"],
-      [0.25, "v-lightningstorm"]
+      [0.20, "v-lightningstorm"],
+      [0.05, "v-coppersuperstorm"]
     ]
   },
   {
@@ -28,7 +29,8 @@
     "op": "add",
     "path": "/v-voltageEternalStorm",
     "value": [
-      [1.0, "v-copperstorm"]
+      [0.75, "v-copperstorm"],
+      [0.25, "v-coppersuperstorm"]
     ]
   },
   {
@@ -46,21 +48,23 @@
     "path": "/v-voltageStormy2",
     "value": [
       [0.75, "v-copperstorm2"],
-      [0.25, "v-lightningstorm"]
+      [0.20, "v-lightningstorm"],
+      [0.05, "v-coppersuperstorm2"]
     ]
   },
   {
     "op": "add",
     "path": "/v-voltageEternalStorm2",
     "value": [
-      [1.0, "v-copperstorm2"]
+      [0.75, "v-copperstorm2"],
+      [0.25, "v-coppersuperstorm2"]
     ]
   },
   {
     "op": "add",
     "path": "/v-voltageTest",
     "value": [
-      [1.0, "v-lightningstorm"]
+      [1.0, "v-coppersuperstorm"]
     ]
   }
 ]

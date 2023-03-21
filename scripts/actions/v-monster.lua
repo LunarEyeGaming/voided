@@ -7,7 +7,9 @@ require "/scripts/poly.lua"
 -- param position
 -- param speed
 -- param controlForce
--- param correctionStepSize - Parameter specifying the precision to which the target angle should be corrected (in cases where the monster is moving away from its target) to avoid getting stuck in a wall.
+-- param correctionStepSize (optional) - Parameter specifying the precision to which the target angle should be 
+--     corrected (in cases where the monster is moving away from its target) to avoid getting stuck in a wall.
+-- param avoidSurfaces (optional) - True if the entity should avoid getting stuck in surfaces
 function v_rangedFlyApproach(args, board, _, dt)
   while true do
     -- Fly through platforms
@@ -17,16 +19,20 @@ function v_rangedFlyApproach(args, board, _, dt)
     local distance = world.magnitude(args.position, mcontroller.position())
     if distance < args.minRange then
       -- Fly away from the player
-      -- local angle = vec2.angle(direction)
-      -- local fleeAngle = _getFleeAngle(angle, args.speed, args.correctionStepSize, dt)
-      -- if fleeAngle then
-        -- local direction = vec2.rotate(direction, fleeAngle)
-        -- mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), args.controlForce)
-        -- mcontroller.controlFace(util.toDirection(direction[1]))
-      -- end
-      local direction = vec2.rotate(direction, math.pi)
-      mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), args.controlForce)
-      mcontroller.controlFace(util.toDirection(direction[1]))
+      if args.avoidSurfaces then
+        -- Avoid surfaces
+        local angle = vec2.angle(direction)
+        local fleeAngle = _getFleeAngle(angle, args.speed, args.correctionStepSize, dt)
+        if fleeAngle then
+          local direction = vec2.rotate(direction, fleeAngle)
+          mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), args.controlForce)
+          mcontroller.controlFace(util.toDirection(direction[1]))
+        end
+      else
+        local direction = vec2.rotate(direction, math.pi)
+        mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), args.controlForce)
+        mcontroller.controlFace(util.toDirection(direction[1]))
+      end
     elseif distance > args.maxRange then
       -- Fly toward player
       mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), args.controlForce)
@@ -93,11 +99,13 @@ end
 -- This makes enemies very unpredictable for some reason.
 function _getFleeAngle(targetAngle, speed, step, dt)
   local initialFleeAngle = util.wrapAngle(targetAngle + math.pi)
-  -- fleeAngle1 will be evaluated. If it ends up making it approach the target, simply return the angle correction in the other direction.
+  -- fleeAngle1 will be evaluated. If it ends up making it approach the target, simply return the angle correction in 
+  -- the other direction.
   local fleeAngle1 = _correctAngle(initialFleeAngle, speed, step, dt)
   if util.wrapAngle(math.abs(fleeAngle1 - targetAngle)) < math.pi / 2 then
     return _correctAngle(initialFleeAngle, speed, -step, dt)
   end
+
   return fleeAngle1
 end
 

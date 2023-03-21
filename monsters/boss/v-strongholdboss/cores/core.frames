@@ -1,11 +1,12 @@
 {
   "frameGrid" : {
     "size" : [38, 38],
-    "dimensions" : [5, 4],
+    "dimensions" : [5, 5],
     "names" : [
       [ "purple.1", "ptob.1", "ptob.2", "ptob.3", "blue.1" ],
       [ "tele.1", "tele.2", "tele.3", "tele.4", "tele.5" ],
-      [ "dying.1", "dying.2", "dying.3", "teleportstartblue.1" ],
+      [ "dying.1", "dying.2", "dying.3" ],
+      [ "teleportstartblue.1", "teleportstartblue.2", "teleportstartblue.3", "teleportstartblue.4" ],
       [ "dying2.1", "dying2.2" ]
     ]
   },
@@ -23,10 +24,6 @@
     "teleportendpurple.2" : "teleportstartpurple.3",
     "teleportendpurple.3" : "teleportstartpurple.2",
     "teleportendpurple.4" : "teleportstartpurple.1",
-
-    "teleportstartblue.2" : "dying.2",
-    "teleportstartblue.3" : "dying.3",
-    "teleportstartblue.4" : "dying2.1",
 
     "teleportendblue.1" : "teleportstartblue.4",
     "teleportendblue.2" : "teleportstartblue.3",

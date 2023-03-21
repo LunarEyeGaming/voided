@@ -27,7 +27,7 @@
   "hylotlDescription" : "A very ancient furnace.",
   "novakidDescription" : "Good for smeltin' things that an Atomic Furnace can't.",
 
-  "inventoryIcon" : "icon.png",
+  "inventoryIcon" : "icon2.png",
   "orientations" : [
     {
       "imageLayers" : [ { "image" : "ancientfurnace.png:<frame>", "fullbright" : true }, { "image" : "ancientfurnacelit.png:<frame>" } ],
@@ -36,14 +36,8 @@
       "lightPosition" : [0, 1],
 
       "imagePosition" : [-16, 0],
-      "frames" : 40,
-      "animationCycle" : 4.0,
-      "spaces" : [
-        [-2, 3], [-1, 3], [0, 3], [1, 3],
-        [-2, 2], [-1, 2], [0, 2], [1, 2],
-        [-2, 1], [-1, 1], [0, 1], [1, 1],
-        [-2, 0], [-1, 0], [0, 0], [1, 0]
-      ],
+      "frames" : 4,
+      "animationCycle" : 0.4,
 
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]
@@ -54,14 +48,8 @@
       "lightPosition" : [0, 1],
 
       "imagePosition" : [-16, 0],
-      "frames" : 40,
-      "animationCycle" : 4.0,
-      "spaces" : [
-        [-1, 3], [0, 3], [1, 3], [2, 3],
-        [-1, 2], [0, 2], [1, 2], [2, 2],
-        [-1, 1], [0, 1], [1, 1], [2, 1],
-        [-1, 0], [0, 0], [1, 0], [2, 0]
-      ],
+      "frames" : 4,
+      "animationCycle" : 0.4,
 
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]

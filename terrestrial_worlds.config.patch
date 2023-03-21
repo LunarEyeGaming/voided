@@ -11,6 +11,9 @@
       "threatRange" : [8, 8],
       "gravityRange" : [80, 100],
       "layers" : {
+        "atmosphere" : {
+          "primaryRegion" : [ "v-voltageatmosphere" ]
+        },
         "surface" : {
           "primaryRegion" : [ "v-voltage" ],
           "secondaryRegions" : [ "v-voltagespikes", "v-voltagewastes" ],
@@ -22,8 +25,8 @@
         },
         "subsurface" : {
           "primaryRegion" : ["v-shallowundergroundvoltage"],
-          "secondaryRegions" : [ "v-deepvoltagewastes", "v-coilcaves", "v-barrencaves" ],
-          //"secondaryRegions" : [ "v-coilcaves" ],
+          //"secondaryRegions" : [ "v-deepvoltagewastes", "v-coilcaves", "v-barrencaves" ],
+          "secondaryRegions" : [ "v-coilcaves" ],
           "secondaryRegionCount" : [1, 1]
         },
         "underground1" : {
@@ -50,6 +53,16 @@
   },
   {
     "op" : "add",
+    "path" : "/regionTypes/v-voltageatmosphere",
+    "value" : {
+      "blockSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-voltageatmosphere", "v-voltageatmosphererusty" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/regionTypes/v-voltage",
     "value" : {
       "blockSelector" : [ "remixedMildSurface", "remixedStepsSurface", "remixedStepsSurfaceLarge", "remixedSurface" ],
@@ -57,6 +70,7 @@
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
         [0, [ "v-voltage", "v-voltagerusty" ]]
+        // [0, [ "v-voltage" ]]
       ],
       "subRegion" : ["v-voltagedesert", "rust", "v-voltageforest"]
       //"subRegion" : ["v-voltagedesert"]
