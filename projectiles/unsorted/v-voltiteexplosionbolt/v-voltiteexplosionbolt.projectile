@@ -4,20 +4,27 @@
   "animationCycle" : 0.15,
   "timeToLive" : 0.2,
   "frameNumber" : 6,
+  "power" : 100,
   "speed" : 250,
   "animationLoops" : false,
   "flippable" : true,
   "onlyHitTerrain" : true,
   "lightColor" : [80, 40, 140],
   
-  "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
+  "scripts" : ["v-voltiteexplosionbolt.lua"],
   
-  "boltPower" : 1,
+  "monsterType" : "v-shockwave",
+  "monsterParameters" : {},
   
+  "maxDamage" : 1200,
+  "maxAreaMultiplier" : 200
+  
+  /* "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
+    
   "monsterType" : "v-shockwave",
   "spawnOffset" : [0, 0],
   "shockwaveDamageFactor" : 0.5,
   "monsterParameters" : {
     "maxArea" : 200
-  }
+  } */
 }

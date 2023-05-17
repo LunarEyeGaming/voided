@@ -1,7 +1,7 @@
 [
   {
     "op" : "add",
-    "path" : "/v-climbingArcTrap",
+    "path" : "/v-coreLightningSpawnerSpawner",
     "value" : {
       "type" : "periodic",
 
@@ -9,8 +9,7 @@
       "alpha" : 1.0,
       "beta" : 1.0,
 
-      // Modulus is 1 so that something is placed every block on the surface.
-      "modulus" : 1,  // If modulus is n, place something every nth block
+      "modulus" : 100,  // If modulus is n, place something every nth block
       "modulusVariance" : 0,  // Adds a random element m to modulus. Now modulus will be between n - m and n + m.
 
       // Offset is set to 1 to guarantee that an object is placed at any given position on the surface.

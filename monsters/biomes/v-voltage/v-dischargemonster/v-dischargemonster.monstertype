@@ -33,7 +33,8 @@
       "maxRange" : 30,
       "minOpacity" : 0,
       "maxOpacity" : 1,
-      "warningImage" : "/monsters/biomes/v-voltage/v-dischargemonster/warning.png"
+      "warningImage" : "/monsters/biomes/v-voltage/v-dischargemonster/warning.png",
+      "renderLayer" : "ForegroundEntity+10"
     },
   
     "lightningConfig" : {
@@ -55,13 +56,14 @@
 
     "movementSettings" : {
       "gravityEnabled" : false,
-      "collisionPoly" : [ [-1.0, -1.0], [1.0, -1.0], [1.0, 1.0], [-1.0, 1.0] ],
+      // "collisionPoly" : [ [-1.5, -2.0], [1.5, -2.0], [1.5, 2.0], [-1.5, 2.0] ],
+      "collisionPoly" : [ [-0.5, -2.0], [-1.5, -1.0], [-1.5, 1.0], [-0.5, 2.0], [0.5, 2.0], [1.5, 1.0], [1.5, -1.0], [0.5, -2.0] ],
 
       "mass" : 1.0,
-      "flySpeed" : 20,
-      "airFriction" : 0.25,
+      "flySpeed" : 10,
+      "airFriction" : 0.0,
       "airForce" : 200.0,
-      "physicsEffectCategories" : ["boss"]
+      "bounceFactor" : 1.0
     },
 
     "knockoutTime" : 0.3,
@@ -106,7 +108,7 @@
           "baseValue" : 9999
         },
         "maxHealth" : {
-          "baseValue" : 300
+          "baseValue" : 100
         },
         "protection" : {
           "baseValue" : 0.0

@@ -1,0 +1,29 @@
+{
+  "objectName" : "v-corelightningspawnerspawner",
+  "colonyTags" : ["evil"],
+  "printable" : false,
+  "scannable" : false,
+  "rarity" : "Legendary",
+  "description" : "Not intended to be obtained",
+  "shortdescription" : "Core Lightning Spawner Spawner",
+  "race" : "generic",
+
+  "category" : "trap",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "imagebak.png",
+      "imagePosition" : [0, 0],
+
+      "spaceScan" : 0.1
+    }
+  ],
+
+  "scripts" : [ "v-corelightningspawnerspawner.lua" ],
+  "scriptDelta" : 1,
+  
+  "health" : 5,
+  "smashOnBreak" : true
+}

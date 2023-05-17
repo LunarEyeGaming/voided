@@ -1,6 +1,7 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/poly.lua"
+require "/scripts/actions/crawling.lua"
 
 -- param minRange
 -- param maxRange
@@ -81,6 +82,57 @@ function v_flyToNearerPosition(args, board)
 
   mcontroller.controlFly({0,0})
   return true
+end
+
+-- Variant of the crawl() behavior node from vanilla that allows for a configurable "testDistance," which determines
+-- how far from the monster's collision poly the ground has to be, as well as a way to configure the control force that
+-- keeps the monster from slipping off a ledge.
+-- param direction
+-- param run
+-- param testDistance
+-- param stickForce
+-- output headingDirection
+-- output headingAngle
+function v_crawl(args, board)
+  local bounds = mcontroller.boundBox()
+  local size = bounds[3] - bounds[1]
+
+  local groundDirection = findGroundDirection(args.testDistance)
+  if not groundDirection then return false end
+
+  local baseParameters = mcontroller.baseParameters()
+  local moveSpeed = args.run and baseParameters.runSpeed or baseParameters.walkSpeed
+
+  local headingAngle
+  while true do
+    local groundDirection = findGroundDirection(args.testDistance)
+
+    if groundDirection then
+      if not headingAngle then
+        headingAngle = (math.atan(groundDirection[2], groundDirection[1]) + math.pi / 2) % (math.pi * 2)
+      end
+
+      if args.direction == nil then return false end
+
+      headingAngle = adjustCornerHeading(headingAngle, args.direction)
+
+      local groundAngle = headingAngle - (math.pi / 2)
+      mcontroller.controlApproachVelocity(vec2.withAngle(groundAngle, moveSpeed), args.stickForce)
+
+      local moveDirection = vec2.rotate({args.direction, 0}, headingAngle)
+      mcontroller.controlApproachVelocityAlongAngle(math.atan(moveDirection[2], moveDirection[1]), moveSpeed, 2000)
+
+      mcontroller.controlParameters({
+        gravityEnabled = false
+      })
+
+      coroutine.yield(nil, {headingDirection = vec2.withAngle(headingAngle), headingAngle = headingAngle})
+    else
+      break
+    end
+  end
+
+  return false, {headingDirection = {1, 0}, forwardAngle = 0}
 end
 
 function _correctAngle(angle, speed, step, dt)

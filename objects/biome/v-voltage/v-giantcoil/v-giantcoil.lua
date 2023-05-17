@@ -1,5 +1,14 @@
 --[[
-  Script for a giant electromagnetic coil. Handles the behavior of the coil and the rendering of the warning zone. The script is used solely by the v-giantcoil object. While active, the coil attracts rocks to its center, which drop a variety of minerals, and it cycles between active and inactive on its own. This transition between active and inactive is gradual. Throughout a cycle, the variable "powerLevel" controls a variety of factors and can range from 0 to 1, inclusive. The following variables are directly proportional to powerLevel, with their possible value ranges listed in parentheses: attractSpeed (0 to maxAttractSpeed), attractForce (0 to maxAttractForce), attractRange (0 to maxAttractRange), the volume and pitch of the "whir" sound (whirStartVolume to whirEndVolume and whirStartPitch to whirEndPitch respectively), the alpha value of the "glow" part (0 to 255), the brightness of the "glow" light (0 red, 0 green, 0 blue to the corresponding channels of glowLightColor), and the time interval to which to spawn the rocks (startSpawnRockInterval to endSpawnRockInterval).
+  Script for a giant electromagnetic coil. Handles the behavior of the coil and the rendering of the warning zone. The 
+  script is used solely by the v-giantcoil object. While active, the coil attracts rocks to its center, which drop a 
+  variety of minerals, and it cycles between active and inactive on its own. This transition between active and inactive
+  is gradual. Throughout a cycle, the variable "powerLevel" controls a variety of factors and can range from 0 to 1, 
+  inclusive. The following variables are directly proportional to powerLevel, with their possible value ranges listed in
+  parentheses: attractSpeed (0 to maxAttractSpeed), attractForce (0 to maxAttractForce), attractRange (0 to 
+  maxAttractRange), the volume and pitch of the "whir" sound (whirStartVolume to whirEndVolume and whirStartPitch to 
+  whirEndPitch respectively), the alpha value of the "glow" part (0 to 255), the brightness of the "glow" light (0 red, 
+  0 green, 0 blue to the corresponding channels of glowLightColor), and the time interval to which to spawn the rocks 
+  (startSpawnRockInterval to endSpawnRockInterval).
   The following describes the behavior of the coil:
     1. On initialization, waits until a player is in close proximity; waits inactiveTime seconds and then activates.
     2. It spends a certain amount of time powering up.
@@ -11,6 +20,7 @@
 
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
+require "/scripts/rect.lua"
 require "/scripts/voidedutil.lua"
 
 -- Declare *a lot* of script variables.
@@ -86,7 +96,7 @@ function init()
   
   glowLightColor = config.getParameter("glowLightColor")
   
-  activationRange = config.getParameter("activationRange")
+  activationRegion = config.getParameter("activationRegion")
   
   warningEmitterInterval = 1 / emitterSpecs.emissionRate
   
@@ -122,8 +132,8 @@ end
 function firstInactive()
   powerLevel = 0
   
-  -- Wait for a player to be in close proximity to the coil.
-  while #world.playerQuery(center, activationRange) == 0 do
+  -- Wait for a player to see the coil.
+  while not world.isVisibleToPlayer(rect.translate(activationRegion, ownPosition)) do
     coroutine.yield()
   end
 
@@ -146,6 +156,9 @@ function inactive()
   state:set(powerUp)
 end
 
+--[[
+  A state where the coil gradually powers up (increasing in powerLevel)
+]]
 function powerUp()
   activate()
 
@@ -191,6 +204,9 @@ function deactivate()
   animator.setLightActive("glow", false)
 end
 
+--[[
+  Sucks in rocks from the ground based on the powerLevel variable. This function should be called multiple times
+]]
 function attractRocks()
   local attractForce = powerLevel * maxAttractForce
   local attractSpeed = powerLevel * maxAttractSpeed
@@ -204,7 +220,7 @@ function attractRocks()
     spawnTimer = spawnRockInterval
   end
   
-  -- Bring in nearby rocks
+  -- Apply a force toward the center to all rock projectiles within the attractRange.
   local queried = world.entityQuery(center, attractRange, {includedTypes = {"projectile"}})
 
   for _, proj in ipairs(queried) do
@@ -212,6 +228,9 @@ function attractRocks()
   end
 end
 
+--[[
+  Spawns a rock on a random surface.
+]]
 function spawnRock(range, speed)
   local position = findPosition(range)
   
@@ -235,9 +254,8 @@ end
   range: The maximum distance from a position to the center of the object
 ]]
 function findPosition(range)
-  -- Find a position adjacent to a solid tile that is not inside of an existing tile.
 
-  -- Get random point in circle of radius "range"
+  -- Get random point in a circle of radius "range" centered at "center"
   local offset = vec2.withAngle(util.randomInRange({0, 2 * math.pi}), util.randomInRange({0, range}))
   local startPosition = vec2.add(center, offset)
   
@@ -246,7 +264,7 @@ function findPosition(range)
   -- a. It is within range of the center
   -- b. It is adjacent to a solid tile
   -- c. It is not occupied by a tile
-  -- Stop at a square two times the range.
+  -- Stop at a square whose side length is two times the range.
   -- If no position is found, return nil.
   for halfSideLength = 1, range do
     local position = searchAlongPerimeter(startPosition, halfSideLength, function(pos)
@@ -309,6 +327,9 @@ function searchAlongPerimeter(squareCenter, halfSideLength, condition)
   end
 end
 
+--[[
+  Returns whether or not the given position is adjacent to a solid tile.
+]]
 function isGroundAdjacent(position)
   -- Go through all the spaces adjacent to the position and return true if any of them are occupied by a tile.
   for _, offset in ipairs({1, 0}, {0, 1}, {-1, 0}, {0, -1}) do

@@ -1,4 +1,5 @@
 require "/scripts/vec2.lua"
+require "/scripts/set.lua"
 
 -- Script for a damaging wave that propagates through a specific set of blocks.
 
@@ -28,9 +29,9 @@ function init()
   script.setUpdateDelta(1)
   animTicks = 3
 
-  local matAttributes = root.assetJson("/v-matattributes.config")  
-  validMats = matAttributes.conductiveMaterials
-  validMatMods = matAttributes.conductiveMatMods
+  local matAttributes = root.assetJson("/v-matattributes.config")
+  validMats = set.new(matAttributes.conductiveMaterials or {})
+  validMatMods = set.new(matAttributes.conductiveMatMods or {})
 
   projectileType = config.getParameter("projectileType", "v-shockwavedamage")
   projectileParameters = config.getParameter("projectileParameters", {})
@@ -49,7 +50,11 @@ function init()
   animTickTimer = animTicks
   
   previousBlocks = {}
-  nextBlocks = {{0, 0}}
+
+  -- nextBlocks = {{0, 0}}
+  nextBlocks = {}  -- vec2 set
+  vec2SetInsert(nextBlocks, {0, 0})
+
   animNextBlocks = {}
   local ownPos = mcontroller.position()
 
@@ -63,6 +68,11 @@ function init()
     shouldDieVar = true
   end)
   
+  -- local myStr = vec2FToString(center)
+  -- sb.logInfo("%s", myStr)
+  -- --local myVec = vec2FFromString(myStr)
+  -- vec2FFromString(myStr)
+  
   monster.setDamageBar("None")
 end
 
@@ -72,6 +82,8 @@ end
 
 function update(dt)
   -- sb.logInfo("area: %s", area)
+  -- If no new blocks were found or the shockwave has spread far enough, disappear.
+  --sb.logInfo("%s; %s", next(nextBlocks), nextBlocks)
   if area > maxArea or next(nextBlocks) == nil then
     disappearTimer = disappearTimer - dt
     if disappearTimer <= 0 then
@@ -88,14 +100,24 @@ function expandWave()
   --sb.logInfo("nextBlocks: %s", nextBlocks)
   --sb.logInfo("previousBlocks: %s", previousBlocks)
   local temp = {}
-  for _, block in ipairs(nextBlocks) do
+  -- for _, block in ipairs(nextBlocks) do
+  for blockStr, _ in pairs(nextBlocks) do
     for _, offset in ipairs({{1, 0}, {0, 1}, {-1, 0}, {0, -1}}) do
+      local block = vec2FFromString(blockStr)
+      --sb.logInfo("blockStr: %s", blockStr)
+      --sb.logInfo("block: %s", block)
       local adjacent = vec2.add(block, offset)
-      if not includesVec2(previousBlocks, adjacent) and not includesVec2(temp, adjacent) 
-        and (includes(validMats, world.material(vec2.add(center, adjacent), "foreground"))
-        or includes(validMatMods, world.mod(vec2.add(center, adjacent), "foreground"))) then
+      -- if not includesVec2(previousBlocks, adjacent) and not includesVec2(temp, adjacent) 
+        -- and (includes(validMats, world.material(vec2.add(center, adjacent), "foreground"))
+        -- or includes(validMatMods, world.mod(vec2.add(center, adjacent), "foreground"))) then
+      --sb.logInfo("previousBlocks Contains?: %s", vec2SetContains(previousBlocks, adjacent))
+      --sb.logInfo("temp Contains?: %s", vec2SetContains(temp, adjacent))
+      if not vec2SetContains(previousBlocks, adjacent) and not vec2SetContains(temp, adjacent) 
+        and (set.contains(validMats, world.material(vec2.add(center, adjacent), "foreground"))
+        or set.contains(validMatMods, world.mod(vec2.add(center, adjacent), "foreground"))) then
 
-        table.insert(temp, adjacent)
+        -- table.insert(temp, adjacent)
+        vec2SetInsert(temp, adjacent)
         area = area + 1
       end
     end
@@ -119,12 +141,16 @@ function placeWave()
     animTickTimer = animTicks
     animNextBlocks = {}
   end
-  for _, block in ipairs(nextBlocks) do
-    table.insert(animNextBlocks, block)
+  -- for _, block in ipairs(nextBlocks) do
+    -- table.insert(animNextBlocks, block)
+  for blockStr, _ in pairs(nextBlocks) do
+    --sb.logInfo("%s", blockStr)
+    table.insert(animNextBlocks, vec2FFromString(blockStr))
   end
 end
 
 -- Made with vec2 comparisons in mind
+-- Returns whether or not a table includes a vec2
 function includesVec2(t, v)
   for _, tv in ipairs(t) do
     if vec2.eq(tv, v) then
@@ -143,6 +169,33 @@ function includes(t, v)
   end
   
   return false
+end
+
+-- Returns a string representation of a Vec2F to be used for hash lookups.
+function vec2FToString(vector)
+  return string.format("%f,%f", vector[1], vector[2])
+end
+
+-- Returns a Vec2F from a string.
+function vec2FFromString(str)
+  -- Extract the strings containing the entries of the stringified Vec2F (which can be positive or negative)
+  local xStr, yStr = string.match(str, "(%-?%d+%.%d+),(%-?%d+%.%d+)")
+
+  return {tonumber(xStr), tonumber(yStr)}
+end
+
+-- Inserts a Vec2F into a set.
+function vec2SetInsert(set, vector)
+  local strVec = vec2FToString(vector)
+  
+  set[strVec] = true
+end
+
+-- Returns whether or not the given vector is in the given set (true if so and nil if not).
+function vec2SetContains(set, vector)
+  local strVec = vec2FToString(vector)
+  
+  return set[strVec]
 end
 
 function isExposed(position)

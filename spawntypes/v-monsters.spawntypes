@@ -22,6 +22,24 @@
     }
   },
   {
+    "name" : "v-electricelementalunderground",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.07,
+    "monsterType" : [
+      [1.0, "v-electricelemental"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
     "name" : "v-dischargemonster",
 
     "spawnParameters" : {
@@ -31,9 +49,27 @@
     },
 
     "groupSize" : [1, 1],
-    "spawnChance" : 0.01,
+    "spawnChance" : 0.07,
     "monsterType" : [
       [1.0, "v-dischargemonster"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-electriccrawler",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.07,
+    "monsterType" : [
+      [1.0, "v-electriccrawler"]
     ],
     "monsterParameters" : {
       "aggressive" : true
@@ -50,6 +86,42 @@
 
     "groupSize" : [1, 1],
     "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-amperecharger"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-balllightning",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-balllightning"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-amperechargerunderground",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.1,
     "monsterType" : [
       [1.0, "v-amperecharger"]
     ],

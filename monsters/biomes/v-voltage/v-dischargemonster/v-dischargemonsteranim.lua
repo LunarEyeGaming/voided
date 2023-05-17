@@ -30,7 +30,7 @@ function update()
     local drawable2 = copy(drawable)
     drawable2.position = vec2.add(drawable2.position, rect.randomPoint({-0.25, -0.25, 0.25, 0.25}))
     drawable2.image = string.format("%s?setcolor=4a4ab5?multiply=ffffff%02x", params.warningImage, math.max(math.min(math.floor(opacity * 255), 255), 0))
-    localAnimator.addDrawable(drawable2)
-    localAnimator.addDrawable(drawable)
+    localAnimator.addDrawable(drawable2, params.renderLayer)
+    localAnimator.addDrawable(drawable, params.renderLayer)
   end
 end

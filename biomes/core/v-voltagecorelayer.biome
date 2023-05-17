@@ -5,12 +5,19 @@
   "spawnProfile" : {
     "groups" : [
       {
-        "select" : 4,
+        "select" : 2,
         "pool" : [
           [ 1.0, "v-electricelemental" ],
-          [ 1.0, "v-dischargemonster" ],
           [ 1.0, "v-amperecharger" ],
-          [ 1.0, "v-voltspitter" ]
+          [ 1.0, "v-voltspitter" ],
+          [ 1.0, "v-electriccrawler" ]
+        ]
+      },
+      {
+        "select" : 1,
+        "pool" : [
+          [ 1.0, "v-dischargemonster" ],
+          [ 1.0, "v-balllightning" ]
         ]
       },
       {
@@ -78,6 +85,20 @@
         "objectSets" : [
           {
             "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { }
+          }
+        ]
+      }, 
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-coreLightningSpawnerSpawner",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-corelightningspawnerspawner" ] ],
             "parameters" : { }
           }
         ]

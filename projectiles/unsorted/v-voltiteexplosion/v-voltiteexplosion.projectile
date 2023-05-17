@@ -6,7 +6,6 @@
   "fullbright" : true,
   "animationCycle" : 1,
   "frameNumber" : 1,
-  "power" : 100,
   "speed" : 0,
   "onlyHitTerrain" : true,
   "timeToLive" : 0,
@@ -18,8 +17,7 @@
         {
           "action" : "projectile",
           "type" : "v-voltiteexplosionbolt",
-          "fuzzAngle" : 180,
-          "inheritDamageFactor" : 1
+          "fuzzAngle" : 180
         }
       ]
     },

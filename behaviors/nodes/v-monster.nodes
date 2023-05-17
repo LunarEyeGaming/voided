@@ -29,5 +29,22 @@
     "category": "v-monster",
     "script": "/scripts/actions/v-monster.lua",
     "output": {}
+  },
+  "v_crawl": {
+    "type": "action",
+    "name": "v_crawl",
+    "title": "",
+    "properties": {
+      "direction": {"type": "number", "value": null},
+      "run": {"type": "bool", "value": false},
+      "testDistance": {"type": "number", "value": null},
+      "stickForce": {"type": "number", "value": 50}
+    },
+    "category": "movement",
+    "script": "/scripts/actions/v-monster.lua",
+    "output": {
+      "headingAngle": {"type": "number", "key": null},
+      "headingDirection": {"type": "vec2", "key": null}
+    }
   }
 }

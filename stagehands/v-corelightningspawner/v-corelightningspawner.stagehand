@@ -1,0 +1,12 @@
+{
+  // This stagehand spawns core lightning.
+  "type" : "v-corelightningspawner",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-corelightningspawner/v-corelightningspawner.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-1, -1, 1, 1],
+
+  "statusEffects" : [ ]
+}

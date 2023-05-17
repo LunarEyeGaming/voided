@@ -21,6 +21,7 @@ function init()
   dt = script.updateDt()
   
   testVar = false
+  
 end
 
 function update()

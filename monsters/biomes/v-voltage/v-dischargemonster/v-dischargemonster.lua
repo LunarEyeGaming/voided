@@ -47,6 +47,7 @@ function update(dt)
   monster.setAnimationParameter("warningVectors", warningParams)
   warningParams = {}
   monster.setAnimationParameter("ownPosition", mcontroller.position())
+  updateVelocity()
 end
 
 states = {}
@@ -122,4 +123,24 @@ function drawLightning(progress, startPos, endPos)
   cfgCopy.worldEndPosition = endPos
 
   monster.setAnimationParameter("lightning", {cfgCopy})
+end
+
+--[[
+  Updates the velocity of the entity so that it always attempts to travel at the configured flySpeed (and is influenced
+  by external forces). If the speed is precisely 0, it will choose a random direction.
+]]
+function updateVelocity()
+  local params = mcontroller.baseParameters()
+  local velocityDirection = vec2.norm(mcontroller.velocity())
+  
+  -- If speed is not zero...
+  if vec2.mag(mcontroller.velocity()) ~= 0 then
+    -- Try to travel at the target speed without changing direction.
+    local velocityDirection = vec2.norm(mcontroller.velocity())
+    mcontroller.controlApproachVelocity(vec2.mul(velocityDirection, params.flySpeed), params.airForce)
+  else
+    -- Impart random velocity
+    local velocity = vec2.withAngle(util.randomInRange({0, 2 * math.pi}), params.flySpeed)
+    mcontroller.controlApproachVelocity(velocity, params.airForce)
+  end
 end
