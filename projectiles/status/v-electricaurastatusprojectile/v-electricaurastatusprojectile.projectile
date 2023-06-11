@@ -1,0 +1,236 @@
+{
+  "projectileName" : "v-electricaurastatusprojectile",
+  "physics" : "statuspod",
+  "bounces" : -1,
+  "timeToLive" : 1.5,
+  "speed" : 0,
+  "damageKindImage" : "icon.png",
+  "image" : "electricaurastatusprojectile.png",
+  "animationCycle" : 0.5,
+  "frameNumber" : 4,
+  "periodicActions" : [
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 0
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 45
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 90
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 135
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 180
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 225
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 270
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 315
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 0,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 22.5,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 45,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 67.5,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 90,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 112.5,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 135,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 157.5,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 180,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 202.5,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 225,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 247.5,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 270,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 292.5,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 315,
+      "config" : {
+        "speed" : 70
+      }
+    },
+    {
+      "time" : 0.75,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-electricburster",
+      "angle" : 337.5,
+      "config" : {
+        "speed" : 70
+      }
+    }
+  ],
+  "power" : 0,
+  "piercing" : true,
+  "damageKind" : "hidden",
+  "damageType" : "ignoresdef",
+  "damagePoly" : [ [-80, -80], [-80, 80], [80, 80], [80, -80]  ],
+  "flippable" : true,
+  "damageTeam" : { "type" : "indiscriminate" }
+}

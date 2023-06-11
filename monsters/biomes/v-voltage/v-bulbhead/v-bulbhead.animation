@@ -18,7 +18,10 @@
           "windup" : {
             "frames" : 3,
             "cycle" : 0.3,
-            "mode" : "end"
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/pteropod_windup.ogg"
+            }
           },
           "fire" : {
             "frames" : 4,

@@ -1,0 +1,34 @@
+{
+  "projectileName" : "v-teslagrenadestatusprojectile",
+  "physics" : "statuspod",
+  "bounces" : -1,
+  "timeToLive" : 1.5,
+  "speed" : 0,
+  "damageKindImage" : "icon.png",
+  "image" : "teslagrenadestatusprojectile.png",
+  "animationCycle" : 0.5,
+  "frameNumber" : 4,
+  "periodicActions" : [
+    {
+      "time" : 0.25,
+      "loop" : true,
+      "action" : "projectile",
+      "type" : "v-teslagrenade",
+      "fuzzAngle" : -250,
+      "config" : {
+        "power" : 500,
+        "speed" : 50,
+        "bounces" : -1,
+        "timeToLive" : 2.0,
+        "onlyHitTerrain" : true
+      }
+   }
+  ],
+  "power" : 0,
+  "piercing" : true,
+  "damageKind" : "hidden",
+  "damageType" : "ignoresdef",
+  "damagePoly" : [ [-80, -80], [-80, 80], [80, 80], [80, -80]  ],
+  "flippable" : true,
+  "damageTeam" : { "type" : "indiscriminate" }
+}

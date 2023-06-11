@@ -25,6 +25,7 @@ function update()
   teleporterState:update()
 end
 
+-- Plays the animation for the teleporter.
 function teleport(sourceId)
   local pos = object.position()
   local chains = {}

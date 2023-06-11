@@ -94,24 +94,6 @@
     }
   },
   {
-    "name" : "v-balllightning",
-
-    "spawnParameters" : {
-      "area" : "air",
-      "region" : "all",
-      "time" : "all"
-    },
-
-    "groupSize" : [1, 1],
-    "spawnChance" : 0.01,
-    "monsterType" : [
-      [1.0, "v-balllightning"]
-    ],
-    "monsterParameters" : {
-      "aggressive" : true
-    }
-  },
-  {
     "name" : "v-amperechargerunderground",
 
     "spawnParameters" : {
@@ -197,6 +179,24 @@
     }
   },
   {
+    "name" : "v-balllightning",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-balllightning"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
     "name" : "v-voltspitter",
 
     "spawnParameters" : {
@@ -255,6 +255,24 @@
         "7a7a7a" : "7b3d28",
         "9f9f9f" : "b45c3d"
       }
+    }
+  },
+  {
+    "name" : "v-wardrone",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-wardrone"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
     }
   },
   {

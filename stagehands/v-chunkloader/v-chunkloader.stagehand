@@ -1,0 +1,11 @@
+{
+  // This stagehand loads chunks
+  "type" : "v-chunkloader",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-chunkloader/v-chunkloader.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-1, -1, 1, 1],
+  "loadArea" : [-1, -1, 1, 1]
+}

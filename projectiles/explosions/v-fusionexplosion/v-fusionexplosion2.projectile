@@ -1,0 +1,21 @@
+{
+  "projectileName" : "v-fusionexplosion2",
+  "image" : "fusionexplosion2.png",
+  "timeToLive" : 0.495,
+  "animationCycle" : 0.495,
+  "frameNumber" : 9,
+  "fullbright" : true,
+  "speed" : 0,
+  "damagePoly" : [ [-40, 0], [-25, -25], [0, -40], [25, -25], [40, 0], [25, 25], [0, 40], [-25, 25] ],
+  "animationLoops" : false,
+  "piercing" : true,
+  "bounces" : -1,
+  "flippable" : true,
+  "lightColor" : [210, 156, 231],
+  "statusEffects" : [
+    "weakpoison"
+  ],
+  "power" : 20,
+  "damageKind" : "poisonplasma",
+  "knockback" : 30
+}

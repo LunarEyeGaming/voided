@@ -1,0 +1,364 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "body" : {
+        "priority" : 0,
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {
+            "properties" : {
+              "lightsOff" : [ "idle" ]
+            }
+          },
+          "aggro" : {
+            "frames" : 3,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "sfx/npc/boss/robotboss_turnhostile.ogg",
+              "lightsOn" : [ "idle" ]
+            }
+          },
+          "idle" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "loop"
+          }
+        }
+      },
+      "gun" : {
+        "priority" : 0,
+        "default" : "idle",
+        "states" : {
+          "idle" : { },
+          "windup" : {
+            "frames" : 4,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "charged",
+            "properties" : {
+              "immediateSound" : "/sfx/melee/charge_up15.ogg"
+            }
+          },
+          "charged" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          }
+        }
+      },
+      "blade" : {
+        "priority" : 0,
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "slashwindup" : {
+            "frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/tools/energypickaxe_start.ogg"
+            }
+          },
+          "slash" : {
+            "frames" : 4,
+            "cycle" : 0.1,
+            "mode" : "end",
+            "properties" : {
+              "immediateSoundPool" : [ "/sfx/melee/mech_energysword_swing1.ogg", 
+                  "/sfx/melee/mech_energysword_swing2.ogg", "/sfx/melee/mech_energysword_swing3.ogg",
+                  "/sfx/melee/mech_energysword_swing4.ogg" ],  // StarExtensions support
+              "immediateSound" : "/sfx/melee/mech_energysword_swing1.ogg"
+            }
+          },
+          "slashwinddown" : {
+            "frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/tools/energypickaxe_start.ogg"
+            }
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1,
+            "properties" : {
+              "immediateSoundPool" : ["/sfx/npc/boss/robotboss_pain1.ogg", "/sfx/npc/boss/robotboss_pain2.ogg",
+                  "/sfx/npc/boss/robotboss_pain3.ogg"],  // StarExtensions support
+              "immediateSound" : "/sfx/npc/boss/robotboss_pain1.ogg"
+            }
+          }
+        }
+      },
+      "releaseParticles" : {
+        "default" : "off",
+        "states" : {
+          "off" : {
+            "frames" : 1,
+            "properties" : {
+              "particleEmittersOff" : [ "releaseParticles" ]
+            }
+          },
+          "on" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "off",
+            "properties" : {
+              "particleEmittersOn" : [ "releaseParticles" ]
+            }
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          //"offset" : [0.875, 0.625]
+          "offset" : [0, 0]
+        },
+        "partStates" : {
+          "body" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive"
+              }
+            },
+            "aggro" : {
+              "properties" : {
+                "image" : "<partImage>:aggro.<frame>"
+              }
+            },
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "zLevel" : 5,
+          "anchorPart" : "body",
+          "fullbright" : true
+        },
+        "partStates" : {
+          "body" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive"
+              }
+            },
+            "aggro" : {
+              "properties" : {
+                "image" : "<partImage>:aggro.<frame>"
+              }
+            },
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt"
+              }
+            }
+          }
+        }
+      },
+      "frontdisc" : {
+        "properties" : {
+          "zLevel" : 15,
+          "transformationGroups" : [ "body" ],
+          "offset" : [-1.25, 0.1875],
+          "image" : "<partImage>"
+        }
+      },
+      "gun" : {
+        "properties" : {
+          "zLevel" : 10,
+          "transformationGroups" : [ "body", "aim" ],
+          "offset" : [0.5, -0.4375]
+        },
+        "partStates" : {
+          "gun" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "charged" : {
+              "properties" : {
+                "image" : "<partImage>:charged.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "gunfullbright" : {
+        "properties" : {
+          "zLevel" : 11,
+          "anchorPart" : "gun",
+          "fullbright" : true
+        },
+        "partStates" : {
+          "gun" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "charged" : {
+              "properties" : {
+                "image" : "<partImage>:charged.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "blade" : {
+        "properties" : {
+          "zLevel" : -1,
+          "transformationGroups" : [ "body" ],
+          "offset" : [3.625, 0.5],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "blade" : {
+            "slashwindup" : {
+              "properties" : {
+                "image" : "<partImage>:slashwindup.<frame>"
+              }
+            },
+            "slash" : {
+              "properties" : {
+                "image" : "<partImage>:slash.<frame>",
+                "damageArea" : [[-2.25, -1.25], [-1.75, 5.875], [0.5, 3.875], [2, 2.25], [2.625, -0.375], [1.625, -3.5], [-0.75, -5.625]]
+              }
+            },
+            "slashwinddown" : {
+              "properties" : {
+                "image" : "<partImage>:slashwinddown.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "body" : { "interpolated" : true },
+    "aim" : { "interpolated" : true }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+  
+  "lights" : {
+    "idle" : {
+      "active" : true,
+      "position" : [0, 0],
+      "color" : [74, 74, 181]
+    }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [
+        { "particle" : "electricswoosh1" },
+        { "particle" : "electricswoosh2" },
+        { "particle" : "electricswoosh1" },
+        { "particle" : "electricswoosh2" },
+
+        { "particle" : "deathfizz1left" },
+        { "particle" : "deathfizz1right" },
+        { "particle" : "deathfizz2left" },
+        { "particle" : "deathfizz2right" },
+        { "particle" : "deathfizz3left" },
+        { "particle" : "deathfizz3right" },
+        { "particle" : "deathfizz4left" },
+        { "particle" : "deathfizz4right" }
+      ]
+    },
+    "captureParticles" : {
+      "particles" : [
+        { "particle" : "monstercapture" }
+      ]
+    },
+    "releaseParticles" : {
+      "particles" : [
+        { "particle" : "monsterrelease" }
+      ]
+    },
+    "teleportOut" : {
+      "particles" : [
+        { "particle" : "monstercapture" }
+      ]
+    },
+    "teleportIn" : {
+      "particles" : [
+        { "particle" : "monsterrelease" }
+      ]
+    },
+    "levelUp" : {
+      "particles" : [
+        { "particle" : "monsterlevelup" }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
+    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+    "fire" : [ "/sfx/gun/elemental_lance.ogg" ]
+  }
+}

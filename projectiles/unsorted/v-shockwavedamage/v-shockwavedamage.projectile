@@ -10,8 +10,8 @@
     "collisionEnabled" : false
   },
   "actionOnReap" : [
-    {
-      "action" : "particle",
+    /* {
+      "action" : "particle",  // Maybe use as a "minimal particles" option.
       "specification" : {
         "type" : "ember",
         "color" : [0, 0, 0, 0],
@@ -19,6 +19,23 @@
         "collidesForeground" : false,
         "fade" : 10,
         "timeToLive" : 0.1
+      }
+    } */
+    {
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/teslabolt/teslabolt.animation",
+        "light" : [100, 100, 150],
+        "collidesForeground" : false,
+        "fullbright" : true,
+        "fade" : 10,
+        "size" : 0.5,
+        "layer" : "front",
+        "timeToLive" : 0.425,
+        "variance" : {
+          "rotation" : 180
+        }
       }
     }
   ],

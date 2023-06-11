@@ -16,8 +16,7 @@ local lockedModSectors
 local tickDelta
 local tickTimer
 
-local invalidationPeriod
-local invalidationTimer
+local invalidationTimeRange
 
 local sectorRange
 
@@ -34,11 +33,33 @@ function init()
   tickDelta = 4
   tickTimer = tickDelta
 
-  invalidationPeriod = 1000 * 60
+  invalidationTimeRange = {15 * 60, 30 * 60}
   
   sectorRange = 3  -- How many sectors to look (both horizontally and vertically) from the current sector.
   
   message.setHandler("tileBroken", handleBrokenTile)
+  
+  -- I so badly want a handler for when a tile gets placed!
+  for _, msgName in ipairs({"materialPlaced", "matPlaced", "matmodPlaced", "matModPlaced",
+                            "tileChanged", "materialChanged", "matChanged", "matmodChanged", "matModChanged",
+                            "tileUpdated", "materialUpdated", "matUpdated", "matmodUpdated", "matModUpdated", "positionTileDamaged"}) do
+    message.setHandler(msgName, function(msg)
+      sb.logInfo("%s", msg)
+    end)
+  end
+  
+  message.setHandler("v-updateSector", function(_, _, sector)
+    invalidateSector(sector)
+  end)
+  
+  
+  message.setHandler("v-updateRegion", function(_, _, region)
+    local sectors = getSectorsInRegion(region)
+
+    for _, sector in ipairs(sectors) do
+      invalidateSector(sector)
+    end
+  end)
 
   util.setDebug(true)
 end
@@ -144,8 +165,8 @@ function runUpdateHooks(dt)
         
         -- If an error occurred...
         if not status then
-          logScriptError(name, result)  -- Log the error
-          modFuncs[name] = nil  -- Unload problematic script
+          logScriptError(matMod.name, result)  -- Log the error
+          modFuncs[matMod.name] = nil  -- Unload problematic script
         end
       end
       
@@ -169,11 +190,12 @@ function querySectors()
 
       -- util.debugRect({pos1[1], pos1[2], pos2[1], pos2[2]}, isQueried(sector) and "green" or (isLoaded(sector) and "yellow" or "red"))
 
-      -- If it is loaded and hasn't been queried yet, query it.
+      -- If it is loaded, it hasn't been queried yet, and it was not locked, query it
       if isLoaded(sector) and not isQueried(sector) and not isLocked(sector) then
         local result = querySector(sector, matModsToQuery)
         
-        table.insert(queriedModSectors, {sector = sector, matMods = result, expiry = math.random(0, invalidationPeriod)})
+        table.insert(queriedModSectors, {sector = sector, matMods = result, 
+            expiry = math.random(invalidationTimeRange[1], invalidationTimeRange[2])})
       end
     end
   end
@@ -185,7 +207,7 @@ function cleanUpSectors()
   local i = 1
   while i <= #queriedModSectors do
     -- If the sector at i is not loaded or has expired, delete it. Otherwise, increment i.
-    if not isLoaded(queriedModSectors[i].sector) or queriedModSectors[i].expiry <= 0 then
+    if not isLoaded(queriedModSectors[i].sector) or queriedModSectors[i].expiry < 0 then
       -- showInvalidatedSector(queriedModSectors[i].sector, 1.0)
       table.remove(queriedModSectors, i)
     else

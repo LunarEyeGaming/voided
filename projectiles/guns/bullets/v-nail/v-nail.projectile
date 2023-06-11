@@ -1,0 +1,34 @@
+{
+  "projectileName" : "v-nail",
+  "physics" : "bullet",
+  "image" : "nail.png",
+  "damageKindImage" : "icon.png",
+  "speed" : 100,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 50,
+  "timeToLive" : 10,
+  "emitters" : [ ],
+  "damageKind" : "standardbullet",
+  
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "spark"
+        }
+      ]
+    }
+  ],
+  
+  "scripts" : ["v-nail.lua"],
+  "scriptDelta" : 1,
+  
+  "deadCollisionAction" : {
+    "action" : "projectile",
+    "type" : "v-stucknail",
+    "inheritDamageFactor" : 1
+  }
+}

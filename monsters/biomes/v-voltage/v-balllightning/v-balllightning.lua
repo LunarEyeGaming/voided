@@ -52,6 +52,8 @@ function init()
   targetSize = util.randomInRange(sizeRange)
   velocity = randomPointInCircle(maxSpeed)
   -- velocity and targetSize get initialized before they are used b/c sizeTimer and velocityTimer both are 0
+  
+  monster.setDamageBar("None")
 end
 
 function update(dt)

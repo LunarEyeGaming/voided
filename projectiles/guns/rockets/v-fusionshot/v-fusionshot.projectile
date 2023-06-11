@@ -1,0 +1,44 @@
+{
+  "projectileName" : "v-fusionshot",
+  "image" : "fusionshot.png",
+  "animationCycle" : 0.5,
+  "frameNumber" : 2,
+  "lightColor" : [34, 84, 130],
+  "pointLight" : true,
+  "fullbright" : true,
+
+  "speed" : 1,
+  "acceleration" : 160,
+  "physics" : "rocket",
+
+  "power" : 10.0,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  
+  "periodicActions" : [
+    {
+      "time" : 0.05,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-fusionshottrail/v-fusionshottrail.animation",
+        "position" : [0, 0],
+        "fullbright" : true,
+        "layer" : "back",
+        "destructionAction" : "fade",
+        "timeToLive" : 0.2,
+        "destructionTime" : 0.2
+      }
+    }
+  ],
+  
+  "scripts" : ["v-fusionshot.lua"],
+  "scriptDelta" : 1,
+  
+  "fuseRadius" : 3,
+  "explodeAction" : {
+    "action" : "config",
+    "file" : "/projectiles/explosions/v-fusionexplosion/v-lua-fusionexplosion.config"
+  }
+}

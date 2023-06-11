@@ -1,0 +1,14 @@
+{
+  "projectileName" : "v-matpropertiesupdater",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "piercing" : true,
+  "bounces" : -1,
+  "movementSettings" : {
+    "collisionEnabled" : false
+  },
+  "timeToLive" : 1.0,
+  "onlyHitTerrain" : true,
+  "speed" : 0,
+  
+  "scripts" : ["/scripts/projectiles/v-matpropertiesupdater.lua"]
+}

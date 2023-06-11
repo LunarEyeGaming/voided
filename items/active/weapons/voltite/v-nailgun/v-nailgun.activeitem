@@ -1,0 +1,102 @@
+{
+  "itemName" : "v-nailgun",
+  "price" : 1080,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "<todo>",
+  "shortdescription" : "Nail Gun",
+  "tooltipKind" : "gun",
+  "category" : "uniqueWeapon",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged","assaultrifle"],
+  "level" : 8,
+  
+  //"critChance" : 2,
+  //"critBonus" : 5,
+
+  "inventoryIcon" : [
+    { "image" : "nailgunicon.png" }
+  ],
+
+  "animation" : "v-nailgun.animation",
+  "animationParts" : {
+    "gun" : "nailgun.png",
+    "gunfullbright" : "nailgunfullbright.png",
+    "muzzleFlash" : "/items/active/weapons/ranged/muzzleflash.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : [ "/sfx/gun/v_nailgun_fire.ogg" ]
+    } /*,
+    "lights" : {
+      "muzzleFlash" : {
+        "color" : [150, 0, 150]
+      }
+    }*/
+  },
+
+  "baseOffset" : [0.0, 0.0],
+  "muzzleOffset" : [4.6875, 0.25],
+
+  "scripts" : ["/items/active/weapons/voltite/v-nailgun/v-nailgun.lua"],
+
+  "elementalType" : "physical",
+    
+  "whirMinPitch" : 1.0,
+  "whirMaxPitch" : 2.0,
+  "winddownTime" : 1.5,
+
+  "spinFrameCount" : 2,
+  "startSpinTime" : 0.05,
+  "endSpinTime" : 0.5,
+
+  "primaryAbility" : {
+    "scripts" : ["/items/active/weapons/voltite/v-nailgun/v-nailgunfire.lua"],
+    "class" : "NailGunFire",
+
+    "fireTime" : 0.05,
+    "baseDps" : 20,
+    "energyUsage" : 45,
+    "projectileCount" : 1,
+    "inaccuracy" : 0.07,
+    "fireType" : "auto",
+
+    "projectileType" : "v-nail",
+    "projectileParameters" : {},
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 3,
+        "weaponRotation" : 3,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "cooldown" : {
+        "duration" : 0.05,
+        "armRotation" : 3,
+        "weaponRotation" : 3,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  },
+
+  "altAbilityType" : "v-teslagrenadeability",
+  "altAbility" : {},
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

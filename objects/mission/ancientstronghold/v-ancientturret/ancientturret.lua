@@ -83,25 +83,6 @@ function update(dt)
   moveState:update()
   attackState:update()
 
-  -- world.debugText("currentAngle: %s\ntarget: %s\nactive: %s\nuseFov: %s", currentAngle, currentTarget, storage.active, storage.useFov, cameraPos, "green")
-  -- if currentTarget then
-    -- world.debugPoint(world.entityPosition(currentTarget), "blue")
-  -- end
-  -- if storage.useFov then
-    -- world.debugPoly({
-      -- cameraPos,
-      -- vec2.add(cameraPos, vec2.rotate({sightRadius, 0}, currentAngle + halfFov)),
-      -- vec2.add(cameraPos, vec2.rotate({sightRadius, 0}, currentAngle)),
-      -- vec2.add(cameraPos, vec2.rotate({sightRadius, 0}, currentAngle - halfFov))
-    -- }, "blue")
-  -- end
-  -- world.debugLine(cameraPos, vec2.add(cameraPos, vec2.rotate({storage.useFov and sightRadius or notFovSightRadius, 0}, currentAngle)), "green")
-  --world.debugText([[halfFov: %s
---sightRadius: %s
---outOfSightRadius: %s
---waitTime: %s
---turnTime: %s
---fireInterval: %s]], halfFov, sightRadius, outOfSightRadius, waitTime, turnTime, fireInterval, vec2.add(cameraPos, {0, -7.5}), "blue")
   updateLaser()
 end
 

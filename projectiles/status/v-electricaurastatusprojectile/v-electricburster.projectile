@@ -1,0 +1,29 @@
+{
+  "projectileName" : "v-electricburster",
+  "image" : "electricburster.png",
+  "animationCycle" : 0.4,
+  "lightColor" : [100, 100, 150],
+  "frameNumber" : 4,
+  "timeToLive" : 1.0,
+  "power" : 500,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "hover",
+  "movementSettings" : {
+    "collisionEnabled" : false
+  },
+  "bounces" : -1,
+  "emitters" : [ "electricswoosh" ],
+  "damageKind" : "electric",
+  "onlyHitTerrain" : true,
+  
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/electricexplosionknockback.config"
+    }
+  ],
+
+  "speed" : 35
+}

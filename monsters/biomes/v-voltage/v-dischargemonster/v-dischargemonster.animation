@@ -18,14 +18,20 @@
             "frames" : 4,
             "cycle" : 0.5,
             "mode" : "transition",
-            "transition" : "inactive"
+            "transition" : "inactive",
+            "properties" : {
+              "lightsOff" : ["glow"]
+            }
           },
           "inactive" : {},
           "warning" : {
             "frames" : 6,
             "cycle" : 0.5,
             "mode" : "transition",
-            "transition" : "active"
+            "transition" : "active",
+            "properties" : {
+              "lightsOn" : ["glow"]
+            }
           }
         }
       },
@@ -143,6 +149,11 @@
     "glow" : {
       "active" : true,
       "color" : [74, 74, 181],
+      "position" : [0, 0]
+    },
+    "inactiveglow" : {
+      "active" : true,
+      "color" : [19, 19, 77],
       "position" : [0, 0]
     }
   },

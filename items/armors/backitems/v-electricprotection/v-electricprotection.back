@@ -2,12 +2,13 @@
   "itemName" : "v-electricprotectionback",
   "price" : 1000,
   "inventoryIcon" : "electricprotectionicon.png",
-  "tooltipKind" : "v-baseaugmentmythical",
+  "tooltipKind" : "baseaugment",
   "rarity" : "Legendary",
+  "customRarity" : "Mythical",
   "pickupQuestTemplates" : [ ],
   "category" : "enviroProtectionPack",
   "description" : "This EPP creates an insulation field around you. Helpful on ^red;dangerously conductive^reset; planets.",
-  "shortdescription" : "^#a600cc;Insulating EPP^reset;",
+  "shortdescription" : "Insulating EPP",
 
   "maleFrames" : "back.png",
   "femaleFrames" : "back.png",
@@ -64,5 +65,7 @@
     { "ffca8a" : "eab3db", "e0975c" : "d35eae", "a85636" : "97276d", "6f2919" : "59163f" },
     // BROWN
     { "ffca8a" : "ccae7c", "e0975c" : "a47844", "a85636" : "754c23", "6f2919" : "472b13" }
-  ]
+  ],
+
+  "builder" : "/items/buildscripts/v-buildarmor.lua"
 }

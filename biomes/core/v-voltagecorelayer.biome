@@ -10,7 +10,8 @@
           [ 1.0, "v-electricelemental" ],
           [ 1.0, "v-amperecharger" ],
           [ 1.0, "v-voltspitter" ],
-          [ 1.0, "v-electriccrawler" ]
+          [ 1.0, "v-electriccrawler" ],
+          [ 1.0, "v-wardrone" ]
         ]
       },
       {
@@ -66,10 +67,10 @@
 
   "musicTrack" : {
     "day" : {
-      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/body-electric-loop.ogg", "/music/desert-exploration2.ogg", "/music/drosera.ogg" ]
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/body-electric-loop.ogg", "/music/desert-exploration2.ogg", "/music/scorian-flow.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/body-electric-loop.ogg", "/music/desert-exploration2.ogg", "/music/drosera.ogg" ]
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/body-electric-loop.ogg", "/music/desert-exploration2.ogg", "/music/scorian-flow.ogg" ]
     }
   },
 
@@ -121,7 +122,7 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1, "statuspod" ] ],
+            "pool" : [ [1, "v-statuspodvoltage" ] ],
             "parameters" : { }
           }
         ]
@@ -133,7 +134,7 @@
         "distribution" : "/biomes/distributions.config:undergroundweaponChests",
 
         "type" : "treasureBox",
-        "treasureBoxSets" : [ "weaponChest" ]
+        "treasureBoxSets" : [ "v-electricWeaponChest" ]
       }
     ]
   },

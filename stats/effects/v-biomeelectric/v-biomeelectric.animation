@@ -1,0 +1,13 @@
+{
+  "particleEmitters" : {
+    "sparks" : {  // Subtle sparks to let the player know that they're weak to electricity.
+      "enabled" : true,
+      "emissionRate" : 2.0,
+      "particles" : [
+        {
+          "particle" : "electricswoosh1"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "animationParts" : { },
+  "animationCustom" : {
+    "animatedParts" : { "parts" : {
+      "grenadelauncher" : {
+        "properties" : {
+          "zLevel" : -1,
+          "centered" : true,
+          "offset" : [-2.5, -0.75],
+          "transformationGroups" : ["muzzle"],
+          "firePosition" : [0.75, -0.125]
+        }
+      }
+    }},
+    "sounds" : {
+      "altFire" : [ "/sfx/gun/grenade1.ogg" ]
+    },
+    "particleEmitters" : {
+      "altMuzzleFlash" : {
+        "active" : false,
+        "emissionRate" : 8,
+        "transformationGroups" : ["muzzle"],
+        "offsetRegion" : [-2.5, -0.75, -2.5, -0.75],
+        "particles" : [
+          { "particle" : "rocketbarrelpuff", "offset" : [0.0, 0.0] },
+          { "particle" : "rocketbarrelpuff", "offset" : [0.0, 0.0] },
+          { "particle" : "rocketbarrelpuff", "offset" : [0.0, 0.0] }
+        ]
+      }
+    }
+  },
+
+  "ability" : {
+    "name" : "Tesla Grenade",
+    "type" : "v-teslagrenadeability",
+    "scripts" : ["/items/active/weapons/ranged/abilities/altfire.lua"],
+    "class" : "AltFireAttack",
+
+    "projectileType" : "v-teslagrenadesmall",
+    "projectileParameters" : {
+      "speed" : 50
+    },
+
+    // use baseDps and fireTime from primary fire
+
+    "baseDamageMultiplier" : 1.75,
+    "energyUsage" : 50,
+    "fireTime" : 2.0,
+    "projectileCount" : 1,
+    "inaccuracy" : 0.03,
+    "baseDps" : 5,
+
+    "firePositionPart" : "grenadelauncher",
+    "hidePrimaryMuzzleFlash" : true,
+
+    "stances" : {
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "cooldown" : {
+        "duration" : 0.11,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  }
+}

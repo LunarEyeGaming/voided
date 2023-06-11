@@ -70,13 +70,57 @@ function getPosFromSector(sector, relativePos)
 end
 
 --[[
-  Returns the sector that the current position occupies.
+  Returns the Sector that the current position occupies.
   
   param pos: the position to use
-  returns: the sector corresponding to the given position
+  returns: the Sector corresponding to the given position
 ]]
 function getSector(pos)
   return {pos[1] // SECTOR_SIZE, pos[2] // SECTOR_SIZE}
+end
+
+--[[
+  Returns the Sectors that the given region occupies.
+  
+  param region: the Rect region to use (absolute)
+  returns: the Sectors intersecting with the region
+]]
+function getSectorsInRegion(region)
+  local sectors = {}
+
+  -- For each x value from the start to the end, increasing by SECTOR_SIZE each time...
+  for x = region[1], region[3], SECTOR_SIZE do
+    -- For each y value from the start to the end, increasing by SECTOR_SIZE each time...
+    for y = region[2], region[4], SECTOR_SIZE do
+      -- Insert sector
+      table.insert(sectors, getSector({x, y}))
+    end
+  end
+
+  -- I have no idea what I'm doing here. Good luck figuring it out :).
+  local hasMissedTop = (region[4] - region[2]) // SECTOR_SIZE + region[2] // SECTOR_SIZE ~= region[4] // SECTOR_SIZE
+  local hasMissedRight = (region[3] - region[1]) // SECTOR_SIZE + region[1] // SECTOR_SIZE ~= region[3] // SECTOR_SIZE
+
+  -- Edge case at the top
+  if hasMissedTop then
+    for x = region[1], region[3], SECTOR_SIZE do
+      table.insert(sectors, getSector({x, region[4]}))
+    end
+  end
+  
+  -- Edge case at the right
+  if hasMissedRight then
+    for y = region[2], region[4], SECTOR_SIZE do
+      table.insert(sectors, getSector({region[3], y}))
+    end
+  end
+  
+  -- Corner case
+  if hasMissedTop and hasMissedRight then
+    table.insert(sectors, getSector({region[3], region[4]}))
+  end
+  
+  return sectors
 end
 
 --[[

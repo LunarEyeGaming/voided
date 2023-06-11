@@ -55,10 +55,10 @@
 
   "musicTrack" : {
     "day" : {
-      "tracks" : [ "/music/desert-exploration2.ogg", "/music/M54.ogg", "/music/horsehead-nebula.ogg", "/music/drosera.ogg", "/music/tranquility-base.ogg", "/music/procyon.ogg", "/music/error-0xbfaf000.ogg" ]
+      "tracks" : [ "/music/desert-exploration2.ogg", "/music/ultramarine.ogg", "/music/forsaken-grotto.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/music/desert-exploration2.ogg", "/music/M54.ogg", "/music/horsehead-nebula.ogg", "/music/drosera.ogg", "/music/tranquility-base.ogg", "/music/procyon.ogg", "/music/error-0xbfaf000.ogg" ]
+      "tracks" : [ "/music/desert-exploration2.ogg", "/music/ultramarine.ogg", "/music/forsaken-grotto.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg" ]
     }
   },
 
@@ -142,7 +142,7 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1, "statuspod" ] ],
+            "pool" : [ [1, "v-statuspodvoltage" ] ],
             "parameters" : { }
           }
         ]

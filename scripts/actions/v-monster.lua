@@ -10,8 +10,11 @@ require "/scripts/actions/crawling.lua"
 -- param controlForce
 -- param correctionStepSize (optional) - Parameter specifying the precision to which the target angle should be 
 --     corrected (in cases where the monster is moving away from its target) to avoid getting stuck in a wall.
--- param avoidSurfaces (optional) - True if the entity should avoid getting stuck in surfaces
+-- param avoidSurfaces (optional) - True if the entity should avoid getting stuck in surfaces. Do not use because it's
+--     broken
 function v_rangedFlyApproach(args, board, _, dt)
+  local controlForce = args.controlForce or mcontroller.baseParameters().airForce
+
   while true do
     -- Fly through platforms
     mcontroller.controlDown()
@@ -26,21 +29,21 @@ function v_rangedFlyApproach(args, board, _, dt)
         local fleeAngle = _getFleeAngle(angle, args.speed, args.correctionStepSize, dt)
         if fleeAngle then
           local direction = vec2.rotate(direction, fleeAngle)
-          mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), args.controlForce)
+          mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), controlForce)
           mcontroller.controlFace(util.toDirection(direction[1]))
         end
       else
         local direction = vec2.rotate(direction, math.pi)
-        mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), args.controlForce)
+        mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), controlForce)
         mcontroller.controlFace(util.toDirection(direction[1]))
       end
     elseif distance > args.maxRange then
       -- Fly toward player
-      mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), args.controlForce)
+      mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), controlForce)
       mcontroller.controlFace(util.toDirection(direction[1]))
     else
       -- Stop
-      mcontroller.controlApproachVelocity({0, 0}, args.controlForce)
+      mcontroller.controlApproachVelocity({0, 0}, controlForce)
     end
     coroutine.yield()
   end

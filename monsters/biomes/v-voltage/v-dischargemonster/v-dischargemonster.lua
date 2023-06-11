@@ -33,6 +33,8 @@ function init()
   if animator.hasSound("deathPuff") then
     monster.setDeathSound("deathPuff")
   end
+  
+  monster.setAggressive(true)
 
   message.setHandler("despawn", despawn)
 

@@ -13,10 +13,13 @@ local projectileParameters
 local maxArea
 local disappearDelay
 local sourceEntity
+local nailDetectionRadius
+local intangibleTime
 
 local area
 local disappearTimer
 local animTickTimer
+local intangibleTimer
 
 local previousBlocks
 local nextBlocks
@@ -24,6 +27,8 @@ local animNextBlocks
 
 local center
 local shouldDieVar
+
+local nails
 
 function init()
   script.setUpdateDelta(1)
@@ -40,6 +45,8 @@ function init()
   disappearDelay = config.getParameter("dissipationTime", 0.25)
   -- Used so that monsters can target whoever fired a projectile that created a shockwave
   sourceEntity = config.getParameter("sourceEntity", entity.id())
+  nailDetectionRadius = config.getParameter("nailDetectionRadius", 1)
+  intangibleTime = config.getParameter("intangibleTime", 0.1)  -- Amount of time before the shockwave actually begins.
   
   monster.setAnimationParameter("ttl", disappearDelay)
   
@@ -48,6 +55,7 @@ function init()
   area = 0
   disappearTimer = disappearDelay
   animTickTimer = animTicks
+  intangibleTimer = intangibleTime
   
   previousBlocks = {}
 
@@ -68,6 +76,11 @@ function init()
     shouldDieVar = true
   end)
   
+  nails = {}  -- A map of nail entity IDs to their positions
+  message.setHandler("v-noticeNail", function(_, _, nailId, position)
+    nails[nailId] = position
+  end)
+  
   -- local myStr = vec2FToString(center)
   -- sb.logInfo("%s", myStr)
   -- --local myVec = vec2FFromString(myStr)
@@ -82,8 +95,14 @@ end
 
 function update(dt)
   -- sb.logInfo("area: %s", area)
-  -- If no new blocks were found or the shockwave has spread far enough, disappear.
+  -- If no new blocks were found or the shockwave has spread far enough, disappear. Special case: nails are there and
+  -- the shockwave just spawned.
   --sb.logInfo("%s; %s", next(nextBlocks), nextBlocks)
+  if intangibleTimer > 0 then
+    intangibleTimer = intangibleTimer - dt
+    return  -- Do nothing until the timer runs out
+  end
+  
   if area > maxArea or next(nextBlocks) == nil then
     disappearTimer = disappearTimer - dt
     if disappearTimer <= 0 then
@@ -113,8 +132,7 @@ function expandWave()
       --sb.logInfo("previousBlocks Contains?: %s", vec2SetContains(previousBlocks, adjacent))
       --sb.logInfo("temp Contains?: %s", vec2SetContains(temp, adjacent))
       if not vec2SetContains(previousBlocks, adjacent) and not vec2SetContains(temp, adjacent) 
-        and (set.contains(validMats, world.material(vec2.add(center, adjacent), "foreground"))
-        or set.contains(validMatMods, world.mod(vec2.add(center, adjacent), "foreground"))) then
+          and containsConductive(vec2.add(center, adjacent)) then
 
         -- table.insert(temp, adjacent)
         vec2SetInsert(temp, adjacent)
@@ -214,4 +232,29 @@ function containsCreature(position)
   -- the "creature" type.
   
   return #world.entityQuery(position, 1, {includedTypes = {"creature"}}) > 0
+end
+
+-- Returns whether or not the given tile has at least one nail embedded into it.
+function hasNails(position)
+  if not world.pointCollision(position) then
+    return false
+  end
+
+  for nailId, nailPos in pairs(nails) do
+    if world.entityExists(nailId) and world.magnitude(position, nailPos) <= nailDetectionRadius then
+      return true
+    end
+  end
+  
+  return false
+end
+
+-- Returns whether or not the given tile has a conductive material or matmod, or the tile has nails.
+function containsConductive(position)
+  return set.contains(validMats, world.material(position, "foreground"))
+      or set.contains(validMatMods, world.mod(position, "foreground")) or hasNails(position)
+end
+
+function isShockwave()
+  return true
 end

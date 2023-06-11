@@ -1,0 +1,310 @@
+{
+  "type" : "v-wardrone",
+  "shortdescription" : "War Drone",
+  "description" : "Large, heavy-duty drones named by their menacing nature. <todo: lore>",
+
+  "categories" : [ "v-wardrone" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-wardrone.animation",
+
+  "dropPools" : [ "empty" ],  // TODO
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/monster.lua"
+    ],
+    
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 3,
+
+    "behavior" : "monster",
+
+    "seeThroughLiquid" : false,
+    "behaviorConfig" : {
+      "damageOnTouch" : false,
+
+      "targetQueryRange" : 40,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 80,
+      "targetOutOfSightTime" : 10.0,
+
+      "foundTargetActions" : [ 
+        /* {
+          "name" : "action-animate",
+          "parameters" : {
+            "stateType" : "body",
+            "state" : "aggro",
+            "animationTimer" : 1.0
+          }
+        } */
+        {
+          // Makes it so that the drone floats upward while activating. The drone instead briefly flies in one direction
+          // if it is 2 * groundDistance above the ground, but this situation should never happen.
+          "name" : "wander-fly",
+          "parameters" : {
+            "wanderTime" : 1,
+            "groundDistance" : 8,
+            "ceilingDistance" : 4,
+            "flyState" : "aggro",
+            "xVelocity" : 0,
+            "yVelocity" : 15
+          }
+        }
+      ],
+
+      "fleeActions" : [ ],
+
+      "hostileActions" : [
+        {
+          "name" : "action-fire",
+          "cooldown" : 5.0,
+          "parameters" : {
+            "requireLineOfSight" : true,
+            "maximumRange" : 40,
+            "minimumRange" : 10,
+            "onGround" : false,
+            "rotationCenter" : [-1.0, 0.25],
+            "faceTarget" : true,
+            "rotateAim" : true,
+
+            "windupStopForce" : 50,
+            "windupState" : "windup",
+            "windupStateType" : "gun",
+            "windupTime" : 0.5,
+
+            "projectileType" : "shock",
+            "projectileParameters" : {"power" : 15, "speed" : 100, "bounces" : 0},
+            "projectileCount" : 2,
+            "projectileInterval" : 0.3,
+            "fireOffset" : [2.0, -0.125],
+            "fireState" : "",
+            "fireSound" : "fire",
+
+            "winddownStopForce" : 0,
+            "winddownState" : "idle",
+            "winddownStateType" : "gun",
+            "winddownTime" : 0.2
+          }
+        },
+        {
+          "name" : "action-charge",
+          "cooldown" : 1.0,
+          "parameters" : {
+            // Swings small electric plasma blade at player.
+            "maximumRange" : 8,
+            "windupStopForce" : 50,
+            "windupState" : "slashwindup",
+            "windupStateType" : "blade",
+            "windupTime" : 0.5,
+
+            "onGround" : false,
+            "wallCollide" : false,
+            "aimAtTarget" : true,
+            "inaccuracy" : 0.0,
+            "airDirection" : [1, 0],
+            "chargeState" : "slash",
+            "chargeStateType" : "blade",
+            "chargeTime" : 0.2,
+            "chargeSpeed" : 45,
+            "chargeControlForce" : 250,
+            "wallCrashSound" : "",
+
+            "winddownTime" : 0.0,
+            "winddownStopForce" : 0,
+            "winddownState" : "slashwinddown",
+            "winddownStateType" : "blade"
+          }
+        }
+      ],
+
+      "periodicActions" : [ ],
+
+      "approachActions" : [
+        {
+          "name" : "v-approach-rangedfly",
+          "parameters" : {
+            "minRange" : 0,
+            "maxRange" : 35,
+            "speed" : 50,
+            "flyState" : "idle"
+          }
+        }
+      ],
+
+      "followActions" : [
+        {
+          "name" : "approach-teleport",
+          "parameters" : {
+          }
+        },
+        {
+          "name" : "approach-fly",
+          "parameters" : {
+            "flyState" : "inactive"
+          }
+        }
+      ],
+
+      "wanderActions" : [
+        /* {
+          "name" : "wander-fly",
+          "parameters" : {
+            "wanderTime" : [2,4],
+            "groundDistance" : 8,
+            "ceilingDistance" : 4,
+            "flyState" : "inactive",
+            "xVelocity" : 10,
+            "yVelocity" : 15
+          }
+        }, */
+        {
+          "name" : "land-fly",
+          "parameters" : {
+            "flyState" : "idle",
+            "landState" : "inactive",
+            "flySpeed" : 8,
+            "flyControlForce" : 25,
+            "landCheckDistance" : 40,
+            "idleTime" : 40
+          }
+        }
+      ],
+
+      "concurrentActions" : [ ],
+
+      "concurrentHostileActions" : [ ]
+    },
+
+    "damageParts" : {
+      "blade" : {
+        "damage" : 25,
+
+        "teamType" : "enemy",
+        "damageSourceKind" : "electricbroadsword",
+        "knockback" : 10,
+        "statusEffects" : [ ]
+      }
+    },
+
+    "touchDamage" : {
+      "poly" : [ [0.375, 1.125], [1.125, 0.375], [1.125, -0.375], [0.375, -1.125], [-0.375, -1.125], [-1.125, -0.375], [-1.125, 0.375], [-0.375, 1.125] ],
+      "damage" : 8,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "lash",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [ [1.375, 1.625], [2.125, 0.875], [2.125, -0.5], [1.375, -1.25], [-1.375, -1.25], [-2.125, -0.5], [-2.125, 0.875], [-1.375, 1.625] ],
+
+      "bounceFactor" : 0.75,
+
+      "mass" : 1.0,
+      "walkSpeed" : 4,
+      "runSpeed" : 12,
+      "gravityEnabled" : false,
+
+      "airFriction" : 4.0,
+      "airForce" : 40,
+      "flySpeed" : 15
+    },
+
+    "bodyMaterialKind" : "robotic",
+
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "robotic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "knockbackStunTime" : {
+          "baseValue" : 0.25
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 35
+        },
+        "maxHealth" : {
+          "baseValue" : 200
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "physicalResistance" : {
+          "baseValue" : 0.0
+        },
+        "fireResistance" : {
+          "baseValue" : 0.0
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "iceResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "electricResistance" : {
+          "baseValue" : 0.5
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "poisonResistance" : {
+          "baseValue" : -0.5
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 0.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "parasprite" }
+  }
+}

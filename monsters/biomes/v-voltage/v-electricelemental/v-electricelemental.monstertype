@@ -60,11 +60,11 @@
             "chargeState" : "fly",
             "chargeTime" : 0.5,
             "chargeSpeed" : 20,
-            "chargeControlForce" : 1000,
+            "chargeControlForce" : 300,
             "wallCrashSound" : "",
 
             "winddownTime" : 0.1,
-            "winddownStopForce" : 1000,
+            "winddownStopForce" : 300,
             "winddownState" : ""
           }
         }
@@ -117,8 +117,6 @@
     "deathParticles" : "deathPoof",
     "knockoutEffect" : "",
 
-    "stunDamageSuppression" : 0.2,
-
     "statusSettings" : {
       "statusProperties" : {
         "targetMaterialKind" : "stone"
@@ -134,9 +132,6 @@
       "primaryScriptDelta" : 5,
 
       "stats" : {
-        "grit" : {
-          "baseValue" : 0.25
-        },
         "knockbackStunTime" : {
           "baseValue" : 0.3
         },
