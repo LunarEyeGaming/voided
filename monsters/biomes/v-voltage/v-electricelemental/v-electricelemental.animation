@@ -7,12 +7,12 @@
         "states" : {
           "idle" : {
             "frames" : 6,
-            "cycle" : 3.0,
+            "cycle" : 0.5,
             "mode" : "loop"
           },
           "fly" : {
             "frames" : 6,
-            "cycle" : 1.0,
+            "cycle" : 0.5,
             "mode" : "loop"
           }
         }
@@ -37,8 +37,21 @@
           "zLevel" : 10,
           "transformationGroups" : [ "body" ],
           "offset" : [0.0, 0.0],
-          "fullbright" : true,
-          "image" : "<partImage>"
+          "fullbright" : true
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fly" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
         }
       }
     }

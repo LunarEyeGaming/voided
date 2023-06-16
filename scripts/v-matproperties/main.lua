@@ -39,19 +39,9 @@ function init()
   
   message.setHandler("tileBroken", handleBrokenTile)
   
-  -- I so badly want a handler for when a tile gets placed!
-  for _, msgName in ipairs({"materialPlaced", "matPlaced", "matmodPlaced", "matModPlaced",
-                            "tileChanged", "materialChanged", "matChanged", "matmodChanged", "matModChanged",
-                            "tileUpdated", "materialUpdated", "matUpdated", "matmodUpdated", "matModUpdated", "positionTileDamaged"}) do
-    message.setHandler(msgName, function(msg)
-      sb.logInfo("%s", msg)
-    end)
-  end
-  
   message.setHandler("v-updateSector", function(_, _, sector)
     invalidateSector(sector)
   end)
-  
   
   message.setHandler("v-updateRegion", function(_, _, region)
     local sectors = getSectorsInRegion(region)
