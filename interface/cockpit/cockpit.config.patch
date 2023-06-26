@@ -5,31 +5,48 @@
     {"op" : "test", "path" : "/displayDungeons"},
 
     // Dungeon icons and labels.
-    {"op" : "add", "path" : "/displayDungeons/v-strongholdgateway", "value" : {
-      "description" : "A large, unknown structure engulfed in magma. Heavy energy readings resonate from this area.",
-      "icon" : "/interface/cockpit/dungeons/v-strongholdgateway.png"
-    }},
+    {
+      "op" : "add",
+      "path" : "/displayDungeons/v-strongholdgateway",
+      "value" : {
+        "description" : "A large, unknown structure engulfed in magma. Heavy energy readings resonate from this area.",
+        "icon" : "/interface/cockpit/dungeons/v-strongholdgateway.png"
+      }
+    },
 
     // Make label for Rusted Voltage biomes visible.
     {"op" : "add", "path" : "/planetTypeNames/v-voltagerusty", "value" : "Rusted Voltage"},
     
     // There is a bug in MPI where the word substitution method is always used for sub-biomes. This will have to be a
     // workaround. It only works sometimes unfortunately.
-    {"op" : "add", "path" : "/wordsList/v-voltageforest", "value" : {"word" : "v%-voltageforest", "friendlyWord" : "Electric Forest"}},
-    {"op" : "add", "path" : "/wordsList/v-voltageforest2", "value" : {"word" : "v%-voltage Forest", "friendlyWord" : "Electric Forest"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagedesert", "value" : {"word" : "v%-voltagedesert", "friendlyWord" : "Copper Desert"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagedesert2", "value" : {"word" : "v%-voltage Desert", "friendlyWord" : "Copper Desert"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagewastes", "value" : {"word" : "v%-voltagewastes", "friendlyWord" : "Charged Wastes"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagewastes2", "value" : {"word" : "v%-voltage Wastes", "friendlyWord" : "Charged Wastes"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagewastesoxidized", "value" : {"word" : "v%-voltagewastesoxidized", "friendlyWord" : "Oxidized Charged Wastes"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagewastesoxidized2", "value" : {"word" : "v%-voltage Wastesoxidized", "friendlyWord" : "Oxidized Charged Wastes"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagewastesoxidized3", "value" : {"word" : "Charged Wastesoxidized", "friendlyWord" : "Oxidized Charged Wastes"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagespikes", "value" : {"word" : "v%-voltagespikes", "friendlyWord" : "Voltage Spikes"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagespikesrusty", "value" : {"word" : "v%-voltagespikesrusty", "friendlyWord" : "Rusted Voltage Spikes"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagespikesrusty2", "value" : {"word" : "Voltage Spikesrusty", "friendlyWord" : "Rusted Voltage Spikes"}},
+    {"op" : "add", "path" : "/wordsList/v-voltageforest", "value" : {"word" : "v%-voltageforest",
+        "friendlyWord" : "Electric Forest"}},
+    {"op" : "add", "path" : "/wordsList/v-voltageforest2", "value" : {"word" : "v%-voltage Forest",
+        "friendlyWord" : "Electric Forest"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagedesert", "value" : {"word" : "v%-voltagedesert",
+        "friendlyWord" : "Copper Desert"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagedesert2", "value" : {"word" : "v%-voltage Desert",
+        "friendlyWord" : "Copper Desert"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagewastes", "value" : {"word" : "v%-voltagewastes",
+        "friendlyWord" : "Charged Hills"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagewastes2", "value" : {"word" : "v%-voltage Wastes",
+        "friendlyWord" : "Charged Hills"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagewastesoxidized", "value" : {"word" : "v%-voltagewastesoxidized",
+        "friendlyWord" : "Oxidized Charged Hills"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagewastesoxidized2", "value" : {"word" : "v%-voltage Wastesoxidized",
+        "friendlyWord" : "Oxidized Charged Hills"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagewastesoxidized3", "value" : {"word" : "Charged Wastesoxidized",
+        "friendlyWord" : "Oxidized Charged Hills"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagespikes", "value" : {"word" : "v%-voltagespikes",
+        "friendlyWord" : "Voltage Spikes"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagespikesrusty", "value" : {"word" : "v%-voltagespikesrusty",
+        "friendlyWord" : "Rusted Voltage Spikes"}},
+    {"op" : "add", "path" : "/wordsList/v-voltagespikesrusty2", "value" : {"word" : "Voltage Spikesrusty",
+        "friendlyWord" : "Rusted Voltage Spikes"}},
 
     // Environmental hazard icons.
-    {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomeelectric", "value" : {"displayName" : "Dangerously Conductive", "icon" : "/interface/cockpit/hazards/v-biomeelectric.png"}},
+    {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomeelectric", "value" : {
+        "displayName" : "Dangerously Conductive", "icon" : "/interface/cockpit/hazards/v-biomeelectric.png"}},
 
     // Threat level support for weather. Weather types not included have a threat level of 0.
     {"op" : "add", "path": "/weatherThreatValues/v-copperstorm", "value": 2.5},
@@ -87,7 +104,8 @@
       "value": [235, 66, 0]
     },
 
-    // TODO: Change this so that it is compatible with other mods that define a threat color and text for T6+ space objects
+    // TODO: Change this so that it is compatible with other mods that define a threat color and text for T6+ space
+    // objects
     // Add T7 label (anomalies, hostile ships, etc.)
     {
       "op": "add",

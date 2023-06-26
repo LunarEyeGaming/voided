@@ -97,16 +97,9 @@
   "persistentAudio" : "/sfx/npc/boss/ufo_stunned.ogg",
   "damageKind" : "plasmabullet",
   
-  "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua", "v-voltiteoreplacer.lua",
-      "/scripts/projectiles/v-matpropertiesupdater.lua"],
+  "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
   
   "monsterType" : "v-shockwave",
   "monsterParameters" : {"maxArea" : 1000, "projectileParameters" : {"damageTeam" : {"type" : "indiscriminate"}}},
-  "spawnOffset" : [0, 1],
-  
-  "radius" : 3,
-  "oreType" : "v-voltite",
-  "oreChance" : 0.25,
-  
-  "matUpdateRegion" : [-3, -3, 3, 3]
+  "spawnOffset" : [0, 1]
 }

@@ -11,7 +11,10 @@
     "/scripts/actions/world.lua",
     "/scripts/actions/projectiles.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "loops": 3,
+    "fireInterval": 0.5
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -129,6 +132,14 @@
                   "entity": {"key": "eachItem"},
                   "target": {"key": "target"},
                   "type": {"value": "attack2"}
+                }
+              },
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": "<fireInterval>"}
                 }
               }
             ]

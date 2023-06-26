@@ -6,12 +6,12 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1,
-            "cycle" : 3.0,
+            "frames" : 10,
+            "cycle" : 1.0,
             "mode" : "loop"
           },
           "fly" : {
-            "frames" : 1,
+            "frames" : 10,
             "cycle" : 1.0,
             "mode" : "loop"
           }
@@ -39,6 +39,20 @@
           "offset" : [0.0, 0.0],
           "fullbright" : true,
           "image" : "<partImage>"
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fly" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
         }
       }
     }

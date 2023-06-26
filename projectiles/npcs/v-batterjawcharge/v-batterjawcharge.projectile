@@ -1,0 +1,22 @@
+{
+  "projectileName" : "v-batterjawcharge",
+  "image" : "batterjawcharge.png",
+  "animationCycle" : 0.25,
+  "timeToLive" : 0.15,
+  "frameNumber" : 4,
+  "speed" : 0,
+  "animationLoops" : true,
+  "fullbright" : true,
+  "flippable" : true,
+  "onlyHitTerrain" : true,
+  "lightColor" : [131, 131, 223],
+  "pointLight" : true,
+  "physics" : "illusion",
+  "bounces" : -1,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/electricexplosionknockback.config"
+    }
+  ]
+}

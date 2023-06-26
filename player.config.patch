@@ -21,9 +21,9 @@
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-electricprotectionback"} },
 
   // Player scripts
-  // {"op": "add", "path": "/genericScriptContexts/v-corelightningtest", "value": "/scripts/v-corelightningtest.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-matproperties", "value": "/scripts/v-matproperties/main.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-depthpoison", "value": "/scripts/voideddepthpoison.lua"},
+  {"op": "add", "path": "/genericScriptContexts/v-lightningbeandrop", "value": "/scripts/v-lightningbeandrop.lua"},
   
   // Depth poison mechanic
   {

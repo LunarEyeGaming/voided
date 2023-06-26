@@ -6,7 +6,7 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 7,
+            "frames" : 6,
             "cycle" : 0.5,
             "mode" : "loop"
           },
@@ -24,12 +24,27 @@
             "cycle" : 0.3
           },
           "fire" : {
-            "frames" : 3,
-            "cycle" : 0.1
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
           },
           "firewindup" : {
             "frames" : 2,
-            "cycle" : 0.5
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "fire",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_voltspitter_windup.ogg"
+            }
+          },
+          "firewinddown" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_voltspitter_winddown.ogg"
+            }
           }
         }
       },
@@ -104,6 +119,11 @@
               "properties" : {
                 "image" : "<partImage>:firewindup.<frame>"
               }
+            },
+            "firewinddown" : {
+              "properties" : {
+                "image" : "<partImage>:firewinddown.<frame>"
+              }
             }
           },
           "damage" : {
@@ -151,6 +171,11 @@
             "firewindup" : {
               "properties" : {
                 "image" : "<partImage>:firewindup.<frame>"
+              }
+            },
+            "firewinddown" : {
+              "properties" : {
+                "image" : "<partImage>:firewinddown.<frame>"
               }
             }
           },
@@ -240,6 +265,6 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "fire" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ]
+    "fire" : [ "/sfx/gun/plasma_mp2.ogg" ]
   }
 }

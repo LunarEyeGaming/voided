@@ -1,6 +1,7 @@
 {
   "type" : "v-balllightning",
-  "shortdescription" : "<todo>",
+  "shortdescription" : "Ball Lightning",
+  "description" : "A much larger variant of an Electric Elemental that has become mindless and unstable.",
 
   "categories" : [ "v-balllightning" ],
   "parts" : [ "body" ],
@@ -19,7 +20,7 @@
     "maxSpeed" : 15,
     "controlForce" : 30,
     "velocityChangeTimeRange" : [2, 3],
-    "sizeRange" : [2, 4],
+    "sizeRange" : [0.5, 1],
     "sizeChangeTimeRange" : [2, 3],
 
     "projectileType" : "v-balllightningprojectile",
@@ -51,7 +52,8 @@
     "deathParticles" : "deathPoof",
 
     "touchDamage" : {
-      "poly" : [ [-1.0, -1.0], [1.0, -1.0], [1.0, 1.0], [-1.0, 1.0] ],
+      // Generated circle approximation (3 decimal places, 8 points)
+      "poly" : [[4.0, 0.0], [2.828, 2.828], [0.0, 4.0], [-2.828, 2.828], [-4.0, 0.0], [-2.828, -2.828], [-0.0, -4.0], [2.828, -2.828]],
       "damage" : 30,
 
       "teamType" : "enemy",
@@ -94,6 +96,9 @@
           "baseValue" : 0.0
         },
         "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "invulnerable" : {
           "baseValue" : 1.0
         }
       },

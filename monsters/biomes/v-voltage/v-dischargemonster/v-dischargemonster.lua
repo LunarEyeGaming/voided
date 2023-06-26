@@ -83,6 +83,7 @@ end
 
 function states.discharge()
   animator.setAnimationState("body", "discharge")
+  animator.playSound("discharge")
 
   if world.entityExists(target) then
     local ownPosition = mcontroller.position()

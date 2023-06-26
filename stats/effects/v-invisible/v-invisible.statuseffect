@@ -1,0 +1,12 @@
+{
+  "name" : "v-invisible",  // Vanilla has an "invisible" status effect, but it doesn't actually work
+  "effectConfig" : {},
+  "defaultDuration" : 5,
+
+  "scripts" : [
+    "v-invisible.lua"
+  ],
+
+  "label" : "Invisible",
+  "icon" : "/interface/statuses/invisible.png"
+}

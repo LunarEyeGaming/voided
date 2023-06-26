@@ -1,14 +1,14 @@
 {
   "type" : "v-wardrone",
   "shortdescription" : "War Drone",
-  "description" : "Large, heavy-duty drones named by their menacing nature. <todo: lore>",
+  "description" : "A large, heavy-duty drone named by its menacing nature",
 
   "categories" : [ "v-wardrone" ],
   "parts" : [ "body" ],
 
   "animation" : "v-wardrone.animation",
 
-  "dropPools" : [ "empty" ],  // TODO
+  "dropPools" : [ { "default" : "v-wardroneTreasure", "bow" : "v-wardroneHunting" } ],
 
   "baseParameters" : {
     "scripts" : [
@@ -111,7 +111,7 @@
             "chargeControlForce" : 250,
             "wallCrashSound" : "",
 
-            "winddownTime" : 0.0,
+            "winddownTime" : 0.5,
             "winddownStopForce" : 0,
             "winddownState" : "slashwinddown",
             "winddownStateType" : "blade"

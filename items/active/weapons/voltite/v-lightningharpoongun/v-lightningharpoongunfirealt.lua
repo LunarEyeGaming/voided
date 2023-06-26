@@ -96,7 +96,7 @@ function HarpoonGunFire:propagate()
     local firePos = self:firePosition()
     local projectilePos = world.entityPosition(self.projectileId)
     local angle = vec2.angle(world.distance(projectilePos, firePos))
-    self:fireProjectile(self.propagateProjectile, self.propagateProjectileParameters, nil, vec2.add(vec2.withAngle(angle, nextDistance), firePos))
+    self:fireProjectile(self.propagateProjectile, self.propagateProjectileParameters, nil, vec2.add(vec2.withAngle(angle, nextDistance), firePos), self.propagateDamageFactor)
     
     nextDistance = nextDistance + self.propagateStepDistance
     if nextDistance > world.magnitude(firePos, projectilePos) then
@@ -114,9 +114,12 @@ function HarpoonGunFire:muzzleFlash()
   animator.playSound("fire")
 end
 
-function HarpoonGunFire:fireProjectile(projectileType, projectileParams, inaccuracy, firePosition)
+function HarpoonGunFire:fireProjectile(projectileType, projectileParams, inaccuracy, firePosition, damageFactor)
   local params = sb.jsonMerge(self.projectileParameters, projectileParams or {})
   params.power = self:damagePerShot()
+  if damageFactor then
+    params.power = params.power * damageFactor
+  end
   params.powerMultiplier = activeItem.ownerPowerMultiplier()
   params.speed = util.randomInRange(params.speed)
 

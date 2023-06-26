@@ -7,12 +7,23 @@
   "fullbright" : true,
   "speed" : 0,
   "damagePoly" : [ [-24, -40], [1, -25], [16, 0], [1, 25], [-24, 40] ],
+  //"damageType" : "NoDamage",
   "animationLoops" : false,
   "piercing" : true,
   "bounces" : -1,
   "physics" : "illusion",
   "flippable" : true,
   "lightColor" : [131, 131, 223],
-  "power" : 2,
-  "damageKind" : "electric"
+  "power" : 0,
+  "damageKind" : "electric",
+  
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-dischargetrapshock",
+      "inheritDamageFactor" : 1.0
+    }
+  ]
 }

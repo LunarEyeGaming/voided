@@ -1,7 +1,7 @@
 {
   "type" : "v-voltspitter",
   "shortdescription" : "Voltspitter",
-  "description" : "<todo>",
+  "description" : "A robot that scouts through the depths of Voltage worlds.",
 
   "categories" : [ "v-voltspitter" ],
   "parts" : [ "body" ],
@@ -32,26 +32,6 @@
 
       "hostileActions" : [
         {
-          "name" : "action-leap",
-          "cooldown" : 0.5,
-          "parameters" : {
-            "minimumRange" : 0,
-            "maximumRange" : 30,
-            "maxXRange" : 8,
-            "windupTime" : 0.3,
-            "windupState" : "idle",
-
-            "leapVelocity" : 25,
-            "collisionCheck" : true,
-            "highArc" : false,
-            "leapState" : "jump",
-            "fallState" : "fall",
-
-            "winddownState" : "",
-            "winddownTime" : 0.2
-          }
-        },
-        {
           "name" : "action-fire",
           "cooldown" : 3.0,
           "parameters" : {
@@ -75,7 +55,7 @@
             "fireSound" : "fire",
             "fireState" : "fire",
 
-            "winddownState" : "",
+            "winddownState" : "firewinddown",
             "winddownTime" : 0.3
           }
         }

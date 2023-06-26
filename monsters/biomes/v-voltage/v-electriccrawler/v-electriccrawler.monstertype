@@ -1,18 +1,21 @@
 {
   "type" : "v-electriccrawler",
-  "shortdescription" : "<todo>",
-  "description" : "<todo>",
+  "shortdescription" : "Lightning Bean",
+  "description" : "Be careful while exploring. Spooking one of these little critters can prove dangerous.",
 
-  "categories" : [ "crustoise" ],
+  "categories" : [ "v-electriccrawler" ],
   "parts" : [ "body" ],
 
-  "animation" : "/monsters/crawlers/crustoise/crustoise.animation",
+  "animation" : "v-electriccrawler.animation",
 
-  "dropPools" : [ { "default" : "crustoiseTreasure", "bow" : "crustoiseHunting" } ],
+  "dropPools" : [ "empty" ],
 
   "baseParameters" : {
+    "pickupItem" : "v-electriccrawleritem",
+    
     "scripts" : [
-      "/monsters/monster.lua"
+      "/monsters/monster.lua",
+      "/monsters/biomes/v-voltage/v-electriccrawler/v-electriccrawlerplugin.lua"
     ],
     
     "initialScriptDelta" : 1,
@@ -72,20 +75,6 @@
         }
       ],
 
-      "deathActions" : [
-        {
-          "name" : "action-projectile",
-          "parameters" : {
-            "projectileCount" : 1,
-            "projectileType" : "crustoiseshell",
-            "projectileParameters" : {},
-            "aimDirection" : [-1, 2],
-            "inaccuracy" : 0,
-            "fireOffset" : [0, 0.4]
-          }
-        }
-      ],
-
       "concurrentActions" : [
         {
           "name" : "action-projectile",
@@ -95,7 +84,7 @@
             "projectileType" : "v-electriccrawlerprojectile",
             "projectileParameters" : {
               "power" : 20,
-              "timeToLive" : 1.5
+              "timeToLive" : 1.0
             },
             "aimDirection" : [0, 0],
             "inaccuracy" : 0,

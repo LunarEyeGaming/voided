@@ -33,7 +33,38 @@
       "pool" : [
         {"weight" : 0.800, "pool" : "noMeatMonsterTreasure"},
         {"weight" : 0.100, "item" : "staticcell"},
-        {"weight" : 0.100, "item" : "phasematter"}
+        {"weight" : 0.100, "item" : "stickofram"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-wardroneTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.650, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : "siliconboard"},
+        {"weight" : 0.100, "item" : "stickofram"},
+        {"weight" : 0.150, "item" : "v-dronegunpiece"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-bulbheadTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : "staticcell"},
+        {"weight" : 0.100, "item" : "v-ascensioncomponentmaterial"}
       ],
       "poolRounds" : [
         [0.20, 0],

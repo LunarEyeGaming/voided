@@ -1,0 +1,42 @@
+{
+  "globalTagDefaults" : {
+    "directives" : ""
+  },
+
+  "animatedParts" : {
+    "stateTypes" : {
+      "bean" : {
+        "default" : "squirm",
+        "states" : {
+          "squirm" : {
+            "frames" : 12,
+            "cycle" : 1.2,
+            "mode" : "loop"
+          }
+        }
+      }
+    },
+    "parts" : {
+      "bean" : {
+        "properties" : {
+          "centered" : true,
+          "fullbright" : true,
+          "offset" : [0, 0.0]
+        },
+        "partStates" : {
+          "bean" : {
+            "squirm" : {
+              "properties" : {
+                "image" : "<partImage>:squirm.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  
+  "sounds" : {
+    "throw" : ["/sfx/projectiles/throw_item_small.ogg"]
+  }
+}

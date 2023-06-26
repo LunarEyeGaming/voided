@@ -45,18 +45,18 @@
         "spaceLevel" : 3000,
         "ambientLightLevel" : [ 24, 28, 24 ],
         "skyColoring" : {
-          // Yellow, purple, yellow, blue
+          // Orange, gray, orange, gray
           "mainColor" : [255, 255, 255],
 
-          "morningColors" : [ [255, 222, 89, 144], [178, 255, 89, 200] ],
-          "dayColors" : [ [218, 166, 255, 255], [245, 133, 255, 255] ],
-          "eveningColors" : [ [255, 222, 89, 144], [178, 255, 89, 200] ],
-          "nightColors" : [ [33, 33, 99, 80], [33, 33, 99, 160] ],
+          "morningColors" : [ [99, 12, 12, 200], [131, 131, 12, 255] ],
+          "dayColors" : [ [131, 131, 131, 200], [188, 188, 188, 255] ],
+          "eveningColors" : [ [99, 12, 12, 200], [131, 131, 12, 255] ],
+          "nightColors" : [ [33, 33, 33, 200], [33, 33, 33, 255] ],
 
-          "morningLightColor" : [199, 192, 101],
-          "dayLightColor" : [227, 181, 230],
-          "eveningLightColor" : [199, 192, 101],
-          "nightLightColor" : [24, 24, 71]
+          "morningLightColor" : [125, 85, 65],
+          "dayLightColor" : [183, 183, 183],
+          "eveningLightColor" : [125, 85, 65],
+          "nightLightColor" : [66, 66, 66]
         },
         "satellites" : [ {
           "pos" : [ 0.310561, 0.35497 ],

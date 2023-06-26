@@ -1,14 +1,14 @@
 {
   "type" : "v-bulbhead",
   "shortdescription" : "Bulbhead",
-  "description" : "<todo>",
+  "description" : "These creatures are instinctively able to manipulate the air's conductivity to move at immense speeds and to stay afloat.",
 
   "categories" : [ "v-bulbhead" ],
   "parts" : [ "body" ],
 
   "animation" : "v-bulbhead.animation",
 
-  "dropPools" : ["empty"],
+  "dropPools" : [ { "default" : "v-bulbheadTreasure", "bow" : "v-bulbheadHunting" } ],
 
   "baseParameters" : {
     "scripts" : [

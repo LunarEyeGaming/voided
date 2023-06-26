@@ -16,7 +16,34 @@
     [1, {
       "pool" : [
         {"weight" : 0.5, "item" : "staticcell"},
-        {"weight" : 0.5, "item" : "phasematter"}
+        {"weight" : 0.5, "item" : "stickofram"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+  "v-wardroneHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 1.0, "item" : "siliconboard"},
+        {"weight" : 1.0, "item" : "stickofram"},
+        {"weight" : 1.5, "item" : "v-dronegunpiece"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+  "v-bulbheadHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "staticcell"},
+        {"weight" : 0.5, "item" : "v-ascensioncomponentmaterial"}
       ],
       "poolRounds" : [
         [0.6, 0],

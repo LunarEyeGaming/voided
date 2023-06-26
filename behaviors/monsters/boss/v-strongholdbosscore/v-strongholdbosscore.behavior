@@ -789,8 +789,68 @@
                           "aimVector": {"value": [0, 0]},
                           "offset": {"value": [0, 0]},
                           "position": {"key": "self"},
-                          "projectileConfig": {"value": {"power": 32, "timeToLive": 0, "speed": 0, "onlyHitTerrain": true, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/v-ancientexplosionlarge/ancientexplosionlarge.config"}]}},
-                          "projectileType": {"value": "orbitalup"},
+                          "projectileConfig": {"value": {"power": 32, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/v-ancientexplosionlarge/ancientexplosionlarge.config"}]}},
+                          "projectileType": {"value": "v-proxyprojectile"},
+                          "scalePower": {"value": true},
+                          "sourceEntity": {"key": "self"},
+                          "trackSource": {"value": false}
+                        }
+                      },
+                      {
+                        "title": "spawnProjectile",
+                        "type": "action",
+                        "name": "spawnProjectile",
+                        "parameters": {
+                          "aimVector": {"value": [0, 1]},
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "self"},
+                          "projectileConfig": {"value": {}},
+                          "projectileType": {"value": "v-plasmashockwave"},
+                          "scalePower": {"value": true},
+                          "sourceEntity": {"key": "self"},
+                          "trackSource": {"value": false}
+                        }
+                      },
+                      {
+                        "title": "spawnProjectile",
+                        "type": "action",
+                        "name": "spawnProjectile",
+                        "parameters": {
+                          "aimVector": {"value": [1, 0]},
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "self"},
+                          "projectileConfig": {"value": {}},
+                          "projectileType": {"value": "v-plasmashockwave"},
+                          "scalePower": {"value": true},
+                          "sourceEntity": {"key": "self"},
+                          "trackSource": {"value": false}
+                        }
+                      },
+                      {
+                        "title": "spawnProjectile",
+                        "type": "action",
+                        "name": "spawnProjectile",
+                        "parameters": {
+                          "aimVector": {"value": [0, -1]},
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "self"},
+                          "projectileConfig": {"value": {}},
+                          "projectileType": {"value": "v-plasmashockwave"},
+                          "scalePower": {"value": true},
+                          "sourceEntity": {"key": "self"},
+                          "trackSource": {"value": false}
+                        }
+                      },
+                      {
+                        "title": "spawnProjectile",
+                        "type": "action",
+                        "name": "spawnProjectile",
+                        "parameters": {
+                          "aimVector": {"value": [-1, 0]},
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "self"},
+                          "projectileConfig": {"value": {}},
+                          "projectileType": {"value": "v-plasmashockwave"},
                           "scalePower": {"value": true},
                           "sourceEntity": {"key": "self"},
                           "trackSource": {"value": false}
