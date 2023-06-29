@@ -57,22 +57,14 @@
                  "y":288
                 }, 
                 {
-                 "gid":7706,
+                 "gid":8803,
                  "height":16,
-                 "id":804,
+                 "id":807,
                  "name":"",
-                 "properties":
-                    {
-                     "object":"v-electrictrap3"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string"
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
+                 "width":16,
                  "x":144,
                  "y":288
                 }],
@@ -237,7 +229,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":807,
+ "nextobjectid":808,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -378,6 +370,10 @@
         {
          "firstgid":8692,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/huge-objects.json"
+        }, 
+        {
+         "firstgid":8793,
+         "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",

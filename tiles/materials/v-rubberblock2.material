@@ -4,10 +4,10 @@
   "particleColor" : [31, 31, 31, 255],
   "itemDrop" : "v-rubberblock2material",
   "shortdescription" : "Rubber Block",
-  "description" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "description" : "A block of dark, insulating rubber.",
+  "glitchDescription" : "Comforted. This block of rubber can insulate me from electricity.",
+  "floranDescription" : "Floran thinkss black ssstuff tastess bad.",
+  "novakidDescription" : "A smooth block a' black rubber.",
   "footstepSound" : "/sfx/blocks/footstep_gravel.ogg",
   "health" : 6,
   "category" : "materials",
@@ -17,7 +17,7 @@
     "texture" : "v-rubberblock2.png",
     "variants" : 5,
     "lightTransparent" : false,
-    "occludesBelow" : false,
+    "occludesBelow" : true,
     "multiColored" : true,
     "zLevel" : 1000
   }

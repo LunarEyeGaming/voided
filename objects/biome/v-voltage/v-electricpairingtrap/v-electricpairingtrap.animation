@@ -7,7 +7,7 @@
           "idle" : {},
           "windup" : {
             "frames" : 4,
-            "cycle" : 0.5,
+            "cycle" : 0.75,
             "mode" : "end"
           },
           "fire" : {
@@ -86,7 +86,7 @@
     }
   },
   "sounds" : {
-    "windup" : [ "/sfx/objects/v_pairingtrapwindup.ogg" ],
+    "windup" : [ "/sfx/npc/boss/ufo_stunned.ogg" ],
     "fire" : [ "/sfx/melee/tesla_shock_kill.ogg" ]
   }
 }

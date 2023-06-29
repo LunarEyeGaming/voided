@@ -3,17 +3,17 @@
   "colonyTags" : ["evil"],
   "printable" : false,
   "rarity" : "Legendary",
-  "description" : "<todo>",
+  "description" : "A trap that shoots out lightning bolts erratically.",
   "shortdescription" : "Electric Ball Trap",
   "race" : "generic",
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "Activating this trap will cause it to emit dangerous amounts of electricity.",
+  "avianDescription" : "This trap fires out electricity in unpredictable directions.",
+  "floranDescription" : "Floran mussst not activate trap.",
+  "glitchDescription" : "Afraid. This trap fires out lethal bolts of lightning on activation.",
+  "humanDescription" : "There isn't any dodging or weaving through the bolts shot out of this trap.",
+  "hylotlDescription" : "Anyone without a keen eye would get electrocuted by this crudely-designed trap.",
+  "novakidDescription" : "Best not to get caught near this thing when it activates.",
 
   "category" : "trap",
   "price" : 0,
@@ -29,7 +29,7 @@
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "floor.png",
-        "fg" : "floor.png"
+        "fg" : "floorlit.png"
       },
 
       "projectileDirection" : [0, 1],
@@ -46,7 +46,7 @@
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "floor.png",
-        "fg" : "floor.png"
+        "fg" : "floorlit.png"
       },
 
       "projectileDirection" : [0, 1],
@@ -63,7 +63,7 @@
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "left.png",
-        "fg" : "left.png"
+        "fg" : "leftlit.png"
       },
 
       "projectileDirection" : [1, 0],
@@ -80,7 +80,7 @@
       "animationPosition" : [-8, -8],
       "animationParts" : {
         "bg" : "right.png",
-        "fg" : "right.png"
+        "fg" : "rightlit.png"
       },
 
       "projectileDirection" : [-1, 0],
@@ -98,7 +98,7 @@
       "animationPosition" : [-8, -8],
       "animationParts" : {
         "bg" : "ceiling.png",
-        "fg" : "ceiling.png"
+        "fg" : "ceilinglit.png"
       },
 
       "projectileDirection" : [0, -1],
@@ -115,7 +115,7 @@
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "ceiling.png",
-        "fg" : "ceiling.png"
+        "fg" : "ceilinglit.png"
       },
 
       "projectileDirection" : [0, -1],
@@ -161,7 +161,7 @@
         "body" : [
           {
             "action" : "projectile",
-            "type" : "whipshock",
+            "type" : "railgunlightning",
             "fuzzAngle" : 45,
             "inheritDamageFactor" : 1,
             "config" : {

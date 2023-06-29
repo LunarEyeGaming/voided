@@ -45,10 +45,14 @@ function update(dt)
   -- Try to delete the item until it's been deleted.
   if itemToDelete then
     if world.entityExists(itemToDelete) then
+      monster.setInteractive(false)  -- Cannot be picked up until the old item disappears to prevent duplication
+
       mcontroller.setPosition(world.entityPosition(itemToDelete))
 
       world.takeItemDrop(itemToDelete)
     else
+      monster.setInteractive(true)  -- Can be picked up now
+
       itemToDelete = nil  -- Stop worrying about itemToDelete since it no longer exists
     end
   end

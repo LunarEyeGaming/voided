@@ -16,7 +16,7 @@ function init()
   status.applySelfDamageRequest({
       damageType = "IgnoresDef",
       damage = tickDamage,
-      damageSourceKind = "v-ionplasma",
+      damageSourceKind = "electricplasma",
       sourceEntityId = entity.id()
     })
 end
@@ -29,7 +29,7 @@ function update(dt)
     status.applySelfDamageRequest({
         damageType = "IgnoresDef",
         damage = tickDamage,
-        damageSourceKind = "v-ionplasma",
+        damageSourceKind = "electricplasma",
         sourceEntityId = entity.id()
       })
   end

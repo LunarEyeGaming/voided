@@ -41,6 +41,8 @@ function init()
   projectileType = config.getParameter("projectileType", "v-shockwavedamage")
   projectileParameters = config.getParameter("projectileParameters", {})
   projectileParameters.power = config.getParameter("damage", 0) * root.evalFunction("monsterLevelPowerMultiplier", monster.level())
+  projectileParameters.damageRepeatGroup = "v-shockwave"
+  
   maxArea = config.getParameter("maxArea", 200)
   disappearDelay = config.getParameter("dissipationTime", 0.25)
   -- Used so that monsters can target whoever fired a projectile that created a shockwave

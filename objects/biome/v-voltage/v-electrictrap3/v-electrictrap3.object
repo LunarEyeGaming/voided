@@ -3,17 +3,17 @@
   "colonyTags" : ["evil"],
   "printable" : false,
   "rarity" : "Legendary",
-  "description" : "<todo>",
-  "shortdescription" : "<todo>",
+  "description" : "A trap that shoots out a single bolt of lightning.",
+  "shortdescription" : "Lightning Trap",
   "race" : "generic",
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "This trap emits one lightning bolt on activation.",
+  "avianDescription" : "A menacing trap that fires a deadly spark of electricity.",
+  "floranDescription" : "Trap firess out lightning. Floran lovesss traps.",
+  "glitchDescription" : "Cautious. It is imperative that I do not activate this trap.",
+  "humanDescription" : "A trap that fires a puny spark of electricity. Lame.",
+  "hylotlDescription" : "It would be unwise to overlook such a primitively-designed trap.",
+  "novakidDescription" : "Ain't that a deadly lil' trap.",
 
   "category" : "trap",
   "price" : 0,
@@ -29,7 +29,7 @@
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "floor.png",
-        "fg" : "floor.png"
+        "fg" : "floorlit.png"
       },
 
       "projectileDirection" : [0, 1],
@@ -46,7 +46,7 @@
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "floor.png",
-        "fg" : "floor.png"
+        "fg" : "floorlit.png"
       },
 
       "projectileDirection" : [0, 1],
@@ -63,7 +63,7 @@
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "left.png",
-        "fg" : "left.png"
+        "fg" : "leftlit.png"
       },
 
       "projectileDirection" : [1, 0],
@@ -80,7 +80,7 @@
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "right.png",
-        "fg" : "right.png"
+        "fg" : "rightlit.png"
       },
 
       "projectileDirection" : [-1, 0],
@@ -98,7 +98,7 @@
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "ceiling.png",
-        "fg" : "ceiling.png"
+        "fg" : "ceilinglit.png"
       },
 
       "projectileDirection" : [0, -1],
@@ -115,7 +115,7 @@
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "ceiling.png",
-        "fg" : "ceiling.png"
+        "fg" : "ceilinglit.png"
       },
 
       "projectileDirection" : [0, -1],

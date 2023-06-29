@@ -83,7 +83,7 @@ function loadScripts()
     end
   end
   
-  sb.logInfo("%s", modFuncs)  -- Debug statement.
+  -- sb.logInfo("%s", modFuncs)  -- Debug statement.
 end
 
 function loadScript(name, path)

@@ -19,18 +19,14 @@ function build(directory, config, parameters, level, seed)
     config.tooltipFields.rarityLabel = "^#a600cc;Mythical"
   end
   
-  -- This way of checking if it's okay to modify the tooltipFields is hacky, but it works. Actually, it may be an
-  -- unnecessary special case.
-  if configParameter("tooltipKind") == "v-elementalarmor" then
-    local statusEffects = configParameter("statusEffects")
-    if statusEffects then
-      -- Modify tooltipFields to fill in elemental resistances and weaknesses (there's nothing stopping this from
-      -- including other stats too)
-      for _, stat in ipairs(statusEffects) do
-        -- If stat is actually a stat and not a status effect...
-        if type(stat) == "table" then
-          config.tooltipFields[stat.stat .. "Label"] = getDisplayValue(stat.amount)
-        end
+  local statusEffects = configParameter("statusEffects")
+  if statusEffects then
+    -- Modify tooltipFields to fill in elemental resistances and weaknesses (there's nothing stopping this from
+    -- including other stats too)
+    for _, stat in ipairs(statusEffects) do
+      -- If stat is actually a stat and not a status effect...
+      if type(stat) == "table" then
+        config.tooltipFields[stat.stat .. "Label"] = getDisplayValue(stat.amount)
       end
     end
   end
@@ -46,5 +42,14 @@ function getDisplayValue(amount)
   -- Determine sign (add + if positive and nothing otherwise)
   local sign = percentAmount > 0 and "+" or ""
 
-  return string.format("%s%d%%", sign, percentAmount)
+  local color
+  if percentAmount > 0 then
+    color = "green"
+  elseif percentAmount == 0 then
+    color = "white"
+  else
+    color = "red"
+  end
+
+  return string.format("^%s;%s%d%%", color, sign, percentAmount)
 end

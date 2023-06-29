@@ -104,7 +104,7 @@ function states.windup()
     coroutine.yield()
   end
 
-  animator.playSound("windup")
+  animator.playSound("windup", -1)
   animator.setAnimationState("trapState", "windup")
 
   pairingPosition = world.nearestTo(ownPosition, promise:result())
@@ -119,8 +119,14 @@ function states.windup()
 end
 
 function states.fire()
+  animator.stopAllSounds("windup")
+
   if not target or not world.entityExists(target) then
     trapState:set(states.search)
+
+    object.setAnimationParameter("lightning", {})
+    animator.setAnimationState("trapState", "idle")
+
     coroutine.yield()
   end
 

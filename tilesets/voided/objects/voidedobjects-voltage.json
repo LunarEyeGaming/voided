@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-voltage",
  "spacing":0,
- "tilecount":7,
+ "tilecount":14,
  "tileheight":80,
  "tileproperties":
     {
@@ -19,18 +19,39 @@
          "object":"v-giantcoil",
          "tilesetDirection":"right"
         },
-     "6":
-        {
-         "imagePositionX":"-8",
-         "imagePositionY":"-8",
-         "object":"v-electrictrap1",
-         "tilesetDirection":"right"
-        },
      "1":
         {
          "imagePositionX":"0",
          "imagePositionY":"0",
          "object":"v-electrictrap1",
+         "tilesetDirection":"right"
+        },
+     "10":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-electrictrap3",
+         "tilesetDirection":"right"
+        },
+     "11":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"-8",
+         "object":"v-electrictrap3",
+         "tilesetDirection":"right"
+        },
+     "12":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-electrictrap3",
+         "tilesetDirection":"right"
+        },
+     "13":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"-8",
+         "object":"v-electrictrap3",
          "tilesetDirection":"right"
         },
      "2":
@@ -59,6 +80,34 @@
          "imagePositionX":"0",
          "imagePositionY":"-8",
          "object":"v-electrictrap1",
+         "tilesetDirection":"right"
+        },
+     "6":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"-8",
+         "object":"v-electrictrap1",
+         "tilesetDirection":"right"
+        },
+     "7":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-16",
+         "object":"v-electrictrap4",
+         "tilesetDirection":"right"
+        },
+     "8":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-electrictrap3",
+         "tilesetDirection":"right"
+        },
+     "9":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-electrictrap3",
          "tilesetDirection":"right"
         }
     },
@@ -71,14 +120,35 @@
          "object":"string",
          "tilesetDirection":"string"
         },
-     "6":
+     "1":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
          "object":"string",
          "tilesetDirection":"string"
         },
-     "1":
+     "10":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "11":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "12":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "13":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -107,6 +177,34 @@
          "tilesetDirection":"string"
         },
      "5":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "6":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "7":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "8":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "9":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -122,15 +220,33 @@
          "imageheight":80,
          "imagewidth":80
         },
-     "6":
-        {
-         "image":"..\/images\/objects\/electrictrap1topflipped.png",
-         "imageheight":16,
-         "imagewidth":16
-        },
      "1":
         {
          "image":"..\/images\/objects\/electrictrap1.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "10":
+        {
+         "image":"..\/images\/objects\/electrictrap3left.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "11":
+        {
+         "image":"..\/images\/objects\/electrictrap3right.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "12":
+        {
+         "image":"..\/images\/objects\/electrictrap3top.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "13":
+        {
+         "image":"..\/images\/objects\/electrictrap3topflipped.png",
          "imageheight":16,
          "imagewidth":16
         },
@@ -155,6 +271,30 @@
      "5":
         {
          "image":"..\/images\/objects\/electrictrap1top.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "6":
+        {
+         "image":"..\/images\/objects\/electrictrap1topflipped.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "7":
+        {
+         "image":"..\/images\/objects\/electrictrap4.png",
+         "imageheight":32,
+         "imagewidth":32
+        },
+     "8":
+        {
+         "image":"..\/images\/objects\/electrictrap3.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "9":
+        {
+         "image":"..\/images\/objects\/electrictrap3flipped.png",
          "imageheight":16,
          "imagewidth":16
         }

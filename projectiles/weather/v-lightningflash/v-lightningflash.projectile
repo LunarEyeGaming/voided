@@ -1,0 +1,31 @@
+{
+  "projectileName" : "v-lightningflash",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "timeToLive" : 5,
+  "animationCycle" : 1,
+  "speed" : 200,
+  "frameNumber" : 1,
+  "power" : 0,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  
+  "piercing" : true,
+  
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-thunder/v-thunder.config"
+    }
+  ],
+
+  "scripts" : ["v-lightningflash.lua"],
+  
+  "megaLightSize" : 100,
+  "megaLightInterval" : [5, 5],
+  "megaLightColor" : [196, 196, 245],
+  "megaLightFade" : 4,
+  "megaLightTimeToLive" : 0.25,
+  "inBackground" : true
+}

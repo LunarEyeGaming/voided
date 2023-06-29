@@ -1,7 +1,7 @@
 {
   "type" : "v-bulbhead",
   "shortdescription" : "Bulbhead",
-  "description" : "These creatures are instinctively able to manipulate the air's conductivity to move at immense speeds and to stay afloat.",
+  "description" : "It instinctively manipulates the air's conductivity to move at immense speeds and to stay afloat.",
 
   "categories" : [ "v-bulbhead" ],
   "parts" : [ "body" ],
@@ -116,6 +116,20 @@
         }
       ],
 
+      "followActions" : [
+        {
+          "name" : "approach-teleport",
+          "parameters" : {
+          }
+        },
+        {
+          "name" : "approach-fly",
+          "parameters" : {
+            "usePathfinding" : true
+          }
+        }
+      ],
+
       "deathActions" : []
     },
 
@@ -212,6 +226,9 @@
 
     "mouthOffset" : [0, 0],
     "feetOffset" : [0, -8],
-    "capturable" : false
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-bulbhead" }
   }
 }

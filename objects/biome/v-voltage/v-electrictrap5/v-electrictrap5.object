@@ -3,92 +3,23 @@
   "colonyTags" : ["evil"],
   "printable" : false,
   "rarity" : "Legendary",
-  "description" : "<todo>",
-  "shortdescription" : "<todo>",
+  "description" : "A trap that drops down a weakened Batterjaw to deter invaders.",
+  "shortdescription" : "Batterjaw Trap",
   "race" : "generic",
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "A trap that dispenses a pod containing a Batterjaw. It can easily catch an individual off-guard.",
+  "avianDescription" : "A trap that drops a Batterjaw on top of unsuspecting victims. How cruel.",
+  "floranDescription" : "Trap dropsss floating creature on Floran'ss head.",
+  "glitchDescription" : "Outraged. This trap dispenses Batterjaws on top of me.",
+  "humanDescription" : "A trap that releases a Batterjaw, just like in one of those cruelly-designed video games.",
+  "hylotlDescription" : "A trap that drops Batterjaws onto invaders - quite a diabolical design.",
+  "novakidDescription" : "This 'ere trap drops Batterjaws! Perfectly devious.",
 
   "category" : "trap",
   "price" : 0,
 
   "inventoryIcon" : "icon.png",
   "orientations" : [
-    {
-      "image" : "floor.png:<color>.<frame>",
-      "imagePosition" : [-8, 0],
-      "direction" : "left",
-      "flipImages" : true,
-      
-      "animationPosition" : [-8, 0],
-      "animationParts" : {
-        "bg" : "floor.png",
-        "fg" : "floor.png"
-      },
-
-      "projectileDirection" : [0, 1],
-      "projectilePosition" : [0, 1.2],
-
-      "spaceScan" : 0.1,
-      "anchors" : [ "bottom" ]
-    },
-    {
-      "image" : "floor.png:<color>.<frame>",
-      "imagePosition" : [0, 0],
-      "direction" : "right",
-      
-      "animationPosition" : [0, 0],
-      "animationParts" : {
-        "bg" : "floor.png",
-        "fg" : "floor.png"
-      },
-
-      "projectileDirection" : [0, 1],
-      "projectilePosition" : [1, 1.2],
-
-      "spaceScan" : 0.1,
-      "anchors" : [ "bottom" ]
-    },
-    {
-      "image" : "left.png:<color>.<frame>",
-      "imagePosition" : [0, -8],
-      "direction" : "right",
-      
-      "animationPosition" : [0, -8],
-      "animationParts" : {
-        "bg" : "left.png",
-        "fg" : "left.png"
-      },
-
-      "projectileDirection" : [1, 0],
-      "projectilePosition" : [1.2, 0],
-
-      "spaceScan" : 0.1,
-      "anchors" : [ "left" ]
-    },
-    {
-      "image" : "right.png:<color>.<frame>",
-      "imagePosition" : [0, -8],
-      "direction" : "right",
-      
-      "animationPosition" : [0, -8],
-      "animationParts" : {
-        "bg" : "right.png",
-        "fg" : "right.png"
-      },
-
-      "projectileDirection" : [-1, 0],
-      "projectilePosition" : [-0.2, 0],
-
-      "spaceScan" : 0.1,
-      "anchors" : [ "right" ]
-    },
     {
       "image" : "ceiling.png:<color>.<frame>",
       "imagePosition" : [-8, 0],

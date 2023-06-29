@@ -45,126 +45,6 @@
          "name":"objects",
          "objects":[
                 {
-                 "gid":7708,
-                 "height":8,
-                 "id":794,
-                 "name":"",
-                 "properties":
-                    {
-                     "object":"v-electrictrap2"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":168,
-                 "y":256
-                }, 
-                {
-                 "gid":7708,
-                 "height":8,
-                 "id":795,
-                 "name":"",
-                 "properties":
-                    {
-                     "object":"v-electrictrap2"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":288,
-                 "y":144
-                }, 
-                {
-                 "gid":7708,
-                 "height":8,
-                 "id":796,
-                 "name":"",
-                 "properties":
-                    {
-                     "object":"v-electrictrap2"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":224,
-                 "y":152
-                }, 
-                {
-                 "gid":7708,
-                 "height":8,
-                 "id":797,
-                 "name":"",
-                 "properties":
-                    {
-                     "object":"v-electrictrap2"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":344,
-                 "y":152
-                }, 
-                {
-                 "gid":7708,
-                 "height":8,
-                 "id":798,
-                 "name":"",
-                 "properties":
-                    {
-                     "object":"v-electrictrap2"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":400,
-                 "y":176
-                }, 
-                {
-                 "gid":7708,
-                 "height":8,
-                 "id":799,
-                 "name":"",
-                 "properties":
-                    {
-                     "object":"v-electrictrap2"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":120,
-                 "y":160
-                }, 
-                {
                  "gid":7830,
                  "height":8,
                  "id":800,
@@ -235,6 +115,78 @@
                  "width":8,
                  "x":408,
                  "y":216
+                }, 
+                {
+                 "gid":8799,
+                 "height":16,
+                 "id":812,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":120,
+                 "y":168
+                }, 
+                {
+                 "gid":8799,
+                 "height":16,
+                 "id":813,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":224,
+                 "y":160
+                }, 
+                {
+                 "gid":8799,
+                 "height":16,
+                 "id":814,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":168,
+                 "y":264
+                }, 
+                {
+                 "gid":8799,
+                 "height":16,
+                 "id":815,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":288,
+                 "y":152
+                }, 
+                {
+                 "gid":8799,
+                 "height":16,
+                 "id":816,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":344,
+                 "y":160
+                }, 
+                {
+                 "gid":8799,
+                 "height":16,
+                 "id":817,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":400,
+                 "y":184
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -497,7 +449,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":812,
+ "nextobjectid":818,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -638,6 +590,10 @@
         {
          "firstgid":8692,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/huge-objects.json"
+        }, 
+        {
+         "firstgid":8793,
+         "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",

@@ -32,6 +32,8 @@
   ],
 
   "smashOnBreak" : true,
+
+  "animationScripts" : [ "v-copperpowderemitteranim.lua" ],
   
   "scripts" : ["v-copperpowderemitter.lua"],
   "scriptDelta" : 1,
@@ -48,7 +50,7 @@
       "size" : 1.0,
       "initialVelocity" : [0, 10],
       "timeToLive" : 20,
-      "position" : [0, 0],
+      "position" : [0, 0.5],
       "angularVelocity" : 180,
       "collidesForeground" : true,
       "variance" : {

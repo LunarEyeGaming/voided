@@ -1,0 +1,22 @@
+{
+  "projectileName" : "v-thunder",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "laser",
+  "bounces" : -1,
+  "timeToLive" : 0,
+  "animationCycle" : 1,
+  "speed" : 0,
+  "frameNumber" : 1,
+  "power" : 0,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  
+  "piercing" : true,
+  
+  "actionOnReap" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/weather/v_lightning_strike_far.ogg", "/sfx/weather/v_lightning_strike2_far.ogg", "/sfx/weather/v_lightning_strike3_far.ogg" ]
+    }
+  ]
+}

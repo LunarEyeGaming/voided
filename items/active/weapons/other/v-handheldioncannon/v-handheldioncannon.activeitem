@@ -36,7 +36,7 @@
 
   "scripts" : ["/items/active/weapons/ranged/v-beamcannon.lua"],
 
-  "elementalType" : "v-ion",
+  "elementalType" : "electric",
 
   "primaryAbility" : {
     "scripts" : ["/items/active/weapons/ranged/beamfire.lua"],
@@ -48,7 +48,7 @@
 
     "damageConfig" : {
       "statusEffects" : [ "v-ionized" ],
-      "damageSourceKind" : "v-ionplasma",
+      "damageSourceKind" : "electricplasma",
       "knockback" : 5
     },
 
@@ -111,13 +111,8 @@
     }
   },
 
-  "altAbilityType" : "grenadelauncher",
-  "altAbility" : {
-    "elementalConfig" : {
-      "v-ion" : { "name" : "Gamma-Ray Field", "projectileType" : "v-iongrenade", "baseDps" : 1, "baseDamage" : 2, "fireTime" : 3 }
-    },
-    "energyUsage" : 25
-  },
+  "altAbilityType" : "v-iongrenade",
+  "altAbility" : {},
 
   "builder" : "/items/buildscripts/buildunrandweapon.lua"
 }

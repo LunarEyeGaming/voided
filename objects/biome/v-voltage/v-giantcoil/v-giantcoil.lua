@@ -96,7 +96,7 @@ function init()
   
   glowLightColor = config.getParameter("glowLightColor")
   
-  activationRegion = config.getParameter("activationRegion")
+  activationRange = config.getParameter("activationRange")
   
   warningEmitterInterval = 1 / emitterSpecs.emissionRate
   
@@ -132,8 +132,8 @@ end
 function firstInactive()
   powerLevel = 0
   
-  -- Wait for a player to see the coil.
-  while not world.isVisibleToPlayer(rect.translate(activationRegion, ownPosition)) do
+  -- Wait for a player to be in close proximity to the coil.
+  while #world.playerQuery(center, activationRange) == 0 do
     coroutine.yield()
   end
 

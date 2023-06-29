@@ -47,7 +47,7 @@ function update(dt)
   queryItems()
   updateItems(dt)
   
-  world.debugText("queried items: %s", trackedItemDrops, mcontroller.position(), "green")
+  --world.debugText("queried items: %s", trackedItemDrops, mcontroller.position(), "green")
 end
 
 -- Deletes one item of ID itemName from the player's inventory and spawns a monster of type monsterType using its
@@ -120,7 +120,8 @@ end
 function spawnMonsterFromItem(itemDescriptor, entityId)
   if itemDescriptor.parameters then
     local params = {level = itemDescriptor.parameters.level,
-        initialHealthPercentage = itemDescriptor.parameters.healthPercentage, deleteItemDrop = entityId}
+        initialHealthPercentage = itemDescriptor.parameters.healthPercentage, deleteItemDrop = entityId,
+        flingVelocity = {0, 0}, initialStunTime = 0.0}
     world.spawnMonster(monsterType, mcontroller.position(), sb.jsonMerge(itemDescriptor.parameters.uniqueParameters,
         params))
   end

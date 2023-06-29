@@ -1,12 +1,12 @@
 {
   "moneyIcon" : {
     "type" : "image",
-    "position" : [102, 30],
+    "position" : [176, 30],
     "file" : "/interface/money.png"
   },
   "priceLabel" : {
     "type" : "label",
-    "position" : [115, 30],
+    "position" : [189, 30],
     "hAnchor" : "left",
     "value" : "tree"
   },
@@ -83,5 +83,81 @@
         }
       }
     }
+  },
+  "electricResistanceLabel" : {
+    "type" : "label",
+    "position" : [177, 147],
+    "hAnchor" : "left",
+    "value" : "0%"
+  },
+  "electricResistanceImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [142, 143],
+    "file" : "/interface/elements/electric.png",
+    "zlevel" : 8
+  },
+  "electricResistanceBackgroundImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [141, 145],
+    "file" : "/interface/tooltips/statlistback.png"
+  },
+  "fireResistanceLabel" : {
+    "type" : "label",
+    "position" : [177, 131],
+    "hAnchor" : "left",
+    "value" : "0%"
+  },
+  "fireResistanceImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [142, 127],
+    "file" : "/interface/elements/fire.png",
+    "zlevel" : 8
+  },
+  "fireResistanceBackgroundImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [141, 129],
+    "file" : "/interface/tooltips/statlistback.png"
+  },
+  "iceResistanceLabel" : {
+    "type" : "label",
+    "position" : [177, 115],
+    "hAnchor" : "left",
+    "value" : "0%"
+  },
+  "iceResistanceImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [142, 111],
+    "file" : "/interface/elements/ice.png",
+    "zlevel" : 8
+  },
+  "iceResistanceBackgroundImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [141, 113],
+    "file" : "/interface/tooltips/statlistback.png"
+  },
+  "poisonResistanceLabel" : {
+    "type" : "label",
+    "position" : [177, 99],
+    "hAnchor" : "left",
+    "value" : "0%"
+  },
+  "poisonResistanceImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [142, 95],
+    "file" : "/interface/elements/poison.png",
+    "zlevel" : 8
+  },
+  "poisonResistanceBackgroundImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [141, 97],
+    "file" : "/interface/tooltips/statlistback.png"
   }
 }

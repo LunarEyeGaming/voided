@@ -85,7 +85,7 @@
       "active" : true,
       "emissionRate" : 20.0,
       "particles" : [
-        {
+        /* {
           "particle" : {
             "type" : "textured",
             "image" : "/monsters/biomes/v-voltage/v-electricelemental/trail.png",
@@ -96,8 +96,10 @@
             "destructionTime" : 0.8,
             "timeToLive" : 0.0
           }
-        },
-        {"particle" : "electricalburn"}
+        }, */
+        { "particle" : "electricswoosh1" },
+        { "particle" : "electricswoosh2" },
+        { "particle" : "electricalburn" }
       ]
     },
     "deathPoof" : {
