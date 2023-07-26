@@ -1,0 +1,26 @@
+{
+  "projectileName" : "v-lightningbomb",
+  "image" : "lightningbomb.png",
+  "animationCycle" : 0.4,
+  "lightColor" : [100, 100, 150],
+  "frameNumber" : 4,
+  "timeToLive" : 1.0,
+  "power" : 500,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "hover",
+  "bounces" : 0,
+  "emitters" : [ "electricswoosh" ],
+  "damageKind" : "electric",
+  "damageType" : "NoDamage",
+  
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/electricexplosionknockback.config"
+    }
+  ],
+
+  "speed" : 35
+}

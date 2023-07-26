@@ -72,10 +72,10 @@
             "windupStopForce" : 50,
             "windupState" : "windup",
             "windupStateType" : "gun",
-            "windupTime" : 0.5,
+            "windupTime" : 0.75,
 
-            "projectileType" : "shock",
-            "projectileParameters" : {"power" : 15, "speed" : 100, "bounces" : 0},
+            "projectileType" : "v-wardroneshock",
+            "projectileParameters" : {"power" : 15},
             "projectileCount" : 2,
             "projectileInterval" : 0.3,
             "fireOffset" : [2.0, -0.125],
@@ -280,7 +280,7 @@
           "baseValue" : 1.0
         },
         "poisonResistance" : {
-          "baseValue" : -0.5
+          "baseValue" : -0.25
         },
         "poisonStatusImmunity" : {
           "baseValue" : 0.0

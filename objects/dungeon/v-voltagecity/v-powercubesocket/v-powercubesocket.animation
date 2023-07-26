@@ -1,0 +1,95 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "socket" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "activating" : {
+            "frames" : 7,
+            "cycle" : 1.0,
+            "mode" : "transition",
+            "transition" : "active"
+          },
+          "active" : {},
+          "deactivating" : {
+            "frames" : 7,
+            "cycle" : 1.0,
+            "mode" : "transition",
+            "transition" : "inactive"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "bg" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : true
+        },
+
+        "partStates" : {
+          "socket" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive"
+              }
+            },
+            "activating" : {
+              "properties" : {
+                "image" : "<partImage>:activating.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active"
+              }
+            },
+            "deactivating" : {
+              "properties" : {
+                "image" : "<partImage>:deactivating.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "fg" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1
+        },
+
+        "partStates" : {
+          "socket" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive"
+              }
+            },
+            "activating" : {
+              "properties" : {
+                "image" : "<partImage>:activating.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active"
+              }
+            },
+            "deactivating" : {
+              "properties" : {
+                "image" : "<partImage>:deactivating.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "sounds" : {
+    "activating" : [ ],
+    "deactivating" : [ ]
+  }
+}

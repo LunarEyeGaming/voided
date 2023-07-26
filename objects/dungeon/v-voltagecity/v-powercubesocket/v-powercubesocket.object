@@ -1,0 +1,71 @@
+{
+  "objectName" : "v-powercubesocket",
+  "colonyTags" : ["storage"],
+  "rarity" : "Common",
+  "objectType" : "container",
+  "tooltipKind" : "container",
+
+  "category" : "storage",
+  "price" : 70,
+  "description" : "<todo>",
+  "shortdescription" : "Power Cube Socket",
+  "race" : "generic",
+  "health" : 1.5,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "powercubesocket.png:inactive",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "powercubesocket.png:inactive", "fullbright" : true }, { "image" : "powercubesocketlit.png:inactive" } ],
+      "imagePosition" : [-16, -16],
+      
+      "animationPosition" : [-16, -16],
+      "animationParts" : {
+        "bg" : "powercubesocket.png",
+        "fg" : "powercubesocketlit.png"
+      },
+
+      "direction" : "left",
+      "flipImages" : true,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    },
+    {
+      "imageLayers" : [ { "image" : "powercubesocket.png:inactive", "fullbright" : true }, { "image" : "powercubesocketlit.png:inactive" } ],
+      "imagePosition" : [-16, -16],
+      
+      "animationPosition" : [-16, -16],
+      "animationParts" : {
+        "bg" : "powercubesocket.png",
+        "fg" : "powercubesocketlit.png"
+      },
+
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "animation" : "v-powercubesocket.animation",
+
+  "outputNodes" : [ [0, 0] ],
+  "scripts" : [ "v-powercubesocket.lua" ],
+  "acceptedItems" : [ "v-powercube" ],
+  "deleteItem" : false,
+
+  "openSounds" : [ "/sfx/objects/chest_small_open.ogg" ],
+  "closeSounds" : [ "/sfx/objects/chest_small_close.ogg" ],
+  "slotCount" : 1,
+  "uiConfig" : "/interface/chests/v-powercubesocket.config",
+  "frameCooldown" : 5,
+  "autoCloseCooldown" : 3600
+}

@@ -30,7 +30,7 @@
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
       "keepTargetInRange" : 80,
-      "targetOutOfSightTime" : 5.0,
+      "targetOutOfSightTime" : 20.0,
 
       /* "foundTargetActions" : [
         {
@@ -186,7 +186,7 @@
           "baseValue" : 9
         },
         "maxHealth" : {
-          "baseValue" : 50
+          "baseValue" : 100
         },
         "protection" : {
           "baseValue" : 0.0
@@ -213,7 +213,7 @@
           "baseValue" : 0.0
         },
         "poisonResistance" : {
-          "baseValue" : -0.5
+          "baseValue" : -0.25
         },
         "poisonStatusImmunity" : {
           "baseValue" : 0.0

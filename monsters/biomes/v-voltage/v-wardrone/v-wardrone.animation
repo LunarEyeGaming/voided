@@ -16,7 +16,7 @@
             "mode" : "transition",
             "transition" : "idle",
             "properties" : {
-              "immediateSound" : "sfx/npc/boss/robotboss_turnhostile.ogg",
+              "immediateSound" : "/sfx/npc/boss/robotboss_turnhostile.ogg",
               "lightsOn" : [ "idle" ]
             }
           },
@@ -38,7 +38,7 @@
             "mode" : "transition",
             "transition" : "charged",
             "properties" : {
-              "immediateSound" : "/sfx/melee/charge_up15.ogg"
+              "immediateSound" : "/sfx/npc/monsters/v_wardrone_windup.ogg"
             }
           },
           "charged" : {

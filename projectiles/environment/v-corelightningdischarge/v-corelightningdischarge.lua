@@ -5,14 +5,25 @@ local fuzzAngle
 local numSplits
 local splitCount
 
+local shouldSplit
+
 function init()
   fuzzAngle = util.toRadians(25)
   numSplits = config.getParameter("numSplits")
   splitCount = 2
+  
+  shouldSplit = true
+end
+
+function update(dt)
+  if world.isTileProtected(mcontroller.position()) then
+    shouldSplit = false
+    projectile.die()
+  end
 end
 
 function destroy()
-  if numSplits > 0 then
+  if numSplits > 0 and shouldSplit then
     local aimVector = mcontroller.velocity()
     
     for i = 1, splitCount do

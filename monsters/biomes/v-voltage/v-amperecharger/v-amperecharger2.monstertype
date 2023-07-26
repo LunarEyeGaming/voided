@@ -25,11 +25,11 @@
     "behaviorConfig" : {
       "damageOnTouch" : false,
 
-      "targetQueryRange" : 20,
+      "targetQueryRange" : 40,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
       "keepTargetInRange" : 80,
-      "targetOutOfSightTime" : 8.0,
+      "targetOutOfSightTime" : 3600.0,
 
       "hurtTime" : 0.4,
       "hurtWaitForGround" : false,
@@ -62,7 +62,6 @@
             "winddownTime" : 1.0,
             
             "trailProjectile" : "v-amperechargertrail",
-            "trailStepCount" : 5,
             "trailDirection" : [0, 0],
             "trailProjectileConfig" : {
               "power" : 15,

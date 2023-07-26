@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-wardroneshock",
+  "image" : "/projectiles/guns/grenades/shock/shock.png",
+  "physics" : "lightningbolt",
+  
+  "animationCycle" : 0.5,
+  "windupFrames" : 1,
+  "winddownFrames" : 4,
+  "frameNumber" : 6,
+  "power" : 10,
+  "speed" : 75,
+  "timeToLive" : 0.55,
+  "bounces" : 0,
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "piercing" : true,
+  "lightColor" : [95, 186, 236],
+  "emitters" : [ "electricswoosh" ],
+  "damageKind" : "electric"
+}

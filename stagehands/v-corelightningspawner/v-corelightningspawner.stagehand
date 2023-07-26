@@ -8,5 +8,10 @@
 
   "broadcastArea" : [-1, -1, 1, 1],
 
-  "statusEffects" : [ ]
+  "lightningXPosRange" : [-50, 50],
+  "lightningTimeRange" : [2.0, 10.0],
+  "maxSpawnHeight" : 100,
+  "projectileType" : "v-corelightningtelegraph",
+  "projectileDirection" : [0, 1],
+  "projectileParameters" : {"damageTeam" : {"type" : "indiscriminate"}, "power" : 1000}
 }

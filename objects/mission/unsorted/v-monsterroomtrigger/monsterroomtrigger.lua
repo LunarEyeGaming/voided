@@ -26,7 +26,7 @@ function init()
   self.triggerTimer = 0
 end
 
-function update(dt) 
+function update(dt)
   if self.triggerTimer > 0 then
     self.triggerTimer = self.triggerTimer - dt
   elseif self.triggerTimer <= 0 then

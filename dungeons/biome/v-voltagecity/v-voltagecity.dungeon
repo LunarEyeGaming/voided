@@ -1,0 +1,117 @@
+{
+  "metadata" : {
+    "name" : "v-voltagecity",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "citybase" ],
+    // "anchor" : [ "buildingbottom" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 30,
+    "protected" : true,
+    "extendSurfaceFreeSpace" : 1
+  },
+
+  "parts" : [
+    {
+      "name" : "citybase",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "citybase.json" ]
+    },
+    {
+      "name" : "buildingbottom",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingbottom.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "buildingroomintro1",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroomintro1.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "buildingroomintro2",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroomintro2.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "buildingroomeasy1",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroomeasy1.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "buildingroom1",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroom1.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "buildingroom2",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroom2.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "buildingroom3",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroom3.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "buildingroom4",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroom4.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "buildingroom5",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroom5.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "buildingroom6",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroom6.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "buildingtopkey",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "buildingbottom" ] ],
+        [ "maxSpawnCount", [3] ]
+      ],
+      "def" : [ "tmx", "buildingtopkey.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "buildingtopchest",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "buildingbottom" ] ],
+        [ "maxSpawnCount", [3] ]
+      ],
+      "def" : [ "tmx", "buildingtopchest.json" ],
+      "chance" : 0
+    }
+  ]
+}

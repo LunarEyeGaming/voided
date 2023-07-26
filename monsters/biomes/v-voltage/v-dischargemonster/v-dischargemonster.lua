@@ -7,6 +7,7 @@ local dischargeRange
 local dischargeProjectileType
 local dischargeProjectileParameters
 local cooldownTime
+local initialCooldownTime
 local warningTime
 local lightningConfig
 
@@ -23,9 +24,11 @@ function init()
   dischargeProjectileParameters = config.getParameter("dischargeProjectileParameters", {})
   dischargeProjectileParameters.power = (dischargeProjectileParameters.power or 10) * root.evalFunction("monsterLevelPowerMultiplier", monster.level())
   cooldownTime = config.getParameter("cooldownTime")
+  initialCooldownTime = config.getParameter("initialCooldownTime")
   dischargeTime = config.getParameter("dischargeTime")
   warningTime = config.getParameter("warningTime")
   lightningConfig = config.getParameter("lightningConfig")
+  initialVelocity = config.getParameter("initialVelocity")
 
   monster.setAnimationParameter("animationConfig", config.getParameter("animationConfig"))
   monster.setDeathParticleBurst("deathPoof")
@@ -41,7 +44,12 @@ function init()
   target = nil
 
   attackState = FSM:new()
-  attackState:set(states.targeting)
+  attackState:set(states.initialCooldown)
+  
+  -- If initialVelocity is defined, use it.
+  if initialVelocity then
+    mcontroller.setVelocity(initialVelocity)
+  end
 end
 
 function update(dt)
@@ -50,6 +58,7 @@ function update(dt)
   warningParams = {}
   monster.setAnimationParameter("ownPosition", mcontroller.position())
   updateVelocity()
+  mcontroller.controlDown()  -- Go through platforms
 end
 
 states = {}
@@ -106,9 +115,21 @@ end
 function states.cooldown()
   util.wait(cooldownTime)
 
+  attackState:set(states.warning)
+end
+
+function states.initialCooldown()
+  animator.setAnimationState("body", "inactive")
+
+  util.wait(initialCooldownTime)
+  
+  attackState:set(states.warning)
+end
+
+function states.warning()
   animator.setAnimationState("body", "warning")
   util.wait(warningTime)
-
+  
   attackState:set(states.targeting)
 end
 

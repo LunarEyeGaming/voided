@@ -31,9 +31,7 @@
         },
         "underground1" : {
           "primaryRegion" : ["v-shallowundergroundvoltage"],
-          "secondaryRegions" : []/* ,
-
-          "dungeons" : [[1.0, "v-voltagelabyrinth"]] */
+          "secondaryRegions" : []
         },
         "underground2" : {
           "primaryRegion" : ["v-undergroundvoltage"],
@@ -46,7 +44,9 @@
         },
         "core" : {
           "primaryRegion" : ["v-voltagecorelayer"],
-          "secondaryRegions" : []
+          "secondaryRegions" : [],
+
+          "dungeons" : [[1.0, "v-voltagecity"]]
         }
       }
     }

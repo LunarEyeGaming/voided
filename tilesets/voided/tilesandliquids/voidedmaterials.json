@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":8,
+ "tilecount":14,
  "tileheight":8,
  "tileproperties":
     {
@@ -19,6 +19,24 @@
      "1":
         {
          "material":"v-copperrock"
+        },
+     "10":
+        {
+         "liquid":"v-electricity",
+         "source":"true"
+        },
+     "11":
+        {
+         "liquid":"v-coreelectricity"
+        },
+     "12":
+        {
+         "liquid":"v-coreelectricity",
+         "source":"true"
+        },
+     "13":
+        {
+         "liquid":"v-electricity"
         },
      "2":
         {
@@ -43,6 +61,14 @@
      "7":
         {
          "material":"v-rustedironrock"
+        },
+     "8":
+        {
+         "material":"v-oxidizedcopperrock"
+        },
+     "9":
+        {
+         "material":"v-oxidizedcoppersand"
         }
     },
  "tilepropertytypes":
@@ -54,6 +80,24 @@
      "1":
         {
          "material":"string"
+        },
+     "10":
+        {
+         "liquid":"string",
+         "source":"string"
+        },
+     "11":
+        {
+         "liquid":"string"
+        },
+     "12":
+        {
+         "liquid":"string",
+         "source":"string"
+        },
+     "13":
+        {
+         "liquid":"string"
         },
      "2":
         {
@@ -78,6 +122,14 @@
      "7":
         {
          "material":"string"
+        },
+     "8":
+        {
+         "material":"string"
+        },
+     "9":
+        {
+         "material":"string"
         }
     },
  "tiles":
@@ -91,6 +143,30 @@
      "1":
         {
          "image":"..\/images\/tilesandliquids\/copperrock.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "10":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidelectricitysource.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "11":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidcoreelectricity.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "12":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidcoreelectricitysource.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "13":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidelectricity.png",
          "imageheight":8,
          "imagewidth":8
         },
@@ -127,6 +203,18 @@
      "7":
         {
          "image":"..\/images\/tilesandliquids\/rustedironrock.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "8":
+        {
+         "image":"..\/images\/tilesandliquids\/oxidizedcopperrock.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "9":
+        {
+         "image":"..\/images\/tilesandliquids\/oxidizedcoppersand.png",
          "imageheight":8,
          "imagewidth":8
         }

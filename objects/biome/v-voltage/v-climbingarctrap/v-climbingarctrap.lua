@@ -293,7 +293,7 @@ function getParameters(params)
   local result = {}
 
   for _, param in ipairs(params) do
-    result[param] = config.getParameter("param")
+    result[param] = config.getParameter(param)
   end
 
   return result

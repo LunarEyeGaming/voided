@@ -57,6 +57,12 @@ function init()
 end
 
 function update(dt)
+  -- Stop it from invading dungeons.
+  -- If the current position is protected, then die instantly.
+  if world.isTileProtected(mcontroller.position()) then
+    status.setResourcePercentage("health", 0.0)
+  end
+
   fireProjectile(dt)
   updateSize(dt)
   updateVelocity(dt)

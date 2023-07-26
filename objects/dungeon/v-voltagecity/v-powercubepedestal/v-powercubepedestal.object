@@ -1,0 +1,48 @@
+{
+  "objectName" : "v-powercubepedestal",
+  "colonyTags" : ["misc"],
+  "printable" : false,
+  "price" : 3000,
+  "rarity" : "Common",
+  "description" : "<todo>",
+  "shortdescription" : "Power Cube Pedestal",
+  "race" : "ancient",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "decorative",
+
+  "interactable" : true,
+
+  "inventoryIcon" : "powercubepedestal.png:idle.1",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "powercubepedestal.png:<frame>", "fullbright" : true }, { "image" : "powercubepedestallit.png:<frame>" } ],
+
+      "imagePosition" : [-8, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+  
+  "scripts" : [ "/objects/mission/ancientstronghold/v-brokenancientfabricator/v-brokenancientfabricator.lua" ],
+
+  "animation" : "v-powercubepedestal.animation",
+
+  "animationParts" : {
+    "fg" : "powercubepedestallit.png",
+    "bg" : "powercubepedestal.png"
+  },
+  "animationPosition" : [-8, 0],
+  
+  "itemDrop" : "v-powercube",
+  "itemSpawnOffset" : [0, 2]
+
+}

@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-voltage",
  "spacing":0,
- "tilecount":14,
+ "tilecount":18,
  "tileheight":80,
  "tileproperties":
     {
@@ -52,6 +52,34 @@
          "imagePositionX":"-8",
          "imagePositionY":"-8",
          "object":"v-electrictrap3",
+         "tilesetDirection":"right"
+        },
+     "14":
+        {
+         "imagePositionX":"-24",
+         "imagePositionY":"0",
+         "object":"v-inactivewardrone",
+         "tilesetDirection":"right"
+        },
+     "15":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"0",
+         "object":"v-inactivevoltspitter",
+         "tilesetDirection":"right"
+        },
+     "16":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-powercubepedestal",
+         "tilesetDirection":"right"
+        },
+     "17":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-16",
+         "object":"v-powercubesocket",
          "tilesetDirection":"right"
         },
      "2":
@@ -155,6 +183,34 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "14":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "15":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "16":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "17":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "2":
         {
          "imagePositionX":"string",
@@ -249,6 +305,30 @@
          "image":"..\/images\/objects\/electrictrap3topflipped.png",
          "imageheight":16,
          "imagewidth":16
+        },
+     "14":
+        {
+         "image":"..\/images\/objects\/inactivewardrone.png",
+         "imageheight":32,
+         "imagewidth":40
+        },
+     "15":
+        {
+         "image":"..\/images\/objects\/inactivevoltspitter.png",
+         "imageheight":24,
+         "imagewidth":32
+        },
+     "16":
+        {
+         "image":"..\/images\/objects\/powercubepedestal.png",
+         "imageheight":32,
+         "imagewidth":16
+        },
+     "17":
+        {
+         "image":"..\/images\/objects\/powercubesocket.png",
+         "imageheight":32,
+         "imagewidth":32
         },
      "2":
         {

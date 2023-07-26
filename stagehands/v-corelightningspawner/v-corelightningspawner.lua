@@ -11,12 +11,12 @@ local projectileParameters
 local timer
 
 function init()
-  lightningXPosRange = {-50, 50}
-  lightningTimeRange = {2.0, 10.0}
-  maxSpawnHeight = 100
-  projectileType = "v-corelightningtelegraph"
-  projectileDirection = {0, 1}
-  projectileParameters = {damageTeam = {type = "indiscriminate"}, power = 1000}
+  lightningXPosRange = config.getParameter("lightningXPosRange")
+  lightningTimeRange = config.getParameter("lightningTimeRange")
+  maxSpawnHeight = config.getParameter("maxSpawnHeight")
+  projectileType = config.getParameter("projectileType")
+  projectileDirection = config.getParameter("projectileDirection")
+  projectileParameters = config.getParameter("projectileParameters")
 
   timer = util.randomInRange(lightningTimeRange)
 end

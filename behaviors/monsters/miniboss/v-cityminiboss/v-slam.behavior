@@ -1,0 +1,269 @@
+{
+  "name": "v-cityminiboss-slam",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/entity.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/position.lua"  // ,
+    // "/scripts/actions/projectiles.lua"
+  ],
+  "parameters": {
+    "slamNumber": 1
+  },
+  "root": {
+    "title": "repeater",
+    "type": "decorator",
+    "name": "repeater",
+    "parameters": {
+      "maxLoops": {"value": "<slamNumber>"},
+      "untilSuccess": {"value": false}
+    },
+    "child": {
+      "title": "sequence",
+      "type": "composite",
+      "name": "sequence",
+      "parameters": {},
+      "children": [
+        {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"value": "attack3"},
+            "type": {"value": "body"}
+          }
+        },
+        {
+          "title": "controlParameters",
+          "type": "action",
+          "name": "controlParameters",
+          "parameters": {
+            "parameters": {"value": {"gravityEnabled": false}}
+          }
+        },
+        {
+          "title": "parallel",
+          "type": "composite",
+          "name": "parallel",
+          "parameters": {
+            "fail": {"value": -1},
+            "success": {"value": 2}
+          },
+          "children": [
+            {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "entityPosition",
+                  "type": "action",
+                  "name": "entityPosition",
+                  "parameters": {
+                    "entity": {"key": "target"}
+                  },
+                  "output": {
+                    "position": "targetPos"
+                  }
+                },
+                {
+                  "title": "offsetPosition",
+                  "type": "action",
+                  "name": "offsetPosition",
+                  "parameters": {
+                    "offset": {"value": [0, 20]},
+                    "position": {"key": "targetPos"}
+                  },
+                  "output": {
+                    "position": "preSlam"
+                  }
+                }
+              ]
+            },
+            {
+              "title": "v-failsafeflight",
+              "type": "module",
+              "name": "v-failsafeflight",
+              "parameters": {
+                "position": {"key": "preSlam"},
+                "speed": {"value": 50},
+                "tolerance": {"value": 1},
+                "durationLimit": {"value": 1.5}
+              }
+            }
+          ]
+        },
+        {
+          "title": "setVelocity",
+          "type": "action",
+          "name": "setVelocity",
+          "parameters": {
+            "velocity": {"value": [0, 0]}
+          }
+        },
+        {
+          "title": "timer",
+          "type": "action",
+          "name": "timer",
+          "parameters": {
+            "time": {"value": 0.15}
+          }
+        },
+        {
+          "title": "setDamageOnTouch",
+          "type": "action",
+          "name": "setDamageOnTouch",
+          "parameters": {
+            "touchDamage": {"value": true}
+          }
+        },
+        {
+          "title": "setVelocity",
+          "type": "action",
+          "name": "setVelocity",
+          "parameters": {
+            "velocity": {"value": [0, -50]}
+          }
+        },
+        {
+          "title": "parallel",
+          "type": "composite",
+          "name": "parallel",
+          "parameters": {
+            "fail": {"value": -1},
+            "success": {"value": -1}
+          },
+          "children": [
+            {
+              "title": "controlParameters",
+              "type": "action",
+              "name": "controlParameters",
+              "parameters": {
+                "parameters": {"value": {"gravityEnabled": true}}
+              }
+            },
+            {
+              "title": "dynamic",
+              "type": "composite",
+              "name": "dynamic",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "onGround",
+                  "type": "action",
+                  "name": "onGround",
+                  "parameters": {}
+                },
+                {
+                  "title": "runner",
+                  "type": "action",
+                  "name": "runner",
+                  "parameters": {}
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "spawnProjectile",
+          "type": "action",
+          "name": "spawnProjectile",
+          "parameters": {
+            "aimVector": {"value": [-1, 0]},
+            "offset": {"value": [0, 2.5]},
+            "projectileConfig": {"value": {"power" : 20}},
+            "projectileType": {"value": "v-cityminibossshockwave"},
+            "scalePower": {"value": true}
+          }
+        },
+        {
+          "title": "spawnProjectile",
+          "type": "action",
+          "name": "spawnProjectile",
+          "parameters": {
+            "aimVector": {"value": [1, 0]},
+            "offset": {"value": [0, 2.5]},
+            "projectileConfig": {"value": {"power" : 20}},
+            "projectileType": {"value": "v-cityminibossshockwave"},
+            "scalePower": {"value": true}
+          }
+        },
+        /* {
+          "title": "playSound",
+          "type": "action",
+          "name": "playSound",
+          "parameters": {
+            "sound": {"value": "slam"}
+          }
+        },
+        {
+          "title": "burstParticleEmitter",
+          "type": "action",
+          "name": "burstParticleEmitter",
+          "parameters": {
+            "emitter": {"value": "slam"}
+          }
+        }, */
+        {
+          "title": "setDamageOnTouch",
+          "type": "action",
+          "name": "setDamageOnTouch",
+          "parameters": {
+            "touchDamage": {"value": false}
+          }
+        },
+        {
+          "title": "offsetPosition",
+          "type": "action",
+          "name": "offsetPosition",
+          "parameters": {
+            "offset": {"value": [0, 10]},
+            "position": {"key": "self"}
+          },
+          "output": {
+            "position": "postSlam"
+          }
+        },
+        {
+          "title": "flyToPosition",
+          "type": "action",
+          "name": "flyToPosition",
+          "parameters": {
+            "position": {"key": "postSlam"},
+            "speed": {"value": 25},
+            "tolerance": {"value": 1}
+          }
+        },
+        {
+          "title": "setVelocity",
+          "type": "action",
+          "name": "setVelocity",
+          "parameters": {
+            "velocity": {"value": [0, 0]}
+          }
+        },
+        {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"value": "idle"},
+            "type": {"value": "body"}
+          }
+        },
+        {
+          "title": "timer",
+          "type": "action",
+          "name": "timer",
+          "parameters": {
+            "time": {"value": 1.0}
+          }
+        }
+      ]
+    }
+  }
+}
