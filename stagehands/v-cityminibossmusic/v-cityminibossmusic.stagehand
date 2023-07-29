@@ -1,0 +1,18 @@
+{
+  // Variant of the bossmusic stagehand that has three modes: inactive, partial, and active. Inactive = use default
+  // music, partial = use no music, active = use boss music
+  "type" : "v-cityminibossmusic",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-cityminibossmusic/v-cityminibossmusic.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-5, -5, 5, 5],
+
+  "music" : [],
+  "defaultMusic" : null,
+
+  "startFadeOutTime" : 2.0,
+  "fadeInTime" : 2.0,
+  "endFadeOutTime" : 2.0
+}

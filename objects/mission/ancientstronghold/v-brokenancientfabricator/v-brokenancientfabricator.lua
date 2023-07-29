@@ -5,13 +5,17 @@ local itemDrop
 local itemSpawnPosition
 
 function init()
-  if not storage.interacted then
+  if storage.interacted == nil then
     storage.interacted = false
   end
 
   itemDrop = config.getParameter("itemDrop", "dirtmaterial")
   itemSpawnPosition = vec2.add(object.position(), config.getParameter("itemSpawnOffset", {0, 0}))
   object.setInteractive(not storage.interacted)
+
+  if storage.interacted then
+    animator.setAnimationState("body", "deactivate")
+  end
 end
 
 function onInteraction(args)

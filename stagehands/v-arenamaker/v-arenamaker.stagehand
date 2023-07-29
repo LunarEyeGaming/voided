@@ -1,0 +1,12 @@
+{
+  // See v-arenamaker for documentation
+  "type" : "v-arenamaker",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-arenamaker/v-arenamaker.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-1, -1, 1, 1],
+  
+  "barrierProjectileType" : "v-cityminibossbarrier"
+}

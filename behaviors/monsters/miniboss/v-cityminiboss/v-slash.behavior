@@ -24,7 +24,7 @@
         "type": "action",
         "name": "setAnimationState",
         "parameters": {
-          "state": {"value": "attack2"},
+          "state": {"value": "slashpretele"},
           "type": {"value": "body"}
         }
       },
@@ -68,13 +68,22 @@
           "velocity": {"value": [0, 0]}
         }
       },
-      {
+      /* {
         "title": "setAnimationState",
         "type": "action",
         "name": "setAnimationState",
         "parameters": {
           "state": {"value": "slashwindup"},
           "type": {"value": "blade"}
+        }
+      }, */
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "slashtele"},
+          "type": {"value": "body"}
         }
       },
       {
@@ -102,7 +111,7 @@
           }
         ]
       },
-      {
+      /* {
         "title": "setAnimationState",
         "type": "action",
         "name": "setAnimationState",
@@ -110,13 +119,30 @@
           "state": {"value": "slash"},
           "type": {"value": "blade"}
         }
+      }, */
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "slash"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "sound": {"value": "slash"}
+        }
       },
       {
         "title": "spawnProjectile",
         "type": "action",
         "name": "spawnProjectile",
         "parameters": {
-          "aimVector": {"key": "aimVector"},
+          "aimVector": {"key": "aimVector"},  // From v-cityminiboss-rotate
           "offset": {"value": [0, 0]},
           "position": {"key": "self"},
           "projectileConfig": {"value": {"power" : 15, "actionOnReap" : [
@@ -170,7 +196,7 @@
           "time": {"value": 0.2}
         }
       },
-      {
+      /* {
         "title": "setAnimationState",
         "type": "action",
         "name": "setAnimationState",
@@ -178,14 +204,80 @@
           "state": {"value": "slashwinddown"},
           "type": {"value": "blade"}
         }
-      },
+      }, */
       {
         "title": "timer",
         "type": "action",
         "name": "timer",
         "parameters": {
-          "time": {"value": 0.5}
+          "time": {"value": 0.25}
         }
+      },
+      /* {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 0.25}
+            },
+            "output": {
+              "ratio": "progress"
+            }
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "lerp",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "ratio": {"key": "progress"},
+                    "min": {"key": "targetAngle"},  // From v-cityminiboss-rotate
+                    "max": {"value": 0}
+                  },
+                  "output": {
+                    "number": "rotateAngle"
+                  }
+                },
+                {
+                  "title": "resetTransformationGroup",
+                  "type": "action",
+                  "name": "resetTransformationGroup",
+                  "parameters": {
+                    "transformationGroup": {"value": "body"}
+                  }
+                },
+                {
+                  "title": "rotateTransformationGroup",
+                  "type": "action",
+                  "name": "rotateTransformationGroup",
+                  "parameters": {
+                    "angle": {"key": "rotateAngle"},
+                    "transformationGroup": {"value": "body"}
+                  }
+                }
+              ]
+            }
+          }
+        ]
       },
       {
         "title": "resetTransformationGroup",
@@ -194,8 +286,17 @@
         "parameters": {
           "transformationGroup": {"value": "body"}
         }
-      },
+      }, */
       {
+        "title": "v_smoothReset",
+        "type": "action",
+        "name": "v_smoothReset",
+        "parameters": {
+          "startAngle": {"key": "targetAngle"},  // From v-cityminiboss-rotate
+          "resetTime": {"value": 0.25}
+        }
+      },
+      /* {
         "title": "setAnimationState",
         "type": "action",
         "name": "setAnimationState",
@@ -203,7 +304,7 @@
           "state": {"value": "idle"},
           "type": {"value": "body"}
         }
-      },
+      }, */
       {
         "title": "timer",
         "type": "action",

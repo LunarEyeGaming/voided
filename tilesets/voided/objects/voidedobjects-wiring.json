@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-wiring",
  "spacing":0,
- "tilecount":1,
+ "tilecount":2,
  "tileheight":16,
  "tileproperties":
     {
@@ -18,11 +18,25 @@
          "imagePositionY":"0",
          "object":"v-monsterwavespawner",
          "tilesetDirection":"right"
+        },
+     "1":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-citybackgroundfiller",
+         "tilesetDirection":"right"
         }
     },
  "tilepropertytypes":
     {
      "0":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "1":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -37,6 +51,12 @@
          "image":"..\/images\/objects\/monsterwavespawner.png",
          "imageheight":16,
          "imagewidth":16
+        },
+     "1":
+        {
+         "image":"..\/images\/objects\/citybackgroundfiller.png",
+         "imageheight":8,
+         "imagewidth":8
         }
     },
  "tilewidth":16,

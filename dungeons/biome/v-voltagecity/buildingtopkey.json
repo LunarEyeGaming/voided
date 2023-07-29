@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt2MEJgDAMQNGM4cVx3P\/UHRzAAaSHQGslRppc9D8IeOnlU2ypiO1Y4we92mSRuKHxSBtHoPE9Guej8TzPGUXjOd4zLQKN89E4H43z0fidIs\/\/8HJZQ2M\/bafNrLtI25nG477z7NW6fpN+rLvK3xurvfm29qrOXWPehIBvOQFN3GLV",
+         "data":"eJzt2MENgCAMQNGO4cVx3P\/EDg7gAIZDExBTa2hP\/Jc08cLlhwhBxHbt8YNebbJJ3NB4pI0j0PgdjfPReJ7njKLxHO+ZFoHG+Wicj8b5aPxPke9\/eHmsobGfttNm1l2k7Uzjcd959mpdf0g\/1l1l9cbqbL6tvcqbELCOG658ZgU=",
          "encoding":"base64",
          "height":16,
          "name":"front",
@@ -91,6 +91,18 @@
                  "width":16,
                  "x":144,
                  "y":80
+                }, 
+                {
+                 "gid":7729,
+                 "height":8,
+                 "id":700,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":0,
+                 "y":8
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -173,7 +185,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":700,
+ "nextobjectid":701,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -290,6 +302,10 @@
         {
          "firstgid":7710,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
+        }, 
+        {
+         "firstgid":7728,
+         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-wiring.json"
         }],
  "tilewidth":8,
  "type":"map",

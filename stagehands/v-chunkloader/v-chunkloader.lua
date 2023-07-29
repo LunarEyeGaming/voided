@@ -5,7 +5,7 @@ require "/scripts/rect.lua"
 local loadRegion
 
 function init()
-  loadRegion = rect.translate(config.getParameter("loadArea"), config.getParameter("loadPosition"))
+  loadRegion = rect.translate(config.getParameter("loadArea"), config.getParameter("loadPosition", stagehand.position()))
 end
 
 function update(dt)

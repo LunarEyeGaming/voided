@@ -1,0 +1,31 @@
+{
+  "frameGrid" : {
+    "size" : [84, 72],
+    "dimensions" : [6, 11],
+    "names" : [
+      [ "idle.1", "idle.2" ],
+      [ "gunhold.1", "gunhold.2" ],
+      [ "slashpretele.1", "slashpretele.2" ],
+      [ "slashtele.1", "slashtele.2", "slashtele.3", "slashtele.4", "slashtele.5", "slashtele.6" ],
+      [ "slash.1", "slash.2", "slash.3" ],
+      [ "slashwinddown.1" ],
+      [ "slampretele.1", "slampretele.2" ],
+      [ "slamtele.1", "slamtele.2", "slamtele.3", "slamtele.4" ],
+      [ "slam.1" ],
+      [ "slamfinish.1" ],
+      [ "slamemerge.1", "slamemerge.2" ]
+    ]
+  },
+  "aliases" : {
+    "slashwinddown.2" : "slashtele.4",
+    "slashwinddown.3" : "slashtele.3",
+    "slashwinddown.4" : "slashtele.2",
+    "slashwinddown.5" : "slashtele.1",
+    
+    "slamwinddown.1" : "slamtele.4",
+    "slamwinddown.2" : "slamtele.3",
+    "slamwinddown.3" : "slamtele.2",
+    "slamwinddown.4" : "slamtele.1",
+    "slamwinddown.5" : "slampretele.1"
+  }
+}

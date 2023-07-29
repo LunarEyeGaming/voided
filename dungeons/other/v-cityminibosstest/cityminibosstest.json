@@ -63,7 +63,7 @@
                  "properties":
                     {
                      "monster":"v-cityminiboss",
-                     "parameters":"{\"musicStagehands\" : [\"bossmusic\"]}"
+                     "parameters":"{\"musicStagehands\" : [\"v-cityminibossmusic\"], \"uniqueId\" : \"v-cityminiboss\"}"
                     },
                  "propertytypes":
                     {
@@ -75,55 +75,117 @@
                  "visible":true,
                  "width":8,
                  "x":296,
-                 "y":304
+                 "y":40
                 }, 
                 {
-                 "gid":6464,
-                 "height":8,
-                 "id":684,
+                 "gid":7692,
+                 "height":32,
+                 "id":688,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":256,
-                 "y":160
+                 "width":16,
+                 "x":24,
+                 "y":392
                 }, 
                 {
-                 "gid":6464,
-                 "height":8,
-                 "id":685,
+                 "gid":7692,
+                 "height":32,
+                 "id":689,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":376,
-                 "y":152
+                 "width":16,
+                 "x":40,
+                 "y":392
                 }, 
                 {
-                 "gid":6464,
-                 "height":8,
-                 "id":686,
+                 "gid":7692,
+                 "height":32,
+                 "id":690,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":344,
-                 "y":256
+                 "width":16,
+                 "x":56,
+                 "y":392
                 }, 
                 {
-                 "gid":6464,
-                 "height":8,
-                 "id":687,
+                 "height":400,
+                 "id":693,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"uniqueId\" : \"v-cityminibossarenamaker\"}",
+                     "stagehand":"v-arenamaker"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":248,
-                 "y":240
+                 "width":400,
+                 "x":96,
+                 "y":0
+                }, 
+                {
+                 "height":400,
+                 "id":694,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"music\" : [\"\/music\/arctic-battle3-loop.ogg\"], \"uniqueId\" : \"v-cityminibossmusic\"}",
+                     "stagehand":"v-cityminibossmusic"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":408,
+                 "x":88,
+                 "y":0
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "color":"#5555ff",
+         "draworder":"topdown",
+         "name":"positions",
+         "objects":[
+                {
+                 "height":32,
+                 "id":692,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"uniqueId\": \"v-cityminibossambushpos\"}",
+                     "stagehand":"v-position"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":280,
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -206,7 +268,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":688,
+ "nextobjectid":695,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -315,6 +377,10 @@
         {
          "firstgid":7662,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
+        }, 
+        {
+         "firstgid":7676,
+         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",

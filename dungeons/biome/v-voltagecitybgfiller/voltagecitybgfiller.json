@@ -1,12 +1,12 @@
 { "backgroundcolor":"#000000",
- "height":16,
+ "height":1,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt2LENACAIBVHGsHEc91\/E0gGMC2AIvzB4xdUkLxSEYWbDaXV93rwfOybNdGGMMcY1w1hjeAvjt\/YUY4wxrhnGGFcoaxy9RTDW7CXGcWN+QrkmUYE2KFoELQ==",
+         "data":"eJxzZWBgcB3FNMUA4DgX\/g==",
          "encoding":"base64",
-         "height":16,
+         "height":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +17,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt2MENgCAMQNGO4cVx3P\/EDg7gAIZDExBTa2hP\/Jc08cLlhwhBxHbt8YNebbJJ3NB4pI0j0PgdjfPReJ7njKLxHO+ZFoHG+Wicj8b5aPxPke9\/eHmsobGfttNm1l2k7Uzjcd959mpdf0g\/1l1l9cbqbL6tvcqbELCOG658ZgU=",
+         "data":"eJxjYBgFtAYAAWQAAQ==",
          "encoding":"base64",
-         "height":16,
+         "height":1,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -43,67 +43,7 @@
          "color":"#ff0000",
          "draworder":"topdown",
          "name":"objects",
-         "objects":[
-                {
-                 "gid":6881,
-                 "height":24,
-                 "id":679,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":24,
-                 "x":32,
-                 "y":112
-                }, 
-                {
-                 "gid":2147491515,
-                 "height":16,
-                 "id":696,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":136,
-                 "y":80
-                }, 
-                {
-                 "gid":6879,
-                 "height":18,
-                 "id":698,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":24,
-                 "x":32,
-                 "y":104
-                }, 
-                {
-                 "gid":6846,
-                 "height":8,
-                 "id":699,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":40,
-                 "x":136,
-                 "y":24
-                }, 
-                {
-                 "gid":7945,
-                 "height":8,
-                 "id":700,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":0,
-                 "y":8
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -156,19 +96,7 @@
         {
          "draworder":"topdown",
          "name":"anchors etc",
-         "objects":[
-                {
-                 "gid":250,
-                 "height":8,
-                 "id":689,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":40,
-                 "y":120
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -185,7 +113,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":701,
+ "nextobjectid":700,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -302,10 +230,6 @@
         {
          "firstgid":7710,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
-        }, 
-        {
-         "firstgid":7944,
-         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-wiring.json"
         }],
  "tilewidth":8,
  "type":"map",

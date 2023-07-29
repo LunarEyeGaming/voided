@@ -12,7 +12,7 @@ function init()
   end
   
   -- Retain state if unloaded
-  animator.setAnimationState(storage.state and "active" or "inactive")
+  animator.setAnimationState("socket", storage.state and "active" or "inactive")
 end
 
 function update(dt)

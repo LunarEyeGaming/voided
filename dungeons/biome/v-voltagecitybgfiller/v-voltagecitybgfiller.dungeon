@@ -1,0 +1,27 @@
+{
+  "metadata" : {
+    "name" : "v-voltagecitybgfiller",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "voltagecitybgfiller" ],
+    // "anchor" : [ "buildingbottom" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 30,
+    "protected" : true,
+    "extendSurfaceFreeSpace" : 1
+  },
+
+  "parts" : [
+    {
+      "name" : "voltagecitybgfiller",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltagecitybgfiller.json" ]
+    }
+  ]
+}

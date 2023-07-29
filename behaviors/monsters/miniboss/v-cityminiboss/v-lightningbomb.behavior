@@ -5,14 +5,20 @@
     "/scripts/actions/animator.lua",
     // "/scripts/actions/position.lua",
     "/scripts/actions/movement.lua",
-    // "/scripts/actions/math.lua",
+    "/scripts/actions/math.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/projectiles.lua",
     "/scripts/actions/v-attackutil.lua",
+    "/scripts/actions/miniboss/v-cityminiboss.lua",
     "/scripts/behavior.lua",
     "/scripts/behavior/bdata.lua"
   ],
   "parameters": {
+    "frontArmRotationCenter": [-0.375, -0.25],
+    "backArmRotationCenter": [0.25, -0.25],
+    "windupTime": 0.8,
+    "gunStartKickbackAngle": 0.2,
+    "gunKickbackTime": 0.2
   },
   "root": {
     "title": "sequence",
@@ -25,18 +31,10 @@
         "type": "action",
         "name": "setAnimationState",
         "parameters": {
-          "state": {"value": "attack1"},
+          "state": {"value": "gunhold"},
           "type": {"value": "body"}
         }
       },
-      /* {
-        "title": "timer",
-        "type": "action",
-        "name": "timer",
-        "parameters": {
-          "time": {"value": 1.0}
-        }
-      }, */
       {
         "title": "repeater",
         "type": "decorator",
@@ -83,18 +81,13 @@
                         }
                       },
                       {
-                        "title": "spawnProjectile",
+                        "title": "v_aimAtVector",
                         "type": "action",
-                        "name": "spawnProjectile",
+                        "name": "v_aimAtVector",
                         "parameters": {
                           "aimVector": {"key": "aimVector"},
-                          "offset": {"value": [0, 0]},
-                          "position": {"key": "self"},
-                          "projectileConfig": {"value": {"timeToLive": 0, "power": 0}},
-                          "projectileType": {"value": "shortbeam"},
-                          "scalePower": {"value": true},
-                          "sourceEntity": {"key": "self"},
-                          "trackSource": {"value": false}
+                          "frontArmRotationCenter": {"value": "<frontArmRotationCenter>"},
+                          "backArmRotationCenter": {"value": "<backArmRotationCenter>"}
                         }
                       }
                     ]
@@ -105,10 +98,18 @@
                   "type": "action",
                   "name": "timer",
                   "parameters": {
-                    "time": {"value": 1.0}
+                    "time": {"value": "<windupTime>"}
                   }
                 }
               ]
+            },
+            {
+              "title": "playSound",
+              "type": "action",
+              "name": "playSound",
+              "parameters": {
+                "sound": {"value": "fire"}
+              }
             },
             {
               "title": "spawnProjectile",
@@ -124,6 +125,85 @@
                 "sourceEntity": {"key": "self"},
                 "trackSource": {"value": false}
               }
+            },
+            {
+              "title": "parallel",
+              "type": "composite",
+              "name": "parallel",
+              "parameters": {
+                "fail": {"value": -1},
+                "success": {"value": 1}
+              },
+              "children": [
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"value": "<gunKickbackTime>"}
+                  },
+                  "output": {
+                    "ratio": "progress"
+                  }
+                },
+                {
+                  "title": "failer",
+                  "type": "decorator",
+                  "name": "failer",
+                  "parameters": {},
+                  "child": {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "lerp",
+                        "type": "action",
+                        "name": "lerp",
+                        "parameters": {
+                          "max": {"value": 0},
+                          "min": {"value": "<gunStartKickbackAngle>"},
+                          "ratio": {"key": "progress"}
+                        },
+                        "output": {
+                          "number": "gunKickbackAngle"
+                        }
+                      },
+                      {
+                        "title": "v_aimAtVector",
+                        "type": "action",
+                        "name": "v_aimAtVector",
+                        "parameters": {
+                          "aimVector": {"key": "aimVector"},
+                          "frontArmRotationCenter": {"value": "<frontArmRotationCenter>"},
+                          "backArmRotationCenter": {"value": "<backArmRotationCenter>"}
+                        }
+                      },
+                      {
+                        "title": "add kickback to front arm",
+                        "type": "action",
+                        "name": "rotateTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "frontarm"},
+                          "rotationCenter": {"value": "<frontArmRotationCenter>"},
+                          "angle": {"key": "gunKickbackAngle"}
+                        }
+                      },
+                      {
+                        "title": "add kickback to back arm",
+                        "type": "action",
+                        "name": "rotateTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "backarm"},
+                          "rotationCenter": {"value": "<backArmRotationCenter>"},
+                          "angle": {"key": "gunKickbackAngle"}
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           ]
         }

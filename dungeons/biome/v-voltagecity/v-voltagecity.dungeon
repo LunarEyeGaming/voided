@@ -89,6 +89,8 @@
     {
       "name" : "buildingroom6",
       "rules" : [
+        [ "doNotConnectToPart", [ "buildingroom6" ] ],
+        [ "maxSpawnCount", [2] ]
       ],
       "def" : [ "tmx", "buildingroom6.json" ],
       "chance" : 1

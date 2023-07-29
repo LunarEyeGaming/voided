@@ -1,5 +1,5 @@
 {
-  "name": "v-cityminiboss-slam",
+  "name": "v-cityminiboss-intro",
   "description": "",
   "scripts": [
     "/scripts/actions/animator.lua",
@@ -18,133 +18,12 @@
     "parameters": {},
     "children": [
       {
-        "title": "setAnimationState",
-        "type": "action",
-        "name": "setAnimationState",
-        "parameters": {
-          "state": {"value": "slampretele"},
-          "type": {"value": "body"}
-        }
-      },
-      {
         "title": "controlParameters",
         "type": "action",
         "name": "controlParameters",
         "parameters": {
           "parameters": {"value": {"gravityEnabled": false}}
         }
-      },
-      {
-        "title": "parallel",
-        "type": "composite",
-        "name": "parallel",
-        "parameters": {
-          "fail": {"value": -1},
-          "success": {"value": 2}
-        },
-        "children": [
-          {
-            "title": "sequence",
-            "type": "composite",
-            "name": "sequence",
-            "parameters": {},
-            "children": [
-              {
-                "title": "entityPosition",
-                "type": "action",
-                "name": "entityPosition",
-                "parameters": {
-                  "entity": {"key": "target"}
-                },
-                "output": {
-                  "position": "targetPos"
-                }
-              },
-              {
-                "title": "offsetPosition",
-                "type": "action",
-                "name": "offsetPosition",
-                "parameters": {
-                  "offset": {"value": [0, 20]},
-                  "position": {"key": "targetPos"}
-                },
-                "output": {
-                  "position": "preSlam"
-                }
-              }
-            ]
-          },
-          {
-            "title": "v-failsafeflight",
-            "type": "module",
-            "name": "v-failsafeflight",
-            "parameters": {
-              "position": {"key": "preSlam"},
-              "speed": {"value": 50},
-              "tolerance": {"value": 1},
-              "durationLimit": {"value": 1.5}
-            }
-          }
-        ]
-      },
-      {
-        "title": "setAnimationState",
-        "type": "action",
-        "name": "setAnimationState",
-        "parameters": {
-          "state": {"value": "slamtele"},
-          "type": {"value": "body"}
-        }
-      },
-      {
-        "title": "setVelocity",
-        "type": "action",
-        "name": "setVelocity",
-        "parameters": {
-          "velocity": {"value": [0, 0]}
-        }
-      },
-      /* {
-        "title": "timer",
-        "type": "action",
-        "name": "timer",
-        "parameters": {
-          "time": {"value": 0.15}
-        }
-      }, */
-      {
-        "title": "parallel",
-        "type": "composite",
-        "name": "parallel",
-        "parameters": {
-          "fail": {"value": -1},
-          "success": {"value": 1}
-        },
-        "children" : [
-          {
-            "title": "failer",
-            "type": "decorator",
-            "name": "failer",
-            "parameters": {},
-            "child": {
-              "title": "controlApproachVelocity",
-              "type": "action",
-              "name": "controlApproachVelocity",
-              "parameters": {
-                "velocity": {"value": [0, 50]},
-                "controlForce": {"value": 500}
-              }
-            }
-          },
-          {
-            "title": "timer",
-            "type": "action",
-            "name": "timer",
-            "parameters": {
-              "time": {"value": 0.15}
-            }
-          }
-        ]
       },
       {
         "title": "setAnimationState",
@@ -155,14 +34,14 @@
           "type": {"value": "body"}
         }
       },
-      {
+      /* {
         "title": "setDamageOnTouch",
         "type": "action",
         "name": "setDamageOnTouch",
         "parameters": {
           "touchDamage": {"value": true}
         }
-      },
+      }, */
       {
         "title": "setVelocity",
         "type": "action",
@@ -211,13 +90,30 @@
         ]
       },
       {
+        "title": "v_setBattleMusicState",
+        "type": "action",
+        "name": "v_setBattleMusicState",
+        "parameters": {
+          "state": {"value": "partial"}
+        }
+      },
+      {
+        "title": "sendEntityMessage",
+        "type": "action",
+        "name": "sendEntityMessage",
+        "parameters": {
+          "entity": {"value": "v-cityminibossarenamaker"},
+          "message": {"value": "v-activateArena"}
+        }
+      },
+      {
         "title": "spawnProjectile",
         "type": "action",
         "name": "spawnProjectile",
         "parameters": {
           "aimVector": {"value": [-1, 0]},
           "offset": {"value": [0, 2.5]},
-          "projectileConfig": {"value": {"power" : 20}},
+          "projectileConfig": {"value": {"power" : 0, "knockback" : 100}},
           "projectileType": {"value": "v-cityminibossshockwave"},
           "scalePower": {"value": true}
         }
@@ -229,7 +125,7 @@
         "parameters": {
           "aimVector": {"value": [1, 0]},
           "offset": {"value": [0, 2.5]},
-          "projectileConfig": {"value": {"power" : 20}},
+          "projectileConfig": {"value": {"power" : 0, "knockback" : 100}},
           "projectileType": {"value": "v-cityminibossshockwave"},
           "scalePower": {"value": true}
         }
@@ -259,20 +155,20 @@
           "emitter": {"value": "slam"}
         }
       },
-      {
+      /* {
         "title": "setDamageOnTouch",
         "type": "action",
         "name": "setDamageOnTouch",
         "parameters": {
           "touchDamage": {"value": false}
         }
-      },
+      }, */
       {
         "title": "timer",
         "type": "action",
         "name": "timer",
         "parameters": {
-          "time": {"value": 0.15}
+          "time": {"value": 1.5}
         }
       },
       {

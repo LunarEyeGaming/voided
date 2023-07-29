@@ -32,7 +32,7 @@
     }
   ],
   
-  "scripts" : [ "/objects/mission/ancientstronghold/v-brokenancientfabricator/v-brokenancientfabricator.lua" ],
+  "scripts" : [ "/objects/mission/ancientstronghold/v-brokenancientfabricator/v-brokenancientfabricator.lua", "v-powercubepedestal.lua" ],
 
   "animation" : "v-powercubepedestal.animation",
 
@@ -43,6 +43,7 @@
   "animationPosition" : [-8, 0],
   
   "itemDrop" : "v-powercube",
-  "itemSpawnOffset" : [0, 2]
+  "itemSpawnOffset" : [0, 2],
 
+  "minibossUniqueId" : "v-cityminiboss"
 }

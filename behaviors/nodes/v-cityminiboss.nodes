@@ -1,0 +1,38 @@
+{
+  "v_aimAtVector": {
+    "type": "action",
+    "name": "v_aimAtVector",
+    "title": "v_aimAtVector",
+    "properties": {
+      "aimVector": {"type": "vec2", "value": null},
+      "frontArmRotationCenter": {"type": "vec2", "value": [0, 0]},
+      "backArmRotationCenter": {"type": "vec2", "value": [0, 0]}
+    },
+    "category": "v-cityminiboss",
+    "script": "/scripts/actions/miniboss/v-cityminiboss.lua",
+    "output": {}
+  },
+  "v_smoothReset": {
+    "type": "action",
+    "name": "v_smoothReset",
+    "title": "v_smoothReset",
+    "properties": {
+      "startAngle": {"type": "number", "value": null},
+      "resetTime": {"type": "number", "value": 1.0}
+    },
+    "category": "v-cityminiboss",
+    "script": "/scripts/actions/miniboss/v-cityminiboss.lua",
+    "output": {}
+  },
+  "v_setBattleMusicState": {
+    "type": "action",
+    "name": "v_setBattleMusicState",
+    "title": "v_setBattleMusicState",
+    "properties": {
+      "state": {"type": "string", "value": "inactive"}
+    },
+    "category": "v-cityminiboss",
+    "script": "/scripts/actions/miniboss/v-cityminiboss.lua",
+    "output": {}
+  }
+}

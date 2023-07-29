@@ -1,0 +1,32 @@
+{
+  "objectName" : "v-citybackgroundfiller",
+  "colonyTags" : ["evil"],
+  "printable" : false,
+  "scannable" : false,
+  "rarity" : "Legendary",
+  "description" : "Not intended to be obtained",
+  "shortdescription" : "City Background Filler",
+  "race" : "generic",
+
+  "category" : "trap",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "imagebak.png",
+      "imagePosition" : [0, 0],
+
+      "spaceScan" : 0.1
+    }
+  ],
+  
+  "health" : 5,
+  "smashOnBreak" : true,
+
+  "scripts" : [ "v-citybackgroundfiller.lua" ],
+  "scriptDelta" : 1,
+  
+  "dungeonType" : "v-voltagecitybgfiller",
+  "dungeonOffset" : [0, 1]
+}

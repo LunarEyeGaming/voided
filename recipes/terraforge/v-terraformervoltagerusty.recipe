@@ -1,0 +1,17 @@
+{
+  "currencyInputs" : {
+    "essence" : 3000
+  },
+  "input" : [
+    { "item" : "staticcell", "count" : 50 },
+    { "item" : "v-voltitebar", "count" : 150 },
+    { "item" : "v-rustedironrockmaterial", "count" : 500 },
+    { "item" : "v-oxidizedcopperrockmaterial", "count" : 500 }
+  ],
+  "output" : {
+    "item" : "v-terraformervoltagerusty",
+    "count" : 1
+  },
+  "duration" : 0,
+  "groups" : [ "terraforge", "all" ]
+}

@@ -4,10 +4,73 @@
       "body" : {
         "default" : "idle",
         "states" : {
-          "idle" : {},
-          "attack1" : {},
-          "attack2" : {},
-          "attack3" : {}
+          "idle" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
+          "gunhold" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
+          "slashpretele" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
+          "slashtele" : {
+            "frames" : 6,
+            "cycle" : 0.5,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/tools/energypickaxe_start.ogg"
+            }
+          },
+          "slash" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "slashwinddown"
+          },
+          "slashwinddown" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle",
+            "frameProperties" : {
+              "immediateSound" : ["", "/sfx/tools/energypickaxe_start.ogg", "", "", ""]
+            }
+          },
+          "slampretele" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
+          "slamtele" : {
+            "frames" : 4,
+            "cycle" : 0.15,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/tools/energypickaxe_start.ogg"
+            }
+          },
+          "slam" : {},
+          "slamfinish" : {},
+          "slamemerge" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
+          "slamwinddown" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/tools/energypickaxe_start.ogg"
+            }
+          }
         }
       },
       "blade" : {
@@ -63,7 +126,7 @@
       "body" : {
         "properties" : {
           "transformationGroups" : [ "body" ],
-          "offset" : [0, 0],
+          "offset" : [-0.5, -1.5],
           "zLevel" : 0
         },
         "partStates" : {
@@ -73,19 +136,93 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
-            "attack1" : {
+            "gunhold" : {
               "properties" : {
-                "image" : "<partImage>:attack1.<frame>"
+                "image" : "<partImage>:gunhold.<frame>"
               }
             },
-            "attack2" : {
+            "slashpretele" : {
               "properties" : {
-                "image" : "<partImage>:attack2.<frame>"
+                "image" : "<partImage>:slashpretele.<frame>"
               }
             },
-            "attack3" : {
+            "slashtele" : {
               "properties" : {
-                "image" : "<partImage>:attack3.<frame>"
+                "image" : "<partImage>:slashtele.<frame>"
+              }
+            },
+            "slash" : {
+              "properties" : {
+                "image" : "<partImage>:slash.<frame>",
+                // [[41, -3], [41, 23], [14, 44], [-17, 44], [-14, 18], [11, -1]]
+                "damageArea" : [[5.125, -0.375], [5.125, 2.875], [1.75, 5.5], [-2.125, 5.5], [-1.75, 2.25], [1.375, -0.125]]
+              }
+            },
+            "slashwinddown" : {
+              "properties" : {
+                "image" : "<partImage>:slashwinddown.<frame>"
+              }
+            },
+            "slampretele" : {
+              "properties" : {
+                "image" : "<partImage>:slampretele.<frame>"
+              }
+            },
+            "slamtele" : {
+              "properties" : {
+                "image" : "<partImage>:slamtele.<frame>"
+              }
+            },
+            "slam" : {
+              "properties" : {
+                "image" : "<partImage>:slam.<frame>"
+              }
+            },
+            "slamfinish" : {
+              "properties" : {
+                "image" : "<partImage>:slamfinish.<frame>"
+              }
+            },
+            "slamemerge" : {
+              "properties" : {
+                "image" : "<partImage>:slamemerge.<frame>"
+              }
+            },
+            "slamwinddown" : {
+              "properties" : {
+                "image" : "<partImage>:slamwinddown.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "frontarm" : {
+        "properties" : {
+          "transformationGroups" : [ "frontarm" ],
+          "offset" : [1.125, -0.1825],
+          "zLevel" : 1
+        },
+        "partStates" : {
+          "body" : {
+            "gunhold" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+            }
+          }
+        }
+      },
+      "backarm" : {
+        "properties" : {
+          "transformationGroups" : [ "backarm" ],
+          "offset" : [1.75, -0.1825],
+          "zLevel" : -1
+        },
+        "partStates" : {
+          "body" : {
+            "gunhold" : {
+              "properties" : {
+                "image" : "<partImage>"
               }
             }
           }
@@ -123,7 +260,9 @@
   },
 
   "transformationGroups" : {
-    "body" : { "interpolated" : true }
+    "body" : { "interpolated" : true },
+    "frontarm" : { "interpolated" : true },
+    "backarm" : { "interpolated" : true }
   },
 
   "effects" : {
@@ -133,8 +272,44 @@
       "directives" : "fade=ffffff;0.5"
     }
   },
+  
+  "lights" : {
+    "glow" : {
+      "active" : true,
+      "color" : [74, 74, 181],
+      "position" : [0, 0]
+    }
+  },
 
   "particleEmitters" : {
+    "slam" : {
+      "burstCount" : 30,
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/electroshock/electroshock.animation",
+            "position" : [0, -2],
+            "initialVelocity" : [0, 0.0],
+            "finalVelocity" : [0, 0.0],
+            "approach" : [0, 10],
+            "fade" : 0.3,
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.2,
+            "size" : 1.0,
+            "timeToLive" : 0.2,
+            "fullbright" : true,
+            "layer" : "middle",
+            "collidesForeground" : false,
+            "variance" : {
+              "position" : [4, 2],
+              "initialVelocity" : [0, 0],
+              "rotation" : 180
+            }
+          }
+        }
+      ]
+    },
     "deathPoof" : {
       "particles" : [ ]
     }
@@ -143,6 +318,9 @@
   "sounds" : {
     "aggroHop" : [ ],
     "deathPuff" : [ ],
-    "fire" : [ "/sfx/gun/electricrailgun1.ogg" ]
+    "slam" : [ "/sfx/gun/grenadeblast_electric1.ogg", "/sfx/gun/grenadeblast_electric2.ogg", "/sfx/gun/grenadeblast_electric3.ogg" ],
+    "slash" : [ "/sfx/melee/mech_energysword_swing1.ogg", "/sfx/melee/mech_energysword_swing2.ogg", 
+        "/sfx/melee/mech_energysword_swing3.ogg", "/sfx/melee/mech_energysword_swing4.ogg" ],
+    "fire" : [ "/sfx/npc/miniboss/v_cityminiboss_gunfire1.ogg", "/sfx/npc/miniboss/v_cityminiboss_gunfire2.ogg", "/sfx/npc/miniboss/v_cityminiboss_gunfire3.ogg" ]
   }
 }

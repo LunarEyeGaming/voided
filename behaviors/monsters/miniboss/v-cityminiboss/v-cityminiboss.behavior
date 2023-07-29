@@ -7,12 +7,18 @@
     "/scripts/actions/movement.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/world.lua",
+    "/scripts/actions/query.lua",
     "/scripts/actions/status.lua",
     "/scripts/actions/monster.lua",
     "/scripts/actions/animator.lua",
-    "/scripts/actions/projectiles.lua"
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/miniboss/v-cityminiboss.lua",
+    "/scripts/behavior.lua",
+    "/scripts/behavior/bdata.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "ambushRange": 15
+  },
   "root": {
     "title": "Reset",
     "type": "composite",
@@ -25,6 +31,142 @@
         "name": "setDying",
         "parameters": {
           "shouldDie": {"value": false}
+        }
+      },
+      {
+        "title": "intro only once",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "get playIntro",
+              "type": "composite",
+              "name": "selector",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "getStorage",
+                  "type": "action",
+                  "name": "getStorage",
+                  "parameters": {
+                    "key": {"value": "playIntro"}
+                  },
+                  "output": {
+                    "bool": "playIntro"
+                  }
+                },
+                {
+                  "title": "use true as default",
+                  "type": "action",
+                  "name": "setFlag",
+                  "parameters": {
+                    "name": {"value": "playIntro"}
+                  }
+                }
+              ]
+            },
+            {
+              "title": "hasFlag",
+              "type": "action",
+              "name": "hasFlag",
+              "parameters": {
+                "name": {"key": "playIntro"}
+              }
+            },
+            {
+              "title": "loadUniqueEntity",
+              "type": "action",
+              "name": "loadUniqueEntity",
+              "parameters": {
+                "uniqueId": {"value": "v-cityminibossambushpos"}
+              },
+              "output": {
+                "entity": "ambushposEnt"
+              }
+            },
+            {
+              "title": "entityPosition",
+              "type": "action",
+              "name": "entityPosition",
+              "parameters": {
+                "entity": {"key": "ambushposEnt"}
+              },
+              "output": {
+                "position": "ambushPos"
+              }
+            },
+            {
+              "title": "v-cityminiboss-awaitcubes",
+              "type": "module",
+              "name": "v-cityminiboss-awaitcubes",
+              "parameters": {}
+            },
+            {
+              "title": "wait for ambush",
+              "type": "decorator",
+              "name": "repeater",
+              "parameters": {
+                "maxLoops": {"value": -1},
+                "untilSuccess": {"value": true}
+              },
+              "child": {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "busy wait",
+                    "type": "action",
+                    "name": "timer",
+                    "parameters": {
+                      "time": {"value": 0.01}
+                    }
+                  },
+                  {
+                    "title": "queryEntity",
+                    "type": "action",
+                    "name": "queryEntity",
+                    "parameters": {
+                      "entityTypes": {"value": ["player"]},
+                      "range": {"value": "<ambushRange>"},
+                      "position": {"key": "ambushPos"}
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "title": "v-cityminiboss-intro",
+              "type": "module",
+              "name": "v-cityminiboss-intro",
+              "parameters": {}
+            },
+            {
+              "title": "setStorage",
+              "type": "action",
+              "name": "setStorage",
+              "parameters": {
+                "key": {"value": "playIntro"},
+                "bool": {"value": false}
+              }
+            },
+            {
+              "title": "setStorage",
+              "type": "action",
+              "name": "setStorage",
+              "parameters": {
+                "key": {"value": "postIntroPos"},
+                "position": {"key": "self"}
+              }
+            }
+          ]
         }
       },
       {
@@ -41,7 +183,7 @@
             "type": "module",
             "name": "monster-targeting",
             "parameters": {
-              "targetQueryRange": {"value": 80},
+              "targetQueryRange": {"value": 25},
               "keepTargetInRange": {"value": 100},
               "targetEntityTypes": {"value": ["player"]},
               "keepTargetInSight": {"value": true},
@@ -97,11 +239,20 @@
                         }
                       },
                       {
-                        "title": "battleMusic",
+                        "title": "v_setBattleMusicState",
                         "type": "action",
-                        "name": "battleMusic",
+                        "name": "v_setBattleMusicState",
                         "parameters": {
-                          "enable": {"value": true}
+                          "state": {"value": "active"}
+                        }
+                      },
+                      {
+                        "title": "sendEntityMessage",
+                        "type": "action",
+                        "name": "sendEntityMessage",
+                        "parameters": {
+                          "entity": {"value": "v-cityminibossarenamaker"},
+                          "message": {"value": "v-activateArena"}
                         }
                       },
                       {
@@ -217,11 +368,20 @@
                     }
                   },
                   {
-                    "title": "battleMusic",
+                    "title": "sendEntityMessage",
                     "type": "action",
-                    "name": "battleMusic",
+                    "name": "sendEntityMessage",
                     "parameters": {
-                      "enable": {"value": false}
+                      "entity": {"value": "v-cityminibossarenamaker"},
+                      "message": {"value": "v-deactivateArena"}
+                    }
+                  },
+                  {
+                    "title": "v_setBattleMusicState",
+                    "type": "action",
+                    "name": "v_setBattleMusicState",
+                    "parameters": {
+                      "state": {"value": "inactive"}
                     }
                   },
                   {
@@ -257,11 +417,11 @@
                     }
                   },
                   {
-                    "title": "battleMusic",
+                    "title": "v_setBattleMusicState",
                     "type": "action",
-                    "name": "battleMusic",
+                    "name": "v_setBattleMusicState",
                     "parameters": {
-                      "enable": {"value": false}
+                      "state": {"value": "partial"}
                     }
                   },
                   {
@@ -274,12 +434,50 @@
                     }
                   },
                   {
+                    "title": "getStorage",
+                    "type": "action",
+                    "name": "getStorage",
+                    "parameters": {
+                      "key": {"value": "postIntroPos"}
+                    },
+                    "output": {
+                      "position": "postIntroPos"
+                    }
+                  },
+                  {
+                    "title": "setAnimationState",
+                    "type": "action",
+                    "name": "setAnimationState",
+                    "parameters": {
+                      "state": {"value": "idle"},
+                      "type": {"value": "body"}
+                    }
+                  },
+                  {
                     "title": "flyToPosition",
                     "type": "action",
                     "name": "flyToPosition",
                     "parameters": {
-                      "position": {"key": "spawn"},
+                      "position": {"key": "postIntroPos"},
+                      "speed": {"value": 50},
                       "tolerance": {"value": 1}
+                    }
+                  },
+                  {
+                    "title": "setVelocity",
+                    "type": "action",
+                    "name": "setVelocity",
+                    "parameters": {
+                      "velocity": {"value": [0, 0]}
+                    }
+                  },
+                  {
+                    "title": "sendEntityMessage",
+                    "type": "action",
+                    "name": "sendEntityMessage",
+                    "parameters": {
+                      "entity": {"value": "v-cityminibossarenamaker"},
+                      "message": {"value": "v-deactivateArena"}
                     }
                   },
                   {
