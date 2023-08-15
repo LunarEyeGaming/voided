@@ -1,0 +1,115 @@
+{
+  "globalTagDefaults" : {
+    "numLights" : "1",
+    "numActiveLights" : "0"
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "capsule" : {
+        "default" : "closed",
+        "states" : {
+          "closed" : {},
+          "opening" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "open"
+          },
+          "open" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          },
+          "closing" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "closed"
+          }
+        }
+      }
+    },
+    "parts" : {
+      "display" : {
+        "properties" : {
+          "image" : "<partImage>:<numLights>.<numActiveLights>",
+          "centered" : false,
+          "fullbright" : true
+        }
+      },
+      "displaylit" : {
+        "properties" : {
+          "image" : "<partImage>:<numLights>.<numActiveLights>",
+          "centered" : false,
+          "zLevel" : 1
+        }
+      },
+      "capsule" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : true,
+          "zLevel" : 2
+        },
+        "partStates" : {
+          "capsule" : {
+            "closed" : {
+              "properties" : {
+                "image" : "<partImage>:closed"
+              }
+            },
+            "opening" : {
+              "properties" : {
+                "image" : "<partImage>:opening.<frame>"
+              }
+            },
+            "open" : {
+              "properties" : {
+                "image" : "<partImage>:open.<frame>"
+              }
+            },
+            "closing" : {
+              "properties" : {
+                "image" : "<partImage>:closing.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "capsulelit" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 3
+        },
+        "partStates" : {
+          "capsule" : {
+            "closed" : {
+              "properties" : {
+                "image" : "<partImage>:closed"
+              }
+            },
+            "opening" : {
+              "properties" : {
+                "image" : "<partImage>:opening.<frame>"
+              }
+            },
+            "open" : {
+              "properties" : {
+                "image" : "<partImage>:open.<frame>"
+              }
+            },
+            "closing" : {
+              "properties" : {
+                "image" : "<partImage>:closing.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "sounds" : {
+    "open" : [ "/sfx/objects/woodenverticaldoor_open.ogg" ],
+    "close" : [ "/sfx/objects/woodenverticaldoor_close.ogg" ],
+    "spawn" : [ "/sfx/gun/magnorbs_fire5.ogg", "/sfx/gun/magnorbs_fire6.ogg", "/sfx/gun/magnorbs_fire7.ogg" ]
+  }
+}

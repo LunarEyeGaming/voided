@@ -2,14 +2,11 @@ require "/scripts/rect.lua"
 require "/scripts/vec2.lua"
 
 --[[
-  A stagehand that uses projectiles as barriers to create a simple arena from nothing. It is activated using the
-  v-activateArena message and deactivated using the v-deactivateArena message. Because the stagehand is a rectangle, it
-  uses two projectile types--one for horizontal barriers and another for vertical barriers. The projectiles must handle
-  the "kill" entity message for arena deactivation to work properly, and this script assumes that the projectiles
-  otherwise exist indefinitely. It also assumes that the projectiles themselves act as barriers and that their sizes
-  line up with the boundaries of the stagehand. The projectiles will be spawned such that the broadcastArea is the size
-  of the arena.
-  TODO: Rewrite
+  A stagehand that uses a projectile as a set of barriers to create a simple arena from nothing. It is activated using
+  the v-activateArena message and deactivated using the v-deactivateArena message. The projectile must handle the "kill"
+  entity message for arena deactivation to work properly, and this script assumes that the projectile otherwise exists
+  indefinitely. The barrier dimensions do not scale with the size of the stagehand. The projectile is spawned at the
+  stagehand's position.
 ]]
 
 local barrierProjectileType

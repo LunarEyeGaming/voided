@@ -35,6 +35,11 @@ function init()
 end
 
 function update(dt)
+  -- Prevent this projectile from going into dungeons
+  if world.isTileProtected(mcontroller.position()) then
+    projectile.die()  
+  end
+
   local pos = mcontroller.position()
   local candidates = world.entityQuery(pos, homingDistance, queryParameters)
 

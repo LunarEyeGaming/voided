@@ -6,9 +6,9 @@
      "width":1
     },
  "margin":0,
- "name":"voidedobjects-wiring",
+ "name":"voidedobjects-other",
  "spacing":0,
- "tilecount":2,
+ "tilecount":3,
  "tileheight":16,
  "tileproperties":
     {
@@ -25,6 +25,13 @@
          "imagePositionY":"0",
          "object":"v-citybackgroundfiller",
          "tilesetDirection":"right"
+        },
+     "2":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-railtramsignalrelay",
+         "tilesetDirection":"right"
         }
     },
  "tilepropertytypes":
@@ -37,6 +44,13 @@
          "tilesetDirection":"string"
         },
      "1":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "2":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -57,6 +71,12 @@
          "image":"..\/images\/objects\/citybackgroundfiller.png",
          "imageheight":8,
          "imagewidth":8
+        },
+     "2":
+        {
+         "image":"..\/images\/objects\/railtramsignalrelay.png",
+         "imageheight":8,
+         "imagewidth":16
         }
     },
  "tilewidth":16,

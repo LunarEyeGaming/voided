@@ -2,6 +2,7 @@ require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
 
 --[[
+  OBSOLETE; USE TILES WITH THE allowOverdrawing PROPERTY SET TO true INSTEAD.
   A script for an object to fill in the void above the towers of the v-voltagecity dungeon with background walls and
   then disappear. The type of dungeon to place is specified by dungeonType, and it uses the same dungeon ID as that of
   the block that the object occupies. The dungeon can be offset from its original position using dungeonOffset, and it

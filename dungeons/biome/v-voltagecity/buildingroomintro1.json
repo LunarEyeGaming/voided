@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztmsFtwzAMRTWGLx2gg3QwDZMejGaz3NIBmqImQHyQFEUbFW3o8BFYYRTqiSYpJ49SymNq6uT6fitlKX\/6FFQ3mzPqo+RQi\/EyGR\/GuDoY015wVeG6snHpfWmeqI1kS\/feaLaROP71fX3p\/tJte0WNHl+Zz6PZ7mFct\/VI8SWNe+wxHi17jGE+f3bGX4J4zeNr6GEsjVeHvZQPWnuYnbEnHyNj5BBhadljfr\/DNc6TlTH5HGEcYWnFJfki2XtyzlUYSzVn1rx2rtAYYz729FV787QVr1bPxm0yMvbkY48ijKUeWrPv8Wc0W4mx1FfwdfXknd44xs9p+b7Hl9FsJcbWfehdl8QrEq\/Yu\/E5vb5kiXXr\/sb85s0V3jjWGB+VK27F1gjG2hlkKfJeeOsfMbPOZ6049nwPtyXGq6JRjLWaV5ndnucVXj5LcH7s3YgxrmkEY1qbxJjq3pM9r+ipVRiX3nzjPf\/h\/UD+PZMxtuKYM+ZrsM7SWj729K2059HnIZkZa2eQFmOs+60zsIexFseY18\/GuCeOOTPsr46IY2kPkaXWG16F8Z6a52UcmZ\/XPM44U1\/xLoj3Qq3fj7D+Rc4ynn5d60XwLHgrufrjqjAmf6+q\/2A8+r8HU1NH6AdCxcQf",
+         "data":"eJztmcFtwzAMRTWGLx2gg3QwDdMeDGez3NIBmqAWQHyQ1JdkRLKhw0cRh1WpZ\/qTcu8hhPvU1Mn1+xHCEv71oyjuMWdUb7Ys42UyPoxxJBineyEVlc9RXNe+19apjdFi07PXm21NHb9yX5+6PfW9\/0T1vr6KnHuzbWEc9\/1o9aVdZ+KxHr14rGG5\/uiMN0Wy58k9lDDWrkciXvOD3D0cnTHjx8gYOdSw9OLR32\/wGdcZlXHKuYZxDUuvLlMuWjzjOVdhrPWc2fPyXmExRj9m5qpWn\/bq1ZvZZMyIjBk\/ZlTDWJuhrfiSfHqz1RhviuS+voIv6TuldYy\/Z\/l9SS692WqMveeQ3ZfGq6ZecXaTa7K5jFLr3vON\/sZ6BVvHFuOjvOLVBz31YKx5hawdq\/8w9yh3PsvVMfN3ZGxivBrqxdjqeVHEtbyvYPkslevj7JYY4556ME570xhv+3cP8b6ipFdhXbJ+w57\/8HlI+T0GY+zVsWQs9+CdpS0\/ToyZ2aT2fcjIjK0zSI4x9v3cGZhhbNUx+vrZGJfUsWSG89URdazdQ2RpzYZXYdzS81jGrT1PMh5prvhUJGeh3P+PsP\/VnGWYed2aRfAsONp8HA3GKd+r6h2Mp6auoD8MhIHK",
          "encoding":"base64",
          "height":27,
          "name":"back",
@@ -91,26 +91,6 @@
                  "width":16,
                  "x":464,
                  "y":168
-                }, 
-                {
-                 "gid":7676,
-                 "height":16,
-                 "id":729,
-                 "name":"contains position-sensitive offsets",
-                 "properties":
-                    {
-                     "parameters":"{\"interiorRegion\" : [0, 0, 41, 18], \"exteriorRegions\" : [[-9, -2, -2, 7], [-7, -66, 72, -2]]}"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":96,
-                 "y":184
                 }, 
                 {
                  "gid":5964,
@@ -243,6 +223,62 @@
                  "width":8,
                  "x":24,
                  "y":184
+                }, 
+                {
+                 "gid":7211,
+                 "height":8,
+                 "id":773,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":56,
+                 "y":168
+                }, 
+                {
+                 "gid":7678,
+                 "height":8,
+                 "id":777,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":24
+                }, 
+                {
+                 "gid":7678,
+                 "height":8,
+                 "id":779,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":200
+                }, 
+                {
+                 "gid":7697,
+                 "height":24,
+                 "id":782,
+                 "name":"contains position-sensitive offsets",
+                 "properties":
+                    {
+                     "parameters":"{\"interiorRegion\" : [-20, -9, 21, 9], \"exteriorRegions\" : [[-29, -11, -22, -2], [-27, -75, 52, -11]]}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":248,
+                 "y":120
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -254,7 +290,67 @@
          "color":"#ffff00",
          "draworder":"topdown",
          "name":"wiring - lights & guns",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":776,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-16,
+                         "y":24
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":56,
+                 "y":160
+                }, 
+                {
+                 "height":0,
+                 "id":778,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":8,
+                         "y":-176
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":40,
+                 "y":192
+                }, 
+                {
+                 "height":0,
+                 "id":781,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":8,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":40,
+                 "y":192
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -386,8 +482,8 @@
                  "name":"",
                  "polyline":[
                         {
-                         "x":-248,
-                         "y":264
+                         "x":-88,
+                         "y":192
                         }, 
                         {
                          "x":-264,
@@ -406,8 +502,8 @@
                  "name":"",
                  "polyline":[
                         {
-                         "x":-240,
-                         "y":264
+                         "x":-80,
+                         "y":192
                         }, 
                         {
                          "x":80,
@@ -480,7 +576,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":771,
+ "nextobjectid":783,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -592,7 +688,11 @@
         }, 
         {
          "firstgid":7676,
-         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-wiring.json"
+         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
+        }, 
+        {
+         "firstgid":7679,
+         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",

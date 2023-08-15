@@ -63,11 +63,11 @@ function output(state)
     -- Deactivating
     if storage.state then
       animator.setAnimationState("socket", "deactivating")
-      animator.playSound("deactivating")
+      animator.playSound("deactivate")
     else
       -- Activating
       animator.setAnimationState("socket", "activating")
-      animator.playSound("activating")
+      animator.playSound("activate")
     end
   end
 

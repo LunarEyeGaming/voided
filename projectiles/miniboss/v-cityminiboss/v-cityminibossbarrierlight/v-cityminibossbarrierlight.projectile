@@ -1,0 +1,20 @@
+{
+  "projectileName" : "v-cityminibossbarrierlight",
+  "physics" : "illusion",
+  "timeToLive" : 9999999999,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1.0,
+  "frameNumber" : 1,
+  "actionOnReap" : [],
+  "speed" : 0,
+  "power" : 0,
+
+  "onlyHitTerrain" : true,
+
+  "lightColor" : [131, 131, 223],
+
+  "piercing" : true,
+  "bounces" : -1,
+
+  "scripts" : [ "/projectiles/killable.lua" ]
+}

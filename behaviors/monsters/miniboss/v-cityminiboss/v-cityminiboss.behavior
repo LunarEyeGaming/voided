@@ -34,6 +34,15 @@
         }
       },
       {
+        "title": "addEphemeralEffect",
+        "type": "action",
+        "name": "addEphemeralEffect",
+        "parameters": {
+          "name": {"value": "invulnerable"},
+          "duration": {"value": 4294967296}
+        }
+      },
+      {
         "title": "intro only once",
         "type": "decorator",
         "name": "succeeder",
@@ -264,6 +273,14 @@
                         }
                       },
                       {
+                        "title": "removeEphemeralEffect",
+                        "type": "action",
+                        "name": "removeEphemeralEffect",
+                        "parameters": {
+                          "name": {"value": "invulnerable"}
+                        }
+                      },
+                      {
                         "title": "setAggressive",
                         "type": "action",
                         "name": "setAggressive",
@@ -368,29 +385,10 @@
                     }
                   },
                   {
-                    "title": "sendEntityMessage",
-                    "type": "action",
-                    "name": "sendEntityMessage",
-                    "parameters": {
-                      "entity": {"value": "v-cityminibossarenamaker"},
-                      "message": {"value": "v-deactivateArena"}
-                    }
-                  },
-                  {
-                    "title": "v_setBattleMusicState",
-                    "type": "action",
-                    "name": "v_setBattleMusicState",
-                    "parameters": {
-                      "state": {"value": "inactive"}
-                    }
-                  },
-                  {
-                    "title": "setDying",
-                    "type": "action",
-                    "name": "setDying",
-                    "parameters": {
-                      "shouldDie": {"value": true}
-                    }
+                    "title": "v-cityminiboss-dying",
+                    "type": "module",
+                    "name": "v-cityminiboss-dying",
+                    "parameters": { }
                   }
                 ]
               },
@@ -406,6 +404,15 @@
                     "name": "setAggressive",
                     "parameters": {
                       "aggressive": {"value": false}
+                    }
+                  },
+                  {
+                    "title": "addEphemeralEffect",
+                    "type": "action",
+                    "name": "addEphemeralEffect",
+                    "parameters": {
+                      "name": {"value": "invulnerable"},
+                      "duration": {"value": 4294967296}
                     }
                   },
                   {
@@ -434,14 +441,11 @@
                     }
                   },
                   {
-                    "title": "getStorage",
+                    "title": "setDamageOnTouch",
                     "type": "action",
-                    "name": "getStorage",
+                    "name": "setDamageOnTouch",
                     "parameters": {
-                      "key": {"value": "postIntroPos"}
-                    },
-                    "output": {
-                      "position": "postIntroPos"
+                      "touchDamage": {"value": false}
                     }
                   },
                   {
@@ -451,6 +455,25 @@
                     "parameters": {
                       "state": {"value": "idle"},
                       "type": {"value": "body"}
+                    }
+                  },
+                  {
+                    "title": "resetTransformationGroup",
+                    "type": "action",
+                    "name": "resetTransformationGroup",
+                    "parameters": {
+                      "transformationGroup": {"value": "body"}
+                    }
+                  },
+                  {
+                    "title": "getStorage",
+                    "type": "action",
+                    "name": "getStorage",
+                    "parameters": {
+                      "key": {"value": "postIntroPos"}
+                    },
+                    "output": {
+                      "position": "postIntroPos"
                     }
                   },
                   {

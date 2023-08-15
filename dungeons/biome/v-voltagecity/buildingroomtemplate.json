@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt3M1twkAQgNEpg0sKoJAUlmKSA0pp3JwCIhQ5Uqxdfr3yZHiHTyBAlvw0wPjiY0QcpX\/e10vELn46PV\/We\/3Ze43ru8V4\/tyzxzi38UcjxowZ14wx4wo9YvzZiPG6xuaYcZYYM64Q49zG9orxxuaYcZYYM64Q49zG9orxxuaYcZYYM64Q49zG9orxxuaYcZYYM64Q49zG9orxxuaYcZYYM64Q49zG9orxxuaYcZYYM64Q49zG9orxxuaYcZYYM64Q49zG9orxxuaYcZYYM64Q49zGvb1iF4zXMn5bPC6Pu\/W5ZWn+Xl+qZXzpuFufW5ZOFu9xvp6x34rbjA+dzhn3\/vMY942XXvcYz7M8Mf5tYsy4QIwZV2h6YK\/YN5rfs1f8tbh3P+4ZX3tdo\/Z13tb3w5fW6Btx0m\/1",
+         "data":"eJzt10FqwlAUhtG3DCddQJfZxbSD0qU5SxdQpKTQ8J626sPf6xl8RIwEcrjqzb61tpfuvM+n1nbtu8PrbaP3H71ZxuvnHj3G2cZvnRgzZlwzxowrdInxRyfG1zU2x4xTYsy4Qoyzje0V843NMeOUGDOuEONsY3vFfGNzzDglxowrxDjb2F4x39gcM06JMeMKMc42tlfMNzbHjFNizLhCjLON7RXzjc0x45QYM64Q42xje8V8Y3PMOCXGjCvEONvYXjHf2BwzTokx4woxzjYe7RW7xvhaxi+b4\/a6t763lNbv9al6xqeue+t7S+lg8dqONzL2W\/E\/4\/dBx4xH\/3mMx8Zbr3OM11leGP+0MGZcIMaMK7RcsFc8d1rP2St+W5y7H4+M\/\/pco\/5znlShL7bCF3I=",
          "encoding":"base64",
          "height":72,
          "name":"back",
@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt3E0KgkAAR\/E5hpuO08E6TC2CjuOuA3SADtBIDmipzSAPNd8P\/hRkHzwqclMI0vY9DyFU4b3k0bletce4\/qjG6bi9j248prntHHeMu8Rd2\/vd42Vd9pJWbcnGp7hb2VNv0pKN98LGPBvzbMyzMc\/GPBvzbMyzMc\/GPBvzbMyzMc\/GPBvzbMyzMc\/GPBvzbMyzMc\/GPBvzbMyzMc\/GPBvzbMyzMc\/GPBvzbMyzMc\/GPBvzbMyzMc\/GPBvzbMyzMc\/GPBvzbMyzMc\/GPBvzbMyzMc\/GPBvzbMyjGlfBxsmcxjmPa+P+5\/rXEhuXSS2a\/7Kb2lBjvyvydBuPsfE8RGOVszHPxrycxprH9zFvqvHn\/xTX4ft3hWN+H+ee17jh8zzpH7wAq5wxqg==",
+         "data":"eJzt3EEKgkAYQOE5hpuO08E8TC2CjuOuA3SADtBIDWipzSAvM98HPwWaycPC2RiCtH63XQhVeExy7byvnvs4\/aEap\/22PnTjMe22Q5x9nGOc0\/Nzl\/jalJ3ST1uycR3nXPbVq7Rk462wMc\/GPBvzbMyzMc\/GvG80rkN\/zbM1Xsc8G\/NszLMxz8Y8G\/NszLMxz8Y8G\/NszLMxz8Y8G\/NszLMxz8Y8G\/NszLMxz8Y8G\/NszLMxz8Y8G\/NszLMxz8Y8G\/NszLMxz8Y8G\/NszLMxz8Y8G\/NszLMxz8Y8G\/NszLMxj2pcBRsncxrnHNfG\/d\/1p0lsXCa1aJ9lNzVDjf2vyNNtPMbG8xCNVc7GPBvzchprHq9j3lTj1+cUN+H9vsJh7o9z1zXO8DpP+gd38tgycw==",
          "encoding":"base64",
          "height":72,
          "name":"front",
@@ -173,7 +173,7 @@
                  "y":496
                 }, 
                 {
-                 "gid":7879,
+                 "gid":7881,
                  "height":24,
                  "id":745,
                  "name":"",
@@ -255,6 +255,42 @@
                  "width":8,
                  "x":24,
                  "y":80
+                }, 
+                {
+                 "gid":7211,
+                 "height":8,
+                 "id":760,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":56,
+                 "y":528
+                }, 
+                {
+                 "gid":7678,
+                 "height":8,
+                 "id":761,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":560
+                }, 
+                {
+                 "gid":7678,
+                 "height":8,
+                 "id":764,
+                 "name":"connect to tram stop",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":24
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -266,7 +302,47 @@
          "color":"#ffff00",
          "draworder":"topdown",
          "name":"wiring - lights & guns",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":762,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":8,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":40,
+                 "y":552
+                }, 
+                {
+                 "height":0,
+                 "id":763,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-16,
+                         "y":24
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":56,
+                 "y":520
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -450,7 +526,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":760,
+ "nextobjectid":784,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -562,10 +638,10 @@
         }, 
         {
          "firstgid":7676,
-         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-wiring.json"
+         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7677,
+         "firstgid":7679,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
         }],
  "tilewidth":8,

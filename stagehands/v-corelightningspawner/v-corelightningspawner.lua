@@ -29,6 +29,12 @@ function update(dt)
   if timer < 0 then
     local xPos = util.randomInRange(lightningXPosRange) + ownPos[1]
     local testPos = vec2.add({xPos, ownPos[2]}, {0, maxSpawnHeight})
+    
+    -- Avoid spawning lightning inside dungeons.
+    if world.isTileProtected({xPos, ownPos[2]}) then
+      return
+    end
+    
     local pos = world.lineCollision({xPos, ownPos[2]}, testPos)
     
     -- If a collision was detected...

@@ -13,6 +13,6 @@
   
   "monsterType" : null,  // The type of monster to spawn
   "monsterParameters" : {},  // The parameters of the monster to spawn
-  "monsterOffset" : [0, 0],  // The offset of the monster. Use values between 0 and 1 to adjust the spawn position
+  "monsterOffset" : [0.5, 0.5],  // The offset of the monster. Use values between 0 and 1 to adjust the spawn position
   "waveNumber" : 1  // Which wave to spawn the monster in
 }

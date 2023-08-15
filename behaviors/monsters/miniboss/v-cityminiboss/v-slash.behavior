@@ -8,6 +8,7 @@
     "/scripts/actions/projectiles.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/world.lua",
+    "/scripts/actions/v-monster.lua",
     "/scripts/behavior.lua",
     "/scripts/behavior/bdata.lua"
   ],
@@ -68,15 +69,6 @@
           "velocity": {"value": [0, 0]}
         }
       },
-      /* {
-        "title": "setAnimationState",
-        "type": "action",
-        "name": "setAnimationState",
-        "parameters": {
-          "state": {"value": "slashwindup"},
-          "type": {"value": "blade"}
-        }
-      }, */
       {
         "title": "setAnimationState",
         "type": "action",
@@ -111,15 +103,6 @@
           }
         ]
       },
-      /* {
-        "title": "setAnimationState",
-        "type": "action",
-        "name": "setAnimationState",
-        "parameters": {
-          "state": {"value": "slash"},
-          "type": {"value": "blade"}
-        }
-      }, */
       {
         "title": "setAnimationState",
         "type": "action",
@@ -137,7 +120,7 @@
           "sound": {"value": "slash"}
         }
       },
-      {
+      /* {
         "title": "spawnProjectile",
         "type": "action",
         "name": "spawnProjectile",
@@ -187,6 +170,23 @@
           "sourceEntity": {"key": "self"},
           "trackSource": {"value": false}
         }
+      }, */
+      {
+        "title": "v_spawnProjectileSpread",
+        "type": "action",
+        "name": "v_spawnProjectileSpread",
+        "parameters": {
+          "aimVector": {"key": "aimVector"},  // From v-cityminiboss-rotate
+          "offset": {"value": [0, 0]},
+          "position": {"key": "self"},
+          "projectileConfig": {"value": {"power" : 15}},
+          "projectileType": {"value": "v-cityminibosslightning"},
+          "scalePower": {"value": true},
+          "sourceEntity": {"key": "self"},
+          "trackSource": {"value": false},
+          "spreadAngle": {"value": 30},
+          "projectileCount": {"value": 5}
+        }
       },
       {
         "title": "timer",
@@ -213,80 +213,6 @@
           "time": {"value": 0.25}
         }
       },
-      /* {
-        "title": "parallel",
-        "type": "composite",
-        "name": "parallel",
-        "parameters": {
-          "fail": {"value": -1},
-          "success": {"value": 1}
-        },
-        "children": [
-          {
-            "title": "timer",
-            "type": "action",
-            "name": "timer",
-            "parameters": {
-              "time": {"value": 0.25}
-            },
-            "output": {
-              "ratio": "progress"
-            }
-          },
-          {
-            "title": "failer",
-            "type": "decorator",
-            "name": "failer",
-            "parameters": {},
-            "child": {
-              "title": "sequence",
-              "type": "composite",
-              "name": "sequence",
-              "parameters": {},
-              "children": [
-                {
-                  "title": "lerp",
-                  "type": "action",
-                  "name": "lerp",
-                  "parameters": {
-                    "ratio": {"key": "progress"},
-                    "min": {"key": "targetAngle"},  // From v-cityminiboss-rotate
-                    "max": {"value": 0}
-                  },
-                  "output": {
-                    "number": "rotateAngle"
-                  }
-                },
-                {
-                  "title": "resetTransformationGroup",
-                  "type": "action",
-                  "name": "resetTransformationGroup",
-                  "parameters": {
-                    "transformationGroup": {"value": "body"}
-                  }
-                },
-                {
-                  "title": "rotateTransformationGroup",
-                  "type": "action",
-                  "name": "rotateTransformationGroup",
-                  "parameters": {
-                    "angle": {"key": "rotateAngle"},
-                    "transformationGroup": {"value": "body"}
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "title": "resetTransformationGroup",
-        "type": "action",
-        "name": "resetTransformationGroup",
-        "parameters": {
-          "transformationGroup": {"value": "body"}
-        }
-      }, */
       {
         "title": "v_smoothReset",
         "type": "action",

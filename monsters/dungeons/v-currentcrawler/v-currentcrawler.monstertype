@@ -3,12 +3,12 @@
   "shortdescription" : "Currentcrawler",
   "description" : "<todo>",
 
-  "categories" : [ "crustoise" ],
+  "categories" : [ "v-currentcrawler" ],
   "parts" : [ "body" ],
 
-  "animation" : "/monsters/crawlers/crustoise/crustoise.animation",
+  "animation" : "v-currentcrawler.animation",
 
-  "dropPools" : [ { "default" : "crustoiseTreasure", "bow" : "crustoiseHunting" } ],
+  "dropPools" : [ "empty" ],
 
   "baseParameters" : {
     "scripts" : [
@@ -55,7 +55,7 @@
             "maximumRange" : 35,
             "minimumRange" : 2,
             "windupStopForce" : 30,
-            "windupState" : "chargewindup",
+            "windupState" : "windup",
             "windupTime" : 1.0,
 
             "projectileType" : "v-currentcrawlerprojectile",
@@ -64,10 +64,10 @@
               "power" : 20
             },
             "fireOffset" : [0, 0],
-            "fireSound" : "wallCrash",
-            "fireState" : "charge",
+            "fireSound" : "fire",
+            "fireState" : "fire",
 
-            "winddownState" : "idle",
+            "winddownState" : "",
             "winddownTime" : 0.3
           }
         }
@@ -111,19 +111,7 @@
         }
       ],
 
-      "deathActions" : [
-        {
-          "name" : "action-projectile",
-          "parameters" : {
-            "projectileCount" : 1,
-            "projectileType" : "crustoiseshell",
-            "projectileParameters" : {},
-            "aimDirection" : [-1, 2],
-            "inaccuracy" : 0,
-            "fireOffset" : [0, 0.4]
-          }
-        }
-      ],
+      "deathActions" : [ ],
 
       "concurrentActions" : [],
 
@@ -155,7 +143,7 @@
       "runSpeed" : 8
     },
 
-    "bodyMaterialKind" : "organic",
+    "bodyMaterialKind" : "robotic",
 
     "knockoutTime" : 0.3,
     "knockoutAnimationStates" : {
@@ -166,7 +154,7 @@
 
     "statusSettings" : {
       "statusProperties" : {
-        "targetMaterialKind" : "organic"
+        "targetMaterialKind" : "robotic"
       },
 
       "appliesEnvironmentStatusEffects" : false,

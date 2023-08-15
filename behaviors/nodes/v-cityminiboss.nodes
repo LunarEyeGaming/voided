@@ -10,7 +10,9 @@
     },
     "category": "v-cityminiboss",
     "script": "/scripts/actions/miniboss/v-cityminiboss.lua",
-    "output": {}
+    "output": {
+      "projectileOffset": {"type": "vec2", "key": null}
+    }
   },
   "v_smoothReset": {
     "type": "action",

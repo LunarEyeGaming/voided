@@ -1,0 +1,70 @@
+{
+  "projectileName" : "v-cityspawnerorb",
+  "image" : "cityspawnerorb.png",
+  "fullbright" : true,
+  "lightColor" : [74, 74, 181],
+  "physics" : "illusion",
+  "animationCycle" : 0.5,
+  "frameNumber" : 4,
+  "power" : 0,
+  "speed" : 0,
+  "timeToLive" : 1.0,
+  "bounces" : -1,
+  "piercing" : true,
+  /* "periodicActions" : [
+    {
+      "time" : 0.02,
+      "repeat" : true,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "ember",
+        "size" : 2,
+        "color" : [0, 0, 0],
+        "position" : [0, 0],
+        "destructionAction" : "fade",
+        "destructionTime" : 0.2,
+        "fade" : 1,
+        "layer" : "middle",
+        "timeToLive" : 0.2,
+        "variance" : {
+          "initialVelocity" : [2.0, 2.0],
+          "position" : [1.5, 1.5]
+        }
+      }
+    }
+  ], */
+  "actionOnReap" : [
+    {
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "looping" : false,
+        "animation" : "/animations/v-bluemonsterrelease/v-bluemonsterrelease.animation",
+        "fullbright" : true,
+        "fade" : 5,
+        "light" : [131, 131, 223],
+        "size" : 1,
+        "timeToLive" : 0.2,
+        "destructionAction" : "fade",
+        "destructionTime" : 0.1,
+        "layer" : "front"
+      }
+    },
+    {
+      "action" : "sound",
+      "options" : [
+        "/sfx/npc/monsters/pod_release1.ogg"
+      ]
+    }
+  ],
+
+  "onlyHitTerrain" : true,
+
+  "renderLayer" : "ForegroundEntity+10",
+
+  "scripts" : [ "v-cityspawnerorb.lua" ],
+  
+  "travelTime" : 1.0,
+  "releaseStatusEffect" : "v-bluemonsterrelease"
+}

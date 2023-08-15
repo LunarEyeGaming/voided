@@ -88,6 +88,9 @@
                           "aimVector": {"key": "aimVector"},
                           "frontArmRotationCenter": {"value": "<frontArmRotationCenter>"},
                           "backArmRotationCenter": {"value": "<backArmRotationCenter>"}
+                        },
+                        "output": {
+                          "projectileOffset": "projectileOffset"
                         }
                       }
                     ]
@@ -117,7 +120,7 @@
               "name": "spawnProjectile",
               "parameters": {
                 "aimVector": {"key": "aimVector"},
-                "offset": {"value": [0, 0]},
+                "offset": {"key": "projectileOffset"},
                 "position": {"key": "self"},
                 "projectileConfig": {"value": {"power" : 15, "speed" : 100}},
                 "projectileType": {"value": "v-lightningbomb"},

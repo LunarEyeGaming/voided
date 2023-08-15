@@ -37,7 +37,9 @@ function v_aimAtVector(args, board)
   animator.rotateTransformationGroup("frontarm", aimAngle, args.frontArmRotationCenter)
   animator.rotateTransformationGroup("backarm", aimAngle, args.backArmRotationCenter)
   
-  return true
+  local muzzleOffset = animator.partPoint("frontarm", "muzzleOffset")
+  
+  return true, {projectileOffset = muzzleOffset}
 end
 
 -- Makes the miniboss smoothly transition from its starting angle to the 0 angle.

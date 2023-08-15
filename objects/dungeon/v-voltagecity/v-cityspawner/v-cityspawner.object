@@ -1,0 +1,59 @@
+{
+  "objectName" : "v-cityspawner",
+  "colonyTags" : [ ],
+  "printable" : false,
+  "rarity" : "Legendary",
+  "description" : "<todo>",
+  "shortdescription" : "cityspawner",
+  "race" : "generic",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "decorative",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "display.png:1.0",
+      "imagePosition" : [-8, -8],
+
+      "spaceScan" : 0.1
+    }
+  ],
+
+  "animation" : "v-cityspawner.animation",
+
+  "animationParts" : {
+    "display" : "display.png",
+    "displaylit" : "displaylit.png",
+    "capsule" : "capsule.png",
+    "capsulelit" : "capsulelit.png"
+  },
+  "animationPosition" : [-8, -8],
+  
+  "health" : 5,
+  "smashOnBreak" : true,
+  
+  // Left output node is the entry door. Right output node is the doorway to the switch.
+  "outputNodes" : [ [0, 0], [1, 0] ],
+
+  "scripts" : [ "v-cityspawner.lua" ],
+  "scriptDelta" : 1,
+  
+  "firstWaveDelay" : 1.0,
+  "nextWaveDelay" : 1.0,
+  
+  "lightBlinkDuration" : 0.5,
+  "openAnimationDuration" : 0.5,
+  "capsuleCloseDelay" : 0.25,
+  
+  "spawnerProjectileType" : "v-cityspawnerorb",
+  "spawnerProjectileOffset" : [0.5, 0.5]
+}

@@ -1,34 +1,33 @@
 {
   "projectileName" : "v-cityminibossbarrier",
-  "physics" : "illusion",
   "timeToLive" : 9999999999,
   "image" : "cityminibossbarrier.png",
-  "animationCycle" : 1.0,
-  "frameNumber" : 1,
-  "actionOnReap" : [],
-  "speed" : 0,
-  "power" : 0,
+  "windupFrames" : 7,
+  "animationCycle" : 0.2,
+  "frameNumber" : 2,
+  "renderLayer" : "ItemDrop+1",
+  "orientationLocked" : true,
+  "fullbright" : true,
+  "emitters" : [ ],
+  // "lightColor" : [196, 196, 245],
 
-  "onlyHitTerrain" : true,
+  "speed" : 0,
+  "physics" : "illusion",
+  "bounces" : -1,
 
   "physicsCollisions" : {
     "leftbarrier" : {
-      "collision" : [ [-25, 25], [-25, -25] ],
+      "collision" : [ [-25, 33], [-25, -33] ],
       "collisionKind" : "slippery",
       "categoryWhitelist" : ["monster", "player", "npc", "vehicle", "itemdrop", "projectile"]
     },
     "rightbarrier" : {
-      "collision" : [ [25, 25], [25, -25] ],
+      "collision" : [ [25, 33], [25, -33] ],
       "collisionKind" : "slippery",
       "categoryWhitelist" : ["monster", "player", "npc", "vehicle", "itemdrop", "projectile"]
     },
     "topbarrier" : {
-      "collision" : [ [-25, 25], [25, 25] ],
-      "collisionKind" : "slippery",
-      "categoryWhitelist" : ["monster", "player", "npc", "vehicle", "itemdrop", "projectile"]
-    },
-    "bottombarrier" : {
-      "collision" : [ [-25, -25], [25, -25] ],
+      "collision" : [ [-25, 33], [25, 33] ],
       "collisionKind" : "slippery",
       "categoryWhitelist" : ["monster", "player", "npc", "vehicle", "itemdrop", "projectile"]
     }
@@ -36,14 +35,19 @@
   
   "boundBox" : [-25, -25, 25, 25],
 
-  "renderLayer" : "ItemDrop+1",
-  "orientationLocked" : true,
-  "fullbright" : true,
-  "emitters" : [ ],
-  "lightColor" : [196, 196, 245],
-
+  "onlyHitTerrain" : true,
+  "power" : 0,
   "piercing" : true,
-  "bounces" : -1,
 
-  "scripts" : [ "/projectiles/killable.lua" ]
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-cityminibossbarrierdisappear"
+    }
+  ],
+
+  "scripts" : [ "v-cityminibossbarrier.lua" ],
+  
+  "lightProjectileType" : "v-cityminibossbarrierlight",
+  "lightProjectileOffsets" : [ [25, -25], [25, 0], [25, 25], [0, 25], [-25, 25], [-25, 0], [-25, -25] ]
 }

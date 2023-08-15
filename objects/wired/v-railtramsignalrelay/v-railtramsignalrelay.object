@@ -1,0 +1,40 @@
+{
+  "objectName" : "v-railtramsignalrelay",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "scannable" : false,
+  "rarity" : "Common",
+  "category" : "wire",
+  "price" : 0,
+  "health" : 0.1,
+  "description" : "...",
+  "shortdescription" : "Tram Stop Signal Relay",
+  "race" : "generic",
+
+  "smashOnBreak" : true,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "preview.png:<color>.off",
+      "imagePosition" : [-8, 0],
+      "direction" : "right"
+    }
+  ],
+
+  "animation" : "/objects/wired/switch/switchtoggle.animation",
+  "animationParts" : {
+    "switch" : "image.png"
+  },
+  "animationPosition" : [-8, 0],
+
+  // Rail tram stops seem to propagate wait signals in both directions, so all that is needed is an input node.
+  "inputNodes" : [ [-1, 0] ],
+  
+  "interactive" : false,
+
+  "scripts" : [ "v-railtramsignalrelay.lua" ],
+  "scriptDelta" : 5,
+
+  "propagateRange" : 2
+}

@@ -55,7 +55,6 @@ states = {}
   Does initialization things that cannot be done in the init() function and have to be done across multiple ticks.
 ]]
 function states.postInit()
-
   if not storage.waves then
     local interiorRegionRect = rect.fromVec2(interiorRegion[1], interiorRegion[2])
 

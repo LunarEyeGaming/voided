@@ -4,13 +4,18 @@
   "scripts": [
     "/scripts/actions/animator.lua",
     "/scripts/actions/entity.lua",
+    "/scripts/actions/math.lua",
     "/scripts/actions/movement.lua",
-    "/scripts/actions/time.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/position.lua",
-    "/scripts/actions/projectiles.lua"
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/miniboss/v-cityminiboss.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "kickUpVelocity": [0, 75],
+    "crashVelocity": [50, -25]
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -18,36 +23,60 @@
     "parameters": {},
     "children": [
       {
-        "title": "controlParameters",
-        "type": "action",
-        "name": "controlParameters",
-        "parameters": {
-          "parameters": {"value": {"gravityEnabled": false}}
-        }
-      },
-      {
         "title": "setAnimationState",
         "type": "action",
         "name": "setAnimationState",
         "parameters": {
-          "state": {"value": "slam"},
+          "state": {"value": "idle"},
           "type": {"value": "body"}
         }
       },
-      /* {
-        "title": "setDamageOnTouch",
+      {
+        "title": "resetTransformationGroup",
         "type": "action",
-        "name": "setDamageOnTouch",
+        "name": "resetTransformationGroup",
         "parameters": {
-          "touchDamage": {"value": true}
+          "transformationGroup": {"value": "body"}
         }
-      }, */
+      },
+      {
+        "title": "spawnProjectile",
+        "type": "action",
+        "name": "spawnProjectile",
+        "parameters": {
+          "aimVector": {"value": [1, 0]},
+          "offset": {"value": [0, 0]},
+          "projectileConfig": {"value": {"power" : 0, "actionOnReap" : [{"action" : "config", "file" : "/projectiles/explosions/v-cityminibossdyingexplosion/v-cityminibossdyingexplosion.config"}]}},
+          "projectileType": {"value": "v-proxyprojectile"}
+        }
+      },
+      {
+        "title": "setParticleEmitterActive",
+        "type": "action",
+        "name": "setParticleEmitterActive",
+        "parameters": {
+          "emitter": {"value": "jetpackFumes"},
+          "active": {"value": true}
+        }
+      },
       {
         "title": "setVelocity",
         "type": "action",
         "name": "setVelocity",
         "parameters": {
-          "velocity": {"value": [0, -50]}
+          "velocity": {"value": "<kickUpVelocity>"}
+        }
+      },
+      {
+        "title": "vecMultiply",
+        "type": "action",
+        "name": "vecMultiply",
+        "parameters": {
+          "first": {"value": "<crashVelocity>"},
+          "second": {"value": ["facingDirection", 1]}
+        },
+        "output": {
+          "vector": "crashVelocity"
         }
       },
       {
@@ -59,6 +88,15 @@
           "success": {"value": -1}
         },
         "children": [
+          {
+            "title": "controlApproachVelocity",
+            "type": "action",
+            "name": "controlApproachVelocity",
+            "parameters": {
+              "velocity": {"key": "crashVelocity"},
+              "controlForce": {"value": 150}
+            }
+          },
           {
             "title": "controlParameters",
             "type": "action",
@@ -90,133 +128,39 @@
         ]
       },
       {
-        "title": "sendEntityMessage",
-        "type": "action",
-        "name": "sendEntityMessage",
-        "parameters": {
-          "entity": {"value": "v-cityminibossarenamaker"},
-          "message": {"value": "v-activateArena"}
-        }
-      },
-      {
-        "title": "spawnProjectile",
-        "type": "action",
-        "name": "spawnProjectile",
-        "parameters": {
-          "aimVector": {"value": [-1, 0]},
-          "offset": {"value": [0, 2.5]},
-          "projectileConfig": {"value": {"power" : 0, "knockback" : 100}},
-          "projectileType": {"value": "v-cityminibossshockwave"},
-          "scalePower": {"value": true}
-        }
-      },
-      {
         "title": "spawnProjectile",
         "type": "action",
         "name": "spawnProjectile",
         "parameters": {
           "aimVector": {"value": [1, 0]},
-          "offset": {"value": [0, 2.5]},
-          "projectileConfig": {"value": {"power" : 0, "knockback" : 100}},
-          "projectileType": {"value": "v-cityminibossshockwave"},
-          "scalePower": {"value": true}
+          "offset": {"value": [0, 0]},
+          "projectileConfig": {"value": {"power" : 0, "knockback" : 0}},
+          "projectileType": {"value": "electricplasmaexplosion"}
         }
       },
       {
-        "title": "setAnimationState",
+        "title": "sendEntityMessage",
         "type": "action",
-        "name": "setAnimationState",
+        "name": "sendEntityMessage",
         "parameters": {
-          "state": {"value": "slamfinish"},
-          "type": {"value": "body"}
+          "entity": {"value": "v-cityminibossarenamaker"},
+          "message": {"value": "v-deactivateArena"}
         }
       },
       {
-        "title": "playSound",
+        "title": "v_setBattleMusicState",
         "type": "action",
-        "name": "playSound",
+        "name": "v_setBattleMusicState",
         "parameters": {
-          "sound": {"value": "slam"}
+          "state": {"value": "inactive"}
         }
       },
       {
-        "title": "burstParticleEmitter",
+        "title": "setDying",
         "type": "action",
-        "name": "burstParticleEmitter",
+        "name": "setDying",
         "parameters": {
-          "emitter": {"value": "slam"}
-        }
-      },
-      /* {
-        "title": "setDamageOnTouch",
-        "type": "action",
-        "name": "setDamageOnTouch",
-        "parameters": {
-          "touchDamage": {"value": false}
-        }
-      }, */
-      {
-        "title": "timer",
-        "type": "action",
-        "name": "timer",
-        "parameters": {
-          "time": {"value": 1.5}
-        }
-      },
-      {
-        "title": "setAnimationState",
-        "type": "action",
-        "name": "setAnimationState",
-        "parameters": {
-          "state": {"value": "slamemerge"},
-          "type": {"value": "body"}
-        }
-      },
-      {
-        "title": "offsetPosition",
-        "type": "action",
-        "name": "offsetPosition",
-        "parameters": {
-          "offset": {"value": [0, 10]},
-          "position": {"key": "self"}
-        },
-        "output": {
-          "position": "postSlam"
-        }
-      },
-      {
-        "title": "flyToPosition",
-        "type": "action",
-        "name": "flyToPosition",
-        "parameters": {
-          "position": {"key": "postSlam"},
-          "speed": {"value": 25},
-          "tolerance": {"value": 1}
-        }
-      },
-      {
-        "title": "setVelocity",
-        "type": "action",
-        "name": "setVelocity",
-        "parameters": {
-          "velocity": {"value": [0, 0]}
-        }
-      },
-      {
-        "title": "setAnimationState",
-        "type": "action",
-        "name": "setAnimationState",
-        "parameters": {
-          "state": {"value": "slamwinddown"},
-          "type": {"value": "body"}
-        }
-      },
-      {
-        "title": "timer",
-        "type": "action",
-        "name": "timer",
-        "parameters": {
-          "time": {"value": 1.0}
+          "shouldDie": {"value": true}
         }
       }
     ]

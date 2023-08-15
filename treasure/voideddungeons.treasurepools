@@ -3,9 +3,9 @@
     [1, {
       "fill" : [],
       "pool" : [
-        {"weight" : 0.1, "item" : [ "techcard", 1]},
-        {"weight" : 0.1, "item" : [ "solariumstar", 20]},
-        {"weight" : 0.1, "item" : [ "money", 1000]},
+        {"weight" : 0.1, "item" : ["techcard", 1]},
+        {"weight" : 0.1, "item" : ["solariumstar", 20]},
+        {"weight" : 0.1, "item" : ["money", 1000]},
         {"weight" : 0.1, "pool" : "rareGun"},
         {"weight" : 0.15, "pool" : "rareMelee"},
         {"weight" : 0.1, "pool" : "shield"}
@@ -13,6 +13,24 @@
       "poolRounds" : [
         [0.5, 4],
         [0.5, 5]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-voltagecityReward" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.6, "item" : ["money", 200]},
+        {"weight" : 0.6, "item" : ["v-voltiteore", 4]},
+        {"weight" : 0.4, "item" : ["v-voltitebar", 4]},
+        {"weight" : 0.4, "item" : ["v-liquidelectricity", 4]},
+        {"weight" : 0.2, "pool" : "v-electricWeapon"}
+      ],
+      "poolRounds" : [
+        [0.6, 2],
+        [0.3, 3],
+        [0.1, 4]
       ],
       "allowDuplication" : false
     }]
