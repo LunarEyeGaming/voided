@@ -50,7 +50,7 @@
             "onGround" : false,
             "maximumRange" : 35,
             "minimumRange" : 2,
-            "windupState" : "firewindup",
+            "windupState" : "windup",
             "windupTime" : 1.0,
 
             "projectileType" : "v-electrojellyprojectile",
@@ -63,8 +63,8 @@
             "fireSound" : "fire",
             "fireState" : "fire",
 
-            "winddownState" : "idle",
-            "winddownTime" : 0.3
+            "winddownState" : "",
+            "winddownTime" : 0.7
           }
         }
       ],

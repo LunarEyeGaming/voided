@@ -458,6 +458,15 @@
                     }
                   },
                   {
+                    "title": "setAnimationState",
+                    "type": "action",
+                    "name": "setAnimationState",
+                    "parameters": {
+                      "state": {"value": "invisible"},
+                      "type": {"value": "gun"}
+                    }
+                  },
+                  {
                     "title": "resetTransformationGroup",
                     "type": "action",
                     "name": "resetTransformationGroup",

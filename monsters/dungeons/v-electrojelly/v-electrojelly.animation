@@ -5,9 +5,31 @@
         "priority" : 0,
         "default" : "idle",
         "states" : {
-          "idle" : {},
-          "firewindup" : {},
-          "fire" : {}
+          "idle" : {
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "loop"
+          },
+          "windup" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "winduploop"
+          },
+          "winduploop" : {
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "loop",
+            "frameProperties" : {
+              "immediateSound" : [ "/sfx/melee/tesla_shock1.ogg", "", "/sfx/melee/tesla_shock1.ogg", "", "/sfx/melee/tesla_shock1.ogg", "" ]
+            }
+          },
+          "fire" : {
+            "frames" : 7,
+            "cycle" : 0.7,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
         }
       },
       "damage" : {
@@ -18,7 +40,9 @@
             "frames" : 1
           },
           "stunned" : {
-            "frames" : 1
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "loop"
           }
         }
       }
@@ -28,7 +52,7 @@
       "body" : {
         "properties" : {
           "transformationGroups" : [ "body" ],
-          "offset" : [0.0, 0.0]
+          "offset" : [0.0, -1.0]
         },
         "partStates" : {
           "body" : {
@@ -37,14 +61,64 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
-            "firewindup" : {
+            "windup" : {
               "properties" : {
-                "image" : "<partImage>:firewindup.<frame>"
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "winduploop" : {
+              "properties" : {
+                "image" : "<partImage>:winduploop.<frame>"
               }
             },
             "fire" : {
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "anchorPart" : "body",
+          "zLevel" : 1,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "winduploop" : {
+              "properties" : {
+                "image" : "<partImage>:winduploop.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
               }
             }
           }

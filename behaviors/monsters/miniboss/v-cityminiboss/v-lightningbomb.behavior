@@ -36,6 +36,15 @@
         }
       },
       {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "idle"},
+          "type": {"value": "gun"}
+        }
+      },
+      {
         "title": "repeater",
         "type": "decorator",
         "name": "repeater",
@@ -105,6 +114,15 @@
                   }
                 }
               ]
+            },
+            {
+              "title": "setAnimationState",
+              "type": "action",
+              "name": "setAnimationState",
+              "parameters": {
+                "state": {"value": "fire"},
+                "type": {"value": "gun"}
+              }
             },
             {
               "title": "playSound",
@@ -218,6 +236,15 @@
         "parameters": {
           "state": {"value": "idle"},
           "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "invisible"},
+          "type": {"value": "gun"}
         }
       },
       {

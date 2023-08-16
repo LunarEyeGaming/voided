@@ -73,38 +73,17 @@
           }
         }
       },
-      "blade" : {
+      "gun" : {
         "priority" : 0,
-        "default" : "idle",
+        "default" : "invisible",
         "states" : {
+          "invisible" : {},
           "idle" : {},
-          "slashwindup" : {
-            "frames" : 4,
-            "cycle" : 0.25,
-            "mode" : "end",
-            "properties" : {
-              "immediateSound" : "/sfx/tools/energypickaxe_start.ogg"
-            }
-          },
-          "slash" : {
-            "frames" : 4,
-            "cycle" : 0.1,
-            "mode" : "end",
-            "properties" : {
-              "immediateSoundPool" : [ "/sfx/melee/mech_energysword_swing1.ogg", 
-                  "/sfx/melee/mech_energysword_swing2.ogg", "/sfx/melee/mech_energysword_swing3.ogg",
-                  "/sfx/melee/mech_energysword_swing4.ogg" ],  // StarExtensions support
-              "immediateSound" : "/sfx/melee/mech_energysword_swing1.ogg"
-            }
-          },
-          "slashwinddown" : {
-            "frames" : 4,
-            "cycle" : 0.25,
+          "fire" : {
+            "frames" : 2,
+            "cycle" : 0.07,
             "mode" : "transition",
-            "transition" : "idle",
-            "properties" : {
-              "immediateSound" : "/sfx/tools/energypickaxe_start.ogg"
-            }
+            "transition" : "idle"
           }
         }
       },
@@ -269,15 +248,20 @@
       "frontarm" : {
         "properties" : {
           "transformationGroups" : [ "frontarm" ],
-          "offset" : [1.125, -0.1825],
+          "offset" : [1.75, -0.25],
           "muzzleOffset" : [1.625, 0],
           "zLevel" : 2
         },
         "partStates" : {
-          "body" : {
-            "gunhold" : {
+          "gun" : {
+            "idle" : {
               "properties" : {
-                "image" : "<partImage>"
+                "image" : "<partImage>:idle"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
               }
             }
           }
@@ -290,10 +274,15 @@
           "fullbright" : true
         },
         "partStates" : {
-          "body" : {
-            "gunhold" : {
+          "gun" : {
+            "idle" : {
               "properties" : {
-                "image" : "<partImage>"
+                "image" : "<partImage>:idle"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
               }
             }
           }
@@ -302,7 +291,7 @@
       "backarm" : {
         "properties" : {
           "transformationGroups" : [ "backarm" ],
-          "offset" : [1.75, -0.1825],
+          "offset" : [1.75, -0.1875],
           "zLevel" : -1
         },
         "partStates" : {
@@ -310,34 +299,6 @@
             "gunhold" : {
               "properties" : {
                 "image" : "<partImage>"
-              }
-            }
-          }
-        }
-      },
-      "blade" : {
-        "properties" : {
-          "zLevel" : -1,
-          "transformationGroups" : [ "body" ],
-          "offset" : [3.625, 0.5],
-          "fullbright" : true
-        },
-        "partStates" : {
-          "blade" : {
-            "slashwindup" : {
-              "properties" : {
-                "image" : "<partImage>:slashwindup.<frame>"
-              }
-            },
-            "slash" : {
-              "properties" : {
-                "image" : "<partImage>:slash.<frame>",
-                "damageArea" : [[-2.25, -1.25], [-1.75, 5.875], [0.5, 3.875], [2, 2.25], [2.625, -0.375], [1.625, -3.5], [-0.75, -5.625]]
-              }
-            },
-            "slashwinddown" : {
-              "properties" : {
-                "image" : "<partImage>:slashwinddown.<frame>"
               }
             }
           }
