@@ -3,6 +3,7 @@
   "objectType" : "physics",
   "colonyTags" : ["wired"],
   "printable" : false,
+  "scannable" : false,
   "rarity" : "Common",
   "description" : "These bricks have certainly survived the test of time.",
   "shortdescription" : "floor",
@@ -58,5 +59,7 @@
   "animationParts" : {
     "wall" : "strongholdbossceiling.png"
   },
-  "animationPosition" : [-16, 0]
+  "animationPosition" : [-16, 0],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

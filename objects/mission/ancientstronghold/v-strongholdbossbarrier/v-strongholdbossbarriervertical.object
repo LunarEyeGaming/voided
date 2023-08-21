@@ -13,6 +13,7 @@
   "category" : "decorative",
   "price" : 0,
   "printable" : false,
+  "scannable" : false,
 
   "inventoryIcon" : "iconvertical.png",
   "orientations" : [
@@ -25,5 +26,7 @@
     }
   ],
 
-  "interactive" : false
+  "interactive" : false,
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

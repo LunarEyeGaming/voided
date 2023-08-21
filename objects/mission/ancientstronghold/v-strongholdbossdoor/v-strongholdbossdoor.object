@@ -3,6 +3,7 @@
   "objectType" : "physics",
   "colonyTags" : ["wired"],
   "printable" : false,
+  "scannable" : false,
   "rarity" : "Common",
   "description" : "A thick, ancient wall designed to trap invaders in this room.",
   "shortdescription" : "Boss Door",
@@ -85,5 +86,7 @@
   "animationParts" : {
     "wall" : "strongholdbossdoor.png"
   },
-  "animationPosition" : [0, -8]
+  "animationPosition" : [0, -8],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }
