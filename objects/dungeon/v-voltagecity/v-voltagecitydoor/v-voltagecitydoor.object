@@ -1,0 +1,66 @@
+{
+  "objectName" : "v-voltagecitydoor",
+  "colonyTags" : ["human", "door"],
+  "rarity" : "Common",
+
+  "category" : "door",
+  "price" : 125,
+  "description" : "An old and simple metallic door.",
+  "shortdescription" : "Thick Metal Door",
+  "race" : "human",
+
+  "apexDescription" : "An old yet sturdy metallic door.",
+  "avianDescription" : "A simple metallic door covered in rust.",
+  "floranDescription" : "Big metal door.",
+  "glitchDescription" : "Unimpressed. A large and old metal door.",
+  "humanDescription" : "It's a metal door.",
+  "hylotlDescription" : "A crudely-designed metal door that is covered in rust.",
+  "novakidDescription" : "An ol' metal door.",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "voltagecitydoor.png:default",
+      "flipImages" : true,
+      "imagePosition" : [-8, 0],
+      "renderLayer" : "Object+5",
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom", "top" ],
+      "direction" : "left"
+    },
+    {
+      "image" : "voltagecitydoor.png:default",
+      "imagePosition" : [-8, 0],
+      "renderLayer" : "Object+5",
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom", "top" ],
+      "direction" : "right"
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/door/door.lua" ],
+  "scriptDelta" : 5,
+
+  "animation" : "/objects/wired/door/door.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "open" : {
+        "pool" : [ "/sfx/objects/bardoor2_open.ogg" ],
+        "rangeMultiplier" : 0.5
+      },
+      "close" : {
+        "pool" : [ "/sfx/objects/bardoor2_close.ogg" ],
+        "rangeMultiplier" : 0.5
+      }
+    }
+  },
+  "animationParts" : {
+    "door" : "voltagecitydoor.png"
+  },
+  "animationPosition" : [-8, 0],
+
+  "inputNodes" : [ [-1, 4] ],
+  "outputNodes" : [ [0, 0] ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

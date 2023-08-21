@@ -4,27 +4,27 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztmMENgzAMRT0Glw7AIB0sw9BTsxnHDtAisGSs719S9WYfvhC2APnpYydZRWS9oNft\/7ry3UzamEwSqxmh+OSuxThmvHzUnVAsyi0H52KMGbeDk\/ewxpBffa5L+Zgxtjw9Y9sjbH\/oLq73mRiPzCjEE3FvJJeVcTSbELPqx78xVoYPoKdgHzKvRh7P3Cu0\/hHG1vs+xvpIZsbMx8yz0VrD5tDzxfg7Y7bnYHuVjGu3UcZovqkv2VqkZt5e9wzEPGm1vecuZ9le732ejbHWjxjrf11nQqVSbr0Bz2KDEQ==",
+         "data":"eJzdlcENhDAMBF0GnyvgCqGwFAOvS2c8KQCQsGSs9ZJAkE48VghbJOO1EyYRmQo0f9qrZF\/P0EmsZITinXveYRhWZScUi3LDznGVIe3reA80hur1udzAh4jB9iC5PW1c3y1DzQyh\/RBXIrmIIZodtOYT86B93uIj0O+k91F\/UI71QvM1DNY7H2N9YgzMB1ZzdFZsDn3fgoHdSewuQ2ezlgHNn9bFzlLpTH6BWE1W2zq9HGVnzfsU+YAY1Ld\/+Ge9XQsWQ0jk",
          "encoding":"base64",
          "height":16,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
          "visible":true,
-         "width":89,
+         "width":33,
          "x":0,
          "y":0
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmMENgCAQBK8MPpZjYRRJDxZgAYbHJngeRAH53E6yEU3kMVmBKPKOc5sfcic7CVJPLGI9D+pKx0\/geAZB6NgiO4mT5mKPbdjjfr7sUXTcB9xZe1Mw7mfg0TEcrsKjY3R1FV4ds8f\/Meo4SX3tRpJ6x9vZbcQx3KGXrbNI6dljj9E93Tfd0VbyPLvcU671uufeHOseH8UY3zX\/CRHimws25XNG",
+         "data":"eJxjYCAOfJGlPiYVgPRIMODGjUgYm7gEGk2JG6gBJChwQyOV3DAYw4GUNERLN+BKOxJY+LRyA8wOegF84TDQbhgM4UCuG64y4E47MHwVTQ963qTEDTCzYf7Cl5eQ3YEvTaK7F92P+DDIHFcGVIyc1tDDiVA4vEBiw8JtMNRZwx0AAJqlc0Y=",
          "encoding":"base64",
          "height":16,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":89,
+         "width":33,
          "x":0,
          "y":0
         }, 
@@ -117,7 +117,7 @@
                  "y":80
                 }, 
                 {
-                 "gid":7730,
+                 "gid":7736,
                  "height":8,
                  "id":705,
                  "name":"",
@@ -129,15 +129,27 @@
                  "y":112
                 }, 
                 {
-                 "gid":5869,
+                 "gid":7731,
                  "height":40,
-                 "id":707,
+                 "id":708,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":48,
-                 "x":64,
+                 "width":16,
+                 "x":80,
+                 "y":96
+                }, 
+                {
+                 "gid":6848,
+                 "height":40,
+                 "id":709,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":24,
                  "y":96
                 }],
          "opacity":1,
@@ -261,7 +273,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":708,
+ "nextobjectid":710,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -380,11 +392,11 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }, 
         {
-         "firstgid":7728,
+         "firstgid":7734,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }],
  "tilewidth":8,
  "type":"map",
  "version":1,
- "width":89
+ "width":33
 }

@@ -1,0 +1,38 @@
+{
+  "objectName" : "v-outoforderteleporter",
+  "colonyTags" : ["human", "misc"],
+  "rarity" : "Common",
+  "printable" : false,
+  "description" : "Whatever is behind there, I must return later to see it.",
+  "shortdescription" : "outoforderteleporter",
+  "race" : "human",
+  "category" : "decorative",
+  "price" : 85,
+
+  "apexDescription" : "The sign indicates that the equipment behind it is malfunctioning. I must return later if I want to use it.",
+  "avianDescription" : "\"Out of order.\" I'll need to come back later.",
+  "floranDescription" : "Ssign readsss \"Out of order.\" Floran musst return later.",
+  "glitchDescription" : "Disappointed. The object behind this sign is not functional at this time.",
+  "humanDescription" : "The sign must be telling me to come back later.",
+  "hylotlDescription" : "Signs like this one are not typical in Hylotl cities.",
+  "novakidDescription" : "I better come back later if I wanna see what's behind this sign.",
+
+  "inventoryIcon" : "outoforderteleporter.png",
+  "orientations" : [
+    {
+      "dualImage" : "outoforderteleporter.png",
+
+      "imagePosition" : [-32, 0],
+      "frames" : 1,
+      "animationCycle" : 1.0,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+  
+  "scripts" : ["v-outoforderteleporter.lua"]/* ,
+  
+  "newObject" : "v-voltagecityteleporter" */
+  // Add an object of ID v-voltagecityteleporter and then uncomment the line above when the corresponding mission is added.
+}

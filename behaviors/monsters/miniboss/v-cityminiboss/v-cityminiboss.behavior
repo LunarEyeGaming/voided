@@ -333,22 +333,46 @@
                                       "parameters": {},
                                       "children": [
                                         {
-                                          "title": "v-cityminiboss-lightningbomb",
-                                          "type": "module",
-                                          "name": "v-cityminiboss-lightningbomb",
-                                          "parameters": { }
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 2}
+                                          },
+                                          "child": {
+                                            "title": "v-cityminiboss-lightningbomb",
+                                            "type": "module",
+                                            "name": "v-cityminiboss-lightningbomb",
+                                            "parameters": { }
+                                          }
                                         },
                                         {
-                                          "title": "v-cityminiboss-slash",
-                                          "type": "module",
-                                          "name": "v-cityminiboss-slash",
-                                          "parameters": { }
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 2}
+                                          },
+                                          "child": {
+                                            "title": "v-cityminiboss-slash",
+                                            "type": "module",
+                                            "name": "v-cityminiboss-slash",
+                                            "parameters": { }
+                                          }
                                         },
                                         {
-                                          "title": "v-cityminiboss-slam",
-                                          "type": "module",
-                                          "name": "v-cityminiboss-slam",
-                                          "parameters": { }
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 2}
+                                          },
+                                          "child": {
+                                            "title": "v-cityminiboss-slam",
+                                            "type": "module",
+                                            "name": "v-cityminiboss-slam",
+                                            "parameters": { }
+                                          }
                                         }
                                       ]
                                     }

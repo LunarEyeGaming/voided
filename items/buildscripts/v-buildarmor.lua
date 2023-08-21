@@ -1,3 +1,5 @@
+require "/items/buildscripts/v-extrabuildfuncs.lua"
+
 function build(directory, config, parameters, level, seed)
   local configParameter = function(keyName, defaultValue)
     if parameters[keyName] ~= nil then
@@ -9,14 +11,12 @@ function build(directory, config, parameters, level, seed)
     end
   end
   
+  config = applyRarity(config, configParameter("customRarity"))
+  config = setVoidedIcon(config)
+  
   -- Using config instead of parameters allows tooltipFields to be overridden.
   if not config.tooltipFields then
     config.tooltipFields = {}
-  end
-  
-  if configParameter("customRarity") == "Mythical" then
-    config.shortdescription = string.format("^#a600cc;%s^reset;", config.shortdescription)
-    config.tooltipFields.rarityLabel = "^#a600cc;Mythical"
   end
   
   local statusEffects = configParameter("statusEffects")

@@ -8,8 +8,8 @@
  "margin":0,
  "name":"voidedobjects-other",
  "spacing":0,
- "tilecount":3,
- "tileheight":16,
+ "tilecount":4,
+ "tileheight":80,
  "tileproperties":
     {
      "0":
@@ -32,6 +32,13 @@
          "imagePositionY":"0",
          "object":"v-railtramsignalrelay",
          "tilesetDirection":"right"
+        },
+     "3":
+        {
+         "imagePositionX":"-32",
+         "imagePositionY":"0",
+         "object":"v-outoforderteleporter",
+         "tilesetDirection":"right"
         }
     },
  "tilepropertytypes":
@@ -51,6 +58,13 @@
          "tilesetDirection":"string"
         },
      "2":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "3":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -77,8 +91,14 @@
          "image":"..\/images\/objects\/railtramsignalrelay.png",
          "imageheight":8,
          "imagewidth":16
+        },
+     "3":
+        {
+         "image":"..\/images\/objects\/outoforderteleporter.png",
+         "imageheight":80,
+         "imagewidth":64
         }
     },
- "tilewidth":16,
+ "tilewidth":64,
  "type":"tileset"
 }

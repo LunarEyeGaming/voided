@@ -3,9 +3,10 @@
   "price" : 1000,
   "rarity" : "Legendary",
   "category" : "craftingMaterial",
+  "builder" : "/items/buildscripts/v-builditem.lua",
   "inventoryIcon" : "v-dischargetrappiece.png",
   "description" : "An electrically-charged gemstone piece. Can be used for crafting.",
-  "shortdescription" : "Charged Gemstone Piece",
+  "shortdescription" : "Charged Gem Piece",
   "itemTags" : [ "reagent" ],
   "learnBlueprintsOnPickup" : ["v-electrictrapwand", "v-lightningbroadsword"]
 }

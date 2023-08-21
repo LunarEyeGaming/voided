@@ -1,0 +1,36 @@
+{
+  "objectName" : "v-brokenbunkertable1",
+  "colonyTags" : ["human","humanbunker"],
+  "rarity" : "Common",
+  "description" : "A simple metal table. Some of its legs were destroyed.",
+  "shortdescription" : "Broken Metal Table",
+  "race" : "human",
+  "category" : "decorative",
+  "price" : 85,
+
+  // Oh no! Our table! It's broken!
+  "apexDescription" : "A simple table with two of its legs removed.",
+  "avianDescription" : "A basic table. It lost two of its legs.",
+  "floranDescription" : "This table would not be good for ssslicing meat on. It'sss too sslanted.",
+  "glitchDescription" : "Curious. A table with two of its legs removed.",
+  "humanDescription" : "This table has seen better days.",
+  "hylotlDescription" : "A broken table. Remarkable.",
+  "novakidDescription" : "It's a broken table.",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "dualImage" : "brokenbunkertable1.png:<color>",
+
+      "imagePosition" : [-16, 0],
+      "frames" : 1,
+      "animationCycle" : 1.0,
+
+      "spaceScan" : 0.2,
+      "anchors" : [ "bottom" ]
+
+    }
+  ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

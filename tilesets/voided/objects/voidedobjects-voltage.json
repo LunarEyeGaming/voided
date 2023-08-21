@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-voltage",
  "spacing":0,
- "tilecount":19,
+ "tilecount":23,
  "tileheight":80,
  "tileproperties":
     {
@@ -89,11 +89,39 @@
          "object":"v-cityspawner",
          "tilesetDirection":"right"
         },
+     "19":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"0",
+         "object":"v-brokenbunkertable1",
+         "tilesetDirection":"right"
+        },
      "2":
         {
          "imagePositionX":"-8",
          "imagePositionY":"0",
          "object":"v-electrictrap1",
+         "tilesetDirection":"right"
+        },
+     "20":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-brokenfridge",
+         "tilesetDirection":"right"
+        },
+     "21":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-voltagecitydoor",
+         "tilesetDirection":"right"
+        },
+     "22":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-8",
+         "object":"v-voltagecityrailhatch",
          "tilesetDirection":"right"
         },
      "3":
@@ -225,7 +253,35 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "19":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "2":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "20":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "21":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "22":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -350,11 +406,35 @@
          "imageheight":24,
          "imagewidth":24
         },
+     "19":
+        {
+         "image":"..\/images\/objects\/brokenbunkertable1.png",
+         "imageheight":16,
+         "imagewidth":40
+        },
      "2":
         {
          "image":"..\/images\/objects\/electrictrap1flipped.png",
          "imageheight":16,
          "imagewidth":16
+        },
+     "20":
+        {
+         "image":"..\/images\/objects\/brokenfridge.png",
+         "imageheight":32,
+         "imagewidth":24
+        },
+     "21":
+        {
+         "image":"..\/images\/objects\/voltagecitydoor.png",
+         "imageheight":40,
+         "imagewidth":16
+        },
+     "22":
+        {
+         "image":"..\/images\/objects\/voltagecityrailhatch.png",
+         "imageheight":16,
+         "imagewidth":40
         },
      "3":
         {

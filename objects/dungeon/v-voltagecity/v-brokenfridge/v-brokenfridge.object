@@ -1,0 +1,35 @@
+{
+  "objectName" : "v-brokenfridge",
+  "colonyTags" : ["human"],
+  "rarity" : "Common",
+  "description" : "A fridge with its door and top half completely missing.",
+  "shortdescription" : "Broken Fridge",
+  "race" : "human",
+  "category" : "decorative",
+  "price" : 85,
+
+  "apexDescription" : "The state of this fridge makes it completely unusable.",
+  "avianDescription" : "A fridge. Completely and utterly destroyed.",
+  "floranDescription" : "Sssmellss like trouble.",
+  "glitchDescription" : "Upset. The structural integrity of this fridge is severely compromised!",
+  "humanDescription" : "Someone was angry.",
+  "hylotlDescription" : "A broken fridge. How unfortunate.",
+  "novakidDescription" : "A fridge that's broken beyond all repair.",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "dualImage" : "brokenfridge.png:<color>",
+
+      "imagePosition" : [-8, 0],
+      "frames" : 1,
+      "animationCycle" : 1.0,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+
+    }
+  ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

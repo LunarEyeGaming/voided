@@ -35,7 +35,7 @@
         "friendlyWord" : "Oxidized Charged Hills"}},
     {"op" : "add", "path" : "/wordsList/v-voltagewastesoxidized2", "value" : {"word" : "v%-voltage Wastesoxidized",
         "friendlyWord" : "Oxidized Charged Hills"}},
-    {"op" : "add", "path" : "/wordsList/v-voltagewastesoxidized3", "value" : {"word" : "Charged Wastesoxidized",
+    {"op" : "add", "path" : "/wordsList/v-voltagewastesoxidized3", "value" : {"word" : "Charged Hillsoxidized",
         "friendlyWord" : "Oxidized Charged Hills"}},
     {"op" : "add", "path" : "/wordsList/v-voltagespikes", "value" : {"word" : "v%-voltagespikes",
         "friendlyWord" : "Voltage Spikes"}},
@@ -49,10 +49,13 @@
         "displayName" : "Dangerously Conductive", "icon" : "/interface/cockpit/hazards/v-biomeelectric.png"}},
 
     // Threat level support for weather. Weather types not included have a threat level of 0.
-    {"op" : "add", "path": "/weatherThreatValues/v-copperstorm", "value": 2.5},
-    {"op" : "add", "path": "/weatherThreatValues/v-copperstorm2", "value": 2.0},
+    {"op" : "add", "path": "/weatherThreatValues/v-copperstorm", "value": 1.5},
+    {"op" : "add", "path": "/weatherThreatValues/v-copperstorm2", "value": 1.0},
     {"op" : "add", "path": "/weatherThreatValues/v-copperstormlight", "value": 0.3},
-    {"op" : "add", "path": "/weatherThreatValues/v-lightningstorm", "value": 3.0}
+    {"op" : "add", "path": "/weatherThreatValues/v-copperstormlight2", "value": 0.3},
+    {"op" : "add", "path": "/weatherThreatValues/v-lightningstorm", "value": 2.0},
+    {"op" : "add", "path": "/weatherThreatValues/v-coppersuperstorm", "value": 3.0},
+    {"op" : "add", "path": "/weatherThreatValues/v-coppersuperstorm2", "value": 2.5}
   ],
 
   // Vanilla Patches
@@ -89,7 +92,7 @@
     {
       "op": "add",
       "path": "/starTypeNames/v-extradimensional",
-      "value" : "Extradimensional Star"
+      "value" : "Outsider Star"
     },
 
     // Add T7 label (planets)

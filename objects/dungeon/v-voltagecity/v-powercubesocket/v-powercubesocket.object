@@ -4,21 +4,22 @@
   "rarity" : "Common",
   "objectType" : "container",
   "tooltipKind" : "container",
+  "printable" : false,
 
   "category" : "storage",
   "price" : 70,
-  "description" : "<todo>",
+  "description" : "A socket designed to hold a Power Cube.",
   "shortdescription" : "Power Cube Socket",
-  "race" : "generic",
+  "race" : "human",
   "health" : 1.5,
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "This socket takes in electrical current from the Power Cube. Inserting one will activate anything connected to it.",
+  "avianDescription" : "A socket that activates when a Power Cube is inserted.",
+  "floranDescription" : "Floran musst put box in hole.",
+  "glitchDescription" : "Excited. I am curious what inserting a Power Cube activates.",
+  "humanDescription" : "This socket acts as a lock requiring a key - a Power Cube perhaps.",
+  "hylotlDescription" : "The security system designed here is rudimentary and inferior.",
+  "novakidDescription" : "Gotta insert a Power Cube into here.",
 
   "inventoryIcon" : "powercubesocket.png:inactive",
   "orientations" : [
@@ -67,5 +68,7 @@
   "slotCount" : 1,
   "uiConfig" : "/interface/chests/v-powercubesocket.config",
   "frameCooldown" : 5,
-  "autoCloseCooldown" : 3600
+  "autoCloseCooldown" : 3600,
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

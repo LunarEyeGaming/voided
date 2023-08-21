@@ -3,7 +3,7 @@
   "colonyTags" : [],
   "rarity" : "Legendary",
   "description" : "Transforms a planet's climate into an electrified blend of oxidized metals.",
-  "shortdescription" : "Rusted Voltage Terraformer",
+  "shortdescription" : "R. Voltage Terraformer",
   "race" : "ancient",
   "category" : "terraformer",
   "price" : 5000,
@@ -55,5 +55,7 @@
   "planetTypeChangeThreshold" : 0.5,
 
   "terraformBiome" : "v-voltagerusty",
-  "terraformPlanetType" : "v-voltage"
+  "terraformPlanetType" : "v-voltage",
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

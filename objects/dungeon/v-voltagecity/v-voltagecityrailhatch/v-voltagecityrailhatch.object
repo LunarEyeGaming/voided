@@ -1,0 +1,62 @@
+{
+  "objectName" : "v-voltagecityrailhatch",
+  "colonyTags" : ["human", "door", "rails"],
+  "rarity" : "Common",
+
+  "category" : "door",
+  "price" : 150,
+  "description" : "A thick metal hatch with a rail connector in the middle of it.",
+  "shortdescription" : "Thick Metal Rail Hatch",
+  "race" : "generic",
+
+  "apexDescription" : "An old, metal hatch with a rail installed inside of it.",
+  "avianDescription" : "A simply-designed metal hatch with a rail going through the middle.",
+  "floranDescription" : "Floran wantss to use rail as weapon.",
+  "glitchDescription" : "Unimpressed. A thick metal hatch with a rail installed in the middle.",
+  "humanDescription" : "A metallic hatch with a rail through it.",
+  "hylotlDescription" : "A crude metal hatch with a rail through the middle of it.",
+  "novakidDescription" : "This 'ere hatch with a rail is rusty but sturdy.",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "voltagecityrailhatch.png:default",
+      "imagePosition" : [-16, -8],
+      "renderLayer" : "Object+5",
+      "animationPosition" : [-16, -8],
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left", "right" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/door/door.lua" ],
+  "scriptDelta" : 5,
+
+  "openMaterialSpaces" : [
+    [[0, -1], "metamaterial:rail"], [[0, 0], "metamaterial:rail"]
+  ],
+
+  "animation" : "/objects/wired/door/door.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "open" : {
+        "pool" : [ "/sfx/objects/bardoor2_open.ogg" ],
+        "rangeMultiplier" : 0.5
+      },
+      "close" : {
+        "pool" : [ "/sfx/objects/bardoor2_close.ogg" ],
+        "rangeMultiplier" : 0.5
+      }
+    }
+  },
+  "animationParts" : {
+    "door" : "voltagecityrailhatch.png"
+  },
+
+  "inputNodes" : [ [-2, 0] ],
+  "outputNodes" : [ [2, -1] ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

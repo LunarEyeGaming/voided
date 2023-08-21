@@ -1,0 +1,43 @@
+{
+  "name": "v-cityminiboss-groundtarget",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/math.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/notification.lua",
+    "/scripts/actions/query.lua",
+    "/scripts/actions/voidedutil.lua",
+    "/scripts/behavior.lua"
+  ],
+  "parameters": {
+    "groundCheckOffset": [0, -5]
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "target"}
+        },
+        "output": {
+          "position": "targetPos"
+        }
+      },
+      {
+        "title": "lineTileCollision",
+        "type": "action",
+        "name": "lineTileCollision",
+        "parameters": {
+          "position": {"key": "targetPos"},
+          "offset": {"value": "<groundCheckOffset>"}
+        }
+      }
+    ]
+  }
+}

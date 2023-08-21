@@ -2,19 +2,19 @@
   "objectName" : "v-powercubepedestal",
   "colonyTags" : ["misc"],
   "printable" : false,
-  "price" : 3000,
+  "price" : 0,
   "rarity" : "Common",
-  "description" : "<todo>",
+  "description" : "A pedestal holding a Power Cube.",
   "shortdescription" : "Power Cube Pedestal",
-  "race" : "ancient",
+  "race" : "human",
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "A pedestal designed to hold a Power Cube. Collecting it may be essential.",
+  "avianDescription" : "A simple pedestal designed to hold something.",
+  "floranDescription" : "Floran musst collect box with lightsss.",
+  "glitchDescription" : "Deductive. The purpose of this pedestal must be to hold something important.",
+  "humanDescription" : "The cube on this pedestal must be important.",
+  "hylotlDescription" : "Depictions of keys and locked doors are not uncommon in Hylotl stories.",
+  "novakidDescription" : "Gotta be collectin' these cubes like keys to locked doors.",
 
   "category" : "decorative",
 
@@ -45,5 +45,7 @@
   "itemDrop" : "v-powercube",
   "itemSpawnOffset" : [0, 2],
 
-  "minibossUniqueId" : "v-cityminiboss"
+  "minibossUniqueId" : "v-cityminiboss",
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

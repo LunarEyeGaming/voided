@@ -168,3 +168,10 @@ function updateVelocity()
     mcontroller.controlApproachVelocity(velocity, params.airForce)
   end
 end
+
+function despawn()
+  monster.setDropPool(nil)
+  monster.setDeathParticleBurst(nil)
+  monster.setDeathSound(nil)
+  status.addEphemeralEffect("monsterdespawn")
+end

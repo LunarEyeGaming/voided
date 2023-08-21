@@ -3,11 +3,15 @@
   "description": "",
   "scripts": [
     "/scripts/actions/math.lua",
+    "/scripts/actions/movement.lua",
     "/scripts/actions/notification.lua",
+    "/scripts/actions/query.lua",
     "/scripts/actions/voidedutil.lua",
     "/scripts/behavior.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "faceDirectionRange": 50
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -50,7 +54,7 @@
         "name": "parallel",
         "parameters": {
           "fail": {"value": -1},
-          "success": {"value": 2}
+          "success": {"value": -1}
         },
         "children": [
           {
@@ -100,6 +104,41 @@
                   "parameters": {
                     "key": {"value": "numCubesCollected"},
                     "number": {"key": "numCubesCollected"}
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "succeeder",
+            "type": "decorator",
+            "name": "succeeder",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "queryEntity",
+                  "type": "action",
+                  "name": "queryEntity",
+                  "parameters": {
+                    "entityTypes": {"value": ["player"]},
+                    "range": {"value": "<faceDirectionRange>"},
+                    "position": {"key": "self"}
+                  },
+                  "output": {
+                    "entity": "entityToLookAt"
+                  }
+                },
+                {
+                  "title": "faceEntity",
+                  "type": "action",
+                  "name": "faceEntity",
+                  "parameters": {
+                    "entity": {"key": "entityToLookAt"}
                   }
                 }
               ]

@@ -4,19 +4,30 @@
       "socket" : {
         "default" : "inactive",
         "states" : {
-          "inactive" : {},
+          "inactive" : {
+            "properties" : {
+              "lightsOff" : ["glow"]
+            }
+          },
           "activating" : {
             "frames" : 7,
             "cycle" : 1.0,
             "mode" : "transition",
             "transition" : "active"
           },
-          "active" : {},
+          "active" : {
+            "properties" : {
+              "lightsOn" : ["glow"]
+            }
+          },
           "deactivating" : {
             "frames" : 7,
             "cycle" : 1.0,
             "mode" : "transition",
-            "transition" : "inactive"
+            "transition" : "inactive",
+            "properties" : {
+              "lightsOff" : ["glow"]
+            }
           }
         }
       }
@@ -85,6 +96,14 @@
           }
         }
       }
+    }
+  },
+  
+  "lights" : {
+    "glow" : {
+      "active" : false,
+      "color" : [74, 74, 181],
+      "position" : [0, 0]
     }
   },
 

@@ -1,24 +1,23 @@
 {
   "objectName" : "v-inactivevoltspitter",
   "colonyTags" : ["misc"],
-  "printable" : false,
   "rarity" : "Common",
   "category" : "decorative",
-  "price" : 80,
+  "price" : 200,
 
-  "description" : "<todo>.",
+  "description" : "An inactive Voltspitter.",
   "shortdescription" : "Inactive Voltspitter",
-  "race" : "generic",
+  "race" : "human",
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "A deactivated Voltspitter. I wonder why it is being stored here.",
+  "avianDescription" : "An inactive Voltspitter that is cold to the touch.",
+  "floranDescription" : "Floran wantss to desstroy robot.",
+  "glitchDescription" : "Curious. I wonder why this Voltspitter is inactive.",
+  "humanDescription" : "I bet this Voltspitter will wake up on its own.",
+  "hylotlDescription" : "Robots rarely make a presence in Hylotl culture.",
+  "novakidDescription" : "This 'ere Voltspitter ain't workin'.",
 
-  "inventoryIcon" : "inactivevoltspitter.png",
+  "inventoryIcon" : "icon.png",
   "orientations" : [
     {
       "dualImage" : "inactivevoltspitter.png",
@@ -27,5 +26,7 @@
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]
     }
-  ]
+  ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

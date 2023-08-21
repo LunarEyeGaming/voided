@@ -1,0 +1,32 @@
+{
+  "projectileName" : "v-cityminibossshockwavetrail",
+  "image" : "cityminibossshockwavetrail.png",
+  "animationCycle" : 0.4,
+  "lightColor" : [100, 100, 150],
+  "frameNumber" : 4,
+  "timeToLive" : 1.0,
+  "power" : 500,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "hover",
+  "bounces" : 0,
+  "emitters" : [ "electricswoosh" ],
+  "damageKind" : "electric",
+  "damageType" : "NoDamage",
+  
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-cityminibosslightning",
+      "inheritDamageFactor" : 1.0,
+      "direction" : [0, 1],
+      "config" : {
+        "speed" : 100,
+        "acceleration" : 0
+      }
+    }
+  ],
+
+  "speed" : 0
+}

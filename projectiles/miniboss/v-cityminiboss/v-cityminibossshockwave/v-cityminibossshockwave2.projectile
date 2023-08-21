@@ -1,0 +1,26 @@
+{
+  "projectileName" : "v-cityminibossshockwave2",
+  "image" : "cityminibossshockwave.png",
+  "animationCycle" : 0.1,
+  "frameNumber" : 3,
+  "lightColor" : [196, 196, 245],
+  "fullbright" : true,
+
+  "damageKindImage" : "icon.png",
+  "physics" : "boomerang",
+  "emitters" : [ ],
+  "damagePoly" : [ [28, -40], [24, 16], [2, 0], [-12, -40] ],
+  "damageKind" : "electricplasma",
+  
+  "knockback" : 100,
+  
+  "power" : 0,
+
+  "flippable" : true,
+  "piercing" : true,
+  "speed" : 1,
+  "acceleration" : 75,
+
+  "scripts" : [ "/projectiles/tracksourcestatus.lua" ],
+  "scriptDelta" : 1
+}

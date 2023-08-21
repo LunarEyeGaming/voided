@@ -1,7 +1,8 @@
-require "/scripts/util.lua"
-require "/scripts/vec2.lua"
-require "/scripts/versioningutils.lua"
-require "/items/buildscripts/abilities.lua"
+-- require "/scripts/util.lua"
+-- require "/scripts/vec2.lua"
+-- require "/scripts/versioningutils.lua"
+-- require "/items/buildscripts/abilities.lua"
+require "/items/buildscripts/v-extrabuildfuncs.lua"
 require "/items/buildscripts/buildbow.lua"
 
 local oldBuild = build
@@ -18,14 +19,9 @@ function build(directory, config, parameters, level, seed)
       return defaultValue
     end
   end
-  
-  if configParameter("customRarity") == "Mythical" then
-    config.shortdescription = string.format("^#a600cc;%s^reset;", config.shortdescription)
-    if not config.tooltipFields then
-      config.tooltipFields = {}
-    end
-    config.tooltipFields.rarityLabel = "^#a600cc;Mythical"
-  end
+
+  config = applyRarity(config, configParameter("customRarity"))
+  config = setVoidedIcon(config)
 
   return config, parameters
 end

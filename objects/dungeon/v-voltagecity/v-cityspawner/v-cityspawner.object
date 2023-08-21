@@ -3,17 +3,17 @@
   "colonyTags" : [ ],
   "printable" : false,
   "rarity" : "Legendary",
-  "description" : "<todo>",
+  "description" : "A device that spawns waves of monsters.",
   "shortdescription" : "cityspawner",
   "race" : "generic",
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "This device releases groups of monsters. Killing all of them opens the doors.",
+  "avianDescription" : "A device with a cold light. Killing all of the monsters it spawns opens the doors.",
+  "floranDescription" : "Floran musst ssstab monsters to open doorss.",
+  "glitchDescription" : "Excited. If this device runs out of monsters, it will open the doors.",
+  "humanDescription" : "Better slay all the monsters it spawns if I don't want to die.",
+  "hylotlDescription" : "A device that requires bloodshed to open the doors to which it is connected.",
+  "novakidDescription" : "I better kill all the monsters spawned by this 'ere device.",
 
   "category" : "decorative",
   "price" : 0,
@@ -23,6 +23,7 @@
     {
       "image" : "display.png:1.0",
       "imagePosition" : [-8, -8],
+      "renderLayer" : "Plant-10",
 
       "spaceScan" : 0.1
     }
@@ -55,5 +56,7 @@
   "capsuleCloseDelay" : 0.25,
   
   "spawnerProjectileType" : "v-cityspawnerorb",
-  "spawnerProjectileOffset" : [0.5, 0.5]
+  "spawnerProjectileOffset" : [0.5, 0.5],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

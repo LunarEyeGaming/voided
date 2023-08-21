@@ -33,6 +33,7 @@
     {
       "name" : "buildingroomintro1",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "buildingroomintro1.json" ],
       "chance" : 1
@@ -40,6 +41,7 @@
     {
       "name" : "buildingroomintro2",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "buildingroomintro2.json" ],
       "chance" : 1
@@ -49,7 +51,21 @@
       "rules" : [
       ],
       "def" : [ "tmx", "buildingroomeasy1.json" ],
-      "chance" : 1
+      "chance" : 0
+    },
+    {
+      "name" : "buildingroomeasy2",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroomeasy2.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "buildingroomeasy3",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroomeasy3.json" ],
+      "chance" : 0
     },
     {
       "name" : "buildingroom1",
@@ -107,6 +123,13 @@
       "rules" : [
       ],
       "def" : [ "tmx", "buildingroom8.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "buildingroom9",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "buildingroom9.json" ],
       "chance" : 1
     },
     {

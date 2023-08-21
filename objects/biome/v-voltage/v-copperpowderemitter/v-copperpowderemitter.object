@@ -6,6 +6,8 @@
   "scannable" : false,
   "printable" : false,
 
+  "biomePlaced" : true,
+
   "description" : "Not intended to be obtained",
   "shortdescription" : "Copper Powder Emitter",
   "race" : "generic",
@@ -60,5 +62,7 @@
         "rotation" : 180
       }
     }
-  }
+  },
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

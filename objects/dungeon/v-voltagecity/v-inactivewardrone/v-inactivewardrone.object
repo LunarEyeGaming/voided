@@ -1,24 +1,23 @@
 {
   "objectName" : "v-inactivewardrone",
   "colonyTags" : ["misc"],
-  "printable" : false,
   "rarity" : "Common",
   "category" : "decorative",
-  "price" : 80,
+  "price" : 300,
 
-  "description" : "<todo>.",
+  "description" : "An inactive War Drone.",
   "shortdescription" : "Inactive War Drone",
-  "race" : "generic",
+  "race" : "human",
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "War Drones are very fierce adversaries. Thankfully, this one is inactive.",
+  "avianDescription" : "A War Drone that is completely motionless.",
+  "floranDescription" : "Floran wantss to sstab big robot.",
+  "glitchDescription" : "Afraid. This War Drone may activate on its own.",
+  "humanDescription" : "A War Drone...I'm glad it isn't awake.",
+  "hylotlDescription" : "Hylotls never needed to construct war robots since they have sought peace rather than destruction.",
+  "novakidDescription" : "This War Drone's good for shootin' at.",
 
-  "inventoryIcon" : "inactivewardrone.png",
+  "inventoryIcon" : "icon.png",
   "orientations" : [
     {
       "dualImage" : "inactivewardrone.png",
@@ -27,5 +26,7 @@
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]
     }
-  ]
+  ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

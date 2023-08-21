@@ -1,7 +1,7 @@
 {
   "type" : "v-cityminiboss",
   "shortdescription" : "Voltropolis Raider",
-  "description" : "<todo>",
+  "description" : "A member of an unknown raider group who took over Voltropolis.",
 
   "categories" : [ "v-cityminiboss" ],
   "parts" : [ "body" ],
@@ -68,6 +68,8 @@
     "touchDamage" : {
       "poly" : [ [-0.75, -2.0], [-0.35, -2.5], [0.35, -2.5], [0.75, -2.0], [0.75, 0.65], [0.35, 1.22], [-0.35, 1.22], [-0.75, 0.65] ],
       "damage" : 20,
+      
+      "damageSourceKind" : "electricbroadsword",
 
       "teamType" : "enemy",
       "statusEffects" : [ ]

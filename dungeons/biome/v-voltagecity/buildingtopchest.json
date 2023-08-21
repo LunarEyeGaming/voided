@@ -4,27 +4,27 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt2MENwjAMBVCP0QsDMAiDZZhyIpv1yAAQVZaM8xMHqbfvw1fbFKj0atmlh4gcC3nfrs\/KdZnSTIqc2czWpgT79vtpjI2bzf5NdUFro3N7GofGVfqa1DVU13VwnMbYGJl5d98nKrgfhcz4nxnlja3jSh3bz7IZoxmGZtpV\/ZixjtXvCfKSvi69P1ob1ThzHc+Mo\/nm+3EaY+MyMR55aryjnX3IOHtFbDz7HxL1dNY6VosVYzTf1Axlk37mMRqr3x0EPfeiZ5D2Ow\/5jb1\/PmzG6oCM1S\/fCWUy3PkAsc6ETA==",
+         "data":"eJzdlcENgzAQBK8Mf1JACklhLoa84s54poAEIUuXzZyxgUeUxwow+BjvreXZzOYOPS\/nq+e\/ypBtVXJXr7xx7+fvZVjmTm8VEY1F76YTGAqsqY6RLyV4PtILralc2ocCvFkYRjKkDMnGfPDfKgNljDJ3Vh7Ih1r\/DnrAupSPxiKPWj60GLbyp3nYy5A7fKB9QT332SSGI71Q3yP\/W5mKfMgDDJS\/WpOU7DuTrTxcQbTvaQ8tdW72Kb8+VeQDMdT6v3Bm\/btebtdKHw==",
          "encoding":"base64",
          "height":16,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
          "visible":true,
-         "width":89,
+         "width":33,
          "x":0,
          "y":0
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmMENgCAMRTsGF8dxMIZkBwdwAENMk29tIiTFS\/9LGjkAh8dPUUXGOLf4Ik+6kyp3FXhi1Y8xrqfjN91JCdqLjn3oeD3aKyKoksvxzB0V5ThbjrUH2DvMu9OiekXGHEf6GyFrjul4Hdgr\/oK9Yo4mft\/Gnt7Mmow5VhezqDt15lUxc3F+FjDHNm+aUfv97L2D9H12eRaen61sjm2ODxirP\/4TIiQ3F+F6dOo=",
+         "data":"eJzdVckNgDAMyxj9MA6DZcjuwAAdAFUoUrBS9ZAfBUsWfTTBdQwVGUM5+JxFrVF5mNzTUztrX7+qIc2Xhfi6BiVpUNAwkyGWBvTBPMaMRZljzSLygdl\/BC0fdtDAmvUI2LPIEufGZypDTeSD7V15v+8ZMcHelgbTjXrtjPh\/jr6h2ueUN\/35kD0fLre2\/jvcWX\/HDbtxdOo=",
          "encoding":"base64",
          "height":16,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":89,
+         "width":33,
          "x":0,
          "y":0
         }, 
@@ -55,18 +55,6 @@
                  "width":24,
                  "x":32,
                  "y":112
-                }, 
-                {
-                 "gid":2147491515,
-                 "height":16,
-                 "id":696,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":152,
-                 "y":80
                 }, 
                 {
                  "gid":6879,
@@ -129,15 +117,47 @@
                  "y":80
                 }, 
                 {
-                 "gid":5869,
+                 "gid":7969,
                  "height":40,
-                 "id":706,
+                 "id":707,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":48,
-                 "x":64,
+                 "width":16,
+                 "x":80,
+                 "y":96
+                }, 
+                {
+                 "gid":2147491559,
+                 "height":16,
+                 "id":708,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"treasurePools\" : [\"v-voltagecityReward\"]}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":160,
+                 "y":80
+                }, 
+                {
+                 "gid":6848,
+                 "height":40,
+                 "id":709,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":24,
                  "y":96
                 }],
          "opacity":1,
@@ -261,7 +281,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":707,
+ "nextobjectid":710,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -382,9 +402,13 @@
         {
          "firstgid":7944,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
+        }, 
+        {
+         "firstgid":7948,
+         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",
  "version":1,
- "width":89
+ "width":33
 }
