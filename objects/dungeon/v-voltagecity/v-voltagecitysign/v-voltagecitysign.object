@@ -1,0 +1,35 @@
+{
+  "objectName" : "v-voltagecitysign",
+  "colonyTags" : ["human"],
+  "rarity" : "Common",
+  "description" : "A sign that reads \"Welcome to Voltropolis.\"",
+  "shortdescription" : "Voltropolis Sign",
+  "race" : "human",
+  "category" : "decorative",
+  "price" : 100,
+
+  "apexDescription" : "This sign reads \"Welcome to Voltropolis.\"",
+  "avianDescription" : "This sign gives me a warm welcome.",
+  "floranDescription" : "Floran thinksss food iss in here.",
+  "glitchDescription" : "Concerned. A city named \"Voltropolis\" would most likely be dangerous to me.",
+  "humanDescription" : "\"Voltropolis?\" What a stupid name.",
+  "hylotlDescription" : "Quite an inviting message to read.",
+  "novakidDescription" : "This sign's pretty invitin'.",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "voltagecitysign.png",
+
+      "imagePosition" : [-24, 0],
+      "frames" : 1,
+      "animationCycle" : 1.0,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+
+    }
+  ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

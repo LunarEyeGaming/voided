@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-voltage",
  "spacing":0,
- "tilecount":23,
+ "tilecount":24,
  "tileheight":80,
  "tileproperties":
     {
@@ -122,6 +122,13 @@
          "imagePositionX":"-16",
          "imagePositionY":"-8",
          "object":"v-voltagecityrailhatch",
+         "tilesetDirection":"right"
+        },
+     "23":
+        {
+         "imagePositionX":"-24",
+         "imagePositionY":"0",
+         "object":"v-voltagecitysign",
          "tilesetDirection":"right"
         },
      "3":
@@ -288,6 +295,13 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "23":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "3":
         {
          "imagePositionX":"string",
@@ -435,6 +449,12 @@
          "image":"..\/images\/objects\/voltagecityrailhatch.png",
          "imageheight":16,
          "imagewidth":40
+        },
+     "23":
+        {
+         "image":"..\/images\/objects\/voltagecitysign.png",
+         "imageheight":24,
+         "imagewidth":56
         },
      "3":
         {
