@@ -17,7 +17,7 @@ require "/scripts/util.lua"
   tiles).
 ]]
 
-local SECTOR_SIZE = 32
+SECTOR_SIZE = 32
 
 --[[
   Queries a single sector of a list of mat mods (or all existing mat mods if not specified) and returns their positions 

@@ -12,6 +12,7 @@ local modFuncs
 local matFuncs
 local queriedModSectors
 local lockedModSectors
+local claimedModSectors
 
 local tickDelta
 local tickTimer
@@ -20,11 +21,14 @@ local invalidationTimeRange
 
 local sectorRange
 
+local claimBroadcastRange
+
 function init()
   modFuncs = {}
   matFuncs = {}
   queriedModSectors = {}
   lockedModSectors = {}
+  claimedModSectors = {}
 
   -- Initialize function lists.
   loadScripts()
@@ -36,6 +40,8 @@ function init()
   invalidationTimeRange = {15 * 60, 30 * 60}
   
   sectorRange = 3  -- How many sectors to look (both horizontally and vertically) from the current sector.
+  
+  claimBroadcastRange = (sectorRange + 1) * SECTOR_SIZE
   
   message.setHandler("tileBroken", handleBrokenTile)
   
@@ -49,6 +55,15 @@ function init()
     for _, sector in ipairs(sectors) do
       invalidateSector(sector)
     end
+  end)
+  
+  message.setHandler("v-claimSector", function(_, _, sector, duration, playerId)
+    -- Arbitrary condition to ensure that no more than one player keeps a sector.
+    if isQueried(sector) and playerId > player.id() then
+      invalidateSector(sector)
+    end
+
+    table.insert(claimedModSectors, {sector = sector, expiry = duration})
   end)
 
   util.setDebug(true)
@@ -105,13 +120,25 @@ function matUpdate(dt)
   runUpdateHooks(dt)
   querySectors()
   cleanUpSectors()
+  cleanUpClaimedSectors()
   
-  --world.debugText("number of cached sectors: %s", #queriedModSectors, mcontroller.position(), "green")
+  -- world.debugText("number of cached sectors: %s", #queriedModSectors, mcontroller.position(), "green")
 end
 
 function updateExpiry(dt)
   for _, queriedSector in ipairs(queriedModSectors) do
     queriedSector.expiry = queriedSector.expiry - 1
+  end
+
+  for _, claimedSector in ipairs(claimedModSectors) do
+    -- local sector = claimedSector.sector
+
+    -- local pos1 = getPosFromSector(sector, {0, 0})
+    -- local pos2 = getPosFromSector(sector, {32, 32})
+
+    -- util.debugRect({pos1[1], pos1[2], pos2[1], pos2[2]}, "blue")
+
+    claimedSector.expiry = claimedSector.expiry - 1
   end
 end
 
@@ -181,11 +208,15 @@ function querySectors()
       -- util.debugRect({pos1[1], pos1[2], pos2[1], pos2[2]}, isQueried(sector) and "green" or (isLoaded(sector) and "yellow" or "red"))
 
       -- If it is loaded, it hasn't been queried yet, and it was not locked, query it
-      if isLoaded(sector) and not isQueried(sector) and not isLocked(sector) then
+      if isLoaded(sector) and not isQueried(sector) and not isLocked(sector) and not isClaimed(sector) then
         local result = querySector(sector, matModsToQuery)
         
+        local expiry = math.random(invalidationTimeRange[1], invalidationTimeRange[2])
+        
+        claimSector(sector, expiry)
+        
         table.insert(queriedModSectors, {sector = sector, matMods = result, 
-            expiry = math.random(invalidationTimeRange[1], invalidationTimeRange[2])})
+            expiry = expiry})
       end
     end
   end
@@ -200,6 +231,21 @@ function cleanUpSectors()
     if not isLoaded(queriedModSectors[i].sector) or queriedModSectors[i].expiry < 0 then
       -- showInvalidatedSector(queriedModSectors[i].sector, 1.0)
       table.remove(queriedModSectors, i)
+    else
+      i = i + 1
+    end
+  end
+end
+
+-- Clears unloaded or expired sectors that were claimed
+function cleanUpClaimedSectors()
+  -- Use a while loop where i is incremented only when no item is deleted so that all items are deleted properly.
+  local i = 1
+  while i <= #claimedModSectors do
+    -- If the sector at i has expired, delete it. Otherwise, increment i.
+    if claimedModSectors[i].expiry < 0 then
+      -- showInvalidatedSector(queriedModSectors[i].sector, 1.0)
+      table.remove(claimedModSectors, i)
     else
       i = i + 1
     end
@@ -231,16 +277,6 @@ function invalidateSector(sector)
   return false
 end
 
---[[
-  Removes a MatMod at the given position and layer from the queriedModSectors list.
-  param position: the position of the matmod to remove
-  param layer: the layer of the matmod to remove
-]]
-function decacheMatMod(position, layer)
-  -- find sector
-  -- then find and remove the matmod itself
-end
-
 -- Returns true if the sector is in the queriedModSectors table and false otherwise.
 function isQueried(sector)
   for _, matchedSector in ipairs(queriedModSectors) do
@@ -265,9 +301,36 @@ function isLocked(sector)
   return false
 end
 
+-- Returns true if the sector is in the claimedModSectors table and false otherwise.
+function isClaimed(sector)
+  for _, claimedSector in ipairs(claimedModSectors) do
+    if vec2.eq(sector, claimedSector.sector) then
+      -- Stop and return true
+      return true
+    end
+  end
+  
+  return false
+end
+
 -- Locks a sector for a certain amount of time (measured in ticks). This stops the system from querying that sector.
 function lockSector(sector, duration)
   table.insert(lockedModSectors, {sector = sector, timer = duration})
+end
+
+-- Claims a sector, preventing other nearby players from being able to query it until it expires.
+function claimSector(sector, duration)
+  local broadcastPoint1 = vec2.add(mcontroller.position(), {-claimBroadcastRange, -claimBroadcastRange})
+  local broadcastPoint2 = vec2.add(mcontroller.position(), {claimBroadcastRange, claimBroadcastRange})
+
+  local queried = world.entityQuery(broadcastPoint1, broadcastPoint2, {includedTypes = {"player"}})
+
+  for _, id in ipairs(queried) do
+    -- If the given ID is not the current player, send a message that this sector is claimed.
+    if player.id() ~= id then
+      world.sendEntityMessage(id, "v-claimSector", sector, duration, player.id())
+    end
+  end
 end
 
 function handleBrokenTile(_, _, pos, layer)

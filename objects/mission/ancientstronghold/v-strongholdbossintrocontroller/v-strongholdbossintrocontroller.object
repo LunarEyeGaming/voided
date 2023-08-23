@@ -1,0 +1,55 @@
+{
+  "objectName" : "v-strongholdbossintrocontroller",
+  "colonyTags" : [ ],
+  "printable" : false,
+  "scannable" : false,
+  "rarity" : "Legendary",
+  "description" : "Not intended to be obtained",
+  "shortdescription" : "strongholdbossintrocontroller",
+  "race" : "generic",
+
+  "category" : "decorative",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "preview.png",
+      "imagePosition" : [0, 0]
+    }
+  ],
+
+  "animation" : "v-strongholdbossintrocontroller.animation",
+
+  "animationParts" : {
+    "controller" : "image.png"
+  },
+  "animationPosition" : [0, 0],
+  
+  "health" : 5,
+  "smashOnBreak" : true,
+  
+  "outputNodes" : [
+    [2, 3], [3, 3], [4, 3], [5, 3],  // Bottom lights
+    [2, 2], [5, 2],  // Spotlight and alarm light
+    [2, 1], [5, 1],  // Backdoor and door
+    [2, 0], [5, 0]  // Arena reveal and turret
+  ],
+
+  "scripts" : [ "v-strongholdbossintrocontroller.lua" ],
+  "scriptDelta" : 1,
+  
+  "lightsRegion" : null,
+  "trapRegion" : null,
+  "arenaRegion" : null,
+  
+  "bottomLightInterval" : 0.5,
+  "spotlightDelay" : 1.5,
+  "doorCloseDelay" : 1.5,
+  "arenaRevealDelay" : 1.0,
+  "resetDelay" : 2.0,
+  
+  "bossUniqueId" : "strongholdboss",
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

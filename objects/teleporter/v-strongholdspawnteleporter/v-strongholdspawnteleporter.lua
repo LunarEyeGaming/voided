@@ -26,6 +26,8 @@ end
 
 -- Plays the animation for the teleporter.
 function teleport(sourceId)
+  object.setInteractive(false)
+
   -- Turn on lights
   animator.setAnimationState("teleporter", "activate")
   
@@ -61,6 +63,8 @@ function teleport(sourceId)
   animator.setAnimationState("teleporter", "deactivate")
 
   teleporterState:set(noop)
+
+  object.setInteractive(true)
 end
 
 -- Does nothing on each update

@@ -21,6 +21,8 @@ function init()
   orbitPeriod = config.getParameter("orbitPeriod", 1.5)
   shieldStatusEffect = config.getParameter("shieldStatusEffect", "v-ancientshield")
   timer = 0
+  
+  script.setUpdateDelta(1)
 end
 
 function shouldDie()

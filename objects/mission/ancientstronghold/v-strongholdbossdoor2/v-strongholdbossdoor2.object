@@ -1,0 +1,81 @@
+{
+  "objectName" : "v-strongholdbossdoor2",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "scannable" : false,
+  "rarity" : "Common",
+  "description" : "A thick, ancient wall designed to trap invaders in this room.",
+  "shortdescription" : "Back Door",
+  "race" : "generic",
+  "health" : 1,
+
+  "category" : "wire",
+  "price" : 100,
+
+  "apexDescription" : "A thick wall that keeps invaders from escaping.",
+  "avianDescription" : "This wall makes it clear that there is no escape.",
+  "floranDescription" : "Floran isss caught in trap!",
+  "glitchDescription" : "Astonished. This trap is unlike anything I've seen from these old structures!",
+  "humanDescription" : "This old wall keeps me from getting out.",
+  "hylotlDescription" : "The wall of an ancient death trap.",
+  "novakidDescription" : "Looks like there's no goin' back.",
+  
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "strongholdbossdoor2.png:1",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+      
+      "animationParts" : {
+        "wall" : "strongholdbossdoor2.png"
+      },
+      "anchors" : [ "background" ],
+      "spaceScan" : 0.4
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/v-slidingdoor/slidingdoor.lua" ],
+  "scriptDelta" : 1,
+  
+  "translationConfig" : {
+    "duration" : 0.2,
+    "distance" : 5,
+    "direction" : -1,
+    "useHorizontal" : false,
+    "isSolid" : true,
+    "frames" : 1
+  },
+
+  "useAntiCrush" : true,
+  "queryArea" : [0, 0, 6, 5],
+  
+  "physicsForces" : {
+    "doorRight" : {
+      "type" : "DirectionalForceRegion",
+      "rectRegion" : [0, 0, 6, 5],
+      "xTargetVelocity" : -100,
+      "controlForce" : 3000,
+      "categoryWhitelist" : [ "player", "monster", "npc" ]
+    },
+    "doorLeft" : {
+      "type" : "DirectionalForceRegion",
+      "rectRegion" : [0, -1, 6, 5],
+      "xTargetVelocity" : 100,
+      "controlForce" : 3000,
+      "categoryWhitelist" : [ "player", "monster", "npc" ]
+    }
+  },
+  
+  "inputNodes" : [ [0, 0] ],
+
+  "animation" : "/objects/wired/v-slidingdoor/slidingdoor.animation",
+
+  "animationParts" : {
+    "wall" : "strongholdbossdoor2.png"
+  },
+  "animationPosition" : [0, 0],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

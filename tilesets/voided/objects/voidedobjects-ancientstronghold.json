@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-ancientstronghold",
  "spacing":0,
- "tilecount":34,
+ "tilecount":36,
  "tileheight":176,
  "tileproperties":
     {
@@ -206,6 +206,20 @@
          "imagePositionX":"-16",
          "imagePositionY":"0",
          "object":"v-brokenancientfabricator",
+         "tilesetDirection":"right"
+        },
+     "34":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-strongholdbossintrocontroller",
+         "tilesetDirection":"right"
+        },
+     "35":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-strongholdbossdoor2",
          "tilesetDirection":"right"
         },
      "4":
@@ -449,6 +463,20 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "34":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "35":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "4":
         {
          "imagePositionX":"string",
@@ -661,6 +689,18 @@
          "image":"..\/images\/objects\/brokenancientfabricator.png",
          "imageheight":32,
          "imagewidth":32
+        },
+     "34":
+        {
+         "image":"..\/images\/objects\/strongholdbossintrocontroller.png",
+         "imageheight":32,
+         "imagewidth":48
+        },
+     "35":
+        {
+         "image":"..\/images\/objects\/strongholdbossdoor2.png",
+         "imageheight":40,
+         "imagewidth":56
         },
      "4":
         {
