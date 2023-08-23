@@ -335,6 +335,8 @@ end
 
 function handleBrokenTile(_, _, pos, layer)
   --sb.logInfo("Received tileBroken handler")
+  -- This function only triggers for the person who mined it, so there isn't any need to check if the sector 
+  -- corresponding to pos is claimed.
   runDestroyHook(pos, layer)
   invalidateSector(getSector(pos))
   
