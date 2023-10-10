@@ -28,5 +28,20 @@
       "musicTrack" : "/music/event-horizon.ogg",
       "environmentStatusEffects" : ["dontstarve", "v-quickhealnerf"]
     }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-strongholdgateway",
+    "value" : {
+      "primaryDungeon" : "v-strongholdgateway",
+      "threatLevel" : 7,
+      "gravity" : 40,
+      "worldSize" : [6000, 6000],
+      "dungeonBaseHeight" : 500,
+      "ambientLightLevel" : [128, 128, 128],
+      "ambientNoises" : "/sfx/environmental/space_loop4.ogg",
+      "musicTrack" : "",
+      "environmentStatusEffects" : ["v-quickhealnerf"]
+    }
   }
 ]

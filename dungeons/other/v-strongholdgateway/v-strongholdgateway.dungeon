@@ -4,11 +4,11 @@
     "species" : "generic",
     "rules" : [
     ],
-    "protected" : true,
+    "protected" : false,
     "anchor" : [ "strongholdgateway" ],
+    "gravity" : 40,
     "maxRadius" : 1000000,
-    "maxParts" : 1,
-    "extendSurfaceFreeSpace" : 100
+    "maxParts" : 100
   },
 
   "parts" : [

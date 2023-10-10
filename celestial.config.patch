@@ -23,6 +23,11 @@
   },
   {
     "op" : "add",
+    "path" : "/floatingDungeonHorizons/v-strongholdgateway",
+    "value" : "/celestial/system/v-strangeasteroid/horizon/asteroid_<selector>.png"
+  },
+  {
+    "op" : "add",
     "path" : "/systemTypeBins/-",
     "value" : [0.23, "v-Extradimensional"]
   },
@@ -105,14 +110,11 @@
           ]
         },
         {
-          "regionName" : "Gate",
+          "regionName" : "v-StrangeAsteroid",
           "orbitRange" : [11, 11],
           "bodyProbability" : 1.0,
           "planetaryTypes" : [
-            {"weight" : 0.2, "item" : "AncientGateway"},
-            {"weight" : 0.1, "item" : "AsteroidField"},
-            {"weight" : 0.1, "item" : "Barren"},
-            {"weight" : 0.6, "item" : "v-Elemental"}
+            {"weight" : 1.0, "item" : "v-StrangeAsteroid"}
           ],
           "satelliteTypes" : []
         }
@@ -146,6 +148,28 @@
           "worldSize" : "large"
         }
       ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/planetaryTypes/v-StrangeAsteroid",
+    "value" : {
+      "satelliteProbability" : 0.0,
+
+      "baseParameters" : {
+        "worldType" : "FloatingDungeon",
+        "description" : "Strange Asteroid",
+        "dungeonWorld" : "v-strongholdgateway",
+        "smallImage" : "/celestial/system/v-strangeasteroid.png",
+        "image" : "/celestial/system/v-strangeasteroid/asteroid.png",
+        "imageScale" : 1.0,
+        "smallImageScale" : 1.0,
+        "worldSize" : "v-strongholdgateway",
+
+        "dynamicsImages" : "/celestial/system/v-strangeasteroid/dynamics/<num>.png",
+        "dynamicsRange" : [0, 0],
+        "shadowNumber" : [1, 9]
+      }
     }
   },
   {

@@ -70,6 +70,16 @@
         "The electrical conductivity of this ^#a083df;voltage^reset; world is ^red;dangerously high^reset;. Its indigenous lifeforms have adapted a resistance to this kind of environment."
       ]
     },
+    
+    {
+      "op" : "add",
+      "path" : "/visitableTypeDescription/v-strongholdgateway",
+      "value" : [
+        "A ^#571cff;strange asteroid^white; emitting unknown energy signatures. Caution is advised.",
+        "Mysterious signals appear to be emanating from deep within this ^#571cff;strange asteroid^white;. Explore with caution.",
+        "This ^#571cff;strange asteroid^white; has no other notable properties aside from the abnormal signals it constantly emits. Explore with caution."
+      ]
+    },
 
     // Add planet labels
     {
@@ -78,9 +88,19 @@
       "value" : "Voltage"
     },
     {
+      "op" : "add",
+      "path" : "/planetTypeNames/v-strongholdgateway",
+      "value" : "Strange Asteroid"
+    },
+    {
       "op": "add",
       "path": "/planetTypeColors/v-voltage",
       "value" : [160, 131, 223]
+    },
+    {
+      "op": "add",
+      "path": "/planetTypeColors/v-strongholdgateway",
+      "value" : [87, 28, 255]
     },
 
     // Add new star type label

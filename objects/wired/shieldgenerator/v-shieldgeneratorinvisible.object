@@ -1,0 +1,44 @@
+{
+  "objectName" : "v-shieldgeneratorinvisible",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "hasObjectItem" : false,
+  "scannable" : false,
+  "interactive" : false,
+  "rarity" : "Common",
+  "description" : "It sure doesn't look like this could generate a shield.",
+  "shortdescription" : "Shield Generator",
+  "race" : "generic",
+
+  "category" : "wire",
+  "price" : 20,
+
+  "inventoryIcon" : "shieldgeneratoricon.png",
+  "orientations" : [
+    {
+      "image" : "v-shieldgeneratorinvisible.png",
+      "imagePosition" : [-8, -8],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "scripts" : [ "v-shieldgeneratorinvisible.lua" ],
+  "scriptDelta" : 5,
+
+  "animation" : "/objects/wired/switch/switchtoggle2.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "on" : [ "/sfx/objects/apexconsole2switch.ogg" ],
+      "off" : [ "/sfx/objects/apexconsole2switch.ogg" ]
+    }
+  },
+
+  "animationParts" : {
+    "switch" : "v-shieldgeneratorinvisible.png"
+  },
+  "animationPosition" : [-8, -8],
+
+  "inputNodes" : [ [-1, 0] ]
+}
