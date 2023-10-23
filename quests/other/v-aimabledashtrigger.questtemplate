@@ -1,0 +1,38 @@
+{
+  "id" : "v-aimabledashtrigger", // Unlocks the aimable dash tech
+  "mainQuest" : false,
+  "prerequisites" : [ ],
+  "title" : "^orange;Aimable Dash Tech",
+  "text" : "You have unlocked the Aimable Dash.",
+  "completionText" : "This text should not be seen.",
+  "moneyRange" : [0, 0],
+  "rewards" : [],
+  "speaker" : "questGiver",
+  "canBeAbandoned" : false,
+  "showCompleteDialog" : false,
+  
+  "updateDelta" : 10,
+  "script" : "/quests/scripts/main.lua",
+  "scriptConfig" : {
+
+    "portraits" : {
+      "questStarted" : "questGiver",
+      "questComplete" : "questGiver"
+    },
+    
+    "requireTurnIn" : false,
+    
+    "conditions" : [
+      {
+        "type" : "gatherItem",
+        "itemName" : "v-aimabledashtechchip",
+        "count" : 1,
+        "consume" : true
+      }
+    ],
+    
+    "enableTech" : [
+      "v-aimabledash"
+    ]
+  }
+}

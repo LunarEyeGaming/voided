@@ -1,0 +1,38 @@
+{
+  "id" : "v-multijump2trigger", // Unlocks the Multi Jump Mk II tech
+  "mainQuest" : false,
+  "prerequisites" : [ ],
+  "title" : "^orange;Multi-Jump Mk II Tech",
+  "text" : "You have unlocked the Multi-Jump Mk II tech.",
+  "completionText" : "This text should not be seen.",
+  "moneyRange" : [0, 0],
+  "rewards" : [],
+  "speaker" : "questGiver",
+  "canBeAbandoned" : false,
+  "showCompleteDialog" : false,
+  
+  "updateDelta" : 10,
+  "script" : "/quests/scripts/main.lua",
+  "scriptConfig" : {
+
+    "portraits" : {
+      "questStarted" : "questGiver",
+      "questComplete" : "questGiver"
+    },
+    
+    "requireTurnIn" : false,
+    
+    "conditions" : [
+      {
+        "type" : "gatherItem",
+        "itemName" : "v-multijump2techchip",
+        "count" : 1,
+        "consume" : true
+      }
+    ],
+    
+    "enableTech" : [
+      "v-multijump2"
+    ]
+  }
+}
