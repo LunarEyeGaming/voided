@@ -3,15 +3,14 @@ require "/scripts/vec2.lua"
 
 local spawnerType
 local loaderType
-
 local loaderGapHeight
 local loaderMaxSpawnHeight
 
 function init()
-  spawnerType = "v-corelightningspawner"
-  loaderType = "v-chunkloader"
-  loaderGapHeight = 50
-  loaderMaxSpawnHeight = 200
+  spawnerType = config.getParameter("spawnerType")
+  loaderType = config.getParameter("loaderType")
+  loaderGapHeight = config.getParameter("loaderGapHeight")
+  loaderMaxSpawnHeight = config.getParameter("loaderMaxSpawnHeight")
 
   local oceanLevel = world.oceanLevel(object.position())
   

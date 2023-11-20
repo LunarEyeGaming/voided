@@ -1,11 +1,11 @@
 {
-  "objectName" : "v-corelightningspawnerspawner",
+  "objectName" : "v-toxicbubblespawnerspawner",
   "colonyTags" : ["evil"],
   "printable" : false,
   "scannable" : false,
   "rarity" : "Legendary",
   "description" : "Not intended to be obtained",
-  "shortdescription" : "Core Lightning Spawner Spawner",
+  "shortdescription" : "Toxic Bubble Spawner Spawner",
   "race" : "generic",
 
   "category" : "trap",
@@ -21,16 +21,16 @@
     }
   ],
 
-  "scripts" : [ "v-corelightningspawnerspawner.lua" ],
+  "scripts" : [ "/objects/biome/v-voltage/v-corelightningspawnerspawner/v-corelightningspawnerspawner.lua" ],
   "scriptDelta" : 1,
   
   "health" : 5,
   "smashOnBreak" : true,
   
-  "spawnerType" : "v-corelightningspawner",
+  "spawnerType" : "v-toxicbubblespawner",
   "loaderType" : "v-chunkloader",
   "loaderGapHeight" : 50,
-  "loaderMaxSpawnHeight" : 200,
+  "loaderMaxSpawnHeight" : 0,
   
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

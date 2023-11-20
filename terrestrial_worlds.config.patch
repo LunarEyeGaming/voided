@@ -233,9 +233,9 @@
       "gravityRange" : [80, 100],
       "layers" : {
         "surface" : {
-          "primaryRegion" : [ "v-toxicwasteland" ] //,
-          // "secondaryRegions" : [ "v-voltagespikes", "v-voltagewastes" ],
-          // "secondaryRegionCount" : [0, 2],
+          "primaryRegion" : [ "v-toxicwasteland" ],
+          "secondaryRegions" : [ "v-toxiclake" ],
+          "secondaryRegionCount" : [1, 1] //,
 
           /* "dungeons" : [ [1.0, "v-toxicwastelandgiantcrystal"] ],
           "dungeonCountRange" : [1, 1] */
@@ -276,6 +276,35 @@
         [0, [ "v-toxicwasteland" /*, "v-voltagerusty"*/ ]]
       ]/*,
       "subRegion" : ["v-voltagedesert", "rust", "v-voltageforest"]*/
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-toxiclake",
+    "value" : {
+      "blockSelector" : [ "v-remixedIslandsSurfaceSmall" ],
+      "fgCaveSelector" : [ "empty" ],
+      "bgCaveSelector" : [ "empty" ],
+      // "subBlockSelector" : ["v-copperDesertSubBlocks"],
+      "oceanLiquid" : ["v-superpoison"],
+      "biome" : [
+        [0, [ "v-toxiclake" ]]
+      ],
+      "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-crystalmountains",
+    "value" : {
+      "blockSelector" : [ "mountainsSurface" ],
+      "fgCaveSelector" : [ "empty" ],
+      "bgCaveSelector" : [ "empty" ],
+      // "subBlockSelector" : ["v-copperDesertSubBlocks"],
+      "biome" : [
+        [0, [ "v-crystalmountains" ]]
+      ],
+      "subRegion" : []
     }
   },
   {

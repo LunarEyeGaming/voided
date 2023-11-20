@@ -1,0 +1,17 @@
+{
+  // This stagehand spawns core lightning.
+  "type" : "v-toxicbubblespawner",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-toxicbubblespawner/v-toxicbubblespawner.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-1, -1, 1, 1],
+
+  "lightningXPosRange" : [-50, 50],
+  "lightningTimeRange" : [1.0, 2.0],
+  "maxSpawnHeight" : -100,
+  "projectileType" : "v-toxiclakebubble",
+  "projectileDirection" : [0, 0],
+  "projectileParameters" : {"damageTeam" : {"type" : "indiscriminate"}, "power" : 250}
+}
