@@ -10,9 +10,10 @@
 
     "gravity" : 80,
     "maxRadius" : 1000000,
-    "maxParts" : 30,
+    "maxParts" : 20,
     "protected" : true,
-    "extendSurfaceFreeSpace" : -230
+    "extendSurfaceFreeSpace" : -113  // Sensitive to the height of the dungeon. Prevents clearing of tiles surrounding
+                                     // the walls and ceiling
   },
 
   "parts" : [
@@ -136,21 +137,21 @@
       "name" : "buildingtopkey",
       "rules" : [
         [ "ignorePartMaximumRule" ],
-        [ "doNotConnectToPart", [ "buildingbottom" ] ],
+        [ "doNotConnectToPart", [ "buildingroomintro1", "buildingroomintro2", "buildingroomeasy1", "buildingroomeasy2", "buildingroomeasy3" ] ],
         [ "maxSpawnCount", [3] ]
       ],
       "def" : [ "tmx", "buildingtopkey.json" ],
-      "chance" : 0
+      "chance" : 4
     },
     {
       "name" : "buildingtopchest",
       "rules" : [
         [ "ignorePartMaximumRule" ],
-        [ "doNotConnectToPart", [ "buildingbottom" ] ],
+        [ "doNotConnectToPart", [ "buildingroomintro1", "buildingroomintro2", "buildingroomeasy1", "buildingroomeasy2", "buildingroomeasy3" ] ],
         [ "maxSpawnCount", [3] ]
       ],
       "def" : [ "tmx", "buildingtopchest.json" ],
-      "chance" : 0
+      "chance" : 4
     }
   ]
 }

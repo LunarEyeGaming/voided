@@ -17,17 +17,17 @@
 
   "physicsCollisions" : {
     "leftbarrier" : {
-      "collision" : [ [-25, 33], [-25, -33] ],
+      "collision" : [ [-25, 25], [-25, -25] ],
       "collisionKind" : "slippery",
       "categoryWhitelist" : ["monster", "player", "npc", "vehicle", "itemdrop", "projectile"]
     },
     "rightbarrier" : {
-      "collision" : [ [25, 33], [25, -33] ],
+      "collision" : [ [25, 25], [25, -25] ],
       "collisionKind" : "slippery",
       "categoryWhitelist" : ["monster", "player", "npc", "vehicle", "itemdrop", "projectile"]
     },
     "topbarrier" : {
-      "collision" : [ [-25, 33], [25, 33] ],
+      "collision" : [ [-25, 25], [25, 25] ],
       "collisionKind" : "slippery",
       "categoryWhitelist" : ["monster", "player", "npc", "vehicle", "itemdrop", "projectile"]
     }

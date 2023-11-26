@@ -25,7 +25,8 @@ function init()
   travelTimer = travelTime
 
   initialPosition = mcontroller.position()
-  targetPosition = config.getParameter("targetPosition")
+  -- Stop the projectile from zooping across the world if the world border is between the initial and target positions.
+  targetPosition = world.nearestTo(initialPosition, config.getParameter("targetPosition"))
 end
 
 function update(dt)
