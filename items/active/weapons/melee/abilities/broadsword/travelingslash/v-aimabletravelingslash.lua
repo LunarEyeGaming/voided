@@ -1,4 +1,5 @@
 require "/scripts/util.lua"
+require "/scripts/rect.lua"
 require "/items/active/weapons/weapon.lua"
 
 TravelingSlash = WeaponAbility:new()
@@ -31,7 +32,7 @@ function TravelingSlash:fire()
   self.weapon:updateAim()
 
   local aimVector = self:aimVector()
-  local position = vec2.add(mcontroller.position(), vec2.rotate(self.projectileOffset, vec2.angle(aimVector)))
+  local position = vec2.add(self:projectileCenter(), vec2.rotate(self.projectileOffset, vec2.angle(aimVector)))
   local params = {
     powerMultiplier = activeItem.ownerPowerMultiplier(),
     power = self:damageAmount()
@@ -59,4 +60,12 @@ function TravelingSlash:damageAmount()
 end
 
 function TravelingSlash:uninit()
+end
+
+function TravelingSlash:projectileCenter()
+  if self.accountForCrouching then
+    return rect.center(rect.translate(mcontroller.boundBox(), mcontroller.position()))
+  else
+    return mcontroller.position()
+  end
 end

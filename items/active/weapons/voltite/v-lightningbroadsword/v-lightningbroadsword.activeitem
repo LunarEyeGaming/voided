@@ -47,6 +47,7 @@
     "stepDamageConfig" : [{"baseDamageFactor" : 1.0,"knockback" : 25}, {"baseDamageFactor" : 1.0,"knockback" : 25}, {"baseDamageFactor" : 1.0,"knockback" : 25}, {"baseDamageFactor" : 1.0,"knockback" : 25}, {"baseDamageFactor" : 2.5,"knockback" : 55}],
 
     "stances" : {
+      "idle" : {"aimAngle" : 0},
       "windup1" : {"duration" : 0.15},
       "fire1" : {"duration" : 0.3},
       "wait1" : {"duration" : 0.3},
@@ -71,7 +72,7 @@
     }
   },
   
-  "altAbilityType" : "v-proximityzap",
+  "altAbilityType" : "v-voltinjection",
 
   "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
 }
