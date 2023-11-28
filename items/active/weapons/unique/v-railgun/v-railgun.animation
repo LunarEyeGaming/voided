@@ -1,0 +1,137 @@
+{
+  "globalTagDefaults" : {
+    "beamDirectives" : ""
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "firing" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 1,
+            "cycle" : 1.0,
+            "mode" : "loop"
+          },
+          "charge" : {
+            "frames" : 15,
+            "cycle" : 1.5,
+            "mode" : "transition",
+            "transition" : "fullcharge",
+            "properties" : {
+              "persistentSound" : "/sfx/gun/v_railgun_charge.ogg",
+              "persistentSoundStopTime" : 0.5
+            }
+          },
+          "fullcharge" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/melee/charge_full_hold1.ogg",
+              "persistentSoundStopTime" : 0.5
+            }
+          },
+          "fire" : {
+            "frames" : 5,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      },
+      "beamfire" : {
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "fire" : {
+            "frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "off"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "gun" : {
+        "properties" : {
+          "centered" : true,
+          "offset" : [0.5, 0.25],
+          "transformationGroups" : ["weapon"]
+        },
+
+        "partStates" : {
+          "firing" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "charge" : {
+              "properties" : {
+                "image" : "<partImage>:charge.<frame>"
+              }
+            },
+            "fullcharge" : {
+              "properties" : {
+                "image" : "<partImage>:fullcharge.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "gunfullbright" : {
+        "properties" : {
+          "centered" : true,
+          "offset" : [0.5, 0.25],
+          "transformationGroups" : ["weapon"],
+          "zLevel" : 1,
+          "fullbright" : true
+        },
+
+        "partStates" : {
+          "firing" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "charge" : {
+              "properties" : {
+                "image" : "<partImage>:charge.<frame>"
+              }
+            },
+            "fullcharge" : {
+              "properties" : {
+                "image" : "<partImage>:fullcharge.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  
+  "particleEmitters" : {
+  },
+
+  "transformationGroups" : {
+    "weapon" : {},
+    "muzzle" : {}
+  },
+
+  "sounds" : {
+    "fire" : ["/sfx/gun/v_teslarifle_fire3.ogg"]
+  }
+}
