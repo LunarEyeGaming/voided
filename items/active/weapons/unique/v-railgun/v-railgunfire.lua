@@ -86,6 +86,7 @@ function ChargeFire:fire()
 
   animator.setAnimationState("firing", "fire")
   animator.playSound("fire")
+  self:spawnMuzzleFlash()
 
   if self.stances.fire.duration then
     util.wait(self.stances.fire.duration)
@@ -179,6 +180,11 @@ function ChargeFire:spawnProjectile(projectilePos)
     world.spawnProjectile(self.beamEndProjectileType, projectilePos, activeItem.ownerEntityId(), self:aimVector(0, 0), 
         false, self.beamEndProjectileConfig)
   end
+end
+
+function ChargeFire:spawnMuzzleFlash()
+  world.spawnProjectile(self.muzzleFlashProjectileType, self:firePosition(), activeItem.ownerEntityId(), 
+      self:aimVector(0, 0))
 end
 
 function ChargeFire:setDamage()

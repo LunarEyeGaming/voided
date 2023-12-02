@@ -19,12 +19,7 @@
     "gun" : "railgun.png",
     "gunfullbright" : "railgununlit.png"
   },
-  "animationCustom" : {
-    "sounds" : {
-      "altFire" : ["/sfx/gun/plasma_shotgun2.ogg"]
-    }
-  },
-  "muzzleOffset" : [3, 0.5],
+  "muzzleOffset" : [4.25, 0.5],
 
   "scripts" : ["/items/active/weapons/ranged/gun.lua"],
   
@@ -36,7 +31,7 @@
     "name" : "NAN",
     "scripts" : ["/items/active/weapons/unique/v-railgun/v-railgunfire.lua"],
     "class" : "ChargeFire",
-    "baseDamage" : 12,
+    "baseDamage" : 16,
     "chargeTime" : 1.5,
     "energyCost" : 100,
     "cooldownTime" : 0.25,
@@ -57,13 +52,15 @@
     "kickbackControlForce" : 3600,
 
     //Display only
-    "baseDps" : 6.85,
+    "baseDps" : 9.14,
     "fireTime" : 1.75,
     "energyUsage" : 50,
     
     "beamEndProjectileType" : "electricplasmaexplosion",
     "beamEndProjectileConfig" : {},
     "beamEndDamageFactor" : 0.5,
+    
+    "muzzleFlashProjectileType" : "v-railgunblast",
 
     "stances" : {
       "idle" : {
@@ -104,17 +101,12 @@
       }
     }
   },
-  "altAbilityType" : "grenadelauncher",
-  "altAbility" : {
-    "elementalConfig" : {"electric" : {"projectileType" : "electricplasmagrenade", "projectileParameters" : {"speed" : 125, "power" : 0, "knockback" : 50}}},
-    "energyUsage" : 20,
-    "baseDps" : 0,
-    "baseDamage" : 0,
-    "fireTime" : 0.75,
-    "projectileCount" : 10,
-    "inaccuracy" : 0.08,
-    "name" : "placeholder"
-  },
+  "altAbilityType" : "v-unchargedshot",
+  /* "altAbility" : {
+    "name" : "Scoped View",
+    "scripts" : ["/items/active/weapons/unique/v-railgun/v-pancamera.lua"],
+    "class" : "v_PanCamera"
+  }, */
 
   "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
 }

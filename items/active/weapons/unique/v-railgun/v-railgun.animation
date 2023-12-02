@@ -18,24 +18,28 @@
             "mode" : "transition",
             "transition" : "fullcharge",
             "properties" : {
-              "persistentSound" : "/sfx/gun/v_railgun_charge.ogg",
+              "persistentSound" : "/sfx/gun/v_railgun_charge2.ogg",
               "persistentSoundStopTime" : 0.5
             }
           },
           "fullcharge" : {
-            "frames" : 2,
-            "cycle" : 0.2,
+            "frames" : 12,
+            "cycle" : 0.5,
             "mode" : "loop",
             "properties" : {
-              "persistentSound" : "/sfx/melee/charge_full_hold1.ogg",
-              "persistentSoundStopTime" : 0.5
+              "persistentSound" : "/sfx/melee/charge_full_hold2.ogg",
+              "persistentSoundStopTime" : 0.5,
+              "particleEmittersOn" : ["charged"]
             }
           },
           "fire" : {
             "frames" : 5,
             "cycle" : 0.25,
             "mode" : "transition",
-            "transition" : "idle"
+            "transition" : "idle",
+            "properties" : {
+              "particleEmittersOff" : ["charged"]
+            }
           }
         }
       },
@@ -57,7 +61,7 @@
       "gun" : {
         "properties" : {
           "centered" : true,
-          "offset" : [0.5, 0.25],
+          "offset" : [1.5, 0.25],
           "transformationGroups" : ["weapon"]
         },
 
@@ -89,7 +93,7 @@
       "gunfullbright" : {
         "properties" : {
           "centered" : true,
-          "offset" : [0.5, 0.25],
+          "offset" : [1.5, 0.25],
           "transformationGroups" : ["weapon"],
           "zLevel" : 1,
           "fullbright" : true
@@ -124,14 +128,48 @@
   },
   
   "particleEmitters" : {
+    "muzzleFlash" : {
+      "transformationGroups" : ["muzzle"],
+      "burstCount" : 1,
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/v-railblast/v-railblast.animation",
+            "fullbright" : true,
+            "timeToLive" : 0.3,
+            
+            "fade" : 3.4,
+            "light" : [196, 196, 245]
+          }
+        }
+      ]
+    },
+    "charged" : {
+      "transformationGroups" : ["muzzle"],
+      "emissionRate" : 5,
+      "offsetRegion" : [-2.0, -0.5, -1.0, 0.5],
+      "particles" : [
+        {
+          "particle" : "electricswoosh1"
+        }
+      ]
+    }
   },
 
   "transformationGroups" : {
     "weapon" : {},
     "muzzle" : {}
   },
+  
+  "lights" : {
+    "muzzleFlash" : {
+      "active" : false,
+      "lightColor" : [63, 63, 0]
+    }
+  },
 
   "sounds" : {
-    "fire" : ["/sfx/gun/v_teslarifle_fire3.ogg"]
+    "fire" : ["/sfx/gun/v_railgun_fire3.ogg"]
   }
 }

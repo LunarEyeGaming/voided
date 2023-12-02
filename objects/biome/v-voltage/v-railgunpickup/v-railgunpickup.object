@@ -1,0 +1,38 @@
+{
+  "objectName" : "v-railgunpickup",
+  "colonyTags" : ["misc"],
+  "printable" : false,
+  "price" : 0,
+  "rarity" : "Common",
+  "description" : "A weapon that uses electromagnets to accelerate projectiles to ludicrous speeds.",
+  "shortdescription" : "Railgun",
+  "race" : "human",
+
+  "apexDescription" : "<todo>.",
+  "avianDescription" : "<todo>.",
+  "floranDescription" : "<todo>.",
+  "glitchDescription" : "<todo>.",
+  "humanDescription" : "<todo>.",
+  "hylotlDescription" : "<todo>.",
+  "novakidDescription" : "<todo>.",
+
+  "category" : "decorative",
+
+  "inventoryIcon" : "railgunpickup.png",
+  "orientations" : [
+    {
+      "dualImage" : "railgunpickup.png",
+
+      "imagePosition" : [-8, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+  
+  "scripts" : [ "v-railgunpickup.lua" ],
+  
+  "breakDropPool" : "v-railgunpickup",
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

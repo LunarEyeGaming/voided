@@ -49,7 +49,7 @@
     "class" : "HarpoonGunFire",
 
     "fireTime" : 1.0,
-    "baseDps" : 7,
+    "baseDps" : 9,
     "energyUsage" : 60,
     "activeEnergyUsage" : 30,
     "inaccuracy" : 0.0,
@@ -71,14 +71,17 @@
     
     "chainAnchored" : {
       "startOffset" : [0, 0],
-      "startSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
-      "segmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
-      "endSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
+      "startSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png:<frame>",
+      "segmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png:<frame>",
+      "endSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png:<frame>",
       "segmentSize" : 0.75,
       "taper" : 0,
       "fullbright" : true,
       "renderLayer" : "Projectile-10"
     },
+    
+    "anchoredChainFrameCycle" : 0.4,
+    "anchoredChainNumFrames" : 4,
     
     "chainDamageFactor" : 0.75,
 
@@ -151,14 +154,17 @@
     
     "chainAnchored" : {
       "startOffset" : [0, 0],
-      "startSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
-      "segmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
-      "endSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png",
+      "startSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png:<frame>",
+      "segmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png:<frame>",
+      "endSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png:<frame>",
       "segmentSize" : 0.75,
       "taper" : 0,
       "fullbright" : true,
       "renderLayer" : "Projectile-10"
     },
+    
+    "anchoredChainFrameCycle" : 0.4,
+    "anchoredChainNumFrames" : 4,
 
     "stances" : {
       "idle" : {
