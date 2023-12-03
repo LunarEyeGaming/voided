@@ -18,5 +18,14 @@
 
       "typePeriod" : 500
     }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-railgunPickup",
+    "value" : {
+      "type" : "random",
+      
+      "blockProbability" : 0.005
+    }
   }
 ]
