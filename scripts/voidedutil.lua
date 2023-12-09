@@ -125,3 +125,26 @@ end
 function frameNumber(frameTime, frameCycle, startFrame, numFrames)
   return math.floor(frameTime / frameCycle * numFrames) + startFrame
 end
+
+--[[
+  Returns the string hexadecimal representation of a color table, with red, green, and blue values, as well as an
+  optional alpha channel.
+  
+  color: the color table to convert
+]]
+function stringOfColor(color)
+  local rChannel = color[1]  -- red
+  local gChannel = color[2]  -- green
+  local bChannel = color[3]  -- blue
+  local aChannel = color[4]  -- alpha
+  
+  -- Initial string
+  local str = string.format("%02x%02x%02x", rChannel, gChannel, bChannel)
+  
+  -- If an alpha channel is provided, add it.
+  if aChannel then
+    str = string.format("%s%02x", str, aChannel)
+  end
+  
+  return str
+end

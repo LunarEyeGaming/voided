@@ -1,0 +1,27 @@
+{
+  "projectileName" : "v-toxiclakebubble",
+  "image" : "toxiclakebubble.png",
+  "physics" : "flame",
+  "animationCycle" : 0.4,
+  "animationLoops" : true,
+  "damageKindImage" : "/interface/statuses/fire.png",
+  "frameNumber" : 4,
+  "power" : 50,
+  "speed" : 25,
+  "timeToLive" : 120,
+  "bounces" : -1,
+  "piercing" : true,
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "damageKind" : "poison",
+  "statusEffects" : [
+    {"effect" : "weakpoison", "duration" : 12}
+  ],
+  "hydrophobic" : false,
+  "orientationLocked" : true,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/poisonexplosionknockback.config"
+    }
+  ]
+}

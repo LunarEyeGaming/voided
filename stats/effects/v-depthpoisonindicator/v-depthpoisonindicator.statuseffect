@@ -1,0 +1,15 @@
+{
+  // Status effect responsible for changing the parent entity's directives based on how much poison they have
+  // accumulated.
+  "name" : "v-depthpoisonindicator",
+  "effectConfig" : {
+    "startColor" : [131, 93, 179, 0],
+    "endColor" : [131, 93, 179, 127],
+    "endPoisonAmount" : 900
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "v-depthpoisonindicator.lua"
+  ]
+}

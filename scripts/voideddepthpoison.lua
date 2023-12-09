@@ -13,5 +13,10 @@ function update(dt)
   if poisonAmount > poisonTolerance then
     status.modifyResource("health", -(poisonAmount - poisonTolerance) * damageRate * dt)
   end
-  --world.debugText("poisonAmount: %s / %s \ndamage: %s", string.format("%.1f", poisonAmount), poisonTolerance, math.max(0, (poisonAmount - poisonTolerance) * damageRate * dt), mcontroller.position(), "green")
+  
+  -- Display poison amount (if poisonAmount is positive)
+  if poisonAmount > 0 then
+    status.addEphemeralEffect("v-depthpoisonindicator")
+  end
+  world.debugText("poisonAmount: %s / %s \ndamage: %s", string.format("%.1f", poisonAmount), poisonTolerance, math.max(0, (poisonAmount - poisonTolerance) * damageRate * dt), mcontroller.position(), "green")
 end
