@@ -14,7 +14,8 @@
   "bounces" : -1,
   "movementSettings" : {
     "gravityEnabled" : true,
-    "gravityMultiplier" : 1.2
+    "gravityMultiplier" : 1.2,
+    "collisionPoly" : [[0.6875, 0], [0.5, 0.25], [0.25, 0], [0.5, -0.25]]
   },
   "piercing" : true,
   "timeToLive" : 5,

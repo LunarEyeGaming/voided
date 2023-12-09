@@ -9,10 +9,10 @@
   "ability" : {
     "name" : "Crystal Slash",
     "type" : "v-ancientbroadswordalt",
-    "scripts" : ["/items/active/weapons/melee/abilities/broadsword/travelingslash/v-ancientbroadswordalt.lua"],
+    "scripts" : ["/items/active/weapons/melee/abilities/broadsword/travelingslash/v-aimabletravelingslash.lua"],
     "class" : "TravelingSlash",
 
-    "projectileOffset" : [0,0],
+    "projectileOffset" : [0, 0],
     "elementalConfig" : {
       "physical" : {
         "projectileType" : "v-ancientbroadswordswoosh"

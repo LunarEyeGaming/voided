@@ -1,0 +1,19 @@
+{
+  "name" : "v-voltinjection",
+  "blockingStat" : "specialStatusImmunity",
+
+  "effectConfig" : {
+    "shockRadius" : 25,
+    "explosionPower" : 500,
+    "boltPower" : 200,
+    "boltSpeed" : 100
+  },
+  "defaultDuration" : 1.0,
+
+  "scripts" : [
+    "v-voltinjection.lua"
+  ],
+
+  "label" : "Injected - Dying will cause you to explode with electricity",
+  "icon" : "/interface/statuses/v-voltinjection.png"
+}

@@ -1,5 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/interp.lua"
+require "/scripts/voidedutil.lua"
 
 -- Base gun fire ability
 HarpoonGunFire = WeaponAbility:new()
@@ -16,6 +17,8 @@ function HarpoonGunFire:init()
   
   self.projectileId = nil
   self.anchored = false
+  
+  self.frameTimer = 0
 end
 
 function HarpoonGunFire:update(dt, fireMode, shiftHeld)
@@ -91,6 +94,8 @@ end
 
 function HarpoonGunFire:active()
   animator.stopAllSounds("chainLoop")
+  
+  animator.playSound("anchoredChainLoop", -1)
 
   while self.projectileId and world.entityExists(self.projectileId) do
     local chainLength = world.magnitude(self:firePosition(), world.entityPosition(self.projectileId))
@@ -100,6 +105,8 @@ function HarpoonGunFire:active()
     end
     coroutine.yield()
   end
+  
+  animator.stopAllSounds("anchoredChainLoop")
 
   self.cooldownTimer = self.fireTime
 end
@@ -191,9 +198,18 @@ function HarpoonGunFire:renderChain(endPos)
   local newChain
   if self.anchored then
     newChain = copy(self.chainAnchored)
+    
+    local frame = frameNumber(self.frameTimer, self.anchoredChainFrameCycle, 1, self.anchoredChainNumFrames)
+
+    newChain.startSegmentImage = util.replaceTag(newChain.startSegmentImage, "frame", frame)
+    newChain.segmentImage = util.replaceTag(newChain.segmentImage, "frame", frame)
+    newChain.endSegmentImage = util.replaceTag(newChain.endSegmentImage, "frame", frame)
+    
+    self.frameTimer = (self.frameTimer + script.updateDt()) % self.anchoredChainFrameCycle
   else
     newChain = copy(self.chain)
   end
+
   newChain.startPosition = endPos
   newChain.endOffset = self.weapon.muzzleOffset
 
@@ -206,6 +222,8 @@ end
 
 function HarpoonGunFire:reset()
   animator.stopAllSounds("chainLoop")
+  animator.stopAllSounds("anchoredChainLoop")
+
   activeItem.setScriptedAnimationParameter("chains", {})
   animator.setAnimationState("firing", "idle")
   self.anchored = false

@@ -111,6 +111,21 @@ function lerpColorRGB(ratio, colorA, colorB)
   }
 end
 
+-- *
+--[[
+  Returns the frame number corresponding to a given time, provided a frameCycle, numFrames, and a startFrame.
+  
+  frameTime: the time elapsed since the last frame cycle
+  frameCycle: the amount of time it takes to complete one full cycle
+  startFrame: the number at which the frames start
+  numFrames: the number of frames in a cycle
+  
+  precondition: 0 <= frameTime <= frameCycle
+]]
+function frameNumber(frameTime, frameCycle, startFrame, numFrames)
+  return math.floor(frameTime / frameCycle * numFrames) + startFrame
+end
+
 --[[
   Returns the string hexadecimal representation of a color table, with red, green, and blue values, as well as an
   optional alpha channel.

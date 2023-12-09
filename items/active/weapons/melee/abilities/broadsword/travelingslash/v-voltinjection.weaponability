@@ -1,0 +1,49 @@
+{
+  "animationParts" : { },
+  "animationCustom" : {
+    "sounds" : {
+      "electricTravelSlash" : [ "/sfx/gun/elemental_lance.ogg" ]
+    }
+  },
+
+  "ability" : {
+    "name" : "Volt Injection",
+    "type" : "v-voltinjection",
+    "scripts" : ["/items/active/weapons/melee/abilities/broadsword/travelingslash/v-aimabletravelingslash.lua"],
+    "class" : "TravelingSlash",
+
+    "projectileOffset" : [7.5, 0],
+    "elementalConfig" : {
+      "electric" : {
+        "projectileType" : "v-voltinjection"
+      }
+    },
+
+    "baseDamage" : 4,
+    "energyUsage" : 150,
+    "cooldownTime" : 1.5,
+    
+    "accountForCrouching" : true,
+
+    "stances" : {
+      "windup" : {
+        "duration" : 0.25,
+        "armRotation" : -150,
+        "weaponRotation" : 55,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : false
+      },
+      "fire" : {
+        "duration" : 0.4,
+        "armRotation" : 0,
+        "weaponRotation" : -90,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  }
+}

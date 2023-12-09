@@ -1,0 +1,112 @@
+{
+  "itemName" : "v-railgun",
+  "price" : 1500,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "A specialized weapon that uses electromagnets to accelerate projectiles to ludicrous speeds.",
+  "shortdescription" : "Railgun",
+  "tooltipKind" : "gun",
+  "category" : "uniqueWeapon",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged"],
+  "level" : 8,
+
+  "inventoryIcon" : "railgun.png:idle.1",
+
+  "animation" : "v-railgun.animation",
+  "animationParts" : {
+    "gun" : "railgun.png",
+    "gunfullbright" : "railgununlit.png"
+  },
+  "muzzleOffset" : [4.25, 0.5],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+  
+  "animationScripts" : ["/items/active/effects/v-particleburstemitter.lua"],
+
+  "elementalType" : "electric",
+
+  "primaryAbility" : {
+    "name" : "NAN",
+    "scripts" : ["/items/active/weapons/unique/v-railgun/v-railgunfire.lua"],
+    "class" : "ChargeFire",
+    "baseDamage" : 16,
+    "chargeTime" : 1.5,
+    "energyCost" : 100,
+    "cooldownTime" : 0.25,
+    "beamLength" : 100,
+    "beamDamageKind" : "electricplasma",
+    
+    "beamParticleSpecs" : {
+      "type" : "animated",
+      "animation" : "/animations/v-rail/v-rail<number>.animation",
+      "timeToLive" : 0.5,
+      "layer" : "middle",
+      "fullbright" : true,
+      "light" : [74, 74, 181],
+      "fade" : 4
+    },
+    
+    "kickbackSpeed" : 100,
+    "kickbackControlForce" : 3600,
+
+    //Display only
+    "baseDps" : 9.14,
+    "fireTime" : 1.75,
+    "energyUsage" : 50,
+    
+    "beamEndProjectileType" : "electricplasmaexplosion",
+    "beamEndProjectileConfig" : {},
+    "beamEndDamageFactor" : 0.5,
+    
+    "muzzleFlashProjectileType" : "v-railgunblast",
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "charge" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "weaponOffset" : [-0.2, 0],
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "cooldown" : {
+        "duration" : 0.25,
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "weaponOffset" : [-0.2, 0],
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  },
+  "altAbilityType" : "v-unchargedshot",
+  /* "altAbility" : {
+    "name" : "Scoped View",
+    "scripts" : ["/items/active/weapons/unique/v-railgun/v-pancamera.lua"],
+    "class" : "v_PanCamera"
+  }, */
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}
