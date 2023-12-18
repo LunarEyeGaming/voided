@@ -1,0 +1,57 @@
+{
+  "objectName" : "v-poisongasemitter",
+  "colonyTags" : ["evil"],
+  "printable" : false,
+  "rarity" : "Legendary",
+  "description" : "<todo>",
+  "shortdescription" : "poisongasemitter",
+  "race" : "generic",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "trap",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "image.png",
+      "imagePosition" : [-16, -16],
+      
+      "direction" : "left",
+      "flipImages" : true,
+
+      "projectileDirection" : [0, 1],
+      "projectilePosition" : [0, 0],
+
+      "spaceScan" : 0.1
+    },
+    {
+      "image" : "image.png",
+      "imagePosition" : [-16, -16],
+      "direction" : "right",
+
+      "projectileDirection" : [0, 1],
+      "projectilePosition" : [0, 0],
+
+      "spaceScan" : 0.1
+    }
+  ],
+
+  "scripts" : [ "v-poisongasemitter.lua" ],
+  "scriptDelta" : 2,
+  
+  "health" : 5,
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
+  "smashParticles" : [ { "count" : 10, "particle" : "greystoneshard" } ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

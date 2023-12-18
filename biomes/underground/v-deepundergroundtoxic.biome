@@ -150,6 +150,29 @@
       },
       {
         "mode" : "floor",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseSmall",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-safeairpocket" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-poisonGasPrimer",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-poisongasprimerlite2" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
         "priority" : 1,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:undergroundBiomeEncounterDungeon",

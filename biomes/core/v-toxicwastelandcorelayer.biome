@@ -1,0 +1,152 @@
+{
+  "name" : "v-toxicwastelandcorelayer",
+  "friendlyName" : "Fungal Core",
+
+  "spawnProfile" : {
+    "groups" : [
+      /* {
+        "select" : 2,
+        "pool" : [
+          [ 1.0, "v-electricelemental" ],
+          [ 1.0, "v-amperecharger" ],
+          [ 1.0, "v-voltspitter" ],
+          [ 1.0, "v-electriccrawler" ],
+          [ 1.0, "v-wardrone" ]
+        ]
+      },
+      {
+        "select" : 1,
+        "pool" : [
+          [ 1.0, "v-dischargemonster" ],
+          [ 1.0, "v-balllightning" ]
+        ]
+      }, */
+      {
+        "select" : 1,
+        "pool" : "generatedGroundAggroDay"
+      }
+    ],
+    "monsterParameters" : {
+      "colors" : "v-voltage",
+      "statusSettings" : {
+        "stats" : {
+          "electricResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonResistance" : {
+            "baseValue" : -0.25
+          },
+          "electricStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "v-liquidElectricityEffectImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 45.0
+          }
+        }
+      }
+    }
+  },
+
+  "parallax" : "/parallax/core/v-voltagecore.parallax",
+
+  "mainBlock" : "shroomblock",
+  "subBlocks" : [ "v-toxicstone" ],
+  "ores" : "v-voltagecore",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/v_voltage_core.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/v_voltage_core.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/body-electric-loop.ogg", "/music/desert-exploration2.ogg", "/music/scorian-flow.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/body-electric-loop.ogg", "/music/desert-exploration2.ogg", "/music/scorian-flow.ogg" ]
+    }
+  },
+
+  "undergroundPlaceables" : {
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { }
+          }
+        ]
+      }, 
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-coreLightningSpawnerSpawner",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-corelightningspawnerspawner" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:layer2Chests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "basicChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundChests",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-statuspodvoltage" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      /* {
+        "mode" : "floor",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-voltageplaceholderdungeon" ]
+      }, */
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundweaponChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "v-electricWeaponChest" ]
+      }
+    ]
+  },
+
+  "hueShiftOptions" : [-40, -30, -20, -10, 0, 10, 20, 30, 40]
+}

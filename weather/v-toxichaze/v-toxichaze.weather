@@ -1,0 +1,45 @@
+{
+  "name" : "v-toxichaze",
+
+  "particles" : [
+    {
+      "density" : 0.05,
+      "autoRotate" : true,
+      "particle" : {
+        "type" : "textured",
+        "image" : "/particles/v-poisoncloud/1.png",
+        "velocity" : [0, -2],
+        "approach" : [15, 15],
+        "angularVelocity" : 0,
+        "timeToLive" : 20,
+        "collidesForeground" : true,
+        "collidesLiquid" : true,
+        "destructionAction" : "shrink",
+        "destructionTime" : 2,
+        "ignoreWind" : false
+      }
+    },
+    {
+      "density" : 0.05,
+      "autoRotate" : true,
+      "particle" : {
+        "type" : "textured",
+        "image" : "/particles/v-poisoncloud/2.png",
+        "velocity" : [0, -2],
+        "approach" : [15, 15],
+        "angularVelocity" : 0,
+        "timeToLive" : 20,
+        "collidesForeground" : true,
+        "collidesLiquid" : true,
+        "destructionAction" : "shrink",
+        "destructionTime" : 2,
+        "ignoreWind" : false
+      }
+    }
+  ],
+
+  "duration" : [500, 600],
+  "maximumWind" : 15.0,
+  "weatherNoises" : [ ]
+
+}

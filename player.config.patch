@@ -27,6 +27,13 @@
   {"op": "add", "path": "/genericScriptContexts/v-depthpoison", "value": "/scripts/voideddepthpoison.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-lightningbeandrop", "value": "/scripts/v-lightningbeandrop.lua"},
   
+  // Client-side rendering scripts
+  {
+    "op": "add",
+    "path": "/deploymentConfig/scripts/-",
+    "value": "/scripts/rendering/v-depthpoisonmeter.lua"
+  },
+  
   // Depth poison mechanic
   {
     "op": "add",

@@ -234,8 +234,8 @@
       "layers" : {
         "surface" : {
           "primaryRegion" : [ "v-toxicwasteland" ],
-          "secondaryRegions" : [ "v-toxiclake" ],
-          "secondaryRegionCount" : [1, 1] //,
+          "secondaryRegions" : [ "v-crystalmountains", "v-toxiclake" ],
+          "secondaryRegionCount" : [2, 2] //,
 
           /* "dungeons" : [ [1.0, "v-toxicwastelandgiantcrystal"] ],
           "dungeonCountRange" : [1, 1] */
@@ -297,8 +297,9 @@
     "op" : "add",
     "path" : "/regionTypes/v-crystalmountains",
     "value" : {
-      "blockSelector" : [ "mountainsSurface" ],
-      "fgCaveSelector" : [ "empty" ],
+      "blockSelector" : [ "v-crystalMountains" ],
+      "subBlockSelector" : ["v-crystalMountainsSubBlocks"],
+      "fgCaveSelector" : [ "v-crystalMountainsCaves" ],
       "bgCaveSelector" : [ "empty" ],
       // "subBlockSelector" : ["v-copperDesertSubBlocks"],
       "biome" : [
