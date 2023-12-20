@@ -13,3 +13,5 @@ All custom sounds were made in Audacity using vanilla Starbound's assets, except
 I would like to thank Portal Mech for playtesting the Ancient Stronghold and the Voltage biome and providing feedback and ideas for them.
 
 I would also like to thank the members on the Starbound Discord for their feedback, advice, and ideas.
+
+Toxic lake bubble placeholder sprite by iflicky on Discord
