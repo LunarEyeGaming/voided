@@ -1,0 +1,96 @@
+{
+  "name" : "v-terraintest",
+  "friendlyName" : "terraintest",
+
+  "spawnProfile" : {
+    "groups" : [
+      /* {
+        "select" : 1,
+        "pool" : [
+          [ 0.1111, "oculob" ],
+          [ 0.1111, "agrobat" ],
+          [ 0.1111, "crutter" ],
+          [ 0.1111, "snaggler" ],
+          [ 0.1111, "squeem" ],
+          [ 0.1111, "pteropod" ],
+          [ 0.1111, "miasmop" ],
+          [ 0.1111, "snaunt" ]
+        ]
+      },
+      {
+        "select" : 1,
+        "pool" : [
+          [ 0.4, "stinkjack" ],
+          [ 0.3, "scuttleploom" ],
+          [ 0.3, "gasgiant" ]
+        ]
+      },
+      {
+        "select" : 1,
+        "pool" : "generatedGroundAggroDay"
+      }, 
+      {
+        "select" : 3,
+        "pool" : "nightTerrors"
+      },      
+      {
+        "select" : 2,
+        "pool" : "generatedGround"
+      },
+      {
+        "select" : 2,
+        "pool" : "generatedFlying"
+      },
+      {
+        "select" : 2,
+        "pool" : [
+          [ 1, "toxiccrabcritter" ],
+          [ 1, "ballooncritter" ],
+          [ 1, "bouncercritter" ],
+          [ 1, "hazmatcritter" ]
+        ]
+      } */
+    ],
+    "monsterParameters" : {
+      "colors" : "toxic",
+      "statusSettings" : {
+        "stats" : {
+          "poisonStatusImmunity" : {
+            "baseValue" : 1.0
+          }
+        }
+      }
+    }
+  },
+
+  "weather" : [
+    [0, [
+      "/weather.config:clear"
+    ]]
+  ],
+
+  "skyOptions" : [
+    {
+      // All white.
+      "mainColor" : [255, 255, 255],
+
+      "morningColors" : [ [255, 255, 255], [255, 255, 255] ],
+      "dayColors" : [ [255, 255, 255], [255, 255, 255] ],
+      "eveningColors" : [ [255, 255, 255], [255, 255, 255] ],
+      "nightColors" : [ [255, 255, 255], [255, 255, 255] ],
+
+      "morningLightColor" : [255, 255, 255],
+      "dayLightColor" : [255, 255, 255],
+      "eveningLightColor" : [255, 255, 255],
+      "nightLightColor" : [255, 255, 255]
+    }
+  ],
+
+  "hueShiftOptions" : [ 0 ],
+
+  "parallax" : "/parallax/atmosphere/atmosphere.parallax",
+
+  "mainBlock" : "dirt",
+  "subBlocks" : [ "biorock", "biorock2" ],
+  "ores" : "surface"
+}

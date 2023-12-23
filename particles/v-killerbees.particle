@@ -1,0 +1,22 @@
+{
+  "kind" : "v-killerbees",
+  "definition" : {
+    "type" : "animated",
+    "animation" : "/animations/v-killerbees/v-killerbees.animation",
+    "initialVelocity" : [0, 0],
+    "finalVelocity" : [0, 0],
+    "approach" : [12, 12],
+    "position" : [0, 0],
+    "timeToLive" : 1.0,
+    "layer" : "front",
+    "destructionAction" : "shrink",
+    "destructionTime" : 0.0,
+    "collidesForeground" : true,
+    "variance" : {
+      "position" : [2, 2],
+      "initialVelocity" : [6, 6],
+      "finalVelocity" : [6, 6]
+    },
+    "flippable" : false
+  }
+}

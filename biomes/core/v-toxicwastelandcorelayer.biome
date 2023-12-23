@@ -4,23 +4,12 @@
 
   "spawnProfile" : {
     "groups" : [
-      /* {
-        "select" : 2,
-        "pool" : [
-          [ 1.0, "v-electricelemental" ],
-          [ 1.0, "v-amperecharger" ],
-          [ 1.0, "v-voltspitter" ],
-          [ 1.0, "v-electriccrawler" ],
-          [ 1.0, "v-wardrone" ]
-        ]
-      },
       {
         "select" : 1,
         "pool" : [
-          [ 1.0, "v-dischargemonster" ],
-          [ 1.0, "v-balllightning" ]
+          [ 1.0, "v-downspitterunderground" ]
         ]
-      }, */
+      },
       {
         "select" : 1,
         "pool" : "generatedGroundAggroDay"
@@ -52,16 +41,16 @@
 
   "parallax" : "/parallax/core/v-voltagecore.parallax",
 
-  "mainBlock" : "shroomblock",
-  "subBlocks" : [ "v-toxicstone" ],
+  "mainBlock" : "v-toxicstone",
+  "subBlocks" : [ "shroomblock" ],
   "ores" : "v-voltagecore",
 
   "ambientNoises" : {
     "day" : {
-      "tracks" : [ "/sfx/environmental/v_voltage_core.ogg" ]
+      "tracks" : [ "/sfx/environmental/v_fungal_core.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/sfx/environmental/v_voltage_core.ogg" ]
+      "tracks" : [ "/sfx/environmental/v_fungal_core.ogg" ]
     }
   },
 
@@ -89,20 +78,6 @@
             "parameters" : { }
           }
         ]
-      }, 
-      {
-        "mode" : "ceiling",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:v-coreLightningSpawnerSpawner",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-corelightningspawnerspawner" ] ],
-            "parameters" : { }
-          }
-        ]
       },
       {
         "mode" : "floor",
@@ -123,6 +98,20 @@
         "objectSets" : [
           {
             "pool" : [ [1, "v-statuspodvoltage" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-poisonGasPrimer",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-poisongasprimer" ] ],
             "parameters" : { }
           }
         ]

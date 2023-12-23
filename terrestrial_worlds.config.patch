@@ -244,19 +244,18 @@
           "primaryRegion" : ["v-undergroundtoxic"]
         },
         "underground1" : {
-          "primaryRegion" : ["v-undergroundtoxic"],
-          "secondaryRegions" : []
+          "primaryRegion" : ["v-undergroundtoxic"]
         },
         "underground2" : {
           "primaryRegion" : ["v-undergroundtoxic"],
-          "secondaryRegions" : []
+          "secondaryRegions" : ["v-flowerfield"]
         },
         "underground3" : {
           "primaryRegion" : ["v-deepundergroundtoxic"],
           "secondaryRegions" : []
         },
         "core" : {
-          "primaryRegion" : ["v-voltagecorelayer"],
+          "primaryRegion" : ["v-toxicwastelandcorelayer"],
           "secondaryRegions" : []
         }
       }
@@ -266,8 +265,9 @@
     "op" : "add",
     "path" : "/regionTypes/v-toxicwasteland",
     "value" : {
-      "blockSelector" : [ "remixedMildSurface" /*, "remixedStepsSurface", "remixedSurface"*/ ],
+      "blockSelector" : [ "ledgesSurface", "giantLedgesSurface" /*, "remixedStepsSurface", "remixedSurface"*/ ],
       "fgCaveSelector" : [ "surfaceCaves" /*, "normalCaves", "sparseCaves"*/ ],
+      // "fgCaveSelector" : [ "v-experimental" ],
       "bgCaveSelector" : [ "empty" ],
       "caveLiquid" : [ "poison" ],
       "caveLiquidSeedDensityRange" : [1, 3],
@@ -328,6 +328,75 @@
       "biome": [
         [1,["v-deepundergroundtoxic"]]
       ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-toxicwastelandcorelayer",
+    "value" : {
+      "caveLiquid" : ["v-superpoison"],
+      "oceanLiquid" : ["v-superpoison"],
+      "subBlockSelector" : ["v-fungalCoreSubBlocks"],
+      "fgCaveSelector" : [ "v-fungalCoreCaves" ],
+      "bgCaveSelector" : [ "v-fungalCoreCavesBackground" ],
+      "caveLiquidSeedDensityRange" : [4.0, 4.0],
+      "biome": [
+        [1,["v-toxicwastelandcorelayer"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-flowerfield",
+    "value" : {
+      "fgCaveSelector" : [ "v-flowerField" ],
+      "biome": [
+        [1,["v-flowerfield"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/planetTypes/v-terraintest",
+    "value" : {
+      "threatRange" : [1, 1],
+      "gravityRange" : [80, 80],
+      "layers" : {
+        "surface" : {
+          "primaryRegion" : [ "v-terraintest" ]
+        },
+        "subsurface" : {
+          "primaryRegion" : ["v-terraintest"]
+        },
+        "underground1" : {
+          "primaryRegion" : ["v-terraintest"]
+        },
+        "underground2" : {
+          "primaryRegion" : ["v-terraintest"]
+        },
+        "underground3" : {
+          "primaryRegion" : ["v-terraintest"]
+        },
+        "core" : {
+          "primaryRegion" : ["v-terraintest"]
+        }
+      }
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-terraintest",
+    "value" : {
+      // "blockSelector" : [ "v-experimental" ],
+      "fgCaveSelector" : [ "v-experimental" ],
+      "bgCaveSelector" : [ "empty" ],
+      "caveLiquid" : [ "poison" ],
+      "caveLiquidSeedDensityRange" : [1, 3],
+      "encloseLiquids" : true,
+      "biome" : [
+        [0, [ "v-terraintest" ]]
+      ]/*,
+      "subRegion" : ["v-voltagedesert", "rust", "v-voltageforest"]*/
     }
   }
 ]

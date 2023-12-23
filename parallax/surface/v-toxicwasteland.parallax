@@ -24,17 +24,8 @@
       "lightMapped" : true,
       "parallax" : 2
     },
-
     {
-      "kind" : "volcanicbelowunlit",
-      "offset" : [0, 350],
-      "noRandomOffset" : true,
-      "parallax" : [3, 3],
-      "nohueshift" : true,
-      "unlit" : true
-    },
-    {
-      "kind" : "volcanicbelow",
+      "kind" : "midnightbelow",
       "offset" : [0, 350],
       "noRandomOffset" : true,
       "parallax" : [3, 3.001],
@@ -47,7 +38,7 @@
       "parallax" : 3
     },
     {
-      "kind" : "volcanic1",
+      "kind" : "midnight1",
       "offset" : [100, 400],
       "noRandomOffset" : true,
       "parallax" : [3, 3.003],
@@ -60,17 +51,7 @@
       "parallax" : 4
     },
     {
-      "kind" : "volcanic2unlit",
-      "baseCount" : 2,
-      "offset" : [0, 225],
-      "noRandomOffset" : true,
-      "parallax" : [5, 5],
-      "nohueshift" : true,
-      "fadePercent" : 0.02,
-      "unlit" : true
-    },
-    {
-      "kind" : "volcanic2",
+      "kind" : "midnight2",
       "offset" : [0, 225],
       "noRandomOffset" : true,
       "parallax" : [5, 5.001],
@@ -84,7 +65,7 @@
       "parallax" : 6
     },
     {
-      "kind" : "volcanic3",
+      "kind" : "midnight3",
       "offset" : [0, 140],
       "parallax" : [7, 7],
       "nohueshift" : true
@@ -105,36 +86,13 @@
       "fadePercent" : 0.04
     },
     {
-      "kind" : "volcanicbackunlit",
-      "baseCount" : 2,
-      "offset" : [50, 100],
-      "noRandomOffset" : true,
-      "parallax" : [10, 9],
-      "nohueshift" : true,
-      "unlit" : true,
-      "fadePercent" : 0.05
-    },
-    {
-      "kind" : "volcanicback",
+      "kind" : "midnightback",
       "modCount" : 1,
       "offset" : [50, 100],
       "noRandomOffset" : true,
       "parallax" : [10, 9.001],
       "nohueshift" : true,
       "fadePercent" : 0.05
-    },
-    {
-      "kind" : "v-toxicwasteland/fog",
-      "nohueshift" : true,
-      "repeatY" : true,
-      "parallax" : 11
-    },
-    {
-      "kind" : "magmarocksback",
-      "offset" : [50, 320],
-      "parallax" : [12, 9.002],
-      "nohueshift" : true,
-      "fadePercent" : 0.40
     },
 
     {

@@ -1,0 +1,31 @@
+{
+  "projectileName" : "v-downspitterprojectile",
+  "image" : "downspitterprojectile.png",
+  "physics" : "illusion",
+  "animationCycle" : 0.25,
+  "frameNumber" : 4,
+  "damageKindImage" : "icon.png",
+  "pointLight" : false,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/poisonexplosionknockback.config"
+    },
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "projectile",
+          "type" : "v-giantpoisoncloud",
+          "fuzzAngle" : 180,
+          "inheritDamageFactor" : 0.5,
+          "angleAdjust" : 0
+        }
+      ]
+    }
+  ],
+  "power" : 2.0,
+  "damageKind" : "acid",
+  "emitters" : [ "poisonplasma" ]
+}

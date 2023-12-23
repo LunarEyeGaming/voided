@@ -2,15 +2,13 @@
   "name" : "v-undergroundtoxic",
   "friendlyName" : "Toxic Caves",
 
-  /* "spawnProfile" : {
+  "spawnProfile" : {
     "groups" : [
       {
-        "select" : 3,
+        "select" : 2,
         "pool" : [
-          [ 1.0, "scandroid" ],
-          [ 1.0, "v-electricelemental" ],
-          [ 1.0, "v-dischargemonster" ],
-          [ 1.0, "v-amperecharger" ]
+          [ 1.0, "v-gasmonsterunderground" ],
+          [ 1.0, "v-downspitterunderground" ]
         ]
       },
       {
@@ -23,12 +21,12 @@
       "statusSettings" : {
         "stats" : {
           "electricResistance" : {
-            "baseValue" : 0.5
-          },
-          "poisonResistance" : {
             "baseValue" : -0.25
           },
-          "electricStatusImmunity" : {
+          "poisonResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonStatusImmunity" : {
             "baseValue" : 1.0
           },
           "protection" : {
@@ -37,12 +35,12 @@
         }
       }
     }
-  }, */
+  },
 
   "parallax" : "/parallax/underground/v-undergroundvoltage.parallax",
 
   "mainBlock" : "v-toxicstone",
-  "subBlocks" : [ "waste", "rock02", "purplecrystal" ],
+  "subBlocks" : [ "rock02", "purplecrystal" ],
   "ores" : "v-undergroundvoltage",
 
   "ambientNoises" : {
@@ -76,6 +74,32 @@
           {
             "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
             "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-toxicoshroom1" ], [0.20, "v-toxicoshroom2" ], [0.20, "v-toxicoshroom3" ], [0.20, "v-toxicoshroom4" ], [0.20, "v-toxicoshroom5" ]]
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-poisonglowtree1" ], [0.20, "v-poisonglowtree2" ], [0.20, "v-poisonglowtree3" ], [0.20, "v-poisonglowtree4" ], [0.20, "v-poisonglowtree5" ]]
           }
         ]
       },
