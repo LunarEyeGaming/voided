@@ -20,15 +20,15 @@
       "statusSettings" : {
         "stats" : {
           "electricResistance" : {
-            "baseValue" : 0.5
-          },
-          "poisonResistance" : {
             "baseValue" : -0.25
           },
-          "electricStatusImmunity" : {
+          "poisonResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonStatusImmunity" : {
             "baseValue" : 1.0
           },
-          "v-liquidElectricityEffectImmunity" : {
+          "v-strongpoisonStatusImmunity" : {
             "baseValue" : 1.0
           },
           "protection" : {
@@ -42,8 +42,8 @@
   "parallax" : "/parallax/core/v-voltagecore.parallax",
 
   "mainBlock" : "v-toxicstone",
-  "subBlocks" : [ "shroomblock" ],
-  "ores" : "v-voltagecore",
+  "subBlocks" : [ "v-toxicfungus" ],
+  "ores" : "v-toxiccore",
 
   "ambientNoises" : {
     "day" : {

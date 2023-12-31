@@ -2,7 +2,7 @@
   "name" : "v-toxiclake",
   "friendlyName" : "Toxic Lake",
 
-  "spawnProfile" : {
+  /* "spawnProfile" : {
     "groups" : [
       {
         "select" : 1,
@@ -48,10 +48,10 @@
         }
       }
     }
-  },
+  }, */
 
-  "mainBlock" : "v-toxicstone",
-  "subBlocks" : [ "rock02", "waste" ],
+  "mainBlock" : "v-toxicfungus",
+  "subBlocks" : [ "v-toxicstone" ],
   "ores" : "v-voltage",
   
   "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15],

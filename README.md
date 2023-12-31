@@ -12,3 +12,10 @@ The Voltage biome is accessible through the Outsider Star systems, or through `/
 The Toxic Wasteland biome is accessible through `/warp instanceworld:v-toxicwastelandtest`. The ID for the EPP is `v-poisonprotectionback`
 
 Credits are given in [CREDITS.md](CREDITS.md). This document also includes credits for content present in the unstable versions of Voided.
+
+## Dependencies
+Voided requires TerraLib to function properly.
+
+Steam Workshop Link: https://steamcommunity.com/sharedfiles/filedetails/?id=2230165463
+
+Chucklefish Forums Link: https://community.playstarbound.com/resources/terralib.6055/

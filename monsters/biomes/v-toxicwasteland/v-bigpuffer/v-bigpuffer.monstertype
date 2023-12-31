@@ -1,0 +1,156 @@
+{
+  "type" : "v-bigpuffer",
+  "shortdescription" : "Big Puffer",
+  "description" : "A large fish that inflates itself when under stress.",
+
+  "categories" : [ "v-bigpuffer" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-bigpuffer.animation",
+
+  "dropPools" : [ "empty" ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/biomes/v-toxicwasteland/v-bigpuffer/v-bigpuffer.lua"
+    ],
+    "updateDelta" : 3,
+    
+    "swimSpeed" : 10,
+    "swimForce" : 50,
+    "preInflateStopTime" : 0.2,
+    "preInflateStopForce" : 50,
+
+    "inflateTime" : 0.2,
+    "inflateSize" : 2,
+    
+    // Collision poly to use for inflation
+    "inflationCollisionPoly" : [ [-0.5, -1.5], [-1.5, -0.5], [-1.5, 0.5], [-0.5, 1.5], [0.5, 1.5], [1.5, 0.5], [1.5, -0.5], [0.5, -1.5] ],
+    
+    "postInflateTime" : 0.2,
+
+    "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "gravityEnabled" : true,
+      "collisionPoly" : [ [-0.5, -1.0], [-1.25, -0.5], [-1.25, 0.5], [-0.5, 1.0], [0.5, 1.0], [1.25, 0.5], [1.25, -0.5], [0.5, -1.0] ],
+
+      "mass" : 1.0,
+      "liquidBuoyancy" : 1.0,
+      "flySpeed" : 10,
+      "liquidFriction" : 2.0,
+      "liquidForce" : 50.0,
+
+      "airJumpProfile" : {
+        "jumpSpeed" : 15.0,
+        "jumpControlForce" : 900.0,
+        "jumpInitialPercentage" : 1.0,
+        "jumpHoldTime" : 0.0,
+
+        "multiJump" : false,
+        "reJumpDelay" : 0.05,
+        "autoJump" : false,
+        "collisionCancelled" : true
+      }
+    },
+
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "knockoutEffect" : "",
+    "deathParticles" : "deathPoof",
+
+    "touchDamage" : {
+      "poly" : [ [-1.0, -3.0], [-3.0, -1.0], [-3.0, 1.0], [-1.0, 3.0], [1.0, 3.0], [3.0, 1.0], [3.0, -1.0], [1.0, -3.0] ],
+      "damage" : 30,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "poisonspear",
+      "knockback" : 100,
+      "statusEffects" : [ "v-strongpoison" ]
+    },
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : false,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0.0
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9999
+        },
+        "maxHealth" : {
+          "baseValue" : 100
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "physicalResistance" : {
+          "baseValue" : 0.0
+        },
+        "fireResistance" : {
+          "baseValue" : 0.0
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "iceResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "electricResistance" : {
+          "baseValue" : -0.25
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 0.5
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8]
+  }
+}

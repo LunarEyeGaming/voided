@@ -17,16 +17,14 @@ function update(dt)
   if detonateTimer <= 0 then
     local queriedOrbs = world.entityQuery(mcontroller.position(), detonateRadius, {callScript = "v_isTeslaRifleOrb", includedTypes = {"projectile"}, order = "nearest"})
     if #queriedOrbs > 0 then
-      -- projectile.die() is placed in separate cases to prevent it from popping out of existence without doing anything.
       if detonateMultiple then
         for _, orb in ipairs(queriedOrbs) do
           detonateProjectile(orb)
         end
-        projectile.die()
-      elseif world.magnitude(world.entityPosition(queriedOrbs[1]), mcontroller.position()) < detonateRadius then
+      else
         detonateProjectile(queriedOrbs[1])
-        projectile.die()
       end
+      projectile.die()
     end
   end
 end

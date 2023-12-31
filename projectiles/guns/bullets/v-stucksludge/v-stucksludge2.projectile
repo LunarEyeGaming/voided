@@ -1,0 +1,72 @@
+{
+  "projectileName" : "v-stucksludge2",
+  "image" : "stucksludge2.png",
+  // "physics" : "stickygrenade",
+  "physics" : "grenade",
+  "animationCycle" : 0.5,
+  "bounces" : -1,
+  "frameNumber" : 4,
+  "damageKindImage" : "icon.png",
+  "pointLight" : false,
+  "power" : 100.0,
+  "damageKind" : "acid",
+  "damageType" : "NoDamage",
+  "timeToLive" : 8,
+  "speed" : 0,
+  
+  "damagePoly" : [ [-13, 0], [-8, -8], [0, -13], [8, -8], [13, 0], [8, 8], [0, 13], [-8, 8] ],
+  
+  "orientationLocked" : true,
+  
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/tar_hit_organic1.ogg", "/sfx/projectiles/tar_hit_organic2.ogg", 
+          "/sfx/projectiles/tar_hit_organic3.ogg", "/sfx/projectiles/tar_hit_organic4.ogg",
+          "/sfx/projectiles/tar_hit_organic5.ogg" ]
+    }
+  ],
+  
+  "scripts" : [ "/scripts/projectiles/v-mergehandler.lua", "v-stucksludge.lua" ],
+  // "scripts" : [ "/scripts/projectiles/v-mergehandler.lua" ],
+  
+  "mergeHandlerType" : "v-stucksludge",
+  
+  "actionOnMerge" : {
+    "action" : "projectile",
+    "type" : "v-stucksludge3",
+    "inheritDamageFactor" : 1.0,
+    "inheritSpeedFactor" : 1.0
+  },
+  "actionOnNonMerge" : {
+    "action" : "actions",
+    "list" : [
+      {
+        "action" : "config",
+        "file" : "/projectiles/explosions/regularexplosion2/v-lua-poisonexplosionknockback.config"
+      },
+      {
+        "action" : "projectile",
+        "type" : "v-sludge",
+        "inheritDamageFactor" : 1.0,
+        "angleAdjust" : -120,
+        "fuzzAngle" : 20,
+        "config" : {
+          "mergeDelay" : 0.2
+        }
+      },
+      {
+        "action" : "projectile",
+        "type" : "v-sludge",
+        "inheritDamageFactor" : 1.0,
+        "angleAdjust" : 120,
+        "fuzzAngle" : 20,
+        "config" : {
+          "mergeDelay" : 0.2
+        }
+      }
+    ]
+  }
+}

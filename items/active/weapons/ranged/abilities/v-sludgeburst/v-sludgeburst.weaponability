@@ -1,0 +1,55 @@
+{
+  "animationParts" : { },
+  "animationCustom" : {
+    "sounds" : {
+      "altFire" : [ "/sfx/gun/v_sludgelauncher_fire1.ogg", "/sfx/gun/v_sludgelauncher_fire2.ogg" ]
+    }
+  },
+
+  "ability" : {
+    "name" : "Sludge Burst",
+    "type" : "v-sludgeburst",
+    "scripts" : ["/items/active/weapons/ranged/abilities/altfire.lua"],
+    "class" : "AltFireAttack",
+
+    "projectileType" : "v-sludge",
+    "projectileParameters" : {},
+
+    // use baseDps and fireTime from primary fire
+
+    "baseDamageMultiplier" : 1.75,
+    "energyUsage" : 75,
+    "fireTime" : 0.6,
+    "projectileCount" : 1,
+    "inaccuracy" : 0.03,
+    "baseDps" : 7.5,
+    "useParticleEmitter" : false,
+    
+    "fireType" : "burst",
+    "burstCount" : 5,
+    "burstTime" : 0.05,
+
+    "stances" : {
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "frontArmFrame" : "swimIdle.1"
+      },
+      "cooldown" : {
+        "duration" : 0.2,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "frontArmFrame" : "swimIdle.1"
+      }
+    }
+  }
+}

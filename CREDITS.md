@@ -8,6 +8,8 @@ Lightning sound effects:
 1. /sfx/weather/v_lightning_strike2_far.ogg: "LightningCrash.wav" by NoiseNoir on Freesound.org (URL: https://freesound.org/people/NoiseNoir/sounds/238302/). Heavily altered to sound like distant thunder.
 1. /sfx/weather/v_lightning_strike3_far.ogg: "Lightning Storm.wav" by Ambientsoundapp on Freesound.org (URL: https://freesound.org/people/Ambientsoundapp/sounds/537985/). Heavily altered to sound like distant thunder.
 
+Bee swarm sound effect: "black-bees swarm.wav" by bruno.auzet on Freesound.org (URL: https://freesound.org/people/bruno.auzet/sounds/578267/). Edited into a loop
+
 All custom sounds were made in Audacity using vanilla Starbound's assets, except for the aforementioned lightning sound effects.
 
 I would like to thank Portal Mech for playtesting the Ancient Stronghold and the Voltage biome and providing feedback and ideas for them.

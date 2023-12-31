@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":14,
+ "tilecount":20,
  "tileheight":8,
  "tileproperties":
     {
@@ -37,6 +37,31 @@
      "13":
         {
          "liquid":"v-electricity"
+        },
+     "14":
+        {
+         "liquid":"v-superpoison"
+        },
+     "15":
+        {
+         "liquid":"v-superpoison",
+         "source":"true"
+        },
+     "16":
+        {
+         "material":"v-killerbeewax"
+        },
+     "17":
+        {
+         "material":"v-toxicfungus"
+        },
+     "18":
+        {
+         "material":"v-toxicsoil"
+        },
+     "19":
+        {
+         "material":"v-toxicstone"
         },
      "2":
         {
@@ -98,6 +123,31 @@
      "13":
         {
          "liquid":"string"
+        },
+     "14":
+        {
+         "liquid":"string"
+        },
+     "15":
+        {
+         "liquid":"string",
+         "source":"string"
+        },
+     "16":
+        {
+         "material":"string"
+        },
+     "17":
+        {
+         "material":"string"
+        },
+     "18":
+        {
+         "material":"string"
+        },
+     "19":
+        {
+         "material":"string"
         },
      "2":
         {
@@ -167,6 +217,42 @@
      "13":
         {
          "image":"..\/images\/tilesandliquids\/liquidelectricity.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "14":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidsuperpoison.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "15":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidsuperpoisonsource.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "16":
+        {
+         "image":"..\/images\/tilesandliquids\/killerbeewax.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "17":
+        {
+         "image":"..\/images\/tilesandliquids\/toxicfungus.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "18":
+        {
+         "image":"..\/images\/tilesandliquids\/toxicsoil.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "19":
+        {
+         "image":"..\/images\/tilesandliquids\/toxicstone.png",
          "imageheight":8,
          "imagewidth":8
         },

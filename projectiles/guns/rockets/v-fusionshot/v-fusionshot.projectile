@@ -33,12 +33,13 @@
     }
   ],
   
-  "scripts" : ["v-fusionshot.lua"],
+  "scripts" : ["/scripts/projectiles/v-merger.lua"],
   "scriptDelta" : 1,
   
-  "fuseRadius" : 3,
-  "explodeAction" : {
+  "mergeRadius" : 3,
+  "nonMergeAction" : {
     "action" : "config",
     "file" : "/projectiles/explosions/v-fusionexplosion/v-lua-fusionexplosion.config"
-  }
+  },
+  "targetType" : "v-fusionglobe"
 }

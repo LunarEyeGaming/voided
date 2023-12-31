@@ -15,9 +15,9 @@ function ModProperty.update(position, layer)
   -- Emit spark with a probability of sparkChance.
   if math.random() < sparkChance then
     if layer == "background" then
-      world.spawnProjectile("v-voltitespark2", position)
+      world.spawnProjectile("v-voltitesparkbg", position)
     else
-      world.spawnProjectile("v-voltitespark", position)
+      world.spawnProjectile("v-voltitesparkfg", position)
     end
   end
 end

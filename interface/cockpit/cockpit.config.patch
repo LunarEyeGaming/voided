@@ -47,6 +47,8 @@
     // Environmental hazard icons.
     {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomeelectric", "value" : {
         "displayName" : "Dangerously Conductive", "icon" : "/interface/cockpit/hazards/v-biomeelectric.png"}},
+    {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomepoison", "value" : {
+        "displayName" : "Dangerously Toxic", "icon" : "/interface/cockpit/hazards/v-biomepoison.png"}},
 
     // Threat level support for weather. Weather types not included have a threat level of 0.
     {"op" : "add", "path": "/weatherThreatValues/v-copperstorm", "value": 1.5},
@@ -55,7 +57,8 @@
     {"op" : "add", "path": "/weatherThreatValues/v-copperstormlight2", "value": 0.3},
     {"op" : "add", "path": "/weatherThreatValues/v-lightningstorm", "value": 2.0},
     {"op" : "add", "path": "/weatherThreatValues/v-coppersuperstorm", "value": 3.0},
-    {"op" : "add", "path": "/weatherThreatValues/v-coppersuperstorm2", "value": 2.5}
+    {"op" : "add", "path": "/weatherThreatValues/v-coppersuperstorm2", "value": 2.5},
+    {"op" : "add", "path": "/weatherThreatValues/v-toxichaze", "value": 5.0}
   ],
 
   // Vanilla Patches
@@ -68,6 +71,16 @@
         "Scans show a surface filled with copper deserts and metallic spikes, indicating that this is a ^#a083df;voltage^reset; world and therefore it is ^red;dangerously conductive^reset;.",
         "This ^#a083df;voltage^reset; world has a powerful amount of electricity circulating through it. Protection against its ^red;dangerously conductive^reset; atmosphere is advised.",
         "The electrical conductivity of this ^#a083df;voltage^reset; world is ^red;dangerously high^reset;. Its indigenous lifeforms have adapted a resistance to this kind of environment."
+      ]
+    },
+    
+    {
+      "op" : "add",
+      "path" : "/visitableTypeDescription/v-toxicwasteland",
+      "value" : [
+        "Cloud-penetrating scans indicate a barren ^#a270b5;toxic wasteland^reset;. Mitigating the effects of the ^red;dangerously toxic^reset; atmosphere is strongly advised.",
+        "A thick, ^red;dangerously toxic^reset; haze blocks the surface of the ^#a270b5;toxic wasteland^reset;.",
+        "The ^red;dangerously toxic^reset; atmosphere of this ^#a270b5;toxic wasteland^reset; poses a threat to any unprepared explorer."
       ]
     },
     
@@ -93,6 +106,12 @@
       "value" : "Strange Asteroid"
     },
     {
+      "op" : "add",
+      "path" : "/planetTypeNames/v-toxicwasteland",
+      "value" : "Toxic Wasteland"
+    },
+
+    {
       "op": "add",
       "path": "/planetTypeColors/v-voltage",
       "value" : [160, 131, 223]
@@ -101,6 +120,11 @@
       "op": "add",
       "path": "/planetTypeColors/v-strongholdgateway",
       "value" : [87, 28, 255]
+    },
+    {
+      "op": "add",
+      "path": "/planetTypeColors/v-toxicwasteland",
+      "value" : [162, 112, 181]
     },
 
     // Add new star type label
@@ -148,6 +172,14 @@
       "value" : {
         "displayName" : "Voltite",
         "icon" : "/items/generic/crafting/v-voltiteore.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayOres/v-toxikite",
+      "value" : {
+        "displayName" : "Toxikite",
+        "icon" : "/items/generic/crafting/v-toxikiteore.png"
       }
     },
 
@@ -214,6 +246,14 @@
       "value" : {
         "displayName" : "Wind",
         "icon" : "/interface/cockpit/weather/windstorm.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-toxichaze",
+      "value" : {
+        "displayName" : "Toxic Haze",
+        "icon" : "/interface/cockpit/weather/v-toxichaze.png"
       }
     }
   ]

@@ -1,0 +1,16 @@
+{
+  "name": "v-noop",
+  "description": "",
+  "scripts": [
+    "/scripts/behavior/bdata.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "setFlag",
+    "type": "action",
+    "name": "setFlag",
+    "parameters": {
+      "name": {"value": "foo"}
+    }
+  }
+}

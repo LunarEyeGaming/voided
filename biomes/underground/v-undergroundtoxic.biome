@@ -41,7 +41,7 @@
 
   "mainBlock" : "v-toxicstone",
   "subBlocks" : [ "rock02", "purplecrystal" ],
-  "ores" : "v-undergroundvoltage",
+  "ores" : "v-undergroundtoxic",
 
   "ambientNoises" : {
     "day" : {
@@ -171,15 +171,6 @@
             "parameters" : { }
           }
         ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 99.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSmall",
-
-        "type" : "microdungeon",
-        "microdungeons" : [ "v-safeairpocket" ]
       },
       {
         "mode" : "floor",

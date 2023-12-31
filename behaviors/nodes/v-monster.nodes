@@ -40,7 +40,7 @@
       "testDistance": {"type": "number", "value": null},
       "stickForce": {"type": "number", "value": 50}
     },
-    "category": "movement",
+    "category": "v-monster",
     "script": "/scripts/actions/v-monster.lua",
     "output": {
       "headingAngle": {"type": "number", "key": null},
@@ -66,7 +66,7 @@
       "spreadAngle": {"type": "number", "value": 0},
       "angledOffset": {"type": "vec2", "value": [0, 0]}
     },
-    "category": "projectiles",
+    "category": "v-monster",
     "script": "/scripts/actions/projectiles.lua",
     "output": {}
   }

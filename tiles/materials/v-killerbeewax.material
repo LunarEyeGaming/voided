@@ -1,0 +1,24 @@
+{
+  "materialId" : 1200,
+  "materialName" : "v-killerbeewax",
+  "particleColor" : [30, 84, 40, 255],
+  "itemDrop" : "v-killerbeewaxmaterial",
+  "description" : "<todo>",
+  "shortdescription" : "killerbeewax",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_gravel.ogg",
+  "health" : 16,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-killerbeewax.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 0
+  }
+}

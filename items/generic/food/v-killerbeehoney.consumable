@@ -1,6 +1,6 @@
 {
   "itemName" : "v-killerbeehoney",
-  "rarity" : "Common",
+  "rarity" : "Uncommon",
   "price" : 265,
   "category" : "food",
   "inventoryIcon" : "v-killerbeehoney.png",
@@ -18,5 +18,6 @@
   "blockingEffects" : [
     "wellfed"
   ],
-  "emitters" : [ "drinking" ]
+  "emitters" : [ "drinking" ],
+  "learnBlueprintsOnPickup" : ["v-depthpoisonantidote"]
 }

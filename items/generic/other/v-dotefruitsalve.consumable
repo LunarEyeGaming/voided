@@ -1,0 +1,17 @@
+{
+  "itemName" : "v-dotefruitsalve",
+  "rarity" : "Uncommon",
+  "price" : 10,
+  "maxStack" : 10,
+  "category" : "medicine",
+  "inventoryIcon" : "v-dotefruitsalve.png",
+  "description" : "'Dotefruit crushed into a paste. Reduces poison by 30 units.",
+  "shortdescription" : "'Dotefruit Salve",
+  "effects" : [ [
+      {
+        "effect" : "v-depthpoisonantidotesalve"
+      }
+    ] ],
+  "emote" : "",
+  "emitters" : [ "bandageuse" ]
+}

@@ -1,0 +1,61 @@
+{
+  "name" : "v-poisonfloodedcaves",
+  "friendlyName" : "Poison-Flooded Caves",
+
+  "spawnProfile" : {
+    "groups" : [
+      {
+        "select" : 4,
+        "pool" : [ 
+          [ 1.0, "v-bigpuffer" ],
+          [ 1.0, "v-mutanteel" ],
+          [ 1, "passiveLargeFish" ],
+          [ 1, "aggroLargeFish" ]
+        ]
+      }
+    ],
+    "monsterParameters" : {
+      "statusSettings" : {
+        "stats" : {
+          "electricResistance" : {
+            "baseValue" : -0.25
+          },
+          "poisonResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 20.0
+          }
+        }
+      }
+    }
+  },
+
+  "mainBlock" : "v-toxicstone",
+  "subBlocks" : [ "rock02", "purplecrystal" ],
+  "ores" : "v-undergroundtoxic",
+
+  "hueShiftOptions" : [0],
+  "parallax" : "/parallax/underground/dirtunderground.parallax",
+
+  "undergroundPlaceables" : {
+    "items" : [
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-ceilingglowplant1" ], [0.20, "v-ceilingglowplant2" ], [0.20, "v-ceilingglowplant3" ], [0.20, "v-ceilingglowplant4" ], [0.20, "v-ceilingglowplant5" ]]
+          }
+        ]
+      }
+    ]
+  }
+}

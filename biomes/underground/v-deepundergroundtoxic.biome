@@ -40,8 +40,8 @@
   "parallax" : "/parallax/underground/v-undergroundvoltage.parallax",
 
   "mainBlock" : "purplecrystal",
-  "subBlocks" : [ "waste", "rock02", "v-toxicstone" ],
-  "ores" : "v-undergroundvoltage",
+  "subBlocks" : [ "rock02", "v-toxicstone" ],
+  "ores" : "v-deepundergroundtoxic",
 
   "ambientNoises" : {
     "day" : {
@@ -145,15 +145,6 @@
             "parameters" : { }
           }
         ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 99.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSmall",
-
-        "type" : "microdungeon",
-        "microdungeons" : [ "v-safeairpocket" ]
       },
       {
         "mode" : "floor",

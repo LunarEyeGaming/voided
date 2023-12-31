@@ -1,5 +1,5 @@
 {
-  "projectileName" : "v-voltitespark2",
+  "projectileName" : "v-voltitesparkfg",
   "physics" : "laser",
   "bounces" : 0,
   "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
@@ -26,7 +26,7 @@
         "fullbright" : true,
         "light" : [25, 92, 107],
         "size" : 0.5,
-        "layer" : "back",
+        "layer" : "front",
         "timeToLive" : 0.425,
         "variance" : {
           "finalVelocity" : [1.5, 1.5],

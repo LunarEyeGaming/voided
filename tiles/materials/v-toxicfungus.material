@@ -1,0 +1,25 @@
+{
+  "materialId" : 1201,
+  "materialName" : "v-toxicfungus",
+  "particleColor" : [159, 61, 49, 255],
+  "itemDrop" : "v-toxicfungusmaterial",
+  "description" : "This fungus constantly emits deadly toxins.",
+  "shortdescription" : "Toxic Fungus",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_brains.ogg",
+  "health" : 2,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-toxicfungus.png",
+    "variants" : 14,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 3400
+  }
+}
