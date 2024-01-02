@@ -53,11 +53,15 @@ end
 
 -- param entity
 -- param turnSpeed
+-- param wavePeriod
+-- param waveAmplitude
 -- output angle
 -- output direction
 function v_approachTurnWorm(args, output, _, dt)
   local targetPosition = world.entityPosition(args.entity)
   local distance = world.magnitude(targetPosition, mcontroller.position())
+  local timer = 0
+  local lastSineAngle = 0
   while true do
     local toTarget = world.distance(targetPosition, mcontroller.position())
     local angle = mcontroller.rotation()
@@ -70,6 +74,13 @@ function v_approachTurnWorm(args, output, _, dt)
         angle = targetAngle
       end
     end
+    
+    timer = timer + dt
+
+    -- Add a little bit of waviness to the movement
+    local sineAngle = args.waveAmplitude * math.sin(timer * 2 * math.pi / args.wavePeriod)
+    angle = angle + sineAngle - lastSineAngle
+    lastSineAngle = sineAngle
 
     local speed = mcontroller.baseParameters().flySpeed
     mcontroller.controlApproachVelocity(vec2.withAngle(angle, speed), mcontroller.baseParameters().airForce, true)

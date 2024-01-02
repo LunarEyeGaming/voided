@@ -244,7 +244,7 @@
           "dungeonCountRange" : [1, 1]
         },
         "subsurface" : {
-          "primaryRegion" : ["v-undergroundtoxic"]
+          "primaryRegion" : ["v-shallowundergroundtoxic"]
         },
         "underground1" : {
           "primaryRegion" : ["v-undergroundtoxic"],
@@ -315,6 +315,16 @@
         [0, [ "v-crystalmountains" ]]
       ],
       "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-shallowundergroundtoxic",
+    "value" : {
+      "fgCaveSelector" : [ "normalCaves" ],
+      "biome": [
+        [1,["v-shallowundergroundtoxic"]]
+      ]
     }
   },
   {

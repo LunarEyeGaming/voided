@@ -1,0 +1,22 @@
+{
+  "projectileName" : "v-mutanteelspitplayer",
+  "image" : "mutanteelspitplayer.png",
+  "physics" : "bullet",
+  "animationCycle" : 0.25,
+  "frameNumber" : 1,
+  "damageKindImage" : "icon.png",
+  "pointLight" : false,
+  "lightColor" : [72, 131, 47],
+  "fullbright" : true,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/acidspitexplosion/acidspitexplosion.config"
+    }
+  ],
+  "power" : 5.0,
+  "speed" : 50,
+  "damageKind" : "acid",
+  "emitters" : [ "poisonplasmarocket", "poisondrip" ],
+  "statusEffects" : ["weakpoison"]
+}

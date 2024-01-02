@@ -54,7 +54,7 @@
   "subBlocks" : [ "v-toxicstone" ],
   "ores" : "v-voltage",
   
-  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15],
+  "hueShiftOptions" : [ 40, 30, 20, 10, 0, -10, -20 ],
 
   "surfacePlaceables" : {
     "grassMod" : [ "toxicgrass" ],
@@ -169,7 +169,7 @@
   },
 
   "undergroundPlaceables" : {
-    "grassMod" : [ "v-copperpowder" ],
+    "grassMod" : [ "toxicgrass" ],
     "grassModDensity" : 0.8,
 
     "ceilingGrassMod" : [ "roots" ],

@@ -1,0 +1,20 @@
+{
+  "kind" : "v-iongrenaderay",
+  "definition" : {
+    "type" : "animated",
+    "animation" : "/animations/v-iongrenaderay/v-iongrenaderay.animation",
+    "position" : [0, 0],
+    "initialVelocity" : [0, 0],
+    "finalVelocity" : [0, 0],
+    "size" : 1,
+    "layer" : "back",
+    "fullbright" : true,
+    "timeToLive" : 0.7,
+    "light" : [155, 186, 61],
+    "fade" : 1.42857,
+    "collidesForeground" : false,
+    "variance" : {
+      "rotation" : 180
+    }
+  }
+}

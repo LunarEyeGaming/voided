@@ -2,8 +2,9 @@
   "projectileName" : "v-iongrenadeexplosion",
   "image" : "iongrenadeexplosion.png",
   "timeToLive" : 1.5,
-  "animationCycle" : 0.6,
-  "frameNumber" : 6,
+  "animationCycle" : 0.2,
+  "windupFrames" : 2,
+  "frameNumber" : 2,
   "fullbright" : true,
   "speed" : 0,
   "damagePoly" : [ [-40, 0], [-25, -25], [0, -40], [25, -25], [40, 0], [25, 25], [0, 40], [-25, 25] ],
@@ -11,9 +12,22 @@
   "piercing" : true,
   "bounces" : -1,
   "flippable" : true,
-  "lightColor" : [150, 255, 255],
+  "lightColor" : [209, 225, 96],
   "statusEffects" : ["v-ionized"],
   "power" : 10,
-  "damageKind" : "electricplasma",
-  "damageRepeatTimeout" : 0.33
+  "damageKind" : "poisonplasma",
+  "damageRepeatTimeout" : 0.33,
+  "periodicActions" : [
+    {
+      "time" : 0.01,
+      "action" : "loop",
+      "count" : 1,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "v-iongrenaderay"
+        }
+      ]
+    }
+  ]
 }

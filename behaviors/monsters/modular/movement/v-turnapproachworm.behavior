@@ -13,7 +13,9 @@
     "leftState": "",
     "rightState": "",
     "flyState": "",
-    "idleState": ""
+    "idleState": "",
+    "wavePeriod": 1.0,
+    "waveAmplitude": 1.0
   },
   "root": {
     "title": "sequence",
@@ -36,7 +38,9 @@
             "name": "v_approachTurnWorm",
             "parameters": {
               "entity": {"key": "target"},
-              "turnSpeed": {"key": "<turnSpeed>"}
+              "turnSpeed": {"key": "<turnSpeed>"},
+              "wavePeriod": {"key": "<wavePeriod>"},
+              "waveAmplitude": {"key": "<waveAmplitude>"}
             },
             "output": {
               "angle": "heading",

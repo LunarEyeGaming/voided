@@ -48,7 +48,7 @@
     {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomeelectric", "value" : {
         "displayName" : "Dangerously Conductive", "icon" : "/interface/cockpit/hazards/v-biomeelectric.png"}},
     {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomepoison", "value" : {
-        "displayName" : "Dangerously Toxic", "icon" : "/interface/cockpit/hazards/v-biomepoison.png"}},
+        "displayName" : "Mycotoxin", "icon" : "/interface/cockpit/hazards/v-biomepoison.png"}},
 
     // Threat level support for weather. Weather types not included have a threat level of 0.
     {"op" : "add", "path": "/weatherThreatValues/v-copperstorm", "value": 1.5},

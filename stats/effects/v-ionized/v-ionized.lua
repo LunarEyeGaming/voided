@@ -5,7 +5,7 @@ local tickDamage
 function init()
   animator.setParticleEmitterOffsetRegion("flames", mcontroller.boundBox())
   animator.setParticleEmitterActive("flames", true)
-  effect.setParentDirectives("fade=3BD9D7=0.2")
+  effect.setParentDirectives("fade=9bba3d=0.2")
 
   script.setUpdateDelta(5)
 
@@ -16,7 +16,7 @@ function init()
   status.applySelfDamageRequest({
       damageType = "IgnoresDef",
       damage = tickDamage,
-      damageSourceKind = "electricplasma",
+      damageSourceKind = "poisonplasma",
       sourceEntityId = entity.id()
     })
 end
@@ -29,7 +29,7 @@ function update(dt)
     status.applySelfDamageRequest({
         damageType = "IgnoresDef",
         damage = tickDamage,
-        damageSourceKind = "electricplasma",
+        damageSourceKind = "poisonplasma",
         sourceEntityId = entity.id()
       })
   end

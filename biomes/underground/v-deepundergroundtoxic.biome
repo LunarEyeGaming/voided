@@ -30,14 +30,14 @@
             "baseValue" : 1.0
           },
           "protection" : {
-            "baseValue" : 25.0
+            "baseValue" : 35.0
           }
         }
       }
     }
   },
 
-  "parallax" : "/parallax/underground/v-undergroundvoltage.parallax",
+  "parallax" : "/parallax/underground/v-deepundergroundtoxic.parallax",
 
   "mainBlock" : "purplecrystal",
   "subBlocks" : [ "rock02", "v-toxicstone" ],
@@ -54,10 +54,10 @@
 
   "musicTrack" : {
     "day" : {
-      "tracks" : [ "/music/desert-exploration2.ogg", "/music/M54.ogg", "/music/horsehead-nebula.ogg", "/music/drosera.ogg", "/music/tranquility-base.ogg", "/music/procyon.ogg", "/music/error-0xbfaf000.ogg" ]
+      "tracks" : [ "/music/M54.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg", "/music/eridanus-supervoid.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/music/desert-exploration2.ogg", "/music/M54.ogg", "/music/horsehead-nebula.ogg", "/music/drosera.ogg", "/music/tranquility-base.ogg", "/music/procyon.ogg", "/music/error-0xbfaf000.ogg" ]
+      "tracks" : [ "/music/M54.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg", "/music/eridanus-supervoid.ogg" ]
     }
   },
 
@@ -136,12 +136,12 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundChests",
+        "distribution" : "/biomes/distributions.config:overgroundRareChests",
 
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1, "statuspod" ] ],
+            "pool" : [ [1, "v-statuspodtoxic" ] ],
             "parameters" : { }
           }
         ]
@@ -193,7 +193,7 @@
         "distribution" : "/biomes/distributions.config:undergroundBiomeEncounterDungeon",
 
         "type" : "microdungeon",
-        "microdungeons" : [ "undergroundencounterdungeons" ]
+        "microdungeons" : [ "v-campsite" ]
       },
       {
         "mode" : "floor",
@@ -214,5 +214,5 @@
     ]
   },
 
-  "hueShiftOptions" : [0]
+  "hueShiftOptions" : [ 30, 20, 10, 0, -10, -20 ]
 }

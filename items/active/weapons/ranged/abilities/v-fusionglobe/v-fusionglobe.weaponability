@@ -1,0 +1,52 @@
+{
+  "animationCustom" : {
+    "sounds" : {
+      "altFire" : [ "/sfx/gun/v_fusionplasmalauncher_fire.ogg" ]
+    }
+  },
+
+  "ability" : {
+    "name" : "Fusion Globe",
+    "type" : "v-fusionglobe",
+    "scripts" : ["/items/active/weapons/ranged/abilities/altfire.lua"],
+    "class" : "AltFireAttack",
+
+    "projectileType" : "v-fusionglobe",
+    "projectileParameters" : {},
+    "projectileCount" : 1,
+    "inaccuracy" : 0,
+    "baseDps" : 10,
+    "fireTime" : 1.0,
+    "energyUsage" : 75,
+    "fireType" : "auto",
+
+    "useParticleEmitter" : false,
+
+    "stances" : {
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "animationStates" : {
+          "gun" : "fire2",
+          "cells" : "fire2",
+          "lamp" : "switch2",
+          "muzzle" : "on2"
+        }
+      },
+      "cooldown" : {
+        "duration" : 1.0,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  }
+}

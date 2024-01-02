@@ -54,7 +54,7 @@
   "subBlocks" : [ "v-toxicstone", "rock02" ],
   "ores" : "v-voltage",
   
-  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15],
+  "hueShiftOptions" : [ 30, 20, 10, 0, -10, -20 ],
 
   "surfacePlaceables" : {
     "grassMod" : [ "toxicgrass" ],
@@ -200,6 +200,20 @@
         "objectSets" : [
           {
             "pool" : [ [1, "v-poisongasemitter" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:overgroundRareChests",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-statuspodtoxic" ] ],
             "parameters" : { }
           }
         ]

@@ -1,0 +1,104 @@
+{
+  "itemName" : "v-mutanteelstaff",
+  "price" : 1440,  // TODO
+  "maxStack" : 1,
+  "level" : 8,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "A staff that bears the abilities of the Mutant Eel.",
+  "shortdescription" : "Scepter of the Eel",
+  "tooltipKind" : "staff",
+  "category" : "uniqueWeapon",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","staff"],
+
+  "animation" : "v-mutanteelstaff.animation",
+  "animationParts" : {
+    "staff" : "mutanteelstaff.png",
+    "stone" : "stone.png",
+    "chargeEffect" : "staffglow.png"
+  },
+  "animationCustom" : {
+    "lights" : {
+      "glow" : {
+        "color" : [72, 131, 47]
+      }
+    },
+    "particleEmitters" : {
+      "poisoncharge" : {
+        "active" : false,
+        "transformationGroups" : ["weapon"],
+        "emissionRate" : 10,
+        "offsetRegion" : [-0.5, 1.0, 0.5, 2.5],
+        "particles" : [
+          { "particle" : "poisonswoosh1"},
+          { "particle" : "poisonswoosh2"}
+        ]
+      }
+    },
+
+    "sounds" : {
+      "physicalactivate" : ["/sfx/melee/staff_aura_activate.ogg"]
+    }
+  },
+
+  "inventoryIcon" : "mutanteelstaff.png",
+
+  "scripts" : ["/items/active/weapons/staff/staff.lua", "v-mutanteelstaffplugin.lua"],
+
+  "stances" : {
+    "idle" : {
+      "armRotation" : -90,
+      "weaponRotation" : 0,
+      "twoHanded" : false,
+
+      "allowRotate" : false,
+      "allowFlip" : true
+    },
+    "charge" : {
+      "duration" : 0.35,
+      "armRotation" : 20,
+      "weaponRotation" : -20,
+      "twoHanded" : true,
+
+      "allowRotate" : false,
+      "allowFlip" : true
+    },
+    "charged" : {
+      "armRotation" : 20,
+      "weaponRotation" : -20,
+      "twoHanded" : true,
+
+      "allowRotate" : false,
+      "allowFlip" : true
+    },
+    "discharge" : {
+      "duration" : 0.5,
+      "armRotation" : -10,
+      "weaponRotation" : -50,
+      "twoHanded" : true,
+
+      "allowRotate" : true,
+      "allowFlip" : true
+    },
+    "cooldown" : {
+      "duration" : 0.5,
+      "armRotation" : -45,
+      "weaponRotation" : 0,
+      "twoHanded" : true,
+
+      "allowRotate" : false,
+      "allowFlip" : true
+    }
+  },
+
+  "elementalType" : "poison",
+
+  "primaryAbilityType" : "v-mutanteelability",
+  "primaryAbility" : {},
+
+  "altAbilityType" : "v-mutanteelstab",
+  "altAbility" : {},
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

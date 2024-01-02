@@ -56,10 +56,10 @@
 
   "musicTrack" : {
     "day" : {
-      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/body-electric-loop.ogg", "/music/desert-exploration2.ogg", "/music/scorian-flow.ogg" ]
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/casiopeia.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/body-electric-loop.ogg", "/music/desert-exploration2.ogg", "/music/scorian-flow.ogg" ]
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/casiopeia.ogg" ]
     }
   },
 
@@ -92,12 +92,12 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundChests",
+        "distribution" : "/biomes/distributions.config:overgroundRareChests",
 
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1, "v-statuspodvoltage" ] ],
+            "pool" : [ [1, "v-statuspodtoxic" ] ],
             "parameters" : { }
           }
         ]

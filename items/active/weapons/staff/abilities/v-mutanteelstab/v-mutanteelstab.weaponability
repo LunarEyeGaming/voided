@@ -1,0 +1,137 @@
+{
+  "animationCustom" : {
+    "animatedParts" : {
+      "stateTypes" : {
+        "swoosh" : {
+          "default" : "idle",
+          "states" : {
+            "idle" : {
+              "properties" : {
+                "particleEmittersOff" : ["poisonswoosh"]
+              }
+            },
+            "fire" : {
+              "frames" : 3,
+              "cycle" : 0.08,
+              "mode" : "transition",
+              "transition" : "firedamage",
+              "properties" : {
+                "particleEmittersOn" : ["poisonswoosh"]
+              }
+            },
+            "firedamage" : {
+              "frames" : 1,
+              "cycle" : 0.22,
+              "mode" : "transition",
+              "transition" : "idle"
+            }
+          }
+        }
+      },
+      "parts" : {
+        "swoosh" : {
+          "properties" : {
+            "zLevel" : -1,
+            "centered" : true,
+            "offset" : [3.0, 0.0],
+            "transformationGroups" : ["swoosh"]
+          },
+
+          "partStates" : {
+            "swoosh" : {
+              "idle" : {
+                "properties" : {
+                  "image" : ""
+                }
+              },
+              "fire" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/spear/swoosh/<elementalType>swoosh.png:<frame>",
+                  "damageArea" : [[-3.5, 0], [-1, 1], [1, 1], [4, 0], [1, -1], [-1, -1]]
+                }
+              },
+              "firedamage" : {
+                "properties" : {
+                  "damageArea" : [[-3.5, 0], [-1, 1], [1, 1], [4, 0], [1, -1], [-1, -1]]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "transformationGroups" : {
+      "swoosh" : {}
+    },
+    "particleEmitters" : {
+      "poisonswoosh" : {
+        "active" : false,
+        "transformationGroups" : ["swoosh"],
+        "emissionRate" : 60,
+        "offsetRegion" : [3.5, -1.0, 7.5, 1.0],
+        "particles" : [
+          { "particle" : "poisonswoosh1"},
+          { "particle" : "poisonswoosh2"},
+          { "particle" : "fireswoosh2"},
+          { "particle" : "poisonswoosh1"},
+          { "particle" : "poisonswoosh2"},
+          { "particle" : "fireswoosh2"}
+        ]
+      }
+    },
+    "sounds" : {
+      "fire" : [ "/sfx/melee/swing_spear_poison1.ogg", "/sfx/melee/swing_spear_poison2.ogg", "/sfx/melee/swing_spear_poison3.ogg" ]
+    }
+  },
+  "ability" : {
+    "type" : "v-mutanteelstab",
+    "name" : "Flying Stab",
+    "scripts" : ["/items/active/weapons/staff/abilities/v-mutanteelstab/v-mutanteelstab.lua"],
+    "class" : "MeleeSlash",
+
+    "fireTime" : 2.0,
+    "energyUsage" : 100,
+    "baseDps" : 7.5,
+    "damageConfig" : {
+      "damageSourceKind" : "poisonspear",
+      "statusEffects" : [ "weakpoison" ],
+      "knockback" : 30,
+      "knockbackMode" : "facing",
+      "timeoutGroup" : "primary"
+    },
+    "dashSpeed" : 75,
+    "dashControlForce" : 1500,
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : -90,
+        "weaponRotation" : 0,
+        "twoHanded" : false,
+        "aimAngle" : 0,
+
+        "allowRotate" : false,
+        "allowFlip" : true
+      },
+      "windup" : {
+        "duration" : 0.1,
+        "armRotation" : -110,
+        "weaponRotation" : 20,
+        "twoHanded" : true,
+        "weaponOffset" : [0, 0.5],
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "fire" : {
+        "duration" : 0.3,
+        "armRotation" : -20,
+        "weaponRotation" : -70,
+        "twoHanded" : true,
+        "weaponOffset" : [0, 2.5],
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  }
+}

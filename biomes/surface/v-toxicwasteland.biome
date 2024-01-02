@@ -144,7 +144,7 @@
     }
   ],
 
-  "hueShiftOptions" : [ 0 ],
+  "hueShiftOptions" : [ 30, 20, 10, 0, -10, -20, -30, -40, -50 ],
 
   "parallax" : "/parallax/surface/v-toxicwasteland.parallax",
 
@@ -159,10 +159,10 @@
 
   "musicTrack" : {
     "day" : {
-      "tracks" : [ "/music/forsaken-grotto.ogg", "/music/hymn-to-the-stars.ogg", "/music/procyon.ogg", "/music/vast-immortal-suns.ogg", "/music/drosera.ogg", "/music/mira.ogg", "/music/europa.ogg", "/music/haiku.ogg", "/music/horsehead-nebula.ogg", "/music/lava-exploration1.ogg", "/music/Nomads.ogg" ]
+      "tracks" : [ "/music/forsaken-grotto.ogg", "/music/lava-exploration2.ogg", "/music/procyon.ogg", "/music/Nomads.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/music/jupiter.ogg", "/music/arctic-constellation1.ogg", "/music/arctic-constellation2.ogg", "/music/crystal-exploration2.ogg", "/music/tranquility-base.ogg", "/music/accretion-disc.ogg", "/music/horsehead-nebula.ogg", "/music/lava-exploration2.ogg", "/music/mercury.ogg", "/music/tentacle-exploration1.ogg" ]
+      "tracks" : [ "/music/jupiter.ogg", "/music/arctic-constellation1.ogg", "/music/arctic-constellation2.ogg", "/music/crystal-exploration2.ogg", "/music/accretion-disc.ogg", "/music/mercury.ogg" ]
     }
   },
 
@@ -209,6 +209,20 @@
 
         "type" : "treasureBox",
         "treasureBoxSets" : [ "toxicChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:overgroundRareChests",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-statuspodtoxic" ] ],
+            "parameters" : { }
+          }
+        ]
       },
       {
         "mode" : "floor",

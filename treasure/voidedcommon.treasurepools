@@ -228,6 +228,28 @@
     }]
   ],
 
+  "v-campSupplies" : [
+    [0, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.225, "item" : ["coalore", 5]},
+        {"weight" : 0.225, "item" : ["logblock", 10]},
+        {"weight" : 0.225, "item" : "cannedfood"},
+        {"weight" : 0.225, "item" : "bottledwater"},
+        {"weight" : 0.034, "item" : "platinumpickaxe"},
+        {"weight" : 0.033, "item" : "goldpickaxe"},
+        {"weight" : 0.033, "item" : "diamondpickaxe"}
+      ],
+      "poolRounds" : [
+        [0.1, 1],
+        [0.2, 2],
+        [0.4, 3],
+        [0.2, 4],
+        [0.1, 5]
+      ]
+    }]
+  ],
+
   "v-coilrockTreasure" : [
     [0, {
       "fill" : [],

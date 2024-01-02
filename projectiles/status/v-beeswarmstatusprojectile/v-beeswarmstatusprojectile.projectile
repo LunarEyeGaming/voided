@@ -1,0 +1,26 @@
+{
+  "projectileName" : "v-beeswarmstatusprojectile",
+  "physics" : "statuspod",
+  "bounces" : -1,
+  "timeToLive" : 1.5,
+  "speed" : 0,
+  "damageKindImage" : "icon.png",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "periodicActions" : [
+    {
+      "time" : 0.25,
+      "action" : "spawnmonster",
+      "type" : "v-killerbeeswarm",
+      "level" : 8
+    }
+  ],
+  "power" : 0,
+  "piercing" : true,
+  "damageKind" : "hidden",
+  "damageType" : "ignoresdef",
+  "damagePoly" : [ [-80, -80], [-80, 80], [80, 80], [80, -80]  ],
+  "flippable" : true,
+  "damageTeam" : { "type" : "indiscriminate" }
+}

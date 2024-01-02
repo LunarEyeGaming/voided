@@ -1,0 +1,45 @@
+{
+  "projectileName" : "v-fusionstatusprojectile",
+  "physics" : "statuspod",
+  "bounces" : -1,
+  "timeToLive" : 1.5,
+  "speed" : 0,
+  "damageKindImage" : "icon.png",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "periodicActions" : [
+    {
+      "time" : 0.0,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-fusionglobe",
+      "offset" : [0, 0.5],
+      "angle" : 90,
+      "config" : {
+        "speed" : 5,
+        "power" : 300,
+        "onlyHitTerrain" : true
+      }
+    },
+    {
+      "time" : 1.0,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-fusionshot",
+      "offset" : [0, 0.5],
+      "angle" : 90,
+      "config" : {
+        "power" : 300,
+        "onlyHitTerrain" : true
+      }
+    }
+  ],
+  "power" : 0,
+  "piercing" : true,
+  "damageKind" : "hidden",
+  "damageType" : "ignoresdef",
+  "damagePoly" : [ [-80, -80], [-80, 80], [80, 80], [80, -80]  ],
+  "flippable" : true,
+  "damageTeam" : { "type" : "indiscriminate" }
+}

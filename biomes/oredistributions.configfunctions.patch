@@ -38,35 +38,42 @@
     "op": "add",
     "path": "/v-toxicwasteland",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.5 ], [ "copper", 0.25 ], [ "silver", 0.125 ], [ "gold", 0.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.5 ], [ "aegisalt", 0.0 ], ["violium", 0.0] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-shallowundergroundtoxic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "iron", 1.0 ], [ "copper", 0.5 ], [ "silver", 0.375 ], [ "gold", 0.25 ], [ "v-toxikite", 0.25 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 1.0 ], [ "aegisalt", 0.25 ], ["violium", 0.25], [ "v-toxikite", 0.25 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-undergroundtoxic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.75 ], [ "copper", 0.75 ], [ "silver", 0.625 ], [ "gold", 0.5 ], [ "v-toxikite", 0.5 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.75 ], [ "aegisalt", 0.5 ], ["violium", 0.5], [ "v-toxikite", 0.5 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-deepundergroundtoxic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.5 ], [ "copper", 1.0 ], [ "silver", 0.875 ], [ "gold", 0.75 ], [ "v-toxikite", 1.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.5 ], [ "aegisalt", 0.75 ], ["violium", 0.75], [ "v-toxikite", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-toxiccore",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.25 ], [ "copper", 1.0 ], [ "silver", 0.875 ], [ "gold", 0.75 ], [ "v-toxikite", 1.0 ], ["corefragment", 1.0] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.25 ], [ "aegisalt", 0.75 ], ["violium", 0.75], [ "v-toxikite", 1.0 ], ["corefragment", 1.0] ] ]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-flowerfield",
+    "value": [
+      [4.5, [ [ "coal", 0.75 ], [ "durasteel", 0.25 ], [ "aegisalt", 0.5 ], ["violium", 0.5], [ "v-toxikite", 0.5 ] ] ]
     ]
   }
 ]

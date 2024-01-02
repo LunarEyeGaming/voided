@@ -1,0 +1,39 @@
+{
+  "projectileName" : "v-mutanteelspitspawner",
+  "image" : "mutanteelspitspawner.png",
+  "animationCycle" : 1.0,
+  "lightColor" : [72, 131, 47],
+  "frameNumber" : 12,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "default",
+  "emitters" : [ ],
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_mutanteelspitspawner_windup.ogg" ]
+    }
+  ],
+
+  "onlyHitTerrain" : true,
+  "damagePoly" : [],
+  "damageKind" : "plasma",
+
+  "speed" : 0,
+  "timeToLive" : 1.0,
+
+  "scripts" : [ "v-mutanteelspitspawner.lua" ],
+  "scriptDelta" : 1,
+  
+  "triggerProjectileType" : "v-mutanteelspitplayer",
+  "triggerProjectileParameters" : {
+    "speed" : 50
+  },
+
+  "explosionAction" : {
+    "action" : "light",
+    "color" : "green"
+  }
+}

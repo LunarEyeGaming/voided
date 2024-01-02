@@ -5,7 +5,9 @@
     "name": "v_approachTurnWorm",
     "properties": {
       "entity": {"type": "entity", "value": null},
-      "turnSpeed": {"type": "number", "value": 1}
+      "turnSpeed": {"type": "number", "value": 1.0},
+      "wavePeriod": {"type": "number", "value": 2.0},
+      "waveAmplitude": {"type": "number", "value": 2.0}
     },
     "category": "v-worm",
     "script": "/scripts/actions/v-worm.lua",
