@@ -1,0 +1,89 @@
+{
+  "animationParts" : { },
+  "animationCustom" : {
+    "animatedParts" : {
+      "stateTypes" : {
+        "parryShield" : {
+          "default" : "inactive",
+          "states" : {
+            "inactive" : {},
+            "active" : {},
+            "block" : {
+              "frames" : 1,
+              "cycle" : 0.2,
+              "mode" : "transition",
+              "transition" : "active"
+            }
+          }
+        }
+      },
+      "parts" : {
+        "parryShield" : {
+          "properties" : {
+            "zLevel" : -1,
+            "centered" : true,
+            "offset" : [-0.75, 1.75],
+            "transformationGroups" : ["weapon"],
+            "rotationCenter" : [0, 0],
+            "shieldPoly" : [ [-0.25, -2.5], [-0.25, 2.0], [1.0, 2.75], [1.0, -1.0] ]
+          },
+          "partStates" : {
+            "parryShield" : {
+              "inactive" : {
+                "properties" : {
+                  "image" : ""
+                }
+              },
+              "active" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/parry/parryshield.png:active"
+                }
+              },
+              "block" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/parry/parryshield.png:block"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "sounds" : {
+      "guard" : [ "/sfx/melee/sword_guard.ogg" ],
+      "parry" : [ "/sfx/melee/sword_parry.ogg" ]
+    }
+  },
+
+  "ability" : {
+    "name" : "Toxic Parry",
+    "type" : "v-toxicparry",
+    "scripts" : ["/items/active/weapons/melee/abilities/broadsword/v-toxicparry/v-toxicparry.lua"],
+    "class" : "ToxicParry",
+    
+    // Spawns a projectile on a parry, specified with the parryProjectile parameter. Parameter overrides are specified
+    // with the parryProjectileParameters parameter, and the offset is specified with the parryProjectileOffset 
+    // parameter. This offset is relative to the weapon itself. Direction is specified with the parryProjectileDirection
+    // parameter.
+
+    "energyUsage" : 0.0,
+    "parryTime" : 0.5,
+    "cooldownTime" : 1.0,
+    "shieldHealth" : 50,
+    
+    "parryProjectile" : "v-poisoncloudspawner",
+    "parryProjectileOffset" : [0, 2],
+    "parryProjectileParameters" : {"power" : 10},
+    
+    "stances" : {
+      "parry" : {
+        "armRotation" : 45,
+        "weaponRotation" : -205,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      }
+    }
+  }
+}

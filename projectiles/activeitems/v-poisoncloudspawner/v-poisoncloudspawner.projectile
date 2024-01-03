@@ -1,0 +1,27 @@
+{
+  "projectileName" : "v-poisoncloudspawner",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "timeToLive" : 0,
+  "animationCycle" : 1,
+  "speed" : 0,
+  "frameNumber" : 1,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  "piercing" : true, 
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "projectile",
+          "type" : "largepoisoncloud",
+          "inheritDamageFactor" : 1.0,
+          "fuzzAngle" : 180
+        }
+      ]
+    }
+  ]
+}
