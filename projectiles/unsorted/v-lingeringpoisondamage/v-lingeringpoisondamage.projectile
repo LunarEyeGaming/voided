@@ -1,0 +1,13 @@
+{
+  "projectileName" : "v-lingeringpoisondamage",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "piercing" : true,
+  "damageKind" : "poison",
+  "power" : 50,
+  "damagePoly" : [ [6, 6], [6, -6], [-6, -6], [-6, 6] ],
+  "bounces" : -1,
+  "movementSettings" : {
+    "collisionEnabled" : false
+  },
+  "timeToLive" : 100
+}

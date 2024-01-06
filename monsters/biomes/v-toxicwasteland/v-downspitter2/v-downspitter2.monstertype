@@ -39,17 +39,18 @@
         {
           "name" : "action-fire",
           "parameters" : {
+            "onGround" : false,
             "requireLineOfSight" : true,
             "maximumRange" : 70,
             "minimumRange" : 2,
-            "windupTime" : 2.5,
+            "windupTime" : 2.0,
             "windupState" : "",
 
             "projectileCount" : 1,
             "projectileType" : "v-downspitterprojectile2",
             "projectileParameters" : {
               "speed" : 40,
-              "power" : 20
+              "power" : 15
             },
             "projectileInterval" : 0.1,
 

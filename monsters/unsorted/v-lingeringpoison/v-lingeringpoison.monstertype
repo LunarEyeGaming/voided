@@ -1,0 +1,80 @@
+{
+  "type" : "v-lingeringpoison",
+
+  "categories" : [ "v-shockwave" ],
+  "parts" : [ "body" ],
+
+  "animation" : "/monsters/unsorted/v-shockwave/v-shockwave.animation",
+  "reversed" : true,
+
+  "dropPools" : [ "empty" ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/unsorted/v-lingeringpoison/v-lingeringpoison.lua"
+    ],
+
+    "animationScripts" : [
+      "/monsters/unsorted/v-lingeringpoison/v-lingeringpoisonanim.lua"
+    ],
+
+    "projectileType" : "v-lingeringpoisondamage",
+    "projectileParameters" : {
+      "timeToLive" : 50
+    },
+    "damage" : 20,
+    "maxArea" : 500,
+
+    "damageTimeLingerTimeFactor" : 0.5,
+    "minLingerTime" : 1.0,
+    "maxLingerTime" : 5.0,
+    "radius" : 10,
+    
+    "dissipationTime" : 0.15,
+    "animationConfig" : {
+      "startColor" : [196, 196, 245, 255],
+      "endColor" : [74, 74, 181, 0],
+      "fullbright" : false
+    },
+
+    "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
+    "scale" : 1.0,
+    
+    "selfDamagePoly" : [ ],
+
+    "movementSettings" : {
+      "gravityEnabled" : false,
+      "collisionEnabled" : false,
+      "collisionPoly" : [ [0, 0] ],
+
+      "physicsEffectCategories" : ["stationarymonster"]
+    },
+
+    "knockoutTime" : 0.0,
+    "knockoutEffect" : "",
+    "deathParticles" : "deathPoof",
+
+    "touchDamage" : {
+      "poly" : [ [-1.0, -1.0], [1.0, -1.0], [1.0, 1.0], [-1.0, 1.0] ],
+      "damage" : 15,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "hammer",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "robotic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : false,
+      "minimumLiquidStatusEffectPercentage" : 1.0
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8]
+  }
+}

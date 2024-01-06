@@ -8,9 +8,11 @@
   "pointLight" : false,
   "actionOnReap" : [
     {
-      "action" : "config",
-      "file" : "/projectiles/explosions/regularexplosion2/poisonexplosionknockback.config"
-    },
+      "action" : "projectile",
+      "type" : "v-downspitterprojectile2predetonate",
+      "fuzzAngle" : 180,
+      "inheritDamageFactor" : 0.5
+    }/* ,
     {
       "action" : "loop",
       "count" : 8,
@@ -23,7 +25,7 @@
           "angleAdjust" : 0
         }
       ]
-    }
+    } */
   ],
   "power" : 2.0,
   "damageKind" : "acid",

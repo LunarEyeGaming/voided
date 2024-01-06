@@ -1,0 +1,20 @@
+{
+  "kind" : "v-fumeballoonshotshard1",
+  "definition" : {
+    "type" : "textured",
+    "image" : "/particles/images/v-fumeballoonshotshard1.png",
+    "position" : [0, 1],
+    "initialVelocity" : [0, 0],
+    "finalVelocity" : [0, -50],
+    "approach" : [0, 50],
+    "size" : 1,
+    "layer" : "back",
+    "timeToLive" : 1.0,
+    "fade" : 1,
+    "destructionAction" : "fade",
+    "destructionTime" : 0.5,
+    "variance" : {
+      "initialVelocity" : [10, 10]
+    }
+  }
+}

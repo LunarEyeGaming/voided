@@ -325,7 +325,7 @@
     },
 
     "groupSize" : [1, 1],
-    "spawnChance" : 0.08,
+    "spawnChance" : 0.05,
     "monsterType" : [
       [1.0, "v-downspitter2"]
     ],
@@ -344,7 +344,7 @@
     },
 
     "groupSize" : [1, 1],
-    "spawnChance" : 0.08,
+    "spawnChance" : 0.05,
     "monsterType" : [
       [1.0, "v-gasmonster"]
     ],
@@ -366,6 +366,25 @@
     "spawnChance" : 0.05,
     "monsterType" : [
       [1.0, "v-killerbee"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  
+  {
+    "name" : "v-fumeballoon",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.02,
+    "monsterType" : [
+      [1.0, "v-fumeballoon"]
     ],
     "monsterParameters" : {
       "aggressive" : true

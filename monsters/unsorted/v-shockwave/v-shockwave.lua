@@ -61,7 +61,6 @@ function init()
   
   previousBlocks = {}
 
-  -- nextBlocks = {{0, 0}}
   nextBlocks = {}  -- vec2 set
   vec2SetInsert(nextBlocks, {0, 0})
 
@@ -83,11 +82,6 @@ function init()
     nails[nailId] = position
   end)
   
-  -- local myStr = vec2FToString(center)
-  -- sb.logInfo("%s", myStr)
-  -- --local myVec = vec2FFromString(myStr)
-  -- vec2FFromString(myStr)
-  
   monster.setDamageBar("None")
 end
 
@@ -96,15 +90,13 @@ function shouldDie()
 end
 
 function update(dt)
-  -- sb.logInfo("area: %s", area)
-  -- If no new blocks were found or the shockwave has spread far enough, disappear. Special case: nails are there and
-  -- the shockwave just spawned.
-  --sb.logInfo("%s; %s", next(nextBlocks), nextBlocks)
   if intangibleTimer > 0 then
     intangibleTimer = intangibleTimer - dt
     return  -- Do nothing until the timer runs out
   end
   
+  -- If no new blocks were found or the shockwave has spread far enough, disappear. Special case: nails are there and
+  -- the shockwave just spawned.
   if area > maxArea or next(nextBlocks) == nil then
     disappearTimer = disappearTimer - dt
     if disappearTimer <= 0 then
@@ -118,25 +110,15 @@ function update(dt)
 end
 
 function expandWave()
-  --sb.logInfo("nextBlocks: %s", nextBlocks)
-  --sb.logInfo("previousBlocks: %s", previousBlocks)
   local temp = {}
-  -- for _, block in ipairs(nextBlocks) do
   for blockStr, _ in pairs(nextBlocks) do
     for _, offset in ipairs({{1, 0}, {0, 1}, {-1, 0}, {0, -1}}) do
       local block = vec2FFromString(blockStr)
-      --sb.logInfo("blockStr: %s", blockStr)
-      --sb.logInfo("block: %s", block)
       local adjacent = vec2.add(block, offset)
-      -- if not includesVec2(previousBlocks, adjacent) and not includesVec2(temp, adjacent) 
-        -- and (includes(validMats, world.material(vec2.add(center, adjacent), "foreground"))
-        -- or includes(validMatMods, world.mod(vec2.add(center, adjacent), "foreground"))) then
-      --sb.logInfo("previousBlocks Contains?: %s", vec2SetContains(previousBlocks, adjacent))
-      --sb.logInfo("temp Contains?: %s", vec2SetContains(temp, adjacent))
+
       if not vec2SetContains(previousBlocks, adjacent) and not vec2SetContains(temp, adjacent) 
           and containsConductive(vec2.add(center, adjacent)) then
 
-        -- table.insert(temp, adjacent)
         vec2SetInsert(temp, adjacent)
         area = area + 1
       end
@@ -161,10 +143,7 @@ function placeWave()
     animTickTimer = animTicks
     animNextBlocks = {}
   end
-  -- for _, block in ipairs(nextBlocks) do
-    -- table.insert(animNextBlocks, block)
   for blockStr, _ in pairs(nextBlocks) do
-    --sb.logInfo("%s", blockStr)
     table.insert(animNextBlocks, vec2FFromString(blockStr))
   end
 end

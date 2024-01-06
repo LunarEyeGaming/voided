@@ -1493,27 +1493,28 @@
                             "coreIds": "corePartition",
                             "corePositions": "corePositionPartition"
                           }
+                        },
+                        {
+                          "title": "each",
+                          "type": "decorator",
+                          "name": "each",
+                          "parameters": {
+                            "list": {"key": "turretIds"},
+                            "type": {"value": "entity"}
+                          },
+                          "child": {
+                            "title": "sendEntityMessage",
+                            "type": "action",
+                            "name": "sendEntityMessage",
+                            "parameters": {
+                              "entity": {"key": "eachItem"},
+                              "message": {"value": "despawn"}
+                            }
+                          }
                         }
                       ]
                     }
                   },
-                  /* {
-                    "title": "flyToPosition",
-                    "type": "action",
-                    "name": "flyToPosition",
-                    "parameters": {
-                      "position": {"key": "spawn"},
-                      "tolerance": {"value": 1}
-                    }
-                  },
-                  {
-                    "title": "setVelocity",
-                    "type": "action",
-                    "name": "setVelocity",
-                    "parameters": {
-                      "velocity": {"value": [0, 0]}
-                    }
-                  }, */
                   {
                     "title": "setResourcePercentage",
                     "type": "action",

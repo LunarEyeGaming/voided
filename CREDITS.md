@@ -10,6 +10,8 @@ Lightning sound effects:
 
 Bee swarm sound effect: "black-bees swarm.wav" by bruno.auzet on Freesound.org (URL: https://freesound.org/people/bruno.auzet/sounds/578267/). Edited into a loop
 
+Fume Balloon sound effects use the following sample: "Balloon_Inflate_6.wav" by Terhen on Freesound.org (URL: https://freesound.org/people/Terhen/sounds/234186/).
+
 All custom sounds were made in Audacity using vanilla Starbound's assets, except for the aforementioned lightning sound effects.
 
 I would like to thank Portal Mech for playtesting the Ancient Stronghold and the Voltage biome and providing feedback and ideas for them.

@@ -1,0 +1,50 @@
+{
+  "projectileName" : "v-fumeballoonshot",
+  "image" : "fumeballoonshot.png",
+  "physics" : "bullet",
+  "frameNumber" : 1,
+  "animationCycle" : 1.0,
+  "power" : 1,
+  "speed" : 50,
+  "timeToLive" : 0.25,
+  "bounces" : 0,
+  "onlyHitTerrain" : true,
+  "flippable" : true,
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-downspittercluster",
+      "inheritDamageFactor" : 1.0,
+      "angleAdjust" : 0,
+      "config" : {
+        "speed" : 50
+      }
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-downspittercluster",
+      "inheritDamageFactor" : 1.0,
+      "angleAdjust" : 45,
+      "config" : {
+        "speed" : 50
+      }
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-downspittercluster",
+      "inheritDamageFactor" : 1.0,
+      "angleAdjust" : -45,
+      "config" : {
+        "speed" : 50
+      }
+    },
+    {
+      "action" : "particle",
+      "specification" : "v-fumeballoonshotshard1"
+    },
+    {
+      "action" : "particle",
+      "specification" : "v-fumeballoonshotshard2"
+    }
+  ]
+}

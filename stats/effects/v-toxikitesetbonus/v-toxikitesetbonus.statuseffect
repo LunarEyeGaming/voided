@@ -1,0 +1,13 @@
+{
+  "name" : "v-toxikitesetbonus",
+  "effectConfig" : {
+    "effectName" : "v-toxikitemarker",
+    "effectDuration" : null,  // Use default effect duration
+    "effectRadius" : 150
+  },
+  "defaultDuration" : 1.0,
+  "scripts" : ["v-toxikitesetbonus.lua"],
+  
+  "label" : "Poison Touch - All attacks inflict poison on their targets",
+  "icon" : "/interface/statuses/v-toxikitesetbonus.png"
+}

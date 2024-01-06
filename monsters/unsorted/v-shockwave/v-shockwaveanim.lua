@@ -5,6 +5,7 @@ local dt
 local animConfig
 local startColor
 local endColor
+local fullbright
 local blocks
 
 local testVar
@@ -15,6 +16,7 @@ function init()
   animConfig = animationConfig.animationParameter("animationConfig")
   startColor = animConfig.startColor
   endColor = animConfig.endColor
+  fullbright = animConfig.fullbright
 
   blocks = {}
   
@@ -48,7 +50,7 @@ function update()
           position = vec2.add(center, block),
           color = color, 
           width = 8,
-          fullbright = true
+          fullbright = fullbright
         }, "ForegroundEntity+10")
       end
       blockSet[1] = blockSet[1] - dt
