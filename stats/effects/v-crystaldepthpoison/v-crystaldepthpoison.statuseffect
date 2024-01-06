@@ -2,7 +2,7 @@
   "name" : "v-crystaldepthpoison",
   "blockingStat" : "v-crystaldepthpoisonImmunity",
   "effectConfig" : {
-    "poisonRate" : 3
+    "poisonRate" : 0.5
   },
   "defaultDuration" : 1,
 
@@ -10,6 +10,6 @@
     "v-crystaldepthpoison.lua"
   ],
 
-  "label" : "High Mycotoxin Exposure - Mycotoxin exposure increased",
-  "icon" : "/interface/statuses/v-crystaldepthpoison.png"
+  "label" : "Mycotoxin Exposure - Mycotoxin exposure slightly increased",
+  "icon" : "/interface/statuses/v-biomepoison.png"
 }

@@ -9,7 +9,7 @@
   "shortdescription" : "Mycotoxin Antidote",
   "maxStack" : 1,
   "effects" : [ [
-    "v-depthpoisonantidote2",
+    {"effect" : "v-depthpoisonblock", "duration" : 180},
     "v-depthpoisonantidotecooldown"
   ] ],
   "blockingEffects" : [

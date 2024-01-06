@@ -5,11 +5,12 @@
   "maxStack" : 10,
   "category" : "medicine",
   "inventoryIcon" : "v-dotefruitsalve.png",
-  "description" : "'Dotefruit crushed into a paste. Slightly reduces poison amount.",
+  "description" : "'Dotefruit crushed into a paste. Temporarily blocks mycotoxins.",
   "shortdescription" : "'Dotefruit Salve",
   "effects" : [ [
       {
-        "effect" : "v-depthpoisonantidotesalve"
+        "effect" : "v-depthpoisonblock",
+        "duration" : 30
       }
     ] ],
   "emote" : "",

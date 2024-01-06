@@ -7,7 +7,7 @@
   "description" : "<todo>",
   "shortdescription" : "killerbeehoney",
   "effects" : [ [
-    "v-depthpoisonantidotehoney"
+    {"effect" : "v-depthpoisonblock", "duration" : 90}
   ] ],
   "foodValue" : 15,
   "tooltipKind" : "food",

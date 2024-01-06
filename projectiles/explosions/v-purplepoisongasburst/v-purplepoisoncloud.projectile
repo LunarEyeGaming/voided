@@ -3,14 +3,15 @@
   "image" : "purplepoisoncloud.png",
   "physics" : "gas",
   "frameNumber" : 8,
-  "animationCycle" : 2,
+  "animationCycle" : 5,
   "power" : 1,
   "speed" : 5,
-  "timeToLive" : 2,
+  "timeToLive" : 5,
   "bounces" : -1,
   "damagePoly" : [ [-32, 0], [-24, -24], [0, -32], [24, -24], [32, 0], [24, 24], [0, 32], [-24, 24] ],
   "piercing" : true,
   "emitters" : [ ],
-  "damageKind" : "poison",
-  "statusEffects" : [ "weakpoison", "v-crystaldepthpoison2" ]
+  "damageKind" : "hidden",
+  "damageRepeatTimeout" : 0.1,
+  "statusEffects" : [ {"effect" : "v-crystaldepthpoison2", "duration" : 1.0} ]
 }

@@ -44,7 +44,7 @@ function init()
   meterSize = root.imageSize(baseLayerImage)
   meterOffset = vec2.add(meterBaseOffset, vec2.mul(meterSize, -1 / 16))
   warningPulseTime = 5.0
-  warningThreshold = 0.75  -- The minimum poison ratio required for the warning border to show.
+  warningThreshold = 1.1  -- The minimum poison ratio required for the warning border to show.
 
   flashTimer = 0
   warningPulseTimer = warningPulseTime

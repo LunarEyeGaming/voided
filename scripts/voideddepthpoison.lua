@@ -2,7 +2,7 @@ local poisonTolerance
 local damageRate
 
 function init()
-  poisonTolerance = 900 -- The maximum amount of poison the player can tolerate before taking damage
+  poisonTolerance = 50 -- The maximum amount of poison the player can tolerate before taking damage
   damageRate = 0.5 -- Measured in health points per poison unit per second
   damageTime = 1.0  -- Amount of time between each damage tick
   damageTimer = 0
