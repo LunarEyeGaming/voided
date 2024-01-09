@@ -15,9 +15,9 @@ function ModProperty.update(position, layer)
   -- Emit spark with a probability of sparkChance.
   if math.random() < sparkChance then
     if layer == "background" then
-      world.spawnProjectile("v-toxikitesporebg", position)
+      world.spawnProjectile("v-toxikiteparticlebg", position)
     else
-      world.spawnProjectile("v-toxikitesporefg", position)
+      world.spawnProjectile("v-toxikiteparticlefg", position)
     end
   end
 end

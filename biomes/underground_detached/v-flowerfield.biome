@@ -12,7 +12,26 @@
           [ 1.0, "v-killerbee" ]
         ]
       }
-    ]
+    ],
+    "monsterParameters" : {
+      "colors" : "v-toxicwasteland",
+      "statusSettings" : {
+        "stats" : {
+          "electricResistance" : {
+            "baseValue" : -0.25
+          },
+          "poisonResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 20.0
+          }
+        }
+      }
+    }
   },
 
   "mainBlock" : "v-toxicsoil",

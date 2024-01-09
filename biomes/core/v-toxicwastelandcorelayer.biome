@@ -5,9 +5,10 @@
   "spawnProfile" : {
     "groups" : [
       {
-        "select" : 1,
+        "select" : 2,
         "pool" : [
-          [ 1.0, "v-downspitterunderground" ]
+          [ 1.0, "v-downspitter2underground" ],
+          [ 1.0, "v-fumeballoon" ]
         ]
       },
       {
@@ -16,7 +17,7 @@
       }
     ],
     "monsterParameters" : {
-      "colors" : "v-voltage",
+      "colors" : "v-toxicwasteland",
       "statusSettings" : {
         "stats" : {
           "electricResistance" : {
@@ -39,9 +40,9 @@
     }
   },
 
-  "parallax" : "/parallax/core/v-voltagecore.parallax",
+  "parallax" : "/parallax/core/v-toxicwastelandcore.parallax",
 
-  "mainBlock" : "v-toxicstone",
+  "mainBlock" : "v-toxicmycelium",
   "subBlocks" : [ "v-toxicfungus" ],
   "ores" : "v-toxiccore",
 
@@ -115,6 +116,15 @@
             "parameters" : { }
           }
         ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-mushroom",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-mushroom" ]
       },
       /* {
         "mode" : "floor",

@@ -3,12 +3,12 @@
   "modName" : "v-toxikite",
   "itemDrop" : "v-toxikiteore",
   "description" : "Toxikite ore. Better be careful when mining it.",
-  "health" : 25,
+  "health" : 5,
   "harvestLevel" : 6,
   "breaksWithTile" : true,
 
-  "miningSounds" : [ "/sfx/tools/v_voltite_mine1.ogg", "/sfx/tools/v_voltite_mine2.ogg" ],
-  "miningParticle" : "orespark",
+  "miningSounds" : [ "/sfx/tools/v_toxikite_mine1.ogg", "/sfx/tools/v_toxikite_mine2.ogg", "/sfx/tools/v_toxikite_mine3.ogg" ],
+  "miningParticle" : "v-toxikiteshard",
 
   "renderTemplate" : "/tiles/classicmaterialtemplate.config",
   "renderParameters" : {

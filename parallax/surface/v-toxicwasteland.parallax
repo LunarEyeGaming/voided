@@ -3,14 +3,14 @@
   
   "layers" : [
     {
-      "kind" : "divider/blackrock",
+      "kind" : "v-toxicwasteland/divider",
       "offset" : [0, 350],
       "nohueshift" : true,
       "lightMapped" : true,
       "parallax" : 1.199
     },
     {
-      "kind" : "tile/magmarock",
+      "kind" : "v-toxicwasteland/undergroundtile",
       "nohueshift" : true,
       "lightMapped" : true,
       "repeatY" : true,
@@ -87,7 +87,6 @@
     },
     {
       "kind" : "v-toxicwasteland/back",
-      "modCount" : 1,
       "offset" : [50, 100],
       "noRandomOffset" : true,
       "parallax" : [10, 9.001],

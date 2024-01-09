@@ -56,25 +56,42 @@
     },
     
     {
-      // mountains
+      //surface roughness
       "type" : "displacement",
       "xType" : "perlin",
-      "xOctaves" : 1,
-      "xFreq" : 0.01,
-      "xAmp" : 2,
+      "xOctaves" : 2,
+      "xFreq" : 0.2,
+      "xAmp" : 1,
+      "xXInfluence" : 0,
       "yType" : "perlin",
-      "yOctaves" : 2,
-      "yFreq" : 0.005,
-      "yAmp" : 450,
-      "yBias" : 5,
-      "yClamp" : [-100, 5],
-      "yClampSmoothing" : 50,
+      "yOctaves" : 3,
+      "yFreq" : 0.05,
+      "yAmp" : 5,
       "yYInfluence" : 0,
+      "yBias" : 0.5,
+      "yClamp" : [0, 1],
 
       "source" : {
-        "type" : "flatSurface",
+        // mountains
+        "type" : "displacement",
+        "xType" : "perlin",
+        "xOctaves" : 1,
+        "xFreq" : 0.01,
+        "xAmp" : 2,
+        "yType" : "perlin",
+        "yOctaves" : 2,
+        "yFreq" : 0.005,
+        "yAmp" : 450,
+        "yBias" : 5,
+        "yClamp" : [-100, 5],
+        "yClampSmoothing" : 50,
+        "yYInfluence" : 0,
 
-        "adjustment" : 0
+        "source" : {
+          "type" : "flatSurface",
+
+          "adjustment" : 0
+        }
       }
     }
   ]

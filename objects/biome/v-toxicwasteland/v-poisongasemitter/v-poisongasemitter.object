@@ -22,27 +22,27 @@
   "orientations" : [
     {
       "image" : "image.png",
-      "imagePosition" : [-16, -16],
+      "imagePosition" : [-32, 0],
       
       "direction" : "left",
       "flipImages" : true,
-
-      "projectileDirection" : [0, 1],
-      "projectilePosition" : [0, 0],
+      
+      "anchors" : ["bottom"],
 
       "spaceScan" : 0.1
     },
     {
       "image" : "image.png",
-      "imagePosition" : [-16, -16],
+      "imagePosition" : [-32, 0],
       "direction" : "right",
-
-      "projectileDirection" : [0, 1],
-      "projectilePosition" : [0, 0],
+      
+      "anchors" : ["bottom"],
 
       "spaceScan" : 0.1
     }
   ],
+  
+  "animation" : "v-poisongasemitter.animation",
 
   "scripts" : [ "v-poisongasemitter.lua" ],
   "scriptDelta" : 2,
@@ -52,6 +52,18 @@
   "smashOnBreak" : true,
   "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
   "smashParticles" : [ { "count" : 10, "particle" : "greystoneshard" } ],
+  
+  "gasProjectileType" : "v-poisoncloud",
+  "gasProjectileConfig" : {},
+
+  "gasDirection" : [0, 1],
+  "gasOffsetRegion" : [-4, 0, 4, 0],
+  
+  "gasEmissionInterval" : 0.2,
+  "onDuration" : 5.0,
+  "offDuration" : 5.0,
+  
+  "requiredEmptySpace" : [-4, 0, 4, 50],
   
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

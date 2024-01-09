@@ -1,0 +1,157 @@
+{
+  "name" : "v-toxicLake",
+
+  "type" : "max",
+  "sources" : [
+    {
+      //jaggy ledges
+      "type" : "displacement",
+      "xType" : "perlin",
+      "xOctaves" : 3,
+      "xFreq" : 0.08,
+      "xAmp" : 12,
+      "xXInfluence" : 0.5,
+      "xYInfluence" : 0.5,
+      "yType" : "perlin",
+      "yOctaves" : 1,
+      "yFreq" : 0.1,
+      "yAmp" : 2,
+      "yYInfluence" : 0,
+
+      "source" : {
+        //roughish islands
+        "type" : "islandSurface",
+
+        "islandElevation" : -1,
+
+        "islandDecision" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.05,
+          "amplitude" : 1.1,
+          "bias" : -0.05
+        },
+        "islandTaperPoint" : 0.2,
+
+        "islandHeight" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.035,
+          "amplitude" : 2,
+          "bias" : 2
+        },
+
+        "islandDepth" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 6,
+          "bias" : 6
+        }
+      }
+    },
+    // Floating bits
+    {
+      "type" : "mix",
+      
+      "mixSource" : {
+        "type" : "flatSurface",
+
+        "adjustment" : -20
+      },
+      
+      "aSource" : {
+        "type" : "constant",
+        "value" : -60
+      },
+      
+      "bSource" : {
+        // Strips
+        "type" : "perlin",
+        "function" : "perlin",
+        "octaves" : 2,
+        "freq" : 0.05,
+        "amp" : 50,
+        "bias" : -20,
+        "xInfluence" : 1.0,
+        "yInfluence" : 1.0
+      }
+    },
+    // Decaying part
+    {
+      "type" : "mix",
+      
+      "mixSource" : {
+        //low rolling hills
+        "type" : "displacement",
+        "xType" : "perlin",
+        "xOctaves" : 2,
+        "xFreq" : 0.02,
+        "xAmp" : 0,
+        "yType" : "perlin",
+        "yOctaves" : 1,
+        "yFreq" : 0.01,
+        "yAmp" : 40,
+        "yYInfluence" : 0.1,
+
+        "source" : {
+          "type" : "flatSurface",
+
+          "adjustment" : -40
+        }
+      },
+      
+      "aSource" : {
+        "type" : "constant",
+        "value" : -60
+      },
+      
+      "bSource" : {
+        // Strand distortion
+        "type" : "displacement",
+        "xType" : "perlin",
+        "xOctaves" : 2,
+        "xFreq" : 0.07,
+        "xAmp" : 20,
+        "xXInfluence" : 1.0,
+        "xYInfluence" : 0.5,
+        "yType" : "perlin",
+        "yOctaves" : 1,
+        "yFreq" : 0.1,
+        "yAmp" : 3,
+        "yYInfluence" : 0,
+        "source" : {
+          // Strips
+          "type" : "perlin",
+          "function" : "perlin",
+          "octaves" : 2,
+          "freq" : 0.5,
+          "amp" : 50,
+          "bias" : -0.4,
+          "xInfluence" : 1.0,
+          "yInfluence" : 0.0
+        }
+      }
+    },
+    // Hills
+    {
+      //low rolling hills
+      "type" : "displacement",
+      "xType" : "perlin",
+      "xOctaves" : 2,
+      "xFreq" : 0.02,
+      "xAmp" : 0,
+      "yType" : "perlin",
+      "yOctaves" : 1,
+      "yFreq" : 0.01,
+      "yAmp" : 40,
+      "yYInfluence" : 0.1,
+
+      "source" : {
+        "type" : "flatSurface",
+
+        "adjustment" : -80
+      }
+    }
+  ]
+}

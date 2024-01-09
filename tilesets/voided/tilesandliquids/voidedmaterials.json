@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":20,
+ "tilecount":22,
  "tileheight":8,
  "tileproperties":
     {
@@ -66,6 +66,14 @@
      "2":
         {
          "material":"v-coppersand"
+        },
+     "20":
+        {
+         "material":"v-toxicfungusstem"
+        },
+     "21":
+        {
+         "material":"v-toxicmycelium"
         },
      "3":
         {
@@ -150,6 +158,14 @@
          "material":"string"
         },
      "2":
+        {
+         "material":"string"
+        },
+     "20":
+        {
+         "material":"string"
+        },
+     "21":
         {
          "material":"string"
         },
@@ -259,6 +275,18 @@
      "2":
         {
          "image":"..\/images\/tilesandliquids\/coppersand.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "20":
+        {
+         "image":"..\/images\/tilesandliquids\/toxicfungusstem.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "21":
+        {
+         "image":"..\/images\/tilesandliquids\/toxicmycelium.png",
          "imageheight":8,
          "imagewidth":8
         },

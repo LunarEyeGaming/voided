@@ -1,6 +1,6 @@
 {
   "name" : "v-toxiclake",
-  "friendlyName" : "Toxic Lake",
+  "friendlyName" : "Colony's Corpse",
 
   /* "spawnProfile" : {
     "groups" : [
@@ -50,18 +50,15 @@
     }
   }, */
 
-  "mainBlock" : "v-toxicfungus",
-  "subBlocks" : [ "v-toxicstone" ],
-  "ores" : "v-voltage",
+  "mainBlock" : "v-rottingfungus",
+  "subBlocks" : [ "v-toxicfungus" ],
+  "ores" : "v-toxicwasteland",
   
   "hueShiftOptions" : [ 40, 30, 20, 10, 0, -10, -20 ],
 
   "surfacePlaceables" : {
     "grassMod" : [ "toxicgrass" ],
     "grassModDensity" : 0.75,
-
-    "ceilingGrassMod" : [ "roots" ],
-    "ceilingGrassModDensity" : 0.6,
 
     "baseHueShiftMax" : 120,
     "modHueShiftMax" : 180,

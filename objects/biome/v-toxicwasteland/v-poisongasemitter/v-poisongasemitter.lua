@@ -12,25 +12,50 @@ local gasProjectileConfig
 local gasDirection
 local gasOffset
 
+local requiredEmptySpace
+
 local state
 
 function init()
-  gasEmissionInterval = 0.2
-  onDuration = 5
-  offDuration = 5
+  gasEmissionInterval = config.getParameter("gasEmissionInterval")
+  onDuration = config.getParameter("onDuration")
+  offDuration = config.getParameter("offDuration")
   
-  gasProjectileType = "v-poisoncloud"
-  gasProjectileConfig = {}
+  gasProjectileType = config.getParameter("gasProjectileType")
+  gasProjectileConfig = config.getParameter("gasProjectileConfig")
   
-  gasDirection = {0, 1}
-  gasOffsetRegion = {-5, -5, 5, 5}
+  gasDirection = config.getParameter("gasDirection")
+  gasOffsetRegion = config.getParameter("gasOffsetRegion")
+  
+  requiredEmptySpace = rect.translate(config.getParameter("requiredEmptySpace"), object.position())
   
   state = FSM:new()
-  state:set(inactive)
+  state:set(postInit)
 end
 
 function update(dt)
   state:update()
+end
+
+function postInit()
+  -- Skip if collision has already been checked
+  if storage.checkedCollision then
+    state:set(inactive)
+  end
+
+  -- While the region to check has not fully loaded, wait one tick.
+  while not world.regionActive(requiredEmptySpace) do
+    coroutine.yield()
+  end
+  
+  -- If the required empty space is not given, die instantly.
+  if world.rectCollision(requiredEmptySpace) then
+    object.smash(true)
+  end
+  
+  storage.checkedCollision = true
+  
+  state:set(inactive)
 end
 
 function inactive()
@@ -42,6 +67,9 @@ end
 function active()
   local timer = gasEmissionInterval
   
+  animator.playSound("gasEmitterStart")
+  animator.playSound("gasEmitterLoop", -1)
+  
   util.wait(onDuration, function(dt)
     timer = timer - dt
     
@@ -51,6 +79,9 @@ function active()
       timer = gasEmissionInterval
     end
   end)
+  
+  animator.stopAllSounds("gasEmitterLoop")
+  animator.playSound("gasEmitterStop")
   
   state:set(inactive)
 end

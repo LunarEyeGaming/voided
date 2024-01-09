@@ -244,7 +244,9 @@
           "dungeonCountRange" : [1, 1]
         },
         "subsurface" : {
-          "primaryRegion" : ["v-shallowundergroundtoxic"]
+          "primaryRegion" : ["v-shallowundergroundtoxic"],
+          "secondaryRegions" : ["v-poisonfloodedcaves"],
+          "secondaryRegionCount" : [0, 1]
         },
         "underground1" : {
           "primaryRegion" : ["v-undergroundtoxic"],
@@ -293,7 +295,7 @@
     "op" : "add",
     "path" : "/regionTypes/v-toxiclake",
     "value" : {
-      "blockSelector" : [ "v-remixedIslandsSurfaceSmall" ],
+      "blockSelector" : [ "v-toxicLake" ],
       "fgCaveSelector" : [ "empty" ],
       "bgCaveSelector" : [ "empty" ],
       "oceanLiquid" : ["v-superpoison"],

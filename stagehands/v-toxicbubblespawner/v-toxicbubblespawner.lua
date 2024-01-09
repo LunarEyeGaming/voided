@@ -1,8 +1,9 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
+require "/scripts/rect.lua"
 
-local lightningXPosRange
-local lightningTimeRange
+local bubbleOffsetRegion
+local bubbleTimeRange
 local maxSpawnHeight
 local projectileType
 local projectileDirection
@@ -11,14 +12,14 @@ local projectileParameters
 local timer
 
 function init()
-  lightningXPosRange = config.getParameter("lightningXPosRange")
-  lightningTimeRange = config.getParameter("lightningTimeRange")
+  bubbleOffsetRegion = config.getParameter("bubbleOffsetRegion")
+  bubbleTimeRange = config.getParameter("bubbleTimeRange")
   maxSpawnHeight = config.getParameter("maxSpawnHeight")
   projectileType = config.getParameter("projectileType")
   projectileDirection = config.getParameter("projectileDirection")
   projectileParameters = config.getParameter("projectileParameters")
 
-  timer = util.randomInRange(lightningTimeRange)
+  timer = util.randomInRange(bubbleTimeRange)
 end
 
 function update(dt)
@@ -27,11 +28,13 @@ function update(dt)
   timer = timer - dt
 
   if timer < 0 then
-    local xPos = util.randomInRange(lightningXPosRange) + ownPos[1]
-    local testPos = vec2.add({xPos, ownPos[2]}, {0, maxSpawnHeight})
+    local projectilePos = vec2.add(ownPos, rect.randomPoint(bubbleOffsetRegion))
 
-    world.spawnProjectile(projectileType, testPos, nil, projectileDirection, false, projectileParameters)
-    timer = util.randomInRange(lightningTimeRange)
+    -- No material in the background and a liquid at the spawn position implies ocean
+    if world.material(projectilePos, "background") == false and world.liquidAt(projectilePos) then
+      world.spawnProjectile(projectileType, projectilePos, nil, projectileDirection, false, projectileParameters)
+      timer = util.randomInRange(bubbleTimeRange)
+    end
     
     -- Timer does not get reset until a spot was chosen.
   end
