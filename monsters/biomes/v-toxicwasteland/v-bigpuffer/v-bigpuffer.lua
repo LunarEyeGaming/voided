@@ -55,6 +55,8 @@ function init()
   inflatedCollisionPoly = poly.scale(inflationCollisionPoly, inflateSize)
 
   monster.setDeathParticleBurst("deathPoof")
+  
+  animator.setGlobalTag("inflateStatus", "normal")
 
   if animator.hasSound("deathPuff") then
     monster.setDeathSound("deathPuff")
@@ -76,6 +78,9 @@ states = {}
 
 function states.swim()
   local direction = 1
+  
+  -- Reset animation state
+  animator.setAnimationState("body", isInflated and "inflated" or "normal")
   
   -- Swim back and forth
   while true do
@@ -104,11 +109,14 @@ end
 
 function states.inflate()
   notInflated = false
+
+  animator.setAnimationState("body", "preinflate")
   
   util.wait(preInflateStopTime, function()
     mcontroller.controlApproachVelocity({0, 0}, preInflateStopForce)
   end)
   
+  animator.setGlobalTag("inflateStatus", "inflated")
   animator.setAnimationState("body", "inflate")
   animator.playSound("inflate")
   
@@ -130,6 +138,8 @@ function states.inflate()
 end
 
 function states.outOfLiquid()
+  animator.setAnimationState("body", "flop")
+
   while not mcontroller.liquidMovement() do
     if mcontroller.onGround() then
       local jumpDirection = util.randomDirection()

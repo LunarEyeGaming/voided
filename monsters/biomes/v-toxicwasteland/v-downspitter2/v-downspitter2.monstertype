@@ -1,14 +1,14 @@
 {
   "type" : "v-downspitter2",
-  "shortdescription" : "<todo>",
-  "description" : "<todo>.",
+  "shortdescription" : "Matured Downspitter",
+  "description" : "A Downspitter that has matured and rooted itself to a ceiling.",
 
-  "categories" : [ "v-ancientturret" ],
+  "categories" : [ "v-downspitter2" ],
   "parts" : [ "body" ],
 
-  "animation" : "/monsters/mission/ancientstronghold/v-ancientturret/ancientturret.animation",
+  "animation" : "v-downspitter2.animation",
 
-  "dropPools" : [  ],
+  "dropPools" : [ ],
 
   "baseParameters" : {
     "scripts" : [
@@ -37,7 +37,7 @@
 
       "hostileActions" : [
         {
-          "name" : "action-fire",
+          "name" : "v-downspitter2-fire",
           "parameters" : {
             "onGround" : false,
             "requireLineOfSight" : true,
@@ -45,6 +45,8 @@
             "minimumRange" : 2,
             "windupTime" : 2.0,
             "windupState" : "",
+            "windupState2" : "windup",
+            "windupTime2" : 0.5,
 
             "projectileCount" : 1,
             "projectileType" : "v-downspitterprojectile2",
@@ -63,8 +65,8 @@
             "rotateAim" : true,
             "holdAim" : true,
 
-            "winddownState" : "idle",
-            "winddownTime" : 0.0
+            "winddownState" : "fire",
+            "winddownTime" : 0.2
           }
         }
       ],
@@ -85,19 +87,15 @@
 
       "concurrentActions" : [
         {
-          "name" : "idle-crawl",
+          "name" : "v-action-expectsolid",
           "parameters" : {
-            "stopForce" : 500
           }
         }
       ],
 
       "concurrentHostileActions" : [
         {
-          "name" : "idle-crawl",
-          "parameters" : {
-            "stopForce" : 500
-          }
+          "name" : "v-action-expectsolid"
         }
       ],
       
@@ -108,17 +106,6 @@
             "offset" : [0, 0],
             "monsterType" : "v-downspitter",
             "replacement" : true
-          }
-        },
-        {
-          "name" : "action-projectile",
-          "parameters" : {
-            "projectileCount" : 2,
-            "projectileType" : "nutmidgeshell",
-            "projectileParameters" : {},
-            "aimDirection" : [1, 1],
-            "inaccuracy" : 1.5,
-            "fireOffset" : [0, 1]
           }
         }
       ]
@@ -137,10 +124,8 @@
     "metaBoundBox" : [-4, -4, 4, 4],
     "scale" : 1.0,
 
-    "selfDamagePoly" : [ [1.0, 1.5],  [1.5, 1.0],  [1.5, -1.0],  [1.0, -1.5],  [-1.0, -1.5],  [-1.5, -1.0],  [-1.5, 1.0],  [-1.0, 1.5] ],
-
     "movementSettings" : {
-      "collisionPoly" : [ [0.41, 1.0],  [1.0, 0.41],  [1.0, -0.41],  [0.41, -1.0],  [-0.41, -1.0],  [-1.0, -0.41],  [-1.0, 0.41],  [-0.41, 1.0] ],
+      "collisionPoly" : [ [1.23, 3.0],  [3.0, 1.23],  [3.0, -1.23],  [1.23, -3.0],  [-1.23, -3.0],  [-3.0, -1.23],  [-3.0, 1.23],  [-1.23, 3.0] ],
       "gravityEnabled" : false,
 
       "mass" : 1.0,
@@ -157,7 +142,7 @@
       "physicsEffectCategories" : ["stationarymonster"]
     },
 
-    "bodyMaterialKind" : "stone",
+    "bodyMaterialKind" : "organic",
 
     "knockoutTime" : 0.3,
     "knockoutAnimationStates" : {
@@ -168,7 +153,7 @@
 
     "statusSettings" : {
       "statusProperties" : {
-        "targetMaterialKind" : "stone"
+        "targetMaterialKind" : "organic"
       },
 
       "appliesEnvironmentStatusEffects" : false,

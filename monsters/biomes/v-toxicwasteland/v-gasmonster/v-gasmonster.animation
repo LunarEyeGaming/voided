@@ -9,27 +9,31 @@
             "frames" : 1
           },
           "walk" : {
-            "frames" : 6,
+            "frames" : 5,
             "cycle" : 0.6,
             "mode" : "loop"
           },
           "windup" : {
-            "frames" : 2,
+            "frames" : 5,
             "cycle" : 0.5,
             "properties" : {
               "immediateSound" : "/sfx/gun/pumpgun_draw1.ogg"
             }
           },
           "fire" : {
-            "frames" : 1,
+            "frames" : 5,
             "cycle" : 0.5
           },
-          "jump" : {
+          "jumpwindup" : {
             "frames" : 2,
             "cycle" : 0.2
           },
+          "jump" : {
+            "frames" : 1,
+            "cycle" : 0.2
+          },
           "fall" : {
-            "frames" : 2,
+            "frames" : 1,
             "cycle" : 0.2
           }
         }
@@ -72,7 +76,7 @@
       "body" : {
         "properties" : {
           "transformationGroups" : [ "body" ],
-          "offset" : [-0.125, 0.375]
+          "offset" : [-0.125, 0.5]
         },
         "partStates" : {
           "body" : {
@@ -94,6 +98,11 @@
             "fire" : {
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
+              }
+            },
+            "jumpwindup" : {
+              "properties" : {
+                "image" : "<partImage>:jumpwindup.<frame>"
               }
             },
             "jump" : {

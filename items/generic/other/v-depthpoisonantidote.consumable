@@ -5,11 +5,12 @@
   "category" : "medicine",
   "inventoryIcon" : "v-depthpoisonantidote.png",
   "builder" : "/items/buildscripts/v-builditem.lua",
-  "description" : "Greatly mitigates the effects of atmospheric poison.",
+  "description" : "Protects against mycotoxins in addition to other poisons.",
   "shortdescription" : "Mycotoxin Antidote",
   "maxStack" : 1,
   "effects" : [ [
     {"effect" : "v-depthpoisonblock", "duration" : 180},
+    {"effect" : "antidote", "duration" : 180},
     "v-depthpoisonantidotecooldown"
   ] ],
   "blockingEffects" : [

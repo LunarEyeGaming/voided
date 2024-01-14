@@ -5,7 +5,7 @@
     "rules" : [
     ],
 
-    "anchor" : [ "hive1" ],
+    "anchor" : [ "hive1", "hive2", "hive3", "hive4", "hive5" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -20,6 +20,34 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "hive1.json" ]
+    },
+    {
+      "name" : "hive2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "hive2.json" ]
+    },
+    {
+      "name" : "hive3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "hive3.json" ]
+    },
+    {
+      "name" : "hive4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "hive4.json" ]
+    },
+    {
+      "name" : "hive5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "hive5.json" ]
     }
   ]
 }

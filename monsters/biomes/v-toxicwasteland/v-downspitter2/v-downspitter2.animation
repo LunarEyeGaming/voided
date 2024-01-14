@@ -1,0 +1,147 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "body" : {
+        "priority" : 0,
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop",
+            "properties" : {
+              "particleEmittersOff" : ["windup"]
+            }
+          },
+          "windup" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "fire",
+            "properties" : {
+              "particleEmittersOn" : ["windup"],
+              "immediateSound" : "/sfx/npc/monsters/v_downspitter_windup.ogg"
+            }
+          },
+          "fire" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "particleEmittersOff" : ["windup"]
+            }
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          "offset" : [0.0, 0.75],
+          "zLevel" : 1,
+          "image" : "<partImage>:idle.1"
+        },
+        "partStates" : {
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "turret" : {
+        "properties" : {
+          "transformationGroups" : [ "aim", "facing", "body" ],
+          "offset" : [0.5, 0.625],
+          "zLevel" : 3
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "globalTagDefaults" : {
+  },
+
+  "transformationGroups" : {
+    "body" : { "interpolated" : true },
+    "facing" : { "interpolated" : false },
+    "aim" : { "interpolated" : true }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "offsetRegion" : [-2, 1, 2, 2],
+      "burstCount" : 6,
+      "particles" : [
+        { "particle" : "v-downspitterrootfragment1" },
+        { "particle" : "v-downspitterrootfragment2" },
+        { "particle" : "v-downspitterrootfragment3" },
+        { "particle" : "v-downspitterrootfragment4" }
+      ]
+    },
+    "windup" : {
+      "emissionRate" : 10,
+      "offsetRegion" : [ 2.0, 0.0, 2.0, 0.0 ],
+      "transformationGroups" : ["aim", "facing"],
+      "particles" : [
+        { "particle" : "poisonswoosh2" }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
+    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+    "fire" : [ "/sfx/melee/sword_hit_wood1.ogg", "/sfx/melee/sword_hit_wood2.ogg", "/sfx/melee/sword_hit_wood3.ogg" ]
+  }
+}

@@ -1,14 +1,14 @@
 {
   "type" : "v-gasmonster",
-  "shortdescription" : "<todo>",
-  "description" : "<todo>",
+  "shortdescription" : "Mycobloom",
+  "description" : "A living and highly mobile plant that discharges mycotoxins as a self defense mechanism.",
 
   "categories" : [ "v-gasmonster" ],
   "parts" : [ "body" ],
 
   "animation" : "v-gasmonster.animation",
 
-  "dropPools" : [ { "default" : "miasmopTreasure", "bow" : "miasmopHunting" } ],
+  "dropPools" : [ { "default" : "v-gasmonsterTreasure", "bow" : "v-gasmonsterHunting" } ],
 
   "baseParameters" : {
     "scripts" : [
@@ -38,7 +38,7 @@
             "maximumRange" : 20,
             "maxXRange" : 4,
             "windupTime" : 0.3,
-            "windupState" : "idle",
+            "windupState" : "jumpwindup",
 
             "leapVelocity" : 25,
             "collisionCheck" : true,
@@ -137,7 +137,7 @@
     "scale" : 1.0,
 
     "movementSettings" : {
-      "collisionPoly" : [ [0.5, 1.125], [1, 0.625], [1, -0.625], [0.5, -1.125], [-0.5, -1.125], [-1, -0.625], [-1, 0.625], [-0.5, 1.125] ],
+      "collisionPoly" : [ [0.5, 2.125], [1, 1.625], [1, -0.625], [0.5, -1.125], [-0.5, -1.125], [-1, -0.625], [-1, 1.625], [-0.5, 2.125] ],
 
       "mass" : 1.0,
       "walkSpeed" : 3,

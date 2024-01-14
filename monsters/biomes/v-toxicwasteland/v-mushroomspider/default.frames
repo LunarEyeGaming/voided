@@ -1,0 +1,14 @@
+{
+  "frameGrid" : {
+    "size" : [48, 48],
+    "dimensions" : [4, 1],
+
+    "names" : [
+      ["idle.1", "windupweb.1", "windupranged.1", "windupmelee.1"]
+    ]
+  },
+  "aliases" : {
+    "hurt.1" : "idle.1",
+    "melee.1" : "windupmelee.1"
+  }
+}

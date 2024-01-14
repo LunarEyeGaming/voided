@@ -1,20 +1,44 @@
 {
   "projectileName" : "v-downspitterprojectile2predetonate",
-  "image" : "downspitterprojectile2predetonate.png",
+  "image" : "downspitterprojectile.png",
   "physics" : "bullet",
   "bounces" : -1,
-  "animationCycle" : 0.5,
-  "frameNumber" : 4,
+  "animationCycle" : 1.0,
+  "frameNumber" : 1,
   "timeToLive" : 0.5,
   "damageKindImage" : "icon.png",
   "pointLight" : false,
   "speed" : 0,
   "periodicActions" : [
-    {
+    /* {
       "time" : 0,
       "repeat" : false,
       "action" : "projectile",
       "type" : "v-cloudlinewarning"
+    } */
+    {
+      "time" : 0.03,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : "v-downspitterseedwarning1"
+    },
+    {
+      "time" : 0.03,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : "v-downspitterseedwarning2"
+    },
+    {
+      "time" : 0.03,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : "v-downspitterseedwarning3"
+    },
+    {
+      "time" : 0.03,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : "v-downspitterseedwarning4"
     }
   ],
   "actionOnReap" : [
@@ -29,5 +53,8 @@
   ],
   "power" : 2.0,
   "damageKind" : "acid",
-  "emitters" : [ "poisonplasma" ]
+  "onlyHitTerrain" : true,
+  "emitters" : [ "poisonplasma" ],
+  
+  "persistentAudio" : "/sfx/projectiles/v_downspitterpredetonate_warning.ogg"
 }

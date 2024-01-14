@@ -1,0 +1,14 @@
+{
+  "v_regionIsSolid": {
+    "type": "action",
+    "name": "v_regionIsSolid",
+    "title": "v_regionIsSolid",
+    "properties": {
+      "position": {"type": "position", "value": null},
+      "region": {"type": "list", "value": null}
+    },
+    "category": "v-sensor",
+    "script": "/scripts/actions/v-sensor.lua",
+    "output": {}
+  }
+}

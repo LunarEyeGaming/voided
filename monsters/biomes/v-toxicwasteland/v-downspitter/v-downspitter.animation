@@ -6,54 +6,37 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 2,
-            "cycle" : 1.0,
-            "mode" : "loop",
-            "properties" : {
-              "particleEmittersOff" : ["charge"]
-            }
-          },
-          "fly" : {
-            "frames" : 2,
-            "cycle" : 0.75,
-            "mode" : "loop",
-            "properties" : {
-              "particleEmittersOff" : ["charge"]
-            }
-          },
-          "chargewindup" : {
-            "frames" : 1,
-            "cycle" : 0.1,
-            "mode" : "transition",
-            "transition" : "chargewinduploop",
-            "properties" : {
-              "particleEmittersOn" : ["charge"],
-              "immediateSound" : "/sfx/npc/monsters/v_amperecharger_windup.ogg"
-            }
-          },
-          "chargewinduploop" : {
             "frames" : 4,
             "cycle" : 0.4,
             "mode" : "loop",
             "properties" : {
-              "particleEmittersOn" : ["charge"]
+              "particleEmittersOff" : ["windup"]
             }
           },
-          "charge" : {
-            "frames" : 1,
-            "cycle" : 0.1,
-            "mode" : "transition",
-            "transition" : "chargeloop",
-            "properties" : {
-              "particleEmittersOn" : ["charge"]
-            }
-          },
-          "chargeloop" : {
-            "frames" : 8,
-            "cycle" : 0.25,
+          "fly" : {
+            "frames" : 4,
+            "cycle" : 0.4,
             "mode" : "loop",
             "properties" : {
-              "particleEmittersOn" : ["charge"]
+              "particleEmittersOff" : ["windup"]
+            }
+          },
+          "windup" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_downspitter_windup.ogg",
+              "particleEmittersOn" : ["windup"]
+            }
+          },
+          "fire" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "particleEmittersOff" : ["windup"]
             }
           }
         }
@@ -111,24 +94,14 @@
                 "image" : "<partImage>:fly.<frame>"
               }
             },
-            "chargewindup" : {
+            "windup" : {
               "properties" : {
                 "image" : "<partImage>:windup.<frame>"
               }
             },
-            "chargewinduploop" : {
+            "fire" : {
               "properties" : {
-                "image" : "<partImage>:winduploop.<frame>"
-              }
-            },
-            "charge" : {
-              "properties" : {
-                "image" : "<partImage>:charge.<frame>"
-              }
-            },
-            "chargeloop" : {
-              "properties" : {
-                "image" : "<partImage>:chargeloop.<frame>"
+                "image" : "<partImage>:fire.<frame>"
               }
             }
           },
@@ -140,55 +113,7 @@
             }
           }
         }
-      }/* ,
-      "bodyfullbright" : {
-        "properties" : {
-          "zLevel" : 2,
-          "fullbright" : true,
-          "anchorPart" : "body"
-        },
-        "partStates" : {
-          "body" : {
-            "idle" : {
-              "properties" : {
-                "image" : "<partImage>:fly.<frame>"
-              }
-            },
-            "fly" : {
-              "properties" : {
-                "image" : "<partImage>:fly.<frame>"
-              }
-            },
-            "chargewindup" : {
-              "properties" : {
-                "image" : "<partImage>:windup.<frame>"
-              }
-            },
-            "chargewinduploop" : {
-              "properties" : {
-                "image" : "<partImage>:winduploop.<frame>"
-              }
-            },
-            "charge" : {
-              "properties" : {
-                "image" : "<partImage>:charge.<frame>"
-              }
-            },
-            "chargeloop" : {
-              "properties" : {
-                "image" : "<partImage>:chargeloop.<frame>"
-              }
-            }
-          },
-          "damage" : {
-            "stunned" : {
-              "properties" : {
-                "image" : "<partImage>:hurt.<frame>"
-              }
-            }
-          }
-        }
-      } */
+      }
     }
   },
 
@@ -205,12 +130,11 @@
   },
 
   "particleEmitters" : {
-    "charge" : {
-      "emissionRate" : 20,
-      "offsetRegion" : [ -0.625, -1.25, 0.625, 1.25 ],
+    "windup" : {
+      "emissionRate" : 10,
+      // "offsetRegion" : [ -0.625, -1.25, 0.625, 1.25 ],
       "particles" : [
-        { "particle" : "electricswoosh1" },
-        { "particle" : "electricswoosh2" }
+        { "particle" : "poisonswoosh2" }
       ]
     },
     "deathPoof" : {
@@ -255,7 +179,6 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    
-    "charge" : [ "/sfx/melee/travelingslash_electric1.ogg", "/sfx/melee/travelingslash_electric2.ogg", "/sfx/melee/travelingslash_electric3.ogg" ]
+    "fire" : [ "/sfx/melee/sword_hit_wood1.ogg", "/sfx/melee/sword_hit_wood2.ogg", "/sfx/melee/sword_hit_wood3.ogg" ]
   }
 }

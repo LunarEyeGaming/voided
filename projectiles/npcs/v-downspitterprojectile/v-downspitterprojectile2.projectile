@@ -2,8 +2,8 @@
   "projectileName" : "v-downspitterprojectile2",
   "image" : "downspitterprojectile.png",
   "physics" : "bullet",
-  "animationCycle" : 0.25,
-  "frameNumber" : 4,
+  "animationCycle" : 1.0,
+  "frameNumber" : 1,
   "damageKindImage" : "icon.png",
   "pointLight" : false,
   "actionOnReap" : [
@@ -28,6 +28,6 @@
     } */
   ],
   "power" : 2.0,
-  "damageKind" : "acid",
+  "damageKind" : "poisonlash",
   "emitters" : [ "poisonplasma" ]
 }

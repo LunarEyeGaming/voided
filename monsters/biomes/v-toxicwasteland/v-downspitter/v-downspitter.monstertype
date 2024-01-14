@@ -1,14 +1,14 @@
 {
   "type" : "v-downspitter",
-  "shortdescription" : "<todo>",
-  "description" : "<todo>.",
+  "shortdescription" : "Downspitter",
+  "description" : "An organism in its youth, looking for a spot to root itself.",
 
   "categories" : [ "v-downspitter" ],
   "parts" : [ "body" ],
 
   "animation" : "v-downspitter.animation",
 
-  "dropPools" : [ { "default" : "v-downspitterTreasure", "bow" : "v-amperechargerHunting" } ],
+  "dropPools" : [ { "default" : "v-downspitterTreasure", "bow" : "v-downspitterHunting" } ],
 
   "baseParameters" : {
     "scripts" : [
@@ -53,12 +53,10 @@
             "wallCollide" : false,
             "aimAtTarget" : true,
             "chargeTime" : 1.0,
-            /* "chargeSpeed" : 50,
-            "chargeControlForce" : 10000, */
 
-            "winddownState" : "idle",
+            "winddownState" : "fire",
             "winddownStopForce" : 100,
-            "winddownTime" : 0.0,
+            "winddownTime" : 0.2,
 
             "projectileType" : "v-downspitterprojectile",
             "projectileCount" : 1,
@@ -67,21 +65,6 @@
               "timeToLive" : 0.25,
               "power" : 15
             }
-            /* ,
-            
-            "projectileType" : "v-amperechargertrail",
-            "trailDirection" : [0, 0],
-            "trailProjectileConfig" : {
-              "power" : 15,
-              "periodicActions" : [
-                {
-                  "time" : 0,
-                  "repeat" : false,
-                  "action" : "sound",
-                  "options" : ["/sfx/gun/lightningcoil1.ogg", "/sfx/gun/lightningcoil2.ogg", "/sfx/gun/lightningcoil3.ogg"]
-                }
-              ]
-            } */
           }
         }
       ],
@@ -93,7 +76,7 @@
           "name" : "v-approach-rangedfly",
           "parameters" : {
             "minRange" : 8,
-            "maxRange" : 8,
+            "maxRange" : 13,
             "speed" : 18,
             "controlForce" : 50,
             "usePathfinding" : false
@@ -157,7 +140,8 @@
 
     "movementSettings" : {
       "collisionEnabled" : false,
-      "collisionPoly" : [ [1.25, 1.0], [2, 0.25], [2, -0.25], [1.25, -1.0], [-1.25, -1.0], [-2, -0.25], [-2, 0.25], [-1.25, 1.0] ],
+      "collisionPoly" : [ [1.0, 1.12], [0.25, 2.0], [-0.25, 2.0], [-1.0, 1.25], [-1.0, -1.25], [-0.25, -2.0], [0.25, -2.0], [1.0, -1.25] ],
+      // "collisionPoly" : [ [1.25, 1.0], [2, 0.25], [2, -0.25], [1.25, -1.0], [-1.25, -1.0], [-2, -0.25], [-2, 0.25], [-1.25, 1.0] ],
 
       "mass" : 1.0,
       "walkSpeed" : 4,

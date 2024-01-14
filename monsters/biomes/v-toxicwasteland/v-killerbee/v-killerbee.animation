@@ -6,37 +6,58 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 3,
-            "cycle" : 0.25,
+            "frames" : 5,
+            "cycle" : 0.5,
             "mode" : "loop",
             "properties" : {
-              "particleEmittersOff" : ["flames"]
+              "persistentSound" : "/sfx/npc/monsters/bobfae_fly.ogg",
+              "persistentSoundStopTime" : 0.15,
+              "persistentSoundRangeMultiplier" : 0.5
             }
           },
           "fly" : {
-            "frames" : 3,
-            "cycle" : 0.25,
+            "frames" : 5,
+            "cycle" : 0.5,
             "mode" : "loop",
             "properties" : {
-              "particleEmittersOff" : ["flames"],
-              "persistentSound" : "/sfx/npc/monsters/ignome_fly_loop.ogg"
+              "persistentSound" : "/sfx/npc/monsters/bobfae_fly.ogg",
+              "persistentSoundStopTime" : 0.15,
+              "persistentSoundRangeMultiplier" : 0.5
             }
           },
           "chargewindup" : {
-            "frames" : 7,
+            "frames" : 5,
             "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "winduploop",
+            "frameProperties" : {
+              "immediateSound" : ["", "/sfx/npc/monsters/v_killerbee_openstinger.ogg"]
+            },
             "properties" : {
-              "particleEmittersOn" : ["flames"],
-              "immediateSound" : "/sfx/npc/monsters/ignome_windup.ogg"
+              "persistentSound" : "/sfx/npc/monsters/bobfae_fly.ogg",
+              "persistentSoundStopTime" : 0.15,
+              "persistentSoundRangeMultiplier" : 0.5
+            }
+          },
+          "winduploop" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/npc/monsters/bobfae_fly.ogg",
+              "persistentSoundStopTime" : 0.15,
+              "persistentSoundRangeMultiplier" : 0.5
             }
           },
           "charge" : {
-            "frames" : 4,
-            "cycle" : 0.25,
+            "frames" : 5,
+            "cycle" : 0.5,
             "mode" : "loop",
             "properties" : {
-              "particleEmittersOn" : ["flames"],
-              "immediateSound" : "/sfx/projectiles/swing_electric1.ogg"
+              "immediateSound" : "/sfx/melee/swing_spear_poison1.ogg",
+              "persistentSound" : "/sfx/npc/monsters/bobfae_fly.ogg",
+              "persistentSoundStopTime" : 0.15,
+              "persistentSoundRangeMultiplier" : 0.5
             }
           }
         }
@@ -51,7 +72,9 @@
             "mode" : "loop"
           },
           "stunned" : {
-            "frames" : 1
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "loop"
           }
         }
       },
@@ -82,7 +105,7 @@
         "properties" : {
           "zLevel" : 1,
           "transformationGroups" : [ "body" ],
-          "offset" : [-1.0, 0.25]
+          "offset" : [0.0, 0.25]
         },
         "partStates" : {
           "body" : {
@@ -99,6 +122,11 @@
             "chargewindup" : {
               "properties" : {
                 "image" : "<partImage>:chargewindup.<frame>"
+              }
+            },
+            "winduploop" : {
+              "properties" : {
+                "image" : "<partImage>:winduploop.<frame>"
               }
             },
             "charge" : {
@@ -184,6 +212,6 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "crash" : [ ]
+    "crash" : [ "/sfx/melee/sharp_hit_organic.ogg" ]
   }
 }

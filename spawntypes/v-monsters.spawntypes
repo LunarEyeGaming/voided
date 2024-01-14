@@ -427,5 +427,24 @@
     "monsterParameters" : {
       "aggressive" : true
     }
+  },
+  
+  {
+    "name" : "v-mushroomspider",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.05,
+    "monsterType" : [
+      [1.0, "v-mushroomspider"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
   }
 ]

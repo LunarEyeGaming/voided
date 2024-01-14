@@ -1,7 +1,7 @@
 {
   "type" : "v-killerbee",
-  "shortdescription" : "<todo>",
-  "description" : "<todo>",
+  "shortdescription" : "Killer Bee",
+  "description" : "A large bee-like organism that patrols the outskirts of the hive and its interior.",
 
   "categories" : [ "v-killerbee" ],
   "parts" : [ "body" ],
@@ -28,7 +28,7 @@
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
       "keepTargetInRange" : 50,
-      "targetOutOfSightTime" : 5.0,
+      "targetOutOfSightTime" : 15.0,
 
       "hurtTime" : 0.5,
       "hurtWaitForGround" : false,
@@ -130,9 +130,11 @@
     "metaBoundBox" : [-4, -4, 4, 4],
     "scale" : 1.0,
 
+    "selfDamagePoly" : [ [1.0, 1.5],  [1.5, 1.0],  [1.5, -1.0],  [1.0, -1.5],  [-1.0, -1.5],  [-1.5, -1.0],  [-1.5, 1.0],  [-1.0, 1.5] ],
+
     "movementSettings" : {
       "collisionEnabled" : true,
-      "collisionPoly" : [ [0.26, 0.625],  [0.625, 0.26], [0.625, -0.26], [0.26, -0.625], [-0.26, -0.625], [-0.625, -0.26], [-0.625, 0.26], [-0.26, 0.625] ],
+      "collisionPoly" : [ [0.41, 1.0],  [1.0, 0.41],  [1.0, -0.41],  [0.41, -1.0],  [-0.41, -1.0],  [-1.0, -0.41],  [-1.0, 0.41],  [-0.41, 1.0] ],
 
       "mass" : 1.0,
       "walkSpeed" : 4,
@@ -140,7 +142,7 @@
       "gravityEnabled" : false,
 
       "airForce" : 50,
-      "flySpeed" : 8
+      "flySpeed" : 15
     },
 
     "bodyMaterialKind" : "organic",

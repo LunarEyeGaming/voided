@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-mushroomspiderweb",
+  "image" : "mushroomspiderweb.png",
+  "physics" : "grenade",
+  "bounces" : -1,
+  "timeToLive" : 3.0,
+  "animationCycle" : 0.25,
+  "frameNumber" : 1,
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-mushroomspiderwebactive",
+      "inheritDamageFactor" : 1
+    }
+  ],
+  "power" : 5.0,
+  "speed" : 50,
+  "onlyHitTerrain" : true
+}

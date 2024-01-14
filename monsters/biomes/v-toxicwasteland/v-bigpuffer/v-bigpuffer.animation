@@ -1,4 +1,7 @@
 {
+  "globalTagDefaults" : {
+    "inflateStatus" : "normal"
+  },
   "animatedParts" : {
     "stateTypes" : {
       "body" : {
@@ -7,19 +10,27 @@
 
         "states" : {
           "normal" : {
-            "frames" : 1,
-            "cycle" : 1.0,
+            "frames" : 6,
+            "cycle" : 0.6,
             "mode" : "loop"
           },
+          "preinflate" : {
+            "frames" : 1
+          },
           "inflate" : {
-            "frames" : 1,
-            "cycle" : 0.2,
+            "frames" : 6,
+            "cycle" : 0.6,
             "mode" : "transition",
             "transition" : "inflated"
           },
           "inflated" : {
-            "frames" : 1,
-            "cycle" : 1.0,
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "loop"
+          },
+          "flop" : {
+            "frames" : 4,
+            "cycle" : 0.4,
             "mode" : "loop"
           }
         }
@@ -49,6 +60,11 @@
                 "image" : "<partImage>:normal.<frame>"
               }
             },
+            "preinflate" : {
+              "properties" : {
+                "image" : "<partImage>:preinflate.<frame>"
+              }
+            },
             "inflate" : {
               "properties" : {
                 "image" : "<partImage>:inflate.<frame>"
@@ -58,12 +74,17 @@
               "properties" : {
                 "image" : "<partImage>:inflated.<frame>"
               }
+            },
+            "flop" : {
+              "properties" : {
+                "image" : "<partImage>:flop<inflateStatus>.<frame>"
+              }
             }
           },
           "damage" : {
             "stunned" : {
               "properties" : {
-                "image" : "<partImage>:hurt.<frame>"
+                "image" : "<partImage>:hurt<inflateStatus>.<frame>"
               }
             }
           }
@@ -106,6 +127,6 @@
 
   "sounds" : {
     "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "inflate" : [ ]
+    "inflate" : [ "/sfx/npc/monsters/v_bigpuffer_inflate.ogg" ]
   }
 }

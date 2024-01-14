@@ -2,8 +2,9 @@
   "projectileName" : "v-downspitterprojectile",
   "image" : "downspitterprojectile.png",
   "physics" : "illusion",
-  "animationCycle" : 0.25,
-  "frameNumber" : 4,
+  "animationCycle" : 1.0,
+  "renderLayer" : "ForegroundEntity+10",
+  "frameNumber" : 1,
   "damageKindImage" : "icon.png",
   "pointLight" : false,
   "actionOnReap" : [

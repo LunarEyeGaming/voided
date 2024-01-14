@@ -16,8 +16,8 @@
     "/scripts/actions/v-monster.lua"
   ],
   "parameters": {
-    "windupState": "chargewindup",
-    "winddownState": "chargewinddown",
+    "windupState": "windup",
+    "winddownState": "",
     "aimAtTarget": false,
     "inaccuracy": 0,
     "rotateToTarget": false,
@@ -27,8 +27,7 @@
     "wallKnockback": false,
     "targetOffset": [0, 10],
     "tolerance": 2,
-    "chargeSound": "charge",
-    "postChargeVelocity": [50, 0],
+    "fireSound": "fire",
     "projectileType": "acidsweep",
     "projectileOffset": [0, 0],
     "fireDirection": [0, -1],
@@ -137,14 +136,14 @@
                 "trackSource": {"value": false}
               }
             },
-            /* {
+            {
               "title": "playSound",
               "type": "action",
               "name": "playSound",
               "parameters": {
-                "sound": {"value": "fire"}
+                "sound": {"value": "<fireSound>"}
               }
-            }, */
+            },
             {
               "title": "timer",
               "type": "action",
