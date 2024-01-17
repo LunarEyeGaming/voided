@@ -173,5 +173,19 @@
       ],
       "allowDuplication" : true
     }]
+  ],
+
+  "v-fumeballoonTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.900, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : "venomsample"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
   ]
 }

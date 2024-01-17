@@ -280,7 +280,7 @@
     "op" : "add",
     "path" : "/regionTypes/v-toxicwasteland",
     "value" : {
-      "blockSelector" : [ "ledgesSurface", "giantLedgesSurface" ],
+      "blockSelector" : [ "ledgesSurface" ],
       "fgCaveSelector" : [ "surfaceCaves" ],
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
@@ -295,7 +295,7 @@
       "blockSelector" : [ "v-toxicLake" ],
       "fgCaveSelector" : [ "empty" ],
       "bgCaveSelector" : [ "empty" ],
-      "oceanLiquid" : ["v-superpoison"],
+      "oceanLiquid" : ["v-endlesssuperpoison"],
       "biome" : [
         [0, [ "v-toxiclake" ]]
       ],
@@ -353,7 +353,7 @@
     "path" : "/regionTypes/v-toxicwastelandcorelayer",
     "value" : {
       "caveLiquid" : ["v-superpoison"],
-      "oceanLiquid" : ["v-superpoison"],
+      "oceanLiquid" : ["v-endlesssuperpoison"],
       "subBlockSelector" : ["v-fungalCoreSubBlocks"],
       "fgCaveSelector" : [ "v-fungalCoreCaves" ],
       "bgCaveSelector" : [ "v-fungalCoreCavesBackground" ],

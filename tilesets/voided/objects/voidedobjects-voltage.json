@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-voltage",
  "spacing":0,
- "tilecount":24,
+ "tilecount":26,
  "tileheight":80,
  "tileproperties":
     {
@@ -129,6 +129,20 @@
          "imagePositionX":"-24",
          "imagePositionY":"0",
          "object":"v-voltagecitysign",
+         "tilesetDirection":"right"
+        },
+     "24":
+        {
+         "imagePositionX":"-32",
+         "imagePositionY":"-32",
+         "object":"v-voltagecitypointer",
+         "tilesetDirection":"right"
+        },
+     "25":
+        {
+         "imagePositionX":"-32",
+         "imagePositionY":"-32",
+         "object":"v-voltagecitybeacon",
          "tilesetDirection":"right"
         },
      "3":
@@ -302,6 +316,20 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "24":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "25":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "3":
         {
          "imagePositionX":"string",
@@ -455,6 +483,18 @@
          "image":"..\/images\/objects\/voltagecitysign.png",
          "imageheight":24,
          "imagewidth":56
+        },
+     "24":
+        {
+         "image":"..\/images\/objects\/voltagecitypointer.png",
+         "imageheight":64,
+         "imagewidth":64
+        },
+     "25":
+        {
+         "image":"..\/images\/objects\/voltagecitybeacon.png",
+         "imageheight":64,
+         "imagewidth":64
         },
      "3":
         {

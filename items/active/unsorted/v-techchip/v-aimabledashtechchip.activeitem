@@ -1,0 +1,25 @@
+{
+  "itemName" : "v-aimabledashtechchip",
+  "price" : 0,
+  "level" : 1,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "category" : "v-techChip",
+  "description" : "Provides the user with the ability to dash in any direction.",
+  "shortdescription" : "Aimable Dash",
+  "twoHanded" : true,
+
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "customRarity" : "Mythical",
+
+  "inventoryIcon" : "aimabledashtechchip.png",
+  "animation" : "v-techchip.animation",
+  "animationCustom" : {},
+  "scripts" : ["v-techchip.lua"],
+
+  "fireTime" : 2.0,
+  "fireOffset" : [1.0, 0.0],
+  
+  "unlockedTech" : "v-aimabledash",
+  "unlockedTechNotifierName" : "v-aimabledashtechchipnotifier"  // Hacky way of displaying a message at the bottom of the screen
+}

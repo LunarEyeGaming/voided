@@ -8,7 +8,7 @@ local endColor
 local fullbright
 local processedBlocks
 
-local testVar
+local oldBlocksId
 
 function init()
   script.setUpdateDelta(3)
@@ -22,8 +22,7 @@ function init()
   
   dt = script.updateDt()
   
-  testVar = false
-  
+  oldBlocksId = -1
 end
 
 function update()
@@ -32,8 +31,9 @@ function update()
   local center = entity.position()
 
   local blocks = animationConfig.animationParameter("blocks")
+  local blocksId = animationConfig.animationParameter("blocksId")
 
-  if blocks then
+  if blocksId ~= oldBlocksId and blocks then
     -- Used twice so that we know the original time to live
     for _, block in ipairs(blocks) do
       table.insert(processedBlocks, {block.ttl or ttl, block.ttl or ttl, block.block})
@@ -58,4 +58,6 @@ function update()
       i = i + 1
     end
   end
+  
+  oldBlocksId = blocksId
 end

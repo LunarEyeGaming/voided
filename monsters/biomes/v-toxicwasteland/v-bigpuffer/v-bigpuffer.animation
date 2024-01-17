@@ -89,6 +89,49 @@
             }
           }
         }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "anchorPart" : "body",
+          "zLevel" : 1,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "body" : {
+            "normal" : {
+              "properties" : {
+                "image" : "<partImage>:normal.<frame>"
+              }
+            },
+            "preinflate" : {
+              "properties" : {
+                "image" : "<partImage>:preinflate.<frame>"
+              }
+            },
+            "inflate" : {
+              "properties" : {
+                "image" : "<partImage>:inflate.<frame>"
+              }
+            },
+            "inflated" : {
+              "properties" : {
+                "image" : "<partImage>:inflated.<frame>"
+              }
+            },
+            "flop" : {
+              "properties" : {
+                "image" : "<partImage>:flop<inflateStatus>.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt<inflateStatus>.<frame>"
+              }
+            }
+          }
+        }
       }
     }
   },

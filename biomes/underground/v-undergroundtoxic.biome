@@ -63,7 +63,34 @@
   },
 
   "undergroundPlaceables" : {
+    "grassMod" : [ "toxicgrass" ],
+    "grassModDensity" : 0.5,
+
+    "ceilingGrassMod" : [ "roots" ],
+    "ceilingGrassModDensity" : 0.5,
+
     "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredSmall",
+
+        "type" : "grass",
+        "grasses" : [ "toxicplains" ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 2.0,
+        "variants" : 3,
+        "distribution" : "/biomes/distributions.config:denseMedium",
+
+        "type" : "tree",
+        "treeFoliageHueShiftMax" : 60,
+        "treeStemHueShiftMax" : 40,
+        "treeStemList" : [ "purplevine" ],
+        "treeFoliageList" : [ "dreamy" ]
+      },
       {
         "mode" : "floor",
         "priority" : 1.0,

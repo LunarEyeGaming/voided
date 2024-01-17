@@ -42,9 +42,12 @@
   "parallax" : "/parallax/underground/dirtunderground.parallax",
 
   "undergroundPlaceables" : {
-
     "grassMod" : [ "flowerygrass" ],
     "grassModDensity" : 0.9,
+
+    "ceilingGrassMod" : [ "undergrowth" ],
+    "ceilingGrassModDensity" : 0.2,
+
     "items" : [
       {
         "mode" : "floor",

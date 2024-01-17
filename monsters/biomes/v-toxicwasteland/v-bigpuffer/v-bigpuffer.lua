@@ -1,16 +1,16 @@
 require "/scripts/util.lua"
 require "/scripts/poly.lua"
 require "/scripts/rect.lua"
+require "/scripts/status.lua"
 
 --[[
   Behavior:
   * Swim back and forth.
-  * If at any point it takes damage and it has not taken any further damage:
+  * If at any point it takes damage and it has not already inflated:
     * Gracefully come to a halt
     * Play the inflate animation and sound
     * Turn on contact damage
     * Continue swimming back and forth
-  UNFINISHED:
   * If at any point it exits water:
     * If it is not inflated:
       * Set state to flop
@@ -21,9 +21,9 @@ require "/scripts/rect.lua"
       * Stand still
 ]]
 
-local state
 local notInflated  -- True if the monster has not begun inflating
 local isInflated  -- True if the monster has finished inflating (not necessarily true if notInflated is false)
+
 
 local swimSpeed
 local swimForce
@@ -36,6 +36,10 @@ local inflateSize
 local postInflateTime
 
 local inflatedCollisionPoly
+
+local tookDamage
+local listener
+local state
 
 function init()
   notInflated = true
@@ -62,12 +66,21 @@ function init()
     monster.setDeathSound("deathPuff")
   end
   
+  listener = damageListener("damageTaken", function()
+    tookDamage = true
+  end)
+  
+  tookDamage = false
+  
   state = FSM:new()
   state:set(states.swim)
 end
 
 function update(dt)
+  listener:update()
   state:update()
+  
+  tookDamage = false
   
   if isInflated then
     mcontroller.controlParameters({collisionPoly = inflatedCollisionPoly})
@@ -90,7 +103,7 @@ function states.swim()
     end
 
     -- If the monster took damage and is not inflated...
-    if notInflated and status.resourcePercentage("health") < 1.0 then
+    if notInflated and tookDamage then
       state:set(states.inflate)
     end
     

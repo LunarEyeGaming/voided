@@ -12,3 +12,5 @@ Disclaimer: the authors of these sound samples do not endorse Voided.
 I would like to thank Portal Mech for playtesting the Ancient Stronghold and the Voltage biome and providing feedback and ideas for them.
 
 I would also like to thank the members on the Starbound Discord for their feedback, advice, and ideas.
+
+Thanks to patman and/or Silver Sokolova for providing a way to display custom messages at the bottom of the screen.

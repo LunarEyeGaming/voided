@@ -40,6 +40,7 @@ function init()
   projectileParameters = config.getParameter("projectileParameters", {})
   projectileParameters.power = config.getParameter("damage", 0) * root.evalFunction("monsterLevelPowerMultiplier", monster.level())
   projectileParameters.damageRepeatGroup = "v-lingeringpoison"
+  projectileParameters.damageTeam = entity.damageTeam()
   
   maxArea = config.getParameter("maxArea", 200)
   -- Used so that monsters can target whoever fired a projectile that created a lingering damage region
@@ -74,7 +75,7 @@ function init()
   
   monster.setDamageBar("None")
   
-  shouldPlacePoison = false
+  tickTimer = 2
   
   -- placePoison()
 end
@@ -84,21 +85,24 @@ function shouldDie()
 end
 
 function update(dt)
-  -- For some weird reason, world.spawnProjectile has to be called on update or else the projectiles won't deal any
+  -- For some weird reason, world.spawnProjectile has to be called on some update or else the projectiles won't deal any
   -- damage.
-  if not shouldPlacePoison then
-    placePoison()
-    shouldPlacePoison = true
+  if tickTimer then
+    tickTimer = tickTimer - 1
+    if tickTimer <= 0 then
+      placePoison()
+      tickTimer = nil
+    end
   end
   disappearTimer = disappearTimer - dt
   if disappearTimer <= 0 then
     shouldDieVar = true
   end
 
-  animTickTimer = animTickTimer - 1
-  if animTickTimer <= 0 then
-    monster.setAnimationParameter("blocks", nil)
-  end
+  -- animTickTimer = animTickTimer - 1
+  -- if animTickTimer <= 0 then
+    -- monster.setAnimationParameter("blocks", nil)
+  -- end
 end
 
 -- Identifies where to put the poison and spawns projectiles there while also sending the blocks to the animation 
@@ -124,6 +128,7 @@ function placePoison()
     end
   end
 
+  monster.setAnimationParameter("blocksId", 1)
   monster.setAnimationParameter("blocks", blocks)
 end
 

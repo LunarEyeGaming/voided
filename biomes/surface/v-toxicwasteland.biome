@@ -67,7 +67,9 @@
 
   "weather" : [
     [0, [
-      "/weather.config:v-toxicwasteland"
+      "/weather.config:v-toxicwasteland",
+      "/weather.config:v-toxicwastelandBlobs"
+      // "/weather.config:v-toxicwastelandTest"
     ]]
   ],
 
@@ -171,9 +173,6 @@
   "ores" : "v-toxicwasteland",
 
   "surfacePlaceables" : {
-    "grassMod" : [ "toxicgrass" ],
-    "grassModDensity" : 0.9,
-
     "items" : [
       {
         "mode" : "floor",
@@ -197,19 +196,7 @@
   },
 
   "undergroundPlaceables" : {
-    "grassMod" : [ "toxicgrass" ],
-    "grassModDensity" : 0.9,
-
     "items" : [
-      {
-        "mode" : "floor",
-        "priority" : 3.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredSmall",
-
-        "type" : "grass",
-        "grasses" : [ "toxicplains" ]
-      },
       {
         "mode" : "floor",
         "priority" : 0.0,
