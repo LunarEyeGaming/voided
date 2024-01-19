@@ -2,6 +2,7 @@
   "name" : "v-biomepoison",
   "blockingStat" : "v-biomepoisonImmunity",
   "effectConfig" : {
+    "poisonRate" : 1
   },
   "defaultDuration" : 1,
 
@@ -11,6 +12,6 @@
 
   // "animationConfig" : "starving.animation",
 
-  "label" : "Unmitigated Toxicity - You lack the equipment to flush mycotoxins out of your system quickly",
-  "icon" : "/interface/statuses/v-depthpoison.png"
+  "label" : "Unmitigated Toxicity - Lack of protection makes atmospheric mycotoxins more deadly",
+  "icon" : "/interface/statuses/v-biomepoison.png"
 }

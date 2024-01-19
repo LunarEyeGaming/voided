@@ -3,8 +3,17 @@ require "/scripts/voidedutil.lua"
 local startColor
 local endColor
 local endPoisonAmount
+local shimmerValues
+local warningSoundRatioRange
+-- local warningSoundVolumeRange
+-- local warningSoundPitchRange
+local warningSoundIntervalRange
+
+local oldPoisonAmount
 
 local postInitCalled
+-- local playingWarningSound
+local warningSoundTimer
 
 function init()
   -- startColor and endColor are RBGA color tables.
@@ -14,7 +23,31 @@ function init()
   -- The poison amount to which the endColor must correspond. startColor corresponds to a poison amount of 0.
   endPoisonAmount = config.getParameter("endPoisonAmount")
   
+  --[[
+    A list of objects with the following entries:
+      * minPoisonChangeRate: the minimum change in poison (measured in units per second) required for this shimmer rate
+        to be active
+      * shimmerTime: the amount of time (in seconds) it takes for one shimmer to be completed
+    The script will choose the last entry in shimmerValues v such that the change in poison (in units per second) is
+    greater than or equal to v.minPoisonChangeRate and sets the shimmer time in the display to v.shimmerTime.
+  ]]
+  shimmerValues = config.getParameter("shimmerValues")
+  
+  -- Controls for the sound to warn the player that their poison meter is getting full.
+  -- Volume and pitch start at warningSoundVolumeRange[1] and warningSoundPitchRange[1] respectively when the poison 
+  -- ratio (poisonAmount / endPoisonAmount) is at warningSoundRatioRange[1] and approach their corresponding second 
+  -- entries as the ratio reaches warningSoundRatioRange[2], and they stay at said entries when the ratio passes
+  -- warningSoundRatioRange[2].
+  warningSoundRatioRange = config.getParameter("warningSoundRatioRange")
+  -- warningSoundVolumeRange = config.getParameter("warningSoundVolumeRange")
+  -- warningSoundPitchRange = config.getParameter("warningSoundPitchRange")
+  warningSoundIntervalRange = config.getParameter("warningSoundIntervalRange")
+  
+  oldPoisonAmount = 0
+  
   postInitCalled = false
+  -- playingWarningSound = false
+  warningSoundTimer = 0
 end
 
 function postInit()
@@ -34,6 +67,10 @@ function update(dt)
   local color = lerpColor(ratio, startColor, endColor)
   world.sendEntityMessage(entity.id(), "v-depthPoison-setRatio", ratio)
   
+  setShimmerTime(poisonAmount, dt)
+
+  updateWarningSound(ratio, dt)
+  
   setFadeColor(color)
 end
 
@@ -43,6 +80,66 @@ function setFadeColor(color)
   local fadeColor = {color[1], color[2], color[3]}
   local fadeAmount = color[4] / 255
   effect.setParentDirectives(string.format("fade=%s=%s", stringOfColor(fadeColor), fadeAmount))
+end
+
+function setShimmerTime(poisonAmount, dt)
+  local poisonChangeRate = (poisonAmount - oldPoisonAmount) / dt
+  
+  local entryToUse = nil
+  
+  for _, shimmerValue in ipairs(shimmerValues) do
+    -- This effectively finds the last entry such that poisonChangeRate >= minPoisonChangeRate is true.
+    if poisonChangeRate < shimmerValue.minPoisonChangeRate then
+      break
+    end
+
+    entryToUse = shimmerValue
+  end
+  
+  -- Use shimmer time for entry to use, or nil if no such entry is found.
+  world.sendEntityMessage(entity.id(), "v-depthPoison-setShimmerTime", entryToUse and (entryToUse.shimmerTime) or nil)
+  
+  oldPoisonAmount = poisonAmount
+end
+
+function updateWarningSound(ratio, dt)
+  -- if ratio > warningSoundRatioRange[1] then
+    -- -- Control variable to prevent playing the sound multiple times.
+    -- if not playingWarningSound then
+      -- animator.playSound("warning", -1)
+      -- playingWarningSound = true
+    -- end
+    -- -- Cap the ratio at warningSoundRatioRange[2]
+    -- local cappedRatio = math.min(ratio, warningSoundRatioRange[2])
+    
+    -- -- Determine ratio to use when lerping pitch and volume.
+    -- local controlProgress = (cappedRatio - warningSoundRatioRange[1]) 
+        -- / (warningSoundRatioRange[2] - warningSoundRatioRange[1])
+    -- animator.setSoundPitch("warning", util.lerp(controlProgress, warningSoundPitchRange[1], warningSoundPitchRange[2]))
+    -- animator.setSoundVolume("warning", util.lerp(controlProgress, warningSoundVolumeRange[1], warningSoundVolumeRange[2]))
+  -- else
+    -- if playingWarningSound then
+      -- animator.stopAllSounds("warning")
+      -- playingWarningSound = false
+    -- end
+  -- end
+  if ratio > warningSoundRatioRange[1] then
+    warningSoundTimer = warningSoundTimer - dt
+    
+    if warningSoundTimer <= 0 then
+      animator.playSound("warning")
+
+      -- Cap the ratio at warningSoundRatioRange[2]
+      local cappedRatio = math.min(ratio, warningSoundRatioRange[2])
+      
+      -- Determine ratio to use when lerping the interval to use.
+      local controlProgress = (cappedRatio - warningSoundRatioRange[1]) 
+          / (warningSoundRatioRange[2] - warningSoundRatioRange[1])
+      warningSoundTimer = util.lerp(controlProgress, warningSoundIntervalRange[1], warningSoundIntervalRange[2])
+    end
+  else
+    warningSoundTimer = 0
+  end
 end
 
 function onExpire()

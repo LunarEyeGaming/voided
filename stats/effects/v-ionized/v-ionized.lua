@@ -1,6 +1,7 @@
 local tickTime
 local tickTimer
 local tickDamage
+local compoundingTickDamage
 
 function init()
   animator.setParticleEmitterOffsetRegion("flames", mcontroller.boundBox())
@@ -9,9 +10,10 @@ function init()
 
   script.setUpdateDelta(5)
 
-  tickTime = 0.5
+  tickTime = config.getParameter("tickTime")
+  tickDamage = config.getParameter("tickDamage")
+  compoundingTickDamage = config.getParameter("compoundingTickDamage")
   tickTimer = tickTime
-  tickDamage = 10
 
   status.applySelfDamageRequest({
       damageType = "IgnoresDef",
@@ -25,7 +27,7 @@ function update(dt)
   tickTimer = tickTimer - dt
   if tickTimer <= 0 then
     tickTimer = tickTime
-    tickDamage = tickDamage + 8
+    tickDamage = tickDamage + compoundingTickDamage
     status.applySelfDamageRequest({
         damageType = "IgnoresDef",
         damage = tickDamage,

@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-toxiclakedrop",
+  "image" : "toxiclakedrop.png",
+  "physics" : "grenade",
+  "bounces" : 0,
+  "animationCycle" : 0.25,
+  "frameNumber" : 2,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/acidspitexplosion/acidspitexplosion.config"
+    }
+  ],
+  "power" : 5.0,
+  "speed" : 50,
+  "damageKind" : "acid",
+  "statusEffects" : ["v-strongpoison"],
+  "hydrophobic" : true
+}

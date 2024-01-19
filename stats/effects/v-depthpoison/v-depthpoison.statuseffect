@@ -1,7 +1,7 @@
 {
   "name" : "v-depthpoison",
   "effectConfig" : {
-    "poisonDepthRate" : 0,
+    "poisonDepthRate" : 0.001,
     "minPoisonDepth" : 1000
   },
   "defaultDuration" : 1,
@@ -12,6 +12,6 @@
 
   // "animationConfig" : "starving.animation",
 
-  "label" : "Toxic Atmosphere - The atmosphere contains deadly mycotoxins that are slowly killing you",
+  "label" : "Atmospheric Mycotoxin - Staying on this planet for too long will kill you",
   "icon" : "/interface/statuses/v-depthpoison.png"
 }

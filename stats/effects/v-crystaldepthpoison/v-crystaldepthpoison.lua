@@ -1,9 +1,9 @@
 local poisonRate
 
-local poisonAdderGroup
+-- local poisonAdderGroup
 
 function init()
-  poisonAdderGroup = effect.addStatModifierGroup({{stat = "v-depthPoisonDelta", effectiveMultiplier = 0.0}})
+  -- poisonAdderGroup = effect.addStatModifierGroup({{stat = "v-depthPoisonDelta", effectiveMultiplier = 0.0}})
   poisonRate = config.getParameter("poisonRate")  -- Rate at which the depthPoison resource increases
 end
 
@@ -13,5 +13,5 @@ end
 
 -- Removed so that when assets are reloaded, the poison adder groups don't stack.
 function uninit()
-  effect.removeStatModifierGroup(poisonAdderGroup)
+  -- effect.removeStatModifierGroup(poisonAdderGroup)
 end

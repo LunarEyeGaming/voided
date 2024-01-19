@@ -31,6 +31,7 @@
   "actionOnExitLiquid" : {
     "action" : "projectile",
     "type" : "v-proxyprojectile",
+    "inheritDamageFactor" : 1,
     "config" : {
       "actionOnReap" : [
         {
@@ -39,7 +40,7 @@
         },
         {
           "action" : "config",
-          "file" : "/projectiles/explosions/v-purplepoisongasburst/v-purplepoisongasburst2.config"
+          "file" : "/projectiles/environment/v-toxiclakedrop/spawn.config"
         }
       ]
     }

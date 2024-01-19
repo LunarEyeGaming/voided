@@ -4,10 +4,10 @@
   "price" : 265,
   "category" : "food",
   "inventoryIcon" : "v-killerbeehoney.png",
-  "description" : "Very sweet; contains many poison-countering antibodies.",
+  "description" : "Very sweet; contains many mycotoxin-countering antibodies.",
   "shortdescription" : "Killer Bee Honey",
   "effects" : [ [
-    {"effect" : "poisonblock", "duration" : 150}
+    "v-depthpoisonantidotehoney"
   ] ],
   "foodValue" : 15,
   "tooltipKind" : "food",
