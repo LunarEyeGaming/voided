@@ -70,7 +70,7 @@ function ControlProjectile:charged()
   self.projectileSpawnTimer = 0
 
   local targetValid
-  while self.fireMode == (self.activatingFireMode or self.abilitySlot) do
+  while self.fireMode == (self.activatingFireMode or self.abilitySlot) and status.resourcePositive("energy") do
     targetValid = self:targetValid(activeItem.ownerAimPosition())
     activeItem.setCursor(targetValid and "/cursors/chargeready.cursor" or "/cursors/chargeinvalid.cursor")
 
@@ -92,20 +92,6 @@ function ControlProjectile:discharge()
   self.weapon:setStance(self.stances.discharge)
 
   activeItem.setCursor("/cursors/reticle0.cursor")
-
-  -- if #storage.projectiles > 0 then
-    -- local delayTime = self.projectileDelayEach
-    -- for _, projectileId in pairs(storage.projectiles) do
-      -- if world.entityExists(projectileId) then
-        -- world.sendEntityMessage(projectileId, "trigger", delayTime)
-        -- delayTime = delayTime + self.projectileDelayEach
-      -- end
-    -- end
-  -- else
-    -- animator.playSound(self.elementalType.."discharge")
-    -- self:setState(self.cooldown)
-    -- return
-  -- end
 
   util.wait(self.stances.discharge.duration, function(dt)
     status.setResourcePercentage("energyRegenBlock", 1.0)

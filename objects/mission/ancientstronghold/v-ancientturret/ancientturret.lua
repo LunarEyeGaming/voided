@@ -71,6 +71,8 @@ function init()
   else
     moveState:set(states.deactivate)
     attackState:set(states.noop)
+    animator.setLightActive("flashlight", false)
+    animator.setAnimationState("flashlight", "off")
   end
   
   if storage.useFov == nil then
