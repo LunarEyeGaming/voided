@@ -3,10 +3,10 @@
   "colonyTags" : [ ],
   "rarity" : "Common",
   "description" : "A giant display pointing to a potential point of interest.",
-  "shortdescription" : "Voltropolis Pointer",
+  "shortdescription" : "Beacon Pointer",
   "race" : "generic",
   "category" : "light",
-  "price" : 100,
+  "price" : 1000,
   "printable" : false,
   
   "health" : 10,
@@ -58,6 +58,8 @@
   "rightArrowImage" : "/objects/biome/v-voltage/v-voltagecitypointer/arrow.png",
   "flashHighOpacity" : 255,
   "flashLowOpacity" : 150,
+  
+  "beaconUniqueId" : "v-voltagecitybeacon",
 
   "scripts" : [ "v-voltagecitypointer.lua" ],
   "scriptDelta" : 60,
@@ -65,9 +67,6 @@
   "inputNodes" : [ [0, 0] ],
 
   // "interactive" : false,
-
-  "breakDropOptions" : [ ],
-  "smashDropOptions" : [ ],
 
   "animation" : "v-voltagecitypointer.animation",
 

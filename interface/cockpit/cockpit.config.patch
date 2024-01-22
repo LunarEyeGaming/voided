@@ -44,6 +44,13 @@
     {"op" : "add", "path" : "/wordsList/v-voltagespikesrusty2", "value" : {"word" : "Voltage Spikesrusty",
         "friendlyWord" : "Rusted Voltage Spikes"}},
 
+    {"op" : "add", "path" : "/wordsList/v-crystalmountains", "value" : {"word" : "v%-crystalmountains",
+        "friendlyWord" : "Crystal Mountains"}},
+    {"op" : "add", "path" : "/wordsList/v-crystalmountains2", "value" : {"word" : "v%- Crystallinemountains",
+        "friendlyWord" : "Crystal Mountains"}},
+    {"op" : "add", "path" : "/wordsList/v-toxiclake", "value" : {"word" : "v%-toxiclake",
+        "friendlyWord" : "Colony's Corpse"}},
+
     // Environmental hazard icons.
     {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomeelectric", "value" : {
         "displayName" : "Dangerously Conductive", "icon" : "/interface/cockpit/hazards/v-biomeelectric.png"}},

@@ -85,7 +85,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":288,
+                 "x":208,
                  "y":368
                 }, 
                 {
@@ -104,8 +104,59 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":320,
+                 "x":304,
                  "y":360
+                }, 
+                {
+                 "gid":2147492445,
+                 "height":16,
+                 "id":745,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"treasurePools\" : [\"v-campSupplies\"]}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":272,
+                 "y":368
+                }, 
+                {
+                 "height":8,
+                 "id":746,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"humanscabcritter"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":224,
+                 "y":360
+                }, 
+                {
+                 "gid":6149,
+                 "height":16,
+                 "id":747,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":312,
+                 "y":368
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -284,7 +335,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":745,
+ "nextobjectid":748,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

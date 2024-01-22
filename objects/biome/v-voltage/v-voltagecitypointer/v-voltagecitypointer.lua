@@ -9,7 +9,7 @@ function init()
   passParamToAnim("flashHighOpacity")
   passParamToAnim("flashLowOpacity")
 
-  targetId = world.loadUniqueEntity("v-voltagecitybeacon")
+  targetId = world.loadUniqueEntity(config.getParameter("beaconUniqueId", "v-voltagecitybeacon"))
   if targetId ~= 0 then
     pointDirection = world.distance(world.entityPosition(targetId), object.position())
     object.setAnimationParameter("beaconDirection", pointDirection)

@@ -1,0 +1,43 @@
+{
+  "objectName" : "v-backpack",
+  "colonyTags" : ["storage"],
+  "rarity" : "Common",
+  "objectType" : "container",
+  "tooltipKind" : "container",
+
+  "category" : "storage",
+  "price" : 50,
+  "description" : "An ordinary backpack worn by some travelers.",
+  "shortdescription" : "Backpack",
+  "race" : "generic",
+  "health" : 1.5,
+
+  "apexDescription" : "A backpack.",
+  "avianDescription" : "A bag of useful items.",
+  "floranDescription" : "Floran will sssteal from brown bag.",
+  "glitchDescription" : "Observant. A backpack.",
+  "humanDescription" : "A backpack. What's this doing here?",
+  "hylotlDescription" : "A backpack with no wearer.",
+  "novakidDescription" : "A backpack. Could contain some goodies.",
+
+
+  "inventoryIcon" : "backpackicon.png",
+  "orientations" : [
+    {
+      "dualImage" : "backpack.png:<color>.<key>",
+      "imagePosition" : [-8, 0],
+
+      "spaces" : [ [-1, 0], [0, 0], [-1, 1], [0, 1] ],
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "openSounds" : [ "/sfx/objects/mannequin_open.ogg" ],
+  "closeSounds" : [ "/sfx/objects/mannequin_close.ogg" ],
+  "slotCount" : 9,
+  "uiConfig" : "/interface/chests/chest<slots>.config",
+  "frameCooldown" : 5,
+  "autoCloseCooldown" : 3600,
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}
