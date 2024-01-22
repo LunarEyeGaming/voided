@@ -8,7 +8,7 @@
 
   "animation" : "v-fumeballoon.animation",
 
-  "dropPools" : [ "v-fumeballoonTreasure" ],
+  "dropPools" : [ { "default" : "v-fumeballoonTreasure", "bow" : "v-fumeballoonHunting" } ],
 
   "baseParameters" : {
     "scripts" : [

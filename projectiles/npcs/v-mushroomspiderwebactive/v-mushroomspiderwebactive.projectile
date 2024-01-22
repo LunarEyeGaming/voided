@@ -4,7 +4,8 @@
   "physics" : "default",
   "bounces" : -1,
   "timeToLive" : 60.0,
-  "animationCycle" : 0.25,
+  "animationCycle" : 0.1,
+  "windupFrames" : 2,
   "frameNumber" : 1,
   "actionOnReap" : [
     {
@@ -16,5 +17,6 @@
   "damagePoly" : [[24.0, 0.0], [16.971, 16.971], [0.0, 24.0], [-16.971, 16.971], [-24.0, 0.0], [-16.971, -16.971], [-0.0, -24.0], [16.971, -16.971]],
   "power" : 5.0,
   "speed" : 0,
-  "damageType" : "NoDamage"
+  "damageType" : "NoDamage",
+  "flippable" : true
 }

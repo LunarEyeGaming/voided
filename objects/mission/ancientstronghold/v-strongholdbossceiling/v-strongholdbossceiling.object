@@ -59,5 +59,12 @@
   },
   "animationPosition" : [-16, -24],
   
+  "animationCustom" : {
+    "sounds" : {
+      "moveLoop" : ["/sfx/objects/v_strongholddoor_moveloop.ogg"],
+      "moveEnd" : ["/sfx/objects/v_strongholddoor_impact.ogg"]
+    }
+  },
+  
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

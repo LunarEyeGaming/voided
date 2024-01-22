@@ -158,7 +158,7 @@
   "particleEmitters" : {
     "deathPoof" : {
       "particles" : [
-        { "particle" : "monstersplosion" },
+        { "particle" : "v-fumeballoonpop" },
         { "particle" : "deathember" },
         { "particle" : "deathember" },
         { "particle" : "deathember" },
@@ -206,7 +206,7 @@
 
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+    "deathPuff" : [ "/sfx/npc/monsters/v_fumeballoon_pop.ogg" ],
     
     "fire" : [ "/sfx/npc/monsters/v_fumeballoon_firepellets.ogg" ],
     "fire2" : [ "/sfx/npc/monsters/v_fumeballoon_firecloud.ogg" ]

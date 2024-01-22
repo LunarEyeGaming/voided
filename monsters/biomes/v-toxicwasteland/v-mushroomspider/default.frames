@@ -1,14 +1,19 @@
 {
   "frameGrid" : {
     "size" : [48, 48],
-    "dimensions" : [4, 1],
+    "dimensions" : [5, 8],
 
     "names" : [
-      ["idle.1", "windupweb.1", "windupranged.1", "windupmelee.1"]
+      ["idle.1", "windupweb.1", "windupranged.1", "windupmelee.1"],
+      ["walk.1", "walk.2", "walk.3", "walk.4", "walk.5"],
+      ["fireweb.1", "fireweb.2", "fireweb.3"],
+      ["windupranged.1", "windupranged.2"],
+      ["fireranged.1", "fireranged.2"],
+      ["windupmelee.1", "windupmelee2.1", "windupmelee2.2"],
+      ["melee.1"],
+      ["hurt.1"]
     ]
   },
   "aliases" : {
-    "hurt.1" : "idle.1",
-    "melee.1" : "windupmelee.1"
   }
 }

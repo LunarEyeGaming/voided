@@ -1,14 +1,14 @@
 {
   "type" : "v-mushroomspider",
-  "shortdescription" : "Fungarachnid",
-  "description" : "<todo>",
+  "shortdescription" : "Fungarachnoid",
+  "description" : "A large spider-like creature that lives in symbiosis with toxic fungi.",
 
   "categories" : [ "v-mushroomspider" ],
   "parts" : [ "body" ],
 
   "animation" : "v-mushroomspider.animation",
 
-  "dropPools" : [ "empty" ],
+  "dropPools" : [ { "default" : "v-mushroomspiderTreasure", "bow" : "v-mushroomspiderHunting" } ],
 
   "baseParameters" : {
     
@@ -40,6 +40,7 @@
           "name" : "action-fire",
           "cooldown" : 2.0,
           "parameters" : {
+            // Spit at the player.
             "requireLineOfSight" : true,
             "maximumRange" : 40,
             "minimumRange" : 2,
@@ -48,17 +49,18 @@
             "windupStopForce" : 200,
 
             "aimAtTarget" : true,
-            "aimDirection" : [0, 1],
+            "rotateAim" : true,
             "projectileType" : "v-mushroomspiderspit",
             "projectileParameters" : {
               "power" : 15,
               "speed" : 50
             },
-            "fireOffset" : [0.0, 0.0],
+            "fireOffset" : [0.25, -1.25],
             "projectileCount" : 3,
             "projectileInterval" : 0.25,
-            "fireSound" : "fire1",
-            "fireState" : "",
+            "fireSound" : "firespit",
+            "fireState" : "fireranged",
+            "fireDelay" : 0.1,
 
             "fireArc": true,
             "projectileSpeed": 50,
@@ -72,29 +74,26 @@
           "name" : "action-fire",
           "cooldown" : 5.0,
           "parameters" : {
-            "requireLineOfSight" : true,
+            // Lay down web.
+            "requireLineOfSight" : false,
             "maximumRange" : 40,
-            "minimumRange" : 2,
-            "windupState" : "windupweb",
-            "windupTime" : 0.75,
+            "minimumRange" : 10,
+            "windupState" : "",
+            "windupTime" : 0.2,
             "windupStopForce" : 200,
 
-            "aimAtTarget" : true,
-            "aimDirection" : [0, 1],
+            "aimAtTarget" : false,
             "projectileType" : "v-mushroomspiderweb",
             "projectileParameters" : {
               "power" : 20,
-              "speed" : 50
+              "speed" : 0
             },
             "fireOffset" : [0.0, 0.0],
             "projectileCount" : 1,
             "projectileInterval" : 1,
-            "fireSound" : "fire2",
-            "fireState" : "",
-
-            "fireArc": true,
-            "projectileSpeed": 50,
-            "gravityMultiplier": 0.6,
+            "fireDelay" : 0.3,
+            "fireSound" : "fireweb",
+            "fireState" : "fireweb",
 
             "winddownState" : "idle",
             "winddownTime" : 0.3
@@ -226,7 +225,7 @@
           "baseValue" : 0.25
         },
         "knockbackThreshold" : {
-          "baseValue" : 9
+          "baseValue" : 28
         },
         "maxHealth" : {
           "baseValue" : 150
@@ -250,16 +249,16 @@
           "baseValue" : 0.0
         },
         "electricResistance" : {
-          "baseValue" : 0.5
+          "baseValue" : -0.25
         },
         "electricStatusImmunity" : {
           "baseValue" : 0.0
         },
         "poisonResistance" : {
-          "baseValue" : -0.25
+          "baseValue" : 0.5
         },
         "poisonStatusImmunity" : {
-          "baseValue" : 0.0
+          "baseValue" : 1.0
         }
       },
 

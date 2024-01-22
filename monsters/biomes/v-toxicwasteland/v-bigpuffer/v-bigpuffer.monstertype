@@ -8,7 +8,7 @@
 
   "animation" : "v-bigpuffer.animation",
 
-  "dropPools" : [ "v-bigpufferTreasure" ],
+  "dropPools" : [ {"default" : "v-bigpufferTreasure", "hunting" : "v-bigpufferHunting"} ],
 
   "baseParameters" : {
     "scripts" : [

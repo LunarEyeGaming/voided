@@ -20,6 +20,10 @@ function applyRarity(config, rarity)
   return config
 end
 
+--[[
+  Modifies the item to use the Voided icon.
+  config: The config table passed in from the build() function
+]]
 function setVoidedIcon(config)
   if not config.tooltipFields then
     config.tooltipFields = {}
@@ -28,4 +32,39 @@ function setVoidedIcon(config)
   config.tooltipFields.voidedIconImage = "/interface/tooltips/voidedicon.png"
   
   return config
+end
+
+--[[
+  Adds a hidden prefix to the short description of an item.
+  config: The config table passed in from the build() function
+  prefix: The prefix to add
+]]
+function addHiddenPrefix(config, prefix)
+  if prefix then
+    config.shortdescription = string.format("^%s;%s", prefix, config.shortdescription)
+  end
+
+  return config
+end
+
+--[[
+  Applies all extra build functions, including applyRarity, setVoidedIcon, and addPrefix. All arguments are to be passed
+  in from a build() function.
+]]
+function applyExtraBuildFuncs(directory, config, parameters, level, seed)
+  local configParameter = function(keyName, defaultValue)
+    if parameters[keyName] ~= nil then
+      return parameters[keyName]
+    elseif config[keyName] ~= nil then
+      return config[keyName]
+    else
+      return defaultValue
+    end
+  end
+
+  config = applyRarity(config, configParameter("customRarity"))
+  config = setVoidedIcon(config)
+  config = addHiddenPrefix(config, configParameter("hiddenPrefix"))
+
+  return config, parameters
 end

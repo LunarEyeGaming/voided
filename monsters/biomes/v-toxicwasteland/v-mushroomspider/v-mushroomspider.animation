@@ -9,27 +9,41 @@
             "frames" : 1
           },
           "walk" : {
-            "frames" : 1,
-            "cycle" : 1,
+            "frames" : 5,
+            "cycle" : 0.5,
             "mode" : "loop"
           },
-          "windupweb" : {
-            "frames" : 1,
-            "properties" : {
-              "immediateSound" : "/sfx/melee/ixodoomclaw_web2.ogg"
-            }
+          "fireweb" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "idle"
           },
           "windupranged" : {
-            "frames" : 1,
+            "frames" : 2,
+            "cycle" : 0.2,
             "properties" : {
               "immediateSound" : "/sfx/projectiles/goo_spit1.ogg"
             }
           },
+          "fireranged" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "end"
+          },
           "windupmelee" : {
             "frames" : 1,
+            "cycle" : 0.55,
+            "mode" : "transition",
+            "transition" : "windupmelee2",
             "properties" : {
               "immediateSound" : "/sfx/npc/quadruped/bugthinghead_attack1.ogg"
             }
+          },
+          "windupmelee2" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "end"
           },
           "melee" : {
             "frames" : 1,
@@ -91,7 +105,7 @@
             },
             "walk" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:walk.<frame>"
               }
             },
             "windupweb" : {
@@ -99,14 +113,29 @@
                 "image" : "<partImage>:windupweb.<frame>"
               }
             },
+            "fireweb" : {
+              "properties" : {
+                "image" : "<partImage>:fireweb.<frame>"
+              }
+            },
             "windupranged" : {
               "properties" : {
                 "image" : "<partImage>:windupranged.<frame>"
               }
             },
+            "fireranged" : {
+              "properties" : {
+                "image" : "<partImage>:fireranged.<frame>"
+              }
+            },
             "windupmelee" : {
               "properties" : {
                 "image" : "<partImage>:windupmelee.<frame>"
+              }
+            },
+            "windupmelee2" : {
+              "properties" : {
+                "image" : "<partImage>:windupmelee2.<frame>"
               }
             },
             "melee" : {
@@ -148,9 +177,9 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
-            "windupweb" : {
+            "fireweb" : {
               "properties" : {
-                "image" : "<partImage>:windupweb.<frame>"
+                "image" : "<partImage>:fireweb.<frame>"
               }
             },
             "windupranged" : {
@@ -188,7 +217,8 @@
 
   "transformationGroups" : {
     "body" : { "interpolated" : true },
-    "facing" : { "interpolated" : false }
+    "facing" : { "interpolated" : false },
+    "aim" : { "interpolated" : true }
   },
 
   "effects" : {
@@ -251,7 +281,7 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "fire1" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ],
-    "fire2" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ]
+    "firespit" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ],
+    "fireweb" : [ "/sfx/melee/ixodoomclaw_web2.ogg" ]
   }
 }

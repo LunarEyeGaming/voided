@@ -15,8 +15,9 @@
   "power" : 5.0,
   "speed" : 0,
   "onlyHitTerrain" : true,
+  "flippable" : true,
   
-  "emitters" : ["poisonswoosh"],
+  "emitters" : ["largepoisoncloud"],
   
   "persistentAudio" : "/sfx/projectiles/v_mushroomspiderpredetonate_warning.ogg"
 }
