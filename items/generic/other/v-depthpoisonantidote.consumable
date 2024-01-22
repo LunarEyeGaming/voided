@@ -1,11 +1,12 @@
 {
   "itemName" : "v-depthpoisonantidote",
-  "price" : 100,
-  "rarity" : "Common",
+  "price" : 1000,
+  "rarity" : "Uncommon",
   "category" : "medicine",
   "inventoryIcon" : "v-depthpoisonantidote.png",
-  "description" : "Greatly mitigates the effects of atmospheric poison.",
-  "shortdescription" : "Gas Antidote",
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "description" : "Significantly reduces mycotoxins present in the user's body.",
+  "shortdescription" : "Mycotoxin Antidote",
   "maxStack" : 1,
   "effects" : [ [
     "v-depthpoisonantidote2",

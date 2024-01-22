@@ -1,0 +1,169 @@
+{
+  "name": "v-action-verticalfire",
+  "description": "",
+  "scripts": [
+    "/scripts/behavior.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/monster.lua",
+    "/scripts/actions/projectiles.lua",
+    "/scripts/behavior/bdata.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/status.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/v-monster.lua"
+  ],
+  "parameters": {
+    "windupState": "windup",
+    "winddownState": "",
+    "aimAtTarget": false,
+    "inaccuracy": 0,
+    "rotateToTarget": false,
+    "chargeStateType": "body",
+    "rotationOffset": 0,
+    "skillName": "",
+    "wallKnockback": false,
+    "targetOffset": [0, 10],
+    "tolerance": 2,
+    "fireSound": "fire",
+    "projectileType": "acidsweep",
+    "projectileOffset": [0, 0],
+    "fireDirection": [0, -1],
+    "projectileConfig": {},
+    "projectileCount": 10,
+    "projectileInterval": 0.1
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "fly to target",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "entityPosition",
+                  "type": "action",
+                  "name": "entityPosition",
+                  "parameters": {
+                    "entity": {"key": "target"}
+                  },
+                  "output": {
+                    "position": "targetPos"
+                  }
+                },
+                {
+                  "title": "offsetPosition",
+                  "type": "action",
+                  "name": "offsetPosition",
+                  "parameters": {
+                    "offset": {"value": "<targetOffset>"},
+                    "position": {"key": "targetPos"}
+                  },
+                  "output": {
+                    "position": "spitPos"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "flyToPosition",
+            "type": "action",
+            "name": "flyToPosition",
+            "parameters": {
+              "position": {"key": "spitPos"},
+              "tolerance": {"value": "<tolerance>"}
+            }
+          }
+        ]
+      },
+      {
+        "title": "action-windup",
+        "type": "module",
+        "name": "action-windup",
+        "parameters": {
+          "windupState": {"value": "<windupState>"},
+          "windupStateType": {"value": "<chargeStateType>"},
+          "skillName": {"value": "<skillName>"}
+        }
+      },
+      {
+        "title": "fire projectiles",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": "<projectileCount>"}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "spawnProjectile",
+              "type": "action",
+              "name": "spawnProjectile",
+              "parameters": {
+                "aimVector": {"value": "<fireDirection>"},
+                "offset": {"value": "<projectileOffset>"},
+                "position": {"key": "self"},
+                "projectileConfig": {"value": "<projectileConfig>"},
+                "projectileType": {"value": "<projectileType>"},
+                "scalePower": {"value": true},
+                "sourceEntity": {"key": "self"},
+                "trackSource": {"value": false}
+              }
+            },
+            {
+              "title": "playSound",
+              "type": "action",
+              "name": "playSound",
+              "parameters": {
+                "sound": {"value": "<fireSound>"}
+              }
+            },
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"value": "<projectileInterval>"}
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "action-winddown",
+        "type": "module",
+        "name": "action-winddown",
+        "parameters": {
+          "winddownState": {"value": "<winddownState>"},
+          "winddownStateType": {"value": "<chargeStateType>"}
+        }
+      }
+    ]
+  }
+}

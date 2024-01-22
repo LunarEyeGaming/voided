@@ -2,8 +2,12 @@
   "name" : "v-ionized",
   "blockingStat" : "v-ionizedImmunity",
 
-  "effectConfig" : {},
-  "defaultDuration" : 1.0,
+  "effectConfig" : {
+    "tickDamage" : 10,  // Starting tick damage
+    "compoundingTickDamage" : 10,  // The amount of damage to add to the current tick damage for each damage dealt.
+    "tickTime" : 0.5  // The interval between each tick damage dealt
+  },
+  "defaultDuration" : 0.35,
 
   "scripts" : [
     "v-ionized.lua"
@@ -11,6 +15,6 @@
 
   "animationConfig" : "v-ionized.animation",
 
-  "label" : "Ionized - Progressively more damaging radiation sickness",
+  "label" : "Ionized - Compounding damage over time",
   "icon" : "/interface/statuses/v-ionized.png"
 }

@@ -1,0 +1,32 @@
+{
+  "projectileName" : "v-sludge",
+  "image" : "sludge.png",
+  "physics" : "grenade",
+  "movementSettings" : {
+    "bounceFactor" : 0.0
+  },
+  "animationCycle" : 0.25,
+  "frameNumber" : 4,
+  "damageKindImage" : "icon.png",
+  "pointLight" : false,
+  "power" : 2.0,
+  "damageKind" : "acid",
+  "emitters" : [ "poisonplasma" ],
+  
+  "scripts" : ["v-sludge.lua"],
+  "scriptDelta" : 1,
+  
+  "mergeRadius" : 2,
+  "mergeDelay" : 0.0,
+  "liveCollisionAction" : {
+    // No-op
+    "action" : "actions",
+    "list" : [ ]
+  },
+  "deadCollisionAction" : {
+    "action" : "projectile",
+    "type" : "v-stucksludge",
+    "inheritDamageFactor" : 1
+  },
+  "targetType" : "v-stucksludge"
+}

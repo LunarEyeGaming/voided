@@ -1,0 +1,94 @@
+{
+  "itemName" : "v-sludgelauncher",
+  "level" : 8,
+  "price" : 1050,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "A gun that fires blobs of acidic sludge.",
+  "shortdescription" : "^toxikite;Sludge Launcher",
+  "tooltipKind" : "gun",
+  "category" : "assaultRifle",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged","assaultRifle"],
+
+  "inventoryIcon" : [
+    { "image" : "sludgelauncher.png:idle.1" }
+  ],
+
+  "animation" : "v-sludgelauncher.animation",
+  "animationParts" : {
+    "gun" : "sludgelauncher.png",
+    "muzzleFlash" : ""
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : [ "/sfx/gun/v_sludgelauncher_fire1.ogg", "/sfx/gun/v_sludgelauncher_fire2.ogg" ]
+    }
+  },
+  "baseOffset" : [0.75, -0.375],
+  "muzzleOffset" : [1.0, 0.75],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+
+  "elementalType" : "poison",
+
+  "primaryAbility" : {
+    "scripts" : ["/items/active/weapons/ranged/gunfire.lua"],
+    "class" : "GunFire",
+
+    "fireTime" : 0.5,
+    "baseDps" : 8.5,
+    "energyUsage" : 55,
+    "inaccuracy" : 0.008,
+    "fireType" : "auto",
+
+    "projectileType" : "v-sludge",
+    "projectileParameters" : {
+      "knockback" : 0
+    },
+    "projectileCount" : 1,
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true,
+        "animationStates" : {
+          "gun" : "idle"
+        },
+        "frontArmFrame" : "swimIdle.1"
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "animationStates" : {
+          "gun" : "fire"
+        },
+        "frontArmFrame" : "swimIdle.1"
+      },
+      "cooldown" : {
+        "duration" : 0.2,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "frontArmFrame" : "swimIdle.1"
+      }
+    }
+  },
+
+  "altAbilityType" : "v-sludgeburst",
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

@@ -1,0 +1,33 @@
+{
+  "projectileName" : "v-downspitterprojectile2",
+  "image" : "downspitterprojectile.png",
+  "physics" : "bullet",
+  "animationCycle" : 1.0,
+  "frameNumber" : 1,
+  "damageKindImage" : "icon.png",
+  "pointLight" : false,
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-downspitterprojectile2predetonate",
+      "fuzzAngle" : 180,
+      "inheritDamageFactor" : 0.5
+    }/* ,
+    {
+      "action" : "loop",
+      "count" : 8,
+      "body" : [
+        {
+          "action" : "projectile",
+          "type" : "v-giantpoisoncloud",
+          "fuzzAngle" : 180,
+          "inheritDamageFactor" : 0.5,
+          "angleAdjust" : 0
+        }
+      ]
+    } */
+  ],
+  "power" : 2.0,
+  "damageKind" : "poisonlash",
+  "emitters" : [ "poisonplasma" ]
+}

@@ -1,0 +1,78 @@
+{
+  "objectName" : "v-voltagecitybeacon",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "description" : "A beacon broadcasting a signal to help travelers find its location.",
+  "shortdescription" : "Voltropolis Beacon",
+  "race" : "generic",
+  "category" : "light",
+  "price" : 100,
+  "printable" : false,
+
+  "apexDescription" : "This beacon appears to be broadcasting a very strong signal, perhaps to lead travelers into this place.",
+  "avianDescription" : "A large beacon seemingly designed to help travelers find this location.",
+  "floranDescription" : "Floran thinkss this iss source of sssignal.",
+  "glitchDescription" : "Observant. This beacon broadcasts a strong signal to even the most distant of points.",
+  "humanDescription" : "This must be what the giant green displays from before are picking up.",
+  "hylotlDescription" : "This technology appears to have been reused from most mech bays.",
+  "novakidDescription" : "Seems t'me like this is where the arrows're pointin'.",
+
+  "lightColor" : [115, 33, 33],
+
+  "flickerPeriod" : 1.2,
+  "flickerMinIntensity" : 0.8,
+  "flickerMaxIntensity" : 1.0,
+  "flickerPeriodVariance" : 0,
+  "flickerIntensityVariance" : 0,
+
+  "inventoryIcon" : "voltagecitybeaconicon.png",
+  "orientations" : [
+    {
+      "image" : "voltagecitybeacon.png:<frame>",
+      "imagePosition" : [-32, -32],
+
+      "direction" : "left",
+      "flipImages" : true,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    },
+    {
+      "image" : "voltagecitybeacon.png:<frame>",
+      "imagePosition" : [-32, -32],
+
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/light/light.lua" ],
+  "scriptDelta" : 60,
+
+  "inputNodes" : [ [0, 0] ],
+
+  // "interactive" : false,
+
+  "breakDropOptions" : [ ],
+  "smashDropOptions" : [ ],
+
+  "animation" : "v-voltagecitybeacon.animation",
+
+  "animationParts" : {
+    "bg" : "voltagecitybeacon.png",
+    "fg" : "voltagecitybeaconlit.png"
+  },
+
+  "animationPosition" : [-32, -32],
+
+  "uniqueId" : "v-voltagecitybeacon",
+
+  "animationCustom" : {
+    "sounds" : {
+      "on" : [ "/sfx/objects/tinywallswitch.ogg" ],
+      "off" : [ "/sfx/objects/tinywallswitch.ogg" ]
+    }
+  }
+}

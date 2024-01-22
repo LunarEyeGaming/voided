@@ -2,15 +2,14 @@
   "name" : "v-deepundergroundtoxic",
   "friendlyName" : "Deep Toxic Caves",
 
-  /* "spawnProfile" : {
+  "spawnProfile" : {
     "groups" : [
       {
-        "select" : 3,
+        "select" : 2,
         "pool" : [
-          [ 1.0, "scandroid" ],
-          [ 1.0, "v-electricelemental" ],
-          [ 1.0, "v-dischargemonster" ],
-          [ 1.0, "v-amperecharger" ]
+          [ 1.0, "v-gasmonsterunderground" ],
+          [ 1.0, "v-downspitter2underground" ],
+          [ 1.0, "v-fumeballoon" ]
         ]
       },
       {
@@ -19,31 +18,31 @@
       }
     ],
     "monsterParameters" : {
-      "colors" : "toxic",
+      "colors" : "v-toxicwasteland",
       "statusSettings" : {
         "stats" : {
           "electricResistance" : {
-            "baseValue" : 0.5
-          },
-          "poisonResistance" : {
             "baseValue" : -0.25
           },
-          "electricStatusImmunity" : {
+          "poisonResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonStatusImmunity" : {
             "baseValue" : 1.0
           },
           "protection" : {
-            "baseValue" : 25.0
+            "baseValue" : 35.0
           }
         }
       }
     }
-  }, */
+  },
 
-  "parallax" : "/parallax/underground/v-undergroundvoltage.parallax",
+  "parallax" : "/parallax/underground/v-deepundergroundtoxic.parallax",
 
   "mainBlock" : "purplecrystal",
-  "subBlocks" : [ "waste", "rock02", "v-toxicstone" ],
-  "ores" : "v-undergroundvoltage",
+  "subBlocks" : [ "rock02", "v-toxicstone" ],
+  "ores" : "v-deepundergroundtoxic",
 
   "ambientNoises" : {
     "day" : {
@@ -56,15 +55,42 @@
 
   "musicTrack" : {
     "day" : {
-      "tracks" : [ "/music/desert-exploration2.ogg", "/music/M54.ogg", "/music/horsehead-nebula.ogg", "/music/drosera.ogg", "/music/tranquility-base.ogg", "/music/procyon.ogg", "/music/error-0xbfaf000.ogg" ]
+      "tracks" : [ "/music/M54.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg", "/music/eridanus-supervoid.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/music/desert-exploration2.ogg", "/music/M54.ogg", "/music/horsehead-nebula.ogg", "/music/drosera.ogg", "/music/tranquility-base.ogg", "/music/procyon.ogg", "/music/error-0xbfaf000.ogg" ]
+      "tracks" : [ "/music/M54.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg", "/music/eridanus-supervoid.ogg" ]
     }
   },
 
   "undergroundPlaceables" : {
+    "grassMod" : [ "toxicgrass" ],
+    "grassModDensity" : 0.9,
+
+    "ceilingGrassMod" : [ "roots" ],
+    "ceilingGrassModDensity" : 0.9,
+
     "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredSmall",
+
+        "type" : "grass",
+        "grasses" : [ "toxicplains" ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 2.0,
+        "variants" : 3,
+        "distribution" : "/biomes/distributions.config:denseMedium",
+
+        "type" : "tree",
+        "treeFoliageHueShiftMax" : 60,
+        "treeStemHueShiftMax" : 40,
+        "treeStemList" : [ "purplevine" ],
+        "treeFoliageList" : [ "dreamy" ]
+      },
       {
         "mode" : "floor",
         "priority" : 1.0,
@@ -138,12 +164,52 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundChests",
+        "distribution" : "/biomes/distributions.config:overgroundRareChests",
 
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1, "statuspod" ] ],
+            "pool" : [ [1, "v-statuspodtoxic" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-toxicoshroom1" ], [0.20, "v-toxicoshroom2" ], [0.20, "v-toxicoshroom3" ], [0.20, "v-toxicoshroom4" ], [0.20, "v-toxicoshroom5" ]]
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-poisonglowtree1" ], [0.20, "v-poisonglowtree2" ], [0.20, "v-poisonglowtree3" ], [0.20, "v-poisonglowtree4" ], [0.20, "v-poisonglowtree5" ]]
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-poisonGasPrimer",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-poisongasprimerlite2" ] ],
             "parameters" : { }
           }
         ]
@@ -155,7 +221,7 @@
         "distribution" : "/biomes/distributions.config:undergroundBiomeEncounterDungeon",
 
         "type" : "microdungeon",
-        "microdungeons" : [ "undergroundencounterdungeons" ]
+        "microdungeons" : [ "v-campsite" ]
       },
       {
         "mode" : "floor",
@@ -176,5 +242,5 @@
     ]
   },
 
-  "hueShiftOptions" : [0]
+  "hueShiftOptions" : [ 30, 20, 10, 0, -10, -20 ]
 }

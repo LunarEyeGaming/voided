@@ -1,0 +1,23 @@
+{
+  "metadata" : {
+    "name" : "v-poisongasemitterhole",
+    "species" : "generic",
+    "rules" : [
+    ],
+    "anchor" : [ "hole" ],
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : true
+  },
+
+  "parts" : [
+    {
+      "name" : "hole",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "hole.json" ]
+    }
+  ]
+}

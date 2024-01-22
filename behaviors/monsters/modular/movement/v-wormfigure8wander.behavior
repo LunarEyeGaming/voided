@@ -1,0 +1,59 @@
+{
+  "name": "v-wander-wormfigure8",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/v-worm.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/math.lua"
+  ],
+  "parameters": {
+    "size": 100,
+    "numPoints": 60,
+    "speed": 10,
+    "tolerance": 1
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "multiply",
+        "type": "action",
+        "name": "multiply",
+        "parameters": {
+          "number": {"value": "<size>"},
+          "factor": {"value": -1}
+        },
+        "output": {
+          "result": "xOffset"
+        }
+      },
+      {
+        "title": "offsetPosition",
+        "type": "action",
+        "name": "offsetPosition",
+        "parameters": {
+          "offset": {"value": ["xOffset", 0]},
+          "position": {"key": "self"}
+        },
+        "output": {
+          "position": "center"
+        }
+      },
+      {
+        "title": "v_wormFigure8",
+        "type": "action",
+        "name": "v_wormFigure8",
+        "parameters": {
+          "size": {"value": "<size>"},
+          "numPoints": {"value": "<numPoints>"},
+          "speed": {"value": "<speed>"},
+          "tolerance": {"value": "<tolerance>"},
+          "center": {"key": "center"}
+        }
+      }
+    ]
+  }
+}

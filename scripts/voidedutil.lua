@@ -148,3 +148,19 @@ function stringOfColor(color)
   
   return str
 end
+
+--[[
+  Takes in a ratio (a value between 0 and 1) and maps it to the following piecewise function: f(x) = {
+    2x if x < 0.5
+    2(1 - x) if x >= 0.5
+  }
+  f has a range of [0, 1]
+  This results in a function that rises to 1 until ratio = 0.5, where it goes back down to 0.
+]]
+function pingPong(ratio)
+  if ratio < 0.5 then
+    return 2 * ratio
+  else
+    return 2 * (1 - ratio)
+  end
+end

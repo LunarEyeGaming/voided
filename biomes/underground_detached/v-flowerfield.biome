@@ -1,0 +1,115 @@
+{
+  "name" : "v-flowerfield",
+  "friendlyName" : "Flower Field",
+
+  "spawnProfile" : {
+    "groups" : [
+      {
+        "select" : 2,
+        "pool" : [ 
+          [ 1.0, "v-gasmonsterunderground" ],
+          [ 1.0, "v-downspitterunderground" ],
+          [ 1.0, "v-killerbee" ]
+        ]
+      }
+    ],
+    "monsterParameters" : {
+      "colors" : "v-toxicwasteland",
+      "statusSettings" : {
+        "stats" : {
+          "electricResistance" : {
+            "baseValue" : -0.25
+          },
+          "poisonResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 20.0
+          }
+        }
+      }
+    }
+  },
+
+  "mainBlock" : "v-toxicsoil",
+  "subBlocks" : [ "v-toxicstone" ],
+  "ores" : "v-flowerfield",
+
+  "hueShiftOptions" : [-20, -10, 0, 10, 20, 30, 40],
+  "parallax" : "/parallax/underground/dirtunderground.parallax",
+
+  "undergroundPlaceables" : {
+    "grassMod" : [ "flowerygrass" ],
+    "grassModDensity" : 0.9,
+
+    "ceilingGrassMod" : [ "undergrowth" ],
+    "ceilingGrassModDensity" : 0.2,
+
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "grass",
+        "grasses" : [ "fancy" ]
+      },
+
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "grass",
+        "grasses" : [ "jungleswirly" ]
+      },
+
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "grass",
+        "grasses" : [ "jungleflower1", "jungleflower2", "jungleflower3" ]
+      },
+
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredSmall",
+
+        "type" : "grass",
+        "grasses" : [ "grass" ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-ceilingglowplant1" ], [0.20, "v-ceilingglowplant2" ], [0.20, "v-ceilingglowplant3" ], [0.20, "v-ceilingglowplant4" ], [0.20, "v-ceilingglowplant5" ]]
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-killerBeeHive",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-killerbeehive" ]
+      }
+    ]
+  }
+}

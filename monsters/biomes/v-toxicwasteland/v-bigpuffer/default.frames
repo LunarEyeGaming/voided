@@ -1,0 +1,18 @@
+{
+  "frameGrid" : {
+    "size" : [64, 64],
+    "dimensions" : [7, 6],
+
+    "names" : [
+      [ "normal.1", "normal.2", "normal.3", "normal.4", "normal.5", "normal.6" ],
+      [ "preinflate.1", "inflate.1", "inflate.2", "inflate.3", "inflate.4", "inflate.5", "inflate.6" ],
+      [ "inflated.1", "inflated.2", "inflated.3", "inflated.4", "inflated.5", "inflated.6" ],
+      [ "hurtinflated.1" ],
+      [ "flopinflated.1", "flopinflated.2", "flopinflated.3", "flopinflated.4" ],
+      [ "flopnormal.1", "flopnormal.2", "flopnormal.3", "flopnormal.4" ]
+    ]
+  },
+  "aliases" : {
+    "hurtnormal.1" : "inflate.1"
+  }
+}

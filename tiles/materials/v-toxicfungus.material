@@ -1,0 +1,25 @@
+{
+  "materialId" : 1201,
+  "materialName" : "v-toxicfungus",
+  "particleColor" : [52, 120, 53, 255],
+  "itemDrop" : "v-toxicfungusmaterial",
+  "description" : "This fungus constantly emits deadly toxins.",
+  "shortdescription" : "Toxic Fungus",
+  "glitchDescription" : "Observant. This fungus secretes dangerous toxins.",
+  "floranDescription" : "Mushroom smellsss weird. Floran wantss to ssquish it.",
+  "novakidDescription" : "Breathin' whatever's comin' out of this fungus ain't safe.",
+  "footstepSound" : "/sfx/blocks/footstep_brains.ogg",
+  "health" : 6,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-toxicfungus.png",
+    "variants" : 14,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 3400
+  }
+}

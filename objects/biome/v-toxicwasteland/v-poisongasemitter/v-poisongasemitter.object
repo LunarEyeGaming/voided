@@ -1,0 +1,69 @@
+{
+  "objectName" : "v-poisongasemitter",
+  "colonyTags" : ["evil"],
+  "printable" : false,
+  "rarity" : "Legendary",
+  "description" : "A large hole that occasionally sprays out mycotoxins.",
+  "shortdescription" : "poisongasemitter",
+  "race" : "generic",
+
+  "apexDescription" : "This hole periodically emits dangerous mycotoxins.",
+  "avianDescription" : "A hole in the ground that ferociously spews out lethal gases.",
+  "floranDescription" : "Hole sspitss out gases.",
+  "glitchDescription" : "Cautious. Inhaling the fumes from this hole can prove fatal.",
+  "humanDescription" : "Whoa. Better not step over this while it's going off.",
+  "hylotlDescription" : "A chasm that periodically erupts with concentrated gases. Extremely dangerous.",
+  "novakidDescription" : "Better not breathe whatever's comin' out of this hole.",
+
+  "category" : "trap",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "image.png",
+      "imagePosition" : [-32, 0],
+      
+      "direction" : "left",
+      "flipImages" : true,
+      
+      "anchors" : ["bottom"],
+
+      "spaceScan" : 0.1
+    },
+    {
+      "image" : "image.png",
+      "imagePosition" : [-32, 0],
+      "direction" : "right",
+      
+      "anchors" : ["bottom"],
+
+      "spaceScan" : 0.1
+    }
+  ],
+  
+  "animation" : "v-poisongasemitter.animation",
+
+  "scripts" : [ "v-poisongasemitter.lua" ],
+  "scriptDelta" : 2,
+  
+  "health" : 5,
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
+  "smashParticles" : [ { "count" : 10, "particle" : "greystoneshard" } ],
+  
+  "gasProjectileType" : "v-poisoncloud",
+  "gasProjectileConfig" : {},
+
+  "gasDirection" : [0, 1],
+  "gasOffsetRegion" : [-4, 0, 4, 0],
+  
+  "gasEmissionInterval" : 0.2,
+  "onDuration" : 5.0,
+  "offDuration" : 5.0,
+  
+  "requiredEmptySpace" : [-4, 0, 4, 50],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

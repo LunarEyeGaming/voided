@@ -1,0 +1,29 @@
+{
+  "itemName" : "v-cookedbigpuffer",
+  "rarity" : "Uncommon",
+  "price" : 750,
+  "category" : "food",
+  "eventCategory" : "cookingIngredient",
+  "inventoryIcon" : "v-cookedbigpuffer.png",
+  "description" : "Big Puffer that has been cooked. Still just as dangerous to eat as when it is raw.",
+  "shortdescription" : "Cooked Big Puffer",
+  "foodValue" : 20,
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/buildfood.lua",
+  "maxStack" : 1,
+  "effects" : [ [
+      {
+        "effect" : "weakpoison",
+        "duration" : 30
+      },
+      {
+        "effect" : "v-strongpoison",
+        "duration" : 30
+      }
+    ] ],
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 0.5,
+  "blockingEffects" : [
+    "wellfed"
+  ]
+}

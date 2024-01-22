@@ -1,0 +1,17 @@
+{
+  "itemName" : "v-dotefruitsalve",
+  "rarity" : "Uncommon",
+  "price" : 350,
+  "maxStack" : 10,
+  "category" : "medicine",
+  "inventoryIcon" : "v-dotefruitsalve.png",
+  "description" : "'Dotefruit crushed into a paste. Slightly reduces mycotoxin amount.",
+  "shortdescription" : "'Dotefruit Salve",
+  "effects" : [ [
+      {
+        "effect" : "v-depthpoisonantidotesalve"
+      }
+    ] ],
+  "emote" : "",
+  "emitters" : [ "bandageuse" ]
+}

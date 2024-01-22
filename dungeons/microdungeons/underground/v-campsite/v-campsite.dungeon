@@ -1,0 +1,60 @@
+{
+  "metadata" : {
+    "name" : "v-campsite",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "site1", "site2", "site3" ,"site4", "site5", "site6" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "site1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "site1.json" ]
+    },
+    {
+      "name" : "site2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "site2.json" ]
+    },
+    {
+      "name" : "site3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "site3.json" ]
+    },
+    {
+      "name" : "site4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "site4.json" ]
+    },
+    {
+      "name" : "site5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "site5.json" ]
+    },
+    {
+      "name" : "site6",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "site6.json" ]
+    }
+  ]
+}

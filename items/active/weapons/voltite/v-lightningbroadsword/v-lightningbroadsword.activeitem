@@ -6,7 +6,7 @@
   "rarity" : "Legendary",
   "customRarity" : "Mythical",
   "description" : "A hilt with a blade made of electrical plasma.",
-  "shortdescription" : "Electric Edge",
+  "shortdescription" : "^voltite;Electric Edge",
   "tooltipKind" : "sword",
   "category" : "broadsword",
   "twoHanded" : true,
@@ -28,8 +28,6 @@
       "fire5" : ["/sfx/gun/grenadeblast_electric1.ogg", "/sfx/gun/grenadeblast_electric2.ogg", "/sfx/gun/grenadeblast_electric3.ogg"]
     }
   },
-  
-  "animationScripts" : ["/items/active/effects/lightning.lua"],
 
   "scripts" : ["/items/active/weapons/melee/energymeleeweapon.lua"],
 

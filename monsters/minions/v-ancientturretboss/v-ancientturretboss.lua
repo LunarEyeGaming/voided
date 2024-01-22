@@ -59,6 +59,10 @@ function init()
   cameraPos = vec2.add(mcontroller.position(), animator.partPoint("body", "cameraPos"))
   
   rotationCenter = config.getParameter("rotationCenter", {0, 0})
+  
+  message.setHandler("despawn", function()
+    moveState:set(states.deactivate)
+  end)
 
   -- Initialize variables
   monster.setDamageBar("none")

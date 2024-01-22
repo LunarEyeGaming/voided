@@ -1,0 +1,164 @@
+{
+  "name" : "v-toxicwastelandcorelayer",
+  "friendlyName" : "Fungal Core",
+
+  "spawnProfile" : {
+    "groups" : [
+      {
+        "select" : 3,
+        "pool" : [
+          [ 1.0, "v-downspitter2underground" ],
+          [ 1.0, "v-fumeballoon" ],
+          [ 1.0, "v-mushroomspider" ]
+        ]
+      },
+      {
+        "select" : 1,
+        "pool" : "generatedGroundAggroDay"
+      }
+    ],
+    "monsterParameters" : {
+      "colors" : "v-toxicwasteland",
+      "statusSettings" : {
+        "stats" : {
+          "electricResistance" : {
+            "baseValue" : -0.25
+          },
+          "poisonResistance" : {
+            "baseValue" : 0.5
+          },
+          "poisonStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "v-strongpoisonStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 45.0
+          }
+        }
+      }
+    }
+  },
+
+  "parallax" : "/parallax/core/v-toxicwastelandcore.parallax",
+
+  "mainBlock" : "v-toxicmycelium",
+  "subBlocks" : [ "v-toxicfungus" ],
+  "ores" : "v-toxiccore",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/v_fungal_core.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/v_fungal_core.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/casiopeia.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/lava-exploration2.ogg", "/music/casiopeia.ogg" ]
+    }
+  },
+
+  "undergroundPlaceables" : {
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:layer2Chests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "basicChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:overgroundRareChests",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-statuspodtoxic" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-poisonGasPrimer",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-poisongasprimer" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-mushroom",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-mushroom" ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 2.0,
+        "variants" : 3,
+        "distribution" : "/biomes/distributions.config:denseMedium",
+
+        "type" : "tree",
+        "treeFoliageHueShiftMax" : 60,
+        "treeStemHueShiftMax" : 40,
+        "treeStemList" : [ "v-toxicshroomstalk" ],
+        "treeFoliageList" : [ "v-toxicshrooms" ]
+      },
+      /* {
+        "mode" : "floor",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-voltageplaceholderdungeon" ]
+      }, */
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundweaponChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "v-poisonWeaponChest" ]
+      }
+    ]
+  },
+
+  "hueShiftOptions" : [-40, -30, -20, -10, 0, 10, 20, 30, 40]
+}

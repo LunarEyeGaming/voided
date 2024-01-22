@@ -14,6 +14,9 @@ local useAntiCrush
 local forceRegion
 local queryArea
 
+local isMoving  -- Whether it is moving in the current tick
+local wasMoving  -- Whether it was moving in the previous tick
+
 function init()
   local translationConfig = config.getParameter("translationConfig")
   translationTime = translationConfig.duration
@@ -44,14 +47,26 @@ function init()
     forceRegion = object.direction() == 1 and "doorLeft" or "doorRight"
     queryArea = rect.translate(config.getParameter("queryArea"), object.position())
   end
+  
+  for sound, offset in pairs(config.getParameter("soundOffsets", {})) do
+    animator.setSoundPosition(sound, offset)
+  end
+  
+  isMoving = false
 end
 
 function update(dt)
+  wasMoving = isMoving
+
   if storage.active then
     translationTimer = math.min(translationTime, translationTimer + dt)
+
+    isMoving = translationTimer < translationTime
   else
     if not useAntiCrush or #world.entityQuery(rect.ll(queryArea), rect.ur(queryArea), {includedTypes = {"monster", "npc", "player"}}) <= 0 then
       translationTimer = math.max(0, translationTimer - dt)
+
+      isMoving = translationTimer > 0
     end
   end
   
@@ -60,6 +75,8 @@ function update(dt)
   if isSolid then
     object.setMaterialSpaces(storage.spaceStates[math.floor(util.lerp(progress, 1, #storage.spaceStates))])
   end
+  
+  updateSounds()
   
   animator.setGlobalTag("doorProgress", math.floor(util.lerp(progress, 1, frames)))
   animator.resetTransformationGroup("door")
@@ -163,4 +180,44 @@ function getYRange(poly)
     end
   end
   return {minY, maxY}
+end
+
+--[[
+  To be run on every tick. Plays the appropriate sounds depending on the current state of the sliding door.
+]]
+function updateSounds()
+  -- Began movement
+  if isMoving and not wasMoving then
+    playOptionalSound("moveLoop", -1)
+    playOptionalSound("moveStart")
+  end
+  
+  -- Ended movement (should be mutually exclusive with the previous condition)
+  if not isMoving and wasMoving then
+    playOptionalSound("moveEnd")
+    stopOptionalSound("moveLoop")
+  end
+end
+
+--[[
+  Plays a sound and (optionally) loops it if the animator has it and has no effect otherwise.
+  
+  soundName: the name of the sound to play.
+  loopCount: (optional) the number of times to loop the sound.
+]]
+function playOptionalSound(soundName, loopCount)
+  if animator.hasSound(soundName) then
+    animator.playSound(soundName, loopCount)
+  end
+end
+
+--[[
+  Stops a sound if the animator has it and has no effect otherwise.
+  
+  soundName: the name of the sound to stop.
+]]
+function stopOptionalSound(soundName)
+  if animator.hasSound(soundName) then
+    animator.stopAllSounds(soundName)
+  end
 end

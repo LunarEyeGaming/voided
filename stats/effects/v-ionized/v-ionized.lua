@@ -1,22 +1,24 @@
 local tickTime
 local tickTimer
 local tickDamage
+local compoundingTickDamage
 
 function init()
   animator.setParticleEmitterOffsetRegion("flames", mcontroller.boundBox())
   animator.setParticleEmitterActive("flames", true)
-  effect.setParentDirectives("fade=3BD9D7=0.2")
+  effect.setParentDirectives("fade=9bba3d=0.2")
 
   script.setUpdateDelta(5)
 
-  tickTime = 0.5
+  tickTime = config.getParameter("tickTime")
+  tickDamage = config.getParameter("tickDamage")
+  compoundingTickDamage = config.getParameter("compoundingTickDamage")
   tickTimer = tickTime
-  tickDamage = 10
 
   status.applySelfDamageRequest({
       damageType = "IgnoresDef",
       damage = tickDamage,
-      damageSourceKind = "electricplasma",
+      damageSourceKind = "poisonplasma",
       sourceEntityId = entity.id()
     })
 end
@@ -25,11 +27,11 @@ function update(dt)
   tickTimer = tickTimer - dt
   if tickTimer <= 0 then
     tickTimer = tickTime
-    tickDamage = tickDamage + 8
+    tickDamage = tickDamage + compoundingTickDamage
     status.applySelfDamageRequest({
         damageType = "IgnoresDef",
         damage = tickDamage,
-        damageSourceKind = "electricplasma",
+        damageSourceKind = "poisonplasma",
         sourceEntityId = entity.id()
       })
   end

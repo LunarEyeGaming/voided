@@ -5,9 +5,29 @@
   "effectConfig" : {
     "startColor" : [131, 93, 179, 0],
     "endColor" : [131, 93, 179, 127],
-    "endPoisonAmount" : 900
+    "endPoisonAmount" : 900,
+    "shimmerValues" : [
+      {
+        "minPoisonChangeRate" : 1.5,
+        "shimmerTime" : 2
+      },
+      {
+        "minPoisonChangeRate" : 4,
+        "shimmerTime" : 1.0
+      },
+      {
+        "minPoisonChangeRate" : 50,
+        "shimmerTime" : 0.5
+      }
+    ],
+    "warningSoundRatioRange" : [0.8, 1.0],
+    // "warningSoundVolumeRange" : [0.5, 1.0],
+    // "warningSoundPitchRange" : [0.75, 1.5]
+    "warningSoundIntervalRange" : [5.0, 1.0]
   },
   "defaultDuration" : 1,
+  
+  "animationConfig" : "v-depthpoisonindicator.animation",
 
   "scripts" : [
     "v-depthpoisonindicator.lua"

@@ -1,0 +1,26 @@
+{
+  "layers" : [
+    {
+      "kind" : "v-undergroundtoxic/front",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.2,
+      "repeatY" : true
+    },
+    {
+      "kind" : "v-undergroundtoxic/mid",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.35,
+      "repeatY" : true
+    },
+    {
+      "kind" : "v-shallowundergroundtoxic/back",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 2,
+      "repeatY" : true,
+      "unlit" : false
+    }
+  ]
+}

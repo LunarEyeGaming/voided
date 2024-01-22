@@ -1,0 +1,36 @@
+{
+  "projectileName" : "v-toxikiteexplosion",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "movementSettings" : {
+    "collisionEnabled" : false
+  },
+  "timeToLive" : 0.2,  // Wait a little bit to guarantee that the mined tiles had their collision geometry removed.
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 1,
+      "body" : [
+        {
+          "action" : "projectile",
+          "type" : "v-poisoncloud2",
+          "inheritDamageFactor" : 0.0,
+          "fuzzAngle" : 180,
+          "config" : {
+            "speed" : 0
+          }
+        }
+      ]
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/acid_hit.ogg" ]
+    }
+  ]
+}

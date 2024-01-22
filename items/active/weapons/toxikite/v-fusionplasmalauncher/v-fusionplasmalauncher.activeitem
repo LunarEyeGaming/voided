@@ -1,14 +1,14 @@
 {
   "itemName" : "v-fusionplasmalauncher",
   "level" : 8,
-  "price" : 1500,
+  "price" : 1200,
   "maxStack" : 1,
   "rarity" : "Legendary",
   "customRarity" : "Mythical",
-  "description" : "A gun that exploits a deadly interaction between two energies. You shouldn't have this yet!",
-  "shortdescription" : "Fusion Plasma Cannon",
+  "description" : "A gun that exploits a deadly interaction between two energies.",
+  "shortdescription" : "^toxikite;Fusion Plasma Cannon",
   "tooltipKind" : "gun",
-  "category" : "uniqueWeapon",
+  "category" : "rocketLauncher",
   "twoHanded" : true,
   "itemTags" : ["weapon","ranged","rocketlauncher"],
 
@@ -24,21 +24,20 @@
     "cellsfullbright" : "cellsfullbright.png",
     "lamp": "lamp.png",
     "lampfullbright": "lampfullbright.png",
-    "muzzleFlash" : ""
+    "muzzleFlash" : "muzzleflash.png"
   },
   "animationCustom" : {
     "lights" : { "glow" : {
       "active" : true,
       "position" : [0.75, 0.5],
-      "color" : [101, 52, 120]
+      "color" : [159, 133, 128]
     }},
     "sounds" : {
-      "fire" : [ "/sfx/gun/v_fusionplasmalauncher_fire.ogg" ],
-      "altFire" : [ "/sfx/gun/v_fusionplasmalauncher_fire.ogg" ]
+      "fire" : [ "/sfx/gun/v_fusionplasmalauncher_fire.ogg" ]
     }
   },
   "baseOffset" : [0.75, -0.375],
-  "muzzleOffset" : [1.5, 0.75],
+  "muzzleOffset" : [1.375, 0.75],
 
   "scripts" : ["/items/active/weapons/ranged/gun.lua"],
 
@@ -49,7 +48,7 @@
     "class" : "GunFire",
 
     "fireTime" : 1.5,
-    "baseDps" : 10.0,
+    "baseDps" : 11.5,
     "energyUsage" : 75,
     "inaccuracy" : 0.008,
     "fireType" : "auto",
@@ -80,7 +79,8 @@
         "animationStates" : {
           "gun" : "fire",
           "cells" : "fire",
-          "lamp" : "switch"
+          "lamp" : "switch",
+          "muzzle" : "on1"
         }
       },
       "cooldown" : {
@@ -95,7 +95,7 @@
     }
   },
 
-  "altAbilityType" : "grenadelauncher",
+  "altAbilityType" : "v-fusionglobe",
   "altAbility" : {
     "elementalConfig" : {
       "poison" : { "name" : "Fusion Globe", "projectileType" : "v-fusionglobe", "projectileParameters" : {}, "fireTime" : 1.0, "energyUsage" : 75}

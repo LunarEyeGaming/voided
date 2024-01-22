@@ -1,0 +1,86 @@
+{
+  "objectName" : "v-voltagecitypointer",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "description" : "A giant display pointing to a potential point of interest.",
+  "shortdescription" : "Beacon Pointer",
+  "race" : "generic",
+  "category" : "light",
+  "price" : 1000,
+  "printable" : false,
+  
+  "health" : 10,
+
+  "apexDescription" : "A display with a pulsating arrow, most likely pointing to a beacon somewhere within the vicinity.",
+  "avianDescription" : "A large display with a green arrow that seems to point to something important.",
+  "floranDescription" : "Floran wantsss to follow big green arrow.",
+  "glitchDescription" : "Curious. This display may have a corresponding beacon, implying a point of interest.",
+  "humanDescription" : "I bet the giant blinking arrow on this display will lead me somewhere.",
+  "hylotlDescription" : "A display with a large arrow for those who need a sense of direction.",
+  "novakidDescription" : "A blinkin' arrow. Let's follow it.",
+
+  "lightColor" : [35, 110, 14],
+
+  "flickerPeriod" : 1.0,
+  "flickerMinIntensity" : 0.8,
+  "flickerMaxIntensity" : 1.0,
+  "flickerPeriodVariance" : 0,
+  "flickerIntensityVariance" : 0,
+
+  "inventoryIcon" : "voltagecitypointericon.png",
+  "orientations" : [
+    {
+      "image" : "voltagecitypointer.png:<frame>",
+      "imagePosition" : [-32, -32],
+
+      "direction" : "left",
+      "flipImages" : true,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    },
+    {
+      "image" : "voltagecitypointer.png:<frame>",
+      "imagePosition" : [-32, -32],
+
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+  
+  "animationScripts" : [ "v-voltagecitypointeranim.lua" ],
+  
+  "beaconFlashTime" : 1.0,
+  "arrowRadialOffset" : 2.25,
+  "leftArrowImage" : "/objects/biome/v-voltage/v-voltagecitypointer/arrow.png",
+  "rightArrowImage" : "/objects/biome/v-voltage/v-voltagecitypointer/arrow.png",
+  "flashHighOpacity" : 255,
+  "flashLowOpacity" : 150,
+  
+  "beaconUniqueId" : "v-voltagecitybeacon",
+
+  "scripts" : [ "v-voltagecitypointer.lua" ],
+  "scriptDelta" : 60,
+
+  "inputNodes" : [ [0, 0] ],
+
+  // "interactive" : false,
+
+  "animation" : "v-voltagecitypointer.animation",
+
+  "animationParts" : {
+    "bg" : "voltagecitypointer.png",
+    "fg" : "voltagecitypointerlit.png"
+  },
+
+  "animationPosition" : [-32, -32],
+
+  "animationCustom" : {
+    "sounds" : {
+      "on" : [ "/sfx/objects/tinywallswitch.ogg" ],
+      "off" : [ "/sfx/objects/tinywallswitch.ogg" ]
+    }
+  }
+}

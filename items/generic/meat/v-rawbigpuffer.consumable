@@ -1,0 +1,33 @@
+{
+  "itemName" : "v-rawbigpuffer",
+  "rarity" : "Uncommon",
+  "price" : 500,
+  "category" : "food",
+  "eventCategory" : "cookingIngredient",
+  "inventoryIcon" : "v-rawbigpuffer.png",
+  "description" : "A raw Big Puffer. You definitely don't want to eat this, not even after cooking it.",
+  "shortdescription" : "Raw Big Puffer",
+  "foodValue" : 10,
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/buildfood.lua",
+  "maxStack" : 1,
+  "effects" : [ [
+      {
+        "effect" : "foodpoison"
+      },
+      {
+        "effect" : "weakpoison",
+        "duration" : 30
+      },
+      {
+        "effect" : "v-strongpoison",
+        "duration" : 30
+      }
+    ] ],
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 0.5,
+  "blockingEffects" : [
+    "wellfed"
+  ],
+  "learnBlueprintsOnPickup" : [ "v-cookedbigpuffer" ]
+}

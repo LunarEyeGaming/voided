@@ -1,0 +1,23 @@
+{
+  "projectileName" : "v-mushroomspiderwebpredetonate",
+  "image" : "mushroomspiderwebpredetonate.png",
+  "physics" : "default",
+  "bounces" : -1,
+  "timeToLive" : 0.5,
+  "animationCycle" : 0.25,
+  "frameNumber" : 1,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/poisonexplosionknockback.config"
+    }
+  ],
+  "power" : 5.0,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "flippable" : true,
+  
+  "emitters" : ["largepoisoncloud"],
+  
+  "persistentAudio" : "/sfx/projectiles/v_mushroomspiderpredetonate_warning.ogg"
+}

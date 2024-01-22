@@ -1,5 +1,5 @@
 {
-  // This stagehand spawns core lightning.
+  // This stagehand spawns toxic bubbles.
   "type" : "v-toxicbubblespawner",
   "keepAlive" : true,
 
@@ -8,9 +8,8 @@
 
   "broadcastArea" : [-1, -1, 1, 1],
 
-  "lightningXPosRange" : [-50, 50],
-  "lightningTimeRange" : [1.0, 2.0],
-  "maxSpawnHeight" : -100,
+  "bubbleOffsetRegion" : [-50, -100, 50, -10],
+  "bubbleTimeRange" : [1.0, 2.0],
   "projectileType" : "v-toxiclakebubble",
   "projectileDirection" : [0, 0],
   "projectileParameters" : {"damageTeam" : {"type" : "indiscriminate"}, "power" : 250}

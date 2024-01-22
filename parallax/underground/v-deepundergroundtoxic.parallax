@@ -1,0 +1,36 @@
+{
+  "layers" : [
+    {
+      "kind" : "v-deepundergroundtoxic/front",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.2,
+      "repeatY" : true
+    },
+    {
+      "kind" : "v-undergroundtoxic/mid",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.35,
+      "repeatY" : true
+    },
+    {
+      "kind" : "v-deepundergroundtoxic/backunlit",
+      "nohueshift" : true,
+      "lightMapped" : true,
+      "parallax" : 2,
+      "noRandomOffset" : true,
+      "repeatY" : true,
+      "unlit" : true
+    },
+    {
+      "kind" : "v-deepundergroundtoxic/back",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 2.001,
+      "repeatY" : true,
+      "noRandomOffset" : true,
+      "unlit" : false
+    }
+  ]
+}

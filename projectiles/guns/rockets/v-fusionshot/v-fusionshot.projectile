@@ -3,7 +3,7 @@
   "image" : "fusionshot.png",
   "animationCycle" : 0.5,
   "frameNumber" : 2,
-  "lightColor" : [34, 84, 130],
+  "lightColor" : [72, 131, 47],
   "pointLight" : true,
   "fullbright" : true,
 
@@ -33,12 +33,13 @@
     }
   ],
   
-  "scripts" : ["v-fusionshot.lua"],
+  "scripts" : ["/scripts/projectiles/v-merger.lua"],
   "scriptDelta" : 1,
   
-  "fuseRadius" : 3,
-  "explodeAction" : {
+  "mergeRadius" : 3,
+  "nonMergeAction" : {
     "action" : "config",
     "file" : "/projectiles/explosions/v-fusionexplosion/v-lua-fusionexplosion.config"
-  }
+  },
+  "targetType" : "v-fusionglobe"
 }

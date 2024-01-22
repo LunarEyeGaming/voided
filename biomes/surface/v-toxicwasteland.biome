@@ -54,7 +54,7 @@
       } */
     ],
     "monsterParameters" : {
-      "colors" : "toxic",
+      "colors" : "v-toxicwasteland",
       "statusSettings" : {
         "stats" : {
           "poisonStatusImmunity" : {
@@ -67,30 +67,88 @@
 
   "weather" : [
     [0, [
-      "/weather.config:clear"
+      "/weather.config:v-toxicwasteland",
+      "/weather.config:v-toxicwastelandBlobs"
+      // "/weather.config:v-toxicwastelandTest"
     ]]
   ],
 
   "skyOptions" : [
     {
-      // sunny green day, darkgreen/yellow sunrise and purple/blue sunset
+      // green, green, green, red
       "mainColor" : [255, 255, 255],
 
-      "morningColors" : [ [120, 164, 84], [243, 201, 115] ],
-      "dayColors" : [ [68, 164, 84], [243, 201, 115] ],
-      "eveningColors" : [ [43, 17, 118], [244, 161, 231] ],
-      "nightColors" : [ [24, 38, 53, 80], [58, 42, 70, 160] ],
+      "morningColors" : [ [33, 112, 15], [46, 158, 21] ],
+      "dayColors" : [ [70, 240, 32], [74, 255, 34] ],
+      "eveningColors" : [ [111, 115, 15], [114, 150, 20] ],
+      "nightColors" : [ [28, 4, 4, 160], [48, 7, 7, 80] ],
 
-      "morningLightColor" : [20, 91, 100],
-      "dayLightColor" : [120, 180, 120],
+      "morningLightColor" : [33, 112, 15],
+      "dayLightColor" : [70, 240, 32],
+      "eveningLightColor" : [111, 115, 15],
+      "nightLightColor" : [28, 4, 4]
+    },
+    {
+      // green, purple, green, red
+      "mainColor" : [255, 255, 255],
+
+      "morningColors" : [ [33, 112, 15], [46, 158, 21] ],
+      "dayColors" : [ [128, 44, 143], [164, 81, 196] ],
+      "eveningColors" : [ [111, 115, 15], [114, 150, 20] ],
+      "nightColors" : [ [28, 4, 4, 160], [48, 7, 7, 80] ],
+
+      "morningLightColor" : [33, 112, 15],
+      "dayLightColor" : [164, 81, 196],
+      "eveningLightColor" : [111, 115, 15],
+      "nightLightColor" : [28, 4, 4]
+    },
+    {
+      // magenta, sickly green, magenta, yellow
+      "mainColor" : [255, 255, 255],
+
+      "morningColors" : [ [125, 17, 158], [210, 52, 50] ],
+      "dayColors" : [ [147, 240, 34], [164, 255, 36] ],
+      "eveningColors" : [ [125, 17, 158], [210, 52, 50] ],
+      "nightColors" : [ [59, 84, 22, 160], [37, 56, 10, 80] ],
+
+      "morningLightColor" : [160, 120, 180],
+      "dayLightColor" : [147, 240, 34],
       "eveningLightColor" : [160, 120, 180],
-      "nightLightColor" : [40, 20, 60]
+      "nightLightColor" : [28, 4, 4]
+    },
+    {
+      // orange, green, orange, purple
+      "mainColor" : [255, 255, 255],
+
+      "morningColors" : [ [99, 12, 12], [131, 131, 12] ],
+      "dayColors" : [ [70, 240, 32], [74, 255, 34] ],
+      "eveningColors" : [ [99, 12, 12], [131, 131, 12] ],
+      "nightColors" : [ [59, 9, 66, 80], [84, 25, 94, 160] ],
+
+      "morningLightColor" : [125, 85, 65],
+      "dayLightColor" : [70, 240, 32],
+      "eveningLightColor" : [125, 85, 65],
+      "nightLightColor" : [29, 3, 33]
+    },
+    {
+      // orange, sickly green, orange, magenta
+      "mainColor" : [255, 255, 255],
+
+      "morningColors" : [ [99, 12, 12], [131, 131, 12] ],
+      "dayColors" : [ [147, 240, 34], [164, 255, 36] ],
+      "eveningColors" : [ [99, 12, 12], [131, 131, 12] ],
+      "nightColors" : [ [64, 9, 42, 80], [92, 25, 58, 160] ],
+
+      "morningLightColor" : [125, 85, 65],
+      "dayLightColor" : [147, 240, 34],
+      "eveningLightColor" : [125, 85, 65],
+      "nightLightColor" : [31, 3, 21]
     }
   ],
 
-  "hueShiftOptions" : [ 0 ],
+  "hueShiftOptions" : [ 30, 20, 10, 0, -10, -20, -30, -40, -50 ],
 
-  "parallax" : "/parallax/surface/volcanic.parallax",
+  "parallax" : "/parallax/surface/v-toxicwasteland.parallax",
 
   "ambientNoises" : {
     "day" : {
@@ -103,31 +161,19 @@
 
   "musicTrack" : {
     "day" : {
-      "tracks" : [ "/music/forsaken-grotto.ogg", "/music/hymn-to-the-stars.ogg", "/music/procyon.ogg", "/music/vast-immortal-suns.ogg", "/music/drosera.ogg", "/music/mira.ogg", "/music/europa.ogg", "/music/haiku.ogg", "/music/horsehead-nebula.ogg", "/music/lava-exploration1.ogg", "/music/Nomads.ogg" ]
+      "tracks" : [ "/music/forsaken-grotto.ogg", "/music/lava-exploration2.ogg", "/music/procyon.ogg", "/music/Nomads.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/music/jupiter.ogg", "/music/arctic-constellation1.ogg", "/music/arctic-constellation2.ogg", "/music/crystal-exploration2.ogg", "/music/tranquility-base.ogg", "/music/accretion-disc.ogg", "/music/horsehead-nebula.ogg", "/music/lava-exploration2.ogg", "/music/mercury.ogg", "/music/tentacle-exploration1.ogg" ]
+      "tracks" : [ "/music/jupiter.ogg", "/music/arctic-constellation1.ogg", "/music/arctic-constellation2.ogg", "/music/crystal-exploration2.ogg", "/music/accretion-disc.ogg", "/music/mercury.ogg" ]
     }
   },
 
   "mainBlock" : "v-toxicstone",
-  "subBlocks" : [ "waste", "rock02", "purplecrystal" ],
-  "ores" : "surface",
+  "subBlocks" : [ "rock02", "purplecrystal" ],
+  "ores" : "v-toxicwasteland",
 
   "surfacePlaceables" : {
-    "grassMod" : [ "toxicgrass" ],
-    "grassModDensity" : 0.9,
-
     "items" : [
-      /* {
-        "mode" : "floor",
-        "priority" : 3.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredSmall",
-
-        "type" : "grass",
-        "grasses" : [ "toxicplains" ]
-      },
       {
         "mode" : "floor",
         "priority" : 0.0,
@@ -135,140 +181,77 @@
         "distribution" : "/biomes/distributions.config:undergroundChests",
 
         "type" : "treasureBox",
-        "treasureBoxSets" : [ "toxicChest" ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseLarge",
-
-        "type" : "tree",
-        "treeFoliageHueShiftMax" : 0,
-        "treeStemHueShiftMax" : 15,
-        "treeStemList" : [ "toxiccoral" ],
-        "treeFoliageList" : [ "aridblank" ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 2.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSmall",
-
-        "type" : "bush",
-        "bushes" : [
-          {
-            "name" : "toxiccreep",
-            "baseHueShiftMax" : 40,
-            "modHueShiftMax" : 180
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 2.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:moderateClumps",
-
-        "type" : "bush",
-        "bushes" : [
-          {
-            "name" : "slimebush",
-            "baseHueShiftMax" : 40,
-            "modHueShiftMax" : 180
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 2.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:rareClumpySmall",
-
-        "type" : "bush",
-        "bushes" : [
-          {
-            "name" : "skulls",
-            "baseHueShiftMax" : 40,
-            "modHueShiftMax" : 180
-          }
-        ]
-      }, */
-      {
-        "mode" : "floor",
-        "priority" : 1,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:mainBiomeRareMicrodungeon",
-
-        "type" : "microdungeon",
-        "microdungeons" : [ "v-toxicwastelandgiantcrystal" ]
-      } /* ,
-      {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredSmall",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1, "toxicgasprimer" ] ],
-            "parameters" : { }
-          }
-        ]
-      },
-
-      {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSurfaceCrops",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1, "wildtoxictopseed" ] ],
-            "parameters" : {
-              "startingStage" : 3
-            }
-          }
-        ]
-      } */
-      // ,
-      // {
-      //   "mode" : "floor",
-      //   "priority" : 1.0,
-      //   "variants" : 1,
-      //   "distribution" : "/biomes/distributions.config:denseLarge",
-
-      //   "type" : "microdungeon",
-      //   "microdungeons" : [ "toxicplains" ]
-      // }
-    ]
-  },
-
-  "undergroundPlaceables" : {
-    "grassMod" : [ "toxicgrass" ],
-    "grassModDensity" : 0.9,
-
-    "items" : [
-      {
-        "mode" : "floor",
-        "priority" : 3.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredSmall",
-
-        "type" : "grass",
-        "grasses" : [ "toxicplains" ]
+        "treasureBoxSets" : [ "basicChest" ]
       },
       {
         "mode" : "floor",
         "priority" : 0.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:minibiomeChests",
+        "distribution" : "/biomes/distributions.config:undergroundweaponChests",
 
         "type" : "treasureBox",
-        "treasureBoxSets" : [ "toxicChest" ]
+        "treasureBoxSets" : [ "v-poisonWeaponChest" ]
+      }
+    ]
+  },
+
+  "undergroundPlaceables" : {
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "basicChest" ]
+      },
+
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundtechChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "techChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundweaponChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "v-poisonWeaponChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:overgroundRareChests",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-statuspodtoxic" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-poisonGasPrimer",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-poisongasprimerlite" ] ],
+            "parameters" : { }
+          }
+        ]
       }
     ]
   }

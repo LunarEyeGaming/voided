@@ -1,0 +1,15 @@
+{
+  "name" : "v-crystaldepthpoison3",
+  "blockingStat" : "v-crystaldepthpoisonImmunity",
+  "effectConfig" : {
+    "poisonRate" : 3
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "v-crystaldepthpoison.lua"
+  ],
+
+  "label" : "High Mycotoxin Exposure - Mycotoxin meter increases",
+  "icon" : "/interface/statuses/v-crystaldepthpoison.png"
+}

@@ -1,0 +1,68 @@
+{
+  "itemName" : "v-toxikitebroadsword",
+  "price" : 1100,
+  "level" : 8,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "A large blade capable of spraying toxic gas.",
+  "shortdescription" : "^toxikite;Toxic Blade",
+  "tooltipKind" : "sword",
+  "category" : "broadsword",
+  "twoHanded" : true,
+  "itemTags" : ["weapon", "melee", "broadsword"],
+
+  "inventoryIcon" : "toxikitebroadsword.png",
+
+  "animation" : "v-toxikitebroadsword.animation",
+  "animationParts" : {
+    "sword" : "toxikitebroadsword.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : ["/sfx/melee/swing_broadsword_poison1.ogg", "/sfx/melee/swing_broadsword_poison2.ogg", "/sfx/melee/swing_broadsword_poison3.ogg"],
+      "fire2" : ["/sfx/melee/swing_shortsword_poison1.ogg", "/sfx/melee/swing_shortsword_poison1.ogg", "/sfx/melee/swing_shortsword_poison1.ogg"],
+      "fire3" : ["/sfx/melee/swing_broadsword_poison1.ogg", "/sfx/melee/swing_broadsword_poison2.ogg", "/sfx/melee/swing_broadsword_poison3.ogg"],
+      "fire4" : ["/sfx/melee/swing_spear_poison1.ogg", "/sfx/melee/swing_spear_poison2.ogg", "/sfx/melee/swing_spear_poison3.ogg"]
+    }
+  },
+
+  "scripts" : ["/items/active/weapons/melee/meleeweapon.lua"],
+
+  "elementalType" : "poison",
+
+  "primaryAbilityType" : "v-projectilebroadswordcombo",
+  "primaryAbility" : {
+    "damageConfig" : {"damageSourceKind" : "poisonbroadsword", "statusEffects" : [ "weakpoison" ], "knockbackMode" : "facing", "timeout" : 0.5},
+    "fireTime" : 0.83,
+    "baseDps" : 10,
+    "comboSteps" : 4,
+    "swooshOffsetRegions" : [[0.75, 0.0, 4.25, 5.0], [3, 3, -3, -3], [-0.75, 0.0, -4.25, -5.0], [-16, -1, 0, 1]],
+    "stepDamageConfig" : [{"baseDamageFactor" : 1.0, "knockback" : 25}, {"baseDamageFactor" : 1.0, "knockback" : 25}, {"baseDamageFactor" : 1.0, "knockback" : 25}, {"baseDamageFactor" : 1.5, "knockback" : 50}],
+
+    "stances" : {
+      "idle" : {"aimAngle" : 0},
+      "windup1" : {"duration" : 0.1},
+      "fire1" : {"duration" : 0.3},
+      "wait1" : {"duration" : 0.3},
+
+      "windup2" : {"duration" : 0.1, "armRotation" : -120, "weaponRotation" : -60, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true}, 
+      "fire2" : {"duration" : 0.5, "armRotation" : -135, "weaponRotation" : 0, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true, "weaponAngularVelocity" : 1800}, 
+      "wait2" : {"duration" : 0.1, "armRotation" : -135, "weaponRotation" : -135, "weaponOffset" : [0, 0], "allowRotate" : false, "allowFlip" : true, "twoHanded" : true},
+      
+      "windup3" : {"duration" : 0.1, "armRotation" : -120, "weaponRotation" : -150, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true},
+      "preslash3" : {"duration" : 0.025, "armRotation" : -45, "weaponRotation" : -180, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
+      "fire3" : {"duration" : 0.3, "armRotation" : 120, "weaponRotation" : -180, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
+      "wait3" : {"duration" : 0.3, "armRotation" : 120, "weaponRotation" : -180, "allowRotate" : false, "allowFlip" : true, "twoHanded" : true},
+
+      "windup4" : {"duration" : 0.15, "armRotation" : 135, "weaponRotation" : -180, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true},
+      "preslash4" : {"duration" : 0.025, "armRotation" : 90, "weaponRotation" : -180, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
+      // weaponOffset is [17.5, 0.5], rotated 100 degrees since armRotation and weaponRotation sum up to -100 degrees
+      "fire4" : {"duration" : 0.5, "armRotation" : -22.5, "weaponRotation" : -77.5, "weaponOffset" : [-3.53124699, 17.14731159], "twoHanded" : true, "allowRotate" : false, "allowFlip" : true, "projectile" : {"type" : "v-poisoncloudspawner", "offset" : [18.5, 8.0], "parameters" : {"power" : 10}, "requireLineOfSight" : true}}
+    }
+  },
+  
+  "altAbilityType" : "v-toxicparry",
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

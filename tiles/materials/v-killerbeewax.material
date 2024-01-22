@@ -1,0 +1,24 @@
+{
+  "materialId" : 1200,
+  "materialName" : "v-killerbeewax",
+  "particleColor" : [52, 120, 53, 255],
+  "itemDrop" : "v-killerbeewaxmaterial",
+  "description" : "Tough, sticky wax made from ground-up rock and saliva.",
+  "shortdescription" : "killerbeewax",
+  "glitchDescription" : "Disgusted. This wax is made from ground-up rock and bee saliva.",
+  "floranDescription" : "Sssticky bee wax.",
+  "novakidDescription" : "This wax is stickin' to my clothin'.",
+  "footstepSound" : "/sfx/blocks/footstep_gravel.ogg",
+  "health" : 16,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-killerbeewax.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 0
+  }
+}

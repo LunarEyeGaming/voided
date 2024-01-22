@@ -1,0 +1,25 @@
+{
+  "materialId" : 1204,
+  "materialName" : "v-rottingfungus",
+  "particleColor" : [162, 112, 181, 255],
+  "itemDrop" : "v-rottingfungusmaterial",
+  "description" : "Dead, rotting fungus.",
+  "shortdescription" : "Rotting Fungus",
+  "glitchDescription" : "Disgusted. Fungus that is rotting away.",
+  "floranDescription" : "Floran iss disgussted by squishy sstinky mushroom.",
+  "novakidDescription" : "This must be where that awful smell is comin' from.",
+  "footstepSound" : "/sfx/blocks/footstep_brains.ogg",
+  "health" : 3,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-rottingfungus.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 3300
+  }
+}

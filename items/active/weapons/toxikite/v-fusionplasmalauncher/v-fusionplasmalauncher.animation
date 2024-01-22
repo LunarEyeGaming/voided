@@ -17,6 +17,24 @@
           }
         }
       },
+      "muzzle" : {
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "on1" : {
+            "frames" : 2,
+            "cycle" : 0.07,
+            "mode" : "transition",
+            "transition" : "off"
+          },
+          "on2" : {
+            "frames" : 2,
+            "cycle" : 0.07,
+            "mode" : "transition",
+            "transition" : "off"
+          }
+        }
+      },
       "gun" : {
         "default" : "idle",
         "states" : {
@@ -94,7 +112,7 @@
       "gun" : {
         "properties" : {
           "centered" : true,
-          "offset" : [-0.5, 0.375], // x offset is set dynamically
+          "offset" : [-0.5, 0.25], // x offset is set dynamically
           "transformationGroups" : ["weapon"]
         },
         "partStates" : {
@@ -147,7 +165,7 @@
       "lamp" : {
         "properties" : {
           "centered" : true,
-          "offset" : [-0.0625, 0.625],
+          "offset" : [-0.0625, 0.6875],
           "anchorPart" : "gun",
           "zLevel" : 2
         },
@@ -211,7 +229,7 @@
       "cells" : {
         "properties" : {
           "centered" : true,
-          "offset" : [-1.9375, -0.0625],
+          "offset" : [-1.9375, 0.0],
           "anchorPart" : "gun",
           "zLevel" : -2
         },
@@ -272,10 +290,15 @@
         },
 
         "partStates" : {
-          "firing" : {
-            "fire" : {
+          "muzzle" : {
+            "on1" : {
               "properties" : {
-                "image" : "<partImage>:<variant>.<frame>"
+                "image" : "<partImage>:on1.<frame>"
+              }
+            },
+            "on2" : {
+              "properties" : {
+                "image" : "<partImage>:on2.<frame>"
               }
             }
           }

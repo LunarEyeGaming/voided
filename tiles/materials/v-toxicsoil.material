@@ -1,0 +1,26 @@
+{
+  "materialId" : 1199,
+  "materialName" : "v-toxicsoil",
+  "particleColor" : [162, 112, 181, 255],
+  "itemDrop" : "v-toxicsoilmaterial",
+  "description" : "This soil is laced with a variety of toxins.",
+  "shortdescription" : "Toxic Soil",
+  "glitchDescription" : "Analytical. This soil contains several different poisonous substances.",
+  "floranDescription" : "Sssoil is deadly to Floran.",
+  "novakidDescription" : "It's a wonder how these plants are survivin' with dirt this deadly.",
+  "footstepSound" : "/sfx/blocks/footstep_dirt.ogg",
+  "soil" : true,
+  "tillableMod" : 32,
+  "health" : 5,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-toxicsoil.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1920
+  }
+}

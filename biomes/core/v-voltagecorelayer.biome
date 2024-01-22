@@ -127,15 +127,15 @@
           }
         ]
       },
-      /* {
+      {
         "mode" : "floor",
         "priority" : 99.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
+        "distribution" : "/biomes/distributions.config:mainBiomeRareMicrodungeon",
 
         "type" : "microdungeon",
-        "microdungeons" : [ "v-voltageplaceholderdungeon" ]
-      }, */
+        "microdungeons" : [ "v-voltagecitypointer" ]
+      },
       {
         "mode" : "floor",
         "priority" : 0.0,

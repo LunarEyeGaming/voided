@@ -1,0 +1,75 @@
+{
+  "name": "v-action-wormfire",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/v-worm.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {
+    "fireState": "fire",
+    "fireSound" : "fire",
+    "winddownState": "firewinddown",
+    "windupState": "firewindup",
+    "fireStateType": "body",
+    "fireDelay": 0,
+    "skillName": "",
+    "fireCount": 1,
+    "fireInterval": 0.1
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "action-windup",
+        "type": "module",
+        "name": "action-windup",
+        "parameters": {}
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "<fireState>"},
+          "type": {"value": "<fireStateType>"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": "<fireDelay>"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "sound": {"value": "<fireSound>"}
+        }
+      },
+      {
+        "title": "v_wormFire",
+        "type": "action",
+        "name": "v_wormFire",
+        "parameters": {
+          "fireCount": {"value": "<fireCount>"},
+          "fireInterval": {"value": "<fireInterval>"},
+          "target": {"key": "target"}
+        }
+      },
+      {
+        "title": "action-winddown",
+        "type": "module",
+        "name": "action-winddown",
+        "parameters": {}
+      }
+    ]
+  }
+}

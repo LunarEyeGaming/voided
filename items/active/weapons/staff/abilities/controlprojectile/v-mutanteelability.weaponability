@@ -1,0 +1,19 @@
+{
+  "ability" : {
+    "type" : "v-mutanteelability",
+    "name" : "The Eel's Storm",
+    "scripts" : ["/items/active/weapons/staff/abilities/controlprojectile/v-mutanteelability.lua"],
+    "class" : "ControlProjectile",
+
+    "maxCastRange" : 50,
+
+    "energyPerShot" : 10,
+    "projectileSpawnInterval" : 0.25,
+    "projectileOffsetRegion" : [-10, -10, 10, 10],
+
+    "projectileType" : "v-mutanteelspitspawner",
+    "projectileParameters" : {
+      "baseDamage" : 3
+    }
+  }
+}

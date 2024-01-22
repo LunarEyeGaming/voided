@@ -13,18 +13,20 @@
 
   "damageKind" : "default",
   "damageType" : "NoDamage",
-  "damagePoly" : [ [-5, 5], [-5, -5], [5, -5], [5, 5] ],
+  "damagePoly" : [ [-11, 11], [-11, -11], [11, -11], [11, 11] ],
   "power" : 50,
   "damageKindImage" : "icon.png",
   
-  "scripts" : ["v-fusionglobe.lua"],
+  "scripts" : ["/scripts/projectiles/v-mergehandler.lua"],
   "scriptDelta" : 1,
+  
+  "mergeHandlerType" : "v-fusionglobe",
 
-  "largeDetonationAction" : {
+  "actionOnMerge" : {
     "action" : "config",
     "file" : "/projectiles/explosions/v-fusionexplosionlarge/v-lua-fusionexplosionlarge.config"
   },
-  "detonationAction" : {
+  "actionOnNonMerge" : {
     "action" : "config",
     "file" : "/projectiles/explosions/v-fusionexplosion/v-lua-fusionexplosion2.config"
   }

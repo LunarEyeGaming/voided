@@ -1,0 +1,96 @@
+{
+  "name" : "v-experimental",
+
+  "type" : "minmax",
+  
+  "sources" : [
+    {
+      // Strand distortion
+      "type" : "displacement",
+      "xType" : "perlin",
+      "xOctaves" : 2,
+      "xFreq" : 0.07,
+      "xAmp" : 20,
+      "xXInfluence" : 1.0,
+      "xYInfluence" : 0.5,
+      "yType" : "perlin",
+      "yOctaves" : 1,
+      "yFreq" : 0.1,
+      "yAmp" : 3,
+      "yYInfluence" : 0,
+
+      "source" : {
+        "type" : "mix",
+        // Filter 
+
+        "mixSource" : {
+          "type" : "perlin",
+          "function" : "perlin",
+          "octaves" : 2,
+          "freq" : 0.01,
+          "amp" : 50,
+          "bias" : 2.0,
+          "xInfluence" : 1,
+          "yInfluence" : 1
+        },
+
+        "aSource" : {
+          // Strips
+          "type" : "perlin",
+          "function" : "perlin",
+          "octaves" : 2,
+          "freq" : 0.1,
+          "amp" : 50,
+          "bias" : -0.4,
+          "xInfluence" : 1.0,
+          "yInfluence" : 0.0
+        },
+        
+        "bSource" : {
+          "type" : "constant",
+          "value" : -60
+        }
+      }
+    },
+    // Big fat Karst chambers
+    {
+      "type" : "karstcave",
+
+      "layerResolution" : 27,
+      "layerDensity" : 0.04,
+
+      "layerHeightVariation" : {
+        "type" : "perlin",
+        "octaves" : 2,
+        "frequency" : 0.009,
+        "amplitude" : 30
+      },
+      "bufferHeight" : 50,
+
+      "caveDecision" : {
+        "type" : "perlin",
+        "octaves" : 2,
+        "frequency" : 0.012,
+        "amplitude" : 2.4,
+        "bias" : -0.9
+      },
+      "caveTaperPoint" : 0.5,
+
+      "caveHeightVariation" : {
+        "type" : "perlin",
+        "octaves" : 2,
+        "frequency" : 0.05,
+        "amplitude" : 24,
+        "bias" : 38
+      },
+
+      "caveFloorVariation" : {
+        "type" : "perlin",
+        "octaves" : 2,
+        "frequency" : 0.08,
+        "amplitude" : 8,
+        "bias" : -14
+      }
+    }
+  ]
+}

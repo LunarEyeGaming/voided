@@ -10,9 +10,8 @@ function build(directory, config, parameters, level, seed)
       return defaultValue
     end
   end
-  
-  config = applyRarity(config, configParameter("customRarity"))
-  config = setVoidedIcon(config)
+
+  config, parameters = applyExtraBuildFuncs(directory, config, parameters, level, seed)
   
   -- Using config instead of parameters allows tooltipFields to be overridden.
   if not config.tooltipFields then

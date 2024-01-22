@@ -1,6 +1,6 @@
 {
   "itemName" : "v-ancientfragment",
-  "price" : 600,
+  "price" : 300,
   "rarity" : "Legendary",
   "category" : "craftingMaterial",
   "builder" : "/items/buildscripts/v-builditem.lua",
@@ -8,5 +8,7 @@
   "description" : "Fragmented material from an ancient machine. Used for crafting ancient items.",
   "shortdescription" : "Ancient Fragment",
   "itemTags" : [ "reagent" ],
-  "pickupQuestTemplates" : [ "v-ancientstrongholdtrigger" ]
+  "learnBlueprintsOnPickup" : [
+    "v-ancientfurnace"
+  ]
 }

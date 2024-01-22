@@ -1,11 +1,10 @@
 [
   // Architect's Table
-  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientfabricator"} },
-  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientfurnace"} },
+  // { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientfabricator"} },
+  // { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientfurnace"} },
   
   // Tier 6 Weapons
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-aegisaltassaultrifle"} },
-  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-handheldioncannon"} },
   
   // Ancient Weapons, Armor & Tech
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancienthead"} },
@@ -21,12 +20,20 @@
   
   // New EPPs
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-electricprotectionback"} },
+  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-poisonprotectionback"} },
 
   // Player scripts
   {"op": "add", "path": "/genericScriptContexts/v-matproperties", "value": "/scripts/v-matproperties/main.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-depthpoison", "value": "/scripts/voideddepthpoison.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-lightningbeandrop", "value": "/scripts/v-lightningbeandrop.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-terralibwarning", "value": "/scripts/v-requiresterralib.lua"},
+  
+  // Client-side rendering scripts
+  {
+    "op": "add",
+    "path": "/deploymentConfig/scripts/-",
+    "value": "/scripts/rendering/v-depthpoisonmeter.lua"
+  },
   
   // Depth poison mechanic
   {

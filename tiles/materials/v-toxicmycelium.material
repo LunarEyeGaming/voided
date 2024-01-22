@@ -1,0 +1,25 @@
+{
+  "materialId" : 1202,
+  "materialName" : "v-toxicmycelium",
+  "particleColor" : [162, 112, 181, 255],
+  "itemDrop" : "v-toxicmyceliummaterial",
+  "description" : "A tangled mess of mycelia.",
+  "shortdescription" : "Toxic Mycelium",
+  "glitchDescription" : "Indifferent. It is a mass of mycelium.",
+  "floranDescription" : "Floran hatess rootsss of mushroom. Mushroom is Floran's enemy.",
+  "novakidDescription" : "What a gnarly mess of roots.",
+  "footstepSound" : "/sfx/blocks/footstep_brains.ogg",
+  "health" : 7,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-toxicmycelium.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 3300
+  }
+}

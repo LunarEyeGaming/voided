@@ -36,6 +36,11 @@
   "scripts" : [ "/objects/wired/v-slidingdoor/slidingdoor.lua" ],
   "scriptDelta" : 1,
   
+  "soundOffsets" : {
+    "moveLoop" : [17, -4],
+    "moveEnd" : [17, -4]
+  },
+  
   "translationConfig" : {
     "duration" : 0.3,
     "distance" : 11,
@@ -53,6 +58,13 @@
     "wall" : "strongholdbosswall.png"
   },
   "animationPosition" : [0, -64],
+  
+  "animationCustom" : {
+    "sounds" : {
+      "moveLoop" : ["/sfx/objects/v_strongholddoor_moveloop.ogg"],
+      "moveEnd" : ["/sfx/objects/v_strongholddoor_impact.ogg"]
+    }
+  },
   
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

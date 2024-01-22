@@ -738,10 +738,10 @@ function v_turretAttack(args, board)
 
   for _, wave in ipairs(args.waves) do
     while _v_anyTurretsExist(turretIds) do
-      coroutine.yield()
+      coroutine.yield(nil, {entityIds = turretIds})
     end
 
-    util.run(wave.delay, function() end)
+    util.run(wave.delay, function() end, {entityIds = turretIds})
     
     turretIds = {}
 
@@ -752,13 +752,13 @@ function v_turretAttack(args, board)
       table.insert(turretIds, turretId)
 
       if wave.interval then
-        util.run(wave.interval, function() end)
+        util.run(wave.interval, function() end, {entityIds = turretIds})
       end
     end
   end
     
   while _v_anyTurretsExist(turretIds) do
-    coroutine.yield()
+    coroutine.yield(nil, {entityIds = turretIds})
   end
   
   return true

@@ -1,0 +1,25 @@
+{
+  "projectileName" : "v-toxicblob",
+  "physics" : "grenadezbomb",
+  "bounces" : 0,
+  "image" : "toxicblob.png",
+  "animationCycle" : 0.8,
+  "frameNumber" : 8,
+  "power" : 0,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/poisonexplosionknockback.config"
+    }
+  ],
+  
+  "damageTeam" : {"type" : "indiscriminate"},
+  
+  "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
+  
+  "monsterType" : "v-lingeringpoison",
+  "shockwaveDamageFactor" : 0.5
+}

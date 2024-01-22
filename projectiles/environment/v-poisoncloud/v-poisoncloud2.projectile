@@ -1,0 +1,22 @@
+{
+  "projectileName" : "v-poisoncloud2",
+  "image" : "poisoncloud.png",
+  "physics" : "bullet",
+  "animationCycle" : 3,
+  "animationLoops" : true,
+  "damageKindImage" : "/interface/statuses/fire.png",
+  "frameNumber" : 8,
+  "power" : 0,
+  "speed" : 75,
+  "timeToLive" : 3,
+  "bounces" : -1,
+  "piercing" : true,
+  "damagePoly" : [ [-63, 0], [-42, -42], [0, -63], [42, -42], [63, 0], [42, 42], [0, 63], [-42, 42] ],
+  "damageKind" : "hidden",
+  "damageRepeatTimeout" : 0.1,
+  "statusEffects" : [
+    {"effect" : "v-crystaldepthpoison2", "duration" : 0.2}
+  ],
+  "hydrophobic" : false,
+  "orientationLocked" : true
+}

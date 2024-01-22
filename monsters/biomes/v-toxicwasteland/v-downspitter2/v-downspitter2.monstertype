@@ -1,0 +1,224 @@
+{
+  "type" : "v-downspitter2",
+  "shortdescription" : "Matured Downspitter",
+  "description" : "A Downspitter that has matured and rooted itself to a ceiling.",
+
+  "categories" : [ "v-downspitter2" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-downspitter2.animation",
+
+  "dropPools" : [ ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/monster.lua"
+    ],
+    "initialScriptDelta" : 2,
+    "behaviorUpdateDelta" : 1,
+
+    "behavior" : "monster",
+    "deathBehavior" : "monster-death",
+
+    "facingMode" : "transformation",
+
+    "behaviorConfig" : {
+      "damageOnTouch" : false,
+
+      "hurtWaitForGround" : false,
+
+      "targetQueryRange" : 40,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 200,
+      "targetOutOfSightTime" : 5.0,
+
+      "fleeActions" : [ ],
+
+      "hostileActions" : [
+        {
+          "name" : "v-downspitter2-fire",
+          "parameters" : {
+            "onGround" : false,
+            "requireLineOfSight" : true,
+            "maximumRange" : 70,
+            "minimumRange" : 2,
+            "windupTime" : 2.0,
+            "windupState" : "",
+            "windupState2" : "windup",
+            "windupTime2" : 0.5,
+
+            "projectileCount" : 1,
+            "projectileType" : "v-downspitterprojectile2",
+            "projectileParameters" : {
+              "speed" : 40,
+              "power" : 15
+            },
+            "projectileInterval" : 0.1,
+
+            "fireOffset" : [2.0, -0.125],
+            "rotationCenter" : [0.0, 0.5],
+            "fireSound" : "fire",
+            "fireState" : "fire",
+            "fireDelay" : 0.0,
+            "faceTarget" : true,
+            "rotateAim" : true,
+            "holdAim" : true,
+
+            "winddownState" : "fire",
+            "winddownTime" : 0.2
+          }
+        }
+      ],
+
+      "periodicActions" : [ ],
+
+      "approachActions" : [
+      ],
+
+      "followActions" : [
+        {
+          "name" : "approach-teleport"
+        }
+      ],
+
+      "wanderActions" : [
+      ],
+
+      "concurrentActions" : [
+        {
+          "name" : "v-action-expectsolid",
+          "parameters" : {
+          }
+        }
+      ],
+
+      "concurrentHostileActions" : [
+        {
+          "name" : "v-action-expectsolid"
+        }
+      ],
+      
+      "deathActions" : [
+        {
+          "name" : "action-spawnmonster",
+          "parameters" : {
+            "offset" : [0, 0],
+            "monsterType" : "v-downspitter",
+            "replacement" : true
+          }
+        }
+      ]
+    },
+
+    "touchDamage" : {
+      "poly" : [ [0.41, 1.0],  [1.0, 0.41],  [1.0, -0.41],  [0.41, -1.0],  [-0.41, -1.0],  [-1.0, -0.41],  [-1.0, 0.41],  [-0.41, 1.0] ],
+      "damage" : 10,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "slash",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [ [1.23, 3.0],  [3.0, 1.23],  [3.0, -1.23],  [1.23, -3.0],  [-1.23, -3.0],  [-3.0, -1.23],  [-3.0, 1.23],  [-1.23, 3.0] ],
+      "gravityEnabled" : false,
+
+      "mass" : 1.0,
+      "walkSpeed" : 4,
+      "runSpeed" : 12,
+
+      "airFriction" : 0,
+
+      "airJumpProfile" : {
+        "jumpSpeed" : 45.0,
+        "jumpInitialPercentage" : 1.0,
+        "jumpHoldTime" : 0.0
+      },
+      "physicsEffectCategories" : ["stationarymonster"]
+    },
+
+    "bodyMaterialKind" : "organic",
+
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0.25
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9
+        },
+        "maxHealth" : {
+          "baseValue" : 94
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 0.5
+        },
+        "electricResistance" : {
+          "baseValue" : -0.25
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "fireResistance" : {
+          "baseValue" : 0.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : false
+  }
+}

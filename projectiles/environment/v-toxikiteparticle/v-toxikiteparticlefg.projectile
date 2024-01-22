@@ -1,0 +1,33 @@
+{
+  "projectileName" : "v-toxikiteparticlefg",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 100,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "timeToLive" : 0,
+  "actionOnReap" : [
+    {
+      "action" : "particle",
+      "specification" : {
+        "type" : "ember",
+        "color" : [127, 191, 57],
+        "position" : [0, 0],
+        "initialVelocity" : [0, 0],
+        "destructionAction" : "shrink",
+        "destructionTime" : 1.5,
+        "size" : 1.0,
+        "layer" : "front",
+        "timeToLive" : 3.0,
+        "variance" : {
+          "initialVelocity" : [5, 5],
+          "size" : 1.0
+        }
+      }
+    }
+  ]
+}

@@ -2,10 +2,12 @@
   "projectileName" : "v-toxiclakebubble",
   "image" : "toxiclakebubble.png",
   "physics" : "flame",
+  "windupFrames" : 3,
+  "winddownFrames" : 3,
   "animationCycle" : 0.4,
   "animationLoops" : true,
   "damageKindImage" : "/interface/statuses/fire.png",
-  "frameNumber" : 4,
+  "frameNumber" : 1,
   "power" : 50,
   "speed" : 25,
   "timeToLive" : 120,
@@ -18,10 +20,29 @@
   ],
   "hydrophobic" : false,
   "orientationLocked" : true,
-  "actionOnReap" : [
+  /* "actionOnReap" : [
     {
       "action" : "config",
       "file" : "/projectiles/explosions/regularexplosion2/poisonexplosionknockback.config"
     }
-  ]
+  ] */
+  
+  "scripts" : ["v-toxiclakebubble.lua"],
+  "actionOnExitLiquid" : {
+    "action" : "projectile",
+    "type" : "v-proxyprojectile",
+    "inheritDamageFactor" : 1,
+    "config" : {
+      "actionOnReap" : [
+        {
+          "action" : "sound",
+          "options" : ["/sfx/projectiles/v_toxiclakebubble_pop.ogg"]
+        },
+        {
+          "action" : "config",
+          "file" : "/projectiles/environment/v-toxiclakedrop/spawn.config"
+        }
+      ]
+    }
+  }
 }

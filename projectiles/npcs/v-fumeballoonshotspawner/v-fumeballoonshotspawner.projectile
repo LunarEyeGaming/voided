@@ -1,0 +1,60 @@
+{
+  "projectileName" : "v-fumeballoonshotspawner",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+
+  "onlyHitTerrain" : true,
+
+  "physics" : "default",
+  "speed" : 0,
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-fumeballoonshot",
+      "inheritDamageFactor" : 1,
+      "angleAdjust" : 0
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-fumeballoonshot",
+      "inheritDamageFactor" : 1,
+      "angleAdjust" : 45
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-fumeballoonshot",
+      "inheritDamageFactor" : 1,
+      "angleAdjust" : 90
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-fumeballoonshot",
+      "inheritDamageFactor" : 1,
+      "angleAdjust" : 135
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-fumeballoonshot",
+      "inheritDamageFactor" : 1,
+      "angleAdjust" : 180
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-fumeballoonshot",
+      "inheritDamageFactor" : 1,
+      "angleAdjust" : 225
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-fumeballoonshot",
+      "inheritDamageFactor" : 1,
+      "angleAdjust" : 270
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-fumeballoonshot",
+      "inheritDamageFactor" : 1,
+      "angleAdjust" : 315
+    }
+  ],
+  "timeToLive" : 0.0
+}
