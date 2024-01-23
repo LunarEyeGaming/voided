@@ -64,16 +64,18 @@ function ChargeFire:charged()
     coroutine.yield()
   end
   
-  if status.overConsumeResource("energy", self.energyCost) then
-    self:setState(self.fire)
-  end
+  self:setState(self.fire)
 end
 
 function ChargeFire:fire()
   if world.lineTileCollision(mcontroller.position(), self:firePosition()) then
     animator.setAnimationState("firing", "idle")
     self.cooldownTimer = self.cooldownTime or 0
-    self:setState(self.cooldown, self.cooldownTimer)
+    -- self:setState(self.cooldown, self.cooldownTimer)
+    return
+  end
+  
+  if not status.overConsumeResource("energy", self.energyCost) then
     return
   end
   

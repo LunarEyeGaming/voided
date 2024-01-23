@@ -10,7 +10,10 @@
           "idle" : {
             "frames" : 1,
             "cycle" : 1.0,
-            "mode" : "loop"
+            "mode" : "loop",
+            "properties" : {
+              "particleEmittersOff" : ["charged"]
+            }
           },
           "charge" : {
             "frames" : 15,
