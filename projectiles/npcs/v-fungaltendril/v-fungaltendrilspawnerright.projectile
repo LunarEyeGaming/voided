@@ -1,0 +1,38 @@
+{
+  "projectileName" : "v-fungaltendrilspawnerright",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "timeToLive" : 2,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "speed" : 75,
+  "power" : 50,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  
+  "onlyHitTerrain" : true,
+  
+  "periodicActions" : [
+    {
+      "time" : 0.1,
+      "action" : "projectile",
+      "type" : "v-proxyprojectile",
+      "inheritDamageFactor" : 1,
+      "angleAdjust" : -90,
+      "config" : {
+        "timeToLive" : 1,
+        "speed" : 100,
+        "actionOnReap" : [
+          {
+            "action" : "projectile",
+            "type" : "v-fungaltendrilwindup",
+            "inheritDamageFactor" : 1,
+            "angleAdjust" : -90,
+            "fuzzAngle" : 10
+          }
+        ]
+      }
+    }
+  ]
+}

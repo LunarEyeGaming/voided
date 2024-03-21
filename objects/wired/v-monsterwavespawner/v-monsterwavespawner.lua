@@ -4,7 +4,12 @@ require "/scripts/rect.lua"
 local firstWaveDelay
 local nextWaveDelay
 local interiorRegion
-local exteriorRegion
+local exteriorRegions
+
+local interiorRegionDebug
+local exteriorRegionsDebug
+
+local remainingMonsters
 
 local state
 
@@ -25,7 +30,7 @@ function init()
     storage.active = true
   end
   
-  active = false  -- Debug variable
+  loaded = false  -- Debug variable
   
   reset()
   
@@ -38,7 +43,7 @@ function init()
 end
 
 function update(dt)
-  world.debugText("active: %s", active, object.position(), "green")
+  util.debugText("loaded: %s", loaded, object.position(), "green")
   
   util.debugRect(interiorRegionDebug, "green")
 
@@ -65,6 +70,8 @@ function states.postInit()
 
     storage.waves = getWaves()
   end
+  
+  onLoad()
 
   state:set(states.wait)
 end
@@ -80,9 +87,7 @@ function states.wait()
     coroutine.yield()
   end
   
-  active = true
-  
-  -- state:set(states.noop)
+  loaded = true
   
   activate()
   
@@ -97,13 +102,16 @@ end
 ]]
 function states.waves()
   util.wait(firstWaveDelay)
+  
+  onWavesStart()
 
-  for _, wave in ipairs(storage.waves) do
+  for waveNum, wave in ipairs(storage.waves) do
     local remainingMonsters = spawnWave(wave)
 
     while #remainingMonsters > 0 do
-      -- TODO: Despawn all monsters and reset once all friendlies are not present
       remainingMonsters = util.filter(remainingMonsters, function(id) return world.entityExists(id) end)
+      
+      onWaveTick(waveNum)
       
       -- If no friendlies are present in the arena...
       if not friendlyInsideRegion(interiorRegion) then
@@ -116,22 +124,36 @@ function states.waves()
         reset()
       end
       
+      -- Before the loop ends, check if remainingMonsters is empty. If so, then query all monsters with the "enemy"
+      -- damage team and make them the remainingMonsters. This check is used to catch monsters that spawned as a result
+      -- of other monsters dying.
+      if #remainingMonsters == 0 then
+        remainingMonsters = world.entityQuery(interiorRegion[1], interiorRegion[2], {includedTypes = {"monster"}})
+        
+        remainingMonsters = util.filter(remainingMonsters, function(id)
+          return world.entityDamageTeam(id).type == "enemy"
+        end)
+      end
+      
       coroutine.yield()
     end
     
+    onWaveEnd(waveNum)
+    
     util.wait(nextWaveDelay)
-    -- TODO: Reset once all friendlies are not present
   end
   
   deactivate()
   
-  state:set(states.noop)
+  state:set(states.inactive)
 end
 
 --[[
-  Does nothing.
+  Marks this spawner as complete and then does nothing forever.
 ]]
-function states.noop()
+function states.inactive()
+  onDeactivation()
+
   while true do
     coroutine.yield()
   end
@@ -163,9 +185,6 @@ function getWaves()
   local stagehands = world.entityQuery(interiorRegion[1], interiorRegion[2], {includedTypes = {"stagehand"}})
   
   local spawnpoints = util.filter(stagehands, function(id) return world.stagehandType(id) == waveEntityType end)
-  
-  -- sb.logInfo("stagehands: %s", stagehands)
-  -- sb.logInfo("spawnpoints: %s", spawnpoints)
   
   local promises = {}
   
@@ -211,11 +230,9 @@ end
   wave: A table with the following schema:
     {
       {
-        {
-          String type: the monster type to spawn
-          Vec2F position: the position to spawn the monster at
-          Json parameters: the parameters to override
-        }
+        String type: the monster type to spawn
+        Vec2F position: the position to spawn the monster at
+        Json parameters: the parameters to override
       }
     }
   returns: a list of the IDs of the monsters spawned
@@ -241,7 +258,11 @@ function spawnWave(wave)
   return monsterIds
 end
 
--- Returns true if at least one creature with a friendly damage team is inside the given region and false otherwise.
+--[[
+  Returns true if at least one creature with a friendly damage team is inside the given region and false otherwise.
+  
+  region: A pair of Vec2F's
+]]
 function friendlyInsideRegion(region)
   local queried = world.entityQuery(region[1], region[2], {includedTypes = {"creature"}})
   
@@ -255,8 +276,12 @@ function friendlyInsideRegion(region)
   return false
 end
 
--- Returns true if at least one creature with a friendly damage team is inside at least one of the given regions and
--- false otherwise.
+--[[
+  Returns true if at least one creature with a friendly damage team is inside at least one of the given regions and 
+  false otherwise.
+  
+  regions: A list of Vec2F pairs
+]]
 function friendlyInsideRegions(regions)
   for _, region in ipairs(regions) do
     if friendlyInsideRegion(region) then
@@ -267,7 +292,9 @@ function friendlyInsideRegions(regions)
   return false
 end
 
--- Converts a relative rectangle into a table of the bottom-left and top-right points (absolute) and returns the result.
+--[[
+  Converts a relative rectangle into a table of the bottom-left and top-right points (absolute) and returns the result.
+]]
 function getRegionPoints(rectangle)
   local absoluteRectangle = rect.translate(rectangle, object.position())
   
@@ -288,4 +315,42 @@ function reset()
     object.setOutputNodeLevel(1, true)
     state:set(states.noop)
   end
+end
+
+-- HOOKS (may use stubs by default)
+--[[
+  A function called once the object finishes loading the waves.
+]]
+function onLoad()
+
+end
+
+--[[
+  A function called right before the waves are iterated through
+]]
+function onWavesStart()
+
+end
+
+--[[
+  A function called for each tick spent while a wave is in progress.
+  
+  param waveNum: the current wave number
+]]
+function onWaveTick(waveNum)
+
+end
+
+--[[
+  A function called when a wave ends.
+]]
+function onWaveEnd()
+
+end
+
+--[[
+  A function called when the object enters the "inactive" state.
+]]
+function onDeactivation()
+
 end

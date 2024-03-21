@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-fungaltendrilwindup",
+  "image" : "fungaltendrilwindup.png",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "frameNumber" : 1,
+  "animationCycle" : 1.0,
+  "power" : 1,
+  "speed" : 0,
+  "timeToLive" : 1.0,
+  "onlyHitTerrain" : true,
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-fungaltendril",
+      "inheritDamageFactor" : 1.0
+    }
+  ]
+}

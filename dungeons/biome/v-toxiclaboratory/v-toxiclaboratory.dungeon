@@ -1,0 +1,207 @@
+{
+  "metadata" : {
+    "name" : "v-toxiclaboratory",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "entrance" ],
+    // "anchor" : [ "buildingbottom" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 20,
+    "protected" : true
+  },
+
+  "parts" : [
+    {
+      "name" : "entrance",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "entrance.json" ]
+    },
+    
+    // FLOOR 1 LEFT
+    {
+      "name" : "floor1enemyroom1-left",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1enemyroom1-left.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1enemyroom2-left",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1enemyroom2-left.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1enemyroom3-left",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1enemyroom3-left.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1enemyroom4-left",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1enemyroom4-left.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1enemyroom5-left",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1enemyroom5-left.json" ],
+      "chance" : 1
+    },
+
+    // Trap rooms appear only once per floor.
+    {
+      "name" : "floor1traproom1-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom1-left", "floor1traproom2-left", "floor1traproom3-left",
+          "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
+      ],
+      "def" : [ "tmx", "floor1traproom1-left.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1traproom2-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom1-left", "floor1traproom2-left", "floor1traproom3-left",
+          "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
+      ],
+      "def" : [ "tmx", "floor1traproom2-left.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1traproom3-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom1-left", "floor1traproom2-left", "floor1traproom3-left",
+          "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
+      ],
+      "def" : [ "tmx", "floor1traproom3-left.json" ],
+      "chance" : 1
+    },
+
+    {
+      "name" : "floor1end-left",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "entrance" ] ]
+      ],
+      "def" : [ "tmx", "floor1end-left.json" ],
+      "chance" : 2
+    },
+    
+    // FLOOR 1 RIGHT
+    {
+      "name" : "floor1enemyroom1-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1enemyroom1-right.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1enemyroom2-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1enemyroom2-right.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1enemyroom3-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1enemyroom3-right.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1enemyroom4-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1enemyroom4-right.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1enemyroom5-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1enemyroom5-right.json" ],
+      "chance" : 1
+    },
+
+    {
+      "name" : "floor1traproom1-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom1-left", "floor1traproom2-left", "floor1traproom3-left",
+          "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
+      ],
+      "def" : [ "tmx", "floor1traproom1-right.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1traproom2-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom1-left", "floor1traproom2-left", "floor1traproom3-left",
+          "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
+      ],
+      "def" : [ "tmx", "floor1traproom2-right.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor1traproom3-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom1-left", "floor1traproom2-left", "floor1traproom3-left",
+          "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
+      ],
+      "def" : [ "tmx", "floor1traproom3-right.json" ],
+      "chance" : 1
+    },
+
+    {
+      "name" : "floor1end-right",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "entrance" ] ]
+      ],
+      "def" : [ "tmx", "floor1end-right.json" ],
+      "chance" : 2
+    },
+    
+    // FLOOR 2 LEFT
+    {
+      "name" : "floor2enemyroom1-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor2enemyroom1-right.json" ],
+      "chance" : 1
+    }/* ,
+    {
+      "name" : "floor2enemyroom2-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor2enemyroom2-right.json" ],
+      "chance" : 1
+    } */
+    /*
+    {
+      "name" : "floor3traproom1-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor3traproom1-right.json" ],
+      "chance" : 1
+    }, */
+  ]
+}

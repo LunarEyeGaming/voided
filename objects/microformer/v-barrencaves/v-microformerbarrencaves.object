@@ -3,7 +3,7 @@
   "colonyTags" : [],
   "rarity" : "Legendary",
   "description" : "Transforms an area of a planet into a barren, metallic landscape.",
-  "shortdescription" : "^zzz;B. Metal Microformer",
+  "shortdescription" : "^zzz;Metallic Microformer",
   "race" : "ancient",
   "category" : "terraformer",
   "price" : 3000,
@@ -12,7 +12,7 @@
   "inventoryIcon" : "microformericon.png",
   "orientations" : [
     {
-      "imageLayers" : [ { "image" : "microformerfullbright.png:default", "fullbright" : true }, { "image" : "/objects/microformer/microformer.png:default" } ],
+      "imageLayers" : [ { "image" : "microformerfullbright.png:default", "fullbright" : true }, { "image" : "/objects/microformer/v-microformervoltagefullbright.png:default", "fullbright" : true }, { "image" : "/objects/microformer/v-microformervoltage.png:default" } ],
 
       "imagePosition" : [-16, 0],
 
@@ -22,7 +22,7 @@
       "direction" : "right"
     },
     {
-      "imageLayers" : [ { "image" : "microformerfullbright.png:default", "fullbright" : true }, { "image" : "/objects/microformer/microformer.png:default" } ],
+      "imageLayers" : [ { "image" : "microformerfullbright.png:default", "fullbright" : true }, { "image" : "/objects/microformer/v-microformervoltagefullbright.png:default", "fullbright" : true }, { "image" : "/objects/microformer/v-microformervoltage.png:default" } ],
       "flipImages" : true,
 
       "imagePosition" : [-16, 0],
@@ -37,11 +37,12 @@
   "health" : 5,
   "rooting" : true,
 
-  "animation" : "/objects/microformer/microformer.animation",
+  "animation" : "/objects/microformer/v-microformerextraglow.animation",
   "animationPosition" : [-16, 0],
   "animationParts" : {
-    "base" : "/objects/microformer/microformer.png",
-    "baseFullbright" : "microformerfullbright.png"
+    "base" : "/objects/microformer/v-microformervoltage.png",
+    "baseFullbright" : "microformerfullbright.png",
+    "baseFullbrightExtra" : "/objects/microformer/v-microformervoltagefullbright.png"
   },
 
   "smashSounds" : [ "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],

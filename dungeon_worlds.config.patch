@@ -45,5 +45,35 @@
       "disableDeathDrops" : true,
       "environmentStatusEffects" : ["v-quickhealnerf"]
     }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-toxicdungeontest",
+    "value" : {
+      "primaryDungeon" : "v-toxiclaboratory",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [2000, 3000],
+      "dungeonBaseHeight" : 300,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "",
+      "biome" : "v-toxicwasteland",
+      "environmentStatusEffects" : ["v-quickhealnerf", "v-depthpoison"]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-toxicdungeontest2",
+    "value" : {
+      "primaryDungeon" : "v-toxiclaboratorytest",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [2000, 3000],
+      "dungeonBaseHeight" : 300,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "",
+      "biome" : "v-toxicwasteland",
+      "environmentStatusEffects" : ["v-quickhealnerf", "v-depthpoison"]
+    }
   }
 ]
