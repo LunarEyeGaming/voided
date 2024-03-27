@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-ancientstronghold",
  "spacing":0,
- "tilecount":36,
+ "tilecount":42,
  "tileheight":176,
  "tileproperties":
     {
@@ -222,11 +222,53 @@
          "object":"v-strongholdbossdoor2",
          "tilesetDirection":"right"
         },
+     "36":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-8",
+         "object":"v-ancientcrystaltrapwide",
+         "tilesetDirection":"right"
+        },
+     "37":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-8",
+         "object":"v-ancientcrystaltrapwide",
+         "tilesetDirection":"right"
+        },
+     "38":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"0",
+         "object":"v-ancientcrystaltrapwide",
+         "tilesetDirection":"right"
+        },
+     "39":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"0",
+         "object":"v-ancientcrystaltrapwide",
+         "tilesetDirection":"right"
+        },
      "4":
         {
          "imagePositionX":"-8",
          "imagePositionY":"0",
          "object":"v-ancienttristatelightround",
+         "tilesetDirection":"right"
+        },
+     "40":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-ancientcrystaltrapwide",
+         "tilesetDirection":"right"
+        },
+     "41":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-ancientcrystaltrapwide",
          "tilesetDirection":"right"
         },
      "5":
@@ -477,7 +519,49 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "36":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "37":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "38":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "39":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "4":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "40":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "41":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -702,10 +786,46 @@
          "imageheight":40,
          "imagewidth":56
         },
+     "36":
+        {
+         "image":"..\/images\/objects\/ancientcrystaltrapwideceilingleft.png",
+         "imageheight":16,
+         "imagewidth":32
+        },
+     "37":
+        {
+         "image":"..\/images\/objects\/ancientcrystaltrapwideceilingright.png",
+         "imageheight":16,
+         "imagewidth":32
+        },
+     "38":
+        {
+         "image":"..\/images\/objects\/ancientcrystaltrapwidegroundleft.png",
+         "imageheight":16,
+         "imagewidth":32
+        },
+     "39":
+        {
+         "image":"..\/images\/objects\/ancientcrystaltrapwidegroundright.png",
+         "imageheight":16,
+         "imagewidth":32
+        },
      "4":
         {
          "image":"..\/images\/objects\/ancienttristatelightround.png",
          "imageheight":16,
+         "imagewidth":16
+        },
+     "40":
+        {
+         "image":"..\/images\/objects\/ancientcrystaltrapwideleft.png",
+         "imageheight":32,
+         "imagewidth":16
+        },
+     "41":
+        {
+         "image":"..\/images\/objects\/ancientcrystaltrapwideright.png",
+         "imageheight":32,
          "imagewidth":16
         },
      "5":

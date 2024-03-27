@@ -27,6 +27,7 @@
     {
       "name" : "floor1enemyroom1-left",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor1enemyroom1-left.json" ],
       "chance" : 1
@@ -34,6 +35,7 @@
     {
       "name" : "floor1enemyroom2-left",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor1enemyroom2-left.json" ],
       "chance" : 1
@@ -41,6 +43,7 @@
     {
       "name" : "floor1enemyroom3-left",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor1enemyroom3-left.json" ],
       "chance" : 1
@@ -48,6 +51,7 @@
     {
       "name" : "floor1enemyroom4-left",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor1enemyroom4-left.json" ],
       "chance" : 1
@@ -55,6 +59,7 @@
     {
       "name" : "floor1enemyroom5-left",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor1enemyroom5-left.json" ],
       "chance" : 1
@@ -106,6 +111,7 @@
     {
       "name" : "floor1enemyroom1-right",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor1enemyroom1-right.json" ],
       "chance" : 1
@@ -113,6 +119,7 @@
     {
       "name" : "floor1enemyroom2-right",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor1enemyroom2-right.json" ],
       "chance" : 1
@@ -120,6 +127,7 @@
     {
       "name" : "floor1enemyroom3-right",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor1enemyroom3-right.json" ],
       "chance" : 1
@@ -127,6 +135,7 @@
     {
       "name" : "floor1enemyroom4-right",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor1enemyroom4-right.json" ],
       "chance" : 1
@@ -134,6 +143,7 @@
     {
       "name" : "floor1enemyroom5-right",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor1enemyroom5-right.json" ],
       "chance" : 1
@@ -181,18 +191,72 @@
     },
     
     // FLOOR 2 LEFT
+    
+    // FLOOR 2 RIGHT
     {
       "name" : "floor2enemyroom1-right",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor2enemyroom1-right.json" ],
       "chance" : 1
-    }/* ,
+    },
     {
       "name" : "floor2enemyroom2-right",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor2enemyroom2-right.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor2enemyroom3-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor2enemyroom3-right.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor2enemyroom4-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor2enemyroom4-right.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor2enemyroom5-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor2enemyroom5-right.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "floor2traproom1-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor2traproom1-right" ] ]
+      ],
+      "def" : [ "tmx", "floor2traproom1-right.json" ],
+      "chance" : 1
+    },
+
+    {
+      "name" : "floor2end-right",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "entrance" ] ]
+      ],
+      "def" : [ "tmx", "floor2end-right.json" ],
+      "chance" : 2
+    }
+    /* {
+      "name" : "floor3enemyroom1-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor3enemyroom1-right.json" ],
       "chance" : 1
     } */
     /*
