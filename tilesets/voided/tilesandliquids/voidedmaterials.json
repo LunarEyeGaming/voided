@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":22,
+ "tilecount":23,
  "tileheight":8,
  "tileproperties":
     {
@@ -74,6 +74,10 @@
      "21":
         {
          "material":"v-toxicmycelium"
+        },
+     "22":
+        {
+         "material":"v-openheavypipe"
         },
      "3":
         {
@@ -166,6 +170,10 @@
          "material":"string"
         },
      "21":
+        {
+         "material":"string"
+        },
+     "22":
         {
          "material":"string"
         },
@@ -287,6 +295,12 @@
      "21":
         {
          "image":"..\/images\/tilesandliquids\/toxicmycelium.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "22":
+        {
+         "image":"..\/images\/tilesandliquids\/openheavypipe.png",
          "imageheight":8,
          "imagewidth":8
         },

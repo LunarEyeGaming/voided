@@ -8,8 +8,8 @@
  "margin":0,
  "name":"voidedobjects-toxic",
  "spacing":0,
- "tilecount":1,
- "tileheight":8,
+ "tilecount":7,
+ "tileheight":80,
  "tileproperties":
     {
      "0":
@@ -18,11 +18,95 @@
          "imagePositionY":"0",
          "object":"v-poisongasemitter",
          "tilesetDirection":"right"
+        },
+     "1":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-8",
+         "object":"v-fallingcratesign",
+         "tilesetDirection":"right"
+        },
+     "2":
+        {
+         "imagePositionX":"-64",
+         "imagePositionY":"0",
+         "object":"v-shipmentteleporter",
+         "tilesetDirection":"right"
+        },
+     "3":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-liquidleveler",
+         "tilesetDirection":"right"
+        },
+     "4":
+        {
+         "imagePositionX":"-32",
+         "imagePositionY":"0",
+         "object":"v-liquidcrateteleporter",
+         "tilesetDirection":"right"
+        },
+     "5":
+        {
+         "imagePositionX":"-32",
+         "imagePositionY":"0",
+         "object":"v-liquidcrateteleporter2",
+         "tilesetDirection":"right"
+        },
+     "6":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-faultywiring",
+         "tilesetDirection":"right"
         }
     },
  "tilepropertytypes":
     {
      "0":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "1":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "2":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "3":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "4":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "5":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "6":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -37,8 +121,44 @@
          "image":"..\/images\/objects\/poisongasemitter.png",
          "imageheight":8,
          "imagewidth":64
+        },
+     "1":
+        {
+         "image":"..\/images\/objects\/fallingcratesign.png",
+         "imageheight":24,
+         "imagewidth":40
+        },
+     "2":
+        {
+         "image":"..\/images\/objects\/shipmentteleporter.png",
+         "imageheight":8,
+         "imagewidth":136
+        },
+     "3":
+        {
+         "image":"..\/images\/objects\/liquidleveler.png",
+         "imageheight":16,
+         "imagewidth":16
+        },
+     "4":
+        {
+         "image":"..\/images\/objects\/liquidcrateteleporter.png",
+         "imageheight":80,
+         "imagewidth":64
+        },
+     "5":
+        {
+         "image":"..\/images\/objects\/liquidcrateteleporter2.png",
+         "imageheight":80,
+         "imagewidth":64
+        },
+     "6":
+        {
+         "image":"..\/images\/objects\/faultywiring.png",
+         "imageheight":8,
+         "imagewidth":8
         }
     },
- "tilewidth":64,
+ "tilewidth":136,
  "type":"tileset"
 }

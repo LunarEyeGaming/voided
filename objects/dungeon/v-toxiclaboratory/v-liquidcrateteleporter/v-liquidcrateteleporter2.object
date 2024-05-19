@@ -1,0 +1,70 @@
+{
+  "objectName" : "v-liquidcrateteleporter2",
+  "objectType" : "teleporter",
+  "colonyTags" : ["misc"],
+  "printable" : false,
+  "rarity" : "Common",
+
+  "category" : "decorative",
+  "description" : "<todo>",
+  "shortdescription" : "Liquid Tank Teleporter",
+  "race" : "human",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "lightColor" : [40, 80, 100],
+  "lightPosition" : [0, 5],
+
+  "inventoryIcon" : "liquidcrateteleportericon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "liquidcrateteleporter.png:<color>.on", "fullbright" : true }, { "image" : "liquidcrateteleporterlit.png:<color>.on" } ],
+      "imagePosition" : [-32, 0],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "renderLayer" : "Platform-10",
+
+      "spaces" : [ [-4, 0], [-3, 0], [-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0], [3, 0], [-4, 9], [-3, 0], [-2, 9], [-1, 9], [0, 9], [1, 9], [2, 9], [3, 9] ],
+
+      "anchors" : [ "bottom", "top" ],
+      "collision" : "solid"
+    }
+  ],
+
+  "particleEmitter" : {
+    "emissionRate" : 3,
+    "emissionVariance" : 0.5,
+
+    "particle" : {
+      "type" : "ember",
+      "position" : [-0.5, 5],
+      "size" : 1.0,
+      "color" : [64, 190, 255, 255],
+      "light" : [50, 50, 150],
+      "fade" : 0.9,
+      "destructionAction" : "shrink",
+      "destructionTime" : 0.5,
+      "initialVelocity" : [0.0, 0.0],
+      "finalVelocity" : [0.0, 0.0],
+      "approach" : [0, 1],
+      "timeToLive" : 1.5,
+      "layer" : "middle"
+    },
+
+    "particleVariance" : {
+      "initialVelocity" : [0, 5],
+      "finalVelocity" : [0, 1],
+      "position" : [4, 0],
+      "size" : 0.5
+    }
+  },
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

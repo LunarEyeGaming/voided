@@ -1,0 +1,24 @@
+{
+  "materialId" : 1205,
+  "materialName" : "v-openheavypipe",
+  "particleColor" : [135, 97, 76, 255],
+  "itemDrop" : "heavypipe",
+  "description" : "<todo>",
+  "shortdescription" : "Open Heavy Pipe",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_composite.ogg",
+  "health" : 6,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-openheavypipe.png",
+    "variants" : 1,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 3381
+  }
+}

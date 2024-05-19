@@ -1,0 +1,44 @@
+{
+  "projectileName" : "v-liquiddumpingcrate",
+  "image" : "liquiddumpingcrate.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "animationLoops" : false,
+  "flippable" : true,
+  
+  "onlyHitTerrain" : true,
+
+  "timeToLive" : 60,
+
+  "physics" : "illusion",
+  "bounces" : -1,
+  "speed" : 25,
+  
+  "actionOnReap" : [
+    {
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-liquidtankwarp/v-liquidtankwarpout.animation",
+        "fullbright" : true,
+        "layer" : "middle",
+        "timeToLive" : 0.66
+      }
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/tools/teleport_up.ogg" ]
+    }
+  ],
+  
+  "persistentAudio" : "/sfx/tech/composite_platform_loop.ogg",
+  
+  "scripts" : ["v-liquiddumpingcrate.lua"],
+  "scriptDelta" : 1,
+  
+  "liquidId" : 1,  // Water
+  "liquidQuantity" : 1,
+  "liquidOffset" : [0, -4],
+  "liquidSpawnInterval" : 0.04,
+  "maxPlayerDistance" : 100
+}

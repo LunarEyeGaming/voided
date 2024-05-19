@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmuEJgzAQhW+RDtDFOkEH6B9X6KJdoEgJ2KDtnSbmRb8PHkgieN6LSdQzA4C1vC7fGsTbFGLwtpXwQ+2eevck6ssT7SYPvY+91jGsiTXqx9VQaUV8Gftu9lF0voMY3lzjyX7giR54ooc310MmqIc31zwn+8HcpQee6IEnerDG68Earwdzlx54okee6\/R98t95UI8810v\/U8a+u9ljFJ7UJc\/10nMCAAAAdUjr8BZtuX6+FygRD5qXd9+V75lV6m6OWkvkfT+ZnpeOkwbTblOIwdsWeY+f87F1\/Ef1ZKpf9D4ftI6hdB1konUN7ZkUofexpxRXibr6JV+U7ql3TwBgO28ywAES",
+         "data":"eJztmtsNwjAMRb0IA7AYEzAAP12BRVkAVShSiQjYJW1u0nOkK0VpPxzfNo\/WZgCwlsfpXZN4n0IM3r4afqiNqXdPor7c0W7y0Puz1zqGNbFG\/Tgbqq2IL\/O1i70Une8ghjfXeLIfeKIHnujhzfWUCbbDm2vek\/1g7tIDT\/TAEz1Y4\/VgjdeDuUsPPNEjz3X6PvnrPtiOPNel\/ynztavZbRaebEue69J7AgAAAGOS7wVSG9WXd9+V75lV6m5GrSXynk+W96V20mTafQoxePsi5\/hPPraOf1RPlvpG7\/NB6xhq10EmWtfQHkkRen\/2lOKqUVdf8kVpTL17AgD\/8wT2ZvDP",
          "encoding":"base64",
          "height":37,
          "name":"front",
@@ -187,18 +187,6 @@
                 {
                  "gid":7829,
                  "height":48,
-                 "id":707,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":120,
-                 "x":96,
-                 "y":120
-                }, 
-                {
-                 "gid":7829,
-                 "height":48,
                  "id":708,
                  "name":"",
                  "rotation":0,
@@ -255,6 +243,42 @@
                  "width":48,
                  "x":608,
                  "y":96
+                }, 
+                {
+                 "gid":8008,
+                 "height":8,
+                 "id":716,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":136,
+                 "x":568,
+                 "y":216
+                }, 
+                {
+                 "gid":8007,
+                 "height":24,
+                 "id":717,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":704,
+                 "y":200
+                }, 
+                {
+                 "gid":8007,
+                 "height":24,
+                 "id":718,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":48,
+                 "y":200
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -536,7 +560,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":716,
+ "nextobjectid":719,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -657,6 +681,10 @@
         {
          "firstgid":7902,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-colonytag\/outpost.json"
+        }, 
+        {
+         "firstgid":8006,
+         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }],
  "tilewidth":8,
  "type":"map",

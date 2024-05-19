@@ -1,0 +1,35 @@
+{
+  "objectName" : "v-fallingcratesign",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "category" : "decorative",
+  "price" : 60,
+
+  "description" : "A sign warning of falling crates",
+  "shortdescription" : "Falling Crate Sign",
+  "race" : "human",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "Sssilly meat bagss use giant metal rocks as trapss.",
+  "glitchDescription" : "Cautious. A Glitch chassis cannot withstand the weight of a giant shipment crate.",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "Warnin' sign for fallin' crates. I'd best watch myself.",
+
+  "inventoryIcon" : "fallingcratesignicon.png",
+  "orientations" : [
+    {
+      "image" : "fallingcratesign.png:<color>",
+      "imagePosition" : [-16, -8],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+
+    }
+  ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}
