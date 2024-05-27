@@ -64,6 +64,14 @@
       "def" : [ "tmx", "floor1enemyroom5-left.json" ],
       "chance" : 1000
     },
+    {
+      "name" : "floor1enemyroom6-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor1enemyroom6-left.json" ],
+      "chance" : 1000
+    },
 
     // Only one trap room per floor may appear.
     {
@@ -74,7 +82,7 @@
           "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
       ],
       "def" : [ "tmx", "floor1traproom1-left.json" ],
-      "chance" : 1000
+      "chance" : 50
     },
     {
       "name" : "floor1traproom2-left",
@@ -84,7 +92,7 @@
           "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
       ],
       "def" : [ "tmx", "floor1traproom2-left.json" ],
-      "chance" : 1000
+      "chance" : 50
     },
     {
       "name" : "floor1traproom3-left",
@@ -94,7 +102,7 @@
           "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
       ],
       "def" : [ "tmx", "floor1traproom3-left.json" ],
-      "chance" : 1000
+      "chance" : 50
     },
     
     {
@@ -125,6 +133,13 @@
       "def" : [ "tmx", "floor1corridor4-left.json" ],
       "chance" : 250
     },
+    {
+      "name" : "floor1staircorridor-left",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1staircorridor-left.json" ],
+      "chance" : 250
+    },
 
     {
       "name" : "floor1end-left",
@@ -133,7 +148,7 @@
         [ "doNotConnectToPart", [ "entrance" ] ]
       ],
       "def" : [ "tmx", "floor1end-left.json" ],
-      "chance" : 1000
+      "chance" : 0
     },
     
     // FLOOR 1 RIGHT
@@ -177,6 +192,14 @@
       "def" : [ "tmx", "floor1enemyroom5-right.json" ],
       "chance" : 1000
     },
+    {
+      "name" : "floor1enemyroom6-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor1enemyroom6-right.json" ],
+      "chance" : 1000
+    },
 
     {
       "name" : "floor1traproom1-right",
@@ -186,7 +209,7 @@
           "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
       ],
       "def" : [ "tmx", "floor1traproom1-right.json" ],
-      "chance" : 1000
+      "chance" : 50
     },
     {
       "name" : "floor1traproom2-right",
@@ -196,7 +219,7 @@
           "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
       ],
       "def" : [ "tmx", "floor1traproom2-right.json" ],
-      "chance" : 1000
+      "chance" : 50
     },
     {
       "name" : "floor1traproom3-right",
@@ -206,7 +229,7 @@
           "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
       ],
       "def" : [ "tmx", "floor1traproom3-right.json" ],
-      "chance" : 1000
+      "chance" : 50
     },
     
     {
@@ -237,6 +260,13 @@
       "def" : [ "tmx", "floor1corridor4-right.json" ],
       "chance" : 250
     },
+    {
+      "name" : "floor1staircorridor-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor1staircorridor-right.json" ],
+      "chance" : 250
+    },
 
     {
       "name" : "floor1end-right",
@@ -245,10 +275,48 @@
         [ "doNotConnectToPart", [ "entrance" ] ]
       ],
       "def" : [ "tmx", "floor1end-right.json" ],
-      "chance" : 1000
+      "chance" : 0
     },
     
     // FLOOR 2 LEFT
+    {
+      "name" : "floor2corridor1-left",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor2corridor1-left.json" ],
+      "chance" : 250
+    },
+    {
+      "name" : "floor2corridor2-left",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor2corridor2-left.json" ],
+      "chance" : 250
+    },
+    {
+      "name" : "floor2corridor3-left",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor2corridor3-left.json" ],
+      "chance" : 250
+    },
+    {
+      "name" : "floor2corridor4-left",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor2corridor4-left.json" ],
+      "chance" : 250
+    },
+
+    {
+      "name" : "floor2end-left",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "entrance" ] ]
+      ],
+      "def" : [ "tmx", "floor2end-left.json" ],
+      "chance" : 0
+    },
     
     // FLOOR 2 RIGHT
     {
@@ -292,13 +360,51 @@
       "chance" : 1000
     },
     {
+      "name" : "floor2enemyroom6-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor2enemyroom6-right.json" ],
+      "chance" : 1000
+    },
+
+    {
       "name" : "floor2traproom1-right",
       "rules" : [
         [ "maxSpawnCount", [1] ],
         [ "doNotCombineWith", [ "floor2traproom1-right" ] ]
       ],
       "def" : [ "tmx", "floor2traproom1-right.json" ],
-      "chance" : 1000
+      "chance" : 50
+    },
+    
+    {
+      "name" : "floor2corridor1-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor2corridor1-right.json" ],
+      "chance" : 250
+    },
+    {
+      "name" : "floor2corridor2-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor2corridor2-right.json" ],
+      "chance" : 250
+    },
+    {
+      "name" : "floor2corridor3-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor2corridor3-right.json" ],
+      "chance" : 250
+    },
+    {
+      "name" : "floor2corridor4-right",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "floor2corridor4-right.json" ],
+      "chance" : 250
     },
 
     {
@@ -308,22 +414,46 @@
         [ "doNotConnectToPart", [ "entrance" ] ]
       ],
       "def" : [ "tmx", "floor2end-right.json" ],
-      "chance" : 1000
-    }
-    /* {
+      "chance" : 0
+    },
+    
+    // FLOOR 3 LEFT
+    
+    // FLOOR 3 RIGHT
+    {
       "name" : "floor3enemyroom1-right",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor3enemyroom1-right.json" ],
-      "chance" : 1
-    } */
-    /*
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom2-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3enemyroom2-right.json" ],
+      "chance" : 1000
+    },
     {
       "name" : "floor3traproom1-right",
       "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom3-right" ] ]
       ],
       "def" : [ "tmx", "floor3traproom1-right.json" ],
-      "chance" : 1
-    }, */
+      "chance" : 50
+    },
+
+    {
+      "name" : "floor3end-right",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "entrance" ] ]
+      ],
+      "def" : [ "tmx", "floor3end-right.json" ],
+      "chance" : 0
+    }
   ]
 }

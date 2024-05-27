@@ -1,0 +1,27 @@
+{
+  "v-action-verticalfire": {
+    "type": "module",
+    "name": "v-action-verticalfire",
+    "title": "",
+    "properties": {
+      "aimAtTarget": {"type": "bool", "value": false},
+      "chargeStateType": {"type": "string", "value": "\"body\""},
+      "fireDirection": {"type": "vec2", "value": [0, -1]},
+      "fireSound": {"type": "string", "value": "\"fire\""},
+      "inaccuracy": {"type": "number", "value": 0},
+      "projectileConfig": {"type": "json", "value": {}},
+      "projectileCount": {"type": "number", "value": 10},
+      "projectileInterval": {"type": "number", "value": 0.1},
+      "projectileOffset": {"type": "vec2", "value": [0, 0]},
+      "projectileType": {"type": "string", "value": "\"acidsweep\""},
+      "rotateToTarget": {"type": "bool", "value": false},
+      "rotationOffset": {"type": "number", "value": 0},
+      "skillName": {"type": "string", "value": null},
+      "targetOffset": {"type": "vec2", "value": [0, 10]},
+      "tolerance": {"type": "number", "value": 2},
+      "wallKnockback": {"type": "bool", "value": false},
+      "winddownState": {"type": "string", "value": null},
+      "windupState": {"type": "string", "value": "\"windup\""}
+    }
+  }
+}

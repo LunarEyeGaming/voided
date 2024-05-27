@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt2DEOgCAQAEHtfIX\/f6axMypR8FwC7CSXWHG4JdMk9WdpeFpSu1Wvk+qsGHZm2JlhZ4adGXZm2JlhZ4adGfaUJOkq932v9NyefHkXtfN7kf9j5zQ7M+zMsDNj5M7kvtE7333\/vSviLDs\/74o4a595LZtz59JzcvYd707tsrOd7Xzt3NKQd49Su9nXzpLibaBeIsI=",
+         "data":"eJzt2EEKgCAQQNFo1Sm6\/zGjXVRS2vRF\/Q8GWjn2l06T1J+l4WlJ7Va9TqqzYtiZYWeGnRl2ZtiZYWeGnRl2ZthTkqSr3Pe90nN78uVd1M7vRf6PndPszLAzw86MkTuT+0bvfPf9966Is+z8vCvirH3mtWzOnUvPydl3vDu1y852tvO1c0tD3j1K7WZfO0uKtwEpSCN5",
          "encoding":"base64",
          "height":34,
          "name":"front",
@@ -302,6 +302,27 @@
                  "width":8,
                  "x":208,
                  "y":136
+                }, 
+                {
+                 "height":8,
+                 "id":705,
+                 "name":"v-livingmushroom1 (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-livingmushroom1\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":352,
+                 "y":32
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -374,7 +395,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":705,
+ "nextobjectid":706,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -485,7 +506,7 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7667,
+         "firstgid":7668,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }],
  "tilewidth":8,

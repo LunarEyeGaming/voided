@@ -1,11 +1,11 @@
 {
-  "objectName" : "v-citybackgroundfiller",
+  "objectName" : "v-dungeonplacer",
   "colonyTags" : ["evil"],
   "printable" : false,
   "scannable" : false,
   "rarity" : "Legendary",
   "description" : "Not intended to be obtained",
-  "shortdescription" : "City Background Filler",
+  "shortdescription" : "Dungeon Placer",
   "race" : "generic",
 
   "category" : "trap",
@@ -24,11 +24,11 @@
   "health" : 5,
   "smashOnBreak" : true,
 
-  "scripts" : [ "v-citybackgroundfiller.lua" ],
+  "scripts" : [ "v-dungeonplacer.lua" ],
   "scriptDelta" : 1,
   
-  "dungeonType" : "v-voltagecitybgfiller",
-  "dungeonOffset" : [0, 1],
+  "dungeonType" : "v-toxiclaboratory-floor2enemyroom6-right-reset",
+  "dungeonOffset" : [0, 0],
   
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

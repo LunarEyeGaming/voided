@@ -205,19 +205,7 @@
                  "y":280
                 }, 
                 {
-                 "gid":248,
-                 "height":8,
-                 "id":741,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":8,
-                 "y":136
-                }, 
-                {
-                 "gid":7728,
+                 "gid":7730,
                  "height":16,
                  "id":753,
                  "name":"",
@@ -229,7 +217,7 @@
                  "y":296
                 }, 
                 {
-                 "gid":7728,
+                 "gid":7730,
                  "height":16,
                  "id":754,
                  "name":"",
@@ -241,7 +229,7 @@
                  "y":296
                 }, 
                 {
-                 "gid":7728,
+                 "gid":7730,
                  "height":16,
                  "id":755,
                  "name":"",
@@ -253,7 +241,7 @@
                  "y":296
                 }, 
                 {
-                 "gid":7728,
+                 "gid":7730,
                  "height":16,
                  "id":756,
                  "name":"",
@@ -770,7 +758,7 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":232,
+                 "x":176,
                  "y":160
                 }, 
                 {
@@ -940,6 +928,27 @@
                  "width":8,
                  "x":720,
                  "y":288
+                }, 
+                {
+                 "height":8,
+                 "id":790,
+                 "name":"killerbeeswarm (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-killerbeeswarm\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":280,
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -971,7 +980,31 @@
         {
          "draworder":"topdown",
          "name":"anchors etc",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":7734,
+                 "height":8,
+                 "id":788,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":8,
+                 "y":136
+                }, 
+                {
+                 "gid":7734,
+                 "height":8,
+                 "id":789,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":872,
+                 "y":136
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -988,7 +1021,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":788,
+ "nextobjectid":791,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -1099,12 +1132,16 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7667,
+         "firstgid":7668,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7689,
+         "firstgid":7691,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-ancientstronghold.json"
+        }, 
+        {
+         "firstgid":7733,
+         "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }],
  "tilewidth":8,
  "type":"map",

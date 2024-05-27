@@ -16,7 +16,6 @@
       "vector": {"type": "vec2", "key": null}
     }
   },
-
   "v_sendNotification2": {
     "type": "action",
     "name": "v_sendNotification2",
@@ -32,7 +31,6 @@
       "data": {"type": "json", "key": null}
     }
   },
-
   "v_receivedNotification2": {
     "type": "action",
     "name": "v_receivedNotification2",
@@ -46,7 +44,6 @@
       "data": {"type": "json", "key": null}
     }
   },
-  
   "v_setJsonKey": {
     "type": "action",
     "name": "v_setJsonKey",
@@ -67,7 +64,6 @@
       "object": {"type": "json", "key": null}
     }
   },
-  
   "v_getJsonKey": {
     "type": "action",
     "name": "v_getJsonKey",
@@ -87,7 +83,6 @@
       "string": {"type": "string", "key": null}
     }
   },
-  
   "v_removeJsonKey": {
     "type": "action",
     "name": "v_removeJsonKey",
@@ -100,7 +95,6 @@
     "script": "/scripts/actions/voidedutil.lua",
     "output": {}
   },
-  
   "v_ellipsePoint": {
     "type": "action",
     "name": "v_ellipsePoint",
@@ -117,7 +111,6 @@
       "result": {"type": "vec2", "key": null}
     }
   },
-  
   "v_logInfo": {
     "type": "action",
     "name": "v_logInfo",
@@ -125,6 +118,25 @@
     "properties": {
       "formatArgs": {"type": "list", "value": null},
       "msg": {"type": "string", "value": null}
+    },
+    "category": "voidedutil",
+    "script": "/scripts/actions/voidedutil.lua",
+    "output": {}
+  },
+  "v_listRemove": {
+    "type": "action",
+    "name": "v_listRemove",
+    "title": "v_listRemove",
+    "properties": {
+      "bool": {"type": "bool", "value": null},
+      "entity": {"type": "entity", "value": null},
+      "json": {"type": "json", "value": null},
+      "list": {"type": "list", "value": null},
+      "number": {"type": "number", "value": null},
+      "position": {"type": "position", "value": null},
+      "string": {"type": "string", "value": null},
+      "table": {"type": "table", "value": null},
+      "vec2": {"type": "vec2", "value": null}
     },
     "category": "voidedutil",
     "script": "/scripts/actions/voidedutil.lua",

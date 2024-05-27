@@ -216,6 +216,15 @@
       },
       {
         "mode" : "floor",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-toxiclaboratorypointer" ]
+      },
+      {
+        "mode" : "floor",
         "priority" : 1,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:undergroundBiomeEncounterDungeon",

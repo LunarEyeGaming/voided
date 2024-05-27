@@ -120,7 +120,7 @@ function updateAnim(dt)
     centered = false
   }, meterRenderLayer)
   
-  local warningOpacity = math.floor(util.lerp(pingPong(warningPulseTimer / warningPulseTime), 0, 255))
+  local warningOpacity = math.floor(util.lerp(voidedUtil.pingPong(warningPulseTimer / warningPulseTime), 0, 255))
 
   localAnimator.addDrawable({
     image = warningLayerImage .. string.format("?multiply=ffffff%02x", warningOpacity),

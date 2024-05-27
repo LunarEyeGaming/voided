@@ -64,7 +64,7 @@ function update(dt)
   local poisonAmount = status.resource("v-depthPoison")
   
   local ratio = math.min(1.0, poisonAmount / endPoisonAmount)
-  local color = lerpColor(ratio, startColor, endColor)
+  local color = voidedUtil.lerpColor(ratio, startColor, endColor)
   world.sendEntityMessage(entity.id(), "v-depthPoison-setRatio", ratio)
   
   setShimmerTime(poisonAmount, dt)
@@ -79,7 +79,7 @@ end
 function setFadeColor(color)
   local fadeColor = {color[1], color[2], color[3]}
   local fadeAmount = color[4] / 255
-  effect.setParentDirectives(string.format("fade=%s=%s", stringOfColor(fadeColor), fadeAmount))
+  effect.setParentDirectives(string.format("fade=%s=%s", voidedUtil.stringOfColor(fadeColor), fadeAmount))
 end
 
 function setShimmerTime(poisonAmount, dt)

@@ -142,7 +142,7 @@ end
 function drawLightning(progress, startPos, endPos)
   local cfgCopy = copy(lightningConfig)
 
-  cfgCopy.color = lerpColor(progress, lightningConfig.startColor, lightningConfig.endColor)
+  cfgCopy.color = voidedUtil.lerpColor(progress, lightningConfig.startColor, lightningConfig.endColor)
   cfgCopy.worldStartPosition = startPos
   cfgCopy.worldEndPosition = endPos
 

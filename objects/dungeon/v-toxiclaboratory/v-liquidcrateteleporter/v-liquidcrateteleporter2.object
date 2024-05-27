@@ -37,34 +37,71 @@
       "collision" : "solid"
     }
   ],
-
-  "particleEmitter" : {
-    "emissionRate" : 3,
-    "emissionVariance" : 0.5,
-
-    "particle" : {
-      "type" : "ember",
-      "position" : [-0.5, 5],
-      "size" : 1.0,
-      "color" : [64, 190, 255, 255],
-      "light" : [50, 50, 150],
-      "fade" : 0.9,
-      "destructionAction" : "shrink",
-      "destructionTime" : 0.5,
-      "initialVelocity" : [0.0, 0.0],
-      "finalVelocity" : [0.0, 0.0],
-      "approach" : [0, 1],
-      "timeToLive" : 1.5,
-      "layer" : "middle"
+  
+  "animation" : "/objects/wired/light/lighttogglebgfullbright.animation",
+  "animationParts" : {
+    "bg" : "liquidcrateteleporter.png",
+    "fg" : "liquidcrateteleporterlit.png"
+  },
+  "animationCustom" : {
+    "animatedParts" : {
+      "stateTypes" : {
+        "trapState" : {
+          "states" : {
+            "on" : {
+              "properties" : {
+                "particleEmittersOn" : ["teleporter"]
+              }
+            },
+            "off" : {
+              "properties" : {
+                "particleEmittersOff" : ["teleporter"]
+              }
+            }
+          }
+        }
+      }
     },
-
-    "particleVariance" : {
-      "initialVelocity" : [0, 5],
-      "finalVelocity" : [0, 1],
-      "position" : [4, 0],
-      "size" : 0.5
+    "particleEmitters" : {
+      "teleporter" : {
+        "emissionRate" : 3,
+        "emissionVariance" : 0.5,
+        "particles" : [
+          {
+            "particle" : {
+              "type" : "ember",
+              "position" : [4, 5],
+              "size" : 1.0,
+              "color" : [64, 190, 255, 255],
+              "light" : [50, 50, 150],
+              "fade" : 0.9,
+              "destructionAction" : "shrink",
+              "destructionTime" : 0.5,
+              "initialVelocity" : [0.0, 0.0],
+              "finalVelocity" : [0.0, 0.0],
+              "approach" : [0, 1],
+              "timeToLive" : 1.5,
+              "layer" : "middle",
+              "variance" : {
+                "initialVelocity" : [0, 5],
+                "finalVelocity" : [0, 1],
+                "position" : [4, 0],
+                "size" : 0.5
+              }
+            }
+          }
+        ]
+      }
     }
   },
+  "animationPosition" : [-32, 0],
+
+  "scripts" : [ "/objects/wired/light/light.lua" ],
+  "scriptDelta" : 60,
+
+  "interactive" : false,
+
+  "inputNodes" : [ [0, 0] ],
   
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

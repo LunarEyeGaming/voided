@@ -23,10 +23,11 @@ end
 function update()
   local dt = script.updateDt()
 
-  if beaconDirection then
+  localAnimator.clearDrawables()
+
+  if animationConfig.animationParameter("isActive") and beaconDirection then
     beaconFlashTimer = (beaconFlashTimer + dt) % beaconFlashTime
 
-    localAnimator.clearDrawables()
     drawBeacon()
   end
 end

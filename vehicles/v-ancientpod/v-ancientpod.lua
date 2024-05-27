@@ -196,8 +196,8 @@ function hasEnergy()
 end
 
 function updateDisplays()
-  updateCircleBar("healthL", "healthR", storage.health, self.maxHealth)
-  updateCircleBar("energyL", "energyR", storage.energy, self.maxEnergy)
+  voidedUtil.updateCircleBar("healthL", "healthR", storage.health, self.maxHealth)
+  voidedUtil.updateCircleBar("energyL", "energyR", storage.energy, self.maxEnergy)
 end
 
 function updateRing(dt)

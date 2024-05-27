@@ -55,7 +55,7 @@ function destroy()
         if inBackground then
           light = lightColor
         else
-          light = lerpColorRGB(1 - distance / lightSize, {0, 0, 0}, lightColor)
+          light = voidedUtil.lerpColorRGB(1 - distance / lightSize, {0, 0, 0}, lightColor)
         end
 
         table.insert(actions, {

@@ -354,7 +354,7 @@ function updateAnimation()
 
   animator.setGlobalTag("glowOpacity", string.format("%02x", math.floor(255 * powerLevel)))
   
-  animator.setLightColor("glow", lerpColorRGB(powerLevel, {0, 0, 0}, glowLightColor))
+  animator.setLightColor("glow", voidedUtil.lerpColorRGB(powerLevel, {0, 0, 0}, glowLightColor))
 end
 
 function emitParticle(size)

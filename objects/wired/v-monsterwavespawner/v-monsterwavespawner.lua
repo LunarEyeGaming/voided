@@ -1,10 +1,14 @@
 require "/scripts/util.lua"
 require "/scripts/rect.lua"
+require "/scripts/voidedutil.lua"
 
 local firstWaveDelay
 local nextWaveDelay
 local interiorRegion
 local exteriorRegions
+
+local waveEntityType
+local waveTriggerEntityType
 
 local interiorRegionDebug
 local exteriorRegionsDebug
@@ -18,6 +22,7 @@ function init()
   nextWaveDelay = config.getParameter("nextWaveDelay", 1.0)
   interiorRegion = getRegionPoints(config.getParameter("interiorRegion"))
   waveEntityType = config.getParameter("waveEntityType", "v-wavemonsterspawnpoint")
+  waveTriggerEntityType = config.getParameter("waveTriggerEntityType", "v-wavetrigger")
 
   exteriorRegions = {}
   for _, region in ipairs(config.getParameter("exteriorRegions")) do
@@ -119,6 +124,18 @@ function states.waves()
         for _, monsterId in ipairs(remainingMonsters) do
           world.sendEntityMessage(monsterId, "despawn")
         end
+
+        -- Tell all trigger targets to reset.
+        for _, trigger in ipairs(wave.triggers) do
+          -- Query the targets
+          local points = getRegionPoints(trigger.queryArea)
+          local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
+
+          -- Send the messages
+          for _, target in ipairs(targets) do
+            voidedUtil.sendEntityMessage(target, "v-monsterwavespawner-reset")
+          end
+        end
         
         -- Reset (sets the state to states.postInit())
         reset()
@@ -182,44 +199,66 @@ end
 function getWaves()
   local waves = {}
 
+  -- Helper function that defines the wave.
+  local defineWave = function(waveNum)
+    -- Define the wave if it's not defined.
+    if not waves[waveNum] then
+      waves[waveNum] = {
+        spawners = {},
+        triggers = {}
+      }
+    end
+  end
+  
+  -- Function that extracts the wave spawner information
+  local successHandlerSpawnpoints = function(promise)
+    local spawnpointInfo = promise:result()
+      
+    defineWave(spawnpointInfo.waveNumber)
+    
+    -- Insert spawn info
+    table.insert(waves[spawnpointInfo.waveNumber].spawners, {
+      type = spawnpointInfo.type,
+      position = spawnpointInfo.position,
+      parameters = spawnpointInfo.parameters
+    })
+  end
+  
+  -- Function that extracts the wave trigger information
+  local successHandlerTriggers = function(promise, id)
+    local triggerInfo = promise:result()
+      
+    defineWave(triggerInfo.waveNumber)
+    
+    local triggerPos = world.entityPosition(id)
+    local triggerDistance = world.distance(triggerPos, object.position())
+    
+    -- Insert spawn info
+    table.insert(waves[triggerInfo.waveNumber].triggers, {
+      messageType = triggerInfo.messageType,
+      messageArgs = triggerInfo.messageArgs,
+      queryArea = rect.translate(triggerInfo.queryArea, triggerDistance),
+      queryOptions = triggerInfo.queryOptions
+    })
+  end
+
   local stagehands = world.entityQuery(interiorRegion[1], interiorRegion[2], {includedTypes = {"stagehand"}})
   
   local spawnpoints = util.filter(stagehands, function(id) return world.stagehandType(id) == waveEntityType end)
+  local triggers = util.filter(stagehands, function(id) return world.stagehandType(id) == waveTriggerEntityType end)
   
-  local promises = {}
+  -- Send out those messages!
+  voidedUtil.sendEntityMessageToTargets(successHandlerSpawnpoints, _errorHandler, spawnpoints, "v-getSpawnpointInfo")
+  voidedUtil.sendEntityMessageToTargets(successHandlerTriggers, _errorHandler, triggers, "v-getTriggerInfo")
   
-  -- Probably unnecessary, but I have the gut feeling that the return times of each promise can vary.
-  for _, spawnpoint in ipairs(spawnpoints) do
-    table.insert(promises, world.sendEntityMessage(spawnpoint, "v-getSpawnpointInfo"))
-  end
-  
-  for _, promise in ipairs(promises) do
-    -- Wait for the promise to finish.
-    while not promise:finished() do
-      coroutine.yield()
-    end
-
-    if promise:succeeded() then
-      local spawnpointInfo = promise:result()
-      
-      -- Define the wave if it's not defined
-      if not waves[spawnpointInfo.waveNumber] then
-        waves[spawnpointInfo.waveNumber] = {}
-      end
-      
-      -- Insert spawn info
-      table.insert(waves[spawnpointInfo.waveNumber], {
-        type = spawnpointInfo.type,
-        position = spawnpointInfo.position,
-        parameters = spawnpointInfo.parameters
-      })
-    else
-      sb.logError("Promise failed: %s", promise:error())
-    end
-  end
-  
+  -- Kill spawner stagehands
   for _, spawnpoint in ipairs(spawnpoints) do
     world.sendEntityMessage(spawnpoint, "v-die")
+  end
+  
+  -- Kill trigger stagehands
+  for _, trigger in ipairs(triggers) do
+    world.sendEntityMessage(trigger, "v-die")
   end
   
   return waves
@@ -229,10 +268,16 @@ end
   Spawns the monsters in the current wave. Returns a list of the monsters spawned.
   wave: A table with the following schema:
     {
-      {
+      spawners: {
         String type: the monster type to spawn
         Vec2F position: the position to spawn the monster at
         Json parameters: the parameters to override
+      },
+      triggers: {
+        Rect queryArea: the area to query for targets
+        Json queryOptions: the options to use when querying the targets
+        String messageType: message type to send
+        LuaValue List messageArgs: the arguments to give
       }
     }
   returns: a list of the IDs of the monsters spawned
@@ -240,8 +285,22 @@ end
 function spawnWave(wave)
   local monsterIds = {}
 
+  -- Function to add the returned monster ID to the list.
+  local triggerSuccessHandler = function(promise)
+    local returnedMonsterIds = promise:result()
+    
+    -- If a list of monster IDs was returned...
+    if returnedMonsterIds then
+      -- Add each monster ID to the monsterIds table.
+      for _, id in ipairs(returnedMonsterIds) do
+        table.insert(monsterIds, id)
+      end
+    end
+  end
+
+  -- Spawn the monsters
   -- For each monster spawner in the wave...
-  for _, monster in ipairs(wave) do
+  for _, monster in ipairs(wave.spawners) do
     -- Spawn the monster
     local monsterId = world.spawnMonster(monster.type, monster.position, monster.parameters)
     
@@ -253,6 +312,17 @@ function spawnWave(wave)
       sb.logWarn("Monster of type %s at position %s with parameters %s failed to spawn", monster.type, monster.position,
           monster.parameters)
     end
+  end
+  
+  -- For each trigger in the wave...
+  for _, trigger in ipairs(wave.triggers) do
+    -- Query the targets
+    local points = getRegionPoints(trigger.queryArea)
+    local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
+
+    -- Make the trigger send the messages (no error handler this time).
+    voidedUtil.sendEntityMessageToTargets(triggerSuccessHandler, _errorHandler, targets, trigger.messageType, 
+        table.unpack(trigger.messageArgs))
   end
   
   return monsterIds
@@ -315,6 +385,14 @@ function reset()
     object.setOutputNodeLevel(1, true)
     state:set(states.noop)
   end
+end
+
+-- HELPER FUNCTIONS
+--[[
+  Helper function. Logs an error from a promise.
+]]
+function _errorHandler(promise)
+  sb.logError("Promise failed: %s", promise:error())
 end
 
 -- HOOKS (may use stubs by default)

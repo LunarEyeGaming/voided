@@ -2,6 +2,8 @@ function init()
   local sounds = config.getParameter("sparkSounds", {})
   animator.setSoundPool("sparks", sounds)
   self.detonated = false
+  
+  message.setHandler("v-faultywiring-trigger", onTrigger)
 end
 
 function update(dt)
@@ -11,10 +13,14 @@ function update(dt)
       detonate()
     end
   elseif object.isInputNodeConnected(0) and object.getInputNodeLevel(0) then
-    animator.playSound("sparks", -1)
-    animator.setParticleEmitterActive("sparks", true)
-    storage.detonationTimer = config.getParameter("detonationTime", 0)
+    onTrigger()
   end
+end
+
+function onTrigger()
+  animator.playSound("sparks", -1)
+  animator.setParticleEmitterActive("sparks", true)
+  storage.detonationTimer = config.getParameter("detonationTime", 0)
 end
 
 function die()

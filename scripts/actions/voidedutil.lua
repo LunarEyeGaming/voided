@@ -21,7 +21,7 @@ function _resolveRefs(table_, board)
   for k, v in pairs(table_) do
     if type(v) == "table" then
       newTable[k] = _resolveRefs(v, board)
-    elseif type(v) == "string" and strStartsWith(v, "$") then
+    elseif type(v) == "string" and voidedUtil.strStartsWith(v, "$") then
       local ref = util.split(v:sub(2, #v), ":")
       newTable[k] = board:get(ref[1], ref[2])  -- Lookup variable name on the blackboard
     else
@@ -29,6 +29,34 @@ function _resolveRefs(table_, board)
     end
   end
   return newTable
+end
+
+--[[
+  Returns whether or not two arguments a and b are equal, even if they are tables. Recursive tables are not supported
+  and can result in infinite recursion.
+  
+  param a: the first value to compare
+  param b: the second value to compare
+]]
+function _deepEquals(a, b)
+  -- If both values are tables...
+  if type(a) == "table" and type(b) == "table" then
+    -- For each key-value pair in `a`...
+    for k, va in pairs(a) do
+      local vb = b[k]
+      
+      -- If va and vb do not match...
+      if not _deepEquals(va, vb) then
+        return false
+      end
+    end
+    
+    -- Return true here as this means that all entries of a and b are structurally identical.
+    return true
+  else
+    -- Return whether or not they are equal.
+    return a == b
+  end
 end
 
 -- param list
@@ -135,4 +163,36 @@ function v_logInfo(args, board)
   end
   
   return true
+end
+
+-- param targetList
+-- param list
+-- param entity
+-- param number
+-- param position
+-- param vec2
+-- param table
+-- param json
+-- param string
+-- param bool
+function v_listRemove(args, board)
+  if args.targetList == nil then return false end
+
+  -- Find the right type of item to remove.
+  for _,type in pairs(ListTypes) do
+    if args[type] then
+      -- Try to remove the item by searching for it.
+      for i, v in ipairs(args.targetList) do
+        if _deepEquals(args[type], v) then
+          -- Remove the item
+          table.remove(args.targetList, i)
+          -- Return success.
+          return true, {list = list}
+        end
+      end
+    end
+  end
+  
+  -- Removing the list failed.
+  return false
 end

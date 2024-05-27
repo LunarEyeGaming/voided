@@ -14,7 +14,7 @@
   "bounces" : -1,
   "speed" : 25,
   
-  "actionOnReap" : [
+  "teleportActions" : [
     {
       "action" : "particle",
       "specification" : {
@@ -40,5 +40,8 @@
   "liquidQuantity" : 1,
   "liquidOffset" : [0, -4],
   "liquidSpawnInterval" : 0.04,
-  "maxPlayerDistance" : 100
+  "maxPlayerDistance" : 100,
+  
+  "stoppedObjectType" : "v-liquiddumpingcratestopped",
+  "stoppedObjectOffset" : [0, 0]
 }

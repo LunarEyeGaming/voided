@@ -252,12 +252,16 @@
         },
         "underground2" : {
           "primaryRegion" : ["v-undergroundtoxic"],
-          "secondaryRegions" : ["v-flowerfield", "v-poisonfloodedcaves"],
-          "secondaryRegionCount" : [1, 2]
+          "secondaryRegions" : ["v-flowerfield"],
+          "secondaryRegionCount" : [0, 1]
         },
         "underground3" : {
           "primaryRegion" : ["v-deepundergroundtoxic"],
-          "secondaryRegions" : []
+          "secondaryRegions" : [],
+          
+          "baseHeight" : 450,  // Force the dungeon to spawn REAL up high.
+
+          "dungeons" : [[1.0, "v-toxiclaboratory"]]
         },
         "core" : {
           "primaryRegion" : ["v-toxicwastelandcorelayer"],

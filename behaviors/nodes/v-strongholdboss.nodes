@@ -59,8 +59,8 @@
       "vTeleProjectile": {"type": "string", "value": null},
       "loops": {"type": "number", "value": 1},
       "phase": {"type": "number", "value": 1},
-      "waitTime": {"type": "number", "value": 0.0},
-      "fireDelay": {"type": "number", "value": 0.0}
+      "waitTime": {"type": "number", "value": 0},
+      "fireDelay": {"type": "number", "value": 0}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
@@ -81,7 +81,7 @@
       "v2Offsets": {"type": "list", "value": null},
       "hTeleProjectile": {"type": "string", "value": null},
       "vTeleProjectile": {"type": "string", "value": null},
-      "waitTime": {"type": "number", "value": 0.0}
+      "waitTime": {"type": "number", "value": 0}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
@@ -94,8 +94,8 @@
     "properties": {
       "attackSet": {"type": "json", "value": null},
       "sampleSize": {"type": "number", "value": 1},
-      "waitTime": {"type": "number", "value": 0.0},
-      "fireDelay": {"type": "number", "value": 0.0}
+      "waitTime": {"type": "number", "value": 0},
+      "fireDelay": {"type": "number", "value": 0}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
@@ -115,10 +115,10 @@
       "target": {"type": "entity", "key": "target"},
       "targetProjectile": {"type": "string", "value": null},
       "phase3WarningProjectile": {"type": "string", "value": null},
-      "phase3WarningTime": {"type": "number", "value": 0.0},
+      "phase3WarningTime": {"type": "number", "value": 0},
       "loops": {"type": "number", "value": 1},
       "phase": {"type": "number", "value": 1},
-      "waitTime": {"type": "number", "value": 0.0}
+      "waitTime": {"type": "number", "value": 0}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
@@ -130,7 +130,7 @@
     "title": "v_laserAttack5",
     "properties": {
       "attackSet": {"type": "json", "value": null},
-      "waitTime": {"type": "number", "value": 0.0}
+      "waitTime": {"type": "number", "value": 0}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
@@ -144,8 +144,8 @@
       "attackSetH": {"type": "json", "value": null},
       "attackSetV": {"type": "json", "value": null},
       "loops": {"type": "number", "value": 1},
-      "waitTime": {"type": "number", "value": 0.0},
-      "fireDelay": {"type": "number", "value": 0.0}
+      "waitTime": {"type": "number", "value": 0},
+      "fireDelay": {"type": "number", "value": 0}
     },
     "category": "v-strongholdboss",
     "script": "/scripts/actions/boss/v-strongholdboss.lua",
@@ -156,8 +156,6 @@
     "name": "v_activateCores",
     "title": "v_activateCores",
     "properties": {
-      //"coreIds": {"type": "list", "value": null},
-      //"nResults": {"type": "number", "value": 1}
       "corePartition": {"type": "list", "value": null},
       "corePositionPartition": {"type": "list", "value": null},
       "phase": {"type": "number", "value": 1}
@@ -247,8 +245,8 @@
       "coreIds": {"type": "list", "value": null},
       "loops": {"type": "number", "value": 1},
       "centerOffset": {"type": "vec2", "value": [0, 0]},
-      "waitTime": {"type": "number", "value": 0.0},
-      "teleTime": {"type": "number", "value": 3.0},
+      "waitTime": {"type": "number", "value": 0},
+      "teleTime": {"type": "number", "value": 3},
       "target": {"type": "entity", "key": "target"}
     },
     "category": "v-strongholdboss",

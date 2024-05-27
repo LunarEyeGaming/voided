@@ -20,7 +20,7 @@ function uninit()
     sb.logWarn("Parameter 'v-cooldownStatusEffect' not defined")
   end
 
-  if hasStatusEffect(detectStatusEffect) then
+  if voidedUtil.hasStatusEffect(detectStatusEffect) then
     status.addEphemeralEffect(cooldownStatusEffect)
   end
 end

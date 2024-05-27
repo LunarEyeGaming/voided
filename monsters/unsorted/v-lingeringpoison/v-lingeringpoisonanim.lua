@@ -46,7 +46,7 @@ function update()
     if block[1] <= 0 then
       table.remove(processedBlocks, i)
     else
-      local color = lerpColor(block[1] / block[2], endColor, startColor)
+      local color = voidedUtil.lerpColor(block[1] / block[2], endColor, startColor)
       localAnimator.addDrawable({
         line = {{-0.5, 0}, {0.5, 0}},
         position = vec2.add(center, block[3]),

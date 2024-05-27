@@ -202,7 +202,7 @@ function HarpoonGunFire:renderChain(endPos)
   if self.anchored then
     newChain = copy(self.chainAnchored)
     
-    local frame = frameNumber(self.frameTimer, self.anchoredChainFrameCycle, 1, self.anchoredChainNumFrames)
+    local frame = voidedUtil.frameNumber(self.frameTimer, self.anchoredChainFrameCycle, 1, self.anchoredChainNumFrames)
 
     newChain.startSegmentImage = util.replaceTag(newChain.startSegmentImage, "frame", frame)
     newChain.segmentImage = util.replaceTag(newChain.segmentImage, "frame", frame)

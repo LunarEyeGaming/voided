@@ -22,9 +22,9 @@ function update(dt)
   pulseTimer = pulseTimer + dt
   
   if pulseTimer < halfPulsePeriod then
-    updatePulseColor(lerpColorRGB(pulseTimer / halfPulsePeriod, pulseDarkColor, pulseBrightColor))
+    updatePulseColor(voidedUtil.lerpColorRGB(pulseTimer / halfPulsePeriod, pulseDarkColor, pulseBrightColor))
   elseif pulseTimer < halfPulsePeriod * 2 then
-    updatePulseColor(lerpColorRGB(2 - pulseTimer / halfPulsePeriod, pulseDarkColor, pulseBrightColor))
+    updatePulseColor(voidedUtil.lerpColorRGB(2 - pulseTimer / halfPulsePeriod, pulseDarkColor, pulseBrightColor))
   else
     pulseTimer = 0
     updatePulseColor(pulseDarkColor)

@@ -482,6 +482,48 @@
                  "width":8,
                  "x":400,
                  "y":320
+                }, 
+                {
+                 "height":8,
+                 "id":720,
+                 "name":"killerbee (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-killerbee\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":520,
+                 "y":80
+                }, 
+                {
+                 "height":8,
+                 "id":721,
+                 "name":"killerbee (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-killerbee\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":168,
+                 "y":80
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -554,7 +596,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":720,
+ "nextobjectid":722,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

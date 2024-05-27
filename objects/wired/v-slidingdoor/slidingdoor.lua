@@ -99,7 +99,7 @@ function onInputNodeChange(args)
 end
 
 function updateActive()
-  storage.active = (not object.isInputNodeConnected(0)) or object.getInputNodeLevel(0) -- Closed if no input node connected or input is off
+  storage.active = (not object.isInputNodeConnected(0)) or object.getInputNodeLevel(0) -- Closed if input node is connected and input is off
 end
 
 function setupMaterialSpaces()
