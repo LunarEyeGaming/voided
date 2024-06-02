@@ -8,8 +8,6 @@ require "/scripts/rect.lua"
   world.placeDungeon() works).
 ]]
 
-local MAX_HEIGHT = 500
-
 local dungeonType
 local ownPos
 local startDungeonPos
@@ -22,7 +20,6 @@ function init()
   message.setHandler("v-monsterwavespawner-reset", function()
     local dungeonId = world.dungeonId(ownPos)
     world.placeDungeon(dungeonType, startDungeonPos, dungeonId)
-    object.smash()
   end)
 end
 

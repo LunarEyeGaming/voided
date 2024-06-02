@@ -248,8 +248,8 @@ function getWaves()
   local triggers = util.filter(stagehands, function(id) return world.stagehandType(id) == waveTriggerEntityType end)
   
   -- Send out those messages!
-  voidedUtil.sendEntityMessageToTargets(successHandlerSpawnpoints, _errorHandler, spawnpoints, "v-getSpawnpointInfo")
-  voidedUtil.sendEntityMessageToTargets(successHandlerTriggers, _errorHandler, triggers, "v-getTriggerInfo")
+  voidedUtil.sendEntityMessageToTargets(successHandlerSpawnpoints, _errorHandler("Promise failed for v-getSpawnpointInfo"), spawnpoints, "v-getSpawnpointInfo")
+  voidedUtil.sendEntityMessageToTargets(successHandlerTriggers, _errorHandler("Promise failed for v-getTriggerInfo"), triggers, "v-getTriggerInfo")
   
   -- Kill spawner stagehands
   for _, spawnpoint in ipairs(spawnpoints) do
@@ -321,7 +321,7 @@ function spawnWave(wave)
     local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
 
     -- Make the trigger send the messages (no error handler this time).
-    voidedUtil.sendEntityMessageToTargets(triggerSuccessHandler, _errorHandler, targets, trigger.messageType, 
+    voidedUtil.sendEntityMessageToTargets(triggerSuccessHandler, function() end, targets, trigger.messageType, 
         table.unpack(trigger.messageArgs))
   end
   
@@ -391,8 +391,8 @@ end
 --[[
   Helper function. Logs an error from a promise.
 ]]
-function _errorHandler(promise)
-  sb.logError("Promise failed: %s", promise:error())
+function _errorHandler(msg)
+  return function(promise) sb.logError("%s: %s", msg, promise:error()) end
 end
 
 -- HOOKS (may use stubs by default)

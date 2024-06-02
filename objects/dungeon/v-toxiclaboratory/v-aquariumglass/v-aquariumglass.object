@@ -1,0 +1,93 @@
+{
+  "objectName" : "v-aquariumglass",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+
+  "category" : "decorative",
+  "price" : 200,
+  "printable" : false,
+  "description" : "<todo>",
+  "shortdescription" : "Aquarium Glass",
+  "race" : "generic",
+  "health" : 1.5,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "image.png",
+  
+  "animation" : "v-aquariumglass.animation",
+
+  "orientations" : [
+    {
+      "image" : "image.png",
+      "imagePosition" : [-8, 0],
+
+      "spaces" : [
+        [-1, 22], [0, 22],
+        [-1, 21], [0, 21],
+        [-1, 20], [0, 20],
+        [-1, 19], [0, 19],
+        [-1, 18], [0, 18],
+        [-1, 17], [0, 17],
+        [-1, 16], [0, 16],
+        [-1, 15], [0, 15],
+        [-1, 14], [0, 14],
+        [-1, 13], [0, 13],
+        [-1, 12], [0, 12],
+        [-1, 11], [0, 11],
+        [-1, 10], [0, 10],
+        [-1, 9], [0, 9],
+        [-1, 8], [0, 8],
+        [-1, 7], [0, 7],
+        [-1, 6], [0, 6],
+        [-1, 5], [0, 5],
+        [-1, 4], [0, 4],
+        [-1, 3], [0, 3],
+        [-1, 2], [0, 2],
+        [-1, 1], [0, 1],
+        [-1, 0], [0, 0]
+      ],
+
+      "anchors" : [ "background" ],
+
+      "direction" : "right"
+    }
+  ],
+
+  "scripts" : [ "/objects/scripts/v-blockyobject.lua" ],
+  
+  "scriptDelta" : 3,
+  "material" : "glass",
+  
+  "smashOnBreak" : true,
+
+  "smashSounds" : [ "/sfx/objects/v_aquariumglass_break1.ogg", "/sfx/objects/v_aquariumglass_break2.ogg" ],
+  "smashParticles" : [
+    { 
+      "count" : 50, 
+      "particle" : {
+        "type" : "animated",
+        "animation" : "/animations/shards/glassshard.animation",
+        "initialVelocity" : [0.0, 8.0],
+        "finalVelocity" : [0.0, -60.0],
+        "approach" : [0.3, 60],
+        "timeToLive" : 0.5,
+        "layer" : "middle",
+        "collidesForeground" : true,
+        "variance" : {
+          "position" : [1, 11.5],
+          "initialVelocity" : [5, 3],
+          "finalVelocity" : [0, 20],
+          "rotation" : 180,
+          "angularVelocity" : 180
+        }
+      }
+    }
+  ]
+}

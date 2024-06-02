@@ -18,7 +18,6 @@ local displayOffset
 function init()
   oldInit()
 
-  itemName = "v-gps"
   -- The spacing to put between each glyph horizontally. DOES NOT account for the width of the image itself. Measured in
   -- blocks.
   glyphHSpacing = 0.5
@@ -33,9 +32,9 @@ end
 
 function update(dt)
   oldUpdate(dt)  -- Implicitly clears drawables
-
-  -- If the player has the given item...
-  if player.hasItem(itemName) then
+  
+  -- If the player has an active GPS...
+  if player.getItemWithParameter("v-gpsIsActive", true) then
     local ownPos = world.entityPosition(player.id())
     local flooredXPos = math.floor(ownPos[1])
     local flooredYPos = math.floor(ownPos[2])
@@ -88,6 +87,9 @@ function showDigitChar(ch, offset)
   showGlyph(string.format("%s:%s", digitPath, ch), offset)
 end
 
+--[[
+  Shows an image drawable with path `path`, relative position `offset`, 
+]]
 function showGlyph(path, offset)
   localAnimator.addDrawable({
     image = path,

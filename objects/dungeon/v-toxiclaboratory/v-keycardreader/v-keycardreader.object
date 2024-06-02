@@ -1,0 +1,84 @@
+{
+  "objectName" : "v-keycardreader",
+  "colonyTags" : ["storage"],
+  "rarity" : "Common",
+  "objectType" : "container",
+  "tooltipKind" : "container",
+  "printable" : false,
+
+  "category" : "storage",
+  "price" : 70,
+  "description" : "<todo>",
+  "shortdescription" : "Keycard Reader",
+  "race" : "human",
+  "health" : 1.5,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "keycardreader.png:inactive",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "keycardreader.png:inactive", "fullbright" : true }, { "image" : "keycardreaderlit.png:inactive" } ],
+      "imagePosition" : [0, -8],
+      
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "keycardreader.png",
+        "fg" : "keycardreaderlit.png"
+      },
+
+      "direction" : "left",
+      "flipImages" : true,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    },
+    {
+      "imageLayers" : [ { "image" : "keycardreader.png:inactive", "fullbright" : true }, { "image" : "keycardreaderlit.png:inactive" } ],
+      "imagePosition" : [0, -8],
+      
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "keycardreader.png",
+        "fg" : "keycardreaderlit.png"
+      },
+
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "animation" : "v-keycardreader.animation",
+
+  "outputNodes" : [ [0, 0] ],
+  "scripts" : [ "/objects/wired/v-wiredlock.lua" ],
+  "acceptedItems" : [ "v-keycard1" ],
+  "deleteItem" : false,
+
+  "unlockStateType" : "reader",
+
+  "unlockingState" : "active",
+  "lockingState" : "inactive",
+  "unlockedState" : "active",
+  "lockedState" : "inactive",
+
+  "unlockSound" : "activate",
+  "lockSound" : "deactivate",
+
+  "openSounds" : [ "/sfx/objects/chest_small_open.ogg" ],
+  "closeSounds" : [ "/sfx/objects/chest_small_close.ogg" ],
+  "slotCount" : 1,
+  "uiConfig" : "/interface/chests/v-keycardreader.config",
+  "frameCooldown" : 5,
+  "autoCloseCooldown" : 3600,
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

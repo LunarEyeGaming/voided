@@ -1,9 +1,29 @@
 local keyItems
 local deleteItem
 
+local unlockStateType
+
+local unlockingState
+local lockingState
+local unlockedState
+local lockedState
+
+local unlockSound
+local lockSound
+
 function init()
   keyItems = config.getParameter("acceptedItems")
   deleteItem = config.getParameter("deleteItem")
+  
+  unlockStateType = config.getParameter("unlockStateType", "unlockState")
+
+  unlockingState = config.getParameter("unlockingState", "unlocking")
+  lockingState = config.getParameter("lockingState", "locking")
+  unlockedState = config.getParameter("unlockedState", "unlocked")
+  lockedState = config.getParameter("lockedState", "locked")
+  
+  unlockSound = config.getParameter("unlockSound", "unlock")
+  lockSound = config.getParameter("lockSound", "lock")
 
   if storage.state == nil then
     output(config.getParameter("defaultSwitchState", false))
@@ -12,7 +32,7 @@ function init()
   end
   
   -- Retain state if unloaded
-  animator.setAnimationState("socket", storage.state and "active" or "inactive")
+  animator.setAnimationState(unlockStateType, storage.state and unlockedState or lockedState)
 end
 
 function update(dt)
@@ -62,12 +82,12 @@ function output(state)
   if storage.state ~= state then
     -- Deactivating
     if storage.state then
-      animator.setAnimationState("socket", "deactivating")
-      animator.playSound("deactivate")
+      animator.setAnimationState(unlockStateType, lockingState)
+      animator.playSound(lockSound)
     else
       -- Activating
-      animator.setAnimationState("socket", "activating")
-      animator.playSound("activate")
+      animator.setAnimationState(unlockStateType, unlockingState)
+      animator.playSound(unlockSound)
     end
   end
 

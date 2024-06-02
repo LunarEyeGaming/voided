@@ -230,6 +230,7 @@
       ],
       "def" : [ "tmx", "floor1traproom3-right.json" ],
       "chance" : 50
+      /* "chance" : 10000000 */
     },
     
     {
@@ -266,6 +267,7 @@
       ],
       "def" : [ "tmx", "floor1staircorridor-right.json" ],
       "chance" : 250
+      /* "chance" : 10000000 */
     },
 
     {
@@ -436,6 +438,31 @@
       "def" : [ "tmx", "floor3enemyroom2-right.json" ],
       "chance" : 1000
     },
+    {
+      "name" : "floor3enemyroom3-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3enemyroom3-right.json" ],
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom4-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3enemyroom4-right.json" ],
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom5-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3enemyroom5-right.json" ],
+      "chance" : 1000
+    },
+
     {
       "name" : "floor3traproom1-right",
       "rules" : [

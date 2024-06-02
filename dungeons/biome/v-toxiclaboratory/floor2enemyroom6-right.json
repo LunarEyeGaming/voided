@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt2rENgDAMBdEswv7LpUOiZgEUURB\/cb7ier\/G1Z9jjGm26CysgzFtTloT5rS12px2VprTvkpv2lbpTbu6W792pw3V\/uv4d3p7e9P3VfvT9+jVq1evXr16eellp5edXnZ62ellp5edXnZ62ellp5edXnbdvcZu534r3ZNt92YtaV15SeaVqWqbmLC+8dLSy04vu\/T\/NDMzsz7d\/I7zkQ==",
+         "data":"eJzt2rENwzAQBEE2ov6bUyZAsRswCAXinb3cYPOf5KM7xxin2cOuxbV9CeOvmNPOprlpTZvbzqS57Ut627akt+3a3fq2u21I++\/jv9O7t7d9X9rfvkevXr169erVy0svO73s9LLTy04vO73s9LLTy04vO73s9LLb3WvsVu632n2zrd6sNa0zL8k8M6W2iQ3rEy8tvez0smv\/TzMzM9unDxJw81I=",
          "encoding":"base64",
          "height":68,
          "name":"back",
@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt2r0NwjAQhmFTwwrQsxAjMAED0LACU7AJ41iii4RpQxLFv+e7vJ\/0KQgryT0KSoHsHLGcoUB9w+bOmpqWxnFbZ+r+ls015uvZXHuOFubP0blzON5Cn6GX0Ktz90c4vkLf4fOaWQ6nMu3hGbeyxpilrBJeSavU77mUO+V9Wcqcc+9U\/+\/9pbl463jnzl26Zso5uV7p59H6eUvPI+3VHrxx69qCN25dW\/DGrWsL3rh1bcEbt64teAkhRGdq\/Y\/Q61x48eLFixcvXrx4+\/Tud\/\/Xzvmud2+vxWu7W\/d6w+apPUreqHluT5Y3aF7agzbeoyY9a0nrGq+14rVdvLZLCCGk7wwbK7GdL36Rg9U=",
+         "data":"eJzt2rENwjAQhWFTI0aAnoUYgQkYgIYVmIJNGMcSXSRMh4BEOD77fJf\/SU9BWEnuU1AK5BCI5wzCjZVbOp9Uajvfq5WWRm2z9Hw9m2vP0cL82IawT8dT6jX1kHoM4XxJx1vqPX3+Z5bNTqY9PONW1hyzllXDq2nV+j1Luee8L6XMJfee63+9vywXbx3v2LlT15xzTqlX+3m0ft7a82h7rQdv3rq14M1btxa8eevWgjdv3Vrw5q1bC15CCLGZWv8j9DoXXrx48eLFixcv3j6969X3tUu+693ba\/H67tK90bH51x6l6NQ8ticrOjRP7UH73KOmPauk9R+vt+L1Xby+SwghpO8MCyvxnSdAkX6d",
          "encoding":"base64",
          "height":68,
          "name":"front",
@@ -51,7 +51,7 @@
                  "name":"contains position-sensitive offsets",
                  "properties":
                     {
-                     "parameters":"{\"interiorRegion\" : [-1, -12, 49, 28], \"exteriorRegions\" : [[-4, 0, 0, 15]]}"
+                     "parameters":"{\"interiorRegion\" : [-1, -12, 49, 31], \"exteriorRegions\" : [[-4, 0, 0, 15]]}"
                     },
                  "propertytypes":
                     {
@@ -107,18 +107,6 @@
                  "width":48,
                  "x":424,
                  "y":272
-                }, 
-                {
-                 "gid":7669,
-                 "height":16,
-                 "id":686,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":112,
-                 "y":152
                 }, 
                 {
                  "gid":6592,
@@ -312,13 +300,13 @@
                  "y":256
                 }, 
                 {
-                 "gid":7667,
-                 "height":16,
-                 "id":723,
-                 "name":"contains position-sensitive offsets",
+                 "gid":7663,
+                 "height":8,
+                 "id":725,
+                 "name":"",
                  "properties":
                     {
-                     "parameters":"{\"messageRadius\" : 15, \"messageSourceOffset\" : [15, 9], \"messageType\" : \"v-faultywiring-trigger\"}"
+                     "parameters":"{\"dungeonOffset\" : [0, -2]}"
                     },
                  "propertytypes":
                     {
@@ -327,21 +315,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":16,
-                 "x":112,
-                 "y":192
-                }, 
-                {
-                 "gid":7663,
-                 "height":8,
-                 "id":725,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
                  "width":8,
                  "x":136,
-                 "y":40
+                 "y":32
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -393,26 +369,6 @@
                  "width":0,
                  "x":56,
                  "y":264
-                }, 
-                {
-                 "height":0,
-                 "id":700,
-                 "name":"",
-                 "polyline":[
-                        {
-                         "x":-16,
-                         "y":0
-                        }, 
-                        {
-                         "x":-24,
-                         "y":32
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":136,
-                 "y":144
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -426,12 +382,12 @@
          "name":"monsters & npcs",
          "objects":[
                 {
-                 "height":32,
+                 "height":24,
                  "id":687,
                  "name":"Detonator Trigger (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"v-wirelessmomentaryswitch-trigger\", \"waveNumber\" : 2}",
+                     "parameters":"{\"messageType\" : \"v-faultywiring-trigger\", \"waveNumber\" : 2}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -442,9 +398,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":32,
-                 "x":104,
-                 "y":128
+                 "width":176,
+                 "x":152,
+                 "y":104
                 }, 
                 {
                  "height":8,
@@ -612,7 +568,7 @@
                  "visible":true,
                  "width":24,
                  "x":128,
-                 "y":24
+                 "y":16
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -780,8 +736,12 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }, 
         {
-         "firstgid":7678,
+         "firstgid":7679,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
+        }, 
+        {
+         "firstgid":7702,
+         "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }],
  "tilewidth":8,
  "type":"map",
