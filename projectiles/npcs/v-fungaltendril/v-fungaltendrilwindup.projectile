@@ -3,8 +3,9 @@
   "image" : "fungaltendrilwindup.png",
   "physics" : "illusion",
   "bounces" : -1,
-  "frameNumber" : 1,
-  "animationCycle" : 1.0,
+  "frameNumber" : 2,
+  "animationCycle" : 0.2,
+  "animationLoops" : false,
   "power" : 1,
   "speed" : 0,
   "timeToLive" : 1.0,
@@ -14,6 +15,19 @@
       "action" : "projectile",
       "type" : "v-fungaltendril",
       "inheritDamageFactor" : 1.0
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_fungaltendril_erupt.ogg" ]
+    },
+    {
+      "action" : "loop",
+      "count" : 20,
+      "body" : [
+        {
+          "action" : "spark"
+        }
+      ]
     }
   ]
 }

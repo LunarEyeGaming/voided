@@ -1,0 +1,27 @@
+{
+  "projectileName" : "v-fungaltendrilsmallspawner",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "timeToLive" : 2,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "speed" : 1,
+  "power" : 50,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  
+  "onlyHitTerrain" : true,
+  
+  "scripts" : [ "v-fungaltendrilspawner.lua" ],
+  
+  "waveSize" : 100,
+  "gapSize" : 1.0,
+  "maxHeight" : 10,
+  "minHeight" : -10,
+  "projectileParameters" : {},
+  "projectileType" : "v-fungaltendrilsmallwindup",
+  "spawnInterval" : 0.01,
+  "inheritDamageFactor" : 1.0,
+  "waveFuzzAngle" : 10
+}

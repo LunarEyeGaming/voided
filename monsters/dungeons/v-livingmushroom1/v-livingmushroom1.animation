@@ -11,10 +11,15 @@
             "mode" : "loop"
           },
           "windup" : {
-            "frames" : 1
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_livingmushroom1_windup.ogg"
+            }
           },
           "fire" : {
-            "frames" : 1,
+            "frames" : 5,
             "cycle" : 0.5,
             "mode" : "transition",
             "transition" : "idle"
@@ -157,6 +162,6 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "fire" : [ "/sfx/melee/swing_broadsword_electric1.ogg", "/sfx/melee/swing_broadsword_electric2.ogg", "/sfx/melee/swing_broadsword_electric3.ogg" ]
+    "fire" : [ "/sfx/npc/monsters/v_livingmushroom1_fire.ogg" ]
   }
 }

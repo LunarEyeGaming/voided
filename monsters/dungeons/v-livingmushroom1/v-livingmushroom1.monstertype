@@ -1,7 +1,7 @@
 {
   "type" : "v-livingmushroom1",
-  "shortdescription" : "<todo>",
-  "description" : "<todo>",
+  "shortdescription" : "Thornroot",
+  "description" : "A Pulpin that has been injected with fungal stem cells. The result is an experiment gone wrong!",
 
   "categories" : [ "v-livingmushroom1" ],
   "parts" : [ "body" ],
@@ -61,15 +61,13 @@
               "actionOnReap" : [
                 {
                   "action" : "projectile",
-                  "type" : "v-fungaltendrilspawnerright",
-                  "inheritDamageFactor" : 1,
-                  "angleAdjust" : -90
+                  "type" : "v-fungaltendrilspawner",
+                  "inheritDamageFactor" : 1
                 },
                 {
                   "action" : "projectile",
-                  "type" : "v-fungaltendrilspawnerleft",
-                  "inheritDamageFactor" : 1,
-                  "angleAdjust" : 90
+                  "type" : "v-fungaltendrilsmallspawner",
+                  "inheritDamageFactor" : 0.5
                 }
               ]
             },

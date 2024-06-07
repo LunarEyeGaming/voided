@@ -23,5 +23,30 @@
       "winddownState": {"type": "string", "value": null},
       "windupState": {"type": "string", "value": "\"windup\""}
     }
+  },
+  "v-action-charge": {
+    "type": "module",
+    "name": "v-action-charge",
+    "title": "",
+    "properties": {
+      "aimAtTarget": {"type": "json", "value": false},
+      "aimDirection": {"type": "json", "value": [1, 0]},
+      "chargeControlForce": {"type": "json", "value": 100},
+      "chargeSpeed": {"type": "json", "value": 25},
+      "chargeState": {"type": "json", "value": "charge"},
+      "chargeStateType": {"type": "json", "value": "body"},
+      "chargeTime": {"type": "json", "value": 1.5},
+      "inaccuracy": {"type": "json", "value": 0},
+      "rotateToTarget": {"type": "json", "value": false},
+      "rotationOffset": {"type": "json", "value": 0},
+      "skillName": {"type": "json", "value": null},
+      "wallCollide": {"type": "json", "value": true},
+      "wallCrashEmitter": {"type": "json", "value": null},
+      "wallCrashSound": {"type": "json", "value": "crash"},
+      "wallCrashVelocity": {"type": "json", "value": [-10, 20]},
+      "wallKnockback": {"type": "json", "value": false},
+      "winddownState": {"type": "json", "value": "chargewinddown"},
+      "windupState": {"type": "json", "value": "chargewindup"}
+    }
   }
 }
