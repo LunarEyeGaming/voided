@@ -1,0 +1,38 @@
+{
+  "projectileName" : "v-sporemineexplodetele",
+  "image" : "sporemineexplodetele.png",
+  "animationCycle" : 1.0,
+  "frameNumber" : 2,
+  "timeToLive" : 0.6,
+  "power" : 500,
+  "flippable" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "laser",
+  "bounces" : -1,
+  "speed" : 0,
+  "damageKind" : "poison",
+  "damageType" : "NoDamage",
+  "piercing" : true,
+  
+  "periodicActions" : [
+    {
+      "time" : 0.1,
+      "action" : "particle",
+      "specification" : "poisonswoosh1"
+    },
+    {
+      "time" : 0.1,
+      "action" : "particle",
+      "specification" : "poisonswoosh2"
+    }
+  ],
+  
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/poisonexplosionknockback.config"
+    }
+  ],
+  
+  "persistentAudio" : "/sfx/projectiles/v_downspitterpredetonate_warning.ogg"
+}

@@ -1,0 +1,83 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "body" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {}
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          "offset" : [0, 0],
+          "zLevel" : 0
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "body" : { "interpolated" : true }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/playerdeath/playerdeath.animation",
+            "size" : 1,
+            "angularVelocity" : 0,
+            "fade" : 1,
+            "destructionTime" : 1,
+            "position" : [0, 0],
+            "initialVelocity" : [0, 0],
+            "finalVelocity" : [0, 0],
+            "approach" : [1, 1],
+            "timeToLive" : 1.0,
+            "layer" : "middle"
+          }
+        }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "aggroHop" : [ ],
+    "deathPuff" : [ ]
+  }
+}

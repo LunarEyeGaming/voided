@@ -1,0 +1,23 @@
+{
+  "v_queryEntityRect": {
+    "type": "action",
+    "name": "v_queryEntityRect",
+    "title": "v_queryEntityRect",
+    "properties": {
+      "position1": {"type": "position", "value": null},
+      "position2": {"type": "position", "value": null},
+      "center": {"type": "position", "value": null},
+      "offset1": {"type": "vec2", "value": null},
+      "offset2": {"type": "vec2", "value": null},
+      "entityTypes": {"type": "list", "value": null},
+      "orderBy": {"type": "string", "value": null},
+      "withoutEntity": {"type": "entity", "value": null}
+    },
+    "category": "v-query",
+    "script": "/scripts/actions/v-query.lua",
+    "output": {
+      "entity": {"type": "entity", "key": null},
+      "list": {"type": "list", "key": null}
+    }
+  }
+}

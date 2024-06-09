@@ -1,0 +1,18 @@
+{
+  "projectileName" : "v-mycotoxinbomb",
+  "image" : "mycotoxinbomb.png",
+  "physics" : "illusion",
+  "animationCycle" : 1.0,
+  "frameNumber" : 1,
+  "power" : 50,
+  "speed" : 0,
+  "timeToLive" : 1.5,
+  "bounces" : -1,
+  "onlyHitTerrain" : true,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-purplepoisongasburst/v-purplepoisongasburst2.config"
+    }
+  ]
+}

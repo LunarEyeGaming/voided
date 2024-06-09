@@ -275,14 +275,6 @@
                       "faceTarget": {"value": false}
                     }
                   },
-                  /* {
-                    "title": "timer",
-                    "type": "action",
-                    "name": "timer",
-                    "parameters": {
-                      "time": {"value": 0.5}
-                    }
-                  }, */
                   {
                     "title": "resetTransformationGroup",
                     "type": "action",
@@ -614,123 +606,6 @@
                                       "vector": "aimVector"
                                     }
                                   },
-                                  /*{
-                                    "title": "selector",
-                                    "type": "composite",
-                                    "name": "selector",
-                                    "parameters": {},
-                                    "children": [
-                                      {
-                                        "title": "optional",
-                                        "type": "decorator",
-                                        "name": "optional",
-                                        "parameters": {
-                                          "shouldRun": {"key": "<aimAtTarget>"}
-                                        },
-                                        "child": {
-                                          "title": "sequence",
-                                          "type": "composite",
-                                          "name": "sequence",
-                                          "parameters": {},
-                                          "children": [
-                                            {
-                                              "title": "distance",
-                                              "type": "action",
-                                              "name": "distance",
-                                              "parameters": {
-                                                "from": {"key": "origin"},
-                                                "to": {"key": "targetPosition"}
-                                              },
-                                              "output": {
-                                                "vector": "aimVector"
-                                              }
-                                            },
-                                            {
-                                              "title": "succeeder",
-                                              "type": "decorator",
-                                              "name": "succeeder",
-                                              "parameters": {},
-                                              "child": {
-                                                "title": "optional",
-                                                "type": "decorator",
-                                                "name": "optional",
-                                                "parameters": {
-                                                  "shouldRun": {"key": "<fireArc>"}
-                                                },
-                                                "child": {
-                                                  "title": "sequence",
-                                                  "type": "composite",
-                                                  "name": "sequence",
-                                                  "parameters": {},
-                                                  "children": [
-                                                    {
-                                                      "title": "projectileGravityMultiplier",
-                                                      "type": "action",
-                                                      "name": "projectileGravityMultiplier",
-                                                      "parameters": {
-                                                        "projectileName": {"value": "<projectileType>"}
-                                                      },
-                                                      "output": {
-                                                        "gravityMultiplier": "gravityMultiplier"
-                                                      }
-                                                    },
-                                                    {
-                                                      "title": "projectileAimVector",
-                                                      "type": "action",
-                                                      "name": "projectileAimVector",
-                                                      "parameters": {
-                                                        "collisionCheck": {"value": false},
-                                                        "fromPosition": {"key": "origin"},
-                                                        "gravityMultiplier": {"key": "gravityMultiplier"},
-                                                        "speed": {"key": "<projectileSpeed>"},
-                                                        "toPosition": {"key": "targetPosition"},
-                                                        "useHighArc": {"key": "<highArc>"}
-                                                      },
-                                                      "output": {
-                                                        "aimVector": "aimVector"
-                                                      }
-                                                    }
-                                                  ]
-                                                }
-                                              }
-                                            }
-                                          ]
-                                        }
-                                      },
-                                      {
-                                        "title": "sequence",
-                                        "type": "composite",
-                                        "name": "sequence",
-                                        "parameters": {},
-                                        "children": [
-                                          {
-                                            "title": "vecMultiply",
-                                            "type": "action",
-                                            "name": "vecMultiply",
-                                            "parameters": {
-                                              "first": {"key": "<aimDirection>"},
-                                              "second": {"value": ["facingDirection", 1]}
-                                            },
-                                            "output": {
-                                              "vector": "aimVector"
-                                            }
-                                          },
-                                          {
-                                            "title": "vecRotate",
-                                            "type": "action",
-                                            "name": "vecRotate",
-                                            "parameters": {
-                                              "angle": {"key": "heading"},
-                                              "vector": {"key": "aimVector"}
-                                            },
-                                            "output": {
-                                              "vector": "aimVector"
-                                            }
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  },*/
                                   {
                                     "title": "sequence",
                                     "type": "composite",

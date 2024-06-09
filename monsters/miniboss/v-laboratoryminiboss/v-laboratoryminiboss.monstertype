@@ -1,0 +1,143 @@
+{
+  "type" : "v-laboratoryminiboss",
+  "shortdescription" : "the almighty square",
+  "description" : "<todo>.",
+
+  "categories" : [ "v-laboratoryminiboss" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-laboratoryminiboss.animation",
+  "dropPools" : [ ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/monster.lua"
+    ],
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 1,
+
+    "behavior" : "v-laboratoryminiboss",
+
+    "behaviorConfig" : {
+    },
+    
+    "renderLayer" : "Projectile-20",
+
+    "damageBar" : "None",
+
+    "knockoutTime" : 0,
+    "knockoutEffect" : "blink",
+    "deathParticles" : "deathPoof",
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "gravityEnabled" : false,
+      "collisionEnabled" : false,
+      "collisionPoly" : [ [2, 2], [-2, 2], [-2, -2], [2, -2] ],
+
+      "mass" : 4.0,
+      "walkSpeed" : 5,
+      "runSpeed" : 13,
+      "flySpeed" : 11,
+      "airFriction" : 0.5,
+      "airForce" : 800.0,
+      "airJumpProfile" : {
+        "jumpControlForce" : 0,
+        "jumpInitialPercentage" : 0
+      },
+      "physicsEffectCategories" : ["boss"]
+    },
+
+    "touchDamage" : {
+      "poly" : [ [-0.75, -2.0], [-0.35, -2.5], [0.35, -2.5], [0.75, -2.0], [0.75, 0.65], [0.35, 1.22], [-0.35, 1.22], [-0.75, 0.65] ],
+      "damage" : 20,
+      
+      "damageSourceKind" : "electricbroadsword",
+
+      "teamType" : "enemy",
+      "statusEffects" : [ ]
+    },
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "displayTitle" : "Miniboss",  // Book of Spirits support
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : false,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "knockbackStunTime" : {
+          "baseValue" : 0.25
+        },
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "maxHealth" : {
+          "baseValue" : 1000
+        },
+        "protection" : {
+          "baseValue" : 0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "specialStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "healingStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "electricResistance" : {
+          "baseValue" : 0.5
+        },
+        "poisonResistance" : {
+          "baseValue" : -0.25
+        },
+        "stunImmunity" : {
+          "baseValue" : 1.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0,
+          "maxValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 1.0
+        }
+      }
+    },
+
+    "mouthOffset" : [1.0, -1.5],
+    "feetOffset" : [0, -21]
+  }
+}

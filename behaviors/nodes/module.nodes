@@ -48,5 +48,151 @@
       "winddownState": {"type": "json", "value": "chargewinddown"},
       "windupState": {"type": "json", "value": "chargewindup"}
     }
+  },
+  "v-strongholdboss-coreattack1": {
+    "type": "module",
+    "name": "v-strongholdboss-coreattack1",
+    "title": "",
+    "properties": {
+      "fireInterval": {"type": "json", "value": 0.4},
+      "loops": {"type": "json", "value": 5}
+    }
+  },
+  "v-strongholdboss-coreattack6": {
+    "type": "module",
+    "name": "v-strongholdboss-coreattack6",
+    "title": "",
+    "properties": {
+      "loops": {"type": "json", "value": 2},
+      "teleTime": {"type": "json", "value": 3}
+    }
+  },
+  "v-strongholdboss-phasetransition": {
+    "type": "module",
+    "name": "v-strongholdboss-phasetransition",
+    "title": "",
+    "properties": {
+      "waves": {"type": "json", "value": []}
+    }
+  },
+  "v-strongholdboss-coreattack5": {
+    "type": "module",
+    "name": "v-strongholdboss-coreattack5",
+    "title": "",
+    "properties": {}
+  },
+  "v-strongholdboss-coreattack2": {
+    "type": "module",
+    "name": "v-strongholdboss-coreattack2",
+    "title": "",
+    "properties": {
+      "fireInterval": {"type": "json", "value": 0.5},
+      "loops": {"type": "json", "value": 3}
+    }
+  },
+  "v-strongholdboss-coreattack5b": {
+    "type": "module",
+    "name": "v-strongholdboss-coreattack5b",
+    "title": "",
+    "properties": {}
+  },
+  "v-strongholdboss-dying": {
+    "type": "module",
+    "name": "v-strongholdboss-dying",
+    "title": "",
+    "properties": {}
+  },
+  "v-strongholdboss": {
+    "type": "module",
+    "name": "v-strongholdboss",
+    "title": "",
+    "properties": {}
+  },
+  "v-cityminiboss-dying": {
+    "type": "module",
+    "name": "v-cityminiboss-dying",
+    "title": "",
+    "properties": {
+      "crashVelocity": {"type": "json", "value": [50, -25]},
+      "kickUpVelocity": {"type": "json", "value": [0, 75]}
+    }
+  },
+  "v-cityminiboss": {
+    "type": "module",
+    "name": "v-cityminiboss",
+    "title": "",
+    "properties": {
+      "ambushRange": {"type": "json", "value": 15}
+    }
+  },
+  "v-cityminiboss-awaitcubes": {
+    "type": "module",
+    "name": "v-cityminiboss-awaitcubes",
+    "title": "",
+    "properties": {
+      "faceDirectionRange": {"type": "json", "value": 50}
+    }
+  },
+  "v-cityminiboss-intro": {
+    "type": "module",
+    "name": "v-cityminiboss-intro",
+    "title": "",
+    "properties": {}
+  },
+  "v-cityminiboss-lightningbomb": {
+    "type": "module",
+    "name": "v-cityminiboss-lightningbomb",
+    "title": "",
+    "properties": {
+      "backArmRotationCenter": {"type": "json", "value": [0.25, -0.25]},
+      "frontArmRotationCenter": {"type": "json", "value": [-0.375, -0.25]},
+      "gunKickbackTime": {"type": "json", "value": 0.2},
+      "gunStartKickbackAngle": {"type": "json", "value": 0.2},
+      "windupTime": {"type": "json", "value": 0.8}
+    }
+  },
+  "v-cityminiboss-slam": {
+    "type": "module",
+    "name": "v-cityminiboss-slam",
+    "title": "",
+    "properties": {}
+  },
+  "v-cityminiboss-rotate": {
+    "type": "module",
+    "name": "v-cityminiboss-rotate",
+    "title": "",
+    "properties": {}
+  },
+  "v-cityminiboss-slash": {
+    "type": "module",
+    "name": "v-cityminiboss-slash",
+    "title": "",
+    "properties": {}
+  },
+  "v-laboratoryminiboss-sporeattack": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-sporeattack",
+    "title": "",
+    "properties": {}
+  },
+  "v-laboratoryminiboss": {
+    "type": "module",
+    "name": "v-laboratoryminiboss",
+    "title": "",
+    "properties": {
+      "ambushRange": {"type": "json", "value": 15}
+    }
+  },
+  "v-laboratoryminiboss-cloudlineattack": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-cloudlineattack",
+    "title": "",
+    "properties": {}
+  },
+  "v-laboratoryminiboss-tendrilattack": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-tendrilattack",
+    "title": "",
+    "properties": {}
   }
 }

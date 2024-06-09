@@ -1,0 +1,42 @@
+{
+  "projectileName" : "v-minibosscloudlinetele",
+  "image" : "minibosscloudlinetele.png",
+  "physics" : "bullet",
+  "bounces" : -1,
+  "animationCycle" : 1.0,
+  "frameNumber" : 1,
+  "timeToLive" : 0.5,
+  "damageKindImage" : "icon.png",
+  "pointLight" : false,
+  "speed" : 0,
+  "periodicActions" : [
+    {
+      "time" : 0.03,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : "v-downspitterseedwarning1"
+    },
+    {
+      "time" : 0.03,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : "v-downspitterseedwarning2"
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/poisonexplosionknockback.config"
+    },
+    {
+      "action" : "config",
+      "file" : "/projectiles/miniboss/v-laboratoryminiboss/v-minibosscloudlinetele/v-giantpoisoncloudline.config"
+    }
+  ],
+  "power" : 2.0,
+  "damageKind" : "acid",
+  "onlyHitTerrain" : true,
+  "emitters" : [ "poisonplasma" ],
+  
+  "persistentAudio" : "/sfx/projectiles/v_downspitterpredetonate_warning.ogg"
+}

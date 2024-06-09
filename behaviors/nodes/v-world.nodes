@@ -1,0 +1,15 @@
+{
+  "v_getUniqueEntityPosition": {
+    "type": "action",
+    "name": "v_getUniqueEntityPosition",
+    "title": "v_getUniqueEntityPosition",
+    "properties": {
+      "uniqueId": {"type": "string", "value": null}
+    },
+    "category": "v-world",
+    "script": "/scripts/actions/v-world.lua",
+    "output": {
+      "position": {"type": "position", "key": null}
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "projectileName" : "v-fungaltendrilspawnerminiboss",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "timeToLive" : 2,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "speed" : 1,
+  "power" : 50,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  
+  "onlyHitTerrain" : true,
+  
+  "scripts" : [ "/projectiles/npcs/v-fungaltendril/v-fungaltendrilspawner.lua" ],
+  
+  "waveSize" : 100,
+  "gapSize" : 2,
+  "maxHeight" : 3,
+  "minHeight" : -3,
+  "projectileParameters" : {},
+  "projectileType" : "v-fungaltendrilwindup",
+  "spawnInterval" : 0.1,
+  "inheritDamageFactor" : 1.0,
+  "waveFuzzAngle" : 10
+}

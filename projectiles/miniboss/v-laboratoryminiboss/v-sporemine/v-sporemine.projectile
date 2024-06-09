@@ -1,0 +1,44 @@
+{
+  "projectileName" : "v-sporemine",
+  "image" : "sporemine.png",
+  "animationCycle" : 1.0,
+  "frameNumber" : 2,
+  "power" : 500,
+  "flippable" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "laser",
+  "bounces" : -1,
+  "speed" : 0,
+  "damageKind" : "poison",
+  "damageType" : "NoDamage",
+  
+  "actionOnHit" : [
+    {
+      "action" : "projectile",
+      "type" : "v-sporemineexplodetele",
+      "inheritDamageFactor" : 1,
+      "inheritSpeedFactor" : 1,
+      "config" : {
+        "timeToLive" : 0.2
+      }
+    }
+  ],
+  
+  "actionOnTimeout" : [
+    {
+      "action" : "projectile",
+      "type" : "v-sporemineexplodetele",
+      "inheritDamageFactor" : 1,
+      "inheritSpeedFactor" : 1
+    }
+  ],
+  
+  "scripts" : [ "v-sporemine.lua" ],
+  "scriptDelta" : 1,
+
+  "timeToLiveRange" : [3.4, 4.4],
+  
+  "followRadius" : 20,
+  "followSpeed" : 1.5,
+  "followControlForce" : 3
+}

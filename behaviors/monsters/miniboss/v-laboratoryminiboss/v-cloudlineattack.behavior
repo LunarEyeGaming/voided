@@ -1,0 +1,293 @@
+{
+  "name": "v-laboratoryminiboss-cloudlineattack",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/position.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/projectiles.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "repeater",
+    "type": "decorator",
+    "name": "repeater",
+    "parameters": {
+      "maxLoops": {"value": 6},
+      "untilSuccess": {"value": false}
+    },
+    "child": {
+      "title": "sequence",
+      "type": "composite",
+      "name": "sequence",
+      "parameters": {},
+      "children": [
+        {
+          "title": "Choose valid position",
+          "type": "decorator",
+          "name": "repeater",
+          "parameters": {
+            "maxLoops": {"value": 20000},
+            "untilSuccess": {"value": true}
+          },
+          "child": {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "Choose random position",
+                "type": "composite",
+                "name": "randomize",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "Floor UL",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [0, 1]},
+                      "position": {"key": "floorPosUL"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  },
+                  {
+                    "title": "Floor UR",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [0, 1]},
+                      "position": {"key": "floorPosUR"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  },
+                  {
+                    "title": "Floor LL",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [0, 1]},
+                      "position": {"key": "floorPosLL"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  },
+                  {
+                    "title": "Floor LR",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [0, 1]},
+                      "position": {"key": "floorPosLR"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  },
+                  {
+                    "title": "Ceiling UL",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [0, -1]},
+                      "position": {"key": "ceilingPosUL"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  },
+                  {
+                    "title": "Ceiling UR",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [0, -1]},
+                      "position": {"key": "ceilingPosUR"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  },
+                  {
+                    "title": "Ceiling LL",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [0, -1]},
+                      "position": {"key": "ceilingPosLL"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  },
+                  {
+                    "title": "Ceiling LR",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [0, -1]},
+                      "position": {"key": "ceilingPosLR"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  },
+                  {
+                    "title": "Wall UL",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [1, 0]},
+                      "position": {"key": "wallPosUL"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  },
+                  {
+                    "title": "Wall UR",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [-1, 0]},
+                      "position": {"key": "wallPosUR"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  },
+                  {
+                    "title": "Wall LL",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [1, 0]},
+                      "position": {"key": "wallPosLL"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  },
+                  {
+                    "title": "Wall LR",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [-1, 0]},
+                      "position": {"key": "wallPosLR"}
+                    },
+                    "output": {
+                      "position": "attackPos"
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "entityPosition",
+                "type": "action",
+                "name": "entityPosition",
+                "parameters": {
+                  "entity": {"key": "target"}
+                },
+                "output": {
+                  "position": "targetPos"
+                }
+              },
+              {
+                "title": "distance",
+                "type": "action",
+                "name": "distance",
+                "parameters": {
+                  "from": {"key": "attackPos"},
+                  "to": {"key": "targetPos"}
+                },
+                "output": {
+                  "vector": "toTarget"
+                }
+              },
+              {
+                "title": "Can see target?",
+                "type": "decorator",
+                "name": "inverter",
+                "parameters": {},
+                "child": {
+                  "title": "lineTileCollision",
+                  "type": "action",
+                  "name": "lineTileCollision",
+                  "parameters": {
+                    "collisionType": {"value": ["Null", "Block", "Dynamic", "Slippery"]},
+                    "offset": {"key": "toTarget"},
+                    "position": {"key": "attackPos"}
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "title": "Go to attack pos",
+          "type": "action",
+          "name": "setPosition",
+          "parameters": {
+            "footPosition": {"value": false},
+            "position": {"key": "attackPos"}
+          }
+        },
+        {
+          "title": "timer",
+          "type": "action",
+          "name": "timer",
+          "parameters": {
+            "time": {"value": 0.75}
+          }
+        },
+        {
+          "title": "Update target direction",
+          "type": "action",
+          "name": "entityDirection",
+          "parameters": {
+            "entity": {"key": "self"},
+            "offset": {"value": [0, 0]},
+            "target": {"key": "target"}
+          },
+          "output": {
+            "vector": "toTarget"
+          }
+        },
+        {
+          "title": "Fire cloud line",
+          "type": "action",
+          "name": "spawnProjectile",
+          "parameters": {
+            "aimVector": {"key": "toTarget"},
+            "angle": {"value": 0},
+            "offset": {"value": [0, 0]},
+            "position": {"key": "self"},
+            "projectileConfig": {"value": {"power": 15}},
+            "projectileType": {"value": "v-minibosscloudlinetele"},
+            "scalePower": {"value": true},
+            "sourceEntity": {"key": "self"},
+            "trackSource": {"value": false},
+            "uniqueRepeatGroup": {"value": true}
+          }
+        },
+        {
+          "title": "timer",
+          "type": "action",
+          "name": "timer",
+          "parameters": {
+            "time": {"value": 0.75}
+          }
+        }
+      ]
+    }
+  }
+}
