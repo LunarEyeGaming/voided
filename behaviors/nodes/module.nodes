@@ -194,5 +194,28 @@
     "name": "v-laboratoryminiboss-tendrilattack",
     "title": "",
     "properties": {}
+  },
+  "v-laboratoryminiboss-tendrilattackbottom": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-tendrilattackbottom",
+    "title": "",
+    "properties": {}
+  },
+  "v-laboratoryminiboss-tendrilattacktop": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-tendrilattacktop",
+    "title": "",
+    "properties": {}
+  },
+  "v-action-spawnmonsterdungeon": {
+    "type": "module",
+    "name": "v-action-spawnmonsterdungeon",
+    "title": "",
+    "properties": {
+      "monsterType": {"type": "json", "value": "smallbiped"},
+      "offset": {"type": "json", "value": [0, 0]},
+      "position": {"type": "json", "value": null},
+      "replacement": {"type": "json", "value": false}
+    }
   }
 }

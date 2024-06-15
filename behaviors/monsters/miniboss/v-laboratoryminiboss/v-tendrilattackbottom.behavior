@@ -3,6 +3,7 @@
   "description": "",
   "scripts": [
     "/scripts/actions/movement.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/projectiles.lua",
     "/scripts/actions/time.lua"
   ],
@@ -20,6 +21,15 @@
         "parameters": {
           "footPosition": {"value": false},
           "position": {"key": "spawn"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": 0},
+          "sound": {"value": "fireTendrils"}
         }
       },
       {

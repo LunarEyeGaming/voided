@@ -8,6 +8,7 @@
     "/scripts/actions/position.lua",
     "/scripts/actions/sensor.lua",
     "/scripts/actions/v-projectiles.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/v-query.lua",
     "/scripts/actions/projectiles.lua"
   ],
@@ -44,89 +45,114 @@
           "untilSuccess": {"value": false}
         },
         "child": {
-          "title": "repeater",
-          "type": "decorator",
-          "name": "repeater",
-          "parameters": {
-            "maxLoops": {"value": -1},
-            "untilSuccess": {"value": true}
-          },
-          "child": {
-            "title": "sequence",
-            "type": "composite",
-            "name": "sequence",
-            "parameters": {},
-            "children": [
-              {
-                "title": "random",
-                "type": "action",
-                "name": "random",
-                "parameters": {
-                  "max": {"value": -21},
-                  "min": {"value": 22}
-                },
-                "output": {
-                  "number": "sporeXOffset"
-                }
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "repeater",
+              "type": "decorator",
+              "name": "repeater",
+              "parameters": {
+                "maxLoops": {"value": -1},
+                "untilSuccess": {"value": true}
               },
-              {
-                "title": "random",
-                "type": "action",
-                "name": "random",
-                "parameters": {
-                  "max": {"value": -1},
-                  "min": {"value": 36}
-                },
-                "output": {
-                  "number": "sporeYOffset"
-                }
-              },
-              {
-                "title": "offsetPosition",
-                "type": "action",
-                "name": "offsetPosition",
-                "parameters": {
-                  "offset": {"value": ["sporeXOffset", "sporeYOffset"]},
-                  "position": {"key": "self"}
-                },
-                "output": {
-                  "position": "sporePos"
-                }
-              },
-              {
-                "title": "inverter",
-                "type": "decorator",
-                "name": "inverter",
+              "child": {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
                 "parameters": {},
-                "child": {
-                  "title": "pointTileCollision",
-                  "type": "action",
-                  "name": "pointTileCollision",
-                  "parameters": {
-                    "position": {"key": "sporePos"}
+                "children": [
+                  {
+                    "title": "random",
+                    "type": "action",
+                    "name": "random",
+                    "parameters": {
+                      "max": {"value": -21},
+                      "min": {"value": 22}
+                    },
+                    "output": {
+                      "number": "sporeXOffset"
+                    }
+                  },
+                  {
+                    "title": "random",
+                    "type": "action",
+                    "name": "random",
+                    "parameters": {
+                      "max": {"value": -1},
+                      "min": {"value": 36}
+                    },
+                    "output": {
+                      "number": "sporeYOffset"
+                    }
+                  },
+                  {
+                    "title": "offsetPosition",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": ["sporeXOffset", "sporeYOffset"]},
+                      "position": {"key": "self"}
+                    },
+                    "output": {
+                      "position": "sporePos"
+                    }
+                  },
+                  {
+                    "title": "inverter",
+                    "type": "decorator",
+                    "name": "inverter",
+                    "parameters": {},
+                    "child": {
+                      "title": "pointTileCollision",
+                      "type": "action",
+                      "name": "pointTileCollision",
+                      "parameters": {
+                        "position": {"key": "sporePos"}
+                      }
+                    }
                   }
-                }
-              },
-              {
-                "title": "v_spawnProjectileTargetPos",
-                "type": "action",
-                "name": "v_spawnProjectileTargetPos",
-                "parameters": {
-                  "projectileType": {"value": "v-sporeminetele"},
-                  "sourceEntity": {"key": "self"},
-                  "position": {"key": "self"},
-                  "offset": {"value": [0, 0]},
-                  "aimVector": {"value": [0, 0]},
-                  "uniqueRepeatGroup": {"value": true},
-                  "targetPosition": {"key": "sporePos"},
-                  "targetOffset": {"value": [0, 0]},
-                  "projectileConfig": {"value": {"power": 15}},
-                  "scalePower": {"value": true},
-                  "trackSource": {"value": false}
-                }
+                ]
               }
-            ]
-          }
+            },
+            {
+              "title": "v_spawnProjectileTargetPos",
+              "type": "action",
+              "name": "v_spawnProjectileTargetPos",
+              "parameters": {
+                "projectileType": {"value": "v-sporeminetele"},
+                "sourceEntity": {"key": "self"},
+                "position": {"key": "self"},
+                "offset": {"value": [0, 0]},
+                "aimVector": {"value": [0, 0]},
+                "uniqueRepeatGroup": {"value": true},
+                "targetPosition": {"key": "sporePos"},
+                "targetOffset": {"value": [0, 0]},
+                "projectileConfig": {"value": {"power": 15}},
+                "scalePower": {"value": true},
+                "trackSource": {"value": false}
+              }
+            },
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"value": 0.01}
+              }
+            },
+            {
+              "title": "playSound",
+              "type": "action",
+              "name": "playSound",
+              "parameters": {
+                "loops": {"value": 0},
+                "sound": {"value": "fireSpores"}
+              }
+            }
+          ]
         }
       },
       {

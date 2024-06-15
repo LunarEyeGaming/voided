@@ -15,23 +15,91 @@
   
   "periodicActions" : [
     {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_giantfungaltendril_windup.ogg" ]
+    },
+    {
       "time" : 0.01,
       "action" : "particle",
       "specification" : {
-        "type" : "animated",
-        "animation" : "/animations/shards/jellyshard.animation",
-        "initialVelocity" : [0.0, 7.0],
-        "finalVelocity" : [0.0, 3.0],
-        "approach" : [0.3, 60],
+        "type" : "textured",
+        "image" : "/particles/images/v-downspitterrootfragment1.png",
+        "position" : [0, -1],
+        "initialVelocity" : [0, 20],
+        "size" : 1,
+        "layer" : "back",
         "timeToLive" : 0.5,
-        "layer" : "middle",
-        "collidesForeground" : false,
+        "fade" : 1,
+        "destructionAction" : "shrink",
+        "destructionTime" : 0.5,
         "variance" : {
-          "position" : [8.0, 0.5],
-          "initialVelocity" : [5, 3],
-          "finalVelocity" : [0, 0],
-          "rotation" : 180,
-          "angularVelocity" : 180
+          "initialVelocity" : [0, 10],
+          "position" : [7.0, 0.5],
+          "rotation" : 180
+        }
+      }
+    },
+    {
+      "time" : 0.01,
+      "action" : "particle",
+      "specification" : {
+        "type" : "textured",
+        "image" : "/particles/images/v-downspitterrootfragment2.png",
+        "position" : [0, -1],
+        "initialVelocity" : [0, 20],
+        "size" : 1,
+        "layer" : "back",
+        "timeToLive" : 0.5,
+        "fade" : 1,
+        "destructionAction" : "shrink",
+        "destructionTime" : 0.5,
+        "variance" : {
+          "initialVelocity" : [0, 10],
+          "position" : [7.0, 0.5],
+          "rotation" : 180
+        }
+      }
+    },
+    {
+      "time" : 0.01,
+      "action" : "particle",
+      "specification" : {
+        "type" : "textured",
+        "image" : "/particles/images/v-downspitterrootfragment3.png",
+        "position" : [0, -1],
+        "initialVelocity" : [0, 20],
+        "size" : 1,
+        "layer" : "back",
+        "timeToLive" : 0.5,
+        "fade" : 1,
+        "destructionAction" : "shrink",
+        "destructionTime" : 0.5,
+        "variance" : {
+          "initialVelocity" : [0, 10],
+          "position" : [7.0, 0.5],
+          "rotation" : 180
+        }
+      }
+    },
+    {
+      "time" : 0.01,
+      "action" : "particle",
+      "specification" : {
+        "type" : "textured",
+        "image" : "/particles/images/v-downspitterrootfragment4.png",
+        "position" : [0, -1],
+        "initialVelocity" : [0, 20],
+        "size" : 1,
+        "layer" : "back",
+        "timeToLive" : 0.5,
+        "fade" : 1,
+        "destructionAction" : "shrink",
+        "destructionTime" : 0.5,
+        "variance" : {
+          "initialVelocity" : [0, 10],
+          "rotation" : 180
         }
       }
     }
@@ -43,8 +111,12 @@
       "type" : "v-giantfungaltendril",
       "inheritDamageFactor" : 1,
       "offset" : [0, 17]
+    },
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_giantfungaltendril_erupt.ogg" ]
     }
-  ],
-  
-  "persistentAudio" : "/sfx/npc/boss/kluexboss_pillarplatform.ogg"
+  ]
 }

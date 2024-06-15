@@ -1,0 +1,109 @@
+{
+  "name": "v-action-spawnmonsterdungeon",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/math.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/query.lua"
+  ],
+  "parameters": {
+    "position": null,
+    "offset": [0, 0],
+    "monsterType": "smallbiped",
+    "replacement": false,
+    "messageBroadcastRange": 50
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "vecMultiply",
+        "type": "action",
+        "name": "vecMultiply",
+        "parameters": {
+          "first": {"key": "<offset>"},
+          "second": {"value": ["facingDirection", 1]}
+        },
+        "output": {
+          "vector": "spawnOffset"
+        }
+      },
+      {
+        "title": "offsetPosition",
+        "type": "action",
+        "name": "offsetPosition",
+        "parameters": {
+          "offset": {"key": "spawnOffset"},
+          "position": {"key": "<position>"}
+        },
+        "output": {
+          "position": "spawnPosition"
+        }
+      },
+      {
+        "title": "spawnMonster",
+        "type": "action",
+        "name": "spawnMonster",
+        "parameters": {
+          "position": {"key": "spawnPosition"},
+          "replacement": {"key": "<replacement>"},
+          "type": {"value": "<monsterType>"}
+        },
+        "output": {
+          "entityId": "spawnedMonster"
+        }
+      },
+      {
+        "title": "make args",
+        "type": "action",
+        "name": "listPush",
+        "parameters": {
+          "entity": {"key": "spawnedMonster"},
+          "list": {"value": []}
+        },
+        "output": {
+          "list": "msgArgs"
+        }
+      },
+      {
+        "title": "queryEntity",
+        "type": "action",
+        "name": "queryEntity",
+        "parameters": {
+          "entityTypes": {"value": ["object"]},
+          "orderBy": {"value": "nearest"},
+          "position": {"key": "self"},
+          "range": {"key": "<messageBroadcastRange>"},
+          "withoutEntity": {"key": "self"}
+        },
+        "output": {
+          "list": "nearbyObjects"
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "nearbyObjects"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"key": "msgArgs"},
+            "entity": {"key": "eachItem"},
+            "message": {"value": "v-monsterwavespawner-monsterspawned"}
+          }
+        }
+      }
+    ]
+  }
+}

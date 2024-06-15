@@ -112,6 +112,11 @@ function states.waves()
 
   for waveNum, wave in ipairs(storage.waves) do
     local remainingMonsters = spawnWave(wave)
+      
+    -- Listen for monsters that were spawned.
+    message.setHandler("v-monsterwavespawner-monsterspawned", function(_, _, id)
+      table.insert(remainingMonsters, id)
+    end)
 
     while #remainingMonsters > 0 do
       remainingMonsters = util.filter(remainingMonsters, function(id) return world.entityExists(id) end)
@@ -141,16 +146,16 @@ function states.waves()
         reset()
       end
       
-      -- Before the loop ends, check if remainingMonsters is empty. If so, then query all monsters with the "enemy"
-      -- damage team and make them the remainingMonsters. This check is used to catch monsters that spawned as a result
-      -- of other monsters dying.
-      if #remainingMonsters == 0 then
-        remainingMonsters = world.entityQuery(interiorRegion[1], interiorRegion[2], {includedTypes = {"monster"}})
+      -- -- Before the loop ends, check if remainingMonsters is empty. If so, then query all monsters with the "enemy"
+      -- -- damage team and make them the remainingMonsters. This check is used to catch monsters that spawned as a result
+      -- -- of other monsters dying.
+      -- if #remainingMonsters == 0 then
+        -- remainingMonsters = world.entityQuery(interiorRegion[1], interiorRegion[2], {includedTypes = {"monster"}})
         
-        remainingMonsters = util.filter(remainingMonsters, function(id)
-          return world.entityDamageTeam(id).type == "enemy"
-        end)
-      end
+        -- remainingMonsters = util.filter(remainingMonsters, function(id)
+          -- return world.entityDamageTeam(id).type == "enemy"
+        -- end)
+      -- end
       
       coroutine.yield()
     end
@@ -385,6 +390,9 @@ function reset()
     object.setOutputNodeLevel(1, true)
     state:set(states.noop)
   end
+  
+  -- Well this seems to disable the message.
+  message.setHandler("v-monsterwavespawner-monsterspawned", nil)
 end
 
 -- HELPER FUNCTIONS

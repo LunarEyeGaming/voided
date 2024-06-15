@@ -5,6 +5,7 @@
     "/scripts/actions/v-query.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/time.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/projectiles.lua"
   ],
   "parameters": {},
@@ -161,6 +162,15 @@
         "name": "timer",
         "parameters": {
           "time": {"value": 0.5}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": 0},
+          "sound": {"value": "fireTendrils"}
         }
       },
       {

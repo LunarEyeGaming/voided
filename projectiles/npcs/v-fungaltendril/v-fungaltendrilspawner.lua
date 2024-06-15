@@ -207,6 +207,9 @@ end
       |/   \|
   III *     * IV
   
+  Lastly, the function performs a simple point collision test at `point1` (nudged). If this test returns true, then the
+  whole function returns true.
+  
   param (Vec2F) point1: the first point in the line collision test
   param (Vec2F) point2: the second point in the line collision test
   param (number) nudgeAmount: the amount by which to nudge the vectors along the `groundNormal` vector, in blocks
@@ -242,9 +245,8 @@ function ranIntoBarrier(point1, point2, nudgeAmount)
   world.debugLine(point1Nudged, point3Nudged, "green")
   world.debugLine(point2Nudged, point3Nudged, "green")
   
-  return world.lineCollision(point1Nudged, point2Nudged)
-    -- Rectangle tests
-    and world.lineCollision(point1Nudged, point3Nudged) and world.lineCollision(point2Nudged, point3Nudged)
+  return world.lineCollision(point1Nudged, point2Nudged) and world.lineCollision(point1Nudged, point3Nudged)
+      and world.lineCollision(point2Nudged, point3Nudged) or world.pointCollision(point1Nudged)
 end
 
 -- --[[

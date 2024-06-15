@@ -17,7 +17,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztllsKwyAQRf0v3UL+u7HupCvOBooEQawadV7OdA4MNEnRexQfIfxyTtTzWK\/UBiYjmSG8isJ2oBiTktY8YPVLnT8Sc7\/DVe5QZ6WdtKY\/4ar4u0f5XwqHs\/Kcv2\/tS\/nY3jlQzkMrd\/m+fN7NYZTe+dCjty9xe+T9lnt+j9b5IO2gcR6o1jSXA+W+BHF4HLjF2RdVaXeQmHeOzBIevX6oGBkj6nHlwh32wR32wYLHPzhY8dCAdQcNaF8PkDtgrQ0N+SGuGjJju0jlxfCQzuoO8jk1zcFMvyvsMo4UcOTnRnv+hAWHiAWHiAUPCw4Ryw6aPNxBHgvnhPYzG\/P+NOOMfceE3gdXv0PGDdqml9dofQGMAwWQ",
+         "data":"eJztll0KwzAIgPM+doW+72K7yU7cCwwpgeASmyYaq\/MDYW1H9DPkJ6Vf9gvx3MYjj8FJT80zvFBwO0j0BNOaB6680vUDUPc7HREOdUbGyWv6k46A3xT4vxIOe+W5fN\/al8renjlIzkOrbvweP9\/NoRfqfKCg9qXVHmVevOdTtM4HbQeL8yC1plc5SO5LMw6PjTdW5pIK6w4a876iZg0PKo8UPT2S7usqwuE+hMN98ODxDw5ePCzg3cEC1tfDzB2wNoaF+mdcLdTM7aJVL4eHdq3hoF+npTnozTuKdh8lsV5\/Dev1Zzw4AB4cAA8eHhwAzw6WPMJBHw\/nhPUzm\/P+dMWZq1+j90Cca\/T7TN9mx4yI6I0v7NwFFQ==",
          "encoding":"base64",
          "height":56,
          "name":"front",
@@ -123,46 +123,6 @@
                  "width":67,
                  "x":72,
                  "y":240
-                }, 
-                {
-                 "gid":7055,
-                 "height":16,
-                 "id":1079,
-                 "name":"",
-                 "properties":
-                    {
-                     "parameters":"{\"projectile\" : \"v-nofalldamageboostergas\"}"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":160,
-                 "y":56
-                }, 
-                {
-                 "gid":7056,
-                 "height":16,
-                 "id":1080,
-                 "name":"",
-                 "properties":
-                    {
-                     "parameters":"{\"projectile\" : \"v-nofalldamageboostergas\"}"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":208,
-                 "y":56
                 }, 
                 {
                  "gid":5975,
@@ -491,6 +451,48 @@
                  "width":8,
                  "x":296,
                  "y":248
+                }, 
+                {
+                 "height":304,
+                 "id":1099,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"statusEffects\" : [\"v-crystaldepthpoison\"]}",
+                     "stagehand":"v-statuseffectzone"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":352,
+                 "x":16,
+                 "y":120
+                }, 
+                {
+                 "height":56,
+                 "id":1100,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"statusEffects\" : [{\"effect\" : \"nofalldamage\", \"duration\" : 2}]}",
+                     "stagehand":"v-statuseffectzone"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":56,
+                 "x":160,
+                 "y":48
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -632,7 +634,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":1096,
+ "nextobjectid":1101,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

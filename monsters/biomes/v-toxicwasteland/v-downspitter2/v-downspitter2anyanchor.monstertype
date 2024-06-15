@@ -94,11 +94,12 @@
       
       "deathActions" : [
         {
-          "name" : "action-spawnmonster",
+          "name" : "v-action-spawnmonsterdungeon",
           "parameters" : {
             "offset" : [0, 0],
             "monsterType" : "v-downspitterreturnable",
-            "replacement" : true
+            "replacement" : true,
+            "messageBroadcastRange" : 256
           }
         }
       ]

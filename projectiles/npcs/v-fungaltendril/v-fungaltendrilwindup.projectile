@@ -3,8 +3,8 @@
   "image" : "fungaltendrilwindup.png",
   "physics" : "illusion",
   "bounces" : -1,
-  "frameNumber" : 2,
-  "animationCycle" : 0.2,
+  "frameNumber" : 3,
+  "animationCycle" : 0.3,
   "animationLoops" : false,
   "power" : 1,
   "speed" : 0,
@@ -22,7 +22,7 @@
     },
     {
       "action" : "loop",
-      "count" : 20,
+      "count" : 10,
       "body" : [
         {
           "action" : "spark"
