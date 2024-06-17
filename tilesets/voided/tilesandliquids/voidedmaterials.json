@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":23,
+ "tilecount":24,
  "tileheight":8,
  "tileproperties":
     {
@@ -78,6 +78,10 @@
      "22":
         {
          "material":"v-openheavypipe"
+        },
+     "23":
+        {
+         "material":"v-fungusplatform"
         },
      "3":
         {
@@ -174,6 +178,10 @@
          "material":"string"
         },
      "22":
+        {
+         "material":"string"
+        },
+     "23":
         {
          "material":"string"
         },
@@ -301,6 +309,12 @@
      "22":
         {
          "image":"..\/images\/tilesandliquids\/openheavypipe.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "23":
+        {
+         "image":"..\/images\/tilesandliquids\/fungusplatform.png",
          "imageheight":8,
          "imagewidth":8
         },

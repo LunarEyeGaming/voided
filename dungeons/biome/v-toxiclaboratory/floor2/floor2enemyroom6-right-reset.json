@@ -1,12 +1,12 @@
 { "backgroundcolor":"#000000",
- "height":41,
+ "height":43,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztw0EJAAAIBLArYv+Agm87+HWDdZLWR6dUVVX1fgGpBY3G",
+         "data":"eJztVssNwjAM9RTc4M5mHaADMAVTZLtKnKGHqObp+dOSQoVyeFLi2H6280KZRGTq6DggTpd3MFu1sxi2nzEo+wB7bWdcDFlf9KvcWIO1ZrFbOdfkWzufNbPL5Mc5ZXvfgqvYYL4s1sup7Y8zB55lYrQfs99lQVFrfcbmoeMQzMfi8nJbPFFuxsVya1tLLjaDqEesxYofZUFRa8xv2TMYnb68O25x9zMiHXr6iO4Z45DLm71Xg6elzPuxfCxNFNKLvr8Ce6aHjD4inXk1em\/GmjHTGdtbd8Jqs2pCLjZPizfSlaeh7JvxNOfprpB6X7\/3twpde93rc\/TDNebAs+g73OJ73SJ+b75P+tz7\/8wv8K1e\/m1uHR1HxBODl+kH",
          "encoding":"base64",
-         "height":41,
+         "height":43,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +17,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJz7zMDA8JkAJgQI6SfXXGrZyyNHHUwve4ixj5520TMMqWUfPrO\/yQ5\/zIDDn7jEydUz3PAoGAWjYBSMglEwCvADWtab9KyjR+0atWvUruFvFzcjpnpKxNDNBwCi7zuY",
+         "data":"eJztVsEJwzAM1Ab95df8u1gnyAD9ZIUuGui7BCyiKpItO44gRQcHyUW6w8bBWgBgKbCEUn+rb6\/c29iHXjmWPM8szz3slTekrGHciN6f+6bN7B0paRqttTPs+zCfemjP3CuXCynrDXuda1gHgk69rGuu2TutnmoPkFmTYWUgEAgEAldHy72m1UteU6J2l07wy5b7GHtrZ4ojs8gT4LUyN\/\/Qb1hP+7QervO+f6Blz63nltZyfZ1ZpVm25F+DI+volXcWvHKkPM+sMzO9zob136P1Nb65jC8hKLM4",
          "encoding":"base64",
-         "height":41,
+         "height":43,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -152,44 +152,95 @@
                  "y":40
                 }, 
                 {
-                 "gid":6449,
-                 "height":52,
-                 "id":718,
+                 "gid":7680,
+                 "height":32,
+                 "id":726,
                  "name":"",
-                 "properties":
-                    {
-                     "object":"v-poisonglowtree3"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string"
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":67,
-                 "x":112,
+                 "width":32,
+                 "x":32,
                  "y":328
                 }, 
                 {
-                 "gid":6449,
-                 "height":52,
-                 "id":719,
+                 "gid":7680,
+                 "height":32,
+                 "id":727,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":128,
+                 "y":320
+                }, 
+                {
+                 "height":56,
+                 "id":728,
                  "name":"",
                  "properties":
                     {
-                     "object":"v-poisonglowtree3"
+                     "dungeonid":"65530"
                     },
                  "propertytypes":
                     {
-                     "object":"string"
+                     "dungeonid":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":67,
-                 "x":48,
-                 "y":328
+                 "width":216,
+                 "x":0,
+                 "y":224
+                }, 
+                {
+                 "gid":7677,
+                 "height":8,
+                 "id":729,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":32,
+                 "y":256
+                }, 
+                {
+                 "gid":7677,
+                 "height":8,
+                 "id":730,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":184,
+                 "y":256
+                }, 
+                {
+                 "gid":7677,
+                 "height":8,
+                 "id":731,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":136,
+                 "y":256
+                }, 
+                {
+                 "gid":7677,
+                 "height":8,
+                 "id":732,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":88,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -260,7 +311,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":726,
+ "nextobjectid":734,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -379,8 +430,16 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }, 
         {
-         "firstgid":7678,
+         "firstgid":7681,
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
+        }, 
+        {
+         "firstgid":7705,
+         "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
+        }, 
+        {
+         "firstgid":7707,
+         "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
         }],
  "tilewidth":8,
  "type":"map",

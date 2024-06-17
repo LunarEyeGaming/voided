@@ -9,5 +9,21 @@
     "op": "add",
     "path": "/setStorage/properties/position",
     "value": {"type": "position", "value": null}
+  },
+  {
+    "op": "add",
+    "path": "/setStorage/properties/vec2",
+    "value": {"type": "vec2", "value": null}
+  },
+  {
+    "op": "add",
+    "path": "/setStorage/properties/entity",
+    "value": {"type": "entity", "value": null}
+  },
+
+  {
+    "op": "add",
+    "path": "/getStorage/output/entity",
+    "value": {"type": "entity", "key": null}
   }
 ]

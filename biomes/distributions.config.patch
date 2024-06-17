@@ -85,5 +85,24 @@
       
       "blockProbability" : 0.5
     }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-undergroundVoltageTraps",
+    "value" : {
+      "type" : "periodic",
+
+      "octaves" : 3,
+      "alpha" : 1.2,
+      "beta" : 3.0,
+
+      "modulus" : 1,
+      "modulusVariance" : 0,
+
+      "densityPeriod" : 20,
+      "densityOffset" : 0.3,
+
+      "typePeriod" : 16
+    }
   }
 ]

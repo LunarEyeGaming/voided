@@ -49,8 +49,8 @@
           "name" : "action-fire",
           "cooldown" : 2.0,
           "parameters" : {
-            "requireLineOfSight" : true,
-            "maximumRange" : 35,
+            "requireLineOfSight" : false,
+            "maximumRange" : 256,
             "minimumRange" : 2,
             "windupState" : "windup",
             "windupTime" : 1.0,
@@ -86,6 +86,13 @@
       "concurrentActions" : [
         {
           "name" : "idle-crawl"
+        },
+        {
+          "name" : "action-animate",
+          "parameters" : {
+            "stateType" : "body",
+            "state" : "idle"
+          }
         }
       ],
       
@@ -97,7 +104,59 @@
 
       "approachActions" : [],
 
-      "deathActions" : []
+      "deathActions" : [
+        {
+          "name" : "action-projectile",
+          "parameters" : {
+            "projectileCount" : 1,
+            "projectileType" : "pulpinbrain",
+            "projectileParameters" : {},
+            "aimDirection" : [0, -1],
+            "inaccuracy" : 0,
+            "fireOffset" : [0, 2]
+          }
+        },
+        {
+          "name" : "action-projectile",
+          "parameters" : {
+            "projectileCount" : 1,
+            "projectileType" : "v-proxyprojectile",
+            "projectileParameters" : {
+              "actionOnReap" : [
+                {
+                  "action" : "loop",
+                  "count" : 10,
+                  "body" : [
+                    {
+                      "action" : "projectile",
+                      "type" : "v-thornrootjelly",
+                      "fuzzAngle" : 180
+                    }
+                  ]
+                },
+                {
+                  "action" : "loop",
+                  "count" : 20,
+                  "body" : [
+                    {
+                      "action" : "option",
+                      "options" : [
+                        {"action" : "particle", "specification" : "v-thornrootfragment1"},
+                        {"action" : "particle", "specification" : "v-thornrootfragment2"},
+                        {"action" : "particle", "specification" : "v-thornrootfragment3"},
+                        {"action" : "particle", "specification" : "v-thornrootfragment4"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "aimDirection" : [0, -1],
+            "inaccuracy" : 0,
+            "fireOffset" : [0, 0]
+          }
+        }
+      ]
     },
 
     "touchDamage" : {

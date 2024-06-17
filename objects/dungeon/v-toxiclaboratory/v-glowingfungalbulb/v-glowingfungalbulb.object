@@ -1,0 +1,50 @@
+{
+  "objectName" : "v-glowingfungalbulb",
+  "colonyTags" : ["light"],
+  "rarity" : "Common",
+  "description" : "A glowing bulb that has grown into the wall.",
+  "shortdescription" : "Glowing Fungal Bulb",
+  "race" : "ancient",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "light",
+  "price" : 0,
+  "printable" : false,
+  "lightColor" : [164, 81, 196],
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "glowingfungalbulb.png:<color>.<frame>",
+      "imagePosition" : [-16, -8],
+      "animationPosition" : [-16, -8],
+
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "animation" : "/objects/wired/light/lighttogglebgfullbright.animation",
+  "animationParts" : {
+    "bg" : "glowingfungalbulb.png",
+    "fg" : "glowingfungalbulblit.png"
+  },
+
+  "scripts" : [ "/objects/wired/light/light.lua" ],
+  "scriptDelta" : 60,
+
+  "interactive" : false,
+
+  "inputNodes" : [ [0, 0] ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

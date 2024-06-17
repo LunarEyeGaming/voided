@@ -7,6 +7,7 @@
     "/scripts/actions/v-world.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/monster.lua",
+    "/scripts/actions/miniboss/v-cityminiboss.lua",
     "/scripts/actions/time.lua"
   ],
   "parameters": {
@@ -198,7 +199,7 @@
               "keepTargetInSight": {"value": true},
               "queryTargets": {"value": true},
               "targetOnDamage": {"value": true},
-              "targetOutOfSightTime": {"value": 9999}
+              "targetOutOfSightTime": {"value": 60}
             }
           },
           {
@@ -245,6 +246,14 @@
                         "name": "setDamageBar",
                         "parameters": {
                           "type": {"value": "Special"}
+                        }
+                      },
+                      {
+                        "title": "v_setBattleMusicState",
+                        "type": "action",
+                        "name": "v_setBattleMusicState",
+                        "parameters": {
+                          "state": {"value": "active"}
                         }
                       },
                       {
@@ -405,6 +414,14 @@
                         "percentage": {"value": 0},
                         "resource": {"value": "health"}
                       }
+                    }
+                  },
+                  {
+                    "title": "v_setBattleMusicState",
+                    "type": "action",
+                    "name": "v_setBattleMusicState",
+                    "parameters": {
+                      "state": {"value": "inactive"}
                     }
                   },
                   {

@@ -1,4 +1,5 @@
 {
+  // VOLTAGE TREASURE
   "v-electricelementalTreasure" : [
     [1, {
       "pool" : [
@@ -43,6 +44,21 @@
     }]
   ],
 
+  "v-dischargemonsterTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : "battery"},
+        {"weight" : 0.150, "item" : "smallbattery"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
   "v-wardroneTreasure" : [
     [1, {
       "pool" : [
@@ -74,6 +90,38 @@
     }]
   ],
 
+  "v-electrojellyTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.650, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.200, "item" : "wire"},
+        {"weight" : 0.150, "item" : "staticcell"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  
+  "v-currentcrawlerTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.650, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : "siliconboard"},
+        {"weight" : 0.100, "item" : "stickofram"},
+        {"weight" : 0.150, "item" : "staticcell"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  // TOXIC WASTELAND TREASURE
   "v-killerbeeTreasure" : [
     [1, {
       "pool" : [

@@ -50,7 +50,7 @@
                  "name":"",
                  "properties":
                     {
-                     "dungeonid":"none"
+                     "dungeonid":"65530"
                     },
                  "propertytypes":
                     {
@@ -181,7 +181,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"projectile\" : \"waterballoon\", \"projectileConfig\" : {\"timeToLive\" : 0.5, \"actionOnReap\" : [{\"action\" : \"explosion\", \"foregroundRadius\" : 30, \"backgroundRadius\" : 0, \"explosiveDamageAmount\" : 500, \"delaySteps\" : 2}, {\"action\" : \"liquid\", \"liquid\" : \"v-superpoison\", \"quantity\" : 3}]}, \"fireTime\" : 5.0, \"fireTimeVariance\" : 2.0, \"projectilePosition\" : [-1.0, 0]}"
+                     "parameters":"{\"projectile\" : \"waterballoon\", \"projectileConfig\" : {\"timeToLive\" : 0.0, \"actionOnReap\" : [{\"action\" : \"explosion\", \"foregroundRadius\" : 15, \"backgroundRadius\" : 0, \"explosiveDamageAmount\" : 500, \"delaySteps\" : 2}, {\"action\" : \"liquid\", \"liquid\" : \"v-superpoison\", \"quantity\" : 3}]}, \"fireTime\" : 5.0, \"fireTimeVariance\" : 2.0, \"projectilePosition\" : [-1.0, 0]}"
                     },
                  "propertytypes":
                     {
@@ -317,6 +317,46 @@
                  "width":8,
                  "x":280,
                  "y":248
+                }, 
+                {
+                 "gid":7079,
+                 "height":8,
+                 "id":818,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"projectile\" : \"waterballoon\", \"projectileConfig\" : {\"timeToLive\" : 0.0, \"actionOnReap\" : [{\"action\" : \"explosion\", \"foregroundRadius\" : 15, \"backgroundRadius\" : 0, \"explosiveDamageAmount\" : 500, \"delaySteps\" : 2}, {\"action\" : \"liquid\", \"liquid\" : \"v-superpoison\", \"quantity\" : 3}]}, \"fireTime\" : 5.0, \"fireTimeVariance\" : 2.0, \"projectilePosition\" : [-1.0, 0]}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":264,
+                 "y":152
+                }, 
+                {
+                 "gid":7079,
+                 "height":8,
+                 "id":819,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"projectile\" : \"waterballoon\", \"projectileConfig\" : {\"timeToLive\" : 0.0, \"actionOnReap\" : [{\"action\" : \"explosion\", \"foregroundRadius\" : 15, \"backgroundRadius\" : 0, \"explosiveDamageAmount\" : 500, \"delaySteps\" : 2}, {\"action\" : \"liquid\", \"liquid\" : \"v-superpoison\", \"quantity\" : 3}]}, \"fireTime\" : 5.0, \"fireTimeVariance\" : 2.0, \"projectilePosition\" : [-1.0, 0]}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":152
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -568,6 +608,46 @@
                  "width":0,
                  "x":208,
                  "y":72
+                }, 
+                {
+                 "height":0,
+                 "id":820,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":56,
+                         "y":72
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":208,
+                 "y":72
+                }, 
+                {
+                 "height":0,
+                 "id":821,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-80,
+                         "y":72
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":208,
+                 "y":72
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -651,7 +731,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":818,
+ "nextobjectid":822,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

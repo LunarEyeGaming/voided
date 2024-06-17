@@ -1,0 +1,23 @@
+{
+  "materialId" : 1206,
+  "materialName" : "v-fungusplatform",
+  "collisionKind" : "platform",
+  "itemDrop" : "v-fungusplatformmaterial",
+  "shortdescription" : "Mycelial Platform",
+  "description" : "The platform is slimy with fungal roots. Better be careful not to slip!",
+  "glitchDescription" : "Cautious. This fungal platform is slimy and slippery.",
+  "floranDescription" : "Floran sslide along sslimy root platform.",
+  "novakidDescription" : "This platform is made o' old shroom roots.",
+  "footstepSound" : "/sfx/blocks/footstep_brains.ogg",
+  "category" : "Supports",
+
+  "renderTemplate" : "/tiles/platformtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-fungusplatform.png",
+    "variants" : 5,
+    "lightTransparent" : true,
+    "occludesBelow" : false,
+    "multiColored" : true,
+    "zLevel" : 0
+  }
+}

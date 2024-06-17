@@ -101,7 +101,7 @@ function spawnWave(wave)
   end)
   
   -- For each monster in the current wave...
-  for _, monster in ipairs(wave) do
+  for _, monster in ipairs(wave.spawners) do
     animator.playSound("spawn")
 
     -- Spawn a projectile that will spawn the monster
