@@ -1,0 +1,108 @@
+{
+  "globalTagDefaults" : {
+    "numWaves" : "1",
+    "numCompletedWaves" : "0",
+    "paletteSwap" : ""
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "opening" : {
+        "default" : "closed",
+        "states" : {
+          "closed" : {},
+          "opening" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "open"
+          },
+          "open" : {},
+          "closing" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "closed"
+          }
+        }
+      },
+      "waveStatus" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "transition" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "active"
+          },
+          "active" : {}
+        }
+      }
+    },
+
+    "parts" : {
+      "base" : {
+        "properties" : {
+          "centered" : false
+        },
+
+        "partStates" : {
+          "opening" : {
+            "closed" : {
+              "properties" : {
+                "image" : "<partImage>:closed.<frame>"
+              }
+            },
+            "opening" : {
+              "properties" : {
+                "image" : "<partImage>:opening.<frame>"
+              }
+            },
+            "open" : {
+              "properties" : {
+                "image" : "<partImage>:open.<frame>"
+              }
+            },
+            "closing" : {
+              "properties" : {
+                "image" : "<partImage>:closing.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "display" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1
+        },
+
+        "partStates" : {
+          "waveStatus" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:waves.<numWaves>.<numCompletedWaves>;i.<frame><paletteSwap>"
+              }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:waves.<numWaves>.<numCompletedWaves>;tr.<frame><paletteSwap>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:waves.<numWaves>.<numCompletedWaves>;a.<frame><paletteSwap>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "sounds" : {
+    "open" : [ "/sfx/objects/fleshdoor_open.ogg" ],
+    "close" : [ "/sfx/objects/fleshdoor_close.ogg" ],
+    "spawn" : [ "/sfx/npc/monsters/sporgus_fire.ogg" ]
+  }
+}

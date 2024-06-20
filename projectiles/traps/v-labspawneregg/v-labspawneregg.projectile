@@ -1,0 +1,56 @@
+{
+  "projectileName" : "v-labspawneregg",
+  "image" : "labspawneregg.png",
+  "physics" : "illusion",
+  "animationCycle" : 1.0,
+  "frameNumber" : 1,
+  "power" : 0,
+  "speed" : 0,
+  "timeToLive" : 1.0,
+  "bounces" : -1,
+  "piercing" : true,
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 10,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : {
+            "type" : "animated",
+            "looping" : false,
+            "animation" : "/animations/gas/greengas.animation",
+            "animationCycle" : 0.5,
+            "finalVelocity" : [0, 0],
+            "approach" : [20, 20],
+            "size" : 1,
+            "fade" : 1,
+            "timeToLive" : 0.5,
+            "destructionAction" : "fade",
+            "destructionTime" : 0.5,
+            "layer" : "front",
+            "variance" : {
+              "initialVelocity" : [10, 10]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "action" : "sound",
+      "options" : [
+        "/sfx/objects/egg_hatch1.ogg",
+        "/sfx/objects/egg_hatch2.ogg"
+      ]
+    }
+  ],
+
+  "onlyHitTerrain" : true,
+
+  "renderLayer" : "ForegroundEntity+10",
+
+  "scripts" : [ "/projectiles/traps/v-cityspawnerorb/v-cityspawnerorb.lua" ],
+  
+  "travelTime" : 1.0,
+  "releaseStatusEffect" : "v-labmonsterrelease"
+}

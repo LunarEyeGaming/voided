@@ -3402,46 +3402,6 @@
                  "y":1912
                 }, 
                 {
-                 "gid":7662,
-                 "height":16,
-                 "id":746,
-                 "name":"contains position-sensitive offsets",
-                 "properties":
-                    {
-                     "parameters":"{\"interiorRegion\" : [-1, 0, 40, 11], \"exteriorRegions\" : [[-30, 0, -1, 12]]}"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":632,
-                 "y":584
-                }, 
-                {
-                 "gid":7662,
-                 "height":16,
-                 "id":761,
-                 "name":"contains position-sensitive offsets",
-                 "properties":
-                    {
-                     "parameters":"{\"interiorRegion\" : [-1, 0, 31, 25], \"exteriorRegions\" : [[-4, 0, 0, 15]]}"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":1024,
-                 "y":584
-                }, 
-                {
                  "gid":6592,
                  "height":8,
                  "id":763,
@@ -4294,6 +4254,46 @@
                  "width":8,
                  "x":1496,
                  "y":840
+                }, 
+                {
+                 "gid":7733,
+                 "height":40,
+                 "id":1107,
+                 "name":"contains position-sensitive offsets",
+                 "properties":
+                    {
+                     "parameters":"{\"interiorRegion\" : [-20, -8, 21, 3], \"exteriorRegions\" : [[-34, -8, -20, -1]]}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":768,
+                 "y":536
+                }, 
+                {
+                 "gid":7733,
+                 "height":40,
+                 "id":1108,
+                 "name":"contains position-sensitive offsets",
+                 "properties":
+                    {
+                     "parameters":"{\"interiorRegion\" : [-16, -12, 16, 13], \"exteriorRegions\" : [[-30, -12, -16, -7]]}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":1128,
+                 "y":504
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -4978,86 +4978,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":751,
-                 "name":"",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":-24,
-                         "y":-32
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":632,
-                 "y":576
-                }, 
-                {
-                 "height":0,
-                 "id":752,
-                 "name":"",
-                 "polyline":[
-                        {
-                         "x":-40,
-                         "y":0
-                        }, 
-                        {
-                         "x":272,
-                         "y":-32
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":680,
-                 "y":576
-                }, 
-                {
-                 "height":0,
-                 "id":768,
-                 "name":"",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":-24,
-                         "y":-32
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1024,
-                 "y":576
-                }, 
-                {
-                 "height":0,
-                 "id":769,
-                 "name":"",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":240,
-                         "y":-32
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1032,
-                 "y":576
-                }, 
-                {
-                 "height":0,
                  "id":776,
                  "name":"",
                  "polyline":[
@@ -5424,7 +5344,87 @@
          "color":"#00ffff",
          "draworder":"topdown",
          "name":"wiring - locked door",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":751,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":152,
+                         "y":-64
+                        }, 
+                        {
+                         "x":-24,
+                         "y":-32
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":632,
+                 "y":576
+                }, 
+                {
+                 "height":0,
+                 "id":752,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":112,
+                         "y":-64
+                        }, 
+                        {
+                         "x":272,
+                         "y":-32
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":680,
+                 "y":576
+                }, 
+                {
+                 "height":0,
+                 "id":768,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":120,
+                         "y":-96
+                        }, 
+                        {
+                         "x":-24,
+                         "y":-32
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1024,
+                 "y":576
+                }, 
+                {
+                 "height":0,
+                 "id":769,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":120,
+                         "y":-96
+                        }, 
+                        {
+                         "x":240,
+                         "y":-32
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1032,
+                 "y":576
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -5545,7 +5545,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":1107,
+ "nextobjectid":1109,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -5676,7 +5676,7 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }, 
         {
-         "firstgid":7733,
+         "firstgid":7734,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-colonytag\/outpost.json"
         }],
  "tilewidth":8,

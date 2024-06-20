@@ -6,6 +6,8 @@ local firstWaveDelay
 local nextWaveDelay
 local interiorRegion
 local exteriorRegions
+local gracePeriod
+local gracePeriodRadioMessages
 
 local waveEntityType
 local waveTriggerEntityType
@@ -13,16 +15,19 @@ local waveTriggerEntityType
 local interiorRegionDebug
 local exteriorRegionsDebug
 
-local remainingMonsters
+local skippedGracePeriod
 
 local state
 
+-- HOOKS
 function init()
   firstWaveDelay = config.getParameter("firstWaveDelay", 1.0)
   nextWaveDelay = config.getParameter("nextWaveDelay", 1.0)
   interiorRegion = getRegionPoints(config.getParameter("interiorRegion"))
   waveEntityType = config.getParameter("waveEntityType", "v-wavemonsterspawnpoint")
   waveTriggerEntityType = config.getParameter("waveTriggerEntityType", "v-wavetrigger")
+  gracePeriod = config.getParameter("gracePeriod")
+  gracePeriodRadioMessages = config.getParameter("gracePeriodRadioMessages")
 
   exteriorRegions = {}
   for _, region in ipairs(config.getParameter("exteriorRegions")) do
@@ -45,6 +50,8 @@ function init()
   for _, region in ipairs(config.getParameter("exteriorRegions")) do
     table.insert(exteriorRegionsDebug, rect.translate(region, object.position()))
   end
+  
+  skippedGracePeriod = false  -- Whether or not the player has skipped the grace period yet.
 end
 
 function update(dt)
@@ -59,6 +66,11 @@ function update(dt)
   state:update()
 end
 
+function onInteraction(args)
+  skippedGracePeriod = true
+end
+
+-- STATE FUNCTIONS
 states = {}
 
 --[[
@@ -108,10 +120,46 @@ end
 function states.waves()
   util.wait(firstWaveDelay)
   
+  -- If a grace period is allowed...
+  if storage.hasGracePeriod then
+    -- Send a series of radio messages to all players in the arena.
+    local queried = world.entityQuery(interiorRegion[1], interiorRegion[2], {includedTypes = {"player"}})
+    
+    for _, entityId in ipairs(queried) do
+      for _, msg in ipairs(gracePeriodRadioMessages) do
+        world.sendEntityMessage(entityId, "queueRadioMessage", msg)
+      end
+    end
+
+    onGracePeriodStart()
+
+    object.setInteractive(true)
+
+    skippedGracePeriod = false  -- Reset skippedGracePeriod variable
+
+    util.wait(gracePeriod, function(dt)
+      onGracePeriodTick(dt)
+
+      -- If the grace period was skipped due to a player interaction...
+      if skippedGracePeriod then
+        return true  -- Force the grace period to end prematurely by returning true
+      end
+    end)
+    
+    object.setInteractive(false)
+  end
+  
   onWavesStart()
 
+  local dt = script.updateDt()
+
   for waveNum, wave in ipairs(storage.waves) do
-    local remainingMonsters = spawnWave(wave)
+    local remainingMonsters = spawnWave(wave.spawners)
+    local temp = activateTriggers(wave.triggers)
+    
+    for _, monsterId in ipairs(temp) do
+      table.insert(remainingMonsters, monsterId)
+    end
       
     -- Listen for monsters that were spawned.
     message.setHandler("v-monsterwavespawner-monsterspawned", function(_, _, id)
@@ -121,7 +169,7 @@ function states.waves()
     while #remainingMonsters > 0 do
       remainingMonsters = util.filter(remainingMonsters, function(id) return world.entityExists(id) end)
       
-      onWaveTick(waveNum)
+      onWaveTick(waveNum, dt)
       
       -- If no friendlies are present in the arena...
       if not friendlyInsideRegion(interiorRegion) then
@@ -144,18 +192,12 @@ function states.waves()
         
         -- Reset (sets the state to states.postInit())
         reset()
-      end
-      
-      -- -- Before the loop ends, check if remainingMonsters is empty. If so, then query all monsters with the "enemy"
-      -- -- damage team and make them the remainingMonsters. This check is used to catch monsters that spawned as a result
-      -- -- of other monsters dying.
-      -- if #remainingMonsters == 0 then
-        -- remainingMonsters = world.entityQuery(interiorRegion[1], interiorRegion[2], {includedTypes = {"monster"}})
         
-        -- remainingMonsters = util.filter(remainingMonsters, function(id)
-          -- return world.entityDamageTeam(id).type == "enemy"
-        -- end)
-      -- end
+        -- Allow for grace period
+        if not storage.hasGracePeriod then
+          storage.hasGracePeriod = true
+        end
+      end
       
       coroutine.yield()
     end
@@ -181,6 +223,7 @@ function states.inactive()
   end
 end
 
+-- HELPER FUNCTIONS
 --[[
   Closes the doors
 ]]
@@ -225,7 +268,8 @@ function getWaves()
     table.insert(waves[spawnpointInfo.waveNumber].spawners, {
       type = spawnpointInfo.type,
       position = spawnpointInfo.position,
-      parameters = spawnpointInfo.parameters
+      parameters = spawnpointInfo.parameters,
+      silent = spawnpointInfo.silent
     })
   end
   
@@ -271,14 +315,43 @@ end
 
 --[[
   Spawns the monsters in the current wave. Returns a list of the monsters spawned.
-  wave: A table with the following schema:
+  waveSpawners: A table with the following schema:
     {
-      spawners: {
+      {
         String type: the monster type to spawn
         Vec2F position: the position to spawn the monster at
         Json parameters: the parameters to override
-      },
-      triggers: {
+      }
+    }
+  returns: a list of the IDs of the monsters spawned
+]]
+function spawnWave(waveSpawners)
+  local monsterIds = {}
+
+  -- Spawn the monsters
+  -- For each monster spawner in the wave...
+  for _, monster in ipairs(waveSpawners) do
+    -- Spawn the monster
+    local monsterId = world.spawnMonster(monster.type, monster.position, monster.parameters)
+    
+    -- If the monster was successfully spawned...
+    if monsterId then
+      -- Track it.
+      table.insert(monsterIds, monsterId)
+    else
+      sb.logWarn("Monster of type %s at position %s with parameters %s failed to spawn", monster.type, monster.position,
+          monster.parameters)
+    end
+  end
+  
+  return monsterIds
+end
+
+--[[
+  Activates the triggers in the current wave. Returns a list of the monsters spawned.
+  waveTriggers: A table with the following schema:
+    {
+      {
         Rect queryArea: the area to query for targets
         Json queryOptions: the options to use when querying the targets
         String messageType: message type to send
@@ -287,7 +360,7 @@ end
     }
   returns: a list of the IDs of the monsters spawned
 ]]
-function spawnWave(wave)
+function activateTriggers(waveTriggers)
   local monsterIds = {}
 
   -- Function to add the returned monster ID to the list.
@@ -302,25 +375,9 @@ function spawnWave(wave)
       end
     end
   end
-
-  -- Spawn the monsters
-  -- For each monster spawner in the wave...
-  for _, monster in ipairs(wave.spawners) do
-    -- Spawn the monster
-    local monsterId = world.spawnMonster(monster.type, monster.position, monster.parameters)
-    
-    -- If the monster was successfully spawned...
-    if monsterId then
-      -- Track it.
-      table.insert(monsterIds, monsterId)
-    else
-      sb.logWarn("Monster of type %s at position %s with parameters %s failed to spawn", monster.type, monster.position,
-          monster.parameters)
-    end
-  end
   
   -- For each trigger in the wave...
-  for _, trigger in ipairs(wave.triggers) do
+  for _, trigger in ipairs(waveTriggers) do
     -- Query the targets
     local points = getRegionPoints(trigger.queryArea)
     local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
@@ -393,6 +450,8 @@ function reset()
   
   -- Well this seems to disable the message.
   message.setHandler("v-monsterwavespawner-monsterspawned", nil)
+  
+  object.setInteractive(false)  -- Set interactive to false in case the spawner reset during the grace period.
 end
 
 -- HELPER FUNCTIONS
@@ -405,7 +464,7 @@ end
 
 -- HOOKS (may use stubs by default)
 --[[
-  A function called once the object finishes loading the waves.
+  A function called once the object finishes loading the waves or on a reset.
 ]]
 function onLoad()
 
@@ -422,15 +481,16 @@ end
   A function called for each tick spent while a wave is in progress.
   
   param waveNum: the current wave number
+  param dt: tick duration
 ]]
-function onWaveTick(waveNum)
+function onWaveTick(waveNum, dt)
 
 end
 
 --[[
   A function called when a wave ends.
 ]]
-function onWaveEnd()
+function onWaveEnd(waveNum)
 
 end
 
@@ -438,5 +498,23 @@ end
   A function called when the object enters the "inactive" state.
 ]]
 function onDeactivation()
+
+end
+
+--[[
+  A function called when the object enters a grace period prior to the waves starting. This function is called before
+  onWavesStart() is called. The grace period will always start after the spawner resets itself due to friendlies 
+  leaving the area (by any means) at least once.
+]]
+function onGracePeriodStart()
+
+end
+
+--[[
+  A function called each tick while the spawner is in the grace period.
+  
+  param dt: tick duration
+]]
+function onGracePeriodTick(dt)
 
 end

@@ -281,7 +281,7 @@
                  "y":360
                 }, 
                 {
-                 "gid":8012,
+                 "gid":8013,
                  "height":8,
                  "id":727,
                  "name":"",
@@ -471,7 +471,7 @@
                  "y":304
                 }, 
                 {
-                 "gid":8014,
+                 "gid":8015,
                  "height":184,
                  "id":791,
                  "name":"",
@@ -559,7 +559,7 @@
                  "y":128
                 }, 
                 {
-                 "gid":8012,
+                 "gid":8013,
                  "height":8,
                  "id":803,
                  "name":"",
@@ -569,6 +569,23 @@
                  "width":8,
                  "x":784,
                  "y":288
+                }, 
+                {
+                 "height":19,
+                 "id":804,
+                 "name":"",
+                 "rotation":0,
+                 "text":
+                    {
+                     "color":"#ffffff",
+                     "text":"PLACE SPAWNER NEAR TOP",
+                     "wrap":true
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":208,
+                 "x":88,
+                 "y":88
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1468,7 +1485,7 @@
          "name":"anchors etc",
          "objects":[
                 {
-                 "gid":8016,
+                 "gid":8019,
                  "height":8,
                  "id":789,
                  "name":"",
@@ -1480,7 +1497,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":8016,
+                 "gid":8019,
                  "height":8,
                  "id":790,
                  "name":"",
@@ -1507,7 +1524,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":804,
+ "nextobjectid":805,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -1630,11 +1647,11 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":8006,
+         "firstgid":8007,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }, 
         {
-         "firstgid":8015,
+         "firstgid":8018,
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }],
  "tilewidth":8,

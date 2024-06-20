@@ -73,7 +73,8 @@
       "chance" : 1000
     },
 
-    // Only one trap room per floor may appear.
+    // Only one trap room per floor may appear. In addition, once a particular trap room has appeared, it may never 
+    // appear again.
     {
       "name" : "floor1traproom1-left",
       "rules" : [
@@ -109,42 +110,56 @@
     {
       "name" : "floor1corridor1-left",
       "rules" : [
-        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left", "floor1corridor4-left", "floor1staircorridor-left" ] ]
+        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
+          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor1-left.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor1corridor2-left",
       "rules" : [
-        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left", "floor1corridor4-left", "floor1staircorridor-left" ] ]
+        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
+          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor2-left.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor1corridor3-left",
       "rules" : [
-        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left", "floor1corridor4-left", "floor1staircorridor-left" ] ]
+        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
+          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor3-left.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor1corridor4-left",
       "rules" : [
-        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left", "floor1corridor4-left", "floor1staircorridor-left" ] ]
+        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
+          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor4-left.json" ],
-      "chance" : 250
+      "chance" : 200
+    },
+    {
+      "name" : "floor1corridor5-left",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
+          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
+      ],
+      "def" : [ "tmx", "floor1/floor1corridor5-left.json" ],
+      "chance" : 200
     },
     {
       "name" : "floor1staircorridor-left",
       "rules" : [
-        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left", "floor1corridor4-left", "floor1staircorridor-left" ] ]
+        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
+          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1staircorridor-left.json" ],
-      "chance" : 250
+      "chance" : 200
     },
 
     {
@@ -238,46 +253,71 @@
       "chance" : 50
       /* "chance" : 10000000 */
     },
+    {
+      "name" : "floor1traproom4-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom1-left", "floor1traproom2-left", "floor1traproom3-left",
+          "floor1traproom1-right", "floor1traproom2-right", "floor1traproom3-right" ] ]
+      ],
+      "def" : [ "tmx", "floor1/floor1traproom4-right.json" ],
+      "chance" : 50
+      /* "chance" : 10000000 */
+    },
     
     {
       "name" : "floor1corridor1-right",
       "rules" : [
-        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right", "floor1corridor4-right", "floor1staircorridor-right" ] ]
+        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
+          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor1-right.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor1corridor2-right",
       "rules" : [
-        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right", "floor1corridor4-right", "floor1staircorridor-right" ] ]
+        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
+          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor2-right.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor1corridor3-right",
       "rules" : [
-        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right", "floor1corridor4-right", "floor1staircorridor-right" ] ]
+        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
+          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor3-right.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor1corridor4-right",
       "rules" : [
-        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right", "floor1corridor4-right", "floor1staircorridor-right" ] ]
+        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
+          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor4-right.json" ],
-      "chance" : 250
+      "chance" : 200
+    },
+    {
+      "name" : "floor1corridor5-right",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
+          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
+      ],
+      "def" : [ "tmx", "floor1/floor1corridor5-right.json" ],
+      "chance" : 200
     },
     {
       "name" : "floor1staircorridor-right",
       "rules" : [
-        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right", "floor1corridor4-right", "floor1staircorridor-right" ] ]
+        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
+          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1staircorridor-right.json" ],
-      "chance" : 250
+      "chance" : 200
       /* "chance" : 10000000 */
     },
 
@@ -350,42 +390,101 @@
     {
       "name" : "floor2corridor1-left",
       "rules" : [
-        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left", "floor2corridor4-left", "floor2staircorridor-left" ] ]
+        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
+          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor1-left.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor2corridor2-left",
       "rules" : [
-        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left", "floor2corridor4-left", "floor2staircorridor-left" ] ]
+        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
+          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor2-left.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor2corridor3-left",
       "rules" : [
-        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left", "floor2corridor4-left", "floor2staircorridor-left" ] ]
+        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
+          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor3-left.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor2corridor4-left",
       "rules" : [
-        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left", "floor2corridor4-left", "floor2staircorridor-left" ] ]
+        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
+          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor4-left.json" ],
-      "chance" : 250
+      "chance" : 200
+    },
+    {
+      "name" : "floor2corridor5-left",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
+          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2corridor5-left.json" ],
+      "chance" : 200
     },
     {
       "name" : "floor2staircorridor-left",
       "rules" : [
-        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left", "floor2corridor4-left", "floor2staircorridor-left" ] ]
+        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
+          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2staircorridor-left.json" ],
-      "chance" : 250
+      "chance" : 200
+    },
+
+    {
+      "name" : "floor2traproom1-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom1-left", "floor1traproom1-right",
+          "floor2traproom1-left", "floor2traproom2-left", "floor2traproom3-left", "floor2traproom4-left",
+          "floor2traproom1-right", "floor2traproom2-right", "floor2traproom3-right", "floor2traproom4-right" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2traproom1-left.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor2traproom2-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom2-left", "floor1traproom2-right",
+          "floor2traproom1-left", "floor2traproom2-left", "floor2traproom3-left", "floor2traproom4-left",
+          "floor2traproom1-right", "floor2traproom2-right", "floor2traproom3-right", "floor2traproom4-right" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2traproom2-left.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor2traproom3-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom3-left", "floor1traproom3-right",
+          "floor2traproom1-left", "floor2traproom2-left", "floor2traproom3-left", "floor2traproom4-left",
+          "floor2traproom1-right", "floor2traproom2-right", "floor2traproom3-right", "floor2traproom4-right" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2traproom3-left.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor2traproom4-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom4-left", "floor1traproom4-right",
+          "floor2traproom1-left", "floor2traproom2-left", "floor2traproom3-left", "floor2traproom4-left",
+          "floor2traproom1-right", "floor2traproom2-right", "floor2traproom3-right", "floor2traproom4-right" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2traproom4-left.json" ],
+      "chance" : 50
     },
 
     {
@@ -453,56 +552,105 @@
       /* "chance" : 10000000 */
       "chance" : 1000
     },
-
-    {
-      "name" : "floor2traproom1-right",
-      "rules" : [
-        [ "maxSpawnCount", [1] ],
-        [ "doNotCombineWith", [ "floor2traproom1-right" ] ]
-      ],
-      "def" : [ "tmx", "floor2/floor2traproom1-right.json" ],
-      "chance" : 50
-    },
     
     {
       "name" : "floor2corridor1-right",
       "rules" : [
-        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right", "floor2corridor4-right", "floor2staircorridor-right" ] ]
+        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
+          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor1-right.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor2corridor2-right",
       "rules" : [
-        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right", "floor2corridor4-right", "floor2staircorridor-right" ] ]
+        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
+          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor2-right.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor2corridor3-right",
       "rules" : [
-        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right", "floor2corridor4-right", "floor2staircorridor-right" ] ]
+        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
+          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor3-right.json" ],
-      "chance" : 250
+      "chance" : 200
     },
     {
       "name" : "floor2corridor4-right",
       "rules" : [
-        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right", "floor2corridor4-right", "floor2staircorridor-right" ] ]
+        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
+          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor4-right.json" ],
-      "chance" : 250
+      "chance" : 200
+    },
+    {
+      "name" : "floor2corridor5-right",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
+          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2corridor5-right.json" ],
+      "chance" : 200
     },
     {
       "name" : "floor2staircorridor-right",
       "rules" : [
-        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right", "floor2corridor4-right", "floor2staircorridor-right" ] ]
+        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
+          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2staircorridor-right.json" ],
-      "chance" : 250
+      "chance" : 200
+    },
+    
+    {
+      "name" : "floor2traproom1-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom1-left", "floor1traproom1-right",
+          "floor2traproom1-left", "floor2traproom2-left", "floor2traproom3-left", "floor2traproom4-left",
+          "floor2traproom1-right", "floor2traproom2-right", "floor2traproom3-right", "floor2traproom4-right" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2traproom1-right.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor2traproom2-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom2-left", "floor1traproom2-right",
+          "floor2traproom1-left", "floor2traproom2-left", "floor2traproom3-left", "floor2traproom4-left",
+          "floor2traproom1-right", "floor2traproom2-right", "floor2traproom3-right", "floor2traproom4-right" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2traproom2-right.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor2traproom3-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom3-left", "floor1traproom3-right",
+          "floor2traproom1-left", "floor2traproom2-left", "floor2traproom3-left", "floor2traproom4-left",
+          "floor2traproom1-right", "floor2traproom2-right", "floor2traproom3-right", "floor2traproom4-right" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2traproom3-right.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor2traproom4-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "floor1traproom4-left", "floor1traproom4-right",
+          "floor2traproom1-left", "floor2traproom2-left", "floor2traproom3-left", "floor2traproom4-left",
+          "floor2traproom1-right", "floor2traproom2-right", "floor2traproom3-right", "floor2traproom4-right" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2traproom4-right.json" ],
+      "chance" : 50
     },
 
     {

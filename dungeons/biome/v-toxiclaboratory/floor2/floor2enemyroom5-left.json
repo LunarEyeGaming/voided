@@ -45,26 +45,6 @@
          "name":"objects",
          "objects":[
                 {
-                 "gid":7662,
-                 "height":16,
-                 "id":679,
-                 "name":"contains position-sensitive offsets",
-                 "properties":
-                    {
-                     "parameters":"{\"interiorRegion\" : [0, -3, 78, 34], \"exteriorRegions\" : [[-4, 0, 0, 15]]}"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":96,
-                 "y":360
-                }, 
-                {
                  "gid":6592,
                  "height":8,
                  "id":681,
@@ -1527,6 +1507,26 @@
                  "width":24,
                  "x":360,
                  "y":112
+                }, 
+                {
+                 "gid":7915,
+                 "height":40,
+                 "id":850,
+                 "name":"contains position-sensitive offsets",
+                 "properties":
+                    {
+                     "parameters":"{\"interiorRegion\" : [-39, -6, 41, 31], \"exteriorRegions\" : [[41, 8, 55, 13]]}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":384,
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1538,47 +1538,7 @@
          "color":"#ffff00",
          "draworder":"topdown",
          "name":"wiring - lights & guns",
-         "objects":[
-                {
-                 "height":0,
-                 "id":700,
-                 "name":"",
-                 "polyline":[
-                        {
-                         "x":24,
-                         "y":-24
-                        }, 
-                        {
-                         "x":-8,
-                         "y":-144
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":80,
-                 "y":376
-                }, 
-                {
-                 "height":0,
-                 "id":701,
-                 "name":"",
-                 "polyline":[
-                        {
-                         "x":8,
-                         "y":-24
-                        }, 
-                        {
-                         "x":640,
-                         "y":-144
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":88,
-                 "y":376
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1831,7 +1791,47 @@
          "color":"#00ffff",
          "draworder":"topdown",
          "name":"wiring - locked door",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":700,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":328,
+                         "y":-48
+                        }, 
+                        {
+                         "x":-8,
+                         "y":-144
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":80,
+                 "y":376
+                }, 
+                {
+                 "height":0,
+                 "id":701,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":312,
+                         "y":-48
+                        }, 
+                        {
+                         "x":640,
+                         "y":-144
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":88,
+                 "y":376
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1892,7 +1892,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":850,
+ "nextobjectid":851,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -2009,6 +2009,10 @@
         {
          "firstgid":7671,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
+        }, 
+        {
+         "firstgid":7905,
+         "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }],
  "tilewidth":8,
  "type":"map",

@@ -1,0 +1,70 @@
+{
+  "objectName" : "v-labspawner",
+  "colonyTags" : [ ],
+  "printable" : false,
+  "rarity" : "Legendary",
+  "description" : "A hideous growth that spawns waves of monsters.",
+  "shortdescription" : "labspawner",
+  "race" : "generic",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  
+  /* "apexDescription" : "This device releases groups of monsters. Killing all of them opens the doors.",
+  "avianDescription" : "A device with a cold light. Killing all of the monsters it spawns opens the doors.",
+  "floranDescription" : "Floran musst ssstab monsters to open doorss.",
+  "glitchDescription" : "Excited. If this device runs out of monsters, it will open the doors.",
+  "humanDescription" : "Better slay all the monsters it spawns if I don't want to die.",
+  "hylotlDescription" : "A device that requires bloodshed to open the doors to which it is connected.",
+  "novakidDescription" : "I better kill all the monsters spawned by this 'ere device.", */
+
+  "category" : "decorative",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "base.png:default",
+      "imagePosition" : [-16, -16],
+
+      "spaceScan" : 0.1
+    }
+  ],
+
+  "animation" : "v-labspawner.animation",
+
+  "animationParts" : {
+    "base" : "base.png",
+    "display" : "display.png"
+  },
+  "animationPosition" : [-16, -16],
+  
+  "health" : 5,
+  "smashOnBreak" : true,
+  
+  // Left output node is the entry door. Right output node is the doorway to the switch.
+  "outputNodes" : [ [0, 0], [1, 0] ],
+
+  "scripts" : [ "v-labspawner.lua" ],
+  "scriptDelta" : 1,
+  
+  "firstWaveDelay" : 1.0,
+  "nextWaveDelay" : 1.0,
+  
+  "lightBlinkDuration" : 0.5,
+  "openAnimationDuration" : 0.5,
+  "capsuleCloseDelay" : 0.25,
+  
+  "spawnerProjectileType" : "v-labspawneregg",
+  "spawnerProjectileOffset" : [0.5, 0.5],
+  
+  "gracePeriod" : 30.0,
+  "gracePeriodRadioMessages" : [ "v-cityspawnertutorial", "v-cityspawnertutorial2" ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

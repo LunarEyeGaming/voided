@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-toxic",
  "spacing":0,
- "tilecount":10,
+ "tilecount":11,
  "tileheight":184,
  "tileproperties":
     {
@@ -24,6 +24,13 @@
          "imagePositionX":"-16",
          "imagePositionY":"-8",
          "object":"v-fallingcratesign",
+         "tilesetDirection":"right"
+        },
+     "10":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-16",
+         "object":"v-labspawner",
          "tilesetDirection":"right"
         },
      "2":
@@ -99,6 +106,13 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "10":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "2":
         {
          "imagePositionX":"string",
@@ -168,6 +182,12 @@
         {
          "image":"..\/images\/objects\/fallingcratesign.png",
          "imageheight":24,
+         "imagewidth":40
+        },
+     "10":
+        {
+         "image":"..\/images\/objects\/labspawner.png",
+         "imageheight":40,
          "imagewidth":40
         },
      "2":

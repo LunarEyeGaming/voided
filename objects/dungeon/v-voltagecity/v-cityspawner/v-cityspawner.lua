@@ -8,15 +8,17 @@ local openAnimationDuration
 local capsuleCloseDelay
 
 local spawnerProjectileType
-local spawnerProjectilePosition
+local gracePeriod
+local gracePeriodStartBlinkTime
 
-local interiorRegionDebug
-local exteriorRegionsDebug
+local spawnerProjectilePosition
 
 local remainingMonsters
 
-local dt
 local lightTimer
+local gracePeriodTimer
+local gracePeriodBlinkTime
+local gracePeriodNumLights
 
 local oldInit = init or function() end
 
@@ -28,44 +30,66 @@ function init()
   capsuleCloseDelay = config.getParameter("capsuleCloseDelay", 0.25)
 
   spawnerProjectileType = config.getParameter("spawnerProjectileType", "v-cityspawnerorb")
+  gracePeriod = config.getParameter("gracePeriod")
+  gracePeriodStartBlinkTime = config.getParameter("gracePeriodStartBlinkTime", 1.5)
 
   local spawnerProjectileOffset = config.getParameter("spawnerProjectileOffset", {0, 0})
   spawnerProjectilePosition = vec2.add(object.position(), spawnerProjectileOffset)
 end
 
---[[
-  OVERRIDE. See v-monsterwavespawner.lua documentation for more details.
-]]
+-- HOOK OVERRIDES. See v-monsterwavespawner.lua documentation for more details.
 function onLoad()
   animator.setGlobalTag("numLights", #storage.waves)  -- #storage.waves is implicitly converted to a string
   animator.setGlobalTag("numActiveLights", "0")
 end
 
---[[
-  OVERRIDE. See v-monsterwavespawner.lua documentation for more details.
-]]
+function onGracePeriodStart()
+  gracePeriodTimer = gracePeriod
+  gracePeriodBlinkTime = gracePeriodStartBlinkTime
+  lightTimer = gracePeriodBlinkTime
+end
+
+function onGracePeriodTick(dt)
+  gracePeriodTimer = gracePeriodTimer - dt
+  lightTimer = lightTimer - dt
+  
+  -- Calculate a number interpolated between 0 and #storage.waves using gracePeriodTimer / gracePeriod as the ratio
+  local numLightsFloat = gracePeriodTimer / gracePeriod * #storage.waves
+  -- Calculate the number of lights when the currently blinking light is OFF
+  gracePeriodNumLights = math.floor(numLightsFloat)
+  
+  -- Calculate the blink duration for the current light. numLightsFloat - gracePeriodNumLights just happens to return a
+  -- value between 0 and 1, so it is a suitable ratio.
+  gracePeriodBlinkTime = (numLightsFloat - gracePeriodNumLights) * gracePeriodStartBlinkTime
+  
+  if lightTimer <= 0 then
+    lightTimer = gracePeriodBlinkTime  -- Reset blink timer
+  end
+  
+  -- Blinking light is on when lightTimer is less than halfway down. Off otherwise
+  local numLights = lightTimer <= gracePeriodBlinkTime / 2 and gracePeriodNumLights or gracePeriodNumLights + 1
+  animator.setGlobalTag("numActiveLights", numLights)
+end
+
 function onWavesStart()
-  dt = script.updateDt()
+  animator.setGlobalTag("numActiveLights", "0")  -- In case a grace period was skipped before this function was called
   lightTimer = lightBlinkDuration
 end
 
---[[
-  OVERRIDE. See v-monsterwavespawner.lua documentation for more details.
-]]
-function onWaveTick(waveNum)
-  lightTimer = updateLights(waveNum, lightTimer, dt)
+function onWaveTick(waveNum, dt)
+  lightTimer = lightTimer - dt
+  
+  if lightTimer <= 0 then
+    lightTimer = lightBlinkDuration
+  end
+  
+  animator.setGlobalTag("numActiveLights", lightTimer <= lightBlinkDuration / 2 and waveNum - 1 or waveNum)
 end
 
---[[
-  OVERRIDE. See v-monsterwavespawner.lua documentation for more details.
-]]
 function onWaveEnd(waveNum)
   animator.setGlobalTag("numActiveLights", waveNum)
 end
 
---[[
-  OVERRIDE. See v-monsterwavespawner.lua documentation for more details.
-]]
 function onDeactivation()
   animator.setGlobalTag("numLights", #storage.waves)  -- #storage.waves is implicitly converted to a string
   animator.setGlobalTag("numActiveLights", #storage.waves)  -- #storage.waves is implicitly converted to a string
@@ -73,22 +97,23 @@ end
 
 --[[
   Spawns the monsters in the current wave. Waits until all projectiles spawned die, and the resulting monster IDs are
-  populated in the list remainingMonsters (this system must be set up manually).
+  populated in the list remainingMonsters.
 
-  wave: A table with the following schema:
+  waveSpawners: A table with the following schema:
     {
       {
         String type: the monster type to spawn
         Vec2F position: the position to spawn the monster at
         Json parameters: the parameters to override
+        boolean silent: whether or not the monster should be silently spawned.
       }
     }
   returns: a list of the IDs of the monsters spawned
 ]]
-function spawnWave(wave)
+function spawnWave(waveSpawners)
   local projectileIds = {}
   
-  local monsterIds = {}  -- Gets populated by the message handler
+  local monsterIds = {}  -- Gets populated by the message handler (or by the initial spawnpoint run-through when silent)
 
   animator.setAnimationState("capsule", "opening")
   animator.playSound("open")
@@ -101,14 +126,29 @@ function spawnWave(wave)
   end)
   
   -- For each monster in the current wave...
-  for _, monster in ipairs(wave.spawners) do
-    animator.playSound("spawn")
+  for _, monster in ipairs(waveSpawners) do
+    -- If the spawner is not silent...
+    if not monster.silent then
+      animator.playSound("spawn")
 
-    -- Spawn a projectile that will spawn the monster
-    local projectileId = world.spawnProjectile(spawnerProjectileType, spawnerProjectilePosition, entity.id(), {1, 0},
-        false, {targetPosition = monster.position, monsterType = monster.type, monsterParameters = monster.parameters})
+      -- Spawn a projectile that will spawn the monster
+      local projectileId = world.spawnProjectile(spawnerProjectileType, spawnerProjectilePosition, entity.id(), {1, 0},
+          false, {targetPosition = monster.position, monsterType = monster.type, monsterParameters = monster.parameters})
 
-    table.insert(projectileIds, projectileId)
+      table.insert(projectileIds, projectileId)
+    else
+      -- Spawn the monster directly
+      local monsterId = world.spawnMonster(monster.type, monster.position, monster.parameters)
+      
+      -- If the monster was successfully spawned...
+      if monsterId then
+        -- Track it.
+        table.insert(monsterIds, monsterId)
+      else
+        sb.logWarn("Monster of type %s at position %s with parameters %s failed to spawn", monster.type, monster.position,
+            monster.parameters)
+      end
+    end
     
     coroutine.yield()
   end
@@ -127,16 +167,4 @@ function spawnWave(wave)
   end
   
   return monsterIds
-end
-
-function updateLights(waveNum, timer, dt)
-  timer = timer - dt
-      
-  if timer <= 0 then
-    timer = lightBlinkDuration
-  end
-  
-  animator.setGlobalTag("numActiveLights", timer <= lightBlinkDuration / 2 and waveNum - 1 or waveNum)
-  
-  return timer
 end
