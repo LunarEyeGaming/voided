@@ -50,22 +50,22 @@
           "opening" : {
             "closed" : {
               "properties" : {
-                "image" : "<partImage>:closed.<frame>"
+                "image" : "<partImage>:closed.<frame><paletteSwap>"
               }
             },
             "opening" : {
               "properties" : {
-                "image" : "<partImage>:opening.<frame>"
+                "image" : "<partImage>:opening.<frame><paletteSwap>"
               }
             },
             "open" : {
               "properties" : {
-                "image" : "<partImage>:open.<frame>"
+                "image" : "<partImage>:open.<frame><paletteSwap>"
               }
             },
             "closing" : {
               "properties" : {
-                "image" : "<partImage>:closing.<frame>"
+                "image" : "<partImage>:closing.<frame><paletteSwap>"
               }
             }
           }
@@ -81,17 +81,17 @@
           "waveStatus" : {
             "inactive" : {
               "properties" : {
-                "image" : "<partImage>:waves.<numWaves>.<numCompletedWaves>;i.<frame><paletteSwap>"
+                "image" : "<partImage>:waves.<numWaves>.<numCompletedWaves>;i.<frame>"
               }
             },
             "transition" : {
               "properties" : {
-                "image" : "<partImage>:waves.<numWaves>.<numCompletedWaves>;tr.<frame><paletteSwap>"
+                "image" : "<partImage>:waves.<numWaves>.<numCompletedWaves>;tr.<frame>"
               }
             },
             "active" : {
               "properties" : {
-                "image" : "<partImage>:waves.<numWaves>.<numCompletedWaves>;a.<frame><paletteSwap>"
+                "image" : "<partImage>:waves.<numWaves>.<numCompletedWaves>;a.<frame>"
               }
             }
           }

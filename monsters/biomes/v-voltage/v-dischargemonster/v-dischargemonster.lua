@@ -1,6 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-animator.lua"
 
 local warningRange
 local dischargeRange
@@ -142,7 +142,7 @@ end
 function drawLightning(progress, startPos, endPos)
   local cfgCopy = copy(lightningConfig)
 
-  cfgCopy.color = voidedUtil.lerpColor(progress, lightningConfig.startColor, lightningConfig.endColor)
+  cfgCopy.color = vAnimator.lerpColor(progress, lightningConfig.startColor, lightningConfig.endColor)
   cfgCopy.worldStartPosition = startPos
   cfgCopy.worldEndPosition = endPos
 

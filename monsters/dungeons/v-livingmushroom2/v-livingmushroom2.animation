@@ -11,13 +11,21 @@
             "mode" : "loop"
           },
           "windup" : {
-            "frames" : 1
+            "frames" : 10,
+            "count" : 0.75,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_livingmushroom2_windup.ogg"
+            }
           },
           "fire" : {
-            "frames" : 1,
-            "cycle" : 0.5,
+            "frames" : 10,
+            "cycle" : 1.0,
             "mode" : "transition",
-            "transition" : "idle"
+            "transition" : "idle",
+            "frameProperties" : {
+              "immediateSound" : [ "", "", "", "", "", "/sfx/npc/monsters/v_livingmushroom2_winddown.ogg" ]
+            }
           }
         }
       },
@@ -69,45 +77,7 @@
             }
           }
         }
-      }/* ,
-      "bodyfullbright" : {
-        "properties" : {
-          "anchorPart" : "body",
-          "zLevel" : 1,
-          "fullbright" : true
-        },
-        "partStates" : {
-          "body" : {
-            "idle" : {
-              "properties" : {
-                "image" : "<partImage>:idle.<frame>"
-              }
-            },
-            "windup" : {
-              "properties" : {
-                "image" : "<partImage>:windup.<frame>"
-              }
-            },
-            "winduploop" : {
-              "properties" : {
-                "image" : "<partImage>:winduploop.<frame>"
-              }
-            },
-            "fire" : {
-              "properties" : {
-                "image" : "<partImage>:fire.<frame>"
-              }
-            }
-          },
-          "damage" : {
-            "stunned" : {
-              "properties" : {
-                "image" : "<partImage>:hurt.<frame>"
-              }
-            }
-          }
-        }
-      } */
+      }
     }
   },
   "globalTagDefaults" : {
@@ -137,11 +107,15 @@
   "particleEmitters" : {
     "deathPoof" : {
       "particles" : [
-        { "particle" : "electricswoosh1" },
-        { "particle" : "electricswoosh2" },
-        { "particle" : "electricswoosh1" },
-        { "particle" : "electricswoosh2" },
-
+        { "particle" : "monstersplosion" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
         { "particle" : "deathfizz1left" },
         { "particle" : "deathfizz1right" },
         { "particle" : "deathfizz2left" },
@@ -157,6 +131,6 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "fire" : [ "/sfx/melee/swing_broadsword_electric1.ogg", "/sfx/melee/swing_broadsword_electric2.ogg", "/sfx/melee/swing_broadsword_electric3.ogg" ]
+    "fire" : [ "/sfx/npc/monsters/v_livingmushroom2_fire.ogg" ]
   }
 }

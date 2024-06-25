@@ -1,4 +1,5 @@
-require "/scripts/voidedutil.lua"
+require "/scripts/v-animator.lua"
+require "/scripts/util.lua"
 
 local startColor
 local endColor
@@ -64,7 +65,7 @@ function update(dt)
   local poisonAmount = status.resource("v-depthPoison")
   
   local ratio = math.min(1.0, poisonAmount / endPoisonAmount)
-  local color = voidedUtil.lerpColor(ratio, startColor, endColor)
+  local color = vAnimator.lerpColor(ratio, startColor, endColor)
   world.sendEntityMessage(entity.id(), "v-depthPoison-setRatio", ratio)
   
   setShimmerTime(poisonAmount, dt)
@@ -79,7 +80,7 @@ end
 function setFadeColor(color)
   local fadeColor = {color[1], color[2], color[3]}
   local fadeAmount = color[4] / 255
-  effect.setParentDirectives(string.format("fade=%s=%s", voidedUtil.stringOfColor(fadeColor), fadeAmount))
+  effect.setParentDirectives(string.format("fade=%s=%s", vAnimator.stringOfColor(fadeColor), fadeAmount))
 end
 
 function setShimmerTime(poisonAmount, dt)
@@ -103,26 +104,6 @@ function setShimmerTime(poisonAmount, dt)
 end
 
 function updateWarningSound(ratio, dt)
-  -- if ratio > warningSoundRatioRange[1] then
-    -- -- Control variable to prevent playing the sound multiple times.
-    -- if not playingWarningSound then
-      -- animator.playSound("warning", -1)
-      -- playingWarningSound = true
-    -- end
-    -- -- Cap the ratio at warningSoundRatioRange[2]
-    -- local cappedRatio = math.min(ratio, warningSoundRatioRange[2])
-    
-    -- -- Determine ratio to use when lerping pitch and volume.
-    -- local controlProgress = (cappedRatio - warningSoundRatioRange[1]) 
-        -- / (warningSoundRatioRange[2] - warningSoundRatioRange[1])
-    -- animator.setSoundPitch("warning", util.lerp(controlProgress, warningSoundPitchRange[1], warningSoundPitchRange[2]))
-    -- animator.setSoundVolume("warning", util.lerp(controlProgress, warningSoundVolumeRange[1], warningSoundVolumeRange[2]))
-  -- else
-    -- if playingWarningSound then
-      -- animator.stopAllSounds("warning")
-      -- playingWarningSound = false
-    -- end
-  -- end
   if ratio > warningSoundRatioRange[1] then
     warningSoundTimer = warningSoundTimer - dt
     

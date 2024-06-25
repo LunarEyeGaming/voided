@@ -1,6 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/interp.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-animator.lua"
 
 -- Base gun fire ability
 HarpoonGunFire = WeaponAbility:new()
@@ -199,7 +199,7 @@ function HarpoonGunFire:renderChain(endPos)
   if self.anchored then
     newChain = copy(self.chainAnchored)
     
-    local frame = voidedUtil.frameNumber(self.frameTimer, self.anchoredChainFrameCycle, 1, self.anchoredChainNumFrames)
+    local frame = vAnimator.frameNumber(self.frameTimer, self.anchoredChainFrameCycle, 1, self.anchoredChainNumFrames)
 
     newChain.startSegmentImage = util.replaceTag(newChain.startSegmentImage, "frame", frame)
     newChain.segmentImage = util.replaceTag(newChain.segmentImage, "frame", frame)

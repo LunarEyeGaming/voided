@@ -167,18 +167,6 @@
                 {
                  "gid":2147491480,
                  "height":48,
-                 "id":707,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":120,
-                 "x":624,
-                 "y":152
-                }, 
-                {
-                 "gid":2147491480,
-                 "height":48,
                  "id":708,
                  "name":"",
                  "rotation":0,
@@ -320,7 +308,7 @@
                  "name":"v-livingmushroom1 (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-livingmushroom1\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "parameters":"{\"monsterType\" : \"v-livingmushroom1\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1, \"silent\" : true}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":

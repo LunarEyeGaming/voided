@@ -1,6 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-animator.lua"
 
 -- script name: v-electricpairingtrap
 local pairingRadius
@@ -213,7 +213,7 @@ function drawLightning(cfg, progress, startPos, endPos)
   local cfgCopy = copy(cfg)
 
   cfgCopy.displacement = util.lerp(progress, cfg.startDisplacement, cfg.endDisplacement)
-  cfgCopy.color = voidedUtil.lerpColor(progress, cfg.startColor, cfg.endColor)
+  cfgCopy.color = vAnimator.lerpColor(progress, cfg.startColor, cfg.endColor)
   cfgCopy.worldStartPosition = startPos
   cfgCopy.worldEndPosition = endPos
 

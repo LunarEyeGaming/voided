@@ -1,4 +1,4 @@
-require "/scripts/voidedutil.lua"
+require "/scripts/v-animator.lua"
 
 local pulseOpacity
 local pulseDarkColor
@@ -22,9 +22,9 @@ function update(dt)
   pulseTimer = pulseTimer + dt
   
   if pulseTimer < halfPulsePeriod then
-    updatePulseColor(voidedUtil.lerpColorRGB(pulseTimer / halfPulsePeriod, pulseDarkColor, pulseBrightColor))
+    updatePulseColor(vAnimator.lerpColorRGB(pulseTimer / halfPulsePeriod, pulseDarkColor, pulseBrightColor))
   elseif pulseTimer < halfPulsePeriod * 2 then
-    updatePulseColor(voidedUtil.lerpColorRGB(2 - pulseTimer / halfPulsePeriod, pulseDarkColor, pulseBrightColor))
+    updatePulseColor(vAnimator.lerpColorRGB(2 - pulseTimer / halfPulsePeriod, pulseDarkColor, pulseBrightColor))
   else
     pulseTimer = 0
     updatePulseColor(pulseDarkColor)

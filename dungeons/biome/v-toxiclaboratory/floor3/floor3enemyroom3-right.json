@@ -1342,7 +1342,7 @@
                  "name":"switch reset (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"\", \"waveNumber\" : 2}",
+                     "parameters":"{\"messageType\" : \"\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -1389,7 +1389,7 @@
          "name":"anchors etc",
          "objects":[
                 {
-                 "gid":7681,
+                 "gid":7683,
                  "height":8,
                  "id":790,
                  "name":"",
@@ -1401,7 +1401,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":7681,
+                 "gid":7683,
                  "height":8,
                  "id":791,
                  "name":"",
@@ -1547,7 +1547,7 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }, 
         {
-         "firstgid":7680,
+         "firstgid":7682,
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }],
  "tilewidth":8,

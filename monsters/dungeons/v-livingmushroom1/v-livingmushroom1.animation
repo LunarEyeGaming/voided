@@ -3,8 +3,18 @@
     "stateTypes" : {
       "body" : {
         "priority" : 0,
-        "default" : "idle",
+        "default" : "invisible",
         "states" : {
+          "invisible" : {},
+          "appear" : {
+            "frames" : 10,
+            "cycle" : 1,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_livingmushroom1_appear.ogg"
+            }
+          },
           "idle" : {
             "frames" : 1,
             "cycle" : 1,
@@ -50,6 +60,11 @@
         },
         "partStates" : {
           "body" : {
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
+              }
+            },
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"

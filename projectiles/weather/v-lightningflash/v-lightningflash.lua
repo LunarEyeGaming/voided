@@ -1,5 +1,5 @@
 require "/scripts/vec2.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-animator.lua"
 
 --[[
   Creates a giant light source on destruction (which consists of a grid of particles that emit the light source). The
@@ -55,7 +55,7 @@ function destroy()
         if inBackground then
           light = lightColor
         else
-          light = voidedUtil.lerpColorRGB(1 - distance / lightSize, {0, 0, 0}, lightColor)
+          light = vAnimator.lerpColorRGB(1 - distance / lightSize, {0, 0, 0}, lightColor)
         end
 
         table.insert(actions, {

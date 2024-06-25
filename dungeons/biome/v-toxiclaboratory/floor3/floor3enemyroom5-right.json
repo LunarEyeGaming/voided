@@ -1417,7 +1417,7 @@
                  "name":"glass shatter reset trigger (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"\", \"waveNumber\" : 2}",
+                     "parameters":"{\"messageType\" : \"\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -1451,6 +1451,27 @@
                  "visible":true,
                  "width":24,
                  "x":800,
+                 "y":112
+                }, 
+                {
+                 "height":32,
+                 "id":805,
+                 "name":"hole reset trigger (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"messageType\" : \"\", \"waveNumber\" : 2}",
+                     "stagehand":"v-wavetrigger"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":792,
                  "y":112
                 }],
          "opacity":1,
@@ -1524,7 +1545,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":805,
+ "nextobjectid":806,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

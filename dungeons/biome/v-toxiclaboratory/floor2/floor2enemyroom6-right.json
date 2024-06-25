@@ -526,7 +526,7 @@
                  "name":"Detonator Reset Trigger (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"\", \"waveNumber\" : 2}",
+                     "parameters":"{\"messageType\" : \"\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -673,7 +673,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":738,
+ "nextobjectid":739,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

@@ -1,4 +1,5 @@
 require "/scripts/behavior/bdata.lua"
+require "/scripts/util.lua"
 require "/scripts/voidedutil.lua"
 
 function _anyTypeTable(value)
@@ -178,21 +179,23 @@ end
 function v_listRemove(args, board)
   if args.targetList == nil then return false end
 
+  local list = copy(args.targetList)
+
   -- Find the right type of item to remove.
   for _,type in pairs(ListTypes) do
     if args[type] then
       -- Try to remove the item by searching for it.
-      for i, v in ipairs(args.targetList) do
+      for i, v in ipairs(list) do
         if _deepEquals(args[type], v) then
           -- Remove the item
-          table.remove(args.targetList, i)
+          table.remove(list, i)
           -- Return success.
           return true, {list = list}
         end
       end
     end
   end
-  
+
   -- Removing the list failed.
   return false
 end

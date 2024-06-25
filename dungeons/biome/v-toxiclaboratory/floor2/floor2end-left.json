@@ -1,30 +1,30 @@
 { "backgroundcolor":"#000000",
- "height":18,
+ "height":35,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJx7w8DA8GYIYw4q4lGzR80eNXvU7KFo9lDDAHBzkME=",
+         "data":"eJztl8ERhCAMRdOJZy9blhVsAXuxha3C0rxtAzsemEEmCfkJDB44\/NEJEp5fAngSfc4pWL\/smkt6tmyz9LNy1GR9zsMTGaM1T8\/xER6t32u5a2diUtzDY+VAWTQehOPbUBFfuPfz+sL5Y50vXJ6VfJJ4EE82IroU4ViZXOg3KvsfFe8lHQ6Wmi8pJzJXLSwcz5NZ9kIp55vsylnyGFrXrX3Jhe5FPb8RuidOFozFu75E5ktZR0j9cPWE1pHmS3RvbLnWpfuka8wyJsVRFm594d7Ly4KeG556fhl9rkP86XnelXyReEb9B\/QSuuaNZtG4NFapTcoZYdHakT5TmP4y0Ld5",
          "encoding":"base64",
-         "height":18,
+         "height":35,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
          "visible":true,
-         "width":23,
+         "width":35,
          "x":0,
          "y":0
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYBjagIOKeCDMpgSMmj18zCbVzlGzaWv2UCtPhhoAABb9A1E=",
+         "data":"eJztl8ENwyAMRb1Jz71krE6QAXrJCl00C7SoQkotbPxtKByw9BVkAjw+ISFEKzxxEj3z9SrpXl5naWflqMl6n4cnMkZrnp7jIzxau+32q6OQk\/IeHisHyqLxIByvhor4Upqf15eSP9bnpdTPnXBpPIgnj08+KZW1OdSC94Wu0UiWUb6UeGZmOZiiLDt9ZWHhTC198USvNYpwLJY5WTgP30d7QJ59pPkS\/Ta2fNflclYak+ekPMrCmaR5eVnQc8Os55fR5zrEn57nXckXiWfUf0Av1dbnn0wWFo1LY5XqpD4jLFo90mYFFm\/GPd0P",
          "encoding":"base64",
-         "height":18,
+         "height":35,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":23,
+         "width":35,
          "x":0,
          "y":0
         }, 
@@ -45,18 +45,6 @@
          "name":"objects",
          "objects":[
                 {
-                 "gid":5960,
-                 "height":40,
-                 "id":680,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":48,
-                 "x":136,
-                 "y":112
-                }, 
-                {
                  "gid":6592,
                  "height":8,
                  "id":681,
@@ -65,8 +53,28 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":80,
-                 "y":40
+                 "x":128,
+                 "y":96
+                }, 
+                {
+                 "gid":7771,
+                 "height":32,
+                 "id":684,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"projectileOptions\" : [ {\"projectileType\" : \"v-subdepthpoisonstatusprojectile2\", \"projectileParams\" : { } } ], \"activationTime\" : 2147483647 }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":88,
+                 "y":168
                 }, 
                 {
                  "gid":6182,
@@ -75,7 +83,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"initialItems\" : [{\"name\" : \"v-keycard2\", \"count\" : 1}]}"
+                     "parameters":"{\"initialItems\" : [{\"name\" : \"v-keycard1\", \"count\" : 1}]}"
                     },
                  "propertytypes":
                     {
@@ -85,8 +93,20 @@
                  "type":"",
                  "visible":true,
                  "width":40,
-                 "x":72,
-                 "y":112
+                 "x":120,
+                 "y":168
+                }, 
+                {
+                 "gid":5979,
+                 "height":40,
+                 "id":688,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":192,
+                 "y":168
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -142,36 +162,16 @@
          "name":"anchors etc",
          "objects":[
                 {
-                 "gid":7771,
-                 "height":32,
-                 "id":685,
-                 "name":"",
-                 "properties":
-                    {
-                     "parameters":"{ \"projectileOptions\" : [ {\"projectileType\" : \"v-subdepthpoisonstatusprojectile2\", \"projectileParams\" : { } } ], \"activationTime\" : 2147483647 }"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":40,
-                 "y":112
-                }, 
-                {
                  "gid":249,
                  "height":8,
-                 "id":686,
+                 "id":690,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":168,
-                 "y":96
+                 "x":232,
+                 "y":152
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -189,7 +189,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":688,
+ "nextobjectid":691,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -302,9 +302,13 @@
         {
          "firstgid":7670,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/other.json"
+        }, 
+        {
+         "firstgid":7982,
+         "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedcoloredvanillamats.json"
         }],
  "tilewidth":8,
  "type":"map",
  "version":1,
- "width":23
+ "width":35
 }

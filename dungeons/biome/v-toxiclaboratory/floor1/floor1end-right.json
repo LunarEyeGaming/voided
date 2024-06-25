@@ -1,30 +1,30 @@
 { "backgroundcolor":"#000000",
- "height":18,
+ "height":35,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJx7w8DA8GYIYw4q4lGzR80eNXvU7KFo9lDDAHBzkME=",
+         "data":"eJztl8ENwzAIRdmk51w6VifIAL1khU6R0XzLAlVUWWoRmA+2E0vp4UsRjp1njIEkIkp\/ubQxSWPoPO3dCIcldE5vjijzmRweH5Xm3W+\/WgSbZo\/woBxelhKPh+XVUDU80v6iftH8g8QMX2OimCwe1CcPoueuGpZJWAvxTYllNXyvaTVYkLjVWDyxirBIPKOzzPTR95rZhijPW5g8dykJsdHDL2h9POqMRmJBz2gkFileWueXyD3y3B+u0j2K5Lra2tgy7+bnrP2b3KbZW9QjaV9RFqlOWzE7Sv9yRl\/nYdH8U9vves7H4un9H2Dx9NAILEhNRPPyVrBrY2iP4OHk66I5qyXLlfQGatyU2w==",
          "encoding":"base64",
-         "height":18,
+         "height":35,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
          "visible":true,
-         "width":23,
+         "width":35,
          "x":0,
          "y":0
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYBjagIOKeCDMpgSMmj04zKYGGDV7cJg9VMuToQYAAb0DUQ==",
+         "data":"eJztl80NgzAMhb0J5146FhN0gF5YgUVZoIqqHBr5346cSjzpSZEh4YshTgC4ZdU1GLum7Ufd6+GQrO0zm8PLXMlhyRHX77n9+kBiVNzDo+WwsnA8FpYz0REebH7evFD54cRxPMBuiUebkx3g3dzaEY1jaXJTwSJxVOdldZYXfB1lOQZb1lK2qLxUyPrtVrGs8o7+gUVaR73tMbeOMEn1Jbo3Ztbd3u5uzxxjVDxjP8Lm5WXB9mlJq5xfKs51FhYqP9HzriSKBeOZ\/R8g8czwCiwaaevyxcSpa5mixtXWrFs+fQDBCdKA",
          "encoding":"base64",
-         "height":18,
+         "height":35,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":23,
+         "width":35,
          "x":0,
          "y":0
         }, 
@@ -45,18 +45,6 @@
          "name":"objects",
          "objects":[
                 {
-                 "gid":5960,
-                 "height":40,
-                 "id":680,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":48,
-                 "x":0,
-                 "y":112
-                }, 
-                {
                  "gid":6592,
                  "height":8,
                  "id":681,
@@ -65,8 +53,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":80,
-                 "y":40
+                 "x":128,
+                 "y":96
                 }, 
                 {
                  "gid":7771,
@@ -85,8 +73,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":128,
-                 "y":112
+                 "x":176,
+                 "y":168
                 }, 
                 {
                  "gid":2147489830,
@@ -105,8 +93,20 @@
                  "type":"",
                  "visible":true,
                  "width":40,
-                 "x":72,
-                 "y":112
+                 "x":120,
+                 "y":168
+                }, 
+                {
+                 "gid":5979,
+                 "height":40,
+                 "id":688,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":40,
+                 "y":168
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -170,8 +170,8 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":8,
-                 "y":96
+                 "x":40,
+                 "y":152
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -189,7 +189,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":688,
+ "nextobjectid":689,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -302,9 +302,13 @@
         {
          "firstgid":7670,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/other.json"
+        }, 
+        {
+         "firstgid":7982,
+         "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedcoloredvanillamats.json"
         }],
  "tilewidth":8,
  "type":"map",
  "version":1,
- "width":23
+ "width":35
 }

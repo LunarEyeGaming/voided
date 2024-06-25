@@ -12,5 +12,6 @@
   "messageType" : null,  // The type of message to send
   "messageArgs" : [],  // The arguments to send in addition to the message
   "waveNumber" : 1,  // Which wave to activate the trigger
-  "targetOptions" : { "includedTypes" : [ "object" ] }  // The options for querying the targets.
+  "targetOptions" : { "includedTypes" : [ "object" ] },  // The options for querying the targets.
+  "resetOnSubsequentWaves" : false
 }

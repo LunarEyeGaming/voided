@@ -1,6 +1,6 @@
 require "/items/active/weapons/weapon.lua"
 require "/scripts/util.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-animator.lua"
 
 ProximityZap = WeaponAbility:new()
 
@@ -37,7 +37,7 @@ function ProximityZap:fire()
 
   local timer = 0
   util.wait(self.stances.fire.duration, function(dt)
-    local color = voidedUtil.lerpColor(timer / self.stances.fire.duration, self.lightningConfig.startColor, self.lightningConfig.endColor)
+    local color = vAnimator.lerpColor(timer / self.stances.fire.duration, self.lightningConfig.startColor, self.lightningConfig.endColor)
     self:drawLightning(endPositions, color)
     timer = timer + dt
   end)

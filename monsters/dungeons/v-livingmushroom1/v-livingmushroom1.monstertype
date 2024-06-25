@@ -35,6 +35,24 @@
 
       "hurtWaitForGround" : false,
 
+      "spawnActions" : [
+        {
+          "name" : "v-action-briefwallsit"
+        },
+        {
+          "name" : "action-invulnerable",
+          "parameters" : {
+            "windupTime" : 0,
+            "windupState" : "",
+            "invulnerableState" : "appear",
+            "winddownTime" : 0,
+            "winddownState" : "idle",
+
+            "invulnerableTime" : 1.5
+          }
+        }
+      ],
+
       "wanderActions" : [
         {
           "name" : "action-stop",
@@ -173,10 +191,10 @@
     "scale" : 1.0,
 
     "movementSettings" : {
-      "collisionPoly" : [[2, 2], [2, -2], [-2, -2], [-2, 2]],
+      "collisionPoly" : [[2.0, 0.828], [0.828, 2.0], [-0.828, 2.0], [-2.0, 0.828], [-2.0, -0.828], [-0.828, -2.0], [0.828, -2.0], [2.0, -0.828]],
 
       "mass" : 2.0,
-      "walkSpeed" : 4,
+      "walkSpeed" : 0,
       "runSpeed" : 12,
       "gravityEnabled" : false,
 

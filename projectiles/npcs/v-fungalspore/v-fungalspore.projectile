@@ -1,8 +1,9 @@
 {
   "projectileName" : "v-fungalspore",
   "image" : "fungalspore.png",
-  "animationCycle" : 0.4,
+  "animationCycle" : 0.25,
   "frameNumber" : 4,
+  "flippable" : true,
   "damageKindImage" : "icon.png",
   "physics" : "default",
   "emitters" : [ ],
@@ -11,31 +12,58 @@
   "damageType" : "NoDamage",
   "speed" : 1,
   "acceleration" : 10,
-  /* "periodicActions" : [
+  "periodicActions" : [
     {
-      "time" : 0.03,
+      "time" : 0.0,
+      "repeat" : false,
+      "action" : "loop",
+      "count" : 20,
+      "body" : [
+        {
+          "action" : "particle",
+          "rotate" : true,
+          "specification" : {
+            "type" : "ember",
+            "size" : 2,
+            "color" : [155, 186, 61],
+            "position" : [0, 0],
+            "destructionAction" : "fade",
+            "destructionTime" : 0.5,
+            "fade" : 1,
+            "layer" : "middle",
+            "timeToLive" : 0.5,
+            "variance" : {
+              "initialVelocity" : [5.0, 5.0],
+              "position" : [1.0, 1.0],
+              "size" : 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "time" : 0.04,
+      "repeat" : true,
       "action" : "particle",
       "rotate" : true,
       "specification" : {
-        "type" : "textured",
-        "image" : "/projectiles/activeitems/ancientlasershot/essence.png",
+        "type" : "ember",
+        "size" : 2,
+        "color" : [155, 186, 61],
         "position" : [0, 0],
-        "initialVelocity" : [0, 0],
-        "finalVelocity" : [0, 0],
-        "fullbright" : true,
-        "layer" : "middle",
         "destructionAction" : "fade",
-        "timeToLive" : 0,
-        "size" : 0.5,
         "destructionTime" : 0.5,
+        "fade" : 1,
+        "layer" : "middle",
+        "timeToLive" : 0.5,
         "variance" : {
-          "size" : 0.25,
-          "initialVelocity" : [2, 2],
-          "rotation" : 180
+          "initialVelocity" : [2.0, 2.0],
+          "position" : [1.0, 1.0],
+          "size" : 1
         }
       }
     }
-  ], */
+  ],
   "actionOnReap" : [
     {
       "action" : "config",

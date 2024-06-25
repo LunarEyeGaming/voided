@@ -70,6 +70,7 @@ function init()
   end
   
   spawnTimer = spawnInterval
+  prevHOffset = 0
   hOffset = gapSize
 
   leftStopped = false
@@ -102,6 +103,7 @@ function update(dt)
 
     spawnTimer = spawnInterval  -- Reset timer
 
+    prevHOffset = hOffset  -- Record previous horizontal offset
     hOffset = hOffset + gapSize  -- Nudge horizontal offset
     
     -- If the horizontal offset exceeds waveSize or both leftStopped and rightStopped are true...
@@ -136,56 +138,66 @@ end
   param (boolean) isLeft: whether or not the projectile spawns on the left side
 ]]
 function spawnWaveProjectile(isLeft)
-  local sidedHOffset = isLeft and -hOffset or hOffset  -- -hOffset if isLeft, hOffset otherwise
+  local direction = isLeft and -1 or 1
   -- If isLeft is true and left side has not stopped or isLeft is false and right side has not stopped...
   if (isLeft and not leftStopped) or (not isLeft and not rightStopped) then
-    local prevCollisionPoint = isLeft and prevCollisionPointLeft or prevCollisionPointRight
-    -- The midpoint of the collision test points.
-    local center = vec2.add(mcontroller.position(), isLeft and prevHeightLeft or prevHeightRight)
-
-    -- Get upper collision test point by forming a vector that acts as if the ground normal is {1, 0} (so x and y are
-    -- swapped), rotating it by groundNormalAngle, and adding the center to it to get the absolute position.
-    local collisionPointTop = vec2.add(vec2.rotate({maxHeight, sidedHOffset}, groundNormalAngle), center)
-    local collisionPointMid = vec2.add(vec2.rotate({0, sidedHOffset}, groundNormalAngle), center)
-    -- Get the other collision test point by repeating the previous instructions like so (but for minHeight instead).
-    local collisionPointBottom = vec2.add(vec2.rotate({minHeight, sidedHOffset}, groundNormalAngle), center)
-    
-    -- Run two collision tests. One from middle to bottom and another from top to middle. This favors downward-moving 
-    -- terrain.
-    local collisionPoint = world.lineCollision(collisionPointMid, collisionPointBottom)
-    -- If a collision point is not defined or the wave runs into a barrier while going downward...
-    if not collisionPoint or ranIntoBarrier(collisionPoint, prevCollisionPoint, 0.25) then
-      collisionPoint = world.lineCollision(collisionPointTop, collisionPointMid)
-    end
-
-    -- If the collision point is defined and the wave has not run into a barrier...
-    if collisionPoint and not ranIntoBarrier(collisionPoint, prevCollisionPoint, 0.25) then
-      -- Aim vector is -90 degrees from the normal, plus a random float value from -waveFuzzAngle / 2 to waveFuzzAngle 
-      -- / 2
-      local aimVector = vec2.rotate(groundNormal, -math.pi / 2 + math.random() * waveFuzzAngle - waveFuzzAngle / 2)
-      world.spawnProjectile(projectileType, collisionPoint, projectile.sourceEntity(), aimVector, false,
-          projectileParameters)
+    -- Go through each column from the previous hOffset up to hOffset, block by block
+    for i = prevHOffset + 1, hOffset do
+      local prevCollisionPoint = isLeft and prevCollisionPointLeft or prevCollisionPointRight
+      -- The midpoint of the collision test points.
+      local center = vec2.add(mcontroller.position(), isLeft and prevHeightLeft or prevHeightRight)
       
-      -- The prev height vector is the projection of the distance from the current projectile's position to the
-      -- collision point onto the ground normal.
-      local prevHeight = projectVector(world.distance(collisionPoint, mcontroller.position()), groundNormal)
-
-      -- Set prevHeightLeft or prevHeightRight, depending on direction.
-      if isLeft then
-        prevHeightLeft = prevHeight
-        prevCollisionPointLeft = collisionPoint
-      else
-        prevHeightRight = prevHeight
-        prevCollisionPointRight = collisionPoint
+      -- Get upper collision test point by forming a vector that acts as if the ground normal is {1, 0} (so x and y are
+      -- swapped), rotating it by groundNormalAngle, and adding the center to it to get the absolute position.
+      local collisionPointTop = vec2.add(vec2.rotate({maxHeight, direction * i}, groundNormalAngle), center)
+      -- Get the other collision tests point by repeating the previous instructions like so (but for 0 and minHeight 
+      -- respectively).
+      local collisionPointMid = vec2.add(vec2.rotate({0, direction * i}, groundNormalAngle), center)
+      local collisionPointBottom = vec2.add(vec2.rotate({minHeight, direction * i}, groundNormalAngle), center)
+      
+      -- Run two collision tests. One from middle to bottom and another from top to middle. This favors downward-moving 
+      -- terrain.
+      local collisionPoint = world.lineCollision(collisionPointMid, collisionPointBottom)
+      -- If a collision point is not defined or the wave runs into a barrier while going downward...
+      if not collisionPoint or ranIntoBarrier(collisionPoint, prevCollisionPoint, 0.25) then
+        collisionPoint = world.lineCollision(collisionPointTop, collisionPointMid)
       end
-    else
-      -- If this is the left side...
-      if isLeft then
-        -- Left is stopped.
-        leftStopped = true
+      
+      -- If the collision point is defined and the wave has not run into a barrier...
+      if collisionPoint and not ranIntoBarrier(collisionPoint, prevCollisionPoint, 0.25) then
+        -- If this is the last point in the offset...
+        if i == hOffset then
+          -- Aim vector is -90 degrees from the normal, plus a random float value from -waveFuzzAngle / 2 to
+          -- waveFuzzAngle / 2
+          local aimVector = vec2.rotate(groundNormal, -math.pi / 2 + math.random() * waveFuzzAngle - waveFuzzAngle / 2)
+          world.spawnProjectile(projectileType, collisionPoint, projectile.sourceEntity(), aimVector, false,
+              projectileParameters)
+        end
+        
+        -- The prev height vector is the projection of the distance from the current projectile's position to the
+        -- collision point onto the ground normal.
+        local prevHeight = projectVector(world.distance(collisionPoint, mcontroller.position()), groundNormal)
+
+        -- Set prevHeightLeft or prevHeightRight, depending on direction.
+        if isLeft then
+          prevHeightLeft = prevHeight
+          prevCollisionPointLeft = collisionPoint
+        else
+          prevHeightRight = prevHeight
+          prevCollisionPointRight = collisionPoint
+        end
       else
-        -- Right is stopped
-        rightStopped = true
+        -- If this is the left side...
+        if isLeft then
+          -- Left is stopped.
+          leftStopped = true
+        else
+          -- Right is stopped
+          rightStopped = true
+        end
+
+        -- Exit the loop
+        break
       end
     end
   end

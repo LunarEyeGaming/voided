@@ -64,7 +64,14 @@
   "spawnerProjectileOffset" : [0.5, 0.5],
   
   "gracePeriod" : 30.0,
-  "gracePeriodRadioMessages" : [ "v-cityspawnertutorial", "v-cityspawnertutorial2" ],
+  "gracePeriodRadioMessages" : [ "v-labspawnertutorial", "v-labspawnertutorial2" ],
+  "gracePeriodPaletteSwap" : {
+    "1b4c2a" : "320c40",
+    "48832f" : "6a2284",
+    "9bba3d" : "a451c4",
+    "d1e160" : "d29ce7"
+  },
+  "gracePeriodPaletteSwapTime" : 1.0,
   
   "builder" : "/items/buildscripts/v-builditem.lua"
 }
