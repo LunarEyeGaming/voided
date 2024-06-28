@@ -1,0 +1,57 @@
+{
+  "globalTagDefaults" : {
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "reactor" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 14,
+            "cycle" : 1.4,
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/objects/terraforge_loop2.ogg",
+              "persistentSoundRangeMultiplier" : 3.0
+            }
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "reactor" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : true
+        },
+
+        "partStates" : {
+          "reactor" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      },
+      "reactorlit" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1
+        },
+
+        "partStates" : {
+          "reactor" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

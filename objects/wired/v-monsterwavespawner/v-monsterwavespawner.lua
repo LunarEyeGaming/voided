@@ -98,7 +98,7 @@ end
   team to be outside of it.
 ]]
 function states.wait()
-  -- While no "friendly" creatures are in the arena or at least one "friendly" creature is outside the arena, do 
+  -- While no "friendly" creatures are in the arena or at least one "friendly" creature is outside the arena, do
   -- nothing.
   while not friendlyInsideRegion(interiorRegion) or friendlyInsideRegions(exteriorRegions) do
     coroutine.yield()
@@ -115,7 +115,7 @@ end
   Spawns waves of enemies one by one. Waits until the current wave is cleared to spawn the next one, and repeats until
   all waves have been cleared. Once this is the case, the object permanently deactivates and will never spawn monsters
   again. However, if no friendlies are present in the arena anymore (i.e. died), then the object will despawn all
-  monsters and reset itself. 
+  monsters and reset itself.
 ]]
 function states.waves()
   util.wait(firstWaveDelay)
@@ -426,7 +426,7 @@ function activateTriggers(waveTriggers)
     local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
 
     -- Make the trigger send the messages (no error handler this time).
-    vWorldA.sendEntityMessageToTargets(triggerSuccessHandler, function() end, targets, trigger.messageType, 
+    vWorldA.sendEntityMessageToTargets(triggerSuccessHandler, function() end, targets, trigger.messageType,
         table.unpack(trigger.messageArgs))
   end
 
@@ -473,7 +473,7 @@ end
 
 --[[
   Returns true if at least one creature with a friendly damage team is inside the given region and false otherwise.
-  
+
   region: A pair of Vec2F's
 ]]
 function friendlyInsideRegion(region)
@@ -490,9 +490,9 @@ function friendlyInsideRegion(region)
 end
 
 --[[
-  Returns true if at least one creature with a friendly damage team is inside at least one of the given regions and 
+  Returns true if at least one creature with a friendly damage team is inside at least one of the given regions and
   false otherwise.
-  
+
   regions: A list of Vec2F pairs
 ]]
 function friendlyInsideRegions(regions)
@@ -560,7 +560,7 @@ end
 
 --[[
   A function called for each tick spent while a wave is in progress.
-  
+
   param waveNum: the current wave number
   param dt: tick duration
 ]]
@@ -584,7 +584,7 @@ end
 
 --[[
   A function called when the object enters a grace period prior to the waves starting. This function is called before
-  onWavesStart() is called. The grace period will always start after the spawner resets itself due to friendlies 
+  onWavesStart() is called. The grace period will always start after the spawner resets itself due to friendlies
   leaving the area (by any means) at least once.
 ]]
 function onGracePeriodStart()
@@ -593,7 +593,7 @@ end
 
 --[[
   A function called each tick while the spawner is in the grace period.
-  
+
   param dt: tick duration
 ]]
 function onGracePeriodTick(dt)

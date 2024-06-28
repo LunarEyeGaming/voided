@@ -1,0 +1,75 @@
+{
+  "globalTagDefaults" : {
+    "doorProgress" : "1"
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "doorState" : {
+        "default" : "unlocked",
+        "states" : {
+          "unlocked" : {},
+          "locking" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "locked"
+          },
+          "locked" : {},
+          "unlocking" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "unlocked"
+          }
+        }
+      }
+    },
+    "parts" : {
+      "hole" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : false,
+          "zLevel" : 1,
+          "offset" : [0, 0],
+          "image" : "<partImage>"
+        }
+      },
+      "door" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : false,
+          "transformationGroups" : ["door"],
+          "offset" : [0, 0]
+        },
+        "partStates" : {
+          "doorState" : {
+            "unlocked" : {
+              "properties" : {
+                "image" : "<partImage>:unlocked.<frame>"
+              }
+            },
+            "locking" : {
+              "properties" : {
+                "image" : "<partImage>:locking.<frame>"
+              }
+            },
+            "locked" : {
+              "properties" : {
+                "image" : "<partImage>:locked.<frame>"
+              }
+            },
+            "unlocking" : {
+              "properties" : {
+                "image" : "<partImage>:unlocking.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "door" : {"interpolated" : true}
+  }
+}

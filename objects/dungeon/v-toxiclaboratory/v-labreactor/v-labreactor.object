@@ -1,0 +1,101 @@
+{
+  "objectName" : "v-labreactor",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "price" : 50,
+  "printable" : false,
+  "shortdescription" : "Lab Reactor",
+  "description" : "<todo>",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "race" : "generic",
+  "category" : "decorative",
+
+  "lightColor" : [196, 196, 245],
+
+  "flickerPeriod" : 0.75,
+  "flickerMinIntensity" : 0.8,
+  "flickerMaxIntensity" : 0.9,
+  "flickerPeriodVariance" : 0.25,
+  "flickerIntensityVariance" : 0.1,
+
+  "inventoryIcon" : "labreactor.png:default",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "labreactor.png:<frame>", "fullbright" : true }, { "image" : "labreactorlit.png:<frame>" } ],
+      "flipImages" : true,
+      "direction" : "left",
+      "imagePosition" : [-56, 0],
+      "animationParts" : {
+        "reactor" : "labreactor.png",
+        "reactorlit" : "labreactorlit.png"
+      },
+      "animationPosition" : [-56, 0],
+
+      "lightPosition" : [0, 15.5],
+
+      "spaceScan" : 0.1,
+      "materialSpaces" : [
+        [ [-7, 11], "outpostplatform" ],
+        [ [-6, 11], "outpostplatform" ],
+        [ [-5, 11], "outpostplatform" ],
+        [ [-4, 11], "outpostplatform" ],
+        [ [-3, 11], "outpostplatform" ],
+        [ [-2, 11], "outpostplatform" ],
+        [ [-1, 11], "outpostplatform" ],
+        [ [0, 11], "outpostplatform" ],
+        [ [1, 11], "outpostplatform" ],
+        [ [2, 11], "outpostplatform" ],
+        [ [3, 11], "outpostplatform" ],
+        [ [4, 11], "outpostplatform" ],
+        [ [5, 11], "outpostplatform" ],
+        [ [6, 11], "outpostplatform" ],
+        [ [7, 11], "outpostplatform" ]
+      ],
+      "anchors" : [ "bottom", "top" ],
+      "renderLayer" : "Platform-10"
+    },
+    {
+      "imageLayers" : [ { "image" : "labreactor.png:<frame>", "fullbright" : true }, { "image" : "labreactorlit.png:<frame>" } ],
+      "direction" : "right",
+      "imagePosition" : [-56, 0],
+      "animationParts" : {
+        "reactor" : "labreactor.png",
+        "reactorlit" : "labreactorlit.png"
+      },
+      "animationPosition" : [-56, 0],
+
+      "lightPosition" : [0, 15.5],
+
+      "spaceScan" : 0.1,
+      "materialSpaces" : [
+        [ [-7, 11], "outpostplatform" ],
+        [ [-6, 11], "outpostplatform" ],
+        [ [-5, 11], "outpostplatform" ],
+        [ [-4, 11], "outpostplatform" ],
+        [ [-3, 11], "outpostplatform" ],
+        [ [-2, 11], "outpostplatform" ],
+        [ [-1, 11], "outpostplatform" ],
+        [ [0, 11], "outpostplatform" ],
+        [ [1, 11], "outpostplatform" ],
+        [ [2, 11], "outpostplatform" ],
+        [ [3, 11], "outpostplatform" ],
+        [ [4, 11], "outpostplatform" ],
+        [ [5, 11], "outpostplatform" ],
+        [ [6, 11], "outpostplatform" ],
+        [ [7, 11], "outpostplatform" ]
+      ],
+      "anchors" : [ "bottom", "top" ],
+      "renderLayer" : "Platform-10"
+    }
+  ],
+
+  "animation" : "v-labreactor.animation"
+}

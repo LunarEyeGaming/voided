@@ -14,7 +14,7 @@
     "scripts" : [
       "/monsters/monster.lua"
     ],
-    
+
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 1,
 
@@ -69,13 +69,13 @@
           }
         }
       ],
-      
+
       "concurrentActions" : [
         {
           "name" : "idle-crawl"
         }
       ],
-      
+
       "concurrentHostileActions" : [
         {
           "name" : "idle-crawl"
@@ -101,7 +101,7 @@
     "scale" : 1.0,
 
     "movementSettings" : {
-      "collisionPoly" : [[2, 2], [2, -2], [-2, -2], [-2, 2]],
+      "collisionPoly" : [[2.0, 0.828], [0.828, 2.0], [-0.828, 2.0], [-2.0, 0.828], [-2.0, -0.828], [-0.828, -2.0], [0.828, -2.0], [2.0, -0.828]],
 
       "mass" : 2.0,
       "walkSpeed" : 4,

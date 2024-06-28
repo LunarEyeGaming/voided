@@ -93,7 +93,7 @@ end
 
 function onWavesStart()
   -- Clear palette swap
-  animator.setPartTag("display", "paletteSwap", "")
+  animator.setPartTag("base", "paletteSwap", "")
 end
 
 function onWaveEnd(waveNum)
