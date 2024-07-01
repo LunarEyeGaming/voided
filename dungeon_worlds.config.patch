@@ -63,9 +63,39 @@
   },
   {
     "op" : "add",
-    "path" : "/v-toxicdungeontest2",
+    "path" : "/v-toxicdungeontestfloor1",
     "value" : {
-      "primaryDungeon" : "v-toxiclaboratorytest",
+      "primaryDungeon" : "v-toxiclaboratorytestfloor1",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [4000, 3000],
+      "dungeonBaseHeight" : 400,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "",
+      "biome" : "v-toxicwasteland",
+      "environmentStatusEffects" : ["v-quickhealnerf", "v-depthpoison"]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-toxicdungeontestfloor2",
+    "value" : {
+      "primaryDungeon" : "v-toxiclaboratorytestfloor2",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [4000, 3000],
+      "dungeonBaseHeight" : 400,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "",
+      "biome" : "v-toxicwasteland",
+      "environmentStatusEffects" : ["v-quickhealnerf", "v-depthpoison"]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-toxicdungeontestfloor3",
+    "value" : {
+      "primaryDungeon" : "v-toxiclaboratorytestfloor3",
       "threatLevel" : 8,
       "gravity" : 80,
       "worldSize" : [4000, 3000],

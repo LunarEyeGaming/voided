@@ -341,10 +341,78 @@
   },
   {
     "op" : "add",
-    "path" : "/v-toxicdungeontest2",
+    "path" : "/v-toxicdungeontestfloor1",
     "value" : {
       "type" : "FloatingDungeon",
-      "dungeonWorld" : "v-toxicdungeontest2",
+      "dungeonWorld" : "v-toxicdungeontestfloor1",
+      "beamUpRule" : "AnywhereWithWarning",
+      "disableDeathDrops" : true,
+      "seed" : 1234,
+
+      "skyParameters" : {
+        "spaceLevel" : 1500,
+        "ambientLightLevel" : [ 24, 28, 24 ],
+        "skyType" : "atmospheric",
+        "horizonImages" : [ ],
+        "dayLength" : 99999999,
+        "surfaceLevel" : 100,
+        "seed" : -5288806180628666923,
+        "skyColoring" : {
+          "mainColor" : [200, 200, 255],
+
+          "morningColors" : [[0, 0, 0], [0, 0, 0]],
+          "dayColors" : [[0, 0, 0], [0, 0, 0]],
+          "eveningColors" : [[0, 0, 0], [0, 0, 0]],
+          "nightColors" : [[0, 0, 0], [0, 0, 0]],
+
+          "morningLightColor" : [0, 0, 0],
+          "dayLightColor" : [0, 0, 0],
+          "eveningLightColor" : [0, 0, 0],
+          "nightLightColor" : [0, 0, 0]
+        }
+      }
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-toxicdungeontestfloor2",
+    "value" : {
+      "type" : "FloatingDungeon",
+      "dungeonWorld" : "v-toxicdungeontestfloor2",
+      "beamUpRule" : "AnywhereWithWarning",
+      "disableDeathDrops" : true,
+      "seed" : 1234,
+
+      "skyParameters" : {
+        "spaceLevel" : 1500,
+        "ambientLightLevel" : [ 24, 28, 24 ],
+        "skyType" : "atmospheric",
+        "horizonImages" : [ ],
+        "dayLength" : 99999999,
+        "surfaceLevel" : 100,
+        "seed" : -5288806180628666923,
+        "skyColoring" : {
+          "mainColor" : [200, 200, 255],
+
+          "morningColors" : [[0, 0, 0], [0, 0, 0]],
+          "dayColors" : [[0, 0, 0], [0, 0, 0]],
+          "eveningColors" : [[0, 0, 0], [0, 0, 0]],
+          "nightColors" : [[0, 0, 0], [0, 0, 0]],
+
+          "morningLightColor" : [0, 0, 0],
+          "dayLightColor" : [0, 0, 0],
+          "eveningLightColor" : [0, 0, 0],
+          "nightLightColor" : [0, 0, 0]
+        }
+      }
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-toxicdungeontestfloor3",
+    "value" : {
+      "type" : "FloatingDungeon",
+      "dungeonWorld" : "v-toxicdungeontestfloor3",
       "beamUpRule" : "AnywhereWithWarning",
       "disableDeathDrops" : true,
       "seed" : 1234,

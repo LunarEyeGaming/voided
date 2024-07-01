@@ -1,0 +1,315 @@
+{
+  "metadata" : {
+    "name" : "v-toxiclaboratorytestfloor3",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    // Unlike the normal variant, this one is guaranteed to include all of the rooms.
+    "anchor" : [ "entrancefloor3" ],
+    // "anchor" : [ "buildingbottom" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 1000,
+    "protected" : true
+  },
+
+  "parts" : [
+    {
+      "name" : "entrancefloor3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "entrancefloor3.json" ]
+    },
+
+    // FLOOR 3 LEFT
+    {
+      "name" : "floor3enemyroom1-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom1-left.json" ],
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom2-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom2-left.json" ],
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom3-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom3-left.json" ],
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom4-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom4-left.json" ],
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom5-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom5-left.json" ],
+      "chance" : 1000
+    },
+
+    {
+      "name" : "floor3traproom1-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3traproom1-left.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor3traproom2-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3traproom2-left.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor3traproom3-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3traproom3-left.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor3traproom4-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3traproom4-left.json" ],
+      "chance" : 50
+    },
+
+    {
+      "name" : "floor3corridor1-left",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
+          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridor1-left.json" ],
+      "chance" : 200
+    },
+    {
+      "name" : "floor3corridor2-left",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
+          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridor2-left.json" ],
+      "chance" : 200
+    },
+    {
+      "name" : "floor3corridor3-left",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
+          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridor3-left.json" ],
+      "chance" : 200
+    },
+    {
+      "name" : "floor3corridor4-left",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
+          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridor4-left.json" ],
+      "chance" : 200
+    },
+    {
+      "name" : "floor3corridor5-left",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
+          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridor5-left.json" ],
+      "chance" : 200
+    },
+    {
+      "name" : "floor3staircorridor-left",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
+          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3staircorridor-left.json" ],
+      "chance" : 200
+    },
+
+    {
+      "name" : "floor3end-left",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "entrancefloor3" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3end-left.json" ],
+      "chance" : 0
+    },
+
+    // FLOOR 3 RIGHT
+    {
+      "name" : "floor3enemyroom1-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom1-right.json" ],
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom2-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom2-right.json" ],
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom3-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom3-right.json" ],
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom4-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom4-right.json" ],
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom5-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom5-right.json" ],
+      "chance" : 1000
+    },
+    {
+      "name" : "floor3enemyroom6-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom6-right.json" ],
+      "chance" : 1000
+    },
+
+    {
+      "name" : "floor3traproom1-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3traproom1-right.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor3traproom2-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3traproom2-right.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor3traproom3-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3traproom3-right.json" ],
+      "chance" : 50
+    },
+    {
+      "name" : "floor3traproom4-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3traproom4-right.json" ],
+      "chance" : 50
+    },
+
+    {
+      "name" : "floor3corridor1-right",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
+          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridor1-right.json" ],
+      "chance" : 200
+    },
+    {
+      "name" : "floor3corridor2-right",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
+          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridor2-right.json" ],
+      "chance" : 200
+    },
+    {
+      "name" : "floor3corridor3-right",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
+          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridor3-right.json" ],
+      "chance" : 200
+    },
+    {
+      "name" : "floor3corridor4-right",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
+          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridor4-right.json" ],
+      "chance" : 200
+    },
+    {
+      "name" : "floor3corridor5-right",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
+          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridor5-right.json" ],
+      "chance" : 200
+    },
+    {
+      "name" : "floor3staircorridor-right",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
+          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3staircorridor-right.json" ],
+      "chance" : 200
+    },
+
+    {
+      "name" : "floor3end-right",
+      "rules" : [
+        [ "ignorePartMaximumRule" ],
+        [ "doNotConnectToPart", [ "entrancefloor3" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3end-right.json" ],
+      "chance" : 0
+    }
+  ]
+}

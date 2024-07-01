@@ -29,7 +29,7 @@
       "direction" : "right",
 
       "renderLayer" : "Platform-10",
-      
+
       "animationPosition" : [-32, 0],
       "animationParts" : {
         "bg" : "liquidcrateteleporter.png",
@@ -50,7 +50,7 @@
       "direction" : "left",
 
       "renderLayer" : "Platform-10",
-      
+
       "animationPosition" : [-32, 0],
       "animationParts" : {
         "bg" : "liquidcrateteleporter.png",
@@ -67,7 +67,7 @@
     }
   ],
 
-  "scripts" : [ "/objects/wired/projectiletrap/projectiletrap.lua" ],
+  "scripts" : [ "/objects/wired/projectiletrap/projectiletrap.lua", "v-liquidcrateteleporter.lua" ],
   "scriptDelta" : 2,
 
   "animation" : "/objects/wired/projectiletrap/projectiletrap.animation",
@@ -140,6 +140,6 @@
   "projectile" : "v-liquiddumpingcratespawner", // name of projectile (required)
   "projectileConfig" : {
   },
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

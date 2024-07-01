@@ -26,10 +26,13 @@ function update(dt)
     effect.setParentDirectives(string.format("?multiply=ffffff%02x?fade=%s=%.1f", math.floor(self.elapsed / self.invisibilityDuration * 255), self.color, self.fadeMax))
     mcontroller.controlModifiers({
         facingSuppressed = true,
-        movementSuppressed = true,
-        gravityEnabled = false
+        movementSuppressed = true
       })
   end
+
+  mcontroller.controlParameters({gravityEnabled = false})
+
+  mcontroller.setVelocity({0, 0})
 end
 
 function uninit()

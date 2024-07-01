@@ -12,14 +12,20 @@
             "frames" : 1,
             "cycle" : 0.1,
             "mode" : "transition",
-            "transition" : "locked"
+            "transition" : "locked",
+            "properties" : {
+              "immediateSound" : "/sfx/tech/tramplatform_close.ogg"
+            }
           },
           "locked" : {},
           "unlocking" : {
             "frames" : 1,
             "cycle" : 0.1,
             "mode" : "transition",
-            "transition" : "unlocked"
+            "transition" : "unlocked",
+            "properties" : {
+              "immediateSound" : "/sfx/tech/tramplatform_open.ogg"
+            }
           }
         }
       }

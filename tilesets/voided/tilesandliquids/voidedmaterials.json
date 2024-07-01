@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":24,
+ "tilecount":25,
  "tileheight":8,
  "tileproperties":
     {
@@ -82,6 +82,10 @@
      "23":
         {
          "material":"v-fungusplatform"
+        },
+     "24":
+        {
+         "material":"v-rottingfungus"
         },
      "3":
         {
@@ -182,6 +186,10 @@
          "material":"string"
         },
      "23":
+        {
+         "material":"string"
+        },
+     "24":
         {
          "material":"string"
         },
@@ -315,6 +323,12 @@
      "23":
         {
          "image":"..\/images\/tilesandliquids\/fungusplatform.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "24":
+        {
+         "image":"..\/images\/tilesandliquids\/rottingfungus.png",
          "imageheight":8,
          "imagewidth":8
         },

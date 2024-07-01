@@ -11,11 +11,11 @@
   "dropPools" : [ { "default" : "v-mushroomspiderTreasure", "bow" : "v-mushroomspiderHunting" } ],
 
   "baseParameters" : {
-    
+
     "scripts" : [
       "/monsters/monster.lua"
     ],
-    
+
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 1,
 
@@ -38,7 +38,7 @@
       "hostileActions" : [
         {
           "name" : "action-fire",
-          "cooldown" : 2.0,
+          "cooldown" : 4.0,
           "parameters" : {
             // Spit at the player.
             "requireLineOfSight" : true,
@@ -185,7 +185,7 @@
 
     "metaBoundBox" : [-4, -4, 4, 4],
     "scale" : 1.0,
-    
+
     "selfDamagePoly" : [[3, 3], [3, -3], [-3, -3], [-3, 3]],
 
     "movementSettings" : {
