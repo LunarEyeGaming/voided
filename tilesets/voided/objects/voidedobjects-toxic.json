@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-toxic",
  "spacing":0,
- "tilecount":20,
+ "tilecount":21,
  "tileheight":264,
  "tileproperties":
     {
@@ -42,58 +42,58 @@
         },
      "12":
         {
-         "imagePositionX":"-8",
-         "imagePositionY":"-256",
-         "object":"v-labreactordoor",
-         "tilesetDirection":"right"
-        },
-     "13":
-        {
          "imagePositionX":"-56",
          "imagePositionY":"0",
          "object":"v-labreactor",
          "tilesetDirection":"right"
         },
-     "14":
+     "13":
         {
          "imagePositionX":"-16",
          "imagePositionY":"0",
          "object":"v-fungaldoor",
          "tilesetDirection":"right"
         },
-     "15":
+     "14":
         {
          "imagePositionX":"0",
          "imagePositionY":"-16",
          "object":"v-ceilingglowplant1",
          "tilesetDirection":"right"
         },
-     "16":
+     "15":
         {
          "imagePositionX":"0",
          "imagePositionY":"-16",
          "object":"v-ceilingglowplant2",
          "tilesetDirection":"right"
         },
-     "17":
+     "16":
         {
          "imagePositionX":"0",
          "imagePositionY":"-8",
          "object":"v-ceilingglowplant3",
          "tilesetDirection":"right"
         },
-     "18":
+     "17":
         {
          "imagePositionX":"0",
          "imagePositionY":"-8",
          "object":"v-ceilingglowplant4",
          "tilesetDirection":"right"
         },
-     "19":
+     "18":
         {
          "imagePositionX":"0",
          "imagePositionY":"-8",
          "object":"v-ceilingglowplant5",
+         "tilesetDirection":"right"
+        },
+     "19":
+        {
+         "imagePositionX":"-64",
+         "imagePositionY":"-40",
+         "object":"v-labcrane",
          "tilesetDirection":"right"
         },
      "2":
@@ -101,6 +101,13 @@
          "imagePositionX":"-64",
          "imagePositionY":"0",
          "object":"v-shipmentteleporter",
+         "tilesetDirection":"right"
+        },
+     "20":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-wiretrap",
          "tilesetDirection":"right"
         },
      "3":
@@ -246,6 +253,13 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "20":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "3":
         {
          "imagePositionX":"string",
@@ -318,63 +332,69 @@
         },
      "11":
         {
-         "image":"..\/images\/objects\/labreactordoorbottom.png",
+         "image":"..\/images\/objects\/labreactordoor.png",
          "imageheight":264,
          "imagewidth":32
         },
      "12":
         {
-         "image":"..\/images\/objects\/labreactordoortop.png",
-         "imageheight":264,
-         "imagewidth":32
-        },
-     "13":
-        {
          "image":"..\/images\/objects\/labreactor.png",
          "imageheight":248,
          "imagewidth":120
         },
-     "14":
+     "13":
         {
          "image":"..\/images\/objects\/fungaldoor.png",
          "imageheight":40,
          "imagewidth":40
         },
-     "15":
+     "14":
         {
          "image":"..\/images\/objects\/ceilingglowplant1.png",
          "imageheight":24,
          "imagewidth":8
         },
-     "16":
+     "15":
         {
          "image":"..\/images\/objects\/ceilingglowplant2.png",
          "imageheight":24,
          "imagewidth":16
         },
-     "17":
+     "16":
         {
          "image":"..\/images\/objects\/ceilingglowplant3.png",
          "imageheight":16,
          "imagewidth":8
         },
-     "18":
+     "17":
         {
          "image":"..\/images\/objects\/ceilingglowplant4.png",
          "imageheight":16,
          "imagewidth":16
         },
-     "19":
+     "18":
         {
          "image":"..\/images\/objects\/ceilingglowplant5.png",
          "imageheight":16,
          "imagewidth":16
+        },
+     "19":
+        {
+         "image":"..\/images\/objects\/labcrane.png",
+         "imageheight":48,
+         "imagewidth":136
         },
      "2":
         {
          "image":"..\/images\/objects\/shipmentteleporter.png",
          "imageheight":8,
          "imagewidth":136
+        },
+     "20":
+        {
+         "image":"..\/images\/objects\/wiretrap.png",
+         "imageheight":16,
+         "imagewidth":8
         },
      "3":
         {

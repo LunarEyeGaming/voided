@@ -8,7 +8,7 @@
   "printable" : false,
   "description" : "I can see my reflection.",
   "shortdescription" : "Aquarium Glass",
-  "race" : "generic",
+  "race" : "human",
   "health" : 1.5,
 
   "apexDescription" : "I can see my reflection.",
@@ -20,7 +20,7 @@
   "novakidDescription" : "I can see clear through t'the other side of this glass.",
 
   "inventoryIcon" : "image.png",
-  
+
   "animation" : "v-aquariumglass.animation",
 
   "orientations" : [
@@ -61,16 +61,16 @@
   ],
 
   "scripts" : [ "/objects/scripts/v-blockyobject.lua" ],
-  
+
   "scriptDelta" : 3,
   "material" : "glass",
-  
+
   "smashOnBreak" : true,
 
   "smashSounds" : [ "/sfx/objects/v_aquariumglass_break1.ogg", "/sfx/objects/v_aquariumglass_break2.ogg" ],
   "smashParticles" : [
-    { 
-      "count" : 50, 
+    {
+      "count" : 50,
       "particle" : {
         "type" : "animated",
         "animation" : "/animations/shards/glassshard.animation",
@@ -89,5 +89,7 @@
         }
       }
     }
-  ]
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

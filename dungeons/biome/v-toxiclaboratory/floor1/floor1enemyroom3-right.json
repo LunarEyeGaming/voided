@@ -47,18 +47,6 @@
                 {
                  "gid":6592,
                  "height":8,
-                 "id":681,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":24,
-                 "x":144,
-                 "y":96
-                }, 
-                {
-                 "gid":6592,
-                 "height":8,
                  "id":685,
                  "name":"",
                  "rotation":0,
@@ -67,49 +55,6 @@
                  "width":24,
                  "x":296,
                  "y":96
-                }, 
-                {
-                 "gid":6595,
-                 "height":6,
-                 "id":686,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":24,
-                 "x":144,
-                 "y":192
-                }, 
-                {
-                 "gid":6595,
-                 "height":6,
-                 "id":687,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":24,
-                 "x":296,
-                 "y":192
-                }, 
-                {
-                 "height":19,
-                 "id":701,
-                 "name":"",
-                 "rotation":0,
-                 "text":
-                    {
-                     "color":"#ffffff",
-                     "fontfamily":"Arial",
-                     "pixelsize":13,
-                     "text":"Swarms would spawn out of tubes.",
-                     "wrap":true
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":208,
-                 "x":144,
-                 "y":136
                 }, 
                 {
                  "gid":5979,
@@ -154,6 +99,78 @@
                  "width":40,
                  "x":216,
                  "y":200
+                }, 
+                {
+                 "gid":6525,
+                 "height":8,
+                 "id":705,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":80,
+                 "y":184
+                }, 
+                {
+                 "gid":6523,
+                 "height":8,
+                 "id":706,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":184
+                }, 
+                {
+                 "gid":7344,
+                 "height":16,
+                 "id":707,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":232,
+                 "y":152
+                }, 
+                {
+                 "gid":6455,
+                 "height":8,
+                 "id":710,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":144,
+                 "y":96
+                }, 
+                {
+                 "gid":6840,
+                 "height":6,
+                 "id":711,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":144,
+                 "y":192
+                }, 
+                {
+                 "gid":6840,
+                 "height":6,
+                 "id":712,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":296,
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -165,7 +182,47 @@
          "color":"#ffff00",
          "draworder":"topdown",
          "name":"wiring - lights & guns",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":708,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-160,
+                         "y":32
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":240,
+                 "y":144
+                }, 
+                {
+                 "height":0,
+                 "id":709,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":136,
+                         "y":32
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":240,
+                 "y":144
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -477,7 +534,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":705,
+ "nextobjectid":713,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

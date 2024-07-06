@@ -1,0 +1,12 @@
+[
+  // Patching existing tooltips ensures more compatibility with mods that change them than making new tooltips
+  // altogether. This one adds a widget for Voided's icon (which contains nothing by default but can be added manually).
+  {
+    "op" : "add",
+    "path" : "/voidedIconImage",
+    "value" : {
+      "type" : "image",
+      "position" : [124, 180]
+    }
+  }
+]

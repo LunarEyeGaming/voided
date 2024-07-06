@@ -1,6 +1,8 @@
 require "/scripts/util.lua"
 require "/scripts/rect.lua"
 
+local interactive
+
 local translationTime
 local translationLength
 local direction
@@ -26,31 +28,34 @@ local isMoving  -- Whether it is moving in the current tick
 local wasMoving  -- Whether it was moving in the previous tick
 
 function init()
+  interactive = config.getParameter("interactive", false)
+
   local translationConfig = config.getParameter("translationConfig")
 
   translationTime = translationConfig.duration  ---@type number # The amount of time the translation takes
   translationLength = translationConfig.distance  ---@type number # How much to move by.
-  ---@type 1 | -1 # The direction of the translated movement. 1 for right / up, -1 for left / down.
+  ---@type 1 | -1 # The direction to translate the door when opening. 1 for right / up, -1 for left / down.
   direction = translationConfig.direction or 1
   frames = translationConfig.frames or 1  ---@type integer # The number of frames for the image.
   isSolid = translationConfig.isSolid  ---@type boolean # Whether or not the door is solid (e.g., for background doors).
   useHorizontal = translationConfig.useHorizontal  ---@type boolean # `true` for horizontal movement, `false` otherwise.
-  ---@type string? # The material to use for empty spaces. Not applicable if `isSolid` is `false`.
-  openMaterial = translationConfig.openMaterial
-  ---@type string? # The material to use for door spaces. Not applicable if `isSolid` is `false`.
-  closeMaterial = translationConfig.closeMaterial or "metamaterial:door"
-  ---@type [Vec2I, string][]? # A list of associations between spaces and materials to use for empty spaces. Not
-  ---applicable if `isSolid` is `false`.
-  openMaterialSpaces = translationConfig.openMaterialSpaces
-  ---@type [Vec2I, string][]? # A list of associations between spaces and materials to use for door spaces. Not
-  ---applicable if `isSolid` is `false`.
-  closeMaterialSpaces = translationConfig.closeMaterialSpaces
   ---@type boolean? # Whether or not to use a transition for the material spaces. Not applicable if `isSolid` is `false`
   useSpacesTransition = translationConfig.useSpacesTransition
   ---@type number? # The amount of time to wait before opening the door.
   openTranslationDelay = translationConfig.openDelay or 0
   ---@type number? # The amount of time to wait before closing the door.
   closeTransitionDelay = translationConfig.closeDelay or 0
+
+  ---@type string? # The material to use for empty spaces. Not applicable if `isSolid` is `false`.
+  openMaterial = config.getParameter("openMaterial")
+  ---@type string? # The material to use for door spaces. Not applicable if `isSolid` is `false`.
+  closeMaterial = config.getParameter("closeMaterial", "metamaterial:door")
+  ---@type [Vec2I, string][]? # A list of associations between spaces and materials to use for empty spaces. Not
+  ---applicable if `isSolid` is `false`.
+  openMaterialSpaces = config.getParameter("openMaterialSpaces")
+  ---@type [Vec2I, string][]? # A list of associations between spaces and materials to use for door spaces. Not
+  ---applicable if `isSolid` is `false`.
+  closeMaterialSpaces = config.getParameter("closeMaterialSpaces")
 
   if useHorizontal then
     endOffset = {direction * translationLength, 0}
@@ -85,12 +90,15 @@ function init()
   end
 
   isMoving = false
+
+  object.setInteractive(interactive)
 end
 
 function update(dt)
   wasMoving = isMoving
 
   if storage.active then
+    -- If the delay has ended...
     if openTranslationDelayTimer <= 0 then
       translationTimer = math.min(translationTime, translationTimer + dt)
 
@@ -99,7 +107,9 @@ function update(dt)
       openTranslationDelayTimer = openTranslationDelayTimer - dt
     end
   else
+    -- If the delay has ended...
     if closeTranslationDelayTimer <= 0 then
+      -- If we are not using anti-crush or there are no entities present in the query area...
       if not useAntiCrush or #world.entityQuery(rect.ll(queryArea), rect.ur(queryArea), {includedTypes = {"monster", "npc", "player"}}) <= 0 then
         translationTimer = math.max(0, translationTimer - dt)
 
@@ -125,19 +135,24 @@ function update(dt)
 
   updateSounds()
 
-  updateDoor(progress)
+  updateDoor(progress, endOffset)
 end
 
 function onNodeConnectionChange(args)
-  updateActive()
+  object.setInteractive(not object.isInputNodeConnected(0))
+  updateActive((not object.isInputNodeConnected(0)) or object.getInputNodeLevel(0)) -- Closed if input node is connected and input is off
 end
 
 function onInputNodeChange(args)
-  updateActive()
+  updateActive((not object.isInputNodeConnected(0)) or object.getInputNodeLevel(0)) -- Closed if input node is connected and input is off
 end
 
-function updateActive()
-  storage.active = (not object.isInputNodeConnected(0)) or object.getInputNodeLevel(0) -- Closed if input node is connected and input is off
+function onInteraction()
+  updateActive(not storage.active)
+end
+
+function updateActive(active)
+  storage.active = active
 
   -- If active...
   if storage.active then
@@ -375,16 +390,17 @@ function playOptionalSound(soundName, loopCount)
 end
 
 ---Stops a sound if the animator has it and has no effect otherwise.
----@param soundName string: the name of the sound to stop.
+---@param soundName string the name of the sound to stop.
 function stopOptionalSound(soundName)
   if animator.hasSound(soundName) then
     animator.stopAllSounds(soundName)
   end
 end
 
----Updates the door's visuals based on the progress `progress`.
+---Updates the door's visuals based on the progress `progress` and the target offset `endOffset`.
 ---@param progress number
-function updateDoor(progress)
+---@param endOffset Vec2F
+function updateDoor(progress, endOffset)
   animator.setGlobalTag("doorProgress", tostring(math.floor(util.lerp(progress, 1, frames))))
   animator.resetTransformationGroup("door")
   animator.translateTransformationGroup("door", {

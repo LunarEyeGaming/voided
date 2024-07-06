@@ -1,0 +1,48 @@
+{
+  "objectName" : "v-wiretrap",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "category" : "trap",
+  "price" : 60,
+
+  "description" : "<todo>",
+  "shortdescription" : "Sparking Wire",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "race" : "human",
+
+  "printable" : false,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "wiretrap.png:default",
+      "imagePosition" : [0, -8],
+
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "wire" : "wiretrap.png",
+        "wirelit" : "wiretraplit.png"
+      },
+
+      "spaceScan" : 0.1,
+
+      "anchors" : ["top"]
+    }
+  ],
+
+  "animation" : "v-wiretrap.animation",
+
+  "scripts" : ["v-wiretrap.lua"],  // See script for parameter documentation
+
+  "inactiveTime" : [2, 5],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

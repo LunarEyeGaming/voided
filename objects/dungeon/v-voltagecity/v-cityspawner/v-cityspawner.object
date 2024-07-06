@@ -5,7 +5,7 @@
   "rarity" : "Legendary",
   "description" : "A device that spawns waves of monsters.",
   "shortdescription" : "cityspawner",
-  "race" : "generic",
+  "race" : "human",
 
   "apexDescription" : "This device releases groups of monsters. Killing all of them opens the doors.",
   "avianDescription" : "A device with a cold light. Killing all of the monsters it spawns opens the doors.",
@@ -38,28 +38,28 @@
     "capsulelit" : "capsulelit.png"
   },
   "animationPosition" : [-8, -8],
-  
+
   "health" : 5,
   "smashOnBreak" : true,
-  
+
   // Left output node is the entry door. Right output node is the doorway to the switch.
   "outputNodes" : [ [0, 0], [1, 0] ],
 
   "scripts" : [ "v-cityspawner.lua" ],
   "scriptDelta" : 1,
-  
+
   "firstWaveDelay" : 1.0,
   "nextWaveDelay" : 1.0,
-  
+
   "lightBlinkDuration" : 0.5,
   "openAnimationDuration" : 0.5,
   "capsuleCloseDelay" : 0.25,
-  
+
   "spawnerProjectileType" : "v-cityspawnerorb",
   "spawnerProjectileOffset" : [0.5, 0.5],
-  
+
   "gracePeriod" : 30.0,
   "gracePeriodRadioMessages" : [ "v-cityspawnertutorial", "v-cityspawnertutorial2" ],
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

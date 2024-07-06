@@ -2,85 +2,39 @@
   "objectName" : "v-labreactordoor",
   "objectType" : "physics",
   "colonyTags" : ["wired"],
-  "printable" : false,
+  "printable" : true,
+  "interactive" : true,
   "rarity" : "Common",
-  "description" : "<todo>",
-  "shortdescription" : "Industrial Blastdoor",
-  "race" : "generic",
+  "description" : "An extremely tall door for very large rooms and intense environmental conditions.",
+  "shortdescription" : "Giant Industrial Door",
+  "race" : "human",
   "health" : 1,
 
-  "category" : "wire",
-  "price" : 100,
+  "category" : "door",
+  "price" : 500,
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "This door appears to be designed for very large vehicles.",
+  "avianDescription" : "A gigantic and sturdy door. It isn't very pretty.",
+  "floranDescription" : "An Ixodoom can go through thisss door.",
+  "glitchDescription" : "Curious. Why such a large and sturdy door was constructed is unknown to me.",
+  "humanDescription" : "This door is big enough to let through a small spaceship.",
+  "hylotlDescription" : "A door of impressive strength and scale, but lacking in visual flair.",
+  "novakidDescription" : "Nothin's gettin' through this here door.",
 
   "inventoryIcon" : "icon.png",
   "orientations" : [
     {
-      "image" : "labreactordoorscantop.png",
-      "imagePosition" : [-8, -256],
-      "animationPosition" : [-8, -256],
-      "direction" : "right",
-
-      "animationParts" : {
-        "hole" : "labreactordoortophole.png",
-        "door" : "labreactordoortop.png"
-      },
-      "anchors" : [ "top" ],
-      "spaceScan" : 0.4,
-
-      "translationConfig" : {
-        "duration" : 0.5,
-        "distance" : 16.5,
-        "direction" : 1,
-        "useHorizontal" : false,
-        "isSolid" : true,
-        "useSpacesTransition" : false,
-        "frames" : 1,
-        "openDelay" : 0.4
-      }
-    },
-    {
-      "image" : "labreactordoorscantop.png",
-      "imagePosition" : [-8, -256],
-      "animationPosition" : [-8, -256],
-      "direction" : "left",
-
-      "animationParts" : {
-        "hole" : "labreactordoortophole.png",
-        "door" : "labreactordoortop.png"
-      },
-      "anchors" : [ "top" ],
-      "spaceScan" : 0.4,
-
-      "translationConfig" : {
-        "duration" : 0.5,
-        "distance" : 16.5,
-        "direction" : 1,
-        "useHorizontal" : false,
-        "isSolid" : true,
-        "useSpacesTransition" : false,
-        "frames" : 1,
-        "openDelay" : 0.4
-      }
-    },
-    {
-      "image" : "labreactordoorscanbottom.png",
+      "image" : "labreactordoorpreview.png",
       "imagePosition" : [-8, 0],
       "animationPosition" : [-8, 0],
       "direction" : "right",
 
       "animationParts" : {
-        "hole" : "labreactordoorbottomhole.png",
-        "door" : "labreactordoorbottom.png"
+        "holes" : "labreactordoorholes.png",
+        "door" : "labreactordoorbottom.png",
+        "doortop" : "labreactordoortop.png"
       },
-      "anchors" : [ "bottom" ],
+      "anchors" : [ "bottom", "top" ],
       "spaceScan" : 0.4,
 
       "translationConfig" : {
@@ -91,32 +45,21 @@
         "isSolid" : true,
         "useSpacesTransition" : false,
         "frames" : 1,
-        "openDelay" : 0.4,
-        "openMaterialSpaces" : [
-          [ [-1, 11], "outpostplatform" ],
-          [ [0, 11], "outpostplatform" ],
-          [ [1, 11], "outpostplatform" ],
-          [ [2, 11], "outpostplatform" ]
-        ],
-        "closeMaterialSpaces" : [
-          [ [-1, 11], "outpostplatform" ],
-          [ [0, 11], "outpostplatform" ],
-          [ [1, 11], "outpostplatform" ],
-          [ [2, 11], "outpostplatform" ]
-        ]
+        "openDelay" : 0.4
       }
     },
     {
-      "image" : "labreactordoorscanbottom.png",
+      "image" : "labreactordoorpreview.png",
       "imagePosition" : [-8, 0],
       "animationPosition" : [-8, 0],
       "direction" : "left",
 
       "animationParts" : {
-        "hole" : "labreactordoorbottomhole.png",
-        "door" : "labreactordoorbottom.png"
+        "holes" : "labreactordoorholes.png",
+        "door" : "labreactordoorbottom.png",
+        "doortop" : "labreactordoortop.png"
       },
-      "anchors" : [ "bottom" ],
+      "anchors" : [ "bottom", "top" ],
       "spaceScan" : 0.4,
 
       "translationConfig" : {
@@ -127,24 +70,12 @@
         "isSolid" : true,
         "useSpacesTransition" : false,
         "frames" : 1,
-        "openDelay" : 0.4,
-        "openMaterialSpaces" : [
-          [ [-1, 11], "outpostplatform" ],
-          [ [0, 11], "outpostplatform" ],
-          [ [1, 11], "outpostplatform" ],
-          [ [2, 11], "outpostplatform" ]
-        ],
-        "closeMaterialSpaces" : [
-          [ [-1, 11], "outpostplatform" ],
-          [ [0, 11], "outpostplatform" ],
-          [ [1, 11], "outpostplatform" ],
-          [ [2, 11], "outpostplatform" ]
-        ]
+        "openDelay" : 0.4
       }
     }
   ],
 
-  "scripts" : [ "/objects/wired/v-slidingdoor/slidingdoor.lua", "v-labreactordoor.lua" ],
+  "scripts" : [ "/objects/wired/v-slidingdoor/slidingdoor.lua", "v-labreactordoorplugin.lua" ],
   "scriptDelta" : 1,
 
   "translationConfig" : {

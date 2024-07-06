@@ -737,50 +737,7 @@
                     ]
                   }
                 ]
-              }/* ,
-              {
-                "title": "succeeder",
-                "type": "decorator",
-                "name": "succeeder",
-                "parameters": {},
-                "child": {
-                  "title": "optional",
-                  "type": "decorator",
-                  "name": "optional",
-                  "parameters": {
-                    "shouldRun": {"key": "<faceTarget>"}
-                  },
-                  "child": {
-                    "title": "sequence",
-                    "type": "composite",
-                    "name": "sequence",
-                    "parameters": {},
-                    "children": [
-                      {
-                        "title": "vecRotate",
-                        "type": "action",
-                        "name": "vecRotate",
-                        "parameters": {
-                          "angle": {"key": "heading"},
-                          "vector": {"value": [1, 0]}
-                        },
-                        "output": {
-                          "vector": "headingDirection"
-                        }
-                      },
-                      {
-                        "title": "faceEntity",
-                        "type": "action",
-                        "name": "faceEntity",
-                        "parameters": {
-                          "entity": {"key": "target"},
-                          "headingDirection": {"key": "headingDirection"}
-                        }
-                      }
-                    ]
-                  }
-                }
-              } */
+              }
             ]
           }
         ]

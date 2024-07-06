@@ -31,7 +31,7 @@
       }
     },
     "parts" : {
-      "hole" : {
+      "holes" : {
         "properties" : {
           "centered" : false,
           "fullbright" : false,
@@ -71,11 +71,44 @@
             }
           }
         }
+      },
+      "doortop" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : false,
+          "transformationGroups" : ["doortop"],
+          "offset" : [0, 0]
+        },
+        "partStates" : {
+          "doorState" : {
+            "unlocked" : {
+              "properties" : {
+                "image" : "<partImage>:unlocked.<frame>"
+              }
+            },
+            "locking" : {
+              "properties" : {
+                "image" : "<partImage>:locking.<frame>"
+              }
+            },
+            "locked" : {
+              "properties" : {
+                "image" : "<partImage>:locked.<frame>"
+              }
+            },
+            "unlocking" : {
+              "properties" : {
+                "image" : "<partImage>:unlocking.<frame>"
+              }
+            }
+          }
+        }
       }
     }
   },
 
   "transformationGroups" : {
-    "door" : {"interpolated" : true}
+    "door" : {"interpolated" : true},
+    "doortop" : {"interpolated" : true}
   }
 }
