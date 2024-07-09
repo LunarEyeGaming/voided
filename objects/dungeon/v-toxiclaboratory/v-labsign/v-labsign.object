@@ -1,0 +1,35 @@
+{
+  "objectName" : "v-labsign",
+  "colonyTags" : ["human"],
+  "rarity" : "Common",
+  "description" : "A sign that reads \"Fungal Laboratory.\"",
+  "shortdescription" : "Fungal Laboratory Sign",
+  "race" : "human",
+  "category" : "decorative",
+  "price" : 100,
+
+  "apexDescription" : "This sign reads \"Fungal Laboratory.\"",
+  "avianDescription" : "A dull sign indicating that this place is a laboratory.",
+  "floranDescription" : "Sssign showss this iss a lab.",
+  "glitchDescription" : "Conclusive. This lab appears to experiment with fungi.",
+  "humanDescription" : "Things always seem to go wrong in labs.",
+  "hylotlDescription" : "This sign leaves a lot to be desired.",
+  "novakidDescription" : "I wonder how they're experimentin' on fungi.",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "labsign.png",
+
+      "imagePosition" : [-16, 0],
+      "frames" : 1,
+      "animationCycle" : 1.0,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+
+    }
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

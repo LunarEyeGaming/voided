@@ -1,0 +1,57 @@
+{
+  "objectName" : "v-fungalhatch",
+  "colonyTags" : ["door"],
+  "rarity" : "Common",
+
+  "category" : "door",
+  "price" : 95,
+  "description" : "A hatch made from interlocking fungal roots.",
+  "shortdescription" : "Fungal Hatch",
+  "race" : "generic",
+
+  "apexDescription" : "How fungal roots can turn into a hatch is one of many mysteries of nature.",
+  "avianDescription" : "Fungal roots becoming hatches is indeed an unusual sight.",
+  "floranDescription" : "Sstrange rootss act like door.",
+  "glitchDescription" : "Confused. This hatch seems to have been fabricated by fungi.",
+  "humanDescription" : "This hatch looks like it's grown directly from fungal roots.",
+  "hylotlDescription" : "A hatch with no builder besides the fungi themselves. How peculiar.",
+  "novakidDescription" : "How on earth does a mushroom make a hatch?",
+
+  "inventoryIcon" : "fungalhatchicon.png",
+  "orientations" : [
+    {
+      "dualImage" : "fungalhatch.png:default",
+      "imagePosition" : [-16, -16],
+      "renderLayer" : "Object+5",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left", "right" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/door/door.lua" ],
+  "scriptDelta" : 5,
+
+  "animation" : "/objects/wired/door/door.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "open" : {
+        "pool" : [ "/sfx/objects/fleshdoor_open.ogg" ],
+        "rangeMultiplier" : 0.5
+      },
+      "close" : {
+        "pool" : [ "/sfx/objects/fleshdoor_close.ogg" ],
+        "rangeMultiplier" : 0.5
+      }
+    }
+  },
+  "animationParts" : {
+    "door" : "fungalhatch.png"
+  },
+  "animationPosition" : [-16, -16],
+
+  "inputNodes" : [ [-2, 0] ],
+  "outputNodes" : [ [2, 0] ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

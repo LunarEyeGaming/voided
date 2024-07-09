@@ -8,25 +8,25 @@
 
   "category" : "storage",
   "price" : 70,
-  "description" : "<todo>",
+  "description" : "A reader for a keycard.",
   "shortdescription" : "Keycard Reader",
   "race" : "human",
   "health" : 1.5,
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "This device reads keycards, which is good for security.",
+  "avianDescription" : "The door is locked by a keycard.",
+  "floranDescription" : "Floran needsss keycard.",
+  "glitchDescription" : "Investigative. I will need a keycard to open the door.",
+  "humanDescription" : "I'll need a keycard.",
+  "hylotlDescription" : "A rather crude security mechanism, but it works nonetheless.",
+  "novakidDescription" : "I'll need to look for a keycard.",
 
-  "inventoryIcon" : "keycardreader.png:inactive",
+  "inventoryIcon" : "icon.png",
   "orientations" : [
     {
       "imageLayers" : [ { "image" : "keycardreader.png:inactive", "fullbright" : true }, { "image" : "keycardreaderlit.png:inactive" } ],
       "imagePosition" : [0, -8],
-      
+
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "keycardreader.png",
@@ -42,7 +42,7 @@
     {
       "imageLayers" : [ { "image" : "keycardreader.png:inactive", "fullbright" : true }, { "image" : "keycardreaderlit.png:inactive" } ],
       "imagePosition" : [0, -8],
-      
+
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "keycardreader.png",
@@ -79,6 +79,6 @@
   "uiConfig" : "/interface/chests/v-keycardreader.config",
   "frameCooldown" : 5,
   "autoCloseCooldown" : 3600,
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

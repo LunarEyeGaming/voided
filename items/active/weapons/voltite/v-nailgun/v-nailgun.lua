@@ -14,7 +14,7 @@ function init()
   local primaryAbility = getPrimaryAbility()
   self.weapon:addAbility(primaryAbility)
 
-  local secondaryAbility = getAltAbility(self.weapon.elementalType)
+  local secondaryAbility = getAltAbility()
   if secondaryAbility then
     self.weapon:addAbility(secondaryAbility)
   end
@@ -35,7 +35,7 @@ end
 
 function update(dt, fireMode, shiftHeld)
   self.weapon:update(dt, fireMode, shiftHeld)
-  
+
   if self.weapon.usingBarrelAbility then
     -- If barrel is inactive
     if not self.weapon.activatedBarrel then
@@ -51,7 +51,7 @@ function update(dt, fireMode, shiftHeld)
     self.weapon.barrelWinddownTimer = math.max(0, self.weapon.barrelWinddownTimer - dt)
 
     updateBarrelSpin(dt)
-    
+
     -- If the barrel has stopped winding down
     if self.weapon.barrelWinddownTimer == 0 then
       deactivateBarrel()
@@ -83,7 +83,7 @@ function updateBarrelSpin(dt)
   animator.setSoundPitch("whir", interp.linear(progress, self.weapon.whirMinPitch, self.weapon.whirMaxPitch))
 
   self.weapon.spinTimer = math.max(0, self.weapon.spinTimer - dt)
-  
+
   -- If spinTimer is zero, reset it
   if self.weapon.spinTimer == 0 then
     self.weapon.spinTimer = self.weapon.spinTime

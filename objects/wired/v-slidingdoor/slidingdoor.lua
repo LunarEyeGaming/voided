@@ -1,8 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/rect.lua"
 
-local interactive
-
 local translationTime
 local translationLength
 local direction
@@ -28,7 +26,6 @@ local isMoving  -- Whether it is moving in the current tick
 local wasMoving  -- Whether it was moving in the previous tick
 
 function init()
-  interactive = config.getParameter("interactive", false)
 
   local translationConfig = config.getParameter("translationConfig")
 
@@ -91,7 +88,7 @@ function init()
 
   isMoving = false
 
-  object.setInteractive(interactive)
+  updateInteractive()
 end
 
 function update(dt)
@@ -139,7 +136,7 @@ function update(dt)
 end
 
 function onNodeConnectionChange(args)
-  object.setInteractive(not object.isInputNodeConnected(0))
+  updateInteractive()
   updateActive((not object.isInputNodeConnected(0)) or object.getInputNodeLevel(0)) -- Closed if input node is connected and input is off
 end
 
@@ -160,6 +157,11 @@ function updateActive(active)
   else
     closeTranslationDelayTimer = closeTransitionDelay
   end
+end
+
+function updateInteractive()
+  local interactive = config.getParameter("interactive", false)
+  object.setInteractive(not object.isInputNodeConnected(0) and interactive)
 end
 
 function setupMaterialSpaces()

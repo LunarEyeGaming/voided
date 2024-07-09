@@ -65,6 +65,14 @@
       "def" : [ "tmx", "floor3/floor3enemyroom5-left.json" ],
       "chance" : 1000
     },
+    {
+      "name" : "floor3enemyroom6-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom6-left.json" ],
+      "chance" : 1000
+    },
 
     {
       "name" : "floor3traproom1-left",

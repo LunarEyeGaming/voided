@@ -4,15 +4,15 @@
   "rarity" : "Common",
   "description" : "A glowing bulb that has grown into the wall.",
   "shortdescription" : "Glowing Fungal Bulb",
-  "race" : "ancient",
+  "race" : "generic",
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "Bioluminescence is a curious sight here.",
+  "avianDescription" : "An organic bulb with a pretty purple glow to it.",
+  "floranDescription" : "Floran pokesss purple glowing thing. Thing jiggless.",
+  "glitchDescription" : "Curious. The bulb seems to jiggle when a force is applied to it.",
+  "humanDescription" : "It's pretty, but it also looks and smells awful.",
+  "hylotlDescription" : "A beautiful, glowing bulb, although with an unpleasant, moldy odor.",
+  "novakidDescription" : "A big ol' glowin' bulb that's grown into the wall.",
 
   "category" : "light",
   "price" : 0,
@@ -45,6 +45,6 @@
   "interactive" : false,
 
   "inputNodes" : [ [0, 0] ],
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }
