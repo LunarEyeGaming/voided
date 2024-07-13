@@ -335,13 +335,18 @@
                                               "type": "decorator",
                                               "name": "cooldown",
                                               "parameters": {
-                                                "cooldown": {"value": 10}
+                                                "cooldown": {"value": 10},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
                                               },
                                               "child": {
                                                 "title": "v-laboratoryminiboss-sporeattack",
                                                 "type": "module",
                                                 "name": "v-laboratoryminiboss-sporeattack",
-                                                "parameters": {}
+                                                "parameters": {
+                                                  "mycospitWindupTime": {"value": 0.5},
+                                                  "mycospitWinddownTime": {"value": 0.5}
+                                                }
                                               }
                                             },
                                             {
@@ -349,7 +354,9 @@
                                               "type": "decorator",
                                               "name": "cooldown",
                                               "parameters": {
-                                                "cooldown": {"value": 10}
+                                                "cooldown": {"value": 10},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
                                               },
                                               "child": {
                                                 "title": "v-laboratoryminiboss-cloudlineattack",
@@ -363,7 +370,9 @@
                                               "type": "decorator",
                                               "name": "cooldown",
                                               "parameters": {
-                                                "cooldown": {"value": 10}
+                                                "cooldown": {"value": 10},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
                                               },
                                               "child": {
                                                 "title": "v-laboratoryminiboss-tendrilattack",

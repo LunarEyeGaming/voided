@@ -1,4 +1,5 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":48,
  "infinite":false,
  "layers":[
@@ -7,6 +8,7 @@
          "data":"eJzt1jEOwyAMBVBu0rm3zCl6ymy5QDukUmRFBDuGH+M\/\/AkDfrVaupZSViZFtj1eddb6s73W\/bXztsodsu5srXauxz6LvfW8JyeDscV7rHmXskTMlVWuf357IkbrRM+l1zxl0HOxRvuuoOdijdaJngvnyXm2zDPL7y3fz1hpeT+P66+g0f6\/Rffbyyit6J57GqUX3bvWqH07\/0H3r4nVmMWJ7pvOvE5+N+dx3jFGstI5l9PDiu5\/hBPd+ygrum866czgzGSlk85ozgxGOuey3jFK66jPQ3uHh9Fr\/ld11jsQRuYZ+QIo4SBa",
          "encoding":"base64",
          "height":48,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -20,6 +22,7 @@
          "data":"eJztlksOwyAMROm6h+i6t+wpetFcII3UBUI4mI89GDzSSEmwjV+iACG4dtHx96i41vhcbmv+Xb0j84yKy43d1R2R18LOrTezd2Dk8MYx7xA+Fl1iTce\/vxyLruVEfxep7+lyuVxo7bLe+v5py5z9Mx5\/GXXt+RbdrxRjyoruWZIx5eXUDx3PuC7l9p5lS3NT8dQ9N57Kq+2HK4mavRrdkyVGCU4kqybnDNL4N9Gsu65BEnXR0uJEs2pyrsg6I+el1dehSxr7JxWneY06D63M+Xxg7JwyrLtwolgtcNbm5eIRnHEPJX7OuyrNhWKczc65DusIcWpp9CzJWCtuLz29ohldc+gE7Kv6GQ==",
          "encoding":"base64",
          "height":48,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[
                 {
@@ -106,7 +111,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"detectArea\" : [[-1, 0], [1, 10]]}"
+                     "parameters":"{\"detectArea\" : [[-3, 0], [3, 5]]}"
                     },
                  "propertytypes":
                     {
@@ -367,6 +372,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":5,
          "name":"wiring - lights & guns",
          "objects":[
                 {
@@ -618,6 +624,7 @@
         {
          "color":"#ffa0ff",
          "draworder":"topdown",
+         "id":6,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -629,6 +636,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":7,
          "name":"wiring - locked door",
          "objects":[
                 {
@@ -679,6 +687,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -689,6 +698,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"anchors etc",
          "objects":[
                 {
@@ -723,6 +733,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -731,10 +742,11 @@
          "x":0,
          "y":0
         }],
+ "nextlayerid":11,
  "nextobjectid":817,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.0",
  "tileheight":8,
  "tilesets":[
         {
@@ -847,6 +859,6 @@
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":58
 }

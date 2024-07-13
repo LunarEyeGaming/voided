@@ -4,7 +4,68 @@
       "body" : {
         "default" : "idle",
         "states" : {
-          "idle" : {}
+          "idle" : {
+            "frames" : 6,
+            "cycle" : 1.2,
+            "mode" : "loop"
+          },
+          "tendrilswindup" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "end"
+          },
+          "tendrils" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "spores" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "end"
+          },
+          "sporesend" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "cloudspitwindup" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "end"
+          },
+          "cloudspit" : {
+            "frames" : 3,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "mycospitwindup" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "end"
+          },
+          "mycospit" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "disappear" : {
+            "frames" : 5,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition": "invisible"
+          },
+          "invisible" : {},
+          "appear" : {
+            "frames" : 5,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
         }
       },
       "damage" : {
@@ -25,7 +86,7 @@
       "body" : {
         "properties" : {
           "transformationGroups" : [ "body" ],
-          "offset" : [0, 0],
+          "offset" : [0, 5],
           "zLevel" : 0
         },
         "partStates" : {
@@ -33,6 +94,56 @@
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "tendrilswindup" : {
+              "properties" : {
+                "image" : "<partImage>:tendrilswindup.<frame>"
+              }
+            },
+            "tendrils" : {
+              "properties" : {
+                "image" : "<partImage>:tendrils.<frame>"
+              }
+            },
+            "spores" : {
+              "properties" : {
+                "image" : "<partImage>:spores.<frame>"
+              }
+            },
+            "sporesend" : {
+              "properties" : {
+                "image" : "<partImage>:sporesend.<frame>"
+              }
+            },
+            "cloudspitwindup" : {
+              "properties" : {
+                "image" : "<partImage>:cloudspitwindup.<frame>"
+              }
+            },
+            "cloudspit" : {
+              "properties" : {
+                "image" : "<partImage>:cloudspit.<frame>"
+              }
+            },
+            "mycospitwindup" : {
+              "properties" : {
+                "image" : "<partImage>:mycospitwindup.<frame>"
+              }
+            },
+            "mycospit" : {
+              "properties" : {
+                "image" : "<partImage>:mycospit.<frame>"
+              }
+            },
+            "disappear" : {
+              "properties" : {
+                "image" : "<partImage>:disappear.<frame>"
+              }
+            },
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
               }
             }
           }
@@ -73,6 +184,31 @@
           }
         }
       ]
+    },
+    "spores" : {
+      "burstCount" : 10,
+      "offsetRegion" : [-2, 1, 2, 5],
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "looping" : false,
+            "animation" : "/animations/gas/v-sicklygreengas.animation",
+            "animationCycle" : 0.5,
+            "finalVelocity" : [0, 0],
+            "approach" : [20, 20],
+            "size" : 1,
+            "fade" : 1,
+            "timeToLive" : 0.5,
+            "destructionAction" : "fade",
+            "destructionTime" : 0.5,
+            "layer" : "front",
+            "variance" : {
+              "initialVelocity" : [10, 10]
+            }
+          }
+        }
+      ]
     }
   },
 
@@ -80,8 +216,8 @@
     "aggroHop" : [ ],
     "deathPuff" : [ ],
     "fireTendrils" : [ "/sfx/npc/monsters/v_livingmushroom1_fire.ogg" ],
-    // Better sound: Ixodoom claw web sound + poison bubbling? Make it sound dry and maybe a little airy.
     "fireSpores" : [ "/sfx/npc/miniboss/v_laboratoryminiboss_sporefire.ogg" ],
-    "fireCloudLine" : [ ]
+    "fireCloudLine" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ],
+    "fireMycoCloud" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ]
   }
 }

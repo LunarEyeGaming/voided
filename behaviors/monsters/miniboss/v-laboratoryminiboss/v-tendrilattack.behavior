@@ -3,7 +3,6 @@
   "description": "",
   "scripts": [
     "/scripts/actions/v-query.lua",
-    "/scripts/actions/movement.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/projectiles.lua"
@@ -37,7 +36,7 @@
                   "type": "action",
                   "name": "v_queryEntityRect",
                   "parameters": {
-                    "center": {"key": "self"},
+                    "center": {"key": "spawn"},
                     "offset1": {"value": [-22, -2]},
                     "offset2": {"value": [24, 15]},
                     "entityTypes": {"value": ["creature"]},
@@ -75,7 +74,7 @@
                   "type": "action",
                   "name": "v_queryEntityRect",
                   "parameters": {
-                    "center": {"key": "self"},
+                    "center": {"key": "spawn"},
                     "offset1": {"value": [-22, 16]},
                     "offset2": {"value": [24, 37]},
                     "entityTypes": {"value": ["creature"]},
@@ -148,12 +147,29 @@
         ]
       },
       {
-        "title": "Go to floor",
+        "title": "timer",
         "type": "action",
-        "name": "setPosition",
+        "name": "timer",
         "parameters": {
-          "footPosition": {"value": false},
+          "time": {"value": 0.5}
+        }
+      },
+      {
+        "title": "Go to floor",
+        "type": "module",
+        "name": "v-laboratoryminiboss-teleport",
+        "parameters": {
+          "headingDirection": {"value": [1, 0]},
           "position": {"key": "spawn"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "tendrilswindup"},
+          "type": {"value": "body"}
         }
       },
       {
@@ -162,6 +178,15 @@
         "name": "timer",
         "parameters": {
           "time": {"value": 0.5}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "tendrils"},
+          "type": {"value": "body"}
         }
       },
       {

@@ -1,12 +1,14 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":56,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt1bEJgDAQQNHrBUewdzE3cQWnyGh2LqAggRgOUe\/UiL94hRJMPsFkFJExM51QN1theTcogjI2fiOf3+LM2qPWwLvhyvq99sGrw9LQyepIQzqWBt+GXlaxoVcEZWxJDaXsg9ahvc+fS2u40up1Lj3d4X0\/vN3wxX24659+quHOc8nSUDU22v2w15COtc7txbIPb68dAAAAAAAAAAAAAIC\/mQFwaT\/O",
+         "data":"eJzt1bEJgDAQQNHrbZzA3sXcxBWcIqPZuYCCBGI4RL1TI\/7iFUow+QSTUUTGzHRC3WyF5d2gCMrY+I18fosza49aA++GK+v32gevDktDJ6sjDelYGnwbelnFhl4RlLElNZSyD1qH9j5\/Lq3hSqvXufR0h\/f98HbDF\/fhrn\/6qYY7zyVLQ9XYaPfDXkM61jq3F8s+vL12AAAAAAAAAAAAAAD+ZgZHVUBW",
          "encoding":"base64",
          "height":56,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztll0KwzAIgPM+2BH6vovtJjtxLzCkBIJLbJporM4PhLUd0c+Qn5R+2S\/EcxuPPAYnPTXP8ELB7SDRE0xrHrjyStcPQN3vdEQ41BkZJ6\/pTzoCflPg\/0o47JXn8n1rXyp7e+YgOQ+tuvF7\/Hw3h16o84GC2pdWe5R58Z5P0ToftB0szoPUml7lILkvzTg8Nt5YmUsqrDtozPuKmjU8qDxS9PRIuq+rCIf7EA73wYPHPzh48bCAdwcLWF8PM3fA2hgW6p9xtVAzt4tWvRwe2rWGg36dluagN+8o2n2UxHr9NazXn\/HgAHhwADx4eHAAPDtY8ggHfTycE9bPbM770xVnrn6N3gNxrtHvM32bHTMioje+vHcFUA==",
+         "data":"eJztll0OwyAIgH3fy07Q911sN9mJe4GFNCaGKbUKUhhfQrK2i\/Bh\/Enpl\/1CPLfxyGNw0lPzDC8U3A4SPcG05oErr3T9ANT9TkeEQ52RcfKa\/qQj4DcF\/q+Ew155Lt+39qWyt2cOkvPQqhu\/x893c+iFOh8oqH1ptUeZF+\/5FK3zQdvB4jxIrelVDpL70ozDY+ONlbmkwrqDxryvqFnDg8ojRU+PpPu6inC4D+FwHzx4\/IODFw8LeHewgPX1MHMHrI1hof4ZVws1c7to1cvhoV1rOOjXaWkOevOOot1HSazXX8N6\/RkPDoAHB8CDhwcHwLODJY9w0MfDOWH9zOa8P11x5urX6D0Q5xr9PtO32TEjInrjC1utBcY=",
          "encoding":"base64",
          "height":56,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[
                 {
@@ -89,7 +94,7 @@
                  "y":320
                 }, 
                 {
-                 "gid":7732,
+                 "gid":7734,
                  "height":32,
                  "id":1101,
                  "name":"",
@@ -101,7 +106,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7732,
+                 "gid":7734,
                  "height":32,
                  "id":1102,
                  "name":"",
@@ -113,7 +118,7 @@
                  "y":216
                 }, 
                 {
-                 "gid":7732,
+                 "gid":7734,
                  "height":32,
                  "id":1103,
                  "name":"",
@@ -125,7 +130,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":7732,
+                 "gid":7734,
                  "height":32,
                  "id":1104,
                  "name":"",
@@ -137,7 +142,7 @@
                  "y":360
                 }, 
                 {
-                 "gid":7732,
+                 "gid":7734,
                  "height":32,
                  "id":1105,
                  "name":"",
@@ -149,7 +154,7 @@
                  "y":408
                 }, 
                 {
-                 "gid":7732,
+                 "gid":7734,
                  "height":32,
                  "id":1106,
                  "name":"",
@@ -161,7 +166,7 @@
                  "y":360
                 }, 
                 {
-                 "gid":7732,
+                 "gid":7734,
                  "height":32,
                  "id":1107,
                  "name":"",
@@ -173,7 +178,7 @@
                  "y":400
                 }, 
                 {
-                 "gid":7732,
+                 "gid":7734,
                  "height":32,
                  "id":1108,
                  "name":"",
@@ -193,6 +198,7 @@
         {
          "color":"#aaaaff",
          "draworder":"topdown",
+         "id":5,
          "name":"stagehands",
          "objects":[
                 {
@@ -213,7 +219,7 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":40,
+                 "x":48,
                  "y":208
                 }, 
                 {
@@ -256,7 +262,7 @@
                  "visible":true,
                  "width":8,
                  "x":120,
-                 "y":400
+                 "y":392
                 }, 
                 {
                  "height":8,
@@ -277,7 +283,7 @@
                  "visible":true,
                  "width":8.00000000000006,
                  "x":280,
-                 "y":408
+                 "y":400
                 }, 
                 {
                  "height":8,
@@ -339,7 +345,7 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":24,
+                 "x":32,
                  "y":352
                 }, 
                 {
@@ -445,7 +451,7 @@
                  "visible":true,
                  "width":8,
                  "x":112,
-                 "y":232
+                 "y":224
                 }, 
                 {
                  "height":8,
@@ -466,7 +472,7 @@
                  "visible":true,
                  "width":8,
                  "x":296,
-                 "y":248
+                 "y":240
                 }, 
                 {
                  "height":304,
@@ -509,6 +515,27 @@
                  "width":56,
                  "x":160,
                  "y":48
+                }, 
+                {
+                 "height":344,
+                 "id":1109,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"music\" : [\"\/music\/gravitational-collapse-loop.ogg\"], \"defaultMusic\" : [\"\/music\/lava-exploration1.ogg\"], \"uniqueId\" : \"v-laboratoryminibossmusic\"}",
+                     "stagehand":"v-cityminibossmusic"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":392,
+                 "x":0,
+                 "y":104
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -519,6 +546,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":6,
          "name":"wiring - lights & guns",
          "objects":[
                 {
@@ -570,6 +598,7 @@
         {
          "color":"#ffa0ff",
          "draworder":"topdown",
+         "id":7,
          "name":"monsters & npcs",
          "objects":[
                 {
@@ -578,11 +607,13 @@
                  "name":"",
                  "properties":
                     {
-                     "monster":"v-laboratoryminiboss"
+                     "monster":"v-laboratoryminiboss",
+                     "parameters":"{\"musicStagehands\": [\"v-laboratoryminibossmusic\"]}"
                     },
                  "propertytypes":
                     {
-                     "monster":"string"
+                     "monster":"string",
+                     "parameters":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -600,6 +631,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":8,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -610,6 +642,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -620,6 +653,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"anchors etc",
          "objects":[
                 {
@@ -642,6 +676,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":11,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -650,10 +685,11 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":1109,
+ "nextlayerid":12,
+ "nextobjectid":1110,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.0",
  "tileheight":8,
  "tilesets":[
         {
@@ -765,27 +801,27 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7694,
+         "firstgid":7696,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedcoloredvanillamats.json"
         }, 
         {
-         "firstgid":7695,
+         "firstgid":7697,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }, 
         {
-         "firstgid":7697,
+         "firstgid":7699,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }, 
         {
-         "firstgid":7723,
+         "firstgid":7725,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }, 
         {
-         "firstgid":7733,
+         "firstgid":7748,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-colonytag\/outpost.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":49
 }

@@ -1,9 +1,29 @@
 {
   "frameGrid" : {
-    "size" : [64, 64],
-    "dimensions" : [2, 1],
+    "size" : [111, 96],
+    "dimensions" : [6, 6],
     "names" : [
-      [ "idle.1", "attack1.1" ]
+      [ "idle.1", "idle.2", "idle.3", "idle.4", "idle.5", "idle.6" ],
+      [ "tendrilswindup.1", "tendrilswindup.2", "tendrils.1", "tendrils.2", "tendrils.5" ],
+      [ "spores.1", "spores.2" ],
+      [ "cloudspitwindup.1", "cloudspitwindup.2", "cloudspit.1", "cloudspit.2" ],
+      [ "mycospitwindup.1", "mycospitwindup.2", "mycospitwindup.3", "mycospitwindup.4", "mycospit.1", "mycospit.2" ],
+      [ "disappear.1", "disappear.2", "disappear.3", "disappear.4", "disappear.5" ]
     ]
+  },
+  "aliases" : {
+    "appear.1" : "disappear.5",
+    "appear.2" : "disappear.4",
+    "appear.3" : "disappear.3",
+    "appear.4" : "disappear.2",
+    "appear.5" : "disappear.1",
+
+    "tendrils.3" : "tendrils.2",
+    "tendrils.4" : "tendrils.2",
+
+    "cloudspit.3" : "cloudspit.1",
+    "mycospit.3" : "mycospit.1",
+
+    "sporesend.1" : "spores.1"
   }
 }

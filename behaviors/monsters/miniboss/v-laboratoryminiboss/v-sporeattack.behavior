@@ -2,17 +2,18 @@
   "name": "v-laboratoryminiboss-sporeattack",
   "description": "",
   "scripts": [
-    "/scripts/actions/movement.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/math.lua",
     "/scripts/actions/position.lua",
     "/scripts/actions/sensor.lua",
     "/scripts/actions/v-projectiles.lua",
-    "/scripts/actions/animator.lua",
-    "/scripts/actions/v-query.lua",
-    "/scripts/actions/projectiles.lua"
+    "/scripts/actions/v-query.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "mycospitWindupTime": 0.5,
+    "mycospitWinddownTime": 0.5
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -20,12 +21,21 @@
     "parameters": {},
     "children": [
       {
-        "title": "setPosition",
-        "type": "action",
-        "name": "setPosition",
+        "title": "v-laboratoryminiboss-teleport",
+        "type": "module",
+        "name": "v-laboratoryminiboss-teleport",
         "parameters": {
-          "footPosition": {"value": false},
+          "headingDirection": {"value": [1, 0]},
           "position": {"key": "spawn"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "spores"},
+          "type": {"value": "body"}
         }
       },
       {
@@ -33,7 +43,7 @@
         "type": "action",
         "name": "timer",
         "parameters": {
-          "time": {"value": 0.1}
+          "time": {"value": 0.5}
         }
       },
       {
@@ -118,6 +128,30 @@
               }
             },
             {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": -2},
+                "min": {"value": 2}
+              },
+              "output": {
+                "number": "sporeSpawnXOffset"
+              }
+            },
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": 1},
+                "min": {"value": 5}
+              },
+              "output": {
+                "number": "sporeSpawnYOffset"
+              }
+            },
+            {
               "title": "v_spawnProjectileTargetPos",
               "type": "action",
               "name": "v_spawnProjectileTargetPos",
@@ -125,7 +159,7 @@
                 "projectileType": {"value": "v-sporeminetele"},
                 "sourceEntity": {"key": "self"},
                 "position": {"key": "self"},
-                "offset": {"value": [0, 0]},
+                "offset": {"value": ["sporeSpawnXOffset", "sporeSpawnYOffset"]},
                 "aimVector": {"value": [0, 0]},
                 "uniqueRepeatGroup": {"value": true},
                 "targetPosition": {"key": "sporePos"},
@@ -134,25 +168,25 @@
                 "scalePower": {"value": true},
                 "trackSource": {"value": false}
               }
-            },
-            {
-              "title": "timer",
-              "type": "action",
-              "name": "timer",
-              "parameters": {
-                "time": {"value": 0.01}
-              }
-            },
-            {
-              "title": "playSound",
-              "type": "action",
-              "name": "playSound",
-              "parameters": {
-                "loops": {"value": 0},
-                "sound": {"value": "fireSpores"}
-              }
             }
           ]
+        }
+      },
+      {
+        "title": "burstParticleEmitter",
+        "type": "action",
+        "name": "burstParticleEmitter",
+        "parameters": {
+          "emitter": {"value": "spores"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": 0},
+          "sound": {"value": "fireSpores"}
         }
       },
       {
@@ -160,7 +194,24 @@
         "type": "action",
         "name": "timer",
         "parameters": {
-          "time": {"value": 2}
+          "time": {"value": 0.25}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "sporesend"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.75}
         }
       },
       {
@@ -185,7 +236,7 @@
                   "type": "action",
                   "name": "v_queryEntityRect",
                   "parameters": {
-                    "center": {"key": "self"},
+                    "center": {"key": "spawn"},
                     "offset1": {"value": [-22, -2]},
                     "offset2": {"value": [24, 15]},
                     "entityTypes": {"value": ["creature"]},
@@ -194,131 +245,13 @@
                 }
               },
               {
-                "title": "setPosition",
-                "type": "action",
-                "name": "setPosition",
+                "title": "v-laboratoryminiboss-mycospitattacktop",
+                "type": "module",
+                "name": "v-laboratoryminiboss-mycospitattacktop",
                 "parameters": {
-                  "footPosition": {"value": false},
-                  "position": {"key": "ceilingPosM"}
+                  "winddownTime": {"value": 0.5},
+                  "windupTime": {"value": 0.5}
                 }
-              },
-              {
-                "title": "spawnProjectile",
-                "type": "action",
-                "name": "spawnProjectile",
-                "parameters": {
-                  "aimVector": {"value": [0, -1]},
-                  "angle": {"value": 0},
-                  "offset": {"value": [0, -1]},
-                  "position": {"key": "ceilingPosUL"},
-                  "projectileConfig": {"value": {}},
-                  "projectileType": {"value": "v-mycotoxinbomb"},
-                  "scalePower": {"value": true},
-                  "sourceEntity": {"key": "self"},
-                  "trackSource": {"value": false},
-                  "uniqueRepeatGroup": {"value": true}
-                }
-              },
-              {
-                "title": "spawnProjectile",
-                "type": "action",
-                "name": "spawnProjectile",
-                "parameters": {
-                  "aimVector": {"value": [0, -1]},
-                  "angle": {"value": 0},
-                  "offset": {"value": [0, -1]},
-                  "position": {"key": "ceilingPosUR"},
-                  "projectileConfig": {"value": {}},
-                  "projectileType": {"value": "v-mycotoxinbomb"},
-                  "scalePower": {"value": true},
-                  "sourceEntity": {"key": "self"},
-                  "trackSource": {"value": false},
-                  "uniqueRepeatGroup": {"value": true}
-                }
-              },
-              {
-                "title": "timer",
-                "type": "action",
-                "name": "timer",
-                "parameters": {
-                  "time": {"value": 2}
-                }
-              },
-              {
-                "title": "randomize",
-                "type": "composite",
-                "name": "randomize",
-                "parameters": {},
-                "children": [
-                  {
-                    "title": "attack left",
-                    "type": "composite",
-                    "name": "sequence",
-                    "parameters": {},
-                    "children": [
-                      {
-                        "title": "setPosition",
-                        "type": "action",
-                        "name": "setPosition",
-                        "parameters": {
-                          "footPosition": {"value": false},
-                          "position": {"key": "wallPosLL"}
-                        }
-                      },
-                      {
-                        "title": "spawnProjectile",
-                        "type": "action",
-                        "name": "spawnProjectile",
-                        "parameters": {
-                          "aimVector": {"value": [1, 0]},
-                          "angle": {"value": 0},
-                          "offset": {"value": [1, 0]},
-                          "position": {"key": "wallPosLL"},
-                          "projectileConfig": {"value": {}},
-                          "projectileType": {"value": "v-mycotoxinbomb"},
-                          "scalePower": {"value": true},
-                          "sourceEntity": {"key": "self"},
-                          "trackSource": {"value": false},
-                          "uniqueRepeatGroup": {"value": true}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "title": "attack right",
-                    "type": "composite",
-                    "name": "sequence",
-                    "parameters": {},
-                    "children": [
-                      {
-                        "title": "setPosition",
-                        "type": "action",
-                        "name": "setPosition",
-                        "parameters": {
-                          "footPosition": {"value": false},
-                          "position": {"key": "wallPosLR"}
-                        }
-                      },
-                      {
-                        "title": "spawnProjectile",
-                        "type": "action",
-                        "name": "spawnProjectile",
-                        "parameters": {
-                          "aimVector": {"value": [-1, 0]},
-                          "angle": {"value": 0},
-                          "offset": {"value": [-1, 0]},
-                          "position": {"key": "wallPosLR"},
-                          "projectileConfig": {"value": {}},
-                          "projectileType": {"value": "v-mycotoxinbomb"},
-                          "scalePower": {"value": true},
-                          "sourceEntity": {"key": "self"},
-                          "trackSource": {"value": false},
-                          "uniqueRepeatGroup": {"value": true}
-                        }
-                      }
-                    ]
-                  }
-                ]
               }
             ]
           },
@@ -338,7 +271,7 @@
                   "type": "action",
                   "name": "v_queryEntityRect",
                   "parameters": {
-                    "center": {"key": "self"},
+                    "center": {"key": "spawn"},
                     "offset1": {"value": [-22, 16]},
                     "offset2": {"value": [24, 37]},
                     "entityTypes": {"value": ["creature"]},
@@ -347,131 +280,13 @@
                 }
               },
               {
-                "title": "setPosition",
-                "type": "action",
-                "name": "setPosition",
+                "title": "v-laboratoryminiboss-mycospitattackbottom",
+                "type": "module",
+                "name": "v-laboratoryminiboss-mycospitattackbottom",
                 "parameters": {
-                  "footPosition": {"value": false},
-                  "position": {"key": "spawn"}
+                  "windupTime": {"value": 0.5},
+                  "winddownTime": {"value": 0.5}
                 }
-              },
-              {
-                "title": "spawnProjectile",
-                "type": "action",
-                "name": "spawnProjectile",
-                "parameters": {
-                  "aimVector": {"value": [0, 1]},
-                  "angle": {"value": 0},
-                  "offset": {"value": [0, 1]},
-                  "position": {"key": "floorPosLL"},
-                  "projectileConfig": {"value": {}},
-                  "projectileType": {"value": "v-mycotoxinbomb"},
-                  "scalePower": {"value": true},
-                  "sourceEntity": {"key": "self"},
-                  "trackSource": {"value": false},
-                  "uniqueRepeatGroup": {"value": true}
-                }
-              },
-              {
-                "title": "spawnProjectile",
-                "type": "action",
-                "name": "spawnProjectile",
-                "parameters": {
-                  "aimVector": {"value": [0, 1]},
-                  "angle": {"value": 0},
-                  "offset": {"value": [0, 1]},
-                  "position": {"key": "floorPosLR"},
-                  "projectileConfig": {"value": {}},
-                  "projectileType": {"value": "v-mycotoxinbomb"},
-                  "scalePower": {"value": true},
-                  "sourceEntity": {"key": "self"},
-                  "trackSource": {"value": false},
-                  "uniqueRepeatGroup": {"value": true}
-                }
-              },
-              {
-                "title": "timer",
-                "type": "action",
-                "name": "timer",
-                "parameters": {
-                  "time": {"value": 2}
-                }
-              },
-              {
-                "title": "randomize",
-                "type": "composite",
-                "name": "randomize",
-                "parameters": {},
-                "children": [
-                  {
-                    "title": "attack left",
-                    "type": "composite",
-                    "name": "sequence",
-                    "parameters": {},
-                    "children": [
-                      {
-                        "title": "setPosition",
-                        "type": "action",
-                        "name": "setPosition",
-                        "parameters": {
-                          "footPosition": {"value": false},
-                          "position": {"key": "wallPosUL"}
-                        }
-                      },
-                      {
-                        "title": "spawnProjectile",
-                        "type": "action",
-                        "name": "spawnProjectile",
-                        "parameters": {
-                          "aimVector": {"value": [1, 0]},
-                          "angle": {"value": 0},
-                          "offset": {"value": [1, 0]},
-                          "position": {"key": "wallPosUL"},
-                          "projectileConfig": {"value": {}},
-                          "projectileType": {"value": "v-mycotoxinbomb"},
-                          "scalePower": {"value": true},
-                          "sourceEntity": {"key": "self"},
-                          "trackSource": {"value": false},
-                          "uniqueRepeatGroup": {"value": true}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "title": "attack right",
-                    "type": "composite",
-                    "name": "sequence",
-                    "parameters": {},
-                    "children": [
-                      {
-                        "title": "setPosition",
-                        "type": "action",
-                        "name": "setPosition",
-                        "parameters": {
-                          "footPosition": {"value": false},
-                          "position": {"key": "wallPosUR"}
-                        }
-                      },
-                      {
-                        "title": "spawnProjectile",
-                        "type": "action",
-                        "name": "spawnProjectile",
-                        "parameters": {
-                          "aimVector": {"value": [-1, 0]},
-                          "angle": {"value": 0},
-                          "offset": {"value": [-1, 0]},
-                          "position": {"key": "wallPosUR"},
-                          "projectileConfig": {"value": {}},
-                          "projectileType": {"value": "v-mycotoxinbomb"},
-                          "scalePower": {"value": true},
-                          "sourceEntity": {"key": "self"},
-                          "trackSource": {"value": false},
-                          "uniqueRepeatGroup": {"value": true}
-                        }
-                      }
-                    ]
-                  }
-                ]
               }
             ]
           },
@@ -482,256 +297,22 @@
             "parameters": {},
             "children": [
               {
-                "title": "attack top then bottom",
-                "type": "composite",
-                "name": "sequence",
-                "parameters": {},
-                "children": [
-                  {
-                    "title": "spawnProjectile",
-                    "type": "action",
-                    "name": "spawnProjectile",
-                    "parameters": {
-                      "aimVector": {"value": [0, -1]},
-                      "angle": {"value": 0},
-                      "offset": {"value": [0, -1]},
-                      "position": {"key": "ceilingPosUL"},
-                      "projectileConfig": {"value": {}},
-                      "projectileType": {"value": "v-mycotoxinbomb"},
-                      "scalePower": {"value": true},
-                      "sourceEntity": {"key": "self"},
-                      "trackSource": {"value": false},
-                      "uniqueRepeatGroup": {"value": true}
-                    }
-                  },
-                  {
-                    "title": "spawnProjectile",
-                    "type": "action",
-                    "name": "spawnProjectile",
-                    "parameters": {
-                      "aimVector": {"value": [0, -1]},
-                      "angle": {"value": 0},
-                      "offset": {"value": [0, -1]},
-                      "position": {"key": "ceilingPosUR"},
-                      "projectileConfig": {"value": {}},
-                      "projectileType": {"value": "v-mycotoxinbomb"},
-                      "scalePower": {"value": true},
-                      "sourceEntity": {"key": "self"},
-                      "trackSource": {"value": false},
-                      "uniqueRepeatGroup": {"value": true}
-                    }
-                  },
-                  {
-                    "title": "timer",
-                    "type": "action",
-                    "name": "timer",
-                    "parameters": {
-                      "time": {"value": 2}
-                    }
-                  },
-                  {
-                    "title": "randomize",
-                    "type": "composite",
-                    "name": "randomize",
-                    "parameters": {},
-                    "children": [
-                      {
-                        "title": "attack left",
-                        "type": "composite",
-                        "name": "sequence",
-                        "parameters": {},
-                        "children": [
-                          {
-                            "title": "setPosition",
-                            "type": "action",
-                            "name": "setPosition",
-                            "parameters": {
-                              "footPosition": {"value": false},
-                              "position": {"key": "wallPosLL"}
-                            }
-                          },
-                          {
-                            "title": "spawnProjectile",
-                            "type": "action",
-                            "name": "spawnProjectile",
-                            "parameters": {
-                              "aimVector": {"value": [1, 0]},
-                              "angle": {"value": 0},
-                              "offset": {"value": [1, 0]},
-                              "position": {"key": "wallPosLL"},
-                              "projectileConfig": {"value": {}},
-                              "projectileType": {"value": "v-mycotoxinbomb"},
-                              "scalePower": {"value": true},
-                              "sourceEntity": {"key": "self"},
-                              "trackSource": {"value": false},
-                              "uniqueRepeatGroup": {"value": true}
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "title": "attack right",
-                        "type": "composite",
-                        "name": "sequence",
-                        "parameters": {},
-                        "children": [
-                          {
-                            "title": "setPosition",
-                            "type": "action",
-                            "name": "setPosition",
-                            "parameters": {
-                              "footPosition": {"value": false},
-                              "position": {"key": "wallPosLR"}
-                            }
-                          },
-                          {
-                            "title": "spawnProjectile",
-                            "type": "action",
-                            "name": "spawnProjectile",
-                            "parameters": {
-                              "aimVector": {"value": [-1, 0]},
-                              "angle": {"value": 0},
-                              "offset": {"value": [-1, 0]},
-                              "position": {"key": "wallPosLR"},
-                              "projectileConfig": {"value": {}},
-                              "projectileType": {"value": "v-mycotoxinbomb"},
-                              "scalePower": {"value": true},
-                              "sourceEntity": {"key": "self"},
-                              "trackSource": {"value": false},
-                              "uniqueRepeatGroup": {"value": true}
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
+                "title": "v-laboratoryminiboss-mycospitattacktop",
+                "type": "module",
+                "name": "v-laboratoryminiboss-mycospitattacktop",
+                "parameters": {
+                  "winddownTime": {"value": 0.5},
+                  "windupTime": {"value": 0.5}
+                }
               },
               {
-                "title": "attack bottom then top",
-                "type": "composite",
-                "name": "sequence",
-                "parameters": {},
-                "children": [
-                  {
-                    "title": "spawnProjectile",
-                    "type": "action",
-                    "name": "spawnProjectile",
-                    "parameters": {
-                      "aimVector": {"value": [0, 1]},
-                      "angle": {"value": 0},
-                      "offset": {"value": [0, 1]},
-                      "position": {"key": "floorPosLL"},
-                      "projectileConfig": {"value": {}},
-                      "projectileType": {"value": "v-mycotoxinbomb"},
-                      "scalePower": {"value": true},
-                      "sourceEntity": {"key": "self"},
-                      "trackSource": {"value": false},
-                      "uniqueRepeatGroup": {"value": true}
-                    }
-                  },
-                  {
-                    "title": "spawnProjectile",
-                    "type": "action",
-                    "name": "spawnProjectile",
-                    "parameters": {
-                      "aimVector": {"value": [0, 1]},
-                      "angle": {"value": 0},
-                      "offset": {"value": [0, 1]},
-                      "position": {"key": "floorPosLR"},
-                      "projectileConfig": {"value": {}},
-                      "projectileType": {"value": "v-mycotoxinbomb"},
-                      "scalePower": {"value": true},
-                      "sourceEntity": {"key": "self"},
-                      "trackSource": {"value": false},
-                      "uniqueRepeatGroup": {"value": true}
-                    }
-                  },
-                  {
-                    "title": "timer",
-                    "type": "action",
-                    "name": "timer",
-                    "parameters": {
-                      "time": {"value": 2}
-                    }
-                  },
-                  {
-                    "title": "randomize",
-                    "type": "composite",
-                    "name": "randomize",
-                    "parameters": {},
-                    "children": [
-                      {
-                        "title": "attack left",
-                        "type": "composite",
-                        "name": "sequence",
-                        "parameters": {},
-                        "children": [
-                          {
-                            "title": "setPosition",
-                            "type": "action",
-                            "name": "setPosition",
-                            "parameters": {
-                              "footPosition": {"value": false},
-                              "position": {"key": "wallPosUL"}
-                            }
-                          },
-                          {
-                            "title": "spawnProjectile",
-                            "type": "action",
-                            "name": "spawnProjectile",
-                            "parameters": {
-                              "aimVector": {"value": [1, 0]},
-                              "angle": {"value": 0},
-                              "offset": {"value": [1, 0]},
-                              "position": {"key": "wallPosUL"},
-                              "projectileConfig": {"value": {}},
-                              "projectileType": {"value": "v-mycotoxinbomb"},
-                              "scalePower": {"value": true},
-                              "sourceEntity": {"key": "self"},
-                              "trackSource": {"value": false},
-                              "uniqueRepeatGroup": {"value": true}
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "title": "attack right",
-                        "type": "composite",
-                        "name": "sequence",
-                        "parameters": {},
-                        "children": [
-                          {
-                            "title": "setPosition",
-                            "type": "action",
-                            "name": "setPosition",
-                            "parameters": {
-                              "footPosition": {"value": false},
-                              "position": {"key": "wallPosUR"}
-                            }
-                          },
-                          {
-                            "title": "spawnProjectile",
-                            "type": "action",
-                            "name": "spawnProjectile",
-                            "parameters": {
-                              "aimVector": {"value": [-1, 0]},
-                              "angle": {"value": 0},
-                              "offset": {"value": [-1, 0]},
-                              "position": {"key": "wallPosUR"},
-                              "projectileConfig": {"value": {}},
-                              "projectileType": {"value": "v-mycotoxinbomb"},
-                              "scalePower": {"value": true},
-                              "sourceEntity": {"key": "self"},
-                              "trackSource": {"value": false},
-                              "uniqueRepeatGroup": {"value": true}
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
+                "title": "v-laboratoryminiboss-mycospitattackbottom",
+                "type": "module",
+                "name": "v-laboratoryminiboss-mycospitattackbottom",
+                "parameters": {
+                  "windupTime": {"value": 0.5},
+                  "winddownTime": {"value": 0.5}
+                }
               }
             ]
           }
@@ -742,7 +323,7 @@
         "type": "action",
         "name": "timer",
         "parameters": {
-          "time": {"value": 3}
+          "time": {"value": 2.5}
         }
       }
     ]
