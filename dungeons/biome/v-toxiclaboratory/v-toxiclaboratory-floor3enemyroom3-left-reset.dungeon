@@ -1,0 +1,25 @@
+{
+  "metadata" : {
+    "name" : "v-toxiclaboratory-floor3enemyroom3-left-reset",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "floor3enemyroom3-left-reset" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 1,
+    "protected" : true
+  },
+
+  "parts" : [
+    {
+      "name" : "floor3enemyroom3-left-reset",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom3-left-reset.json" ]
+    }
+  ]
+}

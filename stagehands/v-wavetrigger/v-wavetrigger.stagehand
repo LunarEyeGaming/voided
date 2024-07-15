@@ -1,0 +1,17 @@
+{
+  // This stagehand is used by the v-monsterwavespawner object to determine to which entities to send some messages, the
+  // types of the messages to send, and the arguments to supply.
+  "type" : "v-wavetrigger",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-wavetrigger/v-wavetrigger.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-1, -1, 1, 1],
+  
+  "messageType" : null,  // The type of message to send
+  "messageArgs" : [],  // The arguments to send in addition to the message
+  "waveNumber" : 1,  // Which wave to activate the trigger
+  "targetOptions" : { "includedTypes" : [ "object" ] },  // The options for querying the targets.
+  "resetOnSubsequentWaves" : false
+}

@@ -1,0 +1,41 @@
+{
+  "objectName" : "v-wirelessmomentaryswitch",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "scannable" : false,
+  "rarity" : "Common",
+  "category" : "wire",
+  "price" : 0,
+  "health" : 0.1,
+  "description" : "...",
+  "shortdescription" : "Wireless Pulse Switch",
+  "race" : "generic",
+
+  "smashOnBreak" : true,
+
+  "inventoryIcon" : "wirelessmomentaryswitch.png",
+  "orientations" : [
+    {
+      "image" : "wirelessmomentaryswitch.png",
+      "imagePosition" : [-8, -8],
+      "spaceScan" : 0.1,
+      "direction" : "right",
+      
+      "animationPosition" : [-8, -8],
+      "animationParts" : {
+        "hidden" : "wirelessmomentaryswitchhidden.png"
+      }
+    }
+  ],
+  
+  "scripts" : [ "v-wirelessmomentaryswitch.lua" ],
+  "scriptDelta" : 5,
+  
+  "animation" : "v-wirelessmomentaryswitch.animation",
+
+  "outputNodes" : [ [0, -1] ],
+
+  "interval" : 15,
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

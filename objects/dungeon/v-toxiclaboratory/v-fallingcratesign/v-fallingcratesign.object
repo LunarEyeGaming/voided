@@ -1,0 +1,35 @@
+{
+  "objectName" : "v-fallingcratesign",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "category" : "decorative",
+  "price" : 60,
+
+  "description" : "A sign warning of falling crates.",
+  "shortdescription" : "Falling Crate Sign",
+  "race" : "human",
+
+  "apexDescription" : "This sign warns of falling shipment crates.",
+  "avianDescription" : "Red usually symbolizes safety, but it seems to indicate the opposite here. I'll need to be careful.",
+  "floranDescription" : "Floran wantss to use giant metal rock as trap.",
+  "glitchDescription" : "Cautious. A Glitch chassis cannot withstand the weight of a giant shipment crate.",
+  "humanDescription" : "A sign with the word \"Danger\" and a falling crate on it.",
+  "hylotlDescription" : "Falling objects were a common mishap when Hylotl started building underwater cities.",
+  "novakidDescription" : "Warnin' sign for fallin' crates. I'd best watch myself.",
+
+  "inventoryIcon" : "fallingcratesignicon.png",
+  "orientations" : [
+    {
+      "image" : "fallingcratesign.png:<color>",
+      "imagePosition" : [-16, -8],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+
+    }
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

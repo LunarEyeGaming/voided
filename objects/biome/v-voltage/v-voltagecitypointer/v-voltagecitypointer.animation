@@ -14,7 +14,8 @@
             "frameProperties" : {
               "immediateSound" : [ "/sfx/objects/mechbeacon_pulse1.ogg", "", "", "", "", "", "", "" ]
             }
-          }
+          },
+          "off" : {}
         }
       }
     },
@@ -30,7 +31,12 @@
           "light" : {
             "on" : {
               "properties" : {
-                "image" : "<partImage>:<frame>"
+                "image" : "<partImage>:on.<frame>"
+              }
+            },
+            "off" : {
+              "properties" : {
+                "image" : "<partImage>:off.<frame>"
               }
             }
           }
@@ -46,7 +52,12 @@
           "light" : {
             "on" : {
               "properties" : {
-                "image" : "<partImage>:<frame>"
+                "image" : "<partImage>:on.<frame>"
+              }
+            },
+            "off" : {
+              "properties" : {
+                "image" : "<partImage>:off.<frame>"
               }
             }
           }

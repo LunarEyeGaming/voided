@@ -1,0 +1,297 @@
+{
+  "type" : "v-livingmushroom1",
+  "shortdescription" : "Thornroot",
+  "description" : "A Pulpin that has been injected with fungal stem cells. The result is horrifying.",
+
+  "categories" : [ "v-livingmushroom1" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-livingmushroom1.animation",
+
+  "dropPools" : ["v-livingmushroom1Treasure"],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/monster.lua"
+    ],
+
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 3,
+
+    "behavior" : "monster",
+    "deathBehavior" : "monster-death",
+
+    "facingMode" : "transformation",
+
+    "seeThroughLiquid" : false,
+    "behaviorConfig" : {
+      "damageOnTouch" : false,
+
+      "targetQueryRange" : 35,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 50,
+      "targetOutOfSightTime" : 10.0,
+
+      "hurtWaitForGround" : false,
+
+      "spawnActions" : [
+        {
+          "name" : "v-action-briefwallsit"
+        },
+        {
+          "name" : "action-invulnerable",
+          "parameters" : {
+            "windupTime" : 0,
+            "windupState" : "",
+            "invulnerableState" : "appear",
+            "winddownTime" : 0,
+            "winddownState" : "idle",
+
+            "invulnerableTime" : 1.5
+          }
+        }
+      ],
+
+      "wanderActions" : [
+        {
+          "name" : "action-stop",
+          "parameters" : {
+            "stopForce" : 20
+          }
+        }
+      ],
+
+      "hostileActions" : [
+        {
+          "name" : "action-fire",
+          "cooldown" : 2.0,
+          "parameters" : {
+            "requireLineOfSight" : false,
+            "maximumRange" : 256,
+            "minimumRange" : 2,
+            "windupState" : "windup",
+            "windupTime" : 1.0,
+
+            "projectileType" : "v-proxyprojectile",
+            "projectileParameters" : {
+              "power" : 20,
+              "actionOnReap" : [
+                {
+                  "action" : "projectile",
+                  "type" : "v-fungaltendrilspawner",
+                  "inheritDamageFactor" : 1
+                },
+                {
+                  "action" : "projectile",
+                  "type" : "v-fungaltendrilsmallspawner",
+                  "inheritDamageFactor" : 0.5
+                }
+              ]
+            },
+            "fireOffset" : [0, 1],
+            "aimAtTarget" : false,
+            "aimDirection" : [0, 1],
+            "fireSound" : "fire",
+            "fireState" : "fire",
+
+            "winddownState" : "",
+            "winddownTime" : 0.7
+          }
+        }
+      ],
+
+      "concurrentActions" : [
+        {
+          "name" : "idle-crawl"
+        },
+        {
+          "name" : "action-animate",
+          "parameters" : {
+            "stateType" : "body",
+            "state" : "idle"
+          }
+        }
+      ],
+
+      "concurrentHostileActions" : [
+        {
+          "name" : "idle-crawl"
+        }
+      ],
+
+      "approachActions" : [],
+
+      "deathActions" : [
+        {
+          "name" : "action-projectile",
+          "parameters" : {
+            "projectileCount" : 1,
+            "projectileType" : "pulpinbrain",
+            "projectileParameters" : {},
+            "aimDirection" : [0, -1],
+            "inaccuracy" : 0,
+            "fireOffset" : [0, 2]
+          }
+        },
+        {
+          "name" : "action-projectile",
+          "parameters" : {
+            "projectileCount" : 1,
+            "projectileType" : "v-proxyprojectile",
+            "projectileParameters" : {
+              "actionOnReap" : [
+                {
+                  "action" : "loop",
+                  "count" : 10,
+                  "body" : [
+                    {
+                      "action" : "projectile",
+                      "type" : "v-thornrootjelly",
+                      "fuzzAngle" : 180
+                    }
+                  ]
+                },
+                {
+                  "action" : "loop",
+                  "count" : 20,
+                  "body" : [
+                    {
+                      "action" : "option",
+                      "options" : [
+                        {"action" : "particle", "specification" : "v-thornrootfragment1"},
+                        {"action" : "particle", "specification" : "v-thornrootfragment2"},
+                        {"action" : "particle", "specification" : "v-thornrootfragment3"},
+                        {"action" : "particle", "specification" : "v-thornrootfragment4"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "aimDirection" : [0, -1],
+            "inaccuracy" : 0,
+            "fireOffset" : [0, 0]
+          }
+        }
+      ]
+    },
+
+    "touchDamage" : {
+      "poly" : [ [1.125, 2.9375], [1.625, 2.4375], [1.625, -2.4375], [1.125, -2.9375], [-1.125, -2.9375], [-1.625, -2.4375], [-1.625, 2.4375], [-1.125, 2.9375] ],
+      "damage" : 17,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "electric",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [[2.0, 0.828], [0.828, 2.0], [-0.828, 2.0], [-2.0, 0.828], [-2.0, -0.828], [-0.828, -2.0], [0.828, -2.0], [2.0, -0.828]],
+
+      "mass" : 2.0,
+      "walkSpeed" : 0,
+      "runSpeed" : 12,
+      "gravityEnabled" : false,
+
+      "bounceFactor" : 0.0,
+      "groundFriction" : 10,
+
+      "airFriction" : 0,
+      "airForce" : 500,
+      "flySpeed" : 20,
+      "physicsEffectCategories" : ["stationarymonster"]
+    },
+
+    "bodyMaterialKind" : "organic",
+
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "stunDamageSuppression" : 0.2,
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0.3
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9
+        },
+        "maxHealth" : {
+          "baseValue" : 90
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "physicalResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "electricResistance" : {
+          "baseValue" : -0.25
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 0.5
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : false
+  }
+}

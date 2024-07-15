@@ -10,7 +10,8 @@ function init()
       type = config.getParameter("monsterType"),
       position = vec2.add(stagehand.position(), config.getParameter("monsterOffset", {0, 0})),
       parameters = params,
-      waveNumber = config.getParameter("waveNumber")
+      waveNumber = config.getParameter("waveNumber"),
+      silent = config.getParameter("silent")
     }
   end)
   

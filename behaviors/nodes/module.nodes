@@ -1,0 +1,307 @@
+{
+  "v-action-verticalfire": {
+    "type": "module",
+    "name": "v-action-verticalfire",
+    "title": "",
+    "properties": {
+      "aimAtTarget": {"type": "bool", "value": false},
+      "chargeStateType": {"type": "string", "value": "\"body\""},
+      "fireDirection": {"type": "vec2", "value": [0, -1]},
+      "fireSound": {"type": "string", "value": "\"fire\""},
+      "inaccuracy": {"type": "number", "value": 0},
+      "projectileConfig": {"type": "json", "value": {}},
+      "projectileCount": {"type": "number", "value": 10},
+      "projectileInterval": {"type": "number", "value": 0.1},
+      "projectileOffset": {"type": "vec2", "value": [0, 0]},
+      "projectileType": {"type": "string", "value": "\"acidsweep\""},
+      "rotateToTarget": {"type": "bool", "value": false},
+      "rotationOffset": {"type": "number", "value": 0},
+      "skillName": {"type": "string", "value": null},
+      "targetOffset": {"type": "vec2", "value": [0, 10]},
+      "tolerance": {"type": "number", "value": 2},
+      "wallKnockback": {"type": "bool", "value": false},
+      "winddownState": {"type": "string", "value": null},
+      "windupState": {"type": "string", "value": "\"windup\""}
+    },
+    "pathToTree": "..\\monsters\\modular\\actions\\v-verticalfire.behavior"
+  },
+  "v-action-charge": {
+    "type": "module",
+    "name": "v-action-charge",
+    "title": "",
+    "properties": {
+      "aimAtTarget": {"type": "json", "value": false},
+      "aimDirection": {"type": "json", "value": [1, 0]},
+      "chargeControlForce": {"type": "json", "value": 100},
+      "chargeSpeed": {"type": "json", "value": 25},
+      "chargeState": {"type": "json", "value": "charge"},
+      "chargeStateType": {"type": "json", "value": "body"},
+      "chargeTime": {"type": "json", "value": 1.5},
+      "inaccuracy": {"type": "json", "value": 0},
+      "rotateToTarget": {"type": "json", "value": false},
+      "rotationOffset": {"type": "json", "value": 0},
+      "skillName": {"type": "json", "value": null},
+      "wallCollide": {"type": "json", "value": true},
+      "wallCrashEmitter": {"type": "json", "value": null},
+      "wallCrashSound": {"type": "json", "value": "crash"},
+      "wallCrashVelocity": {"type": "json", "value": [-10, 20]},
+      "wallKnockback": {"type": "json", "value": false},
+      "winddownState": {"type": "json", "value": "chargewinddown"},
+      "windupState": {"type": "json", "value": "chargewindup"}
+    },
+    "pathToTree": "..\\monsters\\modular\\actions\\v-charge.behavior"
+  },
+  "v-strongholdboss-coreattack1": {
+    "type": "module",
+    "name": "v-strongholdboss-coreattack1",
+    "title": "",
+    "properties": {
+      "fireInterval": {"type": "json", "value": 0.4},
+      "loops": {"type": "json", "value": 5}
+    },
+    "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\coreattack1.behavior"
+  },
+  "v-strongholdboss-coreattack6": {
+    "type": "module",
+    "name": "v-strongholdboss-coreattack6",
+    "title": "",
+    "properties": {
+      "loops": {"type": "json", "value": 2},
+      "teleTime": {"type": "json", "value": 3}
+    },
+    "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\coreattack6.behavior"
+  },
+  "v-strongholdboss-phasetransition": {
+    "type": "module",
+    "name": "v-strongholdboss-phasetransition",
+    "title": "",
+    "properties": {
+      "waves": {"type": "json", "value": []}
+    },
+    "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\phasetransition.behavior"
+  },
+  "v-strongholdboss-coreattack5": {
+    "type": "module",
+    "name": "v-strongholdboss-coreattack5",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\coreattack5.behavior"
+  },
+  "v-strongholdboss-coreattack2": {
+    "type": "module",
+    "name": "v-strongholdboss-coreattack2",
+    "title": "",
+    "properties": {
+      "fireInterval": {"type": "json", "value": 0.5},
+      "loops": {"type": "json", "value": 3}
+    },
+    "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\coreattack2.behavior"
+  },
+  "v-strongholdboss-coreattack5b": {
+    "type": "module",
+    "name": "v-strongholdboss-coreattack5b",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\coreattack5b.behavior"
+  },
+  "v-strongholdboss-dying": {
+    "type": "module",
+    "name": "v-strongholdboss-dying",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\dying.behavior"
+  },
+  "v-strongholdboss": {
+    "type": "module",
+    "name": "v-strongholdboss",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\v-strongholdboss.behavior"
+  },
+  "v-cityminiboss-dying": {
+    "type": "module",
+    "name": "v-cityminiboss-dying",
+    "title": "",
+    "properties": {
+      "crashVelocity": {"type": "json", "value": [50, -25]},
+      "kickUpVelocity": {"type": "json", "value": [0, 75]}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-dying.behavior"
+  },
+  "v-cityminiboss": {
+    "type": "module",
+    "name": "v-cityminiboss",
+    "title": "",
+    "properties": {
+      "ambushRange": {"type": "json", "value": 15}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-cityminiboss.behavior"
+  },
+  "v-cityminiboss-awaitcubes": {
+    "type": "module",
+    "name": "v-cityminiboss-awaitcubes",
+    "title": "",
+    "properties": {
+      "faceDirectionRange": {"type": "json", "value": 50}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-awaitcubes.behavior"
+  },
+  "v-cityminiboss-intro": {
+    "type": "module",
+    "name": "v-cityminiboss-intro",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-intro.behavior"
+  },
+  "v-cityminiboss-lightningbomb": {
+    "type": "module",
+    "name": "v-cityminiboss-lightningbomb",
+    "title": "",
+    "properties": {
+      "backArmRotationCenter": {"type": "json", "value": [0.25, -0.25]},
+      "frontArmRotationCenter": {"type": "json", "value": [-0.375, -0.25]},
+      "gunKickbackTime": {"type": "json", "value": 0.2},
+      "gunStartKickbackAngle": {"type": "json", "value": 0.2},
+      "windupTime": {"type": "json", "value": 0.8}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-lightningbomb.behavior"
+  },
+  "v-cityminiboss-slam": {
+    "type": "module",
+    "name": "v-cityminiboss-slam",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-slam.behavior"
+  },
+  "v-cityminiboss-rotate": {
+    "type": "module",
+    "name": "v-cityminiboss-rotate",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-rotate.behavior"
+  },
+  "v-cityminiboss-slash": {
+    "type": "module",
+    "name": "v-cityminiboss-slash",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-slash.behavior"
+  },
+  "v-laboratoryminiboss-sporeattack": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-sporeattack",
+    "title": "",
+    "properties": {
+      "mycospitWindupTime": {"type": "json", "value": 0.4},
+      "mycospitWinddownTime": {"type": "json", "value": 0.5},
+      "mycospitFireDelay": {"type": "json", "value": 0.1}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-sporeattack.behavior"
+  },
+  "v-laboratoryminiboss": {
+    "type": "module",
+    "name": "v-laboratoryminiboss",
+    "title": "",
+    "properties": {
+      "vehicleAwakenRange": {"type": "json", "value": 8},
+      "playerAwakenRange": {"type": "json", "value": 25}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-laboratoryminiboss.behavior"
+  },
+  "v-laboratoryminiboss-cloudlineattack": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-cloudlineattack",
+    "title": "",
+    "properties": {
+      "ceilHeading": {"type": "json", "value": [-1, 0]},
+      "floorHeading": {"type": "json", "value": [1, 0]},
+      "leftWallHeading": {"type": "json", "value": [0, 1]},
+      "rightWallHeading": {"type": "json", "value": [0, -1]},
+      "ceilOffset": {"type": "json", "value": [0, -2.5]},
+      "floorOffset": {"type": "json", "value": [0, 2.5]},
+      "leftWallOffset": {"type": "json", "value": [2.5, 0]},
+      "rightWallOffset": {"type": "json", "value": [-2.5, 0]}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-cloudlineattack.behavior"
+  },
+  "v-laboratoryminiboss-tendrilattack": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-tendrilattack",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-tendrilattack.behavior"
+  },
+  "v-laboratoryminiboss-tendrilattackbottom": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-tendrilattackbottom",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-tendrilattackbottom.behavior"
+  },
+  "v-laboratoryminiboss-tendrilattacktop": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-tendrilattacktop",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-tendrilattacktop.behavior"
+  },
+  "v-action-spawnmonsterdungeon": {
+    "type": "module",
+    "name": "v-action-spawnmonsterdungeon",
+    "title": "",
+    "properties": {
+      "monsterType": {"type": "json", "value": "smallbiped"},
+      "offset": {"type": "json", "value": [0, 0]},
+      "position": {"type": "json", "value": null},
+      "replacement": {"type": "json", "value": false}
+    },
+    "pathToTree": "..\\monsters\\modular\\actions\\v-spawnmonsterdungeon.behavior"
+  },
+  "v-laboratoryminiboss-teleport": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-teleport",
+    "title": "",
+    "properties": {
+      "headingDirection": {"type": "json", "value": [1, 0]},
+      "position": {"type": "json", "value": null}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-teleport.behavior"
+  },
+  "v-laboratoryminiboss-mycospitattacktop": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-mycospitattacktop",
+    "title": "",
+    "properties": {
+      "winddownTime": {"type": "json", "value": 0.5},
+      "windupTime": {"type": "json", "value": 0.5}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-mycospitattacktop.behavior"
+  },
+  "v-laboratoryminiboss-mycospitattackbottom": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-mycospitattackbottom",
+    "title": "",
+    "properties": {
+      "windupTime": {"type": "json", "value": 0.5},
+      "winddownTime": {"type": "json", "value": 0.5}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-mycospitattackbottom.behavior"
+  },
+  "v-laboratoryminiboss-intro": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-intro",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-intro.behavior"
+  },
+  "v-laboratoryminiboss-dying": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-dying",
+    "title": "",
+    "properties": {
+      "explosionInterval": {"type": "json", "value": [0.01, 0.3]},
+      "explosionDuration": {"type": "json", "value": 3}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-dying.behavior"
+  }
+}

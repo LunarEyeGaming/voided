@@ -1,0 +1,23 @@
+{
+  // This does nothing on its own aside from activating / deactivating it. The script 
+  // "/scripts/rendering/v-gpsdisplay.lua" does something with it though.
+  "itemName" : "v-gps",
+  "price" : 2500,
+  "rarity" : "Legendary",
+  "category" : "v-passiveItem",
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "inventoryIcon" : "gpsicon.png:on",  // Initial icon to use; set dynamically in script.
+  "baseIcon" : "/items/active/unsorted/v-gps/gpsicon.png",
+  "description" : "Displays your position. Use the item to toggle it.",
+  "shortdescription" : "GPS",
+
+  "animation" : "v-gps.animation",
+  "animationParts" : {
+    "gps" : "gps.png",
+    "gpsfullbright" : "gpsfullbright.png"
+  },
+
+  "scripts" : ["v-gps.lua"],
+  
+  "v-gpsIsActive" : true  // Default value; set dynamically in script.
+}

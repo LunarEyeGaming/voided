@@ -1,6 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/interp.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-animator.lua"
 
 -- Base gun fire ability
 HarpoonGunFire = WeaponAbility:new()
@@ -73,7 +73,7 @@ function HarpoonGunFire:postFire()
 
     progress = math.min(1.0, progress + (self.dt / self.stances.cooldown.duration))
   end)
-  
+
   self:setState(self.active)
 end
 
@@ -100,7 +100,7 @@ function HarpoonGunFire:propagate()
     local projectilePos = world.entityPosition(self.projectileId)
     local angle = vec2.angle(world.distance(projectilePos, firePos))
     self:fireProjectile(self.propagateProjectile, self.propagateProjectileParameters, nil, vec2.add(vec2.withAngle(angle, nextDistance), firePos), self.propagateDamageFactor)
-    
+
     nextDistance = nextDistance + self.propagateStepDistance
     if nextDistance > world.magnitude(firePos, projectilePos) then
       break
@@ -172,7 +172,7 @@ function HarpoonGunFire:cancel()
     world.callScriptedEntity(self.projectileId, "kill")
   end
   self.projectileId = nil
-  
+
   self:reset()
 end
 
@@ -180,11 +180,11 @@ function HarpoonGunFire:trackProjectile()
   if not self.projectileId or not world.entityExists(self.projectileId) then
     return
   end
-  
+
   local projectilePosition = world.entityPosition(self.projectileId)
-  
+
   local aimVector = world.distance(projectilePosition, mcontroller.position())
-  
+
   if vec2.mag(aimVector) > self.maxChainLength then
     self:cancel()
     return
@@ -193,7 +193,7 @@ function HarpoonGunFire:trackProjectile()
   self.weapon.aimDirection = util.toDirection(aimVector[1])
   aimVector[1] = aimVector[1] * self.weapon.aimDirection
   self.weapon.aimAngle = vec2.angle(aimVector)
-  
+
   self:renderChain(projectilePosition)
 end
 
@@ -201,13 +201,13 @@ function HarpoonGunFire:renderChain(endPos)
   local newChain
   if self.anchored then
     newChain = copy(self.chainAnchored)
-    
-    local frame = frameNumber(self.frameTimer, self.anchoredChainFrameCycle, 1, self.anchoredChainNumFrames)
+
+    local frame = vAnimator.frameNumber(self.frameTimer, self.anchoredChainFrameCycle, 1, self.anchoredChainNumFrames)
 
     newChain.startSegmentImage = util.replaceTag(newChain.startSegmentImage, "frame", frame)
     newChain.segmentImage = util.replaceTag(newChain.segmentImage, "frame", frame)
     newChain.endSegmentImage = util.replaceTag(newChain.endSegmentImage, "frame", frame)
-    
+
     self.frameTimer = (self.frameTimer + script.updateDt()) % self.anchoredChainFrameCycle
   else
     newChain = copy(self.chain)

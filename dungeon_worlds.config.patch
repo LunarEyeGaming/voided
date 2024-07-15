@@ -45,5 +45,80 @@
       "disableDeathDrops" : true,
       "environmentStatusEffects" : ["v-quickhealnerf"]
     }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-toxicdungeontest",
+    "value" : {
+      "primaryDungeon" : "v-toxiclaboratory",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [2000, 3000],
+      "dungeonBaseHeight" : 400,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "",
+      "biome" : "v-toxicwasteland",
+      "environmentStatusEffects" : ["v-quickhealnerf", "v-depthpoison"]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-toxicdungeontestfloor1",
+    "value" : {
+      "primaryDungeon" : "v-toxiclaboratorytestfloor1",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [4000, 3000],
+      "dungeonBaseHeight" : 400,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "",
+      "biome" : "v-toxicwasteland",
+      "environmentStatusEffects" : ["v-quickhealnerf", "v-depthpoison"]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-toxicdungeontestfloor2",
+    "value" : {
+      "primaryDungeon" : "v-toxiclaboratorytestfloor2",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [4000, 3000],
+      "dungeonBaseHeight" : 400,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "",
+      "biome" : "v-toxicwasteland",
+      "environmentStatusEffects" : ["v-quickhealnerf", "v-depthpoison"]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-toxicdungeontestfloor3",
+    "value" : {
+      "primaryDungeon" : "v-toxiclaboratorytestfloor3",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [4000, 3000],
+      "dungeonBaseHeight" : 400,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "",
+      "biome" : "v-toxicwasteland",
+      "environmentStatusEffects" : ["v-quickhealnerf", "v-depthpoison"]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-laboratoryminibosstest",
+    "value" : {
+      "primaryDungeon" : "v-laboratoryminibosstest",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [2000, 3000],
+      "dungeonBaseHeight" : 250,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "/music/event-horizon.ogg",
+      "biome" : "v-toxicwasteland",
+      "environmentStatusEffects" : ["dontstarve", "v-quickhealnerf", "v-depthpoison"]
+    }
   }
 ]

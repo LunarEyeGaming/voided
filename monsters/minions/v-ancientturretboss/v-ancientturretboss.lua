@@ -134,8 +134,9 @@ function states.activate()
 
   util.wait(activationTime)
 
-  for _, angle in pairs(angles) do
-    turn(angle, turnTime)
+  -- Skip the first angle
+  for i = 2, #angles do
+    turn(angles[i], turnTime)
     wait()
   end
   

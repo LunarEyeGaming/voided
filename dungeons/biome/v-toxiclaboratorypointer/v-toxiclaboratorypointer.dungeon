@@ -1,0 +1,25 @@
+{
+  "metadata" : {
+    "name" : "v-toxiclaboratorypointer",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "toxiclaboratorypointer" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "toxiclaboratorypointer",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "toxiclaboratorypointer.json" ]
+    }
+  ]
+}

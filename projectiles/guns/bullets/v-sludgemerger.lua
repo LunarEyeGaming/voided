@@ -6,7 +6,6 @@ local hasMerged
 
 local liveCollisionAction
 local deadCollisionAction
-local actionAsMerger
 
 function init()
   mergeRadius = config.getParameter("mergeRadius")
@@ -40,7 +39,5 @@ function destroy()
     else
       projectile.processAction(liveCollisionAction)
     end
-  elseif isMerger then
-    projectile.processAction(actionAsMerger)
   end
 end

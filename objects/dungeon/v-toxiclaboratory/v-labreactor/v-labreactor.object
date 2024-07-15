@@ -1,0 +1,101 @@
+{
+  "objectName" : "v-labreactor",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "price" : 1000,
+  "printable" : true,
+  "shortdescription" : "Electron Harvester",
+  "description" : "An enormous device that harvests electricity from a crystal.",
+
+  "apexDescription" : "This device appears to collect electricity discharged by the giant crystal in the center.",
+  "avianDescription" : "A loud device with a cold light coming from the crystal in the center.",
+  "floranDescription" : "Crystal makesss pretty light. Floran wantsss to free it.",
+  "glitchDescription" : "Intrigued. The crystal in the center seems to produce electricity of its own.",
+  "humanDescription" : "That's a convenient way to get electricity.",
+  "hylotlDescription" : "The crystal in the center appears to passively emit electricity.",
+  "novakidDescription" : "What a mighty strange crystal! It seems to power the whole facility.",
+
+  "race" : "human",
+  "category" : "decorative",
+
+  "lightColor" : [196, 196, 245],
+
+  "flickerPeriod" : 0.75,
+  "flickerMinIntensity" : 0.8,
+  "flickerMaxIntensity" : 0.9,
+  "flickerPeriodVariance" : 0.25,
+  "flickerIntensityVariance" : 0.1,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "labreactor.png:<frame>", "fullbright" : true }, { "image" : "labreactorlit.png:<frame>" } ],
+      "flipImages" : true,
+      "direction" : "left",
+      "imagePosition" : [-56, 0],
+      "animationParts" : {
+        "reactor" : "labreactor.png",
+        "reactorlit" : "labreactorlit.png"
+      },
+      "animationPosition" : [-56, 0],
+
+      "lightPosition" : [0, 15.5],
+
+      "spaceScan" : 0.1,
+      "materialSpaces" : [
+        [ [-7, 11], "outpostplatform" ],
+        [ [-6, 11], "outpostplatform" ],
+        [ [-5, 11], "outpostplatform" ],
+        [ [-4, 11], "outpostplatform" ],
+        [ [-3, 11], "outpostplatform" ],
+        [ [-2, 11], "outpostplatform" ],
+        [ [-1, 11], "outpostplatform" ],
+        [ [0, 11], "outpostplatform" ],
+        [ [1, 11], "outpostplatform" ],
+        [ [2, 11], "outpostplatform" ],
+        [ [3, 11], "outpostplatform" ],
+        [ [4, 11], "outpostplatform" ],
+        [ [5, 11], "outpostplatform" ],
+        [ [6, 11], "outpostplatform" ],
+        [ [7, 11], "outpostplatform" ]
+      ],
+      "anchors" : [ "bottom", "top" ],
+      "renderLayer" : "Platform-10"
+    },
+    {
+      "imageLayers" : [ { "image" : "labreactor.png:<frame>", "fullbright" : true }, { "image" : "labreactorlit.png:<frame>" } ],
+      "direction" : "right",
+      "imagePosition" : [-56, 0],
+      "animationParts" : {
+        "reactor" : "labreactor.png",
+        "reactorlit" : "labreactorlit.png"
+      },
+      "animationPosition" : [-56, 0],
+
+      "lightPosition" : [0, 15.5],
+
+      "spaceScan" : 0.1,
+      "materialSpaces" : [
+        [ [-7, 11], "outpostplatform" ],
+        [ [-6, 11], "outpostplatform" ],
+        [ [-5, 11], "outpostplatform" ],
+        [ [-4, 11], "outpostplatform" ],
+        [ [-3, 11], "outpostplatform" ],
+        [ [-2, 11], "outpostplatform" ],
+        [ [-1, 11], "outpostplatform" ],
+        [ [0, 11], "outpostplatform" ],
+        [ [1, 11], "outpostplatform" ],
+        [ [2, 11], "outpostplatform" ],
+        [ [3, 11], "outpostplatform" ],
+        [ [4, 11], "outpostplatform" ],
+        [ [5, 11], "outpostplatform" ],
+        [ [6, 11], "outpostplatform" ],
+        [ [7, 11], "outpostplatform" ]
+      ],
+      "anchors" : [ "bottom", "top" ],
+      "renderLayer" : "Platform-10"
+    }
+  ],
+
+  "animation" : "v-labreactor.animation"
+}

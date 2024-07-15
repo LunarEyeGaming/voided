@@ -1,0 +1,81 @@
+{
+  "objectName" : "v-terraformertoxicwasteland",
+  "colonyTags" : [],
+  "rarity" : "Legendary",
+  "description" : "Transforms a planet's climate into a barren, hazy landscape.",
+  "shortdescription" : "Toxic Haze Terraformer",
+  "race" : "ancient",
+  "category" : "terraformer",
+  "price" : 5000,
+  "printable" : false,
+
+  "inventoryIcon" : "v-terraformer/icon_toxicwasteland.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "v-terraformer/toxicwastelandfullbright.png:inactive", "fullbright" : true }, { "image" : "v-terraformer/toxicwasteland.png:inactive" } ],
+      "imagePosition" : [-32, 0],
+
+      "direction" : "left",
+      "flipImages" : true,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "imageLayers" : [ { "image" : "v-terraformer/toxicwastelandfullbright.png:inactive", "fullbright" : true }, { "image" : "v-terraformer/toxicwasteland.png:inactive" } ],
+      "imagePosition" : [-32, 0],
+
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "health" : 8,
+  "rooting" : true,
+
+  "animation" : "terraformer.animation",
+  "animationPosition" : [-32, 0],
+  "animationParts" : {
+    "base" : "v-terraformer/toxicwasteland.png",
+    "baseFullbright" : "v-terraformer/toxicwastelandfullbright.png",
+    "beam" : "beam/terraformer_beam_poison.png"
+  },
+  "animationCustom" : {
+    "animatedParts" : {
+      "stateTypes" : {
+        "baseState" : {
+          "states" : {
+            "activate" : {
+              "frames" : 3
+            }
+          }
+        }
+      },
+      "parts" : {
+        "beam" : {
+          "properties" : {
+            "offset" : [3.5, 5.0]
+          }
+        }
+      }
+    }
+  },
+
+  "scripts" : ["/objects/terraformer/terraformer.lua"],
+  "scriptDelta" : 10,
+
+  "terraformOffset" : [-15, 0],
+
+  "minPregenerateTime" : 5,
+  "basePregenerateTime" : 10,
+  "pregenerateTimePerTile" : 0.1,
+
+  "planetTypeChangeThreshold" : 0.5,
+
+  "terraformBiome" : "v-toxicwasteland",
+  "terraformPlanetType" : "v-toxicwasteland",
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

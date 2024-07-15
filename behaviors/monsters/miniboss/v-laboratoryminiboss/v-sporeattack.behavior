@@ -1,0 +1,332 @@
+{
+  "name": "v-laboratoryminiboss-sporeattack",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/v-projectiles.lua",
+    "/scripts/actions/v-query.lua"
+  ],
+  "parameters": {
+    "mycospitWindupTime": 0.4,
+    "mycospitWinddownTime": 0.5,
+    "mycospitFireDelay": 0.1
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "v-laboratoryminiboss-teleport",
+        "type": "module",
+        "name": "v-laboratoryminiboss-teleport",
+        "parameters": {
+          "headingDirection": {"value": [1, 0]},
+          "position": {"key": "spawn"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "spores"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.5}
+        }
+      },
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": 10},
+          "untilSuccess": {"value": false}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "repeater",
+              "type": "decorator",
+              "name": "repeater",
+              "parameters": {
+                "maxLoops": {"value": -1},
+                "untilSuccess": {"value": true}
+              },
+              "child": {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "random",
+                    "type": "action",
+                    "name": "random",
+                    "parameters": {
+                      "max": {"value": -21},
+                      "min": {"value": 22}
+                    },
+                    "output": {
+                      "number": "sporeXOffset"
+                    }
+                  },
+                  {
+                    "title": "random",
+                    "type": "action",
+                    "name": "random",
+                    "parameters": {
+                      "max": {"value": -1},
+                      "min": {"value": 36}
+                    },
+                    "output": {
+                      "number": "sporeYOffset"
+                    }
+                  },
+                  {
+                    "title": "offsetPosition",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": ["sporeXOffset", "sporeYOffset"]},
+                      "position": {"key": "self"}
+                    },
+                    "output": {
+                      "position": "sporePos"
+                    }
+                  },
+                  {
+                    "title": "inverter",
+                    "type": "decorator",
+                    "name": "inverter",
+                    "parameters": {},
+                    "child": {
+                      "title": "pointTileCollision",
+                      "type": "action",
+                      "name": "pointTileCollision",
+                      "parameters": {
+                        "position": {"key": "sporePos"}
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": -2},
+                "min": {"value": 2}
+              },
+              "output": {
+                "number": "sporeSpawnXOffset"
+              }
+            },
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": 0},
+                "min": {"value": 4}
+              },
+              "output": {
+                "number": "sporeSpawnYOffset"
+              }
+            },
+            {
+              "title": "v_spawnProjectileTargetPos",
+              "type": "action",
+              "name": "v_spawnProjectileTargetPos",
+              "parameters": {
+                "projectileType": {"value": "v-sporeminetele"},
+                "sourceEntity": {"key": "self"},
+                "position": {"key": "self"},
+                "offset": {"value": ["sporeSpawnXOffset", "sporeSpawnYOffset"]},
+                "aimVector": {"value": [0, 0]},
+                "uniqueRepeatGroup": {"value": true},
+                "targetPosition": {"key": "sporePos"},
+                "targetOffset": {"value": [0, 0]},
+                "projectileConfig": {"value": {"power": 15}},
+                "scalePower": {"value": true},
+                "trackSource": {"value": false}
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "burstParticleEmitter",
+        "type": "action",
+        "name": "burstParticleEmitter",
+        "parameters": {
+          "emitter": {"value": "spores"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": 0},
+          "sound": {"value": "fireSpores"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.25}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "sporesend"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.75}
+        }
+      },
+      {
+        "title": "selector",
+        "type": "composite",
+        "name": "selector",
+        "parameters": {},
+        "children": [
+          {
+            "title": "attack top then bottom",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "No creatures below?",
+                "type": "decorator",
+                "name": "inverter",
+                "parameters": {},
+                "child": {
+                  "title": "",
+                  "type": "action",
+                  "name": "v_queryEntityRect",
+                  "parameters": {
+                    "center": {"key": "spawn"},
+                    "offset1": {"value": [-22, -2]},
+                    "offset2": {"value": [24, 15]},
+                    "entityTypes": {"value": ["creature"]},
+                    "withoutEntity": {"key": "self"}
+                  }
+                }
+              },
+              {
+                "title": "v-laboratoryminiboss-mycospitattacktop",
+                "type": "module",
+                "name": "v-laboratoryminiboss-mycospitattacktop",
+                "parameters": {
+                  "winddownTime": {"key": "<mycospitWinddownTime>"},
+                  "windupTime": {"key": "<mycospitWindupTime>"}
+                }
+              }
+            ]
+          },
+          {
+            "title": "attack bottom then top",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "No creatures above?",
+                "type": "decorator",
+                "name": "inverter",
+                "parameters": {},
+                "child": {
+                  "title": "",
+                  "type": "action",
+                  "name": "v_queryEntityRect",
+                  "parameters": {
+                    "center": {"key": "spawn"},
+                    "offset1": {"value": [-22, 16]},
+                    "offset2": {"value": [24, 37]},
+                    "entityTypes": {"value": ["creature"]},
+                    "withoutEntity": {"key": "self"}
+                  }
+                }
+              },
+              {
+                "title": "v-laboratoryminiboss-mycospitattackbottom",
+                "type": "module",
+                "name": "v-laboratoryminiboss-mycospitattackbottom",
+                "parameters": {
+                  "windupTime": {"key": "<mycospitWindupTime>"},
+                  "winddownTime": {"key": "<mycospitWinddownTime>"}
+                }
+              }
+            ]
+          },
+          {
+            "title": "randomize",
+            "type": "composite",
+            "name": "randomize",
+            "parameters": {},
+            "children": [
+              {
+                "title": "v-laboratoryminiboss-mycospitattacktop",
+                "type": "module",
+                "name": "v-laboratoryminiboss-mycospitattacktop",
+                "parameters": {
+                  "winddownTime": {"key": "<mycospitWinddownTime>"},
+                  "windupTime": {"key": "<mycospitWindupTime>"}
+                }
+              },
+              {
+                "title": "v-laboratoryminiboss-mycospitattackbottom",
+                "type": "module",
+                "name": "v-laboratoryminiboss-mycospitattackbottom",
+                "parameters": {
+                  "windupTime": {"key": "<mycospitWindupTime>"},
+                  "winddownTime": {"key": "<mycospitWinddownTime>"}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 2.5}
+        }
+      }
+    ]
+  }
+}

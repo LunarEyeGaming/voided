@@ -3,17 +3,13 @@
   "description": "",
   "scripts": [
     "/scripts/actions/animator.lua",
-    "/scripts/actions/movement.lua",
-    // "/scripts/actions/position.lua",
-    "/scripts/actions/projectiles.lua",
-    "/scripts/actions/time.lua",
     "/scripts/actions/world.lua",
-    "/scripts/actions/v-monster.lua",
-    "/scripts/behavior.lua",
-    "/scripts/behavior/bdata.lua"
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/v-projectiles.lua",
+    "/scripts/actions/miniboss/v-cityminiboss.lua"
   ],
-  "parameters": {
-  },
+  "parameters": {},
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -120,72 +116,21 @@
           "sound": {"value": "slash"}
         }
       },
-      /* {
-        "title": "spawnProjectile",
-        "type": "action",
-        "name": "spawnProjectile",
-        "parameters": {
-          "aimVector": {"key": "aimVector"},  // From v-cityminiboss-rotate
-          "offset": {"value": [0, 0]},
-          "position": {"key": "self"},
-          "projectileConfig": {"value": {"power" : 15, "actionOnReap" : [
-            {
-              "action" : "projectile",
-              "type": "railgunlightning",
-              "inheritDamageFactor" : 1,
-              "angleAdjust" : 60,
-              "config" : {"speed" : 1, "acceleration" : 50}
-            },
-            {
-              "action" : "projectile",
-              "type": "railgunlightning",
-              "inheritDamageFactor" : 1,
-              "angleAdjust" : 30,
-              "config" : {"speed" : 1, "acceleration" : 50}
-            },
-            {
-              "action" : "projectile",
-              "type": "railgunlightning",
-              "inheritDamageFactor" : 1,
-              "angleAdjust" : 0,
-              "config" : {"speed" : 1, "acceleration" : 50}
-            },
-            {
-              "action" : "projectile",
-              "type": "railgunlightning",
-              "inheritDamageFactor" : 1,
-              "angleAdjust" : -30,
-              "config" : {"speed" : 1, "acceleration" : 50}
-            },
-            {
-              "action" : "projectile",
-              "type": "railgunlightning",
-              "inheritDamageFactor" : 1,
-              "angleAdjust" : -60,
-              "config" : {"speed" : 1, "acceleration" : 50}
-            }
-          ]}},
-          "projectileType": {"value": "v-proxyprojectile"},
-          "scalePower": {"value": true},
-          "sourceEntity": {"key": "self"},
-          "trackSource": {"value": false}
-        }
-      }, */
       {
         "title": "v_spawnProjectileSpread",
         "type": "action",
         "name": "v_spawnProjectileSpread",
         "parameters": {
-          "aimVector": {"key": "aimVector"},  // From v-cityminiboss-rotate
+          "aimVector": {"key": "aimVector"},
           "offset": {"value": [0, 0]},
           "position": {"key": "self"},
-          "projectileConfig": {"value": {"power" : 15}},
+          "projectileConfig": {"value": {"power": 15}},
+          "projectileCount": {"value": 5},
           "projectileType": {"value": "v-cityminibosslightning"},
           "scalePower": {"value": true},
           "sourceEntity": {"key": "self"},
-          "trackSource": {"value": false},
           "spreadAngle": {"value": 30},
-          "projectileCount": {"value": 5}
+          "trackSource": {"value": false}
         }
       },
       {
@@ -196,15 +141,6 @@
           "time": {"value": 0.2}
         }
       },
-      /* {
-        "title": "setAnimationState",
-        "type": "action",
-        "name": "setAnimationState",
-        "parameters": {
-          "state": {"value": "slashwinddown"},
-          "type": {"value": "blade"}
-        }
-      }, */
       {
         "title": "timer",
         "type": "action",
@@ -218,19 +154,10 @@
         "type": "action",
         "name": "v_smoothReset",
         "parameters": {
-          "startAngle": {"key": "targetAngle"},  // From v-cityminiboss-rotate
+          "startAngle": {"key": "targetAngle"},
           "resetTime": {"value": 0.25}
         }
       },
-      /* {
-        "title": "setAnimationState",
-        "type": "action",
-        "name": "setAnimationState",
-        "parameters": {
-          "state": {"value": "idle"},
-          "type": {"value": "body"}
-        }
-      }, */
       {
         "title": "timer",
         "type": "action",

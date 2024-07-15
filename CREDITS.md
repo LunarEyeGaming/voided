@@ -6,7 +6,9 @@ All custom sounds in Voided were made in Audacity using Starbound's assets and/o
 * "Lightning Storm.wav" by Ambientsoundapp on Freesound.org (URL: https://freesound.org/people/Ambientsoundapp/sounds/537985/).
 * "black-bees swarm.wav" by bruno.auzet on Freesound.org (URL: https://freesound.org/people/bruno.auzet/sounds/578267/).
 * "Balloon_Inflate_6.wav" by Terhen on Freesound.org (URL: https://freesound.org/people/Terhen/sounds/234186/).
-* "Balloon Pop.wav" by Laumark on Freesound.org (URL: https://freesound.org/people/Laumark/sounds/415125/)
+* "Balloon Pop.wav" by Laumark on Freesound.org (URL: https://freesound.org/people/Laumark/sounds/415125/).
+* "Glass Smash.wav" by chewiesmissus on Freesound.org (URL: https://freesound.org/people/chewiesmissus/sounds/244238/).
+* "Glass.ogg" by egomassive on Freesound.org (URL: https://freesound.org/people/egomassive/sounds/536763/).
 
 Disclaimer: the authors of these sound samples do not endorse Voided.
 

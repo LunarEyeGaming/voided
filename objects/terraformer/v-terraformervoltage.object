@@ -9,11 +9,11 @@
   "price" : 5000,
   "printable" : false,
 
-  "inventoryIcon" : "terraformericon_electric.png",
+  "inventoryIcon" : "v-terraformer/icon_voltage.png",
   "orientations" : [
     {
-      "imageLayers" : [ { "image" : "terraformerfullbright_electric.png:inactive", "fullbright" : true }, { "image" : "terraformer.png:inactive" } ],
-      "imagePosition" : [-16, 0],
+      "imageLayers" : [ { "image" : "v-terraformer/voltagefullbright.png:inactive", "fullbright" : true }, { "image" : "v-terraformer/voltage.png:inactive" } ],
+      "imagePosition" : [-32, 0],
 
       "direction" : "left",
       "flipImages" : true,
@@ -22,8 +22,8 @@
       "anchors" : [ "bottom" ]
     },
     {
-      "imageLayers" : [ { "image" : "terraformerfullbright_electric.png:inactive", "fullbright" : true }, { "image" : "terraformer.png:inactive" } ],
-      "imagePosition" : [-16, 0],
+      "imageLayers" : [ { "image" : "v-terraformer/voltagefullbright.png:inactive", "fullbright" : true }, { "image" : "v-terraformer/voltage.png:inactive" } ],
+      "imagePosition" : [-32, 0],
 
       "direction" : "right",
 
@@ -36,11 +36,31 @@
   "rooting" : true,
 
   "animation" : "terraformer.animation",
-  "animationPosition" : [-16, 0],
+  "animationPosition" : [-32, 0],
   "animationParts" : {
-    "base" : "terraformer.png",
-    "baseFullbright" : "terraformerfullbright_electric.png",
+    "base" : "v-terraformer/voltage.png",
+    "baseFullbright" : "v-terraformer/voltagefullbright.png",
     "beam" : "beam/terraformer_beam_electric.png"
+  },
+  "animationCustom" : {
+    "animatedParts" : {
+      "stateTypes" : {
+        "baseState" : {
+          "states" : {
+            "activate" : {
+              "frames" : 3
+            }
+          }
+        }
+      },
+      "parts" : {
+        "beam" : {
+          "properties" : {
+            "offset" : [3.5, 5.0]
+          }
+        }
+      }
+    }
   },
 
   "scripts" : ["/objects/terraformer/terraformer.lua"],

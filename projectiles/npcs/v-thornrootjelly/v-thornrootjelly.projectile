@@ -1,0 +1,21 @@
+{
+  "projectileName" : "v-thornrootjelly",
+  "image" : "thornrootjelly.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "timeToLive" : 5,
+  "flippable" : true,
+  "fullbright" : false,
+  "physics" : "grenade",
+  "bounces" : 0,
+  "onlyHitTerrain" : true,
+  
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-thornrootjellystuck"
+    }
+  ],
+
+  "speed" : 20
+}

@@ -70,7 +70,7 @@ function v_teleAngle(args, board, _, dt)
   while timer < args.teleTime do
     timer = timer + dt
     local stepAngle = interp.sin(timer / args.teleTime, 0, finalAngle) + args.angleOffset
-    --local offset = polarRect(args.xLength, args.yLength, stepAngle)
+    --local offset = voidedUtil.polarRect(args.xLength, args.yLength, stepAngle)
     local offset = {args.xLength / 2 * math.cos(stepAngle), args.yLength / 2 * math.sin(stepAngle)}
     mcontroller.setPosition(vec2.add(args.center, offset))
     coroutine.yield(nil, {headingVector = vec2.withAngle(stepAngle)})
@@ -78,7 +78,7 @@ function v_teleAngle(args, board, _, dt)
   -- util.run(args.teleTime, function(dt)
     -- timer = timer + dt
     -- local stepAngle = interp.sin(timer / args.teleTime, 0, finalAngle)
-    -- --local offset = polarRect(args.xLength, args.yLength, stepAngle)
+    -- --local offset = voidedUtil.polarRect(args.xLength, args.yLength, stepAngle)
     -- local offset = {15 + 15 * math.cos(stepAngle), 12 + 12 * math.sin(stepAngle)}
     -- sb.logInfo("%s", offset)
     -- mcontroller.setPosition(vec2.add(args.center, offset))

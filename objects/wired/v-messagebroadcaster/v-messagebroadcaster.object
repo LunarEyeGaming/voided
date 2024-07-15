@@ -1,0 +1,45 @@
+{
+  "objectName" : "v-messagebroadcaster",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "scannable" : false,
+  "rarity" : "Common",
+  "category" : "wire",
+  "price" : 0,
+  "health" : 0.1,
+  "description" : "...",
+  "shortdescription" : "Message Sender",
+  "race" : "generic",
+
+  "smashOnBreak" : true,
+
+  "inventoryIcon" : "messagebroadcaster.png",
+  "orientations" : [
+    {
+      "image" : "messagebroadcaster.png",
+      "imagePosition" : [-8, -8],
+      "spaceScan" : 0.1,
+      "direction" : "right",
+      
+      "animationPosition" : [-8, -8],
+      "animationParts" : {
+        "hidden" : "messagebroadcasterhidden.png"
+      }
+    }
+  ],
+  
+  "scripts" : [ "v-messagebroadcaster.lua" ],
+  "scriptDelta" : 1,
+  
+  "animation" : "v-messagebroadcaster.animation",
+
+  "inputNodes" : [ [-1, 0] ],
+  
+  "messageType" : null,
+  "messageArgs" : [],
+  "messageSourceOffset" : [0, 0],
+  "messageRadius" : 1,
+  "messageQuerySettings" : {},
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

@@ -1,0 +1,27 @@
+{
+  "projectileName" : "v-labspawneregg",
+  "image" : "labspawneregg.png",
+  "physics" : "illusion",
+  "animationCycle" : 1.0,
+  "frameNumber" : 1,
+  "power" : 0,
+  "speed" : 0,
+  "timeToLive" : 1.0,
+  "bounces" : -1,
+  "piercing" : true,
+  "actionOnReap" : [
+    {
+      "action": "config",
+      "file": "/projectiles/traps/v-labspawneregg/hatch.config"
+    }
+  ],
+
+  "onlyHitTerrain" : true,
+
+  "renderLayer" : "ForegroundEntity+10",
+
+  "scripts" : [ "/projectiles/traps/v-cityspawnerorb/v-cityspawnerorb.lua" ],
+
+  "travelTime" : 1.0,
+  "releaseStatusEffect" : "v-labmonsterrelease"
+}

@@ -1,0 +1,46 @@
+{
+  "objectName" : "v-labcrane",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "category" : "decorative",
+  "price" : 250,
+
+  "description" : "A crane designed for carrying large cargo.",
+  "shortdescription" : "Industrial Cargo Crane",
+  "race" : "human",
+
+  "apexDescription" : "This crane seems to be designed to move large shipment crates.",
+  "avianDescription" : "A large, reinforced crane.",
+  "floranDescription" : "Floran wantss to ride crane.",
+  "glitchDescription" : "Analytical. This crane seems to be designed to carry large cargo.",
+  "humanDescription" : "This crane seems heavily reinforced.",
+  "hylotlDescription" : "An ugly crane, but it works.",
+  "novakidDescription" : "This crane seems to be reserved for real big boxes.",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "labcrane.png:<color>",
+      "direction" : "right",
+      "imagePosition" : [-64, -40],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    },
+    {
+      "image" : "labcrane.png:<color>",
+      "direction" : "left",
+      "flipImages" : true,
+      "imagePosition" : [-64, -40],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    }
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

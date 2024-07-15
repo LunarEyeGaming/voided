@@ -1,4 +1,5 @@
 require "/scripts/vec2.lua"
+require "/scripts/util.lua"
 
 -- Bow primary ability
 BowShotImproved = WeaponAbility:new()
@@ -49,7 +50,7 @@ function BowShotImproved:draw()
     end
 
     local drawFrame = math.floor(root.evalFunction(self.drawFrameSelector, self.drawTime))
-    animator.setGlobalTag("drawFrame", drawFrame)
+    animator.setGlobalTag("drawFrame", tostring(drawFrame))
     self.stances.draw.frontArmFrame = self.drawArmFrames[drawFrame + 1]
 
     coroutine.yield()

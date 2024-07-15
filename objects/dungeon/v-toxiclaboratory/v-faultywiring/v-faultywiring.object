@@ -1,0 +1,48 @@
+{
+  "objectName" : "v-faultywiring",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "rarity" : "Common",
+  "breakDropOptions" : [],
+
+  "category" : "wire",
+  "price" : 15,
+  "description" : "This wiring is exposed. If current runs through it, it will explode.",
+  "shortdescription" : "Exposed Wiring",
+  "race" : "human",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "image.png",
+      "imagePosition" : [0, 0],
+
+      "spaceScan" : 0.1,
+
+      "anchors" : [ "left", "right" ],
+
+      "direction" : "right"
+    }
+  ],
+
+  "animation" : "v-faultywiring.animation",
+
+  "inputNodes" : [ [0, 0] ],
+
+  "scripts" : [
+    "v-faultywiring.lua"
+  ],
+  "scriptDelta" : 5,
+
+  "smashable" : false,
+
+  "triggerOnBreak" : false,
+
+  "explosionProjectile" : "explosivebarrel",
+  "explosionOffset" : [0.5, 0.5],
+
+  "sparkSounds" : [ "/sfx/npc/boss/ufo_stunned.ogg" ],
+  "detonationTime" : 1.0,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

@@ -17,11 +17,7 @@
     "/scripts/actions/world.lua",
     "/scripts/behavior/bdata.lua"
   ],
-  "parameters": {
-    // "projectorCount": 4,
-    // "projectorDistance": 10,
-    // "spawnTime": 3
-  },
+  "parameters": {},
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -876,15 +872,6 @@
                           "source": "sourceId"
                         }
                       },
-                      /* {
-                        "title": "setAnimationState",
-                        "type": "action",
-                        "name": "setAnimationState",
-                        "parameters": {
-                          "state": {"value": "ptob"},
-                          "type": {"value": "core"}
-                        }
-                      }, */
                       {
                         "title": "setAnimationState",
                         "type": "action",
@@ -1147,15 +1134,6 @@
                           "source": "sourceId"
                         }
                       },
-                      /* {
-                        "title": "setAnimationState",
-                        "type": "action",
-                        "name": "setAnimationState",
-                        "parameters": {
-                          "state": {"value": "ptob"},
-                          "type": {"value": "core"}
-                        }
-                      }, */
                       {
                         "title": "setAnimationState",
                         "type": "action",
@@ -1365,15 +1343,6 @@
                           "source": "sourceId"
                         }
                       },
-                      /* {
-                        "title": "setAnimationState",
-                        "type": "action",
-                        "name": "setAnimationState",
-                        "parameters": {
-                          "state": {"value": "ptob"},
-                          "type": {"value": "core"}
-                        }
-                      }, */
                       {
                         "title": "setAnimationState",
                         "type": "action",
@@ -1619,15 +1588,6 @@
                           "source": "sourceId"
                         }
                       },
-                      /* {
-                        "title": "setAnimationState",
-                        "type": "action",
-                        "name": "setAnimationState",
-                        "parameters": {
-                          "state": {"value": "ptob"},
-                          "type": {"value": "core"}
-                        }
-                      }, */
                       {
                         "title": "setAnimationState",
                         "type": "action",
