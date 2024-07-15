@@ -192,8 +192,9 @@
     "name": "v-laboratoryminiboss-sporeattack",
     "title": "",
     "properties": {
-      "mycospitWindupTime": {"type": "json", "value": 0.5},
-      "mycospitWinddownTime": {"type": "json", "value": 0.5}
+      "mycospitWindupTime": {"type": "json", "value": 0.4},
+      "mycospitWinddownTime": {"type": "json", "value": 0.5},
+      "mycospitFireDelay": {"type": "json", "value": 0.1}
     },
     "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-sporeattack.behavior"
   },
@@ -202,7 +203,8 @@
     "name": "v-laboratoryminiboss",
     "title": "",
     "properties": {
-      "ambushRange": {"type": "json", "value": 15}
+      "vehicleAwakenRange": {"type": "json", "value": 8},
+      "playerAwakenRange": {"type": "json", "value": 25}
     },
     "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-laboratoryminiboss.behavior"
   },
@@ -210,7 +212,16 @@
     "type": "module",
     "name": "v-laboratoryminiboss-cloudlineattack",
     "title": "",
-    "properties": {},
+    "properties": {
+      "ceilHeading": {"type": "json", "value": [-1, 0]},
+      "floorHeading": {"type": "json", "value": [1, 0]},
+      "leftWallHeading": {"type": "json", "value": [0, 1]},
+      "rightWallHeading": {"type": "json", "value": [0, -1]},
+      "ceilOffset": {"type": "json", "value": [0, -2.5]},
+      "floorOffset": {"type": "json", "value": [0, 2.5]},
+      "leftWallOffset": {"type": "json", "value": [2.5, 0]},
+      "rightWallOffset": {"type": "json", "value": [-2.5, 0]}
+    },
     "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-cloudlineattack.behavior"
   },
   "v-laboratoryminiboss-tendrilattack": {
@@ -275,5 +286,22 @@
       "winddownTime": {"type": "json", "value": 0.5}
     },
     "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-mycospitattackbottom.behavior"
+  },
+  "v-laboratoryminiboss-intro": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-intro",
+    "title": "",
+    "properties": {},
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-intro.behavior"
+  },
+  "v-laboratoryminiboss-dying": {
+    "type": "module",
+    "name": "v-laboratoryminiboss-dying",
+    "title": "",
+    "properties": {
+      "explosionInterval": {"type": "json", "value": [0.01, 0.3]},
+      "explosionDuration": {"type": "json", "value": 3}
+    },
+    "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-dying.behavior"
   }
 }

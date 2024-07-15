@@ -11,8 +11,9 @@
     "/scripts/actions/v-query.lua"
   ],
   "parameters": {
-    "mycospitWindupTime": 0.5,
-    "mycospitWinddownTime": 0.5
+    "mycospitWindupTime": 0.4,
+    "mycospitWinddownTime": 0.5,
+    "mycospitFireDelay": 0.1
   },
   "root": {
     "title": "sequence",
@@ -144,8 +145,8 @@
               "type": "action",
               "name": "random",
               "parameters": {
-                "max": {"value": 1},
-                "min": {"value": 5}
+                "max": {"value": 0},
+                "min": {"value": 4}
               },
               "output": {
                 "number": "sporeSpawnYOffset"
@@ -249,8 +250,8 @@
                 "type": "module",
                 "name": "v-laboratoryminiboss-mycospitattacktop",
                 "parameters": {
-                  "winddownTime": {"value": 0.5},
-                  "windupTime": {"value": 0.5}
+                  "winddownTime": {"key": "<mycospitWinddownTime>"},
+                  "windupTime": {"key": "<mycospitWindupTime>"}
                 }
               }
             ]
@@ -284,8 +285,8 @@
                 "type": "module",
                 "name": "v-laboratoryminiboss-mycospitattackbottom",
                 "parameters": {
-                  "windupTime": {"value": 0.5},
-                  "winddownTime": {"value": 0.5}
+                  "windupTime": {"key": "<mycospitWindupTime>"},
+                  "winddownTime": {"key": "<mycospitWinddownTime>"}
                 }
               }
             ]
@@ -301,8 +302,8 @@
                 "type": "module",
                 "name": "v-laboratoryminiboss-mycospitattacktop",
                 "parameters": {
-                  "winddownTime": {"value": 0.5},
-                  "windupTime": {"value": 0.5}
+                  "winddownTime": {"key": "<mycospitWinddownTime>"},
+                  "windupTime": {"key": "<mycospitWindupTime>"}
                 }
               },
               {
@@ -310,8 +311,8 @@
                 "type": "module",
                 "name": "v-laboratoryminiboss-mycospitattackbottom",
                 "parameters": {
-                  "windupTime": {"value": 0.5},
-                  "winddownTime": {"value": 0.5}
+                  "windupTime": {"key": "<mycospitWindupTime>"},
+                  "winddownTime": {"key": "<mycospitWinddownTime>"}
                 }
               }
             ]

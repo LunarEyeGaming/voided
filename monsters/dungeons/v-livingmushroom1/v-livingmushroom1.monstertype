@@ -8,13 +8,13 @@
 
   "animation" : "v-livingmushroom1.animation",
 
-  "dropPools" : ["empty"],
+  "dropPools" : ["v-livingmushroom1Treasure"],
 
   "baseParameters" : {
     "scripts" : [
       "/monsters/monster.lua"
     ],
-    
+
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 3,
 
@@ -100,7 +100,7 @@
           }
         }
       ],
-      
+
       "concurrentActions" : [
         {
           "name" : "idle-crawl"
@@ -113,7 +113,7 @@
           }
         }
       ],
-      
+
       "concurrentHostileActions" : [
         {
           "name" : "idle-crawl"

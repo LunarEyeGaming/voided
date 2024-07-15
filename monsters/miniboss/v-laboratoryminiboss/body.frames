@@ -1,14 +1,18 @@
 {
   "frameGrid" : {
     "size" : [111, 96],
-    "dimensions" : [6, 6],
+    "dimensions" : [6, 10],
     "names" : [
       [ "idle.1", "idle.2", "idle.3", "idle.4", "idle.5", "idle.6" ],
       [ "tendrilswindup.1", "tendrilswindup.2", "tendrils.1", "tendrils.2", "tendrils.5" ],
       [ "spores.1", "spores.2" ],
       [ "cloudspitwindup.1", "cloudspitwindup.2", "cloudspit.1", "cloudspit.2" ],
       [ "mycospitwindup.1", "mycospitwindup.2", "mycospitwindup.3", "mycospitwindup.4", "mycospit.1", "mycospit.2" ],
-      [ "disappear.1", "disappear.2", "disappear.3", "disappear.4", "disappear.5" ]
+      [ "disappear.1", "disappear.2", "disappear.3", "disappear.4", "disappear.5" ],
+      [ "asleep.1", "asleep.2", "asleep.3", "asleep.4", "asleep.5", "asleep.6" ],
+      [ "awaken.1", "awaken.2" ],
+      [ "roar.1", "roar.2", "roar.3" ],
+      [ "dying.1", "dying.2" ]
     ]
   },
   "aliases" : {
@@ -24,6 +28,15 @@
     "cloudspit.3" : "cloudspit.1",
     "mycospit.3" : "mycospit.1",
 
-    "sporesend.1" : "spores.1"
+    "sporesend.1" : "spores.1",
+
+    "roar.4" : "roar.2",
+    "roar.5" : "roar.3",
+    "roar.6" : "roar.2",
+    "roar.7" : "roar.3",
+    "roar.8" : "roar.1",
+
+    "asleepen.1" : "awaken.2",
+    "asleepen.2" : "awaken.1"
   }
 }

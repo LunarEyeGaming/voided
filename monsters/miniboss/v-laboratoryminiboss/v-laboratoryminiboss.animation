@@ -57,7 +57,7 @@
             "frames" : 5,
             "cycle" : 0.4,
             "mode" : "transition",
-            "transition": "invisible"
+            "transition" : "invisible"
           },
           "invisible" : {},
           "appear" : {
@@ -65,6 +65,34 @@
             "cycle" : 0.4,
             "mode" : "transition",
             "transition" : "idle"
+          },
+          "asleep" : {
+            "frames" : 6,
+            "cycle" : 3.0,
+            "mode" : "loop"
+          },
+          "awaken" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "roar" : {
+            "frames" : 8,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "asleepen" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "asleep"
+          },
+          "dying" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
           }
         }
       },
@@ -86,7 +114,7 @@
       "body" : {
         "properties" : {
           "transformationGroups" : [ "body" ],
-          "offset" : [0, 5],
+          "offset" : [0, 4],
           "zLevel" : 0
         },
         "partStates" : {
@@ -145,6 +173,31 @@
               "properties" : {
                 "image" : "<partImage>:appear.<frame>"
               }
+            },
+            "asleep" : {
+              "properties" : {
+                "image" : "<partImage>:asleep.<frame>"
+              }
+            },
+            "awaken" : {
+              "properties" : {
+                "image" : "<partImage>:awaken.<frame>"
+              }
+            },
+            "roar" : {
+              "properties" : {
+                "image" : "<partImage>:roar.<frame>"
+              }
+            },
+            "asleepen" : {
+              "properties" : {
+                "image" : "<partImage>:asleepen.<frame>"
+              }
+            },
+            "dying" : {
+              "properties" : {
+                "image" : "<partImage>:dying.<frame>"
+              }
             }
           }
         }
@@ -166,28 +219,18 @@
 
   "particleEmitters" : {
     "deathPoof" : {
+      "burstCount" : 15,
+      "transformationGroups" : [ "body" ],
+      "offsetRegion" : [-5, -2, 5, 7],
       "particles" : [
-        {
-          "particle" : {
-            "type" : "animated",
-            "animation" : "/animations/playerdeath/playerdeath.animation",
-            "size" : 1,
-            "angularVelocity" : 0,
-            "fade" : 1,
-            "destructionTime" : 1,
-            "position" : [0, 0],
-            "initialVelocity" : [0, 0],
-            "finalVelocity" : [0, 0],
-            "approach" : [1, 1],
-            "timeToLive" : 1.0,
-            "layer" : "middle"
-          }
-        }
+        { "particle" : "greenmonstersplosion" },
+        { "particle" : "greendeathember", "count" : 5 }
       ]
     },
     "spores" : {
       "burstCount" : 10,
-      "offsetRegion" : [-2, 1, 2, 5],
+      "offsetRegion" : [-2, 0, 2, 4],
+      "transformationGroups" : [ "body" ],
       "particles" : [
         {
           "particle" : {
@@ -209,15 +252,34 @@
           }
         }
       ]
+    },
+    "roardust" : {
+      "emissionRate" : 15,
+      "offsetRegion" : [ -2.0, 0.0, 2.0, 4.0 ],
+      "transformationGroups" : [ "body" ],
+      "particles" : [
+        { "particle" : "mandrafloradust" }
+      ]
+    },
+    "dying" : {
+      "burstCount" : 2,
+      "offsetRegion" : [-5, -2, 5, 7],
+      "transformationGroups" : [ "body" ],
+      "particles" : [
+        { "particle" : "greenmonstersplosion" },
+        { "particle" : "greendeathember", "count" : 2 }
+      ]
     }
   },
 
   "sounds" : {
     "aggroHop" : [ ],
-    "deathPuff" : [ ],
+    "deathPuff" : [ "/sfx/npc/miniboss/v_laboratoryminiboss_explode.ogg" ],
     "fireTendrils" : [ "/sfx/npc/monsters/v_livingmushroom1_fire.ogg" ],
     "fireSpores" : [ "/sfx/npc/miniboss/v_laboratoryminiboss_sporefire.ogg" ],
     "fireCloudLine" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ],
-    "fireMycoCloud" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ]
+    "fireMycoCloud" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ],
+    "roar" : [ "/sfx/npc/quadruped/tiger_pain1.ogg" ],
+    "dying" : [ "/sfx/melee/blunt_kill_organic1.ogg" ]
   }
 }

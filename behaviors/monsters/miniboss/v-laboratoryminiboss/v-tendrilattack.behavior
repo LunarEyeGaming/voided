@@ -204,8 +204,7 @@
         "name": "spawnProjectile",
         "parameters": {
           "aimVector": {"value": [1, 0]},
-          "angle": {"value": 0},
-          "offset": {"value": [0, 1]},
+          "offset": {"value": [1, 1]},
           "position": {"key": "spawn"},
           "projectileConfig": {"value": {"power": 20}},
           "projectileType": {"value": "v-giantfungaltendrilwindup"},
@@ -323,10 +322,9 @@
                     "name": "spawnProjectile",
                     "parameters": {
                       "aimVector": {"value": [0, 1]},
-                      "angle": {"value": 0},
                       "offset": {"value": [0, 1]},
                       "position": {"key": "floorPosUL"},
-                      "projectileConfig": {"value": {"power": 15, "inheritDamageFactor": 1}},
+                      "projectileConfig": {"value": {"inheritDamageFactor": 1, "power": 15, "maxHeight": 3}},
                       "projectileType": {"value": "v-fungaltendrilsmallspawner"},
                       "scalePower": {"value": true},
                       "sourceEntity": {"key": "self"},
@@ -340,10 +338,9 @@
                     "name": "spawnProjectile",
                     "parameters": {
                       "aimVector": {"value": [0, 1]},
-                      "angle": {"value": 0},
                       "offset": {"value": [0, 1]},
                       "position": {"key": "floorPosUR"},
-                      "projectileConfig": {"value": {"power": 15, "inheritDamageFactor": 1}},
+                      "projectileConfig": {"value": {"inheritDamageFactor": 1, "power": 15, "maxHeight": 3}},
                       "projectileType": {"value": "v-fungaltendrilsmallspawner"},
                       "scalePower": {"value": true},
                       "sourceEntity": {"key": "self"},

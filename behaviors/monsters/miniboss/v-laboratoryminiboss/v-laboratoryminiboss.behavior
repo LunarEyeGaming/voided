@@ -1,17 +1,20 @@
 {
   "name": "v-laboratoryminiboss",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/entity.lua",
     "/scripts/actions/status.lua",
     "/scripts/actions/v-world.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/behavior.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/monster.lua",
     "/scripts/actions/miniboss/v-cityminiboss.lua",
     "/scripts/actions/time.lua"
   ],
   "parameters": {
-    "ambushRange": 15
+    "vehicleAwakenRange": 8,
+    "playerAwakenRange": 25
   },
   "root": {
     "title": "Reset",
@@ -180,6 +183,26 @@
         }
       },
       {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "asleep"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "Set default heading angle",
+        "type": "action",
+        "name": "setNumber",
+        "parameters": {
+          "number": {"value": 0}
+        },
+        "output": {
+          "number": "headingAngle"
+        }
+      },
+      {
         "title": "parallel",
         "type": "composite",
         "name": "parallel",
@@ -240,6 +263,12 @@
                     "name": "sequence",
                     "parameters": {},
                     "children": [
+                      {
+                        "title": "v-laboratoryminiboss-intro",
+                        "type": "module",
+                        "name": "v-laboratoryminiboss-intro",
+                        "parameters": {}
+                      },
                       {
                         "title": "setDamageBar",
                         "type": "action",
@@ -344,8 +373,9 @@
                                                 "type": "module",
                                                 "name": "v-laboratoryminiboss-sporeattack",
                                                 "parameters": {
-                                                  "mycospitWindupTime": {"value": 0.5},
-                                                  "mycospitWinddownTime": {"value": 0.5}
+                                                  "mycospitWindupTime": {"value": 0.4},
+                                                  "mycospitWinddownTime": {"value": 0.5},
+                                                  "mycospitFireDelay": {"value": 0.1}
                                                 }
                                               }
                                             },
@@ -430,6 +460,23 @@
                     "type": "action",
                     "name": "v_setBattleMusicState",
                     "parameters": {
+                      "state": {"value": "partial"}
+                    }
+                  },
+                  {
+                    "title": "v-laboratoryminiboss-dying",
+                    "type": "module",
+                    "name": "v-laboratoryminiboss-dying",
+                    "parameters": {
+                      "explosionInterval": {"value": [0.01, 0.3]},
+                      "explosionDuration": {"value": 3}
+                    }
+                  },
+                  {
+                    "title": "v_setBattleMusicState",
+                    "type": "action",
+                    "name": "v_setBattleMusicState",
+                    "parameters": {
                       "state": {"value": "inactive"}
                     }
                   },
@@ -484,11 +531,21 @@
                     }
                   },
                   {
-                    "title": "setDamageOnTouch",
-                    "type": "action",
-                    "name": "setDamageOnTouch",
+                    "title": "Go to spawn",
+                    "type": "module",
+                    "name": "v-laboratoryminiboss-teleport",
                     "parameters": {
-                      "touchDamage": {"value": false}
+                      "headingDirection": {"value": [1, 0]},
+                      "position": {"key": "spawn"}
+                    }
+                  },
+                  {
+                    "title": "setAnimationState",
+                    "type": "action",
+                    "name": "setAnimationState",
+                    "parameters": {
+                      "state": {"value": "asleepen"},
+                      "type": {"value": "body"}
                     }
                   },
                   {

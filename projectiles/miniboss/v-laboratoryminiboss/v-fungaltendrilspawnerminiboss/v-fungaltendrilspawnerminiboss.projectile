@@ -10,15 +10,15 @@
   "power" : 50,
   "damageType" : "NoDamage",
   "damageKind" : "default",
-  
+
   "onlyHitTerrain" : true,
-  
+
   "scripts" : [ "/projectiles/npcs/v-fungaltendril/v-fungaltendrilspawner.lua" ],
-  
+
   "waveSize" : 100,
   "gapSize" : 2,
   "maxHeight" : 3,
-  "minHeight" : -3,
+  "minHeight" : -4,
   "projectileParameters" : {},
   "projectileType" : "v-fungaltendrilwindup",
   "spawnInterval" : 0.1,

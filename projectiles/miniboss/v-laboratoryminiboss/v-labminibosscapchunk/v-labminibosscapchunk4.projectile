@@ -1,0 +1,36 @@
+{
+  "projectileName" : "v-labminibosscapchunk4",
+  "physics" : "grenade",
+  "bounces" : -1,
+  "timeToLive" : 3,
+  "image" : "labminibosscapchunk4.png",
+  "damageKindImage" : "icon.png",
+  "onlyHitTerrain" : true,
+  "orientationLocked" : true,
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "greendeathember"
+        }
+      ]
+    }
+  ],
+  "actionOnCollide": [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/melee/blunt_hit_organic.ogg" ]
+    }
+  ],
+  "frameNumber" : 1,
+  "animationCycle" : 0.1,
+  "winddownFrames" : 3,
+  "speed" : 30,
+  "power" : 0,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  "emitters" : [ "v-greenblood", "v-greenblood", "v-greenblood", "v-greenblood" ]
+}

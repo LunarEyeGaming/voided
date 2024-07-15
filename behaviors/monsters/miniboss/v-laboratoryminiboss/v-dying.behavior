@@ -1,0 +1,273 @@
+{
+  "name": "v-laboratoryminiboss-dying",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/projectiles.lua"
+  ],
+  "parameters": {
+    "explosionInterval": [0.01, 0.3],
+    "explosionDuration": 3
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "dying"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "repeater",
+            "type": "decorator",
+            "name": "repeater",
+            "parameters": {
+              "maxLoops": {"value": -1},
+              "untilSuccess": {"value": false}
+            },
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "burstParticleEmitter",
+                  "type": "action",
+                  "name": "burstParticleEmitter",
+                  "parameters": {
+                    "emitter": {"value": "dying"}
+                  }
+                },
+                {
+                  "title": "playSound",
+                  "type": "action",
+                  "name": "playSound",
+                  "parameters": {
+                    "sound": {"value": "dying"}
+                  }
+                },
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"key": "<explosionInterval>"}
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"key": "<explosionDuration>"}
+            }
+          }
+        ]
+      },
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": 10},
+          "untilSuccess": {"value": false}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": 6.28},
+                "min": {"value": 0}
+              },
+              "output": {
+                "number": "rotation"
+              }
+            },
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": 5},
+                "min": {"value": -5}
+              },
+              "output": {
+                "number": "xOffset"
+              }
+            },
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": 7},
+                "min": {"value": -2}
+              },
+              "output": {
+                "number": "yOffset"
+              }
+            },
+            {
+              "title": "vecRotate",
+              "type": "action",
+              "name": "vecRotate",
+              "parameters": {
+                "angle": {"key": "rotation"},
+                "vector": {"value": [0, 1]}
+              },
+              "output": {
+                "vector": "fireVector"
+              }
+            },
+            {
+              "title": "vecRotate",
+              "type": "action",
+              "name": "vecRotate",
+              "parameters": {
+                "angle": {"key": "headingAngle"},
+                "vector": {"value": ["xOffset", "yOffset"]}
+              },
+              "output": {
+                "vector": "projOffset"
+              }
+            },
+            {
+              "title": "spawnProjectile",
+              "type": "action",
+              "name": "spawnProjectile",
+              "parameters": {
+                "aimVector": {"key": "fireVector"},
+                "offset": {"key": "projOffset"},
+                "position": {"key": "self"},
+                "projectileType": {"value": "v-labminibosschunk"},
+                "scalePower": {"value": false},
+                "trackSource": {"value": false},
+                "uniqueRepeatGroup": {"value": false}
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"value": ["v-labminibosscapchunk1", "v-labminibosscapchunk2", "v-labminibosscapchunk3", "v-labminibosscapchunk4"]},
+          "type": {"value": "string"}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": 6.28},
+                "min": {"value": 0}
+              },
+              "output": {
+                "number": "rotation"
+              }
+            },
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": 4},
+                "min": {"value": -4}
+              },
+              "output": {
+                "number": "xOffset"
+              }
+            },
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": 7},
+                "min": {"value": -4.5}
+              },
+              "output": {
+                "number": "yOffset"
+              }
+            },
+            {
+              "title": "vecRotate",
+              "type": "action",
+              "name": "vecRotate",
+              "parameters": {
+                "angle": {"key": "rotation"},
+                "vector": {"value": [0, 1]}
+              },
+              "output": {
+                "vector": "fireVector"
+              }
+            },
+            {
+              "title": "vecRotate",
+              "type": "action",
+              "name": "vecRotate",
+              "parameters": {
+                "angle": {"key": "headingAngle"},
+                "vector": {"value": ["xOffset", "yOffset"]}
+              },
+              "output": {
+                "vector": "projOffset"
+              }
+            },
+            {
+              "title": "spawnProjectile",
+              "type": "action",
+              "name": "spawnProjectile",
+              "parameters": {
+                "aimVector": {"key": "fireVector"},
+                "offset": {"key": "projOffset"},
+                "position": {"key": "self"},
+                "projectileType": {"key": "eachItem"},
+                "scalePower": {"value": false},
+                "trackSource": {"value": false},
+                "uniqueRepeatGroup": {"value": false}
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

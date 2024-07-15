@@ -1,6 +1,6 @@
 {
   "name": "v-laboratoryminiboss-cloudlineattack",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/behavior/bdata.lua",
     "/scripts/actions/position.lua",
@@ -16,10 +16,10 @@
     "floorHeading": [1, 0],
     "leftWallHeading": [0, 1],
     "rightWallHeading": [0, -1],
-    "ceilOffset": [0, -3.5],
-    "floorOffset": [0, 3.5],
-    "leftWallOffset": [3.5, 0],
-    "rightWallOffset": [-3.5, 0]
+    "ceilOffset": [0, -2.5],
+    "floorOffset": [0, 2.5],
+    "leftWallOffset": [2.5, 0],
+    "rightWallOffset": [-2.5, 0]
   },
   "root": {
     "title": "repeater",

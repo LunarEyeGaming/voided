@@ -6,13 +6,13 @@
   "timeToLive" : 1.0,
   "animationCycle" : 1,
   "frameNumber" : 1,
-  "speed" : 1,
+  "speed" : 0,
   "power" : 50,
   "damageType" : "NoDamage",
   "damageKind" : "default",
-  
+
   "onlyHitTerrain" : true,
-  
+
   "periodicActions" : [
     {
       "time" : 0,
@@ -99,18 +99,19 @@
         "destructionTime" : 0.5,
         "variance" : {
           "initialVelocity" : [0, 10],
+          "position" : [7.0, 0.5],
           "rotation" : 180
         }
       }
     }
   ],
-  
+
   "actionOnReap" : [
     {
       "action" : "projectile",
       "type" : "v-giantfungaltendril",
       "inheritDamageFactor" : 1,
-      "offset" : [0, 17]
+      "offset" : [0, 15]
     },
     {
       "time" : 0,

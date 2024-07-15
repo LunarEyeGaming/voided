@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztll0OwyAIgH3fy07Q911sN9mJe4GFNCaGKbUKUhhfQrK2i\/Bh\/Enpl\/1CPLfxyGNw0lPzDC8U3A4SPcG05oErr3T9ANT9TkeEQ52RcfKa\/qQj4DcF\/q+Ew155Lt+39qWyt2cOkvPQqhu\/x893c+iFOh8oqH1ptUeZF+\/5FK3zQdvB4jxIrelVDpL70ozDY+ONlbmkwrqDxryvqFnDg8ojRU+PpPu6inC4D+FwHzx4\/IODFw8LeHewgPX1MHMHrI1hof4ZVws1c7to1cvhoV1rOOjXaWkOevOOot1HSazXX8N6\/RkPDoAHB8CDhwcHwLODJY9w0MfDOWH9zOa8P11x5urX6D0Q5xr9PtO32TEjInrjC1utBcY=",
+         "data":"eJztls0NwyAMRrn30gly72LdpLv2ngUqK4qEXKAE\/INdP8lSEkXheziBpPTNfqHu23idz6CkJ\/MMD1TUDhxzgqn1gWpc7vwA5H6mo8KhzMhzzm\/6lY6C45w3uh\/fy+GwF87z67V1KZ\/bXw6cfajlxtfx+WoOvbT2hxatdUnaIx8Xr\/k5uA+1\/UHbodWH0ru0Qh+4vmkpB851acbhttGW5FhcZd1Bo+8SmTU8WuNw0TNH3PMqxb84ePFYHQ8OQDisQbxP6+DdwQLWv4eZf8DSMyzkn3G1kJnaRSsvhYd21nDQz2mpB73jjqI9j5xYz1\/Cev4TDw6ABwfAg4cHB8CzgyWPcNDHwz5hfc+m\/H+64kw1X6P\/gdJlOXuU\/foAKFANPQ==",
          "encoding":"base64",
          "height":56,
          "id":2,
@@ -188,6 +188,37 @@
                  "width":32,
                  "x":176,
                  "y":160
+                }, 
+                {
+                 "height":8,
+                 "id":1110,
+                 "name":"",
+                 "properties":
+                    {
+                     "vehicle":"stationtram"
+                    },
+                 "propertytypes":
+                    {
+                     "vehicle":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":184,
+                 "y":48
+                }, 
+                {
+                 "gid":6877,
+                 "height":18,
+                 "id":1111,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":176,
+                 "y":80
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -366,7 +397,7 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":360,
+                 "x":352,
                  "y":360
                 }, 
                 {
@@ -388,7 +419,7 @@
                  "visible":true,
                  "width":8,
                  "x":184,
-                 "y":120
+                 "y":128
                 }, 
                 {
                  "height":8,
@@ -408,8 +439,8 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":288,
-                 "y":304
+                 "x":304,
+                 "y":312
                 }, 
                 {
                  "height":8,
@@ -450,7 +481,7 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":112,
+                 "x":96,
                  "y":224
                 }, 
                 {
@@ -471,7 +502,7 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":296,
+                 "x":304,
                  "y":240
                 }, 
                 {
@@ -620,7 +651,7 @@
                  "visible":true,
                  "width":8,
                  "x":200,
-                 "y":400
+                 "y":392
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -686,7 +717,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":1110,
+ "nextobjectid":1113,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",

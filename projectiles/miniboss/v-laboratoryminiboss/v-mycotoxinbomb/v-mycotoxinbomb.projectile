@@ -3,16 +3,28 @@
   "image" : "mycotoxinbomb.png",
   "physics" : "illusion",
   "animationCycle" : 1.0,
-  "frameNumber" : 1,
+  "frameNumber" : 10,
   "power" : 50,
   "speed" : 0,
   "timeToLive" : 1.0,
   "bounces" : -1,
   "onlyHitTerrain" : true,
+  "periodicActions": [
+    {
+      "time" : 0.6,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_mycotoxinbomb_windup.ogg" ]
+    }
+  ],
   "actionOnReap" : [
     {
       "action" : "config",
       "file" : "/projectiles/explosions/v-purplepoisongasburst/v-purplepoisongasburst2.config"
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_mycotoxinbomb_pop.ogg" ]
     }
   ]
 }

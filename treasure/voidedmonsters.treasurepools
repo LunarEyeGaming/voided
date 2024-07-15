@@ -104,7 +104,7 @@
       "allowDuplication" : false
     }]
   ],
-  
+
   "v-currentcrawlerTreasure" : [
     [1, {
       "pool" : [
@@ -244,6 +244,36 @@
         {"weight" : 0.800, "pool" : "noMeatMonsterTreasure"},
         {"weight" : 0.100, "item" : "sharpenedclaw"},
         {"weight" : 0.100, "item" : "venomsample"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-livingmushroom1Treasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : ["v-liquidsuperpoison", 5]},
+        {"weight" : 0.100, "item" : ["v-toxicmyceliummaterial", 10]}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-livingmushroom2Treasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : ["v-toxicmyceliummaterial", 10]},
+        {"weight" : 0.100, "item" : ["v-rottingfungusmaterial", 10]}
       ],
       "poolRounds" : [
         [0.20, 0],
