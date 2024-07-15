@@ -1,0 +1,25 @@
+{
+  "materialId" : 1207,
+  "materialName" : "v-concreterubble",
+  "particleColor" : [97, 92, 87, 255],
+  "itemDrop" : "v-concreterubblematerial",
+  "description" : "A pile of concrete that has crumbled.",
+  "shortdescription" : "Concrete Rubble",
+  "glitchDescription" : "Observant. This pile of rubble was once concrete, but it was destroyed.",
+  "floranDescription" : "Desstroyed concrete.",
+  "novakidDescription" : "This 'ere concrete has crumbled.",
+  "footstepSound" : "/sfx/blocks/footstep_stone2.ogg",
+  "health" : 6,
+  "cascading" : true,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-concreterubble.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "multiColored" : true,
+    "occludesBelow" : true,
+    "zLevel" : 480
+  }
+}

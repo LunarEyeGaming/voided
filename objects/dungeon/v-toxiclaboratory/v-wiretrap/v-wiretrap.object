@@ -1,0 +1,48 @@
+{
+  "objectName" : "v-wiretrap",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "category" : "trap",
+  "price" : 60,
+
+  "description" : "A hanging, exposed and faulty wire.",
+  "shortdescription" : "Sparking Wire",
+
+  "apexDescription" : "A hanging, exposed and faulty wire. I cannot touch this while current is flowing through it.",
+  "avianDescription" : "This wire seems to have become damaged and exposed.",
+  "floranDescription" : "Floran musst not touch wire.",
+  "glitchDescription" : "Cautious. This wire could damage my circuitry.",
+  "humanDescription" : "Better not touch these wires while they're active.",
+  "hylotlDescription" : "Exposed electrical wiring like this is an uncommon sight in Hylotl cities.",
+  "novakidDescription" : "Ain't gonna touch that wire while it's zappin' away.",
+
+  "race" : "human",
+
+  "printable" : false,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "wiretrap.png:default",
+      "imagePosition" : [0, -8],
+
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "wire" : "wiretrap.png",
+        "wirelit" : "wiretraplit.png"
+      },
+
+      "spaceScan" : 0.1,
+
+      "anchors" : ["top"]
+    }
+  ],
+
+  "animation" : "v-wiretrap.animation",
+
+  "scripts" : ["v-wiretrap.lua"],  // See script for parameter documentation
+
+  "inactiveTime" : [2, 5],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

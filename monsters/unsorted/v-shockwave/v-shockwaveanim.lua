@@ -1,5 +1,5 @@
 require "/scripts/vec2.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-animator.lua"
 
 local dt
 local animConfig
@@ -43,7 +43,7 @@ function update()
     if blockSet[1] <= 0 then
       table.remove(blocks, i)
     else
-      local color = lerpColor(blockSet[1] / ttl, endColor, startColor)
+      local color = vAnimator.lerpColor(blockSet[1] / ttl, endColor, startColor)
       for _, block in ipairs(blockSet[2]) do
         localAnimator.addDrawable({
           line = {{-0.5, 0}, {0.5, 0}},

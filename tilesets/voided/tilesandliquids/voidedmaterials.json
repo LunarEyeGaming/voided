@@ -8,7 +8,8 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":22,
+ "tilecount":26,
+ "tiledversion":"1.11.0",
  "tileheight":8,
  "tileproperties":
     {
@@ -74,6 +75,22 @@
      "21":
         {
          "material":"v-toxicmycelium"
+        },
+     "22":
+        {
+         "material":"v-openheavypipe"
+        },
+     "23":
+        {
+         "material":"v-fungusplatform"
+        },
+     "24":
+        {
+         "material":"v-rottingfungus"
+        },
+     "25":
+        {
+         "material":"v-concreterubble"
         },
      "3":
         {
@@ -166,6 +183,22 @@
          "material":"string"
         },
      "21":
+        {
+         "material":"string"
+        },
+     "22":
+        {
+         "material":"string"
+        },
+     "23":
+        {
+         "material":"string"
+        },
+     "24":
+        {
+         "material":"string"
+        },
+     "25":
         {
          "material":"string"
         },
@@ -290,6 +323,30 @@
          "imageheight":8,
          "imagewidth":8
         },
+     "22":
+        {
+         "image":"..\/images\/tilesandliquids\/openheavypipe.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "23":
+        {
+         "image":"..\/images\/tilesandliquids\/fungusplatform.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "24":
+        {
+         "image":"..\/images\/tilesandliquids\/rottingfungus.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "25":
+        {
+         "image":"..\/images\/tilesandliquids\/concreterubble.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
      "3":
         {
          "image":"..\/images\/tilesandliquids\/deepcopperrock.png",
@@ -334,5 +391,6 @@
         }
     },
  "tilewidth":8,
- "type":"tileset"
+ "type":"tileset",
+ "version":1.1
 }

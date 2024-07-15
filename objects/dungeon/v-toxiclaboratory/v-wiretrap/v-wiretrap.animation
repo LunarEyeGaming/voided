@@ -1,0 +1,95 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "wire" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {
+            "frames" : 1,
+            "cycle" : 1.0,
+            "mode" : "end",
+            "properties": {
+              "lightsOff" : ["glow"]
+            }
+          },
+          "activating" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/npc/boss/ufo_stunned.ogg"
+            }
+          },
+          "active" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/melee/tesla_shock_kill.ogg",
+              "persistentSound" : "/sfx/objects/plasmadisc.ogg",
+              "lightsOn" : ["glow"]
+            }
+          }
+        }
+      }
+    },
+    "parts" : {
+      "wire" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : true
+        },
+        "partStates": {
+          "wire" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive.<frame>"
+              }
+            },
+            "activating" : {
+              "properties" : {
+                "image" : "<partImage>:activating.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "wirelit" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1
+        },
+        "partStates": {
+          "wire" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive.<frame>"
+              }
+            },
+            "activating" : {
+              "properties" : {
+                "image" : "<partImage>:activating.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "lights" : {
+    "glow" : {
+      "active" : false,
+      "color" : [131, 131, 223]
+    }
+  }
+}

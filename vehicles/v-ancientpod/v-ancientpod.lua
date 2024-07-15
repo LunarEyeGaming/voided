@@ -1,11 +1,11 @@
 require "/scripts/util.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-animator.lua"
 
 function initShip()
   self.moveSpeed = config.getParameter("moveSpeed")
   self.airForce = config.getParameter("airForce")
   self.height = 0
-  
+
   self.movementSettings = config.getParameter("movementSettings")
   self.occupiedMovementSettings = config.getParameter("occupiedMovementSettings")
 
@@ -15,30 +15,30 @@ function initShip()
 
   storage.health = storage.health or self.maxHealth
   storage.energy = storage.energy or self.maxEnergy
-  
+
   self.projectileSpecs = config.getParameter("projectileSpecs")
   self.beamSpecs = config.getParameter("beamSpecs")
   self.energyUsages = config.getParameter("energyUsages")
-  
+
   self.fireInterval = config.getParameter("fireInterval", 0.1)
   self.ringRotationFactor = config.getParameter("ringRotationFactor", 1)
 
   self.driving = false
   self.lastDriver = nil
-  
+
   self.facingDirection = 1
 
   self.firing = false
   self.firingAlt = false
-  
+
   self.fireState = FSM:new()
   self.altFireState = FSM:new()
-  
+
   self.fireState:set(states.idle)
   self.altFireState:set(states.idle)
 
   storage.ammo = storage.ammo or 20
-  
+
   self.ringAngle = 0
 end
 
@@ -71,10 +71,10 @@ function updateShip(dt, driver, moveDir)
       mcontroller.applyParameters(self.movementSettings)
     end
     vehicle.setInteractive(false)
-  
+
     -- Passive energy drainage
     consumeEnergy(self.energyUsages.passive * dt)
-    
+
     updateRing(dt)
   else
     vehicle.setDamageTeam({type = "passive"})
@@ -196,8 +196,8 @@ function hasEnergy()
 end
 
 function updateDisplays()
-  updateCircleBar("healthL", "healthR", storage.health, self.maxHealth)
-  updateCircleBar("energyL", "energyR", storage.energy, self.maxEnergy)
+  vAnimator.updateCircleBar("healthL", "healthR", storage.health, self.maxHealth)
+  vAnimator.updateCircleBar("energyL", "energyR", storage.energy, self.maxEnergy)
 end
 
 function updateRing(dt)

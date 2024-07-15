@@ -12,7 +12,7 @@ function init()
   loaderGapHeight = config.getParameter("loaderGapHeight")
   loaderMaxSpawnHeight = config.getParameter("loaderMaxSpawnHeight")
 
-  local oceanLevel = world.oceanLevel(object.position())
+  local oceanLevel = world.oceanLevel(object.position()  --[[@as Vec2I]])
   
   -- If an ocean level is given...
   if oceanLevel ~= 0 then

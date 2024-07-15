@@ -59,9 +59,19 @@
   "animation" : "v-powercubesocket.animation",
 
   "outputNodes" : [ [0, 0] ],
-  "scripts" : [ "v-powercubesocket.lua" ],
+  "scripts" : [ "/objects/wired/v-wiredlock.lua" ],
   "acceptedItems" : [ "v-powercube" ],
   "deleteItem" : false,
+
+  "unlockStateType" : "socket",
+
+  "unlockingState" : "activating",
+  "lockingState" : "deactivating",
+  "unlockedState" : "active",
+  "lockedState" : "inactive",
+
+  "unlockSound" : "activate",
+  "lockSound" : "deactivate",
 
   "openSounds" : [ "/sfx/objects/chest_small_open.ogg" ],
   "closeSounds" : [ "/sfx/objects/chest_small_close.ogg" ],

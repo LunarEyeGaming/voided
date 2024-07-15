@@ -27,12 +27,18 @@
   {"op": "add", "path": "/genericScriptContexts/v-depthpoison", "value": "/scripts/voideddepthpoison.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-lightningbeandrop", "value": "/scripts/v-lightningbeandrop.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-playermessages", "value": "/scripts/v-playermessages.lua"},
+  {"op": "add", "path": "/genericScriptContexts/v-dungeonMusicPlayer", "value": "/scripts/v-dungeonmusicplayer.lua"},
   
   // Client-side rendering scripts
   {
     "op": "add",
     "path": "/deploymentConfig/scripts/-",
     "value": "/scripts/rendering/v-depthpoisonmeter.lua"
+  },
+  {
+    "op": "add",
+    "path": "/deploymentConfig/scripts/-",
+    "value": "/scripts/rendering/v-gpsdisplay.lua"
   },
   
   // Depth poison mechanic

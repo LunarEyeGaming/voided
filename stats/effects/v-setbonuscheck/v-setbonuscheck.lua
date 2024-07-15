@@ -16,8 +16,8 @@ function init()
 end
 
 function update(dt)
-  chestSlotEquipped = hasStatusEffect(chestEffect)
-  pantsSlotEquipped = hasStatusEffect(pantsEffect)
+  chestSlotEquipped = voidedUtil.hasStatusEffect(chestEffect)
+  pantsSlotEquipped = voidedUtil.hasStatusEffect(pantsEffect)
   -- If the chest and pants slots are equipped, then execute the code below
   if chestSlotEquipped and pantsSlotEquipped then
     status.addEphemeralEffects(setBonuses)

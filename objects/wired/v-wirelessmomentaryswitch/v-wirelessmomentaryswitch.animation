@@ -1,0 +1,25 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "switchState" : {
+        "default" : "off",
+        "states" : {
+          "on" : {},
+          "off" : {}
+        }
+      }
+    },
+    "parts" : {
+      "hidden" : {
+        "properties" : {
+          "centered" : false,
+          "image" : ""
+        }
+      }
+    }
+  },
+  "sounds" : {
+    "on" : [ ],
+    "off" : [ ]
+  }
+}

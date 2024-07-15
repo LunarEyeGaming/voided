@@ -1,0 +1,25 @@
+{
+  "objectName" : "v-liquiddumpingcratestopped",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "category" : "decorative",
+  "price" : 200,
+  
+  "scannable" : false,
+  "printable" : false,
+
+  "description" : "A stopped liquid tank.",
+  "shortdescription" : "Stopped Liquid Tank",
+  "race" : "human",
+
+  "inventoryIcon" : "liquiddumpingcratestopped.png",
+  "orientations" : [
+    {
+      "image" : "liquiddumpingcratestopped.png",
+      "imagePosition" : [-24, -32],
+      "direction" : "right"
+    }
+  ],
+  
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

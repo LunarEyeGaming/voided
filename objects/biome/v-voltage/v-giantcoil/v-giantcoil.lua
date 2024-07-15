@@ -21,7 +21,7 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-animator.lua"
 
 -- Declare *a lot* of script variables.
 local inactiveTime
@@ -332,7 +332,7 @@ end
 ]]
 function isGroundAdjacent(position)
   -- Go through all the spaces adjacent to the position and return true if any of them are occupied by a tile.
-  for _, offset in ipairs({1, 0}, {0, 1}, {-1, 0}, {0, -1}) do
+  for _, offset in ipairs({{1, 0}, {0, 1}, {-1, 0}, {0, -1}}) do
     if world.material(vec2.add(position, offset), "foreground") then
       return true
     end
@@ -354,7 +354,7 @@ function updateAnimation()
 
   animator.setGlobalTag("glowOpacity", string.format("%02x", math.floor(255 * powerLevel)))
   
-  animator.setLightColor("glow", lerpColorRGB(powerLevel, {0, 0, 0}, glowLightColor))
+  animator.setLightColor("glow", vAnimator.lerpColorRGB(powerLevel, {0, 0, 0}, glowLightColor))
 end
 
 function emitParticle(size)

@@ -1,0 +1,148 @@
+{
+  "name": "v-laboratoryminiboss-intro",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/time.lua",
+    "/scripts/actions/query.lua",
+    "/scripts/actions/miniboss/v-cityminiboss.lua",
+    "/scripts/actions/animator.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": -1},
+          "untilSuccess": {"value": true}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"value": 0.01}
+              }
+            },
+            {
+              "title": "queryEntity",
+              "type": "action",
+              "name": "queryEntity",
+              "parameters": {
+                "entityTypes": {"value": ["player"]},
+                "orderBy": {"value": "nearest"},
+                "position": {"key": "self"},
+                "range": {"value": 7},
+                "withoutEntity": {"key": "self"}
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.5}
+        }
+      },
+      {
+        "title": "v_setBattleMusicState",
+        "type": "action",
+        "name": "v_setBattleMusicState",
+        "parameters": {
+          "state": {"value": "partial"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "awaken"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "roar"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "sound": {"value": "roar"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.1}
+        }
+      },
+      {
+        "title": "setParticleEmitterActive",
+        "type": "action",
+        "name": "setParticleEmitterActive",
+        "parameters": {
+          "active": {"value": true},
+          "emitter": {"value": "roardust"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.3}
+        }
+      },
+      {
+        "title": "setParticleEmitterActive",
+        "type": "action",
+        "name": "setParticleEmitterActive",
+        "parameters": {
+          "active": {"value": false},
+          "emitter": {"value": "roardust"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.2}
+        }
+      }
+    ]
+  }
+}

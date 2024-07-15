@@ -1,0 +1,63 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "reader" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "active" : {}
+        }
+      }
+    },
+
+    "parts" : {
+      "bg" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : true
+        },
+
+        "partStates" : {
+          "reader" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active"
+              }
+            }
+          }
+        }
+      },
+      "fg" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1
+        },
+
+        "partStates" : {
+          "reader" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "sounds" : {
+    "activate" : [ "/sfx/objects/outpostbutton.ogg" ],
+    "deactivate" : [ "/sfx/objects/apexconsole1on.ogg" ]
+  }
+}

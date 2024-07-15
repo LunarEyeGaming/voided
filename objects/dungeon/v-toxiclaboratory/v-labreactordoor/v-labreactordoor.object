@@ -1,0 +1,105 @@
+{
+  "objectName" : "v-labreactordoor",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : true,
+  "interactive" : true,
+  "rarity" : "Common",
+  "description" : "An extremely tall door for very large rooms and intense environmental conditions.",
+  "shortdescription" : "Giant Industrial Door",
+  "race" : "human",
+  "health" : 1,
+
+  "category" : "door",
+  "price" : 500,
+
+  "apexDescription" : "This door appears to be designed for very large vehicles.",
+  "avianDescription" : "A gigantic and sturdy door. It isn't very pretty.",
+  "floranDescription" : "An Ixodoom can go through thisss door.",
+  "glitchDescription" : "Curious. Why such a large and sturdy door was constructed is unknown to me.",
+  "humanDescription" : "This door is big enough to let through a small spaceship.",
+  "hylotlDescription" : "A door of impressive strength and scale, but lacking in visual flair.",
+  "novakidDescription" : "Nothin's gettin' through this here door.",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "labreactordoorpreview.png",
+      "imagePosition" : [-8, 0],
+      "animationPosition" : [-8, 0],
+      "direction" : "right",
+
+      "animationParts" : {
+        "holes" : "labreactordoorholes.png",
+        "door" : "labreactordoorbottom.png",
+        "doortop" : "labreactordoortop.png"
+      },
+      "anchors" : [ "bottom", "top" ],
+      "spaceScan" : 0.4,
+
+      "translationConfig" : {
+        "duration" : 0.5,
+        "distance" : 16.5,
+        "direction" : -1,
+        "useHorizontal" : false,
+        "isSolid" : true,
+        "useSpacesTransition" : false,
+        "frames" : 1,
+        "openDelay" : 0.4
+      }
+    },
+    {
+      "image" : "labreactordoorpreview.png",
+      "imagePosition" : [-8, 0],
+      "animationPosition" : [-8, 0],
+      "direction" : "left",
+
+      "animationParts" : {
+        "holes" : "labreactordoorholes.png",
+        "door" : "labreactordoorbottom.png",
+        "doortop" : "labreactordoortop.png"
+      },
+      "anchors" : [ "bottom", "top" ],
+      "spaceScan" : 0.4,
+
+      "translationConfig" : {
+        "duration" : 0.5,
+        "distance" : 16.5,
+        "direction" : -1,
+        "useHorizontal" : false,
+        "isSolid" : true,
+        "useSpacesTransition" : false,
+        "frames" : 1,
+        "openDelay" : 0.4
+      }
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/v-slidingdoor/slidingdoor.lua", "v-labreactordoorplugin.lua" ],
+  "scriptDelta" : 1,
+
+  "translationConfig" : {
+    "duration" : 0.5,
+    "distance" : 16.5,
+    "direction" : 1,
+    "useHorizontal" : false,
+    "isSolid" : true,
+    "frames" : 1,
+    "openDelay" : 0.4
+  },
+
+  "useAntiCrush" : false,
+
+  "inputNodes" : [ [0, 0] ],
+
+  "animation" : "v-labreactordoor.animation",
+
+  "animationCustom" : {
+    "sounds" : {
+      "moveLoop" : ["/sfx/objects/v_labreactordoor_moveloop.ogg"],
+      "moveEnd" : ["/sfx/objects/v_labreactordoor_impact.ogg"]
+    }
+  },
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

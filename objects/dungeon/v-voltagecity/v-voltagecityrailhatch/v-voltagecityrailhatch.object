@@ -7,7 +7,7 @@
   "price" : 150,
   "description" : "A thick metal hatch with a rail connector in the middle of it.",
   "shortdescription" : "Thick Metal Rail Hatch",
-  "race" : "generic",
+  "race" : "human",
 
   "apexDescription" : "An old, metal hatch with a rail installed inside of it.",
   "avianDescription" : "A simply-designed metal hatch with a rail going through the middle.",
@@ -57,6 +57,6 @@
 
   "inputNodes" : [ [-2, 0] ],
   "outputNodes" : [ [2, -1] ],
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

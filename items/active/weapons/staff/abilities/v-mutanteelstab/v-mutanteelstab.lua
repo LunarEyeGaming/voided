@@ -1,4 +1,5 @@
 require "/scripts/vec2.lua"
+require "/scripts/util.lua"
 
 -- Melee primary ability
 MeleeSlash = WeaponAbility:new()

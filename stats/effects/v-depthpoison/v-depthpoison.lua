@@ -10,6 +10,10 @@ function init()
   worldHeight = world.size()[2]
   poisonDepthRate = config.getParameter("poisonDepthRate") -- Measured in units per block per second
   minPoisonDepth = config.getParameter("minPoisonDepth") -- The minimum depth that the player must be at in order for the poison to start
+
+  if not status.isResource("v-depthPoison") then
+    script.setUpdateDelta(0)
+  end
 end
 
 function update(dt)

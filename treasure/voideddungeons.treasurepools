@@ -34,5 +34,94 @@
       ],
       "allowDuplication" : false
     }]
+  ],
+  "v-toxiclaboratoryReward" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.6, "item" : ["money", 200]},
+        {"weight" : 0.6, "item" : ["v-toxikiteore", 4]},
+        {"weight" : 0.4, "item" : ["v-toxikitebar", 4]},
+        {"weight" : 0.4, "item" : ["v-liquidsuperpoison", 4]},
+        {"weight" : 0.2, "pool" : "v-poisonWeapon"}
+      ],
+      "poolRounds" : [
+        [0.6, 2],
+        [0.3, 3],
+        [0.1, 4]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-toxiclaboratoryRewardBig" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.2, "pool" : "v-toxiclaboratoryReward"}
+      ],
+      "poolRounds" : [
+        [1.0, 8]
+      ],
+      "allowDuplication" : true
+    }]
+  ],
+  "v-freezerroomTreasure" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.25, "pool" : "v-freezerroomProduce"},
+        {"weight" : 0.25, "pool" : "v-freezerroomMeat"},
+        {"weight" : 0.25, "item" : "v-dotefruit"},
+        {"weight" : 0.25, "pool" : "v-rottenfoodPool"}
+      ],
+      "poolRounds" : [
+        [0.25, 1],
+        [0.50, 2],
+        [0.25, 3]
+      ]
+    }]
+  ],
+  "v-freezerroomProduce" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.25, "item" : "carrot"},
+        {"weight" : 0.25, "item" : "corn"},
+        {"weight" : 0.25, "item" : "chili"},
+        {"weight" : 0.25, "item" : "cocoa"}
+      ],
+      "poolRounds" : [
+        [1.0, 1]
+      ]
+    }]
+  ],
+  "v-freezerroomMeat" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.2, "item" : "alienmeat"},
+        {"weight" : 0.2, "item" : "rawbacon"},
+        {"weight" : 0.2, "item" : "rawribmeat"},
+        {"weight" : 0.2, "item" : "rawpoultry"},
+        {"weight" : 0.2, "item" : "rawham"}
+      ],
+      "poolRounds" : [
+        [1.0, 1]
+      ]
+    }]
+  ],
+  "v-freezerroomIce" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 1.0, "item" : ["iceblock", 10]}
+      ],
+      "poolRounds" : [
+        [0.1, 1],
+        [0.5, 2],
+        [0.3, 3],
+        [0.1, 4]
+      ]
+    }]
   ]
 }

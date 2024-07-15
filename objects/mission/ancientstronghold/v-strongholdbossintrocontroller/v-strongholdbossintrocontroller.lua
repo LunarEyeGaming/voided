@@ -19,7 +19,6 @@
 
 require "/scripts/util.lua"
 require "/scripts/rect.lua"
-require "/scripts/voidedutil.lua"
 
 local BOTTOM_LIGHT_OUTPUT_NODES = {0, 1, 2, 3}
 local SPOTLIGHT_OUTPUT_NODE = 4

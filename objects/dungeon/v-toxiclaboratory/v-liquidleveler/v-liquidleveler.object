@@ -1,0 +1,35 @@
+{
+  "objectName" : "v-liquidleveler",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "category" : "wire",
+  "price" : 60,
+
+  "description" : "makes sure that the liquid level is correct",
+  "shortdescription" : "liquidleveler",
+  "race" : "generic",
+
+  "scannable" : false,
+  "printable" : false,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "image.png",
+      "imagePosition" : [0, 0],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaceScan" : 0.1
+    }
+  ],
+
+  "scripts" : ["v-liquidleveler.lua"],  // See script for parameter documentation
+
+  "levelRange" : [0, 141],
+  "levelRangeInterval" : 2,
+  "sensorAltitude" : 5,
+  "drainAltitude" : 0,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

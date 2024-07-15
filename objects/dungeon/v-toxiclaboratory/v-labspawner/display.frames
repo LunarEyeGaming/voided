@@ -1,0 +1,22 @@
+{
+
+  "frameGrid" : {
+    "size" : [40, 40],
+    "dimensions" : [13, 3],
+    // format: waves.<numWaves>.<numCompletedWaves>;<state>
+    // numWaves: the number of waves in total
+    // numCompletedWaves: the number of completed waves
+    // numWaves and numCompletedWaves are to be set through global tags; state through animation states.
+    // i = inactive (when a wave is currently inactive)
+    // tr = transition (transition from inactive to active)
+    // a = active (when a wave is currently active)
+    "names" : [
+      [ "waves.1.0;i.1", "waves.1.0;tr.1", "waves.1.0;tr.2", "waves.1.0;a.1", "waves.1.1;i.1", "default" ],
+      [ "waves.2.0;i.1", "waves.2.0;tr.1", "waves.2.0;tr.2", "waves.2.0;a.1", "waves.2.1;i.1", "waves.2.1;tr.1",
+        "waves.2.1;tr.2", "waves.2.1;a.1", "waves.2.2;i.1" ],
+      [ "waves.3.0;i.1", "waves.3.0;tr.1", "waves.3.0;tr.2", "waves.3.0;a.1", "waves.3.1;i.1", "waves.3.1;tr.1",
+        "waves.3.1;tr.2", "waves.3.1;a.1", "waves.3.2;i.1", "waves.3.2;tr.1", "waves.3.2;tr.2", "waves.3.2;a.1",
+        "waves.3.3;i.1" ]
+    ]
+  }
+}

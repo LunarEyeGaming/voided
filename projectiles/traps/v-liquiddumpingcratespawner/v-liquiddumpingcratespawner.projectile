@@ -1,0 +1,45 @@
+{
+  "projectileName" : "v-liquiddumpingcratespawner",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "timeToLive" : 0.66,
+  "animationCycle" : 1,
+  "speed" : 0,
+  "frameNumber" : 1,
+  "power" : 0,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  "piercing" : true,
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-liquidtankwarp/v-liquidtankwarpin.animation",
+        "fullbright" : true,
+        "layer" : "middle",
+        "timeToLive" : 0.66
+      }
+    },
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/tools/teleport_down.ogg" ]
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-liquiddumpingcrate",
+      "config" : {
+        "timeToLive" : 68.8,
+        "speed" : 5,
+        "liquidSpawnInterval" : 0.03
+      }
+    }
+  ]
+}

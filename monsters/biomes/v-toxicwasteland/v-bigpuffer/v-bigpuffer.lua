@@ -66,6 +66,8 @@ function init()
     monster.setDeathSound("deathPuff")
   end
   
+  message.setHandler("despawn", despawn)
+  
   listener = damageListener("damageTaken", function()
     tookDamage = true
   end)
@@ -113,6 +115,7 @@ function states.swim()
     end
     
     --mcontroller.controlApproachVelocity(vec2.mul({direction, 0}, swimSpeed), swimForce)
+    -- Swim
     mcontroller.controlFly({direction, 0})
     mcontroller.controlFace(direction)
 
@@ -125,16 +128,19 @@ function states.inflate()
 
   animator.setAnimationState("body", "preinflate")
   
+  -- Halt
   util.wait(preInflateStopTime, function()
     mcontroller.controlApproachVelocity({0, 0}, preInflateStopForce)
   end)
   
+  -- Begin inflation
   animator.setGlobalTag("inflateStatus", "inflated")
   animator.setAnimationState("body", "inflate")
   animator.playSound("inflate")
   
   local timer = 0
 
+  -- Grow collision poly
   util.wait(inflateTime, function(dt)
     local size = util.lerp(timer / inflateTime, 1, inflateSize)
     mcontroller.controlParameters({collisionPoly = poly.scale(inflationCollisionPoly, size)})
@@ -153,6 +159,7 @@ end
 function states.outOfLiquid()
   animator.setAnimationState("body", "flop")
 
+  -- Flop around.
   while not mcontroller.liquidMovement() do
     if mcontroller.onGround() then
       local jumpDirection = util.randomDirection()
@@ -187,4 +194,11 @@ function isWallColliding(dirVector)
   util.debugRect(bounds, "yellow")
 
   return world.rectTileCollision(bounds, {"Null","Block","Dynamic"})
+end
+
+function despawn()
+  monster.setDropPool(nil)
+  monster.setDeathParticleBurst(nil)
+  monster.setDeathSound(nil)
+  status.addEphemeralEffect("monsterdespawn")
 end

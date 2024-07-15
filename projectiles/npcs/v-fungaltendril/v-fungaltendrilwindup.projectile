@@ -1,0 +1,33 @@
+{
+  "projectileName" : "v-fungaltendrilwindup",
+  "image" : "fungaltendrilwindup.png",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "frameNumber" : 3,
+  "animationCycle" : 0.3,
+  "animationLoops" : false,
+  "power" : 1,
+  "speed" : 0,
+  "timeToLive" : 1.0,
+  "onlyHitTerrain" : true,
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-fungaltendril",
+      "inheritDamageFactor" : 1.0
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_fungaltendril_erupt.ogg" ]
+    },
+    {
+      "action" : "loop",
+      "count" : 10,
+      "body" : [
+        {
+          "action" : "spark"
+        }
+      ]
+    }
+  ]
+}

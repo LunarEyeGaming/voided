@@ -8,5 +8,11 @@
     "op" : "add",
     "path" : "/labels/v-uncategorizedWeapon",  // Any weapon that does not fit neatly into an existing category
     "value" : "Uncategorized Weapon"
+  },
+  {
+    // Any item that simply needs to be in the player's inventory to do something.
+    "op" : "add",
+    "path" : "/labels/v-passiveItem",
+    "value" : "Passive Item"
   }
 ]

@@ -1,0 +1,26 @@
+{
+  "metadata" : {
+    "name" : "v-toxiclaboratory-floor3enemyroom5-right-reset2",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "floor3enemyroom5-right-reset2" ],
+    // "anchor" : [ "buildingbottom" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 1,
+    "protected" : true
+  },
+
+  "parts" : [
+    {
+      "name" : "floor3enemyroom5-right-reset2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3enemyroom5-right-reset2.json" ]
+    }
+  ]
+}

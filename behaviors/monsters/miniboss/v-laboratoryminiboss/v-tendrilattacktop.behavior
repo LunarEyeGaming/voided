@@ -1,0 +1,187 @@
+{
+  "name": "v-laboratoryminiboss-tendrilattacktop",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/projectiles.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "Go to ceiling",
+        "type": "module",
+        "name": "v-laboratoryminiboss-teleport",
+        "parameters": {
+          "headingDirection": {"value": [-1, 0]},
+          "position": {"key": "ceilingPosM"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "tendrilswindup"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.5}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "tendrils"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": 0},
+          "sound": {"value": "fireTendrils"}
+        }
+      },
+      {
+        "title": "Spawn ceiling tendrils",
+        "type": "action",
+        "name": "spawnProjectile",
+        "parameters": {
+          "aimVector": {"value": [0, -1]},
+          "angle": {"value": 0},
+          "offset": {"value": [0, -1]},
+          "position": {"key": "ceilingPosM"},
+          "projectileConfig": {"value": {"power": 15}},
+          "projectileType": {"value": "v-fungaltendrilspawnerminiboss"},
+          "scalePower": {"value": true},
+          "sourceEntity": {"key": "self"},
+          "trackSource": {"value": false},
+          "uniqueRepeatGroup": {"value": true}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.02}
+        }
+      },
+      {
+        "title": "Spawn upper-left floor tendrils",
+        "type": "action",
+        "name": "spawnProjectile",
+        "parameters": {
+          "aimVector": {"value": [0, 1]},
+          "angle": {"value": 0},
+          "offset": {"value": [0, 1]},
+          "position": {"key": "floorPosUL"},
+          "projectileConfig": {"value": {"power": 15}},
+          "projectileType": {"value": "v-fungaltendrilspawnerminiboss"},
+          "scalePower": {"value": true},
+          "sourceEntity": {"key": "self"},
+          "trackSource": {"value": false},
+          "uniqueRepeatGroup": {"value": true}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.02}
+        }
+      },
+      {
+        "title": "Spawn upper-right floor tendrils",
+        "type": "action",
+        "name": "spawnProjectile",
+        "parameters": {
+          "aimVector": {"value": [0, 1]},
+          "angle": {"value": 0},
+          "offset": {"value": [0, 1]},
+          "position": {"key": "floorPosUR"},
+          "projectileConfig": {"value": {"power": 15}},
+          "projectileType": {"value": "v-fungaltendrilspawnerminiboss"},
+          "scalePower": {"value": true},
+          "sourceEntity": {"key": "self"},
+          "trackSource": {"value": false},
+          "uniqueRepeatGroup": {"value": true}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.02}
+        }
+      },
+      {
+        "title": "Spawn upper-left wall tendrils",
+        "type": "action",
+        "name": "spawnProjectile",
+        "parameters": {
+          "aimVector": {"value": [1, 0]},
+          "angle": {"value": 0},
+          "offset": {"value": [1, 0]},
+          "position": {"key": "wallPosUL"},
+          "projectileConfig": {"value": {"power": 15}},
+          "projectileType": {"value": "v-fungaltendrilspawnerminiboss"},
+          "scalePower": {"value": true},
+          "sourceEntity": {"key": "self"},
+          "trackSource": {"value": false},
+          "uniqueRepeatGroup": {"value": true}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.02}
+        }
+      },
+      {
+        "title": "Spawn upper-right wall tendrils",
+        "type": "action",
+        "name": "spawnProjectile",
+        "parameters": {
+          "aimVector": {"value": [-1, 0]},
+          "angle": {"value": 0},
+          "offset": {"value": [-1, 0]},
+          "position": {"key": "wallPosUR"},
+          "projectileConfig": {"value": {"power": 15}},
+          "projectileType": {"value": "v-fungaltendrilspawnerminiboss"},
+          "scalePower": {"value": true},
+          "sourceEntity": {"key": "self"},
+          "trackSource": {"value": false},
+          "uniqueRepeatGroup": {"value": true}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.5}
+        }
+      }
+    ]
+  }
+}

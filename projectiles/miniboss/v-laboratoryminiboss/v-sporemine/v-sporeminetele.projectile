@@ -1,0 +1,29 @@
+{
+  "projectileName" : "v-sporeminetele",
+  "image" : "sporeminetele.png",
+  "animationCycle" : 0.1,
+  "frameNumber" : 1,
+  "winddownFrames" : 4,
+  "timeToLive" : 1.5,
+  "power" : 500,
+  "flippable" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "onlyHitTerrain" : true,
+  
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-sporemine",
+      "inheritDamageFactor" : 1
+    }
+  ],
+
+  "speed" : 0,
+
+  "scripts" : [ "v-sporeminetele.lua" ],
+  "scriptDelta" : 1,
+
+  "travelTime" : 1.5
+}

@@ -18,9 +18,6 @@
     "/scripts/behavior.lua"
   ],
   "parameters": {
-    // "projectorCount": 4,
-    // "projectorDistance": 10,
-    // "spawnTime": 3
   },
   "root": {
     "title": "Reset",
@@ -96,39 +93,6 @@
           "number": "coreCount"
         }
       },
-      /* {
-        "title": "each",
-        "type": "decorator",
-        "name": "each",
-        "parameters": {
-          "list": {"key": "projectors"},
-          "type": {"value": "entity"}
-        },
-        "child": {
-          "title": "succeeder",
-          "type": "decorator",
-          "name": "succeeder",
-          "parameters": {},
-          "child": {
-            "title": "sendEntityMessage",
-            "type": "action",
-            "name": "sendEntityMessage",
-            "parameters": {
-              "entity": {"key": "eachItem"},
-              "message": {"value": "startSpawnSequence"}
-            }
-          }
-        }
-      },
-      {
-        "title": "setAnimationState",
-        "type": "action",
-        "name": "setAnimationState",
-        "parameters": {
-          "state": {"value": "spawnidle"},
-          "type": {"value": "body"}
-        }
-      }, */
       {
         "title": "parallel",
         "type": "composite",
@@ -203,27 +167,7 @@
                       "parameters": {
                         "entity": {"key": "filterItem"}
                       }
-                    }/* ,
-                    {
-                      "title": "entityHealth",
-                      "type": "action",
-                      "name": "entityHealth",
-                      "parameters": {
-                        "entity": {"key": "filterItem"}
-                      },
-                      "output": {
-                        "number": "coreHealth"
-                      }
-                    },
-                    {
-                      "title": "greaterThan",
-                      "type": "action",
-                      "name": "greaterThan",
-                      "parameters": {
-                        "first": {"key": "coreHealth"},
-                        "second": {"value": 0}
-                      }
-                    } */
+                    }
                   ]
                 }
               },
@@ -631,20 +575,6 @@
                                             "parameters": {}
                                           }
                                         }
-                                        /* {
-                                          "title": "cooldown",
-                                          "type": "decorator",
-                                          "name": "cooldown",
-                                          "parameters": {
-                                            "cooldown": {"value": 0}
-                                          },
-                                          "child": {
-                                            "title": "v-strongholdboss-coreattack2",
-                                            "type": "module",
-                                            "name": "v-strongholdboss-coreattack2",
-                                            "parameters": {}
-                                          }
-                                        } */
                                       ]
                                     }
                                   }
@@ -1186,34 +1116,6 @@
                                             }
                                           }
                                         },
-                                        /* {
-                                          "title": "cooldown",
-                                          "type": "decorator",
-                                          "name": "cooldown",
-                                          "parameters": {
-                                            "cooldown": {"value": 40}
-                                          },
-                                          "child": {
-                                            "title": "v_laserAttack3",
-                                            "type": "action",
-                                            "name": "v_laserAttack3",
-                                            "parameters": {
-                                              "attackSet": {"value": [
-                                                {"idKey": "laserH1Id", "startOffset": [0, 11], "endOffset": [0, -3],
-                                                 "teleProjectile": "v-laserwarninghorizontal2", "teleOffset": [0, 4.5]},
-                                                {"idKey": "laserV1Id", "startOffset": [14, 0], "endOffset": [-6, 0],
-                                                 "teleProjectile": "v-laserwarningvertical2", "teleOffset": [5, 0]},
-                                                {"idKey": "laserH2Id", "startOffset": [0, -11], "endOffset": [0, 3],
-                                                 "teleProjectile": "v-laserwarninghorizontal2", "teleOffset": [0, -4.5]},
-                                                {"idKey": "laserV2Id", "startOffset": [-14, 0], "endOffset": [6, 0],
-                                                 "teleProjectile": "v-laserwarningvertical2", "teleOffset": [-5, 0]}
-                                              ]},
-                                              "sampleSize": {"value": 4},
-                                              "fireDelay": {"value": 0.0},
-                                              "waitTime": {"value": 0.0}
-                                            }
-                                          }
-                                        }, */
                                         {
                                           "title": "cooldown",
                                           "type": "decorator",
@@ -1352,46 +1254,6 @@
                 "name": "sequence",
                 "parameters": {},
                 "children": [
-                  /* {
-                    "title": "succeeder",
-                    "type": "decorator",
-                    "name": "succeeder",
-                    "parameters": {},
-                    "child": {
-                      "title": "Reset",
-                      "type": "composite",
-                      "name": "sequence",
-                      "parameters": {},
-                      "children": [
-                        {
-                          "title": "hasFlag",
-                          "type": "action",
-                          "name": "hasFlag",
-                          "parameters": {
-                            "name": {"key": "hasSpawned"}
-                          }
-                        },
-                        {
-                          "title": "setAnimationState",
-                          "type": "action",
-                          "name": "setAnimationState",
-                          "parameters": {
-                            "state": {"value": "idle"},
-                            "type": {"value": "body"}
-                          }
-                        }
-                      ]
-                    }
-                  }, */
-                  /* {
-                    "title": "setGlobalTag",
-                    "type": "action",
-                    "name": "setGlobalTag",
-                    "parameters": {
-                      "tag": {"value": "stage1"},
-                      "type": {"value": "stage"}
-                    }
-                  }, */
                   {
                     "title": "battleMusic",
                     "type": "action",

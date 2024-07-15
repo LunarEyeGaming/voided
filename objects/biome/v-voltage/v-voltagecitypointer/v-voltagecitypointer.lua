@@ -1,7 +1,14 @@
+require "/objects/wired/light/light.lua"
+
+local oldInit = init or function() end
+local oldSetLightState = setLightState or function() end
+
 local targetId
 local pointDirection
 
 function init()
+  oldInit()
+
   passParamToAnim("beaconFlashTime")
   passParamToAnim("arrowRadialOffset")
   passParamToAnim("leftArrowImage")
@@ -16,7 +23,10 @@ function init()
   end
 end
 
-function update(dt)
+function setLightState(newState)
+  oldSetLightState(newState)
+  
+  object.setAnimationParameter("isActive", storage.state)
 end
 
 function passParamToAnim(param, default)

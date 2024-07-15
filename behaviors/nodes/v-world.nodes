@@ -1,0 +1,31 @@
+{
+  "v_getUniqueEntityPosition": {
+    "type": "action",
+    "name": "v_getUniqueEntityPosition",
+    "title": "v_getUniqueEntityPosition",
+    "properties": {
+      "uniqueId": {"type": "string", "value": null}
+    },
+    "category": "v-world",
+    "script": "/scripts/actions/v-world.lua",
+    "output": {
+      "position": {"type": "position", "key": null}
+    }
+  },
+  "v_spawnVehicle": {
+    "type": "action",
+    "name": "v_spawnVehicle",
+    "title": "v_spawnVehicle",
+    "properties": {
+      "name": {"type": "string"},
+      "offset": {"type": "vec2", "value": [0, 0]},
+      "overrides": {"type": "json", "value": {}},
+      "position": {"type": "position", "key": "self"}
+    },
+    "category": "v-world",
+    "script": "/scripts/actions/v-world.lua",
+    "output": {
+      "vehicleId": {"type": "entity", "key": ""}
+    }
+  }
+}

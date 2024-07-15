@@ -1,0 +1,698 @@
+{
+  "name": "v-laboratoryminiboss-cloudlineattack",
+  "description": null,
+  "scripts": [
+    "/scripts/behavior/bdata.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/projectiles.lua"
+  ],
+  "parameters": {
+    "ceilHeading": [-1, 0],
+    "floorHeading": [1, 0],
+    "leftWallHeading": [0, 1],
+    "rightWallHeading": [0, -1],
+    "ceilOffset": [0, -2.5],
+    "floorOffset": [0, 2.5],
+    "leftWallOffset": [2.5, 0],
+    "rightWallOffset": [-2.5, 0]
+  },
+  "root": {
+    "title": "repeater",
+    "type": "decorator",
+    "name": "repeater",
+    "parameters": {
+      "maxLoops": {"value": 6},
+      "untilSuccess": {"value": false}
+    },
+    "child": {
+      "title": "sequence",
+      "type": "composite",
+      "name": "sequence",
+      "parameters": {},
+      "children": [
+        {
+          "title": "Choose valid position",
+          "type": "decorator",
+          "name": "repeater",
+          "parameters": {
+            "maxLoops": {"value": 20000},
+            "untilSuccess": {"value": true}
+          },
+          "child": {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "Choose random position",
+                "type": "composite",
+                "name": "randomize",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<floorHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<floorOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Floor UL",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "floorPosUL"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<floorHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<floorOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Floor UR",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "floorPosUR"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<floorHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<floorOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Floor LL",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "floorPosLL"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<floorHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<floorOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Floor LR",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "floorPosLR"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<ceilHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<ceilOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Ceiling UL",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "ceilingPosUL"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<ceilHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<ceilOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Ceiling UR",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "ceilingPosUR"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<ceilHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<ceilOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Ceiling LL",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "ceilingPosLL"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<ceilHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<ceilOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Ceiling LR",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "ceilingPosLR"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<leftWallHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<leftWallOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Wall UL",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "wallPosUL"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<rightWallHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<rightWallOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Wall UR",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "wallPosUR"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<leftWallHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<leftWallOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Wall LL",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "wallPosLL"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Set heading direction",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<rightWallHeading>"}
+                        },
+                        "output": {
+                          "vector": "headingDirection"
+                        }
+                      },
+                      {
+                        "title": "Set projectile offset",
+                        "type": "action",
+                        "name": "setVector",
+                        "parameters": {
+                          "vector": {"key": "<rightWallOffset>"}
+                        },
+                        "output": {
+                          "vector": "projOffset"
+                        }
+                      },
+                      {
+                        "title": "Wall LR",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"value": [0, 0]},
+                          "position": {"key": "wallPosLR"}
+                        },
+                        "output": {
+                          "position": "attackPos"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "entityPosition",
+                "type": "action",
+                "name": "entityPosition",
+                "parameters": {
+                  "entity": {"key": "target"}
+                },
+                "output": {
+                  "position": "targetPos"
+                }
+              },
+              {
+                "title": "distance",
+                "type": "action",
+                "name": "distance",
+                "parameters": {
+                  "from": {"key": "attackPos"},
+                  "to": {"key": "targetPos"}
+                },
+                "output": {
+                  "vector": "toTarget"
+                }
+              },
+              {
+                "title": "Can see target?",
+                "type": "decorator",
+                "name": "inverter",
+                "parameters": {},
+                "child": {
+                  "title": "lineTileCollision",
+                  "type": "action",
+                  "name": "lineTileCollision",
+                  "parameters": {
+                    "collisionType": {"value": ["Null", "Block", "Dynamic", "Slippery"]},
+                    "offset": {"key": "toTarget"},
+                    "position": {"key": "attackPos"}
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "title": "Go to attack pos",
+          "type": "module",
+          "name": "v-laboratoryminiboss-teleport",
+          "parameters": {
+            "headingDirection": {"key": "headingDirection"},
+            "position": {"key": "attackPos"}
+          }
+        },
+        {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"value": "cloudspitwindup"},
+            "type": {"value": "body"}
+          }
+        },
+        {
+          "title": "timer",
+          "type": "action",
+          "name": "timer",
+          "parameters": {
+            "time": {"value": 0.25}
+          }
+        },
+        {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"value": "cloudspit"},
+            "type": {"value": "body"}
+          }
+        },
+        {
+          "title": "timer",
+          "type": "action",
+          "name": "timer",
+          "parameters": {
+            "time": {"value": 0.1}
+          }
+        },
+        {
+          "title": "Update target direction",
+          "type": "action",
+          "name": "entityDirection",
+          "parameters": {
+            "entity": {"key": "self"},
+            "offset": {"key": "projOffset"},
+            "target": {"key": "target"}
+          },
+          "output": {
+            "vector": "toTarget"
+          }
+        },
+        {
+          "title": "Fire cloud line",
+          "type": "action",
+          "name": "spawnProjectile",
+          "parameters": {
+            "aimVector": {"key": "toTarget"},
+            "offset": {"key": "projOffset"},
+            "position": {"key": "self"},
+            "projectileConfig": {"value": {"power": 15}},
+            "projectileType": {"value": "v-minibosscloudlinetele"},
+            "scalePower": {"value": true},
+            "sourceEntity": {"key": "self"},
+            "trackSource": {"value": false},
+            "uniqueRepeatGroup": {"value": true}
+          }
+        },
+        {
+          "title": "playSound",
+          "type": "action",
+          "name": "playSound",
+          "parameters": {
+            "loops": {"value": 0},
+            "sound": {"value": "fireCloudLine"}
+          }
+        },
+        {
+          "title": "timer",
+          "type": "action",
+          "name": "timer",
+          "parameters": {
+            "time": {"value": 0.15}
+          }
+        }
+      ]
+    }
+  }
+}
