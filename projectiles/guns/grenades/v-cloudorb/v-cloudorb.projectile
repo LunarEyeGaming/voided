@@ -1,0 +1,25 @@
+{
+  "projectileName" : "v-cloudorb",
+  "image" : "cloudorb.png",
+  "frameNumber" : 1,
+  "animationCycle" : 1.0,
+
+  "timeToLive" : 3.0,
+
+  "physics" : "hover",
+  "speed" : 25,
+  "bounces" : -1,
+
+  "damageType" : "NoDamage",
+  "piercing" : true,
+
+  "periodicActions" : [
+    {
+      "time" : 0.25,
+      "action" : "projectile",
+      "type" : "v-largepoisoncloudlessparticles",
+      "inheritDamageFactor" : 0.1,
+      "fuzzAngle" : 180
+    }
+  ]
+}

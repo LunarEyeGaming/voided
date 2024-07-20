@@ -1,0 +1,28 @@
+{
+  "projectileName" : "v-clouddartstuck",
+  "image" : "clouddart.png",
+  "frameNumber" : 4,
+  "animationCycle" : 0.4,
+  "flippable" : true,
+
+  "piercing" : true,
+  "damageType" : "NoDamage",
+
+  "physics" : "stickybullet",
+  "speed" : 75,
+
+  "timeToLive" : 3,
+
+  "periodicActions" : [
+    {
+      "time" : 0.25,
+      "action" : "projectile",
+      "type" : "v-largepoisoncloudlessparticles",
+      "inheritDamageFactor" : 0.3,
+      "fuzzAngle" : 180
+    }
+  ],
+
+  "scripts" : [ "v-clouddartstuck.lua" ],
+  "scriptDelta" : 1
+}

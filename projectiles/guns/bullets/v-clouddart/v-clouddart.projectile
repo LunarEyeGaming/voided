@@ -1,0 +1,56 @@
+{
+  "projectileName" : "v-clouddart",
+  "image" : "clouddart.png",
+  "frameNumber" : 4,
+  "animationCycle" : 0.4,
+  "flippable" : true,
+
+  "piercing" : true,
+  "damageKind" : "poisonspear",
+  "damagePoly" : [ [4, 0] ],
+
+  "physics" : "stickybullet",
+  "speed" : 75,
+
+  "timeToLive" : 3,
+
+  "periodicActions" : [
+    {
+      "time" : 0.25,
+      "action" : "projectile",
+      "type" : "v-largepoisoncloudlessparticles",
+      "inheritDamageFactor" : 0.3,
+      "fuzzAngle" : 180
+    }
+  ],
+
+  "actionOnCollide" : [
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {"action" : "spark"}
+      ]
+    },
+    {
+      "action" : "sound",
+      "options" : [
+        "/sfx/projectiles/ropehook_impact1.ogg",
+        "/sfx/projectiles/ropehook_impact2.ogg",
+        "/sfx/projectiles/ropehook_impact3.ogg",
+        "/sfx/projectiles/ropehook_impact4.ogg",
+        "/sfx/projectiles/ropehook_impact5.ogg",
+        "/sfx/projectiles/ropehook_impact6.ogg",
+        "/sfx/projectiles/ropehook_impact7.ogg",
+        "/sfx/projectiles/ropehook_impact8.ogg",
+        "/sfx/projectiles/ropehook_impact9.ogg",
+        "/sfx/projectiles/ropehook_impact10.ogg",
+        "/sfx/projectiles/ropehook_impact11.ogg",
+        "/sfx/projectiles/ropehook_impact12.ogg"
+      ]
+    }
+  ],
+
+  "scripts" : [ "v-clouddart.lua" ],
+  "scriptDelta" : 1
+}

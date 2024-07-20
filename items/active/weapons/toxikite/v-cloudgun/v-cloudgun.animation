@@ -1,0 +1,155 @@
+{
+  "globalTagDefaults" : {
+    "paletteSwaps" : ""
+  },
+
+  "animatedParts" : {
+    "stateTypes" : {
+      "firing" : {
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "fire" : {
+            "frames" : 2,
+            "cycle" : 0.07,
+            "mode" : "transition",
+            "transition" : "off"
+          }
+        }
+      },
+      "gun" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "fire" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/gun/reload/rocket_reload_clip1.ogg"
+            }
+          }
+        }
+      },
+      "swoosh" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "fire" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "gun" : {
+        "properties" : {
+          "centered" : true,
+          "offset" : [0.75, 0.25],
+          "transformationGroups" : ["weapon"]
+        },
+
+        "partStates" : {
+          "gun" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "muzzleFlash" : {
+        "properties" : {
+          "zLevel" : -1,
+          "centered" : true,
+          "offset" : [0.75, 0],
+          "fullbright" : true,
+          "transformationGroups" : ["muzzle"]
+        },
+
+        "partStates" : {
+          "firing" : {
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:<variant>.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "swoosh" : {
+        "properties" : {
+          "zLevel" : -1,
+          "centered" : true,
+          "transformationGroups" : ["swoosh"],
+          "rotationCenter" : [0, 0]
+        },
+
+        "partStates" : {
+          "swoosh" : {
+            "idle" : {
+              "properties" : {
+                "image" : ""
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "/items/active/weapons/melee/broadsword/swoosh/physicalswoosh.png:<frame>",
+                "offset" : [-1.75, 2.5],
+                "damageArea" : [[-5, 2], [-2.5, 3], [1, 3], [4, 1.75], [5.25, -0.25], [5.25, -2.25], [3.75, -3.25], [0.25, -2.75]]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "rotationGroups" : {
+    "weapon" : {
+      "angularVelocity" : 0
+    }
+  },
+
+  "transformationGroups" : {
+    "weapon" : {},
+    "muzzle" : {},
+    "swoosh" : {}
+  },
+
+  "particleEmitters" : {
+    "muzzleFlash" : {
+      "transformationGroups" : ["muzzle"],
+      "offsetRegion" : [0, 0, 0, 0],
+      "particles" : [ ]
+    },
+    "poisonswoosh" : {
+      "active" : false,
+      "transformationGroups" : ["swoosh"],
+      "particles" : [ ]
+    }
+  },
+
+  "lights" : {
+    "muzzleFlash" : {
+      "active" : false,
+      "position" : [0, 0],
+      "color" : [90, 0, 90]
+    }
+  },
+
+  "sounds" : {
+    "fire" : [ ]
+  }
+}

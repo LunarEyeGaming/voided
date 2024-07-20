@@ -1,0 +1,149 @@
+{
+  "itemName" : "v-cloudgun",
+  "level" : 8,
+  "price" : 1200,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "<todo>",
+  "shortdescription" : "^toxikite;Cloud Dart Rifle",
+  "tooltipKind" : "gun",
+  "category" : "sniperRifle",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged","sniperRifle"],
+
+  "inventoryIcon" : [
+    { "image" : "cloudgunicon.png" }
+  ],
+
+  "animation" : "v-cloudgun.animation",
+  "animationParts" : {
+    "gun" : "cloudgun.png",
+    "muzzleFlash" : "/items/active/weapons/ranged/muzzleflash.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : [ "/sfx/gun/grenade3.ogg" ],
+      "swing" : [ "/sfx/melee/swing_broadsword.ogg" ]
+    }
+  },
+  "baseOffset" : [0, 0],
+  "muzzleOffset" : [3.6875, 0.4375],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua", "v-cloudgunplugin.lua"],
+
+  "elementalType" : "poison",
+
+  "primaryAbility" : {
+    "scripts" : ["/items/active/weapons/ranged/gunfire.lua"],
+    "class" : "GunFire",
+
+    "fireTime" : 1.5,
+    "baseDps" : 2.5,
+    "energyUsage" : 50,
+    "inaccuracy" : 0.008,
+    "fireType" : "auto",
+
+    "projectileType" : "v-clouddart",
+    "projectileParameters" : {
+      "knockback" : 0
+    },
+    "projectileCount" : 1,
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true,
+        "frontArmFrame" : "swimIdle.1"
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "animationStates" : {
+          "gun" : "fire"
+        },
+        "frontArmFrame" : "swimIdle.1"
+      },
+      "cooldown" : {
+        "duration" : 0.25,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "frontArmFrame" : "swimIdle.1"
+      }
+    }
+  },
+
+  "altAbility" : {
+    "scripts" : ["/items/active/weapons/melee/meleeslash.lua"],
+    "class" : "MeleeSlash",
+
+    "name" : "Swing",
+
+    "energyUsage" : 30,
+    "fireSound" : "swing",
+    "fireTime" : 1.0,
+    "baseDps" : 4.0,
+    "damageConfig" : {
+      "damageSourceKind" : "hammer",
+      "knockback" : 50,
+      // "knockbackMode" : "facing",
+      "timeoutGroup" : "primary"
+    },
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true,
+        "frontArmFrame" : "swimIdle.1"
+      },
+      "windup" : {
+        "duration" : 0.1,
+        "armRotation" : 90,
+        "weaponRotation" : 80,
+        "twoHanded" : true,
+        "weaponOffset" : [1.75, 0],
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "preslash" : {
+        "duration" : 0.025,
+        "armRotation" : 55,
+        "weaponRotation" : 45,
+        "twoHanded" : true,
+        "weaponOffset" : [1.75, 0],
+
+        "allowRotate" : true,
+        "allowFlip" : false
+      },
+      "fire" : {
+        "duration" : 0.4,
+        "armRotation" : -45,
+        "weaponRotation" : 35,
+        "twoHanded" : true,
+        "weaponOffset" : [1.75, 0],
+
+        "allowRotate" : true,
+        "allowFlip" : false
+      }
+    }
+  },
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}
