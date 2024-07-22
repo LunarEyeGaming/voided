@@ -20,7 +20,7 @@
     "behaviorUpdateDelta" : 1,
 
     "behavior" : "v-strongholdbosscore",
-    
+
     "teleportBeam" : {
       "startSegmentImage" : "/monsters/boss/guardianboss/beams/spawnbeamstart.png",
       "segmentImage" : "/monsters/boss/guardianboss/beams/spawnbeam.png",
@@ -165,9 +165,9 @@
         "powerMultiplier" : {
           "baseValue" : 1.0
         },
-        
+
         // RPG Growth
-        
+
         "demonicStatusImmunity" : {
           "baseValue" : 1.0
         },
@@ -178,7 +178,7 @@
           "baseValue" : 1.0
         },
 
-        // FU
+        // Frackin' Universe (FU)
 
         "captureImmunity" : {
           "baseValue" : 1
@@ -204,8 +204,20 @@
         "bioozeImmunity" : {
           "baseValue" : 1.0
         },
-        "radiationburnImmunity" : { 
+        "radiationburnImmunity" : {
           "baseValue" : 1
+        },
+
+        // Extended Story (ES)
+
+        "acidicbacteriaImmunity" : {
+          "baseValue" : 1
+        },
+        "abysseffectImmunity" : {
+          "baseValue" : 1.0
+        },
+        "ionizedImmunity" : {
+          "baseValue" : 1.0
         }
       },
 

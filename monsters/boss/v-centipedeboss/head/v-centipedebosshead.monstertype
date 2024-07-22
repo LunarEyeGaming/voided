@@ -1,73 +1,83 @@
 {
-  "type" : "v-laboratoryminiboss",
-  "shortdescription" : "Adult Sporetop",
-  "description" : "A powerful creature resulting from combining an Adult Poptop with Toxic Wasteland mushrooms.",
+  "type" : "v-centipedebosshead",
+  "shortdescription" : "centipedeboss",
+  "description" : "<todo>",
 
-  "categories" : [ "v-laboratoryminiboss" ],
+  "categories" : [ "v-centipedebosshead" ],
   "parts" : [ "body" ],
 
-  "animation" : "v-laboratoryminiboss.animation",
-  "dropPools" : [ ],
+  "animation" : "v-centipedebosshead.animation",
+
+  "dropPools" : ["v-mutanteelTreasure"],
 
   "baseParameters" : {
     "scripts" : [
-      "/monsters/monster.lua"
+      "/scripts/terra_wormheadcustom.lua"
     ],
-    "initialScriptDelta" : 1,
+    "initialScriptDelta" : 3,
     "behaviorUpdateDelta" : 1,
 
-    "behavior" : "v-laboratoryminiboss",
+    "behavior" : "v-centipedeboss",
 
-    "behaviorConfig" : {
-    },
+    "size" : 20,
+    "bodySegment" : "v-centipedebossbody",
 
-    "renderLayer" : "Projectile-20",
+    "capturedLevel" : 8,
+
+    "behaviorConfig" : {},
 
     "damageBar" : "None",
 
-    "knockoutTime" : 0,
-    "knockoutEffect" : "blink",
-    "deathParticles" : "deathPoof",
+    "touchDamage" : {
+      "poly" : [ [4, 4], [-4, 4], [-4, -4], [4, -4] ],
+      "damage" : 20,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "impact",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
 
     "metaBoundBox" : [-4, -4, 4, 4],
     "scale" : 1.0,
 
     "movementSettings" : {
-      "gravityEnabled" : false,
+      "collisionPoly" : [ [4, 4], [-4, 4], [-4, -4], [4, -4] ],
       "collisionEnabled" : false,
-      "collisionPoly" : [ [5, 5], [-5, 5], [-5, -5], [5, -5] ],
 
-      "mass" : 4.0,
-      "walkSpeed" : 5,
-      "runSpeed" : 13,
-      "flySpeed" : 11,
-      "airFriction" : 0.5,
-      "airForce" : 800.0,
-      "airJumpProfile" : {
-        "jumpControlForce" : 0,
-        "jumpInitialPercentage" : 0
-      },
-      "physicsEffectCategories" : ["boss"]
+      "mass" : 2.0,
+      "walkSpeed" : 4,
+      "runSpeed" : 12,
+      "gravityEnabled" : false,
+
+      "bounceFactor" : 0.5,
+      "groundFriction" : 10,
+
+      "airFriction" : 0,
+      "liquidFriction" : 1.25,
+      "airForce" : 50,
+      "flySpeed" : 35
     },
 
-    "touchDamage" : {
-      "poly" : [ [-0.75, -2.0], [-0.35, -2.5], [0.35, -2.5], [0.75, -2.0], [0.75, 0.65], [0.35, 1.22], [-0.35, 1.22], [-0.75, 0.65] ],
-      "damage" : 20,
+    "bodyMaterialKind" : "robotic",
 
-      "damageSourceKind" : "electricbroadsword",
-
-      "teamType" : "enemy",
-      "statusEffects" : [ ]
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
     },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "stunDamageSuppression" : 0.2,
 
     "statusSettings" : {
       "statusProperties" : {
-        "displayTitle" : "Miniboss",  // Book of Spirits support
-        "targetMaterialKind" : "organic"
+        "displayTitle" : "Boss",  // Book of Spirits support
+        "targetMaterialKind" : "robotic"
       },
 
       "appliesEnvironmentStatusEffects" : false,
-      "appliesWeatherStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
       "minimumLiquidStatusEffectPercentage" : 0.1,
 
       "primaryScriptSources" : [
@@ -76,20 +86,26 @@
       "primaryScriptDelta" : 5,
 
       "stats" : {
-        "knockbackStunTime" : {
-          "baseValue" : 0.25
-        },
         "grit" : {
           "baseValue" : 1.0
         },
+        "knockbackStunTime" : {
+          "baseValue" : 0.3
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9999999
+        },
         "maxHealth" : {
-          "baseValue" : 1000
+          "baseValue" : 400
         },
         "protection" : {
-          "baseValue" : 0
+          "baseValue" : 0.0
         },
         "healthRegen" : {
           "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
         },
         "fireStatusImmunity" : {
           "baseValue" : 1.0
@@ -101,24 +117,6 @@
           "baseValue" : 1.0
         },
         "poisonStatusImmunity" : {
-          "baseValue" : 1.0
-        },
-        "specialStatusImmunity" : {
-          "baseValue" : 1.0
-        },
-        "healingStatusImmunity" : {
-          "baseValue" : 1.0
-        },
-        "electricResistance" : {
-          "baseValue" : -0.25
-        },
-        "poisonResistance" : {
-          "baseValue" : 0.5
-        },
-        "stunImmunity" : {
-          "baseValue" : 1.0
-        },
-        "powerMultiplier" : {
           "baseValue" : 1.0
         },
 
@@ -180,18 +178,18 @@
       "resources" : {
         "stunned" : {
           "deltaValue" : -1.0,
-          "initialValue" : 0.0,
-          "maxValue" : 0.0
+          "initialValue" : 0.0
         },
         "health" : {
           "maxStat" : "maxHealth",
           "deltaStat" : "healthRegen",
-          "defaultPercentage" : 1.0
+          "defaultPercentage" : 100
         }
       }
     },
 
-    "mouthOffset" : [1.0, -1.5],
-    "feetOffset" : [0, -21]
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : false
   }
 }

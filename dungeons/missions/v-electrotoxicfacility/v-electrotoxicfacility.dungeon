@@ -1,0 +1,23 @@
+{
+  "metadata" : {
+    "name" : "v-electrotoxicfacility",
+    "species" : "generic",
+    "rules" : [
+    ],
+    "anchor" : [ "electrotoxicfacility" ],
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : true
+  },
+
+  "parts" : [
+    {
+      "name" : "electrotoxicfacility",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "electrotoxicfacility.json" ]
+    }
+  ]
+}

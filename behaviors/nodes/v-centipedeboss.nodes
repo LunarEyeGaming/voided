@@ -1,0 +1,27 @@
+{
+  "v_getChildren": {
+    "type": "action",
+    "name": "v_getChildren",
+    "title": "v_getChildren",
+    "properties": {},
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {
+      "entityIds": {"type": "list", "key": ""}
+    }
+  },
+  "v_fetchPositions": {
+    "type": "action",
+    "name": "v_fetchPositions",
+    "title": "v_fetchPositions",
+    "properties": {
+      "boardVarPrefix": {"type": "string"},
+      "coordDelimiter": {"type": "string", "value": "_"},
+      "gridDimensions": {"type": "vec2", "value": [1, 1]},
+      "uniqueIdPrefix": {"type": "string"}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {}
+  }
+}

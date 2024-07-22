@@ -1,0 +1,186 @@
+{
+  "name": "v-centipedeboss-projectileattack1",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/v-worm.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/world.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "randomize",
+    "type": "composite",
+    "name": "randomize",
+    "parameters": {},
+    "children": [
+      {
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "v_wormFlyToPosition",
+            "type": "action",
+            "name": "v_wormFlyToPosition",
+            "parameters": {
+              "position": {"key": "pos-1_1"},
+              "speed": {"value": 75},
+              "tolerance": {"value": 5},
+              "controlForce": {"value": 250}
+            }
+          },
+          {
+            "title": "setVelocity",
+            "type": "action",
+            "name": "setVelocity",
+            "parameters": {
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "v_wormFlyToPosition",
+            "type": "action",
+            "name": "v_wormFlyToPosition",
+            "parameters": {
+              "position": {"key": "pos-1_5"},
+              "speed": {"value": 75},
+              "tolerance": {"value": 5},
+              "controlForce": {"value": 250}
+            }
+          },
+          {
+            "title": "setVelocity",
+            "type": "action",
+            "name": "setVelocity",
+            "parameters": {
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "v_wormFlyToPosition",
+            "type": "action",
+            "name": "v_wormFlyToPosition",
+            "parameters": {
+              "position": {"key": "pos-3_5"},
+              "speed": {"value": 75},
+              "tolerance": {"value": 5},
+              "controlForce": {"value": 250}
+            }
+          },
+          {
+            "title": "setVelocity",
+            "type": "action",
+            "name": "setVelocity",
+            "parameters": {
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "each",
+            "type": "decorator",
+            "name": "each",
+            "parameters": {
+              "list": {"key": "childSegments"},
+              "type": {"value": "entity"}
+            },
+            "child": {
+              "title": "sendEntityMessage",
+              "type": "action",
+              "name": "sendEntityMessage",
+              "parameters": {
+                "arguments": {"value": []},
+                "entity": {"key": "eachItem"},
+                "message": {"value": "attack1"}
+              }
+            }
+          }
+        ]
+      },
+      {
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "v_wormFlyToPosition",
+            "type": "action",
+            "name": "v_wormFlyToPosition",
+            "parameters": {
+              "position": {"key": "pos-1_5"},
+              "speed": {"value": 75},
+              "tolerance": {"value": 5},
+              "controlForce": {"value": 250}
+            }
+          },
+          {
+            "title": "setVelocity",
+            "type": "action",
+            "name": "setVelocity",
+            "parameters": {
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "v_wormFlyToPosition",
+            "type": "action",
+            "name": "v_wormFlyToPosition",
+            "parameters": {
+              "position": {"key": "pos-1_1"},
+              "speed": {"value": 75},
+              "tolerance": {"value": 5},
+              "controlForce": {"value": 250}
+            }
+          },
+          {
+            "title": "setVelocity",
+            "type": "action",
+            "name": "setVelocity",
+            "parameters": {
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "v_wormFlyToPosition",
+            "type": "action",
+            "name": "v_wormFlyToPosition",
+            "parameters": {
+              "position": {"key": "pos-3_1"},
+              "speed": {"value": 75},
+              "tolerance": {"value": 5},
+              "controlForce": {"value": 250}
+            }
+          },
+          {
+            "title": "setVelocity",
+            "type": "action",
+            "name": "setVelocity",
+            "parameters": {
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "each",
+            "type": "decorator",
+            "name": "each",
+            "parameters": {
+              "list": {"key": "childSegments"},
+              "type": {"value": "entity"}
+            },
+            "child": {
+              "title": "sendEntityMessage",
+              "type": "action",
+              "name": "sendEntityMessage",
+              "parameters": {
+                "arguments": {"value": []},
+                "entity": {"key": "eachItem"},
+                "message": {"value": "attack1"}
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

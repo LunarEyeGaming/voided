@@ -149,17 +149,6 @@
   },
   {
     "op": "add",
-    "path": "/v-strongholdboss",
-    "value": {
-      "type": "module",
-      "name": "v-strongholdboss",
-      "title": "",
-      "properties": {},
-      "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\v-strongholdboss.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-cityminiboss-dying",
     "value": {
       "type": "module",
@@ -272,20 +261,6 @@
         "mycospitFireDelay": {"type": "json", "value": 0.1}
       },
       "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-sporeattack.behavior"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/v-laboratoryminiboss",
-    "value": {
-      "type": "module",
-      "name": "v-laboratoryminiboss",
-      "title": "",
-      "properties": {
-        "vehicleAwakenRange": {"type": "json", "value": 8},
-        "playerAwakenRange": {"type": "json", "value": 25}
-      },
-      "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-laboratoryminiboss.behavior"
     }
   },
   {
@@ -443,6 +418,75 @@
         "windupState": {"type": "json", "value": "firewindup"}
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-wormfire.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-noop",
+    "value": {
+      "type": "module",
+      "name": "v-noop",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\newmodules\\v-noop.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-laboratoryminiboss",
+    "value": {
+      "type": "module",
+      "name": "v-laboratoryminiboss",
+      "title": null,
+      "properties": {
+        "vehicleAwakenRange": {"type": "json", "value": 8},
+        "playerAwakenRange": {"type": "json", "value": 25}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-laboratoryminiboss.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-strongholdboss",
+    "value": {
+      "type": "module",
+      "name": "v-strongholdboss",
+      "title": null,
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\v-strongholdboss.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-strongholdbosscore",
+    "value": {
+      "type": "module",
+      "name": "v-strongholdbosscore",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-strongholdbosscore\\v-strongholdbosscore.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss-projectileattack1",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-projectileattack1",
+      "title": null,
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-projectileattack1.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss",
+      "title": null,
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-centipedeboss.behavior"
     }
   }
 ]

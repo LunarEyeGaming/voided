@@ -1,6 +1,7 @@
 require "/scripts/behavior/bdata.lua"
 require "/scripts/util.lua"
 require "/scripts/voidedutil.lua"
+require "/scripts/v-behavior.lua"
 
 function _anyTypeTable(value)
   results = {}
@@ -35,7 +36,7 @@ end
 --[[
   Returns whether or not two arguments a and b are equal, even if they are tables. Recursive tables are not supported
   and can result in infinite recursion.
-  
+
   param a: the first value to compare
   param b: the second value to compare
 ]]
@@ -45,13 +46,13 @@ function _deepEquals(a, b)
     -- For each key-value pair in `a`...
     for k, va in pairs(a) do
       local vb = b[k]
-      
+
       -- If va and vb do not match...
       if not _deepEquals(va, vb) then
         return false
       end
     end
-    
+
     -- Return true here as this means that all entries of a and b are structurally identical.
     return true
   else
@@ -91,10 +92,10 @@ end
 -- param data
 function v_sendNotification2(args, board)
   if args.type == nil or args.entity == nil then return false end
-  
+
   notification = _resolveRefs(args.data, board)
   notification.type = args.type
-  
+
   world.callScriptedEntity(args.entity, "notify", notification)
   return true
 end
@@ -162,8 +163,23 @@ function v_logInfo(args, board)
   else
     sb.logInfo(args.msg)
   end
-  
+
   return true
+end
+
+-- Looks up a board variable using a formatted string.
+-- param type
+-- param formatKeyName
+-- param formatArgs
+-- output result
+function v_dynamicRefLookup(args, board)
+  local rq = vBehavior.requireArgsGen("v_dynamicRefLookup", args)
+
+  if not rq{"formatKeyName", "formatArgs"} then return false end
+
+  local keyName = string.format(args.formatKeyName, table.unpack(_resolveRefs(args.formatArgs, board)))
+
+  return true, _anyTypeTable(board:get(args.type, keyName))
 end
 
 -- param targetList
