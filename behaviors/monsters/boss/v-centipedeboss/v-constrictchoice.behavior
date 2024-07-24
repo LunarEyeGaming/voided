@@ -1,0 +1,231 @@
+{
+  "name": "v-centipedeboss-constrictchoice",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/boss/v-centipedeboss.lua"
+  ],
+  "parameters": {
+    "constrictPos": null,
+    "constrictRadius": [20, 20],
+    "deconstrictClampRate": 720,
+    "showConstrictWarning": false,
+    "constrictPoints": 150
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "optional",
+          "type": "decorator",
+          "name": "optional",
+          "parameters": {
+            "shouldRun": {"key": "<showConstrictWarning>"}
+          },
+          "child": {
+            "title": "spawnProjectile",
+            "type": "action",
+            "name": "spawnProjectile",
+            "parameters": {
+              "angle": {"value": 0},
+              "offset": {"value": [0, 0]},
+              "position": {"key": "<constrictPos>"},
+              "projectileConfig": {"value": {}},
+              "projectileType": {"value": "v-constricttelegraph"},
+              "scalePower": {"value": true},
+              "sourceEntity": {"key": "self"},
+              "trackSource": {"value": false},
+              "uniqueRepeatGroup": {"value": true}
+            }
+          }
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "entityDirection",
+                  "type": "action",
+                  "name": "entityDirection",
+                  "parameters": {
+                    "entity": {"key": "self"},
+                    "offset": {"value": [0, 0]},
+                    "target": {"key": "target"}
+                  },
+                  "output": {
+                    "vector": "toTarget"
+                  }
+                },
+                {
+                  "title": "vecAngle",
+                  "type": "action",
+                  "name": "vecAngle",
+                  "parameters": {
+                    "vector": {"key": "toTarget"}
+                  },
+                  "output": {
+                    "angle": "targetAngle"
+                  }
+                },
+                {
+                  "title": "resetTransformationGroup",
+                  "type": "action",
+                  "name": "resetTransformationGroup",
+                  "parameters": {
+                    "transformationGroup": {"value": "targetlaser"}
+                  }
+                },
+                {
+                  "title": "rotateTransformationGroup",
+                  "type": "action",
+                  "name": "rotateTransformationGroup",
+                  "parameters": {
+                    "angle": {"key": "targetAngle"},
+                    "transformationGroup": {"value": "targetlaser"}
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "setAnimationState",
+                  "type": "action",
+                  "name": "setAnimationState",
+                  "parameters": {
+                    "state": {"value": "active"},
+                    "type": {"value": "targetlaser"}
+                  }
+                },
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"value": 1.35}
+                  }
+                },
+                {
+                  "title": "spawnProjectile",
+                  "type": "action",
+                  "name": "spawnProjectile",
+                  "parameters": {
+                    "aimVector": {"key": "toTarget"},
+                    "offset": {"value": [0, 0]},
+                    "position": {"key": "self"},
+                    "projectileConfig": {"value": {"power": 10}},
+                    "projectileType": {"value": "fireplasmarocket"},
+                    "scalePower": {"value": true},
+                    "sourceEntity": {"key": "self"},
+                    "trackSource": {"value": false},
+                    "uniqueRepeatGroup": {"value": true}
+                  }
+                },
+                {
+                  "title": "playSound",
+                  "type": "action",
+                  "name": "playSound",
+                  "parameters": {
+                    "loops": {"value": 0},
+                    "sound": {"value": "fire"}
+                  }
+                },
+                {
+                  "title": "setAnimationState",
+                  "type": "action",
+                  "name": "setAnimationState",
+                  "parameters": {
+                    "state": {"value": "inactive"},
+                    "type": {"value": "targetlaser"}
+                  }
+                },
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"value": 0.15}
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "v_wormConstrict",
+            "type": "action",
+            "name": "v_wormConstrict",
+            "parameters": {
+              "endCenter": {"key": "<constrictPos>"},
+              "endRadius": {"key": "<constrictRadius>"},
+              "numTotalPoints": {"key": "<constrictPoints>"},
+              "startCenter": {"key": "centerPos"},
+              "startRadius": {"value": [38, 42]}
+            }
+          }
+        ]
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "inactive"},
+          "type": {"value": "targetlaser"}
+        }
+      },
+      {
+        "title": "v_wormConstrict",
+        "type": "action",
+        "name": "v_wormConstrict",
+        "parameters": {
+          "bodyClampRate": {"key": "<deconstrictClampRate>"},
+          "endCenter": {"key": "centerPos"},
+          "endRadius": {"value": [38, 42]},
+          "numPoints": {"value": 150},
+          "numTotalPoints": {"value": 150},
+          "startCenter": {"key": "<constrictPos>"},
+          "startRadius": {"key": "<constrictRadius>"}
+        }
+      }
+    ]
+  }
+}

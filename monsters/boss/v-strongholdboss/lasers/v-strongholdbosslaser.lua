@@ -37,7 +37,7 @@ function init()
   explosionSpecs = config.getParameter("explosionSpecs")
 
   monster.setDamageBar(config.getParameter("damageBar"))
-  
+
   spawnPos = mcontroller.position()
 
   if config.getParameter("uniqueId") then
@@ -56,23 +56,23 @@ function init()
   message.setHandler("moveandpulse", function(_, _, pos)
     moveState:set(states.moveAndPulse, pos)
   end)
-  
+
   message.setHandler("reset", function()
     moveState:set(states.reset)
   end)
-  
+
   message.setHandler("activate", function()
     attackState:set(states.activate)
   end)
-  
+
   message.setHandler("deactivate", function()
     attackState:set(states.deactivate)
   end)
-  
+
   message.setHandler("pulse", function()
     attackState:set(states.pulse)
   end)
-  
+
   message.setHandler("explode", explode)
 end
 
@@ -97,7 +97,7 @@ end
 function states.move(pos)
   activatePad()
   flyToPos(clampPos(pos))
-  notifySource("finished")
+  notifyFinished("finished")
   states.noop()
 end
 
@@ -119,8 +119,8 @@ function states.activate()
   animator.setAnimationState("laser", "active")
   monster.setDamageOnTouch(true)
   animator.playSound("loop", -1)
-  
-  notifySource("finished")
+
+  notifyFinished("finished")
   states.noop()
 end
 
@@ -129,12 +129,12 @@ function states.deactivate()
   animator.setAnimationState("laser", "winddown")
   animator.playSound("fireend")
   monster.setDamageOnTouch(false)
-  
+
   animator.setAnimationState("pad", "winddown")
-  
+
   util.wait(winddownDuration)
-  
-  notifySource("finished")
+
+  notifyFinished("finished")
   states.noop()
 end
 
@@ -155,12 +155,12 @@ function states.pulse()
   animator.setAnimationState("laser", "winddown")
   animator.playSound("fireend")
   monster.setDamageOnTouch(false)
-  
+
   animator.setAnimationState("pad", "winddown")
-  
+
   util.wait(winddownDuration)
-  
-  notifySource("finished")
+
+  notifyFinished("finished")
   states.noop()
 end
 
@@ -174,7 +174,7 @@ function states.reset()
   flyToPos(spawnPos)
 
   animator.setAnimationState("pad", "deactivate")
-  notifySource("finished")
+  notifyFinished("finished")
 
   states.noop()
 end
@@ -202,12 +202,12 @@ function flyToPos(pos)
     mcontroller.controlApproachVelocity(vec2.mul(vec2.norm(distance), speed), controlForce)
     coroutine.yield()
   until math.abs(distance[1]) < tolerance and math.abs(distance[2]) < tolerance
-  
+
   mcontroller.setVelocity({0, 0})
   mcontroller.setPosition(pos)
 end
 
-function notifySource(msg)
+function notifyFinished(msg)
   local notification = {
     sourceId = entity.id(),
     type = msg

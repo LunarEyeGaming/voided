@@ -3,5 +3,8 @@
 ]]
 
 function init()
-  mcontroller.setVelocity({0, 180})
+end
+
+function update()
+  mcontroller.controlParameters({airJumpProfile = {jumpSpeed = 125, jumpHoldTime = 0.3}})
 end

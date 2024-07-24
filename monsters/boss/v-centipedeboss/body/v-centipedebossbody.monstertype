@@ -17,6 +17,8 @@
       "/monsters/boss/v-centipedeboss/body/v-centipedebossbodyplugin.lua"
     ],
 
+    "persistent" : true,
+
     "behavior" : "v-noop",
 
     "segmentSize" : 6,
@@ -26,13 +28,23 @@
     "damageBar" : "None",
 
     "touchDamage" : {
-      "poly" : [ [4, 4], [-4, 4], [-4, -4], [4, -4] ],
+      "poly" : [ [3, 3], [-3, 3], [-3, -3], [3, -3] ],
       "damage" : 10,
 
       "teamType" : "enemy",
       "damageSourceKind" : "impact",
       "knockback" : 20,
       "statusEffects" : [ ]
+    },
+
+    "damageParts" : {
+      "laser" : {
+        "damage" : 20,
+
+        "teamType" : "enemy",
+        "damageSourceKind" : "poisonplasma",
+        "damageRepeatGroup" : "v-centipedeboss-poisonlaser"
+      }
     },
 
     "metaBoundBox" : [-4, -4, 4, 4],
@@ -114,6 +126,10 @@
           "baseValue" : 1.0
         },
         "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+
+        "v-strongpoisonStatusImmunity" : {
           "baseValue" : 1.0
         },
 

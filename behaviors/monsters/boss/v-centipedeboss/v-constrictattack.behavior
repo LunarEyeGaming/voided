@@ -1,0 +1,94 @@
+{
+  "name": "v-centipedeboss-constrictattack",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/boss/v-centipedeboss.lua",
+    "/scripts/actions/animator.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "v_attackAllSegments",
+        "type": "action",
+        "name": "v_attackAllSegments",
+        "parameters": {
+          "attackId": {"value": "laserConstrict"},
+          "children": {"key": "childSegments"},
+          "awaitChildren": {"value": false}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "active"},
+          "type": {"value": "targetlaser"}
+        }
+      },
+      {
+        "title": "randomize",
+        "type": "composite",
+        "name": "randomize",
+        "parameters": {},
+        "children": [
+          {
+            "title": "v-centipedeboss-constrictchoice",
+            "type": "module",
+            "name": "v-centipedeboss-constrictchoice",
+            "parameters": {
+              "constrictPos": {"key": "orbitPos1"}
+            }
+          },
+          {
+            "title": "v-centipedeboss-constrictchoice",
+            "type": "module",
+            "name": "v-centipedeboss-constrictchoice",
+            "parameters": {
+              "constrictPos": {"key": "orbitPos2"}
+            }
+          },
+          {
+            "title": "v-centipedeboss-constrictchoice",
+            "type": "module",
+            "name": "v-centipedeboss-constrictchoice",
+            "parameters": {
+              "constrictPos": {"key": "orbitPos3"}
+            }
+          },
+          {
+            "title": "v-centipedeboss-constrictchoice",
+            "type": "module",
+            "name": "v-centipedeboss-constrictchoice",
+            "parameters": {
+              "constrictPos": {"key": "orbitPos4"}
+            }
+          },
+          {
+            "title": "v-centipedeboss-constrictchoice",
+            "type": "module",
+            "name": "v-centipedeboss-constrictchoice",
+            "parameters": {
+              "constrictPos": {"key": "orbitPos5"}
+            }
+          }
+        ]
+      },
+      {
+        "title": "v_attackAllSegments",
+        "type": "action",
+        "name": "v_attackAllSegments",
+        "parameters": {
+          "attackId": {"value": "laserConstrictEnd"},
+          "children": {"key": "childSegments"},
+          "awaitChildren": {"value": false}
+        }
+      }
+    ]
+  }
+}

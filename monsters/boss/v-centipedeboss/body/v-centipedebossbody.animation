@@ -5,7 +5,23 @@
         "priority" : 0,
         "default" : "idle",
         "states" : {
-          "idle" : {}
+          "idle" : {},
+          "windup" : {}
+        }
+      },
+      "laser" : {
+        "default" : "invisible",
+        "states" : {
+          "invisible" : {},
+          "windup" : {},
+          "fire" : {}
+        }
+      },
+      "targetlaser" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "active" : {}
         }
       },
       "damage" : {
@@ -35,11 +51,15 @@
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
               }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
             }
           }
         }
-      }
-      // },
+      },
       // "bodyfullbright" : {
       //   "properties" : {
       //     "zLevel" : 20,
@@ -72,7 +92,47 @@
       //       }
       //     }
       //   }
-      // }
+      // },
+      "laser" : {
+        "properties" : {
+          "zLevel" : 20,
+          "transformationGroups" : [ "laser" ],
+          "offset" : [64, 0],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "laser" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>",
+                "damageArea" : [ [-64, 0.5], [64, 0.5], [64, -0.5], [-64, -0.5] ]
+              }
+            }
+          }
+        }
+      },
+      "targetlaser" : {
+        "properties" : {
+          "zLevel" : 20,
+          "transformationGroups" : [ "targetlaser" ],
+          "offset" : [32, 0],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "targetlaser" : {
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "globalTagDefaults" : {
@@ -86,7 +146,9 @@
   },
 
   "transformationGroups" : {
-    "body" : { "interpolated" : true }
+    "body" : { "interpolated" : true },
+    "laser" : { "interpolated" : true },
+    "targetlaser" : { "interpolated" : true }
   },
 
   "effects" : {
@@ -124,6 +186,9 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "fire" : [ "/sfx/projectiles/spit1.ogg" ]
+    "fire" : {
+      "pool" : [ "/sfx/gun/plasma_sniper2.ogg" ],
+      "rangeMultiplier" : 5.0
+    }
   }
 }

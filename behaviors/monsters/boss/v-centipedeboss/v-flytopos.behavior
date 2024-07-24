@@ -1,0 +1,41 @@
+{
+  "name": "v-centipedeboss-flytopos",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/v-worm.lua",
+    "/scripts/actions/movement.lua"
+  ],
+  "parameters": {
+    "position": null,
+    "speed": 1,
+    "tolerance": 5,
+    "controlForce": 250
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "v_wormFlyToPosition",
+        "type": "action",
+        "name": "v_wormFlyToPosition",
+        "parameters": {
+          "position": {"key": "<position>"},
+          "speed": {"key": "<speed>"},
+          "tolerance": {"key": "<tolerance>"},
+          "controlForce": {"key": "<controlForce>"}
+        }
+      },
+      {
+        "title": "setVelocity",
+        "type": "action",
+        "name": "setVelocity",
+        "parameters": {
+          "velocity": {"value": [0, 0]}
+        }
+      }
+    ]
+  }
+}

@@ -6,8 +6,18 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1
+            "frames" : 1,
+            "properties" : {
+              "persistentSound" : "/sfx/npc/boss/tentacleboss_portal_loop.ogg"
+            }
           }
+        }
+      },
+      "targetlaser" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "active" : {}
         }
       },
       "damage" : {
@@ -36,6 +46,23 @@
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "targetlaser" : {
+        "properties" : {
+          "zLevel" : 20,
+          "transformationGroups" : [ "targetlaser" ],
+          "offset" : [32, 0],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "targetlaser" : {
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
               }
             }
           }
@@ -91,7 +118,8 @@
   },
 
   "transformationGroups" : {
-    "body" : { "interpolated" : true }
+    "body" : { "interpolated" : true },
+    "targetlaser" : { "interpolated" : true }
   },
 
   "effects" : {
@@ -129,6 +157,13 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "roar" : [ "/sfx/npc/quadruped/angstyhead_turnhostile.ogg" ]
+    "roar" : {
+      "pool" : [ "/sfx/npc/quadruped/angstyhead_turnhostile.ogg" ],
+      "rangeMultiplier" : 5.0
+    },
+    "fire" : {
+      "pool" : [ "/sfx/gun/rocket_poison1.ogg" ],
+      "rangeMultiplier" : 5.0
+    }
   }
 }

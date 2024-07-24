@@ -56,7 +56,7 @@
       "airFriction" : 0,
       "liquidFriction" : 1.25,
       "airForce" : 50,
-      "flySpeed" : 35
+      "flySpeed" : 25
     },
 
     "bodyMaterialKind" : "robotic",
@@ -81,7 +81,8 @@
       "minimumLiquidStatusEffectPercentage" : 0.1,
 
       "primaryScriptSources" : [
-        "/stats/monster_primary.lua"
+        "/stats/monster_primary.lua",
+        "/monsters/boss/v-centipedeboss/v-centipedeboss_primaryplugin.lua"
       ],
       "primaryScriptDelta" : 5,
 
@@ -96,7 +97,7 @@
           "baseValue" : 9999999
         },
         "maxHealth" : {
-          "baseValue" : 400
+          "baseValue" : 1200
         },
         "protection" : {
           "baseValue" : 0.0
@@ -117,6 +118,10 @@
           "baseValue" : 1.0
         },
         "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+
+        "v-strongpoisonStatusImmunity" : {
           "baseValue" : 1.0
         },
 

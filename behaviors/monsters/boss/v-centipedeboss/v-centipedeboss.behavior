@@ -1,13 +1,15 @@
 {
   "name": "v-centipedeboss",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/entity.lua",
     "/scripts/actions/boss/v-centipedeboss.lua",
+    "/scripts/actions/v-world.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/monster.lua",
     "/scripts/actions/status.lua",
-    "/scripts/actions/time.lua"
+    "/scripts/actions/time.lua",
+    "/scripts/actions/movement.lua"
   ],
   "parameters": {},
   "root": {
@@ -31,8 +33,74 @@
         "parameters": {
           "boardVarPrefix": {"value": "pos-"},
           "coordDelimiter": {"value": "_"},
-          "gridDimensions": {"value": [3, 5]},
+          "gridDimensions": {"value": [3, 4]},
           "uniqueIdPrefix": {"value": "v-pos-"}
+        }
+      },
+      {
+        "title": "Get orbit pos 1",
+        "type": "action",
+        "name": "v_getUniqueEntityPosition",
+        "parameters": {
+          "uniqueId": {"value": "v-orbitPos1"}
+        },
+        "output": {
+          "position": "orbitPos1"
+        }
+      },
+      {
+        "title": "Get orbit pos 2",
+        "type": "action",
+        "name": "v_getUniqueEntityPosition",
+        "parameters": {
+          "uniqueId": {"value": "v-orbitPos2"}
+        },
+        "output": {
+          "position": "orbitPos2"
+        }
+      },
+      {
+        "title": "Get orbit pos 3",
+        "type": "action",
+        "name": "v_getUniqueEntityPosition",
+        "parameters": {
+          "uniqueId": {"value": "v-orbitPos3"}
+        },
+        "output": {
+          "position": "orbitPos3"
+        }
+      },
+      {
+        "title": "Get orbit pos 4",
+        "type": "action",
+        "name": "v_getUniqueEntityPosition",
+        "parameters": {
+          "uniqueId": {"value": "v-orbitPos4"}
+        },
+        "output": {
+          "position": "orbitPos4"
+        }
+      },
+      {
+        "title": "Get orbit pos 5",
+        "type": "action",
+        "name": "v_getUniqueEntityPosition",
+        "parameters": {
+          "uniqueId": {"value": "v-orbitPos5"}
+        },
+        "output": {
+          "position": "orbitPos5"
+        }
+      },
+      {
+        "title": "Get center pos",
+        "type": "action",
+        "name": "v_getUniqueEntityPosition",
+        "parameters": {
+          "uniqueId": {"value": "v-centerPos"}
+        },
+        "output": {
+          "position": "centerPos"
         }
       },
       {
@@ -159,10 +227,76 @@
                                       "untilSuccess": {"value": false}
                                     },
                                     "child": {
-                                      "title": "v-centipedeboss-projectileattack1",
-                                      "type": "module",
-                                      "name": "v-centipedeboss-projectileattack1",
-                                      "parameters": {}
+                                      "title": "randomize",
+                                      "type": "composite",
+                                      "name": "randomize",
+                                      "parameters": {},
+                                      "children": [
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 10},
+                                            "onFail": {"value": false},
+                                            "onSuccess": {"value": true}
+                                          },
+                                          "child": {
+                                            "title": "v-centipedeboss-projectileattack1",
+                                            "type": "module",
+                                            "name": "v-centipedeboss-projectileattack1",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 10},
+                                            "onFail": {"value": false},
+                                            "onSuccess": {"value": true}
+                                          },
+                                          "child": {
+                                            "title": "v-centipedeboss-followattack",
+                                            "type": "module",
+                                            "name": "v-centipedeboss-followattack",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 10},
+                                            "onFail": {"value": false},
+                                            "onSuccess": {"value": true}
+                                          },
+                                          "child": {
+                                            "title": "v-centipedeboss-constrictattack",
+                                            "type": "module",
+                                            "name": "v-centipedeboss-constrictattack",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 10},
+                                            "onFail": {"value": false},
+                                            "onSuccess": {"value": true}
+                                          },
+                                          "child": {
+                                            "title": "v-centipedeboss-constrictattack2",
+                                            "type": "module",
+                                            "name": "v-centipedeboss-constrictattack2",
+                                            "parameters": {}
+                                          }
+                                        }
+                                      ]
                                     }
                                   }
                                 ]
@@ -194,11 +328,39 @@
                                 "parameters": {},
                                 "children": [
                                   {
+                                    "title": "parallel",
+                                    "type": "composite",
+                                    "name": "parallel",
+                                    "parameters": {
+                                      "fail": {"value": -1},
+                                      "success": {"value": 2}
+                                    },
+                                    "children": [
+                                      {
+                                        "title": "controlApproachVelocity",
+                                        "type": "action",
+                                        "name": "controlApproachVelocity",
+                                        "parameters": {
+                                          "force": {"value": 500},
+                                          "velocity": {"value": [0, 0]}
+                                        }
+                                      },
+                                      {
+                                        "title": "timer",
+                                        "type": "action",
+                                        "name": "timer",
+                                        "parameters": {
+                                          "time": {"value": 0.5}
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
                                     "title": "timer",
                                     "type": "action",
                                     "name": "timer",
                                     "parameters": {
-                                      "time": {"value": 2}
+                                      "time": {"value": 5}
                                     }
                                   },
                                   {
@@ -210,12 +372,76 @@
                                       "untilSuccess": {"value": false}
                                     },
                                     "child": {
-                                      "title": "timer",
-                                      "type": "action",
-                                      "name": "timer",
-                                      "parameters": {
-                                        "time": {"value": 1}
-                                      }
+                                      "title": "randomize",
+                                      "type": "composite",
+                                      "name": "randomize",
+                                      "parameters": {},
+                                      "children": [
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 10},
+                                            "onFail": {"value": false},
+                                            "onSuccess": {"value": true}
+                                          },
+                                          "child": {
+                                            "title": "v-centipedeboss-projectileattack1",
+                                            "type": "module",
+                                            "name": "v-centipedeboss-projectileattack1",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 10},
+                                            "onFail": {"value": false},
+                                            "onSuccess": {"value": true}
+                                          },
+                                          "child": {
+                                            "title": "v-centipedeboss-followattack",
+                                            "type": "module",
+                                            "name": "v-centipedeboss-followattack",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 10},
+                                            "onFail": {"value": false},
+                                            "onSuccess": {"value": true}
+                                          },
+                                          "child": {
+                                            "title": "v-centipedeboss-constrictattack",
+                                            "type": "module",
+                                            "name": "v-centipedeboss-constrictattack",
+                                            "parameters": {}
+                                          }
+                                        },
+                                        {
+                                          "title": "cooldown",
+                                          "type": "decorator",
+                                          "name": "cooldown",
+                                          "parameters": {
+                                            "cooldown": {"value": 10},
+                                            "onFail": {"value": false},
+                                            "onSuccess": {"value": true}
+                                          },
+                                          "child": {
+                                            "title": "v-centipedeboss-constrictattack2",
+                                            "type": "module",
+                                            "name": "v-centipedeboss-constrictattack2",
+                                            "parameters": {}
+                                          }
+                                        }
+                                      ]
                                     }
                                   }
                                 ]
@@ -265,6 +491,17 @@
                     "parameters": {
                       "percentage": {"value": 1},
                       "resource": {"value": "health"}
+                    }
+                  },
+                  {
+                    "title": "v-centipedeboss-flytopos",
+                    "type": "module",
+                    "name": "v-centipedeboss-flytopos",
+                    "parameters": {
+                      "controlForce": {"value": 250},
+                      "position": {"key": "spawn"},
+                      "speed": {"value": 50},
+                      "tolerance": {"value": 5}
                     }
                   },
                   {

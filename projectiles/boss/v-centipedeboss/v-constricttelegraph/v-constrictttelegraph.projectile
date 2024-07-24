@@ -1,0 +1,28 @@
+{
+  "projectileName" : "v-constricttelegraph",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+
+  "physics" : "illusion",
+  "bounces" : -1,
+  "speed" : 0,
+
+  "timeToLive" : 10,
+
+  "periodicActions" : [
+    {
+      "time" : 1,
+      "action" : "particle",
+      "specification" : {
+        "type" : "textured",
+        "image" : "/particles/images/v-centipedeboss-constricttelegraph.png",
+        "timeToLive" : 0,
+        "destructionAction" : "shrink",
+        "destructionTime" : 2.0,
+        "layer" : "front",
+        "fullbright" : true
+      }
+    }
+  ],
+
+  "onlyHitTerrain" : true
+}

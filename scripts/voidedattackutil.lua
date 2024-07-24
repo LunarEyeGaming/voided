@@ -1,3 +1,7 @@
+---Returns the power scaled to the provided level (or the entity's level by default).
+---@param power number
+---@param level? number
+---@return number
 function v_scaledPower(power, level)
   if entity.entityType() == "monster" then
     level = level or monster.level()

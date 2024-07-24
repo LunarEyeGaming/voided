@@ -31,26 +31,7 @@ function v_figure8(size, period, time)
   return {radius * math.cos(theta), radius * math.sin(theta)}
 end
 
--- Flies to a given position with a provided speed and tolerance as well as controlForce
-function v_flyToPos(pos, speed, controlForce, tolerance)
-  local distance
-  repeat
-    distance = world.distance(pos, mcontroller.position())
-    mcontroller.controlApproachVelocity(vec2.mul(vec2.norm(distance), speed), controlForce)
-
-    -- Rotate to velocity
-    local rotation = vec2.angle(mcontroller.velocity())
-    mcontroller.setRotation(rotation)
-    animator.resetTransformationGroup("body")
-    animator.rotateTransformationGroup("body", rotation)
-
-    mcontroller.controlFace(1)
-
-    coroutine.yield(nil)
-  until math.abs(distance[1]) < tolerance and math.abs(distance[2]) < tolerance
-end
-
-
+-- This is a modified version of approachTurn in vanilla Starbound.
 -- param entity
 -- param turnSpeed
 -- param wavePeriod
@@ -143,7 +124,7 @@ function v_wormFigure8(args, board, _, dt)
     world.debugPoint(nextPos, "green")
 
     -- Fly to position
-    v_flyToPos(nextPos, args.speed, 99999999, args.tolerance)
+    vBehavior.rotatedFlyToPosition(nextPos, args.speed, 99999999, args.tolerance)
   end
 end
 
@@ -156,7 +137,7 @@ function v_wormFlyToPosition(args, board)
 
   if not rq{"position", "speed", "tolerance", "controlForce"} then return false end
 
-  v_flyToPos(args.position, args.speed, args.controlForce, args.tolerance)
+  vBehavior.rotatedFlyToPosition(args.position, args.speed, args.controlForce, args.tolerance)
 
   return true
 end

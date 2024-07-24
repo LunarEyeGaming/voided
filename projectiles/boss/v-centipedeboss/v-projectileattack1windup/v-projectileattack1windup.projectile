@@ -1,0 +1,14 @@
+{
+  "projectileName": "v-projectileattack1windup",
+  "image" : "projectileattack1windup.png",
+
+  "timeToLive" : 1,
+  "onlyHitTerrain" : true,
+  "speed" : 0,
+
+  "bounces" : -1,
+  "physics" : "illusion",
+
+  "scripts" : [ "v-projectileattack1windup.lua" ],
+  "scriptDelta" : 1
+}

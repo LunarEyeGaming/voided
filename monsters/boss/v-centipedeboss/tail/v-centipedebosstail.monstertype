@@ -16,12 +16,14 @@
       "/monsters/boss/v-centipedeboss/tail/v-centipedebosstailplugin.lua"
     ],
 
+    "persistent" : true,
+
     "damageBar" : "None",
 
     "segmentSize" : 6,
 
     "touchDamage" : {
-      "poly" : [ [4, 4], [-4, 4], [-4, -4], [4, -4] ],
+      "poly" : [ [3, 3], [-3, 0], [3, -3] ],
       "damage" : 10,
 
       "teamType" : "enemy",
@@ -109,6 +111,64 @@
           "baseValue" : 1.0
         },
         "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+
+        "v-strongpoisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+
+        // RPG Growth
+
+        "demonicStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "holyStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "bleedStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+
+        // Frackin' Universe (FU)
+
+        "captureImmunity" : {
+          "baseValue" : 1
+        },
+        "bleedingImmunity" : {
+          "baseValue" : 1
+        },
+        "sulphuricImmunity" : {
+          "baseValue" : 1
+        },
+        "shadowImmunity" : {
+          "baseValue" : 1
+        },
+        "protoImmunity" : {
+          "baseValue" : 1.0
+        },
+        "slagStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "bluoplasmaStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "bioozeImmunity" : {
+          "baseValue" : 1.0
+        },
+        "radiationburnImmunity" : {
+          "baseValue" : 1
+        },
+
+        // Extended Story (ES)
+
+        "acidicbacteriaImmunity" : {
+          "baseValue" : 1
+        },
+        "abysseffectImmunity" : {
+          "baseValue" : 1.0
+        },
+        "ionizedImmunity" : {
           "baseValue" : 1.0
         }
       },
