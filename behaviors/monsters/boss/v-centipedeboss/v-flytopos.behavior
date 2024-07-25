@@ -3,13 +3,16 @@
   "description": null,
   "scripts": [
     "/scripts/actions/v-worm.lua",
-    "/scripts/actions/movement.lua"
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua"
   ],
   "parameters": {
     "position": null,
     "speed": 1,
     "tolerance": 5,
-    "controlForce": 250
+    "controlForce": 250,
+    "stopForce": 250,
+    "stopTime": 0.5
   },
   "root": {
     "title": "sequence",
@@ -29,12 +32,32 @@
         }
       },
       {
-        "title": "setVelocity",
-        "type": "action",
-        "name": "setVelocity",
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
         "parameters": {
-          "velocity": {"value": [0, 0]}
-        }
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "controlApproachVelocity",
+            "type": "action",
+            "name": "controlApproachVelocity",
+            "parameters": {
+              "force": {"key": "<stopForce>"},
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"key": "<stopTime>"}
+            }
+          }
+        ]
       }
     ]
   }

@@ -24,18 +24,48 @@
     "script": "/scripts/actions/boss/v-centipedeboss.lua",
     "output": {}
   },
+  "v_attackAllSegments": {
+    "type": "action",
+    "name": "v_attackAllSegments",
+    "title": "v_attackAllSegments",
+    "properties": {
+      "attackId": {"type": "string", "value": "1"},
+      "awaitChildren": {"type": "bool", "value": true},
+      "children": {"type": "list"},
+      "step": {"type": "number"},
+      "target": {"type": "entity"},
+      "interval": {"type": "number"}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {}
+  },
   "v_attackRandomSegment": {
     "type": "action",
     "name": "v_attackRandomSegment",
     "title": "v_attackRandomSegment",
     "properties": {
-      "children": {"type": "list"},
       "attackId": {"type": "string"},
-      "target": {"type": "entity"}
+      "children": {"type": "list"},
+      "target": {"type": "entity"},
+      "excludeChild": {"type": "entity"}
     },
     "category": "v-centipedeboss",
     "script": "/scripts/actions/boss/v-centipedeboss.lua",
-    "output": {}
+    "output": {
+      "selectedChild": {"type": "entity", "key": null}
+    }
+  },
+  "v_getTail": {
+    "type": "action",
+    "name": "v_getTail",
+    "title": "v_getTail",
+    "properties": {},
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {
+      "entityId": {"type": "entity", "key": null}
+    }
   },
   "v_wormConstrict": {
     "type": "action",
@@ -43,29 +73,15 @@
     "title": "v_wormConstrict",
     "properties": {
       "bodyClampRate": {"type": "number", "value": 90},
-      "controlForce": {"type": "number", "value": 250},
+      "controlForce": {"type": "number", "value": 125},
       "endCenter": {"type": "position", "key": "self"},
       "endRadius": {"type": "vec2", "value": [15, 15]},
       "numPoints": {"type": "number", "value": 50},
       "numTotalPoints": {"type": "number", "value": 150},
-      "speed": {"type": "number", "value": 50},
+      "speed": {"type": "number", "value": 35},
       "startCenter": {"type": "position", "key": "self"},
       "startRadius": {"type": "vec2", "value": [50, 30]},
       "tolerance": {"type": "number", "value": 5}
-    },
-    "category": "v-centipedeboss",
-    "script": "/scripts/actions/boss/v-centipedeboss.lua",
-    "output": {}
-  },
-  "v_attackAllSegments": {
-    "type": "action",
-    "name": "v_attackAllSegments",
-    "title": "v_attackAllSegments",
-    "properties": {
-      "attackId": {"type": "string", "value": "1"},
-      "children": {"type": "list"},
-      "target": {"type": "entity"},
-      "awaitChildren": {"type": "bool", "value": true}
     },
     "category": "v-centipedeboss",
     "script": "/scripts/actions/boss/v-centipedeboss.lua",

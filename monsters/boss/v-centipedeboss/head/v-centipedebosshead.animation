@@ -45,7 +45,7 @@
           "body" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:<phase>.idle.<frame>"
               }
             }
           }
@@ -115,6 +115,7 @@
     }
   },
   "globalTagDefaults" : {
+    "phase" : "1"
   },
 
   "transformationGroups" : {
@@ -163,6 +164,10 @@
     },
     "fire" : {
       "pool" : [ "/sfx/gun/rocket_poison1.ogg" ],
+      "rangeMultiplier" : 5.0
+    },
+    "fire2" : {
+      "pool" : [ "/sfx/gun/rocket_electric1.ogg" ],
       "rangeMultiplier" : 5.0
     }
   }

@@ -1,0 +1,38 @@
+{
+  "projectileName" : "v-centipedeelectricshot",
+  "image" : "centipedeelectricshot.png",
+  "animationCycle" : 1,
+  "lightColor" : [150, 100, 100],
+  "frameNumber" : 1,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "illusion",
+  "emitters" : [ ],
+  "periodicActions" : [
+    {
+      "time" : 0.01,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "textured",
+        "image" : "/projectiles/boss/v-centipedeboss/v-centipedeelectricshot/centipedeelectricshottrail.png",
+        "position" : [0, 0],
+        "layer" : "back",
+        "timeToLive" : 0.0,
+        "destructionTime" : 0.2,
+        "destructionAction" : "fade",
+        "fullbright" : true
+      }
+    }
+  ],
+  "damageKind" : "electricplasma",
+  "piercing" : true,
+
+  "bounces" : -1,
+
+  "speed" : 150,
+
+  "scripts" : [ "/projectiles/tracksourcestatus.lua" ],
+  "scriptDelta" : 1
+}

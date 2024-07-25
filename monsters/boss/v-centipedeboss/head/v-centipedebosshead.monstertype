@@ -29,8 +29,8 @@
     "damageBar" : "None",
 
     "touchDamage" : {
-      "poly" : [ [4, 4], [-4, 4], [-4, -4], [4, -4] ],
-      "damage" : 20,
+      "poly" : [ [3, 3], [-3, 3], [-3, -3], [3, -3] ],
+      "damage" : 15,
 
       "teamType" : "enemy",
       "damageSourceKind" : "impact",
@@ -97,7 +97,7 @@
           "baseValue" : 9999999
         },
         "maxHealth" : {
-          "baseValue" : 1200
+          "baseValue" : 2800
         },
         "protection" : {
           "baseValue" : 0.0
@@ -118,10 +118,6 @@
           "baseValue" : 1.0
         },
         "poisonStatusImmunity" : {
-          "baseValue" : 1.0
-        },
-
-        "v-strongpoisonStatusImmunity" : {
           "baseValue" : 1.0
         },
 

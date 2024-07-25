@@ -1,9 +1,11 @@
 {
   "name": "v-centipedeboss-followattack",
-  "description": null,
+  "description": "",
   "scripts": [
-    "/scripts/actions/time.lua",
+    "/scripts/actions/status.lua",
     "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/boss/v-centipedeboss.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/math.lua"
   ],
@@ -14,6 +16,82 @@
     "name": "sequence",
     "parameters": {},
     "children": [
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "inverter",
+              "type": "decorator",
+              "name": "inverter",
+              "parameters": {},
+              "child": {
+                "title": "resourcePercentage",
+                "type": "action",
+                "name": "resourcePercentage",
+                "parameters": {
+                  "percentage": {"value": 0.5},
+                  "resource": {"value": "health"}
+                }
+              }
+            },
+            {
+              "title": "parallel",
+              "type": "composite",
+              "name": "parallel",
+              "parameters": {
+                "fail": {"value": -1},
+                "success": {"value": 2}
+              },
+              "children": [
+                {
+                  "title": "controlApproachVelocity",
+                  "type": "action",
+                  "name": "controlApproachVelocity",
+                  "parameters": {
+                    "force": {"value": 250},
+                    "velocity": {"value": [0, 0]}
+                  }
+                },
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"value": 0.5}
+                  }
+                }
+              ]
+            },
+            {
+              "title": "v_attackAllSegments",
+              "type": "action",
+              "name": "v_attackAllSegments",
+              "parameters": {
+                "attackId": {"value": "mine"},
+                "awaitChildren": {"value": false},
+                "children": {"key": "childSegments"},
+                "step": {"value": 2}
+              }
+            },
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"value": 2.5}
+              }
+            }
+          ]
+        }
+      },
       {
         "title": "parallel",
         "type": "composite",
@@ -187,7 +265,7 @@
             "type": "action",
             "name": "controlApproachVelocity",
             "parameters": {
-              "force": {"value": 500},
+              "force": {"value": 250},
               "velocity": {"value": [0, 0]}
             }
           },
@@ -196,7 +274,7 @@
             "type": "action",
             "name": "timer",
             "parameters": {
-              "time": {"value": 0.5}
+              "time": {"value": 1}
             }
           }
         ]

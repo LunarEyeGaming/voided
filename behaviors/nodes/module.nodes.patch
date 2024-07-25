@@ -532,16 +532,40 @@
   },
   {
     "op": "add",
+    "path": "/v-centipedeboss-constrictattack2",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-constrictattack2",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-constrictattack2.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedebosslegtest",
+    "value": {
+      "type": "module",
+      "name": "v-centipedebosslegtest",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-centipedebosslegtest.behavior"
+    }
+  },
+  {
+    "op": "add",
     "path": "/v-centipedeboss-flytopos",
     "value": {
       "type": "module",
       "name": "v-centipedeboss-flytopos",
       "title": "",
       "properties": {
-        "controlForce": {"type": "json", "value": 250},
         "position": {"type": "json", "value": null},
         "speed": {"type": "json", "value": 1},
-        "tolerance": {"type": "json", "value": 5}
+        "tolerance": {"type": "json", "value": 5},
+        "controlForce": {"type": "json", "value": 250},
+        "stopForce": {"type": "json", "value": 250},
+        "stopTime": {"type": "json", "value": 0.5}
       },
       "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-flytopos.behavior"
     }
@@ -555,20 +579,13 @@
       "title": "",
       "properties": {
         "constrictPos": {"type": "json", "value": null},
-        "constrictRadius": {"type": "json", "value": [20, 20]}
+        "constrictRadius": {"type": "json", "value": [22, 22]},
+        "deconstrictClampRate": {"type": "json", "value": 720},
+        "showConstrictWarning": {"type": "json", "value": false},
+        "constrictPoints": {"type": "json", "value": 150},
+        "constrictSpeed": {"type": "json", "value": 35}
       },
       "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-constrictchoice.behavior"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/v-centipedeboss-constrictattack2",
-    "value": {
-      "type": "module",
-      "name": "v-centipedeboss-constrictattack2",
-      "title": "",
-      "properties": {},
-      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-constrictattack2.behavior"
     }
   }
 ]

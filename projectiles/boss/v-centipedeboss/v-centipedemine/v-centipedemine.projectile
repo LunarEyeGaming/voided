@@ -1,0 +1,21 @@
+{
+  "projectileName" : "v-centipedemine",
+  "image" : "centipedemine.png",
+  "frameNumber" : 1,
+  "animationCycle" : 1.0,
+  "fullbright" : true,
+
+  "timeToLive" : 7.0,
+
+  "onlyHitTerrain" : true,
+
+  "speed" : 0,
+  "physics" : "illusion",
+
+  "scripts" : [ "v-centipedemine.lua" ],
+  "scriptDelta" : 1,
+
+  "queryRadius" : 8,
+  "detonateProjectileType" : "v-batterjawcharge",
+  "detonateProjectileParameters" : {}
+}

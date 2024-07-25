@@ -1,12 +1,17 @@
 {
   "projectileName" : "v-constricttelegraph",
-  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "image" : "constricttelegraph.png",
+
+  "frameNumber" : 2,
+  "animationCycle" : 0.5,
+  "fullbright" : true,
+  "renderLayer" : "ForegroundEntity+10",
 
   "physics" : "illusion",
   "bounces" : -1,
   "speed" : 0,
 
-  "timeToLive" : 10,
+  "timeToLive" : 15,
 
   "periodicActions" : [
     {

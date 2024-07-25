@@ -9,6 +9,7 @@
     "/scripts/actions/monster.lua",
     "/scripts/actions/status.lua",
     "/scripts/actions/time.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/movement.lua"
   ],
   "parameters": {},
@@ -110,6 +111,23 @@
         "parameters": {},
         "output": {
           "entityIds": "childSegments"
+        }
+      },
+      {
+        "title": "v_getTail",
+        "type": "action",
+        "name": "v_getTail",
+        "parameters": {},
+        "output": {
+          "entityId": "tailId"
+        }
+      },
+      {
+        "title": "setDamageOnTouch",
+        "type": "action",
+        "name": "setDamageOnTouch",
+        "parameters": {
+          "touchDamage": {"value": true}
         }
       },
       {
@@ -237,7 +255,7 @@
                                           "type": "decorator",
                                           "name": "cooldown",
                                           "parameters": {
-                                            "cooldown": {"value": 10},
+                                            "cooldown": {"value": 30},
                                             "onFail": {"value": false},
                                             "onSuccess": {"value": true}
                                           },
@@ -253,7 +271,7 @@
                                           "type": "decorator",
                                           "name": "cooldown",
                                           "parameters": {
-                                            "cooldown": {"value": 10},
+                                            "cooldown": {"value": 30},
                                             "onFail": {"value": false},
                                             "onSuccess": {"value": true}
                                           },
@@ -269,7 +287,7 @@
                                           "type": "decorator",
                                           "name": "cooldown",
                                           "parameters": {
-                                            "cooldown": {"value": 10},
+                                            "cooldown": {"value": 30},
                                             "onFail": {"value": false},
                                             "onSuccess": {"value": true}
                                           },
@@ -285,7 +303,7 @@
                                           "type": "decorator",
                                           "name": "cooldown",
                                           "parameters": {
-                                            "cooldown": {"value": 10},
+                                            "cooldown": {"value": 30},
                                             "onFail": {"value": false},
                                             "onSuccess": {"value": true}
                                           },
@@ -328,6 +346,34 @@
                                 "parameters": {},
                                 "children": [
                                   {
+                                    "title": "setAnimationState",
+                                    "type": "action",
+                                    "name": "setAnimationState",
+                                    "parameters": {
+                                      "state": {"value": "inactive"},
+                                      "type": {"value": "targetlaser"}
+                                    }
+                                  },
+                                  {
+                                    "title": "each",
+                                    "type": "decorator",
+                                    "name": "each",
+                                    "parameters": {
+                                      "list": {"key": "childSegments"},
+                                      "type": {"value": "entity"}
+                                    },
+                                    "child": {
+                                      "title": "sendEntityMessage",
+                                      "type": "action",
+                                      "name": "sendEntityMessage",
+                                      "parameters": {
+                                        "arguments": {"value": []},
+                                        "entity": {"key": "eachItem"},
+                                        "message": {"value": "reset"}
+                                      }
+                                    }
+                                  },
+                                  {
                                     "title": "parallel",
                                     "type": "composite",
                                     "name": "parallel",
@@ -341,7 +387,7 @@
                                         "type": "action",
                                         "name": "controlApproachVelocity",
                                         "parameters": {
-                                          "force": {"value": 500},
+                                          "force": {"value": 250},
                                           "velocity": {"value": [0, 0]}
                                         }
                                       },
@@ -356,11 +402,77 @@
                                     ]
                                   },
                                   {
+                                    "title": "clearPersistentEffects",
+                                    "type": "action",
+                                    "name": "clearPersistentEffects",
+                                    "parameters": {
+                                      "category": {"value": "dynamicResistance"}
+                                    }
+                                  },
+                                  {
+                                    "title": "addStatModifier",
+                                    "type": "action",
+                                    "name": "addStatModifier",
+                                    "parameters": {
+                                      "amount": {"value": -0.25},
+                                      "category": {"value": "dynamicResistance"},
+                                      "stat": {"value": "poisonResistance"}
+                                    }
+                                  },
+                                  {
+                                    "title": "addStatModifier",
+                                    "type": "action",
+                                    "name": "addStatModifier",
+                                    "parameters": {
+                                      "amount": {"value": 0.5},
+                                      "category": {"value": "dynamicResistance"},
+                                      "stat": {"value": "electricResistance"}
+                                    }
+                                  },
+                                  {
+                                    "title": "setGlobalTag",
+                                    "type": "action",
+                                    "name": "setGlobalTag",
+                                    "parameters": {
+                                      "tag": {"value": "2"},
+                                      "type": {"value": "phase"}
+                                    }
+                                  },
+                                  {
+                                    "title": "each",
+                                    "type": "decorator",
+                                    "name": "each",
+                                    "parameters": {
+                                      "list": {"key": "childSegments"},
+                                      "type": {"value": "entity"}
+                                    },
+                                    "child": {
+                                      "title": "sendEntityMessage",
+                                      "type": "action",
+                                      "name": "sendEntityMessage",
+                                      "parameters": {
+                                        "arguments": {"value": []},
+                                        "entity": {"key": "eachItem"},
+                                        "message": {"value": "activatePhase2"}
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "title": "sendEntityMessage",
+                                    "type": "action",
+                                    "name": "sendEntityMessage",
+                                    "parameters": {
+                                      "arguments": {"value": ["2"]},
+                                      "entity": {"key": "tailId"},
+                                      "message": {"value": "setPhase"}
+                                    }
+                                  },
+                                  {
                                     "title": "timer",
                                     "type": "action",
                                     "name": "timer",
                                     "parameters": {
-                                      "time": {"value": 5}
+                                      "time": {"value": 7}
                                     }
                                   },
                                   {
@@ -382,7 +494,7 @@
                                           "type": "decorator",
                                           "name": "cooldown",
                                           "parameters": {
-                                            "cooldown": {"value": 10},
+                                            "cooldown": {"value": 30},
                                             "onFail": {"value": false},
                                             "onSuccess": {"value": true}
                                           },
@@ -398,7 +510,7 @@
                                           "type": "decorator",
                                           "name": "cooldown",
                                           "parameters": {
-                                            "cooldown": {"value": 10},
+                                            "cooldown": {"value": 30},
                                             "onFail": {"value": false},
                                             "onSuccess": {"value": true}
                                           },
@@ -414,7 +526,7 @@
                                           "type": "decorator",
                                           "name": "cooldown",
                                           "parameters": {
-                                            "cooldown": {"value": 10},
+                                            "cooldown": {"value": 30},
                                             "onFail": {"value": false},
                                             "onSuccess": {"value": true}
                                           },
@@ -430,7 +542,7 @@
                                           "type": "decorator",
                                           "name": "cooldown",
                                           "parameters": {
-                                            "cooldown": {"value": 10},
+                                            "cooldown": {"value": 30},
                                             "onFail": {"value": false},
                                             "onSuccess": {"value": true}
                                           },
@@ -494,14 +606,89 @@
                     }
                   },
                   {
+                    "title": "setGlobalTag",
+                    "type": "action",
+                    "name": "setGlobalTag",
+                    "parameters": {
+                      "tag": {"value": "1"},
+                      "type": {"value": "phase"}
+                    }
+                  },
+                  {
+                    "title": "setAnimationState",
+                    "type": "action",
+                    "name": "setAnimationState",
+                    "parameters": {
+                      "state": {"value": "inactive"},
+                      "type": {"value": "targetlaser"}
+                    }
+                  },
+                  {
+                    "title": "each",
+                    "type": "decorator",
+                    "name": "each",
+                    "parameters": {
+                      "list": {"key": "childSegments"},
+                      "type": {"value": "entity"}
+                    },
+                    "child": {
+                      "title": "sendEntityMessage",
+                      "type": "action",
+                      "name": "sendEntityMessage",
+                      "parameters": {
+                        "arguments": {"value": []},
+                        "entity": {"key": "eachItem"},
+                        "message": {"value": "reset"}
+                      }
+                    }
+                  },
+                  {
+                    "title": "sendEntityMessage",
+                    "type": "action",
+                    "name": "sendEntityMessage",
+                    "parameters": {
+                      "arguments": {"value": ["1"]},
+                      "entity": {"key": "tailId"},
+                      "message": {"value": "setPhase"}
+                    }
+                  },
+                  {
+                    "title": "clearPersistentEffects",
+                    "type": "action",
+                    "name": "clearPersistentEffects",
+                    "parameters": {
+                      "category": {"value": "dynamicResistance"}
+                    }
+                  },
+                  {
+                    "title": "addStatModifier",
+                    "type": "action",
+                    "name": "addStatModifier",
+                    "parameters": {
+                      "amount": {"value": 0.5},
+                      "category": {"value": "dynamicResistance"},
+                      "stat": {"value": "poisonResistance"}
+                    }
+                  },
+                  {
+                    "title": "addStatModifier",
+                    "type": "action",
+                    "name": "addStatModifier",
+                    "parameters": {
+                      "amount": {"value": -0.25},
+                      "category": {"value": "dynamicResistance"},
+                      "stat": {"value": "electricResistance"}
+                    }
+                  },
+                  {
                     "title": "v-centipedeboss-flytopos",
                     "type": "module",
                     "name": "v-centipedeboss-flytopos",
                     "parameters": {
-                      "controlForce": {"value": 250},
                       "position": {"key": "spawn"},
                       "speed": {"value": 50},
-                      "tolerance": {"value": 5}
+                      "tolerance": {"value": 5},
+                      "controlForce": {"value": 250}
                     }
                   },
                   {

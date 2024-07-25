@@ -37,19 +37,34 @@ function v_getChildren()
   return true, {entityIds = world.callScriptedEntity(self.childId, "getChildren")}
 end
 
+-- output entityId
+function v_getTail()
+  return true, {entityId = world.callScriptedEntity(self.childId, "getTail")}
+end
+
 -- param children
 -- param attackId
 -- param target
 -- param awaitChildren
+-- param step: number - the step size by which to iterate through the children. ex: 2 means every two children
+-- param interval: number - the number of seconds to wait between each child. Set to 0 for no wait time.
 function v_attackAllSegments(args)
   -- Prompts all child segments to attack.
   local rq = vBehavior.requireArgsGen("v_attackAllSegments", args)
 
   if not rq{"children", "attackId"} then return false end
 
+  local step = args.step or 1
+
   -- Send a message to each child segment to attack with ID attackId.
-  for _, entityId in ipairs(args.children) do
-    world.sendEntityMessage(entityId, "attack", entity.id(), args.attackId, args.target)
+  for i, entityId in ipairs(args.children) do
+    if (i - 1) % step == 0 then
+      world.sendEntityMessage(entityId, "attack", entity.id(), args.attackId, args.target)
+
+      if args.interval and args.interval > 0 then
+        util.run(args.interval, function() end)
+      end
+    end
   end
 
   if args.awaitChildren then
@@ -62,17 +77,23 @@ end
 -- param children
 -- param attackId
 -- param target
+-- param excludeChild: entity - (optional) a child to exclude from the list. Useful for random selection without
+-- consecutive repeats
+-- output selectedChild
 function v_attackRandomSegment(args)
   -- Prompts a random child segment to attack.
   local rq = vBehavior.requireArgsGen("v_attackRandomSegment", args)
 
   if not rq{"children", "attackId"} then return false end
 
+  local entityId
   -- Send a message to a random child segment to attack with ID attackId.
-  local entityId = args.children[math.random(1, #args.children)]
+  repeat
+    entityId = args.children[math.random(1, #args.children)]
+  until entityId ~= args.excludeChild
   world.sendEntityMessage(entityId, "attack", entity.id(), args.attackId, args.target)
 
-  return true
+  return true, {selectedChild = entityId}
 end
 
 -- param numTotalPoints: number - the number of points on the ellipse that the worm must reach for the constriction to
@@ -122,7 +143,7 @@ function v_wormConstrict(args, _, _, dt)
 
     world.callScriptedEntity(self.childId, "trailAlongEllipse", center, radius, bodyClampRate)
 
-    vEllipse.debug(center, radius, args.numPoints, "green")
+    -- vEllipse.debug(center, radius, args.numPoints, "green")
 
     coroutine.yield()
   end

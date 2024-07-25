@@ -1,0 +1,26 @@
+{
+  "projectileName" : "v-centipedeminetele",
+  "image" : "centipedeminetele.png",
+  "frameNumber" : 1,
+  "animationCycle" : 1.0,
+  "fullbright" : true,
+
+  "timeToLive" : 2.0,
+
+  "speed" : 0,
+  "physics" : "illusion",
+  "onlyHitTerrain" : true,
+
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-centipedemine",
+      "inheritDamageFactor" : 1.0
+    }
+  ],
+
+  "scripts" : ["/projectiles/miniboss/v-laboratoryminiboss/v-sporemine/v-sporeminetele.lua"],
+  "scriptDelta" : 1,
+
+  "travelTime" : 1.5
+}

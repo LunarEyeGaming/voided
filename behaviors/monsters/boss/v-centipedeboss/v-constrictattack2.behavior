@@ -1,6 +1,6 @@
 {
   "name": "v-centipedeboss-constrictattack2",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/animator.lua"
   ],
@@ -35,7 +35,8 @@
               "constrictRadius": {"value": [10, 10]},
               "deconstrictClampRate": {"value": 90},
               "showConstrictWarning": {"value": true},
-              "constrictPoints": {"value": 200}
+              "constrictPoints": {"value": 150},
+              "constrictSpeed": {"value": 25}
             }
           },
           {
@@ -47,7 +48,8 @@
               "constrictRadius": {"value": [10, 10]},
               "deconstrictClampRate": {"value": 90},
               "showConstrictWarning": {"value": true},
-              "constrictPoints": {"value": 200}
+              "constrictPoints": {"value": 150},
+              "constrictSpeed": {"value": 25}
             }
           },
           {
@@ -59,7 +61,8 @@
               "constrictRadius": {"value": [10, 10]},
               "deconstrictClampRate": {"value": 90},
               "showConstrictWarning": {"value": true},
-              "constrictPoints": {"value": 200}
+              "constrictPoints": {"value": 150},
+              "constrictSpeed": {"value": 25}
             }
           },
           {
@@ -71,7 +74,8 @@
               "constrictRadius": {"value": [10, 10]},
               "deconstrictClampRate": {"value": 90},
               "showConstrictWarning": {"value": true},
-              "constrictPoints": {"value": 200}
+              "constrictPoints": {"value": 150},
+              "constrictSpeed": {"value": 25}
             }
           },
           {
@@ -83,7 +87,8 @@
               "constrictRadius": {"value": [10, 10]},
               "deconstrictClampRate": {"value": 90},
               "showConstrictWarning": {"value": true},
-              "constrictPoints": {"value": 200}
+              "constrictPoints": {"value": 150},
+              "constrictSpeed": {"value": 25}
             }
           }
         ]

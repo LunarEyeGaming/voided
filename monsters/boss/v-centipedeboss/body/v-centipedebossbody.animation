@@ -9,7 +9,15 @@
           "windup" : {}
         }
       },
-      "laser" : {
+      "laserpoison" : {
+        "default" : "invisible",
+        "states" : {
+          "invisible" : {},
+          "windup" : {},
+          "fire" : {}
+        }
+      },
+      "laserelectric" : {
         "default" : "invisible",
         "states" : {
           "invisible" : {},
@@ -43,18 +51,20 @@
         "properties" : {
           "zLevel" : 10,
           "transformationGroups" : [ "body" ],
-          "offset" : [0.0, 0.0]
+          "offset" : [0.0, 0.0],
+          "maxLegSpan" : 13,
+          "legForwardRadius" : [9.75, 3]
         },
         "partStates" : {
           "body" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:<phase>.idle.<frame>"
               }
             },
             "windup" : {
               "properties" : {
-                "image" : "<partImage>:windup.<frame>"
+                "image" : "<partImage>:<phase>.windup.<frame>"
               }
             }
           }
@@ -93,7 +103,7 @@
       //     }
       //   }
       // },
-      "laser" : {
+      "laserpoison" : {
         "properties" : {
           "zLevel" : 20,
           "transformationGroups" : [ "laser" ],
@@ -101,7 +111,30 @@
           "fullbright" : true
         },
         "partStates" : {
-          "laser" : {
+          "laserpoison" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>",
+                "damageArea" : [ [-64, 0.5], [64, 0.5], [64, -0.5], [-64, -0.5] ]
+              }
+            }
+          }
+        }
+      },
+      "laserelectric" : {
+        "properties" : {
+          "zLevel" : 20,
+          "transformationGroups" : [ "laser" ],
+          "offset" : [64, 0],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "laserelectric" : {
             "windup" : {
               "properties" : {
                 "image" : "<partImage>:windup.<frame>"
@@ -132,10 +165,57 @@
             }
           }
         }
+      },
+      "upperleftleg" : {
+        "properties" : {
+          "zLevel" : 5,
+          "transformationGroups" : [ "body", "lefthipjoint" ],
+          "offset" : [0, 6],
+          "hipPoint" : [0, 3],
+          "length" : 6,
+          "forwardCenter" : [0, 8],
+          "moveTime" : 0.3,
+          "image" : "<partImage>"
+        }
+      },
+      "lowerleftleg" : {
+        "properties" : {
+          "anchorPart" : "upperleftleg",
+          "zLevel" : 7,
+          "transformationGroups" : [ "leftkneejoint" ],
+          "offset" : [0, 6],
+          "kneePoint" : [0, 3],
+          "length" : 7,
+          "image" : "<partImage>"
+        }
+      },
+      "upperrightleg" : {
+        "properties" : {
+          "zLevel" : 5,
+          "transformationGroups" : [ "body", "righthipjoint" ],
+          "offset" : [0, -6],
+          "hipPoint" : [0, -3],
+          "forwardCenter" : [0, -8],
+          "length" : 6,
+          "moveTime" : 0.3,
+          "image" : "<partImage>?flipy"
+        }
+      },
+      "lowerrightleg" : {
+        "properties" : {
+          "anchorPart" : "upperrightleg",
+          "zLevel" : 7,
+          "transformationGroups" : [ "rightkneejoint" ],
+          "offset" : [0, -6],
+          "kneePoint" : [0, -3],
+          "length" : 7,
+          "image" : "<partImage>?flipy"
+        }
       }
     }
   },
   "globalTagDefaults" : {
+    "phase" : "1"
   },
 
   "lights" : {
@@ -148,7 +228,13 @@
   "transformationGroups" : {
     "body" : { "interpolated" : true },
     "laser" : { "interpolated" : true },
-    "targetlaser" : { "interpolated" : true }
+    "targetlaser" : { "interpolated" : true },
+
+    "lefthipjoint" : { "interpolated" : true },
+    "leftkneejoint" : { "interpolated" : true },
+
+    "righthipjoint" : { "interpolated" : true },
+    "rightkneejoint" : { "interpolated" : true }
   },
 
   "effects" : {
@@ -189,6 +275,8 @@
     "fire" : {
       "pool" : [ "/sfx/gun/plasma_sniper2.ogg" ],
       "rangeMultiplier" : 5.0
-    }
+    },
+    "step" : [ "/sfx/tech/mech_step.ogg", "/sfx/tech/mech_step2.ogg", "/sfx/tech/mech_step3.ogg",
+      "/sfx/tech/mech_step4.ogg", "/sfx/tech/mech_step5.ogg" ]
   }
 }

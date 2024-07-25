@@ -3,8 +3,10 @@ require "/scripts/util.lua"
 --[[
   A plugin that gives diminishing returns for damage requests given in a short interval of time. This is done through
   a damage multiplier that compounds itself for each damage request, starting at 1.0 and being multiplied by
-  `damageMultiplierPerRequest` each time. This multiplier resets itself if more than `damageMultiplierResetTime` seconds
-  have passed since the last damage request.
+  `damageMultiplierPerRequest` each time. This multiplier resets itself if more than `damageMultiplierResetDelay`
+  seconds have passed since the last damage request. This reset is gradual and reverses the effect of one hit every
+  `damageMultiplierResetInterval` seconds. In addition, the compounding can occur only with hits that exceed the
+  threshold `damageMultiplierThreshold` in damage.
 ]]
 
 local oldInit = init or function() end
@@ -13,25 +15,38 @@ local oldApplyDamageRequest = applyDamageRequest or function() end
 
 local damageMultiplier
 local damageMultiplierPerRequest
-local damageMultiplierResetTime
-local resetTimer
+local invDamageMultiplierPerRequest
+local damageMultiplierResetDelay
+local damageMultiplierResetInterval
+local damageMultiplierThreshold
+local resetDelayTimer
 
 function init()
   oldInit()
 
   damageMultiplier = 1.0
-  damageMultiplierPerRequest = status.statusProperty("damageMultiplierPerRequest", 0.1)
-  damageMultiplierResetTime = status.statusProperty("damageMultiplierResetTime", 0.05)
-  resetTimer = 0
+  damageMultiplierPerRequest = status.statusProperty("damageMultiplierPerRequest", 0.25)
+  invDamageMultiplierPerRequest = 1 / damageMultiplierPerRequest  -- inverse of damageMultiplierPerRequest
+  damageMultiplierResetDelay = status.statusProperty("damageMultiplierResetDelay", 0.05)
+  damageMultiplierResetInterval = status.statusProperty("damageMultiplierResetInterval", 0.05)
+  damageMultiplierThreshold = status.statusProperty("damageMultiplierThreshold", 100)
+  resetDelayTimer = 0
+  resetIntervalTimer = 0
 end
 
+-- TODO: Figure out how to make the damageMultiplierThreshold smooth.
 function applyDamageRequest(damageRequest)
   local newDamageRequest = copy(damageRequest)
 
   newDamageRequest.damage = newDamageRequest.damage * damageMultiplier
-  damageMultiplier = damageMultiplier * damageMultiplierPerRequest
 
-  resetTimer = damageMultiplierResetTime
+  -- Compound the damage multiplier if the damage exceeds the threshold.
+  if damageRequest.damage > damageMultiplierThreshold then
+    damageMultiplier = damageMultiplier * damageMultiplierPerRequest
+
+    resetDelayTimer = damageMultiplierResetDelay
+    resetIntervalTimer = damageMultiplierResetInterval
+  end
 
   return oldApplyDamageRequest(newDamageRequest)
 end
@@ -39,9 +54,18 @@ end
 function update(dt)
   oldUpdate(dt)
 
-  resetTimer = resetTimer - dt
+  resetDelayTimer = resetDelayTimer - dt
 
-  if resetTimer <= 0 then
-    damageMultiplier = 1.0
+  -- On each tick that the reset delay timer is zero or negative...
+  if resetDelayTimer <= 0 then
+    -- Decrease the interval timer
+    resetIntervalTimer = resetIntervalTimer - dt
+
+    -- Once it reaches zero...
+    if resetIntervalTimer <= 0 then
+      -- Multiply the damage multiplier back up and reset the interval timer.
+      damageMultiplier = math.min(1.0, damageMultiplier * invDamageMultiplierPerRequest)
+      resetIntervalTimer = damageMultiplierResetInterval
+    end
   end
 end

@@ -14,7 +14,8 @@
     "scripts" : [
       "/scripts/companions/capturable.lua",
       "/scripts/terra_wormbody.lua",
-      "/monsters/boss/v-centipedeboss/body/v-centipedebossbodyplugin.lua"
+      "/monsters/boss/v-centipedeboss/body/v-centipedebossbodyplugin.lua",
+      "/monsters/boss/v-centipedeboss/body/v-centipedebossleganimplugin.lua"
     ],
 
     "persistent" : true,
@@ -38,12 +39,19 @@
     },
 
     "damageParts" : {
-      "laser" : {
+      "laserpoison" : {
         "damage" : 20,
 
         "teamType" : "enemy",
         "damageSourceKind" : "poisonplasma",
         "damageRepeatGroup" : "v-centipedeboss-poisonlaser"
+      },
+      "laserelectric" : {
+        "damage" : 20,
+
+        "teamType" : "enemy",
+        "damageSourceKind" : "electricplasma",
+        "damageRepeatGroup" : "v-centipedeboss-electriclaser"
       }
     },
 
@@ -126,10 +134,6 @@
           "baseValue" : 1.0
         },
         "poisonStatusImmunity" : {
-          "baseValue" : 1.0
-        },
-
-        "v-strongpoisonStatusImmunity" : {
           "baseValue" : 1.0
         },
 

@@ -1,0 +1,31 @@
+{
+  "projectileName" : "v-centipedeelectricshot2",
+  "image" : "centipedeelectricshot2.png",
+  "animationCycle" : 0.5,
+  "lightColor" : [100, 150, 150],
+  "frameNumber" : 2,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "illusion",
+  "emitters" : [ ],
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/gun/pulsecannon_blast1.ogg" ]
+    }
+  ],
+  "damageKind" : "electricplasma",
+  "piercing" : true,
+
+  "bounces" : 0,
+
+  "timeToLive" : 2.0,
+
+  "speed" : 100,
+
+  "scripts" : [ "/projectiles/tracksourcestatus.lua" ],
+  "scriptDelta" : 1
+}
