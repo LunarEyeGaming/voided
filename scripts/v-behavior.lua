@@ -1,3 +1,5 @@
+require "/scripts/behavior/bdata.lua"
+
 vBehavior = {}
 
 ---Generates a function that checks if arguments with names `names` are all defined in `args`, sending a warning to the
@@ -86,4 +88,35 @@ function vBehavior.rotatedFlyToPositionTick(pos, speed, controlForce, tolerance)
   mcontroller.controlFace(1)
 
   return math.abs(distance[1]) < tolerance and math.abs(distance[2]) < tolerance
+end
+
+---Resolve references to blackboard variables in a table and its nested tables. References are denoted with
+---`$<type>:<var>`
+---@param table_ table A table potentially containing references to blackboard variables
+---@param board any The blackboard to use
+---@return table resolved `table_` with all references resolved
+function vBehavior.resolveRefs(table_, board)
+  local newTable = {}
+  for k, v in pairs(table_) do
+    if type(v) == "table" then
+      newTable[k] = vBehavior.resolveRefs(v, board)
+    elseif type(v) == "string" and voidedUtil.strStartsWith(v, "$") then
+      local ref = util.split(v:sub(2, #v), ":")
+      newTable[k] = board:get(ref[1], ref[2])  -- Lookup variable name on the blackboard
+    else
+      newTable[k] = v
+    end
+  end
+  return newTable
+end
+
+---Returns a table with results for the nine behavior tree data types.
+---@param value any
+---@return table
+function vBehavior.anyTypeTable(value)
+  results = {}
+  for _, dataType in pairs(ListTypes) do
+    results[dataType] = value
+  end
+  return results
 end

@@ -4,7 +4,8 @@
   "scripts": [
     "/scripts/actions/status.lua",
     "/scripts/actions/boss/v-centipedeboss.lua",
-    "/scripts/actions/animator.lua"
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua"
   ],
   "parameters": {},
   "root": {
@@ -171,6 +172,14 @@
             }
           }
         ]
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.5}
+        }
       }
     ]
   }

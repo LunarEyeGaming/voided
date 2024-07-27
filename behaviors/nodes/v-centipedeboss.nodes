@@ -72,19 +72,22 @@
     "name": "v_wormConstrict",
     "title": "v_wormConstrict",
     "properties": {
-      "bodyClampRate": {"type": "number", "value": 90},
-      "controlForce": {"type": "number", "value": 125},
+      "bodyClampRate": {"type": "number", "value": 30},
+      "controlForce": {"type": "number", "value": 200},
       "endCenter": {"type": "position", "key": "self"},
       "endRadius": {"type": "vec2", "value": [15, 15]},
       "numPoints": {"type": "number", "value": 50},
       "numTotalPoints": {"type": "number", "value": 150},
-      "speed": {"type": "number", "value": 35},
+      "speed": {"type": "number", "value": 50},
       "startCenter": {"type": "position", "key": "self"},
       "startRadius": {"type": "vec2", "value": [50, 30]},
       "tolerance": {"type": "number", "value": 5}
     },
     "category": "v-centipedeboss",
     "script": "/scripts/actions/boss/v-centipedeboss.lua",
-    "output": {}
+    "output": {
+      "center": {"type": "position", "key": null},
+      "radius": {"type": "vec2", "key": null}
+    }
   }
 }

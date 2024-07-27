@@ -2,13 +2,15 @@
   "name": "v-centipedeboss-constrictchoice",
   "description": null,
   "scripts": [
-    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/world.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/math.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/status.lua",
     "/scripts/actions/time.lua",
-    "/scripts/actions/boss/v-centipedeboss.lua"
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/boss/v-centipedeboss.lua",
+    "/scripts/actions/v-world.lua"
   ],
   "parameters": {
     "constrictPos": null,
@@ -16,7 +18,7 @@
     "deconstrictClampRate": 720,
     "showConstrictWarning": false,
     "constrictPoints": 150,
-    "constrictSpeed": 35
+    "constrictSpeed": 50
   },
   "root": {
     "title": "sequence",
@@ -37,19 +39,18 @@
             "shouldRun": {"key": "<showConstrictWarning>"}
           },
           "child": {
-            "title": "spawnProjectile",
+            "title": "spawnMonster",
             "type": "action",
-            "name": "spawnProjectile",
+            "name": "spawnMonster",
             "parameters": {
-              "angle": {"value": 0},
-              "offset": {"value": [0, 0]},
+              "inheritParameters": {"value": {}},
+              "parameters": {"value": {}},
               "position": {"key": "<constrictPos>"},
-              "projectileConfig": {"value": {}},
-              "projectileType": {"value": "v-constricttelegraph"},
-              "scalePower": {"value": true},
-              "sourceEntity": {"key": "self"},
-              "trackSource": {"value": false},
-              "uniqueRepeatGroup": {"value": true}
+              "replacement": {"value": false},
+              "type": {"value": "v-centipedeconstricttelegraph"}
+            },
+            "output": {
+              "entityId": "telegraphId"
             }
           }
         }
@@ -103,7 +104,7 @@
                   "type": "action",
                   "name": "resetTransformationGroup",
                   "parameters": {
-                    "transformationGroup": {"value": "targetlaser"}
+                    "transformationGroup": {"value": "turret"}
                   }
                 },
                 {
@@ -112,7 +113,7 @@
                   "name": "rotateTransformationGroup",
                   "parameters": {
                     "angle": {"key": "targetAngle"},
-                    "transformationGroup": {"value": "targetlaser"}
+                    "transformationGroup": {"value": "turret"}
                   }
                 }
               ]
@@ -351,9 +352,61 @@
               "speed": {"key": "<constrictSpeed>"},
               "startCenter": {"key": "centerPos"},
               "startRadius": {"value": [42, 42]}
+            },
+            "output": {
+              "center": "telegraphCenter",
+              "radius": "telegraphRadius"
+            }
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "optional",
+              "type": "decorator",
+              "name": "optional",
+              "parameters": {
+                "shouldRun": {"key": "<showConstrictWarning>"}
+              },
+              "child": {
+                "title": "v_sendEntityMessage",
+                "type": "action",
+                "name": "v_sendEntityMessage",
+                "parameters": {
+                  "entity": {"key": "telegraphId"},
+                  "message": {"value": "setTelegraphConfig"},
+                  "arguments": {"value": ["$position:telegraphCenter", "$vec2:telegraphRadius"]}
+                }
+              }
             }
           }
         ]
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "optional",
+          "type": "decorator",
+          "name": "optional",
+          "parameters": {
+            "shouldRun": {"key": "<showConstrictWarning>"}
+          },
+          "child": {
+            "title": "sendEntityMessage",
+            "type": "action",
+            "name": "sendEntityMessage",
+            "parameters": {
+              "arguments": {"value": []},
+              "entity": {"key": "telegraphId"},
+              "message": {"value": "despawn"}
+            }
+          }
+        }
       },
       {
         "title": "setAnimationState",

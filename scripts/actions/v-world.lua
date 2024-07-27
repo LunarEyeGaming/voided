@@ -33,3 +33,18 @@ function v_spawnVehicle(args, board)
 
   return true, {vehicleId = entityId}
 end
+
+-- A more featureful version of sendEntityMessage that resolves references to blackboard variables.
+-- param entity
+-- param message
+-- param arguments (optional)
+function v_sendEntityMessage(args, board)
+  local rq = vBehavior.requireArgsGen("v_sendEntityMessage", args)
+
+  if not rq{"entity", "message"} then return false end
+
+  local arguments = args.arguments or {}
+  world.sendEntityMessage(args.entity, args.message, table.unpack(vBehavior.resolveRefs(arguments, board)))
+
+  return true
+end

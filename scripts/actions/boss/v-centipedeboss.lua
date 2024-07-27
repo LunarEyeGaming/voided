@@ -145,7 +145,7 @@ function v_wormConstrict(args, _, _, dt)
 
     -- vEllipse.debug(center, radius, args.numPoints, "green")
 
-    coroutine.yield()
+    coroutine.yield(nil, {center = center, radius = radius})
   end
 
   return true

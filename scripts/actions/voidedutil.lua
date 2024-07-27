@@ -1,37 +1,6 @@
 require "/scripts/behavior/bdata.lua"
 require "/scripts/util.lua"
-require "/scripts/voidedutil.lua"
 require "/scripts/v-behavior.lua"
-
-function _anyTypeTable(value)
-  results = {}
-  for _, dataType in pairs(ListTypes) do
-    results[dataType] = value
-  end
-  return results
-end
-
-function _resolveRefs(table_, board)
-  --[[
-    Resolve references to blackboard variables in a table and its nested tables. References are denoted with $<type>:<var>
-
-    param table_: A table potentially containing references to blackboard variables
-    param board: The blackboard to use
-    return: table_ with all references resolved
-  ]]
-  local newTable = {}
-  for k, v in pairs(table_) do
-    if type(v) == "table" then
-      newTable[k] = _resolveRefs(v, board)
-    elseif type(v) == "string" and voidedUtil.strStartsWith(v, "$") then
-      local ref = util.split(v:sub(2, #v), ":")
-      newTable[k] = board:get(ref[1], ref[2])  -- Lookup variable name on the blackboard
-    else
-      newTable[k] = v
-    end
-  end
-  return newTable
-end
 
 --[[
   Returns whether or not two arguments a and b are equal, even if they are tables. Recursive tables are not supported
@@ -71,7 +40,7 @@ function v_listGet2(args, board)
   local list = args.list or jarray()
   local value = list[args.index]
   if value == nil then return false end
-  return true, _anyTypeTable(value)
+  return true, vBehavior.anyTypeTable(value)
 end
 
 -- param type
@@ -93,7 +62,7 @@ end
 function v_sendNotification2(args, board)
   if args.type == nil or args.entity == nil then return false end
 
-  notification = _resolveRefs(args.data, board)
+  notification = vBehavior.resolveRefs(args.data, board)
   notification.type = args.type
 
   world.callScriptedEntity(args.entity, "notify", notification)
@@ -139,7 +108,7 @@ function v_getJsonKey(args, board)
   local object = args.object or {}
   local value = object[args.key]
   if value == nil then return false end
-  return true, _anyTypeTable(value)
+  return true, vBehavior.anyTypeTable(value)
 end
 
 -- param xRadius
@@ -159,7 +128,7 @@ end
 -- param formatArgs
 function v_logInfo(args, board)
   if args.formatArgs and next(args.formatArgs) ~= nil then  -- If args.formatArgs is defined and is not empty
-    sb.logInfo(args.msg, table.unpack(_resolveRefs(args.formatArgs, board)))
+    sb.logInfo(args.msg, table.unpack(vBehavior.resolveRefs(args.formatArgs, board)))
   else
     sb.logInfo(args.msg)
   end
@@ -177,9 +146,9 @@ function v_dynamicRefLookup(args, board)
 
   if not rq{"formatKeyName", "formatArgs"} then return false end
 
-  local keyName = string.format(args.formatKeyName, table.unpack(_resolveRefs(args.formatArgs, board)))
+  local keyName = string.format(args.formatKeyName, table.unpack(vBehavior.resolveRefs(args.formatArgs, board)))
 
-  return true, _anyTypeTable(board:get(args.type, keyName))
+  return true, vBehavior.anyTypeTable(board:get(args.type, keyName))
 end
 
 -- param targetList

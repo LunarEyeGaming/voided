@@ -29,8 +29,23 @@
         "properties" : {
           "zLevel" : 10,
           "transformationGroups" : [ "body" ],
-          "offset" : [0.0, 0.0],
-          "image" : "<partImage>"
+          "offset" : [0.0, 0.0]
+        },
+        "partStates": {
+          "body" : {
+            "idle" : {
+              "properties": {
+                "image": "<partImage>:<phase>.idle.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "zLevel" : 20,
+          "anchorPart" : "body",
+          "fullbright" : true
         },
         "partStates": {
           "body" : {

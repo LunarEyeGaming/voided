@@ -355,6 +355,14 @@
                                     }
                                   },
                                   {
+                                    "title": "resetTransformationGroup",
+                                    "type": "action",
+                                    "name": "resetTransformationGroup",
+                                    "parameters": {
+                                      "transformationGroup": {"value": "turret"}
+                                    }
+                                  },
+                                  {
                                     "title": "each",
                                     "type": "decorator",
                                     "name": "each",
@@ -370,6 +378,22 @@
                                         "arguments": {"value": []},
                                         "entity": {"key": "eachItem"},
                                         "message": {"value": "reset"}
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "title": "succeeder",
+                                    "type": "decorator",
+                                    "name": "succeeder",
+                                    "parameters": {},
+                                    "child": {
+                                      "title": "sendEntityMessage",
+                                      "type": "action",
+                                      "name": "sendEntityMessage",
+                                      "parameters": {
+                                        "arguments": {"value": []},
+                                        "entity": {"key": "telegraphId"},
+                                        "message": {"value": "despawn"}
                                       }
                                     }
                                   },
@@ -621,6 +645,14 @@
                     "parameters": {
                       "state": {"value": "inactive"},
                       "type": {"value": "targetlaser"}
+                    }
+                  },
+                  {
+                    "title": "resetTransformationGroup",
+                    "type": "action",
+                    "name": "resetTransformationGroup",
+                    "parameters": {
+                      "transformationGroup": {"value": "turret"}
                     }
                   },
                   {
