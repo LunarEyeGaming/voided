@@ -43,10 +43,13 @@ function applyDamageRequest(damageRequest)
   -- Compound the damage multiplier if the damage exceeds the threshold.
   if damageRequest.damage > damageMultiplierThreshold then
     damageMultiplier = damageMultiplier * damageMultiplierPerRequest
-
-    resetDelayTimer = damageMultiplierResetDelay
-    resetIntervalTimer = damageMultiplierResetInterval
+  else
+    -- Still compound the damage multiplier, but do it at a lower rate depending on how much damage is being dealt.
+    damageMultiplier = damageMultiplier * util.lerp(damageRequest.damage / damageMultiplierThreshold, 1.0, damageMultiplierPerRequest)
   end
+
+  resetDelayTimer = damageMultiplierResetDelay
+  resetIntervalTimer = damageMultiplierResetInterval
 
   return oldApplyDamageRequest(newDamageRequest)
 end

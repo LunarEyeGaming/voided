@@ -1,25 +1,45 @@
 require "/scripts/vec2.lua"
 require "/scripts/v-ellipse.lua"
+require "/scripts/v-animator.lua"
+require "/scripts/voidedutil.lua"
 
 local numPoints
-local fillColor
-local outlineColor
+local fillColorCfg
+local outlineColorCfg
+local outlineThickness
+local flashTime
 
-local testTable
+local flashTimer
 
 function init()
   script.setUpdateDelta(3)
 
   numPoints = animationConfig.animationParameter("ellipseNumPoints")
-  fillColor = animationConfig.animationParameter("ellipseFillColor")
-  outlineColor = animationConfig.animationParameter("ellipseOutlineColor")
+  fillColorCfg = animationConfig.animationParameter("ellipseFillColor")
+  outlineColorCfg = animationConfig.animationParameter("ellipseOutlineColor")
   outlineThickness = animationConfig.animationParameter("ellipseOutlineThickness")
+  flashTime = animationConfig.animationParameter("ellipseFlashTime")
+
+  flashTimer = 0
 
   dt = script.updateDt()
 end
 
 function update()
   localAnimator.clearDrawables()
+
+  flashTimer = flashTimer + dt
+
+  -- If the flash timer exceeds flashTime...
+  if flashTimer >= flashTime then
+    -- Reset it
+    flashTimer = 0
+  end
+
+  -- Calculate colors (which are set to transition between two colors to create a flashing animation)
+  local ratio = voidedUtil.pingPong(flashTimer / flashTime)
+  local fillColor = vAnimator.lerpColor(ratio, fillColorCfg.high, fillColorCfg.low)
+  local outlineColor = vAnimator.lerpColor(ratio, outlineColorCfg.high, outlineColorCfg.low)
 
   -- Get telegraph region config (which is an ellipse with center `center` and 2D radius `radius`).
   local ellipse = animationConfig.animationParameter("telegraphRegionConfig")

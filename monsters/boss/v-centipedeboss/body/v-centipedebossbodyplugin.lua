@@ -7,12 +7,13 @@ local oldUpdate = update or function() end
 
 local attacks
 local laserLength
-local projectileTypeWindup
 
 local ellipseClampDistance
 local laserActivateDistance
 local currentEllipseAngle
 local distanceToClamped
+
+local defaultFireVolume
 
 local currentStateReset
 
@@ -26,7 +27,7 @@ function init()
     sides2 = states.sideProjectileGen("v-centipedeelectricshot2", "v-sideprojectilelaserelectric"),
     targeted = states.targetedProjectileGen("v-centipedepoisonshot"),
     targeted2 = states.targetedProjectileGen("v-centipedeelectricshot"),
-    targeted3 = states.targetedProjectileGen("v-centipedeelectricshot", 1.0, {speed = 1, acceleration = 100}),
+    targeted3 = states.targetedProjectileGen("v-centipedeelectricshot", 1.0, {speed = 1, acceleration = 100}, 0.4),
     laserConstrict = states.laserConstrictGen("laserpoison", "laserPoison"),
     laserConstrict2 = states.laserConstrictGen("laserelectric", "laserElectric"),
     laserConstrictEnd = states.laserConstrictEndGen("laserpoison", "laserPoisonLoop"),
@@ -35,13 +36,14 @@ function init()
   }
 
   laserLength = 128
-  projectileTypeWindup = "v-projectileattack1windup"
 
   ellipseClampDistance = 10
 
   laserActivateDistance = 3
   currentEllipseAngle = nil
   distanceToClamped = nil
+
+  defaultFireVolume = 1.0
 
   message.setHandler("attack", function(_, _, sourceId, attackId, targetId)
     if currentStateReset then
@@ -84,6 +86,8 @@ end
 function states.sideProjectileGen(projectileType, laserProjectileType)
   return function(sourceId)
     local windupTime = 1.0
+
+    local projectileOffset = {3.5, 0}  -- Adjusts to the aim vector of the projectile
     local projectileParameters = {power = v_scaledPower(10), speed = 1, acceleration = 50,
         damageRepeatGroup = "v-centipedeboss-sideprojectile"}
     local windupParameters = {timeToLive = windupTime}
@@ -95,25 +99,20 @@ function states.sideProjectileGen(projectileType, laserProjectileType)
 
     util.wait(windupTime)
 
-    world.spawnProjectile(
-      projectileType,
-      mcontroller.position(),
-      entity.id(),
-      vec2.rotate({0, 1}, mcontroller.rotation()),
-      false,
-      projectileParameters
-    )
+    -- Calculate aim vectors and projectile positions
+    local aimVector1 = vec2.rotate({0, 1}, mcontroller.rotation())
+    local aimVector2 = vec2.rotate({0, -1}, mcontroller.rotation())
+    local projectilePosition1 = vec2.add(mcontroller.position(), vec2.rotate(projectileOffset, vec2.angle(aimVector1)))
+    local projectilePosition2 = vec2.add(mcontroller.position(), vec2.rotate(projectileOffset, vec2.angle(aimVector2)))
 
-    world.spawnProjectile(
-      projectileType,
-      mcontroller.position(),
-      entity.id(),
-      vec2.rotate({0, -1}, mcontroller.rotation()),
-      false,
-      projectileParameters
-    )
+    -- Projectile on one side
+    world.spawnProjectile(projectileType, projectilePosition1, entity.id(), aimVector1, false, projectileParameters)
 
-    animator.setAnimationState("body", "idle")
+    -- Projectile on the other side.
+    world.spawnProjectile(projectileType, projectilePosition2, entity.id(), aimVector2, false, projectileParameters)
+
+    animator.setAnimationState("body", "fire")
+    animator.playSound("fireSides")
 
     notifyFinished(sourceId)
 
@@ -121,7 +120,7 @@ function states.sideProjectileGen(projectileType, laserProjectileType)
   end
 end
 
-function states.targetedProjectileGen(projectileType, windupTime, projectileParameters)
+function states.targetedProjectileGen(projectileType, windupTime, projectileParameters, fireVolume)
   return function(sourceId, targetId)
     currentStateReset = function()
       animator.setAnimationState("targetlaser", "inactive")
@@ -129,8 +128,12 @@ function states.targetedProjectileGen(projectileType, windupTime, projectilePara
       turretIsActive = false
     end
 
+
     windupTime = windupTime or 1.0
-    winddownTime = 0.25
+    fireVolume = fireVolume or defaultFireVolume
+    local winddownTime = 0.25
+
+    local projectileOffset = {4, 0}  -- Adjusts to the aim vector of the projectile
 
     local params = copy(projectileParameters) or {}
     params.power = v_scaledPower(params.power or 15)
@@ -151,7 +154,7 @@ function states.targetedProjectileGen(projectileType, windupTime, projectilePara
 
     world.spawnProjectile(
       projectileType,
-      mcontroller.position(),
+      vec2.add(mcontroller.position(), vec2.rotate(projectileOffset, vec2.angle(entityDirection))),
       entity.id(),
       entityDirection,
       false,
@@ -160,6 +163,7 @@ function states.targetedProjectileGen(projectileType, windupTime, projectilePara
 
     animator.setAnimationState("targetlaser", "inactive")
     animator.setAnimationState("turret", "fire")
+    animator.setSoundVolume("fire", fireVolume)
     animator.playSound("fire")
 
     util.wait(winddownTime)
@@ -192,7 +196,7 @@ function states.laserConstrictGen(laserStateName, laserSoundPrefix)
 
     animator.setAnimationState("turret", "windup")
     animator.setAnimationState(laserStateName, "windup")
-    animator.setAnimationState("targetlaser", "active")
+    -- animator.setAnimationState("targetlaser", "active")
     animator.playSound(laserSoundPrefix .. "Charge")
 
     local playedLoopSound = false
@@ -214,7 +218,7 @@ function states.laserConstrictGen(laserStateName, laserSoundPrefix)
     end
 
     animator.stopAllSounds(laserSoundPrefix .. "ChargedLoop")
-    animator.setAnimationState("targetlaser", "inactive")
+    -- animator.setAnimationState("targetlaser", "inactive")
     animator.setAnimationState(laserStateName, "fire")
 
     animator.playSound("laserFire")
@@ -233,8 +237,8 @@ function states.laserConstrictEndGen(laserStateName, laserLoopSound)
   return function(sourceId)
     local winddownTime = 0.5
 
-    -- Just in case the laser never fires, the pointer is set to inactive.
-    animator.setAnimationState("targetlaser", "inactive")
+    -- -- Just in case the laser never fires, the pointer is set to inactive.
+    -- animator.setAnimationState("targetlaser", "inactive")
 
     animator.setAnimationState(laserStateName, "winddown")
 
@@ -263,6 +267,7 @@ function states.spawnMine(sourceId)
     power = v_scaledPower(15),
     targetPosition = targetPosition
   }
+  local projectileOffset = {4, 0}  -- Adjusts to the firing direction of the projectile
   local windupTime = 0.5
   local winddownTime = 0.25
 
@@ -276,7 +281,11 @@ function states.spawnMine(sourceId)
     animator.rotateTransformationGroup("turret", vec2.angle(world.distance(targetPosition, mcontroller.position())))
   end)
 
-  world.spawnProjectile(projectileType, mcontroller.position(), entity.id(), {1, 0}, false, projectileParameters)
+  -- Get projectile position.
+  local aimVector = vec2.angle(world.distance(targetPosition, mcontroller.position()))
+  local projectilePosition = vec2.add(mcontroller.position(), vec2.rotate(projectileOffset, aimVector))
+
+  world.spawnProjectile(projectileType, projectilePosition, entity.id(), {1, 0}, false, projectileParameters)
 
   animator.setAnimationState("turret", "fire")
   animator.playSound("fireMine")
@@ -393,6 +402,7 @@ function reset()
   animator.setAnimationState("laserpoison", "invisible")
   animator.setAnimationState("laserelectric", "invisible")
   animator.setAnimationState("targetlaser", "inactive")
+  animator.setAnimationState("turret", "idle")
 
   --animator.stopAllSounds("laserPoisonChargedLoop")
   animator.stopAllSounds("laserElectricChargedLoop")

@@ -2,10 +2,11 @@
   "name": "v-centipedeboss-constrictattack",
   "description": "",
   "scripts": [
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
     "/scripts/actions/status.lua",
     "/scripts/actions/boss/v-centipedeboss.lua",
-    "/scripts/actions/animator.lua",
-    "/scripts/actions/time.lua"
+    "/scripts/actions/animator.lua"
   ],
   "parameters": {},
   "root": {
@@ -14,6 +15,34 @@
     "name": "sequence",
     "parameters": {},
     "children": [
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "controlApproachVelocity",
+            "type": "action",
+            "name": "controlApproachVelocity",
+            "parameters": {
+              "force": {"value": 250},
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 1}
+            }
+          }
+        ]
+      },
       {
         "title": "selector",
         "type": "composite",
@@ -48,7 +77,8 @@
                 "parameters": {
                   "attackId": {"value": "laserConstrict2"},
                   "awaitChildren": {"value": false},
-                  "children": {"key": "childSegments"}
+                  "children": {"key": "childSegments"},
+                  "interval": {"value": 0.1}
                 }
               }
             ]
@@ -60,7 +90,8 @@
             "parameters": {
               "attackId": {"value": "laserConstrict"},
               "awaitChildren": {"value": false},
-              "children": {"key": "childSegments"}
+              "children": {"key": "childSegments"},
+              "interval": {"value": 0.1}
             }
           }
         ]

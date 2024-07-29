@@ -17,7 +17,7 @@ function init()
   monster.setDamageBar("None")
 
   -- Pass params to animation script
-  for _, param in ipairs({"ellipseNumPoints", "ellipseFillColor", "ellipseOutlineColor", "ellipseOutlineThickness"}) do
+  for _, param in ipairs({"ellipseNumPoints", "ellipseFillColor", "ellipseOutlineColor", "ellipseOutlineThickness", "ellipseFlashTime"}) do
     passParamToAnim(param)
   end
 

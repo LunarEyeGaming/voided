@@ -3,19 +3,18 @@
   "description": null,
   "scripts": [
     "/scripts/actions/world.lua",
-    "/scripts/actions/movement.lua",
-    "/scripts/actions/math.lua",
-    "/scripts/actions/animator.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/boss/v-centipedeboss.lua",
     "/scripts/actions/status.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/projectiles.lua",
-    "/scripts/actions/boss/v-centipedeboss.lua",
     "/scripts/actions/v-world.lua"
   ],
   "parameters": {
     "constrictPos": null,
     "constrictRadius": [22, 22],
-    "deconstrictClampRate": 720,
+    "deconstrictClampRate": 240,
     "showConstrictWarning": false,
     "constrictPoints": 150,
     "constrictSpeed": 50
@@ -56,6 +55,14 @@
         }
       },
       {
+        "title": "unsetFlag",
+        "type": "action",
+        "name": "unsetFlag",
+        "parameters": {
+          "name": {"value": "turretIsNotActive"}
+        }
+      },
+      {
         "title": "parallel",
         "type": "composite",
         "name": "parallel",
@@ -70,53 +77,17 @@
             "name": "failer",
             "parameters": {},
             "child": {
-              "title": "sequence",
-              "type": "composite",
-              "name": "sequence",
-              "parameters": {},
-              "children": [
-                {
-                  "title": "entityDirection",
-                  "type": "action",
-                  "name": "entityDirection",
-                  "parameters": {
-                    "entity": {"key": "self"},
-                    "offset": {"value": [0, 0]},
-                    "target": {"key": "target"}
-                  },
-                  "output": {
-                    "vector": "toTarget"
-                  }
-                },
-                {
-                  "title": "vecAngle",
-                  "type": "action",
-                  "name": "vecAngle",
-                  "parameters": {
-                    "vector": {"key": "toTarget"}
-                  },
-                  "output": {
-                    "angle": "targetAngle"
-                  }
-                },
-                {
-                  "title": "resetTransformationGroup",
-                  "type": "action",
-                  "name": "resetTransformationGroup",
-                  "parameters": {
-                    "transformationGroup": {"value": "turret"}
-                  }
-                },
-                {
-                  "title": "rotateTransformationGroup",
-                  "type": "action",
-                  "name": "rotateTransformationGroup",
-                  "parameters": {
-                    "angle": {"key": "targetAngle"},
-                    "transformationGroup": {"value": "turret"}
-                  }
-                }
-              ]
+              "title": "v_rotateTurret",
+              "type": "action",
+              "name": "v_rotateTurret",
+              "parameters": {
+                "offset": {"value": [1.75, 1.125]},
+                "target": {"key": "target"}
+              },
+              "output": {
+                "aimVector": "toTarget",
+                "projectileOffset": "projectileOffset"
+              }
             }
           },
           {
@@ -152,7 +123,7 @@
                       }
                     },
                     {
-                      "title": "setAnimationState",
+                      "title": "Reactivate laser",
                       "type": "action",
                       "name": "setAnimationState",
                       "parameters": {
@@ -174,9 +145,9 @@
                       "name": "spawnProjectile",
                       "parameters": {
                         "aimVector": {"key": "toTarget"},
-                        "offset": {"value": [0, 0]},
+                        "offset": {"key": "projectileOffset"},
                         "position": {"key": "self"},
-                        "projectileConfig": {"value": {"power": 10}},
+                        "projectileConfig": {"value": {"power": 15}},
                         "projectileType": {"value": "v-centipedeelectricrocket"},
                         "scalePower": {"value": true},
                         "sourceEntity": {"key": "self"},
@@ -194,7 +165,16 @@
                       }
                     },
                     {
-                      "title": "setAnimationState",
+                      "title": "Play fire anim",
+                      "type": "action",
+                      "name": "setAnimationState",
+                      "parameters": {
+                        "state": {"value": "fire1"},
+                        "type": {"value": "turret"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser",
                       "type": "action",
                       "name": "setAnimationState",
                       "parameters": {
@@ -211,7 +191,7 @@
                       }
                     },
                     {
-                      "title": "setAnimationState",
+                      "title": "Reactivate laser",
                       "type": "action",
                       "name": "setAnimationState",
                       "parameters": {
@@ -233,9 +213,9 @@
                       "name": "spawnProjectile",
                       "parameters": {
                         "aimVector": {"key": "toTarget"},
-                        "offset": {"value": [0, 0]},
+                        "offset": {"key": "projectileOffset"},
                         "position": {"key": "self"},
-                        "projectileConfig": {"value": {"power": 10}},
+                        "projectileConfig": {"value": {"power": 15}},
                         "projectileType": {"value": "v-centipedeelectricrocket"},
                         "scalePower": {"value": true},
                         "sourceEntity": {"key": "self"},
@@ -253,7 +233,16 @@
                       }
                     },
                     {
-                      "title": "setAnimationState",
+                      "title": "Play fire 2 anim",
+                      "type": "action",
+                      "name": "setAnimationState",
+                      "parameters": {
+                        "state": {"value": "fire2"},
+                        "type": {"value": "turret"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser",
                       "type": "action",
                       "name": "setAnimationState",
                       "parameters": {
@@ -278,7 +267,7 @@
                   "parameters": {},
                   "children": [
                     {
-                      "title": "setAnimationState",
+                      "title": "Reactivate laser",
                       "type": "action",
                       "name": "setAnimationState",
                       "parameters": {
@@ -300,9 +289,9 @@
                       "name": "spawnProjectile",
                       "parameters": {
                         "aimVector": {"key": "toTarget"},
-                        "offset": {"value": [0, 0]},
+                        "offset": {"key": "projectileOffset"},
                         "position": {"key": "self"},
-                        "projectileConfig": {"value": {"power": 10}},
+                        "projectileConfig": {"value": {"power": 15}},
                         "projectileType": {"value": "v-centipedepoisonrocket"},
                         "scalePower": {"value": true},
                         "sourceEntity": {"key": "self"},
@@ -320,7 +309,16 @@
                       }
                     },
                     {
-                      "title": "setAnimationState",
+                      "title": "Play fire anim",
+                      "type": "action",
+                      "name": "setAnimationState",
+                      "parameters": {
+                        "state": {"value": "fire1"},
+                        "type": {"value": "turret"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser",
                       "type": "action",
                       "name": "setAnimationState",
                       "parameters": {
@@ -415,6 +413,14 @@
         "parameters": {
           "state": {"value": "inactive"},
           "type": {"value": "targetlaser"}
+        }
+      },
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "turretIsNotActive"}
         }
       },
       {

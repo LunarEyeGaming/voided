@@ -2,21 +2,13 @@
   "projectileName" : "v-centipedepoisonshot2",
   "image" : "centipedepoisonshot2.png",
   "animationCycle" : 0.5,
-  "lightColor" : [100, 150, 150],
+  "lightColor" : [72, 131, 47],
   "frameNumber" : 2,
   "flippable" : false,
   "fullbright" : true,
   "damageKindImage" : "icon.png",
   "physics" : "illusion",
   "emitters" : [ ],
-  "periodicActions" : [
-    {
-      "time" : 0,
-      "repeat" : false,
-      "action" : "sound",
-      "options" : [ "/sfx/gun/pulsecannon_blast1.ogg" ]
-    }
-  ],
   "damageKind" : "poisonplasma",
   "piercing" : true,
 

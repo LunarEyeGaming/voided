@@ -19,8 +19,9 @@
     ],
 
     "ellipseNumPoints" : 50,
-    "ellipseFillColor" : [168, 53, 56, 31],
-    "ellipseOutlineColor" : [208, 45, 73, 255],
+    "ellipseFillColor" : {"high" : [168, 53, 56, 63], "low" : [111, 75, 70, 31]},
+    "ellipseOutlineColor" : {"high" : [208, 45, 73, 255], "low" : [168, 53, 56, 63]},
+    "ellipseFlashTime" : 0.5,
     "ellipseOutlineThickness" : 2,
 
     "renderLayer": "ForegroundEntity",

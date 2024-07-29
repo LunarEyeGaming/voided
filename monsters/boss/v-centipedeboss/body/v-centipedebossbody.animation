@@ -6,7 +6,17 @@
         "default" : "idle",
         "states" : {
           "idle" : {},
-          "windup" : {}
+          "windup" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "end"
+          },
+          "fire" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
         }
       },
       "laserpoison" : {
@@ -135,6 +145,11 @@
               "properties" : {
                 "image" : "<partImage>:<phase>.windup.<frame>"
               }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.fire.<frame>"
+              }
             }
           }
         }
@@ -155,6 +170,11 @@
             "windup" : {
               "properties" : {
                 "image" : "<partImage>:<phase>.windup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.fire.<frame>"
               }
             }
           }
@@ -414,6 +434,11 @@
       "pool" : [ "/sfx/gun/plasma_sniper2.ogg" ],
       "rangeMultiplier" : 5.0
     },
+    "fireSides" : {
+      "pool" : [ "/sfx/gun/pulsecannon_blast1.ogg" ],
+      "volume" : 0.4,
+      "rangeMultiplier" : 5.0
+    },
     "fireMine" : {
       "pool" : [ "/sfx/gun/plasma_sniper5.ogg" ],
       "volume" : 0.3,
@@ -423,37 +448,37 @@
       "/sfx/tech/mech_step4.ogg", "/sfx/tech/mech_step5.ogg" ],
     "laserElectricCharge" : {
       "pool" : [ "/sfx/npc/boss/v_centipede_laserelectric_charge.ogg" ],
-      "volume" : 0.3,
+      "volume" : 0.5,
       "rangeMultiplier" : 5.0
     },
     "laserElectricChargedLoop" : {
       "pool" : [ "/sfx/npc/boss/v_centipede_laserelectric_charged_loop.ogg" ],
-      "volume" : 0.3,
+      "volume" : 0.5,
       "rangeMultiplier" : 5.0
     },
     "laserPoisonCharge" : {
       "pool" : [ "/sfx/npc/boss/v_centipede_laserpoison_charge.ogg" ],
-      "volume" : 0.3,
+      "volume" : 0.5,
       "rangeMultiplier" : 5.0
     },
     "laserPoisonChargedLoop" : {
       "pool" : [ "/sfx/npc/boss/v_centipede_laserpoison_charged_loop.ogg" ],
-      "volume" : 0.3,
+      "volume" : 0.5,
       "rangeMultiplier" : 5.0
     },
     "laserFire" : {
       "pool" : [ "/sfx/objects/crystaltrap_on1.ogg" ],
-      "volume" : 0.3,
+      "volume" : 0.5,
       "rangeMultiplier" : 5.0
     },
     "laserPoisonLoop" : {
       "pool" : [ "/sfx/npc/boss/v_centipede_laserpoison_loop.ogg" ],
-      "volume" : 0.3,
+      "volume" : 0.5,
       "rangeMultiplier" : 5.0
     },
     "laserElectricLoop" : {
       "pool" : [ "/sfx/npc/boss/v_centipede_laserelectric_loop.ogg" ],
-      "volume" : 0.3,
+      "volume" : 0.5,
       "rangeMultiplier" : 5.0
     },
     "laserEnd" : {

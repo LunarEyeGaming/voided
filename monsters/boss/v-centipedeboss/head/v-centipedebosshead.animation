@@ -5,7 +5,45 @@
         "priority" : 0,
         "default" : "idle",
         "states" : {
-          "idle" : {}
+          "idle" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          },
+          "bitewindup" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "end"
+          },
+          "bite" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "end"
+          },
+          "bitewinddown" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      },
+      "turret" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "fire1" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "fire2" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
         }
       },
       "targetlaser" : {
@@ -42,6 +80,21 @@
               "properties" : {
                 "image" : "<partImage>:<phase>.idle.<frame>"
               }
+            },
+            "bitewindup" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.bitewindup.<frame>"
+              }
+            },
+            "bite" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.bite.<frame>"
+              }
+            },
+            "bitewinddown" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.bitewinddown.<frame>"
+              }
             }
           }
         }
@@ -58,15 +111,82 @@
               "properties" : {
                 "image" : "<partImage>:<phase>.idle.<frame>"
               }
+            },
+            "bitewindup" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.bitewindup.<frame>"
+              }
+            },
+            "bite" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.bite.<frame>"
+              }
+            },
+            "bitewinddown" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.bitewinddown.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "turret" : {
+        "properties" : {
+          "zLevel" : 25,
+          "transformationGroups" : [ "turret" ],
+          "offset" : [-0.25, 0.4375]
+        },
+        "partStates" : {
+          "turret" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.idle.<frame>"
+              }
+            },
+            "fire1" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.fire1.<frame>"
+              }
+            },
+            "fire2" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.fire2.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "turretfullbright" : {
+        "properties" : {
+          "zLevel" : 27,
+          "anchorPart" : "turret",
+          "fullbright" : true
+        },
+        "partStates" : {
+          "turret" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.idle.<frame>"
+              }
+            },
+            "fire1" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.fire1.<frame>"
+              }
+            },
+            "fire2" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.fire2.<frame>"
+              }
             }
           }
         }
       },
       "targetlaser" : {
         "properties" : {
-          "zLevel" : 20,
+          "zLevel" : 22,
           "transformationGroups" : [ "turret" ],
-          "offset" : [64, 0],
+          "offset" : [64, 1],
           "fullbright" : true
         },
         "partStates" : {

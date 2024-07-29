@@ -7,7 +7,8 @@
     "/scripts/actions/time.lua",
     "/scripts/actions/boss/v-centipedeboss.lua",
     "/scripts/actions/animator.lua",
-    "/scripts/actions/math.lua"
+    "/scripts/actions/math.lua",
+    "/scripts/actions/monster.lua"
   ],
   "parameters": {},
   "root": {
@@ -126,11 +127,40 @@
         ]
       },
       {
-        "title": "setVelocity",
-        "type": "action",
-        "name": "setVelocity",
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
         "parameters": {
-          "velocity": {"value": [0, 0]}
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "controlApproachVelocity",
+            "type": "action",
+            "name": "controlApproachVelocity",
+            "parameters": {
+              "force": {"value": 250},
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 0.5}
+            }
+          }
+        ]
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "bitewindup"},
+          "type": {"value": "body"}
         }
       },
       {
@@ -182,20 +212,12 @@
                 }
               },
               {
-                "title": "resetTransformationGroup",
+                "title": "rotate",
                 "type": "action",
-                "name": "resetTransformationGroup",
-                "parameters": {
-                  "transformationGroup": {"value": "body"}
-                }
-              },
-              {
-                "title": "rotateTransformationGroup",
-                "type": "action",
-                "name": "rotateTransformationGroup",
+                "name": "rotate",
                 "parameters": {
                   "angle": {"key": "targetAngle"},
-                  "transformationGroup": {"value": "body"}
+                  "rate": {"value": 0}
                 }
               }
             ]
@@ -209,6 +231,15 @@
             }
           }
         ]
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "bite"},
+          "type": {"value": "body"}
+        }
       },
       {
         "title": "entityDirection",
@@ -278,6 +309,15 @@
             }
           }
         ]
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "bitewinddown"},
+          "type": {"value": "body"}
+        }
       }
     ]
   }

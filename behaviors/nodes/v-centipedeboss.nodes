@@ -89,5 +89,31 @@
       "center": {"type": "position", "key": null},
       "radius": {"type": "vec2", "key": null}
     }
+  },
+  "v_rotateTurretToDefault": {
+    "type": "action",
+    "name": "v_rotateTurretToDefault",
+    "title": "v_rotateTurretToDefault",
+    "properties": {
+      "shouldRotate": {"type": "bool", "key": "turretIsNotActive"}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {}
+  },
+  "v_rotateTurret": {
+    "type": "action",
+    "name": "v_rotateTurret",
+    "title": "",
+    "properties": {
+      "offset": {"type": "vec2", "value": [1.75, 1.125]},
+      "target": {"type": "entity", "key": "target"}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {
+      "aimVector": {"type": "vec2", "key": null},
+      "projectileOffset": {"type": "vec2", "key": null}
+    }
   }
 }

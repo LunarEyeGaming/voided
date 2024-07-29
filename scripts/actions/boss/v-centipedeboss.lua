@@ -150,3 +150,42 @@ function v_wormConstrict(args, _, _, dt)
 
   return true
 end
+
+-- Rotates the turret to the current controller rotation if `shouldRotate` is `true`, returning `true` as well.
+-- Otherwise, returns `false`.
+-- param shouldRotate
+function v_rotateTurretToDefault(args)
+  if not args.shouldRotate then return false end
+
+  animator.resetTransformationGroup("turret")
+  animator.rotateTransformationGroup("turret", mcontroller.rotation())
+
+  return true
+end
+
+-- Rotates the turret to point to the specified target, outputting the resulting aim vector and offset.
+-- param target: entity - the target to which to point
+-- param offset: vec2 - the base firing offset, which will be adjusted and returned.
+-- output aimVector
+-- output projectileOffset
+function v_rotateTurret(args)
+  local rq = vBehavior.requireArgsGen("v_rotateTurret", args)
+
+  if not rq{"target", "offset"} then return false end
+
+  local targetDistance = world.distance(world.entityPosition(args.target), mcontroller.position())
+
+  -- Set baseAimAngle and targetMagnitude
+  local baseAimAngle = vec2.angle(targetDistance)
+  local targetMagnitude = vec2.mag(targetDistance)
+
+  -- Compensate for off-center fire position.
+  local offsetAimAngle = math.pi / 2 - math.acos(args.offset[1] / targetMagnitude)
+  local aimAngle = baseAimAngle - offsetAimAngle
+
+  animator.resetTransformationGroup("turret")
+  animator.rotateTransformationGroup("turret", aimAngle)
+
+  -- Calculate offset and aim vector here.
+  return true, {aimVector = vec2.withAngle(aimAngle), projectileOffset = vec2.rotate(args.offset, aimAngle)}
+end
