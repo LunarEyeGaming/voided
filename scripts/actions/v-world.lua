@@ -12,6 +12,8 @@ function v_getUniqueEntityPosition(args, board)
 
   if entityId and world.entityExists(entityId) then
     return true, {position = world.entityPosition(entityId)}
+  else
+    sb.logWarn("Failed to load unique entity '%s'", args.uniqueId)
   end
 
   return false

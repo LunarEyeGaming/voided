@@ -7,6 +7,12 @@
         "states" : {
           "idle" : {
             "frames" : 1
+          },
+          "transition" : {
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "transition",
+            "transition" : "idle"
           }
         }
       },
@@ -37,6 +43,11 @@
               "properties": {
                 "image": "<partImage>:<phase>.idle.<frame>"
               }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
+              }
             }
           }
         }
@@ -52,6 +63,11 @@
             "idle" : {
               "properties": {
                 "image": "<partImage>:<phase>.idle.<frame>"
+              }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
               }
             }
           }
@@ -77,30 +93,12 @@
 
   "particleEmitters" : {
     "deathPoof" : {
-      "particles" : [
-        { "particle" : "monstersplosion" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathfizz1left" },
-        { "particle" : "deathfizz1right" },
-        { "particle" : "deathfizz2left" },
-        { "particle" : "deathfizz2right" },
-        { "particle" : "deathfizz3left" },
-        { "particle" : "deathfizz3right" },
-        { "particle" : "deathfizz4left" },
-        { "particle" : "deathfizz4right" }
-      ]
+      "particles" : [ ]
     }
   },
 
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ]
+    "deathPuff" : [ ]
   }
 }

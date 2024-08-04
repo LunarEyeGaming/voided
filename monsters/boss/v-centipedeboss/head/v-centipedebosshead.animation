@@ -25,6 +25,12 @@
             "cycle" : 0.1,
             "mode" : "transition",
             "transition" : "idle"
+          },
+          "transition" : {
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "transition",
+            "transition" : "idle"
           }
         }
       },
@@ -41,6 +47,12 @@
           "fire2" : {
             "frames" : 5,
             "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "transition" : {
+            "frames" : 6,
+            "cycle" : 0.6,
             "mode" : "transition",
             "transition" : "idle"
           }
@@ -95,6 +107,11 @@
               "properties" : {
                 "image" : "<partImage>:<phase>.bitewinddown.<frame>"
               }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
+              }
             }
           }
         }
@@ -126,6 +143,11 @@
               "properties" : {
                 "image" : "<partImage>:<phase>.bitewinddown.<frame>"
               }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
+              }
             }
           }
         }
@@ -152,6 +174,11 @@
               "properties" : {
                 "image" : "<partImage>:<phase>.fire2.<frame>"
               }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
+              }
             }
           }
         }
@@ -177,6 +204,11 @@
             "fire2" : {
               "properties" : {
                 "image" : "<partImage>:<phase>.fire2.<frame>"
+              }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
               }
             }
           }
@@ -220,33 +252,15 @@
 
   "particleEmitters" : {
     "deathPoof" : {
-      "particles" : [
-        { "particle" : "monstersplosion" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathfizz1left" },
-        { "particle" : "deathfizz1right" },
-        { "particle" : "deathfizz2left" },
-        { "particle" : "deathfizz2right" },
-        { "particle" : "deathfizz3left" },
-        { "particle" : "deathfizz3right" },
-        { "particle" : "deathfizz4left" },
-        { "particle" : "deathfizz4right" }
-      ]
+      "particles" : [ ]
     }
   },
 
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+    "deathPuff" : [ ],
     "roar" : {
-      "pool" : [ "/sfx/npc/quadruped/angstyhead_turnhostile.ogg" ],
+      "pool" : [ "/sfx/npc/boss/v_centipede_roar.ogg", "/sfx/npc/boss/v_centipede_roar2.ogg" ],
       "rangeMultiplier" : 5.0
     },
     "fire" : {

@@ -34,7 +34,6 @@ function init()
   resetIntervalTimer = 0
 end
 
--- TODO: Figure out how to make the damageMultiplierThreshold smooth.
 function applyDamageRequest(damageRequest)
   local newDamageRequest = copy(damageRequest)
 

@@ -404,7 +404,7 @@ function reset()
   animator.setAnimationState("targetlaser", "inactive")
   animator.setAnimationState("turret", "idle")
 
-  --animator.stopAllSounds("laserPoisonChargedLoop")
+  animator.stopAllSounds("laserPoisonChargedLoop")
   animator.stopAllSounds("laserElectricChargedLoop")
   animator.stopAllSounds("laserPoisonLoop")
   animator.stopAllSounds("laserElectricLoop")
@@ -417,5 +417,8 @@ function reset()
 end
 
 function activatePhase2()
+  animator.setAnimationState("turret", "transition")
+  animator.setAnimationState("body", "transition")
+
   animator.setGlobalTag("phase", "2")
 end

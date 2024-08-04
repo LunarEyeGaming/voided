@@ -1,13 +1,13 @@
 {
   "name": "v-centipedeboss",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/entity.lua",
     "/scripts/actions/boss/v-centipedeboss.lua",
     "/scripts/actions/v-world.lua",
     "/scripts/actions/world.lua",
-    "/scripts/actions/monster.lua",
     "/scripts/actions/status.lua",
+    "/scripts/actions/monster.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/animator.lua",
     "/scripts/behavior.lua"
@@ -131,6 +131,18 @@
         }
       },
       {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "v-centipedeboss-intro",
+          "type": "module",
+          "name": "v-centipedeboss-intro",
+          "parameters": {}
+        }
+      },
+      {
         "title": "parallel",
         "type": "composite",
         "name": "parallel",
@@ -196,6 +208,14 @@
                     "name": "sequence",
                     "parameters": {},
                     "children": [
+                      {
+                        "title": "removeEphemeralEffect",
+                        "type": "action",
+                        "name": "removeEphemeralEffect",
+                        "parameters": {
+                          "name": {"value": "invulnerable"}
+                        }
+                      },
                       {
                         "title": "setDamageBar",
                         "type": "action",
@@ -551,6 +571,22 @@
                     }
                   },
                   {
+                    "title": "succeeder",
+                    "type": "decorator",
+                    "name": "succeeder",
+                    "parameters": {},
+                    "child": {
+                      "title": "sendEntityMessage",
+                      "type": "action",
+                      "name": "sendEntityMessage",
+                      "parameters": {
+                        "arguments": {"value": []},
+                        "entity": {"key": "telegraphId"},
+                        "message": {"value": "despawn"}
+                      }
+                    }
+                  },
+                  {
                     "title": "clearPersistentEffects",
                     "type": "action",
                     "name": "clearPersistentEffects",
@@ -583,7 +619,7 @@
                     "type": "module",
                     "name": "v-centipedeboss-flytopos",
                     "parameters": {
-                      "position": {"key": "spawn"},
+                      "position": {"key": "centerPos"},
                       "speed": {"value": 50},
                       "tolerance": {"value": 5},
                       "controlForce": {"value": 250}

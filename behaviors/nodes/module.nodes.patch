@@ -480,17 +480,6 @@
   },
   {
     "op": "add",
-    "path": "/v-centipedeboss",
-    "value": {
-      "type": "module",
-      "name": "v-centipedeboss",
-      "title": null,
-      "properties": {},
-      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-centipedeboss.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-approach-turnworm",
     "value": {
       "type": "module",
@@ -597,6 +586,42 @@
         "constrictSpeed": {"type": "json", "value": 50}
       },
       "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-constrictchoice.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss",
+      "title": null,
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-centipedeboss.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss-intro",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-intro",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-intro.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedebossbuildup",
+    "value": {
+      "type": "module",
+      "name": "v-centipedebossbuildup",
+      "title": "",
+      "properties": {
+        "positionList": {"type": "json", "value": []},
+        "circlePosition": {"type": "json", "value": null}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-centipedebossbuildup.behavior"
     }
   }
 ]

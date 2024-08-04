@@ -286,7 +286,11 @@
                       "parameters": {
                         "attackId": {"value": "targeted"},
                         "children": {"key": "childSegments"},
-                        "target": {"key": "target"}
+                        "target": {"key": "target"},
+                        "excludeChild": {"key": "prevChild"}
+                      },
+                      "output": {
+                        "selectedChild": "prevChild"
                       }
                     },
                     {

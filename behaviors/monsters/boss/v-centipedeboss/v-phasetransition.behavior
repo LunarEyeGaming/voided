@@ -6,6 +6,8 @@
     "/scripts/actions/animator.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/boss/v-centipedeboss.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
     "/scripts/actions/status.lua"
   ],
   "parameters": {},
@@ -115,6 +117,52 @@
         ]
       },
       {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "controlApproachVelocity",
+            "type": "action",
+            "name": "controlApproachVelocity",
+            "parameters": {
+              "force": {"value": 250},
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 0.5}
+            }
+          }
+        ]
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "transition"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "transition"},
+          "type": {"value": "turret"}
+        }
+      },
+      {
         "title": "clearPersistentEffects",
         "type": "action",
         "name": "clearPersistentEffects",
@@ -178,6 +226,14 @@
           "arguments": {"value": ["2"]},
           "entity": {"key": "tailId"},
           "message": {"value": "setPhase"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.2}
         }
       },
       {

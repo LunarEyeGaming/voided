@@ -1,0 +1,10 @@
+{
+  // This stagehand sends a notification to the centipede boss when a player steps into it.
+  "type" : "v-centipedetrigger2",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-centipedetrigger2/v-centipedetrigger2.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-1, -1, 1, 1]
+}
