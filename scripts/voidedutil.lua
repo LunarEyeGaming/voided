@@ -6,7 +6,7 @@ voidedUtil = {}
 -- Certain scripts may not work under specific script contexts due to some built-in tables being
 -- unavailable. The legend below is intended to help in knowing when using each function is appropriate.
 -- * = works under any script context
--- # = requires certain Starbound tables. See each table's documentation for more details at 
+-- # = requires certain Starbound tables. See each table's documentation for more details at
 --     Starbound/doc/lua/ or https://starbounder.org/Modding:Lua/Tables
 
 -- #statuscontroller
@@ -72,9 +72,9 @@ end
 
 --[[
   Obfuscates some pre-selected characters in a string `str` using list `obfuscatedChars`, where each entry in the table
-  is true if the corresponding character should be replaced with the `obfuscationCharacter`. Otherwise, it is left 
+  is true if the corresponding character should be replaced with the `obfuscationCharacter`. Otherwise, it is left
   alone. Whitespace characters are not affected
-  
+
   param str: the string to obfuscate
   param obfuscatedChars: a list of the characters to obfuscate
   param obfuscationCharacter: the replacement character for obfuscated positions
@@ -86,7 +86,7 @@ function voidedUtil.obfuscateString(str, obfuscatedChars, obfuscationCharacter)
   -- Iterate over the characters of the string.
   for i = 1, #str do
     local ch = str:sub(i, i)
-    
+
     -- If this character should be obfuscated and the character is not a whitespace character...
     if obfuscatedChars[i] and ch ~= " " and ch ~= "\n" and ch ~= "\t" and ch ~= "\f" and ch ~= "\r" then
       -- Add it as completely invisible
@@ -96,14 +96,14 @@ function voidedUtil.obfuscateString(str, obfuscatedChars, obfuscationCharacter)
       newString = newString .. ch
     end
   end
-  
+
   return newString
 end
 
 --[[
   Obfuscates between `min_` and `max_` non-whitespace characters in `str` by replacing them with `obfuscationCharacter`
   and returns the result.
-  
+
   param str: the string to obfuscate
   param min_: the fractional minimum number of characters to obfuscate
   param max_: the fractional maximum number of characters to obfuscate
@@ -112,12 +112,12 @@ end
 ]]
 function voidedUtil.obfuscateStringMinMax(str, min_, max_, obfuscationCharacter)
   local newString = ""
-  
+
   local obfuscatedChars = {}
   local numReplacements = math.random(math.floor(min_ * #str), math.floor(max_ * #str))
-  
-  -- Generate a table of numReplacements true values followed by #str - numReplacements false values. This method 
-  -- ensures that the distribution for the number of replacements remains uniform and so does the location of those 
+
+  -- Generate a table of numReplacements true values followed by #str - numReplacements false values. This method
+  -- ensures that the distribution for the number of replacements remains uniform and so does the location of those
   -- replacements.
   for i = 1, #str do
     if i <= numReplacements then
@@ -126,14 +126,14 @@ function voidedUtil.obfuscateStringMinMax(str, min_, max_, obfuscationCharacter)
       table.insert(obfuscatedChars, false)
     end
   end
-  
+
   -- Shuffle the list
   shuffle(obfuscatedChars)
 
   -- Iterate over the characters of the string.
   for i = 1, #str do
     local ch = str:sub(i, i)
-    
+
     -- If this character should be obfuscated and the character is not a whitespace character...
     if obfuscatedChars[i] and ch ~= " " and ch ~= "\n" and ch ~= "\t" and ch ~= "\f" and ch ~= "\r" then
       -- Add it as completely invisible
@@ -143,6 +143,32 @@ function voidedUtil.obfuscateStringMinMax(str, min_, max_, obfuscationCharacter)
       newString = newString .. ch
     end
   end
-  
+
   return newString
+end
+
+---Returns whether or not two arguments a and b are equal, even if they are tables. Recursive tables are not supported
+---and can result in infinite recursion.
+---@param a any
+---@param b any
+---@return boolean
+function voidedUtil.deepEquals(a, b)
+  -- If both values are tables...
+  if type(a) == "table" and type(b) == "table" then
+    -- For each key-value pair in `a`...
+    for k, va in pairs(a) do
+      local vb = b[k]
+
+      -- If va and vb do not match...
+      if not voidedUtil.deepEquals(va, vb) then
+        return false
+      end
+    end
+
+    -- Return true here as this means that all entries of a and b are structurally identical.
+    return true
+  else
+    -- Return whether or not they are equal as primitive values.
+    return a == b
+  end
 end

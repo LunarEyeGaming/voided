@@ -1,0 +1,32 @@
+{
+  "projectileName" : "v-mutanteelsummonerpiece",
+  "image" : "mutanteelsummonerpiece.png",
+  "animationCycle" : 0.1,
+  "frameNumber" : 1,
+  "winddownFrames" : 3,
+  "orientationLocked" : false,
+  "flippable" : true,
+
+  "physics" : "disc",
+  "movementSettings" : {
+    "liquidBuoyancy" : 1.0
+  },
+  "bounces" : -1,
+  "onlyHitTerrain" : true,
+  "speed" : 20,
+
+  "timeToLive" : 10,
+
+  "actionOnReap" : [],
+
+  "actionOnCollide" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/tar_hit_organic1.ogg", "/sfx/projectiles/tar_hit_organic2.ogg",
+          "/sfx/projectiles/tar_hit_organic3.ogg", "/sfx/projectiles/tar_hit_organic4.ogg",
+          "/sfx/projectiles/tar_hit_organic5.ogg" ]
+    }
+  ],
+
+  "scripts" : ["/projectiles/killable.lua"]
+}

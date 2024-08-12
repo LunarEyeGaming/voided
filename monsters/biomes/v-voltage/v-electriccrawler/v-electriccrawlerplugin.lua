@@ -17,28 +17,31 @@ local itemToDelete
 
 function init()
   oldInit()
-  
+
   pickupItem = config.getParameter("pickupItem")
 
   flingVelocity = config.getParameter("flingVelocity")
   if flingVelocity then
     mcontroller.setVelocity(flingVelocity)
   end
-  
+
   initialStunTime = config.getParameter("initialStunTime")
 
   if initialStunTime then
     status.setResource("stunned", initialStunTime)
   end
-  
+
   local initialHealthPercentage = config.getParameter("initialHealthPercentage")
   if initialHealthPercentage then
     status.setResourcePercentage("health", initialHealthPercentage)
   end
-  
+
   itemToDelete = config.getParameter("deleteItemDrop")
 
-  monster.setInteractive(true)
+  -- Do not set to be interactive if the monster is captured.
+  if not capturable or not capturable.podUuid() then
+    monster.setInteractive(true)
+  end
 end
 
 function update(dt)
@@ -62,26 +65,26 @@ end
 
 function interact(args)
   oldInteract(args)
-  
+
   monster.setInteractive(false)
 
   -- Spawn bean pickup
   world.spawnItem(pickupItem, world.entityPosition(args.sourceId), 1, {level = monster.level(),
       healthPercentage = status.resourcePercentage("health"), uniqueParameters = monster.uniqueParameters()})
-  
+
   -- Setup for silently dying
   monster.setDropPool(nil)
   monster.setDeathParticleBurst(nil)
   monster.setDeathSound(nil)
   self.deathBehavior = nil
   self.shouldDie = true
-  
+
   -- Turn invisible
   status.addEphemeralEffect("v-invisible")
-  
+
   -- Hide health bar
   monster.setDamageBar("None")
-  
+
   -- Die
   status.setResourcePercentage("health", 0.0)
 end

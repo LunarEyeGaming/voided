@@ -19,11 +19,11 @@
       {
         "select" : 1,
         "pool" : "generatedGroundAggroDay"
-      }, 
+      },
       {
         "select" : 3,
         "pool" : "nightTerrors"
-      },      
+      },
       {
         "select" : 2,
         "pool" : "generatedGround"
@@ -224,6 +224,18 @@
 
         "type" : "treasureBox",
         "treasureBoxSets" : [ "v-electricWeaponChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 2.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-electricTreeRusty",
+
+        "type" : "tree",
+        "treeFoliageHueShiftMax" : 120,
+        "treeStemHueShiftMax" : 40,
+        "treeStemList" : [ "v-electrictree" ],
+        "treeFoliageList" : [ "v-electricfoliage" ]
       },
       {
         "mode" : "floor",

@@ -1,0 +1,31 @@
+{
+  "itemName" : "v-mutanteelsummoner",
+  "rarity" : "Rare",
+  "category" : "throwableItem",
+  "inventoryIcon" : "v-mutanteelsummonericon.png",
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "image" : "v-mutanteelsummoner.png",
+  "shortdescription" : "Big Puffer Chum",
+  "description" : "A bucket of chum made from a Big Puffer. Toss in Mutant Eel territory to lure an Eel.",
+  "price" : 250,
+
+  "ammoUsage" : 1,
+
+  "edgeTrigger" : true,
+  "windupTime" : 0.0,
+  "cooldown" : 0.8,
+
+  "projectileType" : "v-mutanteelsummoner",
+  "projectileConfig" : {
+    "speed" : 40,
+    "power" : 0,
+    "periodicActions" : [
+      {
+        "time" : 0,
+        "repeat" : false,
+        "action" : "sound",
+        "options" : [ "/sfx/projectiles/throw_item_small.ogg" ]
+      }
+    ]
+  }
+}

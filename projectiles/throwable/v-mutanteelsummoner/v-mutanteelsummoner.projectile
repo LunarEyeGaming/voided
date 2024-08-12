@@ -1,0 +1,37 @@
+{
+  "projectileName" : "v-mutanteelsummoner",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "orientationLocked" : false,
+  "flippable" : true,
+
+  "physics" : "disc",
+  "movementSettings" : {
+    "liquidBuoyancy" : 1.0
+  },
+  "bounces" : -1,
+  "onlyHitTerrain" : true,
+  "speed" : 20,
+
+  "timeToLive" : 10,
+
+  "actionOnReap" : [],
+
+  "scripts" : ["v-mutanteelsummoner.lua"],
+
+  "pieceProjectileType" : "v-mutanteelsummonerpiece",
+  "pieceProjectileParameters" : {},
+  "pieceProjectileCount" : 10,
+  "pieceFuzzAngle" : 45,
+  "pieceSpeedRange" : [20, 60],
+
+  "monsterType" : "v-mutanteelhead",
+  "spawnRadius" : 75,
+  "spawnTime" : 5,
+
+  "requiredLiquidId" : 3,  // Poison
+  "requiredObjectDistance" : 50,
+  "requiredObjects" : ["v-ceilingglowplant1", "v-ceilingglowplant2", "v-ceilingglowplant3", "v-ceilingglowplant4", "v-ceilingglowplant5"],
+  "requiredBiomeBlocks" : ["v-toxicstone", "rock02", "purplecrystal", "v-toxicfungus", "v-rottingfungus"]
+}

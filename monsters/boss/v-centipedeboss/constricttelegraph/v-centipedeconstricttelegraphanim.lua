@@ -53,7 +53,7 @@ function update()
 
   -- Generate a poly that forms an ellipse.
   for i = 1, numPoints do
-    table.insert(points, vEllipse.point(ellipse.center, ellipse.radius, numPoints, i))
+    table.insert(points, vEllipse.point(ellipse.center, ellipse.radius, i, numPoints))
   end
 
   -- Draw fill

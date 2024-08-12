@@ -1,9 +1,9 @@
 {
   "name": "v-centipedebossbuildup",
-  "description": null,
+  "description": "",
   "scripts": [
-    "/scripts/actions/entity.lua",
     "/scripts/actions/boss/v-centipedeboss.lua",
+    "/scripts/actions/entity.lua",
     "/scripts/actions/v-world.lua",
     "/scripts/actions/v-worm.lua",
     "/scripts/actions/status.lua"
@@ -13,73 +13,26 @@
     "circlePosition": null
   },
   "root": {
-    "title": "sequence",
+    "title": "parallel",
     "type": "composite",
-    "name": "sequence",
-    "parameters": {},
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": -1},
+      "success": {"value": -1}
+    },
     "children": [
       {
-        "title": "setDying",
-        "type": "action",
-        "name": "setDying",
-        "parameters": {
-          "shouldDie": {"value": false}
-        }
-      },
-      {
-        "title": "Unwrap the centipede",
-        "type": "action",
-        "name": "v_wormConstrict",
-        "parameters": {
-          "bodyClampRate": {"value": 30},
-          "controlForce": {"value": 200},
-          "endCenter": {"key": "spawn"},
-          "endRadius": {"value": [15, 15]},
-          "numPoints": {"value": 50},
-          "numTotalPoints": {"value": 50},
-          "speed": {"value": 50},
-          "startCenter": {"key": "spawn"},
-          "startRadius": {"value": [15, 15]},
-          "tolerance": {"value": 5}
-        }
-      },
-      {
-        "title": "each",
+        "title": "succeeder",
         "type": "decorator",
-        "name": "each",
-        "parameters": {
-          "list": {"key": "<positionList>"},
-          "type": {"value": "string"}
-        },
+        "name": "succeeder",
+        "parameters": {},
         "child": {
-          "title": "sequence",
-          "type": "composite",
-          "name": "sequence",
-          "parameters": {},
-          "children": [
-            {
-              "title": "v_getUniqueEntityPosition",
-              "type": "action",
-              "name": "v_getUniqueEntityPosition",
-              "parameters": {
-                "uniqueId": {"key": "eachItem"}
-              },
-              "output": {
-                "position": "targetPos"
-              }
-            },
-            {
-              "title": "v_wormFlyToPosition",
-              "type": "action",
-              "name": "v_wormFlyToPosition",
-              "parameters": {
-                "position": {"key": "targetPos"},
-                "speed": {"value": 50},
-                "tolerance": {"value": 5},
-                "controlForce": {"value": 250}
-              }
-            }
-          ]
+          "title": "v_rotateTurretToDefault",
+          "type": "action",
+          "name": "v_rotateTurretToDefault",
+          "parameters": {
+            "shouldRotate": {"value": true}
+          }
         }
       },
       {
@@ -89,51 +42,123 @@
         "parameters": {},
         "children": [
           {
-            "title": "v_getUniqueEntityPosition",
+            "title": "setDying",
             "type": "action",
-            "name": "v_getUniqueEntityPosition",
+            "name": "setDying",
             "parameters": {
-              "uniqueId": {"key": "<circlePosition>"}
-            },
-            "output": {
-              "position": "targetPos"
+              "shouldDie": {"value": false}
             }
           },
           {
-            "title": "Disappear into a coil",
+            "title": "Unwrap the centipede",
             "type": "action",
             "name": "v_wormConstrict",
             "parameters": {
               "bodyClampRate": {"value": 30},
               "controlForce": {"value": 200},
-              "endCenter": {"key": "targetPos"},
+              "endCenter": {"key": "spawn"},
               "endRadius": {"value": [15, 15]},
               "numPoints": {"value": 50},
-              "numTotalPoints": {"value": 150},
+              "numTotalPoints": {"value": 50},
               "speed": {"value": 50},
-              "startCenter": {"key": "targetPos"},
+              "startCenter": {"key": "spawn"},
               "startRadius": {"value": [15, 15]},
               "tolerance": {"value": 5}
             }
+          },
+          {
+            "title": "each",
+            "type": "decorator",
+            "name": "each",
+            "parameters": {
+              "list": {"key": "<positionList>"},
+              "type": {"value": "string"}
+            },
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "v_getUniqueEntityPosition",
+                  "type": "action",
+                  "name": "v_getUniqueEntityPosition",
+                  "parameters": {
+                    "uniqueId": {"key": "eachItem"}
+                  },
+                  "output": {
+                    "position": "targetPos"
+                  }
+                },
+                {
+                  "title": "v_wormFlyToPosition",
+                  "type": "action",
+                  "name": "v_wormFlyToPosition",
+                  "parameters": {
+                    "position": {"key": "targetPos"},
+                    "speed": {"value": 50},
+                    "tolerance": {"value": 5},
+                    "controlForce": {"value": 250}
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "v_getUniqueEntityPosition",
+                "type": "action",
+                "name": "v_getUniqueEntityPosition",
+                "parameters": {
+                  "uniqueId": {"key": "<circlePosition>"}
+                },
+                "output": {
+                  "position": "targetPos"
+                }
+              },
+              {
+                "title": "Disappear into a coil",
+                "type": "action",
+                "name": "v_wormConstrict",
+                "parameters": {
+                  "bodyClampRate": {"value": 30},
+                  "controlForce": {"value": 200},
+                  "endCenter": {"key": "targetPos"},
+                  "endRadius": {"value": [15, 15]},
+                  "numPoints": {"value": 50},
+                  "numTotalPoints": {"value": 150},
+                  "speed": {"value": 50},
+                  "startCenter": {"key": "targetPos"},
+                  "startRadius": {"value": [15, 15]},
+                  "tolerance": {"value": 5}
+                }
+              }
+            ]
+          },
+          {
+            "title": "setResourcePercentage",
+            "type": "action",
+            "name": "setResourcePercentage",
+            "parameters": {
+              "percentage": {"value": 0},
+              "resource": {"value": "health"}
+            }
+          },
+          {
+            "title": "setDying",
+            "type": "action",
+            "name": "setDying",
+            "parameters": {
+              "shouldDie": {"value": true}
+            }
           }
         ]
-      },
-      {
-        "title": "setResourcePercentage",
-        "type": "action",
-        "name": "setResourcePercentage",
-        "parameters": {
-          "percentage": {"value": 0},
-          "resource": {"value": "health"}
-        }
-      },
-      {
-        "title": "setDying",
-        "type": "action",
-        "name": "setDying",
-        "parameters": {
-          "shouldDie": {"value": true}
-        }
       }
     ]
   }

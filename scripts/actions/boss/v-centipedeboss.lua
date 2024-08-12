@@ -130,13 +130,13 @@ function v_wormConstrict(args, _, _, dt)
     local radius = vec2.lerp(ticker / args.numTotalPoints, args.startRadius, args.endRadius)
     local center = vec2.lerp(ticker / args.numTotalPoints, args.startCenter, args.endCenter)
 
-    local targetPos = vEllipse.point(center, radius, args.numPoints, ticker, offsetAngle)
+    local targetPos = vEllipse.point(center, radius, ticker, args.numPoints, offsetAngle)
 
     -- If the worm has reached the target position after flying for the current tick...
     if vBehavior.rotatedFlyToPositionTick(targetPos, args.speed, args.controlForce, args.tolerance) then
       -- Find the next point on the ellipse that is out of reach of the worm.
       repeat
-        targetPos = vEllipse.point(center, radius, args.numPoints, ticker, offsetAngle)
+        targetPos = vEllipse.point(center, radius, ticker, args.numPoints, offsetAngle)
         ticker = ticker + 1
       until world.magnitude(targetPos, mcontroller.position()) > args.tolerance
     end

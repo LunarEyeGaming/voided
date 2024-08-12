@@ -1,0 +1,22 @@
+{
+  "itemName" : "v-honeyglazedbigpuffer",
+  "rarity" : "Rare",
+  "price" : 3000,
+  "category" : "preparedFood",
+  "inventoryIcon" : "v-honeyglazedbigpuffer.png",
+  "description" : "A Big Puffer glazed in Killer Bee Honey with a side of sliced 'Dotefruit.",
+  "shortdescription" : "Glazed Big Puffer",
+  "effects" : [ [
+    "v-depthpoisonantidote2",
+    "v-depthpoisondecrease"
+  ] ],
+  "foodValue" : 45,
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/v-buildfood.lua",
+  "maxStack" : 1,
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 1.0,
+  "blockingEffects" : [
+    "wellfed"
+  ]
+}

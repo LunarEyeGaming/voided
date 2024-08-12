@@ -1,0 +1,137 @@
+{
+  "name": "v-mutanteel-eatfood",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/world.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/v-worm.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {
+    "eatEntity": null
+  },
+  "root": {
+    "title": "succeeder",
+    "type": "decorator",
+    "name": "succeeder",
+    "parameters": {},
+    "child": {
+      "title": "sequence",
+      "type": "composite",
+      "name": "sequence",
+      "parameters": {},
+      "children": [
+        {
+          "title": "entityExists",
+          "type": "action",
+          "name": "entityExists",
+          "parameters": {
+            "entity": {"key": "<eatEntity>"}
+          }
+        },
+        {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"value": "eatwindup"},
+            "type": {"value": "body"}
+          }
+        },
+        {
+          "title": "parallel",
+          "type": "composite",
+          "name": "parallel",
+          "parameters": {
+            "fail": {"value": -1},
+            "success": {"value": 1}
+          },
+          "children": [
+            {
+              "title": "failer",
+              "type": "decorator",
+              "name": "failer",
+              "parameters": {},
+              "child": {
+                "title": "entityPosition",
+                "type": "action",
+                "name": "entityPosition",
+                "parameters": {
+                  "entity": {"key": "<eatEntity>"}
+                },
+                "output": {
+                  "position": "targetPos"
+                }
+              }
+            },
+            {
+              "title": "v_wormFlyToPosition",
+              "type": "action",
+              "name": "v_wormFlyToPosition",
+              "parameters": {
+                "position": {"key": "targetPos"},
+                "speed": {"value": 35},
+                "tolerance": {"value": 1},
+                "controlForce": {"value": 75}
+              }
+            }
+          ]
+        },
+        {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"value": "eat"},
+            "type": {"value": "body"}
+          }
+        },
+        {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"value": []},
+            "entity": {"key": "<eatEntity>"},
+            "message": {"value": "kill"}
+          }
+        },
+        {
+          "title": "parallel",
+          "type": "composite",
+          "name": "parallel",
+          "parameters": {
+            "fail": {"value": -1},
+            "success": {"value": 1}
+          },
+          "children": [
+            {
+              "title": "failer",
+              "type": "decorator",
+              "name": "failer",
+              "parameters": {},
+              "child": {
+                "title": "controlApproachVelocity",
+                "type": "action",
+                "name": "controlApproachVelocity",
+                "parameters": {
+                  "force": {"value": 250},
+                  "velocity": {"value": [0, 0]}
+                }
+              }
+            },
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"value": 0.5}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

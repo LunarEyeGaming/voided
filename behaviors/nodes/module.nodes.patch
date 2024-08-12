@@ -623,5 +623,53 @@
       },
       "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-centipedebossbuildup.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-wander-crawlnonstop",
+    "value": {
+      "type": "module",
+      "name": "v-wander-crawlnonstop",
+      "title": "",
+      "properties": {
+        "idleState": {"type": "json", "value": "idle"},
+        "moveState": {"type": "json", "value": "walk"},
+        "resetHeading": {"type": "json", "value": true},
+        "stickForce": {"type": "json", "value": 50},
+        "stopForce": {"type": "json", "value": 0},
+        "testDistance": {"type": "json", "value": 0.25}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-crawlnonstopwander.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-crawl",
+    "value": {
+      "type": "module",
+      "name": "v-approach-crawl",
+      "title": "",
+      "properties": {
+        "moveState": {"type": "json", "value": "walk"},
+        "resetHeading": {"type": "json", "value": true},
+        "run": {"type": "json", "value": false},
+        "stickForce": {"type": "json", "value": 50},
+        "testDistance": {"type": "json", "value": 0.25}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-crawlapproach.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-mutanteel-eatfood",
+    "value": {
+      "type": "module",
+      "name": "v-mutanteel-eatfood",
+      "title": "",
+      "properties": {
+        "eatEntity": {"type": "json", "value": null}
+      },
+      "pathToTree": "..\\monsters\\unique\\v-mutanteel-eatfood.behavior"
+    }
   }
 ]

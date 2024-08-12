@@ -2,34 +2,6 @@ require "/scripts/behavior/bdata.lua"
 require "/scripts/util.lua"
 require "/scripts/v-behavior.lua"
 
---[[
-  Returns whether or not two arguments a and b are equal, even if they are tables. Recursive tables are not supported
-  and can result in infinite recursion.
-
-  param a: the first value to compare
-  param b: the second value to compare
-]]
-function _deepEquals(a, b)
-  -- If both values are tables...
-  if type(a) == "table" and type(b) == "table" then
-    -- For each key-value pair in `a`...
-    for k, va in pairs(a) do
-      local vb = b[k]
-
-      -- If va and vb do not match...
-      if not _deepEquals(va, vb) then
-        return false
-      end
-    end
-
-    -- Return true here as this means that all entries of a and b are structurally identical.
-    return true
-  else
-    -- Return whether or not they are equal.
-    return a == b
-  end
-end
-
 -- param list
 -- param index
 -- output entity
@@ -171,7 +143,7 @@ function v_listRemove(args, board)
     if args[type] then
       -- Try to remove the item by searching for it.
       for i, v in ipairs(list) do
-        if _deepEquals(args[type], v) then
+        if voidedUtil.deepEquals(args[type], v) then
           -- Remove the item
           table.remove(list, i)
           -- Return success.

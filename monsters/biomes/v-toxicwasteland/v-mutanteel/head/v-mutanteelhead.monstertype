@@ -21,10 +21,10 @@
 
     "behavior" : "monster",
     "deathBehavior" : "monster-death",
-    
+
     "size" : 20,
     "bodySegment" : "v-mutanteelbody",
-    
+
     "facingMode" : "transformation",
     "renderLayer" : "ForegroundEntity+11",
     "capturedLevel" : 8,
@@ -40,8 +40,15 @@
       "targetOutOfSightTime" : 9999.0,
 
       "hurtWaitForGround" : false,
-      
-      "foundTargetActions" : [ 
+
+      "spawnActions" : [
+        {
+          // This action occurs only if it was summoned
+          "name" : "v-mutanteel-eatfood"
+        }
+      ],
+
+      "foundTargetActions" : [
         {
           // Stops to roar
           "name" : "action-fire",
@@ -73,7 +80,7 @@
           }
         }
       ],
-      
+
       "hostileActions" : [
         {
           "name" : "v-action-wormfire",
@@ -90,7 +97,7 @@
             "fireState" : "roar",
             "fireSound" : "roar",
             "fireDelay" : 0.1,
-            
+
             "fireCount" : 20,
             "fireInterval" : 0.2,
 
@@ -109,6 +116,21 @@
       ],
 
       "approachActions" : [
+        {
+          "name" : "v-approach-turnworm",
+          "parameters" : {
+            "turnSpeed" : 4.0,
+            "waveAmplitude" : 0
+          }
+        }
+      ],
+
+      "followActions" : [
+        {
+          "name" : "approach-teleport",
+          "parameters" : {
+          }
+        },
         {
           "name" : "v-approach-turnworm",
           "parameters" : {
@@ -208,6 +230,9 @@
         },
         "poisonStatusImmunity" : {
           "baseValue" : 1.0
+        },
+        "v-strongpoisonStatusImmunity" : {
+          "baseValue" : 1.0
         }
       },
 
@@ -226,6 +251,9 @@
 
     "mouthOffset" : [0, 0],
     "feetOffset" : [0, -8],
-    "capturable" : false
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-mutanteel" }
   }
 }

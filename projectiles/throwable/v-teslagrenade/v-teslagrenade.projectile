@@ -11,8 +11,9 @@
   "bounces" : 0,
   "emitters" : [ "electricswoosh" ],
   "damageKind" : "electric",
+  "damageType" : "NoDamage",
   "piercing" : false,
-  
+
   "actionOnReap" : [
     {
       "action" : "config",
@@ -21,9 +22,9 @@
   ],
 
   "speed" : 20,
-  
+
   "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
-  
+
   "monsterType" : "v-shockwave",
   "spawnOffset" : [0, 0],
   "shockwaveDamageFactor" : 0.75

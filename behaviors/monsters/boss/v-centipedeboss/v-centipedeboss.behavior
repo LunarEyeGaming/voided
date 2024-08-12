@@ -1,219 +1,518 @@
 {
   "name": "v-centipedeboss",
-  "description": null,
+  "description": "",
   "scripts": [
-    "/scripts/actions/entity.lua",
     "/scripts/actions/boss/v-centipedeboss.lua",
+    "/scripts/actions/entity.lua",
     "/scripts/actions/v-world.lua",
+    "/scripts/behavior.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/status.lua",
     "/scripts/actions/monster.lua",
     "/scripts/actions/time.lua",
-    "/scripts/actions/animator.lua",
-    "/scripts/behavior.lua"
+    "/scripts/actions/animator.lua"
   ],
   "parameters": {},
   "root": {
-    "title": "Reset",
+    "title": "parallel",
     "type": "composite",
-    "name": "sequence",
-    "parameters": {},
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": -1},
+      "success": {"value": -1}
+    },
     "children": [
-      {
-        "title": "setDying",
-        "type": "action",
-        "name": "setDying",
-        "parameters": {
-          "shouldDie": {"value": false}
-        }
-      },
-      {
-        "title": "v_fetchPositions",
-        "type": "action",
-        "name": "v_fetchPositions",
-        "parameters": {
-          "boardVarPrefix": {"value": "pos-"},
-          "coordDelimiter": {"value": "_"},
-          "gridDimensions": {"value": [3, 4]},
-          "uniqueIdPrefix": {"value": "v-pos-"}
-        }
-      },
-      {
-        "title": "Get orbit pos 1",
-        "type": "action",
-        "name": "v_getUniqueEntityPosition",
-        "parameters": {
-          "uniqueId": {"value": "v-orbitPos1"}
-        },
-        "output": {
-          "position": "orbitPos1"
-        }
-      },
-      {
-        "title": "Get orbit pos 2",
-        "type": "action",
-        "name": "v_getUniqueEntityPosition",
-        "parameters": {
-          "uniqueId": {"value": "v-orbitPos2"}
-        },
-        "output": {
-          "position": "orbitPos2"
-        }
-      },
-      {
-        "title": "Get orbit pos 3",
-        "type": "action",
-        "name": "v_getUniqueEntityPosition",
-        "parameters": {
-          "uniqueId": {"value": "v-orbitPos3"}
-        },
-        "output": {
-          "position": "orbitPos3"
-        }
-      },
-      {
-        "title": "Get orbit pos 4",
-        "type": "action",
-        "name": "v_getUniqueEntityPosition",
-        "parameters": {
-          "uniqueId": {"value": "v-orbitPos4"}
-        },
-        "output": {
-          "position": "orbitPos4"
-        }
-      },
-      {
-        "title": "Get orbit pos 5",
-        "type": "action",
-        "name": "v_getUniqueEntityPosition",
-        "parameters": {
-          "uniqueId": {"value": "v-orbitPos5"}
-        },
-        "output": {
-          "position": "orbitPos5"
-        }
-      },
-      {
-        "title": "Get center pos",
-        "type": "action",
-        "name": "v_getUniqueEntityPosition",
-        "parameters": {
-          "uniqueId": {"value": "v-centerPos"}
-        },
-        "output": {
-          "position": "centerPos"
-        }
-      },
-      {
-        "title": "v_getChildren",
-        "type": "action",
-        "name": "v_getChildren",
-        "parameters": {},
-        "output": {
-          "entityIds": "childSegments"
-        }
-      },
-      {
-        "title": "v_getTail",
-        "type": "action",
-        "name": "v_getTail",
-        "parameters": {},
-        "output": {
-          "entityId": "tailId"
-        }
-      },
-      {
-        "title": "setDamageOnTouch",
-        "type": "action",
-        "name": "setDamageOnTouch",
-        "parameters": {
-          "touchDamage": {"value": true}
-        }
-      },
       {
         "title": "succeeder",
         "type": "decorator",
         "name": "succeeder",
         "parameters": {},
         "child": {
-          "title": "v-centipedeboss-intro",
-          "type": "module",
-          "name": "v-centipedeboss-intro",
-          "parameters": {}
+          "title": "v_rotateTurretToDefault",
+          "type": "action",
+          "name": "v_rotateTurretToDefault",
+          "parameters": {
+            "shouldRotate": {"key": "turretIsNotActive"}
+          }
         }
       },
       {
-        "title": "parallel",
+        "title": "Reset",
         "type": "composite",
-        "name": "parallel",
-        "parameters": {
-          "fail": {"value": -1},
-          "success": {"value": -1}
-        },
+        "name": "sequence",
+        "parameters": {},
         "children": [
           {
-            "title": "monster-targeting",
-            "type": "module",
-            "name": "monster-targeting",
+            "title": "setDying",
+            "type": "action",
+            "name": "setDying",
             "parameters": {
-              "targetQueryRange": {"value": 80},
-              "keepTargetInRange": {"value": 100},
-              "targetEntityTypes": {"value": ["player"]},
-              "keepTargetInSight": {"value": true},
-              "queryTargets": {"value": true},
-              "targetOnDamage": {"value": true},
-              "targetOutOfSightTime": {"value": 9999}
+              "shouldDie": {"value": false}
             }
           },
           {
-            "title": "dynamic",
-            "type": "composite",
-            "name": "dynamic",
+            "title": "v_fetchPositions",
+            "type": "action",
+            "name": "v_fetchPositions",
+            "parameters": {
+              "boardVarPrefix": {"value": "pos-"},
+              "coordDelimiter": {"value": "_"},
+              "gridDimensions": {"value": [3, 4]},
+              "uniqueIdPrefix": {"value": "v-pos-"}
+            }
+          },
+          {
+            "title": "Get orbit pos 1",
+            "type": "action",
+            "name": "v_getUniqueEntityPosition",
+            "parameters": {
+              "uniqueId": {"value": "v-orbitPos1"}
+            },
+            "output": {
+              "position": "orbitPos1"
+            }
+          },
+          {
+            "title": "Get orbit pos 2",
+            "type": "action",
+            "name": "v_getUniqueEntityPosition",
+            "parameters": {
+              "uniqueId": {"value": "v-orbitPos2"}
+            },
+            "output": {
+              "position": "orbitPos2"
+            }
+          },
+          {
+            "title": "Get orbit pos 3",
+            "type": "action",
+            "name": "v_getUniqueEntityPosition",
+            "parameters": {
+              "uniqueId": {"value": "v-orbitPos3"}
+            },
+            "output": {
+              "position": "orbitPos3"
+            }
+          },
+          {
+            "title": "Get orbit pos 4",
+            "type": "action",
+            "name": "v_getUniqueEntityPosition",
+            "parameters": {
+              "uniqueId": {"value": "v-orbitPos4"}
+            },
+            "output": {
+              "position": "orbitPos4"
+            }
+          },
+          {
+            "title": "Get orbit pos 5",
+            "type": "action",
+            "name": "v_getUniqueEntityPosition",
+            "parameters": {
+              "uniqueId": {"value": "v-orbitPos5"}
+            },
+            "output": {
+              "position": "orbitPos5"
+            }
+          },
+          {
+            "title": "Get center pos",
+            "type": "action",
+            "name": "v_getUniqueEntityPosition",
+            "parameters": {
+              "uniqueId": {"value": "v-centerPos"}
+            },
+            "output": {
+              "position": "centerPos"
+            }
+          },
+          {
+            "title": "v_getChildren",
+            "type": "action",
+            "name": "v_getChildren",
             "parameters": {},
+            "output": {
+              "entityIds": "childSegments"
+            }
+          },
+          {
+            "title": "v_getTail",
+            "type": "action",
+            "name": "v_getTail",
+            "parameters": {},
+            "output": {
+              "entityId": "tailId"
+            }
+          },
+          {
+            "title": "setDamageOnTouch",
+            "type": "action",
+            "name": "setDamageOnTouch",
+            "parameters": {
+              "touchDamage": {"value": true}
+            }
+          },
+          {
+            "title": "setFlag",
+            "type": "action",
+            "name": "setFlag",
+            "parameters": {
+              "name": {"value": "turretIsNotActive"}
+            }
+          },
+          {
+            "title": "succeeder",
+            "type": "decorator",
+            "name": "succeeder",
+            "parameters": {},
+            "child": {
+              "title": "v-centipedeboss-intro",
+              "type": "module",
+              "name": "v-centipedeboss-intro",
+              "parameters": {}
+            }
+          },
+          {
+            "title": "parallel",
+            "type": "composite",
+            "name": "parallel",
+            "parameters": {
+              "fail": {"value": -1},
+              "success": {"value": -1}
+            },
             "children": [
               {
-                "title": "parallel",
-                "type": "composite",
-                "name": "parallel",
+                "title": "monster-targeting",
+                "type": "module",
+                "name": "monster-targeting",
                 "parameters": {
-                  "fail": {"value": 1},
-                  "success": {"value": -1}
-                },
+                  "targetQueryRange": {"value": 80},
+                  "keepTargetInRange": {"value": 100},
+                  "targetEntityTypes": {"value": ["player"]},
+                  "keepTargetInSight": {"value": true},
+                  "queryTargets": {"value": true},
+                  "targetOnDamage": {"value": true},
+                  "targetOutOfSightTime": {"value": 9999}
+                }
+              },
+              {
+                "title": "dynamic",
+                "type": "composite",
+                "name": "dynamic",
+                "parameters": {},
                 "children": [
                   {
-                    "title": "entityExists",
-                    "type": "action",
-                    "name": "entityExists",
+                    "title": "parallel",
+                    "type": "composite",
+                    "name": "parallel",
                     "parameters": {
-                      "entity": {"key": "target"}
-                    }
-                  },
-                  {
-                    "title": "succeeder",
-                    "type": "decorator",
-                    "name": "succeeder",
-                    "parameters": {},
-                    "child": {
-                      "title": "v_rotateTurretToDefault",
-                      "type": "action",
-                      "name": "v_rotateTurretToDefault",
-                      "parameters": {
-                        "shouldRotate": {"key": "turretIsNotActive"}
+                      "fail": {"value": 1},
+                      "success": {"value": -1}
+                    },
+                    "children": [
+                      {
+                        "title": "entityExists",
+                        "type": "action",
+                        "name": "entityExists",
+                        "parameters": {
+                          "entity": {"key": "target"}
+                        }
+                      },
+                      {
+                        "title": "sequence",
+                        "type": "composite",
+                        "name": "sequence",
+                        "parameters": {},
+                        "children": [
+                          {
+                            "title": "removeEphemeralEffect",
+                            "type": "action",
+                            "name": "removeEphemeralEffect",
+                            "parameters": {
+                              "name": {"value": "invulnerable"}
+                            }
+                          },
+                          {
+                            "title": "setDamageBar",
+                            "type": "action",
+                            "name": "setDamageBar",
+                            "parameters": {
+                              "type": {"value": "Special"}
+                            }
+                          },
+                          {
+                            "title": "battleMusic",
+                            "type": "action",
+                            "name": "battleMusic",
+                            "parameters": {
+                              "enable": {"value": true}
+                            }
+                          },
+                          {
+                            "title": "Spiderboss",
+                            "type": "composite",
+                            "name": "dynamic",
+                            "parameters": {},
+                            "children": [
+                              {
+                                "title": "parallel",
+                                "type": "composite",
+                                "name": "parallel",
+                                "parameters": {
+                                  "fail": {"value": 1},
+                                  "success": {"value": -1}
+                                },
+                                "children": [
+                                  {
+                                    "title": "resourcePercentage",
+                                    "type": "action",
+                                    "name": "resourcePercentage",
+                                    "parameters": {
+                                      "percentage": {"value": 0.5},
+                                      "resource": {"value": "health"}
+                                    }
+                                  },
+                                  {
+                                    "title": "sequence",
+                                    "type": "composite",
+                                    "name": "sequence",
+                                    "parameters": {},
+                                    "children": [
+                                      {
+                                        "title": "timer",
+                                        "type": "action",
+                                        "name": "timer",
+                                        "parameters": {
+                                          "time": {"value": 2}
+                                        }
+                                      },
+                                      {
+                                        "title": "repeater",
+                                        "type": "decorator",
+                                        "name": "repeater",
+                                        "parameters": {
+                                          "maxLoops": {"value": -1},
+                                          "untilSuccess": {"value": false}
+                                        },
+                                        "child": {
+                                          "title": "randomize",
+                                          "type": "composite",
+                                          "name": "randomize",
+                                          "parameters": {},
+                                          "children": [
+                                            {
+                                              "title": "cooldown",
+                                              "type": "decorator",
+                                              "name": "cooldown",
+                                              "parameters": {
+                                                "cooldown": {"value": 30},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
+                                              },
+                                              "child": {
+                                                "title": "v-centipedeboss-projectileattack1",
+                                                "type": "module",
+                                                "name": "v-centipedeboss-projectileattack1",
+                                                "parameters": {}
+                                              }
+                                            },
+                                            {
+                                              "title": "cooldown",
+                                              "type": "decorator",
+                                              "name": "cooldown",
+                                              "parameters": {
+                                                "cooldown": {"value": 30},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
+                                              },
+                                              "child": {
+                                                "title": "v-centipedeboss-followattack",
+                                                "type": "module",
+                                                "name": "v-centipedeboss-followattack",
+                                                "parameters": {}
+                                              }
+                                            },
+                                            {
+                                              "title": "cooldown",
+                                              "type": "decorator",
+                                              "name": "cooldown",
+                                              "parameters": {
+                                                "cooldown": {"value": 30},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
+                                              },
+                                              "child": {
+                                                "title": "v-centipedeboss-constrictattack",
+                                                "type": "module",
+                                                "name": "v-centipedeboss-constrictattack",
+                                                "parameters": {}
+                                              }
+                                            },
+                                            {
+                                              "title": "cooldown",
+                                              "type": "decorator",
+                                              "name": "cooldown",
+                                              "parameters": {
+                                                "cooldown": {"value": 30},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
+                                              },
+                                              "child": {
+                                                "title": "v-centipedeboss-constrictattack2",
+                                                "type": "module",
+                                                "name": "v-centipedeboss-constrictattack2",
+                                                "parameters": {}
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "title": "parallel",
+                                "type": "composite",
+                                "name": "parallel",
+                                "parameters": {
+                                  "fail": {"value": 1},
+                                  "success": {"value": -1}
+                                },
+                                "children": [
+                                  {
+                                    "title": "resourcePercentage",
+                                    "type": "action",
+                                    "name": "resourcePercentage",
+                                    "parameters": {
+                                      "percentage": {"value": 0},
+                                      "resource": {"value": "health"}
+                                    }
+                                  },
+                                  {
+                                    "title": "sequence",
+                                    "type": "composite",
+                                    "name": "sequence",
+                                    "parameters": {},
+                                    "children": [
+                                      {
+                                        "title": "v-centipedeboss-phasetransition",
+                                        "type": "module",
+                                        "name": "v-centipedeboss-phasetransition",
+                                        "parameters": {}
+                                      },
+                                      {
+                                        "title": "repeater",
+                                        "type": "decorator",
+                                        "name": "repeater",
+                                        "parameters": {
+                                          "maxLoops": {"value": -1},
+                                          "untilSuccess": {"value": false}
+                                        },
+                                        "child": {
+                                          "title": "randomize",
+                                          "type": "composite",
+                                          "name": "randomize",
+                                          "parameters": {},
+                                          "children": [
+                                            {
+                                              "title": "cooldown",
+                                              "type": "decorator",
+                                              "name": "cooldown",
+                                              "parameters": {
+                                                "cooldown": {"value": 30},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
+                                              },
+                                              "child": {
+                                                "title": "v-centipedeboss-projectileattack1",
+                                                "type": "module",
+                                                "name": "v-centipedeboss-projectileattack1",
+                                                "parameters": {}
+                                              }
+                                            },
+                                            {
+                                              "title": "cooldown",
+                                              "type": "decorator",
+                                              "name": "cooldown",
+                                              "parameters": {
+                                                "cooldown": {"value": 30},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
+                                              },
+                                              "child": {
+                                                "title": "v-centipedeboss-followattack",
+                                                "type": "module",
+                                                "name": "v-centipedeboss-followattack",
+                                                "parameters": {}
+                                              }
+                                            },
+                                            {
+                                              "title": "cooldown",
+                                              "type": "decorator",
+                                              "name": "cooldown",
+                                              "parameters": {
+                                                "cooldown": {"value": 30},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
+                                              },
+                                              "child": {
+                                                "title": "v-centipedeboss-constrictattack",
+                                                "type": "module",
+                                                "name": "v-centipedeboss-constrictattack",
+                                                "parameters": {}
+                                              }
+                                            },
+                                            {
+                                              "title": "cooldown",
+                                              "type": "decorator",
+                                              "name": "cooldown",
+                                              "parameters": {
+                                                "cooldown": {"value": 30},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
+                                              },
+                                              "child": {
+                                                "title": "v-centipedeboss-constrictattack2",
+                                                "type": "module",
+                                                "name": "v-centipedeboss-constrictattack2",
+                                                "parameters": {}
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "title": "setDying",
+                                "type": "action",
+                                "name": "setDying",
+                                "parameters": {
+                                  "shouldDie": {"value": true}
+                                }
+                              }
+                            ]
+                          }
+                        ]
                       }
-                    }
+                    ]
                   },
                   {
-                    "title": "sequence",
+                    "title": "Reset",
                     "type": "composite",
                     "name": "sequence",
                     "parameters": {},
                     "children": [
                       {
-                        "title": "removeEphemeralEffect",
+                        "title": "battleMusic",
                         "type": "action",
-                        "name": "removeEphemeralEffect",
+                        "name": "battleMusic",
                         "parameters": {
-                          "name": {"value": "invulnerable"}
+                          "enable": {"value": false}
                         }
                       },
                       {
@@ -221,415 +520,135 @@
                         "type": "action",
                         "name": "setDamageBar",
                         "parameters": {
-                          "type": {"value": "Special"}
+                          "type": {"value": "None"}
                         }
                       },
                       {
-                        "title": "battleMusic",
+                        "title": "setResourcePercentage",
                         "type": "action",
-                        "name": "battleMusic",
+                        "name": "setResourcePercentage",
                         "parameters": {
-                          "enable": {"value": true}
+                          "percentage": {"value": 1},
+                          "resource": {"value": "health"}
                         }
                       },
                       {
-                        "title": "Spiderboss",
-                        "type": "composite",
-                        "name": "dynamic",
-                        "parameters": {},
-                        "children": [
-                          {
-                            "title": "parallel",
-                            "type": "composite",
-                            "name": "parallel",
-                            "parameters": {
-                              "fail": {"value": 1},
-                              "success": {"value": -1}
-                            },
-                            "children": [
-                              {
-                                "title": "resourcePercentage",
-                                "type": "action",
-                                "name": "resourcePercentage",
-                                "parameters": {
-                                  "percentage": {"value": 0.5},
-                                  "resource": {"value": "health"}
-                                }
-                              },
-                              {
-                                "title": "sequence",
-                                "type": "composite",
-                                "name": "sequence",
-                                "parameters": {},
-                                "children": [
-                                  {
-                                    "title": "timer",
-                                    "type": "action",
-                                    "name": "timer",
-                                    "parameters": {
-                                      "time": {"value": 2}
-                                    }
-                                  },
-                                  {
-                                    "title": "repeater",
-                                    "type": "decorator",
-                                    "name": "repeater",
-                                    "parameters": {
-                                      "maxLoops": {"value": -1},
-                                      "untilSuccess": {"value": false}
-                                    },
-                                    "child": {
-                                      "title": "randomize",
-                                      "type": "composite",
-                                      "name": "randomize",
-                                      "parameters": {},
-                                      "children": [
-                                        {
-                                          "title": "cooldown",
-                                          "type": "decorator",
-                                          "name": "cooldown",
-                                          "parameters": {
-                                            "cooldown": {"value": 30},
-                                            "onFail": {"value": false},
-                                            "onSuccess": {"value": true}
-                                          },
-                                          "child": {
-                                            "title": "v-centipedeboss-projectileattack1",
-                                            "type": "module",
-                                            "name": "v-centipedeboss-projectileattack1",
-                                            "parameters": {}
-                                          }
-                                        },
-                                        {
-                                          "title": "cooldown",
-                                          "type": "decorator",
-                                          "name": "cooldown",
-                                          "parameters": {
-                                            "cooldown": {"value": 30},
-                                            "onFail": {"value": false},
-                                            "onSuccess": {"value": true}
-                                          },
-                                          "child": {
-                                            "title": "v-centipedeboss-followattack",
-                                            "type": "module",
-                                            "name": "v-centipedeboss-followattack",
-                                            "parameters": {}
-                                          }
-                                        },
-                                        {
-                                          "title": "cooldown",
-                                          "type": "decorator",
-                                          "name": "cooldown",
-                                          "parameters": {
-                                            "cooldown": {"value": 30},
-                                            "onFail": {"value": false},
-                                            "onSuccess": {"value": true}
-                                          },
-                                          "child": {
-                                            "title": "v-centipedeboss-constrictattack",
-                                            "type": "module",
-                                            "name": "v-centipedeboss-constrictattack",
-                                            "parameters": {}
-                                          }
-                                        },
-                                        {
-                                          "title": "cooldown",
-                                          "type": "decorator",
-                                          "name": "cooldown",
-                                          "parameters": {
-                                            "cooldown": {"value": 30},
-                                            "onFail": {"value": false},
-                                            "onSuccess": {"value": true}
-                                          },
-                                          "child": {
-                                            "title": "v-centipedeboss-constrictattack2",
-                                            "type": "module",
-                                            "name": "v-centipedeboss-constrictattack2",
-                                            "parameters": {}
-                                          }
-                                        }
-                                      ]
-                                    }
-                                  }
-                                ]
-                              }
-                            ]
-                          },
-                          {
-                            "title": "parallel",
-                            "type": "composite",
-                            "name": "parallel",
-                            "parameters": {
-                              "fail": {"value": 1},
-                              "success": {"value": -1}
-                            },
-                            "children": [
-                              {
-                                "title": "resourcePercentage",
-                                "type": "action",
-                                "name": "resourcePercentage",
-                                "parameters": {
-                                  "percentage": {"value": 0},
-                                  "resource": {"value": "health"}
-                                }
-                              },
-                              {
-                                "title": "sequence",
-                                "type": "composite",
-                                "name": "sequence",
-                                "parameters": {},
-                                "children": [
-                                  {
-                                    "title": "v-centipedeboss-phasetransition",
-                                    "type": "module",
-                                    "name": "v-centipedeboss-phasetransition",
-                                    "parameters": {}
-                                  },
-                                  {
-                                    "title": "repeater",
-                                    "type": "decorator",
-                                    "name": "repeater",
-                                    "parameters": {
-                                      "maxLoops": {"value": -1},
-                                      "untilSuccess": {"value": false}
-                                    },
-                                    "child": {
-                                      "title": "randomize",
-                                      "type": "composite",
-                                      "name": "randomize",
-                                      "parameters": {},
-                                      "children": [
-                                        {
-                                          "title": "cooldown",
-                                          "type": "decorator",
-                                          "name": "cooldown",
-                                          "parameters": {
-                                            "cooldown": {"value": 30},
-                                            "onFail": {"value": false},
-                                            "onSuccess": {"value": true}
-                                          },
-                                          "child": {
-                                            "title": "v-centipedeboss-projectileattack1",
-                                            "type": "module",
-                                            "name": "v-centipedeboss-projectileattack1",
-                                            "parameters": {}
-                                          }
-                                        },
-                                        {
-                                          "title": "cooldown",
-                                          "type": "decorator",
-                                          "name": "cooldown",
-                                          "parameters": {
-                                            "cooldown": {"value": 30},
-                                            "onFail": {"value": false},
-                                            "onSuccess": {"value": true}
-                                          },
-                                          "child": {
-                                            "title": "v-centipedeboss-followattack",
-                                            "type": "module",
-                                            "name": "v-centipedeboss-followattack",
-                                            "parameters": {}
-                                          }
-                                        },
-                                        {
-                                          "title": "cooldown",
-                                          "type": "decorator",
-                                          "name": "cooldown",
-                                          "parameters": {
-                                            "cooldown": {"value": 30},
-                                            "onFail": {"value": false},
-                                            "onSuccess": {"value": true}
-                                          },
-                                          "child": {
-                                            "title": "v-centipedeboss-constrictattack",
-                                            "type": "module",
-                                            "name": "v-centipedeboss-constrictattack",
-                                            "parameters": {}
-                                          }
-                                        },
-                                        {
-                                          "title": "cooldown",
-                                          "type": "decorator",
-                                          "name": "cooldown",
-                                          "parameters": {
-                                            "cooldown": {"value": 30},
-                                            "onFail": {"value": false},
-                                            "onSuccess": {"value": true}
-                                          },
-                                          "child": {
-                                            "title": "v-centipedeboss-constrictattack2",
-                                            "type": "module",
-                                            "name": "v-centipedeboss-constrictattack2",
-                                            "parameters": {}
-                                          }
-                                        }
-                                      ]
-                                    }
-                                  }
-                                ]
-                              }
-                            ]
-                          },
-                          {
-                            "title": "setDying",
-                            "type": "action",
-                            "name": "setDying",
-                            "parameters": {
-                              "shouldDie": {"value": true}
-                            }
+                        "title": "setGlobalTag",
+                        "type": "action",
+                        "name": "setGlobalTag",
+                        "parameters": {
+                          "tag": {"value": "1"},
+                          "type": {"value": "phase"}
+                        }
+                      },
+                      {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"value": "inactive"},
+                          "type": {"value": "targetlaser"}
+                        }
+                      },
+                      {
+                        "title": "setFlag",
+                        "type": "action",
+                        "name": "setFlag",
+                        "parameters": {
+                          "name": {"value": "turretIsNotActive"}
+                        }
+                      },
+                      {
+                        "title": "each",
+                        "type": "decorator",
+                        "name": "each",
+                        "parameters": {
+                          "list": {"key": "childSegments"},
+                          "type": {"value": "entity"}
+                        },
+                        "child": {
+                          "title": "sendEntityMessage",
+                          "type": "action",
+                          "name": "sendEntityMessage",
+                          "parameters": {
+                            "arguments": {"value": []},
+                            "entity": {"key": "eachItem"},
+                            "message": {"value": "reset"}
                           }
-                        ]
+                        }
+                      },
+                      {
+                        "title": "sendEntityMessage",
+                        "type": "action",
+                        "name": "sendEntityMessage",
+                        "parameters": {
+                          "arguments": {"value": ["1"]},
+                          "entity": {"key": "tailId"},
+                          "message": {"value": "setPhase"}
+                        }
+                      },
+                      {
+                        "title": "succeeder",
+                        "type": "decorator",
+                        "name": "succeeder",
+                        "parameters": {},
+                        "child": {
+                          "title": "sendEntityMessage",
+                          "type": "action",
+                          "name": "sendEntityMessage",
+                          "parameters": {
+                            "arguments": {"value": []},
+                            "entity": {"key": "telegraphId"},
+                            "message": {"value": "despawn"}
+                          }
+                        }
+                      },
+                      {
+                        "title": "clearPersistentEffects",
+                        "type": "action",
+                        "name": "clearPersistentEffects",
+                        "parameters": {
+                          "category": {"value": "dynamicResistance"}
+                        }
+                      },
+                      {
+                        "title": "addStatModifier",
+                        "type": "action",
+                        "name": "addStatModifier",
+                        "parameters": {
+                          "amount": {"value": 0.5},
+                          "category": {"value": "dynamicResistance"},
+                          "stat": {"value": "poisonResistance"}
+                        }
+                      },
+                      {
+                        "title": "addStatModifier",
+                        "type": "action",
+                        "name": "addStatModifier",
+                        "parameters": {
+                          "amount": {"value": -0.25},
+                          "category": {"value": "dynamicResistance"},
+                          "stat": {"value": "electricResistance"}
+                        }
+                      },
+                      {
+                        "title": "v-centipedeboss-flytopos",
+                        "type": "module",
+                        "name": "v-centipedeboss-flytopos",
+                        "parameters": {
+                          "position": {"key": "centerPos"},
+                          "speed": {"value": 50},
+                          "tolerance": {"value": 5},
+                          "controlForce": {"value": 250}
+                        }
+                      },
+                      {
+                        "title": "runner",
+                        "type": "action",
+                        "name": "runner",
+                        "parameters": {}
                       }
                     ]
-                  }
-                ]
-              },
-              {
-                "title": "Reset",
-                "type": "composite",
-                "name": "sequence",
-                "parameters": {},
-                "children": [
-                  {
-                    "title": "battleMusic",
-                    "type": "action",
-                    "name": "battleMusic",
-                    "parameters": {
-                      "enable": {"value": false}
-                    }
-                  },
-                  {
-                    "title": "setDamageBar",
-                    "type": "action",
-                    "name": "setDamageBar",
-                    "parameters": {
-                      "type": {"value": "None"}
-                    }
-                  },
-                  {
-                    "title": "setResourcePercentage",
-                    "type": "action",
-                    "name": "setResourcePercentage",
-                    "parameters": {
-                      "percentage": {"value": 1},
-                      "resource": {"value": "health"}
-                    }
-                  },
-                  {
-                    "title": "setGlobalTag",
-                    "type": "action",
-                    "name": "setGlobalTag",
-                    "parameters": {
-                      "tag": {"value": "1"},
-                      "type": {"value": "phase"}
-                    }
-                  },
-                  {
-                    "title": "setAnimationState",
-                    "type": "action",
-                    "name": "setAnimationState",
-                    "parameters": {
-                      "state": {"value": "inactive"},
-                      "type": {"value": "targetlaser"}
-                    }
-                  },
-                  {
-                    "title": "setFlag",
-                    "type": "action",
-                    "name": "setFlag",
-                    "parameters": {
-                      "name": {"value": "turretIsNotActive"}
-                    }
-                  },
-                  {
-                    "title": "each",
-                    "type": "decorator",
-                    "name": "each",
-                    "parameters": {
-                      "list": {"key": "childSegments"},
-                      "type": {"value": "entity"}
-                    },
-                    "child": {
-                      "title": "sendEntityMessage",
-                      "type": "action",
-                      "name": "sendEntityMessage",
-                      "parameters": {
-                        "arguments": {"value": []},
-                        "entity": {"key": "eachItem"},
-                        "message": {"value": "reset"}
-                      }
-                    }
-                  },
-                  {
-                    "title": "sendEntityMessage",
-                    "type": "action",
-                    "name": "sendEntityMessage",
-                    "parameters": {
-                      "arguments": {"value": ["1"]},
-                      "entity": {"key": "tailId"},
-                      "message": {"value": "setPhase"}
-                    }
-                  },
-                  {
-                    "title": "succeeder",
-                    "type": "decorator",
-                    "name": "succeeder",
-                    "parameters": {},
-                    "child": {
-                      "title": "sendEntityMessage",
-                      "type": "action",
-                      "name": "sendEntityMessage",
-                      "parameters": {
-                        "arguments": {"value": []},
-                        "entity": {"key": "telegraphId"},
-                        "message": {"value": "despawn"}
-                      }
-                    }
-                  },
-                  {
-                    "title": "clearPersistentEffects",
-                    "type": "action",
-                    "name": "clearPersistentEffects",
-                    "parameters": {
-                      "category": {"value": "dynamicResistance"}
-                    }
-                  },
-                  {
-                    "title": "addStatModifier",
-                    "type": "action",
-                    "name": "addStatModifier",
-                    "parameters": {
-                      "amount": {"value": 0.5},
-                      "category": {"value": "dynamicResistance"},
-                      "stat": {"value": "poisonResistance"}
-                    }
-                  },
-                  {
-                    "title": "addStatModifier",
-                    "type": "action",
-                    "name": "addStatModifier",
-                    "parameters": {
-                      "amount": {"value": -0.25},
-                      "category": {"value": "dynamicResistance"},
-                      "stat": {"value": "electricResistance"}
-                    }
-                  },
-                  {
-                    "title": "v-centipedeboss-flytopos",
-                    "type": "module",
-                    "name": "v-centipedeboss-flytopos",
-                    "parameters": {
-                      "position": {"key": "centerPos"},
-                      "speed": {"value": 50},
-                      "tolerance": {"value": 5},
-                      "controlForce": {"value": 250}
-                    }
-                  },
-                  {
-                    "title": "runner",
-                    "type": "action",
-                    "name": "runner",
-                    "parameters": {}
                   }
                 ]
               }

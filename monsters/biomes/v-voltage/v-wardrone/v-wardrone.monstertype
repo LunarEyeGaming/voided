@@ -14,7 +14,7 @@
     "scripts" : [
       "/monsters/monster.lua"
     ],
-    
+
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 3,
 
@@ -30,7 +30,7 @@
       "keepTargetInRange" : 80,
       "targetOutOfSightTime" : 10.0,
 
-      "foundTargetActions" : [ 
+      "foundTargetActions" : [
         /* {
           "name" : "action-animate",
           "parameters" : {
@@ -142,7 +142,7 @@
         {
           "name" : "approach-fly",
           "parameters" : {
-            "flyState" : "inactive"
+            "flyState" : "idle"
           }
         }
       ],
@@ -305,6 +305,6 @@
     "capturable" : true,
     "captureHealthFraction" : 0.5,
     "nametagColor" : [64, 200, 255],
-    "captureCollectables" : { "monsters" : "parasprite" }
+    "captureCollectables" : { "monsters" : "v-wardrone" }
   }
 }
