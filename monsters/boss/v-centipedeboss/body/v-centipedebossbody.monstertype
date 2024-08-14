@@ -26,6 +26,91 @@
     "bodySegment" : "v-centipedebossbody",
     "tailSegment" : "v-centipedebosstail",
 
+    "attackConfig" : {
+      "sides" : {
+        "laserProjectileType" : "v-sideprojectilelaserpoison",
+        "projectileType" : "v-centipedepoisonshot2",
+        "projectileOffset" : [3.5, 0],
+        "projectileParameters" : {
+          "power" : 25,
+          "speed" : 1,
+          "acceleration" : 50,
+          "damageRepeatGroup" : "v-centipedeboss-sideprojectile"
+        },
+        "windupTime" : 1.0
+      },
+      "sides2" : {
+        "laserProjectileType" : "v-sideprojectilelaserelectric",
+        "projectileType" : "v-centipedeelectricshot2",
+        "projectileOffset" : [3.5, 0],
+        "projectileParameters" : {
+          "power" : 25,
+          "speed" : 1,
+          "acceleration" : 50,
+          "damageRepeatGroup" : "v-centipedeboss-sideprojectile"
+        },
+        "windupTime" : 1.0
+      },
+      "targeted" : {
+        "windupTime" : 1.0,
+        "fireVolume" : 1.0,
+        "winddownTime" : 0.25,
+        "projectileType" : "v-centipedepoisonshot",
+        "projectileOffset" : [4, 0],
+        "projectileParameters" : {"power" : 15}
+      },
+      "targeted2" : {
+        "windupTime" : 1.0,
+        "fireVolume" : 1.0,
+        "winddownTime" : 0.25,
+        "projectileType" : "v-centipedeelectricshot",
+        "projectileOffset" : [4, 0],
+        "projectileParameters" : {"power" : 15}
+      },
+      "targeted3" : {
+        "windupTime" : 1.0,
+        "fireVolume" : 0.4,
+        "winddownTime" : 0.25,
+        "projectileType" : "v-centipedeelectricshot",
+        "projectileOffset" : [4, 0],
+        "projectileParameters" : {"power" : 20, "speed" : 1, "acceleration" : 100}
+      },
+      "laserConstrict" : {
+        "laserStateName" : "laserpoison",
+        "laserSoundPrefix" : "laserPoison",
+        "minWindupTime" : 3.0
+      },
+      "laserConstrict2" : {
+        "laserStateName" : "laserelectric",
+        "laserSoundPrefix" : "laserElectric",
+        "minWindupTime" : 3.0
+      },
+      "laserConstrictEnd" : {
+        "laserStateName" : "laserpoison",
+        "laserLoopSound" : "laserPoisonLoop",
+        "laserEndSound" : "laserEnd",
+        "winddownTime" : 0.5
+      },
+      "laserConstrictEnd2" : {
+        "laserStateName" : "laserelectric",
+        "laserLoopSound" : "laserElectricLoop",
+        "laserEndSound" : "laserEnd",
+        "winddownTime" : 0.5
+      },
+      "mine" : {
+        "targetOffsetRegion" : [-38, -42, 38, 42],
+        "projectileType" : "v-centipedeminetele",
+        "projectileParameters" : {"power" : 15},
+        "projectileOffset" : [4, 0],
+        "windupTime" : 0.5,
+        "winddownTime" : 0.25
+      }
+    },
+
+    "laserLength" : 128,
+    "ellipseClampDistance" : 10,
+    "laserActivateDistance" : 3,
+
     "damageBar" : "None",
 
     "touchDamage" : {

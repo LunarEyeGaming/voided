@@ -366,7 +366,7 @@
                  "visible":true,
                  "width":120,
                  "x":1456,
-                 "y":3680
+                 "y":3664
                 }, 
                 {
                  "gid":3973,
@@ -533,8 +533,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":1480,
-                 "y":3712
+                 "x":1488,
+                 "y":3704
                 }, 
                 {
                  "gid":6595,
@@ -967,6 +967,28 @@
                  "width":32,
                  "x":1688,
                  "y":1624
+                }, 
+                {
+                 "gid":7688,
+                 "height":80,
+                 "id":816,
+                 "name":"",
+                 "properties":
+                    {
+                     "object":"v-facilityremoteteleporter",
+                     "parameters":"{ \"uniqueId\" : \"spawn\" }"
+                    },
+                 "propertytypes":
+                    {
+                     "object":"string",
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":1464,
+                 "y":3784
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1741,7 +1763,7 @@
                  "visible":true,
                  "width":8,
                  "x":1488,
-                 "y":3784
+                 "y":3776
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1761,7 +1783,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":816,
+ "nextobjectid":817,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -1870,6 +1892,10 @@
         {
          "firstgid":7662,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
+        }, 
+        {
+         "firstgid":7688,
+         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-electrotoxicfacility.json"
         }],
  "tilewidth":8,
  "type":"map",

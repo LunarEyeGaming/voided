@@ -1,0 +1,49 @@
+{
+  "objectName" : "v-facilityteleporter",
+  "objectType" : "teleporter",
+  "colonyTags" : ["misc"],
+  "printable" : false,
+  "price" : 3000,
+  "rarity" : "Common",
+  "description" : "A teleporter to the Electrotoxic Facility.",
+  "shortdescription" : "Facility Teleporter",
+  "race" : "generic",
+
+  "apexDescription" : "This teleporter will take me to the Electrotoxic Facility.",
+  "avianDescription" : "This teleporter will take me to the Electrotoxic Facility.",
+  "floranDescription" : "Thisss teleporter will take me to the Electrotoxic Facility.",
+  "glitchDescription" : "Analytical. This teleporter will take me to the Electrotoxic Facility.",
+  "humanDescription" : "This teleporter will take me to the Electrotoxic Facility.",
+  "hylotlDescription" : "This teleporter will take me to the Electrotoxic Facility.",
+  "novakidDescription" : "This teleporter will take me to the Electrotoxic Facility.",
+
+  "category" : "teleporter",
+  "lightColor" : [169, 177, 160],
+
+  // "inactiveInteractAction" : "ScriptPane",
+  // "inactiveInteractData" : "/interface/scripted/ancientconsole/ancientconsolegui.config",
+  "interactAction" : "OpenTeleportDialog",
+  "interactData" : "/interface/warping/v-electrotoxicfacility.config",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "facilityteleporter.png:<frame>", "fullbright" : true }, { "image" : "facilityteleporterlit.png:<frame>" } ],
+
+      "imagePosition" : [-32, 0],
+      "frames" : 14,
+      "animationCycle" : 1.4,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+      "collision" : "solid",
+      "collisionSpaces" : [ [-2, 0], [-1, 0], [-0, 0], [1, 0] ]
+    }
+  ],
+
+  "soundEffect" : "/sfx/objects/terraformer_small_loop.ogg",
+
+  "teleporterFootPosition" : [0, 1],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

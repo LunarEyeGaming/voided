@@ -5130,18 +5130,6 @@
                  "y":1712
                 }, 
                 {
-                 "gid":7665,
-                 "height":80,
-                 "id":834,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":1328,
-                 "y":2312
-                }, 
-                {
                  "gid":6455,
                  "height":8,
                  "id":941,
@@ -5262,6 +5250,14 @@
                  "height":64,
                  "id":1051,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"uniqueId\" : \"v-labentrance\" }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -5826,6 +5822,18 @@
                  "visible":true,
                  "width":42,
                  "x":1280,
+                 "y":2312
+                }, 
+                {
+                 "gid":8398,
+                 "height":80,
+                 "id":1254,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":1328,
                  "y":2312
                 }],
          "opacity":1,
@@ -7194,7 +7202,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":1254,
+ "nextobjectid":1255,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -7335,6 +7343,10 @@
         {
          "firstgid":8164,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
+        }, 
+        {
+         "firstgid":8398,
+         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-electrotoxicfacility.json"
         }],
  "tilewidth":8,
  "type":"map",

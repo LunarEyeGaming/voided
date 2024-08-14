@@ -30,11 +30,10 @@
       "anchors" : [ "bottom" ]
     }
   ],
-  
+
   "scripts" : ["v-outoforderteleporter.lua"],
-  
-  "builder" : "/items/buildscripts/v-builditem.lua"/* ,
-  
-  "newObject" : "v-voltagecityteleporter" */
-  // Add an object of ID v-voltagecityteleporter and then uncomment the line above when the corresponding mission is added.
+
+  "builder" : "/items/buildscripts/v-builditem.lua",
+
+  "newObject" : "v-facilityteleporter"
 }
