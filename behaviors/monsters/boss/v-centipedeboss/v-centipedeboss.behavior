@@ -7,8 +7,8 @@
     "/scripts/actions/v-world.lua",
     "/scripts/behavior.lua",
     "/scripts/actions/world.lua",
-    "/scripts/actions/status.lua",
     "/scripts/actions/monster.lua",
+    "/scripts/actions/status.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/animator.lua"
   ],
@@ -150,7 +150,7 @@
             "type": "action",
             "name": "setDamageOnTouch",
             "parameters": {
-              "touchDamage": {"value": true}
+              "touchDamage": {"value": false}
             }
           },
           {
@@ -226,14 +226,6 @@
                         "parameters": {},
                         "children": [
                           {
-                            "title": "removeEphemeralEffect",
-                            "type": "action",
-                            "name": "removeEphemeralEffect",
-                            "parameters": {
-                              "name": {"value": "invulnerable"}
-                            }
-                          },
-                          {
                             "title": "setDamageBar",
                             "type": "action",
                             "name": "setDamageBar",
@@ -285,6 +277,51 @@
                                         "name": "timer",
                                         "parameters": {
                                           "time": {"value": 2}
+                                        }
+                                      },
+                                      {
+                                        "title": "removeEphemeralEffect",
+                                        "type": "action",
+                                        "name": "removeEphemeralEffect",
+                                        "parameters": {
+                                          "name": {"value": "invulnerable"}
+                                        }
+                                      },
+                                      {
+                                        "title": "each",
+                                        "type": "decorator",
+                                        "name": "each",
+                                        "parameters": {
+                                          "list": {"key": "childSegments"},
+                                          "type": {"value": "entity"}
+                                        },
+                                        "child": {
+                                          "title": "sendEntityMessage",
+                                          "type": "action",
+                                          "name": "sendEntityMessage",
+                                          "parameters": {
+                                            "arguments": {"value": [false]},
+                                            "entity": {"key": "eachItem"},
+                                            "message": {"value": "setInvulnerable"}
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "title": "sendEntityMessage",
+                                        "type": "action",
+                                        "name": "sendEntityMessage",
+                                        "parameters": {
+                                          "arguments": {"value": [false]},
+                                          "entity": {"key": "tailId"},
+                                          "message": {"value": "setInvulnerable"}
+                                        }
+                                      },
+                                      {
+                                        "title": "setDamageOnTouch",
+                                        "type": "action",
+                                        "name": "setDamageOnTouch",
+                                        "parameters": {
+                                          "touchDamage": {"value": true}
                                         }
                                       },
                                       {
@@ -488,12 +525,10 @@
                                 ]
                               },
                               {
-                                "title": "setDying",
-                                "type": "action",
-                                "name": "setDying",
-                                "parameters": {
-                                  "shouldDie": {"value": true}
-                                }
+                                "title": "v-centipedeboss-dying",
+                                "type": "module",
+                                "name": "v-centipedeboss-dying",
+                                "parameters": {}
                               }
                             ]
                           }

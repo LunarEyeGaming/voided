@@ -4,9 +4,10 @@
   "scripts": [
     "/scripts/actions/boss/v-centipedeboss.lua",
     "/scripts/actions/entity.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/status.lua",
     "/scripts/actions/v-world.lua",
-    "/scripts/actions/v-worm.lua",
-    "/scripts/actions/status.lua"
+    "/scripts/actions/v-worm.lua"
   ],
   "parameters": {
     "positionList": [],
@@ -47,6 +48,62 @@
             "name": "setDying",
             "parameters": {
               "shouldDie": {"value": false}
+            }
+          },
+          {
+            "title": "v_getChildren",
+            "type": "action",
+            "name": "v_getChildren",
+            "parameters": {},
+            "output": {
+              "entityIds": "children"
+            }
+          },
+          {
+            "title": "v_getTail",
+            "type": "action",
+            "name": "v_getTail",
+            "parameters": {},
+            "output": {
+              "entityId": "tailId"
+            }
+          },
+          {
+            "title": "each",
+            "type": "decorator",
+            "name": "each",
+            "parameters": {
+              "list": {"key": "children"},
+              "type": {"value": "entity"}
+            },
+            "child": {
+              "title": "sendEntityMessage",
+              "type": "action",
+              "name": "sendEntityMessage",
+              "parameters": {
+                "arguments": {"value": [true]},
+                "entity": {"key": "eachItem"},
+                "message": {"value": "setInvulnerable"}
+              }
+            }
+          },
+          {
+            "title": "sendEntityMessage",
+            "type": "action",
+            "name": "sendEntityMessage",
+            "parameters": {
+              "arguments": {"value": [true]},
+              "entity": {"key": "tailId"},
+              "message": {"value": "setInvulnerable"}
+            }
+          },
+          {
+            "title": "addEphemeralEffect",
+            "type": "action",
+            "name": "addEphemeralEffect",
+            "parameters": {
+              "duration": {"value": 999999},
+              "name": {"value": "invulnerable"}
             }
           },
           {
@@ -127,13 +184,13 @@
                 "type": "action",
                 "name": "v_wormConstrict",
                 "parameters": {
-                  "bodyClampRate": {"value": 30},
-                  "controlForce": {"value": 200},
+                  "bodyClampRate": {"value": 60},
+                  "controlForce": {"value": 600},
                   "endCenter": {"key": "targetPos"},
                   "endRadius": {"value": [15, 15]},
                   "numPoints": {"value": 50},
                   "numTotalPoints": {"value": 150},
-                  "speed": {"value": 50},
+                  "speed": {"value": 75},
                   "startCenter": {"key": "targetPos"},
                   "startRadius": {"value": [15, 15]},
                   "tolerance": {"value": 5}

@@ -6,6 +6,7 @@
     "/scripts/actions/time.lua",
     "/scripts/actions/notification.lua",
     "/scripts/actions/status.lua",
+    "/scripts/actions/world.lua",
     "/scripts/actions/v-worm.lua"
   ],
   "parameters": {},
@@ -88,6 +89,35 @@
         "parameters": {
           "duration": {"value": 999999},
           "name": {"value": "invulnerable"}
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "childSegments"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"value": [true]},
+            "entity": {"key": "eachItem"},
+            "message": {"value": "setInvulnerable"}
+          }
+        }
+      },
+      {
+        "title": "sendEntityMessage",
+        "type": "action",
+        "name": "sendEntityMessage",
+        "parameters": {
+          "arguments": {"value": [true]},
+          "entity": {"key": "tailId"},
+          "message": {"value": "setInvulnerable"}
         }
       },
       {

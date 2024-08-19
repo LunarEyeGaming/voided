@@ -18,6 +18,8 @@ local currentStateReset
 
 local turretIsActive  -- If true, then the turret will not be rotated with the body.
 
+local m_invulnerable
+
 function init()
   oldInit()
 
@@ -40,6 +42,7 @@ function init()
 
   currentEllipseAngle = nil
   distanceToClamped = nil
+  m_invulnerable = false
 
   message.setHandler("attack", function(_, _, sourceId, attackId, targetId)
     if currentStateReset then
@@ -51,6 +54,16 @@ function init()
   message.setHandler("reset", reset)
 
   message.setHandler("activatePhase2", activatePhase2)
+
+  message.setHandler("setInvulnerable", function(_, _, invulnerable)
+    m_invulnerable = invulnerable
+    if invulnerable then
+      -- Make invulnerable for a lot of time (but not math.huge b/c that causes problems)
+      status.addEphemeralEffect("invulnerable", 2 ^ 32)
+    else
+      status.removeEphemeralEffect("invulnerable")
+    end
+  end)
 
   state = FSM:new()
   state:set(states.noop)
@@ -67,6 +80,9 @@ function update(dt)
     animator.resetTransformationGroup("turret")
     animator.rotateTransformationGroup("turret", mcontroller.rotation())
   end
+
+  -- terra_wormbody sets damageOnTouch to true on every update, so we override this if m_invulnerable is true.
+  monster.setDamageOnTouch(not m_invulnerable)
 
   state:update()
 end

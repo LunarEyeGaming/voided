@@ -10,7 +10,7 @@ All custom sounds in Voided were made in Audacity using Starbound's assets and/o
 * "Glass Smash.wav" by chewiesmissus on Freesound.org (URL: https://freesound.org/people/chewiesmissus/sounds/244238/).
 * "Glass.ogg" by egomassive on Freesound.org (URL: https://freesound.org/people/egomassive/sounds/536763/).
 
-Music for the Electrotoxic Facility is an edited version of Desert Battle 2 (original track is by Curtis Schweitzer)
+Music for the Electrochem Facility is an edited version of Desert Battle 2 (original track is by Curtis Schweitzer)
 
 Disclaimer: the authors of these sound samples do not endorse Voided.
 

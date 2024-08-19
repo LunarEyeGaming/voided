@@ -1,0 +1,33 @@
+{
+  "name": "v-centipedeboss-dying",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/monster.lua",
+    "/scripts/actions/entity.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "battleMusic",
+        "type": "action",
+        "name": "battleMusic",
+        "parameters": {
+          "enable": {"value": false}
+        }
+      },
+      {
+        "title": "setDying",
+        "type": "action",
+        "name": "setDying",
+        "parameters": {
+          "shouldDie": {"value": true}
+        }
+      }
+    ]
+  }
+}

@@ -8,8 +8,6 @@ local endColor
 local fullbright
 local blocks
 
-local testVar
-
 function init()
   script.setUpdateDelta(3)
   ttl = animationConfig.animationParameter("ttl")
@@ -19,11 +17,8 @@ function init()
   fullbright = animConfig.fullbright
 
   blocks = {}
-  
+
   dt = script.updateDt()
-  
-  testVar = false
-  
 end
 
 function update()
@@ -48,13 +43,22 @@ function update()
         localAnimator.addDrawable({
           line = {{-0.5, 0}, {0.5, 0}},
           position = vec2.add(center, block),
-          color = color, 
+          color = color,
           width = 8,
           fullbright = fullbright
         }, "ForegroundEntity+10")
       end
       blockSet[1] = blockSet[1] - dt
       i = i + 1
+    end
+  end
+
+  local particleNextBlocks = animationConfig.animationParameter("particleNextBlocks")
+
+  -- Spawn particles
+  if particleNextBlocks then
+    for _, block in ipairs(particleNextBlocks) do
+      localAnimator.spawnParticle(animConfig.damageIndicatorParticle, vec2.add(entity.position(), block))
     end
   end
 end
