@@ -8,11 +8,12 @@
 
   "animation" : "v-centipedebosshead.animation",
 
-  "dropPools" : ["v-mutanteelTreasure"],
+  "dropPools" : ["empty"],
 
   "baseParameters" : {
     "scripts" : [
-      "/scripts/terra_wormheadcustom.lua"
+      "/scripts/terra_wormheadcustom.lua",
+      "/scripts/bookofspirits/v-bookofspirits_wormplugin.lua"
     ],
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 1,
@@ -27,6 +28,41 @@
     "behaviorConfig" : {},
 
     "damageBar" : "None",
+
+    "deathProjectiles" : [
+      {
+        "type" : "v-centipedegib-head1",
+        "direction" : [0, 1]
+      },
+      {
+        "type" : "v-centipedegib-head2",
+        "direction" : [0, -1]
+      } // ,
+      // {
+      //   "type" : "v-centipedegib-mandible1",
+      //   "direction" : [1, 0],
+      //   "offset" : [3.5, 3],
+      //   "fuzzAngle" : 45
+      // },
+      // {
+      //   "type" : "v-centipedegib-mandible2",
+      //   "direction" : [1, 0],
+      //   "offset" : [3.5, -3],
+      //   "fuzzAngle" : 45
+      // },
+      // {
+      //   "type" : "v-centipedegib-mandible3",
+      //   "direction" : [1, 0],
+      //   "offset" : [4, 1],
+      //   "fuzzAngle" : 45
+      // },
+      // {
+      //   "type" : "v-centipedegib-mandible4",
+      //   "direction" : [1, 0],
+      //   "offset" : [4, -1],
+      //   "fuzzAngle" : 45
+      // }
+    ],
 
     "touchDamage" : {
       "poly" : [ [3, 3], [-3, 3], [-3, -3], [3, -3] ],
@@ -61,12 +97,9 @@
 
     "bodyMaterialKind" : "robotic",
 
-    "knockoutTime" : 0.3,
-    "knockoutAnimationStates" : {
-      "damage" : "stunned"
-    },
+    "knockoutTime" : 0,
+    "knockoutEffect" : "blink",
     "deathParticles" : "deathPoof",
-    "knockoutEffect" : "",
 
     "stunDamageSuppression" : 0.2,
 

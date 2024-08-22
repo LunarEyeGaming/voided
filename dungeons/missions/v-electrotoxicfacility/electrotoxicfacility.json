@@ -8206,27 +8206,6 @@
                  "y":2792
                 }, 
                 {
-                 "height":8,
-                 "id":811,
-                 "name":"chunk loader",
-                 "properties":
-                    {
-                     "parameters":"{ \"loadArea\" : [-121, 0, 0, 0] }",
-                     "stagehand":"v-chunkloader"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string",
-                     "stagehand":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":1416,
-                 "y":2680
-                }, 
-                {
                  "height":96,
                  "id":732,
                  "name":"centipede warning radio message",
@@ -8269,12 +8248,12 @@
                  "y":1424
                 }, 
                 {
-                 "height":8,
+                 "height":544,
                  "id":806,
                  "name":"chunk loader",
                  "properties":
                     {
-                     "parameters":"{ \"loadArea\" : [-57, -46, -55, -44] }",
+                     "parameters":"{ \"loadArea\" : [-57, -46, -55, -44], \"requirePlayerPresence\" : true }",
                      "stagehand":"v-chunkloader"
                     },
                  "propertytypes":
@@ -8285,17 +8264,17 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":1216,
-                 "y":3592
+                 "width":488,
+                 "x":944,
+                 "y":3056
                 }, 
                 {
-                 "height":8,
+                 "height":544,
                  "id":814,
                  "name":"chunk loader",
                  "properties":
                     {
-                     "parameters":"{ \"loadArea\" : [-105, -32, -64, 32] }",
+                     "parameters":"{ \"loadArea\" : [-105, -32, -64, 32], \"requirePlayerPresence\" : true }",
                      "stagehand":"v-chunkloader"
                     },
                  "propertytypes":
@@ -8306,17 +8285,17 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":1256,
-                 "y":3104
+                 "width":488,
+                 "x":944,
+                 "y":3048
                 }, 
                 {
-                 "height":8,
+                 "height":544,
                  "id":815,
                  "name":"chunk loader",
                  "properties":
                     {
-                     "parameters":"{ \"loadArea\" : [-100, 0, 121, 32] }",
+                     "parameters":"{ \"loadArea\" : [-220, 32, 121, 64], \"requirePlayerPresence\" : true }",
                      "stagehand":"v-chunkloader"
                     },
                  "propertytypes":
@@ -8327,9 +8306,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":2224,
-                 "y":2680
+                 "width":880,
+                 "x":1416,
+                 "y":2568
                 }, 
                 {
                  "height":32,
@@ -8351,6 +8330,27 @@
                  "width":32,
                  "x":2560,
                  "y":1472
+                }, 
+                {
+                 "height":600,
+                 "id":1606,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"messageType\" : \"playAltMusic\", \"messageArgs\" : [[\"\/music\/temple-of-kluex.ogg\"], 2.0] }",
+                     "stagehand":"messenger"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":528,
+                 "x":2592,
+                 "y":1480
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -9933,7 +9933,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":1606,
+ "nextobjectid":1607,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",

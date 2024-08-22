@@ -83,7 +83,7 @@
       "body" : {
         "properties" : {
           "zLevel" : 10,
-          "transformationGroups" : [ "body" ],
+          "transformationGroups" : [ "body", "shake" ],
           "offset" : [1.0, 0.0]
         },
         "partStates" : {
@@ -155,7 +155,7 @@
       "turret" : {
         "properties" : {
           "zLevel" : 25,
-          "transformationGroups" : [ "turret" ],
+          "transformationGroups" : [ "turret", "shake" ],
           "offset" : [-0.25, 0.4375]
         },
         "partStates" : {
@@ -239,7 +239,9 @@
 
   "transformationGroups" : {
     "body" : { "interpolated" : true },
-    "turret" : { "interpolated" : true }
+    "turret" : { "interpolated" : true },
+
+    "shake" : { "interpolated" : true }
   },
 
   "effects" : {
@@ -259,6 +261,13 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ ],
+    "ray" : [ "/sfx/objects/metalbarrel_break1.ogg", "/sfx/objects/metalbarrel_break2.ogg",
+      "/sfx/objects/metalbarrel_break3.ogg"],
+    "rumble" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_rumble.ogg" ],
+      "volume" : 0.4,
+      "rangeMultiplier" : 5.0
+    },
     "roar" : {
       "pool" : [ "/sfx/npc/boss/v_centipede_roar.ogg", "/sfx/npc/boss/v_centipede_roar2.ogg" ],
       "rangeMultiplier" : 5.0

@@ -29,7 +29,7 @@ function init()
   invDamageMultiplierPerRequest = 1 / damageMultiplierPerRequest  -- inverse of damageMultiplierPerRequest
   damageMultiplierResetDelay = status.statusProperty("damageMultiplierResetDelay", 0.05)
   damageMultiplierResetInterval = status.statusProperty("damageMultiplierResetInterval", 0.05)
-  damageMultiplierThreshold = status.statusProperty("damageMultiplierThreshold", 100)
+  damageMultiplierThreshold = status.statusProperty("damageMultiplierThreshold", 50)
   resetDelayTimer = 0
   resetIntervalTimer = 0
 end

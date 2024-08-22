@@ -1,4 +1,7 @@
+require "/monsters/boss/v-centipedeboss/v-sharedfunctions.lua"
+
 local m_invulnerable
+local deathCoroutine
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
@@ -21,10 +24,34 @@ function init()
       status.removeEphemeralEffect("invulnerable")
     end
   end)
+
+  message.setHandler("dontDieYet", function()
+    self.shouldDie = false
+  end)
+
+  message.setHandler("startDeathAnimation", function()
+    deathCoroutine = coroutine.create(function()
+      centipede.deathAnimation()
+
+      coroutine.yield()  -- Wait one tick to ensure that the body segments die after, not before, the head.
+
+      self.shouldDie = true
+    end)
+  end)
 end
 
 function update(dt)
   oldUpdate(dt)
+
+  -- Run coroutine if defined.
+  if deathCoroutine then
+    -- If not dead...
+    if coroutine.status(deathCoroutine) ~= "dead" then
+      coroutine.resume(deathCoroutine)
+    else
+      deathCoroutine = nil
+    end
+  end
 
   -- terra_wormbodysimple sets damageOnTouch to true on every update, so we override this if m_invulnerable is true.
   monster.setDamageOnTouch(not m_invulnerable)

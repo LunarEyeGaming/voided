@@ -141,7 +141,7 @@
       "body" : {
         "properties" : {
           "zLevel" : 10,
-          "transformationGroups" : [ "body" ],
+          "transformationGroups" : [ "body", "shake" ],
           "offset" : [0.0, 0.0],
           "maxLegSpan" : 13,
           "legForwardRadius" : [9.75, 3]
@@ -205,7 +205,7 @@
       "laserpoison" : {
         "properties" : {
           "zLevel" : 30,
-          "transformationGroups" : [ "turret" ],
+          "transformationGroups" : [ "turret", "shake" ],
           "offset" : [67.375, 0],
           "fullbright" : true
         },
@@ -243,7 +243,7 @@
       "laserelectric" : {
         "properties" : {
           "zLevel" : 30,
-          "transformationGroups" : [ "turret" ],
+          "transformationGroups" : [ "turret", "shake" ],
           "offset" : [67.375, 0],
           "fullbright" : true
         },
@@ -281,7 +281,7 @@
       "turret" : {
         "properties" : {
           "zLevel" : 25,
-          "transformationGroups" : [ "turret" ],
+          "transformationGroups" : [ "turret", "shake" ],
           "offset" : [2.1875, 0]
         },
         "partStates" : {
@@ -343,7 +343,7 @@
       "targetlaser" : {
         "properties" : {
           "zLevel" : 22,
-          "transformationGroups" : [ "turret" ],
+          "transformationGroups" : [ "turret", "shake" ],
           "offset" : [64, 0],
           "fullbright" : true
         },
@@ -360,7 +360,7 @@
       "upperleftleg" : {
         "properties" : {
           "zLevel" : 7,
-          "transformationGroups" : [ "body", "lefthipjoint" ],
+          "transformationGroups" : [ "body", "lefthipjoint", "shake" ],
           "offset" : [0, 6],
           "hipPoint" : [0, 3],
           "length" : 6,
@@ -383,7 +383,7 @@
       "upperrightleg" : {
         "properties" : {
           "zLevel" : 7,
-          "transformationGroups" : [ "body", "righthipjoint" ],
+          "transformationGroups" : [ "body", "righthipjoint", "shake" ],
           "offset" : [0, -6],
           "hipPoint" : [0, -3],
           "forwardCenter" : [0, -8],
@@ -424,7 +424,9 @@
     "leftkneejoint" : { "interpolated" : true },
 
     "righthipjoint" : { "interpolated" : true },
-    "rightkneejoint" : { "interpolated" : true }
+    "rightkneejoint" : { "interpolated" : true },
+
+    "shake" : { "interpolated" : true }
   },
 
   "effects" : {
@@ -444,6 +446,15 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ ],
+    "ray" : [ "/sfx/objects/metalbarrel_break1.ogg", "/sfx/objects/metalbarrel_break2.ogg",
+      "/sfx/objects/metalbarrel_break3.ogg"],
+    "step" : [ "/sfx/tech/mech_step.ogg", "/sfx/tech/mech_step2.ogg", "/sfx/tech/mech_step3.ogg",
+      "/sfx/tech/mech_step4.ogg", "/sfx/tech/mech_step5.ogg" ],
+    "rumble" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_rumble.ogg" ],
+      "volume" : 0.4,
+      "rangeMultiplier" : 5.0
+    },
     "fire" : {
       "pool" : [ "/sfx/gun/plasma_sniper2.ogg" ],
       "rangeMultiplier" : 5.0
@@ -458,8 +469,6 @@
       "volume" : 0.3,
       "rangeMultiplier" : 5.0
     },
-    "step" : [ "/sfx/tech/mech_step.ogg", "/sfx/tech/mech_step2.ogg", "/sfx/tech/mech_step3.ogg",
-      "/sfx/tech/mech_step4.ogg", "/sfx/tech/mech_step5.ogg" ],
     "laserElectricCharge" : {
       "pool" : [ "/sfx/npc/boss/v_centipede_laserelectric_charge.ogg" ],
       "volume" : 0.5,

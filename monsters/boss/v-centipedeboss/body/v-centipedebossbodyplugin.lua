@@ -1,3 +1,4 @@
+require "/monsters/boss/v-centipedeboss/v-sharedfunctions.lua"
 require "/scripts/util.lua"
 require "/scripts/rect.lua"
 require "/scripts/voidedattackutil.lua"
@@ -51,7 +52,9 @@ function init()
     state:set(attacks[attackId], sourceId, targetId)
   end)
 
-  message.setHandler("reset", reset)
+  message.setHandler("reset", function()
+    reset()
+  end)
 
   message.setHandler("activatePhase2", activatePhase2)
 
@@ -63,6 +66,17 @@ function init()
     else
       status.removeEphemeralEffect("invulnerable")
     end
+  end)
+
+  -- This makes not dying yet behavior-dependent.
+  message.setHandler("dontDieYet", function()
+    self.shouldDie = false
+  end)
+
+  message.setHandler("startDeathAnimation", function()
+    reset(false)
+
+    state:set(states.deathAnimation)
   end)
 
   state = FSM:new()
@@ -321,6 +335,14 @@ function states.spawnMineGen(attackConfigName)
   end
 end
 
+function states.deathAnimation()
+  centipede.deathAnimation()
+
+  coroutine.yield()  -- Wait one tick to ensure that the body segments die after, not before, the head.
+
+  self.shouldDie = true
+end
+
 function spawnLaser(projectileType, direction, adjustToRotation, params)
   -- adjust the direction to the entity's current rotation is adjustToRotation is set to true. Don't otherwise.
   direction = adjustToRotation and vec2.rotate(direction, mcontroller.rotation()) or direction
@@ -417,8 +439,16 @@ function notifyFinished(sourceId)
   world.sendEntityMessage(sourceId, "notify", notification)
 end
 
-function reset()
-  animator.setGlobalTag("phase", "1")
+---Resets the state of the segment. If `alsoResetPhase` is `true`, then the `phase` global tag is reset too.
+---@param alsoResetPhase boolean
+function reset(alsoResetPhase)
+  if alsoResetPhase == nil then
+    alsoResetPhase = true
+  end
+
+  if alsoResetPhase then
+    animator.setGlobalTag("phase", "1")
+  end
 
   animator.setAnimationState("body", "idle")
   animator.setAnimationState("laserpoison", "invisible")

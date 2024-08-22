@@ -115,5 +115,28 @@
       "aimVector": {"type": "vec2", "key": null},
       "projectileOffset": {"type": "vec2", "key": null}
     }
+  },
+  "v_centipedeDeathAnimation": {
+    "type": "action",
+    "name": "v_centipedeDeathAnimation",
+    "title": "v_centipedeDeathAnimation",
+    "properties": {},
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {}
+  },
+  "v_centipedeRayAnimation": {
+    "type": "action",
+    "name": "v_centipedeRayAnimation",
+    "title": "v_centipedeRayAnimation",
+    "properties": {
+      "children": {"type": "list"},
+      "tail": {"type": "entity"}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {
+      "rayIds": {"type": "list", "key": null}
+    }
   }
 }

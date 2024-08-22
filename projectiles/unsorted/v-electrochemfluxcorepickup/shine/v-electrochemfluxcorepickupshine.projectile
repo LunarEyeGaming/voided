@@ -1,0 +1,20 @@
+{
+  "projectileName" : "v-electrochemfluxcorepickupshine",
+  "image" : "electrochemfluxcorepickupshine.png",
+  "frameNumber" : 1,
+  "animationCycle" : 1,
+  "fullbright" : true,
+  "renderLayer": "ItemDrop-10",
+
+  "timeToLive" : 300,
+
+  "onlyHitTerrain" : true,
+  "physics" : "illusion",
+  "speed" : 5,
+  "orientationLocked" : true,
+
+  "scripts" : [ "v-electrochemfluxcorepickupshine.lua" ],
+  "scriptDelta" : 1,
+
+  "rotationTime" : 5
+}

@@ -34,7 +34,7 @@
       "body" : {
         "properties" : {
           "zLevel" : 10,
-          "transformationGroups" : [ "body" ],
+          "transformationGroups" : [ "body", "shake" ],
           "offset" : [0.0, 0.0]
         },
         "partStates": {
@@ -80,7 +80,8 @@
   },
 
   "transformationGroups" : {
-    "body" : { "interpolated" : true }
+    "body" : { "interpolated" : true },
+    "shake" : { "interpolated" : true }
   },
 
   "effects" : {
@@ -99,6 +100,13 @@
 
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
-    "deathPuff" : [ ]
+    "deathPuff" : [ ],
+    "ray" : [ "/sfx/objects/metalbarrel_break1.ogg", "/sfx/objects/metalbarrel_break2.ogg",
+      "/sfx/objects/metalbarrel_break3.ogg"],
+    "rumble" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_rumble.ogg" ],
+      "volume" : 0.4,
+      "rangeMultiplier" : 5.0
+    }
   }
 }

@@ -679,7 +679,10 @@
       "type": "module",
       "name": "v-centipedeboss-dying",
       "title": "",
-      "properties": {},
+      "properties": {
+        "stopForce": {"type": "json", "value": 250},
+        "stopTime": {"type": "json", "value": 0.5}
+      },
       "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-dying.behavior"
     }
   }

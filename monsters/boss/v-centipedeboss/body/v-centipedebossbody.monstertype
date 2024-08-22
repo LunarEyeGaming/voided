@@ -111,6 +111,22 @@
     "ellipseClampDistance" : 10,
     "laserActivateDistance" : 3,
 
+    "deathProjectiles" : [
+      {
+        "type" : "v-centipedegib-body1",
+        "direction" : [0, 1]
+      },
+      {
+        "type" : "v-centipedegib-body2",
+        "direction" : [0, -1]
+      } // ,
+      // {
+      //   "type" : "v-centipedegib-turret",
+      //   "direction" : [1, 0],
+      //   "fuzzAngle" : 180
+      // }
+    ],
+
     "damageBar" : "None",
 
     "touchDamage" : {
@@ -163,12 +179,9 @@
 
     "bodyMaterialKind" : "robotic",
 
-    "knockoutTime" : 0.3,
-    "knockoutAnimationStates" : {
-      "damage" : "stunned"
-    },
+    "knockoutTime" : 0,
+    "knockoutEffect" : "blink",
     "deathParticles" : "deathPoof",
-    "knockoutEffect" : "",
 
     "stunDamageSuppression" : 0.2,
 
@@ -183,7 +196,8 @@
       "minimumLiquidStatusEffectPercentage" : 0.1,
 
       "primaryScriptSources" : [
-        "/stats/terra_worm_primary.lua"
+        "/stats/terra_worm_primary.lua",
+        "/scripts/bookofspirits/bookofspirits_monster_support.lua"
       ],
       "primaryScriptDelta" : 5,
 

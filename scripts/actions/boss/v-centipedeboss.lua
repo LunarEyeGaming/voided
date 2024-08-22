@@ -1,3 +1,4 @@
+require "/monsters/boss/v-centipedeboss/v-sharedfunctions.lua"
 require "/scripts/v-behavior.lua"
 require "/scripts/voidedutil.lua"
 require "/scripts/v-ellipse.lua"
@@ -188,4 +189,64 @@ function v_rotateTurret(args)
 
   -- Calculate offset and aim vector here.
   return true, {aimVector = vec2.withAngle(aimAngle), projectileOffset = vec2.rotate(args.offset, aimAngle)}
+end
+
+function v_centipedeDeathAnimation(args)
+  centipede.deathAnimation()
+
+  return true
+end
+
+-- Handles the spawning of rays during the death animation.
+-- param children
+-- param tail
+-- output rayIds
+function v_centipedeRayAnimation(args)
+  local rq = vBehavior.requireArgsGen("v_centipedeRayAnimation", args)
+
+  if not rq{"children", "tail"} then return false end
+
+  -- Build a list of all segments.
+  local allSegments = copy(args.children)
+  table.insert(allSegments, args.tail)
+  table.insert(allSegments, entity.id())
+
+  -- Some config parameters.
+  local rayStartInterval = 1.5
+  local rayIntervalMultiplier = 0.82
+  local minRayInterval = 0.01
+  local rayInterval = rayStartInterval
+  local rays = {}
+
+  local rayTimer = rayInterval
+  local dt = script.updateDt()
+
+  -- Start the ray spawning loop.
+  while true do
+    -- Update ray timer
+    rayTimer = rayTimer - dt
+
+    if rayTimer <= 0 then
+      local segmentId
+
+      -- Pick a segment that exists.
+      repeat
+        segmentId = allSegments[math.random(#allSegments)]
+      until world.entityExists(segmentId)
+
+      -- Ask to spawn ray.
+      local rayId = world.callScriptedEntity(segmentId, "centipede.spawnRay")
+
+      -- Add to table.
+      table.insert(rays, rayId)
+
+      -- Reset ray timer
+      rayTimer = rayInterval
+
+      -- Update ray interval, if greater than minimum ray interval.
+      rayInterval = math.max(rayInterval * rayIntervalMultiplier, minRayInterval)
+    end
+
+    coroutine.yield(nil, {rayIds = rays})
+  end
 end

@@ -162,6 +162,35 @@
             }
           },
           {
+            "title": "each",
+            "type": "decorator",
+            "name": "each",
+            "parameters": {
+              "list": {"key": "childSegments"},
+              "type": {"value": "entity"}
+            },
+            "child": {
+              "title": "sendEntityMessage",
+              "type": "action",
+              "name": "sendEntityMessage",
+              "parameters": {
+                "arguments": {"value": []},
+                "entity": {"key": "eachItem"},
+                "message": {"value": "dontDieYet"}
+              }
+            }
+          },
+          {
+            "title": "sendEntityMessage",
+            "type": "action",
+            "name": "sendEntityMessage",
+            "parameters": {
+              "arguments": {"value": []},
+              "entity": {"key": "tailId"},
+              "message": {"value": "dontDieYet"}
+            }
+          },
+          {
             "title": "succeeder",
             "type": "decorator",
             "name": "succeeder",
