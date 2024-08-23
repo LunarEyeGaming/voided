@@ -2,6 +2,7 @@ require "/monsters/boss/v-centipedeboss/v-sharedfunctions.lua"
 require "/scripts/util.lua"
 require "/scripts/rect.lua"
 require "/scripts/voidedattackutil.lua"
+require "/scripts/v-world.lua"
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
@@ -12,6 +13,8 @@ local laserLength
 local ellipseClampDistance
 local laserActivateDistance
 
+local projectileUpdateInterval
+
 local currentEllipseAngle
 local distanceToClamped
 
@@ -20,6 +23,8 @@ local currentStateReset
 local turretIsActive  -- If true, then the turret will not be rotated with the body.
 
 local m_invulnerable
+
+local spawnedMines
 
 function init()
   oldInit()
@@ -41,9 +46,14 @@ function init()
   ellipseClampDistance = config.getParameter("ellipseClampDistance")
   laserActivateDistance = config.getParameter("laserActivateDistance")
 
+  projectileUpdateInterval = 1.0
+
   currentEllipseAngle = nil
   distanceToClamped = nil
   m_invulnerable = false
+  projectileUpdateTimer = projectileUpdateInterval
+
+  spawnedMines = {}
 
   message.setHandler("attack", function(_, _, sourceId, attackId, targetId)
     if currentStateReset then
@@ -79,6 +89,11 @@ function init()
     state:set(states.deathAnimation)
   end)
 
+  -- Used by v-centipedemine to add itself to this list because it is a separate projectile from v-centipedeminetele.
+  message.setHandler("registerProjectile", function(_, _, projectileId)
+    table.insert(spawnedMines, projectileId)
+  end)
+
   state = FSM:new()
   state:set(states.noop)
 end
@@ -97,6 +112,8 @@ function update(dt)
 
   -- terra_wormbody sets damageOnTouch to true on every update, so we override this if m_invulnerable is true.
   monster.setDamageOnTouch(not m_invulnerable)
+
+  updateMines(dt)
 
   state:update()
 end
@@ -320,7 +337,13 @@ function states.spawnMineGen(attackConfigName)
     local aimVector = vec2.angle(world.distance(targetPosition, mcontroller.position()))
     local projectilePosition = vec2.add(mcontroller.position(), vec2.rotate(projectileOffset, aimVector))
 
-    world.spawnProjectile(projectileType, projectilePosition, entity.id(), {1, 0}, false, projectileParameters)
+    local mineId = world.spawnProjectile(projectileType, projectilePosition, entity.id(), {1, 0}, false,
+        projectileParameters)
+
+    -- Add mine to list.
+    if mineId then
+      table.insert(spawnedMines, mineId)
+    end
 
     animator.setAnimationState("turret", "fire")
     animator.playSound("fireMine")
@@ -431,6 +454,29 @@ function approachAngle(center, currentAngle, targetAngle, rate)
   end
 end
 
+---Periodically clears the spawnedMines list of projectiles that no longer exist.
+---@param dt number
+function updateMines(dt)
+  projectileUpdateTimer = projectileUpdateTimer - dt
+
+  -- If the timer has run out on the current tick...
+  if projectileUpdateTimer <= 0 then
+    -- Clear spawnedMines list of all projectiles that no longer exist.
+    spawnedMines = util.filter(spawnedMines, function(projectileId) return world.entityExists(projectileId) end)
+
+    -- Reset timer
+    projectileUpdateTimer = projectileUpdateInterval
+  end
+end
+
+---Kills all mines in the spawnedMines list.
+function killMines()
+  -- Send the kill message to every spawned mine.
+  for _, projectileId in ipairs(spawnedMines) do
+    vWorld.sendEntityMessage(projectileId, "kill")
+  end
+end
+
 function notifyFinished(sourceId)
   local notification = {
     sourceId = entity.id(),
@@ -449,6 +495,8 @@ function reset(alsoResetPhase)
   if alsoResetPhase then
     animator.setGlobalTag("phase", "1")
   end
+
+  killMines()
 
   animator.setAnimationState("body", "idle")
   animator.setAnimationState("laserpoison", "invisible")

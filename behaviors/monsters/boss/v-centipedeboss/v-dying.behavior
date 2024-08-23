@@ -135,6 +135,14 @@
         ]
       },
       {
+        "title": "setVelocity",
+        "type": "action",
+        "name": "setVelocity",
+        "parameters": {
+          "velocity": {"value": [0, 0]}
+        }
+      },
+      {
         "title": "each",
         "type": "decorator",
         "name": "each",

@@ -1,7 +1,11 @@
+require "/scripts/v-world.lua"
+
 local queryRadius
 local detonateProjectileType
 local detonateProjectileParameters
 local detonateDamageFactor
+
+local sentMessage
 
 function init()
   queryRadius = config.getParameter("queryRadius")
@@ -11,9 +15,19 @@ function init()
 
   detonateProjectileParameters.power = detonateProjectileParameters.power or projectile.power() * detonateDamageFactor
   detonateProjectileParameters.powerMultiplier = projectile.powerMultiplier()
+
+  message.setHandler("kill", projectile.die)
+
+  sentMessage = false
 end
 
 function update(dt)
+  -- Necessary to send the registerProjectile message here instead of init.
+  if not sentMessage then
+    vWorld.sendEntityMessage(projectile.sourceEntity(), "registerProjectile", entity.id())
+    sentMessage = true
+  end
+
   local queried = world.entityQuery(mcontroller.position(), queryRadius, {includedTypes = {"creature"}})
 
   -- Go through each queried entity...

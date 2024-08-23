@@ -1,0 +1,27 @@
+{
+  "objectName" : "v-escapepodbg",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "description" : "escape pod background",
+  "shortdescription" : "escapepodbg",
+  "race" : "generic",
+  "category" : "decorative",
+  "price" : 0,
+
+  "scannable" : false,
+
+  "inventoryIcon" : "escapepodbg.png",
+  "orientations" : [
+    {
+      "dualImage" : "escapepodbg.png",
+
+      "renderLayer": "Monster-1",
+
+      "imagePosition" : [0, -8],
+      "frames" : 1,
+      "animationCycle" : 1.0
+    }
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}
