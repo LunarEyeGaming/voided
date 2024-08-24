@@ -47,7 +47,7 @@ function init()
   damage = config.getParameter("damage", 0) * root.evalFunction("monsterLevelPowerMultiplier", monster.level())
   damageKind = config.getParameter("damageKind")
   damagePoly = config.getParameter("damagePoly")
-  damageTeam = world.entityDamageTeam(sourceEntity) or entity.damageTeam()
+  damageTeam = world.entityDamageTeam(sourceEntity or entity.id()) or entity.damageTeam()
 
   maxArea = config.getParameter("maxArea", 200)
   disappearDelay = config.getParameter("dissipationTime", 0.25)

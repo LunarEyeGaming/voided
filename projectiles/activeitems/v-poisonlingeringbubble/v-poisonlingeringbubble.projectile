@@ -1,0 +1,20 @@
+{
+  "projectileName" : "v-poisonlingeringbubble",
+  "image" : "poisonlingeringbubble.png",
+  "animationCycle" : 0.4,
+  "lightColor" : [155, 186, 61],
+  "frameNumber" : 4,
+  "timeToLive" : 1.5,
+  "power" : 500,
+  "piercing" : true,
+  "flippable" : true,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "emitters" : [ "poisonswoosh" ],
+  "damageKind" : "poison",
+  "damagePoly" : [[16, 0], [6, 6], [0, 8], [-6, 6], [-16, 0], [-6, -6], [0, -8], [6, -6]],
+
+  "speed" : -5.3
+}
