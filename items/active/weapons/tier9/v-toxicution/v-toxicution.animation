@@ -51,7 +51,7 @@
             "mode" : "transition",
             "transition" : "idle",
             "frameProperties" : {
-              "immediateSound" : ["/sfx/projectiles/v_ancientlaserexplosion.ogg"]
+              "immediateSound" : ["/sfx/melee/v_toxicution_fire.ogg"]
             }
           }
         }
@@ -61,41 +61,51 @@
         "states" : {
           "inactive" : {
             "properties" : {
-              "lightsOff" : ["glow"],
+              "lightsOff" : ["bladeElectricGlow", "bladePoisonGlow"],
               "particleEmittersOff" : ["blade"]
             }
           },
           "extend" : {
-            "frames" : 3,
+            "frames" : 5,
             "cycle" : 0.15,
             "mode" : "transition",
             "transition" : "active",
             "properties" : {
-              "lightsOn" : ["glow"],
+              "lightsOn" : ["bladeElectricGlow", "bladePoisonGlow"],
               "particleEmittersOn" : ["blade"],
               "immediateSound" : "/sfx/tools/energypickaxe_start.ogg"
             }
           },
           "active" : {
-            "frames" : 6,
-            "cycle" : 0.4,
+            "frames" : 16,
+            "cycle" : 1.6,
             "mode" : "loop",
             "properties" : {
-              "lightsOn" : ["glow"],
+              "lightsOn" : ["bladeElectricGlow", "bladePoisonGlow"],
               "particleEmittersOn" : ["blade"],
               "persistentSound" : "/sfx/tools/energypickaxe_idle.ogg"
             }
           },
           "retract" : {
-            "frames" : 3,
+            "frames" : 5,
             "cycle" : 0.15,
             "mode" : "transition",
             "transition" : "inactive",
             "properties" : {
-              "lightsOn" : ["glow"],
+              "lightsOn" : ["bladeElectricGlow", "bladePoisonGlow"],
               "particleEmittersOn" : ["blade"],
               "immediateSound" : "/sfx/tools/energypickaxe_stop2.ogg"
             }
+          }
+        }
+      },
+      "core" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 8,
+            "cycle" : 0.8,
+            "mode" : "loop"
           }
         }
       }
@@ -165,6 +175,41 @@
             "retract" : {
               "properties" : {
                 "image" : "<partImage>:retract.<frame>?<directives>?<bladeDirectives>"
+              }
+            }
+          }
+        }
+      },
+      "core" : {
+        "properties" : {
+          "zLevel" : 6,
+          "centered" : true,
+          "anchorPart" : "sword",
+          "rotationCenter" : [0, 0]
+        },
+        "partStates" : {
+          "core" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "coreFullbright" : {
+        "properties" : {
+          "zLevel" : 7,
+          "centered" : true,
+          "fullbright" : true,
+          "anchorPart" : "sword",
+          "rotationCenter" : [0, 0]
+        },
+        "partStates" : {
+          "core" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
               }
             }
           }
@@ -247,33 +292,45 @@
   },
 
   "particleEmitters" : {
-    "physicalswoosh" : {
+    "v-electricpoisonswoosh" : {
       "active" : false,
       "transformationGroups" : ["swoosh"],
       "burstCount" : 4,
       "particles" : [
-        { "particle" : "ancientenergy1"},
-        { "particle" : "ancientenergy2"},
-        { "particle" : "ancientenergy3"}
+        { "particle" : "electricswoosh1"},
+        { "particle" : "electricswoosh2"},
+        { "particle" : "poisonswoosh1"},
+        { "particle" : "poisonswoosh2"}
       ]
     },
     "blade" : {
       "active" : false,
       "transformationGroups" : ["weapon"],
-      "offsetRegion" : [-0.5, 1.5, 0.5, 4.0],
+      "offsetRegion" : [-0.75, 2.25, 0.75, 6.0],
       "emissionRate" : 5,
       "particles" : [
-        { "particle" : "ancientenergy1"},
-        { "particle" : "ancientenergy2"},
-        { "particle" : "ancientenergy3"}
+        { "particle" : "electricswoosh1"},
+        { "particle" : "electricswoosh2"},
+        { "particle" : "poisonswoosh1"},
+        { "particle" : "poisonswoosh2"}
       ]
     }
   },
 
   "lights" : {
-    "glow" : {
-      "position" : [0, 2.0],
-      "color" : [181, 74, 181],
+    "coreGlow" : {
+      "position" : [0, 1.375],
+      "color" : [169, 177, 160],
+      "transformationGroups" : ["weapon"]
+    },
+    "bladePoisonGlow" : {
+      "position" : [-0.5, 4.875],
+      "color" : [72, 131, 47],
+      "transformationGroups" : ["weapon"]
+    },
+    "bladeElectricGlow" : {
+      "position" : [0.5, 4.875],
+      "color" : [74, 74, 181],
       "transformationGroups" : ["weapon"]
     }
   },

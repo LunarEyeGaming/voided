@@ -1,9 +1,9 @@
 {
   "projectileName" : "v-electricsineblast",
   "image" : "electricsineblast.png",
-  "animationCycle" : 0.4,
+  "animationCycle" : 0.1,
   "lightColor" : [100, 100, 150],
-  "frameNumber" : 4,
+  "frameNumber" : 1,
   "timeToLive" : 10,
   "power" : 500,
   "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
@@ -13,6 +13,24 @@
   "physics" : "laser",
   "bounces" : 0,
   "speed" : 75,
+
+  "periodicActions" : [
+    {
+      "time" : 0.01,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "textured",
+        "image" : "/projectiles/activeitems/v-sineblast/electricsineblasttrail.png",
+        "position" : [0, 0],
+        "layer" : "back",
+        "timeToLive" : 0.0,
+        "destructionTime" : 0.2,
+        "destructionAction" : "fade",
+        "fullbright" : true
+      }
+    }
+  ],
 
   "actionOnReap" : [
     {

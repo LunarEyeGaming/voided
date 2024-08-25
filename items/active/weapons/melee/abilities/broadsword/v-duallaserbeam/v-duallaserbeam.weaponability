@@ -7,6 +7,17 @@
           "default" : "inactive",
           "states" : {
             "inactive" : {},
+            "windup" : {
+              "frames" : 6,
+              "cycle" : 0.6,
+              "mode" : "transition",
+              "transition" : "winduploop"
+            },
+            "winduploop" : {
+              "frames" : 2,
+              "cycle" : 0.2,
+              "mode" : "loop"
+            },
             "fire" : {
               "frames" : 1,
               "cycle" : 0.1,
@@ -28,12 +39,42 @@
         }
       },
       "parts" : {
+        "laserpoisonbarrel" : {
+          "properties" : {
+            "transformationGroups" : ["laserpoison", "swoosh"],
+            "offset" : [1.375, 0],
+            "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserbarrelpoison.png<beamVisibility>"
+          }
+        },
+        "laserpoisonbarreltop" : {
+          "properties" : {
+            "transformationGroups" : ["laserpoison", "swoosh"],
+            "offset" : [1.375, 0],
+            "zLevel" : 5,
+            "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserbarrelpoison.png<beamVisibility>"
+          }
+        },
+        "laserelectricbarrel" : {
+          "properties" : {
+            "transformationGroups" : ["laserelectric", "swoosh"],
+            "offset" : [1.375, 0],
+            "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserbarrelelectric.png<beamVisibility>"
+          }
+        },
+        "laserelectricbarreltop" : {
+          "properties" : {
+            "transformationGroups" : ["laserelectric", "swoosh"],
+            "offset" : [1.375, 0],
+            "zLevel" : 5,
+            "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserbarrelelectric.png<beamVisibility>"
+          }
+        },
         "laserpoison" : {
           "properties" : {
             "transformationGroups" : ["laserpoison", "swoosh"],
             "fullbright" : true,
             "centered" : false,
-            "offset" : [0, -1],
+            "offset" : [1.8125, -1],
             "movementSettings" : {
               "amplitude" : 1.0,
               "period" : 0.5,
@@ -43,19 +84,67 @@
           },
           "partStates" : {
             "laser" : {
+              "windup" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:windup.<frame><beamVisibility>"
+                }
+              },
+              "winduploop" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:winduploop.<frame><beamVisibility>"
+                }
+              },
               "fire" : {
                 "properties" : {
-                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:fire.<frame><beamDirectives>"
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:fire.<frame><beamDirectives><beamVisibility>"
                 }
               },
               "fireloop" : {
                 "properties" : {
-                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:fireloop.<frame><beamDirectives>"
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:fireloop.<frame><beamDirectives><beamVisibility>"
                 }
               },
               "winddown" : {
                 "properties" : {
-                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:winddown.<frame><beamDirectives>"
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:winddown.<frame><beamDirectives><beamVisibility>"
+                }
+              }
+            }
+          }
+        },
+        "laserpoisontop" : {
+          "properties" : {
+            "transformationGroups" : ["laserpoison", "swoosh"],
+            "fullbright" : true,
+            "centered" : false,
+            "offset" : [1.8125, -1],
+            "zLevel" : 5
+          },
+          "partStates" : {
+            "laser" : {
+              "windup" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:windup.<frame><beamVisibility>"
+                }
+              },
+              "winduploop" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:winduploop.<frame><beamVisibility>"
+                }
+              },
+              "fire" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:fire.<frame><beamDirectives><beamVisibility>"
+                }
+              },
+              "fireloop" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:fireloop.<frame><beamDirectives><beamVisibility>"
+                }
+              },
+              "winddown" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserpoison.png:winddown.<frame><beamDirectives><beamVisibility>"
                 }
               }
             }
@@ -66,7 +155,7 @@
             "transformationGroups" : ["laserelectric", "swoosh"],
             "fullbright" : true,
             "centered" : false,
-            "offset" : [0, -1],
+            "offset" : [1.8125, -1],
             "movementSettings" : {
               "amplitude" : 1.0,
               "period" : 0.5,
@@ -76,19 +165,67 @@
           },
           "partStates" : {
             "laser" : {
+              "windup" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:windup.<frame><beamVisibility>"
+                }
+              },
+              "winduploop" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:winduploop.<frame><beamVisibility>"
+                }
+              },
               "fire" : {
                 "properties" : {
-                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:fire.<frame><beamDirectives>"
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:fire.<frame><beamDirectives><beamVisibility>"
                 }
               },
               "fireloop" : {
                 "properties" : {
-                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:fireloop.<frame><beamDirectives>"
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:fireloop.<frame><beamDirectives><beamVisibility>"
                 }
               },
               "winddown" : {
                 "properties" : {
-                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:winddown.<frame><beamDirectives>"
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:winddown.<frame><beamDirectives><beamVisibility>"
+                }
+              }
+            }
+          }
+        },
+        "laserelectrictop" : {
+          "properties" : {
+            "transformationGroups" : ["laserelectric", "swoosh"],
+            "fullbright" : true,
+            "centered" : false,
+            "offset" : [1.8125, -1],
+            "zLevel" : 5
+          },
+          "partStates" : {
+            "laser" : {
+              "windup" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:windup.<frame><beamVisibility>"
+                }
+              },
+              "winduploop" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:winduploop.<frame><beamVisibility>"
+                }
+              },
+              "fire" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:fire.<frame><beamDirectives><beamVisibility>"
+                }
+              },
+              "fireloop" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:fireloop.<frame><beamDirectives><beamVisibility>"
+                }
+              },
+              "winddown" : {
+                "properties" : {
+                  "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserelectric.png:winddown.<frame><beamDirectives><beamVisibility>"
                 }
               }
             }
@@ -100,12 +237,20 @@
       "laserpoison" : {"interpolated" : true},
       "laserelectric" : {"interpolated" : true}
     },
+    "globalTagDefaults" : {
+      "beamDirectives" : "",
+      "beamVisibility" : ""
+    },
     "sounds" : {
+      "laserCharge" : [ "/sfx/melee/v_toxicution_dualbeam_charge.ogg" ],
+      "laserStart" : [ "/sfx/gun/erchiuseyebeam_start.ogg" ],
+      "laserLoop" : [ "/sfx/melee/v_toxicution_dualbeam_loop.ogg" ],
+      "laserStop" : [ "/sfx/gun/erchiuseyebeam_stop.ogg" ]
     }
   },
 
   "ability" : {
-    "name" : "Dual Beam",
+    "name" : "Beams of Duality",
     "type" : "v-duallaserbeam",
     "scripts" : ["/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/v-duallaserbeam.lua"],
     "class" : "DualBeam",
@@ -127,12 +272,12 @@
     },
 
     "partProjectiles" : {
-      "laserelectric" : {"type" : "electricplasmaexplosion"},
-      "laserpoison" : {"type" : "poisonplasmaexplosion"}
+      "laserelectric" : {"type" : "electricplasmaexplosion", "statusEffects" : ["electrified"]},
+      "laserpoison" : {"type" : "poisonplasmaexplosion", "statusEffects" : ["weakpoison"]}
     },
 
     "beamLength" : 127,
-    "beamVerticalOffset" : 1,
+    "beamMuzzleOffset" : [0, 1],
 
     "boostSpeed" : 20,
     "boostForce" : 100,

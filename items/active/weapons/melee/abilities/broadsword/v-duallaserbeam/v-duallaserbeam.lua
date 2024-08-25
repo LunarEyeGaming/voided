@@ -27,6 +27,7 @@ function DualBeam:init()
   end
 
   self.cooldownTimer = self.cooldownTime
+  self.rotateTimer = 0
 end
 
 function DualBeam:update(dt, fireMode, shiftHeld)
@@ -52,11 +53,21 @@ function DualBeam:windup()
   --   status.setPersistentEffects("weaponMovementAbility", {{stat = "activeMovementAbilities", amount = 1}})
   -- end
 
-  -- animator.setAnimationState("chargeSwoosh", "charge")
+  animator.setAnimationState("laser", "windup")
+  animator.playSound("laserCharge")
 
+  local timer = 0
   util.wait(self.stances.windup.duration, function()
+    -- Warm up the barrels (i.e., animate them).
+    -- Multiplying self.dt with timer / self.stances.windup.duration makes the lasers speed up. Pretty hacky but it
+    -- works.
+    self.rotateTimer = self.rotateTimer + self.dt * timer / self.stances.windup.duration
+    self:updateLasers()
+    timer = timer + self.dt
+
     -- Interrupt if fire mode is not "alt" anymore.
     if self.fireMode ~= "alt" then
+      animator.stopAllSounds("laserCharge")
       return true
     end
   end)
@@ -72,15 +83,18 @@ function DualBeam:fire()
   self.weapon:updateAim()
 
   animator.setAnimationState("laser", "fire")
-  -- animator.playSound(self.weapon.elementalType.."Start")
-  -- animator.playSound(self.weapon.elementalType.."Blast", -1)
+  animator.playSound("laserStart")
+  animator.playSound("laserLoop", -1)
 
   -- local params = copy(self.projectileParameters)
   -- params.power = self.baseDps * self.fireTime * config.getParameter("damageLevelMultiplier")
   -- params.powerMultiplier = activeItem.ownerPowerMultiplier()
 
+  -- Spawn camera shaker and set focus entity to it.
+  self.cameraShakerId = world.spawnProjectile("v-camerashaker", mcontroller.position(), entity.id())
+  activeItem.setCameraFocusEntity(self.cameraShakerId)
+
   local explosionTimer = 0
-  local timer = 0
   while self.fireMode == "alt" and status.overConsumeResource("energy", self.energyUsage * self.dt) do
     self.weapon:updateAim()
 
@@ -100,30 +114,16 @@ function DualBeam:fire()
     end
 
     -- Animate laser beams and calculate damage sources.
-    timer = timer + self.dt
+    self.rotateTimer = self.rotateTimer + self.dt
 
+    local partCollidePoints = self:updateLasers()
+
+    -- Add damage sources.
     local damageSources = {}
-    local partCollidePoints = {}
-    for partName, settings in pairs(self.laserPartSettings) do
-      -- Calculate vertical offset
-      local verticalOffset = settings.amplitude * math.sin(2 * math.pi * (timer / settings.period + settings.phase))
-      animator.resetTransformationGroup(partName)
-      animator.translateTransformationGroup(partName, {0, verticalOffset})
-
+    for partName, damageConfig in pairs(self.partDamageConfigs) do
       -- Add damage source.
-      local damageArea = animator.transformPoly(self.partDamageConfigs[partName].poly, partName)
-      table.insert(damageSources, self.weapon:damageSource(self.partDamageConfigs[partName], damageArea))
-
-      -- Get collision point and distance.
-      partCollidePoints[partName], collideDistance = self:getCollidePointAndDistance(partName)
-
-      -- If a collision distance is defined...
-      if collideDistance then
-        -- Crop the part accordingly.
-        local beamHeight = animator.partProperty(partName, "imageHeight")
-        local directives = string.format("?crop=0;0;%d;%d", math.floor(collideDistance * PIXELS_TO_BLOCK_RATIO), beamHeight)
-        animator.setPartTag(partName, "beamDirectives", directives)
-      end
+      local damageArea = animator.transformPoly(damageConfig.poly, partName)
+      table.insert(damageSources, self.weapon:damageSource(damageConfig, damageArea))
     end
 
     activeItem.setItemDamageSources(damageSources)
@@ -158,21 +158,81 @@ function DualBeam:fire()
   end
 
   animator.setAnimationState("laser", "winddown")
-  -- animator.stopAllSounds(self.weapon.elementalType.."Start")
-  -- animator.stopAllSounds(self.weapon.elementalType.."Blast")
-  -- animator.playSound(self.weapon.elementalType.."End")
+  animator.stopAllSounds("laserStart")
+  animator.stopAllSounds("laserLoop")
+  animator.playSound("laserStop")
+
+  -- Make camera shaking entity stop.
+  world.sendEntityMessage(self.cameraShakerId, "v-stopShake")
 
   -- Clear damage sources
   activeItem.setItemDamageSources()
 
+  -- Wait self.cooldownTime to exit.
+  local timer = self.cooldownTime
+  util.wait(self.cooldownTime, function()
+    -- Multiplying self.dt with timer / self.cooldownTime makes the lasers slow down. Pretty hacky but it works.
+    self.rotateTimer = self.rotateTimer + self.dt * timer / self.cooldownTime
+    self:updateLasers()
+    timer = timer - self.dt
+  end)
+
   self.cooldownTimer = self.cooldownTime
 end
 
+---Animates the lasers for one tick and returns a table mapping parts to collision points. This method depends on
+---`self.rotateTimer`, which should be set before this method is called.
+---@return table<string, Vec2F>
+function DualBeam:updateLasers()
+  local partCollidePoints = {}
+
+  for partName, settings in pairs(self.laserPartSettings) do
+    -- Calculate vertical offset
+    local verticalOffset = settings.amplitude * math.sin(2 * math.pi * (self.rotateTimer / settings.period + settings.phase))
+    animator.resetTransformationGroup(partName)
+    animator.translateTransformationGroup(partName, {0, verticalOffset})
+
+    local collideDistance
+    -- Get collision point and distance.
+    partCollidePoints[partName], collideDistance = self:getCollidePointAndDistance(partName)
+
+    -- sb.logInfo("partName: %s, progress: %s", partName, (self.rotateTimer / settings.period + settings.phase) % 1)
+    -- Between the first and third quarters of the period...
+    if (self.rotateTimer / settings.period + settings.phase + 0.25) % 1 > 0.5 then
+      -- Make the second beam visible and the first beam invisible.
+      animator.setPartTag(partName, "beamVisibility", "")
+      animator.setPartTag(partName.."barrel", "beamVisibility", "")
+      animator.setPartTag(partName.."top", "beamVisibility", "?multiply=0000")
+      animator.setPartTag(partName.."barreltop", "beamVisibility", "?multiply=0000")
+    else
+      -- Make the first beam visible and the second beam invisible.
+      animator.setPartTag(partName, "beamVisibility", "?multiply=0000")
+      animator.setPartTag(partName.."barrel", "beamVisibility", "?multiply=0000")
+      animator.setPartTag(partName.."top", "beamVisibility", "")
+      animator.setPartTag(partName.."barreltop", "beamVisibility", "")
+    end
+
+    -- If a collision distance is defined...
+    if collideDistance then
+      -- Crop the part accordingly.
+      local beamHeight = animator.partProperty(partName, "imageHeight")
+      local directives = string.format("?crop=0;0;%d;%d", math.floor(collideDistance * PIXELS_TO_BLOCK_RATIO), beamHeight)
+      animator.setPartTag(partName, "beamDirectives", directives)
+      animator.setPartTag(partName.."top", "beamDirectives", directives)
+    else
+      animator.setPartTag(partName, "beamDirectives", "")
+      animator.setPartTag(partName.."top", "beamDirectives", "")
+    end
+  end
+
+  return partCollidePoints
+end
+
 function DualBeam:getCollidePointAndDistance(partName)
-  local collideStart = vec2.add(mcontroller.position(), activeItem.handPosition(animator.transformPoint({0,
-        self.beamVerticalOffset}, partName)))
+  local collideStart = vec2.add(mcontroller.position(), activeItem.handPosition(animator.transformPoint({
+      self.beamMuzzleOffset[1], self.beamMuzzleOffset[2]}, partName)))
   local collideEnd = vec2.add(mcontroller.position(), activeItem.handPosition(animator.transformPoint({
-      self.beamLength, self.beamVerticalOffset}, partName)))
+      self.beamLength + self.beamMuzzleOffset[1], self.beamMuzzleOffset[2]}, partName)))
 
   world.debugLine(collideStart, collideEnd, "green")
 
@@ -190,7 +250,15 @@ function DualBeam:reset()
   for partName, _ in pairs(self.partDamageConfigs) do
     animator.setPartTag(partName, "beamDirectives", "")
   end
-  -- animator.stopAllSounds(self.weapon.elementalType.."Blast")
+
+  -- Tell camera shaker to stop shaking if defined and existing.
+  if self.cameraShakerId and world.entityExists(self.cameraShakerId) then
+    world.sendEntityMessage(self.cameraShakerId, "v-stopShake")
+  end
+
+  animator.stopAllSounds("laserCharge")
+  animator.stopAllSounds("laserStart")
+  animator.stopAllSounds("laserLoop")
 end
 
 function DualBeam:uninit()

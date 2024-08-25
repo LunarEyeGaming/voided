@@ -1,5 +1,5 @@
 {
-  "projectileName" : "v-camerapanner",  // Pans the camera
+  "projectileName" : "v-camerashaker",  // Shakes the camera
   "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
   "physics" : "illusion",
   "bounces" : 0,
@@ -11,6 +11,10 @@
   "damageType" : "NoDamage",
   "damageKind" : "default",
   "piercing" : true,
-  
-  "scripts" : ["v-camerapanner.lua"]
+
+  "scripts" : ["v-camerashaker.lua"],
+  "scriptDelta" : 1,
+
+  "shakeOffsetRegion" : [-0.25, -0.25, 0.25, 0.25],
+  "shakeStopTime" : 0.5
 }

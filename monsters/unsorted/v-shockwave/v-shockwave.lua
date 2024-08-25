@@ -109,6 +109,7 @@ function update(dt)
     end
 
     monster.setAnimationParameter("nextBlocks", nil)
+    monster.setAnimationParameter("particleNextBlocks", nil)
 
     return
   end
