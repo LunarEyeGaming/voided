@@ -18,6 +18,7 @@ local projectileType
 local projectileOffset
 local projectileParameters
 local fireInterval
+local maxAttackDuration
 local inaccuracy
 
 local cameraPos
@@ -48,18 +49,19 @@ function init()
   exposureTime = config.getParameter("exposureTime", 0.8)
   activationTime = config.getParameter("activationTime", 0.0)
   deactivationTime = config.getParameter("deactivationTime", 0.0)
-  
+
   projectileType = config.getParameter("projectileType")
   projectileOffset = config.getParameter("projectileOffset", {0, 0})
   projectileParameters = config.getParameter("projectileParameters")
   projectileParameters.power = (projectileParameters.power or 10) * root.evalFunction("monsterLevelPowerMultiplier", monster.level())
   fireInterval = config.getParameter("fireInterval", 0.1)
+  maxAttackDuration = config.getParameter("maxAttackDuration", 5)
   inaccuracy = config.getParameter("inaccuracy", 0.0)
-  
+
   cameraPos = vec2.add(mcontroller.position(), animator.partPoint("body", "cameraPos"))
-  
+
   rotationCenter = config.getParameter("rotationCenter", {0, 0})
-  
+
   message.setHandler("despawn", function()
     moveState:set(states.deactivate)
   end)
@@ -69,7 +71,7 @@ function init()
   queriedTimings = {}
   isAttacking = false
   target = nil
-  
+
   script.setUpdateDelta(config.getParameter("scriptDelta", 15))
 
   moveState = FSM:new()
@@ -96,7 +98,7 @@ end
 
 function states.target()
   isAttacking = false
-  
+
   util.wait(activationTime)
 
   while true do
@@ -111,17 +113,23 @@ end
 function states.attack()
   isAttacking = true
 
-  local timer = 0
+  local attackTimer = maxAttackDuration  -- Timer to limit the amount of time that the turret spends attacking
+  local fireTimer = 0  -- Timer for firing individual projectiles
   local dt = script.updateDt()
 
-  while hasTarget() do
+  while hasTarget() and attackTimer > 0 do
     local aimVec = world.distance(world.entityPosition(target), cameraPos)
+
     setAngle(vec2.angle(aimVec))
-    if timer <= 0 then
+
+    if fireTimer <= 0 then
       fire(aimVec)
-      timer = fireInterval
+      fireTimer = fireInterval
     end
-    timer = timer - dt
+
+    fireTimer = fireTimer - dt
+    attackTimer = attackTimer - dt
+
     coroutine.yield()
   end
   target = nil
@@ -139,7 +147,7 @@ function states.activate()
     turn(angles[i], turnTime)
     wait()
   end
-  
+
   moveState:set(states.deactivate)
 end
 
@@ -149,12 +157,12 @@ function states.deactivate()
   end
 
   turn(angles[1], turnTime)
-  
+
   animator.setAnimationState("body", "disappear")
   animator.setAnimationState("gun", "disappear")
-  
+
   util.wait(deactivationTime)
-  
+
   status.setResourcePercentage("health", 0.0)
 end
 
@@ -207,7 +215,7 @@ function fire(aimVec)
 
   local angle = vec2.angle(aimVec)
   local position = vec2.add(
-    mcontroller.position(), 
+    mcontroller.position(),
     vec2.add(
       vec2.rotate(projectileOffset, angle),
       rotationCenter

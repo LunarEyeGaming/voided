@@ -1,0 +1,142 @@
+{
+  "v_getChildren": {
+    "type": "action",
+    "name": "v_getChildren",
+    "title": "v_getChildren",
+    "properties": {},
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {
+      "entityIds": {"type": "list", "key": null}
+    }
+  },
+  "v_fetchPositions": {
+    "type": "action",
+    "name": "v_fetchPositions",
+    "title": "v_fetchPositions",
+    "properties": {
+      "boardVarPrefix": {"type": "string"},
+      "coordDelimiter": {"type": "string", "value": "_"},
+      "gridDimensions": {"type": "vec2", "value": [1, 1]},
+      "uniqueIdPrefix": {"type": "string"}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {}
+  },
+  "v_attackAllSegments": {
+    "type": "action",
+    "name": "v_attackAllSegments",
+    "title": "v_attackAllSegments",
+    "properties": {
+      "attackId": {"type": "string", "value": "1"},
+      "awaitChildren": {"type": "bool", "value": true},
+      "children": {"type": "list"},
+      "step": {"type": "number"},
+      "target": {"type": "entity"},
+      "interval": {"type": "number"}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {}
+  },
+  "v_attackRandomSegment": {
+    "type": "action",
+    "name": "v_attackRandomSegment",
+    "title": "v_attackRandomSegment",
+    "properties": {
+      "attackId": {"type": "string"},
+      "children": {"type": "list"},
+      "target": {"type": "entity"},
+      "excludeChild": {"type": "entity"}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {
+      "selectedChild": {"type": "entity", "key": null}
+    }
+  },
+  "v_getTail": {
+    "type": "action",
+    "name": "v_getTail",
+    "title": "v_getTail",
+    "properties": {},
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {
+      "entityId": {"type": "entity", "key": null}
+    }
+  },
+  "v_wormConstrict": {
+    "type": "action",
+    "name": "v_wormConstrict",
+    "title": "v_wormConstrict",
+    "properties": {
+      "bodyClampRate": {"type": "number", "value": 30},
+      "controlForce": {"type": "number", "value": 200},
+      "endCenter": {"type": "position", "key": "self"},
+      "endRadius": {"type": "vec2", "value": [15, 15]},
+      "numPoints": {"type": "number", "value": 50},
+      "numTotalPoints": {"type": "number", "value": 150},
+      "speed": {"type": "number", "value": 50},
+      "startCenter": {"type": "position", "key": "self"},
+      "startRadius": {"type": "vec2", "value": [50, 30]},
+      "tolerance": {"type": "number", "value": 5}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {
+      "center": {"type": "position", "key": null},
+      "radius": {"type": "vec2", "key": null}
+    }
+  },
+  "v_rotateTurretToDefault": {
+    "type": "action",
+    "name": "v_rotateTurretToDefault",
+    "title": "v_rotateTurretToDefault",
+    "properties": {
+      "shouldRotate": {"type": "bool", "key": "turretIsNotActive"}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {}
+  },
+  "v_rotateTurret": {
+    "type": "action",
+    "name": "v_rotateTurret",
+    "title": "",
+    "properties": {
+      "offset": {"type": "vec2", "value": [1.75, 1.125]},
+      "target": {"type": "entity", "key": "target"}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {
+      "aimVector": {"type": "vec2", "key": null},
+      "projectileOffset": {"type": "vec2", "key": null}
+    }
+  },
+  "v_centipedeDeathAnimation": {
+    "type": "action",
+    "name": "v_centipedeDeathAnimation",
+    "title": "v_centipedeDeathAnimation",
+    "properties": {},
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {}
+  },
+  "v_centipedeRayAnimation": {
+    "type": "action",
+    "name": "v_centipedeRayAnimation",
+    "title": "v_centipedeRayAnimation",
+    "properties": {
+      "children": {"type": "list"},
+      "tail": {"type": "entity"}
+    },
+    "category": "v-centipedeboss",
+    "script": "/scripts/actions/boss/v-centipedeboss.lua",
+    "output": {
+      "rayIds": {"type": "list", "key": null}
+    }
+  }
+}

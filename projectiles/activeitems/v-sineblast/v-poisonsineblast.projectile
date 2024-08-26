@@ -1,0 +1,48 @@
+{
+  "projectileName" : "v-poisonsineblast",
+  "image" : "poisonsineblast.png",
+  "animationCycle" : 0.1,
+  "lightColor" : [155, 186, 61],
+  "frameNumber" : 1,
+  "timeToLive" : 10,
+  "power" : 500,
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "flippable" : true,
+  "fullbright" : true,
+
+  "physics" : "laser",
+  "bounces" : 0,
+  "speed" : 75,
+
+  "periodicActions" : [
+    {
+      "time" : 0.01,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "textured",
+        "image" : "/projectiles/activeitems/v-sineblast/poisonsineblasttrail.png",
+        "position" : [0, 0],
+        "layer" : "back",
+        "timeToLive" : 0.0,
+        "destructionTime" : 0.2,
+        "destructionAction" : "fade",
+        "fullbright" : true
+      }
+    }
+  ],
+
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/poisonexplosionknockbackstatus.config"
+    }
+  ],
+
+  "emitters" : [ "poisonswoosh" ],
+  "damageKind" : "poison",
+  "damageType" : "NoDamage",
+  "scripts" : [ "/scripts/projectiles/sinewaveprojectile.lua" ],
+  "waveAmplitude" : -0.5,
+  "wavePeriod" : 0.2
+}

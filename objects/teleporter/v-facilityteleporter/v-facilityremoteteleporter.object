@@ -1,0 +1,47 @@
+{
+  "objectName" : "v-facilityremoteteleporter",
+  "objectType" : "teleporter",
+  "colonyTags" : ["misc"],
+  "printable" : false,
+  "price" : 3000,
+  "rarity" : "Common",
+  "description" : "A teleporter that allows for an easy return to this stronghold.",
+  "shortdescription" : "Stronghold Remote Teleporter",
+  "race" : "ancient",
+
+  "apexDescription" : "I should be able to return to this place at any time using this teleporter.",
+  "avianDescription" : "I should bookmark this teleporter to come back here.",
+  "floranDescription" : "Floran ussse teleporter to come back here.",
+  "glitchDescription" : "Relieved. I can come back to this facility using this shortcut.",
+  "humanDescription" : "A nice and convenient way to come back here.",
+  "hylotlDescription" : "This teleporter enables me to return to this facility easily.",
+  "novakidDescription" : "A teleporter, good for comin' back here.",
+
+  "category" : "teleporter",
+  "lightColor" : [169, 177, 160],
+
+  "interactAction" : "OpenTeleportDialog",
+  "interactData" : "/interface/warping/remoteteleporter.config",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "facilityteleporter.png:<frame>", "fullbright" : true }, { "image" : "facilityteleporterlit.png:<frame>" } ],
+
+      "imagePosition" : [-32, 0],
+      "frames" : 14,
+      "animationCycle" : 1.4,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+      "collision" : "solid",
+      "collisionSpaces" : [ [-3, 0], [-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0] ]
+    }
+  ],
+
+  "soundEffect" : "/sfx/objects/terraformer_small_loop.ogg",
+
+  "teleporterFootPosition" : [0, 1],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

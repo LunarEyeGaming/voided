@@ -17,21 +17,22 @@
       "/monsters/biomes/v-toxicwasteland/v-mutanteel/body/v-mutanteelbodyplugin.lua",
       "/monsters/biomes/v-toxicwasteland/v-mutanteel/v-mutanteelflipplugin.lua"
     ],
-    
+
     "behavior" : "v-noop",
-    
+
     "segmentSize" : 2,
     "bodySegment" : "v-mutanteelbody",
     "tailSegment" : "v-mutanteeltail",
     "renderLayer" : "ForegroundEntity+10",
-    
+
     "windupTime" : 1.0,
     "projectileType" : "v-mutanteelspit",
     "projectileParameters" : {
       "power" : 10,
-      "speed" : 50
+      "speed" : 50,
+      "damageRepeatGroup" : "v-mutanteelspit"
     },
-    
+
     "facingMode" : "transformation",
 
     "touchDamage" : {
@@ -122,6 +123,9 @@
           "baseValue" : 1.0
         },
         "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "v-strongpoisonStatusImmunity" : {
           "baseValue" : 1.0
         }
       },

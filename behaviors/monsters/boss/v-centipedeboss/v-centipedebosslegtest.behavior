@@ -1,0 +1,69 @@
+{
+  "name": "v-centipedebosslegtest",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/entity.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/v-world.lua",
+    "/scripts/actions/boss/v-centipedeboss.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setDying",
+        "type": "action",
+        "name": "setDying",
+        "parameters": {
+          "shouldDie": {"value": false}
+        }
+      },
+      {
+        "title": "setPosition",
+        "type": "action",
+        "name": "setPosition",
+        "parameters": {
+          "footPosition": {"value": false},
+          "position": {"key": "spawn"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 10}
+        }
+      },
+      {
+        "title": "Get center pos",
+        "type": "action",
+        "name": "v_getUniqueEntityPosition",
+        "parameters": {
+          "uniqueId": {"value": "v-centerPos"}
+        },
+        "output": {
+          "position": "centerPos"
+        }
+      },
+      {
+        "title": "v_wormConstrict",
+        "type": "action",
+        "name": "v_wormConstrict",
+        "parameters": {
+          "endCenter": {"key": "centerPos"},
+          "endRadius": {"value": [42, 42]},
+          "numTotalPoints": {"value": 500},
+          "speed": {"value": 10},
+          "startCenter": {"key": "centerPos"},
+          "startRadius": {"value": [42, 42]}
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,506 @@
+{
+  "name": "v-centipedeboss-constrictchoice",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/world.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/boss/v-centipedeboss.lua",
+    "/scripts/actions/status.lua",
+    "/scripts/actions/v-animator.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/v-world.lua"
+  ],
+  "parameters": {
+    "constrictPos": null,
+    "constrictRadius": [22, 22],
+    "deconstrictClampRate": 240,
+    "showConstrictWarning": false,
+    "constrictPoints": 150,
+    "constrictSpeed": 50
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "optional",
+          "type": "decorator",
+          "name": "optional",
+          "parameters": {
+            "shouldRun": {"key": "<showConstrictWarning>"}
+          },
+          "child": {
+            "title": "spawnMonster",
+            "type": "action",
+            "name": "spawnMonster",
+            "parameters": {
+              "inheritParameters": {"value": {}},
+              "parameters": {"value": {}},
+              "position": {"key": "<constrictPos>"},
+              "replacement": {"value": false},
+              "type": {"value": "v-centipedeconstricttelegraph"}
+            },
+            "output": {
+              "entityId": "telegraphId"
+            }
+          }
+        }
+      },
+      {
+        "title": "unsetFlag",
+        "type": "action",
+        "name": "unsetFlag",
+        "parameters": {
+          "name": {"value": "turretIsNotActive"}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "v_rotateTurret",
+              "type": "action",
+              "name": "v_rotateTurret",
+              "parameters": {
+                "offset": {"value": [1.75, 1.125]},
+                "target": {"key": "target"}
+              },
+              "output": {
+                "aimVector": "toTarget",
+                "projectileOffset": "projectileOffset"
+              }
+            }
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "selector",
+              "type": "composite",
+              "name": "selector",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "inverter",
+                      "type": "decorator",
+                      "name": "inverter",
+                      "parameters": {},
+                      "child": {
+                        "title": "resourcePercentage",
+                        "type": "action",
+                        "name": "resourcePercentage",
+                        "parameters": {
+                          "percentage": {"value": 0.5},
+                          "resource": {"value": "health"}
+                        }
+                      }
+                    },
+                    {
+                      "title": "Activate laser",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaserfire"}
+                      }
+                    },
+                    {
+                      "title": "timer",
+                      "type": "action",
+                      "name": "timer",
+                      "parameters": {
+                        "time": {"value": 1.35}
+                      }
+                    },
+                    {
+                      "title": "spawnProjectile",
+                      "type": "action",
+                      "name": "spawnProjectile",
+                      "parameters": {
+                        "aimVector": {"key": "toTarget"},
+                        "offset": {"key": "projectileOffset"},
+                        "position": {"key": "self"},
+                        "projectileConfig": {"value": {"power": 15}},
+                        "projectileType": {"value": "v-centipedeelectricrocket"},
+                        "scalePower": {"value": true},
+                        "sourceEntity": {"key": "self"},
+                        "trackSource": {"value": false},
+                        "uniqueRepeatGroup": {"value": true}
+                      }
+                    },
+                    {
+                      "title": "playSound",
+                      "type": "action",
+                      "name": "playSound",
+                      "parameters": {
+                        "loops": {"value": 0},
+                        "sound": {"value": "fire2"}
+                      }
+                    },
+                    {
+                      "title": "Play fire anim",
+                      "type": "action",
+                      "name": "setAnimationState",
+                      "parameters": {
+                        "state": {"value": "fire1"},
+                        "type": {"value": "turret"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Activate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaserfire"}
+                      }
+                    },
+                    {
+                      "title": "timer",
+                      "type": "action",
+                      "name": "timer",
+                      "parameters": {
+                        "time": {"value": 0.15}
+                      }
+                    },
+                    {
+                      "title": "Reactivate laser",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaserfire"}
+                      }
+                    },
+                    {
+                      "title": "timer",
+                      "type": "action",
+                      "name": "timer",
+                      "parameters": {
+                        "time": {"value": 0.35}
+                      }
+                    },
+                    {
+                      "title": "spawnProjectile",
+                      "type": "action",
+                      "name": "spawnProjectile",
+                      "parameters": {
+                        "aimVector": {"key": "toTarget"},
+                        "offset": {"key": "projectileOffset"},
+                        "position": {"key": "self"},
+                        "projectileConfig": {"value": {"power": 15}},
+                        "projectileType": {"value": "v-centipedeelectricrocket"},
+                        "scalePower": {"value": true},
+                        "sourceEntity": {"key": "self"},
+                        "trackSource": {"value": false},
+                        "uniqueRepeatGroup": {"value": true}
+                      }
+                    },
+                    {
+                      "title": "playSound",
+                      "type": "action",
+                      "name": "playSound",
+                      "parameters": {
+                        "loops": {"value": 0},
+                        "sound": {"value": "fire2"}
+                      }
+                    },
+                    {
+                      "title": "Play fire 2 anim",
+                      "type": "action",
+                      "name": "setAnimationState",
+                      "parameters": {
+                        "state": {"value": "fire2"},
+                        "type": {"value": "turret"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Activate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaserfire"}
+                      }
+                    },
+                    {
+                      "title": "timer",
+                      "type": "action",
+                      "name": "timer",
+                      "parameters": {
+                        "time": {"value": 0.15}
+                      }
+                    }
+                  ]
+                },
+                {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "Activate laser",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaserfire"}
+                      }
+                    },
+                    {
+                      "title": "timer",
+                      "type": "action",
+                      "name": "timer",
+                      "parameters": {
+                        "time": {"value": 1.35}
+                      }
+                    },
+                    {
+                      "title": "spawnProjectile",
+                      "type": "action",
+                      "name": "spawnProjectile",
+                      "parameters": {
+                        "aimVector": {"key": "toTarget"},
+                        "offset": {"key": "projectileOffset"},
+                        "position": {"key": "self"},
+                        "projectileConfig": {"value": {"power": 15}},
+                        "projectileType": {"value": "v-centipedepoisonrocket"},
+                        "scalePower": {"value": true},
+                        "sourceEntity": {"key": "self"},
+                        "trackSource": {"value": false},
+                        "uniqueRepeatGroup": {"value": true}
+                      }
+                    },
+                    {
+                      "title": "playSound",
+                      "type": "action",
+                      "name": "playSound",
+                      "parameters": {
+                        "loops": {"value": 0},
+                        "sound": {"value": "fire"}
+                      }
+                    },
+                    {
+                      "title": "Play fire anim",
+                      "type": "action",
+                      "name": "setAnimationState",
+                      "parameters": {
+                        "state": {"value": "fire1"},
+                        "type": {"value": "turret"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Activate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaserfire"}
+                      }
+                    },
+                    {
+                      "title": "timer",
+                      "type": "action",
+                      "name": "timer",
+                      "parameters": {
+                        "time": {"value": 0.15}
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "title": "v_wormConstrict",
+            "type": "action",
+            "name": "v_wormConstrict",
+            "parameters": {
+              "endCenter": {"key": "<constrictPos>"},
+              "endRadius": {"key": "<constrictRadius>"},
+              "numTotalPoints": {"key": "<constrictPoints>"},
+              "speed": {"key": "<constrictSpeed>"},
+              "startCenter": {"key": "centerPos"},
+              "startRadius": {"value": [42, 42]}
+            },
+            "output": {
+              "center": "telegraphCenter",
+              "radius": "telegraphRadius"
+            }
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "optional",
+              "type": "decorator",
+              "name": "optional",
+              "parameters": {
+                "shouldRun": {"key": "<showConstrictWarning>"}
+              },
+              "child": {
+                "title": "v_sendEntityMessage",
+                "type": "action",
+                "name": "v_sendEntityMessage",
+                "parameters": {
+                  "entity": {"key": "telegraphId"},
+                  "message": {"value": "setTelegraphConfig"},
+                  "arguments": {"value": ["$position:telegraphCenter", "$vec2:telegraphRadius"]}
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "optional",
+          "type": "decorator",
+          "name": "optional",
+          "parameters": {
+            "shouldRun": {"key": "<showConstrictWarning>"}
+          },
+          "child": {
+            "title": "sendEntityMessage",
+            "type": "action",
+            "name": "sendEntityMessage",
+            "parameters": {
+              "arguments": {"value": []},
+              "entity": {"key": "telegraphId"},
+              "message": {"value": "despawn"}
+            }
+          }
+        }
+      },
+      {
+        "title": "Deactivate laser",
+        "type": "action",
+        "name": "v_setLaserBeamActive",
+        "parameters": {
+          "active": {"value": false},
+          "beamName": {"value": "targetlaser"}
+        }
+      },
+      {
+        "title": "Deactivate laser (fire)",
+        "type": "action",
+        "name": "v_setLaserBeamActive",
+        "parameters": {
+          "active": {"value": false},
+          "beamName": {"value": "targetlaserfire"}
+        }
+      },
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "turretIsNotActive"}
+        }
+      },
+      {
+        "title": "v_wormConstrict",
+        "type": "action",
+        "name": "v_wormConstrict",
+        "parameters": {
+          "bodyClampRate": {"key": "<deconstrictClampRate>"},
+          "endCenter": {"key": "centerPos"},
+          "endRadius": {"value": [42, 42]},
+          "numPoints": {"value": 150},
+          "numTotalPoints": {"value": 150},
+          "startCenter": {"key": "<constrictPos>"},
+          "startRadius": {"key": "<constrictRadius>"}
+        }
+      }
+    ]
+  }
+}

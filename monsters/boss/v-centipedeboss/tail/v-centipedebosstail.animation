@@ -1,0 +1,112 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "body" : {
+        "priority" : 0,
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 1
+          },
+          "transition" : {
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "zLevel" : 10,
+          "transformationGroups" : [ "body", "shake" ],
+          "offset" : [0.0, 0.0]
+        },
+        "partStates": {
+          "body" : {
+            "idle" : {
+              "properties": {
+                "image": "<partImage>:<phase>.idle.<frame>"
+              }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "zLevel" : 20,
+          "anchorPart" : "body",
+          "fullbright" : true
+        },
+        "partStates": {
+          "body" : {
+            "idle" : {
+              "properties": {
+                "image": "<partImage>:<phase>.idle.<frame>"
+              }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "globalTagDefaults" : {
+    "phase" : "1"
+  },
+
+  "transformationGroups" : {
+    "body" : { "interpolated" : true },
+    "shake" : { "interpolated" : true }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [ ]
+    }
+  },
+
+  "sounds" : {
+    "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
+    "deathPuff" : [ ],
+    "ray" : [ "/sfx/objects/metalbarrel_break1.ogg", "/sfx/objects/metalbarrel_break2.ogg",
+      "/sfx/objects/metalbarrel_break3.ogg"],
+    "rumble" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_rumble.ogg" ],
+      "volume" : 0.4,
+      "rangeMultiplier" : 5.0
+    }
+  }
+}

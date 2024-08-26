@@ -43,5 +43,19 @@
     "category": "v-worm",
     "script": "/scripts/actions/v-worm.lua",
     "output": {}
+  },
+  "v_wormFlyToPosition": {
+    "type": "action",
+    "name": "v_wormFlyToPosition",
+    "title": "v_wormFlyToPosition",
+    "properties": {
+      "position": {"type": "position", "key": "self"},
+      "speed": {"type": "number", "value": 1},
+      "tolerance": {"type": "number", "value": 1},
+      "controlForce": {"type": "number"}
+    },
+    "category": "v-worm",
+    "script": "/scripts/actions/v-worm.lua",
+    "output": {}
   }
 }

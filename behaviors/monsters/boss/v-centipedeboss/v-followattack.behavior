@@ -1,0 +1,324 @@
+{
+  "name": "v-centipedeboss-followattack",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/status.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/boss/v-centipedeboss.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/monster.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "inverter",
+              "type": "decorator",
+              "name": "inverter",
+              "parameters": {},
+              "child": {
+                "title": "resourcePercentage",
+                "type": "action",
+                "name": "resourcePercentage",
+                "parameters": {
+                  "percentage": {"value": 0.5},
+                  "resource": {"value": "health"}
+                }
+              }
+            },
+            {
+              "title": "parallel",
+              "type": "composite",
+              "name": "parallel",
+              "parameters": {
+                "fail": {"value": -1},
+                "success": {"value": 2}
+              },
+              "children": [
+                {
+                  "title": "controlApproachVelocity",
+                  "type": "action",
+                  "name": "controlApproachVelocity",
+                  "parameters": {
+                    "force": {"value": 250},
+                    "velocity": {"value": [0, 0]}
+                  }
+                },
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"value": 0.5}
+                  }
+                }
+              ]
+            },
+            {
+              "title": "v_attackAllSegments",
+              "type": "action",
+              "name": "v_attackAllSegments",
+              "parameters": {
+                "attackId": {"value": "mine"},
+                "awaitChildren": {"value": false},
+                "children": {"key": "childSegments"},
+                "step": {"value": 2}
+              }
+            },
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"value": 2.5}
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "v-approach-turnworm",
+            "type": "module",
+            "name": "v-approach-turnworm",
+            "parameters": {
+              "flyState": {"value": ""},
+              "idleState": {"value": ""},
+              "leftState": {"value": ""},
+              "rightState": {"value": ""},
+              "turnSpeed": {"value": 3.14},
+              "waveAmplitude": {"value": 0},
+              "wavePeriod": {"value": 1}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 5}
+            }
+          }
+        ]
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "controlApproachVelocity",
+            "type": "action",
+            "name": "controlApproachVelocity",
+            "parameters": {
+              "force": {"value": 250},
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 0.5}
+            }
+          }
+        ]
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "bitewindup"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": 0},
+          "sound": {"value": "roar"}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "entityDirection",
+                "type": "action",
+                "name": "entityDirection",
+                "parameters": {
+                  "entity": {"key": "self"},
+                  "offset": {"value": [0, 0]},
+                  "target": {"key": "target"}
+                },
+                "output": {
+                  "vector": "toTarget"
+                }
+              },
+              {
+                "title": "vecAngle",
+                "type": "action",
+                "name": "vecAngle",
+                "parameters": {
+                  "vector": {"key": "toTarget"}
+                },
+                "output": {
+                  "angle": "targetAngle"
+                }
+              },
+              {
+                "title": "rotate",
+                "type": "action",
+                "name": "rotate",
+                "parameters": {
+                  "angle": {"key": "targetAngle"},
+                  "rate": {"value": 0}
+                }
+              }
+            ]
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 1}
+            }
+          }
+        ]
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "bite"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "entityDirection",
+        "type": "action",
+        "name": "entityDirection",
+        "parameters": {
+          "entity": {"key": "self"},
+          "offset": {"value": [0, 0]},
+          "target": {"key": "target"}
+        },
+        "output": {
+          "vector": "toTarget"
+        }
+      },
+      {
+        "title": "vecRotate",
+        "type": "action",
+        "name": "vecRotate",
+        "parameters": {
+          "direction": {"key": "toTarget"},
+          "vector": {"value": [75, 0]}
+        },
+        "output": {
+          "vector": "chargeVelocity"
+        }
+      },
+      {
+        "title": "setVelocity",
+        "type": "action",
+        "name": "setVelocity",
+        "parameters": {
+          "velocity": {"key": "chargeVelocity"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.5}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "controlApproachVelocity",
+            "type": "action",
+            "name": "controlApproachVelocity",
+            "parameters": {
+              "force": {"value": 250},
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 1}
+            }
+          }
+        ]
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "bitewinddown"},
+          "type": {"value": "body"}
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "projectileName" : "v-centipedeelectricshot2",
+  "image" : "centipedeelectricshot2.png",
+  "animationCycle" : 0.5,
+  "lightColor" : [131, 131, 223],
+  "frameNumber" : 2,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "illusion",
+  "emitters" : [ ],
+  "damageKind" : "electricplasma",
+  "piercing" : true,
+
+  "bounces" : 0,
+
+  "timeToLive" : 2.0,
+
+  "speed" : 100,
+
+  "scripts" : [ "/projectiles/tracksourcestatus.lua" ],
+  "scriptDelta" : 1
+}

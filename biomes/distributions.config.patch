@@ -44,7 +44,7 @@
     "path" : "/v-railgunPickup",
     "value" : {
       "type" : "random",
-      
+
       "blockProbability" : 0.005
     }
   },
@@ -53,7 +53,7 @@
     "path" : "/v-killerBeeHive",
     "value" : {
       "type" : "random",
-      
+
       "blockProbability" : 0.01
     }
   },
@@ -82,7 +82,7 @@
     "path" : "/v-poisonGasEmitter",
     "value" : {
       "type" : "random",
-      
+
       "blockProbability" : 0.5
     }
   },
@@ -103,6 +103,44 @@
       "densityOffset" : 0.3,
 
       "typePeriod" : 16
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-electricTree",
+    "value" : {
+      "type" : "periodic",
+
+      "octaves" : 2,
+      "alpha" : 2.0,
+      "beta" : 2.0,
+
+      "modulus" : 12,
+      "modulusVariance" : 4,
+
+      "densityPeriod" : 4,
+      "densityOffset" : -0.4,
+
+      "typePeriod" : 10
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-electricTreeRusty",
+    "value" : {
+      "type" : "periodic",
+
+      "octaves" : 2,
+      "alpha" : 1.0,
+      "beta" : 2.0,
+
+      "modulus" : 12,
+      "modulusVariance" : 4,
+
+      "densityPeriod" : 4,
+      "densityOffset" : -0.2,
+
+      "typePeriod" : 10
     }
   }
 ]

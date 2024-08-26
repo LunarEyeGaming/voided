@@ -21,13 +21,13 @@
       "/items/active/effects/lightning.lua",
       "/monsters/biomes/v-voltage/v-dischargemonster/v-dischargemonsteranim.lua"
     ],
-    
+
     "warningRange" : 30,
     "dischargeRange" : 15,
 
     "dischargeProjectileType" : "v-batterjawcharge",
     "dischargeProjectileParameters" : {"power" : 23},
-    
+
     "animationConfig" : {
       "warningDistance" : 15,
       "minRange" : 15,
@@ -37,7 +37,7 @@
       "warningImage" : "/monsters/biomes/v-voltage/v-dischargemonster/warning.png",
       "renderLayer" : "ForegroundEntity+10"
     },
-  
+
     "lightningConfig" : {
       "displacement" : 2.0,
       "minDisplacement" : 0.125,
@@ -47,7 +47,7 @@
       "startColor" : [225, 225, 255, 255],
       "endColor" : [74, 74, 181, 0]
     },
-    
+
     "dischargeTime" : 0.2,
     "cooldownTime" : 5.0,
     "initialCooldownTime" : 1.0,
@@ -164,6 +164,10 @@
     },
 
     "mouthOffset" : [0, 0],
-    "feetOffset" : [0, -8]
+    "feetOffset" : [0, -8],
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-dischargemonster" }
   }
 }

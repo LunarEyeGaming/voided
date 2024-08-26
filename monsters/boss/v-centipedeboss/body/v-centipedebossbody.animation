@@ -1,0 +1,513 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "body" : {
+        "priority" : 0,
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "windup" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "end"
+          },
+          "fire" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "transition" : {
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      },
+      "laserpoison" : {
+        "default" : "invisible",
+        "states" : {
+          "invisible" : {},
+          "windup" : {
+            "frames" : 13,
+            "cycle" : 1.3,
+            "mode" : "transition",
+            "transition" : "winduploop"
+          },
+          "winduploop" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          },
+          "fire" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "fireloop"
+          },
+          "fireloop" : {
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "loop"
+          },
+          "winddown" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "invisible"
+          }
+        }
+      },
+      "laserelectric" : {
+        "default" : "invisible",
+        "states" : {
+          "invisible" : {},
+          "windup" : {
+            "frames" : 13,
+            "cycle" : 1.3,
+            "mode" : "transition",
+            "transition" : "winduploop"
+          },
+          "winduploop" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          },
+          "fire" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "fireloop"
+          },
+          "fireloop" : {
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "loop"
+          },
+          "winddown" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "invisible"
+          }
+        }
+      },
+      "turret" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "windup" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "loop"
+          },
+          "fire" : {
+            "frames" : 2,
+            "cycle" : 0.07,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "transition" : {
+            "frames" : 7,
+            "cycle" : 0.7,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      },
+      "targetlaser" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "active" : {}
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "zLevel" : 10,
+          "transformationGroups" : [ "body", "shake" ],
+          "offset" : [0.0, 0.0],
+          "maxLegSpan" : 13,
+          "legForwardRadius" : [9.75, 3]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.idle.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.windup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.fire.<frame>"
+              }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "zLevel" : 20,
+          "anchorPart" : "body",
+          "fullbright" : true
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.idle.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.windup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.fire.<frame>"
+              }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "laserpoison" : {
+        "properties" : {
+          "zLevel" : 30,
+          "transformationGroups" : [ "turret", "shake" ],
+          "offset" : [67.375, 0],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "laserpoison" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "winduploop" : {
+              "properties" : {
+                "image" : "<partImage>:winduploop.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            },
+            "fireloop" : {
+              "properties" : {
+                "image" : "<partImage>:fireloop.<frame>",
+                "damageArea" : [ [-63.5, 0.5], [63.5, 0.5], [63.5, -0.5], [-63.5, -0.5] ]
+              }
+            },
+            "winddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "laserelectric" : {
+        "properties" : {
+          "zLevel" : 30,
+          "transformationGroups" : [ "turret", "shake" ],
+          "offset" : [67.375, 0],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "laserelectric" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "winduploop" : {
+              "properties" : {
+                "image" : "<partImage>:winduploop.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            },
+            "fireloop" : {
+              "properties" : {
+                "image" : "<partImage>:fireloop.<frame>",
+                "damageArea" : [ [-63.5, 0.5], [63.5, 0.5], [63.5, -0.5], [-63.5, -0.5] ]
+              }
+            },
+            "winddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "turret" : {
+        "properties" : {
+          "zLevel" : 25,
+          "transformationGroups" : [ "turret", "shake" ],
+          "offset" : [2.1875, 0]
+        },
+        "partStates" : {
+          "turret" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.idle.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.spin.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.fire.<frame>"
+              }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "turretfullbright" : {
+        "properties" : {
+          "zLevel" : 27,
+          "anchorPart" : "turret",
+          "fullbright" : true
+        },
+        "partStates" : {
+          "turret" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.idle.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.spin.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.fire.<frame>"
+              }
+            },
+            "transition" : {
+              "properties" : {
+                "image" : "<partImage>:transition.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "targetlaser" : {
+        "properties" : {
+          "zLevel" : 22,
+          "transformationGroups" : [ "turret", "shake" ],
+          "offset" : [64, 0],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "targetlaser" : {
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:<phase>.active.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "upperleftleg" : {
+        "properties" : {
+          "zLevel" : 7,
+          "transformationGroups" : [ "body", "lefthipjoint", "shake" ],
+          "offset" : [0, 6],
+          "hipPoint" : [0, 3],
+          "length" : 6,
+          "forwardCenter" : [0, 8],
+          "moveTime" : 0.3,
+          "image" : "<partImage>"
+        }
+      },
+      "lowerleftleg" : {
+        "properties" : {
+          "anchorPart" : "upperleftleg",
+          "zLevel" : 5,
+          "transformationGroups" : [ "leftkneejoint" ],
+          "offset" : [0, 6],
+          "kneePoint" : [0, 3],
+          "length" : 7,
+          "image" : "<partImage>"
+        }
+      },
+      "upperrightleg" : {
+        "properties" : {
+          "zLevel" : 7,
+          "transformationGroups" : [ "body", "righthipjoint", "shake" ],
+          "offset" : [0, -6],
+          "hipPoint" : [0, -3],
+          "forwardCenter" : [0, -8],
+          "length" : 6,
+          "moveTime" : 0.3,
+          "image" : "<partImage>?flipy"
+        }
+      },
+      "lowerrightleg" : {
+        "properties" : {
+          "anchorPart" : "upperrightleg",
+          "zLevel" : 5,
+          "transformationGroups" : [ "rightkneejoint" ],
+          "offset" : [0, -6],
+          "kneePoint" : [0, -3],
+          "length" : 7,
+          "image" : "<partImage>?flipy"
+        }
+      }
+    }
+  },
+  "globalTagDefaults" : {
+    "phase" : "1"
+  },
+
+  "lights" : {
+    "glow" : {
+      "active" : false,
+      "color" : [161, 37, 213]
+    }
+  },
+
+  "transformationGroups" : {
+    "body" : { "interpolated" : true },
+    "turret" : { "interpolated" : true },
+
+    "lefthipjoint" : { "interpolated" : true },
+    "leftkneejoint" : { "interpolated" : true },
+
+    "righthipjoint" : { "interpolated" : true },
+    "rightkneejoint" : { "interpolated" : true },
+
+    "shake" : { "interpolated" : true }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [ ]
+    }
+  },
+
+  "sounds" : {
+    "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
+    "deathPuff" : [ ],
+    "ray" : [ "/sfx/objects/metalbarrel_break1.ogg", "/sfx/objects/metalbarrel_break2.ogg",
+      "/sfx/objects/metalbarrel_break3.ogg"],
+    "step" : [ "/sfx/tech/mech_step.ogg", "/sfx/tech/mech_step2.ogg", "/sfx/tech/mech_step3.ogg",
+      "/sfx/tech/mech_step4.ogg", "/sfx/tech/mech_step5.ogg" ],
+    "rumble" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_rumble.ogg" ],
+      "volume" : 0.4,
+      "rangeMultiplier" : 5.0
+    },
+    "fire" : {
+      "pool" : [ "/sfx/gun/plasma_sniper2.ogg" ],
+      "rangeMultiplier" : 5.0
+    },
+    "fireSides" : {
+      "pool" : [ "/sfx/gun/pulsecannon_blast1.ogg" ],
+      "volume" : 0.4,
+      "rangeMultiplier" : 5.0
+    },
+    "fireMine" : {
+      "pool" : [ "/sfx/gun/plasma_sniper5.ogg" ],
+      "volume" : 0.3,
+      "rangeMultiplier" : 5.0
+    },
+    "laserElectricCharge" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_laserelectric_charge.ogg" ],
+      "volume" : 0.5,
+      "rangeMultiplier" : 5.0
+    },
+    "laserElectricChargedLoop" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_laserelectric_charged_loop.ogg" ],
+      "volume" : 0.5,
+      "rangeMultiplier" : 5.0
+    },
+    "laserPoisonCharge" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_laserpoison_charge.ogg" ],
+      "volume" : 0.5,
+      "rangeMultiplier" : 5.0
+    },
+    "laserPoisonChargedLoop" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_laserpoison_charged_loop.ogg" ],
+      "volume" : 0.5,
+      "rangeMultiplier" : 5.0
+    },
+    "laserFire" : {
+      "pool" : [ "/sfx/objects/crystaltrap_on1.ogg" ],
+      "volume" : 0.5,
+      "rangeMultiplier" : 5.0
+    },
+    "laserPoisonLoop" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_laserpoison_loop.ogg" ],
+      "volume" : 0.5,
+      "rangeMultiplier" : 5.0
+    },
+    "laserElectricLoop" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_laserelectric_loop.ogg" ],
+      "volume" : 0.5,
+      "rangeMultiplier" : 5.0
+    },
+    "laserEnd" : {
+      "pool" : [ "/sfx/npc/boss/v_centipede_laser_end.ogg" ],
+      "volume" : 0.3,
+      "rangeMultiplier" : 5.0
+    }
+  }
+}

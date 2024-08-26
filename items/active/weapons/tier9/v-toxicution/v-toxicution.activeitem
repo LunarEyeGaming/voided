@@ -1,0 +1,172 @@
+{
+  "itemName" : "v-toxicution",
+  "price" : 1500,
+  "level" : 9,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "The culmination of toxicity and electricity. Total annihilation.",
+  "shortdescription" : "^green;Toxic^cyan;ution^reset;",
+  "tooltipKind" : "sword",
+  "category" : "broadsword",
+  "twoHanded" : true,
+  "itemTags" : ["weapon", "melee", "broadsword"],
+
+  "inventoryIcon" : "toxicutionicon.png",
+
+  "animation" : "v-toxicution.animation",
+  "animationParts" : {
+    "sword" : "toxicution.png",
+    "swordFullbright" : "toxicutionfullbright.png",
+    "core" : "core.png",
+    "coreFullbright" : "corefullbright.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : [ "/sfx/melee/v_toxicution_swingelectric1.ogg", "/sfx/melee/v_toxicution_swingelectric2.ogg",
+          "/sfx/melee/v_toxicution_swingelectric3.ogg" ],
+      "fire2" : [ "/sfx/melee/v_toxicution_swingpoison1.ogg", "/sfx/melee/v_toxicution_swingpoison2.ogg",
+          "/sfx/melee/v_toxicution_swingpoison3.ogg" ],
+      "fire3" : [ "/sfx/melee/v_toxicution_swingelectric1.ogg", "/sfx/melee/v_toxicution_swingelectric2.ogg",
+          "/sfx/melee/v_toxicution_swingelectric3.ogg" ],
+      "fire4" : [ "/sfx/melee/v_toxicution_swingpoison1.ogg", "/sfx/melee/v_toxicution_swingpoison2.ogg",
+          "/sfx/melee/v_toxicution_swingpoison3.ogg" ],
+      "fire5" : [ "/sfx/melee/v_toxicution_swingheavy1.ogg", "/sfx/melee/v_toxicution_swingheavy2.ogg",
+          "/sfx/melee/v_toxicution_swingheavy3.ogg" ],
+      "fire6" : [ "/sfx/melee/v_toxicution_swingheavy1.ogg", "/sfx/melee/v_toxicution_swingheavy2.ogg",
+          "/sfx/melee/v_toxicution_swingheavy3.ogg" ],
+      "fire7" : [ "/sfx/melee/v_toxicution_swingheavy1.ogg", "/sfx/melee/v_toxicution_swingheavy2.ogg",
+      "/sfx/melee/v_toxicution_swingheavy3.ogg" ]
+    }
+  },
+
+  "scripts" : ["/items/active/weapons/melee/energymeleeweapon.lua"],
+
+  "activeTime" : 3,
+
+  "elementalType" : "v-electricpoison",
+
+  "primaryAbilityType" : "v-projectilebroadswordcombo",
+  "primaryAbility" : {
+    "damageConfig" : {"damageSourceKind" : "broadsword", "knockbackMode" : "facing", "timeout" : 0.5},
+    "fireTime" : 0.83,
+    "baseDps" : 10,
+    "comboSteps" : 7,
+    "energyUsage" : 10,
+    "swooshOffsetRegions" : [
+      [0.75, 0.0, 4.25, 5.0], [-0.75, 0.0, -4.25, -5.0], [0.75, 0.0, 4.25, 5.0], [-0.75, 0.0, -4.25, -5.0],
+      [0.75, 0.0, 4.25, 5.0], [-0.75, 0.0, -4.25, -5.0], [1.5, -1.0, 5.5, 1.0]
+    ],
+    "stepDamageConfig" : [
+      {"baseDamageFactor" : 1.0, "knockback" : 15, "damageSourceKind" : "electricbroadsword", "statusEffects" : ["electrified"]},
+      {"baseDamageFactor" : 1.0, "knockback" : 15, "damageSourceKind" : "poisonbroadsword", "statusEffects" : ["weakpoison"]},
+      {"baseDamageFactor" : 1.0, "knockback" : 15, "damageSourceKind" : "electricbroadsword", "statusEffects" : ["electrified"]},
+      {"baseDamageFactor" : 1.0, "knockback" : 15, "damageSourceKind" : "poisonbroadsword", "statusEffects" : ["weakpoison"]},
+      {"baseDamageFactor" : 1.5, "knockback" : 25, "damageSourceKind" : "electricbroadsword", "statusEffects" : ["electrified"]},
+      {"baseDamageFactor" : 1.5, "knockback" : 25, "damageSourceKind" : "poisonbroadsword", "statusEffects" : ["weakpoison"]},
+      {"baseDamageFactor" : 2.0, "knockback" : 40, "damageSourceKind" : "electricbroadsword", "statusEffects" : ["electrified", "weakpoison"]}
+    ],
+
+    "stances" : {
+      "idle" : {"allowRotate" : true, "allowFlip" : true, "twoHanded" : true},
+
+      "windup1" : {"duration" : 0.15, "allowRotate" : true, "allowFlip" : true},
+      "fire1" : {"duration" : 0.2, "allowRotate" : true, "allowFlip" : true},
+      "wait1" : {"duration" : 0.3, "allowRotate" : true, "allowFlip" : true},
+
+      "windup2" : {"duration" : 0.15, "armRotation" : -150, "weaponRotation" : -85, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "preslash2" : {"duration" : 0.025, "armRotation" : -100, "weaponRotation" : -85, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "fire2" : {"duration" : 0.2, "armRotation" : 50, "weaponRotation" : -90, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "wait2" : {"duration" : 0.3, "armRotation" : 50, "weaponRotation" : -90, "allowRotate" : true, "allowFlip" : true, "twoHanded" : true},
+
+      "windup3" : {"duration" : 0.15, "armRotation" : 90, "weaponRotation" : -10, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "preslash3" : {"duration" : 0.025, "armRotation" : 55, "weaponRotation" : -45, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "fire3" : {"duration" : 0.2, "armRotation" : -45, "weaponRotation" : -55, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "wait3" : {"duration" : 0.3, "armRotation" : -45, "weaponRotation" : -55, "allowRotate" : true, "allowFlip" : true, "twoHanded" : true},
+
+      "windup4" : {"duration" : 0.15, "armRotation" : -150, "weaponRotation" : -85, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "preslash4" : {"duration" : 0.025, "armRotation" : -100, "weaponRotation" : -85, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "fire4" : {"duration" : 0.2, "armRotation" : 50, "weaponRotation" : -90, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "wait4" : {"duration" : 0.3, "armRotation" : 50, "weaponRotation" : -90, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+
+      "windup5" : {"duration" : 0.15, "armRotation" : 90, "weaponRotation" : -10, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "preslash5" : {"duration" : 0.025, "armRotation" : 55, "weaponRotation" : -45, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "fire5" : {
+        "duration" : 0.5,
+        "armRotation" : -45,
+        "weaponRotation" : -55,
+        "twoHanded" : true,
+        "allowRotate" : true,
+        "allowFlip" : true,
+
+        "projectile" : {
+          "type" : "v-poisonlingeringbubblespawner",
+          "parameters" : {"power" : 10},
+          "direction" : [1, 2]
+        }
+      },
+      "wait5" : {"duration" : 0.3, "armRotation" : -45, "weaponRotation" : -55, "allowRotate" : true, "allowFlip" : true, "twoHanded" : true},
+
+      "windup6" : {"duration" : 0.15, "armRotation" : -150, "weaponRotation" : -85, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "preslash6" : {"duration" : 0.025, "armRotation" : -100, "weaponRotation" : -85, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "fire6" : {
+        "duration" : 0.5,
+        "armRotation" : 50,
+        "weaponRotation" : -90,
+        "twoHanded" : true,
+        "allowRotate" : true,
+        "allowFlip" : true,
+
+        "projectile" : {
+          "type" : "v-electriclingeringbubblespawner",
+          "parameters" : {"power" : 10},
+          "direction" : [1, -1]
+        }
+      },
+      "wait6" : {"duration" : 0.3, "armRotation" : 50, "weaponRotation" : -90, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+
+      "windup7" : {"duration" : 0.15, "armRotation" : -150, "weaponRotation" : 55, "twoHanded" : true, "allowRotate" : true, "allowFlip" : true},
+      "fire7" : {
+        "duration" : 0.3,
+        "armRotation" : 0,
+        "weaponRotation" : -90,
+        "twoHanded" : true,
+        "allowRotate" : true,
+        "allowFlip" : true,
+
+        "projectile" : {
+          "type" : "v-proxyprojectile",
+          "offset" : [8, 0],
+          "parameters" : {
+            "power" : 20,
+            "actionOnReap" : [
+              {
+                "action" : "projectile",
+                "type" : "v-electricsineblast",
+                "inheritDamageFactor" : 1.0,
+                "config" : {
+                  "waveAmplitude" : 0.5
+                }
+              },
+              {
+                "action" : "projectile",
+                "type" : "v-poisonsineblast",
+                "inheritDamageFactor" : 1.0,
+                "config" : {
+                  "waveAmplitude" : -0.5
+                }
+              }
+            ]
+          },
+          "requireLineOfSight" : true
+        }
+      },
+      "wait7" : {"duration" : 0.3, "armRotation" : 0, "weaponRotation" : -90, "allowRotate" : true, "allowFlip" : true, "twoHanded" : true}
+    }
+  },
+
+  "altAbilityType" : "v-duallaserbeam",
+  "altAbility" : {},
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

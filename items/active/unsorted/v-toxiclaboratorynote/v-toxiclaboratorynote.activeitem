@@ -7,16 +7,16 @@
   "shortdescription" : "Printed Note",
 
   "scripts" : ["v-toxiclaboratorynote.lua"],
-  "noteTextChoices" : ["As a backup, all beacons for displaying the location of the Toxic Laboratory are required to have printed coordinates to the site securely locked in a chest. The following are these site coordinates:"],
-  
+  "noteTextChoices" : ["As a backup, all beacons for displaying the location of the Fungal Laboratory are required to have printed coordinates to the site securely locked in a chest. The following are these site coordinates:"],
+
   "expectedCoordLength" : 10,  // The expected maximum length for one coordinate (e.g., x or y).
-    
+
   "obfuscationChance" : 0.1,  // The chance of any character to be replaced with an obfuscated character.
   "obfuscationCharacter" : "_",  // The character with which to replace a coordinate character if it is obfuscated.
   "coordObfuscationRange" : [0.25, 0.75],
-  
+
   "targetUid" : "v-toxiclaboratorybeacon",
   "coordsErrorMessage" : "[Oops. Looks like I can't find the coordinates. Please read this note later.]",
-  
+
   "builder" : "/items/buildscripts/v-buildtoxiclabnote.lua"
 }

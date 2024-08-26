@@ -1,0 +1,10 @@
+{
+  // This stagehand spawns an instance of the centipede boss that uses the buildup AI when the player steps into it.
+  "type" : "v-centipedetrigger",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-centipedetrigger/v-centipedetrigger.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-1, -1, 1, 1]
+}

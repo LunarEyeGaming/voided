@@ -1,0 +1,305 @@
+{
+  "name": "v-centipedeboss-dying",
+  "description": "",
+  "scripts": [
+    "/scripts/behavior.lua",
+    "/scripts/actions/v-animator.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/monster.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/status.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/v-worm.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/entity.lua",
+    "/scripts/actions/boss/v-centipedeboss.lua",
+    "/scripts/actions/projectiles.lua"
+  ],
+  "parameters": {
+    "stopForce": 250,
+    "stopTime": 0.5
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "turretIsNotActive"}
+        }
+      },
+      {
+        "title": "Deactivate laser",
+        "type": "action",
+        "name": "v_setLaserBeamActive",
+        "parameters": {
+          "active": {"value": false},
+          "beamName": {"value": "targetlaser"}
+        }
+      },
+      {
+        "title": "Deactivate laser (fire)",
+        "type": "action",
+        "name": "v_setLaserBeamActive",
+        "parameters": {
+          "active": {"value": false},
+          "beamName": {"value": "targetlaserfire"}
+        }
+      },
+      {
+        "title": "resetTransformationGroup",
+        "type": "action",
+        "name": "resetTransformationGroup",
+        "parameters": {
+          "transformationGroup": {"value": "turret"}
+        }
+      },
+      {
+        "title": "battleMusic",
+        "type": "action",
+        "name": "battleMusic",
+        "parameters": {
+          "enable": {"value": false}
+        }
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"value": []},
+            "entity": {"key": "telegraphId"},
+            "message": {"value": "despawn"}
+          }
+        }
+      },
+      {
+        "title": "addEphemeralEffect",
+        "type": "action",
+        "name": "addEphemeralEffect",
+        "parameters": {
+          "duration": {"value": 999999},
+          "name": {"value": "invulnerable"}
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "childSegments"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"value": [true]},
+            "entity": {"key": "eachItem"},
+            "message": {"value": "setInvulnerable"}
+          }
+        }
+      },
+      {
+        "title": "sendEntityMessage",
+        "type": "action",
+        "name": "sendEntityMessage",
+        "parameters": {
+          "arguments": {"value": [true]},
+          "entity": {"key": "tailId"},
+          "message": {"value": "setInvulnerable"}
+        }
+      },
+      {
+        "title": "Don't die inside wall",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "pointTileCollision",
+              "type": "action",
+              "name": "pointTileCollision",
+              "parameters": {
+                "position": {"key": "self"}
+              }
+            },
+            {
+              "title": "v_wormFlyToPosition",
+              "type": "action",
+              "name": "v_wormFlyToPosition",
+              "parameters": {
+                "position": {"key": "centerPos"},
+                "speed": {"value": 50},
+                "tolerance": {"value": 5},
+                "controlForce": {"value": 250}
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "controlApproachVelocity",
+            "type": "action",
+            "name": "controlApproachVelocity",
+            "parameters": {
+              "force": {"key": "<stopForce>"},
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"key": "<stopTime>"}
+            }
+          }
+        ]
+      },
+      {
+        "title": "setVelocity",
+        "type": "action",
+        "name": "setVelocity",
+        "parameters": {
+          "velocity": {"value": [0, 0]}
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "childSegments"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"value": []},
+            "entity": {"key": "eachItem"},
+            "message": {"value": "startDeathAnimation"}
+          }
+        }
+      },
+      {
+        "title": "sendEntityMessage",
+        "type": "action",
+        "name": "sendEntityMessage",
+        "parameters": {
+          "arguments": {"value": []},
+          "entity": {"key": "tailId"},
+          "message": {"value": "startDeathAnimation"}
+        }
+      },
+      {
+        "title": "setDamageOnTouch",
+        "type": "action",
+        "name": "setDamageOnTouch",
+        "parameters": {
+          "touchDamage": {"value": false}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "v_centipedeDeathAnimation",
+            "type": "action",
+            "name": "v_centipedeDeathAnimation",
+            "parameters": {}
+          },
+          {
+            "title": "v_centipedeRayAnimation",
+            "type": "action",
+            "name": "v_centipedeRayAnimation",
+            "parameters": {
+              "children": {"key": "childSegments"},
+              "tail": {"key": "tailId"}
+            },
+            "output": {
+              "rayIds": "rayIds"
+            }
+          }
+        ]
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "rayIds"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"value": []},
+            "entity": {"key": "eachItem"},
+            "message": {"value": "kill"}
+          }
+        }
+      },
+      {
+        "title": "Spawn pickup",
+        "type": "action",
+        "name": "spawnProjectile",
+        "parameters": {
+          "angle": {"value": 0},
+          "offset": {"value": [0, 0]},
+          "position": {"key": "self"},
+          "projectileConfig": {"value": {}},
+          "projectileType": {"value": "v-electrochemfluxcorepickup"},
+          "scalePower": {"value": false},
+          "sourceEntity": {"key": "self"},
+          "trackSource": {"value": false},
+          "uniqueRepeatGroup": {"value": false}
+        }
+      },
+      {
+        "title": "setDying",
+        "type": "action",
+        "name": "setDying",
+        "parameters": {
+          "shouldDie": {"value": true}
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "type" : "v-centipedebosshead",
+  "shortdescription" : "100-LG \"Titan Killer\"",
+  "description" : "<todo>",
+
+  "categories" : [ "v-centipedebosshead" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-centipedebosshead.animation",
+
+  "dropPools" : ["empty"],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/scripts/terra_wormheadcustom.lua",
+      "/scripts/bookofspirits/v-bookofspirits_wormplugin.lua",
+      "/monsters/renderlaserbeam.lua"
+    ],
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 1,
+
+    "animationScripts" : [
+      "/monsters/effects/laserbeam.lua"
+    ],
+
+    "beams" : [
+      {
+        "name" : "targetlaser",
+        "offset" : [2, 1],
+        "color" : [255, 0, 0, 255],
+        "length" : 120,
+        "segments" : 12,
+        "angle" : 0,
+        "sourcePart" : "targetlaser",
+        "endPart" : "targetlaser"
+      },
+      {
+        "name" : "targetlaserfire",
+        "offset" : [2, 1],
+        "color" : [255, 255, 255, 255],
+        "length" : 120,
+        "segments" : 12,
+        "angle" : 0,
+        "sourcePart" : "targetlaser",
+        "endPart" : "targetlaser"
+      }
+    ],
+
+    "enabledBeams" : [],
+
+    "behavior" : "v-centipedeboss",
+
+    "size" : 20,
+    "bodySegment" : "v-centipedebossbody",
+
+    "capturedLevel" : 8,
+
+    "behaviorConfig" : {},
+
+    "damageBar" : "None",
+
+    "deathProjectiles" : [
+      {
+        "type" : "v-centipedegib-head1",
+        "direction" : [0, 1]
+      },
+      {
+        "type" : "v-centipedegib-head2",
+        "direction" : [0, -1]
+      } // ,
+      // {
+      //   "type" : "v-centipedegib-mandible1",
+      //   "direction" : [1, 0],
+      //   "offset" : [3.5, 3],
+      //   "fuzzAngle" : 45
+      // },
+      // {
+      //   "type" : "v-centipedegib-mandible2",
+      //   "direction" : [1, 0],
+      //   "offset" : [3.5, -3],
+      //   "fuzzAngle" : 45
+      // },
+      // {
+      //   "type" : "v-centipedegib-mandible3",
+      //   "direction" : [1, 0],
+      //   "offset" : [4, 1],
+      //   "fuzzAngle" : 45
+      // },
+      // {
+      //   "type" : "v-centipedegib-mandible4",
+      //   "direction" : [1, 0],
+      //   "offset" : [4, -1],
+      //   "fuzzAngle" : 45
+      // }
+    ],
+
+    "touchDamage" : {
+      "poly" : [ [3, 3], [-3, 3], [-3, -3], [3, -3] ],
+      "damage" : 15,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "impact",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "renderLayer" : "Monster-2",
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [ [4, 4], [-4, 4], [-4, -4], [4, -4] ],
+      "collisionEnabled" : false,
+
+      "mass" : 2.0,
+      "walkSpeed" : 4,
+      "runSpeed" : 12,
+      "gravityEnabled" : false,
+
+      "bounceFactor" : 0.5,
+      "groundFriction" : 10,
+
+      "airFriction" : 0,
+      "liquidFriction" : 1.25,
+      "airForce" : 50,
+      "flySpeed" : 25
+    },
+
+    "bodyMaterialKind" : "robotic",
+
+    "knockoutTime" : 0,
+    "knockoutEffect" : "blink",
+    "deathParticles" : "deathPoof",
+
+    "stunDamageSuppression" : 0.2,
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "displayTitle" : "Boss",  // Book of Spirits support
+        "targetMaterialKind" : "robotic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua",
+        "/monsters/boss/v-centipedeboss/v-centipedeboss_primaryplugin.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0.3
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9999999
+        },
+        "maxHealth" : {
+          "baseValue" : 2800
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+
+        // RPG Growth
+
+        "demonicStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "holyStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "bleedStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+
+        // Frackin' Universe (FU)
+
+        "captureImmunity" : {
+          "baseValue" : 1
+        },
+        "bleedingImmunity" : {
+          "baseValue" : 1
+        },
+        "sulphuricImmunity" : {
+          "baseValue" : 1
+        },
+        "shadowImmunity" : {
+          "baseValue" : 1
+        },
+        "protoImmunity" : {
+          "baseValue" : 1.0
+        },
+        "slagStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "bluoplasmaStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "bioozeImmunity" : {
+          "baseValue" : 1.0
+        },
+        "radiationburnImmunity" : {
+          "baseValue" : 1
+        },
+
+        // Extended Story (ES)
+
+        "acidicbacteriaImmunity" : {
+          "baseValue" : 1
+        },
+        "abysseffectImmunity" : {
+          "baseValue" : 1.0
+        },
+        "ionizedImmunity" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : false
+  }
+}

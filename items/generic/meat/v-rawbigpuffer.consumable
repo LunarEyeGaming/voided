@@ -5,7 +5,7 @@
   "category" : "food",
   "eventCategory" : "cookingIngredient",
   "inventoryIcon" : "v-rawbigpuffer.png",
-  "description" : "A raw Big Puffer. You definitely don't want to eat this, not even after cooking it.",
+  "description" : "A raw Big Puffer. Not properly preparing a dish containing this fish can be deadly.",
   "shortdescription" : "Raw Big Puffer",
   "foodValue" : 10,
   "tooltipKind" : "food",
@@ -29,5 +29,5 @@
   "blockingEffects" : [
     "wellfed"
   ],
-  "learnBlueprintsOnPickup" : [ "v-cookedbigpuffer" ]
+  "learnBlueprintsOnPickup" : [ "v-cookedbigpuffer", "v-mutanteelsummoner", "v-honeyglazedbigpuffer" ]
 }

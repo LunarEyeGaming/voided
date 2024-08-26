@@ -474,5 +474,39 @@
         }
       }
     }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-electrotoxicfacility",
+    "value" : {
+      "type" : "FloatingDungeon",
+      "dungeonWorld" : "v-electrotoxicfacility",
+      "beamUpRule" : "AnywhereWithWarning",
+      "disableDeathDrops" : true,
+      "seed" : 1234,
+
+      "skyParameters" : {
+        "spaceLevel" : 1500,
+        "ambientLightLevel" : [ 24, 28, 24 ],
+        "skyType" : "barren",
+        "horizonImages" : [ ],
+        "dayLength" : 99999999,
+        "surfaceLevel" : 100,
+        "seed" : -5288806180628666923,
+        "skyColoring" : {
+          "mainColor" : [200, 200, 255],
+
+          "morningColors" : [[200, 200, 255], [200, 200, 255]],
+          "dayColors" : [[200, 200, 255], [200, 200, 255]],
+          "eveningColors" : [[200, 200, 255], [200, 200, 255]],
+          "nightColors" : [[200, 200, 255], [200, 200, 255]],
+
+          "morningLightColor" : [200, 200, 200],
+          "dayLightColor" : [200, 200, 200],
+          "eveningLightColor" : [200, 200, 200],
+          "nightLightColor" : [200, 200, 200]
+        }
+      }
+    }
   }
 ]

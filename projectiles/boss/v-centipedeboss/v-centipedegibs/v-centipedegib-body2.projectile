@@ -1,0 +1,31 @@
+{
+  "projectileName" : "v-centipedegib-body2",
+  "image" : "centipedegib-body2.png",
+  "physics" : "dragonbone",
+  "animationCycle" : 0.1,
+  "frameNumber" : 1,
+  "winddownFrames" : 3,
+  "renderLayer" : "Object+1",
+  "power" : 0,
+  "speed" : 30,
+  "piercing" : true,
+  "initialVelocity" : 50,
+  "timeToLive" : 15,
+  "bounces" : -1,
+  "orientationLocked" : true,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  "actionOnCollide" : [
+    {
+      "action" : "sound",
+      "options" : [
+        "/sfx/melee/fist_hit_metal1_quiet.ogg",
+        "/sfx/melee/fist_hit_metal2_quiet.ogg",
+        "/sfx/melee/fist_hit_metal3_quiet.ogg",
+        "/sfx/melee/fist_hit_metal4_quiet.ogg",
+        "/sfx/melee/fist_hit_metal5_quiet.ogg",
+        "/sfx/melee/fist_hit_metal6_quiet.ogg"
+      ]
+    }
+  ]
+}

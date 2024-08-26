@@ -141,5 +141,28 @@
     "category": "voidedutil",
     "script": "/scripts/actions/voidedutil.lua",
     "output": {}
+  },
+  "v_dynamicRefLookup": {
+    "type": "action",
+    "name": "v_dynamicRefLookup",
+    "title": "v_dynamicRefLookup",
+    "properties": {
+      "formatArgs": {"type": "list"},
+      "formatKeyName": {"type": "string"},
+      "type": {"type": "string"}
+    },
+    "category": "voidedutil",
+    "script": "/scripts/actions/voidedutil.lua",
+    "output": {
+      "json": {"type": "json", "key": null},
+      "bool": {"type": "bool", "key": null},
+      "vec2": {"type": "vec2", "key": null},
+      "position": {"type": "position", "key": null},
+      "entity": {"type": "entity", "key": null},
+      "number": {"type": "number", "key": null},
+      "table": {"type": "table", "key": null},
+      "list": {"type": "list", "key": null},
+      "string": {"type": "string", "key": null}
+    }
   }
 }

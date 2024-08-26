@@ -120,5 +120,22 @@
       "biome" : "v-toxicwasteland",
       "environmentStatusEffects" : ["dontstarve", "v-quickhealnerf", "v-depthpoison"]
     }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-electrotoxicfacility",
+    "value" : {
+      "primaryDungeon" : "v-electrotoxicfacility",
+      "threatLevel" : 9,
+      "gravity" : 80,
+      "worldSize" : [1000, 1000],
+      "dungeonBaseHeight" : 1000,
+      "dungeonSurfaceHeight" : 100,
+      "ambientLightLevel" : [1200, 1200, 1200],
+      "ambientNoises" : "/sfx/environmental/space_loop4.ogg",
+      "musicTrack" : "",
+      "biome" : "barrenasteroids",
+      "environmentStatusEffects" : ["dontstarve", "v-quickhealnerf"]
+    }
   }
 ]

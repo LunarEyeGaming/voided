@@ -1,0 +1,290 @@
+{
+  "name": "v-centipedeboss-phasetransition",
+  "description": "",
+  "scripts": [
+    "/scripts/behavior.lua",
+    "/scripts/actions/v-animator.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/boss/v-centipedeboss.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/status.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "turretIsNotActive"}
+        }
+      },
+      {
+        "title": "Deactivate laser",
+        "type": "action",
+        "name": "v_setLaserBeamActive",
+        "parameters": {
+          "active": {"value": false},
+          "beamName": {"value": "targetlaser"}
+        }
+      },
+      {
+        "title": "Deactivate laser (fire)",
+        "type": "action",
+        "name": "v_setLaserBeamActive",
+        "parameters": {
+          "active": {"value": false},
+          "beamName": {"value": "targetlaserfire"}
+        }
+      },
+      {
+        "title": "resetTransformationGroup",
+        "type": "action",
+        "name": "resetTransformationGroup",
+        "parameters": {
+          "transformationGroup": {"value": "turret"}
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "childSegments"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"value": []},
+            "entity": {"key": "eachItem"},
+            "message": {"value": "reset"}
+          }
+        }
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"value": []},
+            "entity": {"key": "telegraphId"},
+            "message": {"value": "despawn"}
+          }
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "entityPosition",
+            "type": "action",
+            "name": "entityPosition",
+            "parameters": {
+              "entity": {"key": "target"}
+            },
+            "output": {
+              "position": "targetPos"
+            }
+          },
+          {
+            "title": "v_wormConstrict",
+            "type": "action",
+            "name": "v_wormConstrict",
+            "parameters": {
+              "bodyClampRate": {"value": 30},
+              "controlForce": {"value": 200},
+              "endCenter": {"key": "targetPos"},
+              "endRadius": {"value": [25, 25]},
+              "numPoints": {"value": 50},
+              "numTotalPoints": {"value": 50},
+              "speed": {"value": 35},
+              "startCenter": {"key": "targetPos"},
+              "startRadius": {"value": [25, 25]},
+              "tolerance": {"value": 5}
+            }
+          }
+        ]
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "controlApproachVelocity",
+            "type": "action",
+            "name": "controlApproachVelocity",
+            "parameters": {
+              "force": {"value": 250},
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 0.5}
+            }
+          }
+        ]
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "transition"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "transition"},
+          "type": {"value": "turret"}
+        }
+      },
+      {
+        "title": "clearPersistentEffects",
+        "type": "action",
+        "name": "clearPersistentEffects",
+        "parameters": {
+          "category": {"value": "dynamicResistance"}
+        }
+      },
+      {
+        "title": "addStatModifier",
+        "type": "action",
+        "name": "addStatModifier",
+        "parameters": {
+          "amount": {"value": -0.25},
+          "category": {"value": "dynamicResistance"},
+          "stat": {"value": "poisonResistance"}
+        }
+      },
+      {
+        "title": "addStatModifier",
+        "type": "action",
+        "name": "addStatModifier",
+        "parameters": {
+          "amount": {"value": 0.5},
+          "category": {"value": "dynamicResistance"},
+          "stat": {"value": "electricResistance"}
+        }
+      },
+      {
+        "title": "setGlobalTag",
+        "type": "action",
+        "name": "setGlobalTag",
+        "parameters": {
+          "tag": {"value": "2"},
+          "type": {"value": "phase"}
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "childSegments"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"value": []},
+            "entity": {"key": "eachItem"},
+            "message": {"value": "activatePhase2"}
+          }
+        }
+      },
+      {
+        "title": "sendEntityMessage",
+        "type": "action",
+        "name": "sendEntityMessage",
+        "parameters": {
+          "arguments": {"value": ["2"]},
+          "entity": {"key": "tailId"},
+          "message": {"value": "setPhase"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1.2}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "entityPosition",
+            "type": "action",
+            "name": "entityPosition",
+            "parameters": {
+              "entity": {"key": "target"}
+            },
+            "output": {
+              "position": "targetPos"
+            }
+          },
+          {
+            "title": "v_wormConstrict",
+            "type": "action",
+            "name": "v_wormConstrict",
+            "parameters": {
+              "bodyClampRate": {"value": 240},
+              "controlForce": {"value": 200},
+              "endCenter": {"key": "centerPos"},
+              "endRadius": {"value": [42, 42]},
+              "numPoints": {"value": 150},
+              "numTotalPoints": {"value": 150},
+              "speed": {"value": 50},
+              "startCenter": {"key": "targetPos"},
+              "startRadius": {"value": [25, 25]},
+              "tolerance": {"value": 5}
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,5 +1,6 @@
 require "/scripts/vec2.lua"
 require "/scripts/set.lua"
+require "/scripts/poly.lua"
 
 -- Script for a damaging wave that propagates through a specific set of blocks.
 
@@ -8,8 +9,10 @@ local animTicks
 local validMats
 local validMatMods
 
-local projectileType
-local projectileParameters
+local damage
+local damageKind
+local damagePoly
+local damageTeam
 local maxArea
 local disappearDelay
 local sourceEntity
@@ -38,27 +41,28 @@ function init()
   validMats = set.new(matAttributes.conductiveMaterials or {})
   validMatMods = set.new(matAttributes.conductiveMatMods or {})
 
-  projectileType = config.getParameter("projectileType", "v-shockwavedamage")
-  projectileParameters = config.getParameter("projectileParameters", {})
-  projectileParameters.power = config.getParameter("damage", 0) * root.evalFunction("monsterLevelPowerMultiplier", monster.level())
-  projectileParameters.damageRepeatGroup = "v-shockwave"
-  
-  maxArea = config.getParameter("maxArea", 200)
-  disappearDelay = config.getParameter("dissipationTime", 0.25)
   -- Used so that monsters can target whoever fired a projectile that created a shockwave
   sourceEntity = config.getParameter("sourceEntity", entity.id())
+
+  damage = config.getParameter("damage", 0) * root.evalFunction("monsterLevelPowerMultiplier", monster.level())
+  damageKind = config.getParameter("damageKind")
+  damagePoly = config.getParameter("damagePoly")
+  damageTeam = world.entityDamageTeam(sourceEntity or entity.id()) or entity.damageTeam()
+
+  maxArea = config.getParameter("maxArea", 200)
+  disappearDelay = config.getParameter("dissipationTime", 0.25)
   nailDetectionRadius = config.getParameter("nailDetectionRadius", 1)
   intangibleTime = config.getParameter("intangibleTime", 0.1)  -- Amount of time before the shockwave actually begins.
-  
+
   monster.setAnimationParameter("ttl", disappearDelay)
-  
+
   monster.setAnimationParameter("animationConfig", config.getParameter("animationConfig"))
 
   area = 0
   disappearTimer = disappearDelay
   animTickTimer = animTicks
   intangibleTimer = intangibleTime
-  
+
   previousBlocks = {}
 
   nextBlocks = {}  -- vec2 set
@@ -70,18 +74,18 @@ function init()
   -- Lock position to center of tile
   center = {math.floor(ownPos[1]) + 0.5, math.floor(ownPos[2]) + 0.5}
   mcontroller.setPosition(center)
-  
+
   shouldDieVar = false
-  
+
   message.setHandler("despawn", function()
     shouldDieVar = true
   end)
-  
+
   nails = {}  -- A map of nail entity IDs to their positions
   message.setHandler("v-noticeNail", function(_, _, nailId, position)
     nails[nailId] = position
   end)
-  
+
   monster.setDamageBar("None")
 end
 
@@ -94,29 +98,35 @@ function update(dt)
     intangibleTimer = intangibleTimer - dt
     return  -- Do nothing until the timer runs out
   end
-  
+
   -- If no new blocks were found or the shockwave has spread far enough, disappear. Special case: nails are there and
   -- the shockwave just spawned.
   if area > maxArea or next(nextBlocks) == nil then
     disappearTimer = disappearTimer - dt
+
     if disappearTimer <= 0 then
       shouldDieVar = true
     end
+
     monster.setAnimationParameter("nextBlocks", nil)
+    monster.setAnimationParameter("particleNextBlocks", nil)
+
     return
   end
+
   placeWave()
   expandWave()
 end
 
 function expandWave()
   local temp = {}
+
   for blockStr, _ in pairs(nextBlocks) do
     for _, offset in ipairs({{1, 0}, {0, 1}, {-1, 0}, {0, -1}}) do
       local block = vec2FFromString(blockStr)
       local adjacent = vec2.add(block, offset)
 
-      if not vec2SetContains(previousBlocks, adjacent) and not vec2SetContains(temp, adjacent) 
+      if not vec2SetContains(previousBlocks, adjacent) and not vec2SetContains(temp, adjacent)
           and containsConductive(vec2.add(center, adjacent)) then
 
         vec2SetInsert(temp, adjacent)
@@ -124,50 +134,50 @@ function expandWave()
       end
     end
   end
+
   previousBlocks = nextBlocks
   nextBlocks = temp
 end
 
+---Processes the wave so far.
 function placeWave()
   -- Animation parameters seem to update at a rate much less than 60 times per second, so if this script updates
   -- faster than that, the wave appears broken without this code segment.
   animTickTimer = animTickTimer - 1
+
   if animTickTimer <= 0 then
     monster.setAnimationParameter("nextBlocks", animNextBlocks)
+
+    local particleNextBlocks = {}
+    local damageSources = {}
     for _, block in ipairs(animNextBlocks) do
       local blockPos = vec2.add(center, block)
+
       if isExposed(blockPos) or containsCreature(blockPos) then
-        world.spawnProjectile(projectileType, blockPos, sourceEntity, {0, 0}, false, projectileParameters)
+        table.insert(damageSources, {
+          poly = poly.translate(damagePoly, block),
+          damage = damage,
+          damageSourceKind = damageKind,
+          teamType = damageTeam.type,
+          teamNumber = damageTeam.team,
+          damageRepeatGroup = "v-shockwave",
+          sourceEntityId = sourceEntity
+        } --[[@as DamageSource]])
+        -- world.spawnProjectile(projectileType, blockPos, sourceEntity, {0, 0}, false, projectileParameters)
+        table.insert(particleNextBlocks, block)
       end
     end
+
+    monster.setAnimationParameter("particleNextBlocks", particleNextBlocks)
+    monster.setDamageSources(damageSources)
+
     animTickTimer = animTicks
     animNextBlocks = {}
   end
+
   for blockStr, _ in pairs(nextBlocks) do
     table.insert(animNextBlocks, vec2FFromString(blockStr))
   end
-end
-
--- Made with vec2 comparisons in mind
--- Returns whether or not a table includes a vec2
-function includesVec2(t, v)
-  for _, tv in ipairs(t) do
-    if vec2.eq(tv, v) then
-      return true
-    end
-  end
-  
-  return false
-end
-
-function includes(t, v)
-  for _, tv in ipairs(t) do
-    if tv == v then
-      return true
-    end
-  end
-  
-  return false
 end
 
 -- Returns a string representation of a Vec2F to be used for hash lookups.
@@ -186,32 +196,32 @@ end
 -- Inserts a Vec2F into a set.
 function vec2SetInsert(set, vector)
   local strVec = vec2FToString(vector)
-  
+
   set[strVec] = true
 end
 
 -- Returns whether or not the given vector is in the given set (true if so and nil if not).
 function vec2SetContains(set, vector)
   local strVec = vec2FToString(vector)
-  
+
   return set[strVec]
 end
 
 function isExposed(position)
-  -- Return true if any of the blocks adjacent to the given position are empty
-  for _, offset in ipairs({{1, 0}, {0, 1}, {-1, 0}, {0, -1}}) do
-    if not world.material(vec2.add(position, offset), "foreground") then
+  -- Return true if any of the blocks at or adjacent to the given position are empty
+  for _, offset in ipairs({{0, 0}, {1, 0}, {0, 1}, {-1, 0}, {0, -1}}) do
+    if not world.pointTileCollision(vec2.add(position, offset)) then
       return true
     end
   end
-  
+
   return false
 end
 
 function containsCreature(position)
   -- Return true if the area within a one-block radius of the given position contains at least one entity that matches
   -- the "creature" type.
-  
+
   return #world.entityQuery(position, 1, {includedTypes = {"creature"}}) > 0
 end
 
@@ -226,7 +236,7 @@ function hasNails(position)
       return true
     end
   end
-  
+
   return false
 end
 

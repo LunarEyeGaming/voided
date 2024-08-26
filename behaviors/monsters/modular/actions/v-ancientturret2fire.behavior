@@ -1,12 +1,13 @@
 {
   "name": "v-ancientturret2-fire",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/behavior.lua",
     "/scripts/actions/math.lua",
     "/scripts/actions/position.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/world.lua",
+    "/scripts/actions/v-animator.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
     "/scripts/behavior/bdata.lua",
@@ -164,20 +165,21 @@
                 "parameters": {},
                 "children": [
                   {
-                    "title": "resetTransformationGroup",
+                    "title": "Enable laserbeam",
                     "type": "action",
-                    "name": "resetTransformationGroup",
+                    "name": "v_setLaserBeamActive",
                     "parameters": {
-                      "transformationGroup": {"value": "laserbeam"}
+                      "beamName": {"value": "laserbeam"},
+                      "active": {"value": true}
                     }
                   },
                   {
-                    "title": "scaleTransformationGroup",
+                    "title": "Disable laserbeam2",
                     "type": "action",
-                    "name": "scaleTransformationGroup",
+                    "name": "v_setLaserBeamActive",
                     "parameters": {
-                      "transformationGroup": {"value": "laserbeam2"},
-                      "scale": {"value": [0, 0]}
+                      "active": {"value": false},
+                      "beamName": {"value": "laserbeam2"}
                     }
                   },
                   {
@@ -213,9 +215,9 @@
                               "type": "action",
                               "name": "rotateTransformationGroup",
                               "parameters": {
-                                "transformationGroup": {"value": "aim"},
                                 "angle": {"key": "entityAngle"},
-                                "rotationCenter": {"key": "<rotationCenter>"}
+                                "rotationCenter": {"key": "<rotationCenter>"},
+                                "transformationGroup": {"value": "aim"}
                               }
                             }
                           ]
@@ -234,20 +236,21 @@
                     ]
                   },
                   {
-                    "title": "scaleTransformationGroup",
+                    "title": "Disable laserbeam",
                     "type": "action",
-                    "name": "scaleTransformationGroup",
+                    "name": "v_setLaserBeamActive",
                     "parameters": {
-                      "transformationGroup": {"value": "laserbeam"},
-                      "scale": {"value": [0, 0]}
+                      "beamName": {"value": "laserbeam"},
+                      "active": {"value": false}
                     }
                   },
                   {
-                    "title": "resetTransformationGroup",
+                    "title": "Enable laserbeam2",
                     "type": "action",
-                    "name": "resetTransformationGroup",
+                    "name": "v_setLaserBeamActive",
                     "parameters": {
-                      "transformationGroup": {"value": "laserbeam2"}
+                      "active": {"value": true},
+                      "beamName": {"value": "laserbeam2"}
                     }
                   },
                   {
@@ -268,28 +271,29 @@
                     "name": "action-windup",
                     "parameters": {
                       "windupState": {"value": "<windupState2>"},
+                      "faceTarget": {"value": false},
                       "windupTime": {"value": "<windupTime2>"},
-                      "skillName": {"value": "<skillName>"},
-                      "rotateToTarget": {"value": false},
                       "aimAtTarget": {"value": false},
-                      "faceTarget": {"value": false}
+                      "rotateToTarget": {"value": false},
+                      "skillName": {"value": "<skillName>"}
                     }
                   },
                   {
-                    "title": "resetTransformationGroup",
+                    "title": "Enable laserbeam",
                     "type": "action",
-                    "name": "resetTransformationGroup",
+                    "name": "v_setLaserBeamActive",
                     "parameters": {
-                      "transformationGroup": {"value": "laserbeam"}
+                      "beamName": {"value": "laserbeam"},
+                      "active": {"value": true}
                     }
                   },
                   {
-                    "title": "scaleTransformationGroup",
+                    "title": "Disable laserbeam2",
                     "type": "action",
-                    "name": "scaleTransformationGroup",
+                    "name": "v_setLaserBeamActive",
                     "parameters": {
-                      "transformationGroup": {"value": "laserbeam2"},
-                      "scale": {"value": [0, 0]}
+                      "active": {"value": false},
+                      "beamName": {"value": "laserbeam2"}
                     }
                   },
                   {

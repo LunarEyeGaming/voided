@@ -25,7 +25,20 @@
     "category": "v-world",
     "script": "/scripts/actions/v-world.lua",
     "output": {
-      "vehicleId": {"type": "entity", "key": ""}
+      "vehicleId": {"type": "entity", "key": null}
     }
+  },
+  "v_sendEntityMessage": {
+    "type": "action",
+    "name": "v_sendEntityMessage",
+    "title": "v_sendEntityMessage",
+    "properties": {
+      "entity": {"type": "entity"},
+      "message": {"type": "string"},
+      "arguments": {"type": "list"}
+    },
+    "category": "v-world",
+    "script": "/scripts/actions/v-world.lua",
+    "output": {}
   }
 }

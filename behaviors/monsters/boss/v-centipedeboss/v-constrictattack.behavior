@@ -1,0 +1,217 @@
+{
+  "name": "v-centipedeboss-constrictattack",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/status.lua",
+    "/scripts/actions/boss/v-centipedeboss.lua",
+    "/scripts/actions/animator.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 2}
+        },
+        "children": [
+          {
+            "title": "controlApproachVelocity",
+            "type": "action",
+            "name": "controlApproachVelocity",
+            "parameters": {
+              "force": {"value": 250},
+              "velocity": {"value": [0, 0]}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 1}
+            }
+          }
+        ]
+      },
+      {
+        "title": "selector",
+        "type": "composite",
+        "name": "selector",
+        "parameters": {},
+        "children": [
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "inverter",
+                "type": "decorator",
+                "name": "inverter",
+                "parameters": {},
+                "child": {
+                  "title": "resourcePercentage",
+                  "type": "action",
+                  "name": "resourcePercentage",
+                  "parameters": {
+                    "percentage": {"value": 0.5},
+                    "resource": {"value": "health"}
+                  }
+                }
+              },
+              {
+                "title": "v_attackAllSegments",
+                "type": "action",
+                "name": "v_attackAllSegments",
+                "parameters": {
+                  "attackId": {"value": "laserConstrict2"},
+                  "awaitChildren": {"value": false},
+                  "children": {"key": "childSegments"},
+                  "interval": {"value": 0.1}
+                }
+              }
+            ]
+          },
+          {
+            "title": "v_attackAllSegments",
+            "type": "action",
+            "name": "v_attackAllSegments",
+            "parameters": {
+              "attackId": {"value": "laserConstrict"},
+              "awaitChildren": {"value": false},
+              "children": {"key": "childSegments"},
+              "interval": {"value": 0.1}
+            }
+          }
+        ]
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "active"},
+          "type": {"value": "targetlaser"}
+        }
+      },
+      {
+        "title": "randomize",
+        "type": "composite",
+        "name": "randomize",
+        "parameters": {},
+        "children": [
+          {
+            "title": "v-centipedeboss-constrictchoice",
+            "type": "module",
+            "name": "v-centipedeboss-constrictchoice",
+            "parameters": {
+              "constrictPos": {"key": "orbitPos1"}
+            }
+          },
+          {
+            "title": "v-centipedeboss-constrictchoice",
+            "type": "module",
+            "name": "v-centipedeboss-constrictchoice",
+            "parameters": {
+              "constrictPos": {"key": "orbitPos2"}
+            }
+          },
+          {
+            "title": "v-centipedeboss-constrictchoice",
+            "type": "module",
+            "name": "v-centipedeboss-constrictchoice",
+            "parameters": {
+              "constrictPos": {"key": "orbitPos3"}
+            }
+          },
+          {
+            "title": "v-centipedeboss-constrictchoice",
+            "type": "module",
+            "name": "v-centipedeboss-constrictchoice",
+            "parameters": {
+              "constrictPos": {"key": "orbitPos4"}
+            }
+          },
+          {
+            "title": "v-centipedeboss-constrictchoice",
+            "type": "module",
+            "name": "v-centipedeboss-constrictchoice",
+            "parameters": {
+              "constrictPos": {"key": "orbitPos5"}
+            }
+          }
+        ]
+      },
+      {
+        "title": "selector",
+        "type": "composite",
+        "name": "selector",
+        "parameters": {},
+        "children": [
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "inverter",
+                "type": "decorator",
+                "name": "inverter",
+                "parameters": {},
+                "child": {
+                  "title": "resourcePercentage",
+                  "type": "action",
+                  "name": "resourcePercentage",
+                  "parameters": {
+                    "percentage": {"value": 0.5},
+                    "resource": {"value": "health"}
+                  }
+                }
+              },
+              {
+                "title": "v_attackAllSegments",
+                "type": "action",
+                "name": "v_attackAllSegments",
+                "parameters": {
+                  "attackId": {"value": "laserConstrictEnd2"},
+                  "awaitChildren": {"value": false},
+                  "children": {"key": "childSegments"}
+                }
+              }
+            ]
+          },
+          {
+            "title": "v_attackAllSegments",
+            "type": "action",
+            "name": "v_attackAllSegments",
+            "parameters": {
+              "attackId": {"value": "laserConstrictEnd"},
+              "awaitChildren": {"value": false},
+              "children": {"key": "childSegments"}
+            }
+          }
+        ]
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.5}
+        }
+      }
+    ]
+  }
+}

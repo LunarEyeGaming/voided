@@ -14,7 +14,7 @@ local groundOnly
 local stopAfterDash
 local rechargeDirectives
 local rechargeEffectTime
-local doubleTap
+local heldUpLastTick
 
 function init()
   airDashing = false
@@ -32,17 +32,17 @@ function init()
   rechargeDirectives = config.getParameter("rechargeDirectives", "?fade=CCCCFFFF=0.25")
   rechargeEffectTime = config.getParameter("rechargeEffectTime", 0.1)
 
-  doubleTap = DoubleTap:new({"up"}, config.getParameter("maximumDoubleTapTime"), function(dashKey)
-      if dashTimer == 0
-          and dashCooldownTimer == 0
-          and groundValid()
-          and not mcontroller.crouching()
-          and not status.statPositive("activeMovementAbilities") then
+  -- doubleTap = DoubleTap:new({"up"}, config.getParameter("maximumDoubleTapTime"), function(dashKey)
+  --     if dashTimer == 0
+  --         and dashCooldownTimer == 0
+  --         and groundValid()
+  --         and not mcontroller.crouching()
+  --         and not status.statPositive("activeMovementAbilities") then
 
-        local direction = vec2.norm(world.distance(tech.aimPosition(), mcontroller.position()))
-        startDash(direction)
-      end
-    end)
+  --       local direction = vec2.norm(world.distance(tech.aimPosition(), mcontroller.position()))
+  --       startDash(direction)
+  --     end
+  --   end)
 
   animator.setAnimationState("dashing", "off")
 end
@@ -69,13 +69,26 @@ function update(args)
     end
   end
 
-  doubleTap:update(args.dt, args.moves)
+  if args.moves["up"]
+      and not heldUpLastTick
+      and dashTimer == 0
+      and dashCooldownTimer == 0
+      and groundValid()
+      and not mcontroller.crouching()
+      and not status.statPositive("activeMovementAbilities") then
+
+    local direction = vec2.norm(world.distance(tech.aimPosition(), mcontroller.position()))
+    startDash(direction)
+  end
+  -- doubleTap:update(args.dt, args.moves)
 
   if dashTimer > 0 then
     mcontroller.controlApproachVelocity(vec2.mul(dashDirection, dashSpeed), dashControlForce)
     mcontroller.controlMove(util.toDirection(dashDirection[1]), true)
 
     mcontroller.controlModifiers({jumpingSuppressed = true})
+
+    mcontroller.controlDown()
 
     animator.setFlipped(mcontroller.facingDirection() == -1)
 
@@ -85,6 +98,8 @@ function update(args)
       endDash()
     end
   end
+
+  heldUpLastTick = args.moves["up"]
 end
 
 function groundValid()

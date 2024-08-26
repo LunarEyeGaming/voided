@@ -27,7 +27,7 @@ function init()
   sourceEntity = config.getParameter("sourceEntity", entity.id())
 
   radius = config.getParameter("radius")  -- The radius of the damage
-  -- the timeToLive of each projectile is the linger time of its corresponding region multiplied by the 
+  -- the timeToLive of each projectile is the linger time of its corresponding region multiplied by the
   -- damageTimeLingerTimeFactor.
   damageTimeLingerTimeFactor = config.getParameter("damageTimeLingerTimeFactor")
   minLingerTime = config.getParameter("minLingerTime")
@@ -77,7 +77,7 @@ function update(dt)
   end
 end
 
--- Identifies where to put the poison and spawns projectiles there while also sending the blocks to the animation 
+-- Identifies where to put the poison and spawns projectiles there while also sending the blocks to the animation
 -- script.
 function placePoison()
   local blocks = {}
@@ -105,9 +105,9 @@ function placePoison()
 end
 
 function isExposed(position)
-  -- Return true if any of the blocks adjacent to the given position are empty
-  for _, offset in ipairs({{1, 0}, {0, 1}, {-1, 0}, {0, -1}}) do
-    if not world.material(vec2.add(position, offset), "foreground") then
+  -- Return true if any of the blocks at or adjacent to the given position are empty
+  for _, offset in ipairs({{0, 0}, {1, 0}, {0, 1}, {-1, 0}, {0, -1}}) do
+    if not world.pointTileCollision(vec2.add(position, offset)) then
       return true
     end
   end

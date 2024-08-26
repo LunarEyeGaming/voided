@@ -1,6 +1,7 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/v-animator.lua"
+require "/scripts/companions/capturable.lua"
 
 local warningRange
 local dischargeRange
@@ -36,16 +37,18 @@ function init()
   if animator.hasSound("deathPuff") then
     monster.setDeathSound("deathPuff")
   end
-  
-  monster.setAggressive(true)
 
+  monster.setAggressive(true)
   message.setHandler("despawn", despawn)
+
+  capturable.init()
 
   target = nil
 
+  warningParams = {}
   attackState = FSM:new()
   attackState:set(states.initialCooldown)
-  
+
   -- If initialVelocity is defined, use it.
   if initialVelocity then
     mcontroller.setVelocity(initialVelocity)
@@ -54,11 +57,27 @@ end
 
 function update(dt)
   attackState:update()
+
+  -- Update animation parameters
   monster.setAnimationParameter("warningVectors", warningParams)
-  warningParams = {}
   monster.setAnimationParameter("ownPosition", mcontroller.position())
+
+  -- Reset warningParams
+  warningParams = {}
+
+  capturable.update(dt)
   updateVelocity()
   mcontroller.controlDown()  -- Go through platforms
+end
+
+function die()
+  -- Handle capturable dying
+  capturable.die()
+end
+
+function shouldDie()
+  -- Modified to return true if out of health or captured.
+  return status.resource("health") <= 0 or capturable.justCaptured
 end
 
 states = {}
@@ -68,15 +87,20 @@ function states.targeting()
 
   while not target do
     local ownPosition = mcontroller.position()
+
+    -- Get initial targets by querying and filtering by whether or not they are valid.
     local queried = world.entityQuery(ownPosition, warningRange, {includedTypes = {"creature"}, withoutEntityId = entity.id()})
     queried = util.filter(queried, function(x)
       return entity.isValidTarget(x)
     end)
+
+    -- Loop through initial targets
     for _, entityId in ipairs(queried) do
       local entityPos = world.entityPosition(entityId)
       local distance = world.magnitude(ownPosition, entityPos)
       local angle = vec2.angle(world.distance(entityPos, ownPosition))
-      if warningParams then  -- This line could be reached before update() is even called
+      if warningParams then
+        -- This line could be reached before update() is even called.
         table.insert(warningParams, {distance, angle})
       end
       if distance < dischargeRange then
@@ -122,14 +146,14 @@ function states.initialCooldown()
   animator.setAnimationState("body", "inactive")
 
   util.wait(initialCooldownTime)
-  
+
   attackState:set(states.warning)
 end
 
 function states.warning()
   animator.setAnimationState("body", "warning")
   util.wait(warningTime)
-  
+
   attackState:set(states.targeting)
 end
 
@@ -156,7 +180,7 @@ end
 function updateVelocity()
   local params = mcontroller.baseParameters()
   local velocityDirection = vec2.norm(mcontroller.velocity())
-  
+
   -- If speed is not zero...
   if vec2.mag(mcontroller.velocity()) ~= 0 then
     -- Try to travel at the target speed without changing direction.

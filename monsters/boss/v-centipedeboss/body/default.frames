@@ -1,0 +1,24 @@
+{
+  "frameGrid" : {
+    "size" : [64, 64],
+    "dimensions" : [6, 7],
+    "names" : [
+      [ "1.idle.1" ],
+      [ "1.windup.1", "1.windup.2", "1.windup.3" ],
+      [ "1.fire.1" ],
+      [ "transition.1", "transition.2", "transition.3", "transition.4", "transition.5", "transition.6" ],
+      [ "2.idle.1" ],
+      [ "2.windup.1", "2.windup.2", "2.windup.3" ],
+      [ "2.fire.1" ]
+    ]
+  },
+  "aliases" : {
+    "1.fire.2" : "1.windup.3",
+    "1.fire.3" : "1.windup.2",
+    "1.fire.4" : "1.windup.1",
+
+    "2.fire.2" : "2.windup.3",
+    "2.fire.3" : "2.windup.2",
+    "2.fire.4" : "2.windup.1"
+  }
+}

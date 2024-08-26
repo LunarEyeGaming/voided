@@ -1,6 +1,11 @@
 require "/scripts/util.lua"
 require "/scripts/rect.lua"
 
+--[[
+  A script for a door that uses transformation groups instead of frame-by-frame animation to render its visuals. The
+  door has a wide variety of options, including using a smooth transition for the
+]]
+
 local translationTime
 local translationLength
 local direction
@@ -54,11 +59,14 @@ function init()
   ---applicable if `isSolid` is `false`.
   closeMaterialSpaces = config.getParameter("closeMaterialSpaces")
 
+  -- Set end offset based on whether the door is horizontal or vertical.
   if useHorizontal then
     endOffset = {direction * translationLength, 0}
   else
     endOffset = {0, direction * translationLength}
   end
+
+  -- Initialize timers.
   translationTimer = 0
   openTranslationDelayTimer = 0
   closeTranslationDelayTimer = 0
@@ -76,12 +84,15 @@ function init()
     updateActive()
   end
 
+  -- useAntiCrush determines whether or not the door should avoid getting anything stuck inside of it. It does this by
+  -- not moving if something is in the door's query area and applying a physics force region while the door is closing.
   useAntiCrush = config.getParameter("useAntiCrush", false)
   if useAntiCrush then
     forceRegion = object.direction() == 1 and "doorLeft" or "doorRight"
     queryArea = rect.translate(config.getParameter("queryArea"), object.position())
   end
 
+  -- Adjust positions of various sounds.
   for sound, offset in pairs(config.getParameter("soundOffsets", {})) do
     animator.setSoundPosition(sound, offset)
   end
@@ -159,11 +170,13 @@ function updateActive(active)
   end
 end
 
+---Updates whether or not the object is interactive.
 function updateInteractive()
   local interactive = config.getParameter("interactive", false)
   object.setInteractive(not object.isInputNodeConnected(0) and interactive)
 end
 
+---Sets the space states of the object
 function setupMaterialSpaces()
   local spaces = object.spaces()
   storage.spaceStates = {}

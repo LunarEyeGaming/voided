@@ -30,6 +30,20 @@
             "cycle" : 0.1,
             "mode" : "transition",
             "transition" : "idle"
+          },
+          "eatwindup" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "end"
+          },
+          "eat" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/humanoid/eat2.ogg"
+            }
           }
         }
       },
@@ -42,6 +56,26 @@
           },
           "stunned" : {
             "frames" : 1
+          }
+        }
+      },
+      "releaseParticles" : {
+        "default" : "off",
+        "states" : {
+          "off" : {
+            "frames" : 1,
+            "properties" : {
+              "particleEmittersOff" : [ "releaseParticles" ]
+            }
+          },
+          "on" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "off",
+            "properties" : {
+              "particleEmittersOn" : [ "releaseParticles" ]
+            }
           }
         }
       }
@@ -79,6 +113,16 @@
             "roarend" : {
               "properties" : {
                 "image" : "<partImage>:roarend.<frame>"
+              }
+            },
+            "eatwindup" : {
+              "properties" : {
+                "image" : "<partImage>:eatwindup.<frame>"
+              }
+            },
+            "eat" : {
+              "properties" : {
+                "image" : "<partImage>:eat.<frame>"
               }
             }
           },
@@ -122,6 +166,16 @@
             "roarend" : {
               "properties" : {
                 "image" : "<partImage>:roarend.<frame>"
+              }
+            },
+            "eatwindup" : {
+              "properties" : {
+                "image" : "<partImage>:eatwindup.<frame>"
+              }
+            },
+            "eat" : {
+              "properties" : {
+                "image" : "<partImage>:eat.<frame>"
               }
             }
           },
@@ -172,6 +226,31 @@
         { "particle" : "deathfizz3right" },
         { "particle" : "deathfizz4left" },
         { "particle" : "deathfizz4right" }
+      ]
+    },
+    "captureParticles" : {
+      "particles" : [
+        { "particle" : "monstercapture" }
+      ]
+    },
+    "releaseParticles" : {
+      "particles" : [
+        { "particle" : "monsterrelease" }
+      ]
+    },
+    "teleportOut" : {
+      "particles" : [
+        { "particle" : "monstercapture" }
+      ]
+    },
+    "teleportIn" : {
+      "particles" : [
+        { "particle" : "monsterrelease" }
+      ]
+    },
+    "levelUp" : {
+      "particles" : [
+        { "particle" : "monsterlevelup" }
       ]
     }
   },

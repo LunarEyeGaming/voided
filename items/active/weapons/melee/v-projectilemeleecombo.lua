@@ -1,4 +1,5 @@
 require "/scripts/util.lua"
+require "/scripts/poly.lua"
 
 -- Melee primary ability
 ProjectileMeleeCombo = WeaponAbility:new()
@@ -124,11 +125,11 @@ function ProjectileMeleeCombo:fire()
   local swooshKey = self.animKeyPrefix .. (self.elementalType or self.weapon.elementalType) .. "swoosh"
   animator.setParticleEmitterOffsetRegion(swooshKey, self.swooshOffsetRegions[self.comboStep])
   animator.burstParticleEmitter(swooshKey)
-  
+
   if stance.projectile then
     stance.projectile.offset = stance.projectile.offset or {0, 0}
     local projectilePos = vec2.add(mcontroller.position(), activeItem.handPosition(stance.projectile.offset))
-    
+
     -- If no line of sight is required or nothing is obstructing line of sight...
     if not stance.projectile.requireLineOfSight or not world.lineCollision(mcontroller.position(), projectilePos) then
       -- Make a copy of the parameters so that we do not end up increasing the power each time the attack occurs
@@ -138,9 +139,16 @@ function ProjectileMeleeCombo:fire()
         stance.projectile.type,
         projectilePos,
         entity.id(),
-        vec2.mul(stance.projectile.direction or {1, 0}, {mcontroller.facingDirection(), 1}),
+        -- vec2.rotate(
+        --   vec2.mul(stance.projectile.direction or {1, 0}, {mcontroller.facingDirection(), 1}),
+        --   self.weapon.aimAngle
+        -- ),
+        vec2.mul(
+          vec2.rotate(stance.projectile.direction or {1, 0}, self.weapon.aimAngle),
+          {mcontroller.facingDirection(), 1}
+        ),
         stance.projectile.trackSourceEntity,
-        stance.projectile.parameters
+        params
       )
     end
   end

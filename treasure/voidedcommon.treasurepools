@@ -95,7 +95,7 @@
       ]
     }]
   ],
-  
+
   "v-poisonWeaponChestTreasure" : [
     [0, {
       "fill" : [
@@ -281,6 +281,19 @@
       ],
       "poolRounds" : [
         [1.0, 1]
+      ]
+    }]
+  ],
+
+  "v-healingItemXL" : [
+    [0, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 1.0, "pool" : "healingItem"}
+      ],
+      "poolRounds" : [
+        [0.5, 2],
+        [0.5, 3]
       ]
     }]
   ]

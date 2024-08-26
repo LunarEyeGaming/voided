@@ -17,11 +17,11 @@
       {
         "select" : 1,
         "pool" : "generatedGroundAggroDay"
-      }, 
+      },
       {
         "select" : 3,
         "pool" : "nightTerrors"
-      },      
+      },
       {
         "select" : 2,
         "pool" : "generatedGround"
@@ -269,7 +269,7 @@
         "mode" : "floor",
         "priority" : 2.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:potsRare",
+        "distribution" : "/biomes/distributions.config:v-electricTree",
 
         "type" : "tree",
         "treeFoliageHueShiftMax" : 120,

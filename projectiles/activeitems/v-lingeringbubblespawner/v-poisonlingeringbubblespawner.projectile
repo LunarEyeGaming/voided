@@ -1,0 +1,23 @@
+{
+  "projectileName" : "v-poisonlingeringbubblespawner",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "illusion",
+  "bounces" : 0,
+  "timeToLive" : 0,
+  "animationCycle" : 1,
+  "speed" : 0,
+  "frameNumber" : 1,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  "piercing" : true,
+
+  "scripts" : [ "v-lingeringbubblespawner.lua" ],
+  "scriptDelta" : 0,
+
+  "projectileType" : "v-poisonlingeringbubble",
+  "projectileDistance" : 8,
+  "projectileCount" : 8,
+  "projectileSpreadAngle" : 15,
+  "inheritDamageFactor" : 1.0,
+  "projectileParameters" : {}
+}

@@ -12,12 +12,12 @@
 
   "baseParameters" : {
     "pickupItem" : "v-electriccrawleritem",
-    
+
     "scripts" : [
       "/monsters/monster.lua",
       "/monsters/biomes/v-voltage/v-electriccrawler/v-electriccrawlerplugin.lua"
     ],
-    
+
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 1,
 
@@ -34,7 +34,7 @@
       "keepTargetInSight" : true,
       "keepTargetInRange" : 80,
       "targetOutOfSightTime" : 5.0,
-      
+
       "foundTargetActions" : [
         {
           "name" : "action-aggrohop",
@@ -62,7 +62,21 @@
         }
       ],
 
-      "followActions" : [],
+      "followActions" : [
+        {
+          "name" : "approach-teleport",
+          "parameters" : {
+          }
+        },
+        {
+          "name" : "v-approach-crawl",
+          "parameters" : {
+            "stopForce" : 200,
+            "stickForce" : 1000,
+            "resetHeading" : false
+          }
+        }
+      ],
 
       "wanderActions" : [
         {
@@ -218,6 +232,9 @@
 
     "mouthOffset" : [0, 0],
     "feetOffset" : [0, -8],
-    "capturable" : false
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-electriccrawler" }
   }
 }

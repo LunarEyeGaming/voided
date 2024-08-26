@@ -159,7 +159,6 @@
       "laserbeam" : {
         "properties" : {
           "anchorPart" : "turret",
-          "transformationGroups" : [ "laserbeam" ],
           "zLevel" : 2,
           "beamSource" : [1.625, 0],
           "beamEnd" : [3, 0]
@@ -168,7 +167,6 @@
       "laserbeam2" : {
         "properties" : {
           "anchorPart" : "turret",
-          "transformationGroups" : [ "laserbeam2" ],
           "zLevel" : 2,
           "beamSource" : [1.625, 0],
           "beamEnd" : [3, 0]
@@ -182,9 +180,7 @@
   "transformationGroups" : {
     "body" : { "interpolated" : true },
     "facing" : { "interpolated" : false },
-    "aim" : { "interpolated" : true },
-    "laserbeam" : { "interpolated" : false },
-    "laserbeam2" : { "interpolated" : false }
+    "aim" : { "interpolated" : true }
   },
 
   "effects" : {

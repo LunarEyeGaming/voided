@@ -11,7 +11,7 @@
   "twoHanded" : true,
   "itemTags" : ["weapon","ranged","assaultrifle"],
   "level" : 8,
-  
+
   //"critChance" : 2,
   //"critBonus" : 5,
 
@@ -42,7 +42,7 @@
   "scripts" : ["/items/active/weapons/voltite/v-nailgun/v-nailgun.lua"],
 
   "elementalType" : "physical",
-    
+
   "whirMinPitch" : 1.0,
   "whirMaxPitch" : 2.0,
   "winddownTime" : 1.5,
@@ -56,7 +56,7 @@
     "class" : "NailGunFire",
 
     "fireTime" : 0.05,
-    "baseDps" : 20,
+    "baseDps" : 10,
     "energyUsage" : 45,
     "projectileCount" : 1,
     "inaccuracy" : 0.07,

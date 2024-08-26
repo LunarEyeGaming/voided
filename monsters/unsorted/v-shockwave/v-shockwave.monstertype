@@ -21,21 +21,38 @@
     "projectileType" : "v-shockwavedamage",
     "projectileParameters" : {},
     "damage" : 20,
+    "damageKind" : "electric",
+    "damagePoly" : [[0.75, 0.75], [0.75, -0.75], [-0.75, -0.75], [-0.75, 0.75]],
+
     "maxArea" : 500,
-    
+
     "dissipationTime" : 0.15,
     "animationConfig" : {
       "startColor" : [196, 196, 245, 255],
       "endColor" : [74, 74, 181, 0],
-      "fullbright" : true
+      "fullbright" : true,
+      "damageIndicatorParticle" : {
+        "type" : "animated",
+        "animation" : "/animations/teslabolt/teslabolt.animation",
+        "light" : [100, 100, 150],
+        "collidesForeground" : false,
+        "fullbright" : true,
+        "fade" : 10,
+        "size" : 0.5,
+        "layer" : "front",
+        "timeToLive" : 0.425,
+        "variance" : {
+          "rotation" : 180
+        }
+      }
     },
-    
+
     "nailDetectionRadius" : 4.0,
     "intangibleTime" : 0.05,
 
     "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
     "scale" : 1.0,
-    
+
     "selfDamagePoly" : [ ],
 
     "movementSettings" : {

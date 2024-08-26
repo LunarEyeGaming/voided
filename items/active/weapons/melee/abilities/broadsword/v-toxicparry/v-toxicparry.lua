@@ -7,7 +7,7 @@ ToxicParry = WeaponAbility:new()
 
 function ToxicParry:init()
   self.cooldownTimer = 0
-  
+
   self.parryProjectileParameters = self.parryProjectileParameters or {}
   self.parryProjectileParameters.power = self:leveledDamage(self.parryProjectileParameters.power or 10)
 end
@@ -37,14 +37,13 @@ function ToxicParry:parry()
 
   animator.setAnimationState("parryShield", "active")
   animator.playSound("guard")
-  
+
   local oldShieldHealth = status.resource("shieldStamina")
 
   local damageListener = damageListener("damageTaken", function(notifications)
     -- If a hit results in some shield health being lost...
     if status.resource("shieldStamina") < oldShieldHealth then
       for _,notification in pairs(notifications) do
-        sb.logInfo("%s", notification)
         if notification.sourceEntityId ~= -65536 and notification.healthLost == 0 then
           animator.playSound("parry")
           animator.setAnimationState("parryShield", "block")

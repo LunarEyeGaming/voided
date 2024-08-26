@@ -2,8 +2,7 @@
   "name": "v-approach-turnworm",
   "description": "",
   "scripts": [
-    "/scripts/actions/flying.lua",
-    "/scripts/actions/v-monster.lua",
+    "/scripts/actions/v-worm.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/math.lua"
@@ -14,8 +13,8 @@
     "rightState": "",
     "flyState": "",
     "idleState": "",
-    "wavePeriod": 1.0,
-    "waveAmplitude": 1.0
+    "wavePeriod": 1,
+    "waveAmplitude": 1
   },
   "root": {
     "title": "sequence",

@@ -1,0 +1,17 @@
+{
+  "frameGrid" : {
+    "size" : [61, 16],
+    "dimensions" : [7, 5],
+    "names" : [
+      [ "1.idle.1", "1.spin.2", "1.spin.3" ],
+      [ "1.fire.1", "1.fire.2" ],
+      [ "transition.1", "transition.2", "transition.3", "transition.4", "transition.5", "transition.6", "transition.7" ],
+      [ "2.idle.1", "2.spin.2", "2.spin.3" ],
+      [ "2.fire.1", "2.fire.2" ]
+    ]
+  },
+  "aliases" : {
+    "1.spin.1" : "1.idle.1",
+    "2.spin.1" : "2.idle.1"
+  }
+}

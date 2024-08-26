@@ -1,0 +1,71 @@
+{
+  "projectileName" : "v-centipederay",
+  "image" : "centipederay.png",
+  "frameNumber" : 2,
+  "animationCycle" : 0.2,
+  "fullbright" : true,
+  "lightColor" : [245, 245, 245],
+
+  "persistentAudio" : "/sfx/projectiles/v_centipederay_loop.ogg",
+
+  "timeToLive" : 16,
+
+  "onlyHitTerrain" : true,
+
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "loop",
+      "count" : 10,
+      "body" : [
+        {
+          "action" : "particle",
+          "rotate" : true,
+          "specification" : {
+            "type" : "animated",
+            "animation" : "/animations/shards/v-ironspikeshard.animation",
+            "initialVelocity" : [35.0, 0.0],
+            "position" : [-8, 0],
+            "timeToLive" : 0.5,
+            "layer" : "middle",
+            "collidesForeground" : true,
+            "variance" : {
+              "position" : [1, 0],
+              "initialVelocity" : [0, 15],
+              "finalVelocity" : [0, 20],
+              "rotation" : 180,
+              "angularVelocity" : 180
+            }
+          }
+        }
+      ]
+    } /* ,
+    {
+      "time" : 0.1,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/shards/v-ironspikeshard.animation",
+        "initialVelocity" : [35.0, 0.0],
+        "position" : [-8, 0],
+        "timeToLive" : 0.5,
+        "layer" : "middle",
+        "collidesForeground" : true,
+        "variance" : {
+          "position" : [1, 0],
+          "initialVelocity" : [0, 15],
+          "finalVelocity" : [0, 20],
+          "rotation" : 180,
+          "angularVelocity" : 180
+        }
+      }
+    } */
+  ],
+
+  "speed" : 0,
+  "physics" : "illusion",
+
+  "scripts" : [ "/projectiles/killable.lua" ]
+}

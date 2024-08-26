@@ -1,0 +1,33 @@
+{
+  "projectileName" : "v-electrochemfluxcorepickup",
+  "image" : "electrochemfluxcorepickup.png",
+  "frameNumber" : 8,
+  "animationCycle" : 0.8,
+  "fullbright" : true,
+  "lightColor" : [169, 177, 160],
+  "renderLayer": "ItemDrop",
+
+  "timeToLive" : 300,
+
+  "onlyHitTerrain" : true,
+  "physics" : "illusion",
+  "speed" : 5,
+  "orientationLocked" : true,
+
+  "persistentAudio" : "/sfx/projectiles/zone_energy_loop.ogg",
+
+  "scripts" : [ "v-electrochemfluxcorepickup.lua" ],
+  "scriptDelta" : 1,
+
+  "shineProjectileType" : "v-electrochemfluxcorepickupshine",
+
+  "floatControlForce" : 15,
+  "hoverDistance" : 5,
+
+  "pickupRange" : 1,
+  "snapRange" : 3,
+  "snapSpeed" : 150,
+  "snapForce" : 250,
+
+  "pickupItem" : {"name" : "v-electrochemfluxcore", "count" : 1}
+}

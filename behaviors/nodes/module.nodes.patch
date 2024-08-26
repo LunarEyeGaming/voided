@@ -149,17 +149,6 @@
   },
   {
     "op": "add",
-    "path": "/v-strongholdboss",
-    "value": {
-      "type": "module",
-      "name": "v-strongholdboss",
-      "title": "",
-      "properties": {},
-      "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\v-strongholdboss.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-cityminiboss-dying",
     "value": {
       "type": "module",
@@ -272,20 +261,6 @@
         "mycospitFireDelay": {"type": "json", "value": 0.1}
       },
       "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-sporeattack.behavior"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/v-laboratoryminiboss",
-    "value": {
-      "type": "module",
-      "name": "v-laboratoryminiboss",
-      "title": "",
-      "properties": {
-        "vehicleAwakenRange": {"type": "json", "value": 8},
-        "playerAwakenRange": {"type": "json", "value": 25}
-      },
-      "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-laboratoryminiboss.behavior"
     }
   },
   {
@@ -443,6 +418,311 @@
         "windupState": {"type": "json", "value": "firewindup"}
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-wormfire.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-noop",
+    "value": {
+      "type": "module",
+      "name": "v-noop",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\newmodules\\v-noop.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-laboratoryminiboss",
+    "value": {
+      "type": "module",
+      "name": "v-laboratoryminiboss",
+      "title": null,
+      "properties": {
+        "vehicleAwakenRange": {"type": "json", "value": 8},
+        "playerAwakenRange": {"type": "json", "value": 25}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-laboratoryminiboss\\v-laboratoryminiboss.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-strongholdboss",
+    "value": {
+      "type": "module",
+      "name": "v-strongholdboss",
+      "title": null,
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\v-strongholdboss.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-strongholdbosscore",
+    "value": {
+      "type": "module",
+      "name": "v-strongholdbosscore",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-strongholdbosscore\\v-strongholdbosscore.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss-projectileattack1",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-projectileattack1",
+      "title": null,
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-projectileattack1.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-turnworm",
+    "value": {
+      "type": "module",
+      "name": "v-approach-turnworm",
+      "title": "",
+      "properties": {
+        "flyState": {"type": "json", "value": ""},
+        "idleState": {"type": "json", "value": ""},
+        "leftState": {"type": "json", "value": ""},
+        "rightState": {"type": "json", "value": ""},
+        "turnSpeed": {"type": "json", "value": 1},
+        "waveAmplitude": {"type": "json", "value": 1},
+        "wavePeriod": {"type": "json", "value": 1}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-turnapproachworm.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss-followattack",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-followattack",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-followattack.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss-constrictattack",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-constrictattack",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-constrictattack.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss-constrictattack2",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-constrictattack2",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-constrictattack2.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedebosslegtest",
+    "value": {
+      "type": "module",
+      "name": "v-centipedebosslegtest",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-centipedebosslegtest.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss-flytopos",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-flytopos",
+      "title": "",
+      "properties": {
+        "position": {"type": "json", "value": null},
+        "speed": {"type": "json", "value": 1},
+        "tolerance": {"type": "json", "value": 5},
+        "controlForce": {"type": "json", "value": 250},
+        "stopForce": {"type": "json", "value": 250},
+        "stopTime": {"type": "json", "value": 0.5}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-flytopos.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss-phasetransition",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-phasetransition",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-phasetransition.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss-constrictchoice",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-constrictchoice",
+      "title": "",
+      "properties": {
+        "constrictPos": {"type": "json", "value": null},
+        "constrictRadius": {"type": "json", "value": [22, 22]},
+        "deconstrictClampRate": {"type": "json", "value": 240},
+        "showConstrictWarning": {"type": "json", "value": false},
+        "constrictPoints": {"type": "json", "value": 150},
+        "constrictSpeed": {"type": "json", "value": 50}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-constrictchoice.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss",
+      "title": null,
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-centipedeboss.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss-intro",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-intro",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-intro.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedebossbuildup",
+    "value": {
+      "type": "module",
+      "name": "v-centipedebossbuildup",
+      "title": "",
+      "properties": {
+        "positionList": {"type": "json", "value": []},
+        "circlePosition": {"type": "json", "value": null}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-centipedebossbuildup.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-wander-crawlnonstop",
+    "value": {
+      "type": "module",
+      "name": "v-wander-crawlnonstop",
+      "title": "",
+      "properties": {
+        "idleState": {"type": "json", "value": "idle"},
+        "moveState": {"type": "json", "value": "walk"},
+        "resetHeading": {"type": "json", "value": true},
+        "stickForce": {"type": "json", "value": 50},
+        "stopForce": {"type": "json", "value": 0},
+        "testDistance": {"type": "json", "value": 0.25}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-crawlnonstopwander.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-crawl",
+    "value": {
+      "type": "module",
+      "name": "v-approach-crawl",
+      "title": "",
+      "properties": {
+        "moveState": {"type": "json", "value": "walk"},
+        "resetHeading": {"type": "json", "value": true},
+        "run": {"type": "json", "value": false},
+        "stickForce": {"type": "json", "value": 50},
+        "testDistance": {"type": "json", "value": 0.25}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-crawlapproach.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-mutanteel-eatfood",
+    "value": {
+      "type": "module",
+      "name": "v-mutanteel-eatfood",
+      "title": "",
+      "properties": {
+        "eatEntity": {"type": "json", "value": null}
+      },
+      "pathToTree": "..\\monsters\\unique\\v-mutanteel-eatfood.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-centipedeboss-dying",
+    "value": {
+      "type": "module",
+      "name": "v-centipedeboss-dying",
+      "title": "",
+      "properties": {
+        "stopForce": {"type": "json", "value": 250},
+        "stopTime": {"type": "json", "value": 0.5}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-centipedeboss\\v-dying.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-ancientturret2-fire",
+    "value": {
+      "type": "module",
+      "name": "v-ancientturret2-fire",
+      "title": "",
+      "properties": {
+        "aimAtTarget": {"type": "json", "value": true},
+        "aimDirection": {"type": "json", "value": [1, 0]},
+        "damageRepeatGroup": {"type": "json", "value": "monsterfire"},
+        "faceTarget": {"type": "json", "value": true},
+        "fireArc": {"type": "json", "value": false},
+        "fireDelay": {"type": "json", "value": 0},
+        "fireOffset": {"type": "json", "value": [0, 0]},
+        "fireOffsets": {"type": "json", "value": []},
+        "fireParticleBurst": {"type": "json", "value": ""},
+        "fireSound": {"type": "json", "value": "fire"},
+        "fireState": {"type": "json", "value": "fire"},
+        "fireStateType": {"type": "json", "value": "body"},
+        "highArc": {"type": "json", "value": false},
+        "holdAim": {"type": "json", "value": false},
+        "inaccuracy": {"type": "json", "value": 0},
+        "projectileCount": {"type": "json", "value": 1},
+        "projectileInterval": {"type": "json", "value": 0.25},
+        "projectileParameters": {"type": "json", "value": {}},
+        "projectileSpeed": {"type": "json", "value": 0},
+        "projectileType": {"type": "json", "value": "standardbullet"},
+        "rotateAim": {"type": "json", "value": false},
+        "rotationCenter": {"type": "json", "value": [0, 0]},
+        "skillName": {"type": "json", "value": ""},
+        "winddownState": {"type": "json", "value": "firewinddown"},
+        "windupState": {"type": "json", "value": "firewindup"},
+        "windupState2": {"type": "json", "value": "firewindup2"},
+        "windupTime2": {"type": "json", "value": 0.25}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-ancientturret2fire.behavior"
     }
   }
 ]

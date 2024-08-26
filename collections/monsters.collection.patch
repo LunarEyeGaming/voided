@@ -43,5 +43,104 @@
       "monsterType" : "v-voltspitter",
       "icon" : "/monsters/biomes/v-voltage/v-voltspitter/body.png:idle.1"
     }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-wardrone",
+    "value" : {
+      "order" : 66,
+      "monsterType" : "v-wardrone",
+      "icon" : "/monsters/biomes/v-voltage/v-wardrone/captureicon.png"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-dischargemonster",
+    "value" : {
+      "order" : 67,
+      "monsterType" : "v-dischargemonster",
+      "icon" : "/monsters/biomes/v-voltage/v-dischargemonster/body.png:active.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-electriccrawler",
+    "value" : {
+      "order" : 68,
+      "monsterType" : "v-electriccrawler",
+      "icon" : "/monsters/biomes/v-voltage/v-electriccrawler/electriccrawler.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-electricelemental",
+    "value" : {
+      "order" : 69,
+      "monsterType" : "v-electricelemental",
+      "icon" : "/monsters/biomes/v-voltage/v-electricelemental/body.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-downspitter",
+    "value" : {
+      "order" : 70,
+      "monsterType" : "v-downspitter",
+      "icon" : "/monsters/biomes/v-toxicwasteland/v-downspitter/body.png:fly.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-gasmonster",
+    "value" : {
+      "order" : 71,
+      "monsterType" : "v-gasmonster",
+      "icon" : "/monsters/biomes/v-toxicwasteland/v-gasmonster/body.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-fumeballoon",
+    "value" : {
+      "order" : 72,
+      "monsterType" : "v-fumeballoon",
+      "icon" : "/monsters/biomes/v-toxicwasteland/v-fumeballoon/fumeballoon.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-mushroomspider",
+    "value" : {
+      "order" : 73,
+      "monsterType" : "v-mushroomspider",
+      "icon" : "/monsters/biomes/v-toxicwasteland/v-mushroomspider/body.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-killerbee",
+    "value" : {
+      "order" : 74,
+      "monsterType" : "v-killerbee",
+      "icon" : "/monsters/biomes/v-toxicwasteland/v-killerbee/body.png:winduploop.2"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-killerbeeswarm",
+    "value" : {
+      "order" : 75,
+      "monsterType" : "v-killerbeeswarm",
+      "icon" : "/monsters/biomes/v-toxicwasteland/v-killerbeeswarm/body.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-mutanteel",
+    "value" : {
+      "order" : 76,
+      "monsterType" : "v-mutanteelhead",
+      "icon" : "/monsters/biomes/v-toxicwasteland/v-mutanteel/captureicon.png"
+    }
   }
 ]

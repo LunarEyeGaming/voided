@@ -170,7 +170,7 @@ function v_laserAttack(args, board)
     local vPosition = vec2.add(center, util.randomFromList(args.vOffsets, randGenV))
 
     animator.playSound("warning")
-    
+
     world.spawnProjectile(args.hTeleProjectile, hPosition)
     world.spawnProjectile(args.vTeleProjectile, vPosition)
 
@@ -203,8 +203,8 @@ function v_laserAttack(args, board)
 
     --sb.logInfo("IDs: %s, %s, %s, %s", hId, vId, extraId1, extraId2)
 
-    _v_awaitNotification("finished", activeLasers)
-    
+    vBehavior.awaitNotification("finished", activeLasers)
+
     util.run(args.fireDelay, function() end)
 
     world.sendEntityMessage(hId, "pulse")
@@ -217,7 +217,7 @@ function v_laserAttack(args, board)
       world.sendEntityMessage(extraId2, "pulse")
     end
 
-    _v_awaitNotification("finished", activeLasers)
+    vBehavior.awaitNotification("finished", activeLasers)
 
     util.run(args.waitTime, function() end)
   end
@@ -227,7 +227,7 @@ function v_laserAttack(args, board)
   world.sendEntityMessage(args.v1Id, "reset")
   world.sendEntityMessage(args.v2Id, "reset")
 
-  _v_awaitNotification("finished", 4)
+  vBehavior.awaitNotification("finished", 4)
 
   return true
 end
@@ -273,9 +273,9 @@ function v_laserAttack2(args, board)
     end
 
     if useFourLasers then
-      _v_awaitNotification("finished", 4)
+      vBehavior.awaitNotification("finished", 4)
     else
-      _v_awaitNotification("finished", 2)
+      vBehavior.awaitNotification("finished", 2)
     end
 
     world.sendEntityMessage(args.h1Id, "pulse")
@@ -286,9 +286,9 @@ function v_laserAttack2(args, board)
     end
 
     if useFourLasers then
-      _v_awaitNotification("finished", 4)
+      vBehavior.awaitNotification("finished", 4)
     else
-      _v_awaitNotification("finished", 2)
+      vBehavior.awaitNotification("finished", 2)
     end
 
     util.run(args.waitTime, function() end)
@@ -302,9 +302,9 @@ function v_laserAttack2(args, board)
   end
 
   if useFourLasers then
-    _v_awaitNotification("finished", 4)
+    vBehavior.awaitNotification("finished", 4)
   else
-    _v_awaitNotification("finished", 2)
+    vBehavior.awaitNotification("finished", 2)
   end
 
   return true
@@ -334,22 +334,22 @@ function v_laserAttack3(args, board)
     local endPosition = vec2.add(center, attack.endOffset)
 
     animator.playSound("warning")
-    
+
     world.spawnProjectile(attack.teleProjectile, vec2.add(center, attack.teleOffset))
 
     world.sendEntityMessage(id, "move", startPosition)
-    _v_awaitNotification("finished")
+    vBehavior.awaitNotification("finished")
 
     util.run(args.fireDelay, function() end)
 
     world.sendEntityMessage(id, "activate")
-    _v_awaitNotification("finished")
+    vBehavior.awaitNotification("finished")
 
     world.sendEntityMessage(id, "move", endPosition)
-    _v_awaitNotification("finished")
+    vBehavior.awaitNotification("finished")
 
     world.sendEntityMessage(id, "deactivate")
-    _v_awaitNotification("finished")
+    vBehavior.awaitNotification("finished")
 
     util.run(args.waitTime, function() end)
   end
@@ -359,7 +359,7 @@ function v_laserAttack3(args, board)
     world.sendEntityMessage(id, "reset")
   end
 
-  _v_awaitNotification("finished", #args.attackSet)
+  vBehavior.awaitNotification("finished", #args.attackSet)
 
   return true
 end
@@ -382,7 +382,7 @@ function v_laserAttack4(args, board)
 
   local hPosBounds = {center[2] + args.hBounds[1], center[2] + args.hBounds[2]}
   local vPosBounds = {center[1] + args.vBounds[1], center[1] + args.vBounds[2]}
-  
+
   if args.phase == 3 then
     world.spawnProjectile(args.phase3WarningProjectile, mcontroller.position(), entity.id(), {0, 0})
     util.run(args.phase3WarningTime, function() end)
@@ -395,17 +395,17 @@ function v_laserAttack4(args, board)
     local vId = i % 2 == 0 and args.v1Id or args.v2Id
 
     if args.phase == 1 then
-      
+
       world.spawnProjectile(args.targetProjectile, targetPos, entity.id(), {0, 0})
       world.sendEntityMessage(hId, "move", targetPos)
       world.sendEntityMessage(vId, "move", targetPos)
 
-      _v_awaitNotification("finished", 2)
+      vBehavior.awaitNotification("finished", 2)
 
       world.sendEntityMessage(hId, "pulse")
       world.sendEntityMessage(vId, "pulse")
 
-      _v_awaitNotification("finished", 2)
+      vBehavior.awaitNotification("finished", 2)
     elseif args.phase == 2 then
 
       world.spawnProjectile(args.targetProjectile, targetPos, entity.id(), {0, 0})
@@ -420,11 +420,11 @@ function v_laserAttack4(args, board)
 
       world.sendEntityMessage(hId, "move", targetPos)
       world.sendEntityMessage(vId, "move", targetPos)
-      _v_awaitNotification("finished", 2)
+      vBehavior.awaitNotification("finished", 2)
 
       world.sendEntityMessage(hId, "activate")
       world.sendEntityMessage(vId, "activate")
-      _v_awaitNotification("finished", 2)
+      vBehavior.awaitNotification("finished", 2)
 
       util.run(0.5, function() end)
 
@@ -434,11 +434,11 @@ function v_laserAttack4(args, board)
 
       world.sendEntityMessage(hId, "move", targetPos)
       world.sendEntityMessage(vId, "move", targetPos)
-      _v_awaitNotification("finished", 2)
+      vBehavior.awaitNotification("finished", 2)
 
       world.sendEntityMessage(hId, "deactivate")
       world.sendEntityMessage(vId, "deactivate")
-      _v_awaitNotification("finished", 2)
+      vBehavior.awaitNotification("finished", 2)
     end
 
     util.run(args.waitTime, function() end)
@@ -449,7 +449,7 @@ function v_laserAttack4(args, board)
   world.sendEntityMessage(args.h2Id, "reset")
   world.sendEntityMessage(args.v2Id, "reset")
 
-  _v_awaitNotification("finished", 4)
+  vBehavior.awaitNotification("finished", 4)
 
   return true
 end
@@ -474,17 +474,17 @@ function v_laserAttack5(args, board)
     world.sendEntityMessage(id, "move", startPosition)
   end
 
-  _v_awaitNotification("finished", #args.attackSet)
-  
+  vBehavior.awaitNotification("finished", #args.attackSet)
+
   for i, attack in ipairs(args.attackSet) do
     local id = board:getEntity(attack.idKey)
 
     animator.playSound("warning")
-    
+
     world.spawnProjectile(attack.teleProjectile, vec2.add(center, attack.teleOffset))
 
     world.sendEntityMessage(id, "activate")
-    _v_awaitNotification("finished")
+    vBehavior.awaitNotification("finished")
   end
 
   util.run(args.waitTime, function() end)
@@ -514,7 +514,7 @@ function v_laserAttack5(args, board)
     world.sendEntityMessage(id, "reset")
   end
 
-  _v_awaitNotification("finished", #args.attackSet)
+  vBehavior.awaitNotification("finished", #args.attackSet)
 
   return true
 end
@@ -531,53 +531,53 @@ function v_laserAttack6(args, board)
   for i = 1, args.loops do
     local nextAttackH = util.randomFromList(args.attackSetH)
     local nextAttackV = util.randomFromList(args.attackSetV)
-    
+
     local hId = board:getEntity(nextAttackH.idKey)
     local hStartPosition = vec2.add(center, nextAttackH.startOffset)
     local hEndPosition = vec2.add(center, nextAttackH.endOffset)
-    
+
     local vId = board:getEntity(nextAttackV.idKey)
     local vStartPosition = vec2.add(center, nextAttackV.startOffset)
     local vEndPosition = vec2.add(center, nextAttackV.endOffset)
 
     animator.playSound("warning")
-    
+
     world.spawnProjectile(nextAttackH.teleProjectile, vec2.add(center, nextAttackH.teleOffset))
     world.spawnProjectile(nextAttackV.teleProjectile, vec2.add(center, nextAttackV.teleOffset))
 
     world.sendEntityMessage(hId, "move", hStartPosition)
     world.sendEntityMessage(vId, "move", vStartPosition)
-    _v_awaitNotification("finished", 2)
+    vBehavior.awaitNotification("finished", 2)
 
     util.run(args.fireDelay, function() end)
 
     world.sendEntityMessage(hId, "activate")
     world.sendEntityMessage(vId, "activate")
-    _v_awaitNotification("finished", 2)
+    vBehavior.awaitNotification("finished", 2)
 
     world.sendEntityMessage(hId, "move", hEndPosition)
     world.sendEntityMessage(vId, "move", vEndPosition)
-    _v_awaitNotification("finished", 2)
+    vBehavior.awaitNotification("finished", 2)
 
     world.sendEntityMessage(hId, "deactivate")
     world.sendEntityMessage(vId, "deactivate")
-    _v_awaitNotification("finished", 2)
+    vBehavior.awaitNotification("finished", 2)
 
     util.run(args.waitTime, function() end)
   end
-  
+
   for _, attack in ipairs(args.attackSetH) do
     local id = board:getEntity(attack.idKey)
     world.sendEntityMessage(id, "reset")
   end
-  
+
   for _, attack in ipairs(args.attackSetV) do
     local id = board:getEntity(attack.idKey)
     world.sendEntityMessage(id, "reset")
   end
 
-  _v_awaitNotification("finished", #args.attackSetH + #args.attackSetV)
-  
+  vBehavior.awaitNotification("finished", #args.attackSetH + #args.attackSetV)
+
   return true
 end
 -- param h1Id
@@ -590,7 +590,7 @@ function v_resetLasers(args, board)
   world.sendEntityMessage(args.v1Id, "reset")
   world.sendEntityMessage(args.h2Id, "reset")
   world.sendEntityMessage(args.v2Id, "reset")
-  _v_awaitNotification("finished", 4)
+  vBehavior.awaitNotification("finished", 4)
 
   return true
 end
@@ -638,7 +638,7 @@ function v_flickerLights(args, board)
   for _, id in ipairs(args.lightIds) do
     world.sendEntityMessage(id, "flicker", args.intensities[args.coreCount + 1], args.duration)
   end
-  
+
   return true
 end
 
@@ -649,7 +649,7 @@ function v_setLightsActive(args, board)
   for _, id in ipairs(args.lightIds) do
     world.sendEntityMessage(id, "setActive", args.active)
   end
-  
+
   return true
 end
 
@@ -666,7 +666,7 @@ function v_moveCoresAroundRandomly(args, board)
       targetPosition = teleportPos
     })
   end
-  
+
   return true
 end
 
@@ -697,7 +697,7 @@ function v_coreAttack6(args, board)
         nCoreIds = nCoreIds - 1
       end
     end
-    _v_awaitNotification("finishedcore", nCoreIds)
+    vBehavior.awaitNotification("finishedcore", nCoreIds)
     util.run(args.waitTime, function() end)
   end
 
@@ -724,7 +724,7 @@ function v_spawnShieldCores(args, board)
     --table.insert(shieldCoreIds, shieldCoreId)
     world.sendEntityMessage(coreId, "notify", {type = "activateShieldCore"})
   end
-  
+
   --return true, {shieldCoreIds = shieldCoreIds}
   return true, {shieldCoreIds = {}}
 end
@@ -742,7 +742,7 @@ function v_turretAttack(args, board)
     end
 
     util.run(wave.delay, function() end, {entityIds = turretIds})
-    
+
     turretIds = {}
 
     for _, turret in ipairs(wave.turrets) do
@@ -756,11 +756,11 @@ function v_turretAttack(args, board)
       end
     end
   end
-    
+
   while _v_anyTurretsExist(turretIds) do
     coroutine.yield(nil, {entityIds = turretIds})
   end
-  
+
   return true
 end
 
@@ -771,32 +771,8 @@ function _v_anyTurretsExist(turrets)
       return true
     end
   end
-  
+
   return false
-end
-
--- Coroutine function that waits until it receives <count> notifications of the specified type (default is 1).
-function _v_awaitNotification(type_, count)
-  count = count or 1
-  local notifications = {}
-  while count > 0 do
-    local i = 1
-    while i <= #self.notifications do
-      local notification = self.notifications[i]
-      if notification.type == type_ then
-        --sb.logInfo("self.notifications = %s, i = %s", self.notifications, i)
-        table.remove(self.notifications, i)
-        table.insert(notifications, notification)
-
-        count = count - 1
-      else
-        i = i + 1
-      end
-    end
-    coroutine.yield()
-  end
-
-  return notifications
 end
 
 -- Get the position of the target within the confines of the arena.
