@@ -15,13 +15,14 @@
       "/monsters/monster.lua",
       "/monsters/renderlaserbeam.lua"
     ],
-    
+
     "animationScripts" : [
       "/monsters/effects/laserbeam.lua"
     ],
-    
+
     "beams" : [
       {
+        "name" : "laserbeam",
         "offset" : [2.875, 0],
         "color" : [255, 0, 255, 128],
         "length" : 60,
@@ -31,6 +32,7 @@
         "endPart" : "laserbeam"
       },
       {
+        "name" : "laserbeam2",
         "offset" : [2.875, 0],
         "color" : [0, 0, 255, 128],
         "length" : 60,
@@ -40,7 +42,7 @@
         "endPart" : "laserbeam2"
       }
     ],
-    
+
     "initialScriptDelta" : 2,
     "behaviorUpdateDelta" : 1,
 

@@ -38,7 +38,6 @@ function DualBeam:update(dt, fireMode, shiftHeld)
   if self.weapon.currentAbility == nil
       and self.fireMode == "alt"
       and self.cooldownTimer == 0
-      and (not self.boostSpeed or not status.statPositive("activeMovementAbilities"))
       and not status.resourceLocked("energy") then
 
     self:setState(self.windup)

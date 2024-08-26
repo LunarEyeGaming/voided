@@ -3,16 +3,18 @@
   "description": "",
   "scripts": [
     "/scripts/behavior.lua",
+    "/scripts/actions/v-animator.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/monster.lua",
     "/scripts/actions/world.lua",
+    "/scripts/actions/status.lua",
     "/scripts/actions/sensor.lua",
     "/scripts/actions/v-worm.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/time.lua",
+    "/scripts/actions/entity.lua",
     "/scripts/actions/boss/v-centipedeboss.lua",
-    "/scripts/actions/projectiles.lua",
-    "/scripts/actions/entity.lua"
+    "/scripts/actions/projectiles.lua"
   ],
   "parameters": {
     "stopForce": 250,
@@ -33,12 +35,21 @@
         }
       },
       {
-        "title": "setAnimationState",
+        "title": "Deactivate laser",
         "type": "action",
-        "name": "setAnimationState",
+        "name": "v_setLaserBeamActive",
         "parameters": {
-          "state": {"value": "inactive"},
-          "type": {"value": "targetlaser"}
+          "active": {"value": false},
+          "beamName": {"value": "targetlaser"}
+        }
+      },
+      {
+        "title": "Deactivate laser (fire)",
+        "type": "action",
+        "name": "v_setLaserBeamActive",
+        "parameters": {
+          "active": {"value": false},
+          "beamName": {"value": "targetlaserfire"}
         }
       },
       {
@@ -71,6 +82,44 @@
             "entity": {"key": "telegraphId"},
             "message": {"value": "despawn"}
           }
+        }
+      },
+      {
+        "title": "addEphemeralEffect",
+        "type": "action",
+        "name": "addEphemeralEffect",
+        "parameters": {
+          "duration": {"value": 999999},
+          "name": {"value": "invulnerable"}
+        }
+      },
+      {
+        "title": "each",
+        "type": "decorator",
+        "name": "each",
+        "parameters": {
+          "list": {"key": "childSegments"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "sendEntityMessage",
+          "type": "action",
+          "name": "sendEntityMessage",
+          "parameters": {
+            "arguments": {"value": [true]},
+            "entity": {"key": "eachItem"},
+            "message": {"value": "setInvulnerable"}
+          }
+        }
+      },
+      {
+        "title": "sendEntityMessage",
+        "type": "action",
+        "name": "sendEntityMessage",
+        "parameters": {
+          "arguments": {"value": [true]},
+          "entity": {"key": "tailId"},
+          "message": {"value": "setInvulnerable"}
         }
       },
       {
@@ -169,6 +218,14 @@
           "arguments": {"value": []},
           "entity": {"key": "tailId"},
           "message": {"value": "startDeathAnimation"}
+        }
+      },
+      {
+        "title": "setDamageOnTouch",
+        "type": "action",
+        "name": "setDamageOnTouch",
+        "parameters": {
+          "touchDamage": {"value": false}
         }
       },
       {

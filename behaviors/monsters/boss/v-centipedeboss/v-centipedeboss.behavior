@@ -10,7 +10,8 @@
     "/scripts/actions/monster.lua",
     "/scripts/actions/status.lua",
     "/scripts/actions/time.lua",
-    "/scripts/actions/animator.lua"
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/v-animator.lua"
   ],
   "parameters": {},
   "root": {
@@ -606,12 +607,67 @@
                         }
                       },
                       {
-                        "title": "setAnimationState",
+                        "title": "Deactivate laser",
                         "type": "action",
-                        "name": "setAnimationState",
+                        "name": "v_setLaserBeamActive",
                         "parameters": {
-                          "state": {"value": "inactive"},
-                          "type": {"value": "targetlaser"}
+                          "active": {"value": false},
+                          "beamName": {"value": "targetlaser"}
+                        }
+                      },
+                      {
+                        "title": "Deactivate laser (fire)",
+                        "type": "action",
+                        "name": "v_setLaserBeamActive",
+                        "parameters": {
+                          "active": {"value": false},
+                          "beamName": {"value": "targetlaserfire"}
+                        }
+                      },
+                      {
+                        "title": "setDamageOnTouch",
+                        "type": "action",
+                        "name": "setDamageOnTouch",
+                        "parameters": {
+                          "touchDamage": {"value": false}
+                        }
+                      },
+                      {
+                        "title": "addEphemeralEffect",
+                        "type": "action",
+                        "name": "addEphemeralEffect",
+                        "parameters": {
+                          "duration": {"value": 999999},
+                          "name": {"value": "invulnerable"}
+                        }
+                      },
+                      {
+                        "title": "each",
+                        "type": "decorator",
+                        "name": "each",
+                        "parameters": {
+                          "list": {"key": "childSegments"},
+                          "type": {"value": "entity"}
+                        },
+                        "child": {
+                          "title": "sendEntityMessage",
+                          "type": "action",
+                          "name": "sendEntityMessage",
+                          "parameters": {
+                            "arguments": {"value": [true]},
+                            "entity": {"key": "eachItem"},
+                            "message": {"value": "setInvulnerable"}
+                          }
+                        }
+                      },
+                      {
+                        "title": "sendEntityMessage",
+                        "type": "action",
+                        "name": "sendEntityMessage",
+                        "parameters": {
+                          "arguments": {"value": [true]},
+                          "entity": {"key": "tailId"},
+                          "message": {"value": "setInvulnerable"}
                         }
                       },
                       {

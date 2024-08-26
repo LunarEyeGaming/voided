@@ -30,9 +30,6 @@ function centipede.deathAnimation()
   local timer = 0
   local dt = script.updateDt()
 
-  -- Make invulnerable
-  status.addEphemeralEffect("invulnerable", 2 ^ 32)
-
   -- Begin rumble sound
   animator.playSound("rumble", -1)
   animator.setSoundVolume("rumble", 0)

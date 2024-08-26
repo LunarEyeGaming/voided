@@ -156,6 +156,34 @@
         }
       },
       {
+        "title": "clearPersistentEffects",
+        "type": "action",
+        "name": "clearPersistentEffects",
+        "parameters": {
+          "category": {"value": "dynamicResistance"}
+        }
+      },
+      {
+        "title": "addStatModifier",
+        "type": "action",
+        "name": "addStatModifier",
+        "parameters": {
+          "amount": {"value": 0.5},
+          "category": {"value": "dynamicResistance"},
+          "stat": {"value": "poisonResistance"}
+        }
+      },
+      {
+        "title": "addStatModifier",
+        "type": "action",
+        "name": "addStatModifier",
+        "parameters": {
+          "amount": {"value": -0.25},
+          "category": {"value": "dynamicResistance"},
+          "stat": {"value": "electricResistance"}
+        }
+      },
+      {
         "title": "setStorage",
         "type": "action",
         "name": "setStorage",

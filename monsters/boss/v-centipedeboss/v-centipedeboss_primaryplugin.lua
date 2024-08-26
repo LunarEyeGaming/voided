@@ -13,6 +13,8 @@ local oldInit = init or function() end
 local oldUpdate = update or function() end
 local oldApplyDamageRequest = applyDamageRequest or function() end
 
+local MIN_DAMAGE_MULTIPLIER = 0.00000001
+
 local damageMultiplier
 local damageMultiplierPerRequest
 local invDamageMultiplierPerRequest
@@ -46,6 +48,9 @@ function applyDamageRequest(damageRequest)
     -- Still compound the damage multiplier, but do it at a lower rate depending on how much damage is being dealt.
     damageMultiplier = damageMultiplier * util.lerp(damageRequest.damage / damageMultiplierThreshold, 1.0, damageMultiplierPerRequest)
   end
+
+  -- Make damage multiplier have a minimum value
+  damageMultiplier = math.max(MIN_DAMAGE_MULTIPLIER, damageMultiplier)
 
   resetDelayTimer = damageMultiplierResetDelay
   resetIntervalTimer = damageMultiplierResetInterval

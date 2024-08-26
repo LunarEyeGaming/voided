@@ -1,0 +1,14 @@
+{
+  "v_setLaserBeamActive": {
+    "type": "action",
+    "name": "v_setLaserBeamActive",
+    "title": "v_setLaserBeamActive",
+    "properties": {
+      "active": {"type": "bool", "value": false},
+      "beamName": {"type": "string"}
+    },
+    "category": "v-animator",
+    "script": "/scripts/actions/v-animator.lua",
+    "output": {}
+  }
+}

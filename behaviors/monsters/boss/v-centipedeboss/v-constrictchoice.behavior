@@ -1,14 +1,15 @@
 {
   "name": "v-centipedeboss-constrictchoice",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/world.lua",
     "/scripts/behavior.lua",
     "/scripts/actions/boss/v-centipedeboss.lua",
     "/scripts/actions/status.lua",
-    "/scripts/actions/animator.lua",
+    "/scripts/actions/v-animator.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/projectiles.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/v-world.lua"
   ],
   "parameters": {
@@ -123,12 +124,21 @@
                       }
                     },
                     {
-                      "title": "Reactivate laser",
+                      "title": "Activate laser",
                       "type": "action",
-                      "name": "setAnimationState",
+                      "name": "v_setLaserBeamActive",
                       "parameters": {
-                        "state": {"value": "active"},
-                        "type": {"value": "targetlaser"}
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaserfire"}
                       }
                     },
                     {
@@ -176,10 +186,19 @@
                     {
                       "title": "Deactivate laser",
                       "type": "action",
-                      "name": "setAnimationState",
+                      "name": "v_setLaserBeamActive",
                       "parameters": {
-                        "state": {"value": "inactive"},
-                        "type": {"value": "targetlaser"}
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Activate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaserfire"}
                       }
                     },
                     {
@@ -193,10 +212,19 @@
                     {
                       "title": "Reactivate laser",
                       "type": "action",
-                      "name": "setAnimationState",
+                      "name": "v_setLaserBeamActive",
                       "parameters": {
-                        "state": {"value": "active"},
-                        "type": {"value": "targetlaser"}
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaserfire"}
                       }
                     },
                     {
@@ -244,10 +272,19 @@
                     {
                       "title": "Deactivate laser",
                       "type": "action",
-                      "name": "setAnimationState",
+                      "name": "v_setLaserBeamActive",
                       "parameters": {
-                        "state": {"value": "inactive"},
-                        "type": {"value": "targetlaser"}
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Activate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaserfire"}
                       }
                     },
                     {
@@ -267,12 +304,21 @@
                   "parameters": {},
                   "children": [
                     {
-                      "title": "Reactivate laser",
+                      "title": "Activate laser",
                       "type": "action",
-                      "name": "setAnimationState",
+                      "name": "v_setLaserBeamActive",
                       "parameters": {
-                        "state": {"value": "active"},
-                        "type": {"value": "targetlaser"}
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Deactivate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaserfire"}
                       }
                     },
                     {
@@ -320,10 +366,19 @@
                     {
                       "title": "Deactivate laser",
                       "type": "action",
-                      "name": "setAnimationState",
+                      "name": "v_setLaserBeamActive",
                       "parameters": {
-                        "state": {"value": "inactive"},
-                        "type": {"value": "targetlaser"}
+                        "active": {"value": false},
+                        "beamName": {"value": "targetlaser"}
+                      }
+                    },
+                    {
+                      "title": "Activate laser (fire)",
+                      "type": "action",
+                      "name": "v_setLaserBeamActive",
+                      "parameters": {
+                        "active": {"value": true},
+                        "beamName": {"value": "targetlaserfire"}
                       }
                     },
                     {
@@ -407,12 +462,21 @@
         }
       },
       {
-        "title": "setAnimationState",
+        "title": "Deactivate laser",
         "type": "action",
-        "name": "setAnimationState",
+        "name": "v_setLaserBeamActive",
         "parameters": {
-          "state": {"value": "inactive"},
-          "type": {"value": "targetlaser"}
+          "active": {"value": false},
+          "beamName": {"value": "targetlaser"}
+        }
+      },
+      {
+        "title": "Deactivate laser (fire)",
+        "type": "action",
+        "name": "v_setLaserBeamActive",
+        "parameters": {
+          "active": {"value": false},
+          "beamName": {"value": "targetlaserfire"}
         }
       },
       {

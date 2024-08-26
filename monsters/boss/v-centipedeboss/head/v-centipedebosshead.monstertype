@@ -13,10 +13,40 @@
   "baseParameters" : {
     "scripts" : [
       "/scripts/terra_wormheadcustom.lua",
-      "/scripts/bookofspirits/v-bookofspirits_wormplugin.lua"
+      "/scripts/bookofspirits/v-bookofspirits_wormplugin.lua",
+      "/monsters/renderlaserbeam.lua"
     ],
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 1,
+
+    "animationScripts" : [
+      "/monsters/effects/laserbeam.lua"
+    ],
+
+    "beams" : [
+      {
+        "name" : "targetlaser",
+        "offset" : [2, 1],
+        "color" : [255, 0, 0, 255],
+        "length" : 120,
+        "segments" : 12,
+        "angle" : 0,
+        "sourcePart" : "targetlaser",
+        "endPart" : "targetlaser"
+      },
+      {
+        "name" : "targetlaserfire",
+        "offset" : [2, 1],
+        "color" : [255, 255, 255, 255],
+        "length" : 120,
+        "segments" : 12,
+        "angle" : 0,
+        "sourcePart" : "targetlaser",
+        "endPart" : "targetlaser"
+      }
+    ],
+
+    "enabledBeams" : [],
 
     "behavior" : "v-centipedeboss",
 

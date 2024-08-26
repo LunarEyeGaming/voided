@@ -216,19 +216,9 @@
       },
       "targetlaser" : {
         "properties" : {
-          "zLevel" : 22,
-          "transformationGroups" : [ "turret" ],
-          "offset" : [64, 1],
-          "fullbright" : true
-        },
-        "partStates" : {
-          "targetlaser" : {
-            "active" : {
-              "properties" : {
-                "image" : "<partImage>:active.<frame>"
-              }
-            }
-          }
+          "transformationGroups" : [ "turret", "laserbeam" ],
+          "beamSource" : [2, 1],
+          "beamEnd" : [3, 1]
         }
       }
     }
@@ -241,7 +231,8 @@
     "body" : { "interpolated" : true },
     "turret" : { "interpolated" : true },
 
-    "shake" : { "interpolated" : true }
+    "shake" : { "interpolated" : true },
+    "laserbeam" : { "interpolated" : false }
   },
 
   "effects" : {

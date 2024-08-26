@@ -39,11 +39,15 @@ end
 -- output angle
 -- output direction
 function v_approachTurnWorm(args, output, _, dt)
+  local MIN_SPEED = 2
+
   local targetPosition = world.entityPosition(args.entity)
   local distance = world.magnitude(targetPosition, mcontroller.position())
   local timer = 0
   local lastSineAngle = 0
   while true do
+    local velocity = mcontroller.velocity()
+
     local toTarget = world.distance(targetPosition, mcontroller.position())
     local angle = mcontroller.rotation()
 
@@ -56,16 +60,33 @@ function v_approachTurnWorm(args, output, _, dt)
       end
     end
 
-    timer = timer + dt
+    -- Move in the current direction instead of trying to turn if current velocity is too low.
+    if vec2.mag(velocity) < MIN_SPEED then
+      local normalizedVelocity = vec2.norm(velocity)
 
-    -- Add a little bit of waviness to the movement
-    local sineAngle = args.waveAmplitude * math.sin(timer * 2 * math.pi / args.wavePeriod)
-    angle = angle + sineAngle - lastSineAngle
-    lastSineAngle = sineAngle
+      -- Use current rotation vector instead of current, normalized velocity if it is {0, 0} to avoid being stuck at
+      -- zero speed.
+      local targetVelocityNormalized
+      if vec2.eq(normalizedVelocity, {0, 0}) then
+        targetVelocityNormalized = vec2.withAngle(mcontroller.rotation())
+      else
+        targetVelocityNormalized = normalizedVelocity
+      end
 
-    local speed = mcontroller.baseParameters().flySpeed
-    mcontroller.controlApproachVelocity(vec2.withAngle(angle, speed), mcontroller.baseParameters().airForce, true)
-    mcontroller.controlApproachVelocityAlongAngle(angle + math.pi * 0.5, 0, 50, false)
+      mcontroller.controlApproachVelocity(vec2.mul(targetVelocityNormalized, mcontroller.baseParameters().flySpeed),
+          mcontroller.baseParameters().airForce)
+    else
+      timer = timer + dt
+
+      -- Add a little bit of waviness to the movement
+      local sineAngle = args.waveAmplitude * math.sin(timer * 2 * math.pi / args.wavePeriod)
+      angle = angle + sineAngle - lastSineAngle
+      lastSineAngle = sineAngle
+
+      local speed = mcontroller.baseParameters().flySpeed
+      mcontroller.controlApproachVelocity(vec2.withAngle(angle, speed), mcontroller.baseParameters().airForce, true)
+      mcontroller.controlApproachVelocityAlongAngle(angle + math.pi * 0.5, 0, 50, false)
+    end
     mcontroller.setRotation(vec2.angle(mcontroller.velocity()))
 
     coroutine.yield(nil, {angle = angle, direction = diff})

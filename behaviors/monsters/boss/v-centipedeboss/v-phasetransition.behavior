@@ -3,6 +3,7 @@
   "description": "",
   "scripts": [
     "/scripts/behavior.lua",
+    "/scripts/actions/v-animator.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/boss/v-centipedeboss.lua",
@@ -26,12 +27,21 @@
         }
       },
       {
-        "title": "setAnimationState",
+        "title": "Deactivate laser",
         "type": "action",
-        "name": "setAnimationState",
+        "name": "v_setLaserBeamActive",
         "parameters": {
-          "state": {"value": "inactive"},
-          "type": {"value": "targetlaser"}
+          "active": {"value": false},
+          "beamName": {"value": "targetlaser"}
+        }
+      },
+      {
+        "title": "Deactivate laser (fire)",
+        "type": "action",
+        "name": "v_setLaserBeamActive",
+        "parameters": {
+          "active": {"value": false},
+          "beamName": {"value": "targetlaserfire"}
         }
       },
       {
