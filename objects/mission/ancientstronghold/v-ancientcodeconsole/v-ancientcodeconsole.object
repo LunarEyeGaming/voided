@@ -24,7 +24,7 @@
   "orientations" : [
     {
       "image" : "dial.png",
-      "imagePosition" : [-48, -48],
+      "imagePosition" : [-56, -56],
       "direction" : "right",
 
       "spaceScan" : 0.1,
@@ -43,7 +43,7 @@
       }
     }
   ],
-  
+
   "animation" : "ancientcodeconsole.animation",
   "animationPosition" : [0, 0],
   "animationParts" : {
@@ -61,14 +61,14 @@
 
   "scripts" : [ "ancientcodeconsole.lua" ],
   "scriptDelta" : 1,
-  
+
   "inputNodes" : [ [0, 0], [0, -1], [0, -2] ],
-  
+
   "outputNodes" : [ [1, 0], [1, -1], [1, -2], [1, -3], [1, -4] ],
-  
+
   "expectedCode" : [2, 0, 1, 1, 2, 1, 0, 1, 2],
   "wrongPulseDuration" : 1.0,
-  "digitRevolveRadius" : 4.5,
-  
+  "digitRevolveRadius" : 5.0,
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

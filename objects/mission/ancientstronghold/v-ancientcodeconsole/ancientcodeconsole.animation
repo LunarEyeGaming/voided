@@ -7,7 +7,8 @@
           "inactive" : {},
           "0" : {},
           "1" : {},
-          "2" : {}
+          "2" : {},
+          "test" : {}
         }
       },
       "input2" : {
@@ -16,7 +17,8 @@
           "inactive" : {},
           "0" : {},
           "1" : {},
-          "2" : {}
+          "2" : {},
+          "test" : {}
         }
       },
       "input3" : {
@@ -25,7 +27,8 @@
           "inactive" : {},
           "0" : {},
           "1" : {},
-          "2" : {}
+          "2" : {},
+          "test" : {}
         }
       },
       "input4" : {
@@ -34,7 +37,8 @@
           "inactive" : {},
           "0" : {},
           "1" : {},
-          "2" : {}
+          "2" : {},
+          "test" : {}
         }
       },
       "input5" : {
@@ -43,7 +47,8 @@
           "inactive" : {},
           "0" : {},
           "1" : {},
-          "2" : {}
+          "2" : {},
+          "test" : {}
         }
       },
       "input6" : {
@@ -52,7 +57,8 @@
           "inactive" : {},
           "0" : {},
           "1" : {},
-          "2" : {}
+          "2" : {},
+          "test" : {}
         }
       },
       "input7" : {
@@ -61,7 +67,8 @@
           "inactive" : {},
           "0" : {},
           "1" : {},
-          "2" : {}
+          "2" : {},
+          "test" : {}
         }
       },
       "input8" : {
@@ -70,7 +77,8 @@
           "inactive" : {},
           "0" : {},
           "1" : {},
-          "2" : {}
+          "2" : {},
+          "test" : {}
         }
       },
       "input9" : {
@@ -79,7 +87,8 @@
           "inactive" : {},
           "0" : {},
           "1" : {},
-          "2" : {}
+          "2" : {},
+          "test" : {}
         }
       }
     },
@@ -118,6 +127,11 @@
               "properties" : {
                 "image" : "<partImage>:2.<frame>"
               }
+            },
+            "test" : {
+              "properties" : {
+                "image" : "<partImage>:test.<frame>"
+              }
             }
           }
         }
@@ -145,6 +159,11 @@
             "2" : {
               "properties" : {
                 "image" : "<partImage>:2.<frame>"
+              }
+            },
+            "test" : {
+              "properties" : {
+                "image" : "<partImage>:test.<frame>"
               }
             }
           }
@@ -174,6 +193,11 @@
               "properties" : {
                 "image" : "<partImage>:2.<frame>"
               }
+            },
+            "test" : {
+              "properties" : {
+                "image" : "<partImage>:test.<frame>"
+              }
             }
           }
         }
@@ -201,6 +225,11 @@
             "2" : {
               "properties" : {
                 "image" : "<partImage>:2.<frame>"
+              }
+            },
+            "test" : {
+              "properties" : {
+                "image" : "<partImage>:test.<frame>"
               }
             }
           }
@@ -230,6 +259,11 @@
               "properties" : {
                 "image" : "<partImage>:2.<frame>"
               }
+            },
+            "test" : {
+              "properties" : {
+                "image" : "<partImage>:test.<frame>"
+              }
             }
           }
         }
@@ -257,6 +291,11 @@
             "2" : {
               "properties" : {
                 "image" : "<partImage>:2.<frame>"
+              }
+            },
+            "test" : {
+              "properties" : {
+                "image" : "<partImage>:test.<frame>"
               }
             }
           }
@@ -286,6 +325,11 @@
               "properties" : {
                 "image" : "<partImage>:2.<frame>"
               }
+            },
+            "test" : {
+              "properties" : {
+                "image" : "<partImage>:test.<frame>"
+              }
             }
           }
         }
@@ -313,6 +357,11 @@
             "2" : {
               "properties" : {
                 "image" : "<partImage>:2.<frame>"
+              }
+            },
+            "test" : {
+              "properties" : {
+                "image" : "<partImage>:test.<frame>"
               }
             }
           }
@@ -342,13 +391,18 @@
               "properties" : {
                 "image" : "<partImage>:2.<frame>"
               }
+            },
+            "test" : {
+              "properties" : {
+                "image" : "<partImage>:test.<frame>"
+              }
             }
           }
         }
       }
     }
   },
-    
+
   "transformationGroups" : {
     "input1" : {"interpolated" : true},
     "input2" : {"interpolated" : true},

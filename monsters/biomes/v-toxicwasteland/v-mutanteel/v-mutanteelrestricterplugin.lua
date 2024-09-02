@@ -29,6 +29,7 @@ function update(dt)
     -- Otherwise, if it has not despawned yet and this is not the current active eel...
     elseif not hasDespawned and world.getProperty("v-activeMutantEel") ~= entity.id() then
       status.setResourcePercentage("health", 0.0)
+      monster.setDropPool(nil)
       mcontroller.setPosition({0, 0})
       hasDespawned = true
     end

@@ -1,0 +1,21 @@
+{
+  "id" : "v-facilitygrant2",
+  "species" : "human",
+  "title" : "R & D Grant: Bioweapons",
+  "description" : "A description of a grant for bioweapons that utilize Toxic Wasteland fungi.",
+  "icon" : "facilitygrant.png",
+  "contentPages" : [
+    "A grant shall be given to this facility to conduct research and development on a bioweapon that utilizes the fungi deep within Toxic Wastelands.
+
+Grant Amount: $65 billion
+Grant Date: Sept. 5, XX16
+
+^cyan;L^reset;&^green;P^reset;"
+
+  ],
+    "itemConfig" : {
+    "rarity" : "common",
+    "price" : 25,
+    "builder" : "/items/buildscripts/v-builditem.lua"
+  }
+}
