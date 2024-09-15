@@ -2,10 +2,10 @@
   // Architect's Table
   // { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientfabricator"} },
   // { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientfurnace"} },
-  
+
   // Tier 6 Weapons
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-aegisaltassaultrifle"} },
-  
+
   // Ancient Weapons, Armor & Tech
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancienthead"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientchestplate"} },
@@ -17,7 +17,7 @@
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientshotgun"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-multijump2techchip"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-aimabledashtechchip"} },
-  
+
   // New EPPs
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-electricprotectionback"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-poisonprotectionback"} },
@@ -28,7 +28,7 @@
   {"op": "add", "path": "/genericScriptContexts/v-lightningbeandrop", "value": "/scripts/v-lightningbeandrop.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-playermessages", "value": "/scripts/v-playermessages.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-dungeonMusicPlayer", "value": "/scripts/v-dungeonmusicplayer.lua"},
-  
+
   // Client-side rendering scripts
   {
     "op": "add",
@@ -40,7 +40,12 @@
     "path": "/deploymentConfig/scripts/-",
     "value": "/scripts/rendering/v-gpsdisplay.lua"
   },
-  
+  {
+    "op": "add",
+    "path": "/deploymentConfig/scripts/-",
+    "value": "/scripts/rendering/v-specialeffects.lua"
+  },
+
   // Depth poison mechanic
   {
     "op": "add",

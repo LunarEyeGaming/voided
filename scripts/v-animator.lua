@@ -2,15 +2,9 @@ require "/scripts/util.lua"
 
 vAnimator = {}
 
--- Certain scripts may not work under specific script contexts due to some built-in tables being
--- unavailable. The legend below is intended to help in knowing when using each function is appropriate.
--- * = works under any script context
--- # = requires certain Starbound tables. See each table's documentation for more details at 
---     Starbound/doc/lua/ or https://starbounder.org/Modding:Lua/Tables
-
---- `#animator`
----
 --- Updates a circular display of a stat. The circular display must have two parts.
+---
+--- Requires: `animator`
 ---
 --- @param lPart string: The left part name of the display
 --- @param rPart string: The right part name of the display
@@ -31,15 +25,14 @@ function vAnimator.updateCircleBar(lPart, rPart, cur, max)
   end
 end
 
--- *
---[[ 
-  Returns the linear interpolation between two RGBA colors with a given ratio. Result is in integer form and capped
-  between 0 and 255.
-
-  param ratio: The amount of progress in the interpolation
-  param colorA: Starting color
-  param colorB: Ending color
-]]
+---Returns the linear interpolation between two RGBA colors with a given ratio. Result is in integer form and capped
+---between 0 and 255.
+---
+---Requires: None
+---@param ratio number The amount of progress in the interpolation
+---@param colorA ColorTable Starting color
+---@param colorB ColorTable Ending color
+---@return ColorTable
 function vAnimator.lerpColor(ratio, colorA, colorB)
   -- Return the linear interpolation of colorA and colorB with ratio, capped between 0 and 255 and in integer form.
   return {
@@ -50,15 +43,14 @@ function vAnimator.lerpColor(ratio, colorA, colorB)
   }
 end
 
--- *
---[[ 
-  Returns the linear interpolation between two RGB colors with a given ratio. Result is in integer form and capped
-  between 0 and 255.
-
-  param ratio: The amount of progress in the interpolation
-  param colorA: Starting color
-  param colorB: Ending color
-]]
+---Returns the linear interpolation between two RGB colors with a given ratio. Result is in integer form and capped
+---between 0 and 255.
+---
+---Requires: None
+---@param ratio number The amount of progress in the interpolation
+---@param colorA ColorTable Starting color
+---@param colorB ColorTable Ending color
+---@return ColorTable
 function vAnimator.lerpColorRGB(ratio, colorA, colorB)
   -- Return the linear interpolation of colorA and colorB with ratio, capped between 0 and 255 and in integer form.
   return {
@@ -68,36 +60,39 @@ function vAnimator.lerpColorRGB(ratio, colorA, colorB)
   }
 end
 
---[[
-  Returns the string hexadecimal representation of a color table, with red, green, and blue values, as well as an
-  optional alpha channel.
-  
-  param color: the color table to convert
-]]
+
+---Returns the string hexadecimal representation of a color table, with red, green, and blue values, as well as an
+---optional alpha channel.
+---
+---Requires: None
+---@param color ColorTable
+---@return string
 function vAnimator.stringOfColor(color)
   local rChannel = color[1]  -- red
   local gChannel = color[2]  -- green
   local bChannel = color[3]  -- blue
   local aChannel = color[4]  -- alpha
-  
+
   -- Initial string
   local str = string.format("%02x%02x%02x", rChannel, gChannel, bChannel)
-  
+
   -- If an alpha channel is provided, add it.
   if aChannel then
     str = string.format("%s%02x", str, aChannel)
   end
-  
+
   return str
 end
 
---[[
-  Returns a color table containing the red, green, and blue channels represented by the hexadecimal color `str`. If the
-  alpha channel is defined, that is also included in the table.
-]]
+---Returns a color table containing the red, green, and blue channels represented by the hexadecimal color `str`. If the
+---alpha channel is defined, that is also included in the table. If `str` is too short, `nil` is returned instead.
+---
+---Requires: None
+---@param str string
+---@return ColorTable|nil
 function vAnimator.colorOfString(str)
   local result
-  
+
   -- If the string is long enough to contain the red, green, and blue channels...
   if #str >= 6 then
     -- Convert each color component into a number. Alpha channel is nil if the string is not long enough.
@@ -110,21 +105,20 @@ function vAnimator.colorOfString(str)
   else
     result = nil
   end
-  
+
   return result
 end
 
--- *
---[[
-  Returns the frame number corresponding to a given time, provided a frameCycle, numFrames, and a startFrame.
-  
-  param frameTime: the time elapsed since the last frame cycle
-  param frameCycle: the amount of time it takes to complete one full cycle
-  param startFrame: the number at which the frames start
-  param numFrames: the number of frames in a cycle
-  
-  precondition: 0 <= frameTime <= frameCycle
-]]
+-- TODO: Maybe rework this into an Animator class (and rename vAnimator to vAnimation to avoid confusion)
+
+---Returns the frame number corresponding to a given time, provided a `frameCycle`, `numFrames`, and a `startFrame`.
+---
+---precondition: `0 <= frameTime <= frameCycle`
+---@param frameTime number the time elapsed since the last frame cycle
+---@param frameCycle number the amount of time it takes to complete one full cycle
+---@param startFrame integer the number at which the frames start
+---@param numFrames integer the number of frames in a cycle
+---@return number
 function vAnimator.frameNumber(frameTime, frameCycle, startFrame, numFrames)
   return math.floor(frameTime / frameCycle * numFrames) + startFrame
 end

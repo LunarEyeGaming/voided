@@ -1,9 +1,10 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/v-matproperties/sector.lua"
+require "/scripts/v-vec2.lua"
 
 --[[
-  A script that runs a framework based on v-matproperties.config to essentially hook scripts to matmods (materials not 
+  A script that runs a framework based on v-matproperties.config to essentially hook scripts to matmods (materials not
   supported). This is intended to be run solely in a generic script context.
 ]]
 
@@ -11,6 +12,7 @@ require "/scripts/v-matproperties/sector.lua"
 local modFuncs
 local matFuncs
 local queriedModSectors
+local queriedModSectorSet
 local lockedModSectors
 local claimedModSectors
 
@@ -27,6 +29,7 @@ function init()
   modFuncs = {}
   matFuncs = {}
   queriedModSectors = {}
+  queriedModSectorSet = {}
   lockedModSectors = {}
   claimedModSectors = {}
 
@@ -38,17 +41,17 @@ function init()
   tickTimer = tickDelta
 
   invalidationTimeRange = {15 * 60, 30 * 60}
-  
+
   sectorRange = 3  -- How many sectors to look (both horizontally and vertically) from the current sector.
-  
+
   claimBroadcastRange = (sectorRange + 1) * SECTOR_SIZE
-  
+
   message.setHandler("tileBroken", handleBrokenTile)
-  
+
   message.setHandler("v-updateSector", function(_, _, sector)
     invalidateSector(sector)
   end)
-  
+
   message.setHandler("v-updateRegion", function(_, _, region)
     local sectors = getSectorsInRegion(region)
 
@@ -56,7 +59,7 @@ function init()
       invalidateSector(sector)
     end
   end)
-  
+
   message.setHandler("v-claimSector", function(_, _, sector, duration, playerId)
     -- Arbitrary condition to ensure that no more than one player keeps a sector.
     if isQueried(sector) and playerId > player.id() then
@@ -75,11 +78,11 @@ function update(dt)
     matUpdate(dt)
     tickTimer = tickDelta
   end
-  
-  -- Need to periodically invalidate the cached sectors because there is no known, event-driven method of checking for 
+
+  -- Need to periodically invalidate the cached sectors because there is no known, event-driven method of checking for
   -- placed tiles. This is probably as efficient as I can get.
   updateExpiry(dt)
-  
+
   updateLockedSectors(dt)
 end
 
@@ -88,22 +91,22 @@ end
 function loadScripts()
   -- Load scripts
   local matProperties = root.assetJson("/v-matproperties.config")
-  
+
   -- Go through matmod scripts.
   for name, path in pairs(matProperties.matModScripts) do
     local status, result = pcall(loadScript, name, path)
-    
+
     if not status then
       logLoadingError(path, result)
     end
   end
-  
+
   -- sb.logInfo("%s", modFuncs)  -- Debug statement.
 end
 
 function loadScript(name, path)
   require(path)
-  
+
   -- If no ModProperty table exists, log it as an error. Otherwise, load it.
   if not ModProperty then
     logLoadingError(path, "Could not find 'ModProperty' table")
@@ -121,7 +124,7 @@ function matUpdate(dt)
   querySectors()
   cleanUpSectors()
   cleanUpClaimedSectors()
-  
+
   -- world.debugText("number of cached sectors: %s", #queriedModSectors, mcontroller.position(), "green")
 end
 
@@ -179,14 +182,14 @@ function runUpdateHooks(dt)
       if modFuncs[matMod.name] then
         -- Attempt to call the update hook.
         local status, result = pcall(modFuncs[matMod.name].update, matMod.pos, matMod.layer)
-        
+
         -- If an error occurred...
         if not status then
           logScriptError(matMod.name, result)  -- Log the error
           modFuncs[matMod.name] = nil  -- Unload problematic script
         end
       end
-      
+
       -- world.debugText("%s", matMod.name, matMod.pos, "green")
     end
   end
@@ -196,12 +199,12 @@ end
 function querySectors()
   local matModsToQuery = util.keys(modFuncs)
   local ownPos = mcontroller.position()
-  
+
   -- Go through the sectors close to the player.
   for sectorX = -sectorRange, sectorRange do
     for sectorY = -sectorRange, sectorRange do
       local sector = vec2.add(getSector(ownPos), {sectorX, sectorY})
-      
+
       -- local pos1 = getPosFromSector(sector, {0, 0})
       -- local pos2 = getPosFromSector(sector, {32, 32})
 
@@ -210,13 +213,13 @@ function querySectors()
       -- If it is loaded, it hasn't been queried yet, and it was not locked, query it
       if isLoaded(sector) and not isQueried(sector) and not isLocked(sector) and not isClaimed(sector) then
         local result = querySector(sector, matModsToQuery)
-        
+
         local expiry = math.random(invalidationTimeRange[1], invalidationTimeRange[2])
-        
+
         claimSector(sector, expiry)
-        
-        table.insert(queriedModSectors, {sector = sector, matMods = result, 
-            expiry = expiry})
+
+        table.insert(queriedModSectors, {sector = sector, matMods = result, expiry = expiry})
+        queriedModSectorSet[vVec2.iToString(sector)] = true  -- Insert into set
       end
     end
   end
@@ -230,6 +233,7 @@ function cleanUpSectors()
     -- If the sector at i is not loaded or has expired, delete it. Otherwise, increment i.
     if not isLoaded(queriedModSectors[i].sector) or queriedModSectors[i].expiry < 0 then
       -- showInvalidatedSector(queriedModSectors[i].sector, 1.0)
+      queriedModSectorSet[vVec2.iToString(queriedModSectors[i].sector)] = nil  -- Remove from set
       table.remove(queriedModSectors, i)
     else
       i = i + 1
@@ -254,7 +258,7 @@ end
 
 --[[
   Removes a sector from queriedModSectors.
-  
+
   param sector: the sector to remove
   returns: whether or not the sector was present
 ]]
@@ -269,24 +273,26 @@ function invalidateSector(sector)
       end
       --local entry = table.remove(queriedModSectors, i)
       --sb.logInfo("%s", entry)
+      queriedModSectorSet[vVec2.iToString(queriedModSectors[i].sector)] = nil  -- Remove from set
       table.remove(queriedModSectors, i)
       return true
     end
   end
-  
+
   return false
 end
 
--- Returns true if the sector is in the queriedModSectors table and false otherwise.
+-- Returns true if the sector is in the `queriedModSectorSet` table and false otherwise.
 function isQueried(sector)
-  for _, matchedSector in ipairs(queriedModSectors) do
-    if vec2.eq(sector, matchedSector.sector) then
-      -- Stop and return true.
-      return true
-    end
-  end
-  
-  return false
+  -- for _, matchedSector in ipairs(queriedModSectors) do
+  --   if vec2.eq(sector, matchedSector.sector) then
+  --     -- Stop and return true.
+  --     return true
+  --   end
+  -- end
+
+  -- return false
+  return queriedModSectorSet[vVec2.iToString(sector)] ~= nil
 end
 
 -- Returns true if the sector is in the lockedModSectors table and false otherwise.
@@ -297,7 +303,7 @@ function isLocked(sector)
       return true
     end
   end
-  
+
   return false
 end
 
@@ -309,7 +315,7 @@ function isClaimed(sector)
       return true
     end
   end
-  
+
   return false
 end
 
@@ -335,11 +341,11 @@ end
 
 function handleBrokenTile(_, _, pos, layer)
   --sb.logInfo("Received tileBroken handler")
-  -- This function only triggers for the person who mined it, so there isn't any need to check if the sector 
+  -- This function only triggers for the person who mined it, so there isn't any need to check if the sector
   -- corresponding to pos is claimed.
   runDestroyHook(pos, layer)
   invalidateSector(getSector(pos))
-  
+
   -- showInvalidatedSector(getSector(pos), 0.5)
   -- sb.logInfo("invalidated: %s", invalidateSector(getSector(pos)))
 end
@@ -350,7 +356,7 @@ function runDestroyHook(pos, layer)
   if modName and modFuncs[modName] then
     -- Call the destroy hook
     local status, result = pcall(modFuncs[modName].destroy, pos, layer)
-    
+
     -- If an error occurred...
     if not status then
       logScriptError(modName, result)  -- Log the error

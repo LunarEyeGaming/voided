@@ -1,0 +1,22 @@
+{
+  "projectileName" : "v-specialeffectsinvoker",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+
+  "timeToLive" : 0,
+  "speed" : 0,
+  "physics" : "illusion",
+  "onlyHitTerrain" : true,
+
+  "scripts" : [ "v-specialeffectsinvoker.lua" ],
+  "scriptDelta" : 0,
+
+  "specialEffectConfig" : {
+    "kind" : "screenFlash",
+    "effectRadius" : 100,
+    "arguments" : {
+      "startColor" : [255, 255, 255, 255],
+      "endColor" : [74, 74, 181, 0],
+      "duration" : 0.25
+    }
+  }
+}

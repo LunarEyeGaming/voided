@@ -1,6 +1,7 @@
 require "/scripts/vec2.lua"
 require "/scripts/set.lua"
 require "/scripts/poly.lua"
+require "/scripts/v-vec2.lua"
 
 -- Script for a damaging wave that propagates through a specific set of blocks.
 
@@ -66,7 +67,7 @@ function init()
   previousBlocks = {}
 
   nextBlocks = {}  -- vec2 set
-  vec2SetInsert(nextBlocks, {0, 0})
+  vVec2.fSetInsert(nextBlocks, {0, 0})
 
   animNextBlocks = {}
   local ownPos = mcontroller.position()
@@ -123,13 +124,13 @@ function expandWave()
 
   for blockStr, _ in pairs(nextBlocks) do
     for _, offset in ipairs({{1, 0}, {0, 1}, {-1, 0}, {0, -1}}) do
-      local block = vec2FFromString(blockStr)
+      local block = vVec2.fFromString(blockStr)
       local adjacent = vec2.add(block, offset)
 
-      if not vec2SetContains(previousBlocks, adjacent) and not vec2SetContains(temp, adjacent)
+      if not vVec2.fSetContains(previousBlocks, adjacent) and not vVec2.fSetContains(temp, adjacent)
           and containsConductive(vec2.add(center, adjacent)) then
 
-        vec2SetInsert(temp, adjacent)
+        vVec2.fSetInsert(temp, adjacent)
         area = area + 1
       end
     end
@@ -176,35 +177,8 @@ function placeWave()
   end
 
   for blockStr, _ in pairs(nextBlocks) do
-    table.insert(animNextBlocks, vec2FFromString(blockStr))
+    table.insert(animNextBlocks, vVec2.fFromString(blockStr))
   end
-end
-
--- Returns a string representation of a Vec2F to be used for hash lookups.
-function vec2FToString(vector)
-  return string.format("%f,%f", vector[1], vector[2])
-end
-
--- Returns a Vec2F from a string.
-function vec2FFromString(str)
-  -- Extract the strings containing the entries of the stringified Vec2F (which can be positive or negative)
-  local xStr, yStr = string.match(str, "(%-?%d+%.%d+),(%-?%d+%.%d+)")
-
-  return {tonumber(xStr), tonumber(yStr)}
-end
-
--- Inserts a Vec2F into a set.
-function vec2SetInsert(set, vector)
-  local strVec = vec2FToString(vector)
-
-  set[strVec] = true
-end
-
--- Returns whether or not the given vector is in the given set (true if so and nil if not).
-function vec2SetContains(set, vector)
-  local strVec = vec2FToString(vector)
-
-  return set[strVec]
 end
 
 function isExposed(position)
