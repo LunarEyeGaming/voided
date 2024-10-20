@@ -216,10 +216,10 @@
     "value" : {
       "caveLiquid" : ["v-electricity"],
       "oceanLiquid" : ["v-coreelectricity"],
-      "fgCaveSelector" : [ "coreCaves" ],
-      "bgCaveSelector" : [ "coreBackgroundCaves" ],
+      "fgCaveSelector" : [ "v-voltageCoreCaves" ],
+      "bgCaveSelector" : [ "v-voltageCoreBackgroundCaves" ],
       "oceanLevelOffset" : -20,
-      "caveLiquidSeedDensityRange" : [4.0, 4.0],
+      "caveLiquidSeedDensityRange" : [0.0, 50.0],
       "biome": [
         [1,["v-voltagecorelayer"]]
       ]
