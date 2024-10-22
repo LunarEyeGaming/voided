@@ -204,7 +204,8 @@
     "op" : "add",
     "path" : "/regionTypes/v-pairingcaves",
     "value" : {
-      "fgCaveSelector" : [ "normalCaves" ],
+      "fgCaveSelector" : [ "v-voltagePairingCaves" ],
+      "bgCaveSelector" : [ "v-voltagePairingCavesBackground" ],
       "biome": [
         [1,["v-pairingcaves"]]
       ]
@@ -217,7 +218,7 @@
       "caveLiquid" : ["v-electricity"],
       "oceanLiquid" : ["v-coreelectricity"],
       "fgCaveSelector" : [ "v-voltageCoreCaves" ],
-      "bgCaveSelector" : [ "v-voltageCoreBackgroundCaves" ],
+      "bgCaveSelector" : [ "v-voltageCoreCavesBackground" ],
       "oceanLevelOffset" : -20,
       "caveLiquidSeedDensityRange" : [0.0, 50.0],
       "biome": [

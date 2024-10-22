@@ -7,7 +7,7 @@
     {
       "type" : "rotate",
 
-      "rotation" : 0.7,
+      "rotation" : 0.785398,
 
       "source" : {
         //jaggy spikes
@@ -28,7 +28,7 @@
         "source" : {
           "type" : "rotate",
 
-          "rotation" : -0.7,
+          "rotation" : -0.785398,
 
           "source" : {
             "type" : "perlin",
@@ -44,21 +44,11 @@
         }
       }
     },
-    // {
-    //   "type" : "perlin",
-    //   "seedBias" : 1,
-    //   "function" : "perlin",
-    //   "octaves" : 1,
-    //   "freq" : 0.0525,
-    //   "amp" : 1,
-    //   "bias" : 0.05,
-    //   "xInfluence" : 0.66,
-    //   "yInfluence" : 1.0
-    // },
+    // Bottom spikes
     {
       "type" : "rotate",
 
-      "rotation" : 0.7,
+      "rotation" : 0.785398,
 
       "source" : {
         //jaggy spikes
@@ -79,7 +69,7 @@
         "source" : {
           "type" : "rotate",
 
-          "rotation" : -0.7,
+          "rotation" : -0.785398,
 
           "source" : {
             //slightly shakey ceiling variation

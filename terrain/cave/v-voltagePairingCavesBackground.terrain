@@ -1,0 +1,48 @@
+{
+  "name" : "v-voltagePairingCavesBackground",
+
+  "type" : "minmax",
+  "sources" : [
+    //crystal caves
+    {
+      "type" : "rotate",
+
+      "rotation" : 0.785398,
+
+      "source" : {
+        //jaggy spikes
+        "type" : "displacement",
+        "xType" : "perlin",
+        "xOctaves" : 1,
+        "xFreq" : 0.01,
+        "xAmp" : 0,
+        "yType" : "perlin",
+        "yOctaves" : 3,
+        "yFreq" : 0.16,
+        "yAmp" : 20,
+        "yBias" : 0,
+        "yClamp" : [-5, 20],
+        "yClampSmoothing" : 5,
+        "yYInfluence" : 0,
+
+        "source" : {
+          "type" : "rotate",
+
+          "rotation" : -0.785398,
+
+          "source" : {
+            "type" : "perlin",
+            "seedBias" : 1,
+            "function" : "perlin",
+            "octaves" : 1,
+            "freq" : 0.0525,
+            "amp" : 1,
+            "bias" : -0.15,
+            "xInfluence" : 0.5,
+            "yInfluence" : 1.0
+          }
+        }
+      }
+    }
+  ]
+}

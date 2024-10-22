@@ -1,10 +1,43 @@
 {
   "layers" : [
+    // Glow
     {
-      "kind" : "v-voltagecore",
+      "kind" : "v-voltagecore2/front",
       "nohueshift" : true,
-      "lightMapped" : true,
+      "lightMapped" : false,
+      "noRandomOffset" : true,
+      "offset" : [0, 0],
       "parallax" : 1.2,
+      "repeatY" : true,
+      "unlit" : true,
+      "directives" : "?multiply=c4c4f57f"
+    },
+    {
+      "kind" : "v-voltagecore2/front",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "noRandomOffset" : true,
+      "offset" : [0, 0],
+      "parallax" : [1.2, 1.201],
+      "repeatY" : true
+    },
+    // Glow
+    {
+      "kind" : "v-voltagecore2/back",
+      "nohueshift" : true,
+      "lightMapped" : false,
+      "noRandomOffset" : true,
+      "parallax" : 2.0,
+      "repeatY" : true,
+      "unlit" : true,
+      "directives" : "?multiply=c4c4f57f"
+    },
+    {
+      "kind" : "v-voltagecore2/back",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "noRandomOffset" : true,
+      "parallax" : [2.0, 2.001],
       "repeatY" : true
     }
   ]
