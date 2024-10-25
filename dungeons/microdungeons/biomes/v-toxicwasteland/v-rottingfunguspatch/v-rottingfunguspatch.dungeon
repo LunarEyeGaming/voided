@@ -1,0 +1,54 @@
+{
+  "metadata" : {
+    "name" : "v-rottingfunguspatch",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "rottingfunguspatch1", "rottingfunguspatch2", "rottingfunguspatch3", "rottingfunguspatch4",
+                 "rottingfunguspatch5" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "rottingfunguspatch1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "rottingfunguspatch1.json" ]
+    },
+    {
+      "name" : "rottingfunguspatch2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "rottingfunguspatch2.json" ]
+    },
+    {
+      "name" : "rottingfunguspatch3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "rottingfunguspatch3.json" ]
+    },
+    {
+      "name" : "rottingfunguspatch4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "rottingfunguspatch4.json" ]
+    },
+    {
+      "name" : "rottingfunguspatch5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "rottingfunguspatch5.json" ]
+    }
+  ]
+}
