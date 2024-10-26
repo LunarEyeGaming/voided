@@ -1,5 +1,17 @@
 {
   "layers" : [
+    // Lake
+    {
+      "kind" : "v-voltagecore2/lake",
+      "nohueshift" : true,
+      "lightMapped" : false,
+      "offset" : [0, 415],
+      "parallax" : 1.0,
+      "repeatY" : false,
+      "unlit" : true,
+      "minSpeed" : 48000,
+      "maxSpeed" : 48000
+    },
     // Glow
     {
       "kind" : "v-voltagecore2/front",
@@ -19,6 +31,25 @@
       "noRandomOffset" : true,
       "offset" : [0, 0],
       "parallax" : [1.2, 1.201],
+      "repeatY" : true
+    },
+    // Glow
+    {
+      "kind" : "v-voltagecore2/middle",
+      "nohueshift" : true,
+      "lightMapped" : true,
+      "noRandomOffset" : true,
+      "parallax" : 1.35,
+      "repeatY" : true,
+      "unlit" : true,
+      "directives" : "?multiply=c4c4f57f"
+    },
+    {
+      "kind" : "v-voltagecore2/middle",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "noRandomOffset" : true,
+      "parallax" : [1.35, 1.351],
       "repeatY" : true
     },
     // Glow

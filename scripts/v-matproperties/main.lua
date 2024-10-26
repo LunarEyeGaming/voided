@@ -6,6 +6,13 @@ require "/scripts/v-vec2.lua"
 --[[
   A script that runs a framework based on v-matproperties.config to essentially hook scripts to matmods (materials not
   supported). This is intended to be run solely in a generic script context.
+
+  What exactly goes on under the hood is actually pretty complex, but it can be boiled down to a few key steps:
+  1. On initialization, the script loads all `matproperties` scripts via `require` calls.
+  2. Periodically (every 3 ticks), `matproperties` goes through each matmod close to the player, calling the `update`
+  function associated with it.
+  3. Upon a tile being destroyed, `matproperties` determines the matmod that was destroyed and calls the associated
+  `destroy` function if it exists.
 ]]
 
 -- TODO: Consider the performance of loading hundreds of scripts.
