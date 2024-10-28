@@ -1,0 +1,155 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "chest" : {
+        "default" : "closedEmptied",
+        "states" : {
+          "closedEmptied" : {},
+          "openEmptied" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "openedEmptied"
+          },
+          "openedEmptied" : {},
+          "openedFill" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "openedFull"
+          },
+          "openedFull" : {},
+          "closeFull" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "closedFull"
+          },
+          "closedFull" : {},
+          "closedEmpty" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "closedEmptied"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "bg" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : true
+        },
+
+        "partStates" : {
+          "chest" : {
+            "closedEmptied" : {
+              "properties" : {
+                "image" : "<partImage>:closed.emptied.<frame>"
+              }
+            },
+            "openEmptied" : {
+              "properties" : {
+                "image" : "<partImage>:open.emptied.<frame>"
+              }
+            },
+            "openedEmptied" : {
+              "properties" : {
+                "image" : "<partImage>:opened.emptied.<frame>"
+              }
+            },
+            "openedFill" : {
+              "properties" : {
+                "image" : "<partImage>:opened.fill.<frame>"
+              }
+            },
+            "openedFull" : {
+              "properties" : {
+                "image" : "<partImage>:opened.full.<frame>"
+              }
+            },
+            "closeFull" : {
+              "properties" : {
+                "image" : "<partImage>:close.full.<frame>"
+              }
+            },
+            "closedFull" : {
+              "properties" : {
+                "image" : "<partImage>:closed.full.<frame>"
+              }
+            },
+            "closedEmpty" : {
+              "properties" : {
+                "image" : "<partImage>:closed.empty.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "fg" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1
+        },
+
+        "partStates" : {
+          "chest" : {
+            "closedEmptied" : {
+              "properties" : {
+                "image" : "<partImage>:closed.emptied.<frame>"
+              }
+            },
+            "openEmptied" : {
+              "properties" : {
+                "image" : "<partImage>:open.emptied.<frame>"
+              }
+            },
+            "openedEmptied" : {
+              "properties" : {
+                "image" : "<partImage>:opened.emptied.<frame>"
+              }
+            },
+            "openedFill" : {
+              "properties" : {
+                "image" : "<partImage>:opened.fill.<frame>"
+              }
+            },
+            "openedFull" : {
+              "properties" : {
+                "image" : "<partImage>:opened.full.<frame>"
+              }
+            },
+            "closeFull" : {
+              "properties" : {
+                "image" : "<partImage>:close.full.<frame>"
+              }
+            },
+            "closedFull" : {
+              "properties" : {
+                "image" : "<partImage>:closed.full.<frame>"
+              }
+            },
+            "closedEmpty" : {
+              "properties" : {
+                "image" : "<partImage>:closed.empty.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "lights" : {
+    "glow" : {
+      "active" : false,
+      "color" : [74, 74, 181],
+      "position" : [0, 0]
+    }
+  },
+
+  "sounds" : {
+  }
+}

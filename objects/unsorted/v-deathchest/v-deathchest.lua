@@ -58,9 +58,6 @@ function update(dt)
 
   refillContents()
 
-  -- Filter out items that don't exist.
-  trackedItems = util.filter(trackedItems, function(item) return world.entityExists(item) end)
-
   -- updateAnimation()
   state:update()
 end
@@ -120,6 +117,7 @@ function states.empty()
   coroutine.yield()
 
   sb.logInfo("Is empty")
+  animator.setAnimationState("chest", "closedEmpty")
 
   -- Update loop.
   while true do
@@ -139,19 +137,34 @@ end
 
 function states.collect()
   -- Open chest for collecting.
+  animator.setAnimationState("chest", "openEmptied")
   sb.logInfo("Opening")
 
   util.wait(openWaitTime)
+
+  local collectedItems = {}
 
   -- Collect items
   for _, item in ipairs(trackedItems) do
     local itemContents = world.takeItemDrop(item, entity.id())
     if itemContents then
       table.insert(takenItems, itemContents)
+      table.insert(collectedItems, item)
     else
       sb.logError("Item collection failed.")
     end
   end
+
+  trackedItems = {}  -- Clear tracked items
+
+  -- Wait for items to be collected
+  while #collectedItems > 0 do
+    -- Filter out items that don't exist.
+    collectedItems = util.filter(collectedItems, function(item) return world.entityExists(item) end)
+    coroutine.yield()
+  end
+
+  animator.setAnimationState("chest", "openedFill")
 
   state:set(states.awaitMoreItems)
 end
@@ -164,6 +177,7 @@ function states.awaitMoreItems()
   end)
 
   -- Close
+  animator.setAnimationState("chest", "openEmptied")
   sb.logInfo("Closing")
 
   util.wait(closeWaitTime)
@@ -172,8 +186,9 @@ function states.awaitMoreItems()
 end
 
 function states.full()
-  -- Turn on full light.
+  -- Set to "full"
   sb.logInfo("Is full")
+  animator.setAnimationState("chest", "closedFull")
 
   -- Update loop.
   while true do
