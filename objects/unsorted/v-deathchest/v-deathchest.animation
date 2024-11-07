@@ -2,36 +2,39 @@
   "animatedParts" : {
     "stateTypes" : {
       "chest" : {
-        "default" : "closedEmptied",
+        "default" : "closed",
         "states" : {
-          "closedEmptied" : {},
-          "openEmptied" : {
+          "closed" : {},
+          "open" : {
             "frames" : 1,
             "cycle" : 0.1,
             "mode" : "transition",
-            "transition" : "openedEmptied"
+            "transition" : "opened"
           },
-          "openedEmptied" : {},
-          "openedFill" : {
+          "opened" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          },
+          "close" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "closed"
+          }
+        }
+      },
+      "glow" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "activate" : {
             "frames" : 3,
             "cycle" : 0.3,
             "mode" : "transition",
-            "transition" : "openedFull"
+            "transition" : "active"
           },
-          "openedFull" : {},
-          "closeFull" : {
-            "frames" : 1,
-            "cycle" : 0.1,
-            "mode" : "transition",
-            "transition" : "closedFull"
-          },
-          "closedFull" : {},
-          "closedEmpty" : {
-            "frames" : 1,
-            "cycle" : 0.1,
-            "mode" : "transition",
-            "transition" : "closedEmptied"
-          }
+          "active" : {}
         }
       }
     },
@@ -45,44 +48,24 @@
 
         "partStates" : {
           "chest" : {
-            "closedEmptied" : {
+            "closed" : {
               "properties" : {
-                "image" : "<partImage>:closed.emptied.<frame>"
+                "image" : "<partImage>:closed.<frame>"
               }
             },
-            "openEmptied" : {
+            "open" : {
               "properties" : {
-                "image" : "<partImage>:open.emptied.<frame>"
+                "image" : "<partImage>:open.<frame>"
               }
             },
-            "openedEmptied" : {
+            "opened" : {
               "properties" : {
-                "image" : "<partImage>:opened.emptied.<frame>"
+                "image" : "<partImage>:opened.<frame>"
               }
             },
-            "openedFill" : {
+            "close" : {
               "properties" : {
-                "image" : "<partImage>:opened.fill.<frame>"
-              }
-            },
-            "openedFull" : {
-              "properties" : {
-                "image" : "<partImage>:opened.full.<frame>"
-              }
-            },
-            "closeFull" : {
-              "properties" : {
-                "image" : "<partImage>:close.full.<frame>"
-              }
-            },
-            "closedFull" : {
-              "properties" : {
-                "image" : "<partImage>:closed.full.<frame>"
-              }
-            },
-            "closedEmpty" : {
-              "properties" : {
-                "image" : "<partImage>:closed.empty.<frame>"
+                "image" : "<partImage>:close.<frame>"
               }
             }
           }
@@ -96,44 +79,50 @@
 
         "partStates" : {
           "chest" : {
-            "closedEmptied" : {
+            "closed" : {
               "properties" : {
-                "image" : "<partImage>:closed.emptied.<frame>"
+                "image" : "<partImage>:closed.<frame>"
               }
             },
-            "openEmptied" : {
+            "open" : {
               "properties" : {
-                "image" : "<partImage>:open.emptied.<frame>"
+                "image" : "<partImage>:open.<frame>"
               }
             },
-            "openedEmptied" : {
+            "opened" : {
               "properties" : {
-                "image" : "<partImage>:opened.emptied.<frame>"
+                "image" : "<partImage>:opened.<frame>"
               }
             },
-            "openedFill" : {
+            "close" : {
               "properties" : {
-                "image" : "<partImage>:opened.fill.<frame>"
+                "image" : "<partImage>:close.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "glow" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 2,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "glow" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive.<frame>"
               }
             },
-            "openedFull" : {
+            "activate" : {
               "properties" : {
-                "image" : "<partImage>:opened.full.<frame>"
+                "image" : "<partImage>:activate.<frame>"
               }
             },
-            "closeFull" : {
+            "active" : {
               "properties" : {
-                "image" : "<partImage>:close.full.<frame>"
-              }
-            },
-            "closedFull" : {
-              "properties" : {
-                "image" : "<partImage>:closed.full.<frame>"
-              }
-            },
-            "closedEmpty" : {
-              "properties" : {
-                "image" : "<partImage>:closed.empty.<frame>"
+                "image" : "<partImage>:active.<frame>"
               }
             }
           }
@@ -151,5 +140,7 @@
   },
 
   "sounds" : {
+    "open" : [ "/sfx/objects/gunchest_open.ogg" ],
+    "close" : [ "/sfx/objects/gunchest_close.ogg" ]
   }
 }

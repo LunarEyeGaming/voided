@@ -5,13 +5,13 @@
   "objectType" : "container",
   "tooltipKind" : "container",
   "printable" : false,
-  "description" : "<todo>",
-  "shortdescription" : "deathchest",
+  "description" : "This container collects and stores items dropped when someone dies.",
+  "shortdescription" : "Post-Mortem Capsule",
   "race" : "generic",
   "category" : "storage",
   "price" : 85,
 
-  "apexDescription" : "<todo>",
+  "apexDescription" : "This container detects when an individual's vitals are critical and collects any items dropped as a result.",
   "avianDescription" : "<todo>",
   "floranDescription" : "<todo>",
   "glitchDescription" : "<todo>",
@@ -25,8 +25,8 @@
       "imageLayers" : [ {"image" : "deathchest.png:default", "fullbright" : true}, {"image" : "deathchestlit.png:default"} ],
       "direction" : "right",
 
-      "imagePosition" : [8, 0],
-      "animationPosition" : [8, 0],
+      "imagePosition" : [0, 0],
+      "animationPosition" : [0, 0],
       "frames" : 1,
       "animationCycle" : 1.0,
 
@@ -38,15 +38,16 @@
   "animation" : "v-deathchest.animation",
   "animationParts" : {
     "bg" : "deathchest.png",
-    "fg" : "deathchestlit.png"
+    "fg" : "deathchestlit.png",
+    "glow" : "glow.png"
   },
 
   "scripts" : ["v-deathchest.lua"],
 
-  "openSounds" : [ "/sfx/objects/chest_small_open.ogg" ],
-  "closeSounds" : [ "/sfx/objects/chest_small_close.ogg" ],
+  "openSounds" : [ "/sfx/objects/gunchest_open.ogg" ],
+  "closeSounds" : [ "/sfx/objects/gunchest_close.ogg" ],
   "slotCount" : 64,
-  "uiConfig" : "/interface/chests/chest<slots>.config",
+  "uiConfig" : "/interface/scripted/v-deathchestgui/v-deathchestgui.config",
   "frameCooldown" : 5,
   "autoCloseCooldown" : 3600,
 
