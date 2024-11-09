@@ -4,6 +4,13 @@
       "chest" : {
         "default" : "closed",
         "states" : {
+          "invisible" : {},
+          "appear" : {
+            "frames" : 13,
+            "cycle" : 1.3,
+            "mode" : "transition",
+            "transition" : "closed"
+          },
           "closed" : {},
           "open" : {
             "frames" : 1,
@@ -34,7 +41,11 @@
             "mode" : "transition",
             "transition" : "active"
           },
-          "active" : {}
+          "active" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          }
         }
       }
     },
@@ -48,6 +59,11 @@
 
         "partStates" : {
           "chest" : {
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
+              }
+            },
             "closed" : {
               "properties" : {
                 "image" : "<partImage>:closed.<frame>"
@@ -79,6 +95,11 @@
 
         "partStates" : {
           "chest" : {
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
+              }
+            },
             "closed" : {
               "properties" : {
                 "image" : "<partImage>:closed.<frame>"

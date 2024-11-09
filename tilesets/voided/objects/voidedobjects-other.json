@@ -8,7 +8,8 @@
  "margin":0,
  "name":"voidedobjects-other",
  "spacing":0,
- "tilecount":8,
+ "tilecount":9,
+ "tiledversion":"1.11.0",
  "tileheight":80,
  "tileproperties":
     {
@@ -66,6 +67,13 @@
          "imagePositionX":"-8",
          "imagePositionY":"-8",
          "object":"v-wirelessmomentaryswitch",
+         "tilesetDirection":"right"
+        },
+     "8":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-deathchest",
          "tilesetDirection":"right"
         }
     },
@@ -126,6 +134,13 @@
          "imagePositionY":"string",
          "object":"string",
          "tilesetDirection":"string"
+        },
+     "8":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
         }
     },
  "tiles":
@@ -177,8 +192,15 @@
          "image":"..\/images\/objects\/wirelessmomentaryswitch.png",
          "imageheight":16,
          "imagewidth":16
+        },
+     "8":
+        {
+         "image":"..\/images\/objects\/deathchest.png",
+         "imageheight":24,
+         "imagewidth":16
         }
     },
  "tilewidth":64,
- "type":"tileset"
+ "type":"tileset",
+ "version":1.1
 }

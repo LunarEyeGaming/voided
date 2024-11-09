@@ -12,21 +12,21 @@
   "price" : 85,
 
   "apexDescription" : "This container detects when an individual's vitals are critical and collects any items dropped as a result.",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "avianDescription" : "This skull-shaped capsule captures anything dropped when someone dies.",
+  "floranDescription" : "Skull sssteals itemss of dead people.",
+  "glitchDescription" : "Intrigued. This capsule is capable of detecting the death of a nearby individual and looting them accordingly.",
+  "humanDescription" : "A capsule that catches anything dropped when someone dies.",
+  "hylotlDescription" : "A skull-shaped container that steals items from corpses. How macabre.",
+  "novakidDescription" : "This skull's stealin' items offa dead people.",
 
-  "inventoryIcon" : "deathchest.png:default",
+  "inventoryIcon" : "icon.png",
   "orientations" : [
     {
       "imageLayers" : [ {"image" : "deathchest.png:default", "fullbright" : true}, {"image" : "deathchestlit.png:default"} ],
       "direction" : "right",
 
-      "imagePosition" : [0, 0],
-      "animationPosition" : [0, 0],
+      "imagePosition" : [0, -8],
+      "animationPosition" : [0, -8],
       "frames" : 1,
       "animationCycle" : 1.0,
 

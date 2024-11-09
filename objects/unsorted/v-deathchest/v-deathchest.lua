@@ -1,6 +1,8 @@
 require "/scripts/util.lua"
+require "/scripts/rect.lua"
 
 local playerDetectRadius
+local playerDetectOffset
 local itemDetectRadius
 local openWaitTime  -- The amount of time to wait after opening and before collecting the item
 local postCollectWaitTime  -- The amount of time to wait after collecting.
@@ -25,6 +27,7 @@ local wasOpened
 
 function init()
   playerDetectRadius = config.getParameter("playerDetectRadius", 50)
+  playerDetectOffset = config.getParameter("playerDetectOffset", {0, 0})
   itemDetectRadius = config.getParameter("itemDetectRadius", 20)
   openWaitTime = config.getParameter("openWaitTime", 0.5)
   postCollectWaitTime = config.getParameter("postCollectWaitTime", 0.5)
@@ -47,6 +50,17 @@ function init()
   shouldOpen = false
   wasOpened = false
 
+  -- Set storage.isInvisible if not already set.
+  if storage.isInvisible == nil then
+    storage.isInvisible = config.getParameter("startsInvisible")
+  end
+
+  object.setInteractive(not storage.isInvisible)  -- Make non-interactive if invisible.
+  -- Set animation state to be invisible if the object is invisible. Do nothing otherwise.
+  if storage.isInvisible then
+    animator.setAnimationState("chest", "invisible")
+  end
+
   message.setHandler("open", function()
     shouldOpen = true  -- Make the updateOpenState() function open the chest in the next tick.
   end)
@@ -57,16 +71,25 @@ function init()
 end
 
 function update(dt)
+  -- Keep own chunk loaded
+  world.loadRegion(rect.translate({-1, -1, 1, 1}, object.position()))
+
   prevAlivePlayers = alivePlayers
-  alivePlayers = world.entityQuery(object.position(), playerDetectRadius, {includedTypes = {"player"}})
+  local queryPos = {object.position()[1] + playerDetectOffset[1], object.position()[2] + playerDetectOffset[2]}
+  alivePlayers = world.entityQuery(queryPos, playerDetectRadius, {includedTypes = {"player"}})
+
+  -- Appear if invisible and at least one alive player was found.
+  if storage.isInvisible and #alivePlayers > 0 then
+    animator.setAnimationState("chest", "appear")
+    object.setInteractive(true)
+    storage.isInvisible = false
+  end
 
   -- Check for players that have died or stopped existing between the previous update and this update. For each of those
   -- players, collect the nearby items.
   for _, playerId in ipairs(prevAlivePlayers) do
     -- If the player is no longer in alivePlayers because they stopped existing...
     if not contains(alivePlayers, playerId) and not world.entityExists(playerId) then
-      sb.logInfo("%s has stopped existing. Position: %s", playerId, playerPositionMap[playerId])
-
       trackItems(playerPositionMap[playerId])
 
       playerPositionMap[playerId] = nil
@@ -113,18 +136,13 @@ function collectStates.collect()
 
   local collectedItems = {}
 
-  -- Collect items
-  for _, item in ipairs(trackedItems) do
-    local itemContents = world.takeItemDrop(item, entity.id())
-    if itemContents then
-      table.insert(takenItems, itemContents)
-      table.insert(collectedItems, item)
-    else
-      sb.logError("Item collection failed.")
-    end
-  end
+  -- Try to repeatedly collect items until there are no more tracked items to collect for now. Items that stop existing
+  -- are dropped altogether.
+  while #trackedItems > 0 do
+    collectItems(collectedItems)
 
-  trackedItems = {}  -- Clear tracked items
+    coroutine.yield()
+  end
 
   -- Wait for items to be collected
   while #collectedItems > 0 do
@@ -192,6 +210,39 @@ function trackItems(position)
   for _, item in ipairs(queriedItems) do
     table.insert(trackedItems, item)
   end
+end
+
+---Attempts to collect all items in `trackedItems`, populating `outCollectedItems` with the list of item IDs that were
+---successfully collected.
+---
+---Note: because it is not mentioned in the documentation, here are two cases where `world.takeItemDrop` is known to
+---fail:
+---1. the item to take does not exist
+---2. the item to take is intangible
+---@param outCollectedItems EntityId[]
+function collectItems(outCollectedItems)
+  local failedItems = {}  -- Table of items that failed to be collected.
+  -- For each item in `trackedItems`...
+  for _, item in ipairs(trackedItems) do
+    -- If `item` exists...
+    if world.entityExists(item) then
+      -- Attempt to take `item`.
+      local itemContents = world.takeItemDrop(item, entity.id())
+
+      -- If successful...
+      if itemContents then
+        -- Add contents to `takenItems` and item ID to `collectedItems`.
+        table.insert(takenItems, itemContents)
+        table.insert(outCollectedItems, item)
+      else
+        -- Add to list of items that failed to be collected.
+        table.insert(failedItems, item)
+      end
+    -- Otherwise, it is dropped.
+    end
+  end
+
+  trackedItems = failedItems  -- Clear `trackedItems` of everything except the items that failed to be collected.
 end
 
 ---Refills container contents with as many items from `takenItems` as possible, updating `takenItems`.
