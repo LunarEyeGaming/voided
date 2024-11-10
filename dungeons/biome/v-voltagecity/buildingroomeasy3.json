@@ -1,36 +1,40 @@
 { "backgroundcolor":"#000000",
- "height":27,
+ "compressionlevel":-1,
+ "height":33,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztlsEJwzAMRf8YvnSADNLBtEQ3aA+ho+WWDtBDGmqMFGQXN8jS4UEIIeDHt74WAEsQCLwuQMLGgyF9vrFMLx9X2KPVB4WPyIfgg5Q+rNKajyeDZx9cPqjwsRqid7948qHpF08+Ih+6fHieH5p+OfuM\/\/Cx7x+E73PK3ln3UdPJeT5KD6P4uOMYyQd3X0bxMQsc+ZDmaT5Dzj7jLz7Ks7X42Gdq\/n9LrJ193GCHXj4ofLjPh7SfjuSjtl8mhrJfLNK6f3A+rLvQUrPTB355A719ELM=",
+         "data":"eJztmcEJwzAMRTWGLx2gg3QwL9EN2kPpaLmlA5TQlhohgeUYCzn\/8CAEQ+LnH39DFiJaADByYdwF+JjZgRu7m6eA97t6unmdiBJ9kHKTvmMiM8KN95q20MNNhhvkxugmV7qJSo\/cSD0FN3puMnOzBmJkTx3VTU1PHdUNcmPPDfab+p7ynu9oN7\/zTab\/dSruRXdj6XgtN9zJLG5upFPrRvqmZnDzIBmLG20vLvcc7\/m2uuHz6uFmy075nGisg9xcKRZwAzeebrRz8Sxu9vbUWYD3VER6nG8kN9G91KC5KcG\/O7iBm31uAGjhDQTYa5o=",
          "encoding":"base64",
-         "height":27,
+         "height":33,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
          "visible":true,
-         "width":68,
+         "width":71,
          "x":0,
          "y":0
         }, 
         {
          "compression":"zlib",
-         "data":"eJztltsJgDAMRTNGfxzHwTqMI7mDAziAiIptsTHWF0nvgQsK0Y\/DJS0RAHnGhsjRko0heHbrjOa85aMlfSn14eEj8oF+7D680IfWXPWBfSr34an833\/zRT80cceH5HypyQf6sX\/D9QP7A\/1I7x8hFvpx5Uw+6keIBR8d8TnzYW1\/dMxMiY9wh2jiDR\/WgY8Y+IiR+KiJnI\/c\/dQ6XD\/6ZHZ+T88XjXny\/qHdhTQASJgA2CnFAg==",
+         "data":"eJztmN0NwyAMhD1GXjJOB2OJbtCRukPfyQAVilBOlN8EUjA+6SRiGSn6YjCBSCQql16JnrRbQfwD44WOHJO\/MfdVNg\/ajWN0D3Ezdt\/XZ\/ze2mFj40uEDc7lyAa\/PbKx8Rgbt270+jvWncX\/xaan+rijbmbeb6Ru7mHT075SY7+p0adGdau6UVA3G8wdQa3Z4JqalU1On5qVjdRNed3MsN\/U6lMjqcWaQnGom5hnZ\/OisGNsUmtK0fhrKqQUm5yzn7A5hGw4y7IJ9SlhI3Xj0xk2syiXTehczFklPfztzDXPbp8a0WfPN9axf4bU3VrP936xfF8esuF8X5zK9+UJm3ZsOFskuqIvjo5J4w==",
          "encoding":"base64",
-         "height":27,
+         "height":33,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":68,
+         "width":71,
          "x":0,
          "y":0
         }, 
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[
                 {
@@ -53,8 +58,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":32,
-                 "y":200
+                 "x":40,
+                 "y":224
                 }, 
                 {
                  "gid":6880,
@@ -65,8 +70,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":32,
-                 "y":184
+                 "x":40,
+                 "y":208
                 }, 
                 {
                  "gid":7185,
@@ -78,7 +83,7 @@
                  "visible":true,
                  "width":16,
                  "x":480,
-                 "y":168
+                 "y":192
                 }, 
                 {
                  "gid":5964,
@@ -89,8 +94,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":440,
-                 "y":184
+                 "x":448,
+                 "y":208
                 }, 
                 {
                  "gid":5964,
@@ -102,7 +107,7 @@
                  "visible":true,
                  "width":16,
                  "x":80,
-                 "y":184
+                 "y":208
                 }, 
                 {
                  "gid":6502,
@@ -114,7 +119,7 @@
                  "visible":true,
                  "width":16,
                  "x":480,
-                 "y":136
+                 "y":160
                 }, 
                 {
                  "gid":6848,
@@ -125,8 +130,8 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":24,
-                 "y":184
+                 "x":32,
+                 "y":208
                 }, 
                 {
                  "gid":6848,
@@ -137,8 +142,8 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":24,
-                 "y":104
+                 "x":32,
+                 "y":128
                 }, 
                 {
                  "gid":7211,
@@ -149,11 +154,11 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":56,
-                 "y":168
+                 "x":64,
+                 "y":192
                 }, 
                 {
-                 "gid":7686,
+                 "gid":7690,
                  "height":8,
                  "id":761,
                  "name":"",
@@ -161,11 +166,11 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":48,
-                 "y":200
+                 "x":56,
+                 "y":248
                 }, 
                 {
-                 "gid":7686,
+                 "gid":7690,
                  "height":8,
                  "id":764,
                  "name":"",
@@ -173,11 +178,11 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":48,
+                 "x":56,
                  "y":24
                 }, 
                 {
-                 "gid":7944,
+                 "gid":7953,
                  "height":16,
                  "id":784,
                  "name":"",
@@ -185,8 +190,8 @@
                  "type":"",
                  "visible":true,
                  "width":40,
-                 "x":24,
-                 "y":128
+                 "x":32,
+                 "y":152
                 }, 
                 {
                  "gid":6846,
@@ -197,8 +202,8 @@
                  "type":"",
                  "visible":true,
                  "width":40,
-                 "x":168,
-                 "y":72
+                 "x":176,
+                 "y":96
                 }, 
                 {
                  "gid":6846,
@@ -209,11 +214,11 @@
                  "type":"",
                  "visible":true,
                  "width":40,
-                 "x":328,
-                 "y":72
+                 "x":336,
+                 "y":96
                 }, 
                 {
-                 "gid":7937,
+                 "gid":7946,
                  "height":24,
                  "id":790,
                  "name":"",
@@ -221,11 +226,11 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":112,
-                 "y":184
+                 "x":120,
+                 "y":208
                 }, 
                 {
-                 "gid":7937,
+                 "gid":7946,
                  "height":24,
                  "id":791,
                  "name":"",
@@ -233,11 +238,11 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":176,
-                 "y":184
+                 "x":184,
+                 "y":208
                 }, 
                 {
-                 "gid":7937,
+                 "gid":7946,
                  "height":24,
                  "id":792,
                  "name":"",
@@ -245,11 +250,11 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":208,
-                 "y":184
+                 "x":216,
+                 "y":208
                 }, 
                 {
-                 "gid":7937,
+                 "gid":7946,
                  "height":24,
                  "id":793,
                  "name":"",
@@ -257,11 +262,11 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":392,
-                 "y":184
+                 "x":400,
+                 "y":208
                 }, 
                 {
-                 "gid":7937,
+                 "gid":7946,
                  "height":24,
                  "id":794,
                  "name":"",
@@ -269,11 +274,11 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":328,
-                 "y":184
+                 "x":336,
+                 "y":208
                 }, 
                 {
-                 "gid":7937,
+                 "gid":7946,
                  "height":24,
                  "id":795,
                  "name":"",
@@ -281,17 +286,17 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":296,
-                 "y":184
+                 "x":304,
+                 "y":208
                 }, 
                 {
-                 "gid":7940,
+                 "gid":7949,
                  "height":24,
                  "id":796,
                  "name":"contains position-sensitive offsets",
                  "properties":
                     {
-                     "parameters":"{\"interiorRegion\" : [-21, -7, 22, 8], \"exteriorRegions\" : [[-30, -9, -21, 0], [-30, -73, 51, -9]]}"
+                     "parameters":"{\"interiorRegion\" : [-22, -7, 22, 8], \"exteriorRegions\" : [[-30, -9, -22, 0], [-30, -73, 51, -9]]}"
                     },
                  "propertytypes":
                     {
@@ -301,8 +306,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":256,
-                 "y":136
+                 "x":264,
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -313,6 +318,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":5,
          "name":"wiring - lights & guns",
          "objects":[
                 {
@@ -326,14 +332,14 @@
                         }, 
                         {
                          "x":8,
-                         "y":0
+                         "y":24
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":40,
-                 "y":192
+                 "x":48,
+                 "y":216
                 }, 
                 {
                  "height":0,
@@ -352,8 +358,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":56,
-                 "y":160
+                 "x":64,
+                 "y":184
                 }, 
                 {
                  "height":0,
@@ -366,14 +372,14 @@
                         }, 
                         {
                          "x":8,
-                         "y":-176
+                         "y":-200
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":40,
-                 "y":192
+                 "x":48,
+                 "y":216
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -384,6 +390,7 @@
         {
          "color":"#ffa0ff",
          "draworder":"topdown",
+         "id":6,
          "name":"monsters & npcs",
          "objects":[
                 {
@@ -404,8 +411,8 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":160,
-                 "y":176
+                 "x":168,
+                 "y":200
                 }, 
                 {
                  "height":8,
@@ -425,8 +432,8 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":376,
-                 "y":176
+                 "x":384,
+                 "y":200
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -437,6 +444,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":7,
          "name":"wiring - locked door",
          "objects":[
                 {
@@ -445,7 +453,7 @@
                  "name":"",
                  "polyline":[
                         {
-                         "x":-144,
+                         "x":-152,
                          "y":0
                         }, 
                         {
@@ -456,8 +464,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":632,
-                 "y":160
+                 "x":640,
+                 "y":184
                 }, 
                 {
                  "height":0,
@@ -465,7 +473,7 @@
                  "name":"",
                  "polyline":[
                         {
-                         "x":-144,
+                         "x":-152,
                          "y":0
                         }, 
                         {
@@ -476,8 +484,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":632,
-                 "y":160
+                 "x":640,
+                 "y":184
                 }, 
                 {
                  "height":0,
@@ -489,15 +497,15 @@
                          "y":208
                         }, 
                         {
-                         "x":-264,
+                         "x":-272,
                          "y":232
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":344,
-                 "y":-88
+                 "x":352,
+                 "y":-64
                 }, 
                 {
                  "height":0,
@@ -516,8 +524,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":344,
-                 "y":-88
+                 "x":352,
+                 "y":-64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -527,6 +535,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -537,6 +546,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"anchors etc",
          "objects":[
                 {
@@ -548,7 +558,7 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":40,
+                 "x":48,
                  "y":16
                 }, 
                 {
@@ -560,8 +570,8 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":40,
-                 "y":208
+                 "x":48,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -571,6 +581,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -579,10 +590,11 @@
          "x":0,
          "y":0
         }],
+ "nextlayerid":11,
  "nextobjectid":798,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.0",
  "tileheight":8,
  "tilesets":[
         {
@@ -690,19 +702,19 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7684,
+         "firstgid":7688,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7688,
+         "firstgid":7697,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
         }, 
         {
-         "firstgid":7922,
+         "firstgid":7931,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
- "width":68
+ "version":1.1,
+ "width":71
 }
