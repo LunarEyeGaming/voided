@@ -26,7 +26,7 @@
     {
       "imageLayers" : [ { "image" : "powercubesocket.png:inactive", "fullbright" : true }, { "image" : "powercubesocketlit.png:inactive" } ],
       "imagePosition" : [-16, -16],
-      
+
       "animationPosition" : [-16, -16],
       "animationParts" : {
         "bg" : "powercubesocket.png",
@@ -42,7 +42,7 @@
     {
       "imageLayers" : [ { "image" : "powercubesocket.png:inactive", "fullbright" : true }, { "image" : "powercubesocketlit.png:inactive" } ],
       "imagePosition" : [-16, -16],
-      
+
       "animationPosition" : [-16, -16],
       "animationParts" : {
         "bg" : "powercubesocket.png",
@@ -73,12 +73,12 @@
   "unlockSound" : "activate",
   "lockSound" : "deactivate",
 
-  "openSounds" : [ "/sfx/objects/chest_small_open.ogg" ],
-  "closeSounds" : [ "/sfx/objects/chest_small_close.ogg" ],
+  "openSounds" : [ "/sfx/other/v_silence.ogg" ],
+  "closeSounds" : [ "/sfx/other/v_silence.ogg" ],
   "slotCount" : 1,
   "uiConfig" : "/interface/chests/v-powercubesocket.config",
   "frameCooldown" : 5,
   "autoCloseCooldown" : 3600,
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }
