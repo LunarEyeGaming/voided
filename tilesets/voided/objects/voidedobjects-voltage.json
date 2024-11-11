@@ -8,7 +8,8 @@
  "margin":0,
  "name":"voidedobjects-voltage",
  "spacing":0,
- "tilecount":26,
+ "tilecount":30,
+ "tiledversion":"1.11.0",
  "tileheight":80,
  "tileproperties":
     {
@@ -143,6 +144,34 @@
          "imagePositionX":"-32",
          "imagePositionY":"-32",
          "object":"v-voltagecitybeacon",
+         "tilesetDirection":"right"
+        },
+     "26":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-dimredlight",
+         "tilesetDirection":"right"
+        },
+     "27":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-dimredlight",
+         "tilesetDirection":"right"
+        },
+     "28":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-dimredlight",
+         "tilesetDirection":"right"
+        },
+     "29":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-dimredlight",
          "tilesetDirection":"right"
         },
      "3":
@@ -330,6 +359,34 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "26":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "27":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "28":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "29":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "3":
         {
          "imagePositionX":"string",
@@ -496,6 +553,30 @@
          "imageheight":64,
          "imagewidth":64
         },
+     "26":
+        {
+         "image":"..\/images\/objects\/dimredlightbottom.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "27":
+        {
+         "image":"..\/images\/objects\/dimredlightleft.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "28":
+        {
+         "image":"..\/images\/objects\/dimredlightright.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "29":
+        {
+         "image":"..\/images\/objects\/dimredlighttop.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
      "3":
         {
          "image":"..\/images\/objects\/electrictrap1left.png",
@@ -540,5 +621,6 @@
         }
     },
  "tilewidth":80,
- "type":"tileset"
+ "type":"tileset",
+ "version":1.1
 }

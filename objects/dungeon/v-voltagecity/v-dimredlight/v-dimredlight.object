@@ -1,0 +1,98 @@
+{
+  "objectName" : "v-dimredlight",
+  "colonyTags" : ["human","light"],
+  "rarity" : "Common",
+  "category" : "light",
+  "price" : 45,
+  "description" : "A dim red light.",
+  "shortdescription" : "Dim Red Light",
+  "race" : "human",
+
+  "apexDescription" : "An inexpensive, red light.",
+  "avianDescription" : "This light gives off a warm, red glow.",
+  "floranDescription" : "Dim red light.",
+  "glitchDescription" : "Indifferent. A dim red light.",
+  "humanDescription" : "It's a dim red light.",
+  "hylotlDescription" : "This red light has an eerie glow to it.",
+  "novakidDescription" : "A dim red light.",
+
+  "lightColor" : [97, 15, 15],
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+
+    {
+      "image" : "dimredlightleft.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+
+      "animationParts" : {
+        "bg" : "dimredlightleft.png",
+        "fg" : "dimredlightleftlit.png"
+      },
+      "animationPosition" : [0, 0],
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left" ]
+    },
+
+    {
+      "image" : "dimredlightright.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+
+      "animationParts" : {
+        "bg" : "dimredlightright.png",
+        "fg" : "dimredlightrightlit.png"
+      },
+      "animationPosition" : [0, 0],
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "right" ]
+    },
+
+    {
+      "image" : "dimredlighttop.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+
+      "animationParts" : {
+        "bg" : "dimredlighttop.png",
+        "fg" : "dimredlighttoplit.png"
+      },
+      "animationPosition" : [0, 0],
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    },
+
+    {
+      "image" : "dimredlightbottom.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+
+      "animationParts" : {
+        "bg" : "dimredlightbottom.png",
+        "fg" : "dimredlightbottomlit.png"
+      },
+      "animationPosition" : [0, 0],
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+
+  "animation" : "/objects/wired/light/lighttogglebgfullbright.animation",
+  "animationParts" : {
+    "bg" : "dimredlightbottom.png",
+    "fg" : "dimredlightbottomlit.png"
+  },
+
+  "scripts" : [ "/objects/wired/light/light.lua" ],
+  "scriptDelta" : 60,
+
+  "interactive" : false,
+
+  "inputNodes" : [ [0, 0] ]
+}
