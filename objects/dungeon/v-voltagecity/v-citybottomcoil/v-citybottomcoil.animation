@@ -1,0 +1,53 @@
+{
+  "globalTagDefaults" : {
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "coil" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 24,
+            "cycle" : 2.4,
+            "mode" : "loop"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "coil" : {
+        "properties" : {
+          "centered" : false
+        },
+
+        "partStates" : {
+          "coil" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      },
+      "coilunlit" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1,
+          "fullbright" : true
+        },
+
+        "partStates" : {
+          "coil" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

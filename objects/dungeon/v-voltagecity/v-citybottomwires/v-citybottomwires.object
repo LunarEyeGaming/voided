@@ -1,0 +1,39 @@
+{
+  "objectName" : "v-citybottomwires",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "price" : 65,
+  "printable" : false,
+  "shortdescription" : "Jellyfish Cables",
+  "description" : "Cables splayed out and designed to harvest electricity from the bottom of Voltage worlds.",
+
+  "apexDescription" : "These cables are designed to harvest electricity from the core.",
+  "avianDescription" : "",
+  "floranDescription" : "Wiresss glow from blue liquid.",
+  "glitchDescription" : "Intrigued. These wires appear to be suspended in liquid electricity for extraction.",
+  "humanDescription" : "I don't want to touch these wires, or else I'll get zapped.",
+  "hylotlDescription" : "Instead of a proper generator, these wires are directly submersed in liquid electricity. Simple yet effective.",
+  "novakidDescription" : "These cables're floatin' in the liquid 'ere.",
+
+  "race" : "human",
+  "category" : "decorative",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "citybottomwires.png:<frame>" }, { "image" : "citybottomwiresunlit.png:<frame>", "fullbright" : true } ],
+      "direction" : "right",
+      "imagePosition" : [-8, -24],
+      "animationParts" : {
+        "wires" : "citybottomwires.png",
+        "wiresunlit" : "citybottomwiresunlit.png"
+      },
+      "animationPosition" : [-8, -24],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    }
+  ],
+
+  "animation" : "v-citybottomwires.animation"
+}

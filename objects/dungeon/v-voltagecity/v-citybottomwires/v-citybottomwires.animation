@@ -1,0 +1,53 @@
+{
+  "globalTagDefaults" : {
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "wires" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 9,
+            "cycle" : 0.9,
+            "mode" : "loop"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "wires" : {
+        "properties" : {
+          "centered" : false
+        },
+
+        "partStates" : {
+          "wires" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      },
+      "wiresunlit" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1,
+          "fullbright" : true
+        },
+
+        "partStates" : {
+          "wires" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

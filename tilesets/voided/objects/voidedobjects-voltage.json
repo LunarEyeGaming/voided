@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-voltage",
  "spacing":0,
- "tilecount":30,
+ "tilecount":32,
  "tiledversion":"1.11.0",
  "tileheight":80,
  "tileproperties":
@@ -179,6 +179,20 @@
          "imagePositionX":"0",
          "imagePositionY":"-8",
          "object":"v-electrictrap1",
+         "tilesetDirection":"right"
+        },
+     "30":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"-24",
+         "object":"v-citybottomwires",
+         "tilesetDirection":"right"
+        },
+     "31":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-16",
+         "object":"v-citybottomcoil",
          "tilesetDirection":"right"
         },
      "4":
@@ -394,6 +408,20 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "30":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "31":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "4":
         {
          "imagePositionX":"string",
@@ -581,6 +609,18 @@
         {
          "image":"..\/images\/objects\/electrictrap1left.png",
          "imageheight":16,
+         "imagewidth":16
+        },
+     "30":
+        {
+         "image":"..\/images\/objects\/citybottomwires.png",
+         "imageheight":32,
+         "imagewidth":32
+        },
+     "31":
+        {
+         "image":"..\/images\/objects\/citybottomcoil.png",
+         "imageheight":32,
          "imagewidth":16
         },
      "4":
