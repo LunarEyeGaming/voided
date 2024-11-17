@@ -1,0 +1,30 @@
+{
+  "objectName" : "v-basicshockwavereceiver",
+  "colonyTags" : ["evil"],
+  "printable" : false,
+  "scannable" : false,
+  "rarity" : "Common",
+  "description" : "Not intended to be obtained",
+  "shortdescription" : "Shockwave Receiver",
+  "race" : "generic",
+
+  "category" : "trap",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "image.png",
+      "imagePosition" : [0, 0],
+
+      "spaceScan" : 0.1
+    }
+  ],
+
+  "outputNodes" : [ [0, 0] ],
+
+  "scripts" : [ "v-basicshockwavereceiver.lua" ],
+  "scriptDelta" : 1,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

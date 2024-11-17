@@ -166,6 +166,7 @@ function placeWave()
         } --[[@as DamageSource]])
         -- world.spawnProjectile(projectileType, blockPos, sourceEntity, {0, 0}, false, projectileParameters)
         table.insert(particleNextBlocks, block)
+        triggerReceivers(blockPos)
       end
     end
 
@@ -218,6 +219,15 @@ end
 function containsConductive(position)
   return set.contains(validMats, world.material(position, "foreground"))
       or set.contains(validMatMods, world.mod(position, "foreground")) or hasNails(position)
+end
+
+---Triggers objects that do something when a shockwave touches them.
+---@param block any
+function triggerReceivers(block)
+  local queried = world.entityQuery(block, 1, {includedTypes = {"object"}, callScript = "v_onShockwaveReceived"})
+  for _, entityId in ipairs(queried) do
+    world.debugPoint(world.entityPosition(entityId), "green")
+  end
 end
 
 function isShockwave()

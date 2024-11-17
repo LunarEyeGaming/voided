@@ -25,7 +25,7 @@
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
-      
+
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "floor.png",
@@ -42,7 +42,7 @@
       "image" : "floor.png:<color>.<frame>",
       "imagePosition" : [0, 0],
       "direction" : "right",
-      
+
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "floor.png",
@@ -59,7 +59,7 @@
       "image" : "left.png:<color>.<frame>",
       "imagePosition" : [0, -8],
       "direction" : "right",
-      
+
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "left.png",
@@ -76,7 +76,7 @@
       "image" : "right.png:<color>.<frame>",
       "imagePosition" : [0, -8],
       "direction" : "right",
-      
+
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "right.png",
@@ -91,11 +91,11 @@
     },
     {
       "image" : "ceiling.png:<color>.<frame>",
-      "imagePosition" : [-8, 0],
+      "imagePosition" : [-8, -8],
       "direction" : "left",
       "flipImages" : true,
-      
-      "animationPosition" : [-8, 0],
+
+      "animationPosition" : [-8, -8],
       "animationParts" : {
         "bg" : "ceiling.png",
         "fg" : "ceilinglit.png"
@@ -109,10 +109,10 @@
     },
     {
       "image" : "ceiling.png:<color>.<frame>",
-      "imagePosition" : [0, 0],
+      "imagePosition" : [0, -8],
       "direction" : "right",
-      
-      "animationPosition" : [0, 0],
+
+      "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "ceiling.png",
         "fg" : "ceilinglit.png"
@@ -148,18 +148,18 @@
   "fireTime" : 8.0, // rate of fire
   "fireTimeVariance" : 0.0, // variation in rate of fire
   "projectile" : "railgunlightning", // name of projectile (required)
-  "projectileConfig" : { 
+  "projectileConfig" : {
     "damageTeam" : { "type" : "environment" },
     "power" : 50,
     "speed" : 50,
     "damageType" : "ignoresdef"
   },
-  
+
   "health" : 5,
 
   "smashOnBreak" : true,
   "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
   "smashParticles" : [ { "count" : 6, "particle" : "greystoneshard" } ],
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

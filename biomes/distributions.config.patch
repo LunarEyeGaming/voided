@@ -88,6 +88,25 @@
   },
   {
     "op" : "add",
+    "path" : "/v-mainBiomeMicrodungeon",
+    "value" : {
+      "type" : "periodic",
+
+      "octaves" : 1,
+      "alpha" : 1.0,
+      "beta" : 1.0,
+
+      "modulus" : 120,  // If modulus is n, place something every nth block
+      "modulusVariance" : 30,  // Adds a random element m to modulus. Now modulus will be between n - m and n + m.
+
+      "densityPeriod" : 600,
+      "densityOffset" : 1,
+
+      "typePeriod" : 600
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/v-undergroundVoltageTraps",
     "value" : {
       "type" : "periodic",

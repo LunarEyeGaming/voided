@@ -1,0 +1,107 @@
+{
+  "metadata" : {
+    "name" : "v-voltagespikesmicrodungeons",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [
+      "chasm1a", "chasm1b", "chasm1c", "chasm1d", "chasm1e", "chasm1f", "chasm1g", "chasm1h", "chasm1i",
+      "chasm2",  "chasm2",  "chasm2",  "chasm2",  "chasm2",  "chasm2",  "chasm2",  "chasm2",  "chasm2",
+      "chasm3",  "chasm3",  "chasm3",  "chasm3",  "chasm3",  "chasm3",  "chasm3",  "chasm3",  "chasm3",
+      "chasm4",  "chasm4",  "chasm4",  "chasm4",  "chasm4",  "chasm4",  "chasm4",  "chasm4",  "chasm4"
+    ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "chasm1a",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm1a.json" ]
+    },
+    {
+      "name" : "chasm1b",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm1b.json" ]
+    },
+    {
+      "name" : "chasm1c",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm1c.json" ]
+    },
+    {
+      "name" : "chasm1d",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm1d.json" ]
+    },
+    {
+      "name" : "chasm1e",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm1e.json" ]
+    },
+    {
+      "name" : "chasm1f",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm1f.json" ]
+    },
+    {
+      "name" : "chasm1g",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm1g.json" ]
+    },
+    {
+      "name" : "chasm1h",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm1h.json" ]
+    },
+    {
+      "name" : "chasm1i",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm1i.json" ]
+    },
+    {
+      "name" : "chasm2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm2.json" ]
+    },
+    {
+      "name" : "chasm3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm3.json" ]
+    },
+    {
+      "name" : "chasm4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "chasm4.json" ]
+    }
+  ]
+}

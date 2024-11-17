@@ -61,18 +61,9 @@
       "windAffectAmount" : 1
     },
     {
-      "projectile" : "invisibleprojectile",
+      "projectile" : "v-lightningboltspawner",
       "parameters" : {
-        "power" : 1000,
-        "speed" : 200,
-        "onlyHitTerrain" : true,
-        "actionOnReap" : [
-          {
-            "action" : "projectile",
-            "type" : "v-lightningbolttelegraph",
-            "inheritDamageFactor" : 1.0
-          }
-        ]
+        "damageTeam" : {"type" : "indiscriminate"}
       },
       "velocity" : [0, -200],
       "ratePerX" : 0.0015,

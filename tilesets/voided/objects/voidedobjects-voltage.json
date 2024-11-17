@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-voltage",
  "spacing":0,
- "tilecount":32,
+ "tilecount":35,
  "tiledversion":"1.11.0",
  "tileheight":80,
  "tileproperties":
@@ -193,6 +193,27 @@
          "imagePositionX":"0",
          "imagePositionY":"-16",
          "object":"v-citybottomcoil",
+         "tilesetDirection":"right"
+        },
+     "32":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-lightningrod",
+         "tilesetDirection":"right"
+        },
+     "33":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-basicshockwavereceiver",
+         "tilesetDirection":"right"
+        },
+     "34":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-climbingarctrap",
          "tilesetDirection":"right"
         },
      "4":
@@ -422,6 +443,27 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "32":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "33":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "34":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "4":
         {
          "imagePositionX":"string",
@@ -622,6 +664,24 @@
          "image":"..\/images\/objects\/citybottomcoil.png",
          "imageheight":32,
          "imagewidth":16
+        },
+     "32":
+        {
+         "image":"..\/images\/objects\/lightningrod.png",
+         "imageheight":48,
+         "imagewidth":24
+        },
+     "33":
+        {
+         "image":"..\/images\/objects\/basicshockwavereceiver.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "34":
+        {
+         "image":"..\/images\/objects\/climbingarctrap.png",
+         "imageheight":8,
+         "imagewidth":8
         },
      "4":
         {

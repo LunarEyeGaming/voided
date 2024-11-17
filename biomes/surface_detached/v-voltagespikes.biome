@@ -14,11 +14,11 @@
       {
         "select" : 1,
         "pool" : "generatedGroundAggroDay"
-      }, 
+      },
       {
         "select" : 3,
         "pool" : "nightTerrors"
-      },      
+      },
       {
         "select" : 2,
         "pool" : "generatedGround"
@@ -109,10 +109,19 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1, "statuspod" ] ],
+            "pool" : [ [1, "v-statuspodvoltage" ] ],
             "parameters" : { }
           }
         ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-voltagespikesmicrodungeons" ]
       },
       {
         "mode" : "floor",
@@ -235,7 +244,7 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1, "statuspod" ] ],
+            "pool" : [ [1, "v-statuspodvoltage" ] ],
             "parameters" : { }
           }
         ]
