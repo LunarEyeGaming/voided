@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-voltage",
  "spacing":0,
- "tilecount":35,
+ "tilecount":36,
  "tiledversion":"1.11.0",
  "tileheight":80,
  "tileproperties":
@@ -206,7 +206,7 @@
         {
          "imagePositionX":"0",
          "imagePositionY":"0",
-         "object":"v-basicshockwavereceiver",
+         "object":"v-shockwavearctrap",
          "tilesetDirection":"right"
         },
      "34":
@@ -214,6 +214,13 @@
          "imagePositionX":"0",
          "imagePositionY":"0",
          "object":"v-climbingarctrap",
+         "tilesetDirection":"right"
+        },
+     "35":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-basicshockwavereceiver",
          "tilesetDirection":"right"
         },
      "4":
@@ -464,6 +471,13 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "35":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "4":
         {
          "imagePositionX":"string",
@@ -673,13 +687,19 @@
         },
      "33":
         {
-         "image":"..\/images\/objects\/basicshockwavereceiver.png",
+         "image":"..\/images\/objects\/shockwavearctrap.png",
          "imageheight":8,
          "imagewidth":8
         },
      "34":
         {
          "image":"..\/images\/objects\/climbingarctrap.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "35":
+        {
+         "image":"..\/images\/objects\/basicshockwavereceiver.png",
          "imageheight":8,
          "imagewidth":8
         },

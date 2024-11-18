@@ -5,7 +5,7 @@
     "rules" : [
     ],
 
-    "anchor" : [ "voltage_building1" ],
+    "anchor" : [ "voltage_building1", "voltage_building2", "voltage_building3", "voltage_building4" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -20,6 +20,27 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "voltage_building1.json" ]
+    },
+    {
+      "name" : "voltage_building2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_building2.json" ]
+    },
+    {
+      "name" : "voltage_building3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_building3.json" ]
+    },
+    {
+      "name" : "voltage_building4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_building4.json" ]
     }
   ]
 }

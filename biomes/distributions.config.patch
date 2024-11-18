@@ -96,13 +96,13 @@
       "alpha" : 1.0,
       "beta" : 1.0,
 
-      "modulus" : 120,  // If modulus is n, place something every nth block
-      "modulusVariance" : 30,  // Adds a random element m to modulus. Now modulus will be between n - m and n + m.
+      "modulus" : 1,  // If modulus is n, place something every nth block
+      "modulusVariance" : 1,  // Adds a random element m to modulus. Now modulus will be between n - m and n + m.
 
-      "densityPeriod" : 600,
-      "densityOffset" : 1,
+      "densityPeriod" : 160,
+      "densityOffset" : -0.1,
 
-      "typePeriod" : 600
+      "typePeriod" : 1
     }
   },
   {
@@ -160,6 +160,25 @@
       "densityOffset" : -0.2,
 
       "typePeriod" : 10
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-testDistribution",
+    "value" : {
+      "type" : "periodic",
+
+      "octaves" : 1,
+      "alpha" : 1.0,
+      "beta" : 1.0,
+
+      "modulus" : 1,  // If modulus is n, place something every nth block
+      "modulusVariance" : 1,  // Adds a random element m to modulus. Now modulus will be between n - m and n + m.
+
+      "densityPeriod" : 160,
+      "densityOffset" : -0.1,
+
+      "typePeriod" : 1
     }
   }
 ]
