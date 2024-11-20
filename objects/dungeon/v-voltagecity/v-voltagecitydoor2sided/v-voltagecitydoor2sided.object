@@ -1,0 +1,82 @@
+{
+  "objectName" : "v-voltagecitydoor2sided",
+  "colonyTags" : ["human", "door"],
+  "rarity" : "Common",
+
+  "category" : "door",
+  "price" : 125,
+  "description" : "<todo>",
+  "shortdescription" : "Rubber-Metal Door",
+  "race" : "human",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "voltagecitydoor2sided.png:default",
+      "flipImages" : true,
+      "imagePosition" : [-8, 0],
+      "renderLayer" : "Object+5",
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom", "top" ],
+      "direction" : "left",
+
+      "closedMaterialSpaces" : [
+        [[-1, 4], "metamaterial:v-doorconductive"], [[0, 4], "metamaterial:door"],
+        [[-1, 3], "metamaterial:v-doorconductive"], [[0, 3], "metamaterial:door"],
+        [[-1, 2], "metamaterial:v-doorconductive"], [[0, 2], "metamaterial:door"],
+        [[-1, 1], "metamaterial:v-doorconductive"], [[0, 1], "metamaterial:door"],
+        [[-1, 0], "metamaterial:v-doorconductive"], [[0, 0], "metamaterial:door"]
+      ]
+    },
+    {
+      "image" : "voltagecitydoor2sided.png:default",
+      "imagePosition" : [-8, 0],
+      "renderLayer" : "Object+5",
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom", "top" ],
+      "direction" : "right",
+
+      "closedMaterialSpaces" : [
+        [[-1, 4], "metamaterial:door"], [[0, 4], "metamaterial:v-doorconductive"],
+        [[-1, 3], "metamaterial:door"], [[0, 3], "metamaterial:v-doorconductive"],
+        [[-1, 2], "metamaterial:door"], [[0, 2], "metamaterial:v-doorconductive"],
+        [[-1, 1], "metamaterial:door"], [[0, 1], "metamaterial:v-doorconductive"],
+        [[-1, 0], "metamaterial:door"], [[0, 0], "metamaterial:v-doorconductive"]
+      ]
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/door/door.lua" ],
+  "scriptDelta" : 5,
+
+  "animation" : "/objects/wired/door/door.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "open" : {
+        "pool" : [ "/sfx/objects/bardoor2_open.ogg" ],
+        "rangeMultiplier" : 0.5
+      },
+      "close" : {
+        "pool" : [ "/sfx/objects/bardoor2_close.ogg" ],
+        "rangeMultiplier" : 0.5
+      }
+    }
+  },
+  "animationParts" : {
+    "door" : "voltagecitydoor2sided.png"
+  },
+  "animationPosition" : [-8, 0],
+
+  "inputNodes" : [ [-1, 4] ],
+  "outputNodes" : [ [0, 0] ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

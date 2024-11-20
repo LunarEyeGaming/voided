@@ -2,6 +2,8 @@
   A simple script that outputs a signal for a specific amount of time whenever it receives an electrical current.
 ]]
 
+require "/scripts/vec2.lua"
+
 local projectileType
 local projectileDirection
 local inaccuracy

@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-voltage",
  "spacing":0,
- "tilecount":36,
+ "tilecount":44,
  "tiledversion":"1.11.0",
  "tileheight":80,
  "tileproperties":
@@ -223,11 +223,67 @@
          "object":"v-basicshockwavereceiver",
          "tilesetDirection":"right"
         },
+     "36":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-voltagecitydoor2sided",
+         "tilesetDirection":"right"
+        },
+     "37":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-voltagecitydoor2sided",
+         "tilesetDirection":"left"
+        },
+     "38":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-dischargetrap",
+         "tilesetDirection":"right"
+        },
+     "39":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-dischargetrap",
+         "tilesetDirection":"right"
+        },
      "4":
         {
          "imagePositionX":"-8",
          "imagePositionY":"-8",
          "object":"v-electrictrap1",
+         "tilesetDirection":"right"
+        },
+     "40":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-dischargetrap",
+         "tilesetDirection":"right"
+        },
+     "41":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-dischargetrap",
+         "tilesetDirection":"right"
+        },
+     "42":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-dischargetrap",
+         "tilesetDirection":"right"
+        },
+     "43":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-dischargetrap",
          "tilesetDirection":"right"
         },
      "5":
@@ -478,7 +534,63 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "36":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "37":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "38":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "39":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "4":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "40":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "41":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "42":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "43":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -703,10 +815,58 @@
          "imageheight":8,
          "imagewidth":8
         },
+     "36":
+        {
+         "image":"..\/images\/objects\/voltagecitydoor2sided.png",
+         "imageheight":40,
+         "imagewidth":16
+        },
+     "37":
+        {
+         "image":"..\/images\/objects\/voltagecitydoor2sidedleft.png",
+         "imageheight":40,
+         "imagewidth":16
+        },
+     "38":
+        {
+         "image":"..\/images\/objects\/dischargetrap.png",
+         "imageheight":8,
+         "imagewidth":16
+        },
+     "39":
+        {
+         "image":"..\/images\/objects\/dischargetrapleft.png",
+         "imageheight":16,
+         "imagewidth":8
+        },
      "4":
         {
          "image":"..\/images\/objects\/electrictrap1right.png",
          "imageheight":16,
+         "imagewidth":16
+        },
+     "40":
+        {
+         "image":"..\/images\/objects\/dischargetrapright.png",
+         "imageheight":16,
+         "imagewidth":8
+        },
+     "41":
+        {
+         "image":"..\/images\/objects\/dischargetraptop.png",
+         "imageheight":8,
+         "imagewidth":16
+        },
+     "42":
+        {
+         "image":"..\/images\/objects\/dischargetrapbottomflipped.png",
+         "imageheight":8,
+         "imagewidth":16
+        },
+     "43":
+        {
+         "image":"..\/images\/objects\/dischargetraptopflipped.png",
+         "imageheight":8,
          "imagewidth":16
         },
      "5":

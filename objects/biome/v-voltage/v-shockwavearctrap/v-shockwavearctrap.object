@@ -17,7 +17,37 @@
       "image" : "image.png",
       "imagePosition" : [0, 0],
 
-      "spaceScan" : 0.1
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ],
+
+      "projectileDirection" : [0, -1]
+    },
+    {
+      "image" : "image.png",
+      "imagePosition" : [0, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+
+      "projectileDirection" : [0, 1]
+    },
+    {
+      "image" : "image.png",
+      "imagePosition" : [0, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left" ],
+
+      "projectileDirection" : [1, 0]
+    },
+    {
+      "image" : "image.png",
+      "imagePosition" : [0, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "right" ],
+
+      "projectileDirection" : [-1, 0]
     }
   ],
 

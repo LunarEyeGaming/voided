@@ -99,8 +99,8 @@
       "modulus" : 1,  // If modulus is n, place something every nth block
       "modulusVariance" : 1,  // Adds a random element m to modulus. Now modulus will be between n - m and n + m.
 
-      "densityPeriod" : 160,
-      "densityOffset" : -0.1,
+      "densityPeriod" : 120,
+      "densityOffset" : 0.25,
 
       "typePeriod" : 1
     }
