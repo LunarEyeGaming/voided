@@ -26,7 +26,15 @@
       "renderLayer" : "Object+5",
       "spaceScan" : 0.1,
       "anchors" : [ "bottom", "top" ],
-      "direction" : "left"
+      "direction" : "left",
+
+      "closedMaterialSpaces" : [
+        [[-1, 4], "metamaterial:v-doorconductive"], [[0, 4], "metamaterial:v-doorconductive"],
+        [[-1, 3], "metamaterial:v-doorconductive"], [[0, 3], "metamaterial:v-doorconductive"],
+        [[-1, 2], "metamaterial:v-doorconductive"], [[0, 2], "metamaterial:v-doorconductive"],
+        [[-1, 1], "metamaterial:v-doorconductive"], [[0, 1], "metamaterial:v-doorconductive"],
+        [[-1, 0], "metamaterial:v-doorconductive"], [[0, 0], "metamaterial:v-doorconductive"]
+      ]
     },
     {
       "image" : "voltagecitydoor.png:default",
@@ -34,7 +42,15 @@
       "renderLayer" : "Object+5",
       "spaceScan" : 0.1,
       "anchors" : [ "bottom", "top" ],
-      "direction" : "right"
+      "direction" : "right",
+
+      "closedMaterialSpaces" : [
+        [[-1, 4], "metamaterial:v-doorconductive"], [[0, 4], "metamaterial:v-doorconductive"],
+        [[-1, 3], "metamaterial:v-doorconductive"], [[0, 3], "metamaterial:v-doorconductive"],
+        [[-1, 2], "metamaterial:v-doorconductive"], [[0, 2], "metamaterial:v-doorconductive"],
+        [[-1, 1], "metamaterial:v-doorconductive"], [[0, 1], "metamaterial:v-doorconductive"],
+        [[-1, 0], "metamaterial:v-doorconductive"], [[0, 0], "metamaterial:v-doorconductive"]
+      ]
     }
   ],
 
@@ -61,6 +77,6 @@
 
   "inputNodes" : [ [-1, 4] ],
   "outputNodes" : [ [0, 0] ],
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

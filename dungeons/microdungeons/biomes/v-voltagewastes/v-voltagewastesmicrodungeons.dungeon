@@ -5,7 +5,7 @@
     "rules" : [
     ],
 
-    "anchor" : [ "towers1" ],
+    "anchor" : [ "towers1", "towers2", "towers3", "towers4", "towers5" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -20,6 +20,34 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "towers1.json" ]
+    },
+    {
+      "name" : "towers2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "towers2.json" ]
+    },
+    {
+      "name" : "towers3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "towers3.json" ]
+    },
+    {
+      "name" : "towers4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "towers4.json" ]
+    },
+    {
+      "name" : "towers5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "towers5.json" ]
     }
   ]
 }

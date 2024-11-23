@@ -1,0 +1,15 @@
+{
+  "name" : "v-coreelectricitylaunch",
+  "effectConfig" : {
+    "damage" : 100,
+    "launchSpeed" : 100,
+    "boltEmitterChoices" : ["bolt1", "bolt2", "bolt3"]
+  },
+  "defaultDuration" : 0.05,
+
+  "scripts" : [
+    "v-coreelectricitylaunch.lua"
+  ],
+
+  "animationConfig" : "v-coreelectricitylaunch.animation"
+}

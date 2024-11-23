@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt0UGOAjEMRNHc\/2AsOROrliIWdAhxfRvXl1qzGcn1yBjOOeecc8650z2Sfx2Mp+z0XqWb3qg009vUZnqX0ktvUpvpPfbGeektajO9w16d9y56s9pb2fy+\/5+t3b2r0ZuV70vvVXurm+211966n709vAoH\/Vsqb6141ffJdyW80TezWSPvklbq\/l3U3ajbWa1ROzLdWi3qHbL4rp6Fvk7WX830bnvjrJXMY\/p7MtoV9aafom1K6xztVFqvujjndrfu\/F\/Gvn2TTG+3W+XtrnYvXlxLVQ==",
+         "data":"eJztkcENwjAQBM2TDninMKiFJigIJJ7UxMOJZEWIGOPbvYt3pFU+kXbHl5IQQgghhBCiN0\/nGcGxlzt7L9KbvRHpzN6GdmbvQvqyN6Gd2Xvka+fL3oJ2Zu+QL853C\/ZmtG9k5\/X+PbuO7lsLezPyvuy9vX3PU84p5Xx6B\/Zm+bb73uZc5xwPOfKNmbXDZcq5p5zHHPnGzNqhBvbmHr4ID\/ZbIrtqfNH9zLsyfK07vbla9jJdWf1bsHqtur26Wu3w1FWL1R28+C28AmUk13+d2bvla+cayTkV356wvaxu+g22G9K1hO2JdF0YxbOkdWvLfx759SaebtdK5O0iNm8SpF1p",
          "encoding":"base64",
          "height":60,
          "id":2,
@@ -192,6 +192,62 @@
                  "width":24,
                  "x":392,
                  "y":144
+                }, 
+                {
+                 "gid":8855,
+                 "height":40,
+                 "id":866,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":264,
+                 "y":224
+                }, 
+                {
+                 "gid":8856,
+                 "height":40,
+                 "id":867,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":288,
+                 "y":224
+                }, 
+                {
+                 "gid":5634,
+                 "height":40,
+                 "id":868,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"defaultState\" : \"open\"}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":296,
+                 "y":224
+                }, 
+                {
+                 "gid":6316,
+                 "height":8,
+                 "id":869,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":288,
+                 "y":240
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -389,7 +445,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":866,
+ "nextobjectid":870,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -534,6 +590,10 @@
         {
          "firstgid":8793,
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
+        }, 
+        {
+         "firstgid":8819,
+         "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",

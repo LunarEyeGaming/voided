@@ -1,0 +1,88 @@
+{
+  "particleEmitters" : {
+    "bolt1" : {
+      "burstCount" : 1,
+      "particles" : [
+        { "particle" : "v-launchbolt1", "offset" : [0, 7] },  // 8 - 1
+        { "particle" : {
+          "type" : "animated",
+          "animation" : "/animations/electroshock/electroshock.animation",
+          "position" : [0, 0],
+          "initialVelocity" : [0, 0.0],
+          "finalVelocity" : [0, 0.0],
+          "approach" : [0, 10],
+          "fade" : 0.3,
+          "destructionAction" : "shrink",
+          "destructionTime" : 0.2,
+          "size" : 1.0,
+          "timeToLive" : 0.2,
+          "fullbright" : true,
+          "layer" : "middle",
+          "collidesForeground" : false,
+          "variance" : {
+            "position" : [2, 2],
+            "initialVelocity" : [0, 0],
+            "rotation" : 180
+          }
+        }, "count" : 20 }
+      ]
+    },
+    "bolt2" : {
+      "burstCount" : 1,
+      "particles" : [
+        { "particle" : "v-launchbolt2", "offset" : [0, 7] },  // 8 - 1
+        { "particle" : {
+          "type" : "animated",
+          "animation" : "/animations/electroshock/electroshock.animation",
+          "position" : [0, 0],
+          "initialVelocity" : [0, 0.0],
+          "finalVelocity" : [0, 0.0],
+          "approach" : [0, 10],
+          "fade" : 0.3,
+          "destructionAction" : "shrink",
+          "destructionTime" : 0.2,
+          "size" : 1.0,
+          "timeToLive" : 0.2,
+          "fullbright" : true,
+          "layer" : "middle",
+          "collidesForeground" : false,
+          "variance" : {
+            "position" : [2, 2],
+            "initialVelocity" : [0, 0],
+            "rotation" : 180
+          }
+        }, "count" : 20 }
+      ]
+    },
+    "bolt3" : {
+      "burstCount" : 1,
+      "particles" : [
+        { "particle" : "v-launchbolt3", "offset" : [0, 7] },  // 8 - 1
+        { "particle" : {
+          "type" : "animated",
+          "animation" : "/animations/electroshock/electroshock.animation",
+          "position" : [0, 0],
+          "initialVelocity" : [0, 0.0],
+          "finalVelocity" : [0, 0.0],
+          "approach" : [0, 10],
+          "fade" : 0.3,
+          "destructionAction" : "shrink",
+          "destructionTime" : 0.2,
+          "size" : 1.0,
+          "timeToLive" : 0.2,
+          "fullbright" : true,
+          "layer" : "middle",
+          "collidesForeground" : false,
+          "variance" : {
+            "position" : [2, 2],
+            "initialVelocity" : [0, 0],
+            "rotation" : 180
+          }
+        }, "count" : 20 }
+      ]
+    }
+  },
+  "sounds" : {
+    "launch" : [ "/sfx/other/v_coreelectricity_launch.ogg" ]
+  }
+}

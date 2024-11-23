@@ -1,0 +1,19 @@
+{
+  "frameGrid" : {
+    "size" : [16, 40],
+    "dimensions" : [3, 1],
+    "names" : [
+      [ "closed", "openRight.1", "openRight.2" ]
+    ]
+  },
+
+  "aliases" : {
+    "default" : "closed",
+    "closeRight.1" : "openRight.1",
+    "closeRight.2" : "closed",
+    "closeLeft.1" : "closeRight.1",
+    "closeLeft.2" : "closeRight.2",
+    "openLeft.1" : "openRight.1",
+    "openLeft.2" : "openRight.2"
+  }
+}

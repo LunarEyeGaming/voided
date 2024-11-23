@@ -5,7 +5,11 @@
     "rules" : [
     ],
 
-    "anchor" : [ "voltage_building1", "voltage_building2", "voltage_building3", "voltage_building4" ],
+    "anchor" : [
+      "voltage_building1", "voltage_building2", "voltage_building3", "voltage_building4", "voltage_building5",
+      "voltage_buildingsafe1", "voltage_buildingsafe2", "voltage_buildingsafe3",
+      "voltage_spikeyard1", "voltage_spikeyard2", "voltage_spikeyard3", "voltage_spikeyard4", "voltage_spikeyard5"
+    ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -55,6 +59,55 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "voltage_buildingsafe1.json" ]
+    },
+    {
+      "name" : "voltage_buildingsafe2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_buildingsafe2.json" ]
+    },
+    {
+      "name" : "voltage_buildingsafe3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_buildingsafe3.json" ]
+    },
+    {
+      "name" : "voltage_spikeyard1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_spikeyard1.json" ]
+    },
+    {
+      "name" : "voltage_spikeyard2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_spikeyard2.json" ]
+    },
+    {
+      "name" : "voltage_spikeyard3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_spikeyard3.json" ]
+    },
+    {
+      "name" : "voltage_spikeyard4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_spikeyard4.json" ]
+    },
+    {
+      "name" : "voltage_spikeyard5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_spikeyard5.json" ]
     }
   ]
 }

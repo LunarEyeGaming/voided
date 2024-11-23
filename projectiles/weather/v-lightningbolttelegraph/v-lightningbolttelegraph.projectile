@@ -46,17 +46,17 @@
   "lightColor" : [59, 217, 215],
   "persistentAudio" : "/sfx/npc/boss/ufo_stunned.ogg",
   "damageKind" : "plasmabullet",
-  
+
   // Too laggy
   /* "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua",
       "/projectiles/weather/v-lightningflash/v-lightningflash.lua"], */
-  
+
   "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
-  
+
   "monsterType" : "v-shockwave",
-  "monsterParameters" : {"maxArea" : 1000, "projectileParameters" : {"damageTeam" : {"type" : "indiscriminate"}}},
+  "monsterParameters" : {"maxArea" : 1000, "damageTeamObj" : {"type" : "indiscriminate"}},
   "spawnOffset" : [0, -1] /* ,
-  
+
   "megaLightSize" : 100,
   "megaLightInterval" : [5, 5],
   "megaLightColor" : [255, 255, 255],

@@ -16,7 +16,7 @@
 
     // Make label for Rusted Voltage biomes visible.
     {"op" : "add", "path" : "/planetTypeNames/v-voltagerusty", "value" : "Rusted Voltage"},
-    
+
     // There is a bug in MPI where the word substitution method is always used for sub-biomes. This will have to be a
     // workaround. It only works sometimes unfortunately.
     {"op" : "add", "path" : "/wordsList/v-voltageforest", "value" : {"word" : "v%-voltageforest",
@@ -80,7 +80,7 @@
         "The electrical conductivity of this ^#a083df;voltage^reset; world is ^red;dangerously high^reset;. Its indigenous lifeforms have adapted a resistance to this kind of environment."
       ]
     },
-    
+
     {
       "op" : "add",
       "path" : "/visitableTypeDescription/v-toxicwasteland",
@@ -90,7 +90,7 @@
         "The ^red;mycotoxic^reset; atmosphere of this ^#a270b5;toxic wasteland^reset; poses a threat to any unprepared explorer."
       ]
     },
-    
+
     {
       "op" : "add",
       "path" : "/visitableTypeDescription/v-strongholdgateway",
@@ -245,14 +245,6 @@
       "value" : {
         "displayName" : "Oxidized Copper Typhoon",
         "icon" : "/interface/cockpit/weather/v-coppersuperstorm2.png"
-      }
-    },
-    {
-      "op" : "add",
-      "path" : "/displayWeathers/v-windy",
-      "value" : {
-        "displayName" : "Wind",
-        "icon" : "/interface/cockpit/weather/windstorm.png"
       }
     },
     {

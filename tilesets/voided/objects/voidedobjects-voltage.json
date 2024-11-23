@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-voltage",
  "spacing":0,
- "tilecount":44,
+ "tilecount":45,
  "tiledversion":"1.11.0",
  "tileheight":80,
  "tileproperties":
@@ -241,14 +241,14 @@
         {
          "imagePositionX":"0",
          "imagePositionY":"0",
-         "object":"v-dischargetrap",
+         "object":"v-dischargetrapgeneric",
          "tilesetDirection":"right"
         },
      "39":
         {
          "imagePositionX":"0",
          "imagePositionY":"-8",
-         "object":"v-dischargetrap",
+         "object":"v-dischargetrapgeneric",
          "tilesetDirection":"right"
         },
      "4":
@@ -262,28 +262,35 @@
         {
          "imagePositionX":"0",
          "imagePositionY":"-8",
-         "object":"v-dischargetrap",
+         "object":"v-dischargetrapgeneric",
          "tilesetDirection":"right"
         },
      "41":
         {
          "imagePositionX":"0",
          "imagePositionY":"0",
-         "object":"v-dischargetrap",
+         "object":"v-dischargetrapgeneric",
          "tilesetDirection":"right"
         },
      "42":
         {
          "imagePositionX":"-8",
          "imagePositionY":"0",
-         "object":"v-dischargetrap",
+         "object":"v-dischargetrapgeneric",
          "tilesetDirection":"right"
         },
      "43":
         {
          "imagePositionX":"-8",
          "imagePositionY":"0",
-         "object":"v-dischargetrap",
+         "object":"v-dischargetrapgeneric",
+         "tilesetDirection":"right"
+        },
+     "44":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-voltagecitydoorrubber",
          "tilesetDirection":"right"
         },
      "5":
@@ -597,6 +604,13 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "44":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "5":
         {
          "imagePositionX":"string",
@@ -829,13 +843,13 @@
         },
      "38":
         {
-         "image":"..\/images\/objects\/dischargetrap.png",
+         "image":"..\/images\/objects\/dischargetrapgeneric.png",
          "imageheight":8,
          "imagewidth":16
         },
      "39":
         {
-         "image":"..\/images\/objects\/dischargetrapleft.png",
+         "image":"..\/images\/objects\/dischargetrapgenericleft.png",
          "imageheight":16,
          "imagewidth":8
         },
@@ -847,26 +861,32 @@
         },
      "40":
         {
-         "image":"..\/images\/objects\/dischargetrapright.png",
+         "image":"..\/images\/objects\/dischargetrapgenericright.png",
          "imageheight":16,
          "imagewidth":8
         },
      "41":
         {
-         "image":"..\/images\/objects\/dischargetraptop.png",
+         "image":"..\/images\/objects\/dischargetrapgenerictop.png",
          "imageheight":8,
          "imagewidth":16
         },
      "42":
         {
-         "image":"..\/images\/objects\/dischargetrapbottomflipped.png",
+         "image":"..\/images\/objects\/dischargetrapgenericbottomflipped.png",
          "imageheight":8,
          "imagewidth":16
         },
      "43":
         {
-         "image":"..\/images\/objects\/dischargetraptopflipped.png",
+         "image":"..\/images\/objects\/dischargetrapgenerictopflipped.png",
          "imageheight":8,
+         "imagewidth":16
+        },
+     "44":
+        {
+         "image":"..\/images\/objects\/voltagecitydoorrubber.png",
+         "imageheight":40,
          "imagewidth":16
         },
      "5":

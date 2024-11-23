@@ -11,16 +11,14 @@
   "power" : 0,
   //"damagePoly" : [ [-24, -40], [1, -25], [16, 0], [1, 25], [-24, 40] ],
   "damageType" : "NoDamage",
-  
+
   "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
-  
+
   "monsterType" : "v-shockwave",
   "spawnOffset" : [0, 0],
   "shockwaveDamageFactor" : 1.0,
   "monsterParameters" : {
     "maxArea" : 200,
-    "projectileParameters" : {
-      "damageType" : "ignoresdef"
-    }
+    "damageType" : "ignoresdef"
   }
 }

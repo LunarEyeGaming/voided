@@ -30,6 +30,7 @@ local nextBlocks
 local animNextBlocks
 
 local center
+local hasStopped
 local shouldDieVar
 
 local nails
@@ -48,7 +49,8 @@ function init()
   damage = config.getParameter("damage", 0) * root.evalFunction("monsterLevelPowerMultiplier", monster.level())
   damageKind = config.getParameter("damageKind")
   damagePoly = config.getParameter("damagePoly")
-  damageTeam = world.entityDamageTeam(sourceEntity or entity.id()) or entity.damageTeam()
+  damageTeam = config.getParameter("damageTeamObj", world.entityDamageTeam(sourceEntity or entity.id()) or entity.damageTeam())
+  damageType = config.getParameter("damageType")
 
   maxArea = config.getParameter("maxArea", 200)
   disappearDelay = config.getParameter("dissipationTime", 0.25)
@@ -76,6 +78,7 @@ function init()
   center = {math.floor(ownPos[1]) + 0.5, math.floor(ownPos[2]) + 0.5}
   mcontroller.setPosition(center)
 
+  hasStopped = false
   shouldDieVar = false
 
   message.setHandler("despawn", function()
@@ -103,6 +106,13 @@ function update(dt)
   -- If no new blocks were found or the shockwave has spread far enough, disappear. Special case: nails are there and
   -- the shockwave just spawned.
   if area > maxArea or next(nextBlocks) == nil then
+    -- This code is executed immediately after the wave has stopped and not on subsequent ticks.
+    if not hasStopped then
+      placeWave()
+
+      hasStopped = true
+    end
+
     disappearTimer = disappearTimer - dt
 
     if disappearTimer <= 0 then
@@ -115,7 +125,18 @@ function update(dt)
     return
   end
 
-  placeWave()
+  -- Animation parameters seem to update at a rate much less than 60 times per second, so if this script updates
+  -- faster than that, the wave appears broken without this code segment.
+  animTickTimer = animTickTimer - 1
+
+  if animTickTimer <= 0 then
+    placeWave()
+  end
+
+  for blockStr, _ in pairs(nextBlocks) do
+    table.insert(animNextBlocks, vVec2.fFromString(blockStr))
+  end
+
   expandWave()
 end
 
@@ -142,44 +163,35 @@ end
 
 ---Processes the wave so far.
 function placeWave()
-  -- Animation parameters seem to update at a rate much less than 60 times per second, so if this script updates
-  -- faster than that, the wave appears broken without this code segment.
-  animTickTimer = animTickTimer - 1
+  monster.setAnimationParameter("nextBlocks", animNextBlocks)
 
-  if animTickTimer <= 0 then
-    monster.setAnimationParameter("nextBlocks", animNextBlocks)
+  local particleNextBlocks = {}
+  local damageSources = {}
+  for _, block in ipairs(animNextBlocks) do
+    local blockPos = vec2.add(center, block)
 
-    local particleNextBlocks = {}
-    local damageSources = {}
-    for _, block in ipairs(animNextBlocks) do
-      local blockPos = vec2.add(center, block)
-
-      if isExposed(blockPos) or containsCreature(blockPos) then
-        table.insert(damageSources, {
-          poly = poly.translate(damagePoly, block),
-          damage = damage,
-          damageSourceKind = damageKind,
-          teamType = damageTeam.type,
-          teamNumber = damageTeam.team,
-          damageRepeatGroup = "v-shockwave",
-          sourceEntityId = sourceEntity
-        } --[[@as DamageSource]])
-        -- world.spawnProjectile(projectileType, blockPos, sourceEntity, {0, 0}, false, projectileParameters)
-        table.insert(particleNextBlocks, block)
-        triggerReceivers(blockPos)
-      end
+    if isExposed(blockPos) or containsCreature(blockPos) then
+      table.insert(damageSources, {
+        poly = poly.translate(damagePoly, block),
+        damage = damage,
+        damageSourceKind = damageKind,
+        teamType = damageTeam.type,
+        teamNumber = damageTeam.team,
+        damageType = damageType,
+        damageRepeatGroup = "v-shockwave",
+        sourceEntityId = sourceEntity
+      } --[[@as DamageSource]])
+      -- world.spawnProjectile(projectileType, blockPos, sourceEntity, {0, 0}, false, projectileParameters)
+      table.insert(particleNextBlocks, block)
+      triggerReceivers(blockPos)
     end
-
-    monster.setAnimationParameter("particleNextBlocks", particleNextBlocks)
-    monster.setDamageSources(damageSources)
-
-    animTickTimer = animTicks
-    animNextBlocks = {}
   end
 
-  for blockStr, _ in pairs(nextBlocks) do
-    table.insert(animNextBlocks, vVec2.fFromString(blockStr))
-  end
+  monster.setAnimationParameter("particleNextBlocks", particleNextBlocks)
+  monster.setDamageSources(damageSources)
+
+  animTickTimer = animTicks
+  animNextBlocks = {}
 end
 
 function isExposed(position)
