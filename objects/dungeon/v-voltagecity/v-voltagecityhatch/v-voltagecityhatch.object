@@ -1,0 +1,58 @@
+{
+  "objectName" : "v-voltagecityhatch",
+  "colonyTags" : ["human", "door", "rails"],
+  "rarity" : "Common",
+
+  "category" : "door",
+  "price" : 150,
+  "description" : "A thick metal hatch.",
+  "shortdescription" : "Thick Metal Hatch",
+  "race" : "human",
+
+  "apexDescription" : "An old, metal hatch.",
+  "avianDescription" : "A simply-designed metal hatch.",
+  "floranDescription" : "Floran hide under hatch and ssscare people.",
+  "glitchDescription" : "Unimpressed. A thick metal hatch.",
+  "humanDescription" : "A metallic hatch.",
+  "hylotlDescription" : "A crude metal hatch.",
+  "novakidDescription" : "This 'ere hatch is rusty but sturdy.",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "voltagecityhatch.png:default",
+      "imagePosition" : [-16, -8],
+      "renderLayer" : "Object+5",
+      "animationPosition" : [-16, -8],
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left", "right" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/door/door.lua" ],
+  "scriptDelta" : 5,
+
+  "animation" : "/objects/wired/door/door.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "open" : {
+        "pool" : [ "/sfx/objects/bardoor2_open.ogg" ],
+        "rangeMultiplier" : 0.5
+      },
+      "close" : {
+        "pool" : [ "/sfx/objects/bardoor2_close.ogg" ],
+        "rangeMultiplier" : 0.5
+      }
+    }
+  },
+  "animationParts" : {
+    "door" : "voltagecityhatch.png"
+  },
+
+  "inputNodes" : [ [-2, 0] ],
+  "outputNodes" : [ [2, -1] ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

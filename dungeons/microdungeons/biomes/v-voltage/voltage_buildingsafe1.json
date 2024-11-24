@@ -5,7 +5,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt1c0NgzAMBeCM0TOD0VXaJTpQe+DWmVoUfAtSwPgvfpbeDYg\/rCRLKY8FSZ0SpDJZqTJZqTJZqeAd10oFL7zwxi0J732qeRX5aHvnqeZWauAdy0vrPreM4t0zt7xrzUredR0J656XZvkuNZ8tI3hb5ijeM9Yjd5MnL8faa\/bivcL6\/X+nJxrenj60vNx\/cuU6ElaNeWrPGd4YXol969UrdU559Eqey\/DG9kY8r+Ad2yttlspZq7U323wjejlmC6\/ljOHV8XLM0fYvvPBKWOH17eVarQMvvKOYLe4ieH1bI5mpT641iv1qp2ezpNWbW8tqbdZ2csy977Wes3Qe9fc+b90\/x2zdB5IvP0L3u3Q=",
+         "data":"eJzt1ksOgjAQgOEew7UHw6voJTyQLthxJjUwgZA2TtvpPNpp8m8Mj34g0DmE++wNXTAyRrLCGMkKYyQrDPf2a4XhXvfmem\/XvUvYO\/5OnRYvVxq8z9A+bu90XYP\/rHv78sJ5H1u9eFPmmPc3Jibv1Mia8sL1fYW191YP3pjZirfEmvNt0uStsWLNWrwU1uV7nGOpNQ+H93zO89wWAjPWiynHginmrTHHjsV5P\/9dm5S31OxeG14qqwUv5bOr3Uv5XnZvX16L7yv39u3Vtp6kXndq8\/ZwfzFZ9paYJb0S99i9vN4as7Xn173upbS614a31Hr0ts69Ml4NcT6\/0nF+izQ0krfUaskM86y1WrFTOzWbW1q1ubms0mZuZ40Zu19sO0lnrh+7vfT8a8zS8\/DG6wP7fp04",
          "encoding":"base64",
          "height":60,
          "id":1,
@@ -78,6 +78,14 @@
                  "height":16,
                  "id":804,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -90,6 +98,14 @@
                  "height":16,
                  "id":869,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -102,6 +118,14 @@
                  "height":16,
                  "id":870,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -114,6 +138,14 @@
                  "height":24,
                  "id":815,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -126,6 +158,14 @@
                  "height":24,
                  "id":867,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -138,6 +178,14 @@
                  "height":24,
                  "id":868,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -412,6 +460,26 @@
                  "width":0,
                  "x":208,
                  "y":232
+                }, 
+                {
+                 "height":0,
+                 "id":897,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":32,
+                         "y":152
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":168,
+                 "y":72
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -657,7 +725,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":897,
+ "nextobjectid":898,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",

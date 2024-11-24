@@ -241,13 +241,13 @@
     "name" : "v-wardrone",
 
     "spawnParameters" : {
-      "area" : "air",
+      "area" : "surface",
       "region" : "all",
       "time" : "all"
     },
 
     "groupSize" : [1, 1],
-    "spawnChance" : 0.01,
+    "spawnChance" : 0.02,
     "monsterType" : [
       [1.0, "v-wardrone"]
     ],
@@ -293,7 +293,7 @@
       "aggressive" : true
     }
   },
-  
+
   // TOXIC WASTELAND
 
   {
@@ -314,7 +314,7 @@
       "aggressive" : true
     }
   },
-  
+
   {
     "name" : "v-downspitter2underground",
 
@@ -333,7 +333,7 @@
       "aggressive" : true
     }
   },
-  
+
   {
     "name" : "v-gasmonsterunderground",
 
@@ -352,7 +352,7 @@
       "aggressive" : true
     }
   },
-  
+
   {
     "name" : "v-killerbee",
 
@@ -371,7 +371,7 @@
       "aggressive" : true
     }
   },
-  
+
   {
     "name" : "v-fumeballoon",
 
@@ -390,7 +390,7 @@
       "aggressive" : true
     }
   },
-  
+
   {
     "name" : "v-bigpuffer",
 
@@ -409,7 +409,7 @@
       "aggressive" : true
     }
   },
-  
+
   {
     "name" : "v-mutanteel",
 
@@ -428,7 +428,7 @@
       "aggressive" : true
     }
   },
-  
+
   {
     "name" : "v-mushroomspider",
 

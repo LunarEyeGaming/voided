@@ -1,0 +1,63 @@
+{
+  "metadata" : {
+    "name" : "v-voltagecliffmicrodungeons",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [
+      "voltage_cliffleft1", "voltage_cliffleft2", "voltage_cliffleft3",
+      "voltage_cliffright1", "voltage_cliffright2", "voltage_cliffright3"
+    ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "voltage_cliffleft1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_cliffleft1.json" ]
+    },
+    {
+      "name" : "voltage_cliffleft2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_cliffleft2.json" ]
+    },
+    {
+      "name" : "voltage_cliffleft3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_cliffleft3.json" ]
+    },
+    {
+      "name" : "voltage_cliffright1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_cliffright1.json" ]
+    },
+    {
+      "name" : "voltage_cliffright2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_cliffright2.json" ]
+    },
+    {
+      "name" : "voltage_cliffright3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_cliffright3.json" ]
+    }
+  ]
+}
