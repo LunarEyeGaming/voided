@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":26,
+ "tilecount":27,
  "tiledversion":"1.11.0",
  "tileheight":8,
  "tileproperties":
@@ -91,6 +91,10 @@
      "25":
         {
          "material":"v-concreterubble"
+        },
+     "26":
+        {
+         "material":"v-bigwire"
         },
      "3":
         {
@@ -199,6 +203,10 @@
          "material":"string"
         },
      "25":
+        {
+         "material":"string"
+        },
+     "26":
         {
          "material":"string"
         },
@@ -344,6 +352,12 @@
      "25":
         {
          "image":"..\/images\/tilesandliquids\/concreterubble.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "26":
+        {
+         "image":"..\/images\/tilesandliquids\/bigwire.png",
          "imageheight":8,
          "imagewidth":8
         },

@@ -1,0 +1,24 @@
+{
+  "materialId" : 1208,
+  "materialName" : "v-bigwire",
+  "particleColor" : [31, 31, 31, 255],
+  "itemDrop" : "v-bigwirematerial",
+  "shortdescription" : "Big Wire",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_gravel.ogg",
+  "health" : 6,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/pipetemplate.config",
+  "renderParameters" : {
+    "texture" : "v-bigwire.png",
+    "variants" : 1,
+    "lightTransparent" : false,
+    "occludesBelow" : false,
+    "multiColored" : true,
+    "zLevel" : 3380
+  }
+}
