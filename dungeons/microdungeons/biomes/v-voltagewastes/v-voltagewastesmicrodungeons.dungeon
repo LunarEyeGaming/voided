@@ -5,7 +5,8 @@
     "rules" : [
     ],
 
-    "anchor" : [ "towers1", "towers2", "towers3", "towers4", "towers5" ],
+    "anchor" : [ "towers1", "towers2", "towers3", "towers4", "towers5", "stretch1", "stretch2", "electrogeyser1",
+    "electrogeyser2", "electrogeyser3" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -48,6 +49,41 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "towers5.json" ]
+    },
+    {
+      "name" : "stretch1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "stretch1.json" ]
+    },
+    {
+      "name" : "stretch2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "stretch2.json" ]
+    },
+    {
+      "name" : "electrogeyser1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "electrogeyser1.json" ]
+    },
+    {
+      "name" : "electrogeyser2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "electrogeyser2.json" ]
+    },
+    {
+      "name" : "electrogeyser3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "electrogeyser3.json" ]
     }
   ]
 }

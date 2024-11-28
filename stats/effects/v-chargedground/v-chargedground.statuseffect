@@ -1,0 +1,19 @@
+{
+  "name" : "v-chargedground",
+  "blockingStat" : "electricStatusImmunity",
+
+  "effectConfig" : {
+    "damage" : 20,
+    "tickTime" : 0.66
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "v-chargedground.lua"
+  ],
+
+  "animationConfig" : "v-chargedground.animation",
+
+  "label" : "Charged Ground - Conductive tiles hurt to step on",
+  "icon" : "/interface/statuses/v-chargedground.png"
+}

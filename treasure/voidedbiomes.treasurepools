@@ -17,7 +17,7 @@
       "pool" : [
         {"weight" : 0.5, "pool" : "basicTreasure"},
         {"weight" : 0.25, "item" : "v-insulatingsap"},
-        {"weight" : 0.125, "item" : "v-electricWeapon"},
+        {"weight" : 0.125, "pool" : "v-electricWeapon"},
         {"weight" : 0.125, "item" : "v-voltiteore"}
       ],
       "poolRounds" : [

@@ -5,7 +5,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt2FFuwyAMBmCOseceLLvKcokdqHnoW8+0Tq1VZNkGAzakEOl\/WEujfMGAtVsIP7eVqRNOcs1khWsmK1wzWeFa3s+1wrW8y6v1fl\/e+QrvxJ+3ziher4zg\/Q328fZul2egZmf37o9chRyvXJmxB\/O7vZMX3vP+itYbm3LGenk5M+X9vzbk5eYJG\/A7OFCwdzOycl54v7g+KS82Uwb8XaqeLb2UOdeL54xbv1Id4LEab4lVczZx3tSccd\/X1HONNdcMXuukvC2s98d94nA9j+f5C8HPdm9gzvXmRGPJCeWtMVP38pzP1LvhvKXm5aX7KelcSfVRsPdCpPG4z7K2Sl7p3KHOG40Xn8MW+1WJl3JLfSPnxfeBv1Pelvtyi\/nl3gc1v9LY3l5ce1yfjGshVc+4J7X0avYrbm1K6zfHq12\/1t7RzqPZvKP1k5q+E9c1ruURvTVzyHm95zcnZ\/aWmFN7uHR+cfs6\/M\/Mqp\/08nLmT\/BKfSd1Lsefabw15tr1m+qxqT4ZfNh\/Jm9uHcfe0noe2ct918NbYsVe7\/5qeW2tsdc6y9vHO0I812\/veJ5FI2Qmb6n1TGZ4zlrrWeytnSObLa2jub2svc3ezhpz7u+ocT2dWn\/u+N7PX2Pu\/Rwr8+UPKlvTgQ==",
+         "data":"eJzt2EGOwyAMBdAcY9ZzsM5VppfogZpFdz3TdDFW0ZcNGLCBQqS\/aEOjvGCC1cdx\/D52ls4xybGSlY6VrHSsZKVjez\/XSsf2bq\/W+\/P9ztfxTvh964zi9coI3tthn+3t672+co\/k\/M9dGHsKv7tO6g1NOWO9vFrzBbzSPKEBn8EJQe\/FyNrCi2bOgOdS9Wzp1ZjRi3Mmrd9YHeBYjbfEqjFL3tScSedr6rnGmmsmr3VS3hbW5+s6YaSex3P\/peC9PRuYc7050VhywnlrzNy1POcz9Wwkb6l5e\/l+KravpPooevdSYuOxz7K2xryxfYfbbzRe3Ict3lclXs4d6xslL16HPqe8Ld\/LLeZXeh7c\/MbG9vZi7Ul9MtZCqp6xJ7X0at5X0tqMrd8cr3b9WntH249W847WT2r6TqxrrOURvTVzKHm95zcnM3tLzJr\/8KS9m\/Na9pNeXsn8Cd5Y38nty+F3Gm+NuXb9pnpsrk8mH\/pn8ubWcegtreeRvdK5Ht4SK3q9+6vttbWGXutsbx\/vCPFcv73juReNkJW8pdaZzHSftdZZ7K2dI5straO5vay9zd7OGnPu77hxPZ1af+743vdfY+59Hzvr5Q8q0MSt",
          "encoding":"base64",
          "height":60,
          "id":1,
@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmEsOgzAMRN1lb9B1L9Zb9VicCbFAWCmQ4MS\/Mk+aDYqQnwYkAxEAAAAAAIjE573lRVv49dGJ4muVCL5f0k80X03g68PdfAEAIApTkaOdx3LfWFPONhn6toTPThWXluz59jjv3cuyz1rPR75S55rvKMrea2fhq+OawVeKpe8Vznx7gO9\/+xLB9+6+mnk+ftOyb4x2tvj\/ePTslHtnNN+efhd4t0Q+\/bZE8x3X9qWde1r5lv0uaO2TnEz9ZvaV9tvjnO39zeyLfu2\/9+F77pvl\/5XUlftqB74+vhEiwXtmS1f45kgv3vO3Oo5wzeKuibebpSvH29PSdeUunhzprJJzEbnaSaTupGSeHeRmBjPLZb4=",
+         "data":"eJztmEsOgkAQRNulN3DtxTiEd\/FYnMmwMHTGAYae6Z\/US2pjCPZLgWmHCAAAAAAARGJ6rnnQGv756ETwfRkliu+b9BPNVxP4+mDpG+H3CgAAojAX2drxLPaN8jvL2WYlX+kuyGenwuXsTrnl2+Ncu9dUmd06R75S5yPfUZS9H10LXx3XDL5SLH3PsOfbA3z\/25cIvlf31cz99puWfWO0s8VZ5NazU+7QVr6t6el3gXdL5NNvSzTPtLR9qXJPK9+y3wWtfZKTqd\/MvtJ+e5yzvb+ZfdGv\/f99+O77Zjm\/krpyX+3A18c3QiR4z2zpCt8c6cV7\/lbHEa5Z3DXxdrN05Xh7Wrp+uYonRzqr5LqInO0kUndSMs8OcvMB4Ypsng==",
          "encoding":"base64",
          "height":60,
          "id":2,
@@ -80,7 +80,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                     "parameters":"{ \"treasurePools\" : [ \"v-voltageTreasure\" ] }"
                     },
                  "propertytypes":
                     {
@@ -96,11 +96,31 @@
                 {
                  "gid":2147485438,
                  "height":16,
+                 "id":900,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePools\" : [ \"v-voltageTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":224,
+                 "y":344
+                }, 
+                {
+                 "gid":2147485438,
+                 "height":16,
                  "id":869,
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                     "parameters":"{ \"treasurePools\" : [ \"v-voltageTreasure\" ] }"
                     },
                  "propertytypes":
                     {
@@ -116,11 +136,31 @@
                 {
                  "gid":1790,
                  "height":16,
+                 "id":898,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePools\" : [ \"v-voltageTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":248,
+                 "y":344
+                }, 
+                {
+                 "gid":1790,
+                 "height":16,
                  "id":870,
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                     "parameters":"{ \"treasurePools\" : [ \"v-voltageTreasure\" ] }"
                     },
                  "propertytypes":
                     {
@@ -134,13 +174,33 @@
                  "y":152
                 }, 
                 {
+                 "gid":2147485438,
+                 "height":16,
+                 "id":899,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePools\" : [ \"v-voltageTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":232,
+                 "y":328
+                }, 
+                {
                  "gid":1797,
                  "height":24,
                  "id":815,
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                     "parameters":"{ \"treasurePools\" : [ \"v-voltageTreasure\" ] }"
                     },
                  "propertytypes":
                     {
@@ -160,7 +220,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                     "parameters":"{ \"treasurePools\" : [ \"v-voltageTreasure\" ] }"
                     },
                  "propertytypes":
                     {
@@ -176,11 +236,31 @@
                 {
                  "gid":2147485445,
                  "height":24,
+                 "id":901,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePools\" : [ \"v-voltageTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":272,
+                 "y":344
+                }, 
+                {
+                 "gid":2147485445,
+                 "height":24,
                  "id":868,
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{ \"treasurePool\" : [ \"v-voltageTreasure\" ] }"
+                     "parameters":"{ \"treasurePools\" : [ \"v-voltageTreasure\" ] }"
                     },
                  "propertytypes":
                     {
@@ -725,7 +805,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":898,
+ "nextobjectid":902,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",

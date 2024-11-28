@@ -1,0 +1,14 @@
+{
+  "projectileName" : "v-chargedground",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "frameNumber" : 1,
+  "timeToLive" : 0.25,
+  "speed" : 0,
+  "bounces" : 0,
+  "physics" : "laser",
+  "onlyHitTerrain" : true,
+  "animationLoops" : false,
+  "flippable" : false,
+
+  "scripts" : [ "v-chargedground.lua" ]
+}

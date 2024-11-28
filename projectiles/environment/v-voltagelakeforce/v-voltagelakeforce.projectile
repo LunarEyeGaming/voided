@@ -1,0 +1,33 @@
+{
+  // Keeps items afloat.
+  "projectileName" : "v-voltagelakeforce",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 0,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "timeToLive" : 1.5,
+
+  "boundBox" : [-50, -20, 50, 0],
+
+  "physicsForces" : {
+    "liftingForce" : {
+      "type" : "DirectionalForceRegion",
+      "yTargetVelocity" : 25,
+      "controlForce" : 250,
+      "rectRegion" : [-50, -20, 50, 0],
+      "categoryWhitelist" : [ "itemdrop" ]
+    }
+  },
+
+  "scripts" : [ "/scripts/projectiles/v-foreverprojectile.lua", "v-voltagelakeforce.lua" ],
+
+  "itemQueryRegion" : [-50, -20, 50, 0],
+
+  "itemLiftEffectProjectile" : "v-voltagelakeforceelectricity",
+  "itemLiftEffectProjectileInterval" : 0.1
+}

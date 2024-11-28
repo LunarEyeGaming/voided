@@ -1,4 +1,5 @@
 [
+  // VOLTAGE
   {
     "op": "add",
     "path": "/v-voltage",
@@ -6,6 +7,7 @@
       [0.6, "clear"],
       [0.3, "v-copperstormlight"],
       [0.1, "v-copperstorm"],
+      [0.1, "v-chargedground"],
       [0.05, "v-lightningstorm"]
     ]
   },
@@ -15,6 +17,7 @@
     "value": [
       [0.75, "v-copperstorm"],
       [0.20, "v-lightningstorm"],
+      [0.20, "v-chargedground"],
       [0.05, "v-coppersuperstorm"]
     ]
   },
@@ -64,9 +67,10 @@
     "op": "add",
     "path": "/v-voltageTest",
     "value": [
-      [1.0, "v-lightningstorm"]
+      [1.0, "v-chargedground"]
     ]
   },
+  // TOXIC WASTELAND
   {
     "op": "add",
     "path": "/v-toxicwasteland",

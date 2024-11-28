@@ -1,5 +1,7 @@
 {
   // This stagehand spawns core lightning.
+  // I would have renamed this to v-lakehelper to match the more generalized role that this stagehand now fulfills, but
+  // I will not rename it to maintain backwards compatibility with old worlds.
   "type" : "v-corelightningspawner",
   "keepAlive" : true,
 
@@ -13,5 +15,7 @@
   "maxSpawnHeight" : 100,
   "projectileType" : "v-corelightningtelegraph",
   "projectileDirection" : [0, 1],
-  "projectileParameters" : {"damageTeam" : {"type" : "indiscriminate"}, "power" : 1000}
+  "projectileParameters" : {"damageTeam" : {"type" : "indiscriminate"}, "power" : 1000},
+
+  "lakeForceProjectile" : "v-voltagelakeforce"
 }

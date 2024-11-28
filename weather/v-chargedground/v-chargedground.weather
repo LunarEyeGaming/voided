@@ -1,39 +1,24 @@
 {
   "name" : "v-chargedground",
 
-  "particles" : [
+  "projectiles" : [
     {
-      "density" : 0.00025,
-      "particle" : {
-        "type" : "animated",
-        "animation" : "/animations/windstorm/windstorm1.animation",
-        "velocity" : [0, 0],
-        "fade" : 0.5,
-        "looping" : true,
-        "destructionTime" : 20,
-        "timeToLive" : 20,
-        "collidesForeground" : false,
-        "collidesLiquid" : true,
-        "ignoreWind" : false
-      }
-    },
-    {
-      "density" : 0.00025,
-      "particle" : {
-        "type" : "animated",
-        "animation" : "/animations/windstorm/windstorm2.animation",
-        "velocity" : [0, 0],
-        "fade" : 0.5,
-        "looping" : true,
-        "destructionTime" : 20,
-        "timeToLive" : 20,
-        "collidesForeground" : false,
-        "collidesLiquid" : true,
-        "ignoreWind" : false
-      }
+      "projectile" : "v-chargedground",
+      "parameters" : {
+        "power" : 0,
+        "speed" : 200,
+        "onlyHitTerrain" : true
+      },
+      "velocity" : [0, -200],
+      "ratePerX" : 0.2,
+      "spawnAboveRegion" : 10,
+      "spawnHorizontalPad" : 10,
+      "windAffectAmount" : 0
     }
   ],
 
-  "duration" : [50, 240],
-  "maximumWind" : 30.0
+  "duration" : [200, 300],
+  "maximumWind" : 0,
+
+  "statusEffects" : ["v-chargedground"]
 }
