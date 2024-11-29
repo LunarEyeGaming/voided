@@ -3,22 +3,35 @@
 
   "projectiles" : [
     {
-      "projectile" : "v-chargedground",
+      "projectile" : "invisibleprojectile",
       "parameters" : {
         "power" : 0,
         "speed" : 200,
-        "onlyHitTerrain" : true
+        "onlyHitTerrain" : true,
+        "actionOnReap" : [
+          {
+            "action" : "projectile",
+            "type" : "v-chargedground",
+            "offsetRange" : [0, -50, 0, 0]
+          }
+        ]
       },
+      // "projectile" : "v-chargedground",
+      // "parameters" : {
+      //   "power" : 0,
+      //   "speed" : 200,
+      //   "onlyHitTerrain" : true
+      // },
       "velocity" : [0, -200],
       "ratePerX" : 0.2,
-      "spawnAboveRegion" : 10,
+      "spawnAboveRegion" : 50,
       "spawnHorizontalPad" : 10,
       "windAffectAmount" : 0
     }
   ],
 
-  "duration" : [200, 300],
+  "duration" : [90, 150],
   "maximumWind" : 0,
 
-  "statusEffects" : ["v-chargedground"]
+  "statusEffects" : ["v-chargedground", "v-chargedgroundmessage"]
 }

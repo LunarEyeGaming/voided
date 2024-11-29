@@ -1,0 +1,12 @@
+{
+  "name" : "v-chargedgroundmessage",  // Separate status effect so that SAIL won't be annoying.
+  "blockingStat" : "v-chargedgroundStatusImmunity",
+
+  "effectConfig" : {
+  },
+  "defaultDuration" : 120,
+
+  "scripts" : [
+    "v-chargedgroundmessage.lua"
+  ]
+}

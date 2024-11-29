@@ -11,7 +11,6 @@ local tickTime
 local tickDamage
 
 function init()
-  world.sendEntityMessage(entity.id(), "queueRadioMessage", "v-chargedgroundwarning")
   local matAttributes = root.assetJson("/v-matattributes.config")
   conductiveMats = set.new(matAttributes.conductiveMaterials)
   conductiveMatMods = set.new(matAttributes.conductiveMatMods)

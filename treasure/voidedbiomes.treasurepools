@@ -18,7 +18,39 @@
         {"weight" : 0.5, "pool" : "basicTreasure"},
         {"weight" : 0.25, "item" : "v-insulatingsap"},
         {"weight" : 0.125, "pool" : "v-electricWeapon"},
-        {"weight" : 0.125, "item" : "v-voltiteore"}
+        {"weight" : 0.125, "item" : "v-voltiteore"},
+        {"weight" : 0.05, "item" : ["v-teslagrenade", 3]}
+      ],
+      "poolRounds" : [
+        [0.1, 1],
+        [0.6, 2],
+        [0.3, 3]
+      ],
+      "allowDuplication" : true
+    }]
+  ],
+  "v-undergroundvoltageTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.125, "pool" : "v-electricWeapon"},
+        {"weight" : 0.25, "item" : "v-voltiteore"},
+        {"weight" : 0.05, "item" : ["v-teslagrenade", 3]}
+      ],
+      "poolRounds" : [
+        [0.1, 1],
+        [0.6, 2],
+        [0.3, 3]
+      ],
+      "allowDuplication" : true
+    }]
+  ],
+  "v-voltagewastesTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 1.0, "pool" : "basicTreasure"},
+        {"weight" : 0.1, "pool" : "v-electricWeapon"},
+        {"weight" : 0.1, "item" : "v-dischargetrappiece"}
       ],
       "poolRounds" : [
         [0.1, 1],

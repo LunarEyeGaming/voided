@@ -15,11 +15,11 @@
       {
         "select" : 1,
         "pool" : "generatedGroundAggroDay"
-      }, 
+      },
       {
         "select" : 3,
         "pool" : "nightTerrors"
-      },      
+      },
       {
         "select" : 2,
         "pool" : "generatedGround"
@@ -39,6 +39,9 @@
           "poisonResistance" : {
             "baseValue" : -0.25
           },
+          "v-chargedgroundStatusImmunity" : {
+            "baseValue" : 1.0
+          },
           "electricStatusImmunity" : {
             "baseValue" : 1.0
           },
@@ -53,7 +56,7 @@
   "mainBlock" : "v-oxidizedcoppersand",
   "subBlocks" : [ "v-oxidizedcopperrock" ],
   "ores" : "v-voltage",
-  
+
   "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15],
 
   "surfacePlaceables" : {
