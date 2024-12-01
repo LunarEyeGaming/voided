@@ -14,7 +14,7 @@
     "scripts" : [
       "/monsters/monster.lua"
     ],
-    
+
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 3,
 
@@ -60,7 +60,7 @@
             "winddownState" : "idle",
             "winddownStopForce" : 100,
             "winddownTime" : 1.0,
-            
+
             "trailProjectile" : "v-amperechargertrail",
             "trailDirection" : [0, 0],
             "trailProjectileConfig" : {
@@ -182,7 +182,7 @@
           "baseValue" : 9
         },
         "maxHealth" : {
-          "baseValue" : 70
+          "baseValue" : 50
         },
         "protection" : {
           "baseValue" : 0.0

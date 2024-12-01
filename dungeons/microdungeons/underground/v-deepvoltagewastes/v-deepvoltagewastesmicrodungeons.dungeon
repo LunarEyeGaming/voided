@@ -1,0 +1,82 @@
+{
+  "metadata" : {
+    "name" : "v-deepvoltagewastesmicrodungeons",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "open1", "open2", "tunnelWeakBackSlope1", "tunnelWeakBackSlope2", "tunnelWeakForwardSlope1",
+    "tunnelWeakForwardSlope2", "tunnelForwardSlope1", "tunnelForwardSlope2", "tunnelBackSlope1" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "open1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "open1.json" ]
+    },
+    {
+      "name" : "open2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "open2.json" ]
+    },
+    {
+      "name" : "tunnelWeakBackSlope1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelWeakBackSlope1.json" ]
+    },
+    {
+      "name" : "tunnelWeakBackSlope2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelWeakBackSlope2.json" ]
+    },
+    {
+      "name" : "tunnelWeakForwardSlope1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelWeakForwardSlope1.json" ]
+    },
+    {
+      "name" : "tunnelWeakForwardSlope2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelWeakForwardSlope2.json" ]
+    },
+    {
+      "name" : "tunnelForwardSlope1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelForwardSlope1.json" ]
+    },
+    {
+      "name" : "tunnelForwardSlope2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelForwardSlope2.json" ]
+    },
+    {
+      "name" : "tunnelBackSlope1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelBackSlope1.json" ]
+    }
+  ]
+}

@@ -29,8 +29,11 @@ function update(dt)
   if touchingConductiveGround() then
     -- Activate particle emitter.
     animator.setParticleEmitterActive("sparks", true)
-    -- Run tick damage
-    tickDamage:update(dt)
+    -- If grace period is not active...
+    if not status.statPositive("v-chargedgroundGraceStat") then
+      -- Run tick damage
+      tickDamage:update(dt)
+    end
   else
     -- Deactivate particle emitter.
     animator.setParticleEmitterActive("sparks", false)

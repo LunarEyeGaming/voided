@@ -29,8 +29,8 @@
         },
         "subsurface" : {
           "primaryRegion" : ["v-shallowundergroundvoltage"],
-          "secondaryRegions" : [ "v-deepvoltagewastes", "v-coilcaves", "v-barrencaves" ],
-          //"secondaryRegions" : [ "v-coilcaves" ],
+          // "secondaryRegions" : [ "v-deepvoltagewastes", "v-coilcaves", "v-barrencaves" ],
+          "secondaryRegions" : [ "v-deepvoltagewastes" ],
           "secondaryRegionCount" : [1, 1]
         },
         "underground1" : {

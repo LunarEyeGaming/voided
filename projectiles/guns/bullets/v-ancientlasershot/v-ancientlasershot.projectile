@@ -13,7 +13,7 @@
     {
       "time" : 0.03,
       "action" : "particle",
-      "rotate" : true,
+      // "rotate" : true,
       "specification" : {
         "type" : "textured",
         "image" : "/projectiles/guns/bullets/v-ancientlasershot/essence.png",
@@ -24,9 +24,11 @@
         "timeToLive" : 0,
         "size" : 1.0,
         "destructionTime" : 0.5,
+        "rotation" : 0,
         "variance" : {
           "size" : 0.1,
-          "initialVelocity" : [1, 1]
+          "initialVelocity" : [1, 1],
+          "rotation" : 180
         }
       }
     }
