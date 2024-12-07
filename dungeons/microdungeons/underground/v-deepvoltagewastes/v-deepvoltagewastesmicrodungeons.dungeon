@@ -6,7 +6,7 @@
     ],
 
     "anchor" : [ "open1", "open2", "tunnelWeakBackSlope1", "tunnelWeakBackSlope2", "tunnelWeakForwardSlope1",
-    "tunnelWeakForwardSlope2", "tunnelForwardSlope1", "tunnelForwardSlope2", "tunnelBackSlope1" ],
+    "tunnelWeakForwardSlope2", "tunnelForwardSlope1", "tunnelForwardSlope2", "tunnelBackSlope1", "tunnelBackSlope2" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -77,6 +77,27 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "tunnelBackSlope1.json" ]
+    },
+    {
+      "name" : "tunnelBackSlope2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelBackSlope2.json" ]
+    },
+    {
+      "name" : "tunnel1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnel1.json" ]
+    },
+    {
+      "name" : "tunnel2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnel2.json" ]
     }
   ]
 }

@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":27,
+ "tilecount":28,
  "tiledversion":"1.11.0",
  "tileheight":8,
  "tileproperties":
@@ -95,6 +95,10 @@
      "26":
         {
          "material":"v-bigwire"
+        },
+     "27":
+        {
+         "material":"v-oxidizeddeepcopperrock"
         },
      "3":
         {
@@ -207,6 +211,10 @@
          "material":"string"
         },
      "26":
+        {
+         "material":"string"
+        },
+     "27":
         {
          "material":"string"
         },
@@ -358,6 +366,12 @@
      "26":
         {
          "image":"..\/images\/tilesandliquids\/bigwire.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "27":
+        {
+         "image":"..\/images\/tilesandliquids\/oxidizeddeepcopperrock.png",
          "imageheight":8,
          "imagewidth":8
         },

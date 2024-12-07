@@ -1,4 +1,5 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":83,
  "infinite":false,
  "layers":[
@@ -7,6 +8,7 @@
          "data":"eJzt2UFywjAMBVBfi9txOrLjTKyyYSz5K7H1Hfsv\/rSdBkYvlgSlRynvQ1EURVEURVGUrvmUUmbODsZedna9mW52jZlmdm3ZZnZdmV52Tdlmdj3yjvOya8k2s+uQV1555ZVXXnnXjbxrR961I+\/a2elv4J0\/39jRu7JZnz\/3NX+DYVmvmqO+rPvQ8\/+Eo4w9\/FGnZ2c4EX8P4xm2K5KdrHfN7LrlHWd9kvmss+fO8uwvMNb1yPOMPNOouVZb7XvEYj2OYbXM3lmhPdm6Tywr4kX61PJ6\/T7D2bbOs3XG1iygPcKwIj0c3V3IvRrp7T176Jk\/xXvFF\/0dq5eRPeX1NnJNthfZVdGd3Lr2\/2u213N7Pm+uvZ+Z89syo++lrp450xzdR7WejMzubK\/BVu+2ZrA17+x+juwryx95\/Ixna\/XmnfcbqJc5t8gZe3vbs85mrtWF7KJIr8zez9bu8l63ajZmT1+dw1Fhzq+8z7bOZM6yyiznKk7WPWDbsvxsw0g3u05FeWp+279xIQ==",
          "encoding":"base64",
          "height":83,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt1lkOwjAMRdFsq\/v\/Z038gIRK3bii9nPwPVKEGAS56RDGAAAAAAAAAAAAAAAAAAAAGR4Xx2qu9q24DlGN1foVndn96q7MNVDPP7NZPW9641pXah4fj3eyfm97jYgWz3dHqtaboUpvluzeSsfWM6+oXsW1qx6K1qhj27FXdb\/q1jscc9qM12b3b8\/7it63WbPVfrQ2nvVQXL97Wee0+v\/kCOqq2nvl+soY2a3eY\/DL8a3cO\/vsnb3RPPPyfHb15m18z8vaZ2b7z9Gepuqdnc9n++7+ubVfW+tTqVc1oqn7OvdmUXdmtr6pezs1Z+vSeaZLp6VL594\/twEVPAEeSdYL",
+         "data":"eJzt1kESgjAMRuFei\/vvPZMb2BRKw5Tkj+Z9M12ojPQVsLYGAAAAAAAAAAAAAAAAAAAA5PLZh\/f3W4dyHhHn8G6POudq68r5FWv8Vu+TuajvJ49mjzV869mxtG\/78GixfLenbL0RsvRGie7NdG0t8\/LqVTy76qFo9bq2FXtVv1fVepthTtvgvdnvt+VzRe9h1jxqv1oby3oont9e1D2t\/j\/ZnLqy9j55viJGdKv1Gqxc38y9s2Pf7PVmmZfl2F9v3tp5XqN9Zrb\/XO1pqt7Z\/Xy37\/avR\/v1aH0y9aqGN3Vf5d4o6s7I1oO6t1JztCqdd6p0jlTp7P1zG5DBF9wUWIM=",
          "encoding":"base64",
          "height":83,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[
                 {
@@ -66,7 +71,7 @@
                  "visible":true,
                  "width":8,
                  "x":288,
-                 "y":344
+                 "y":392
                 }, 
                 {
                  "gid":204,
@@ -78,7 +83,7 @@
                  "visible":true,
                  "width":8,
                  "x":216,
-                 "y":336
+                 "y":392
                 }, 
                 {
                  "gid":204,
@@ -90,7 +95,7 @@
                  "visible":true,
                  "width":8,
                  "x":144,
-                 "y":344
+                 "y":368
                 }, 
                 {
                  "gid":204,
@@ -102,7 +107,7 @@
                  "visible":true,
                  "width":8,
                  "x":120,
-                 "y":352
+                 "y":368
                 }, 
                 {
                  "gid":7305,
@@ -133,6 +138,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":5,
          "name":"wiring - lights & guns",
          "objects":[],
          "opacity":1,
@@ -144,6 +150,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":6,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -155,6 +162,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":7,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -165,6 +173,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -175,6 +184,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"anchors etc",
          "objects":[
                 {
@@ -377,6 +387,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -385,10 +396,11 @@
          "x":0,
          "y":0
         }],
+ "nextlayerid":11,
  "nextobjectid":745,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.0",
  "tileheight":8,
  "tilesets":[
         {
@@ -529,6 +541,6 @@
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":60
 }

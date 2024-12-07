@@ -1,0 +1,24 @@
+{
+  "materialId" : 1209,
+  "materialName" : "v-oxidizeddeepcopperrock",
+  "particleColor" : [76, 135, 84, 255],
+  "itemDrop" : "v-oxidizeddeepcopperrockmaterial",
+  "description" : "Rock rich in oxidized copper that is densely packed together.",
+  "shortdescription" : "Packed Copper Rock (Ox.)",
+  "glitchDescription" : "Analysing. This oxidized copper rock has high density.",
+  "floranDescription" : "Hard green rockss.",
+  "novakidDescription" : "That's some tough oxidized copper.",
+  "footstepSound" : "/sfx/blocks/footstep_stone.ogg",
+  "health" : 17,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-oxidizeddeepcopperrock.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1600
+  }
+}
