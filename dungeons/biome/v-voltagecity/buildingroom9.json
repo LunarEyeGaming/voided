@@ -134,7 +134,7 @@
                  "y":192
                 }, 
                 {
-                 "gid":7690,
+                 "gid":7692,
                  "height":8,
                  "id":761,
                  "name":"",
@@ -146,7 +146,7 @@
                  "y":248
                 }, 
                 {
-                 "gid":7690,
+                 "gid":7692,
                  "height":8,
                  "id":764,
                  "name":"",
@@ -158,7 +158,7 @@
                  "y":24
                 }, 
                 {
-                 "gid":7953,
+                 "gid":7955,
                  "height":16,
                  "id":784,
                  "name":"",
@@ -194,7 +194,7 @@
                  "y":80
                 }, 
                 {
-                 "gid":7949,
+                 "gid":7951,
                  "height":24,
                  "id":795,
                  "name":"contains position-sensitive offsets",
@@ -758,7 +758,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7958,
+                 "gid":7960,
                  "height":8,
                  "id":837,
                  "name":"",
@@ -770,7 +770,7 @@
                  "y":200
                 }, 
                 {
-                 "gid":7958,
+                 "gid":7960,
                  "height":8,
                  "id":838,
                  "name":"",
@@ -782,7 +782,7 @@
                  "y":104
                 }, 
                 {
-                 "gid":7968,
+                 "gid":7970,
                  "height":40,
                  "id":839,
                  "name":"",
@@ -794,7 +794,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7967,
+                 "gid":7969,
                  "height":40,
                  "id":840,
                  "name":"",
@@ -804,6 +804,54 @@
                  "width":16,
                  "x":80,
                  "y":208
+                }, 
+                {
+                 "gid":6525,
+                 "height":8,
+                 "id":841,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":104,
+                 "y":168
+                }, 
+                {
+                 "gid":6523,
+                 "height":8,
+                 "id":842,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":424,
+                 "y":168
+                }, 
+                {
+                 "gid":6523,
+                 "height":8,
+                 "id":843,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":64,
+                 "y":168
+                }, 
+                {
+                 "gid":7344,
+                 "height":16,
+                 "id":844,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":288,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -876,6 +924,66 @@
                  "width":0,
                  "x":48,
                  "y":216
+                }, 
+                {
+                 "height":0,
+                 "id":845,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":128,
+                         "y":40
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":296,
+                 "y":120
+                }, 
+                {
+                 "height":0,
+                 "id":846,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-192,
+                         "y":40
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":296,
+                 "y":120
+                }, 
+                {
+                 "height":0,
+                 "id":847,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-232,
+                         "y":40
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":296,
+                 "y":120
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1381,7 +1489,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":841,
+ "nextobjectid":848,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -1492,15 +1600,15 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7688,
+         "firstgid":7690,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7697,
+         "firstgid":7699,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
         }, 
         {
-         "firstgid":7931,
+         "firstgid":7933,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
