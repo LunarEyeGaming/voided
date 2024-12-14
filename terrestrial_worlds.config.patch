@@ -29,8 +29,8 @@
         },
         "subsurface" : {
           "primaryRegion" : ["v-shallowundergroundvoltage"],
-          // "secondaryRegions" : [ "v-deepvoltagewastes", "v-coilcaves", "v-barrencaves" ],
-          "secondaryRegions" : [ "v-deepvoltagewastes" ],
+          "secondaryRegions" : [ "v-deepvoltagewastes", "v-coilcaves", "v-barrencaves" ],
+          // "secondaryRegions" : [ "v-deepvoltagewastes" ],
           "secondaryRegionCount" : [1, 1]
         },
         "underground1" : {
@@ -245,6 +245,8 @@
           "primaryRegion" : [ "v-toxicwasteland" ],
           "secondaryRegions" : [ "v-crystalmountains", "v-toxiclake" ],
           "secondaryRegionCount" : [0, 2]
+          // "secondaryRegions" : [ "v-toxiclake" ],
+          // "secondaryRegionCount" : [1, 1]
         },
         "subsurface" : {
           "primaryRegion" : ["v-shallowundergroundtoxic"],
@@ -404,7 +406,7 @@
       "gravityRange" : [80, 80],
       "layers" : {
         "surface" : {
-          "primaryRegion" : [ "v-terraintest" ]
+          "primaryRegion" : [ "v-toxiclake" ]
         },
         "subsurface" : {
           "primaryRegion" : ["v-terraintest"]

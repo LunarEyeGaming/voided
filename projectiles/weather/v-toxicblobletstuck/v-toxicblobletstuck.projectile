@@ -1,0 +1,39 @@
+{
+  "projectileName" : "v-toxicblobletstuck",
+  "image" : "toxicblobletstuck.png",
+  "physics" : "grenade",
+  "movementSettings" : {
+    "bounceFactor" : 0
+  },
+  "animationCycle" : 0.1,
+  "bounces" : -1,
+  "frameNumber" : 1,
+  "winddownFrames" : 3,
+  "damageKindImage" : "icon.png",
+  "timeToLive" : 5,
+  "speed" : 50,
+  "damageKind" : "acid",
+
+  "orientationLocked" : true,
+
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/tar_hit_organic1.ogg", "/sfx/projectiles/tar_hit_organic2.ogg",
+          "/sfx/projectiles/tar_hit_organic3.ogg", "/sfx/projectiles/tar_hit_organic4.ogg",
+          "/sfx/projectiles/tar_hit_organic5.ogg" ]
+    }
+  ],
+  "actionOnCollide" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/tar_hit_organic1.ogg", "/sfx/projectiles/tar_hit_organic2.ogg",
+          "/sfx/projectiles/tar_hit_organic3.ogg", "/sfx/projectiles/tar_hit_organic4.ogg",
+          "/sfx/projectiles/tar_hit_organic5.ogg" ]
+    }
+  ],
+
+  "scripts" : [ "/projectiles/guns/bullets/v-stucksludge/v-stucksludge.lua" ]
+}

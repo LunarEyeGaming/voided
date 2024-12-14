@@ -22,10 +22,14 @@ function update(dt)
     if timer <= 0 then
       effect.removeStatModifierGroup(immunityGroup)  -- Remove immunity
       timer = nil  -- Mark immunity timer period as over.
+      immunityGroup = nil  -- Clear immunity group from memory
     end
   end
 end
 
 function uninit()
-  effect.removeStatModifierGroup(immunityGroup)  -- Remove immunity when uninitializing
+  -- If the immunity was not already removed...
+  if immunityGroup then
+    effect.removeStatModifierGroup(immunityGroup)  -- Remove immunity when uninitializing
+  end
 end

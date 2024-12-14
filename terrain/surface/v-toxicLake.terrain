@@ -7,16 +7,26 @@
       //jaggy ledges
       "type" : "displacement",
       "xType" : "perlin",
+      // "xOctaves" : 3,
+      // "xFreq" : 0.1,
+      // "xAmp" : 10,
+      // "xXInfluence" : 0.5,
+      // "xYInfluence" : 0.5,
+      // "yType" : "perlin",
+      // "yOctaves" : 1,
+      // "yFreq" : 0.3,
+      // "yAmp" : 2,
+      // "yYInfluence" : 1.0,
       "xOctaves" : 3,
-      "xFreq" : 0.08,
-      "xAmp" : 12,
+      "xFreq" : 0.1,
+      "xAmp" : 5,
       "xXInfluence" : 0.5,
       "xYInfluence" : 0.5,
       "yType" : "perlin",
-      "yOctaves" : 1,
-      "yFreq" : 0.1,
+      "yOctaves" : 3,
+      "yFreq" : 0.3,
       "yAmp" : 2,
-      "yYInfluence" : 0,
+      "yYInfluence" : 0.0,
 
       "source" : {
         //roughish islands
@@ -31,7 +41,7 @@
           "amplitude" : 1.1,
           "bias" : -0.05
         },
-        "islandTaperPoint" : 0.2,
+        "islandTaperPoint" : 0.1,
 
         "islandHeight" : {
           "type" : "perlin",
@@ -44,8 +54,8 @@
         "islandDepth" : {
           "type" : "perlin",
           "octaves" : 2,
-          "frequency" : 0.02,
-          "amplitude" : 6,
+          "frequency" : 0.08,
+          "amplitude" : 4,
           "bias" : 6
         }
       }
@@ -53,34 +63,46 @@
     // Floating bits
     {
       "type" : "mix",
-      
+
       "mixSource" : {
         "type" : "flatSurface",
 
         "adjustment" : -20
       },
-      
+
       "aSource" : {
         "type" : "constant",
         "value" : -60
       },
-      
+
       "bSource" : {
-        // Strips
-        "type" : "perlin",
-        "function" : "perlin",
-        "octaves" : 2,
-        "freq" : 0.05,
-        "amp" : 50,
-        "bias" : -20,
-        "xInfluence" : 1.0,
-        "yInfluence" : 1.0
+        // jaggy ledges
+        "type" : "displacement",
+        "xType" : "perlin",
+        "xOctaves" : 3,
+        "xFreq" : 0.1,
+        "xAmp" : 2,
+        "yType" : "perlin",
+        "yOctaves" : 3,
+        "yFreq" : 0.1,
+        "yAmp" : 2,
+        "source" : {
+          // Clumps
+          "type" : "perlin",
+          "function" : "perlin",
+          "octaves" : 2,
+          "freq" : 0.05,
+          "amp" : 50,
+          "bias" : -20,
+          "xInfluence" : 1.0,
+          "yInfluence" : 1.0
+        }
       }
     },
     // Decaying part
     {
       "type" : "mix",
-      
+
       "mixSource" : {
         //low rolling hills
         "type" : "displacement",
@@ -100,12 +122,12 @@
           "adjustment" : -40
         }
       },
-      
+
       "aSource" : {
         "type" : "constant",
         "value" : -60
       },
-      
+
       "bSource" : {
         // Strand distortion
         "type" : "displacement",

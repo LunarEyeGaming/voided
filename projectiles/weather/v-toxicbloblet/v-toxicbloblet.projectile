@@ -1,0 +1,22 @@
+{
+  "projectileName" : "v-toxicbloblet",
+  "image" : "toxicbloblet.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "timeToLive" : 5,
+  "flippable" : true,
+  "fullbright" : false,
+  "physics" : "grenade",
+  "bounces" : 0,
+  "damageKind" : "acid",
+
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-toxicblobletstuck",
+      "inheritDamageFactor" : 1
+    }
+  ],
+
+  "speed" : 20
+}
