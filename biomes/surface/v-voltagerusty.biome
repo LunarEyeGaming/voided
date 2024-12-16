@@ -454,6 +454,20 @@
       },
       {
         "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseSmall",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-ironspikesrusty1" ], [1.0, "v-ironspikesrusty2" ], [1.0, "v-ironspikesrusty3" ], [1.0, "v-ironspikesrusty4" ], [1.0, "v-ironspikesrusty5" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
         "priority" : 2.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:scatteredSmall",

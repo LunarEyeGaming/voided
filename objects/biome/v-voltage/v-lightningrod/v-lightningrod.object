@@ -4,20 +4,20 @@
   "colonyTags" : ["misc"],
   "printable" : false,
   "rarity" : "Common",
-  "category" : "trap",
+  "category" : "furniture",
   "price" : 80,
 
-  "description" : "<todo>",
+  "description" : "A large pole of iron that redirects lightning strikes.",
   "shortdescription" : "Lightning Rod",
   "race" : "generic",
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "This lightning rod attracts enormous discharges of electricity.",
+  "avianDescription" : "A cold pole of iron that brings bolts of lightning.",
+  "floranDescription" : "Iron sstick bringsss big blue lightss.",
+  "glitchDescription" : "Secured. Redirecting lightning to one spot makes navigating nearby terrain less dangerous.",
+  "humanDescription" : "A lightning rod. I'll have to stay away from it.",
+  "hylotlDescription" : "A simple pole designed to attract lightning strikes.",
+  "novakidDescription" : "Big ol' stick o' iron brings lightnin' here.",
 
   "inventoryIcon" : "icon.png",
   "orientations" : [
@@ -29,9 +29,21 @@
 
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "lightningrodceiling.png",
+      "imagePosition" : [-8, -40],
+      "frames" : 1,
+      "animationCycle" : 0.5,
 
+      "isUpsideDown" : true,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
     }
   ],
 
-  "builder" : "/items/buildscripts/v-builditem.lua"
+  "builder" : "/items/buildscripts/v-builditem.lua",
+
+  "learnBlueprintsOnPickup" : [ "v-lightningrod" ]
 }

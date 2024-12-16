@@ -25,7 +25,7 @@
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
-      
+
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "oxidizeddischargetrap.png",
@@ -42,7 +42,7 @@
       "image" : "oxidizeddischargetrap.png:<color>.<frame>",
       "imagePosition" : [0, 0],
       "direction" : "right",
-      
+
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "oxidizeddischargetrap.png",
@@ -59,7 +59,7 @@
       "image" : "oxidizeddischargetrapleft.png:<color>.<frame>",
       "imagePosition" : [0, -8],
       "direction" : "right",
-      
+
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "oxidizeddischargetrapleft.png",
@@ -76,7 +76,7 @@
       "image" : "oxidizeddischargetrapright.png:<color>.<frame>",
       "imagePosition" : [0, -8],
       "direction" : "right",
-      
+
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "oxidizeddischargetrapright.png",
@@ -94,7 +94,7 @@
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
-      
+
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "oxidizeddischargetrapceiling.png",
@@ -111,7 +111,7 @@
       "image" : "oxidizeddischargetrapceiling.png:<color>.<frame>",
       "imagePosition" : [0, 0],
       "direction" : "right",
-      
+
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "oxidizeddischargetrapceiling.png",
@@ -154,7 +154,7 @@
   "fireTime" : 4.0, // rate of fire
   "fireTimeVariance" : 1.0, // variation in rate of fire
   /* "projectile" : "orbitalup", // name of projectile (required)
-  "projectileConfig" : { 
+  "projectileConfig" : {
     "damageTeam" : { "type" : "environment" },
     "power" : 50,
     "speed" : 0,
@@ -176,21 +176,21 @@
     ]
   }, */
   "projectile" : "v-dischargetrap", // name of projectile (required)
-  "projectileConfig" : { 
+  "projectileConfig" : {
     "damageTeam" : { "type" : "environment" },
     "damageType" : "ignoresdef",
     "power" : 50
   },
-  
+
   "health" : 5,
 
   "biomePlaced" : true,
 
   "smashable" : true,
   "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
-  "smashParticles" : [ { "count" : 6, "particle" : "greystoneshard" } ],
+  "smashParticles" : [ { "count" : 6, "particle" : "v-oxidizedcoppershard" } ],
   "breakDropPool" : "v-oxidizeddischargetrapTreasure",
   "smashDropPool" : "v-oxidizeddischargetrapTreasure",
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

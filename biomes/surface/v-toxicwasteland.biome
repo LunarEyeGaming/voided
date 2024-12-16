@@ -145,6 +145,34 @@
 
         "type" : "treasureBox",
         "treasureBoxSets" : [ "v-poisonWeaponChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseSmall",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-toxicrock1" ], [1.0, "v-toxicrock2" ], [1.0, "v-toxicrock3" ], [1.0, "v-toxicrock4" ], [1.0, "v-toxicrock5" ] ],
+            "parameters" : { }
+          }
+        ]
       }
     ]
   },
@@ -203,6 +231,34 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-poisongasprimerlite" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseSmall",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-toxicrock1" ], [1.0, "v-toxicrock2" ], [1.0, "v-toxicrock3" ], [1.0, "v-toxicrock4" ], [1.0, "v-toxicrock5" ] ],
             "parameters" : { }
           }
         ]

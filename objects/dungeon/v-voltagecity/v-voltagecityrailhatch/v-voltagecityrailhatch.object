@@ -38,6 +38,11 @@
     [[0, -1], "metamaterial:rail"], [[0, 0], "metamaterial:rail"]
   ],
 
+  "closedMaterialSpaces" : [
+    [[-2, 0], "metamaterial:v-doorconductive"], [[-1, 0], "metamaterial:v-doorconductive"], [[0, 0], "metamaterial:v-doorconductive"], [[1, 0], "metamaterial:v-doorconductive"], [[2, 0], "metamaterial:v-doorconductive"],
+    [[-2, -1], "metamaterial:v-doorconductive"], [[-1, -1], "metamaterial:v-doorconductive"], [[0, -1], "metamaterial:v-doorconductive"], [[1, -1], "metamaterial:v-doorconductive"], [[2, -1], "metamaterial:v-doorconductive"]
+  ],
+
   "animation" : "/objects/wired/door/door.animation",
   "animationCustom" : {
     "sounds" : {

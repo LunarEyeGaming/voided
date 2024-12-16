@@ -222,6 +222,20 @@
 
         "type" : "microdungeon",
         "microdungeons" : [ "v-campsite" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseSmall",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-toxicrock1" ], [1.0, "v-toxicrock2" ], [1.0, "v-toxicrock3" ], [1.0, "v-toxicrock4" ], [1.0, "v-toxicrock5" ] ],
+            "parameters" : { }
+          }
+        ]
       }
     ]
   },

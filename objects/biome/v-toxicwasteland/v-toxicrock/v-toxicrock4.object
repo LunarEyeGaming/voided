@@ -1,0 +1,36 @@
+{
+  "objectName" : "v-toxicrock4",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "description" : "A pile of toxic rocks.",
+  "shortdescription" : "Toxic Rocks",
+  "race" : "generic",
+
+  "apexDescription" : "These rocks appear to emit a green fluid. ",
+  "avianDescription" : "These rocks look toxic.",
+  "floranDescription" : "Green rockss.",
+  "glitchDescription" : "Uninterested. Rocks laced with poison.",
+  "humanDescription" : "Maybe I should stay away from these rocks.",
+  "hylotlDescription" : "Green is an abnormal color for a rock.",
+  "novakidDescription" : "Buncha poisonous rocks.",
+
+  "category" : "breakable",
+  "printable" : false,
+
+  "inventoryIcon" : "toxicrock4.png",
+
+  "orientations" : [
+    {
+      "dualImage" : "toxicrock4.png",
+      "imagePosition" : [-16, 0],
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg" ],
+  "smashParticles" : [ { "count" : 5, "particle" : "v-toxicrockshard" } ],
+
+  "biomePlaced" : true
+}

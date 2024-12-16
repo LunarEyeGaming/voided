@@ -1,4 +1,6 @@
 function destroy()
+  -- lightningboltredirection. Convert to a function named redirectLightning and put into a utility script if more than
+  -- two are used.
   -- Get parameters
   local lightningRodType = config.getParameter("lightningRodType")
   local lightningRodRedirectRadius = config.getParameter("lightningRodRedirectRadius")
@@ -11,7 +13,7 @@ function destroy()
   local targetPos
 
   -- If at least one object was found...
-  if #queried > 0 then
+  if #queried > 0 and not world.getObjectParameter(queried[1], "isUpsideDown") then
     targetPos = world.entityPosition(queried[1])
   else
     targetPos = mcontroller.position()

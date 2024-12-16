@@ -6,7 +6,7 @@
     "groups" : [
       {
         "select" : 4,
-        "pool" : [ 
+        "pool" : [
           [ 1.0, "v-bigpuffer" ],
           [ 1.0, "v-mutanteel" ],
           [ 1, "passiveLargeFish" ],
@@ -54,6 +54,20 @@
         "objectSets" : [
           {
             "pool" : [ [0.20, "v-ceilingglowplant1" ], [0.20, "v-ceilingglowplant2" ], [0.20, "v-ceilingglowplant3" ], [0.20, "v-ceilingglowplant4" ], [0.20, "v-ceilingglowplant5" ]]
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseSmall",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-toxicrock1" ], [1.0, "v-toxicrock2" ], [1.0, "v-toxicrock3" ], [1.0, "v-toxicrock4" ], [1.0, "v-toxicrock5" ] ],
+            "parameters" : { }
           }
         ]
       }

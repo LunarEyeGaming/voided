@@ -6,7 +6,7 @@
     "groups" : [
       {
         "select" : 2,
-        "pool" : [ 
+        "pool" : [
           [ 1.0, "v-gasmonsterunderground" ],
           [ 1.0, "v-downspitterunderground" ],
           [ 1.0, "v-killerbee" ]
@@ -109,6 +109,20 @@
 
         "type" : "microdungeon",
         "microdungeons" : [ "v-killerbeehive" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-toxicrock1" ], [1.0, "v-toxicrock2" ], [1.0, "v-toxicrock3" ], [1.0, "v-toxicrock4" ], [1.0, "v-toxicrock5" ] ],
+            "parameters" : { }
+          }
+        ]
       }
     ]
   }

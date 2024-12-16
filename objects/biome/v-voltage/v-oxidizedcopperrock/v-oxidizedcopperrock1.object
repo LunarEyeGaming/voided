@@ -1,0 +1,36 @@
+{
+  "objectName" : "v-oxidizedcopperrock1",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "description" : "A pile of rocks rich in oxidized copper.",
+  "shortdescription" : "Oxidized Copper Rocks",
+  "race" : "generic",
+
+  "apexDescription" : "These rocks appear to be made of almost pure, oxidized copper.",
+  "avianDescription" : "These teal rocks are made of old copper.",
+  "floranDescription" : "Green rocksss.",
+  "glitchDescription" : "Intrigued. These rocks are made of oxidized copper.",
+  "humanDescription" : "What is this? Oxidized copper Mars?",
+  "hylotlDescription" : "Rock rich in oxidized copper.",
+  "novakidDescription" : "Buncha oxidized copper rocks.",
+
+  "category" : "breakable",
+  "printable" : false,
+
+  "inventoryIcon" : "oxidizedcopperrock1.png",
+
+  "orientations" : [
+    {
+      "dualImage" : "oxidizedcopperrock1.png",
+      "imagePosition" : [-16, 0],
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg" ],
+  "smashParticles" : [ { "count" : 5, "particle" : "v-oxidizedcoppershard" } ],
+
+  "biomePlaced" : true
+}

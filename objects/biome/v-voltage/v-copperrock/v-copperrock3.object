@@ -1,0 +1,36 @@
+{
+  "objectName" : "v-copperrock3",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "description" : "A pile of rocks rich in copper.",
+  "shortdescription" : "Copper Rocks",
+  "race" : "generic",
+
+  "apexDescription" : "These rocks appear to be made of almost pure copper.",
+  "avianDescription" : "These rocks almost look like soil, but they're made of copper.",
+  "floranDescription" : "Brown rocksss.",
+  "glitchDescription" : "Intrigued. These rocks are made of copper.",
+  "humanDescription" : "What is this? Copper Mars?",
+  "hylotlDescription" : "Rock rich in copper. It has the color of soil.",
+  "novakidDescription" : "Buncha copper rocks.",
+
+  "category" : "breakable",
+  "printable" : false,
+
+  "inventoryIcon" : "copperrock3.png",
+
+  "orientations" : [
+    {
+      "dualImage" : "copperrock3.png",
+      "imagePosition" : [-16, 0],
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg" ],
+  "smashParticles" : [ { "count" : 5, "particle" : "v-coppershard" } ],
+
+  "biomePlaced" : true
+}
