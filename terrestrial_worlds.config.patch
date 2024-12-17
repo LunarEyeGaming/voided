@@ -28,18 +28,20 @@
           "dungeons" : [ ]
         },
         "subsurface" : {
-          "primaryRegion" : ["v-shallowundergroundvoltage"],
+          "primaryRegion" : ["v-subsurfacevoltage"],
           "secondaryRegions" : [ "v-deepvoltagewastes", "v-coilcaves", "v-barrencaves" ],
           // "secondaryRegions" : [ "v-deepvoltagewastes" ],
           "secondaryRegionCount" : [1, 1]
         },
         "underground1" : {
           "primaryRegion" : ["v-shallowundergroundvoltage"],
-          "secondaryRegions" : []
+          "secondaryRegions" : [ "v-deepvoltagewastes", "v-coilcaves" ],
+          "secondaryRegionCount" : [0, 1]
         },
         "underground2" : {
           "primaryRegion" : ["v-undergroundvoltage"],
-          "secondaryRegions" : []
+          "secondaryRegions" : [ "v-pairingcaves", "v-deepvoltagewastes" ],
+          "secondaryRegionCount" : [0, 1]
         },
         "underground3" : {
           "primaryRegion" : ["v-deepundergroundvoltage"],
@@ -137,6 +139,17 @@
         [0, [ "v-voltageforest" ]]
       ],
       "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-subsurfacevoltage",
+    "value" : {
+      "fgCaveSelector" : [ "normalCaves", "denseCaves", "sparseCaves" ],
+      "biome": [
+        [1,["v-shallowundergroundvoltage", "v-shallowundergroundvoltageruins", "v-shallowundergroundvoltagetraps",
+            "v-shallowundergroundvoltagerusty"]]
+      ]
     }
   },
   {

@@ -650,7 +650,7 @@
                  "y":352
                 }, 
                 {
-                 "gid":8856,
+                 "gid":8858,
                  "height":40,
                  "id":900,
                  "name":"",
@@ -784,7 +784,26 @@
          "draworder":"topdown",
          "id":6,
          "name":"monsters & npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "height":8,
+                 "id":901,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"humanscabcritter"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":216,
+                 "y":296
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -909,7 +928,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":901,
+ "nextobjectid":902,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -1056,7 +1075,7 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":8819,
+         "firstgid":8821,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,

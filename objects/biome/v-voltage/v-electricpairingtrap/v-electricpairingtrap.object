@@ -25,7 +25,7 @@
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
-      
+
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "electricpairingtrap.png",
@@ -41,7 +41,7 @@
       "image" : "electricpairingtrap.png:idle",
       "imagePosition" : [0, 0],
       "direction" : "right",
-      
+
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "electricpairingtrap.png",
@@ -57,7 +57,7 @@
       "image" : "electricpairingtrapleft.png:idle",
       "imagePosition" : [0, -8],
       "direction" : "right",
-      
+
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "electricpairingtrapleft.png",
@@ -73,7 +73,7 @@
       "image" : "electricpairingtrapright.png:idle",
       "imagePosition" : [0, -8],
       "direction" : "right",
-      
+
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "electricpairingtrapright.png",
@@ -90,7 +90,7 @@
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
-      
+
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "electricpairingtrapceiling.png",
@@ -106,7 +106,7 @@
       "image" : "electricpairingtrapceiling.png:idle",
       "imagePosition" : [0, 0],
       "direction" : "right",
-      
+
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "electricpairingtrapceiling.png",
@@ -142,7 +142,7 @@
     "damageRepeatTimeout" : 0.1
   },
   "damageTime" : 0.1,
-  
+
   "windupLightningConfig" : {
     "startDisplacement" : 0.1,
     "endDisplacement" : 0.5,
@@ -153,7 +153,7 @@
     "startColor" : [74, 74, 181, 0],
     "endColor" : [131, 131, 223, 255]
   },
-  
+
   "lightningConfig" : {
     "startDisplacement" : 2.0,
     "endDisplacement" : 4.0,
@@ -164,15 +164,17 @@
     "startColor" : [225, 225, 255, 255],
     "endColor" : [74, 74, 181, 0]
   },
-  
+
   "dischargeProjectile" : "v-pairingtrapdischarge",
   "dischargeProjectileParams" : {},
-  
+
   "health" : 20,
 
   "biomePlaced" : true,
 
   "smashOnBreak" : true,
-  
+  "smashSounds" : [ "/sfx/objects/prism_break_small1.ogg", "/sfx/objects/prism_break_small2.ogg", "/sfx/objects/prism_break_small3.ogg" ],
+  "smashParticles" : [ { "count" : 6, "particle" : "v-electriccrystalshard" } ],
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

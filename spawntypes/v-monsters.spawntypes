@@ -130,6 +130,24 @@
     }
   },
   {
+    "name" : "v-amperechargerrustyunderground",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.05,
+    "monsterType" : [
+      [1.0, "v-amperechargerrusty"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
     "name" : "v-metalmite",
 
     "spawnParameters" : {

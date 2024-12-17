@@ -94,7 +94,7 @@
                  "y":416
                 }, 
                 {
-                 "gid":8852,
+                 "gid":8853,
                  "height":48,
                  "id":866,
                  "name":"",
@@ -106,7 +106,7 @@
                  "y":56
                 }, 
                 {
-                 "gid":8853,
+                 "gid":8854,
                  "height":8,
                  "id":869,
                  "name":"",
@@ -118,7 +118,7 @@
                  "y":184
                 }, 
                 {
-                 "gid":8853,
+                 "gid":8854,
                  "height":8,
                  "id":871,
                  "name":"",
@@ -130,7 +130,7 @@
                  "y":88
                 }, 
                 {
-                 "gid":8853,
+                 "gid":8854,
                  "height":8,
                  "id":889,
                  "name":"",
@@ -142,7 +142,7 @@
                  "y":88
                 }, 
                 {
-                 "gid":8853,
+                 "gid":8854,
                  "height":8,
                  "id":890,
                  "name":"",
@@ -154,7 +154,7 @@
                  "y":288
                 }, 
                 {
-                 "gid":8853,
+                 "gid":8854,
                  "height":8,
                  "id":870,
                  "name":"",
@@ -166,7 +166,7 @@
                  "y":232
                 }, 
                 {
-                 "gid":8853,
+                 "gid":8854,
                  "height":8,
                  "id":888,
                  "name":"",
@@ -238,7 +238,7 @@
                  "y":232
                 }, 
                 {
-                 "gid":8855,
+                 "gid":8856,
                  "height":8,
                  "id":895,
                  "name":"",
@@ -250,7 +250,7 @@
                  "y":88
                 }, 
                 {
-                 "gid":8872,
+                 "gid":8873,
                  "height":8,
                  "id":897,
                  "name":"",
@@ -262,7 +262,7 @@
                  "y":392
                 }, 
                 {
-                 "gid":8856,
+                 "gid":8857,
                  "height":40,
                  "id":899,
                  "name":"",
@@ -274,7 +274,7 @@
                  "y":368
                 }, 
                 {
-                 "gid":8857,
+                 "gid":8858,
                  "height":40,
                  "id":900,
                  "name":"",
@@ -448,7 +448,45 @@
          "draworder":"topdown",
          "id":6,
          "name":"monsters & npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "height":8,
+                 "id":919,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"humanscabcritter"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":280,
+                 "y":360
+                }, 
+                {
+                 "height":8,
+                 "id":920,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"humanscabcritter"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":160,
+                 "y":248
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -621,7 +659,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":918,
+ "nextobjectid":921,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -768,11 +806,11 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":8820,
+         "firstgid":8821,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }, 
         {
-         "firstgid":8866,
+         "firstgid":8867,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }],
  "tilewidth":8,

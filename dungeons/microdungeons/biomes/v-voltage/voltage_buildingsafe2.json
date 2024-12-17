@@ -512,7 +512,26 @@
          "draworder":"topdown",
          "id":6,
          "name":"monsters & npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "height":8,
+                 "id":896,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"humanscabcritter"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":280,
+                 "y":360
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -733,7 +752,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":896,
+ "nextobjectid":897,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",

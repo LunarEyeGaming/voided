@@ -428,6 +428,42 @@
                  "width":16,
                  "x":200,
                  "y":240
+                }, 
+                {
+                 "gid":2147489705,
+                 "height":16,
+                 "id":909,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":128,
+                 "y":256
+                }, 
+                {
+                 "gid":5958,
+                 "height":16,
+                 "id":911,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":208,
+                 "y":256
+                }, 
+                {
+                 "gid":2147489701,
+                 "height":24,
+                 "id":912,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":240,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -572,7 +608,64 @@
          "draworder":"topdown",
          "id":6,
          "name":"monsters & npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "height":8,
+                 "id":906,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"humanscabcritter"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":288,
+                 "y":160
+                }, 
+                {
+                 "height":8,
+                 "id":907,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"humanscabcritter"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":200,
+                 "y":248
+                }, 
+                {
+                 "height":8,
+                 "id":908,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"humanscabcritter"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":312,
+                 "y":248
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -853,7 +946,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":906,
+ "nextobjectid":913,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
