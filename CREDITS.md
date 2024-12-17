@@ -19,3 +19,5 @@ I would like to thank Portal Mech and mister gadfly for playtesting and providin
 I would also like to thank the members on the Starbound Discord for their feedback, advice, and ideas.
 
 Thanks to patman and/or Silver Sokolova for providing a way to display custom messages at the bottom of the screen.
+
+This mod uses the bookofspirits_monster_support.lua script from the Book of Spirits mod to provide support for it.
