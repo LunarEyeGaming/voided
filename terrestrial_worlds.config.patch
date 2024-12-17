@@ -268,13 +268,13 @@
         },
         "underground1" : {
           "primaryRegion" : ["v-undergroundtoxic"],
-          "secondaryRegions" : ["v-poisonfloodedcaves"],
+          "secondaryRegions" : ["v-poisonfloodedcaves", "v-flowerfield"],
           "secondaryRegionCount" : [0, 1]
         },
         "underground2" : {
           "primaryRegion" : ["v-undergroundtoxic"],
           "secondaryRegions" : ["v-flowerfield"],
-          "secondaryRegionCount" : [0, 1]
+          "secondaryRegionCount" : [1, 1]
         },
         "underground3" : {
           "primaryRegion" : ["v-deepundergroundtoxic"],
