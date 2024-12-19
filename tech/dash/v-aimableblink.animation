@@ -1,0 +1,68 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "dashing" : {
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "on" : {},
+          "blinkIn" : {
+            "frames" : 5,
+            "cycle" : 0.15,
+            "mode" : "transition",
+            "transition" : "off"
+          },
+          "blinkOut" : {
+            "frames" : 5,
+            "cycle" : 0.15,
+            "mode" : "transition",
+            "transition" : "off"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "blinkeffect" : {
+        "properties" : {
+          "centered" : true
+        },
+
+        "partStates" : {
+          "dashing" : {
+            "blinkIn" : {
+              "properties" : {
+                "image" : "v-aimableblinkin.png:<frameIndex>"
+              }
+            },
+
+            "blinkOut" : {
+              "properties" : {
+                "image" : "v-aimableblinkout.png:<frameIndex>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "particleEmitters" : {
+    "dashParticles" : {
+      "emissionRate" : 40.0,
+      "particles" : [
+        {
+          "particle" : "v-aimabledash",
+          "flip" : true
+        }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "startDash" : [ "/sfx/tech/tech_dash.ogg" ],
+    "startBlinkDash" : [ "/sfx/tech/tech_blink1.ogg" ],
+    "recharge" : [ "/sfx/tech/tech_dash_cooldown2.ogg" ],
+    "rechargeBlink" : [ "/sfx/tech/tech_blink_cooldown1.ogg" ]
+  }
+}

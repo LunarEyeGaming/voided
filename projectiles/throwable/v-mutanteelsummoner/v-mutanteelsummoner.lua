@@ -1,6 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-util.lua"
 require "/scripts/v-ellipse.lua"
 
 local MIN_SUBMERSION_AMOUNT = 0.9

@@ -1,4 +1,4 @@
-require "/scripts/voidedutil.lua"
+require "/scripts/v-util.lua"
 
 local displayText
 local promise
@@ -6,7 +6,7 @@ local promiseFailed
 local displayCoords
 
 function init()
-  -- Two underscores signifies that it's a private parameter--i.e., modders shouldn't override this parameter except 
+  -- Two underscores signifies that it's a private parameter--i.e., modders shouldn't override this parameter except
   -- through
   displayCoords = config.getParameter("__displayCoords")
 
@@ -43,7 +43,7 @@ function getDisplayCoords(coordinates)
   -- Stringify coords
   local coordinatesStringified = {tostring(math.floor(coordinates[1])), tostring(math.floor(coordinates[2]))}
   local coordObfuscationRange = config.getParameter("coordObfuscationRange")
-  
+
   -- Generate coordinates (obfuscated)
   return string.format("X: %s, Y: %s",
     voidedUtil.obfuscateStringMinMax(coordinatesStringified[1], coordObfuscationRange[1], coordObfuscationRange[2], obfuscationCharacter),
@@ -62,10 +62,10 @@ function activate()
   local configData = root.assetJson("/interface/scripted/papernote/papernotegui.config")
   configData.noteText = displayText
   activeItem.interact("ScriptPane", configData)
-  
+
   -- If the player has not read this note yet and displayCoords is defined...
   if not config.getParameter("__hasReadNote") and displayCoords then
-    -- Spawn a new instance of the current item with an updated description and __hasReadNote set to true. This 
+    -- Spawn a new instance of the current item with an updated description and __hasReadNote set to true. This
     -- forces the item to rebuild. Note that any other parameters are lost.
     world.spawnItem(config.getParameter("itemName"), mcontroller.position(), 1, {
       __hasReadNote = true,
@@ -76,7 +76,7 @@ function activate()
       obfuscationCharacter = config.getParameter("obfuscationCharacter"),
       seed = config.getParameter("seed")
     })
-    
+
     -- Delete old item.
     item.consume(1)
   end

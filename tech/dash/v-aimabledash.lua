@@ -1,7 +1,6 @@
 require "/tech/doubletap.lua"
 require "/scripts/vec2.lua"
 
-local airDashing
 local dashDirection
 local dashTimer
 local dashCooldownTimer
@@ -17,7 +16,6 @@ local rechargeEffectTime
 local heldUpLastTick
 
 function init()
-  airDashing = false
   dashDirection = 0
   dashTimer = 0
   dashCooldownTimer = 0
@@ -31,18 +29,6 @@ function init()
   stopAfterDash = config.getParameter("stopAfterDash")
   rechargeDirectives = config.getParameter("rechargeDirectives", "?fade=CCCCFFFF=0.25")
   rechargeEffectTime = config.getParameter("rechargeEffectTime", 0.1)
-
-  -- doubleTap = DoubleTap:new({"up"}, config.getParameter("maximumDoubleTapTime"), function(dashKey)
-  --     if dashTimer == 0
-  --         and dashCooldownTimer == 0
-  --         and groundValid()
-  --         and not mcontroller.crouching()
-  --         and not status.statPositive("activeMovementAbilities") then
-
-  --       local direction = vec2.norm(world.distance(tech.aimPosition(), mcontroller.position()))
-  --       startDash(direction)
-  --     end
-  --   end)
 
   animator.setAnimationState("dashing", "off")
 end

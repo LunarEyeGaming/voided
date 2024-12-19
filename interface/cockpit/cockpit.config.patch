@@ -273,6 +273,18 @@
         "displayName" : "Strange Blobs",
         "icon" : "/interface/cockpit/weather/v-toxicblobs.png"
       }
+    },
+    // Scripts
+    {
+      "op" : "add",
+      "path" : "/scripts/-",
+      "value" : "/interface/cockpit/v-messageonvisitplugin.lua"
+    },
+    // Miscellaneous Parameters
+    {
+      "op" : "add",
+      "path" : "/v-extradimensionalStarMessages",
+      "value" : ["v-extradimensionalstar", "v-turnontutorialmessages"]
     }
   ]
 ]

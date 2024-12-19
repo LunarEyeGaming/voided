@@ -1,7 +1,7 @@
 require "/scripts/vec2.lua"
 require "/scripts/v-ellipse.lua"
 require "/scripts/v-animator.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-util.lua"
 
 local numPoints
 local fillColorCfg

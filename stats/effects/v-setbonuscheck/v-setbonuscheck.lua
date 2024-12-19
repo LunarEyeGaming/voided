@@ -1,4 +1,4 @@
-require "/scripts/voidedutil.lua"
+require "/scripts/v-util.lua"
 
 local setBonuses
 local chestEffect
@@ -41,5 +41,5 @@ function update(dt)
       status.removeEphemeralEffect(setBonusEffect)
     end
   end
-  
+
 end

@@ -1,0 +1,46 @@
+{
+  "name" : "v-aimableblink",
+  "type" : "body",
+
+  "scripts" : ["v-aimableblink.lua"],
+  "animator" : "v-aimableblink.animation",
+
+  "description" : "Tap ^green;[W] ^white;to blink toward your cursor! Cooldown: 0.8s / 2.4s",
+  "shortDescription" : "Aimable Blink",
+  "rarity" : "Rare",
+  "icon" : "/tech/v-aimableblink.png",
+
+  "chipCost" : 2,
+
+  "maximumDoubleTapTime" : 0.25,
+  "dashControlForce" : 2000,
+  "dashSpeed" : 100,
+  "dashDuration" : 0.15,
+  "dashCooldown" : 0.8,
+  "stopAfterDash" : true,
+  "groundOnly" : false,
+
+  "blinkCooldown" : 1.6,
+  "blinkOutTime" : 0.15,
+  "blinkInTime" : 0.15,
+  "blinkDistance" : 15,
+
+  "traceStepSize" : 1.0,
+  "traceParticle" : {
+    "type" : "textured",
+    "image" : "/projectiles/guns/bullets/v-ancientlasershot/essence.png",
+    "position" : [0, 0],
+    "fullbright" : true,
+    "layer" : "middle",
+    "destructionAction" : "fade",
+    "timeToLive" : 0,
+    "size" : 1.0,
+    "destructionTime" : 0.5,
+    "rotation" : 0,
+    "variance" : {
+      "size" : 0.1,
+      "initialVelocity" : [1, 1],
+      "rotation" : 180
+    }
+  }
+}

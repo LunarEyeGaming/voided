@@ -1,6 +1,6 @@
 require "/scripts/vec2.lua"
 require "/scripts/util.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-util.lua"
 
 local baseLayerImage
 local fillLayerImage
@@ -29,17 +29,17 @@ local oldUpdate = update or function() end
 
 function init()
   oldInit()
-  
+
   message.setHandler("v-depthPoison-showMeter", showMeter)
-  
+
   message.setHandler("v-depthPoison-hideMeter", hideMeter)
 
   message.setHandler("v-depthPoison-setRatio", function(_, _, ratio)
     displayPoisonRatio(ratio)
   end)
-  
+
   message.setHandler("v-depthPoison-flash", flash)
-  
+
   message.setHandler("v-depthPoison-setShimmerTime", function(_, _, time)
     if time then
       shouldShimmer = true
@@ -55,9 +55,9 @@ function init()
   flashLayerImage = "/interface/v-depthpoisonmeter/flash.png"
   warningLayerImage = "/interface/v-depthpoisonmeter/warning.png"
   shimmerLayerImage = "/interface/v-depthpoisonmeter/shimmer.png"
-  
+
   meterRenderLayer = "overlay+5"
-  
+
   poisonRatio = 0
   flashTime = 0.25
   meterBaseOffset = {0, 5}
@@ -65,7 +65,7 @@ function init()
   meterOffset = vec2.add(meterBaseOffset, vec2.mul(meterSize, -1 / 16))
   warningPulseTime = 5.0
   warningThreshold = 0.75  -- The minimum poison ratio required for the warning border to show.
-  
+
   shouldShimmer = false
   shimmerTime = nil
   shimmerFrameCount = 16
@@ -78,7 +78,7 @@ end
 
 function update(dt)
   oldUpdate(dt)  -- Drawables implicitly cleared.
-  
+
   -- Show meter if active
   if meterActive then
     updateAnim(dt)
@@ -110,16 +110,16 @@ function updateAnim(dt)
     fullbright = true,
     centered = false
   }, meterRenderLayer)
-  
+
   local cropHeight = math.floor(meterSize[2] * poisonRatio)
-  
+
   localAnimator.addDrawable({
     image = fillLayerImage .. string.format("?crop=0;0;%d;%d", meterSize[1], cropHeight),
     position = meterOffset,
     fullbright = true,
     centered = false
   }, meterRenderLayer)
-  
+
   local warningOpacity = math.floor(util.lerp(voidedUtil.pingPong(warningPulseTimer / warningPulseTime), 0, 255))
 
   localAnimator.addDrawable({
@@ -128,7 +128,7 @@ function updateAnim(dt)
     fullbright = true,
     centered = false
   }, meterRenderLayer)
-  
+
   local flashOpacity = math.floor(util.lerp(flashTimer / flashTime, 0, 255))
 
   localAnimator.addDrawable({
@@ -141,7 +141,7 @@ end
 
 function updateTimers(dt)
   flashTimer = math.max(0, flashTimer - dt)
-  
+
   if poisonRatio >= warningThreshold then
     warningPulseTimer = warningPulseTimer - dt
     if warningPulseTimer <= 0 then

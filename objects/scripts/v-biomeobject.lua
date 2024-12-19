@@ -2,7 +2,7 @@
   A simple script that replaces the current object with another one depending on the biome blocks.
 ]]
 
-require "/scripts/voidedutil.lua"
+require "/scripts/v-util.lua"
 require "/scripts/util.lua"
 
 function init()

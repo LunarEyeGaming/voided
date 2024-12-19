@@ -1,7 +1,7 @@
 require "/scripts/util.lua"
 require "/scripts/staticrandom.lua"
 require "/items/buildscripts/v-extrabuildfuncs.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-util.lua"
 
 function build(directory, config, parameters, level, seed)
   -- Responsible for baking the randomness into the item so that the values never change for a singular item.
@@ -26,18 +26,18 @@ function build(directory, config, parameters, level, seed)
       parameters.seed = seed
     end
   end
-  
+
   -- Get parameters
   local baseNoteTextChoices = configParameter("noteTextChoices")
   local obfuscationChance = configParameter("obfuscationChance")
   local obfuscationCharacter = configParameter("obfuscationCharacter")
   local expectedCoordLength = configParameter("expectedCoordLength")
-  
+
   -- Choose a random note text.
   local baseNoteText = randomFromList(baseNoteTextChoices, seed, "baseNoteText")
   -- Obfuscate the text and set config.noteText to be it.
   config.noteText = voidedUtil.obfuscateString(baseNoteText, makeRandomBoolTable(seed, #baseNoteText, obfuscationChance), obfuscationCharacter)
-  
+
   -- Generate X and Y obfuscation values. We use a different method of generating noise so that we never get all blanks
   -- (which can be very frustrating, especially when it happens multiple times in a row).
   local obfuscatedDigits = makeRandomBoolTable(seed, expectedCoordLength * 2, obfuscationChance)
@@ -46,7 +46,7 @@ function build(directory, config, parameters, level, seed)
     sliceTable(obfuscatedDigits, 1, expectedCoordLength),
     sliceTable(obfuscatedDigits, expectedCoordLength + 1, expectedCoordLength * 2)
   }
-  
+
   return applyExtraBuildFuncs(directory, config, parameters, level, seed)
 end
 
@@ -57,18 +57,18 @@ end
 function makeRandomBoolTable(seed, count, trueProb)
   local randGen = sb.makeRandomSource(seed)
   local result = {}
-  
+
   for i = 1, count do
     local testVar = randGen:randf()
     table.insert(result, testVar <= trueProb)
   end
-  
+
   return result
 end
 
 --[[
   sliceTable(tbl, start, end_) is equal to the elements of `tbl` from `start` to `end_`.
-  
+
   Precondition: `start` and `end_` represent indices within the table.
 ]]
 function sliceTable(tbl, start, end_)
@@ -76,12 +76,12 @@ function sliceTable(tbl, start, end_)
   for i = start, end_ do
     table.insert(newTbl, tbl[i])
   end
-  
+
   return newTbl
 end
 
 --[[
-  The same as the util.shuffle function, but with an engine random number generator `gen` as input to keep things 
+  The same as the util.shuffle function, but with an engine random number generator `gen` as input to keep things
   deterministic.
 ]]
 function sbShuffle(list, gen)

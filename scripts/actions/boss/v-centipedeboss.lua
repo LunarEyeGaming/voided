@@ -1,6 +1,6 @@
 require "/monsters/boss/v-centipedeboss/v-sharedfunctions.lua"
 require "/scripts/v-behavior.lua"
-require "/scripts/voidedutil.lua"
+require "/scripts/v-util.lua"
 require "/scripts/v-ellipse.lua"
 require "/scripts/util.lua"
 

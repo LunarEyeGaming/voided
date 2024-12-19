@@ -1,5 +1,5 @@
 require "/scripts/util.lua"
-require "/scripts/voidedattackutil.lua"
+require "/scripts/v-attack.lua"
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
@@ -11,7 +11,7 @@ local projectileOffset
 
 function init()
   oldInit()
-  
+
   windupTime = config.getParameter("windupTime")
   projectileType = config.getParameter("projectileType")
   projectileParameters = config.getParameter("projectileParameters", {})
@@ -25,14 +25,14 @@ function init()
       state:set(states.fire, targetId)
     end
   end)
-  
+
   state = FSM:new()
   state:set(states.noop)
 end
 
 function update(dt)
   oldUpdate(dt)
-  
+
   state:update()
 end
 
@@ -46,14 +46,14 @@ end
 
 function states.fire(targetId)
   animator.setAnimationState("body", "windup")
-  
+
   util.wait(windupTime)
-  
+
   if not world.entityExists(targetId) then
     state:set(states.noop)
     coroutine.yield()
   end
-  
+
   local targetVector = vec2.norm(world.distance(world.entityPosition(targetId), mcontroller.position()))
   world.spawnProjectile(
     projectileType,
@@ -63,9 +63,9 @@ function states.fire(targetId)
     false,
     projectileParameters
   )
-  
+
   animator.setAnimationState("body", "fire")
   animator.playSound("fire")
-  
+
   state:set(states.noop)
 end

@@ -1,7 +1,7 @@
 require "/monsters/boss/v-centipedeboss/v-sharedfunctions.lua"
 require "/scripts/util.lua"
 require "/scripts/rect.lua"
-require "/scripts/voidedattackutil.lua"
+require "/scripts/v-attack.lua"
 require "/scripts/v-world.lua"
 
 local oldInit = init or function() end
