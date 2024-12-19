@@ -3,7 +3,7 @@ require "/scripts/vec2.lua"
 
 --[[
   A script to set the dungeon music for the current world. The world properties set here are used by
-  /scripts/v-dungeonmusicplayer.lua.
+  /scripts/player/v-dungeonmusicplayer.lua.
 ]]
 
 function init()
