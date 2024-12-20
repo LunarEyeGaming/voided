@@ -1,0 +1,93 @@
+{
+  "particleEmitters" : {
+    "thrust" : {
+      "emissionRate" : 20,
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "looping" : true,
+            "animation" : "/animations/v-ionfire/v-ionfire.animation",
+            "position" : [0, 0],
+            "initialVelocity" : [0, -20],
+            "light" : [72, 131, 47],
+            "fade" : 1,
+            "timeToLive" : 0.85,
+            "fullbright" : true,
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.85,
+            "size" : 1.0,
+            "variance" : {
+              "initialVelocity" : [5, 5]
+            }
+          },
+          "offset" : [-0.5, -3]
+        },
+        {
+          "particle" : {
+            "type" : "animated",
+            "looping" : true,
+            "animation" : "/animations/dust2/dust2.animation",
+            "position" : [0, 0],
+            "initialVelocity" : [0, -20],
+            "fade" : 1,
+            "timeToLive" : 0.45,
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.85,
+            "size" : 1.0,
+            "variance" : {
+              "initialVelocity" : [5, 5],
+              "rotation" : 180
+            }
+          },
+          "offset" : [-0.5, -3]
+        },
+        {
+          "particle" : {
+            "type" : "animated",
+            "looping" : true,
+            "animation" : "/animations/v-ionfire/v-ionfire.animation",
+            "position" : [0, 0],
+            "initialVelocity" : [0, -20],
+            "light" : [72, 131, 47],
+            "fade" : 1,
+            "timeToLive" : 0.85,
+            "fullbright" : true,
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.85,
+            "size" : 1.0,
+            "variance" : {
+              "initialVelocity" : [5, 5]
+            }
+          },
+          "offset" : [0.5, -3]
+        },
+        {
+          "particle" : {
+            "type" : "animated",
+            "looping" : true,
+            "animation" : "/animations/dust2/dust2.animation",
+            "position" : [0, 0],
+            "initialVelocity" : [0, -20],
+            "fade" : 1,
+            "timeToLive" : 0.45,
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.85,
+            "size" : 1.0,
+            "variance" : {
+              "initialVelocity" : [5, 5],
+              "rotation" : 180
+            }
+          },
+          "offset" : [0.5, -3]
+        }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "thrustStart" : [ "/sfx/tech/tech_rocketboots_thrust1.ogg" ],
+    "thrustLoop" : [ "/sfx/tech/tech_rocketboots.ogg" ],
+    "thrustEnd" : [ "/sfx/tech/tech_rocketboots_thrust2.ogg" ]
+  }
+}

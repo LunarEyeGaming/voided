@@ -26,20 +26,40 @@
   "blinkDistance" : 15,
 
   "traceStepSize" : 1.0,
+  // "traceParticle" : {
+  //   "type" : "textured",
+  //   "image" : "/projectiles/guns/bullets/v-ancientlasershot/essence.png",
+  //   "position" : [0, 0],
+  //   "fullbright" : true,
+  //   "layer" : "middle",
+  //   "destructionAction" : "fade",
+  //   "timeToLive" : 0,
+  //   "size" : 1.0,
+  //   "destructionTime" : 0.5,
+  //   "rotation" : 0,
+  //   "variance" : {
+  //     "size" : 0.1,
+  //     "initialVelocity" : [1, 1],
+  //     "rotation" : 180
+  //   }
+  // }
   "traceParticle" : {
-    "type" : "textured",
-    "image" : "/projectiles/guns/bullets/v-ancientlasershot/essence.png",
+    "type" : "animated",
+    "looping" : true,
+    "animation" : "/animations/statuseffects/electricalburn/electricalburn.animation",
     "position" : [0, 0],
+    "finalVelocity" : [0, 0],
+    "approach" : [50, 50],
+    "destructionAction" : "shrink",
+    "destructionTime" : 0.425,
+    "fade" : 1,
     "fullbright" : true,
-    "layer" : "middle",
-    "destructionAction" : "fade",
-    "timeToLive" : 0,
-    "size" : 1.0,
-    "destructionTime" : 0.5,
-    "rotation" : 0,
+    "light" : [32, 32, 102],
+    "size" : 1,
+    "layer" : "front",
+    "timeToLive" : 0.425,
     "variance" : {
-      "size" : 0.1,
-      "initialVelocity" : [1, 1],
+      "finalVelocity" : [1.5, 1.5],
       "rotation" : 180
     }
   }

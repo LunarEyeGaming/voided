@@ -1,0 +1,18 @@
+{
+  "name" : "v-rocketboots",  // Screw it! Add rocket boots!
+  "type" : "legs",
+
+  "scripts" : ["v-rocketboots.lua"],
+  "animator" : "v-rocketboots.animation",
+
+  "description" : "Gives a temporary upward thrust.",
+  "shortDescription" : "Rocket Boots",
+  "rarity" : "Legendary",
+  "icon" : "/tech/v-rocketboots.png",
+
+  "chipCost" : 8,
+
+  "flightTime" : 1.5,
+  "flightSpeed" : 20,
+  "flightControlForce" : 500
+}
