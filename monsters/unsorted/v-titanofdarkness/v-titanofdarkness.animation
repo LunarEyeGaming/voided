@@ -1,0 +1,147 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "lasers" : {
+        "default" : "inactive",
+        "priority" : 0,
+        "states" : {
+          "inactive" : {},
+          "windup" : {},
+          "fire" : {
+            "frames" : 6,
+            "cycle" : 0.15,
+            "mode" : "transition",
+            "transition" : "fireLoop"
+          },
+          "fireLoop" : {
+            "frames" : 2,
+            "cycle" : 0.1,
+            "mode" : "loop"
+          },
+          "fireEnd" : {
+            "frames" : 6,
+            "cycle" : 0.15,
+            "mode" : "transition",
+            "transition" : "inactive"
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "zLevel" : 0,
+          "centered" : true,
+          "offset" : [0, 0],
+          "leftEyeCenter" : [-2.375, 2.375],
+          "rightEyeCenter" : [2.375, 2.375],
+          "image" : "<partImage>"
+        }
+      },
+      "leftbeam" : {
+        "properties" : {
+          "zLevel" : 5,
+          "centered" : true,
+          "offset" : [37.625, 2.375],
+          "fullbright" : true,
+          "transformationGroups" : [ "leftbeam" ]
+        },
+        "partStates" : {
+          "lasers" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.1"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "fireLoop" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>",
+                "damageArea" : [ [40.0, -1.1875], [40.0, 1.1875], [-40.0, 1.1875], [-40.0, -1.1875] ]
+              }
+            },
+            "fireEnd" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "rightbeam" : {
+        "properties" : {
+          "zLevel" : 5,
+          "centered" : true,
+          "offset" : [42.375, 2.375],
+          "fullbright" : true,
+          "transformationGroups" : [ "rightbeam" ]
+        },
+        "partStates" : {
+          "lasers" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.1"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "fireLoop" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>",
+                "damageArea" : [ [40.0, -1.1875], [40.0, 1.1875], [-40.0, 1.1875], [-40.0, -1.1875] ]
+              }
+            },
+            "fireEnd" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "leftbeam" : {"interpolated" : true},
+    "rightbeam" : {"interpolated" : true}
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [
+      ]
+    }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0.25,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "sounds" : {
+    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ]
+  }
+}

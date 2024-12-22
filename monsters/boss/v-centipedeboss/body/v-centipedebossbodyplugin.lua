@@ -135,7 +135,7 @@ function states.sideProjectileGen(attackConfigName)
   local projectileParameters = attackCfg.projectileParameters
   local windupParameters = {timeToLive = windupTime}
 
-  projectileParameters.power = v_scaledPower(projectileParameters.power or 10)
+  projectileParameters.power = vAttack.scaledPower(projectileParameters.power or 10)
 
   return function(sourceId)
     -- Spawn lasers on either side.
@@ -175,7 +175,7 @@ function states.targetedProjectileGen(attackConfigName)
   local projectileType = attackCfg.projectileType
   local projectileOffset = attackCfg.projectileOffset  -- Adjusts to the aim vector of the projectile
   local projectileParameters = attackCfg.projectileParameters
-  projectileParameters.power = v_scaledPower(projectileParameters.power or 15)
+  projectileParameters.power = vAttack.scaledPower(projectileParameters.power or 15)
 
   return function(sourceId, targetId)
     currentStateReset = function()
@@ -314,7 +314,7 @@ function states.spawnMineGen(attackConfigName)
   local targetOffsetRegion = attackCfg.targetOffsetRegion  -- Relative to the center of the arena.
   local projectileType = attackCfg.projectileType
   local projectileParameters = attackCfg.projectileParameters
-  projectileParameters.power = v_scaledPower(projectileParameters.power or 15)
+  projectileParameters.power = vAttack.scaledPower(projectileParameters.power or 15)
   local projectileOffset = attackCfg.projectileOffset  -- Adjusts to the firing direction of the projectile
   local windupTime = attackCfg.windupTime
   local winddownTime = attackCfg.winddownTime

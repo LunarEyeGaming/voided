@@ -1,0 +1,49 @@
+{
+  "name": "v-titanofdarkness-explosion",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/unique/v-titanofdarkness.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "parallel",
+    "type": "composite",
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": -1},
+      "success": {"value": 1}
+    },
+    "children": [
+      {
+        "title": "failer",
+        "type": "decorator",
+        "name": "failer",
+        "parameters": {},
+        "child": {
+          "title": "controlApproachVelocity",
+          "type": "action",
+          "name": "controlApproachVelocity",
+          "parameters": {
+            "force": {"value": 60},
+            "velocity": {"value": [0, 0]}
+          }
+        }
+      },
+      {
+        "title": "v_titanExplosionAttack",
+        "type": "action",
+        "name": "v_titanExplosionAttack",
+        "parameters": {
+          "target": {"key": "target"},
+          "requiredSafeArea": {"value": [-5, -5, 5, 5]},
+          "spawnRegion": {"value": [-25, -25, 25, 25]},
+          "projectileType": {"value": "v-titanbomb"},
+          "teleportDelay": {"value": 0.8},
+          "postTeleportTime": {"value": 0.5},
+          "repeats": {"value": 4}
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "projectileName" : "v-titanbomb",
+  "timeToLive" : 1.3,
+  "image" : "titanbomb.png",
+  "animationCycle" : 0.1,
+  "frameNumber" : 1,
+  "orientationLocked" : true,
+  "fullbright" : true,
+  "emitters" : [ ],
+
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-fusionexplosionlarge/v-fusionexplosionlarge.config"
+    }
+  ],
+
+  "speed" : 0,
+  "physics" : "illusion",
+  "bounces" : -1,
+
+  "onlyHitTerrain" : true,
+  "power" : 0,
+  "piercing" : true
+}

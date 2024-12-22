@@ -724,5 +724,84 @@
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-ancientturret2fire.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-custombehaviortemplate",
+    "value": {
+      "type": "module",
+      "name": "v-custombehaviortemplate",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\v-custombehaviortemplate.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\unique\\v-titanofdarkness\\v-titanofdarkness.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-rangedfly",
+    "value": {
+      "type": "module",
+      "name": "v-approach-rangedfly",
+      "title": "",
+      "properties": {
+        "controlForce": {"type": "json", "value": null},
+        "flyState": {"type": "json", "value": "fly"},
+        "idleState": {"type": "json", "value": ""},
+        "maxRange": {"type": "json", "value": 20},
+        "minRange": {"type": "json", "value": 10},
+        "speed": {"type": "json", "value": 20},
+        "usePathfinding": {"type": "json", "value": true}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-rangedflyapproach.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-laser",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-laser",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\unique\\v-titanofdarkness\\v-laser.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-flytotarget",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-flytotarget",
+      "title": "",
+      "properties": {
+        "controlForce": {"type": "json", "value": 15},
+        "maxRange": {"type": "json", "value": 50},
+        "minRange": {"type": "json", "value": 30},
+        "speed": {"type": "json", "value": 25}
+      },
+      "pathToTree": "..\\monsters\\unique\\v-titanofdarkness\\v-flytotarget.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-explosion",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-explosion",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\unique\\v-titanofdarkness\\v-explosion.behavior"
+    }
   }
 ]

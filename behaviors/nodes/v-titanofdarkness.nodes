@@ -1,0 +1,33 @@
+{
+  "v_titanLaserRotation": {
+    "type": "action",
+    "name": "v_titanLaserRotation",
+    "title": "v_titanLaserRotation",
+    "properties": {
+      "attackTime": {"type": "number", "value": 2},
+      "target": {"type": "entity", "key": "target"},
+      "windupTime": {"type": "number", "value": 0.5}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/unique/v-titanofdarkness.lua",
+    "output": {}
+  },
+  "v_titanExplosionAttack": {
+    "type": "action",
+    "name": "v_titanExplosionAttack",
+    "title": "v_titanExplosionAttack",
+    "properties": {
+      "postTeleportTime": {"type": "number", "value": 0.5},
+      "projectileParameters": {"type": "json", "value": null},
+      "projectileType": {"type": "string", "value": "v-titanbomb"},
+      "repeats": {"type": "number", "value": 4},
+      "requiredSafeArea": {"type": "list", "value": [-5, -5, 5, 5]},
+      "spawnRegion": {"type": "list", "value": [-25, -25, 25, 25]},
+      "target": {"type": "entity", "key": "target"},
+      "teleportDelay": {"type": "number", "value": 0.8}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/unique/v-titanofdarkness.lua",
+    "output": {}
+  }
+}

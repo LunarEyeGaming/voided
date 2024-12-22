@@ -3,18 +3,40 @@ require "/scripts/vec2.lua"
 require "/scripts/poly.lua"
 require "/scripts/actions/crawling.lua"
 require "/scripts/actions/projectiles.lua"
+require "/scripts/v-behavior.lua"
 
 -- param minRange
 -- param maxRange
 -- param position
 -- param speed
 -- param controlForce
--- param correctionStepSize (optional) - Parameter specifying the precision to which the target angle should be 
+-- param correctionStepSize (optional) - Parameter specifying the precision to which the target angle should be
 --     corrected (in cases where the monster is moving away from its target) to avoid getting stuck in a wall.
 -- param avoidSurfaces (optional) - True if the entity should avoid getting stuck in surfaces. Do not use because it's
 --     broken
+-- param faceDirection (optional) - True if the entity should face the direction in which it is flying, false otherwise.
+--     True by default
 function v_rangedFlyApproach(args, board, _, dt)
+  local rq = vBehavior.requireArgsGen("v_rangedFlyApproach", args)
+
+  if not rq{"minRange", "maxRange", "position", "speed"} then return false end
+
   local controlForce = args.controlForce or mcontroller.baseParameters().airForce
+  local faceDirection
+  if args.faceDirection == nil then
+    faceDirection = true
+  else
+    faceDirection = args.faceDirection
+  end
+
+  local flyInDirection = function(direction)
+    mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), controlForce)
+
+    -- Face the direction in which the entity is flying if told to do so.
+    if faceDirection then
+      mcontroller.controlFace(util.toDirection(direction[1]))
+    end
+  end
 
   while true do
     -- Fly through platforms
@@ -30,18 +52,15 @@ function v_rangedFlyApproach(args, board, _, dt)
         local fleeAngle = _getFleeAngle(angle, args.speed, args.correctionStepSize, dt)
         if fleeAngle then
           local direction = vec2.rotate(direction, fleeAngle)
-          mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), controlForce)
-          mcontroller.controlFace(util.toDirection(direction[1]))
+          flyInDirection(direction)
         end
       else
         local direction = vec2.rotate(direction, math.pi)
-        mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), controlForce)
-        mcontroller.controlFace(util.toDirection(direction[1]))
+        flyInDirection(direction)
       end
     elseif distance > args.maxRange then
       -- Fly toward player
-      mcontroller.controlApproachVelocity(vec2.mul(direction, args.speed), controlForce)
-      mcontroller.controlFace(util.toDirection(direction[1]))
+      flyInDirection(direction)
     else
       -- Stop
       mcontroller.controlApproachVelocity({0, 0}, controlForce)
@@ -52,24 +71,13 @@ end
 
 -- param position1
 -- param position2
--- param speed
+-- param speed (optional)
 -- param tolerance
 function v_flyToNearerPosition(args, board)
-  if not args.position1 then
-    sb.logInfo("args.position1 not defined. Failing")
-    return false
-  end
-  
-  if not args.position2 then
-    sb.logInfo("args.position2 not defined. Failing")
-    return false
-  end
-  
-  if not args.tolerance then
-    sb.logInfo("args.tolerance not defined. Failing")
-    return false
-  end
-  
+  local rq = vBehavior.requireArgsGen("v_rangedFlyApproach", args)
+
+  if not rq{"position1", "position2", "tolerance"} then return false end
+
   while true do
     local speed = args.speed or mcontroller.baseParameters().flySpeed
 
@@ -155,7 +163,7 @@ end
 -- This makes enemies very unpredictable for some reason.
 function _getFleeAngle(targetAngle, speed, step, dt)
   local initialFleeAngle = util.wrapAngle(targetAngle + math.pi)
-  -- fleeAngle1 will be evaluated. If it ends up making it approach the target, simply return the angle correction in 
+  -- fleeAngle1 will be evaluated. If it ends up making it approach the target, simply return the angle correction in
   -- the other direction.
   local fleeAngle1 = _correctAngle(initialFleeAngle, speed, step, dt)
   if util.wrapAngle(math.abs(fleeAngle1 - targetAngle)) < math.pi / 2 then

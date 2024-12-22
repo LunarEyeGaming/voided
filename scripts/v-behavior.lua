@@ -2,6 +2,7 @@ require "/scripts/behavior/bdata.lua"
 
 vBehavior = {}
 
+-- TODO: This code is stupid and dumb. Make it use var-args at the end instead.
 ---Generates a function that checks if arguments with names `names` are all defined in `args`, sending a warning to the
 ---log if any of them are not defined. `nodeName` is used to help identify the node from which an argument is undefined.
 ---The inner function returns whether or not all of the arguments are defined.
