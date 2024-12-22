@@ -36,7 +36,7 @@ function build(directory, config, parameters, level, seed)
   -- Choose a random note text.
   local baseNoteText = randomFromList(baseNoteTextChoices, seed, "baseNoteText")
   -- Obfuscate the text and set config.noteText to be it.
-  config.noteText = voidedUtil.obfuscateString(baseNoteText, makeRandomBoolTable(seed, #baseNoteText, obfuscationChance), obfuscationCharacter)
+  config.noteText = vUtil.obfuscateString(baseNoteText, makeRandomBoolTable(seed, #baseNoteText, obfuscationChance), obfuscationCharacter)
 
   -- Generate X and Y obfuscation values. We use a different method of generating noise so that we never get all blanks
   -- (which can be very frustrating, especially when it happens multiple times in a row).

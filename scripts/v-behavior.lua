@@ -1,4 +1,5 @@
 require "/scripts/behavior/bdata.lua"
+require "/scripts/v-util.lua"
 
 vBehavior = {}
 
@@ -100,7 +101,7 @@ function vBehavior.resolveRefs(table_, board)
   for k, v in pairs(table_) do
     if type(v) == "table" then
       newTable[k] = vBehavior.resolveRefs(v, board)
-    elseif type(v) == "string" and voidedUtil.strStartsWith(v, "$") then
+    elseif type(v) == "string" and vUtil.strStartsWith(v, "$") then
       local ref = util.split(v:sub(2, #v), ":")
       newTable[k] = board:get(ref[1], ref[2])  -- Lookup variable name on the blackboard
     else

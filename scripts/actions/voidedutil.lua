@@ -143,7 +143,7 @@ function v_listRemove(args, board)
     if args[type] then
       -- Try to remove the item by searching for it.
       for i, v in ipairs(list) do
-        if voidedUtil.deepEquals(args[type], v) then
+        if vUtil.deepEquals(args[type], v) then
           -- Remove the item
           table.remove(list, i)
           -- Return success.

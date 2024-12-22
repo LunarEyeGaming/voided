@@ -36,7 +36,7 @@ function getNewObject(biomeBlocks)
     table.sort(requiredBiomeBlocks)
 
     -- If the required biome blocks match the given biome blocks...
-    if voidedUtil.deepEquals(requiredBiomeBlocks, biomeBlocksCopy) then
+    if vUtil.deepEquals(requiredBiomeBlocks, biomeBlocksCopy) then
       return entry.replacement
     end
   end
