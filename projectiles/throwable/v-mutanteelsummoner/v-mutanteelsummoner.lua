@@ -138,7 +138,7 @@ function meetsSpawnConditions()
   local biomeBlocks = world.biomeBlocksAt(mcontroller.position() --[[@as Vec2I]])
   table.sort(biomeBlocks)
 
-  if not voidedUtil.deepEquals(biomeBlocks, requiredBiomeBlocks) then
+  if not vUtil.deepEquals(biomeBlocks, requiredBiomeBlocks) then
     return false
   end
 

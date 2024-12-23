@@ -37,7 +37,7 @@ function update()
   end
 
   -- Calculate colors (which are set to transition between two colors to create a flashing animation)
-  local ratio = voidedUtil.pingPong(flashTimer / flashTime)
+  local ratio = vUtil.pingPong(flashTimer / flashTime)
   local fillColor = vAnimator.lerpColor(ratio, fillColorCfg.high, fillColorCfg.low)
   local outlineColor = vAnimator.lerpColor(ratio, outlineColorCfg.high, outlineColorCfg.low)
 

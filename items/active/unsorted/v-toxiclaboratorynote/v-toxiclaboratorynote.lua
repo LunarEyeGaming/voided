@@ -46,8 +46,8 @@ function getDisplayCoords(coordinates)
 
   -- Generate coordinates (obfuscated)
   return string.format("X: %s, Y: %s",
-    voidedUtil.obfuscateStringMinMax(coordinatesStringified[1], coordObfuscationRange[1], coordObfuscationRange[2], obfuscationCharacter),
-    voidedUtil.obfuscateStringMinMax(coordinatesStringified[2], coordObfuscationRange[1], coordObfuscationRange[2], obfuscationCharacter)
+    vUtil.obfuscateStringMinMax(coordinatesStringified[1], coordObfuscationRange[1], coordObfuscationRange[2], obfuscationCharacter),
+    vUtil.obfuscateStringMinMax(coordinatesStringified[2], coordObfuscationRange[1], coordObfuscationRange[2], obfuscationCharacter)
   )
 end
 

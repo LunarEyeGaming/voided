@@ -1,7 +1,7 @@
 require "/scripts/util.lua"
 
 -- Utility scripts created by "Void Eye Gaming."
-voidedUtil = {}
+vUtil = {}
 
 -- Certain scripts may not work under specific script contexts due to some built-in tables being
 -- unavailable. The legend below is intended to help in knowing when using each function is appropriate.
@@ -10,7 +10,7 @@ voidedUtil = {}
 --     Starbound/doc/lua/ or https://starbounder.org/Modding:Lua/Tables
 
 -- #statuscontroller
-function voidedUtil.hasStatusEffect(statusEffect)
+function vUtil.hasStatusEffect(statusEffect)
   -- Return whether or not the parent entity has the specified status effect.
   statusEffects = status.activeUniqueStatusEffectSummary()
   for _, effect in pairs(statusEffects) do
@@ -23,7 +23,7 @@ end
 
 -- Note: This function may or may not be broken
 -- *
-function voidedUtil.polarRect(xLength, yLength, angle)
+function vUtil.polarRect(xLength, yLength, angle)
   -- A piecewise function that finds where a ray of angle <angle> from the x-axis (in radians) intersects
   -- with a rectangle of horizontal length <xLength> and vertical length <yLength> centered at the origin.
   local halfXLength = xLength / 2
@@ -50,7 +50,7 @@ end
 
 -- *
 -- Not really by Void Eye Gaming
-function voidedUtil.strStartsWith(str, start)
+function vUtil.strStartsWith(str, start)
   return str:sub(1, #start) == start
 end
 
@@ -62,7 +62,7 @@ end
   f has a range of [0, 1]
   This results in a function that rises to 1 until ratio = 0.5, where it goes back down to 0.
 ]]
-function voidedUtil.pingPong(ratio)
+function vUtil.pingPong(ratio)
   if ratio < 0.5 then
     return 2 * ratio
   else
@@ -80,7 +80,7 @@ end
   param obfuscationCharacter: the replacement character for obfuscated positions
   returns: a string with some characters obfuscated.
 ]]
-function voidedUtil.obfuscateString(str, obfuscatedChars, obfuscationCharacter)
+function vUtil.obfuscateString(str, obfuscatedChars, obfuscationCharacter)
   local newString = ""
 
   -- Iterate over the characters of the string.
@@ -110,7 +110,7 @@ end
   param obfuscationCharacter: the replacement character for obfuscated positions
   returns: a string with some characters obfuscated.
 ]]
-function voidedUtil.obfuscateStringMinMax(str, min_, max_, obfuscationCharacter)
+function vUtil.obfuscateStringMinMax(str, min_, max_, obfuscationCharacter)
   local newString = ""
 
   local obfuscatedChars = {}
@@ -152,7 +152,7 @@ end
 ---@param a any
 ---@param b any
 ---@return boolean
-function voidedUtil.deepEquals(a, b)
+function vUtil.deepEquals(a, b)
   -- If both values are tables...
   if type(a) == "table" and type(b) == "table" then
     -- For each key-value pair in `a`...
@@ -160,7 +160,7 @@ function voidedUtil.deepEquals(a, b)
       local vb = b[k]
 
       -- If va and vb do not match...
-      if not voidedUtil.deepEquals(va, vb) then
+      if not vUtil.deepEquals(va, vb) then
         return false
       end
     end
