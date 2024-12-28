@@ -779,22 +779,6 @@
   },
   {
     "op": "add",
-    "path": "/v-titanofdarkness-flytotarget",
-    "value": {
-      "type": "module",
-      "name": "v-titanofdarkness-flytotarget",
-      "title": "",
-      "properties": {
-        "controlForce": {"type": "json", "value": 15},
-        "maxRange": {"type": "json", "value": 50},
-        "minRange": {"type": "json", "value": 30},
-        "speed": {"type": "json", "value": 25}
-      },
-      "pathToTree": "..\\monsters\\unique\\v-titanofdarkness\\v-flytotarget.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-titanofdarkness-explosion",
     "value": {
       "type": "module",
@@ -802,6 +786,34 @@
       "title": "",
       "properties": {},
       "pathToTree": "..\\monsters\\unique\\v-titanofdarkness\\v-explosion.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-bouncespread",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-bouncespread",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\unique\\v-titanofdarkness\\v-bouncespread.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-flytotarget",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-flytotarget",
+      "title": "",
+      "properties": {
+        "speed": {"type": "json", "value": 10},
+        "controlForce": {"type": "json", "value": 6},
+        "minRange": {"type": "json", "value": 30},
+        "maxRange": {"type": "json", "value": 50},
+        "minTime": {"type": "json", "value": 5}
+      },
+      "pathToTree": "..\\monsters\\unique\\v-titanofdarkness\\v-flytotarget.behavior"
     }
   }
 ]

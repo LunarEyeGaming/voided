@@ -1,6 +1,6 @@
 {
-  "projectileName" : "v-ancientbouncingshot",
-  "image" : "ancientbouncingshot.png",
+  "projectileName" : "v-titanbouncingprojectile",
+  "image" : "titanbouncingprojectile.png",
   "animationCycle" : 0.2,
   "lightColor" : [150, 100, 100],
   "frameNumber" : 1,
@@ -35,6 +35,6 @@
   "speed" : 20,
   "timeToLive" : 10,
 
-  "scripts" : [ "/projectiles/tracksourcestatus.lua" ],
+  "scripts" : [ "/projectiles/tracksourcestatus.lua", "v-titanbouncingprojectile.lua" ],
   "scriptDelta" : 1
 }

@@ -1,6 +1,9 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/v-attack.lua"
+require "/scripts/actions/flying.lua"
+require "/scripts/v-world.lua"
+
 -- param target
 -- param windupTime
 -- param attackTime
@@ -95,6 +98,72 @@ function v_titanExplosionAttack(args, board)
     world.sendEntityMessage(args.target, "v-teleport", spawnPos)
 
     util.run(args.postTeleportTime, function() end)
+  end
+
+  return true
+end
+
+-- param projectileCount
+-- param projectileType
+-- param projectileParameters
+-- param flickDelay
+-- param flickInterval
+-- param flickCount
+-- param target
+function v_titanBouncingOrbAttack(args)
+  local rq = vBehavior.requireArgsGen("v_titanBouncingOrbAttack", args)
+  if not rq{"projectileCount", "projectileType", "flickDelay", "flickInterval", "flickCount", "target"} then
+    return false
+  end
+
+  local params = copy(args.projectileParameters or {})
+  params.power = vAttack.scaledPower(params.power or 10)
+
+  -- Get eye positions.
+  local leftEyePos = vec2.add(animator.partPoint("body", "leftEyeCenter"), mcontroller.position())
+  local rightEyePos = vec2.add(animator.partPoint("body", "rightEyeCenter"), mcontroller.position())
+
+  local projectiles = {}
+
+  -- Spawn projectiles at left eye
+  for i = 1, args.projectileCount do
+    local angle = 2 * math.pi * i / args.projectileCount
+    local id = world.spawnProjectile(args.projectileType, leftEyePos, entity.id(), vec2.withAngle(angle), false, params)
+    table.insert(projectiles, id)
+  end
+
+  -- Spawn projectiles at right eye
+  for i = 1, args.projectileCount do
+    local angle = 2 * math.pi * i / args.projectileCount
+    local id = world.spawnProjectile(args.projectileType, rightEyePos, entity.id(), vec2.withAngle(angle), false, params)
+    table.insert(projectiles, id)
+  end
+
+  util.run(args.flickDelay, function() end)
+
+  local targetPos = world.entityPosition(args.target)
+  local maxAttempts = 200
+
+  -- Flick random projectiles toward the player.
+  for _ = 1, args.flickCount do
+    -- Attempt to select next projectile (must be in the line of sight of the player)
+    local nextIdx
+    local attempts = 0
+    repeat
+      nextIdx = math.random(1, #projectiles)
+      attempts = attempts + 1
+    until attempts > maxAttempts or not world.entityExists(projectiles[nextIdx]) or not world.lineCollision(targetPos, world.nearestTo(targetPos, world.entityPosition(projectiles[nextIdx])))
+
+    -- If the loop above exited because a valid choice was found...
+    if attempts <= maxAttempts and world.entityExists(projectiles[nextIdx]) then
+      -- Trigger the projectile to fly towards the player.
+      vWorld.sendEntityMessage(projectiles[nextIdx], "v-titanbouncingprojectile-fling", args.target)
+
+      -- Delete projectile from list
+      table.remove(projectiles, nextIdx)
+    end
+
+    util.run(args.flickInterval, function() end)
   end
 
   return true

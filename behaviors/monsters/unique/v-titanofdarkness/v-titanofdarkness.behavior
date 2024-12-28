@@ -4,6 +4,7 @@
   "scripts": [
     "/scripts/actions/entity.lua",
     "/scripts/actions/world.lua",
+    "/scripts/actions/movement.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/status.lua"
   ],
@@ -69,6 +70,14 @@
                     }
                   },
                   {
+                    "title": "faceDirection",
+                    "type": "action",
+                    "name": "faceDirection",
+                    "parameters": {
+                      "direction": {"value": -1}
+                    }
+                  },
+                  {
                     "title": "sequence",
                     "type": "composite",
                     "name": "sequence",
@@ -113,38 +122,26 @@
                                   "type": "module",
                                   "name": "v-titanofdarkness-explosion",
                                   "parameters": {}
+                                },
+                                {
+                                  "title": "v-titanofdarkness-bouncespread",
+                                  "type": "module",
+                                  "name": "v-titanofdarkness-bouncespread",
+                                  "parameters": {}
                                 }
                               ]
                             },
                             {
-                              "title": "parallel",
-                              "type": "composite",
-                              "name": "parallel",
+                              "title": "v-titanofdarkness-flytotarget",
+                              "type": "module",
+                              "name": "v-titanofdarkness-flytotarget",
                               "parameters": {
-                                "fail": {"value": -1},
-                                "success": {"value": 1}
-                              },
-                              "children": [
-                                {
-                                  "title": "v-titanofdarkness-flytotarget",
-                                  "type": "module",
-                                  "name": "v-titanofdarkness-flytotarget",
-                                  "parameters": {
-                                    "controlForce": {"value": 6},
-                                    "maxRange": {"value": 30},
-                                    "minRange": {"value": 20},
-                                    "speed": {"value": 10}
-                                  }
-                                },
-                                {
-                                  "title": "timer",
-                                  "type": "action",
-                                  "name": "timer",
-                                  "parameters": {
-                                    "time": {"value": 5}
-                                  }
-                                }
-                              ]
+                                "speed": {"value": 10},
+                                "controlForce": {"value": 6},
+                                "minRange": {"value": 20},
+                                "maxRange": {"value": 30},
+                                "minTime": {"value": 5}
+                              }
                             }
                           ]
                         }
@@ -167,6 +164,12 @@
                       "percentage": {"value": 1},
                       "resource": {"value": "health"}
                     }
+                  },
+                  {
+                    "title": "runner",
+                    "type": "action",
+                    "name": "runner",
+                    "parameters": {}
                   }
                 ]
               }
