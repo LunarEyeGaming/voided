@@ -22,7 +22,7 @@ local currentStateReset
 
 local turretIsActive  -- If true, then the turret will not be rotated with the body.
 
-local m_invulnerable
+local invulnerable
 
 local spawnedMines
 
@@ -50,7 +50,7 @@ function init()
 
   currentEllipseAngle = nil
   distanceToClamped = nil
-  m_invulnerable = false
+  invulnerable = false
   projectileUpdateTimer = projectileUpdateInterval
 
   spawnedMines = {}
@@ -66,11 +66,19 @@ function init()
     reset()
   end)
 
+  message.setHandler("activatePhase2Warning", function()
+    reset()
+    animator.setAnimationState("turret", "warning")
+    animator.setAnimationState("body", "warning")
+
+    animator.playSound("alarm", -1)
+  end)
+
   message.setHandler("activatePhase2", activatePhase2)
 
-  message.setHandler("setInvulnerable", function(_, _, invulnerable)
-    m_invulnerable = invulnerable
-    if invulnerable then
+  message.setHandler("setInvulnerable", function(_, _, invul)
+    invulnerable = invul
+    if invul then
       -- Make invulnerable for a lot of time (but not math.huge b/c that causes problems)
       status.addEphemeralEffect("invulnerable", 2 ^ 32)
     else
@@ -111,7 +119,7 @@ function update(dt)
   end
 
   -- terra_wormbody sets damageOnTouch to true on every update, so we override this if m_invulnerable is true.
-  monster.setDamageOnTouch(not m_invulnerable)
+  monster.setDamageOnTouch(not invulnerable)
 
   updateMines(dt)
 
@@ -508,6 +516,7 @@ function reset(alsoResetPhase)
   animator.stopAllSounds("laserElectricChargedLoop")
   animator.stopAllSounds("laserPoisonLoop")
   animator.stopAllSounds("laserElectricLoop")
+  animator.stopAllSounds("alarm")
 
   animator.resetTransformationGroup("turret")
 
@@ -517,6 +526,8 @@ function reset(alsoResetPhase)
 end
 
 function activatePhase2()
+  animator.stopAllSounds("alarm")
+
   animator.setAnimationState("turret", "transition")
   animator.setAnimationState("body", "transition")
 

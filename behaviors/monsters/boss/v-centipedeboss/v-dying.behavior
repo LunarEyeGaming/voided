@@ -53,6 +53,32 @@
         }
       },
       {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "idle"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "idle"},
+          "type": {"value": "turret"}
+        }
+      },
+      {
+        "title": "stopAllSounds",
+        "type": "action",
+        "name": "stopAllSounds",
+        "parameters": {
+          "sound": {"value": "alarm"}
+        }
+      },
+      {
         "title": "resetTransformationGroup",
         "type": "action",
         "name": "resetTransformationGroup",

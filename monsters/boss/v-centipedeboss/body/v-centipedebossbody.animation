@@ -22,6 +22,11 @@
             "cycle" : 0.6,
             "mode" : "transition",
             "transition" : "idle"
+          },
+          "warning" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
           }
         }
       },
@@ -113,6 +118,11 @@
             "cycle" : 0.7,
             "mode" : "transition",
             "transition" : "idle"
+          },
+          "warning" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
           }
         }
       },
@@ -167,6 +177,11 @@
               "properties" : {
                 "image" : "<partImage>:transition.<frame>"
               }
+            },
+            "warning" : {
+              "properties" : {
+                "image" : "<partImage>:warning.<frame>"
+              }
             }
           }
         }
@@ -197,6 +212,11 @@
             "transition" : {
               "properties" : {
                 "image" : "<partImage>:transition.<frame>"
+              }
+            },
+            "warning" : {
+              "properties" : {
+                "image" : "<partImage>:warning.<frame>"
               }
             }
           }
@@ -305,6 +325,11 @@
               "properties" : {
                 "image" : "<partImage>:transition.<frame>"
               }
+            },
+            "warning" : {
+              "properties" : {
+                "image" : "<partImage>:warning.<frame>"
+              }
             }
           }
         }
@@ -335,6 +360,11 @@
             "transition" : {
               "properties" : {
                 "image" : "<partImage>:transition.<frame>"
+              }
+            },
+            "warning" : {
+              "properties" : {
+                "image" : "<partImage>:warning.<frame>"
               }
             }
           }
@@ -508,6 +538,11 @@
       "pool" : [ "/sfx/npc/boss/v_centipede_laser_end.ogg" ],
       "volume" : 0.3,
       "rangeMultiplier" : 5.0
+    },
+    "alarm" : {
+      "pool" : [ "/sfx/objects/camera_alert_on.ogg" ],
+      "volume" : 0.4,
+      "rangeMultiplier": 5.0
     }
   }
 }

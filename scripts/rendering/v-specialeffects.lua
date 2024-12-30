@@ -16,7 +16,7 @@ function init()
   -- maps special effect names to special effect constructor calls
   local validSpecialEffects = {
     screenFlash = function(args)
-      return ScreenFlash:new(args.startColor, args.endColor, args.fullbright, args.duration)
+      return ScreenFlash:new(args.startColor, args.endColor, args.fullbright, args.duration, args.renderLayer)
     end
   }
 
@@ -70,6 +70,7 @@ end
 ---@field endColor ColorTable
 ---@field fullbright boolean?
 ---@field duration number
+---@field renderLayer string
 ---@field WINDOW_PADDING number
 ScreenFlash = {}
 
@@ -80,13 +81,14 @@ ScreenFlash = {}
 ---@param fullbright? boolean
 ---@param duration number
 ---@return ScreenFlash
-function ScreenFlash:new(startColor, endColor, fullbright, duration)
+function ScreenFlash:new(startColor, endColor, fullbright, duration, renderLayer)
   local effectConfig = {
     startColor = startColor,
     endColor = endColor,
     fullbright = fullbright,
     duration = duration,
     timer = duration,
+    renderLayer = renderLayer or "ForegroundOverlay+10",
     -- Camera can pan 600 px, or 75 blocks at 1x zoom. Will need double this value to ensure full coverage of viewing
     -- range.
     WINDOW_PADDING = 150
@@ -115,7 +117,7 @@ function ScreenFlash:process(dt)
     fullbright = self.fullbright,
     -- Timer is decreasing, so endColor and startColor must be swapped.
     color = vAnimator.lerpColor(self.timer / self.duration, self.endColor, self.startColor)
-  }, "ForegroundOverlay+10")
+  }, self.renderLayer)
 
   return self.timer <= 0
 end

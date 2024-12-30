@@ -11,7 +11,21 @@ function init()
 
   m_invulnerable = false
 
+  message.setHandler("activatePhase2Warning", function()
+    animator.setAnimationState("body", "warning")
+
+    animator.playSound("alarm", -1)
+  end)
+
   message.setHandler("setPhase", function(_, _, phase)
+    -- Do transition if the phase is set to 2.
+    if phase == "2" then
+      animator.setAnimationState("body", "transition")
+      animator.stopAllSounds("alarm")
+    else
+      -- Otherwise, simply reset
+      animator.setAnimationState("body", "idle")
+    end
     animator.setGlobalTag("phase", phase)
   end)
 
