@@ -1,0 +1,29 @@
+{
+  "animatedParts" : {
+    "parts" : {
+      "seal" : {
+        "properties" : {
+          "centered" : false,
+          "image" : "<partImage>",
+          "zLevel" : 1
+        }
+      },
+      "door" : {
+        "properties" : {
+          "centered" : false,
+          "image" : "<partImage>",
+          "zLevel" : 0,
+          "transformationGroups" : [ "door" ]
+        }
+      }
+    }
+  },
+  "transformationGroups" : {
+    "door" : { "interpolated" : true }
+  },
+  "sounds" : {
+    "moveStart" : ["/sfx/objects/v_facilityairlock_movestart.ogg"],
+    "moveLoop" : ["/sfx/tech/tech_sonicsphere_charge1.ogg"],
+    "moveEnd" : ["/sfx/objects/v_labreactordoor_impact.ogg"]
+  }
+}
