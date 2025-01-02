@@ -9,8 +9,8 @@
       "speed": {"type": "number", "value": null},
       "tolerance": {"type": "number", "value": 1}
     },
-    "category": "v-monster",
-    "script": "/scripts/actions/v-monster.lua",
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
     "output": {}
   },
   "v_crawl": {
@@ -23,8 +23,8 @@
       "testDistance": {"type": "number", "value": null},
       "stickForce": {"type": "number", "value": 50}
     },
-    "category": "v-monster",
-    "script": "/scripts/actions/v-monster.lua",
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
     "output": {
       "headingAngle": {"type": "number", "key": null},
       "headingDirection": {"type": "vec2", "key": null}
@@ -44,8 +44,19 @@
       "speed": {"type": "number", "value": 1},
       "faceDirection": {"type": "bool", "value": true}
     },
-    "category": "v-monster",
-    "script": "/scripts/actions/v-monster.lua",
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
+    "output": {}
+  },
+  "v_stop": {
+    "type": "action",
+    "name": "v_stop",
+    "title": "v_stop",
+    "properties": {
+      "stopForce": {"type": "number"}
+    },
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
     "output": {}
   }
 }

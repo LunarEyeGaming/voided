@@ -11,6 +11,8 @@ local flashTime
 
 local flashTimer
 
+local dt
+
 function init()
   script.setUpdateDelta(3)
 

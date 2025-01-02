@@ -1,6 +1,8 @@
+--- Utility functions related to the world.
 vWorld = {}
 
-vWorldA = {}  -- Async (requires coroutine)
+--- Utility coroutine functions related to the world.
+vWorldA = {}
 
 -- Certain scripts may not work under specific script contexts due to some built-in tables being
 -- unavailable. The legend below is intended to help in knowing when using each function is appropriate.

@@ -18,13 +18,15 @@
 
     "behavior" : "v-titanofdarkness",
 
-    "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
+    "metaBoundBox" : [-5, -7.5, 5, 7.5],
     "scale" : 1.0,
+
+    "selfDamagePoly" : [ [5, 7.5], [5, -7.5], [-5, -7.5], [-5, 7.5] ],
 
     "movementSettings" : {
       "gravityEnabled" : false,
       "collisionEnabled" : false,
-      "collisionPoly" : [ [5, 7.5], [5, -7.5], [-5, -7.5], [-5, 7.5] ],
+      "collisionPoly" : [ [2, 2], [2, -2], [-2, -2], [-2, 2] ],
 
       "flySpeed" : 10,
       "airForce" : 6,

@@ -1,0 +1,275 @@
+{
+  "name": "v-titanofdarkness-search",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/world.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/boss/v-titanofdarkness.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/math.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "parallel",
+    "type": "composite",
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": -1},
+      "success": {"value": 1}
+    },
+    "children": [
+      {
+        "title": "dynamic",
+        "type": "composite",
+        "name": "dynamic",
+        "parameters": {},
+        "children": [
+          {
+            "title": "parallel",
+            "type": "composite",
+            "name": "parallel",
+            "parameters": {
+              "fail": {"value": 1},
+              "success": {"value": -1}
+            },
+            "children": [
+              {
+                "title": "entityInRange",
+                "type": "action",
+                "name": "entityInRange",
+                "parameters": {
+                  "entity": {"key": "target"},
+                  "position": {"key": "self"},
+                  "range": {"value": 80}
+                }
+              },
+              {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "dynamic",
+                    "type": "composite",
+                    "name": "dynamic",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "Exit blocks",
+                        "type": "decorator",
+                        "name": "failer",
+                        "parameters": {},
+                        "child": {
+                          "title": "parallel",
+                          "type": "composite",
+                          "name": "parallel",
+                          "parameters": {
+                            "fail": {"value": -1},
+                            "success": {"value": 1}
+                          },
+                          "children": [
+                            {
+                              "title": "failer",
+                              "type": "decorator",
+                              "name": "failer",
+                              "parameters": {},
+                              "child": {
+                                "title": "entityPosition",
+                                "type": "action",
+                                "name": "entityPosition",
+                                "parameters": {
+                                  "entity": {"key": "target"}
+                                },
+                                "output": {
+                                  "position": "targetPosition"
+                                }
+                              }
+                            },
+                            {
+                              "title": "inverter",
+                              "type": "decorator",
+                              "name": "inverter",
+                              "parameters": {},
+                              "child": {
+                                "title": "boundsCollision",
+                                "type": "action",
+                                "name": "boundsCollision",
+                                "parameters": {}
+                              }
+                            },
+                            {
+                              "title": "flyToPosition",
+                              "type": "action",
+                              "name": "flyToPosition",
+                              "parameters": {
+                                "position": {"key": "targetPosition"},
+                                "speed": {"value": 20},
+                                "tolerance": {"value": 1}
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "title": "v_stop",
+                        "type": "action",
+                        "name": "v_stop",
+                        "parameters": {
+                          "stopForce": {"value": 20}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "repeater",
+                    "type": "decorator",
+                    "name": "repeater",
+                    "parameters": {
+                      "maxLoops": {"value": -1},
+                      "untilSuccess": {"value": false}
+                    },
+                    "child": {
+                      "title": "selector",
+                      "type": "composite",
+                      "name": "selector",
+                      "parameters": {},
+                      "children": [
+                        {
+                          "title": "v_titanSearch",
+                          "type": "action",
+                          "name": "v_titanSearch",
+                          "parameters": {},
+                          "output": {
+                            "angle": "targetAngle"
+                          }
+                        },
+                        {
+                          "title": "failer",
+                          "type": "decorator",
+                          "name": "failer",
+                          "parameters": {},
+                          "child": {
+                            "title": "v_titanGrab",
+                            "type": "action",
+                            "name": "v_titanGrab",
+                            "parameters": {
+                              "target": {"key": "target"}
+                            },
+                            "output": {
+                              "angle": "targetAngle"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "parallel",
+            "type": "composite",
+            "name": "parallel",
+            "parameters": {
+              "fail": {"value": -1},
+              "success": {"value": 1}
+            },
+            "children": [
+              {
+                "title": "failer",
+                "type": "decorator",
+                "name": "failer",
+                "parameters": {},
+                "child": {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "entityPosition",
+                      "type": "action",
+                      "name": "entityPosition",
+                      "parameters": {
+                        "entity": {"key": "target"}
+                      },
+                      "output": {
+                        "position": "targetPosition"
+                      }
+                    },
+                    {
+                      "title": "distance",
+                      "type": "action",
+                      "name": "distance",
+                      "parameters": {
+                        "from": {"key": "self"},
+                        "to": {"key": "targetPosition"}
+                      },
+                      "output": {
+                        "vector": "targetDistance"
+                      }
+                    },
+                    {
+                      "title": "vecAngle",
+                      "type": "action",
+                      "name": "vecAngle",
+                      "parameters": {
+                        "vector": {"key": "targetDistance"}
+                      },
+                      "output": {
+                        "angle": "targetAngle"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "flyToPosition",
+                "type": "action",
+                "name": "flyToPosition",
+                "parameters": {
+                  "position": {"key": "targetPosition"},
+                  "speed": {"value": 20},
+                  "tolerance": {"value": 1}
+                }
+              }
+            ]
+          },
+          {
+            "title": "runner",
+            "type": "action",
+            "name": "runner",
+            "parameters": {}
+          }
+        ]
+      },
+      {
+        "title": "failer",
+        "type": "decorator",
+        "name": "failer",
+        "parameters": {},
+        "child": {
+          "title": "v_titanRotateEyes",
+          "type": "action",
+          "name": "v_titanRotateEyes",
+          "parameters": {
+            "leftEyeAngle": {"key": "targetAngle"},
+            "rightEyeAngle": {"key": "targetAngle"}
+          }
+        }
+      },
+      {
+        "title": "v_titanDetectTarget",
+        "type": "action",
+        "name": "v_titanDetectTarget",
+        "parameters": {
+          "currentAngle": {"key": "targetAngle"}
+        }
+      }
+    ]
+  }
+}

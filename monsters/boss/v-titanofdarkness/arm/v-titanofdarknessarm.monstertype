@@ -1,0 +1,120 @@
+{
+  "type" : "v-titanofdarknessarm",
+
+  "categories" : [ "v-titanofdarknessarm" ],
+  "parts" : [ "arm" ],
+
+  "animation" : "v-titanofdarknessarm.animation",
+  "reversed" : true,
+
+  "dropPools" : [ "empty" ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/boss/v-titanofdarkness/arm/v-titanofdarknessarm.lua"
+    ],
+
+    "metaBoundBox" : [-5, -7.5, 5, 7.5],
+    "scale" : 1.0,
+
+    "selfDamagePoly" : [ [5, 7.5], [5, -7.5], [-5, -7.5], [-5, 7.5] ],
+
+    "movementSettings" : {
+      "gravityEnabled" : false,
+      "collisionEnabled" : false,
+      "collisionPoly" : [ [2, 2], [2, -2], [-2, -2], [-2, 2] ],
+
+      "flySpeed" : 10,
+      "airForce" : 6,
+
+      "physicsEffectCategories" : ["stationarymonster"]
+    },
+
+    "knockoutTime" : 0.0,
+    "knockoutEffect" : "",
+    "deathParticles" : "deathPoof",
+
+    "touchDamage" : {
+      "poly" : [ [-1.0, -1.0], [1.0, -1.0], [1.0, 1.0], [-1.0, 1.0] ],
+      "damage" : 15,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "hammer",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "robotic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : false,
+      "minimumLiquidStatusEffectPercentage" : 1.0 // ,
+
+      // "primaryScriptSources" : [
+      //   "/stats/monster_primary.lua"
+      // ],
+      // "primaryScriptDelta" : 5,
+
+      // "stats" : {
+      //   "knockbackStunTime" : {
+      //     "baseValue" : 0.25
+      //   },
+      //   "grit" : {
+      //     "baseValue" : 1.0
+      //   },
+      //   "maxHealth" : {
+      //     "baseValue" : 1000
+      //   },
+      //   "protection" : {
+      //     "baseValue" : 0
+      //   },
+      //   "healthRegen" : {
+      //     "baseValue" : 0.0
+      //   },
+      //   "fireStatusImmunity" : {
+      //     "baseValue" : 1.0
+      //   },
+      //   "iceStatusImmunity" : {
+      //     "baseValue" : 1.0
+      //   },
+      //   "electricStatusImmunity" : {
+      //     "baseValue" : 1.0
+      //   },
+      //   "poisonStatusImmunity" : {
+      //     "baseValue" : 1.0
+      //   },
+      //   "specialStatusImmunity" : {
+      //     "baseValue" : 1.0
+      //   },
+      //   "healingStatusImmunity" : {
+      //     "baseValue" : 1.0
+      //   },
+      //   "stunImmunity" : {
+      //     "baseValue" : 1.0
+      //   },
+      //   "powerMultiplier" : {
+      //     "baseValue" : 1.0
+      //   }
+      // },
+
+      // "resources" : {
+      //   "stunned" : {
+      //     "deltaValue" : -1.0,
+      //     "initialValue" : 0.0,
+      //     "maxValue" : 0.0
+      //   },
+      //   "health" : {
+      //     "maxStat" : "maxHealth",
+      //     "deltaStat" : "healthRegen",
+      //     "defaultPercentage" : 1.0
+      //   }
+      // }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8]
+  }
+}

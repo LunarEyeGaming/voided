@@ -29,8 +29,10 @@ function vBehavior.requireArgsGen(nodeName, args)
   end
 end
 
--- Coroutine function that waits until it receives <count> notifications of the specified type (default is 1).
--- self.notifications must be defined and must work correctly.
+---Coroutine function that waits until it receives `count` notifications of the specified type `type_` (default is 1).
+---self.notifications must be defined and must work correctly.
+---@param type_ string
+---@param count number?
 function vBehavior.awaitNotification(type_, count)
   count = count or 1
   local notifications = {}
@@ -52,44 +54,6 @@ function vBehavior.awaitNotification(type_, count)
   end
 
   return notifications
-end
-
----Flies to a given `position` with a provided `speed` and `tolerance` as well as `controlForce`, rotating "body" toward
----the target.
----@param pos Vec2F the position to fly to
----@param speed number the speed at which to fly to the position
----@param controlForce number the control force to use when flying to the position
----@param tolerance number the maximum distance necessary to consider the entity "at" the target position
-function vBehavior.rotatedFlyToPosition(pos, speed, controlForce, tolerance)
-  local atPos
-
-  while not atPos do
-    atPos = vBehavior.rotatedFlyToPositionTick(pos, speed, controlForce, tolerance)
-
-    coroutine.yield(nil)
-  end
-end
-
----Similar to `vBehavior.rotatedFlyToPosition`, except it flies to the position for one tick and returns `true` if the
----entity is within `tolerance` (in both axes) of the target position, `false` otherwise.
----@param pos Vec2F the position to fly to
----@param speed number the speed at which to fly to the position
----@param controlForce number the control force to use when flying to the position
----@param tolerance number the maximum distance necessary to consider the entity "at" the target position
-function vBehavior.rotatedFlyToPositionTick(pos, speed, controlForce, tolerance)
-  -- Approach velocity necessary to reach the target position
-  local distance = world.distance(pos, mcontroller.position())
-  mcontroller.controlApproachVelocity(vec2.mul(vec2.norm(distance), speed), controlForce)
-
-  -- Rotate to current velocity
-  local rotation = vec2.angle(mcontroller.velocity())
-  mcontroller.setRotation(rotation)
-  animator.resetTransformationGroup("body")
-  animator.rotateTransformationGroup("body", rotation)
-
-  mcontroller.controlFace(1)
-
-  return math.abs(distance[1]) < tolerance and math.abs(distance[2]) < tolerance
 end
 
 ---Resolve references to blackboard variables in a table and its nested tables. References are denoted with

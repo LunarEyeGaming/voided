@@ -4,8 +4,8 @@
   "scripts": [
     "/scripts/actions/world.lua",
     "/scripts/actions/movement.lua",
-    "/scripts/actions/time.lua",
-    "/scripts/actions/unique/v-titanofdarkness.lua"
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/boss/v-titanofdarkness.lua"
   ],
   "parameters": {},
   "root": {
@@ -36,38 +36,12 @@
         }
       },
       {
-        "title": "parallel",
-        "type": "composite",
-        "name": "parallel",
+        "title": "v_stop",
+        "type": "action",
+        "name": "v_stop",
         "parameters": {
-          "fail": {"value": -1},
-          "success": {"value": 1}
-        },
-        "children": [
-          {
-            "title": "failer",
-            "type": "decorator",
-            "name": "failer",
-            "parameters": {},
-            "child": {
-              "title": "controlApproachVelocity",
-              "type": "action",
-              "name": "controlApproachVelocity",
-              "parameters": {
-                "force": {"value": 60},
-                "velocity": {"value": [0, 0]}
-              }
-            }
-          },
-          {
-            "title": "timer",
-            "type": "action",
-            "name": "timer",
-            "parameters": {
-              "time": {"value": 2}
-            }
-          }
-        ]
+          "stopForce": {"value": 60}
+        }
       },
       {
         "title": "v_titanBouncingOrbAttack",

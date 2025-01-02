@@ -1,0 +1,22 @@
+{
+  "itemName" : "v-testitem",
+  "price" : 100,
+  "level" : 1,
+  "maxStack" : 1,
+  "rarity" : "Essential",
+  "category" : "tool",
+  "description" : "Does things.",
+  "shortdescription" : "Test Item",
+  "twoHanded" : true,
+
+  "inventoryIcon" : "/items/generic/crafting/bottle.png",
+  "animation" : "v-testitem.animation",
+  "animationParts" : {
+    "potion" : "/items/generic/crafting/bottle.png"
+  },
+  "scripts" : ["v-testitem.lua"],
+
+  "statusEffect" : "burning",
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

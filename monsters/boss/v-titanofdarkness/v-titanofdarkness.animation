@@ -56,7 +56,7 @@
           "centered" : true,
           "offset" : [37.625, 2.375],
           "fullbright" : true,
-          "transformationGroups" : [ "leftbeam" ]
+          "transformationGroups" : [ "lefteye" ]
         },
         "partStates" : {
           "lasers" : {
@@ -90,7 +90,7 @@
           "centered" : true,
           "offset" : [42.375, 2.375],
           "fullbright" : true,
-          "transformationGroups" : [ "rightbeam" ]
+          "transformationGroups" : [ "righteye" ]
         },
         "partStates" : {
           "lasers" : {
@@ -122,14 +122,35 @@
   },
 
   "transformationGroups" : {
-    "leftbeam" : {"interpolated" : true},
-    "rightbeam" : {"interpolated" : true}
+    "lefteye" : {"interpolated" : true},
+    "righteye" : {"interpolated" : true}
   },
 
   "particleEmitters" : {
     "deathPoof" : {
       "particles" : [
       ]
+    }
+  },
+
+  "lights" : {
+    "lefteyelight" : {
+      "transformationGroups" : ["lefteye"],
+      "position" : [-2.375, 2.375],
+      "color" : [255, 255, 255],
+      "pointLight" : true,
+      "pointBeam" : 5,
+      "pointAngle" : 0,
+      "beamAmbience" : 0.35
+    },
+    "righteyelight" : {
+      "transformationGroups" : ["righteye"],
+      "position" : [2.375, 2.375],
+      "color" : [255, 255, 255],
+      "pointLight" : true,
+      "pointBeam" : 5,
+      "pointAngle" : 0,
+      "beamAmbience" : 0.35
     }
   },
 

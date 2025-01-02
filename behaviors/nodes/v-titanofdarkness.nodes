@@ -9,7 +9,7 @@
       "windupTime": {"type": "number", "value": 0.5}
     },
     "category": "v-titanofdarkness",
-    "script": "/scripts/actions/unique/v-titanofdarkness.lua",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   },
   "v_titanExplosionAttack": {
@@ -27,7 +27,7 @@
       "teleportDelay": {"type": "number", "value": 0.8}
     },
     "category": "v-titanofdarkness",
-    "script": "/scripts/actions/unique/v-titanofdarkness.lua",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   },
   "v_titanBouncingOrbAttack": {
@@ -44,7 +44,58 @@
       "target": {"type": "entity", "key": "target"}
     },
     "category": "v-titanofdarkness",
-    "script": "/scripts/actions/unique/v-titanofdarkness.lua",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
+  },
+  "v_titanSearch": {
+    "type": "action",
+    "name": "v_titanSearch",
+    "title": "v_titanSearch",
+    "properties": {
+      "target": {"type": "entity", "key": "target"}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {
+      "angle": {"type": "number", "key": null}
+    }
+  },
+  "v_titanDetectTarget": {
+    "type": "action",
+    "name": "v_titanDetectTarget",
+    "title": "v_titanDetectTarget",
+    "properties": {
+      "currentAngle": {"type": "number"}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
+  },
+  "v_titanGrab": {
+    "type": "action",
+    "name": "v_titanGrab",
+    "title": "v_titanGrab",
+    "properties": {
+      "target": {"type": "entity", "key": "target"}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {
+      "angle": {"type": "number", "key": null}
+    }
+  },
+  "v_titanRotateEyes": {
+    "type": "action",
+    "name": "v_titanRotateEyes",
+    "title": "v_titanRotateEyes",
+    "properties": {
+      "leftEyeAngle": {"type": "number"},
+      "rightEyeAngle": {"type": "number"},
+      "target": {"type": "entity"},
+      "position": {"type": "position"}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   }
 }

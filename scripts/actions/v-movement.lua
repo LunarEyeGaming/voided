@@ -74,7 +74,7 @@ end
 -- param speed (optional)
 -- param tolerance
 function v_flyToNearerPosition(args, board)
-  local rq = vBehavior.requireArgsGen("v_rangedFlyApproach", args)
+  local rq = vBehavior.requireArgsGen("v_flyToNearerPosition", args)
 
   if not rq{"position1", "position2", "tolerance"} then return false end
 
@@ -145,6 +145,20 @@ function v_crawl(args, board)
   end
 
   return false, {headingDirection = {1, 0}, forwardAngle = 0}
+end
+
+-- param stopForce
+function v_stop(args)
+  local rq = vBehavior.requireArgsGen("v_stop", args)
+  if not rq{"stopForce"} then return false end
+
+  -- Slow down until the entity has stopped moving.
+  while vec2.mag(mcontroller.velocity()) > 0 do
+    mcontroller.controlApproachVelocity({0, 0}, args.stopForce)
+    coroutine.yield()
+  end
+
+  return true
 end
 
 function _correctAngle(angle, speed, step, dt)
