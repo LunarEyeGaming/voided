@@ -4,6 +4,7 @@ require "/scripts/poly.lua"
 require "/scripts/actions/crawling.lua"
 require "/scripts/actions/projectiles.lua"
 require "/scripts/v-behavior.lua"
+require "/scripts/v-movement.lua"
 
 -- param minRange
 -- param maxRange
@@ -93,6 +94,19 @@ function v_flyToNearerPosition(args, board)
   end
 
   mcontroller.controlFly({0,0})
+  return true
+end
+
+-- param position
+-- param speed
+-- param controlForce
+-- param tolerance
+function v_flyToPositionNoFlip(args)
+  local rq = vBehavior.requireArgsGen("v_flyToPositionNoFlip", args)
+  if not rq{"position"} then return false end
+
+  vMovementA.flyToPosition(args.position, args.speed, args.controlForce, args.tolerance)
+
   return true
 end
 

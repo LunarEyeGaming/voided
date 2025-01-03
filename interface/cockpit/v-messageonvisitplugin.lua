@@ -19,7 +19,7 @@ function update(dt)
   oldUpdate(dt)
   -- If a message has not been sent yet and the player is in an extradimensional star system...
   if not sentMessage and isInExtradimensionalSystem() then
-    local queried = world.entityQuery(world.entityPosition(pane.sourceEntity()), messageSendRadius)
+    local queried = world.entityQuery(world.entityPosition(player.id()), messageSendRadius)
 
     local messages = config.getParameter("v-extradimensionalStarMessages")
     -- Send messages to all nearby players

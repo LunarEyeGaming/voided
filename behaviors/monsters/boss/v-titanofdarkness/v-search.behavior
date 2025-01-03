@@ -4,11 +4,12 @@
   "scripts": [
     "/scripts/actions/world.lua",
     "/scripts/actions/sensor.lua",
-    "/scripts/actions/movement.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/math.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua",
-    "/scripts/actions/position.lua",
-    "/scripts/actions/math.lua"
+    "/scripts/actions/entity.lua",
+    "/scripts/actions/time.lua"
   ],
   "parameters": {},
   "root": {
@@ -101,14 +102,73 @@
                               }
                             },
                             {
-                              "title": "flyToPosition",
-                              "type": "action",
-                              "name": "flyToPosition",
+                              "title": "parallel",
+                              "type": "composite",
+                              "name": "parallel",
                               "parameters": {
-                                "position": {"key": "targetPosition"},
-                                "speed": {"value": 20},
-                                "tolerance": {"value": 1}
-                              }
+                                "fail": {"value": -1},
+                                "success": {"value": 1}
+                              },
+                              "children": [
+                                {
+                                  "title": "failer",
+                                  "type": "decorator",
+                                  "name": "failer",
+                                  "parameters": {},
+                                  "child": {
+                                    "title": "sequence",
+                                    "type": "composite",
+                                    "name": "sequence",
+                                    "parameters": {},
+                                    "children": [
+                                      {
+                                        "title": "entityPosition",
+                                        "type": "action",
+                                        "name": "entityPosition",
+                                        "parameters": {
+                                          "entity": {"key": "target"}
+                                        },
+                                        "output": {
+                                          "position": "targetPosition"
+                                        }
+                                      },
+                                      {
+                                        "title": "distance",
+                                        "type": "action",
+                                        "name": "distance",
+                                        "parameters": {
+                                          "from": {"key": "self"},
+                                          "to": {"key": "targetPosition"}
+                                        },
+                                        "output": {
+                                          "vector": "targetDistance"
+                                        }
+                                      },
+                                      {
+                                        "title": "vecAngle",
+                                        "type": "action",
+                                        "name": "vecAngle",
+                                        "parameters": {
+                                          "vector": {"key": "targetDistance"}
+                                        },
+                                        "output": {
+                                          "angle": "targetAngle"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "title": "v_flyToPositionNoFlip",
+                                  "type": "action",
+                                  "name": "v_flyToPositionNoFlip",
+                                  "parameters": {
+                                    "position": {"key": "targetPosition"},
+                                    "speed": {"value": 20},
+                                    "tolerance": {"value": 1}
+                                  }
+                                }
+                              ]
                             }
                           ]
                         }
@@ -141,7 +201,9 @@
                           "title": "v_titanSearch",
                           "type": "action",
                           "name": "v_titanSearch",
-                          "parameters": {},
+                          "parameters": {
+                            "startAngle": {"key": "targetAngle"}
+                          },
                           "output": {
                             "angle": "targetAngle"
                           }
@@ -228,9 +290,9 @@
                 }
               },
               {
-                "title": "flyToPosition",
+                "title": "v_flyToPositionNoFlip",
                 "type": "action",
-                "name": "flyToPosition",
+                "name": "v_flyToPositionNoFlip",
                 "parameters": {
                   "position": {"key": "targetPosition"},
                   "speed": {"value": 20},
@@ -263,11 +325,44 @@
         }
       },
       {
-        "title": "v_titanDetectTarget",
+        "title": "Try to spot target",
         "type": "action",
         "name": "v_titanDetectTarget",
         "parameters": {
           "currentAngle": {"key": "targetAngle"}
+        }
+      },
+      {
+        "title": "Stop if someone hurt it",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "wasDamaged",
+            "type": "action",
+            "name": "wasDamaged",
+            "parameters": {},
+            "output": {
+              "damageSource": "titanDamageSource"
+            }
+          },
+          {
+            "title": "entityExists",
+            "type": "action",
+            "name": "entityExists",
+            "parameters": {
+              "entity": {"key": "damageSource"}
+            }
+          }
+        ]
+      },
+      {
+        "title": "Give up after some seconds",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 120}
         }
       }
     ]

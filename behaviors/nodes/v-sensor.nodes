@@ -10,5 +10,18 @@
     "category": "v-sensor",
     "script": "/scripts/actions/v-sensor.lua",
     "output": {}
+  },
+  "v_rectCollision": {
+    "type": "action",
+    "name": "v_rectCollision",
+    "title": "v_rectCollision",
+    "properties": {
+      "offset": {"type": "vec2"},
+      "position": {"type": "position", "key": "self"},
+      "rect": {"type": "list"}
+    },
+    "category": "v-sensor",
+    "script": "/scripts/actions/v-sensor.lua",
+    "output": {}
   }
 }

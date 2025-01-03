@@ -204,7 +204,6 @@ function v_titanSearch(args)
   if not rq{"target"} then return false end
 
   local angularVelocity = 2 * math.pi  -- Parameter
-  local loops = 99999  -- Parameter
   local rayCount = 40  -- Parameter
   local maxRaycastLength = 100  -- Parameter
   local turnWaitTime = 0.5
@@ -230,7 +229,7 @@ function v_titanSearch(args)
     end
   end
 
-  local currentAngle = -math.pi / 2
+  local currentAngle = args.startAngle or -math.pi / 2
   while true do
     local searchZones = processRaycastClusters(radialRaycast(mcontroller.position(), rayCount, maxRaycastLength))
 
@@ -265,18 +264,23 @@ function v_titanSearch(args)
     -- local adjustedSearchPoint = centerOfRadialRaycast(searchPoint, rayCount, maxRaycastLength)
     -- -- searchPoint and adjustedSearchPoint are, themselves, prone to error. Maybe get the midpoint of them?
     -- local targetPos = {(searchPoint[1] + adjustedSearchPoint[1]) / 2, (searchPoint[2] + adjustedSearchPoint[2]) / 2}
-    local targetPos = findNextSearchPoint(searchZones, args.target)
 
-    if not targetPos then
+    local targetOffsetRegion = {-30, -30, 30, 30}
+    local requiredSafeRegion = {-2, -2, 2, 2}
+    local maxAttempts = 10
+    local targetPos = world.entityPosition(args.target)
+    local nextPos = findRandomAirPosition(maxAttempts, targetPos, targetOffsetRegion, requiredSafeRegion, 1, 20)
+
+    if not nextPos then
       return false
     end
 
-    turn(currentAngle, vec2.angle(world.distance(targetPos, mcontroller.position())))
+    turn(currentAngle, vec2.angle(world.distance(nextPos, mcontroller.position())))
 
     -- Fly to target position
     local distance
     repeat
-      distance = world.distance(targetPos, mcontroller.position())
+      distance = world.distance(nextPos, mcontroller.position())
 
       mcontroller.controlApproachVelocity(vec2.mul(vec2.norm(distance), flySpeed), flyControlForce)
 
@@ -289,6 +293,21 @@ function v_titanSearch(args)
     while vec2.mag(mcontroller.velocity()) > 0 do
       mcontroller.controlApproachVelocity({0, 0}, flyControlForce)
       coroutine.yield()
+    end
+
+    -- Try to find a path
+    local pathfindResults = world.findPlatformerPath(mcontroller.position(), world.entityPosition(args.target), mcontroller.baseParameters(), {
+      returnBest = false,
+      mustEndOnGround = false,
+      maxFScore = 400,
+      maxDistance = 200,
+      maxNodesToSearch = 70000,
+      boundBox = mcontroller.boundBox()
+    })
+
+    -- Fail if no path to the player is found.
+    if not pathfindResults then
+      return false
     end
   end
 end
@@ -400,20 +419,26 @@ function v_titanGrab(args)
 
   if not rq{"target"} then return false end
 
-  local armSpawnRegion = {-20, -20, 20, 20}
-  local requiredSafeArea = {-5, -5, 5, 5}
+  local armSpawnRegion = {-10, -10, 10, 10}
+  local requiredSafeArea = {-2, -2, 2, 2}
+  local maxAttempts = 200
 
-  -- Pick a random arm spawning position.
+  -- Pick a random arm spawning position. Abort after `maxAttempts` attempts
   local spawnPos
+  local attempts = 0
   repeat
     spawnPos = vec2.add(mcontroller.position(), rect.randomPoint(armSpawnRegion))
-  until not world.lineCollision(mcontroller.position(), spawnPos) and not world.rectCollision(rect.translate(requiredSafeArea, spawnPos))
+    attempts = attempts + 1
+  until (not world.lineCollision(mcontroller.position(), spawnPos) and not world.rectCollision(rect.translate(requiredSafeArea, spawnPos))) or attempts > maxAttempts
+
+  -- If no arm spawning position is available, fail.
+  if attempts > maxAttempts then return false end
 
   -- Spawn the arm
   world.spawnMonster("v-titanofdarknessarm", spawnPos, {task = "grab", taskArguments = {target = args.target}, master = entity.id()})
 
   -- Look at arm position.
-  v_titanRotateEyes{position = spawnPos}
+  coroutine.yield(nil, {angle = vec2.angle(world.distance(spawnPos, mcontroller.position()))})
 
   -- Wait for arm to finish.
   vBehavior.awaitNotification("v-titanofdarkness-armFinished")
@@ -428,6 +453,7 @@ end
 ---@param target EntityId
 ---@return Vec2F?
 function findNextSearchPoint(searchZones, target)
+  local pathfindMaxLookahead = 3  -- Preferred index of choice when choosing an element from pathfindResults.
   local pathfindResults = world.findPlatformerPath(mcontroller.position(), world.entityPosition(target), mcontroller.baseParameters(), {
     returnBest = false,
     mustEndOnGround = false,
@@ -442,43 +468,77 @@ function findNextSearchPoint(searchZones, target)
     return nil
   end
 
-  local maxTravelDistance = 80
-  local minWallDistance = 5  -- Must be less than search threshold.
-  local ownPos = mcontroller.position()
+  -- local targetOffsetRegion = {-30, -30, 30, 30}
+  -- local requiredSafeRegion = {-2, -2, 2, 2}
+  -- local maxAttempts = 10
+
+  -- local targetPos = world.entityPosition(target)
+
+  -- local nextPos
+  -- local attempts = 0
+
+  -- -- Choose random position within a rectangle, then find a corresponding air position if the random position does not
+  -- -- already have a region of air.
+  -- while not nextPos and attempts < maxAttempts do
+  --   local candidate = vec2.add(targetPos, rect.randomPoint(targetOffsetRegion))
+  --   local status, results = findAirPosition{centerPosition = candidate, collisionArea = requiredSafeRegion, maxDistance = 20, lerpStep = 1.0}
+  --   if status then
+  --     -- Tell LuaLS to disregard results potentially being nil.
+  --     ---@diagnostic disable: need-check-nil
+  --     nextPos = results.position
+  --   end
+  --   attempts = attempts + 1
+  -- end
+
+  -- if attempts >= maxAttempts then
+  --   -- local maxTravelDistance = 80
+  --   -- local minWallDistance = 5  -- Must be less than search threshold.
+  --   -- local ownPos = mcontroller.position()
+  --   -- local targetPos = pathfindResults[math.min(#pathfindResults, pathfindMaxLookahead)].target.position
+  --   -- local targetAngle = vec2.angle(world.distance(targetPos, ownPos))
+  --   -- local bestSearchPos  -- The search position that is closest to the target so far
+  --   -- local bestSearchAngle = 0  -- The angle of the vector from the current position to bestSearchPos
+  --   -- local bestSearchAngleDiff = math.pi  -- Absolute value of difference between bestSearchAngle and targetAngle
+
+  --   -- -- For each search zone...
+  --   -- for _, zone in ipairs(searchZones) do
+  --   --   -- For a sweep search, use the middle of the two endpoint angles. For a spot search, use the angle directly.
+  --   --   local searchAngle = zone.sweep and (zone.startAngle + zone.endAngle) / 2 or zone.angle
+
+  --   --   -- Do a raycast
+  --   --   local raycast = world.lineCollision(ownPos, vec2.add(ownPos, vec2.withAngle(searchAngle, maxTravelDistance)))
+
+  --   --   -- If there is a raycast...
+  --   --   if raycast then
+  --   --     -- Ensure the entity does not hit a wall
+  --   --     travelDistance = world.magnitude(ownPos, raycast) - minWallDistance
+  --   --   else
+  --   --     -- Simply travel.
+  --   --     travelDistance = maxTravelDistance
+  --   --   end
+
+  --   --   -- Get search position.
+  --   --   local searchPos = vec2.add(ownPos, vec2.withAngle(searchAngle, travelDistance))
+
+  --   --   local searchAngleDiff = math.abs(util.angleDiff(targetAngle, searchAngle))
+  --   --   -- If it is closer to the target position than bestSearchPos...
+  --   --   if searchAngleDiff < bestSearchAngleDiff then
+  --   --     bestSearchPos = searchPos
+  --   --     bestSearchAngle = searchAngle
+  --   --     bestSearchAngleDiff = searchAngleDiff
+  --   --   end
+  --   -- end
+
+  --   -- return adjustAgainstGeometry(bestSearchPos, bestSearchAngle, 20, 100)
+  --   return nil
+  -- end
+
+  -- return nextPos
+  local targetOffsetRegion = {-30, -30, 30, 30}
+  local requiredSafeRegion = {-2, -2, 2, 2}
+  local maxAttempts = 10
   local targetPos = world.entityPosition(target)
-  local bestSearchPos  -- The search position that is closest to the target so far
-  local bestSearchAngle  -- The angle of the vector from the current position to bestSearchPos
-  local bestSearchDistance = math.huge  -- The distance from bestSearchPos to targetPos
-
-  -- For each search zone...
-  for _, zone in ipairs(searchZones) do
-    -- For a sweep search, use the middle of the two endpoint angles. For a spot search, use the angle directly.
-    local searchAngle = zone.sweep and (zone.startAngle + zone.endAngle) / 2 or zone.angle
-
-    -- Do a raycast
-    local raycast = world.lineCollision(ownPos, vec2.add(ownPos, vec2.withAngle(searchAngle, maxTravelDistance)))
-
-    -- If there is a raycast...
-    if raycast then
-      -- Ensure the entity does not hit a wall
-      travelDistance = world.magnitude(ownPos, raycast) - minWallDistance
-    else
-      -- Simply travel.
-      travelDistance = maxTravelDistance
-    end
-
-    -- Get search position.
-    local searchPos = vec2.add(ownPos, vec2.withAngle(searchAngle, travelDistance))
-    local searchDistance = world.magnitude(targetPos, searchPos)
-    -- If it is closer to the target than bestSearchPos...
-    if searchDistance < bestSearchDistance then
-      bestSearchPos = searchPos
-      bestSearchAngle = searchAngle
-      bestSearchDistance = searchDistance
-    end
-  end
-
-  return adjustAgainstGeometry(bestSearchPos, bestSearchAngle, 20, 100)
+  return findRandomAirPosition(maxAttempts, targetPos, targetOffsetRegion, requiredSafeRegion, 1, 20)
 end
 
 ---Returns the average of the positions resulting from a radial raycast of `rayCount` rays at position `position`, with
@@ -608,4 +668,38 @@ function processRaycastClusters(raycastClusters)
   end
 
   return searchZones
+end
+
+---Chooses a random position in `initialSelectionArea` centered at `center` and then runs findAirPosition on the center.
+---@param maxAttempts integer
+---@param center Vec2F
+---@param initialSelectionArea RectF
+---@param requiredSafeArea RectF
+---@param lerpStep integer
+---@param maxDistance number
+---@return Vec2F?
+function findRandomAirPosition(maxAttempts, center, initialSelectionArea, requiredSafeArea, lerpStep, maxDistance)
+  local nextPos
+  local attempts = 0
+
+  -- While a position has not been found yet and less than maxAttempts have been made...
+  while not nextPos and attempts < maxAttempts do
+    -- Choose random position within a rectangle
+    local candidate = vec2.add(center, rect.randomPoint(initialSelectionArea))
+    -- Find a corresponding air position
+    local status, results = findAirPosition{centerPosition = candidate, collisionArea = requiredSafeArea, maxDistance = 20, lerpStep = 1.0}
+    if status then
+      -- Tell LuaLS to disregard results potentially being nil.
+      ---@diagnostic disable: need-check-nil
+      nextPos = results.position
+    end
+    attempts = attempts + 1
+  end
+
+  -- If the above loop stopped because more than maxAttempts attempts have been made...
+  if attempts >= maxAttempts then
+    return nil  -- Stop and return nothing
+  end
+
+  return nextPos
 end

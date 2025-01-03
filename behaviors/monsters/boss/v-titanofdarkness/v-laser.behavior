@@ -2,6 +2,7 @@
   "name": "v-titanofdarkness-laser",
   "description": "",
   "scripts": [
+    "/scripts/actions/v-sensor.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/time.lua",
     "/scripts/behavior.lua",
@@ -14,6 +15,15 @@
     "name": "sequence",
     "parameters": {},
     "children": [
+      {
+        "title": "v_rectCollision",
+        "type": "action",
+        "name": "v_rectCollision",
+        "parameters": {
+          "rect": {"value": [-10, -10, 10, 10]},
+          "position": {"key": "self"}
+        }
+      },
       {
         "title": "v_stop",
         "type": "action",

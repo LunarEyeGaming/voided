@@ -26,6 +26,14 @@
           }
         }
       },
+      "body" : {
+        "default" : "invisible",
+        "priority" : 0,
+        "states" : {
+          "invisible" : {},
+          "idle" : {}
+        }
+      },
       "damage" : {
         "priority" : 3,
         "default" : "none",
@@ -46,8 +54,16 @@
           "centered" : true,
           "offset" : [0, 0],
           "leftEyeCenter" : [-2.375, 2.375],
-          "rightEyeCenter" : [2.375, 2.375],
-          "image" : "<partImage>"
+          "rightEyeCenter" : [2.375, 2.375]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+            }
+          }
         }
       },
       "leftbeam" : {

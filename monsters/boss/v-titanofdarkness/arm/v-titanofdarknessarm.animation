@@ -21,13 +21,15 @@
           "centered" : true,
           "fullbright" : true,
           "offset" : [0, 0],
-          "image" : "<partImage>"
+          "image" : "<partImage>",
+          "transformationGroups" : ["hand"]
         }
       }
     }
   },
 
   "transformationGroups" : {
+    "hand" : { "interpolated" : true }
   },
 
   "particleEmitters" : {

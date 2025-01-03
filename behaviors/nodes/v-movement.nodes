@@ -58,5 +58,19 @@
     "category": "v-movement",
     "script": "/scripts/actions/v-movement.lua",
     "output": {}
+  },
+  "v_flyToPositionNoFlip": {
+    "type": "action",
+    "name": "v_flyToPositionNoFlip",
+    "title": "v_flyToPositionNoFlip",
+    "properties": {
+      "position": {"type": "position"},
+      "speed": {"type": "number"},
+      "controlForce": {"type": "number"},
+      "tolerance": {"type": "number"}
+    },
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
+    "output": {}
   }
 }

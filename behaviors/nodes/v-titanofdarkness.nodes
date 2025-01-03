@@ -47,19 +47,6 @@
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   },
-  "v_titanSearch": {
-    "type": "action",
-    "name": "v_titanSearch",
-    "title": "v_titanSearch",
-    "properties": {
-      "target": {"type": "entity", "key": "target"}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {
-      "angle": {"type": "number", "key": null}
-    }
-  },
   "v_titanDetectTarget": {
     "type": "action",
     "name": "v_titanDetectTarget",
@@ -97,5 +84,19 @@
     "category": "v-titanofdarkness",
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
+  },
+  "v_titanSearch": {
+    "type": "action",
+    "name": "v_titanSearch",
+    "title": "v_titanSearch",
+    "properties": {
+      "target": {"type": "entity", "key": "target"},
+      "startAngle": {"type": "number"}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {
+      "angle": {"type": "number", "key": null}
+    }
   }
 }

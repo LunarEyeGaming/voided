@@ -48,14 +48,17 @@ function states.grab()
 
     local grabbedEntities = {}
 
-    util.wait(grabDelay)
-
     -- Get target position
     local targetPos = world.entityPosition(args.target)
     -- Get distance to target
     local targetDistance = world.distance(targetPos, startPos)
     -- Get grab end position
     local grabEndPosition = vec2.add(startPos, vec2.mul(vec2.norm(targetDistance), vec2.mag(targetDistance) + grabEndDistance))
+
+    animator.resetTransformationGroup("hand")
+    animator.rotateTransformationGroup("hand", vec2.angle(targetDistance))
+
+    util.wait(grabDelay)
 
     local threads = {
       coroutine.create(function()
