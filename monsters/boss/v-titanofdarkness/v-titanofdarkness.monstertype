@@ -11,7 +11,8 @@
 
   "baseParameters" : {
     "scripts" : [
-      "/monsters/monster.lua"
+      "/monsters/monster.lua",
+      "/monsters/boss/v-titanofdarkness/v-titanofdarknessrestricterplugin.lua"
     ],
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 1,
@@ -28,8 +29,8 @@
       "collisionEnabled" : false,
       "collisionPoly" : [ [1, 1], [1, -1], [-1, -1], [-1, 1] ],
 
-      "flySpeed" : 10,
-      "airForce" : 6,
+      "flySpeed" : 15,
+      "airForce" : 40,
 
       "physicsEffectCategories" : ["stationarymonster"]
     },

@@ -7,6 +7,8 @@ local isUsingRocketBoots
 local wasUsingRocketBoots
 
 function init()
+  animator.setParticleEmitterActive("thrust", false)
+  animator.stopAllSounds("thrustLoop")
   flightTime = config.getParameter("flightTime")
   flightSpeed = config.getParameter("flightSpeed")
   flightControlForce = config.getParameter("flightControlForce")

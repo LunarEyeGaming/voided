@@ -357,7 +357,7 @@ function v_titanDetectTarget(args)
 
   if not rq{"currentAngle"} then return false end
 
-  local sightRadius = 15
+  local sightRadius = 25
   local halfFov = util.toRadians(45) / 2
   local exposureTime = 0.25
   local queriedTimings = {}

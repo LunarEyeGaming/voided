@@ -11,7 +11,8 @@
     "/scripts/actions/world.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua",
-    "/scripts/actions/status.lua"
+    "/scripts/actions/status.lua",
+    "/scripts/actions/v-movement.lua"
   ],
   "parameters": {},
   "root": {
@@ -238,6 +239,22 @@
                         ]
                       },
                       {
+                        "title": "setFlag",
+                        "type": "action",
+                        "name": "setFlag",
+                        "parameters": {
+                          "name": {"value": "lookAtPlayer"}
+                        }
+                      },
+                      {
+                        "title": "setFlag",
+                        "type": "action",
+                        "name": "setFlag",
+                        "parameters": {
+                          "name": {"value": "orbitTarget"}
+                        }
+                      },
+                      {
                         "title": "Spiderboss",
                         "type": "composite",
                         "name": "dynamic",
@@ -292,6 +309,15 @@
                                 }
                               },
                               {
+                                "title": "v-titanofdarkness-orbittarget",
+                                "type": "module",
+                                "name": "v-titanofdarkness-orbittarget",
+                                "parameters": {
+                                  "orbitPeriod": {"value": 5},
+                                  "orbitVector": {"value": [20, 0]}
+                                }
+                              },
+                              {
                                 "title": "repeater",
                                 "type": "decorator",
                                 "name": "repeater",
@@ -305,6 +331,14 @@
                                   "name": "sequence",
                                   "parameters": {},
                                   "children": [
+                                    {
+                                      "title": "unsetFlag",
+                                      "type": "action",
+                                      "name": "unsetFlag",
+                                      "parameters": {
+                                        "name": {"value": "orbitTarget"}
+                                      }
+                                    },
                                     {
                                       "title": "randomize",
                                       "type": "composite",
@@ -332,15 +366,19 @@
                                       ]
                                     },
                                     {
-                                      "title": "v-titanofdarkness-flytotarget",
-                                      "type": "module",
-                                      "name": "v-titanofdarkness-flytotarget",
+                                      "title": "setFlag",
+                                      "type": "action",
+                                      "name": "setFlag",
                                       "parameters": {
-                                        "speed": {"value": 10},
-                                        "controlForce": {"value": 6},
-                                        "minRange": {"value": 20},
-                                        "maxRange": {"value": 30},
-                                        "minTime": {"value": 5}
+                                        "name": {"value": "orbitTarget"}
+                                      }
+                                    },
+                                    {
+                                      "title": "timer",
+                                      "type": "action",
+                                      "name": "timer",
+                                      "parameters": {
+                                        "time": {"value": 5}
                                       }
                                     }
                                   ]
@@ -354,6 +392,14 @@
                             "name": "sequence",
                             "parameters": {},
                             "children": [
+                              {
+                                "title": "v_stop",
+                                "type": "action",
+                                "name": "v_stop",
+                                "parameters": {
+                                  "stopForce": {"value": 20}
+                                }
+                              },
                               {
                                 "title": "spawnProjectile",
                                 "type": "action",
@@ -408,6 +454,14 @@
                 "name": "sequence",
                 "parameters": {},
                 "children": [
+                  {
+                    "title": "v_stop",
+                    "type": "action",
+                    "name": "v_stop",
+                    "parameters": {
+                      "stopForce": {"value": 20}
+                    }
+                  },
                   {
                     "title": "setResourcePercentage",
                     "type": "action",

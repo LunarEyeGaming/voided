@@ -16,12 +16,18 @@
     "parameters": {},
     "children": [
       {
-        "title": "v_rectCollision",
-        "type": "action",
-        "name": "v_rectCollision",
-        "parameters": {
-          "rect": {"value": [-10, -10, 10, 10]},
-          "position": {"key": "self"}
+        "title": "inverter",
+        "type": "decorator",
+        "name": "inverter",
+        "parameters": {},
+        "child": {
+          "title": "v_rectCollision",
+          "type": "action",
+          "name": "v_rectCollision",
+          "parameters": {
+            "position": {"key": "self"},
+            "rect": {"value": [-7, -7, 7, 7]}
+          }
         }
       },
       {

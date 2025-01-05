@@ -826,5 +826,19 @@
       "properties": {},
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-search.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-orbittarget",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-orbittarget",
+      "title": "",
+      "properties": {
+        "orbitPeriod": {"type": "json", "value": 1},
+        "orbitVector": {"type": "json", "value": [1, 0]}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-orbittarget.behavior"
+    }
   }
 ]
