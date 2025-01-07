@@ -51,10 +51,11 @@ function v_titanLaserRotation(args, board)
   -- Show telegraph
   animator.setAnimationState("lasers", "windup")
 
-  animator.resetTransformationGroup("lefteye")
-  animator.resetTransformationGroup("righteye")
-  animator.rotateTransformationGroup("lefteye", leftEyeStartAngle, leftEyeCenter)
-  animator.rotateTransformationGroup("righteye", rightEyeStartAngle, rightEyeCenter)
+  -- animator.resetTransformationGroup("lefteye")
+  -- animator.resetTransformationGroup("righteye")
+  -- animator.rotateTransformationGroup("lefteye", leftEyeStartAngle, leftEyeCenter)
+  -- animator.rotateTransformationGroup("righteye", rightEyeStartAngle, rightEyeCenter)
+  v_titanRotateEyes{ leftEyeAngle = leftEyeStartAngle, rightEyeAngle = rightEyeStartAngle }
 
   util.run(args.windupTime, function() end)
 
@@ -79,10 +80,11 @@ function v_titanLaserRotation(args, board)
     local rightEyeAngle = util.lerp(timer / args.attackTime, rightEyeStartAngle, rightEyeEndAngle)
 
     -- Rotate lasers
-    animator.resetTransformationGroup("lefteye")
-    animator.resetTransformationGroup("righteye")
-    animator.rotateTransformationGroup("lefteye", leftEyeAngle, leftEyeCenter)
-    animator.rotateTransformationGroup("righteye", rightEyeAngle, rightEyeCenter)
+    -- animator.resetTransformationGroup("lefteye")
+    -- animator.resetTransformationGroup("righteye")
+    -- animator.rotateTransformationGroup("lefteye", leftEyeAngle, leftEyeCenter)
+    -- animator.rotateTransformationGroup("righteye", rightEyeAngle, rightEyeCenter)
+    v_titanRotateEyes{ leftEyeAngle = leftEyeAngle, rightEyeAngle = rightEyeAngle }
 
     timer = timer + dt
   end)
@@ -324,6 +326,8 @@ function v_titanRotateEyes(args)
 
   local leftEyeCenter = animator.partPoint("body", "leftEyeCenter")
   local rightEyeCenter = animator.partPoint("body", "rightEyeCenter")
+  local leftPupilLookRadius = animator.partProperty("leftpupil", "lookRadius")
+  local rightPupilLookRadius = animator.partProperty("rightpupil", "lookRadius")
   local targetPos
   -- If the target is provided...
   if args.target then
@@ -348,6 +352,11 @@ function v_titanRotateEyes(args)
   animator.resetTransformationGroup("righteye")
   animator.rotateTransformationGroup("lefteye", leftEyeAngle, leftEyeCenter)
   animator.rotateTransformationGroup("righteye", rightEyeAngle, rightEyeCenter)
+
+  animator.resetTransformationGroup("leftpupil")
+  animator.resetTransformationGroup("rightpupil")
+  animator.translateTransformationGroup("leftpupil", vec2.withAngle(leftEyeAngle, leftPupilLookRadius))
+  animator.translateTransformationGroup("rightpupil", vec2.withAngle(rightEyeAngle, rightPupilLookRadius))
 
   return true
 end
@@ -434,8 +443,9 @@ function v_titanGrab(args)
   -- If no arm spawning position is available, fail.
   if attempts > maxAttempts then return false end
 
+  local anchorPoint = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, 10))
   -- Spawn the arm
-  world.spawnMonster("v-titanofdarknessarm", spawnPos, {task = "grab", taskArguments = {target = args.target}, master = entity.id()})
+  world.spawnMonster("v-titanofdarknessarm", spawnPos, {task = "grab", taskArguments = {target = args.target}, master = entity.id(), anchorPoint = anchorPoint})
 
   -- Look at arm position.
   coroutine.yield(nil, {angle = vec2.angle(world.distance(spawnPos, mcontroller.position()))})
@@ -467,73 +477,6 @@ function findNextSearchPoint(searchZones, target)
   if not pathfindResults then
     return nil
   end
-
-  -- local targetOffsetRegion = {-30, -30, 30, 30}
-  -- local requiredSafeRegion = {-2, -2, 2, 2}
-  -- local maxAttempts = 10
-
-  -- local targetPos = world.entityPosition(target)
-
-  -- local nextPos
-  -- local attempts = 0
-
-  -- -- Choose random position within a rectangle, then find a corresponding air position if the random position does not
-  -- -- already have a region of air.
-  -- while not nextPos and attempts < maxAttempts do
-  --   local candidate = vec2.add(targetPos, rect.randomPoint(targetOffsetRegion))
-  --   local status, results = findAirPosition{centerPosition = candidate, collisionArea = requiredSafeRegion, maxDistance = 20, lerpStep = 1.0}
-  --   if status then
-  --     -- Tell LuaLS to disregard results potentially being nil.
-  --     ---@diagnostic disable: need-check-nil
-  --     nextPos = results.position
-  --   end
-  --   attempts = attempts + 1
-  -- end
-
-  -- if attempts >= maxAttempts then
-  --   -- local maxTravelDistance = 80
-  --   -- local minWallDistance = 5  -- Must be less than search threshold.
-  --   -- local ownPos = mcontroller.position()
-  --   -- local targetPos = pathfindResults[math.min(#pathfindResults, pathfindMaxLookahead)].target.position
-  --   -- local targetAngle = vec2.angle(world.distance(targetPos, ownPos))
-  --   -- local bestSearchPos  -- The search position that is closest to the target so far
-  --   -- local bestSearchAngle = 0  -- The angle of the vector from the current position to bestSearchPos
-  --   -- local bestSearchAngleDiff = math.pi  -- Absolute value of difference between bestSearchAngle and targetAngle
-
-  --   -- -- For each search zone...
-  --   -- for _, zone in ipairs(searchZones) do
-  --   --   -- For a sweep search, use the middle of the two endpoint angles. For a spot search, use the angle directly.
-  --   --   local searchAngle = zone.sweep and (zone.startAngle + zone.endAngle) / 2 or zone.angle
-
-  --   --   -- Do a raycast
-  --   --   local raycast = world.lineCollision(ownPos, vec2.add(ownPos, vec2.withAngle(searchAngle, maxTravelDistance)))
-
-  --   --   -- If there is a raycast...
-  --   --   if raycast then
-  --   --     -- Ensure the entity does not hit a wall
-  --   --     travelDistance = world.magnitude(ownPos, raycast) - minWallDistance
-  --   --   else
-  --   --     -- Simply travel.
-  --   --     travelDistance = maxTravelDistance
-  --   --   end
-
-  --   --   -- Get search position.
-  --   --   local searchPos = vec2.add(ownPos, vec2.withAngle(searchAngle, travelDistance))
-
-  --   --   local searchAngleDiff = math.abs(util.angleDiff(targetAngle, searchAngle))
-  --   --   -- If it is closer to the target position than bestSearchPos...
-  --   --   if searchAngleDiff < bestSearchAngleDiff then
-  --   --     bestSearchPos = searchPos
-  --   --     bestSearchAngle = searchAngle
-  --   --     bestSearchAngleDiff = searchAngleDiff
-  --   --   end
-  --   -- end
-
-  --   -- return adjustAgainstGeometry(bestSearchPos, bestSearchAngle, 20, 100)
-  --   return nil
-  -- end
-
-  -- return nextPos
   local targetOffsetRegion = {-30, -30, 30, 30}
   local requiredSafeRegion = {-2, -2, 2, 2}
   local maxAttempts = 10
@@ -578,7 +521,6 @@ function radialRaycast(position, rayCount, maxRaycastLength)
   -- Break it all up into contiguous blocks with these markers. If the blocks occupy a certain amount of vision, then use
   -- a sweep. Otherwise, stop in the middle of the block.
   -- A sweep consists of a start angle and an end angle.
-  -- Parameters: Angular velocity, wait time
   local searchThreshold = 20  -- The minimum raycast distance necessary to add a search region. Parameter
 
   local raycastClusters = {}

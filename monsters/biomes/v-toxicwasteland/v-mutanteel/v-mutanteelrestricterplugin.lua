@@ -8,7 +8,7 @@
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
-local oldDie = die or function() end
+local oldUninit = uninit or function() end
 
 local hasDespawned
 
@@ -37,10 +37,10 @@ function update(dt)
   end
 end
 
-function die()
-  oldDie()
+function uninit()
+  oldUninit()
 
-  -- If this is the active mutant eel and it has died, unset it.
+  -- If this is the active mutant eel and it is uninitializing, unset it.
   if world.getProperty("v-activeMutantEel") == entity.id() then
     world.setProperty("v-activeMutantEel", nil)
   end

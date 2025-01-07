@@ -67,6 +67,23 @@
       "allowDuplication" : true
     }]
   ],
+  "v-electrotoxicfacilityReward" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.6, "pool" : "v-healingItemXL"},
+        {"weight" : 0.6, "item" : ["money", 200]},
+        {"weight" : 0.2, "pool" : "v-poisonWeapon"},
+        {"weight" : 0.2, "pool" : "v-electricWeapon"}
+      ],
+      "poolRounds" : [
+        [0.6, 8],
+        [0.3, 12],
+        [0.1, 16]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
   "v-freezerroomTreasure" : [
     [1, {
       "fill" : [],

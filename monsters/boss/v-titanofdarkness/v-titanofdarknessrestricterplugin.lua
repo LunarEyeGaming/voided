@@ -12,7 +12,7 @@ require "/scripts/rect.lua"
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
-local oldDie = die or function() end
+local oldUninit = uninit or function() end
 
 local hasDespawned
 local REQUIRED_DUNGEON_ID = 65535
@@ -48,8 +48,8 @@ function update(dt)
   end
 end
 
-function die()
-  oldDie()
+function uninit()
+  oldUninit()
 
   -- If this is the active Titan and it has died, unset it.
   if world.getProperty("v-activeTitanOfDarkness") == entity.id() then

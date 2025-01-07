@@ -24,12 +24,37 @@
           "image" : "<partImage>",
           "transformationGroups" : ["hand"]
         }
+      },
+      "forearm" : {
+        "properties" : {
+          "zLevel" : 5,
+          "transformationGroups" : [ "wristjoint" ],
+          "offset" : [25.5, 0],
+          "wristPoint" : [12.25, 0],
+          "length" : 12.25,
+          "image" : "<partImage>",
+          "fullbright" : true
+        }
+      },
+      "reararm" : {
+        "properties" : {
+          "anchorPart" : "forearm",
+          "zLevel" : 7,
+          "transformationGroups" : [ "elbowjoint" ],
+          "offset" : [32.875, 0],
+          "elbowPoint" : [16.4375, 0],
+          "length" : 16.4375,
+          "image" : "<partImage>",
+          "fullbright" : true
+        }
       }
     }
   },
 
   "transformationGroups" : {
-    "hand" : { "interpolated" : true }
+    "hand" : { "interpolated" : true },
+    "elbowjoint" : { "interpolated" : true },
+    "wristjoint" : { "interpolated" : true }
   },
 
   "particleEmitters" : {

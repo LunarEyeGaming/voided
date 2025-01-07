@@ -4,6 +4,7 @@
   "scripts": [
     "/scripts/actions/entity.lua",
     "/scripts/actions/animator.lua",
+    "/scripts/actions/status.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/query.lua",
     "/scripts/behavior.lua",
@@ -11,7 +12,6 @@
     "/scripts/actions/world.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua",
-    "/scripts/actions/status.lua",
     "/scripts/actions/v-movement.lua"
   ],
   "parameters": {},
@@ -36,6 +36,15 @@
         "parameters": {
           "state": {"value": "invisible"},
           "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "addEphemeralEffect",
+        "type": "action",
+        "name": "addEphemeralEffect",
+        "parameters": {
+          "duration": {"value": 2147483647},
+          "name": {"value": "invulnerable"}
         }
       },
       {
@@ -131,6 +140,14 @@
         }
       },
       {
+        "title": "removeEphemeralEffect",
+        "type": "action",
+        "name": "removeEphemeralEffect",
+        "parameters": {
+          "name": {"value": "invulnerable"}
+        }
+      },
+      {
         "title": "v-titanofdarkness-search",
         "type": "module",
         "name": "v-titanofdarkness-search",
@@ -188,6 +205,15 @@
                     "name": "sequence",
                     "parameters": {},
                     "children": [
+                      {
+                        "title": "setResourcePercentage",
+                        "type": "action",
+                        "name": "setResourcePercentage",
+                        "parameters": {
+                          "percentage": {"value": 1},
+                          "resource": {"value": "health"}
+                        }
+                      },
                       {
                         "title": "parallel",
                         "type": "composite",

@@ -6,6 +6,10 @@ require "/scripts/v-movement.lua"
 local task
 local cfg
 local args
+local anchorPoint
+local forearmLength
+local rearArmLength
+local wristOffset
 
 local state
 
@@ -15,6 +19,13 @@ function init()
   task = config.getParameter("task")
   cfg = config.getParameter("taskConfig")
   args = config.getParameter("taskArguments")
+
+  anchorPoint = config.getParameter("anchorPoint")
+
+  forearmLength = animator.partProperty("forearm", "length")
+  rearArmLength = animator.partProperty("reararm", "length")
+
+  wristOffset = animator.partProperty("forearm", "wristPoint")
 
   monster.setDamageBar("None")
 
@@ -29,10 +40,28 @@ end
 
 function update(dt)
   state:update()
+
+  updateArm()
 end
 
 function shouldDie()
   return shouldDieVar
+end
+
+---Updates placement of arm segments.
+function updateArm()
+  local baseAngle = vec2.angle(world.distance(mcontroller.position(), anchorPoint))
+  local armSpan = world.magnitude(mcontroller.position(), anchorPoint)
+  -- Calculate arm angles
+  local forearmAngle = math.acos((forearmLength ^ 2 + armSpan ^ 2 - rearArmLength ^ 2) / (2 * forearmLength * armSpan))
+  -- Subtract math.pi from the initial result to get clockwise rotation from pointing outward instead of
+  -- counterclockwise rotation from pointing inward
+  local rearArmAngle = math.acos((forearmLength ^ 2 + rearArmLength ^ 2 - armSpan ^ 2) / (2 * forearmLength * rearArmLength)) - math.pi
+
+  animator.resetTransformationGroup("wristjoint")
+  animator.resetTransformationGroup("elbowjoint")
+  animator.rotateTransformationGroup("wristjoint", baseAngle + forearmAngle, wristOffset)
+  animator.rotateTransformationGroup("elbowjoint", rearArmAngle, animator.partProperty("reararm", "elbowPoint"))
 end
 
 states = {}

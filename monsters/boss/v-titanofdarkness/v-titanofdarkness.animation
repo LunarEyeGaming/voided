@@ -53,8 +53,46 @@
           "zLevel" : 0,
           "centered" : true,
           "offset" : [0, 0],
-          "leftEyeCenter" : [-2.375, 2.375],
-          "rightEyeCenter" : [2.375, 2.375]
+          "leftEyeCenter" : [-2.875, 1.75],
+          "rightEyeCenter" : [4.625, 1]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+            }
+          }
+        }
+      },
+      "leftpupil" : {
+        "properties" : {
+          "zLevel" : 0,
+          "centered" : true,
+          "offset" : [-2.875, 1.75],
+          "lookRadius" : 1,
+          "fullbright" : true,
+          "transformationGroups" : ["leftpupil"]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+            }
+          }
+        }
+      },
+      "rightpupil" : {
+        "properties" : {
+          "zLevel" : 0,
+          "centered" : true,
+          "offset" : [4.625, 1],
+          "lookRadius" : 0.5,
+          "fullbright" : true,
+          "transformationGroups" : ["rightpupil"]
         },
         "partStates" : {
           "body" : {
@@ -70,7 +108,7 @@
         "properties" : {
           "zLevel" : 5,
           "centered" : true,
-          "offset" : [37.625, 2.375],
+          "offset" : [37.125, 1.75],
           "fullbright" : true,
           "transformationGroups" : [ "lefteye" ]
         },
@@ -104,7 +142,7 @@
         "properties" : {
           "zLevel" : 5,
           "centered" : true,
-          "offset" : [42.375, 2.375],
+          "offset" : [44.625, 1],
           "fullbright" : true,
           "transformationGroups" : [ "righteye" ]
         },
@@ -139,7 +177,9 @@
 
   "transformationGroups" : {
     "lefteye" : {"interpolated" : true},
-    "righteye" : {"interpolated" : true}
+    "righteye" : {"interpolated" : true},
+    "leftpupil" : {"interpolated" : true},
+    "rightpupil" : {"interpolated" : true}
   },
 
   "particleEmitters" : {
@@ -152,8 +192,8 @@
   "lights" : {
     "lefteyelight" : {
       "transformationGroups" : ["lefteye"],
-      "position" : [-2.375, 2.375],
-      "color" : [255, 255, 255],
+      "position" : [-2.875, 1.75],
+      "color" : [209, 235, 255],
       "pointLight" : true,
       "pointBeam" : 5,
       "pointAngle" : 0,
@@ -161,8 +201,8 @@
     },
     "righteyelight" : {
       "transformationGroups" : ["righteye"],
-      "position" : [2.375, 2.375],
-      "color" : [255, 255, 255],
+      "position" : [4.625, 1],
+      "color" : [209, 235, 255],
       "pointLight" : true,
       "pointBeam" : 5,
       "pointAngle" : 0,

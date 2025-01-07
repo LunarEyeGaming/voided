@@ -91,6 +91,7 @@ function update(dt)
       and worldTypeStayTime > minPlanetStayTime then  -- And the player has stayed for longer than minPlanetStayTime...
         -- Spawn a Titan, which sets the v-activeTitanOfDarkness property automatically upon spawning in.
         world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
+        storage.lastTitanSpawnTime = world.time()
       end
 
       spawnAttemptTimer = 0  -- Reset timer
