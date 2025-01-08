@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-titanmeteorspawner",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+
+  "physics" : "bullet",
+  "onlyHitTerrain" : true,
+  "speed" : 200,
+
+  "timeToLive" : 5,
+
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-titanmeteortele",
+      "inheritDamageFactor" : 1,
+      "fuzzAngle" : 10
+    }
+  ]
+}

@@ -1,5 +1,6 @@
-require "/scripts/util.lua"
-require "/scripts/vec2.lua"
+require "/scripts/actions/v-sensor.lua"
+
+local result
 
 function update(dt)
   -- local angle = vec2.angle(world.distance(activeItem.ownerAimPosition(), mcontroller.position()))
@@ -14,17 +15,11 @@ function update(dt)
   --   world.debugLine(mcontroller.position(), collidePoint, "yellow")
   -- end
 
-  do
-    local searchParameters = {
-      returnBest = false,
-      mustEndOnGround = false,
-      maxFScore = 400,
-      maxNodesToSearch = 70000,
-      boundBox = mcontroller.boundBox()
-    }
-    local results = world.findPlatformerPath(mcontroller.position(), activeItem.ownerAimPosition(), mcontroller.baseParameters(), searchParameters)
-    world.debugText("%s", results, mcontroller.position(), "green")
-  end
+  world.debugText("result: %s", result, mcontroller.position(), "green")
+end
+
+function activate()
+  result = v_solidityTest{ position = activeItem.ownerAimPosition(), testRegion = {-20, -20, 20, 20}, sampleStep = 1, threshold = 0.5 }
 end
 
 -- ---Returns the average of the positions resulting from a radial raycast of `rayCount` rays at position `position`, with

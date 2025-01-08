@@ -1,4 +1,7 @@
 {
+  "globalTagDefaults" : {
+    "opacity" : "00"
+  },
   "animatedParts" : {
     "stateTypes" : {
       "lasers" : {
@@ -27,7 +30,7 @@
         }
       },
       "body" : {
-        "default" : "invisible",
+        "default" : "idle",
         "priority" : 0,
         "states" : {
           "invisible" : {},
@@ -51,6 +54,7 @@
       "body" : {
         "properties" : {
           "zLevel" : 0,
+          "fullbright" : true,
           "centered" : true,
           "offset" : [0, 0],
           "leftEyeCenter" : [-2.875, 1.75],
@@ -60,7 +64,7 @@
           "body" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>"
+                "image" : "<partImage>?multiply=ffffff<opacity>"
               }
             }
           }
@@ -79,7 +83,7 @@
           "body" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>"
+                "image" : "<partImage>?multiply=ffffff<opacity>"
               }
             }
           }
@@ -98,7 +102,7 @@
           "body" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>"
+                "image" : "<partImage>?multiply=ffffff<opacity>"
               }
             }
           }
@@ -108,7 +112,7 @@
         "properties" : {
           "zLevel" : 5,
           "centered" : true,
-          "offset" : [37.125, 1.75],
+          "offset" : [38.125, 1.75],
           "fullbright" : true,
           "transformationGroups" : [ "lefteye" ]
         },
@@ -142,7 +146,7 @@
         "properties" : {
           "zLevel" : 5,
           "centered" : true,
-          "offset" : [44.625, 1],
+          "offset" : [45.625, 1],
           "fullbright" : true,
           "transformationGroups" : [ "righteye" ]
         },

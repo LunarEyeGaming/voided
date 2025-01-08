@@ -1,0 +1,148 @@
+{
+  "name": "v-titanofdarkness-burrowingrifts",
+  "description": "",
+  "scripts": [
+    "/scripts/behavior.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/v-world.lua",
+    "/scripts/actions/boss/v-titanofdarkness.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "orbitTarget"}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "entityPosition",
+                  "type": "action",
+                  "name": "entityPosition",
+                  "parameters": {
+                    "entity": {"key": "target"}
+                  },
+                  "output": {
+                    "position": "targetPos"
+                  }
+                },
+                {
+                  "title": "filter",
+                  "type": "decorator",
+                  "name": "filter",
+                  "parameters": {
+                    "list": {"key": "projectileIds"},
+                    "type": {"value": "entity"}
+                  },
+                  "child": {
+                    "title": "entityExists",
+                    "type": "action",
+                    "name": "entityExists",
+                    "parameters": {
+                      "entity": {"key": "self"}
+                    }
+                  }
+                },
+                {
+                  "title": "each",
+                  "type": "decorator",
+                  "name": "each",
+                  "parameters": {
+                    "list": {"key": "projectileIds"},
+                    "type": {"value": "entity"}
+                  },
+                  "child": {
+                    "title": "v_sendEntityMessage",
+                    "type": "action",
+                    "name": "v_sendEntityMessage",
+                    "parameters": {
+                      "entity": {"key": "eachItem"},
+                      "message": {"value": "setTargetPosition"},
+                      "arguments": {"value": ["$position:targetPos"]}
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "repeater",
+            "type": "decorator",
+            "name": "repeater",
+            "parameters": {
+              "maxLoops": {"value": 10},
+              "untilSuccess": {"value": false}
+            },
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "v_titanBurrowingRiftAttack",
+                  "type": "action",
+                  "name": "v_titanBurrowingRiftAttack",
+                  "parameters": {
+                    "target": {"key": "target"}
+                  },
+                  "output": {
+                    "projectileId": "projectileId"
+                  }
+                },
+                {
+                  "title": "listPush",
+                  "type": "action",
+                  "name": "listPush",
+                  "parameters": {
+                    "entity": {"key": "projectileId"},
+                    "list": {"key": "projectileIds"}
+                  },
+                  "output": {
+                    "list": "projectileIds"
+                  }
+                },
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"value": 1.3}
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

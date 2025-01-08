@@ -6,13 +6,17 @@ local oldInit = init or function() end
 local oldUpdate = update or function() end
 
 local fadeTime
-local startColor
-local endColor
+local bgStartColor
+local bgEndColor
+local fgStartColor
+local fgEndColor
+local bgRenderLayer
+local fgRenderLayer
 local minFallOffDistance
 local maxFallOffDistance
-local renderLayer
 
--- local titanId
+local titanPositionPromise
+local titanPosition
 local distance
 local fadeTimer
 
@@ -27,12 +31,15 @@ function init()
   -- end)
 
   fadeTime = 10
-  startColor = {94, 113, 128, 0}
-  endColor = {18, 5, 20, 255}
+  bgStartColor = {94, 113, 128, 0}
+  bgEndColor = {18, 5, 20, 255}
+  fgStartColor = {94, 113, 128, 0}
+  fgEndColor = {18, 5, 20, 100}
+  bgRenderLayer = "BackgroundOverlay-10"
+  fgRenderLayer = "ForegroundOverlay+10"
 
   minFallOffDistance = 1000
   maxFallOffDistance = 1500
-  renderLayer = "BackgroundOverlay-10"
 
   distance = 0
   fadeTimer = 0
@@ -41,15 +48,46 @@ end
 function update(dt)
   oldUpdate(dt)
 
-  local titanId = world.getProperty("v-activeTitanOfDarkness")
+  updateTitanPosition()
 
-  if titanId and world.entityExists(titanId) then
+  -- Update timers
+  if titanPosition then
     fadeTimer = math.min(fadeTime, fadeTimer + dt)
-    distance = world.magnitude(entity.position(), world.entityPosition(titanId))
+    distance = world.magnitude(entity.position(), titanPosition)
   else
     fadeTimer = math.max(0, fadeTimer - dt)
   end
 
+  drawOverlays()
+end
+
+---Asynchronously updates the position of the Titan as frequently as the server allows.
+---@postconditions: upon titanPositionPromise finishing, titanPosition is modified and titanPositionPromise is unset
+function updateTitanPosition()
+  -- If no promise is pending...
+  if not titanPositionPromise then
+    -- Request the position of the Titan.
+    titanPositionPromise = world.findUniqueEntity("v-titanofdarkness")
+  end
+
+  -- If the promise has finished...
+  if titanPositionPromise:finished() then
+    -- -- If the promise succeeded...
+    -- if titanPositionPromise:succeeded() then
+    --   -- Update position
+    --   titanPosition = titanPositionPromise:result()
+    -- else
+    --   -- Set position to nil.
+    --   titanPosition = nil
+    -- end
+    titanPosition = titanPositionPromise:result()
+
+    -- Unset promise
+    titanPositionPromise = nil
+  end
+end
+
+function drawOverlays()
   -- This uses a thick line to create a colored rectangle that covers the entire screen.
   local windowRegion = world.clientWindow()
   -- Make window region relative to the current entity.
@@ -60,19 +98,21 @@ function update(dt)
 
   local fallOffAmount = 1 - math.max(0, distance - minFallOffDistance) / (maxFallOffDistance - minFallOffDistance)
 
+  -- Background overlay
   localAnimator.addDrawable({
     line = {{drawingBounds[1], verticalMidPoint}, {drawingBounds[3], verticalMidPoint}},
     position = {0, 0},
     width = (drawingBounds[4] - drawingBounds[2]) * 8,
     fullbright = false,
-    color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, startColor, endColor)
-  }, renderLayer)
+    color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, bgStartColor, bgEndColor)
+  }, bgRenderLayer)
 
+  -- Foreground overlay
   localAnimator.addDrawable({
     line = {{drawingBounds[1], verticalMidPoint}, {drawingBounds[3], verticalMidPoint}},
     position = {0, 0},
     width = (drawingBounds[4] - drawingBounds[2]) * 8,
     fullbright = false,
-    color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, {94, 113, 128, 0}, {18, 5, 20, 100})
-  }, "ForegroundOverlay+10")
+    color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, fgStartColor, fgEndColor)
+  }, fgRenderLayer)
 end

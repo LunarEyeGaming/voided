@@ -19,11 +19,13 @@ function init()
 end
 
 function update(dt)
+  -- Expire if the target no longer exists.
   if not target or not world.entityExists(target) then
     effect.expire()
     return
   end
 
+  -- Keep effect active until told to expire.
   local currentDuration = effect.duration()
   if currentDuration <= initialDuration and currentDuration > 0 then
     effect.modifyDuration(initialDuration - currentDuration)

@@ -23,13 +23,13 @@
 
   "scripts" : [ "v-climbingarctrap.lua" ],
   "scriptDelta" : 1,
-  
+
   "animation" : "v-climbingarctrap.animation",
 
   "animationScripts" : ["/items/active/effects/lightning.lua"],
-  
+
   "overriddenParams" : [],
-  
+
   "minArcWidth" : 0.1,
   "maxArcWidth" : 50.0,
   "maxHeight" : 100.0,
@@ -42,12 +42,12 @@
   "damageSourceConfig" : {
     "damage" : 100.0,
 
-    "teamType" : "enemy",
+    "teamType" : "environment",
     "damageSourceKind" : "electric",
 
     "damageRepeatTimeout" : 0.1
   },
-  
+
   "lightningConfig" : {
     "displacement" : 2.0,
     "minDisplacement" : 0.125,
@@ -56,7 +56,7 @@
     "width" : 2.5,
     "color" : [225, 225, 255, 255]
   },
-  
+
   "health" : 5,
   "smashOnBreak" : true
 }

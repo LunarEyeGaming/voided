@@ -35,10 +35,12 @@ end
 -- param target
 -- param windupTime
 -- param attackTime
+-- param rotateDelay
+-- param postRotateDelay
 function v_titanLaserRotation(args, board)
   local rq = vBehavior.requireArgsGen("v_titanLaserRotation", args)
 
-  if not rq{"target", "windupTime", "attackTime"} then return false end
+  if not rq{"target", "windupTime", "attackTime", "rotateDelay", "postRotateDelay"} then return false end
 
   local targetPos = world.entityPosition(args.target)  -- Get target position
   -- Get eye centers
@@ -72,6 +74,8 @@ function v_titanLaserRotation(args, board)
 
   animator.setAnimationState("lasers", "fire")
 
+  util.run(args.rotateDelay, function() end)
+
   local timer = 0
 
   -- Make lasers do one full revolution.
@@ -90,6 +94,8 @@ function v_titanLaserRotation(args, board)
   end)
 
   animator.setAnimationState("lasers", "fireEnd")
+
+  util.run(args.postRotateDelay, function() end)
 
   return true
 end
@@ -110,22 +116,38 @@ function v_titanExplosionAttack(args, board)
     return false
   end
 
+  local maxAttempts = 200
   local spawnRegion = rect.translate(args.spawnRegion, mcontroller.position())
   local projectileParameters = copy(args.projectileParameters or {})
   projectileParameters.power = vAttack.scaledPower(projectileParameters.power or 10)
 
-  for i = 1, args.repeats do
-    -- Choose a spawn position that guarantees an area free of collisions
+  local spawnPosList = {}
+
+  -- Attempt to find positions to use.
+  for _ = 1, args.repeats do
+    -- Attempt to choose a spawn position that guarantees an area free of collisions within maxAttempts attempts
     local spawnPos
+    local attempts = 0
     repeat
       spawnPos = rect.randomPoint(spawnRegion)
-    until not world.rectCollision(rect.translate(args.requiredSafeArea, spawnPos))
+      attempts = attempts + 1
+    until not world.rectCollision(rect.translate(args.requiredSafeArea, spawnPos)) or attempts > maxAttempts
 
+    -- If unsuccessful...
+    if attempts > maxAttempts then
+      return false  -- Fail
+    end
+
+    table.insert(spawnPosList, spawnPos)
+  end
+
+  for _, spawnPos in ipairs(spawnPosList) do
     world.spawnProjectile(args.projectileType, spawnPos, entity.id(), {0, 0}, false, {power = vAttack.scaledPower(10)})
+    world.sendEntityMessage(args.target, "applyStatusEffect", "v-titanteleport")
 
     util.run(args.teleportDelay, function() end)
 
-    world.sendEntityMessage(args.target, "v-teleport", spawnPos)
+    world.sendEntityMessage(args.target, "v-titanteleport-teleport", spawnPos)
 
     util.run(args.postTeleportTime, function() end)
   end
@@ -174,6 +196,10 @@ function v_titanBouncingOrbAttack(args)
   local targetPos = world.entityPosition(args.target)
   local maxAttempts = 200
 
+  for _, entityId in ipairs(projectiles) do
+    vWorld.sendEntityMessage(entityId, "v-titanbouncingprojectile-freeze")
+  end
+
   -- Flick random projectiles toward the player.
   for _ = 1, args.flickCount do
     -- Attempt to select next projectile (must be in the line of sight of the player)
@@ -197,6 +223,46 @@ function v_titanBouncingOrbAttack(args)
   end
 
   return true
+end
+
+-- param target
+function v_titanBurrowingRiftAttack(args)
+  local rq = vBehavior.requireArgsGen("v_titanBurrowingRiftAttack", args)
+  if not rq{"target"} then
+    return false
+  end
+
+  -- Params
+  local spawnRange = {-20, -20, 20, 20}
+  local maxAttempts = 200
+  local projectileType = "v-titanburrowingrift"
+  local projectileConfig = {}
+  projectileConfig.power = vAttack.scaledPower(projectileConfig.power or 10)
+
+  -- Locals
+  local targetPos = world.entityPosition(args.target)
+
+  local spawnPos
+  local attempts = 0
+
+  -- Pick a random position (within a rectangular region relative to the target's position) that is inside of collision
+  -- geometry within maxAttempts attempts.
+  repeat
+    spawnPos = vec2.add(targetPos, rect.randomPoint(spawnRange))
+    attempts = attempts + 1
+  until world.pointCollision(spawnPos) or attempts > maxAttempts
+
+  -- If successful in choosing a spawn position...
+  if attempts <= maxAttempts then
+    -- Spawn the projectile with a completely random aim vector.
+    local projectileId = world.spawnProjectile(projectileType, spawnPos, entity.id(), vec2.withAngle(math.random() * 2 * math.pi), false, projectileConfig)
+    local anchorPoint = vec2.add(spawnPos, vec2.withAngle(math.random() * 2 * math.pi, 15))
+    -- Spawn an arm to follow the projectile.
+    world.spawnMonster("v-titanofdarknessarm", spawnPos, {task = "burrowingRift", taskArguments = {projectileId = projectileId}, master = entity.id(), anchorPoint = anchorPoint})
+    return true, {projectileId = projectileId}
+  end
+
+  return false
 end
 
 -- param target
@@ -259,13 +325,6 @@ function v_titanSearch(args)
         currentAngle = zone.angle
       end
     end
-
-    -- debugSearchZones = nil
-
-    -- local searchPoint = findNextSearchPoint(searchZones)
-    -- local adjustedSearchPoint = centerOfRadialRaycast(searchPoint, rayCount, maxRaycastLength)
-    -- -- searchPoint and adjustedSearchPoint are, themselves, prone to error. Maybe get the midpoint of them?
-    -- local targetPos = {(searchPoint[1] + adjustedSearchPoint[1]) / 2, (searchPoint[2] + adjustedSearchPoint[2]) / 2}
 
     local targetOffsetRegion = {-30, -30, 30, 30}
     local requiredSafeRegion = {-2, -2, 2, 2}
@@ -361,6 +420,7 @@ function v_titanRotateEyes(args)
   return true
 end
 
+-- param currentAngle
 function v_titanDetectTarget(args)
   local rq = vBehavior.requireArgsGen("v_titanDetectTarget", args)
 
@@ -459,29 +519,50 @@ function v_titanGrab(args)
   return true
 end
 
----@param searchZones (SpotSearchZone | SweepSearchZone)[]
----@param target EntityId
----@return Vec2F?
-function findNextSearchPoint(searchZones, target)
-  local pathfindMaxLookahead = 3  -- Preferred index of choice when choosing an element from pathfindResults.
-  local pathfindResults = world.findPlatformerPath(mcontroller.position(), world.entityPosition(target), mcontroller.baseParameters(), {
-    returnBest = false,
-    mustEndOnGround = false,
-    maxFScore = 400,
-    maxDistance = 200,
-    maxNodesToSearch = 70000,
-    boundBox = mcontroller.boundBox()
-  })
+-- param appearTime - Amount of time it takes for the Titan to appear.
+-- param visionStartRotationRate - starting revolution rate of visions.
+-- param visionEndRotationRate - ending revolution rate of visions.
+-- param visionStartRadius - starting revolution distance of visions.
+-- param visionEndRadius - ending revolution distance of visions.
+-- param startAlpha - starting alpha value
+-- param endAlpha - starting alpha value
+function v_titanAppear(args)
+  local rq = vBehavior.requireArgsGen("v_titanAppear", args)
+  if not rq{"appearTime", "visionStartRotationRate", "visionEndRotationRate", "visionStartRadius", "visionEndRadius"} then return false end
 
-  -- Return nothing if no path to the player is found.
-  if not pathfindResults then
-    return nil
+  local startAlpha = args.startAlpha or 0
+  local endAlpha = args.endAlpha or 255
+
+  local timer = 0
+  util.run(args.appearTime, function(dt)
+    local progress = timer / args.appearTime
+    -- world.debugText("progress: %s", progress, mcontroller.position(), "green")
+    -- Update animation parameters for v-titanofdarknessanim.lua.
+    monster.setAnimationParameter("titanAnimArgs", {
+      radius = util.lerp(progress, args.visionStartRadius, args.visionEndRadius),
+      rotationRate = util.lerp(progress, args.visionStartRotationRate, args.visionEndRotationRate)
+    })
+    -- Set opacity.
+    animator.setGlobalTag("opacity", string.format("%02x", math.floor(util.lerp(progress, startAlpha, endAlpha))))
+    timer = math.min(args.appearTime, timer + dt)
+  end)
+
+  animator.setGlobalTag("opacity", string.format("%02x", endAlpha))
+
+  return true
+end
+
+function v_titanStun(args)
+  local queried = world.entityQuery(mcontroller.position(), 100, {includedTypes = {"creature"}, withoutEntityId = entity.id()})
+
+  for _, entityId in ipairs(queried) do
+    local damageTeam = world.entityDamageTeam(entityId)
+    if damageTeam and damageTeam.type == "enemy" then
+      world.sendEntityMessage(entityId, "applyStatusEffect", "v-titanstun")
+    end
   end
-  local targetOffsetRegion = {-30, -30, 30, 30}
-  local requiredSafeRegion = {-2, -2, 2, 2}
-  local maxAttempts = 10
-  local targetPos = world.entityPosition(target)
-  return findRandomAirPosition(maxAttempts, targetPos, targetOffsetRegion, requiredSafeRegion, 1, 20)
+
+  return true
 end
 
 ---Returns the average of the positions resulting from a radial raycast of `rayCount` rays at position `position`, with

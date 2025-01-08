@@ -2,6 +2,7 @@
   "name": "v-titanofdarkness-bouncespread",
   "description": "",
   "scripts": [
+    "/scripts/actions/v-sensor.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/v-movement.lua",
@@ -14,6 +15,17 @@
     "name": "sequence",
     "parameters": {},
     "children": [
+      {
+        "title": "v_solidityTest",
+        "type": "action",
+        "name": "v_solidityTest",
+        "parameters": {
+          "position": {"key": "self"},
+          "testRegion": {"value": [-20, -20, 20, 20]},
+          "sampleStep": {"value": 1},
+          "threshold": {"value": 0.5}
+        }
+      },
       {
         "title": "entityPosition",
         "type": "action",
@@ -51,8 +63,8 @@
           "projectileCount": {"value": 8},
           "projectileType": {"value": "v-titanbouncingprojectile"},
           "flickDelay": {"value": 2.5},
-          "flickInterval": {"value": 1},
-          "flickCount": {"value": 6},
+          "flickInterval": {"value": 0.6},
+          "flickCount": {"value": 10},
           "target": {"key": "target"}
         }
       }

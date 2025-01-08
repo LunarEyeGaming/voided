@@ -1,0 +1,41 @@
+{
+  "projectileName" : "v-titanriftbursttele",
+  "image" : "titanriftbursttele.png",
+  "animationCycle" : 0.2,
+  "lightColor" : [150, 100, 100],
+  "frameNumber" : 1,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "renderLayer": "ForegroundEntity+10",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "emitters" : [ ],
+  "periodicActions" : [
+    {
+      "time" : 0.03,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : "v-downspitterseedwarning1"
+    },
+    {
+      "time" : 0.03,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : "v-downspitterseedwarning2"
+    }
+  ],
+
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-titanriftburst",
+      "inheritDamageFactor" : 1
+    }
+  ],
+
+  "onlyHitTerrain" : true,
+
+  "speed" : 0,
+  "timeToLive" : 0.75
+}

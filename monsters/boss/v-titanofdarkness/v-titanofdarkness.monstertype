@@ -1,5 +1,6 @@
 {
   "type" : "v-titanofdarkness",
+  "shortdescription" : "Titan of Darkness",
 
   "categories" : [ "v-titanofdarkness" ],
   "parts" : [ "body", "beam" ],
@@ -25,6 +26,8 @@
 
     "metaBoundBox" : [-5, -7.5, 5, 7.5],
     "scale" : 1.0,
+
+    "renderLayer" : "ForegroundEntity",
 
     "selfDamagePoly" : [ [5, 7.5], [5, -7.5], [-5, -7.5], [-5, 7.5] ],
 
@@ -70,7 +73,7 @@
 
     "statusSettings" : {
       "statusProperties" : {
-        "targetMaterialKind" : "robotic"
+        "targetMaterialKind" : "stone"
       },
 
       "appliesEnvironmentStatusEffects" : false,
@@ -90,7 +93,7 @@
           "baseValue" : 1.0
         },
         "maxHealth" : {
-          "baseValue" : 1000
+          "baseValue" : 2000
         },
         "protection" : {
           "baseValue" : 0
@@ -108,6 +111,9 @@
           "baseValue" : 1.0
         },
         "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "v-chargedgroundStatusImmunity" : {
           "baseValue" : 1.0
         },
         "specialStatusImmunity" : {

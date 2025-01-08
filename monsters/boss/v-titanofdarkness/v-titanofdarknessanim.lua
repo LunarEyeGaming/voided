@@ -5,18 +5,20 @@ require "/scripts/vec2.lua"
   around the center of the monster at a rate of `rotationRate` revolutions per second.
 ]]
 
-local radius
-local count
-local rotationRate
-local timer
+local defaultArgs
+
+local rotation
 
 local dt
 
 function init()
-  radius = 1
-  count = 4
-  rotationRate = 1 / 4
-  timer = 0
+  defaultArgs = {
+    radius = 1,
+    count = 4,
+    rotationRate = 1 / 4,
+    visionAlpha = 128
+  }
+  rotation = 0
   dt = script.updateDt()
 end
 
@@ -25,14 +27,15 @@ function update()
 
   local portrait = world.entityPortrait(entity.id(), "full")
 
+  local args = sb.jsonMerge(defaultArgs, animationConfig.animationParameter("titanAnimArgs"))
+
   local pos = entity.position()
 
-  for i = 1, count do
-    local angleOffset = 2 * math.pi * i / count
-    local startPos = vec2.add(pos, vec2.withAngle(angleOffset + rotationRate * timer * 2 * math.pi, radius))
+  for i = 1, args.count do
+    local angleOffset = 2 * math.pi * i / args.count
+    local startPos = vec2.add(pos, vec2.withAngle(angleOffset + rotation * 2 * math.pi, args.radius))
 
     for _, part in ipairs(portrait) do
-      -- sb.logInfo("%s", part)
       local transformation = {
         {part.transformation[1][1], part.transformation[1][2], part.transformation[1][3] * 0.125},
         {part.transformation[2][1], part.transformation[2][2], part.transformation[2][3] * 0.125},
@@ -43,12 +46,12 @@ function update()
         position = vec2.add(startPos, vec2.mul(part.position, 0.125)),
         fullbright = part.fullbright,
         transformation = transformation,
-        color = {part.color[1], part.color[2], part.color[3], 128},
+        color = {part.color[1], part.color[2], part.color[3], args.visionAlpha},
         centered = false
       })
     end
   end
-  timer = timer + dt
+  rotation = rotation + args.rotationRate * dt
 
   -- local pos = entity.position()
 

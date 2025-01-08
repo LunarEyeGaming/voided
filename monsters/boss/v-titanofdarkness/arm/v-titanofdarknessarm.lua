@@ -6,10 +6,16 @@ require "/scripts/v-movement.lua"
 local task
 local cfg
 local args
+
 local anchorPoint
+
 local forearmLength
 local rearArmLength
+
 local wristOffset
+
+local minArmSpan
+local maxArmSpan
 
 local state
 
@@ -27,6 +33,10 @@ function init()
 
   wristOffset = animator.partProperty("forearm", "wristPoint")
 
+  -- Invariant derived values.
+  minArmSpan = math.abs(rearArmLength - forearmLength)
+  maxArmSpan = rearArmLength + forearmLength
+
   monster.setDamageBar("None")
 
   state = FSM:new()
@@ -35,12 +45,13 @@ function init()
 
   script.setUpdateDelta(1)
 
-  state:set(states.grab)
+  state:set(tasks[task])
 end
 
 function update(dt)
   state:update()
 
+  world.debugPoint(anchorPoint, "green")
   updateArm()
 end
 
@@ -50,9 +61,19 @@ end
 
 ---Updates placement of arm segments.
 function updateArm()
-  local baseAngle = vec2.angle(world.distance(mcontroller.position(), anchorPoint))
-  local armSpan = world.magnitude(mcontroller.position(), anchorPoint)
-  -- Calculate arm angles
+  local anchorPointDistance = world.distance(anchorPoint, mcontroller.position())
+  local baseAngle = vec2.angle(anchorPointDistance)
+  local armSpan = vec2.mag(anchorPointDistance)
+  -- Calculating armName angles fails if armSpan < minArmSpan or armSpan > maxArmSpan, so move the anchorPoint to be
+  -- within this range and update armSpan accordingly.
+  if armSpan < minArmSpan then
+    anchorPoint = vec2.add(mcontroller.position(), vec2.mul(anchorPointDistance, minArmSpan / armSpan))
+    armSpan = minArmSpan
+  elseif armSpan > maxArmSpan then
+    anchorPoint = vec2.add(mcontroller.position(), vec2.mul(anchorPointDistance, maxArmSpan / armSpan))
+    armSpan = maxArmSpan
+  end
+  -- Calculate arm angles.
   local forearmAngle = math.acos((forearmLength ^ 2 + armSpan ^ 2 - rearArmLength ^ 2) / (2 * forearmLength * armSpan))
   -- Subtract math.pi from the initial result to get clockwise rotation from pointing outward instead of
   -- counterclockwise rotation from pointing inward
@@ -64,10 +85,10 @@ function updateArm()
   animator.rotateTransformationGroup("elbowjoint", rearArmAngle, animator.partProperty("reararm", "elbowPoint"))
 end
 
-states = {}
+tasks = {}
 
-function states.grab()
-  local rq = vBehavior.requireArgsGen("states.grab", args)
+function tasks.grab()
+  local rq = vBehavior.requireArgsGen("tasks.grab", args)
 
   if rq{"target"} then
     local grabDelay = 3.0
@@ -128,6 +149,34 @@ function states.grab()
         world.sendEntityMessage(entityId, "v-grabbed-expire")
       end
     end
+  end
+
+  -- Die
+  world.sendEntityMessage(config.getParameter("master"), "notify", {type = "v-titanofdarkness-armFinished"})
+  shouldDieVar = true
+  coroutine.yield()
+end
+
+function tasks.burrowingRift()
+  local rq = vBehavior.requireArgsGen("tasks.burrowingRift", args)
+
+  local emergeWaitTime = 0.5
+  local pointDistance = 5
+
+  if rq{"projectileId"} then
+    while world.entityExists(args.projectileId) do
+      -- local projVelocity = world.entityVelocity(args.projectileId)
+      -- local pointVector = vec2.mul(vec2.norm(vec2.rotate(projVelocity, -math.pi / 2)), pointDistance)
+      -- Offset hand in opposite direction of that at which the hand is pointing.
+      mcontroller.setPosition(world.entityPosition(args.projectileId))
+
+      -- animator.resetTransformationGroup("hand")
+      -- animator.rotateTransformationGroup("hand", vec2.angle(pointVector) + math.pi)
+
+      coroutine.yield()
+    end
+
+    util.wait(emergeWaitTime)
   end
 
   -- Die

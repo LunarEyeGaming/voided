@@ -1,0 +1,41 @@
+{
+  "projectileName" : "v-titanburrowingrift",
+  "image" : "titanburrowingrift.png",
+  "animationCycle" : 0.2,
+  "lightColor" : [150, 100, 100],
+  "frameNumber" : 1,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "renderLayer": "ForegroundEntity+10",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "emitters" : [ ],
+  "periodicActions" : [
+    // {
+    //   "time" : 0,
+    //   "repeat" : false,
+    //   "action" : "sound",
+    //   "options" : [ "/sfx/gun/pulsecannon_blast1.ogg" ]
+    // }
+  ],
+
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-titanriftbursttele",
+      "inheritDamageFactor" : 1
+    }
+  ],
+
+  "onlyHitTerrain" : true,
+
+  "speed" : 20,
+  "timeToLive" : 10,
+
+  "scripts" : [ "/scripts/projectiles/guidedprojectile.lua", "v-titanburrowingrift.lua" ],
+  "scriptDelta" : 1,
+
+  "rotationRate" : 3.14,
+  "trackingLimit" : 3.142
+}

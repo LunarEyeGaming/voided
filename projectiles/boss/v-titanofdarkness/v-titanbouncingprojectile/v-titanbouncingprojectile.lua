@@ -12,6 +12,10 @@ function init()
     target = targetId
     projectile.die()
   end)
+
+  message.setHandler("v-titanbouncingprojectile-freeze", function()
+    mcontroller.setVelocity({0, 0})
+  end)
 end
 
 function destroy()

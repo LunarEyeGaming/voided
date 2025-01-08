@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarkness-explosion",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/movement.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua"
@@ -35,13 +35,13 @@
         "type": "action",
         "name": "v_titanExplosionAttack",
         "parameters": {
-          "target": {"key": "target"},
+          "postTeleportTime": {"value": 0.8},
+          "projectileType": {"value": "v-titanbomb"},
+          "repeats": {"value": 4},
           "requiredSafeArea": {"value": [-5, -5, 5, 5]},
           "spawnRegion": {"value": [-25, -25, 25, 25]},
-          "projectileType": {"value": "v-titanbomb"},
-          "teleportDelay": {"value": 0.8},
-          "postTeleportTime": {"value": 0.5},
-          "repeats": {"value": 4}
+          "target": {"key": "target"},
+          "teleportDelay": {"value": 0.6}
         }
       }
     ]
