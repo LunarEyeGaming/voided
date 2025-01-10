@@ -2,6 +2,8 @@ require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/v-behavior.lua"
 require "/scripts/v-movement.lua"
+require "/scripts/actions/v-attackutil.lua"
+require "/scripts/actions/boss/v-titanofdarkness.lua"
 
 local task
 local cfg
@@ -45,7 +47,7 @@ function init()
 
   script.setUpdateDelta(1)
 
-  state:set(tasks[task])
+  state:set(appear)
 end
 
 function update(dt)
@@ -85,17 +87,36 @@ function updateArm()
   animator.rotateTransformationGroup("elbowjoint", rearArmAngle, animator.partProperty("reararm", "elbowPoint"))
 end
 
+-- Coroutine function.
+function appear()
+  v_titanAppear{
+    appearTime = 0.5,
+    visionStartRotationRate = 0,
+    visionEndRotationRate = 0.25,
+    visionStartRadius = 10,
+    visionEndRadius = 1
+  }
+
+  state:set(tasks[task])
+end
+
 tasks = {}
 
 function tasks.grab()
   local rq = vBehavior.requireArgsGen("tasks.grab", args)
 
   if rq{"target"} then
-    local grabDelay = 3.0
+    local grabDelay = 2.5
     local grabRadius = 5
     local grabEndDistance = 10  -- The number of additional blocks to travel beyond the player when grabbing.
-    local startPos = mcontroller.position()
+    local extendSpeed = 75
+    local extendForce = 800
+    local retractSpeed = 50
+    local retractForce = 200
+    local stopForce = 200
+    local tolerance = 10
 
+    local startPos = mcontroller.position()
     local grabbedEntities = {}
 
     -- Get target position
@@ -112,8 +133,8 @@ function tasks.grab()
 
     local threads = {
       coroutine.create(function()
-        vMovementA.flyToPosition(grabEndPosition, 75, 800, 10)
-        vMovementA.stop(200)
+        vMovementA.flyToPosition(grabEndPosition, extendSpeed, extendForce, tolerance)
+        vMovementA.stop(stopForce)
       end),
       coroutine.create(function()
         -- Keep on adding grabbed entities forever. This function will inevitably be interrupted.
@@ -139,8 +160,8 @@ function tasks.grab()
     end
 
     -- Fly back to starting position.
-    vMovementA.flyToPosition(startPos, 50, 200, 10)
-    vMovementA.stop(200)
+    vMovementA.flyToPosition(startPos, retractSpeed, retractForce, tolerance)
+    vMovementA.stop(stopForce)
 
     -- For each grabbed entity...
     for _, entityId in ipairs(grabbedEntities) do
@@ -151,27 +172,55 @@ function tasks.grab()
     end
   end
 
-  -- Die
-  world.sendEntityMessage(config.getParameter("master"), "notify", {type = "v-titanofdarkness-armFinished"})
-  shouldDieVar = true
-  coroutine.yield()
+  finish()
 end
 
 function tasks.burrowingRift()
   local rq = vBehavior.requireArgsGen("tasks.burrowingRift", args)
 
-  local emergeWaitTime = 0.5
+  local emergeWaitTime = 0.0
   local pointDistance = 5
+  local maxNumPrevPos = 3  -- Maximum length of prevPosList
+  local pointOffsetAngle = -math.pi / 2
 
-  if rq{"projectileId"} then
-    while world.entityExists(args.projectileId) do
-      -- local projVelocity = world.entityVelocity(args.projectileId)
-      -- local pointVector = vec2.mul(vec2.norm(vec2.rotate(projVelocity, -math.pi / 2)), pointDistance)
+  local projectileType = "v-titanburrowingrift"
+  local projectileConfig = {}
+  projectileConfig.power = vAttack.scaledPower(projectileConfig.power or 10)
+
+  if rq{"target"} then
+    -- Spawn the projectile with a completely random aim vector.
+    local projectileId = world.spawnProjectile(projectileType, mcontroller.position(), config.getParameter("master"),
+    vec2.withAngle(math.random() * 2 * math.pi), false, projectileConfig)
+
+    local prevPosList  -- List of previous projectile positions, including current projectile positions. Used to estimate projectile velocity
+
+    -- Check if the projectile exists. If so, initialize the prevPosList to have `maxNumPrevPos` copies of the
+    -- projectile's position.
+    if world.entityExists(projectileId) then
+      local pos = world.entityPosition(projectileId)
+      prevPosList = {}
+      for _ = 1, maxNumPrevPos do
+        table.insert(prevPosList, pos)
+      end
+    end
+
+    -- While the projectile exists...
+    while world.entityExists(projectileId) do
+      -- Push a new entry. The oldest (first) entry is removed beforehand.
+      table.remove(prevPosList, 1)
+      table.insert(prevPosList, world.entityPosition(projectileId))
+      -- Calculate projectile velocity by getting the difference of the latest and earliest entries.
+      local projVelocity = world.distance(prevPosList[1], prevPosList[#prevPosList])
+      local pointVector = vec2.mul(vec2.norm(vec2.rotate(projVelocity, pointOffsetAngle)), pointDistance)
       -- Offset hand in opposite direction of that at which the hand is pointing.
-      mcontroller.setPosition(world.entityPosition(args.projectileId))
+      mcontroller.setPosition(vec2.add(world.entityPosition(projectileId), pointVector))
+      -- mcontroller.setPosition(world.entityPosition(projectileId))
 
-      -- animator.resetTransformationGroup("hand")
-      -- animator.rotateTransformationGroup("hand", vec2.angle(pointVector) + math.pi)
+      animator.resetTransformationGroup("hand")
+      animator.rotateTransformationGroup("hand", vec2.angle(pointVector) + math.pi)
+
+      -- Make the projectile go towards the target.
+      world.sendEntityMessage(projectileId, "setTargetPosition", world.entityPosition(args.target))
 
       coroutine.yield()
     end
@@ -179,6 +228,70 @@ function tasks.burrowingRift()
     util.wait(emergeWaitTime)
   end
 
+  finish()
+end
+
+function tasks.punch()
+  local rq = vBehavior.requireArgsGen("tasks.punch", args)
+
+  if rq{"target"} then
+    local punchDelay = 1.0
+    local punchEndDistance = 10  -- The number of additional blocks to travel beyond the player when punching.
+    local extendSpeed = 75
+    local extendForce = 800
+    local retractSpeed = 50
+    local retractForce = 200
+    local stopForce = 200
+    local tolerance = 10
+
+    local startPos = mcontroller.position()
+
+    local predictedTargetDistance
+
+    util.wait(punchDelay, function()
+      -- Get target position
+      local targetPos = world.entityPosition(args.target)
+      -- Get magnitude to target
+      local targetMagnitude = world.magnitude(targetPos, startPos)
+      -- Predict target's movements. The last expression estimates the arrival time of the punch.
+      local targetAngle = anglePrediction(mcontroller.position(), args.target, targetMagnitude / extendSpeed)
+      -- Get predicted target distance.
+      predictedTargetDistance = vec2.withAngle(targetAngle, targetMagnitude)
+
+      animator.resetTransformationGroup("hand")
+      animator.rotateTransformationGroup("hand", vec2.angle(predictedTargetDistance))
+    end)
+
+    -- Get punch end position
+    local punchEndPosition = vec2.add(startPos, vec2.mul(vec2.norm(predictedTargetDistance), vec2.mag(predictedTargetDistance) + punchEndDistance))
+
+    monster.setDamageOnTouch(true)
+
+    vMovementA.flyToPosition(punchEndPosition, extendSpeed, extendForce, tolerance)
+    vMovementA.stop(stopForce)
+
+    monster.setDamageOnTouch(false)
+
+    -- Fly back to starting position.
+    vMovementA.flyToPosition(startPos, retractSpeed, retractForce, tolerance)
+    vMovementA.stop(stopForce)
+  end
+
+  finish()
+end
+
+---Notifies the master that the arm is finished and dies.
+function finish()
+  -- Disappear
+  v_titanAppear{
+    appearTime = 0.5,
+    visionStartRotationRate = 0.25,
+    visionEndRotationRate = 0,
+    visionStartRadius = 1,
+    visionEndRadius = 10,
+    startAlpha = 255,
+    endAlpha = 0
+  }
   -- Die
   world.sendEntityMessage(config.getParameter("master"), "notify", {type = "v-titanofdarkness-armFinished"})
   shouldDieVar = true

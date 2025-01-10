@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarkness-meteors",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/world.lua",
     "/scripts/actions/v-sensor.lua",
@@ -38,7 +38,7 @@
           "name": "v_rectCollision",
           "parameters": {
             "position": {"key": "targetPos"},
-            "rect": {"value": [-100, 50, 100, 50]}
+            "rect": {"value": [-100, 50, 100, 25]}
           }
         }
       },
@@ -96,7 +96,7 @@
                 "angle": {"value": 0},
                 "offset": {"value": ["xOffset", 50]},
                 "position": {"key": "self"},
-                "projectileConfig": {"value": {"power": 20}},
+                "projectileConfig": {"value": {"power": 15}},
                 "projectileType": {"value": "v-titanmeteorspawner"},
                 "scalePower": {"value": true},
                 "sourceEntity": {"key": "self"},

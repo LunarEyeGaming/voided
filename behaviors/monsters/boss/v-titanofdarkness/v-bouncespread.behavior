@@ -4,7 +4,6 @@
   "scripts": [
     "/scripts/actions/v-sensor.lua",
     "/scripts/actions/world.lua",
-    "/scripts/actions/movement.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua"
   ],
@@ -21,8 +20,8 @@
         "name": "v_solidityTest",
         "parameters": {
           "position": {"key": "self"},
-          "testRegion": {"value": [-20, -20, 20, 20]},
           "sampleStep": {"value": 1},
+          "testRegion": {"value": [-20, -20, 20, 20]},
           "threshold": {"value": 0.5}
         }
       },
@@ -38,9 +37,9 @@
         }
       },
       {
-        "title": "flyToPosition",
+        "title": "v_flyToPositionNoFlip",
         "type": "action",
-        "name": "flyToPosition",
+        "name": "v_flyToPositionNoFlip",
         "parameters": {
           "position": {"key": "targetPosition"},
           "speed": {"value": 10},

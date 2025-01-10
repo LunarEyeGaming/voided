@@ -17,6 +17,7 @@ local stopAltMusicFadeTime
 local prevDungeonId
 
 local musicOverridden
+local playingDungeonMusic
 
 function init()
   musicOverridden = false
@@ -58,9 +59,14 @@ function update(dt)
     if dungeonMusicEntry then
       -- Play the music
       world.sendEntityMessage(player.id(), "playAltMusic", dungeonMusicEntry.music, dungeonMusicEntry.fadeTime)
+      playingDungeonMusic = true
     else
-      -- Stop the music
-      world.sendEntityMessage(player.id(), "stopAltMusic", stopAltMusicFadeTime)
+      -- If dungeon music is playing...
+      if playingDungeonMusic then
+        -- Stop the music
+        world.sendEntityMessage(player.id(), "stopAltMusic", stopAltMusicFadeTime)
+      end
+      playingDungeonMusic = false
     end
   end
 

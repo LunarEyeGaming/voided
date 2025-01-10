@@ -9,10 +9,22 @@ All custom sounds in Voided were made in Audacity using Starbound's assets and/o
 * "Balloon Pop.wav" by Laumark on Freesound.org (URL: https://freesound.org/people/Laumark/sounds/415125/).
 * "Glass Smash.wav" by chewiesmissus on Freesound.org (URL: https://freesound.org/people/chewiesmissus/sounds/244238/).
 * "Glass.ogg" by egomassive on Freesound.org (URL: https://freesound.org/people/egomassive/sounds/536763/).
+* SKR-03-324.wav by Bill Kurth / University of Iowa / NASA. URL: https://space.physics.uiowa.edu/space-audio/cassini/SKR1/. License: Attribution 3.0
 
-Music for the Electrochem Facility is an edited version of Desert Battle 2 (original track is by Curtis Schweitzer)
+## Music
+Electrochem Facility: Desert Battle 2 by Curtis Schweitzer. Edited to loop properly
 
-Disclaimer: the authors of these sound samples do not endorse Voided.
+Titan of Darkness:
+
+"Symmetry" Kevin MacLeod (incompetech.com)
+
+Licensed under Creative Commons: By Attribution 4.0 License
+
+http://creativecommons.org/licenses/by/4.0/
+
+Edited into two loop sections "stealth" and "combat"
+
+Disclaimer: the authors of these sound samples and music do not endorse Voided.
 
 I would like to thank Portal Mech and mister gadfly for playtesting and providing feedback for the mod.
 

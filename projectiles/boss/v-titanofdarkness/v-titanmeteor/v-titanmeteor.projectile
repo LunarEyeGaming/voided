@@ -3,9 +3,29 @@
   "physics" : "laser",
   "bounces" : 0,
   "image" : "titanmeteor.png",
+  "flippable" : true,
+  "fullbright" : true,
   "animationCycle" : 1,
-  "lightColor" : [253, 160, 57],
+  "lightColor" : [94, 113, 128],
   "frameNumber" : 1,
+  "periodicActions" : [
+    {
+      "time" : 0.1,
+      "repeat" : true,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "textured",
+        "image" : "/projectiles/boss/v-titanofdarkness/v-titanmeteor/titanmeteor.png",
+        "position" : [0, 0],
+        "layer" : "back",
+        "timeToLive" : 0.0,
+        "destructionTime" : 0.15,
+        "destructionAction" : "fade",
+        "fullbright" : true
+      }
+    }
+  ],
   "actionOnReap" : [
     {
       "action" : "config",
@@ -16,6 +36,5 @@
   "speed" : 50,
   "damageType" : "NoDamage",
   "damageKind" : "default",
-  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
-  "emitters" : [ "sparks" ]
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ]
 }

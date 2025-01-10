@@ -2,8 +2,13 @@
   "name": "v-titanofdarkness-laser",
   "description": "",
   "scripts": [
+    "/scripts/actions/world.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/position.lua",
     "/scripts/actions/v-sensor.lua",
+    "/scripts/actions/sensor.lua",
     "/scripts/actions/v-movement.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
     "/scripts/behavior.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua"
@@ -16,18 +21,112 @@
     "parameters": {},
     "children": [
       {
-        "title": "inverter",
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "target"}
+        },
+        "output": {
+          "position": "targetPos"
+        }
+      },
+      {
+        "title": "repeater",
         "type": "decorator",
-        "name": "inverter",
-        "parameters": {},
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": 200},
+          "untilSuccess": {"value": true}
+        },
         "child": {
-          "title": "v_rectCollision",
-          "type": "action",
-          "name": "v_rectCollision",
-          "parameters": {
-            "position": {"key": "self"},
-            "rect": {"value": [-7, -7, 7, 7]}
-          }
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": -20},
+                "min": {"value": 20}
+              },
+              "output": {
+                "number": "xOffset"
+              }
+            },
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": -20},
+                "min": {"value": 20}
+              },
+              "output": {
+                "number": "yOffset"
+              }
+            },
+            {
+              "title": "offsetPosition",
+              "type": "action",
+              "name": "offsetPosition",
+              "parameters": {
+                "offset": {"value": ["xOffset", "yOffset"]},
+                "position": {"key": "targetPos"}
+              },
+              "output": {
+                "position": "flightPos"
+              }
+            },
+            {
+              "title": "inverter",
+              "type": "decorator",
+              "name": "inverter",
+              "parameters": {},
+              "child": {
+                "title": "selector",
+                "type": "composite",
+                "name": "selector",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "v_rectCollision",
+                    "type": "action",
+                    "name": "v_rectCollision",
+                    "parameters": {
+                      "position": {"key": "flightPos"},
+                      "rect": {"value": [-7, -7, 7, 7]}
+                    }
+                  },
+                  {
+                    "title": "lineTileCollision",
+                    "type": "action",
+                    "name": "lineTileCollision",
+                    "parameters": {
+                      "collisionType": {"value": ["Null", "Block", "Dynamic", "Slippery"]},
+                      "offset": {"value": [0, 0]},
+                      "position": {"key": "targetPos"},
+                      "x": {"key": "xOffset"},
+                      "y": {"key": "yOffset"}
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "v_flyToPositionNoFlip",
+        "type": "action",
+        "name": "v_flyToPositionNoFlip",
+        "parameters": {
+          "position": {"key": "flightPos"},
+          "speed": {"value": 10},
+          "tolerance": {"value": 1}
         }
       },
       {
@@ -39,11 +138,29 @@
         }
       },
       {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "active"},
+          "type": {"value": "beamcharge"}
+        }
+      },
+      {
         "title": "timer",
         "type": "action",
         "name": "timer",
         "parameters": {
-          "time": {"value": 3}
+          "time": {"value": 2.5}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "inactive"},
+          "type": {"value": "beamcharge"}
         }
       },
       {

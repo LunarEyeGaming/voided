@@ -4,6 +4,8 @@ require "/scripts/v-attack.lua"
 require "/scripts/actions/flying.lua"
 require "/scripts/v-world.lua"
 
+local titanArmIds = {}
+
 local debugSearchZones
 
 local oldUpdate = update or function() end
@@ -30,6 +32,8 @@ function update(dt)
       end
     end
   end
+
+  titanArmIds = util.filter(titanArmIds, function(x) return world.entityExists(x) end)
 end
 
 -- param target
@@ -61,6 +65,10 @@ function v_titanLaserRotation(args, board)
 
   util.run(args.windupTime, function() end)
 
+  animator.setAnimationState("lasers", "fire")
+
+  util.run(args.rotateDelay, function() end)
+
   -- Get new angles to determine the direction of the lasers.
   targetPos = world.entityPosition(args.target)
   local leftEyeTestAngle = vec2.angle(world.distance(targetPos, vec2.add(leftEyeCenter, mcontroller.position())))
@@ -71,10 +79,6 @@ function v_titanLaserRotation(args, board)
   -- Calculate ending eye angles
   local leftEyeEndAngle = leftEyeStartAngle + 2 * math.pi * direction
   local rightEyeEndAngle = rightEyeStartAngle + 2 * math.pi * direction
-
-  animator.setAnimationState("lasers", "fire")
-
-  util.run(args.rotateDelay, function() end)
 
   local timer = 0
 
@@ -143,7 +147,7 @@ function v_titanExplosionAttack(args, board)
 
   for _, spawnPos in ipairs(spawnPosList) do
     world.spawnProjectile(args.projectileType, spawnPos, entity.id(), {0, 0}, false, {power = vAttack.scaledPower(10)})
-    world.sendEntityMessage(args.target, "applyStatusEffect", "v-titanteleport")
+    world.sendEntityMessage(args.target, "applyStatusEffect", "v-titanteleport", args.teleportDelay + args.postTeleportTime)
 
     util.run(args.teleportDelay, function() end)
 
@@ -235,9 +239,6 @@ function v_titanBurrowingRiftAttack(args)
   -- Params
   local spawnRange = {-20, -20, 20, 20}
   local maxAttempts = 200
-  local projectileType = "v-titanburrowingrift"
-  local projectileConfig = {}
-  projectileConfig.power = vAttack.scaledPower(projectileConfig.power or 10)
 
   -- Locals
   local targetPos = world.entityPosition(args.target)
@@ -254,15 +255,34 @@ function v_titanBurrowingRiftAttack(args)
 
   -- If successful in choosing a spawn position...
   if attempts <= maxAttempts then
-    -- Spawn the projectile with a completely random aim vector.
-    local projectileId = world.spawnProjectile(projectileType, spawnPos, entity.id(), vec2.withAngle(math.random() * 2 * math.pi), false, projectileConfig)
     local anchorPoint = vec2.add(spawnPos, vec2.withAngle(math.random() * 2 * math.pi, 15))
     -- Spawn an arm to follow the projectile.
-    world.spawnMonster("v-titanofdarknessarm", spawnPos, {task = "burrowingRift", taskArguments = {projectileId = projectileId}, master = entity.id(), anchorPoint = anchorPoint})
-    return true, {projectileId = projectileId}
+    spawnArm(spawnPos, anchorPoint, "burrowingRift", {target = args.target})
+    return true
   end
 
   return false
+end
+
+-- param target
+function v_titanPunch(args)
+  local rq = vBehavior.requireArgsGen("v_titanPunch", args)
+
+  if not rq{"target"} then return false end
+
+  local armSpawnRegion = {-20, -20, 20, 20}
+
+  -- Pick a random arm spawning position.
+  local spawnPos = vec2.add(world.entityPosition(args.target), rect.randomPoint(armSpawnRegion))
+
+  local anchorPoint = vec2.add(spawnPos, vec2.withAngle(math.random() * 2 * math.pi, 20))
+  -- Spawn the arm
+  spawnArm(spawnPos, anchorPoint, "punch", {target = args.target})
+
+  -- Wait for arm to finish.
+  vBehavior.awaitNotification("v-titanofdarkness-armFinished")
+
+  return true
 end
 
 -- param target
@@ -429,29 +449,23 @@ function v_titanDetectTarget(args)
   local sightRadius = 25
   local halfFov = util.toRadians(45) / 2
   local exposureTime = 0.25
-  local queriedTimings = {}
+  local queriedTimingsLeft = {}
+  local queriedTimingsRight = {}
 
   local isValidTarget = function(target, eyePos)
     if world.entityExists(target) then
       local targetPos = world.entityPosition(target)
-      return not (world.lineTileCollision(eyePos, world.nearestTo(eyePos, targetPos)) or world.magnitude(eyePos, targetPos) > sightRadius)
+      return not (world.lineTileCollision(eyePos, world.nearestTo(eyePos, targetPos)) or world.magnitude(eyePos, targetPos) > sightRadius) and entity.isValidTarget(target)
     end
 
     return false
   end
 
-  local updateQueried = function(qItem)
-    if queriedTimings[qItem] then
-      queriedTimings[qItem] = queriedTimings[qItem] - script.updateDt()
-    else
-      queriedTimings[qItem] = exposureTime
-    end
-  end
-
-  local getTarget = function(eyePos)
+  local getTarget = function(queriedTimings, eyePos)
     local queried = world.entityQuery(eyePos, sightRadius, {withoutEntityId = entity.id(), includedTypes = {"player"}})
     -- Iterate through each queried entity. Find the first one that is within its field of view (ordered from nearest to farthest)
     for _, qItem in pairs(queried) do
+      -- Calculate absolute difference between current angle and the angle of the vector from eyePos to qItem's position.
       local sightCloseness = math.abs(
         util.angleDiff(
           args.currentAngle,
@@ -459,8 +473,16 @@ function v_titanDetectTarget(args)
         )
       )
       if isValidTarget(qItem, eyePos) and sightCloseness <= halfFov then
-        updateQueried(qItem)
+        -- Update exposure time for the queried item.
+        if queriedTimings[qItem] then
+          queriedTimings[qItem] = queriedTimings[qItem] - script.updateDt()
+        else
+          queriedTimings[qItem] = exposureTime
+        end
+
+        -- If the queried item has been exposed for long enough...
         if queriedTimings[qItem] < 0 then
+          -- Return it.
           return qItem
         end
       else
@@ -471,10 +493,8 @@ function v_titanDetectTarget(args)
 
   local target
   while not target do
-    target = getTarget(vec2.add(mcontroller.position(), animator.partPoint("body", "leftEyeCenter")))
-    or getTarget(vec2.add(mcontroller.position(), animator.partPoint("body", "rightEyeCenter")))
-
-    world.debugText("queriedTimings: %s", queriedTimings, mcontroller.position(), "green")
+    target = getTarget(queriedTimingsLeft, vec2.add(mcontroller.position(), animator.partPoint("body", "leftEyeCenter")))
+    or getTarget(queriedTimingsRight, vec2.add(mcontroller.position(), animator.partPoint("body", "rightEyeCenter")))
 
     coroutine.yield()
   end
@@ -505,7 +525,7 @@ function v_titanGrab(args)
 
   local anchorPoint = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, 10))
   -- Spawn the arm
-  world.spawnMonster("v-titanofdarknessarm", spawnPos, {task = "grab", taskArguments = {target = args.target}, master = entity.id(), anchorPoint = anchorPoint})
+  spawnArm(spawnPos, anchorPoint, "grab", {target = args.target})
 
   -- Look at arm position.
   coroutine.yield(nil, {angle = vec2.angle(world.distance(spawnPos, mcontroller.position()))})
@@ -533,20 +553,28 @@ function v_titanAppear(args)
   local startAlpha = args.startAlpha or 0
   local endAlpha = args.endAlpha or 255
 
+  coroutine.yield()
+
   local timer = 0
   util.run(args.appearTime, function(dt)
     local progress = timer / args.appearTime
-    -- world.debugText("progress: %s", progress, mcontroller.position(), "green")
     -- Update animation parameters for v-titanofdarknessanim.lua.
     monster.setAnimationParameter("titanAnimArgs", {
       radius = util.lerp(progress, args.visionStartRadius, args.visionEndRadius),
       rotationRate = util.lerp(progress, args.visionStartRotationRate, args.visionEndRotationRate)
     })
-    -- Set opacity.
-    animator.setGlobalTag("opacity", string.format("%02x", math.floor(util.lerp(progress, startAlpha, endAlpha))))
+
+    -- Set opacity. Use "ff" in place of "fe" to mesh with fullbright shader.
+    local opacity = string.format("%02x", math.floor(util.lerp(progress, startAlpha, endAlpha)))
+    animator.setGlobalTag("opacity", opacity ~= "fe" and opacity or "ff")
+
     timer = math.min(args.appearTime, timer + dt)
   end)
 
+  monster.setAnimationParameter("titanAnimArgs", {
+    radius = args.visionEndRadius,
+    rotationRate = args.visionEndRotationRate
+  })
   animator.setGlobalTag("opacity", string.format("%02x", endAlpha))
 
   return true
@@ -556,9 +584,78 @@ function v_titanStun(args)
   local queried = world.entityQuery(mcontroller.position(), 100, {includedTypes = {"creature"}, withoutEntityId = entity.id()})
 
   for _, entityId in ipairs(queried) do
-    local damageTeam = world.entityDamageTeam(entityId)
-    if damageTeam and damageTeam.type == "enemy" then
-      world.sendEntityMessage(entityId, "applyStatusEffect", "v-titanstun")
+    -- Exclude titan arms
+    if not contains(titanArmIds, entityId) then
+      -- Affect only creatures that are in the "enemy" damage team.
+      local damageTeam = world.entityDamageTeam(entityId)
+      if damageTeam and damageTeam.type == "enemy" then
+        world.sendEntityMessage(entityId, "applyStatusEffect", "v-titanstun")
+      end
+    end
+  end
+
+  return true
+end
+
+-- param musicState - 0 for "STEALTH", 1 for "COMBAT", 2 for "NONE"
+function v_titanMusic(args)
+  local musicState = {  -- Enumerator
+    STEALTH = 0,
+    COMBAT = 1,
+    NONE = 2
+  }
+  local stealthMusic = {"/music/v-symmetry-stealth.ogg"}
+  local combatMusic = {"/music/v-symmetry-combat.ogg"}
+  local musicFadeInTime = 5.0
+  local musicFadeOutTime = 5.0
+
+  local prevPlayers = {}
+  local prevMusicState = args.musicState
+  while true do
+    local queried = world.entityQuery(mcontroller.position(), 100, {includedTypes = {"player"}})
+
+    if args.musicState == musicState.NONE then
+      -- Stop music for players that are queried.
+      for _, playerId in ipairs(prevPlayers) do
+        world.sendEntityMessage(playerId, "v-dungeonmusicplayer-unsetOverride")  -- Unset override.
+        world.sendEntityMessage(playerId, "stopAltMusic", musicFadeOutTime)
+      end
+    else
+      -- Stop music for players that are no longer queried.
+      for _, playerId in ipairs(prevPlayers) do
+        if not contains(queried, playerId) then
+          world.sendEntityMessage(playerId, "v-dungeonmusicplayer-unsetOverride")  -- Unset override.
+          world.sendEntityMessage(playerId, "stopAltMusic", musicFadeOutTime)
+        end
+      end
+
+      local musicTrack = args.musicState == musicState.COMBAT and combatMusic or stealthMusic
+      -- Start music for players that have just started being queried (or when args.musicState has changed). Use
+      -- v-dungeonmusicplayer-setOverride to avoid trouble with the dungeonmusicplayer script.
+      for _, playerId in ipairs(queried) do
+        if prevMusicState ~= args.musicState or not contains(prevPlayers, playerId) then
+          world.sendEntityMessage(playerId, "v-dungeonmusicplayer-setOverride", musicTrack, musicFadeInTime)
+        end
+      end
+    end
+
+    prevPlayers = queried
+    prevMusicState = args.musicState
+
+    world.debugText("players: %s, prevPlayers: %s", queried, prevPlayers, mcontroller.position(), "green")
+
+    coroutine.yield()
+  end
+end
+
+function v_titanStopMusic(args)
+  local musicFadeOutTime = 5.0
+  local queried = world.entityQuery(mcontroller.position(), 100, {includedTypes = {"player"}})
+
+  -- Stop music for players that are no longer queried.
+  for _, playerId in ipairs(queried) do
+    if not contains(queried, playerId) then
+      world.sendEntityMessage(playerId, "stopAltMusic", musicFadeOutTime)
     end
   end
 
@@ -592,17 +689,16 @@ function adjustAgainstGeometry(position, angle, rayCount, maxRaycastLength)
   return vec2.mul(positionSum, 1 / rayCount)
 end
 
----@param position Vec2F
----@param rayCount integer
----@param maxRaycastLength number
+---Performs a series of `rayCount` raycasts, evenly distributed across 360 degrees. Each raycast has a maximum distance
+---of `maxRaycastLength` and is centered at position `position`. The result is lists of consecutive angles that resulted
+---in a raycast distance of searchThreshold blocks or more.
+---@param position Vec2F The center of the set of raycasts.
+---@param rayCount integer The number of raycasts to perform
+---@param maxRaycastLength number The maximum length of a raycast.
+---@param searchThreshold number? The minimum raycast distance necessary to add a cluster of angles. Defaults to 20
 ---@return number[][]
-function radialRaycast(position, rayCount, maxRaycastLength)
-  -- Find locations of tunnels by raycasting around the entity. Wherever there are changes in raycast distance that exceed
-  -- a threshold, these are tunnels. Massive increase in distance followed by a massive decrease in distance => a cluster.
-  -- Break it all up into contiguous blocks with these markers. If the blocks occupy a certain amount of vision, then use
-  -- a sweep. Otherwise, stop in the middle of the block.
-  -- A sweep consists of a start angle and an end angle.
-  local searchThreshold = 20  -- The minimum raycast distance necessary to add a search region. Parameter
+function radialRaycast(position, rayCount, maxRaycastLength, searchThreshold)
+  searchThreshold = searchThreshold or 20
 
   local raycastClusters = {}
   local nextRaycastCluster = {}
@@ -656,24 +752,25 @@ function radialRaycast(position, rayCount, maxRaycastLength)
   return raycastClusters
 end
 
+---Has one angle to which to point
 ---@class SpotSearchZone
 ---@field sweep false
 ---@field angle number
 
+---Has two angles--a start angle and an end angle--where the Titan sweeps back and forth between the two.
 ---@class SweepSearchZone
 ---@field sweep true
 ---@field startAngle number
 ---@field endAngle number
 
----@param raycastClusters any
+---Returns a list of spot and sweep search zones based on the provided `raycastClusters`.
+---@param raycastClusters number[][]
 ---@return (SpotSearchZone | SweepSearchZone)[]
-function processRaycastClusters(raycastClusters)
+function processRaycastClusters(raycastClusters, sweepThreshold)
   -- Returns a sequence of sweep and spot searches.
-
   -- Entries in each cluster must be sorted.
-
   -- The minimum angular span of a raycast cluster necessary for it to become a sweep search instead of a spot search.
-  local sweepThreshold = 2 * math.pi * 0.2  -- Parameter
+  sweepThreshold = sweepThreshold or 2 * math.pi * 0.2  -- Parameter
   -- A sweep search consists of sweeping back and forth once.
   -- A spot search consists of turning toward the center of the search zone and stopping for a brief moment.
 
@@ -710,7 +807,8 @@ function findRandomAirPosition(maxAttempts, center, initialSelectionArea, requir
     -- Choose random position within a rectangle
     local candidate = vec2.add(center, rect.randomPoint(initialSelectionArea))
     -- Find a corresponding air position
-    local status, results = findAirPosition{centerPosition = candidate, collisionArea = requiredSafeArea, maxDistance = 20, lerpStep = 1.0}
+    local status, results = findAirPosition{centerPosition = candidate, collisionArea = requiredSafeArea,
+      maxDistance = maxDistance, lerpStep = lerpStep}
     if status then
       -- Tell LuaLS to disregard results potentially being nil.
       ---@diagnostic disable: need-check-nil
@@ -725,4 +823,24 @@ function findRandomAirPosition(maxAttempts, center, initialSelectionArea, requir
   end
 
   return nextPos
+end
+
+---Spawns an arm at position `position` to do a specific task, with a starting anchor point `anchorPoint`.
+---@param position Vec2F the spawning position of the hand.
+---@param anchorPoint Vec2F the initial position of the shoulder
+---@param task string the name of the task to perform
+---@param taskArgs table the arguments to provide to the task
+---@return EntityId
+function spawnArm(position, anchorPoint, task, taskArgs)
+  local monsterId = world.spawnMonster("v-titanofdarknessarm", position, {
+    level = monster.level(),
+    master = entity.id(),
+    task = task,
+    taskArguments = taskArgs,
+    anchorPoint = anchorPoint
+  })
+
+  table.insert(titanArmIds, monsterId)
+
+  return monsterId
 end

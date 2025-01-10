@@ -105,7 +105,7 @@ function ScreenFlash:process(dt)
   -- This uses a thick line to create a colored rectangle that covers the entire screen.
   local windowRegion = world.clientWindow()
   -- Make window region relative to the current entity.
-  local relativeWindowRegion = rect.translate(windowRegion, vec2.mul(entity.position(), -1))
+  local relativeWindowRegion = rect.translate(windowRegion, vec2.mul(world.nearestTo(rect.center(windowRegion), entity.position()), -1))
   local drawingBounds = rect.pad(relativeWindowRegion, self.WINDOW_PADDING)  -- Pad region to account for camera panning
 
   local verticalMidPoint = (drawingBounds[4] + drawingBounds[2]) / 2

@@ -3,11 +3,10 @@
   "description": "",
   "scripts": [
     "/scripts/actions/world.lua",
-    "/scripts/actions/sensor.lua",
-    "/scripts/actions/position.lua",
-    "/scripts/actions/math.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/math.lua",
     "/scripts/actions/entity.lua",
     "/scripts/actions/time.lua"
   ],
@@ -53,135 +52,12 @@
                 "parameters": {},
                 "children": [
                   {
-                    "title": "dynamic",
-                    "type": "composite",
-                    "name": "dynamic",
-                    "parameters": {},
-                    "children": [
-                      {
-                        "title": "Exit blocks",
-                        "type": "decorator",
-                        "name": "failer",
-                        "parameters": {},
-                        "child": {
-                          "title": "parallel",
-                          "type": "composite",
-                          "name": "parallel",
-                          "parameters": {
-                            "fail": {"value": -1},
-                            "success": {"value": 1}
-                          },
-                          "children": [
-                            {
-                              "title": "failer",
-                              "type": "decorator",
-                              "name": "failer",
-                              "parameters": {},
-                              "child": {
-                                "title": "entityPosition",
-                                "type": "action",
-                                "name": "entityPosition",
-                                "parameters": {
-                                  "entity": {"key": "target"}
-                                },
-                                "output": {
-                                  "position": "targetPosition"
-                                }
-                              }
-                            },
-                            {
-                              "title": "inverter",
-                              "type": "decorator",
-                              "name": "inverter",
-                              "parameters": {},
-                              "child": {
-                                "title": "boundsCollision",
-                                "type": "action",
-                                "name": "boundsCollision",
-                                "parameters": {}
-                              }
-                            },
-                            {
-                              "title": "parallel",
-                              "type": "composite",
-                              "name": "parallel",
-                              "parameters": {
-                                "fail": {"value": -1},
-                                "success": {"value": 1}
-                              },
-                              "children": [
-                                {
-                                  "title": "failer",
-                                  "type": "decorator",
-                                  "name": "failer",
-                                  "parameters": {},
-                                  "child": {
-                                    "title": "sequence",
-                                    "type": "composite",
-                                    "name": "sequence",
-                                    "parameters": {},
-                                    "children": [
-                                      {
-                                        "title": "entityPosition",
-                                        "type": "action",
-                                        "name": "entityPosition",
-                                        "parameters": {
-                                          "entity": {"key": "target"}
-                                        },
-                                        "output": {
-                                          "position": "targetPosition"
-                                        }
-                                      },
-                                      {
-                                        "title": "distance",
-                                        "type": "action",
-                                        "name": "distance",
-                                        "parameters": {
-                                          "from": {"key": "self"},
-                                          "to": {"key": "targetPosition"}
-                                        },
-                                        "output": {
-                                          "vector": "targetDistance"
-                                        }
-                                      },
-                                      {
-                                        "title": "vecAngle",
-                                        "type": "action",
-                                        "name": "vecAngle",
-                                        "parameters": {
-                                          "vector": {"key": "targetDistance"}
-                                        },
-                                        "output": {
-                                          "angle": "targetAngle"
-                                        }
-                                      }
-                                    ]
-                                  }
-                                },
-                                {
-                                  "title": "v_flyToPositionNoFlip",
-                                  "type": "action",
-                                  "name": "v_flyToPositionNoFlip",
-                                  "parameters": {
-                                    "position": {"key": "targetPosition"},
-                                    "speed": {"value": 20},
-                                    "tolerance": {"value": 1}
-                                  }
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "title": "v_stop",
-                        "type": "action",
-                        "name": "v_stop",
-                        "parameters": {
-                          "stopForce": {"value": 20}
-                        }
-                      }
-                    ]
+                    "title": "v_stop",
+                    "type": "action",
+                    "name": "v_stop",
+                    "parameters": {
+                      "stopForce": {"value": 20}
+                    }
                   },
                   {
                     "title": "repeater",

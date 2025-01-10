@@ -30,12 +30,6 @@ function init()
 end
 
 function update(dt)
-  -- Keep effect active until told to expire.
-  local currentDuration = effect.duration()
-  if currentDuration <= initialDuration and currentDuration > 0 then
-    effect.modifyDuration(initialDuration - currentDuration)
-  end
-
   -- If told to freeze...
   if freezeTimer then
     freezeTimer = freezeTimer - dt

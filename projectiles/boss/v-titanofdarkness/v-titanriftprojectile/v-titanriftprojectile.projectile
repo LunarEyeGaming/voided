@@ -1,0 +1,43 @@
+{
+  "projectileName" : "v-titanriftprojectile",
+  "image" : "titanriftprojectile.png",
+  "physics" : "boomerang",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "lightColor" : [51, 41, 71],
+  "fullbright" : true,
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/npc/boss/v_titanofdarkness_rift_fire.ogg" ]
+    },
+    {
+      "time" : 0.02,
+      "repeat" : true,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "textured",
+        "image" : "/projectiles/boss/v-titanofdarkness/v-titanriftprojectile/trail.png",
+        "position" : [0, 0],
+        "layer" : "back",
+        "timeToLive" : 0.0,
+        "destructionTime" : 0.15,
+        "destructionAction" : "fade",
+        "fullbright" : true
+      }
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-titanriftprojectiledisintegrate/v-titanriftprojectiledisintegrate.config"
+    }
+  ],
+  "power" : 0,
+  "speed" : 100,
+  "damageKind" : "plasma",
+  "damagePoly" : [ [6.5, 0], [0.5, 2], [-6.5, 0], [0.5, -2] ]
+}

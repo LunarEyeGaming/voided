@@ -14,18 +14,31 @@
             "frames" : 6,
             "cycle" : 0.15,
             "mode" : "transition",
-            "transition" : "fireLoop"
+            "transition" : "fireLoop",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/v_titanofdarkness_laser_blast.ogg",
+              "immediateSoundRangeMultiplier" : 5
+            }
           },
           "fireLoop" : {
             "frames" : 2,
             "cycle" : 0.1,
-            "mode" : "loop"
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/npc/boss/v_titanofdarkness_laser_loop.ogg",
+              "persistentSoundRangeMultiplier" : 5,
+              "persistentSoundStopTime" : 0.2
+            }
           },
           "fireEnd" : {
             "frames" : 6,
             "cycle" : 0.15,
             "mode" : "transition",
-            "transition" : "inactive"
+            "transition" : "inactive",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/v_titanofdarkness_laser_end.ogg",
+              "immediateSoundRangeMultiplier" : 5
+            }
           }
         }
       },
@@ -34,7 +47,29 @@
         "priority" : 0,
         "states" : {
           "invisible" : {},
-          "idle" : {}
+          "idle" : {
+            "properties" : {
+              "persistentSound" : "/sfx/npc/boss/v_titanofdarkness_ambience.ogg",
+              "persistentSoundStartTime" : 5.0,
+              "persistentSoundStopTime" : 5.0
+            }
+          }
+        }
+      },
+      "beamcharge" : {
+        "default" : "inactive",
+        "priority" : 0,
+        "states" : {
+          "inactive" : {},
+          "active" : {
+            "frames" : 15,
+            "cycle" : 1.0,
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/v_titanofdarkness_laser_charge.ogg",
+              "immediateSoundRangeMultiplier" : 5
+            }
+          }
         }
       },
       "damage" : {
@@ -53,7 +88,7 @@
     "parts" : {
       "body" : {
         "properties" : {
-          "zLevel" : 0,
+          "zLevel" : 1,
           "fullbright" : true,
           "centered" : true,
           "offset" : [0, 0],
@@ -108,6 +143,42 @@
           }
         }
       },
+      "leftbeamcharge" : {
+        "properties" : {
+          "zLevel" : 2,
+          "centered" : true,
+          "offset" : [-2.875, 1.75],
+          "fullbright" : true,
+          "transformationGroups" : ["leftpupil"]
+        },
+        "partStates" : {
+          "beamcharge" : {
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      },
+      "rightbeamcharge" : {
+        "properties" : {
+          "zLevel" : 2,
+          "centered" : true,
+          "offset" : [4.625, 1],
+          "fullbright" : true,
+          "transformationGroups" : ["rightpupil"]
+        },
+        "partStates" : {
+          "beamcharge" : {
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      },
       "leftbeam" : {
         "properties" : {
           "zLevel" : 5,
@@ -146,7 +217,7 @@
         "properties" : {
           "zLevel" : 5,
           "centered" : true,
-          "offset" : [45.625, 1],
+          "offset" : [45.125, 1],
           "fullbright" : true,
           "transformationGroups" : [ "righteye" ]
         },
@@ -223,6 +294,6 @@
   },
 
   "sounds" : {
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ]
+    "deathPuff" : [ ]
   }
 }

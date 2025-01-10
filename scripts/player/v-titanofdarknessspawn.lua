@@ -16,7 +16,7 @@
   * Every spawnAttemptInterval seconds, attempts to spawn the Titan of Darkness. Has a spawning probability of
   spawnProbability
   * The Titan of Darkness is spawned on top of the player (at which point, the AI should give the player time to react),
-  with a threat level of 9.
+  with a threat level of 10.
 
   The probability that the Titan of Darkness has spawned at least once after n seconds, assuming that all other
   conditions have been met, can be calculated using the formula P = 1 - (1 - spawnProbability) ^ math.floor(n / spawnAttemptInterval).
@@ -24,6 +24,7 @@
 
 require "/scripts/util.lua"
 
+local allowedEquipmentLevels  -- The player must possess at least one item with a "level" value in `allowedEquipmentLevels`.
 local minSpawnCooldown  -- The amount of time to wait before spawning the Titan of Darkness again
 local minPlanetStayTime  -- The player must have been on the current planet type for this amount of time
 local worldTypeWhitelist  -- List of worlds on which the Titan of Darkness is allowed to spawn
@@ -50,12 +51,13 @@ function init()
     return
   end
 
+  allowedEquipmentLevels = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
   minSpawnCooldown = 60 * 30
   minPlanetStayTime = 60 * 30
   spawnAttemptInterval = 30
   spawnProbability = 0.05
   titanMonsterType = "v-titanofdarkness"
-  titanLevel = 9
+  titanLevel = 10
 
   spawnAttemptTimer = 0
 
@@ -88,7 +90,8 @@ function update(dt)
       -- With a probability of spawnProbability...
       if math.random() <= spawnProbability
       and world.time() > storage.lastTitanSpawnTime + minSpawnCooldown  -- If the Titan spawning cooldown has ended...
-      and worldTypeStayTime > minPlanetStayTime then  -- And the player has stayed for longer than minPlanetStayTime...
+      and worldTypeStayTime > minPlanetStayTime  -- The player has stayed for longer than minPlanetStayTime...
+      and hasStrongEnoughEquipment() then  -- And the player has strong enough equipment...
         -- Spawn a Titan, which sets the v-activeTitanOfDarkness property automatically upon spawning in.
         world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
         storage.lastTitanSpawnTime = world.time()
@@ -99,6 +102,18 @@ function update(dt)
   end
 
   worldTypeStayTime = worldTypeStayTime + dt
+end
+
+---Returns whether or not the player has at least one item with a `level` value that is inside `allowedEquipmentLevels`.
+---@return boolean
+function hasStrongEnoughEquipment()
+  for _, level in ipairs(allowedEquipmentLevels) do
+    if player.hasItemWithParameter("level", level) then
+      return true
+    end
+  end
+
+  return false
 end
 
 function uninit()

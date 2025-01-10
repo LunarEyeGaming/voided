@@ -39,7 +39,7 @@
       "flySpeed" : 15,
       "airForce" : 40,
 
-      "physicsEffectCategories" : ["stationarymonster"]
+      "physicsEffectCategories" : ["boss"]
     },
 
     "knockoutTime" : 0.0,
@@ -48,13 +48,13 @@
 
     "damageParts" : {
       "leftbeam" : {
-        "damage" : 25,
+        "damage" : 20,
 
         "teamType" : "enemy",
         "damageSourceKind" : "plasma"
       },
       "rightbeam" : {
-        "damage" : 25,
+        "damage" : 20,
 
         "teamType" : "enemy",
         "damageSourceKind" : "plasma"

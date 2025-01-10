@@ -10,7 +10,6 @@
 require "/scripts/rect.lua"
 
 local oldInit = init or function() end
-local oldUninit = uninit or function() end
 
 local REQUIRED_DUNGEON_ID = 65535
 
@@ -29,7 +28,6 @@ function init()
       status.setResourcePercentage("health", 0.0)
       monster.setDropPool(nil)
       self.shouldDie = true
-      mcontroller.setPosition({0, 0})
     else
       monster.setUniqueId("v-titanofdarkness")
     end
@@ -42,19 +40,6 @@ function init()
     status.setResourcePercentage("health", 0.0)
     monster.setDropPool(nil)
     self.shouldDie = true
-    mcontroller.setPosition({0, 0})
-  end
-end
-
-function uninit()
-  oldUninit()
-
-  sb.logInfo("uninit called")
-
-  -- If this is the active Titan and it has died, unset it.
-  if world.getProperty("v-activeTitanOfDarkness") == entity.id() then
-    sb.logInfo("attempting to unset v-activeTitanOfDarkness")
-    world.setProperty("v-activeTitanOfDarkness", nil)
   end
 end
 

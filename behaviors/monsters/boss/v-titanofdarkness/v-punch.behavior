@@ -1,0 +1,42 @@
+{
+  "name": "v-titanofdarkness-punch",
+  "description": null,
+  "scripts": [
+    "/scripts/behavior.lua",
+    "/scripts/actions/boss/v-titanofdarkness.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "orbitTarget"}
+        }
+      },
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": 4},
+          "untilSuccess": {"value": false}
+        },
+        "child": {
+          "title": "v_titanPunch",
+          "type": "action",
+          "name": "v_titanPunch",
+          "parameters": {
+            "target": {"key": "target"}
+          }
+        }
+      }
+    ]
+  }
+}
