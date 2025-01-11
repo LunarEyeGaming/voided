@@ -5,6 +5,7 @@ require "/scripts/actions/flying.lua"
 require "/scripts/v-world.lua"
 
 local titanArmIds = {}
+local nextAnimKeyframeId = 0
 
 local debugSearchZones
 
@@ -129,17 +130,27 @@ function v_titanExplosionAttack(args, board)
 
   -- Attempt to find positions to use.
   for _ = 1, args.repeats do
-    -- Attempt to choose a spawn position that guarantees an area free of collisions within maxAttempts attempts
-    local spawnPos
-    local attempts = 0
-    repeat
-      spawnPos = rect.randomPoint(spawnRegion)
-      attempts = attempts + 1
-    until not world.rectCollision(rect.translate(args.requiredSafeArea, spawnPos)) or attempts > maxAttempts
+    -- -- Attempt to choose a spawn position that guarantees an area free of collisions within maxAttempts attempts.
+    -- local spawnPos
+    -- local attempts = 0
+    -- repeat
+    --   spawnPos = rect.randomPoint(spawnRegion)
+    --   attempts = attempts + 1
+    -- until not world.rectCollision(rect.translate(args.requiredSafeArea, spawnPos)) or attempts > maxAttempts
+
+    -- -- If unsuccessful...
+    -- if attempts > maxAttempts then
+    --   return false  -- Fail
+    -- end
+
+    -- Attempt to choose a spawn position that guarantees an area free of collisions within maxAttempts attempts.
+    local spawnPos = vWorld.randomPositionInRegion(spawnRegion, function(pos)
+      return not world.rectCollision(rect.translate(args.requiredSafeArea, pos))
+    end, maxAttempts)
 
     -- If unsuccessful...
-    if attempts > maxAttempts then
-      return false  -- Fail
+    if not spawnPos then
+      return false  -- Fail.
     end
 
     table.insert(spawnPosList, spawnPos)
@@ -218,6 +229,11 @@ function v_titanBouncingOrbAttack(args)
     if attempts <= maxAttempts and world.entityExists(projectiles[nextIdx]) then
       -- Trigger the projectile to fly towards the player.
       vWorld.sendEntityMessage(projectiles[nextIdx], "v-titanbouncingprojectile-fling", args.target)
+      -- local projectilePos = world.entityPosition(projectiles[nextIdx])
+      -- spawnArm(projectilePos, vec2.add(projectilePos, vec2.withAngle(math.random() * 2 * math.pi, 20)), "flick", {
+      --   projectileId = projectiles[nextIdx],
+      --   target = args.target
+      -- })
 
       -- Delete projectile from list
       table.remove(projectiles, nextIdx)
@@ -243,18 +259,32 @@ function v_titanBurrowingRiftAttack(args)
   -- Locals
   local targetPos = world.entityPosition(args.target)
 
-  local spawnPos
-  local attempts = 0
+  -- local spawnPos
+  -- local attempts = 0
+
+  -- -- Pick a random position (within a rectangular region relative to the target's position) that is inside of collision
+  -- -- geometry within maxAttempts attempts.
+  -- repeat
+  --   spawnPos = vec2.add(targetPos, rect.randomPoint(spawnRange))
+  --   attempts = attempts + 1
+  -- until world.pointCollision(spawnPos) or attempts > maxAttempts
+
+  -- -- If successful in choosing a spawn position...
+  -- if attempts <= maxAttempts then
+  --   local anchorPoint = vec2.add(spawnPos, vec2.withAngle(math.random() * 2 * math.pi, 15))
+  --   -- Spawn an arm to follow the projectile.
+  --   spawnArm(spawnPos, anchorPoint, "burrowingRift", {target = args.target})
+  --   return true
+  -- end
 
   -- Pick a random position (within a rectangular region relative to the target's position) that is inside of collision
   -- geometry within maxAttempts attempts.
-  repeat
-    spawnPos = vec2.add(targetPos, rect.randomPoint(spawnRange))
-    attempts = attempts + 1
-  until world.pointCollision(spawnPos) or attempts > maxAttempts
+  local spawnPos = vWorld.randomPositionInRegion(rect.translate(spawnRange, targetPos), function(pos)
+    return world.pointCollision(pos)
+  end, maxAttempts)
 
   -- If successful in choosing a spawn position...
-  if attempts <= maxAttempts then
+  if spawnPos then
     local anchorPoint = vec2.add(spawnPos, vec2.withAngle(math.random() * 2 * math.pi, 15))
     -- Spawn an arm to follow the projectile.
     spawnArm(spawnPos, anchorPoint, "burrowingRift", {target = args.target})
@@ -512,16 +542,26 @@ function v_titanGrab(args)
   local requiredSafeArea = {-2, -2, 2, 2}
   local maxAttempts = 200
 
-  -- Pick a random arm spawning position. Abort after `maxAttempts` attempts
-  local spawnPos
-  local attempts = 0
-  repeat
-    spawnPos = vec2.add(mcontroller.position(), rect.randomPoint(armSpawnRegion))
-    attempts = attempts + 1
-  until (not world.lineCollision(mcontroller.position(), spawnPos) and not world.rectCollision(rect.translate(requiredSafeArea, spawnPos))) or attempts > maxAttempts
+  -- Pick a random arm spawning position that is within line of sight and has a surrounding region of air with
+  -- dimensions requiredSafeArea.
+  -- local spawnPos
+  -- local attempts = 0
+  -- repeat
+  --   spawnPos = vec2.add(mcontroller.position(), rect.randomPoint(armSpawnRegion))
+  --   attempts = attempts + 1
+  -- until (not world.lineCollision(mcontroller.position(), spawnPos) and not world.rectCollision(rect.translate(requiredSafeArea, spawnPos))) or attempts > maxAttempts
 
-  -- If no arm spawning position is available, fail.
-  if attempts > maxAttempts then return false end
+  -- -- If no arm spawning position is available, fail.
+  -- if attempts > maxAttempts then return false end
+  local spawnPos = vWorld.randomPositionInRegion(rect.translate(armSpawnRegion, mcontroller.position()), function(pos)
+    return not world.lineCollision(mcontroller.position(), pos)
+    and not world.rectCollision(rect.translate(requiredSafeArea, pos))
+  end, maxAttempts)
+
+  -- If no spawn position is found, fail.
+  if not spawnPos then
+    return false
+  end
 
   local anchorPoint = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, 10))
   -- Spawn the arm
@@ -553,16 +593,26 @@ function v_titanAppear(args)
   local startAlpha = args.startAlpha or 0
   local endAlpha = args.endAlpha or 255
 
-  coroutine.yield()
+  -- Set end values for when the keyframe expires.
+  monster.setAnimationParameter("titanAnimArgs", {
+    radius = args.visionEndRadius,
+    rotationRate = args.visionEndRotationRate
+  })
+
+  -- Add keyframe
+  monster.setAnimationParameter("titanAnimKeyframe", {
+    values = {
+      radius = {start = args.visionStartRadius, end_ = args.visionEndRadius},
+      rotationRate = {start = args.visionStartRotationRate, end_ = args.visionEndRotationRate}
+    },
+    duration = args.appearTime,
+    id = nextAnimKeyframeId
+  })
+  nextAnimKeyframeId = nextAnimKeyframeId + 1
 
   local timer = 0
   util.run(args.appearTime, function(dt)
     local progress = timer / args.appearTime
-    -- Update animation parameters for v-titanofdarknessanim.lua.
-    monster.setAnimationParameter("titanAnimArgs", {
-      radius = util.lerp(progress, args.visionStartRadius, args.visionEndRadius),
-      rotationRate = util.lerp(progress, args.visionStartRotationRate, args.visionEndRotationRate)
-    })
 
     -- Set opacity. Use "ff" in place of "fe" to mesh with fullbright shader.
     local opacity = string.format("%02x", math.floor(util.lerp(progress, startAlpha, endAlpha)))
@@ -571,10 +621,6 @@ function v_titanAppear(args)
     timer = math.min(args.appearTime, timer + dt)
   end)
 
-  monster.setAnimationParameter("titanAnimArgs", {
-    radius = args.visionEndRadius,
-    rotationRate = args.visionEndRotationRate
-  })
   animator.setGlobalTag("opacity", string.format("%02x", endAlpha))
 
   return true

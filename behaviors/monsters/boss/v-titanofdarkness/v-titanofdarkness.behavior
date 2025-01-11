@@ -10,8 +10,8 @@
     "/scripts/actions/world.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/query.lua",
-    "/scripts/actions/movement.lua",
-    "/scripts/actions/v-movement.lua"
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/movement.lua"
   ],
   "parameters": {},
   "root": {
@@ -85,7 +85,7 @@
             "name": "keepEntityLoaded",
             "parameters": {
               "entity": {"key": "self"},
-              "region": {"value": [-4, -4, 4, 4]}
+              "region": {"value": [-32, -32, 32, 32]}
             }
           },
           {
@@ -151,7 +151,6 @@
                 "name": "v_titanAppear",
                 "parameters": {
                   "appearTime": {"value": 5},
-                  "restartSound": {"value": false},
                   "visionEndRadius": {"value": 1},
                   "visionEndRotationRate": {"value": 0.25},
                   "visionStartRadius": {"value": 10},
@@ -167,10 +166,89 @@
                 }
               },
               {
+                "title": "Activate left light",
+                "type": "action",
+                "name": "setLightActive",
+                "parameters": {
+                  "active": {"value": true},
+                  "light": {"value": "lefteyelight"}
+                }
+              },
+              {
+                "title": "Activate right light",
+                "type": "action",
+                "name": "setLightActive",
+                "parameters": {
+                  "active": {"value": true},
+                  "light": {"value": "righteyelight"}
+                }
+              },
+              {
+                "title": "Deactivate forward left light",
+                "type": "action",
+                "name": "setLightActive",
+                "parameters": {
+                  "active": {"value": false},
+                  "light": {"value": "lefteyelightforward"}
+                }
+              },
+              {
+                "title": "Deactivate forward right light",
+                "type": "action",
+                "name": "setLightActive",
+                "parameters": {
+                  "active": {"value": false},
+                  "light": {"value": "righteyelightforward"}
+                }
+              },
+              {
                 "title": "v-titanofdarkness-search",
                 "type": "module",
                 "name": "v-titanofdarkness-search",
                 "parameters": {}
+              },
+              {
+                "title": "succeeder",
+                "type": "decorator",
+                "name": "succeeder",
+                "parameters": {},
+                "child": {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "hasFlag",
+                      "type": "action",
+                      "name": "hasFlag",
+                      "parameters": {
+                        "name": {"key": "failedToFindTarget"}
+                      }
+                    },
+                    {
+                      "title": "setResourcePercentage",
+                      "type": "action",
+                      "name": "setResourcePercentage",
+                      "parameters": {
+                        "percentage": {"value": 0},
+                        "resource": {"value": "health"}
+                      }
+                    },
+                    {
+                      "title": "v-titanofdarkness-disappear",
+                      "type": "module",
+                      "name": "v-titanofdarkness-disappear",
+                      "parameters": {}
+                    },
+                    {
+                      "title": "runner",
+                      "type": "action",
+                      "name": "runner",
+                      "parameters": {}
+                    }
+                  ]
+                }
               },
               {
                 "title": "removeEphemeralEffect",
@@ -477,64 +555,10 @@
                                     ]
                                   },
                                   {
-                                    "title": "sequence",
-                                    "type": "composite",
-                                    "name": "sequence",
-                                    "parameters": {},
-                                    "children": [
-                                      {
-                                        "title": "v_stop",
-                                        "type": "action",
-                                        "name": "v_stop",
-                                        "parameters": {
-                                          "stopForce": {"value": 20}
-                                        }
-                                      },
-                                      {
-                                        "title": "v_titanAppear",
-                                        "type": "action",
-                                        "name": "v_titanAppear",
-                                        "parameters": {
-                                          "appearTime": {"value": 5},
-                                          "endAlpha": {"value": 0},
-                                          "endAmbienceVolume": {"value": 0},
-                                          "restartSound": {"value": false},
-                                          "startAlpha": {"value": 255},
-                                          "startAmbienceVolume": {"value": 1},
-                                          "visionEndRadius": {"value": 10},
-                                          "visionEndRotationRate": {"value": 0},
-                                          "visionStartRadius": {"value": 1},
-                                          "visionStartRotationRate": {"value": 0.25}
-                                        }
-                                      },
-                                      {
-                                        "title": "Set music state to \"none\"",
-                                        "type": "action",
-                                        "name": "setNumber",
-                                        "parameters": {
-                                          "number": {"value": 2}
-                                        },
-                                        "output": {
-                                          "number": "musicState"
-                                        }
-                                      },
-                                      {
-                                        "title": "timer",
-                                        "type": "action",
-                                        "name": "timer",
-                                        "parameters": {
-                                          "time": {"value": 0.1}
-                                        }
-                                      },
-                                      {
-                                        "title": "setDying",
-                                        "type": "action",
-                                        "name": "setDying",
-                                        "parameters": {
-                                          "shouldDie": {"value": true}
-                                        }
-                                      }
-                                    ]
+                                    "title": "v-titanofdarkness-disappear",
+                                    "type": "module",
+                                    "name": "v-titanofdarkness-disappear",
+                                    "parameters": {}
                                   }
                                 ]
                               }
@@ -574,56 +598,10 @@
                             }
                           },
                           {
-                            "title": "v_stop",
-                            "type": "action",
-                            "name": "v_stop",
-                            "parameters": {
-                              "stopForce": {"value": 20}
-                            }
-                          },
-                          {
-                            "title": "v_titanAppear",
-                            "type": "action",
-                            "name": "v_titanAppear",
-                            "parameters": {
-                              "appearTime": {"value": 5},
-                              "endAlpha": {"value": 0},
-                              "endAmbienceVolume": {"value": 0},
-                              "restartSound": {"value": false},
-                              "startAlpha": {"value": 255},
-                              "startAmbienceVolume": {"value": 1},
-                              "visionEndRadius": {"value": 10},
-                              "visionEndRotationRate": {"value": 0},
-                              "visionStartRadius": {"value": 1},
-                              "visionStartRotationRate": {"value": 0.25}
-                            }
-                          },
-                          {
-                            "title": "Set music state to \"none\"",
-                            "type": "action",
-                            "name": "setNumber",
-                            "parameters": {
-                              "number": {"value": 2}
-                            },
-                            "output": {
-                              "number": "musicState"
-                            }
-                          },
-                          {
-                            "title": "timer",
-                            "type": "action",
-                            "name": "timer",
-                            "parameters": {
-                              "time": {"value": 0.1}
-                            }
-                          },
-                          {
-                            "title": "setDying",
-                            "type": "action",
-                            "name": "setDying",
-                            "parameters": {
-                              "shouldDie": {"value": true}
-                            }
+                            "title": "v-titanofdarkness-disappear",
+                            "type": "module",
+                            "name": "v-titanofdarkness-disappear",
+                            "parameters": {}
                           }
                         ]
                       }

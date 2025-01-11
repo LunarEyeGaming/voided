@@ -4,6 +4,14 @@
   },
   "animatedParts" : {
     "stateTypes" : {
+      "hand" : {
+        "default" : "fist",
+        "states" : {
+          "dig" : {},
+          "openhand" : {},
+          "fist" : {}
+        }
+      },
       "damage" : {
         "priority" : 3,
         "default" : "none",
@@ -20,21 +28,42 @@
     "parts" : {
       "hand" : {
         "properties" : {
-          "zLevel" : 0,
+          "zLevel" : 2,
           "centered" : true,
           "fullbright" : true,
-          "offset" : [0, 0],
+          "offset" : [5.75, 2.0],
+          "rotationRate" : 180,
           "image" : "<partImage>?multiply=ffffff<opacity>",
-          "transformationGroups" : ["hand"]
+          "transformationGroups" : [ "hand", "facing" ]
+        },
+        "partStates" : {
+          "hand" : {
+            "dig" : {
+              "properties" : {
+                "image" : "<partImage>:dig.<frame>?multiply=ffffff<opacity>"
+              }
+            },
+            "openhand" : {
+              "properties" : {
+                "image" : "<partImage>:openhand.<frame>?multiply=ffffff<opacity>"
+              }
+            },
+            "fist" : {
+              "properties" : {
+                "image" : "<partImage>:fist.<frame>?multiply=ffffff<opacity>"
+              }
+            }
+          }
         }
       },
       "forearm" : {
         "properties" : {
-          "zLevel" : 5,
+          "zLevel" : 1,
           "transformationGroups" : [ "wristjoint" ],
-          "offset" : [10.75, 0],
+          // wrist radius: 31 px, arm length: 262 px.
+          "offset" : [14.25, -0.75],
           "wristPoint" : [0, 0],
-          "length" : 21.5,
+          "length" : 28.5,
           "image" : "<partImage>?multiply=ffffff<opacity>",
           "fullbright" : true
         }
@@ -42,14 +71,14 @@
       "reararm" : {
         "properties" : {
           "anchorPart" : "forearm",
-          "zLevel" : 7,
+          "zLevel" : 0,
           "transformationGroups" : [ "elbowjoint" ],
-          // arm joint radius: 32 px, end-to-end arm length: 295 px. Take half of end-to-end arm length, subtract by
+          // arm joint radius: 40 px, end-to-end arm length: 277 px. Take half of end-to-end arm length, subtract by
           // arm joint radius, and then divide result by 8. Also add the offset of `forearm` because it also represents
           // the distance to the other joint.
-          "offset" : [25.1875, 0],
-          "elbowPoint" : [10.75, 0],
-          "length" : 28.875,
+          "offset" : [26.5625, 0],
+          "elbowPoint" : [14.25, 0],
+          "length" : 24.625,
           "image" : "<partImage>?multiply=ffffff<opacity>",
           "fullbright" : true
         }
@@ -60,7 +89,8 @@
   "transformationGroups" : {
     "hand" : { "interpolated" : true },
     "elbowjoint" : { "interpolated" : true },
-    "wristjoint" : { "interpolated" : true }
+    "wristjoint" : { "interpolated" : true },
+    "facing" : { "interpolated" : false}
   },
 
   "particleEmitters" : {

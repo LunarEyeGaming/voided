@@ -21,7 +21,7 @@
             }
           },
           "fireLoop" : {
-            "frames" : 2,
+            "frames" : 4,
             "cycle" : 0.1,
             "mode" : "loop",
             "properties" : {
@@ -272,7 +272,8 @@
       "pointLight" : true,
       "pointBeam" : 5,
       "pointAngle" : 0,
-      "beamAmbience" : 0.35
+      "beamAmbience" : 0.35,
+      "active" : false
     },
     "righteyelight" : {
       "transformationGroups" : ["righteye"],
@@ -281,7 +282,18 @@
       "pointLight" : true,
       "pointBeam" : 5,
       "pointAngle" : 0,
-      "beamAmbience" : 0.35
+      "beamAmbience" : 0.35,
+      "active" : false
+    },
+    "lefteyelightforward" : {
+      "transformationGroups" : ["lefteye"],
+      "position" : [-2.875, 1.75],
+      "color" : [94, 113, 128]
+    },
+    "righteyelightforward" : {
+      "transformationGroups" : ["righteye"],
+      "position" : [4.625, 1],
+      "color" : [94, 113, 128]
     }
   },
 

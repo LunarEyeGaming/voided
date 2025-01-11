@@ -1,3 +1,5 @@
+require "/scripts/rect.lua"
+
 --- Utility functions related to the world.
 vWorld = {}
 
@@ -62,4 +64,27 @@ function vWorldA.sendEntityMessageToTargets(successCallback, errorCallback, targ
       end
     end
   end
+end
+
+---Returns a random position in the given `region` that meets the given `predicate` within `maxAttempts` attempts, or
+---`nil` if more than `maxAttempts` attempts are made.
+---@param region RectF a rectangle in world coordinates
+---@param predicate fun(position: Vec2F): boolean the condition that must be met for the position to be "valid"
+---@param maxAttempts integer the maximum number of attempts allowed. Required if `predicate` is given.
+---@return Vec2F?
+function vWorld.randomPositionInRegion(region, predicate, maxAttempts)
+  -- Attempt to find a random point that meets the predicate within maxAttempts attempts.
+  local pos
+  local attempts = 0
+  repeat
+    pos = rect.randomPoint(region)
+    attempts = attempts + 1
+  until attempts > maxAttempts or predicate(pos)
+
+  -- If the loop above stopped because more than maxAttempts attempts were made...
+  if attempts > maxAttempts then
+    return nil
+  end
+
+  return pos
 end

@@ -3,7 +3,7 @@
   "physics" : "laser",
   "bounces" : 0,
   "image" : "titanmeteor.png",
-  "flippable" : true,
+  "flippable" : false,
   "fullbright" : true,
   "animationCycle" : 1,
   "lightColor" : [94, 113, 128],
@@ -36,5 +36,6 @@
   "speed" : 50,
   "damageType" : "NoDamage",
   "damageKind" : "default",
-  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ]
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "persistentAudio" : "/sfx/projectiles/v_titanmeteor_loop.ogg"
 }

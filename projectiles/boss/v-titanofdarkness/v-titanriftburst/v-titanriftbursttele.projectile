@@ -16,13 +16,21 @@
       "time" : 0.03,
       "action" : "particle",
       "rotate" : true,
-      "specification" : "v-downspitterseedwarning1"
-    },
-    {
-      "time" : 0.03,
-      "action" : "particle",
-      "rotate" : true,
-      "specification" : "v-downspitterseedwarning2"
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-titanriftbursttele/v-titanriftbursttele.animation",
+        "fullbright" : true,
+        "collidesForeground" : true,
+        "size" : 1,
+        "layer" : "front",
+        "initialVelocity" : [100, 0],
+        "finalVelocity" : [0, 0],
+        "approach" : [50, 50],
+        "timeToLive" : 0.4,
+        "variance" : {
+          "initialVelocity" : [15.0, 15.0]
+        }
+      }
     }
   ],
 

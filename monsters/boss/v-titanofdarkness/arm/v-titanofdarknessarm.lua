@@ -13,8 +13,8 @@ local anchorPoint
 
 local forearmLength
 local rearArmLength
-
 local wristOffset
+local handRotationRate  -- Rotation rate for the hand.
 
 local minArmSpan
 local maxArmSpan
@@ -22,6 +22,10 @@ local maxArmSpan
 local state
 
 local shouldDieVar
+
+local rotateHandSmoothly  -- Whether or not the hand should rotate smoothly to handTargetAngle or jump to it instantly.
+local currentHandAngle  -- Current rotation of the hand
+local handTargetAngle  -- Current rotation that the hand is going toward
 
 function init()
   task = config.getParameter("task")
@@ -32,8 +36,8 @@ function init()
 
   forearmLength = animator.partProperty("forearm", "length")
   rearArmLength = animator.partProperty("reararm", "length")
-
   wristOffset = animator.partProperty("forearm", "wristPoint")
+  handRotationRate = animator.partProperty("hand", "rotationRate") * math.pi / 180
 
   -- Invariant derived values.
   minArmSpan = math.abs(rearArmLength - forearmLength)
@@ -45,6 +49,14 @@ function init()
 
   shouldDieVar = false
 
+  rotateHandSmoothly = true  -- Default value.
+
+  -- Use more sensible values for currentHandAngle and handTargetAngle by getting the values from updateArm()
+  local forearmAngle, _ = updateArm()
+  currentHandAngle = forearmAngle + math.pi
+  handTargetAngle = forearmAngle + math.pi
+  setHandRotation(currentHandAngle)  -- Also update the angle because updateHandAngle won't perform updates unless currentHandAngle ~= handTargetAngle.
+
   script.setUpdateDelta(1)
 
   state:set(appear)
@@ -55,13 +67,16 @@ function update(dt)
 
   world.debugPoint(anchorPoint, "green")
   updateArm()
+  updateHandAngle(dt)
 end
 
 function shouldDie()
   return shouldDieVar
 end
 
----Updates placement of arm segments.
+---Updates placement of arm segments. Returns the forearm angle and rear arm angle.
+---@return number
+---@return number
 function updateArm()
   local anchorPointDistance = world.distance(anchorPoint, mcontroller.position())
   local baseAngle = vec2.angle(anchorPointDistance)
@@ -85,9 +100,11 @@ function updateArm()
   animator.resetTransformationGroup("elbowjoint")
   animator.rotateTransformationGroup("wristjoint", baseAngle + forearmAngle, wristOffset)
   animator.rotateTransformationGroup("elbowjoint", rearArmAngle, animator.partProperty("reararm", "elbowPoint"))
+
+  return baseAngle + forearmAngle, rearArmAngle
 end
 
--- Coroutine function.
+-- Coroutine function. Makes the arm appear and do the configured task.
 function appear()
   v_titanAppear{
     appearTime = 0.5,
@@ -98,6 +115,60 @@ function appear()
   }
 
   state:set(tasks[task])
+end
+
+-- Nudges the hand angle toward the `handTargetAngle`, or jumps to it if `rotateHandSmoothly` is `false`.
+function updateHandAngle(dt)
+  -- Nudge hand angle if `rotateHandSmoothly` is `true`. Otherwise, jump to `handTargetAngle`.
+  if rotateHandSmoothly then
+    local angleDiff = util.angleDiff(currentHandAngle, handTargetAngle)
+
+    -- If the difference is not zero (to avoid throwing off attempts to lock to the target angle)...
+    if angleDiff ~= 0 then
+      -- Calculate angle nudge amount, add to `currentHandAngle`, and save the result.
+      local newHandAngle
+      if angleDiff < 0 then
+        newHandAngle = currentHandAngle - handRotationRate * dt
+      else
+        newHandAngle = currentHandAngle + handRotationRate * dt
+      end
+
+      -- If the new difference changed sign...
+      if util.angleDiff(newHandAngle, handTargetAngle) * angleDiff < 0 then
+        -- Lock the current hand angle to the target angle
+        currentHandAngle = handTargetAngle
+      else
+        -- Otherwise, set it to the saved value.
+        currentHandAngle = newHandAngle
+      end
+
+      -- Update hand rotation
+      setHandRotation(currentHandAngle)
+    end
+  else
+    currentHandAngle = handTargetAngle
+    setHandRotation(currentHandAngle)
+  end
+end
+
+-- Sets the hand rotation directly, applying flipping if necessary.
+function setHandRotation(angle)
+  -- Wrap the angle.
+  angle = util.wrapAngle(angle)
+
+  animator.resetTransformationGroup("hand")
+  animator.resetTransformationGroup("facing")
+  local adjustedAngle
+  local direction
+  if math.pi / 2 < angle and angle < 3 * math.pi / 2 then
+    adjustedAngle = math.pi - angle
+    direction = -1
+  else
+    adjustedAngle = angle
+    direction = 1
+  end
+  animator.rotateTransformationGroup("hand", adjustedAngle)
+  animator.scaleTransformationGroup("facing", {direction, 1})
 end
 
 tasks = {}
@@ -126,8 +197,12 @@ function tasks.grab()
     -- Get grab end position
     local grabEndPosition = vec2.add(startPos, vec2.mul(vec2.norm(targetDistance), vec2.mag(targetDistance) + grabEndDistance))
 
-    animator.resetTransformationGroup("hand")
-    animator.rotateTransformationGroup("hand", vec2.angle(targetDistance))
+    -- animator.resetTransformationGroup("hand")
+    -- animator.rotateTransformationGroup("hand", vec2.angle(targetDistance))
+    -- setHandRotation(vec2.angle(targetDistance))
+    handTargetAngle = vec2.angle(targetDistance)
+
+    animator.setAnimationState("hand", "openhand")
 
     util.wait(grabDelay)
 
@@ -159,6 +234,8 @@ function tasks.grab()
       coroutine.yield()
     end
 
+    animator.setAnimationState("hand", "fist")
+
     -- Fly back to starting position.
     vMovementA.flyToPosition(startPos, retractSpeed, retractForce, tolerance)
     vMovementA.stop(stopForce)
@@ -178,8 +255,10 @@ end
 function tasks.burrowingRift()
   local rq = vBehavior.requireArgsGen("tasks.burrowingRift", args)
 
+  rotateHandSmoothly = false
+
   local emergeWaitTime = 0.0
-  local pointDistance = 5
+  local pointDistance = 13.5
   local maxNumPrevPos = 3  -- Maximum length of prevPosList
   local pointOffsetAngle = -math.pi / 2
 
@@ -188,6 +267,7 @@ function tasks.burrowingRift()
   projectileConfig.power = vAttack.scaledPower(projectileConfig.power or 10)
 
   if rq{"target"} then
+    animator.setAnimationState("hand", "dig")
     -- Spawn the projectile with a completely random aim vector.
     local projectileId = world.spawnProjectile(projectileType, mcontroller.position(), config.getParameter("master"),
     vec2.withAngle(math.random() * 2 * math.pi), false, projectileConfig)
@@ -216,8 +296,10 @@ function tasks.burrowingRift()
       mcontroller.setPosition(vec2.add(world.entityPosition(projectileId), pointVector))
       -- mcontroller.setPosition(world.entityPosition(projectileId))
 
-      animator.resetTransformationGroup("hand")
-      animator.rotateTransformationGroup("hand", vec2.angle(pointVector) + math.pi)
+      -- animator.resetTransformationGroup("hand")
+      -- animator.rotateTransformationGroup("hand", vec2.angle(pointVector) + math.pi)
+      -- setHandRotation(vec2.angle(pointVector) + math.pi)
+      handTargetAngle = vec2.angle(pointVector) + math.pi
 
       -- Make the projectile go towards the target.
       world.sendEntityMessage(projectileId, "setTargetPosition", world.entityPosition(args.target))
@@ -248,6 +330,8 @@ function tasks.punch()
 
     local predictedTargetDistance
 
+    animator.setAnimationState("hand", "fist")
+
     util.wait(punchDelay, function()
       -- Get target position
       local targetPos = world.entityPosition(args.target)
@@ -258,12 +342,17 @@ function tasks.punch()
       -- Get predicted target distance.
       predictedTargetDistance = vec2.withAngle(targetAngle, targetMagnitude)
 
-      animator.resetTransformationGroup("hand")
-      animator.rotateTransformationGroup("hand", vec2.angle(predictedTargetDistance))
+      -- animator.resetTransformationGroup("hand")
+      -- animator.rotateTransformationGroup("hand", vec2.angle(predictedTargetDistance))
+      -- setHandRotation(vec2.angle(predictedTargetDistance))
+      handTargetAngle = vec2.angle(predictedTargetDistance)
     end)
 
-    -- Get punch end position
-    local punchEndPosition = vec2.add(startPos, vec2.mul(vec2.norm(predictedTargetDistance), vec2.mag(predictedTargetDistance) + punchEndDistance))
+    -- Get punch end position. To avoid weirdness, we derive the direction from currentHandAngle instead of
+    -- predictedTargetDistance. Also, lock the handTargetAngle to currentHandAngle.
+    -- local punchEndPosition = vec2.add(startPos, vec2.mul(vec2.norm(predictedTargetDistance), vec2.mag(predictedTargetDistance) + punchEndDistance))
+    local punchEndPosition = vec2.add(startPos, vec2.withAngle(currentHandAngle, vec2.mag(predictedTargetDistance) + punchEndDistance))
+    handTargetAngle = currentHandAngle
 
     monster.setDamageOnTouch(true)
 
@@ -279,6 +368,43 @@ function tasks.punch()
 
   finish()
 end
+
+function tasks.test()
+  local target = world.players()[1]
+  while true do
+    local targetAngle = vec2.angle(world.distance(world.entityPosition(target), mcontroller.position()))
+
+    -- setHandRotation(targetAngle)
+    handTargetAngle = targetAngle
+
+    coroutine.yield()
+  end
+end
+
+-- function tasks.flick()
+--   local hoverDistance = 5
+--   local flickDelay = 0.75
+
+--   local rq = vBehavior.requireArgsGen("tasks.flick", args)
+
+--   if rq{"projectileId", "target"} then
+--     local projectilePos = world.entityPosition(args.projectileId)
+--     -- Trigger the projectile to fly towards the player.
+--     vWorld.sendEntityMessage(args.projectileId, "v-titanbouncingprojectile-fling", args.target)
+
+--     util.wait(flickDelay, function()
+--       -- Get distance from projectile position to target position and normalize it.
+--       local toTarget = vec2.norm(world.distance(world.entityPosition(args.target), projectilePos))
+--       -- Offset hand based on reversed distance.
+--       mcontroller.setPosition(vec2.add(projectilePos, vec2.mul(toTarget, -hoverDistance)))
+--       -- Update hand rotation.
+--       animator.resetTransformationGroup("hand")
+--       animator.rotateTransformationGroup("hand", vec2.angle(toTarget))
+--     end)
+--   end
+
+--   finish()
+-- end
 
 ---Notifies the master that the arm is finished and dies.
 function finish()

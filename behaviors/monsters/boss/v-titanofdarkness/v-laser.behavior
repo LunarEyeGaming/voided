@@ -62,8 +62,8 @@
               "type": "action",
               "name": "random",
               "parameters": {
-                "max": {"value": -20},
-                "min": {"value": 20}
+                "max": {"value": -10},
+                "min": {"value": 10}
               },
               "output": {
                 "number": "yOffset"
@@ -98,7 +98,7 @@
                     "name": "v_rectCollision",
                     "parameters": {
                       "position": {"key": "flightPos"},
-                      "rect": {"value": [-7, -7, 7, 7]}
+                      "rect": {"value": [-7, -4, 7, 10]}
                     }
                   },
                   {
@@ -178,6 +178,14 @@
         "parameters": {
           "attackTime": {"value": 5},
           "target": {"key": "target"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.1}
         }
       },
       {

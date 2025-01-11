@@ -3,8 +3,10 @@
   "physics" : "illusion",
   "bounces" : -1,
   "image" : "titanmeteortele.png",
-  "animationCycle" : 1,
-  "frameNumber" : 1,
+  "animationCycle" : 0.4,
+  "frameNumber" : 4,
+  "windupFrames" : 2,
+  "lightColor" : [101, 69, 126],
   "timeToLive" : 1.1,
   "speed" : 0,
   "onlyHitTerrain" : true,
@@ -35,6 +37,12 @@
           }
         ]
       }
+    },
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_titanmeteor_tele.ogg" ]
     }
   ]
 }

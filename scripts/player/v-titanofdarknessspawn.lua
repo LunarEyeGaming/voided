@@ -12,7 +12,7 @@
   * Player must be in a region with dungeon ID 65535.
     * Enforced by the Titan of Darkness checking if it is in a region with dungeon ID 65535 immediately after spawning.
   * There must not already be a Titan of Darkness
-    * Enforced through a world property.
+    * Enforced through the use of unique IDs.
   * Every spawnAttemptInterval seconds, attempts to spawn the Titan of Darkness. Has a spawning probability of
   spawnProbability
   * The Titan of Darkness is spawned on top of the player (at which point, the AI should give the player time to react),
@@ -81,24 +81,20 @@ function init()
 end
 
 function update(dt)
-  -- If no existing Titan is found...
-  local titanId = world.getProperty("v-activeTitanOfDarkness")
-  if not titanId or not world.entityExists(titanId) then
-    spawnAttemptTimer = spawnAttemptTimer + dt
-    -- Every spawnAttemptInterval seconds...
-    if spawnAttemptTimer > spawnAttemptInterval then
-      -- With a probability of spawnProbability...
-      if math.random() <= spawnProbability
-      and world.time() > storage.lastTitanSpawnTime + minSpawnCooldown  -- If the Titan spawning cooldown has ended...
-      and worldTypeStayTime > minPlanetStayTime  -- The player has stayed for longer than minPlanetStayTime...
-      and hasStrongEnoughEquipment() then  -- And the player has strong enough equipment...
-        -- Spawn a Titan, which sets the v-activeTitanOfDarkness property automatically upon spawning in.
-        world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
-        storage.lastTitanSpawnTime = world.time()
-      end
-
-      spawnAttemptTimer = 0  -- Reset timer
+  spawnAttemptTimer = spawnAttemptTimer + dt
+  -- Every spawnAttemptInterval seconds...
+  if spawnAttemptTimer > spawnAttemptInterval then
+    -- With a probability of spawnProbability...
+    if math.random() <= spawnProbability
+    and world.time() > storage.lastTitanSpawnTime + minSpawnCooldown  -- If the Titan spawning cooldown has ended...
+    and worldTypeStayTime > minPlanetStayTime  -- The player has stayed for longer than minPlanetStayTime...
+    and hasStrongEnoughEquipment() then  -- And the player has strong enough equipment...
+      -- Spawn a Titan, which sets the v-activeTitanOfDarkness property automatically upon spawning in.
+      world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
+      storage.lastTitanSpawnTime = world.time()
     end
+
+    spawnAttemptTimer = 0  -- Reset timer
   end
 
   worldTypeStayTime = worldTypeStayTime + dt

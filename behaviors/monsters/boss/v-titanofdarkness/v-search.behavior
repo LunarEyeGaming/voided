@@ -7,8 +7,8 @@
     "/scripts/actions/boss/v-titanofdarkness.lua",
     "/scripts/actions/position.lua",
     "/scripts/actions/math.lua",
-    "/scripts/actions/entity.lua",
-    "/scripts/actions/time.lua"
+    "/scripts/actions/time.lua",
+    "/scripts/behavior.lua"
   ],
   "parameters": {},
   "root": {
@@ -171,7 +171,7 @@
                 "name": "v_flyToPositionNoFlip",
                 "parameters": {
                   "position": {"key": "targetPosition"},
-                  "speed": {"value": 20},
+                  "speed": {"value": 40},
                   "tolerance": {"value": 1}
                 }
               }
@@ -209,37 +209,28 @@
         }
       },
       {
-        "title": "Stop if someone hurt it",
+        "title": "sequence",
         "type": "composite",
         "name": "sequence",
         "parameters": {},
         "children": [
           {
-            "title": "wasDamaged",
+            "title": "Give up after some seconds",
             "type": "action",
-            "name": "wasDamaged",
-            "parameters": {},
-            "output": {
-              "damageSource": "titanDamageSource"
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 120}
             }
           },
           {
-            "title": "entityExists",
+            "title": "setFlag",
             "type": "action",
-            "name": "entityExists",
+            "name": "setFlag",
             "parameters": {
-              "entity": {"key": "damageSource"}
+              "name": {"value": "failedToFindTarget"}
             }
           }
         ]
-      },
-      {
-        "title": "Give up after some seconds",
-        "type": "action",
-        "name": "timer",
-        "parameters": {
-          "time": {"value": 120}
-        }
       }
     ]
   }

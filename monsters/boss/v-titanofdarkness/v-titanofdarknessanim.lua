@@ -1,4 +1,5 @@
 require "/scripts/vec2.lua"
+require "/scripts/interp.lua"
 --[[
   A localAnimator script that adds a "blurring" effect by rendering `count` translucent copies of everything rendered by
   the current monster. These copies are placed in a radial formation at a radial offset of `radius` blocks and revolve
@@ -6,6 +7,9 @@ require "/scripts/vec2.lua"
 ]]
 
 local defaultArgs
+local keyframedArgs
+local keyframeTimer
+local prevKeyframeId
 
 local rotation
 
@@ -27,7 +31,12 @@ function update()
 
   local portrait = world.entityPortrait(entity.id(), "full")
 
+  updateKeyframedArgs()
+
+  -- Get current arguments.
   local args = sb.jsonMerge(defaultArgs, animationConfig.animationParameter("titanAnimArgs"))
+  -- Merge keyframedArgs on top of args.
+  args = sb.jsonMerge(args, keyframedArgs)
 
   local pos = entity.position()
 
@@ -52,17 +61,41 @@ function update()
     end
   end
   rotation = rotation + args.rotationRate * dt
+end
 
-  -- local pos = entity.position()
+function updateKeyframedArgs()
+  local keyframe = animationConfig.animationParameter("titanAnimKeyframe") or {}
 
-  -- for i = 1, count do
-  --   local angleOffset = 2 * math.pi * i / count
-  --   localAnimator.addDrawable({
-  --     image = "/monsters/boss/v-titanofdarkness/body.png",
-  --     centered = true,
-  --     position = vec2.add(pos, vec2.withAngle(angleOffset + rotationRate * timer * 2 * math.pi, radius)),
-  --     color = {255, 255, 255, 128}
-  --   })
-  -- end
-  -- timer = timer + dt
+  -- If the keyframe ID changed...
+  if keyframe.id ~= prevKeyframeId then
+    -- If the ID is not nil...
+    if keyframe.id ~= nil then
+      -- Set the timer to signal that a keyframe is active.
+      keyframeTimer = 0
+    else
+      -- Unset the timer to signal that a keyframe is no longer active.
+      keyframeTimer = nil
+    end
+  end
+
+  -- If a keyframe is active...
+  if keyframeTimer then
+    keyframeTimer = keyframeTimer + dt  -- Decrease timer
+
+    -- Update keyframedArgs.
+    keyframedArgs = {}
+
+    -- For each argument name and corresponding set of keyframe values...
+    for arg, values in pairs(keyframe.values) do
+      -- Interpolate between the two values and set the corresponding entry in keyframedArgs to the result.
+      keyframedArgs[arg] = interp.linear(keyframeTimer / keyframe.duration, values.start, values.end_)
+    end
+
+    -- If more than keyframe.duration seconds have passed...
+    if keyframeTimer >= keyframe.duration then
+      keyframeTimer = nil  -- Unset the timer
+    end
+  end
+
+  prevKeyframeId = keyframe.id
 end
