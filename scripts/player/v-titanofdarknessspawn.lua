@@ -19,7 +19,8 @@
   with a threat level of 10.
 
   The probability that the Titan of Darkness has spawned at least once after n seconds, assuming that all other
-  conditions have been met, can be calculated using the formula P = 1 - (1 - spawnProbability) ^ math.floor(n / spawnAttemptInterval).
+  conditions have been met, can be calculated using the formula P = 1 - (1 - spawnProbability) ^
+  math.floor(n / spawnAttemptInterval).
 ]]
 
 require "/scripts/util.lua"
@@ -31,10 +32,12 @@ local worldTypeWhitelist  -- List of worlds on which the Titan of Darkness is al
 local spawnAttemptInterval  -- How often the script should attempt to spawn the Titan
 local spawnProbability  -- The chance of the spawn succeeding
 local titanMonsterType  -- The monster type of the Titan of Darkness
+local titanUniqueId  -- The unique ID of the Titan of Darkness
 local titanLevel  -- The level of the Titan of Darkness to use
 
 local spawnAttemptTimer  -- Amount of time elapsed since the last spawn attempt
 local worldTypeStayTime  -- Amount of time that the player has spent on the current world so far
+local attemptedSpawnPromise  -- A promise representing a pending Titan spawn. Used to confirm that a Titan has spawned.
 
 local scriptIsEnabled
 
@@ -57,6 +60,7 @@ function init()
   spawnAttemptInterval = 30
   spawnProbability = 0.05
   titanMonsterType = "v-titanofdarkness"
+  titanUniqueId = "v-titanofdarkness"
   titanLevel = 10
 
   spawnAttemptTimer = 0
@@ -89,12 +93,21 @@ function update(dt)
     and world.time() > storage.lastTitanSpawnTime + minSpawnCooldown  -- If the Titan spawning cooldown has ended...
     and worldTypeStayTime > minPlanetStayTime  -- The player has stayed for longer than minPlanetStayTime...
     and hasStrongEnoughEquipment() then  -- And the player has strong enough equipment...
-      -- Spawn a Titan, which sets the v-activeTitanOfDarkness property automatically upon spawning in.
       world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
-      storage.lastTitanSpawnTime = world.time()
+      attemptedSpawnPromise = world.findUniqueEntity(titanUniqueId)
     end
 
     spawnAttemptTimer = 0  -- Reset timer
+  end
+
+  -- If a spawn was attempted and it has finished...
+  if attemptedSpawnPromise and attemptedSpawnPromise:finished() then
+    -- If it was successful...
+    if attemptedSpawnPromise:succeeded() then
+      -- Update the last spawned time.
+      storage.lastTitanSpawnTime = world.time()
+    end
+    attemptedSpawnPromise = nil  -- Clear attemptedSpawnPromise
   end
 
   worldTypeStayTime = worldTypeStayTime + dt

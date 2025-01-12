@@ -208,47 +208,61 @@
                 "parameters": {}
               },
               {
-                "title": "succeeder",
-                "type": "decorator",
-                "name": "succeeder",
+                "title": "selector",
+                "type": "composite",
+                "name": "selector",
                 "parameters": {},
-                "child": {
-                  "title": "sequence",
-                  "type": "composite",
-                  "name": "sequence",
-                  "parameters": {},
-                  "children": [
-                    {
-                      "title": "hasFlag",
-                      "type": "action",
-                      "name": "hasFlag",
-                      "parameters": {
-                        "name": {"key": "failedToFindTarget"}
+                "children": [
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "hasFlag",
+                        "type": "action",
+                        "name": "hasFlag",
+                        "parameters": {
+                          "name": {"key": "failedToFindTarget"}
+                        }
+                      },
+                      {
+                        "title": "setResourcePercentage",
+                        "type": "action",
+                        "name": "setResourcePercentage",
+                        "parameters": {
+                          "percentage": {"value": 0},
+                          "resource": {"value": "health"}
+                        }
+                      },
+                      {
+                        "title": "v-titanofdarkness-disappear",
+                        "type": "module",
+                        "name": "v-titanofdarkness-disappear",
+                        "parameters": {}
+                      },
+                      {
+                        "title": "runner",
+                        "type": "action",
+                        "name": "runner",
+                        "parameters": {}
                       }
+                    ]
+                  },
+                  {
+                    "title": "listPush",
+                    "type": "action",
+                    "name": "listPush",
+                    "parameters": {
+                      "entity": {"key": "target"},
+                      "list": {"value": []}
                     },
-                    {
-                      "title": "setResourcePercentage",
-                      "type": "action",
-                      "name": "setResourcePercentage",
-                      "parameters": {
-                        "percentage": {"value": 0},
-                        "resource": {"value": "health"}
-                      }
-                    },
-                    {
-                      "title": "v-titanofdarkness-disappear",
-                      "type": "module",
-                      "name": "v-titanofdarkness-disappear",
-                      "parameters": {}
-                    },
-                    {
-                      "title": "runner",
-                      "type": "action",
-                      "name": "runner",
-                      "parameters": {}
+                    "output": {
+                      "list": "targets"
                     }
-                  ]
-                }
+                  }
+                ]
               },
               {
                 "title": "removeEphemeralEffect",

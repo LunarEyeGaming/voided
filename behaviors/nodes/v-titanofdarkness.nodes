@@ -1,63 +1,4 @@
 {
-  "v_titanExplosionAttack": {
-    "type": "action",
-    "name": "v_titanExplosionAttack",
-    "title": "v_titanExplosionAttack",
-    "properties": {
-      "postTeleportTime": {"type": "number", "value": 0.5},
-      "projectileParameters": {"type": "json", "value": null},
-      "projectileType": {"type": "string", "value": "v-titanbomb"},
-      "repeats": {"type": "number", "value": 4},
-      "requiredSafeArea": {"type": "list", "value": [-5, -5, 5, 5]},
-      "spawnRegion": {"type": "list", "value": [-25, -25, 25, 25]},
-      "target": {"type": "entity", "key": "target"},
-      "teleportDelay": {"type": "number", "value": 0.8}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {}
-  },
-  "v_titanBouncingOrbAttack": {
-    "type": "action",
-    "name": "v_titanBouncingOrbAttack",
-    "title": "v_titanBouncingOrbAttack",
-    "properties": {
-      "projectileCount": {"type": "number", "value": 8},
-      "projectileType": {"type": "string", "value": "v-titanbouncingprojectile"},
-      "projectileParameters": {"type": "json", "value": null},
-      "flickDelay": {"type": "number", "value": 2.5},
-      "flickInterval": {"type": "number", "value": 0.6},
-      "flickCount": {"type": "number", "value": 10},
-      "target": {"type": "entity", "key": "target"}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {}
-  },
-  "v_titanDetectTarget": {
-    "type": "action",
-    "name": "v_titanDetectTarget",
-    "title": "v_titanDetectTarget",
-    "properties": {
-      "currentAngle": {"type": "number"}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {}
-  },
-  "v_titanGrab": {
-    "type": "action",
-    "name": "v_titanGrab",
-    "title": "v_titanGrab",
-    "properties": {
-      "target": {"type": "entity", "key": "target"}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {
-      "angle": {"type": "number", "key": null}
-    }
-  },
   "v_titanRotateEyes": {
     "type": "action",
     "name": "v_titanRotateEyes",
@@ -71,20 +12,6 @@
     "category": "v-titanofdarkness",
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
-  },
-  "v_titanSearch": {
-    "type": "action",
-    "name": "v_titanSearch",
-    "title": "v_titanSearch",
-    "properties": {
-      "target": {"type": "entity", "key": "target"},
-      "startAngle": {"type": "number"}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {
-      "angle": {"type": "number", "key": null}
-    }
   },
   "v_titanLaserRotation": {
     "type": "action",
@@ -101,42 +28,11 @@
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   },
-  "v_titanStun": {
-    "type": "action",
-    "name": "v_titanStun",
-    "title": "v_titanStun",
-    "properties": {},
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {}
-  },
-  "v_titanPunch": {
-    "type": "action",
-    "name": "v_titanPunch",
-    "title": "v_titanPunch",
-    "properties": {
-      "target": {"type": "entity", "key": "target"}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {}
-  },
   "v_titanStopMusic": {
     "type": "action",
     "name": "v_titanStopMusic",
     "title": "v_titanStopMusic",
     "properties": {},
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {}
-  },
-  "v_titanMusic": {
-    "type": "action",
-    "name": "v_titanMusic",
-    "title": "v_titanMusic",
-    "properties": {
-      "musicState": {"type": "number", "value": 0}
-    },
     "category": "v-titanofdarkness",
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
@@ -158,15 +54,155 @@
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   },
+  "v_titanBouncingOrbAttack": {
+    "type": "action",
+    "name": "v_titanBouncingOrbAttack",
+    "title": "v_titanBouncingOrbAttack",
+    "properties": {
+      "flingCount": {"type": "number", "value": 10},
+      "flingDelay": {"type": "number", "value": 2.5},
+      "flingInterval": {"type": "number", "value": 0.6},
+      "projectileCount": {"type": "number", "value": 8},
+      "projectileParameters": {"type": "json", "value": null},
+      "projectileType": {"type": "string", "value": "v-titanbouncingprojectile"},
+      "target": {"type": "entity", "key": "target"},
+      "maxFlingAttempts": {"type": "number", "value": 200}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
+  },
   "v_titanBurrowingRiftAttack": {
     "type": "action",
     "name": "v_titanBurrowingRiftAttack",
     "title": "v_titanBurrowingRiftAttack",
     "properties": {
-      "target": {"type": "entity", "key": "target"}
+      "maxSelectionAttempts": {"type": "number", "value": 200},
+      "spawnRange": {"type": "list", "value": [-20, -20, 20, 20]},
+      "target": {"type": "entity", "key": "target"},
+      "armAnchorRadius": {"type": "number", "value": 15}
     },
     "category": "v-titanofdarkness",
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
+  },
+  "v_titanPunch": {
+    "type": "action",
+    "name": "v_titanPunch",
+    "title": "v_titanPunch",
+    "properties": {
+      "target": {"type": "entity", "key": "target"},
+      "spawnRegion": {"type": "list", "value": [-20, -20, 20, 20]},
+      "armAnchorRadius": {"type": "number", "value": 20}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
+  },
+  "v_titanDetectTarget": {
+    "type": "action",
+    "name": "v_titanDetectTarget",
+    "title": "v_titanDetectTarget",
+    "properties": {
+      "currentAngle": {"type": "number"},
+      "fov": {"type": "number", "value": 45},
+      "sightRange": {"type": "number", "value": 25},
+      "exposureTime": {"type": "number", "value": 0.25}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {
+      "target": {"type": "entity", "key": null}
+    }
+  },
+  "v_titanGrab": {
+    "type": "action",
+    "name": "v_titanGrab",
+    "title": "v_titanGrab",
+    "properties": {
+      "target": {"type": "entity", "key": "target"},
+      "spawnRegion": {"type": "list", "value": [-10, -10, 10, 10]},
+      "requiredAirRegion": {"type": "list", "value": [-2, -2, 2, 2]},
+      "maxSelectionAttempts": {"type": "number", "value": 200}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {
+      "angle": {"type": "number", "key": null}
+    }
+  },
+  "v_titanMusic": {
+    "type": "action",
+    "name": "v_titanMusic",
+    "title": "v_titanMusic",
+    "properties": {
+      "musicState": {"type": "number", "value": 0},
+      "stealthMusic": {"type": "list", "value": ["/music/v-symmetry-stealth.ogg"]},
+      "combatMusic": {"type": "list", "value": ["/music/v-symmetry-combat.ogg"]},
+      "musicFadeInTime": {"type": "number", "value": 5},
+      "musicFadeOutTime": {"type": "number", "value": 5},
+      "musicRange": {"type": "number", "value": 100}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
+  },
+  "v_titanStun": {
+    "type": "action",
+    "name": "v_titanStun",
+    "title": "v_titanStun",
+    "properties": {
+      "statusEffect": {"type": "string", "value": "v-titanstun"},
+      "stunRange": {"type": "number", "value": 100}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
+  },
+  "v_titanExplosionAttack": {
+    "type": "action",
+    "name": "v_titanExplosionAttack",
+    "title": "v_titanExplosionAttack",
+    "properties": {
+      "maxSelectionAttempts": {"type": "number", "value": 200},
+      "interval": {"type": "number", "value": 1.3},
+      "projectileParameters": {"type": "json", "value": null},
+      "projectileType": {"type": "string", "value": "v-titanbomb"},
+      "repeats": {"type": "number", "value": 4},
+      "requiredSafeArea": {"type": "list", "value": [-5, -5, 5, 5]},
+      "spawnRegion": {"type": "list", "value": [-25, -25, 25, 25]},
+      "target": {"type": "entity", "key": "target"},
+      "followTime": {"type": "number", "value": 0.8}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
+  },
+  "v_titanSearch": {
+    "type": "action",
+    "name": "v_titanSearch",
+    "title": "v_titanSearch",
+    "properties": {
+      "eyeAngularVelocity": {"type": "number", "value": 360},
+      "eyeTurnWaitTime": {"type": "number", "value": 0.5},
+      "flyControlForce": {"type": "number", "value": 6},
+      "flyMaxSelectionAttempts": {"type": "number", "value": 10},
+      "flyRequiredAirRegion": {"type": "list", "value": [-2, -2, 2, 2]},
+      "flySelectionArea": {"type": "list", "value": [-30, -30, 30, 30]},
+      "flySelectionLerpStep": {"type": "number", "value": 1},
+      "flySelectionMaxDistance": {"type": "number", "value": 20},
+      "flySpeed": {"type": "number", "value": 10},
+      "flyTolerance": {"type": "number", "value": 8},
+      "maxSearchRaycastLength": {"type": "number", "value": 100},
+      "searchRayCount": {"type": "number", "value": 40},
+      "startAngle": {"type": "number"},
+      "target": {"type": "entity", "key": "target"},
+      "stopControlForce": {"type": "number"}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {
+      "angle": {"type": "number", "key": null}
+    }
   }
 }

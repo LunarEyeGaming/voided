@@ -69,6 +69,16 @@
               "immediateSound" : "/sfx/npc/boss/v_titanofdarkness_laser_charge.ogg",
               "immediateSoundRangeMultiplier" : 5
             }
+          },
+          "bouncingtelegraph" : {
+            "frames" : 15,
+            "cycle" : 1.0,
+            "mode" : "transition",
+            "transition" : "inactive",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/v_titanofdarkness_bouncing_telegraph.ogg",
+              "immediateSoundRangeMultiplier" : 5
+            }
           }
         }
       },
@@ -157,6 +167,11 @@
               "properties" : {
                 "image" : "<partImage>:<frame>"
               }
+            },
+            "bouncingtelegraph" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
             }
           }
         }
@@ -172,6 +187,11 @@
         "partStates" : {
           "beamcharge" : {
             "active" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            },
+            "bouncingtelegraph" : {
               "properties" : {
                 "image" : "<partImage>:<frame>"
               }
@@ -306,6 +326,10 @@
   },
 
   "sounds" : {
-    "deathPuff" : [ ]
+    "deathPuff" : [ ],
+    "bouncingOrbFire" : {
+      "pool" : [ "/sfx/npc/boss/v_titanofdarkness_bouncing_fire.ogg" ],
+      "rangeMultiplier" : 5
+    }
   }
 }

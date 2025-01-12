@@ -2,9 +2,11 @@
   "name": "v-titanofdarkness-bouncespread",
   "description": "",
   "scripts": [
-    "/scripts/actions/v-sensor.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/v-movement.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua"
   ],
   "parameters": {},
@@ -14,17 +16,6 @@
     "name": "sequence",
     "parameters": {},
     "children": [
-      {
-        "title": "v_solidityTest",
-        "type": "action",
-        "name": "v_solidityTest",
-        "parameters": {
-          "position": {"key": "self"},
-          "sampleStep": {"value": 1},
-          "testRegion": {"value": [-20, -20, 20, 20]},
-          "threshold": {"value": 0.5}
-        }
-      },
       {
         "title": "entityPosition",
         "type": "action",
@@ -55,15 +46,174 @@
         }
       },
       {
+        "title": "Telegraph",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "Unset \"lookAtPlayer\" flag",
+            "type": "action",
+            "name": "unsetFlag",
+            "parameters": {
+              "name": {"value": "lookAtPlayer"}
+            }
+          },
+          {
+            "title": "setAnimationState",
+            "type": "action",
+            "name": "setAnimationState",
+            "parameters": {
+              "state": {"value": "bouncingtelegraph"},
+              "type": {"value": "beamcharge"}
+            }
+          },
+          {
+            "title": "Deactivate left light",
+            "type": "action",
+            "name": "setLightActive",
+            "parameters": {
+              "active": {"value": false},
+              "light": {"value": "lefteyelight"}
+            }
+          },
+          {
+            "title": "Deactivate right light",
+            "type": "action",
+            "name": "setLightActive",
+            "parameters": {
+              "active": {"value": false},
+              "light": {"value": "righteyelight"}
+            }
+          },
+          {
+            "title": "Activate forward left light",
+            "type": "action",
+            "name": "setLightActive",
+            "parameters": {
+              "active": {"value": true},
+              "light": {"value": "lefteyelightforward"}
+            }
+          },
+          {
+            "title": "Activate forward right light",
+            "type": "action",
+            "name": "setLightActive",
+            "parameters": {
+              "active": {"value": true},
+              "light": {"value": "righteyelightforward"}
+            }
+          },
+          {
+            "title": "reset \"lefteye\" transformation group",
+            "type": "action",
+            "name": "resetTransformationGroup",
+            "parameters": {
+              "transformationGroup": {"value": "lefteye"}
+            }
+          },
+          {
+            "title": "reset \"righteye\" transformation group",
+            "type": "action",
+            "name": "resetTransformationGroup",
+            "parameters": {
+              "transformationGroup": {"value": "righteye"}
+            }
+          },
+          {
+            "title": "reset \"leftpupil\" transformation group",
+            "type": "action",
+            "name": "resetTransformationGroup",
+            "parameters": {
+              "transformationGroup": {"value": "leftpupil"}
+            }
+          },
+          {
+            "title": "reset \"rightpupil\" transformation group",
+            "type": "action",
+            "name": "resetTransformationGroup",
+            "parameters": {
+              "transformationGroup": {"value": "rightpupil"}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 1.5}
+            }
+          },
+          {
+            "title": "setFlag",
+            "type": "action",
+            "name": "setFlag",
+            "parameters": {
+              "name": {"value": "lookAtPlayer"}
+            }
+          },
+          {
+            "title": "Activate left light",
+            "type": "action",
+            "name": "setLightActive",
+            "parameters": {
+              "active": {"value": true},
+              "light": {"value": "lefteyelight"}
+            }
+          },
+          {
+            "title": "Activate right light",
+            "type": "action",
+            "name": "setLightActive",
+            "parameters": {
+              "active": {"value": true},
+              "light": {"value": "righteyelight"}
+            }
+          },
+          {
+            "title": "Deactivate forward left light",
+            "type": "action",
+            "name": "setLightActive",
+            "parameters": {
+              "active": {"value": false},
+              "light": {"value": "lefteyelightforward"}
+            }
+          },
+          {
+            "title": "Deactivate forward right light",
+            "type": "action",
+            "name": "setLightActive",
+            "parameters": {
+              "active": {"value": false},
+              "light": {"value": "righteyelightforward"}
+            }
+          }
+        ]
+      },
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "orbitTarget"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": 0},
+          "sound": {"value": "bouncingOrbFire"}
+        }
+      },
+      {
         "title": "v_titanBouncingOrbAttack",
         "type": "action",
         "name": "v_titanBouncingOrbAttack",
         "parameters": {
           "projectileCount": {"value": 8},
           "projectileType": {"value": "v-titanbouncingprojectile"},
-          "flickDelay": {"value": 2.5},
-          "flickInterval": {"value": 0.6},
-          "flickCount": {"value": 10},
           "target": {"key": "target"}
         }
       }

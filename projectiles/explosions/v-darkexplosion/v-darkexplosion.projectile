@@ -1,0 +1,18 @@
+{
+  "projectileName" : "v-darkexplosion",
+  "image" : "darkexplosion.png",
+  "animationCycle" : 0.3,
+  "frameNumber" : 6,
+  "winddownFrames" : 3,
+  "timeToLive" : 0.45,
+  "speed" : 0,
+  "statusEffects" : [ ],
+  "damagePoly" : [ [-37, 0], [-28, -28], [0, -37], [28, -28], [37, 0], [28, 28], [0, 37], [-28, 28] ],
+  "animationLoops" : true,
+  "piercing" : true,
+  "bounces" : -1,
+  "flippable" : true,
+  "damageKind" : "default",
+  "fullbright" : true,
+  "intangibleWinddown" : true
+}

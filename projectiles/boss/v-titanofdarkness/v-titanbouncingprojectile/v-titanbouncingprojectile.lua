@@ -25,7 +25,7 @@ function destroy()
     -- Get target direction.
     local targetDirection = world.distance(world.entityPosition(target), mcontroller.position())
     -- Spawn targeted projectile
-    local id = world.spawnProjectile("delayedplasmaball", mcontroller.position(), projectile.sourceEntity(),
+    local id = world.spawnProjectile("v-titantargetedprojectile", mcontroller.position(), projectile.sourceEntity(),
     targetDirection, false, {
       timeToLive = 0.75,
       power = projectile.power(),

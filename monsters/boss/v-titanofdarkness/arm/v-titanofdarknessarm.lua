@@ -258,7 +258,7 @@ function tasks.burrowingRift()
   rotateHandSmoothly = false
 
   local emergeWaitTime = 0.0
-  local pointDistance = 13.5
+  local pointDistance = 12.0
   local maxNumPrevPos = 3  -- Maximum length of prevPosList
   local pointOffsetAngle = -math.pi / 2
 

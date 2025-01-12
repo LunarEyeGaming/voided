@@ -78,7 +78,10 @@
                           "type": "action",
                           "name": "v_titanSearch",
                           "parameters": {
-                            "startAngle": {"key": "targetAngle"}
+                            "flyControlForce": {"value": 6},
+                            "flySpeed": {"value": 15},
+                            "startAngle": {"key": "targetAngle"},
+                            "stopControlForce": {"value": 25}
                           },
                           "output": {
                             "angle": "targetAngle"
@@ -206,6 +209,9 @@
         "name": "v_titanDetectTarget",
         "parameters": {
           "currentAngle": {"key": "targetAngle"}
+        },
+        "output": {
+          "target": "target"
         }
       },
       {

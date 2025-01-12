@@ -8,6 +8,15 @@
   "fullbright" : true,
   "emitters" : [ ],
 
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/melee/giantsword_charge_full.ogg" ]
+    }
+  ],
+
   "actionOnReap" : [
     {
       "action" : "config",
@@ -21,5 +30,7 @@
 
   "onlyHitTerrain" : true,
   "power" : 0,
-  "piercing" : true
+  "piercing" : true,
+
+  "scripts" : ["v-titanbomb.lua"]
 }

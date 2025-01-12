@@ -37,11 +37,11 @@ function update(dt)
   titanArmIds = util.filter(titanArmIds, function(x) return world.entityExists(x) end)
 end
 
--- param target
--- param windupTime
--- param attackTime
--- param rotateDelay
--- param postRotateDelay
+-- param target - The target entity to attack
+-- param windupTime - Amount of time to display the laser telegraphs
+-- param attackTime - Amount of time to spend rotating the lasers
+-- param rotateDelay - Amount of time to wait before rotating the lasers after starting the laser's fire aenimation
+-- param postRotateDelay - Amount of time to wait after rotating the lasers
 function v_titanLaserRotation(args, board)
   local rq = vBehavior.requireArgsGen("v_titanLaserRotation", args)
 
@@ -105,86 +105,54 @@ function v_titanLaserRotation(args, board)
   return true
 end
 
--- param target
--- param requiredSafeArea
--- param spawnRegion
--- param projectileType
--- param projectileParameters
--- param teleportDelay
--- param postTeleportTime
+-- param target - The target entity to attack
+-- param requiredSafeArea - The required area surrounding a spawn position for it to be considered valid
+-- param spawnRegion - Region in which to spawn the projectile relative to the current position.
+-- param followTime - The amount of time for which the projectile must follow the target
+-- param interval - Time to wait between spawning projectiles
 -- param repeats - Number of times to repeat the attack
+-- param projectileType
+-- param projectileParameters (optional)
+-- param maxSelectionAttempts (optional) - Max number of attempts to select a spawn position
 function v_titanExplosionAttack(args, board)
   local rq = vBehavior.requireArgsGen("v_titanExplosionAttack", args)
 
-  if not rq{"target", "requiredSafeArea", "spawnRegion", "projectileType", "teleportDelay", "postTeleportTime",
+  if not rq{"target", "requiredSafeArea", "spawnRegion", "projectileType", "followTime", "interval",
   "repeats"} then
     return false
   end
-
-  local maxAttempts = 200
-  local spawnRegion = rect.translate(args.spawnRegion, mcontroller.position())
   local projectileParameters = copy(args.projectileParameters or {})
   projectileParameters.power = vAttack.scaledPower(projectileParameters.power or 10)
+  projectileParameters.target = args.target
+  projectileParameters.followTime = args.followTime
 
-  local spawnPosList = {}
-
-  -- Attempt to find positions to use.
   for _ = 1, args.repeats do
-    -- -- Attempt to choose a spawn position that guarantees an area free of collisions within maxAttempts attempts.
-    -- local spawnPos
-    -- local attempts = 0
-    -- repeat
-    --   spawnPos = rect.randomPoint(spawnRegion)
-    --   attempts = attempts + 1
-    -- until not world.rectCollision(rect.translate(args.requiredSafeArea, spawnPos)) or attempts > maxAttempts
+    -- world.spawnProjectile(args.projectileType, spawnPos, entity.id(), {0, 0}, false, projectileParameters)
+    world.spawnProjectile(args.projectileType, world.entityPosition(args.target), entity.id(), {0, 0}, false, projectileParameters)
 
-    -- -- If unsuccessful...
-    -- if attempts > maxAttempts then
-    --   return false  -- Fail
-    -- end
-
-    -- Attempt to choose a spawn position that guarantees an area free of collisions within maxAttempts attempts.
-    local spawnPos = vWorld.randomPositionInRegion(spawnRegion, function(pos)
-      return not world.rectCollision(rect.translate(args.requiredSafeArea, pos))
-    end, maxAttempts)
-
-    -- If unsuccessful...
-    if not spawnPos then
-      return false  -- Fail.
-    end
-
-    table.insert(spawnPosList, spawnPos)
-  end
-
-  for _, spawnPos in ipairs(spawnPosList) do
-    world.spawnProjectile(args.projectileType, spawnPos, entity.id(), {0, 0}, false, {power = vAttack.scaledPower(10)})
-    world.sendEntityMessage(args.target, "applyStatusEffect", "v-titanteleport", args.teleportDelay + args.postTeleportTime)
-
-    util.run(args.teleportDelay, function() end)
-
-    world.sendEntityMessage(args.target, "v-titanteleport-teleport", spawnPos)
-
-    util.run(args.postTeleportTime, function() end)
+    util.run(args.interval, function() end)
   end
 
   return true
 end
 
--- param projectileCount
+-- param projectileCount - The number of projectiles to spawn out of each eye
+-- param flingDelay - The amount of time to wait before halting and flinging the projectiles
+-- param flingInterval - The amount of time to wait between flings
+-- param flingCount - The number of flings to perform
+-- param target - The target entity to attack
 -- param projectileType
--- param projectileParameters
--- param flickDelay
--- param flickInterval
--- param flickCount
--- param target
+-- param projectileParameters (optional)
+-- param maxFlingAttempts (optional) - The maximum number of times to attempt a selection of a projectile to fling.
 function v_titanBouncingOrbAttack(args)
   local rq = vBehavior.requireArgsGen("v_titanBouncingOrbAttack", args)
-  if not rq{"projectileCount", "projectileType", "flickDelay", "flickInterval", "flickCount", "target"} then
+  if not rq{"projectileCount", "projectileType", "flingDelay", "flingInterval", "flingCount", "target"} then
     return false
   end
 
   local params = copy(args.projectileParameters or {})
   params.power = vAttack.scaledPower(params.power or 10)
+  local maxAttempts = args.maxFlingAttempts or 200
 
   -- Get eye positions.
   local leftEyePos = vec2.add(animator.partPoint("body", "leftEyeCenter"), mcontroller.position())
@@ -206,58 +174,86 @@ function v_titanBouncingOrbAttack(args)
     table.insert(projectiles, id)
   end
 
-  util.run(args.flickDelay, function() end)
+  util.run(args.flingDelay, function() end)
 
   local targetPos = world.entityPosition(args.target)
-  local maxAttempts = 200
 
   for _, entityId in ipairs(projectiles) do
     vWorld.sendEntityMessage(entityId, "v-titanbouncingprojectile-freeze")
   end
 
   -- Flick random projectiles toward the player.
-  for _ = 1, args.flickCount do
-    -- Attempt to select next projectile (must be in the line of sight of the player)
+  for _ = 1, args.flingCount do
+    -- Attempt to select next projectile (must be in the line of sight of the player and must exist)
+    local nextProjectile
     local nextIdx
-    local attempts = 0
-    repeat
-      nextIdx = math.random(1, #projectiles)
-      attempts = attempts + 1
-    until attempts > maxAttempts or not world.entityExists(projectiles[nextIdx]) or not world.lineCollision(targetPos, world.nearestTo(targetPos, world.entityPosition(projectiles[nextIdx])))
+    shuffle(projectiles)
+
+    for i, projectile in ipairs(projectiles) do
+      if world.entityExists(projectile)
+      and not world.lineCollision(targetPos, world.nearestTo(targetPos, world.entityPosition(projectile))) then
+        nextProjectile = projectile
+        nextIdx = i
+        break
+      end
+    end
+    -- local nextIdx
+    -- local attempts = 0
+    -- repeat
+    --   nextIdx = math.random(1, #projectiles)
+    --   attempts = attempts + 1
+    -- until attempts > maxAttempts
+    -- or (world.entityExists(projectiles[nextIdx])
+    -- and not world.lineCollision(targetPos, world.nearestTo(targetPos, world.entityPosition(projectiles[nextIdx]))))
+
+    -- sb.logInfo("attempts: %s, nextIdx: %s", attempts, nextIdx)
+
+    -- -- If the loop above exited because a valid choice was found...
+    -- if attempts <= maxAttempts then
+    --   -- Trigger the projectile to fly towards the player.
+    --   vWorld.sendEntityMessage(projectiles[nextIdx], "v-titanbouncingprojectile-fling", args.target)
+    --   -- local projectilePos = world.entityPosition(projectiles[nextIdx])
+    --   -- spawnArm(projectilePos, vec2.add(projectilePos, vec2.withAngle(math.random() * 2 * math.pi, 20)), "flick", {
+    --   --   projectileId = projectiles[nextIdx],
+    --   --   target = args.target
+    --   -- })
+
+    --   -- Delete projectile from list
+    --   table.remove(projectiles, nextIdx)
+    -- end
 
     -- If the loop above exited because a valid choice was found...
-    if attempts <= maxAttempts and world.entityExists(projectiles[nextIdx]) then
+    if nextProjectile then
       -- Trigger the projectile to fly towards the player.
-      vWorld.sendEntityMessage(projectiles[nextIdx], "v-titanbouncingprojectile-fling", args.target)
+      vWorld.sendEntityMessage(nextProjectile, "v-titanbouncingprojectile-fling", args.target)
       -- local projectilePos = world.entityPosition(projectiles[nextIdx])
       -- spawnArm(projectilePos, vec2.add(projectilePos, vec2.withAngle(math.random() * 2 * math.pi, 20)), "flick", {
       --   projectileId = projectiles[nextIdx],
       --   target = args.target
       -- })
-
       -- Delete projectile from list
       table.remove(projectiles, nextIdx)
     end
 
-    util.run(args.flickInterval, function() end)
+    util.run(args.flingInterval, function() end)
   end
 
   return true
 end
 
--- param target
+-- param spawnRange - The region in which to spawn the rifts
+-- param maxSelectionAttempts - The maximum number of times to select any particular spawn position before failing.
+-- param target - The target entity to attack
+-- param armAnchorRadius (optional) - The range at which to place the anchor point relative to the spawning position.
 function v_titanBurrowingRiftAttack(args)
   local rq = vBehavior.requireArgsGen("v_titanBurrowingRiftAttack", args)
-  if not rq{"target"} then
+  if not rq{"spawnRange", "maxSelectionAttempts", "target"} then
     return false
   end
 
-  -- Params
-  local spawnRange = {-20, -20, 20, 20}
-  local maxAttempts = 200
-
   -- Locals
   local targetPos = world.entityPosition(args.target)
+  local anchorRadius = args.armAnchorRadius or 15
 
   -- local spawnPos
   -- local attempts = 0
@@ -279,13 +275,13 @@ function v_titanBurrowingRiftAttack(args)
 
   -- Pick a random position (within a rectangular region relative to the target's position) that is inside of collision
   -- geometry within maxAttempts attempts.
-  local spawnPos = vWorld.randomPositionInRegion(rect.translate(spawnRange, targetPos), function(pos)
+  local spawnPos = vWorld.randomPositionInRegion(rect.translate(args.spawnRange, targetPos), function(pos)
     return world.pointCollision(pos)
-  end, maxAttempts)
+  end, args.maxSelectionAttempts)
 
   -- If successful in choosing a spawn position...
   if spawnPos then
-    local anchorPoint = vec2.add(spawnPos, vec2.withAngle(math.random() * 2 * math.pi, 15))
+    local anchorPoint = vec2.add(spawnPos, vec2.withAngle(math.random() * 2 * math.pi, anchorRadius))
     -- Spawn an arm to follow the projectile.
     spawnArm(spawnPos, anchorPoint, "burrowingRift", {target = args.target})
     return true
@@ -294,18 +290,20 @@ function v_titanBurrowingRiftAttack(args)
   return false
 end
 
--- param target
+-- param target - The target entity to attack
+-- param spawnRegion - The region in which to spawn the arms
+-- param armAnchorRadius (optional) - The range at which to place the anchor point relative to the spawning position.
 function v_titanPunch(args)
   local rq = vBehavior.requireArgsGen("v_titanPunch", args)
 
-  if not rq{"target"} then return false end
+  if not rq{"target", "spawnRegion"} then return false end
 
-  local armSpawnRegion = {-20, -20, 20, 20}
+  local anchorRadius = args.armAnchorRadius or 20
 
   -- Pick a random arm spawning position.
-  local spawnPos = vec2.add(world.entityPosition(args.target), rect.randomPoint(armSpawnRegion))
+  local spawnPos = vec2.add(world.entityPosition(args.target), rect.randomPoint(args.spawnRegion))
 
-  local anchorPoint = vec2.add(spawnPos, vec2.withAngle(math.random() * 2 * math.pi, 20))
+  local anchorPoint = vec2.add(spawnPos, vec2.withAngle(math.random() * 2 * math.pi, anchorRadius))
   -- Spawn the arm
   spawnArm(spawnPos, anchorPoint, "punch", {target = args.target})
 
@@ -315,20 +313,43 @@ function v_titanPunch(args)
   return true
 end
 
--- param target
+-- Consists of two phases. The first one performs a radial raycast to determine which places to look at before looking
+-- at those places. The second phase flies toward the next position to search, which is a random position with empty air
+-- that is close to the player. These phases are repeated until the Titan is unable to find a path to the target.
+-- param target - The target entity to attack
+-- param eyeAngularVelocity - The angular velocity of the eyes to use in degrees per second.
+-- param eyeTurnWaitTime - The amount of time to wait between each turn.
+-- param flySelectionArea - The area to select for the next position to which to fly, relative to the target.
+-- param flyRequiredAirRegion - The area surrounding a position to which to fly that is required to be collision free
+-- for it to be considered valid.
+-- param startAngle (optional) - The initial angle to use when looking around.
+-- param flyMaxSelectionAttempts (optional) - The maximum number of attempts allowed for selecting a target position.
+-- Defaults to 10
+-- param flySelectionLerpStep (optional) - `findAirPosition` `lerpStep` parameter. Used when selecting a position to
+-- which to fly. Defaults to 1
+-- param flySelectionMaxDistance (optional) - `findAirPosition` `maxDistance` parameter. Used when selecting a position
+-- to which to fly. Defaults to 20
+-- param flySpeed (optional) - The speed at which to fly. Defaults to the controller's `flySpeed`
+-- param flyControlForce (optional) - The control force of flight. Defaults to the controller's `airForce`
+-- param flyTolerance (optional) - Maximum tolerable distance when flying toward the next position to search. Defaults
+-- to 1.
+-- param searchRayCount (optional) - The number of raycasts to perform when generating places to search. Defaults to 40
+-- param maxSearchRaycastLength (optional) - The maximum length of each raycast. Defaults to 100
 function v_titanSearch(args)
   local rq = vBehavior.requireArgsGen("v_titanSearch", args)
 
-  if not rq{"target"} then return false end
+  if not rq{"eyeAngularVelocity", "eyeTurnWaitTime", "flySelectionArea", "flyRequiredAirRegion", "target"} then
+    return false
+  end
 
-  local angularVelocity = 2 * math.pi  -- Parameter
-  local rayCount = 40  -- Parameter
-  local maxRaycastLength = 100  -- Parameter
-  local turnWaitTime = 0.5
+  local angularVelocity = args.eyeAngularVelocity * math.pi / 180
+  local rayCount = args.searchRayCount or 40
+  local maxRaycastLength = args.maxRaycastLength or 100
 
-  local flyTolerance = 8
-  local flySpeed = 10
-  local flyControlForce = 6
+  local flyTolerance = args.flyTolerance or 1
+  local flySpeed = args.flySpeed or mcontroller.baseParameters().flySpeed
+  local flyControlForce = args.flyControlForce or mcontroller.baseParameters().airForce
+  local stopControlForce = args.stopControlForce or flyControlForce
 
   ---@param startAngle number
   ---@param endAngle number
@@ -360,27 +381,28 @@ function v_titanSearch(args)
         turn(currentAngle, zone.startAngle)
         turn(zone.startAngle, zone.endAngle)
         -- wait(turnWaitTime, zone.endAngle)
-        util.run(turnWaitTime, function() end)
+        util.run(args.eyeTurnWaitTime, function() end)
         -- wait(turnWaitTime, zone.startAngle)
         turn(zone.endAngle, zone.startAngle)
-        util.run(turnWaitTime, function() end)
+        util.run(args.eyeTurnWaitTime, function() end)
 
         currentAngle = zone.startAngle
       else
         -- A spot turns to the angle
         turn(currentAngle, zone.angle)
         -- wait(turnWaitTime, zone.angle)
-        util.run(turnWaitTime, function() end)
+        util.run(args.eyeTurnWaitTime, function() end)
 
         currentAngle = zone.angle
       end
     end
 
-    local targetOffsetRegion = {-30, -30, 30, 30}
-    local requiredSafeRegion = {-2, -2, 2, 2}
-    local maxAttempts = 10
+    local maxAttempts = args.flyMaxSelectionAttempts or 10
+    local lerpStep = args.flySelectionLerpStep or 1
+    local maxDistance = args.flySelectionMaxDistance or 20
     local targetPos = world.entityPosition(args.target)
-    local nextPos = findRandomAirPosition(maxAttempts, targetPos, targetOffsetRegion, requiredSafeRegion, 1, 20)
+    local nextPos = findRandomAirPosition(maxAttempts, targetPos, args.flySelectionArea, args.flyRequiredAirRegion,
+    lerpStep, maxDistance)
 
     if not nextPos then
       return false
@@ -402,12 +424,13 @@ function v_titanSearch(args)
 
     -- Stop
     while vec2.mag(mcontroller.velocity()) > 0 do
-      mcontroller.controlApproachVelocity({0, 0}, flyControlForce)
+      mcontroller.controlApproachVelocity({0, 0}, stopControlForce)
       coroutine.yield()
     end
 
     -- Try to find a path
-    local pathfindResults = world.findPlatformerPath(mcontroller.position(), world.entityPosition(args.target), mcontroller.baseParameters(), {
+    local pathfindResults = world.findPlatformerPath(mcontroller.position(), world.entityPosition(args.target),
+    mcontroller.baseParameters(), {
       returnBest = false,
       mustEndOnGround = false,
       maxFScore = 400,
@@ -423,13 +446,14 @@ function v_titanSearch(args)
   end
 end
 
--- param leftEyeAngle
--- param rightEyeAngle
--- param position
--- param target
+-- param leftEyeAngle - The looking angle of the left eye.
+-- param rightEyeAngle - The looking angle of the right eye.
+-- param position (optional) - The position to use. Can be used in place of `leftEyeAngle` and `rightEyeAngle`.
+-- param target (optional) - The target entity to use. Can be used in place of `position`.
 function v_titanRotateEyes(args)
   if not ((args.leftEyeAngle and args.rightEyeAngle) or args.target or args.position) then
-    sb.logWarn("v_titanRotateEyes: Requires 'leftEyeAngle' and 'rightEyeAngle', 'target', or 'position' to be defined arguments")
+    sb.logWarn("v_titanRotateEyes: Requires 'leftEyeAngle' and 'rightEyeAngle', 'target', or 'position' to be defined"
+    .. "arguments")
     return false
   end
 
@@ -470,32 +494,38 @@ function v_titanRotateEyes(args)
   return true
 end
 
--- param currentAngle
+-- param sightRange - The maximum distance at which the Titan can see a target.
+-- param fov - Field of vision with which to search targets
+-- param exposureTime - The amount of time that a target must spend being seen for this node to stop.
+-- param currentAngle - The looking angle to use.
+-- output target - The target entity found
 function v_titanDetectTarget(args)
   local rq = vBehavior.requireArgsGen("v_titanDetectTarget", args)
 
-  if not rq{"currentAngle"} then return false end
+  if not rq{"currentAngle", "sightRange", "fov", "exposureTime"} then return false end
 
-  local sightRadius = 25
-  local halfFov = util.toRadians(45) / 2
-  local exposureTime = 0.25
+  local halfFov = args.fov * math.pi / 360  -- Convert to radians, then divide by 2.
   local queriedTimingsLeft = {}
   local queriedTimingsRight = {}
 
   local isValidTarget = function(target, eyePos)
     if world.entityExists(target) then
       local targetPos = world.entityPosition(target)
-      return not (world.lineTileCollision(eyePos, world.nearestTo(eyePos, targetPos)) or world.magnitude(eyePos, targetPos) > sightRadius) and entity.isValidTarget(target)
+      return not (world.lineTileCollision(eyePos, world.nearestTo(eyePos, targetPos))
+      or world.magnitude(eyePos, targetPos) > args.sightRange)
+      and entity.isValidTarget(target)
     end
 
     return false
   end
 
   local getTarget = function(queriedTimings, eyePos)
-    local queried = world.entityQuery(eyePos, sightRadius, {withoutEntityId = entity.id(), includedTypes = {"player"}})
-    -- Iterate through each queried entity. Find the first one that is within its field of view (ordered from nearest to farthest)
+    local queried = world.entityQuery(eyePos, args.sightRange, {withoutEntityId = entity.id(), includedTypes = {"player"}})
+    -- Iterate through each queried entity. Find the first one that is within its field of view (ordered from nearest to
+    -- farthest)
     for _, qItem in pairs(queried) do
-      -- Calculate absolute difference between current angle and the angle of the vector from eyePos to qItem's position.
+      -- Calculate absolute difference between current angle and the angle of the vector from eyePos to qItem's
+      -- position.
       local sightCloseness = math.abs(
         util.angleDiff(
           args.currentAngle,
@@ -507,7 +537,7 @@ function v_titanDetectTarget(args)
         if queriedTimings[qItem] then
           queriedTimings[qItem] = queriedTimings[qItem] - script.updateDt()
         else
-          queriedTimings[qItem] = exposureTime
+          queriedTimings[qItem] = args.exposureTime
         end
 
         -- If the queried item has been exposed for long enough...
@@ -529,33 +559,36 @@ function v_titanDetectTarget(args)
     coroutine.yield()
   end
 
-  return true
+  return true, {target = target}
 end
 
--- param target
+-- param target - The target entity to grab
+-- param spawnRegion - The region in which to spawn the arm, relative to the current position
+-- param requiredAirRegion - The region of air required for a spawn position to be valid.
+-- param maxSelectionAttempts (optional) - The maximum number of attempts allowed for a selection. Defaults to 200
+-- output angle - The angle to which to look.
 function v_titanGrab(args)
   local rq = vBehavior.requireArgsGen("v_titanGrab", args)
 
   if not rq{"target"} then return false end
 
-  local armSpawnRegion = {-10, -10, 10, 10}
-  local requiredSafeArea = {-2, -2, 2, 2}
-  local maxAttempts = 200
+  local maxAttempts = args.maxSelectionAttempts or 200
 
   -- Pick a random arm spawning position that is within line of sight and has a surrounding region of air with
-  -- dimensions requiredSafeArea.
+  -- dimensions args.requiredAirRegion.
   -- local spawnPos
   -- local attempts = 0
   -- repeat
   --   spawnPos = vec2.add(mcontroller.position(), rect.randomPoint(armSpawnRegion))
   --   attempts = attempts + 1
-  -- until (not world.lineCollision(mcontroller.position(), spawnPos) and not world.rectCollision(rect.translate(requiredSafeArea, spawnPos))) or attempts > maxAttempts
+  -- until (not world.lineCollision(mcontroller.position(), spawnPos) and not world.rectCollision(rect.translate(args.requiredAirRegion, spawnPos))) or attempts > maxAttempts
 
   -- -- If no arm spawning position is available, fail.
   -- if attempts > maxAttempts then return false end
-  local spawnPos = vWorld.randomPositionInRegion(rect.translate(armSpawnRegion, mcontroller.position()), function(pos)
+
+  local spawnPos = vWorld.randomPositionInRegion(rect.translate(args.spawnRegion, mcontroller.position()), function(pos)
     return not world.lineCollision(mcontroller.position(), pos)
-    and not world.rectCollision(rect.translate(requiredSafeArea, pos))
+    and not world.rectCollision(rect.translate(args.requiredAirRegion, pos))
   end, maxAttempts)
 
   -- If no spawn position is found, fail.
@@ -621,21 +654,34 @@ function v_titanAppear(args)
     timer = math.min(args.appearTime, timer + dt)
   end)
 
+  -- Clear keyframe
+  monster.setAnimationParameter("titanAnimKeyframe", nil)
+
   animator.setGlobalTag("opacity", string.format("%02x", endAlpha))
 
   return true
 end
 
+-- param stunRange - The maximum distance to which an entity is affected by the stun.
+-- param statusEffect - The status effect to apply to entities to stun.
 function v_titanStun(args)
-  local queried = world.entityQuery(mcontroller.position(), 100, {includedTypes = {"creature"}, withoutEntityId = entity.id()})
+  local rq = vBehavior.requireArgsGen("v_titanStun", args)
+
+  if not rq{"stunRange", "statusEffect"} then return false end
+
+  local ownDamageTeam = entity.damageTeam()
+  local queried = world.entityQuery(mcontroller.position(), args.stunRange, {
+    includedTypes = {"creature"},
+    withoutEntityId = entity.id()
+  })
 
   for _, entityId in ipairs(queried) do
     -- Exclude titan arms
     if not contains(titanArmIds, entityId) then
-      -- Affect only creatures that are in the "enemy" damage team.
+      -- Affect only creatures that are in the same damage team type as the Titan.
       local damageTeam = world.entityDamageTeam(entityId)
-      if damageTeam and damageTeam.type == "enemy" then
-        world.sendEntityMessage(entityId, "applyStatusEffect", "v-titanstun")
+      if damageTeam and damageTeam.type == ownDamageTeam.type then
+        world.sendEntityMessage(entityId, "applyStatusEffect", args.statusEffect)
       end
     end
   end
@@ -644,7 +690,18 @@ function v_titanStun(args)
 end
 
 -- param musicState - 0 for "STEALTH", 1 for "COMBAT", 2 for "NONE"
+-- param stealthMusic - The music to play when musicState is 0
+-- param combatMusic - The music to play when musicState is 1
+-- param musicFadeInTime - fade time for when the music starts playing
+-- param musicFadeOutTime - fade time for when the music stops playing
+-- param musicRange - The maximum distance that the player can be to hear stealth music or combat music.
 function v_titanMusic(args)
+  local rq = vBehavior.requireArgsGen("v_titanMusic", args)
+
+  if not rq{"musicState", "stealthMusic", "combatMusic", "musicFadeInTime", "musicFadeOutTime", "musicRange"} then
+    return false
+  end
+
   local musicState = {  -- Enumerator
     STEALTH = 0,
     COMBAT = 1,
@@ -658,29 +715,29 @@ function v_titanMusic(args)
   local prevPlayers = {}
   local prevMusicState = args.musicState
   while true do
-    local queried = world.entityQuery(mcontroller.position(), 100, {includedTypes = {"player"}})
+    local queried = world.entityQuery(mcontroller.position(), args.musicRange, {includedTypes = {"player"}})
 
     if args.musicState == musicState.NONE then
       -- Stop music for players that are queried.
       for _, playerId in ipairs(prevPlayers) do
         world.sendEntityMessage(playerId, "v-dungeonmusicplayer-unsetOverride")  -- Unset override.
-        world.sendEntityMessage(playerId, "stopAltMusic", musicFadeOutTime)
+        world.sendEntityMessage(playerId, "stopAltMusic", args.musicFadeOutTime)
       end
     else
       -- Stop music for players that are no longer queried.
       for _, playerId in ipairs(prevPlayers) do
         if not contains(queried, playerId) then
           world.sendEntityMessage(playerId, "v-dungeonmusicplayer-unsetOverride")  -- Unset override.
-          world.sendEntityMessage(playerId, "stopAltMusic", musicFadeOutTime)
+          world.sendEntityMessage(playerId, "stopAltMusic", args.musicFadeOutTime)
         end
       end
 
-      local musicTrack = args.musicState == musicState.COMBAT and combatMusic or stealthMusic
+      local musicTrack = args.musicState == musicState.COMBAT and args.combatMusic or args.stealthMusic
       -- Start music for players that have just started being queried (or when args.musicState has changed). Use
       -- v-dungeonmusicplayer-setOverride to avoid trouble with the dungeonmusicplayer script.
       for _, playerId in ipairs(queried) do
         if prevMusicState ~= args.musicState or not contains(prevPlayers, playerId) then
-          world.sendEntityMessage(playerId, "v-dungeonmusicplayer-setOverride", musicTrack, musicFadeInTime)
+          world.sendEntityMessage(playerId, "v-dungeonmusicplayer-setOverride", musicTrack, args.musicFadeInTime)
         end
       end
     end
@@ -688,12 +745,13 @@ function v_titanMusic(args)
     prevPlayers = queried
     prevMusicState = args.musicState
 
-    world.debugText("players: %s, prevPlayers: %s", queried, prevPlayers, mcontroller.position(), "green")
+    -- world.debugText("players: %s, prevPlayers: %s", queried, prevPlayers, mcontroller.position(), "green")
 
     coroutine.yield()
   end
 end
 
+-- Unused
 function v_titanStopMusic(args)
   local musicFadeOutTime = 5.0
   local queried = world.entityQuery(mcontroller.position(), 100, {includedTypes = {"player"}})
