@@ -39,7 +39,7 @@ function init()
   projectileType = config.getParameter("projectileType")
   projectileParameters = config.getParameter("projectileParameters", {})
   projectileParameters.power = scaleDamage(projectileParameters.power)
-  
+
   sizeChangeTime = util.randomInRange(sizeChangeTimeRange)
 
   velocityTimer = util.randomInRange(velocityChangeTimeRange)
@@ -52,7 +52,7 @@ function init()
   targetSize = util.randomInRange(sizeRange)
   velocity = randomPointInCircle(maxSpeed)
   -- velocity and targetSize get initialized before they are used b/c sizeTimer and velocityTimer both are 0
-  
+
   monster.setDamageBar("None")
 end
 
@@ -63,9 +63,14 @@ function update(dt)
     status.setResourcePercentage("health", 0.0)
   end
 
-  fireProjectile(dt)
-  updateSize(dt)
-  updateVelocity(dt)
+  -- Do something only if not stunned.
+  if not status.resourcePositive("stunned") then
+    fireProjectile(dt)
+    updateSize(dt)
+    updateVelocity(dt)
+  else
+    monster.setDamageSources({})
+  end
 end
 
 --[[
@@ -75,7 +80,7 @@ function fireProjectile(dt)
   projectileFireTimer = projectileFireTimer - dt
 
   if projectileFireTimer < 0 then
-    world.spawnProjectile(projectileType, mcontroller.position(), entity.id(), 
+    world.spawnProjectile(projectileType, mcontroller.position(), entity.id(),
         randomPointInCircle(1), false, projectileParameters)
     projectileFireTimer = projectileFireTime
   end
@@ -87,23 +92,23 @@ end
 ]]
 function updateSize(dt)
   sizeTimer = sizeTimer - dt
-  
+
   if sizeTimer < 0 then
     sizeChangeTime = util.randomInRange(sizeChangeTimeRange)
     sizeTimer = sizeChangeTime
     previousTargetSize = targetSize
     targetSize = util.randomInRange(sizeRange)
   end
-  
+
   currentSize = util.lerp(sizeTimer / sizeChangeTime, targetSize, previousTargetSize)
 
   animator.resetTransformationGroup("body")
   animator.scaleTransformationGroup("body", currentSize)
-  
+
   local touchDamageSource = config.getParameter("touchDamage")
   touchDamageSource.damage = scaleDamage(touchDamageSource.damage)
   touchDamageSource.poly = poly.scale(touchDamageSource.poly, currentSize)
-  
+
   monster.setDamageSources({touchDamageSource})
 end
 
@@ -112,12 +117,12 @@ end
 ]]
 function updateVelocity(dt)
   velocityTimer = velocityTimer - dt
-  
+
   if velocityTimer < 0 then
     velocity = randomPointInCircle(maxSpeed, {0, 0})
     velocityTimer = util.randomInRange(velocityChangeTimeRange)
   end
-  
+
   mcontroller.controlApproachVelocity(velocity, controlForce)
 end
 
@@ -133,13 +138,13 @@ function randomPointInCircle(radius, center)
     center = {0, 0}
   end
   local offset = vec2.withAngle(util.randomInRange({0, 2 * math.pi}), radius)
-  
+
   return vec2.add(center, offset)
 end
 
 --[[
   Returns the damage scaled by the monster's level according to the monsterLevelPowerMultiplier function.
-  
+
   param number damage (optional): the damage to scale. Defaults to 10 if unspecified
   returns number: the damage scaled by the monster's level
 ]]

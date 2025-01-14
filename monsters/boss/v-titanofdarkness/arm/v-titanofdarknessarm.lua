@@ -5,6 +5,8 @@ require "/scripts/v-movement.lua"
 require "/scripts/actions/v-attackutil.lua"
 require "/scripts/actions/boss/v-titanofdarkness.lua"
 
+local appearSpecs
+
 local task
 local cfg
 local args
@@ -24,12 +26,15 @@ local state
 local shouldDieVar
 
 local rotateHandSmoothly  -- Whether or not the hand should rotate smoothly to handTargetAngle or jump to it instantly.
+local useAppearAnimation  -- Whether or not to use the appear animation automatically.
 local currentHandAngle  -- Current rotation of the hand
 local handTargetAngle  -- Current rotation that the hand is going toward
 
 function init()
+  appearSpecs = config.getParameter("appearSpecs")
+
   task = config.getParameter("task")
-  cfg = config.getParameter("taskConfig")
+  cfg = config.getParameter("taskConfig")[task] or {}
   args = config.getParameter("taskArguments")
 
   anchorPoint = config.getParameter("anchorPoint")
@@ -49,7 +54,17 @@ function init()
 
   shouldDieVar = false
 
-  rotateHandSmoothly = true  -- Default value.
+  if cfg.rotateHandSmoothly ~= nil then
+    rotateHandSmoothly = cfg.rotateHandSmoothly
+  else
+    rotateHandSmoothly = true
+  end
+
+  if cfg.useAppearAnimation ~= nil then
+    useAppearAnimation = cfg.useAppearAnimation
+  else
+    useAppearAnimation = true
+  end
 
   -- Use more sensible values for currentHandAngle and handTargetAngle by getting the values from updateArm()
   local forearmAngle, _ = updateArm()
@@ -59,7 +74,11 @@ function init()
 
   script.setUpdateDelta(1)
 
-  state:set(appear)
+  if useAppearAnimation then
+    state:set(appear)
+  else
+    state:set(tasks[task])
+  end
 end
 
 function update(dt)
@@ -96,23 +115,22 @@ function updateArm()
   -- counterclockwise rotation from pointing inward
   local rearArmAngle = math.acos((forearmLength ^ 2 + rearArmLength ^ 2 - armSpan ^ 2) / (2 * forearmLength * rearArmLength)) - math.pi
 
+  -- local offsetAngle = vec2.angle(vec2.sub(animator.partProperty("forearm", "elbowPoint"), wristOffset))
   animator.resetTransformationGroup("wristjoint")
   animator.resetTransformationGroup("elbowjoint")
   animator.rotateTransformationGroup("wristjoint", baseAngle + forearmAngle, wristOffset)
   animator.rotateTransformationGroup("elbowjoint", rearArmAngle, animator.partProperty("reararm", "elbowPoint"))
+  -- animator.rotateTransformationGroup("elbowjoint", rearArmAngle, {13.125, -0.625})
+
 
   return baseAngle + forearmAngle, rearArmAngle
 end
 
 -- Coroutine function. Makes the arm appear and do the configured task.
 function appear()
-  v_titanAppear{
-    appearTime = 0.5,
-    visionStartRotationRate = 0,
-    visionEndRotationRate = 0.25,
-    visionStartRadius = 10,
-    visionEndRadius = 1
-  }
+  animator.setAnimationState("hand", cfg.initialState or "fist")
+
+  v_titanAppear(appearSpecs)
 
   state:set(tasks[task])
 end
@@ -177,16 +195,6 @@ function tasks.grab()
   local rq = vBehavior.requireArgsGen("tasks.grab", args)
 
   if rq{"target"} then
-    local grabDelay = 2.5
-    local grabRadius = 5
-    local grabEndDistance = 10  -- The number of additional blocks to travel beyond the player when grabbing.
-    local extendSpeed = 75
-    local extendForce = 800
-    local retractSpeed = 50
-    local retractForce = 200
-    local stopForce = 200
-    local tolerance = 10
-
     local startPos = mcontroller.position()
     local grabbedEntities = {}
 
@@ -195,7 +203,7 @@ function tasks.grab()
     -- Get distance to target
     local targetDistance = world.distance(targetPos, startPos)
     -- Get grab end position
-    local grabEndPosition = vec2.add(startPos, vec2.mul(vec2.norm(targetDistance), vec2.mag(targetDistance) + grabEndDistance))
+    local grabEndPosition = vec2.add(startPos, vec2.mul(vec2.norm(targetDistance), vec2.mag(targetDistance) + cfg.grabEndDistance))
 
     -- animator.resetTransformationGroup("hand")
     -- animator.rotateTransformationGroup("hand", vec2.angle(targetDistance))
@@ -204,17 +212,17 @@ function tasks.grab()
 
     animator.setAnimationState("hand", "openhand")
 
-    util.wait(grabDelay)
+    util.wait(cfg.grabDelay)
 
     local threads = {
       coroutine.create(function()
-        vMovementA.flyToPosition(grabEndPosition, extendSpeed, extendForce, tolerance)
-        vMovementA.stop(stopForce)
+        vMovementA.flyToPosition(grabEndPosition, cfg.extendSpeed, cfg.extendForce, cfg.tolerance)
+        vMovementA.stop(cfg.stopForce)
       end),
       coroutine.create(function()
         -- Keep on adding grabbed entities forever. This function will inevitably be interrupted.
         while true do
-          local queried = world.entityQuery(mcontroller.position(), grabRadius, {includedTypes = {"player"}})
+          local queried = world.entityQuery(mcontroller.position(), cfg.grabRange, {includedTypes = {"player"}})
 
           for _, entityId in ipairs(queried) do
             world.sendEntityMessage(entityId, "applyStatusEffect", "v-grabbed")
@@ -237,8 +245,8 @@ function tasks.grab()
     animator.setAnimationState("hand", "fist")
 
     -- Fly back to starting position.
-    vMovementA.flyToPosition(startPos, retractSpeed, retractForce, tolerance)
-    vMovementA.stop(stopForce)
+    vMovementA.flyToPosition(startPos, cfg.retractSpeed, cfg.retractForce, cfg.tolerance)
+    vMovementA.stop(cfg.stopForce)
 
     -- For each grabbed entity...
     for _, entityId in ipairs(grabbedEntities) do
@@ -255,21 +263,16 @@ end
 function tasks.burrowingRift()
   local rq = vBehavior.requireArgsGen("tasks.burrowingRift", args)
 
-  rotateHandSmoothly = false
-
-  local emergeWaitTime = 0.0
-  local pointDistance = 12.0
-  local maxNumPrevPos = 3  -- Maximum length of prevPosList
-  local pointOffsetAngle = -math.pi / 2
-
-  local projectileType = "v-titanburrowingrift"
-  local projectileConfig = {}
+  local projectileConfig = cfg.projectileConfig or {}
   projectileConfig.power = vAttack.scaledPower(projectileConfig.power or 10)
+  local pointOffsetAngle = -cfg.pointOffsetAngle * math.pi / 180
+
+  local maxNumPrevPos = 3  -- Maximum length of prevPosList
 
   if rq{"target"} then
     animator.setAnimationState("hand", "dig")
     -- Spawn the projectile with a completely random aim vector.
-    local projectileId = world.spawnProjectile(projectileType, mcontroller.position(), config.getParameter("master"),
+    local projectileId = world.spawnProjectile(cfg.projectileType, mcontroller.position(), config.getParameter("master"),
     vec2.withAngle(math.random() * 2 * math.pi), false, projectileConfig)
 
     local prevPosList  -- List of previous projectile positions, including current projectile positions. Used to estimate projectile velocity
@@ -291,7 +294,7 @@ function tasks.burrowingRift()
       table.insert(prevPosList, world.entityPosition(projectileId))
       -- Calculate projectile velocity by getting the difference of the latest and earliest entries.
       local projVelocity = world.distance(prevPosList[1], prevPosList[#prevPosList])
-      local pointVector = vec2.mul(vec2.norm(vec2.rotate(projVelocity, pointOffsetAngle)), pointDistance)
+      local pointVector = vec2.mul(vec2.norm(vec2.rotate(projVelocity, pointOffsetAngle)), cfg.pointDistance)
       -- Offset hand in opposite direction of that at which the hand is pointing.
       mcontroller.setPosition(vec2.add(world.entityPosition(projectileId), pointVector))
       -- mcontroller.setPosition(world.entityPosition(projectileId))
@@ -307,7 +310,7 @@ function tasks.burrowingRift()
       coroutine.yield()
     end
 
-    util.wait(emergeWaitTime)
+    util.wait(cfg.emergeWaitTime)
   end
 
   finish()
@@ -369,6 +372,59 @@ function tasks.punch()
   finish()
 end
 
+function tasks.bomb()
+  local rq = vBehavior.requireArgsGen("tasks.bomb", args)
+
+  if rq{"target"} then
+    animator.setAnimationState("hand", cfg.initialState or "fist")
+
+    local threads = {
+      coroutine.create(function()
+        v_titanAppear(appearSpecs)
+      end),
+      coroutine.create(function()
+        while true do
+          if world.entityExists(args.target) then
+            local targetPos = world.entityPosition(args.target)
+            local toTarget = vec2.norm(world.distance(targetPos, mcontroller.position()))
+            handTargetAngle = vec2.angle(toTarget)  -- Update hand target angle
+            mcontroller.setPosition(vec2.add(targetPos, vec2.mul(toTarget, -cfg.followDistance)))
+          end
+
+          coroutine.yield()
+        end
+      end)
+    }
+
+    while util.parallel(table.unpack(threads)) do
+      coroutine.yield()
+    end
+
+    local projectileParameters = copy(cfg.projectileParameters or {})
+    projectileParameters.power = vAttack.scaledPower(projectileParameters.power or 10)
+
+    util.wait(cfg.releaseDelay, function()
+      if world.entityExists(args.target) then
+        local targetPos = world.entityPosition(args.target)
+        local toTarget = vec2.norm(world.distance(targetPos, mcontroller.position()))
+        handTargetAngle = vec2.angle(toTarget)  -- Update hand target angle
+        mcontroller.setPosition(vec2.add(targetPos, vec2.mul(toTarget, -cfg.followDistance)))
+        -- mcontroller.setPosition(world.entityPosition(args.target))
+      end
+    end)
+
+    if world.entityExists(args.target) then
+      local toTarget = vec2.norm(world.distance(world.entityPosition(args.target), mcontroller.position()))
+      local projectilePos = vec2.add(mcontroller.position(), vec2.mul(toTarget, cfg.followDistance))
+      world.spawnProjectile(cfg.projectileType, projectilePos, entity.id(), {0, 0}, false, projectileParameters)
+
+      animator.setAnimationState("hand", "openhand")
+    end
+
+    finish()
+  end
+end
+
 function tasks.test()
   local target = world.players()[1]
   while true do
@@ -376,6 +432,15 @@ function tasks.test()
 
     -- setHandRotation(targetAngle)
     handTargetAngle = targetAngle
+
+    coroutine.yield()
+  end
+end
+
+function tasks.test2()
+  local target = world.players()[1]
+  while true do
+    mcontroller.setPosition(world.entityPosition(target))
 
     coroutine.yield()
   end
@@ -410,11 +475,11 @@ end
 function finish()
   -- Disappear
   v_titanAppear{
-    appearTime = 0.5,
-    visionStartRotationRate = 0.25,
-    visionEndRotationRate = 0,
-    visionStartRadius = 1,
-    visionEndRadius = 10,
+    appearTime = appearSpecs.appearTime,
+    visionStartRotationRate = appearSpecs.visionEndRotationRate,
+    visionEndRotationRate = appearSpecs.visionStartRotationRate,
+    visionStartRadius = appearSpecs.visionEndRadius,
+    visionEndRadius = appearSpecs.visionStartRadius,
     startAlpha = 255,
     endAlpha = 0
   }

@@ -105,6 +105,7 @@ function update(dt)
     -- If it was successful...
     if attemptedSpawnPromise:succeeded() then
       -- Update the last spawned time.
+      sb.logInfo("Promise succeeded")
       storage.lastTitanSpawnTime = world.time()
     end
     attemptedSpawnPromise = nil  -- Clear attemptedSpawnPromise

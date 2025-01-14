@@ -2,7 +2,7 @@
   "projectileName" : "v-titanburrowingrift",
   "image" : "titanburrowingrift.png",
   "animationCycle" : 0.2,
-  "lightColor" : [150, 100, 100],
+  "lightColor" : [51, 41, 71],
   "frameNumber" : 1,
   "flippable" : false,
   "fullbright" : true,
@@ -12,12 +12,31 @@
   "bounces" : -1,
   "emitters" : [ ],
   "periodicActions" : [
-    // {
-    //   "time" : 0,
-    //   "repeat" : false,
-    //   "action" : "sound",
-    //   "options" : [ "/sfx/gun/pulsecannon_blast1.ogg" ]
-    // }
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/melee/astraltear1.ogg" ]
+    },
+    {
+      "time" : 0.05,
+      "repeat" : true,
+      "action" : "particle",
+      "rotate" : false,
+      "specification" : {
+        "type" : "textured",
+        "image" : "/projectiles/boss/v-titanofdarkness/v-titanburrowingrift/trail.png",
+        "position" : [0, 0],
+        "layer" : "front",
+        "timeToLive" : 2.0,
+        "destructionTime" : 0.15,
+        "destructionAction" : "shrink",
+        "fullbright" : true,
+        "variance" : {
+          "rotation" : 180
+        }
+      }
+    }
   ],
 
   "actionOnReap" : [
@@ -25,6 +44,10 @@
       "action" : "projectile",
       "type" : "v-titanriftbursttele",
       "inheritDamageFactor" : 1
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/astraltear_stop2.ogg" ]
     }
   ],
 
@@ -32,6 +55,8 @@
 
   "speed" : 20,
   "timeToLive" : 10,
+
+  "persistentAudio" : "/sfx/projectiles/v_titanburrowingrift_loop.ogg",
 
   "scripts" : [ "/scripts/projectiles/guidedprojectile.lua", "v-titanburrowingrift.lua" ],
   "scriptDelta" : 1,

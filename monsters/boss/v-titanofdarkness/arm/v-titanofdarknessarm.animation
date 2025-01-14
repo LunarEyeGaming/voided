@@ -61,8 +61,9 @@
           "zLevel" : 1,
           "transformationGroups" : [ "wristjoint" ],
           // wrist radius: 31 px, arm length: 262 px.
-          "offset" : [14.25, -0.75],
+          "offset" : [14.375, -0.75],
           "wristPoint" : [0, 0],
+          "elbowPoint" : [27.375, -3.125],
           "length" : 28.5,
           "image" : "<partImage>?multiply=ffffff<opacity>",
           "fullbright" : true
@@ -76,13 +77,29 @@
           // arm joint radius: 40 px, end-to-end arm length: 277 px. Take half of end-to-end arm length, subtract by
           // arm joint radius, and then divide result by 8. Also add the offset of `forearm` because it also represents
           // the distance to the other joint.
-          "offset" : [26.5625, 0],
-          "elbowPoint" : [14.25, 0],
-          "length" : 24.625,
+          "offset" : [24.9375, -0.375],
+          "elbowPoint" : [13.125, -0.625],
+          "length" : 26.5,
           "image" : "<partImage>?multiply=ffffff<opacity>",
           "fullbright" : true
         }
-      }
+      } // ,
+      // "forearmpivot" : {
+      //   "properties" : {
+      //     "zLevel" : 3,
+      //     "anchorPart" : "forearm",
+      //     "image" : "<partImage>",
+      //     "fullbright" : true
+      //   }
+      // },
+      // "reararmpivot" : {
+      //   "properties" : {
+      //     "zLevel" : 4,
+      //     "anchorPart" : "reararm",
+      //     "image" : "<partImage>",
+      //     "fullbright" : true
+      //   }
+      // }
     }
   },
 

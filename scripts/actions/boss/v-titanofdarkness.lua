@@ -128,7 +128,8 @@ function v_titanExplosionAttack(args, board)
 
   for _ = 1, args.repeats do
     -- world.spawnProjectile(args.projectileType, spawnPos, entity.id(), {0, 0}, false, projectileParameters)
-    world.spawnProjectile(args.projectileType, world.entityPosition(args.target), entity.id(), {0, 0}, false, projectileParameters)
+    -- world.spawnProjectile(args.projectileType, world.entityPosition(args.target), entity.id(), {0, 0}, false, projectileParameters)
+    spawnArm(world.entityPosition(args.target), vec2.withAngle(2 * math.pi * math.random(), 20), "bomb", {target = args.target})
 
     util.run(args.interval, function() end)
   end
@@ -655,7 +656,7 @@ function v_titanAppear(args)
   end)
 
   -- Clear keyframe
-  monster.setAnimationParameter("titanAnimKeyframe", nil)
+  monster.setAnimationParameter("titanAnimKeyframe", {})
 
   animator.setGlobalTag("opacity", string.format("%02x", endAlpha))
 

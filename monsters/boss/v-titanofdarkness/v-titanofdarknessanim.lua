@@ -22,6 +22,7 @@ function init()
     rotationRate = 1 / 4,
     visionAlpha = 128
   }
+  keyframedArgs = {}
   rotation = 0
   dt = script.updateDt()
 end
@@ -73,8 +74,9 @@ function updateKeyframedArgs()
       -- Set the timer to signal that a keyframe is active.
       keyframeTimer = 0
     else
-      -- Unset the timer to signal that a keyframe is no longer active.
+      -- Unset the timer to signal that a keyframe is no longer active. Also clear keyframedArgs
       keyframeTimer = nil
+      keyframedArgs = {}
     end
   end
 

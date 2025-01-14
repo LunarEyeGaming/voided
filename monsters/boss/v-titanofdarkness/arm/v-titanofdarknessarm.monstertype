@@ -23,6 +23,59 @@
     "metaBoundBox" : [-5, -7.5, 5, 7.5],
     "scale" : 1.0,
 
+    "appearSpecs" : {
+      "appearTime" : 0.5,
+      "visionStartRotationRate" : 0,
+      "visionEndRotationRate" : 0.25,
+      "visionStartRadius" : 10,
+      "visionEndRadius" : 1
+    },
+
+    "taskConfig" : {
+      "grab" : {
+        "initialState" : "fist",
+        "grabDelay" : 2.5,
+        "grabRange" : 5,
+        "grabEndDistance" : 10,  // The number of additional blocks to travel beyond the player when grabbing.
+        "extendSpeed" : 75,
+        "extendForce" : 800,
+        "retractSpeed" : 50,
+        "retractForce" : 200,
+        "stopForce" : 200,
+        "tolerance" : 10
+      },
+      "burrowingRift" : {
+        "initialState" : "dig",
+        "emergeWaitTime" : 0.0,
+        "pointDistance" : 12.0,
+        "maxNumPrevPos" : 3,
+        "projectileType" : "v-titanburrowingrift",
+        "projectileConfig" : {"power" : 10},
+        "pointOffsetAngle" : -90,
+        "rotateHandSmoothly" : false
+      },
+      "punch" : {
+        "initialState" : "fist",
+        "punchDelay" : 1.0,
+        "punchEndDistance" : 10,
+        "extendSpeed" : 75,
+        "extendForce" : 800,
+        "retractSpeed" : 50,
+        "retractForce" : 200,
+        "stopForce" : 200,
+        "tolerance" : 10
+      },
+      "bomb" : {
+        "initialState" : "fist",
+        "releaseDelay" : 0.3,
+        "projectileParameters" : {},
+        "projectileType" : "v-titanbomb",
+        "rotateHandSmoothly" : false,
+        "useAppearAnimation" : false,
+        "followDistance" : 5
+      }
+    },
+
     "selfDamagePoly" : [ [5, 7.5], [5, -7.5], [-5, -7.5], [-5, 7.5] ],
 
     "movementSettings" : {

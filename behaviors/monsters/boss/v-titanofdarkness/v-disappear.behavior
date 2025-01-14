@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarkness-disappear",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/animator.lua",
@@ -31,6 +31,15 @@
         "parameters": {
           "state": {"value": "inactive"},
           "type": {"value": "lasers"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "inactive"},
+          "type": {"value": "beamcharge"}
         }
       },
       {

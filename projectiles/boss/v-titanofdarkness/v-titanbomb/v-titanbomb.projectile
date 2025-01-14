@@ -1,6 +1,7 @@
 {
   "projectileName" : "v-titanbomb",
-  "timeToLive" : 1.4,
+  // "timeToLive" : 1.4,
+  "timeToLive" : 0.5,
   "image" : "titanbomb.png",
   "animationCycle" : 0.1,
   "frameNumber" : 1,
@@ -30,7 +31,7 @@
 
   "onlyHitTerrain" : true,
   "power" : 0,
-  "piercing" : true,
+  "piercing" : true // ,
 
-  "scripts" : ["v-titanbomb.lua"]
+  // "scripts" : ["v-titanbomb.lua"]
 }

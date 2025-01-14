@@ -44,46 +44,55 @@ local state
 function init()
   notInflated = true
   isInflated = false
-  
+
   swimSpeed = config.getParameter("swimSpeed")
   swimForce = config.getParameter("swimForce")
   preInflateStopTime = config.getParameter("preInflateStopTime")
   preInflateStopForce = config.getParameter("preInflateStopForce")
-  
+
   inflateTime = config.getParameter("inflateTime", 0.2)
   inflateSize = config.getParameter("inflateSize", 4)
-  
+
   postInflateTime = config.getParameter("postInflateTime")
-  
+
   inflationCollisionPoly = config.getParameter("inflationCollisionPoly")
   inflatedCollisionPoly = poly.scale(inflationCollisionPoly, inflateSize)
 
   monster.setDeathParticleBurst("deathPoof")
-  
+
   animator.setGlobalTag("inflateStatus", "normal")
 
   if animator.hasSound("deathPuff") then
     monster.setDeathSound("deathPuff")
   end
-  
+
   message.setHandler("despawn", despawn)
-  
+
   listener = damageListener("damageTaken", function()
     tookDamage = true
   end)
-  
+
   tookDamage = false
-  
+
   state = FSM:new()
   state:set(states.swim)
 end
 
 function update(dt)
   listener:update()
-  state:update()
-  
+
+  local isStunned = status.resourcePositive("stunned")
+
+  -- Update stunned state and damage on touch.
+  animator.setAnimationState("damage", isStunned and "stunned" or "none")
+  monster.setDamageOnTouch(not isStunned and isInflated)
+
+  if not isStunned then
+    state:update()
+  end
+
   tookDamage = false
-  
+
   if isInflated then
     mcontroller.controlParameters({collisionPoly = inflatedCollisionPoly})
   end
@@ -93,10 +102,10 @@ states = {}
 
 function states.swim()
   local direction = 1
-  
+
   -- Reset animation state
   animator.setAnimationState("body", isInflated and "inflated" or "normal")
-  
+
   -- Swim back and forth
   while true do
     -- If the monster is out of liquid...
@@ -108,12 +117,12 @@ function states.swim()
     if notInflated and tookDamage then
       state:set(states.inflate)
     end
-    
+
     -- If colliding with a wall...
     if isWallColliding({direction, 0}) then
       direction = -direction
     end
-    
+
     --mcontroller.controlApproachVelocity(vec2.mul({direction, 0}, swimSpeed), swimForce)
     -- Swim
     mcontroller.controlFly({direction, 0})
@@ -127,17 +136,17 @@ function states.inflate()
   notInflated = false
 
   animator.setAnimationState("body", "preinflate")
-  
+
   -- Halt
   util.wait(preInflateStopTime, function()
     mcontroller.controlApproachVelocity({0, 0}, preInflateStopForce)
   end)
-  
+
   -- Begin inflation
   animator.setGlobalTag("inflateStatus", "inflated")
   animator.setAnimationState("body", "inflate")
   animator.playSound("inflate")
-  
+
   local timer = 0
 
   -- Grow collision poly
@@ -146,13 +155,11 @@ function states.inflate()
     mcontroller.controlParameters({collisionPoly = poly.scale(inflationCollisionPoly, size)})
     timer = timer + dt
   end)
-  
+
   isInflated = true
-  
-  monster.setDamageOnTouch(true)
-  
+
   util.wait(postInflateTime)
-  
+
   state:set(states.swim)
 end
 
@@ -169,7 +176,7 @@ function states.outOfLiquid()
 
     coroutine.yield()
   end
-  
+
   state:set(states.swim)
 end
 
