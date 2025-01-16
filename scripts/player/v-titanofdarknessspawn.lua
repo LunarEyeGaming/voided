@@ -32,12 +32,10 @@ local worldTypeWhitelist  -- List of worlds on which the Titan of Darkness is al
 local spawnAttemptInterval  -- How often the script should attempt to spawn the Titan
 local spawnProbability  -- The chance of the spawn succeeding
 local titanMonsterType  -- The monster type of the Titan of Darkness
-local titanUniqueId  -- The unique ID of the Titan of Darkness
 local titanLevel  -- The level of the Titan of Darkness to use
 
 local spawnAttemptTimer  -- Amount of time elapsed since the last spawn attempt
 local worldTypeStayTime  -- Amount of time that the player has spent on the current world so far
-local attemptedSpawnPromise  -- A promise representing a pending Titan spawn. Used to confirm that a Titan has spawned.
 
 local scriptIsEnabled
 
@@ -60,7 +58,6 @@ function init()
   spawnAttemptInterval = 30
   spawnProbability = 0.05
   titanMonsterType = "v-titanofdarkness"
-  titanUniqueId = "v-titanofdarkness"
   titanLevel = 10
 
   spawnAttemptTimer = 0
@@ -81,6 +78,10 @@ function init()
   -- Cache world type stay time for current world.
   worldTypeStayTime = storage.worldTypeStayTimes[worldType]
 
+  message.setHandler("v-titanOfDarknessSpawned", function()
+    storage.lastTitanSpawnTime = world.time()  -- Update lastTitanSpawnTime variable.
+  end)
+
   script.setUpdateDelta(60)
 end
 
@@ -94,21 +95,9 @@ function update(dt)
     and worldTypeStayTime > minPlanetStayTime  -- The player has stayed for longer than minPlanetStayTime...
     and hasStrongEnoughEquipment() then  -- And the player has strong enough equipment...
       world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
-      attemptedSpawnPromise = world.findUniqueEntity(titanUniqueId)
     end
 
     spawnAttemptTimer = 0  -- Reset timer
-  end
-
-  -- If a spawn was attempted and it has finished...
-  if attemptedSpawnPromise and attemptedSpawnPromise:finished() then
-    -- If it was successful...
-    if attemptedSpawnPromise:succeeded() then
-      -- Update the last spawned time.
-      sb.logInfo("Promise succeeded")
-      storage.lastTitanSpawnTime = world.time()
-    end
-    attemptedSpawnPromise = nil  -- Clear attemptedSpawnPromise
   end
 
   worldTypeStayTime = worldTypeStayTime + dt

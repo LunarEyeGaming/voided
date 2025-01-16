@@ -444,6 +444,17 @@ function v_titanSearch(args)
     if not pathfindResults then
       return false
     end
+
+    -- Also fail if there is a door in the way.
+    for _, node in ipairs(pathfindResults) do
+      -- Query for doors.
+      local doors = world.entityQuery(node.target.position, 1, {callScript = "hasCapability", callScriptArgs = {"door"}})
+
+      -- If there is at least one door...
+      if #doors > 0 then
+        return false
+      end
+    end
   end
 end
 
@@ -762,6 +773,26 @@ function v_titanStopMusic(args)
     if not contains(queried, playerId) then
       world.sendEntityMessage(playerId, "stopAltMusic", musicFadeOutTime)
     end
+  end
+
+  return true
+end
+
+-- param active: bool - true for looking at the target, false for not looking at anything.
+function v_titanSetLookActive(args)
+  local rq = vBehavior.requireArgsGen("v_titanSetLookActive", args)
+  if not rq{"active"} then return false end
+
+  animator.setLightActive("lefteyelight", args.active)
+  animator.setLightActive("righteyelight", args.active)
+  animator.setLightActive("lefteyelightforward", not args.active)
+  animator.setLightActive("righteyelightforward", not args.active)
+
+  if not args.active then
+    animator.resetTransformationGroup("lefteye")
+    animator.resetTransformationGroup("righteye")
+    animator.resetTransformationGroup("leftpupil")
+    animator.resetTransformationGroup("rightpupil")
   end
 
   return true

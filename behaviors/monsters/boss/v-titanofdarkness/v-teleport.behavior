@@ -1,13 +1,12 @@
 {
-  "name": "v-titanofdarkness-disappear",
-  "description": "",
+  "name": "v-titanofdarkness-teleport",
+  "description": null,
   "scripts": [
-    "/scripts/actions/entity.lua",
-    "/scripts/actions/v-movement.lua",
     "/scripts/actions/animator.lua",
+    "/scripts/actions/v-movement.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua",
-    "/scripts/behavior.lua",
-    "/scripts/actions/time.lua"
+    "/scripts/actions/world.lua",
+    "/scripts/actions/movement.lua"
   ],
   "parameters": {},
   "root": {
@@ -16,22 +15,6 @@
     "name": "sequence",
     "parameters": {},
     "children": [
-      {
-        "title": "setAggressive",
-        "type": "action",
-        "name": "setAggressive",
-        "parameters": {
-          "aggressive": {"value": false}
-        }
-      },
-      {
-        "title": "v_stop",
-        "type": "action",
-        "name": "v_stop",
-        "parameters": {
-          "stopForce": {"value": 20}
-        }
-      },
       {
         "title": "setAnimationState",
         "type": "action",
@@ -51,6 +34,14 @@
         }
       },
       {
+        "title": "v_stop",
+        "type": "action",
+        "name": "v_stop",
+        "parameters": {
+          "stopForce": {"value": 20}
+        }
+      },
+      {
         "title": "v_titanSetLookActive",
         "type": "action",
         "name": "v_titanSetLookActive",
@@ -63,7 +54,7 @@
         "type": "action",
         "name": "v_titanAppear",
         "parameters": {
-          "appearTime": {"value": 5},
+          "appearTime": {"value": 0.5},
           "endAlpha": {"value": 0},
           "startAlpha": {"value": 255},
           "visionEndRadius": {"value": 10},
@@ -73,30 +64,43 @@
         }
       },
       {
-        "title": "Set music state to \"none\"",
+        "title": "entityPosition",
         "type": "action",
-        "name": "setNumber",
+        "name": "entityPosition",
         "parameters": {
-          "number": {"value": 2}
+          "entity": {"key": "target"}
         },
         "output": {
-          "number": "musicState"
+          "position": "targetPos"
         }
       },
       {
-        "title": "timer",
+        "title": "setPosition",
         "type": "action",
-        "name": "timer",
+        "name": "setPosition",
         "parameters": {
-          "time": {"value": 0.1}
+          "footPosition": {"value": false},
+          "position": {"key": "targetPos"}
         }
       },
       {
-        "title": "setDying",
+        "title": "v_titanAppear",
         "type": "action",
-        "name": "setDying",
+        "name": "v_titanAppear",
         "parameters": {
-          "shouldDie": {"value": true}
+          "appearTime": {"value": 0.5},
+          "visionEndRadius": {"value": 1},
+          "visionEndRotationRate": {"value": 0.25},
+          "visionStartRadius": {"value": 10},
+          "visionStartRotationRate": {"value": 0}
+        }
+      },
+      {
+        "title": "v_titanSetLookActive",
+        "type": "action",
+        "name": "v_titanSetLookActive",
+        "parameters": {
+          "active": {"value": true}
         }
       }
     ]

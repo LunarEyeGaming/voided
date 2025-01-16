@@ -10,7 +10,6 @@
     "/scripts/actions/world.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/query.lua",
-    "/scripts/actions/animator.lua",
     "/scripts/actions/movement.lua"
   ],
   "parameters": {},
@@ -29,6 +28,14 @@
         },
         "output": {
           "number": "musicState"
+        }
+      },
+      {
+        "title": "setAggressive",
+        "type": "action",
+        "name": "setAggressive",
+        "parameters": {
+          "aggressive": {"value": false}
         }
       },
       {
@@ -128,10 +135,30 @@
                         "withoutEntity": {"key": "self"}
                       },
                       "output": {
-                        "entity": "target"
+                        "entity": "target",
+                        "list": "foundPlayers"
                       }
                     }
                   ]
+                }
+              },
+              {
+                "title": "each",
+                "type": "decorator",
+                "name": "each",
+                "parameters": {
+                  "list": {"key": "foundPlayers"},
+                  "type": {"value": "entity"}
+                },
+                "child": {
+                  "title": "sendEntityMessage",
+                  "type": "action",
+                  "name": "sendEntityMessage",
+                  "parameters": {
+                    "arguments": {"value": []},
+                    "entity": {"key": "eachItem"},
+                    "message": {"value": "v-titanOfDarknessSpawned"}
+                  }
                 }
               },
               {
@@ -166,39 +193,11 @@
                 }
               },
               {
-                "title": "Activate left light",
+                "title": "v_titanSetLookActive",
                 "type": "action",
-                "name": "setLightActive",
+                "name": "v_titanSetLookActive",
                 "parameters": {
-                  "active": {"value": true},
-                  "light": {"value": "lefteyelight"}
-                }
-              },
-              {
-                "title": "Activate right light",
-                "type": "action",
-                "name": "setLightActive",
-                "parameters": {
-                  "active": {"value": true},
-                  "light": {"value": "righteyelight"}
-                }
-              },
-              {
-                "title": "Deactivate forward left light",
-                "type": "action",
-                "name": "setLightActive",
-                "parameters": {
-                  "active": {"value": false},
-                  "light": {"value": "lefteyelightforward"}
-                }
-              },
-              {
-                "title": "Deactivate forward right light",
-                "type": "action",
-                "name": "setLightActive",
-                "parameters": {
-                  "active": {"value": false},
-                  "light": {"value": "righteyelightforward"}
+                  "active": {"value": true}
                 }
               },
               {
@@ -419,11 +418,55 @@
                                 }
                               },
                               {
+                                "title": "setAggressive",
+                                "type": "action",
+                                "name": "setAggressive",
+                                "parameters": {
+                                  "aggressive": {"value": true}
+                                }
+                              },
+                              {
                                 "title": "Spiderboss",
                                 "type": "composite",
                                 "name": "dynamic",
                                 "parameters": {},
                                 "children": [
+                                  {
+                                    "title": "sequence",
+                                    "type": "composite",
+                                    "name": "sequence",
+                                    "parameters": {},
+                                    "children": [
+                                      {
+                                        "title": "inverter",
+                                        "type": "decorator",
+                                        "name": "inverter",
+                                        "parameters": {},
+                                        "child": {
+                                          "title": "entityInRange",
+                                          "type": "action",
+                                          "name": "entityInRange",
+                                          "parameters": {
+                                            "entity": {"key": "target"},
+                                            "position": {"key": "self"},
+                                            "range": {"value": 150}
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "title": "failer",
+                                        "type": "decorator",
+                                        "name": "failer",
+                                        "parameters": {},
+                                        "child": {
+                                          "title": "v-titanofdarkness-teleport",
+                                          "type": "module",
+                                          "name": "v-titanofdarkness-teleport",
+                                          "parameters": {}
+                                        }
+                                      }
+                                    ]
+                                  },
                                   {
                                     "title": "parallel",
                                     "type": "composite",
@@ -510,40 +553,100 @@
                                               "parameters": {},
                                               "children": [
                                                 {
-                                                  "title": "v-titanofdarkness-laser",
-                                                  "type": "module",
-                                                  "name": "v-titanofdarkness-laser",
-                                                  "parameters": {}
+                                                  "title": "cooldown",
+                                                  "type": "decorator",
+                                                  "name": "cooldown",
+                                                  "parameters": {
+                                                    "cooldown": {"value": 20},
+                                                    "onFail": {"value": false},
+                                                    "onSuccess": {"value": false}
+                                                  },
+                                                  "child": {
+                                                    "title": "v-titanofdarkness-laser",
+                                                    "type": "module",
+                                                    "name": "v-titanofdarkness-laser",
+                                                    "parameters": {}
+                                                  }
                                                 },
                                                 {
-                                                  "title": "v-titanofdarkness-explosion",
-                                                  "type": "module",
-                                                  "name": "v-titanofdarkness-explosion",
-                                                  "parameters": {}
+                                                  "title": "cooldown",
+                                                  "type": "decorator",
+                                                  "name": "cooldown",
+                                                  "parameters": {
+                                                    "cooldown": {"value": 20},
+                                                    "onFail": {"value": false},
+                                                    "onSuccess": {"value": false}
+                                                  },
+                                                  "child": {
+                                                    "title": "v-titanofdarkness-explosion",
+                                                    "type": "module",
+                                                    "name": "v-titanofdarkness-explosion",
+                                                    "parameters": {}
+                                                  }
                                                 },
                                                 {
-                                                  "title": "v-titanofdarkness-bouncespread",
-                                                  "type": "module",
-                                                  "name": "v-titanofdarkness-bouncespread",
-                                                  "parameters": {}
+                                                  "title": "cooldown",
+                                                  "type": "decorator",
+                                                  "name": "cooldown",
+                                                  "parameters": {
+                                                    "cooldown": {"value": 30},
+                                                    "onFail": {"value": false},
+                                                    "onSuccess": {"value": false}
+                                                  },
+                                                  "child": {
+                                                    "title": "v-titanofdarkness-bouncespread",
+                                                    "type": "module",
+                                                    "name": "v-titanofdarkness-bouncespread",
+                                                    "parameters": {}
+                                                  }
                                                 },
                                                 {
-                                                  "title": "v-titanofdarkness-burrowingrifts",
-                                                  "type": "module",
-                                                  "name": "v-titanofdarkness-burrowingrifts",
-                                                  "parameters": {}
+                                                  "title": "cooldown",
+                                                  "type": "decorator",
+                                                  "name": "cooldown",
+                                                  "parameters": {
+                                                    "cooldown": {"value": 20},
+                                                    "onFail": {"value": false},
+                                                    "onSuccess": {"value": false}
+                                                  },
+                                                  "child": {
+                                                    "title": "v-titanofdarkness-burrowingrifts",
+                                                    "type": "module",
+                                                    "name": "v-titanofdarkness-burrowingrifts",
+                                                    "parameters": {}
+                                                  }
                                                 },
                                                 {
-                                                  "title": "v-titanofdarkness-meteors",
-                                                  "type": "module",
-                                                  "name": "v-titanofdarkness-meteors",
-                                                  "parameters": {}
+                                                  "title": "cooldown",
+                                                  "type": "decorator",
+                                                  "name": "cooldown",
+                                                  "parameters": {
+                                                    "cooldown": {"value": 20},
+                                                    "onFail": {"value": false},
+                                                    "onSuccess": {"value": false}
+                                                  },
+                                                  "child": {
+                                                    "title": "v-titanofdarkness-meteors",
+                                                    "type": "module",
+                                                    "name": "v-titanofdarkness-meteors",
+                                                    "parameters": {}
+                                                  }
                                                 },
                                                 {
-                                                  "title": "v-titanofdarkness-punch",
-                                                  "type": "module",
-                                                  "name": "v-titanofdarkness-punch",
-                                                  "parameters": {}
+                                                  "title": "cooldown",
+                                                  "type": "decorator",
+                                                  "name": "cooldown",
+                                                  "parameters": {
+                                                    "cooldown": {"value": 30},
+                                                    "onFail": {"value": false},
+                                                    "onSuccess": {"value": false}
+                                                  },
+                                                  "child": {
+                                                    "title": "v-titanofdarkness-punch",
+                                                    "type": "module",
+                                                    "name": "v-titanofdarkness-punch",
+                                                    "parameters": {}
+                                                  }
                                                 }
                                               ]
                                             },

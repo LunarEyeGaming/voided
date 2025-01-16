@@ -454,3 +454,20 @@ function updateDoor(progress, endOffset)
     physics.setForceEnabled(forceRegion, storage.active)
   end
 end
+
+---Callscript funcion.
+---@param capability string
+---@return boolean
+function hasCapability(capability)
+  if object.isInputNodeConnected(0) then
+    return false
+  elseif capability == 'door' then
+    return true
+  elseif capability == 'closedDoor' then
+    return not storage.active
+  elseif capability == 'openDoor' then
+    return storage.active
+  else
+    return false
+  end
+end

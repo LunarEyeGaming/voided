@@ -6,8 +6,8 @@
     "/scripts/actions/v-movement.lua",
     "/scripts/behavior.lua",
     "/scripts/actions/animator.lua",
-    "/scripts/actions/time.lua",
-    "/scripts/actions/boss/v-titanofdarkness.lua"
+    "/scripts/actions/boss/v-titanofdarkness.lua",
+    "/scripts/actions/time.lua"
   ],
   "parameters": {},
   "root": {
@@ -69,71 +69,11 @@
             }
           },
           {
-            "title": "Deactivate left light",
+            "title": "v_titanSetLookActive",
             "type": "action",
-            "name": "setLightActive",
+            "name": "v_titanSetLookActive",
             "parameters": {
-              "active": {"value": false},
-              "light": {"value": "lefteyelight"}
-            }
-          },
-          {
-            "title": "Deactivate right light",
-            "type": "action",
-            "name": "setLightActive",
-            "parameters": {
-              "active": {"value": false},
-              "light": {"value": "righteyelight"}
-            }
-          },
-          {
-            "title": "Activate forward left light",
-            "type": "action",
-            "name": "setLightActive",
-            "parameters": {
-              "active": {"value": true},
-              "light": {"value": "lefteyelightforward"}
-            }
-          },
-          {
-            "title": "Activate forward right light",
-            "type": "action",
-            "name": "setLightActive",
-            "parameters": {
-              "active": {"value": true},
-              "light": {"value": "righteyelightforward"}
-            }
-          },
-          {
-            "title": "reset \"lefteye\" transformation group",
-            "type": "action",
-            "name": "resetTransformationGroup",
-            "parameters": {
-              "transformationGroup": {"value": "lefteye"}
-            }
-          },
-          {
-            "title": "reset \"righteye\" transformation group",
-            "type": "action",
-            "name": "resetTransformationGroup",
-            "parameters": {
-              "transformationGroup": {"value": "righteye"}
-            }
-          },
-          {
-            "title": "reset \"leftpupil\" transformation group",
-            "type": "action",
-            "name": "resetTransformationGroup",
-            "parameters": {
-              "transformationGroup": {"value": "leftpupil"}
-            }
-          },
-          {
-            "title": "reset \"rightpupil\" transformation group",
-            "type": "action",
-            "name": "resetTransformationGroup",
-            "parameters": {
-              "transformationGroup": {"value": "rightpupil"}
+              "active": {"value": false}
             }
           },
           {
@@ -145,7 +85,7 @@
             }
           },
           {
-            "title": "setFlag",
+            "title": "Set \"lookatPlayer\" flag",
             "type": "action",
             "name": "setFlag",
             "parameters": {
@@ -153,39 +93,11 @@
             }
           },
           {
-            "title": "Activate left light",
+            "title": "v_titanSetLookActive",
             "type": "action",
-            "name": "setLightActive",
+            "name": "v_titanSetLookActive",
             "parameters": {
-              "active": {"value": true},
-              "light": {"value": "lefteyelight"}
-            }
-          },
-          {
-            "title": "Activate right light",
-            "type": "action",
-            "name": "setLightActive",
-            "parameters": {
-              "active": {"value": true},
-              "light": {"value": "righteyelight"}
-            }
-          },
-          {
-            "title": "Deactivate forward left light",
-            "type": "action",
-            "name": "setLightActive",
-            "parameters": {
-              "active": {"value": false},
-              "light": {"value": "lefteyelightforward"}
-            }
-          },
-          {
-            "title": "Deactivate forward right light",
-            "type": "action",
-            "name": "setLightActive",
-            "parameters": {
-              "active": {"value": false},
-              "light": {"value": "righteyelightforward"}
+              "active": {"value": true}
             }
           }
         ]

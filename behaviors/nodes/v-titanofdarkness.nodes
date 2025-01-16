@@ -204,5 +204,16 @@
     "output": {
       "angle": {"type": "number", "key": null}
     }
+  },
+  "v_titanSetLookActive": {
+    "type": "action",
+    "name": "v_titanSetLookActive",
+    "title": "v_titanSetLookActive",
+    "properties": {
+      "active": {"type": "bool", "value": true}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
   }
 }
