@@ -54,24 +54,6 @@
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   },
-  "v_titanBouncingOrbAttack": {
-    "type": "action",
-    "name": "v_titanBouncingOrbAttack",
-    "title": "v_titanBouncingOrbAttack",
-    "properties": {
-      "flingCount": {"type": "number", "value": 10},
-      "flingDelay": {"type": "number", "value": 2.5},
-      "flingInterval": {"type": "number", "value": 0.6},
-      "projectileCount": {"type": "number", "value": 8},
-      "projectileParameters": {"type": "json", "value": null},
-      "projectileType": {"type": "string", "value": "v-titanbouncingprojectile"},
-      "target": {"type": "entity", "key": "target"},
-      "maxFlingAttempts": {"type": "number", "value": 200}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {}
-  },
   "v_titanBurrowingRiftAttack": {
     "type": "action",
     "name": "v_titanBurrowingRiftAttack",
@@ -211,6 +193,23 @@
     "title": "v_titanSetLookActive",
     "properties": {
       "active": {"type": "bool", "value": true}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
+  },
+  "v_titanBouncingOrbAttack": {
+    "type": "action",
+    "name": "v_titanBouncingOrbAttack",
+    "title": "v_titanBouncingOrbAttack",
+    "properties": {
+      "flingCount": {"type": "number", "value": 10},
+      "flingDelay": {"type": "number", "value": 2.5},
+      "flingInterval": {"type": "number", "value": 0.6},
+      "projectileCount": {"type": "number", "value": 8},
+      "projectileParameters": {"type": "json", "value": null},
+      "projectileType": {"type": "string", "value": "v-titanbouncingprojectile"},
+      "target": {"type": "entity", "key": "target"}
     },
     "category": "v-titanofdarkness",
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",

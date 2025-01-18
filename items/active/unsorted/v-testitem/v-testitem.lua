@@ -1,10 +1,27 @@
 require "/scripts/actions/v-sensor.lua"
 
+local projectileId
+
+function init()
+  activeItem.setScriptedAnimationParameter("riftTrails", config.getParameter("riftTrails"))
+  activeItem.setScriptedAnimationParameter("riftTrailDuration", config.getParameter("riftTrailDuration"))
+end
+
 function update(dt)
+  if projectileId then
+    if world.entityExists(projectileId) then
+      world.sendEntityMessage(projectileId, "updateProjectile", activeItem.ownerAimPosition())
+    else
+      projectileId = nil
+      activeItem.setScriptedAnimationParameter("riftTrailTrackingEntity", nil)
+    end
+  end
 end
 
 function activate()
   -- activeItem.interact("ScriptPane", root.assetJson("/interface/scripted/voideye-tier6skip/voideye-tier6skip.config"))
+  projectileId = world.spawnProjectile("electricorb", activeItem.ownerAimPosition(), entity.id(), {1, 0}, false, {controlMovement = {maxSpeed = 50, controlForce = 1000}})
+  activeItem.setScriptedAnimationParameter("riftTrailTrackingEntity", projectileId)
 end
 
 function aStarAlgorithm(startPoint, endPoint)

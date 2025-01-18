@@ -116,11 +116,10 @@ end
 -- param maxSelectionAttempts (optional) - Max number of attempts to select a spawn position
 function v_titanExplosionAttack(args, board)
   local rq = vBehavior.requireArgsGen("v_titanExplosionAttack", args)
-
-  if not rq{"target", "requiredSafeArea", "spawnRegion", "projectileType", "followTime", "interval",
-  "repeats"} then
+  if not rq{"target", "requiredSafeArea", "spawnRegion", "projectileType", "followTime", "interval", "repeats"} then
     return false
   end
+
   local projectileParameters = copy(args.projectileParameters or {})
   projectileParameters.power = vAttack.scaledPower(projectileParameters.power or 10)
   projectileParameters.target = args.target
@@ -144,7 +143,6 @@ end
 -- param target - The target entity to attack
 -- param projectileType
 -- param projectileParameters (optional)
--- param maxFlingAttempts (optional) - The maximum number of times to attempt a selection of a projectile to fling.
 function v_titanBouncingOrbAttack(args)
   local rq = vBehavior.requireArgsGen("v_titanBouncingOrbAttack", args)
   if not rq{"projectileCount", "projectileType", "flingDelay", "flingInterval", "flingCount", "target"} then
@@ -153,7 +151,6 @@ function v_titanBouncingOrbAttack(args)
 
   local params = copy(args.projectileParameters or {})
   params.power = vAttack.scaledPower(params.power or 10)
-  local maxAttempts = args.maxFlingAttempts or 200
 
   -- Get eye positions.
   local leftEyePos = vec2.add(animator.partPoint("body", "leftEyeCenter"), mcontroller.position())

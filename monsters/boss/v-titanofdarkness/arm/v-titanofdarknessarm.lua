@@ -32,6 +32,9 @@ local handTargetAngle  -- Current rotation that the hand is going toward
 local maxHandAngle  -- The maximum allowable difference between currentHandAngle and the current forearm angle.
 
 function init()
+  monster.setAnimationParameter("riftTrails", config.getParameter("riftTrails"))
+  monster.setAnimationParameter("riftTrailDuration", config.getParameter("riftTrailDuration"))
+
   appearSpecs = config.getParameter("appearSpecs")
 
   task = config.getParameter("task")
@@ -323,8 +326,9 @@ function tasks.burrowingRift()
     local prevPosList  -- List of previous projectile positions, including current projectile positions. Used to estimate projectile velocity
 
     -- Check if the projectile exists. If so, initialize the prevPosList to have `maxNumPrevPos` copies of the
-    -- projectile's position.
+    -- projectile's position. Also set the rift trail animation script to track this entity.
     if world.entityExists(projectileId) then
+      monster.setAnimationParameter("riftTrailTrackingEntity", projectileId)
       local pos = world.entityPosition(projectileId)
       prevPosList = {}
       for _ = 1, maxNumPrevPos do
@@ -354,6 +358,8 @@ function tasks.burrowingRift()
 
       coroutine.yield()
     end
+
+    monster.setAnimationParameter("riftTrailTrackingEntity", nil)
 
     util.wait(cfg.emergeWaitTime)
   end

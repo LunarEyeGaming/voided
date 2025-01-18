@@ -102,6 +102,10 @@ function init()
       setupMaterialSpaces()
     end
 
+    if not world.regionActive(object.boundBox()) then
+      sb.logInfo("slidingdoor.lua: Region not loaded!")
+    end
+
     -- Set initial material spaces
     object.setMaterialSpaces(storage.spaceStates[1])
   end

@@ -17,6 +17,8 @@ function init()
   sparkProjectileType = "v-voltitesparkfg"
   effectQueryRadius = 150
   effects = {"v-chargedground", "v-chargedgroundmessage"}
+
+  script.setUpdateDelta(0)
 end
 
 function destroy()

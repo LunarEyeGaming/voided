@@ -5,14 +5,9 @@
 ]]
 
 local oldUpdateDoor = updateDoor or function() end
-local oldInit = init or function() end
 
 local setUnlockState
 local setLockState
-
-function init()
-  oldInit()
-end
 
 function updateDoor(progress, endOffset)
   oldUpdateDoor(progress, endOffset)

@@ -17,10 +17,39 @@
       "repeat" : false,
       "action" : "sound",
       "options" : [ "/sfx/melee/astraltear1.ogg" ]
+    // },
+    // {
+    //   "time" : 0.05,
+    //   "repeat" : true,
+    //   "action" : "particle",
+    //   "rotate" : false,
+    //   "specification" : {
+    //     "type" : "textured",
+    //     "image" : "/projectiles/boss/v-titanofdarkness/v-titanburrowingrift/trail.png",
+    //     "position" : [0, 0],
+    //     "layer" : "front",
+    //     "timeToLive" : 2.0,
+    //     "destructionTime" : 0.15,
+    //     "destructionAction" : "shrink",
+    //     "fullbright" : true,
+    //     "variance" : {
+    //       "rotation" : 180
+    //     }
+    //   }
+    }
+  ],
+
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-titanriftbursttele",
+      "inheritDamageFactor" : 1
     },
     {
-      "time" : 0.05,
-      "repeat" : true,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/astraltear_stop2.ogg" ]
+    },
+    {
       "action" : "particle",
       "rotate" : false,
       "specification" : {
@@ -36,18 +65,6 @@
           "rotation" : 180
         }
       }
-    }
-  ],
-
-  "actionOnReap" : [
-    {
-      "action" : "projectile",
-      "type" : "v-titanriftbursttele",
-      "inheritDamageFactor" : 1
-    },
-    {
-      "action" : "sound",
-      "options" : [ "/sfx/projectiles/astraltear_stop2.ogg" ]
     }
   ],
 
