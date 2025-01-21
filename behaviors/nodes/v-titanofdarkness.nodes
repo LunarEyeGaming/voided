@@ -141,25 +141,6 @@
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   },
-  "v_titanExplosionAttack": {
-    "type": "action",
-    "name": "v_titanExplosionAttack",
-    "title": "v_titanExplosionAttack",
-    "properties": {
-      "maxSelectionAttempts": {"type": "number", "value": 200},
-      "interval": {"type": "number", "value": 1.3},
-      "projectileParameters": {"type": "json", "value": null},
-      "projectileType": {"type": "string", "value": "v-titanbomb"},
-      "repeats": {"type": "number", "value": 4},
-      "requiredSafeArea": {"type": "list", "value": [-5, -5, 5, 5]},
-      "spawnRegion": {"type": "list", "value": [-25, -25, 25, 25]},
-      "target": {"type": "entity", "key": "target"},
-      "followTime": {"type": "number", "value": 0.8}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {}
-  },
   "v_titanSearch": {
     "type": "action",
     "name": "v_titanSearch",
@@ -210,6 +191,20 @@
       "projectileParameters": {"type": "json", "value": null},
       "projectileType": {"type": "string", "value": "v-titanbouncingprojectile"},
       "target": {"type": "entity", "key": "target"}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
+  },
+  "v_titanExplosionAttack": {
+    "type": "action",
+    "name": "v_titanExplosionAttack",
+    "title": "v_titanExplosionAttack",
+    "properties": {
+      "interval": {"type": "number", "value": 1.3},
+      "repeats": {"type": "number", "value": 4},
+      "target": {"type": "entity", "key": "target"},
+      "armAnchorRadius": {"type": "number", "value": 20}
     },
     "category": "v-titanofdarkness",
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",

@@ -106,29 +106,22 @@ function v_titanLaserRotation(args, board)
 end
 
 -- param target - The target entity to attack
--- param requiredSafeArea - The required area surrounding a spawn position for it to be considered valid
--- param spawnRegion - Region in which to spawn the projectile relative to the current position.
--- param followTime - The amount of time for which the projectile must follow the target
 -- param interval - Time to wait between spawning projectiles
 -- param repeats - Number of times to repeat the attack
--- param projectileType
--- param projectileParameters (optional)
--- param maxSelectionAttempts (optional) - Max number of attempts to select a spawn position
+-- param armAnchorRadius (optional) - The range at which to place the anchor point relative to the spawning position.
 function v_titanExplosionAttack(args, board)
   local rq = vBehavior.requireArgsGen("v_titanExplosionAttack", args)
-  if not rq{"target", "requiredSafeArea", "spawnRegion", "projectileType", "followTime", "interval", "repeats"} then
+  if not rq{"target", "interval", "repeats"} then
     return false
   end
 
-  local projectileParameters = copy(args.projectileParameters or {})
-  projectileParameters.power = vAttack.scaledPower(projectileParameters.power or 10)
-  projectileParameters.target = args.target
-  projectileParameters.followTime = args.followTime
+  local anchorRadius = args.armAnchorRadius or 15
 
   for _ = 1, args.repeats do
-    -- world.spawnProjectile(args.projectileType, spawnPos, entity.id(), {0, 0}, false, projectileParameters)
-    -- world.spawnProjectile(args.projectileType, world.entityPosition(args.target), entity.id(), {0, 0}, false, projectileParameters)
-    spawnArm(world.entityPosition(args.target), vec2.withAngle(2 * math.pi * math.random(), 20), "bomb", {target = args.target})
+    -- Slightly offset the arm to allow it to snap to the target properly.
+    local pos = vec2.add(world.entityPosition(args.target), {-0.01, 0})
+    spawnArm(pos, vec2.withAngle(2 * math.pi * math.random(), anchorRadius),
+    "bomb", {target = args.target})
 
     util.run(args.interval, function() end)
   end

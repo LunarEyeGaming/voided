@@ -35,13 +35,12 @@
         "type": "action",
         "name": "v_titanExplosionAttack",
         "parameters": {
-          "postTeleportTime": {"value": 0.8},
+          "projectileParameters": {"value": {"power": 25}},
           "projectileType": {"value": "v-titanbomb"},
           "repeats": {"value": 4},
           "requiredSafeArea": {"value": [-5, -5, 5, 5]},
           "spawnRegion": {"value": [-25, -25, 25, 25]},
-          "target": {"key": "target"},
-          "teleportDelay": {"value": 0.6}
+          "target": {"key": "target"}
         }
       }
     ]

@@ -34,6 +34,7 @@ local maxHandAngle  -- The maximum allowable difference between currentHandAngle
 function init()
   monster.setAnimationParameter("riftTrails", config.getParameter("riftTrails"))
   monster.setAnimationParameter("riftTrailDuration", config.getParameter("riftTrailDuration"))
+  monster.setAnimationParameter("riftTrailThicknessVariance", config.getParameter("riftTrailThicknessVariance"))
 
   appearSpecs = config.getParameter("appearSpecs")
 
@@ -132,6 +133,8 @@ function updateArm()
       -- by the direction of revForearmToHandAngle.
       local correctionAmount = (math.abs(revForearmToHandAngle) - maxHandAngle) * util.toDirection(revForearmToHandAngle)
       correctedForearmAngle = baseAngle + forearmAngle + correctionAmount
+      -- Rotate anchor point.
+      anchorPoint = vec2.add(mcontroller.position(), vec2.rotate(anchorPointDistance, correctionAmount))
     else
       correctedForearmAngle = baseAngle + forearmAngle
     end
@@ -403,6 +406,8 @@ function tasks.punch()
     -- predictedTargetDistance. Also, lock the handTargetAngle to currentHandAngle.
     local punchEndPosition = vec2.add(startPos, vec2.withAngle(currentHandAngle, vec2.mag(predictedTargetDistance) + punchEndDistance))
     handTargetAngle = currentHandAngle
+
+    animator.playSound("punch")
 
     monster.setDamageOnTouch(true)
 

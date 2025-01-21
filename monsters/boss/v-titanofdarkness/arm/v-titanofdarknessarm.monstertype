@@ -41,6 +41,7 @@
     ],
 
     "riftTrailDuration" : 2,
+    "riftTrailThicknessVariance" : 0.25,
 
     "appearSpecs" : {
       "appearTime" : 0.5,
@@ -88,7 +89,7 @@
       "bomb" : {
         "initialState" : "fist",
         "releaseDelay" : 0.3,
-        "projectileParameters" : {},
+        "projectileParameters" : {"power" : 17},
         "projectileType" : "v-titanbomb",
         "rotateHandSmoothly" : false,
         "useAppearAnimation" : false,
