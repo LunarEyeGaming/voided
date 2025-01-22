@@ -148,7 +148,7 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1.0,
+        "priority" : 3.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:surfaceCapsules",
 
@@ -259,6 +259,20 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-toxicrock1" ], [1.0, "v-toxicrock2" ], [1.0, "v-toxicrock3" ], [1.0, "v-toxicrock4" ], [1.0, "v-toxicrock5" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-fungalblob1" ], [1.0, "v-fungalblob2" ], [1.0, "v-fungalblob3" ], [1.0, "v-fungalblob4" ], [1.0, "v-fungalblob5" ] ],
             "parameters" : { }
           }
         ]

@@ -15,11 +15,11 @@
       {
         "select" : 1,
         "pool" : "generatedGroundAggroDay"
-      }, 
+      },
       {
         "select" : 3,
         "pool" : "nightTerrors"
-      },      
+      },
       {
         "select" : 2,
         "pool" : "generatedGround"
@@ -53,7 +53,7 @@
   "mainBlock" : "v-rottingfungus",
   "subBlocks" : [ "v-toxicfungus" ],
   "ores" : "v-toxicwasteland",
-  
+
   "hueShiftOptions" : [ 40, 30, 20, 10, 0, -10, -20 ],
 
   "surfacePlaceables" : {
@@ -83,6 +83,20 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-toxicbubblespawnerspawner" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseSmall",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-fungalblob1" ], [1.0, "v-fungalblob2" ], [1.0, "v-fungalblob3" ], [1.0, "v-fungalblob4" ], [1.0, "v-fungalblob5" ] ],
             "parameters" : { }
           }
         ]

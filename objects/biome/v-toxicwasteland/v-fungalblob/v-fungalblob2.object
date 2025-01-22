@@ -1,0 +1,43 @@
+{
+  "objectName" : "v-fungalblob2",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "category" : "breakable",
+  "printable" : false,
+
+  "description" : "A blob of inert fungus.",
+  "shortdescription" : "Fungal Blob",
+  "race" : "generic",
+
+  // "fullbright" : true,
+  // "lightColor" : [0, 50, 40],
+
+  "apexDescription" : "A slimy blob of inert fungus.",
+  "avianDescription" : "A gross pile of slimy fungus.",
+  "floranDescription" : "Pink blob of weird ssslime.",
+  "glitchDescription" : "Confused. This blob of slime is made of fungi.",
+  "humanDescription" : "A pile of pink slime.",
+  "hylotlDescription" : "A repulsive pile of pink fungus melted into mush.",
+  "novakidDescription" : "A sticky blob made outta fungus.",
+
+  "inventoryIcon" : "capsulebigicon.png",
+  "orientations" : [
+    {
+      "image" : "fungalblob.png:2",
+      "imagePosition" : [0, 0],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+
+    }
+  ],
+  "smashable" : true,
+  "smashSounds" : [ "/sfx/objects/meat_break1.ogg", "/sfx/objects/meat_break3.ogg" ],
+  "smashDropOptions" : [
+    [ [ "v-fungalsample", 1, { } ] ]
+  ],
+
+  "biomePlaced" : true
+}

@@ -88,7 +88,7 @@ function updateTitanPosition()
 end
 
 function drawOverlays()
-  -- world.debugText("Test", entity.position(), "green")
+  world.debugText("v-titanofdarknessaura.lua::drawOverlays() called", entity.position(), "green")
   -- This uses a thick line to create a colored rectangle that covers the entire screen.
   local windowRegion = world.clientWindow()
   -- Make window region relative to the current entity. Account for world wrapping.
