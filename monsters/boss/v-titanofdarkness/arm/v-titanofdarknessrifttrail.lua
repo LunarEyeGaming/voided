@@ -40,8 +40,8 @@ function updateTrackedPositions()
     -- table.insert(trackedPositions, world.entityPosition(trackingEntity))  -- Add to table.
     currentPosition = world.entityPosition(trackingEntity)
 
-    -- Do some pre-computations and insert if there is a prevPosition.
-    if prevPosition then
+    -- Do some pre-computations and insert if there is a prevPosition that is not equal to currentPosition.
+    if prevPosition and not vec2.eq(prevPosition, currentPosition) then
       local direction = world.distance(prevPosition, currentPosition)
       local mag = vec2.mag(direction)
       local inverseMag = 1 / mag

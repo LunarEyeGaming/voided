@@ -1,0 +1,169 @@
+{
+  "moneyIcon" : {
+    "type" : "image",
+    "position" : [176, 30],
+    "file" : "/interface/money.png"
+  },
+  "priceLabel" : {
+    "type" : "label",
+    "position" : [189, 30],
+    "hAnchor" : "left",
+    "value" : "tree"
+  },
+  "objectImage" : {
+    "type" : "image",
+    "position" : [40, 127],
+    "file" : "",
+    "centered" : true,
+    "maxSize" : [ 46, 59 ],
+    "minSize" : [ 46, 59 ]
+  },
+  "descriptionLabel" : {
+    "type" : "label",
+    "position" : [16, 90],
+    "wrapWidth" : 122,
+    "hAnchor" : "left",
+    "vAnchor" : "top",
+    "fontSize" : 7
+  },
+  "title" : {
+    "type" : "label",
+    "position" : [35, 179],
+    "hAnchor" : "left",
+    "value" : ""
+  },
+  "rarityLabel" : {
+    "type" : "label",
+    "position" : [12, 30],
+    "hAnchor" : "left",
+    "centered" : true,
+    "wrapWidth" : 126
+  },
+  "titleIcon" : {
+    "type" : "itemslot",
+    "position" : [9, 167],
+    "callback" : "null",
+    "iconMode" : true,
+    "backingImage" : "/interface/inventory/portrait.png",
+    "showRarity" : false,
+    "showBackingImageWhenFull" : true
+  },
+  "armorLabelTitle" : {
+    "type" : "label",
+    "position" : [35, 169],
+    "hAnchor" : "left",
+    "color" : [185, 181, 178],
+    "value" : "Armour"
+  },
+  "statusList" : {
+    "scissoring" : false,
+    "type" : "list",
+    "fillDown" : true,
+    "position" : [6, 161],
+    "schema" : {
+      "spacing" : [0, 1],
+      "memberSize" : [999, 15],
+      "listTemplate" : {
+        "statusLabel" : {
+          "type" : "label",
+          "position" : [102, 2],
+          "hAnchor" : "left"
+        },
+        "statusImage" : {
+          "scissoring" : false,
+          "type" : "image",
+          "position" : [62, -1],
+          "file" : "",
+          "zlevel" : 8
+        },
+        "backgroundImage" : {
+          "scissoring" : false,
+          "type" : "image",
+          "position" : [61, 0],
+          "file" : "/interface/tooltips/statlistback.png"
+        }
+      }
+    }
+  },
+  "electricResistanceLabel" : {
+    "type" : "label",
+    "position" : [177, 147],
+    "hAnchor" : "left",
+    "value" : "0%"
+  },
+  "electricResistanceImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [142, 143],
+    "file" : "/interface/elements/electric.png",
+    "zlevel" : 8
+  },
+  "electricResistanceBackgroundImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [141, 145],
+    "file" : "/interface/tooltips/statlistback.png"
+  },
+  "fireResistanceLabel" : {
+    "type" : "label",
+    "position" : [177, 131],
+    "hAnchor" : "left",
+    "value" : "0%"
+  },
+  "fireResistanceImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [142, 127],
+    "file" : "/interface/elements/fire.png",
+    "zlevel" : 8
+  },
+  "fireResistanceBackgroundImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [141, 129],
+    "file" : "/interface/tooltips/statlistback.png"
+  },
+  "iceResistanceLabel" : {
+    "type" : "label",
+    "position" : [177, 115],
+    "hAnchor" : "left",
+    "value" : "0%"
+  },
+  "iceResistanceImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [142, 111],
+    "file" : "/interface/elements/ice.png",
+    "zlevel" : 8
+  },
+  "iceResistanceBackgroundImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [141, 113],
+    "file" : "/interface/tooltips/statlistback.png"
+  },
+  "poisonResistanceLabel" : {
+    "type" : "label",
+    "position" : [177, 99],
+    "hAnchor" : "left",
+    "value" : "0%"
+  },
+  "poisonResistanceImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [142, 95],
+    "file" : "/interface/elements/poison.png",
+    "zlevel" : 8
+  },
+  "poisonResistanceBackgroundImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [141, 97],
+    "file" : "/interface/tooltips/statlistback.png"
+  },
+  "voidedIconImage" : {  // Don't ask me why it has to end in "Image". It just does.
+    "type" : "image",
+    "position" : [203, 176],
+    "zlevel" : 11
+  }
+}

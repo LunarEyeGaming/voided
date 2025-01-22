@@ -20,7 +20,7 @@ end
 
 function activate()
   -- activeItem.interact("ScriptPane", root.assetJson("/interface/scripted/voideye-tier6skip/voideye-tier6skip.config"))
-  projectileId = world.spawnProjectile("electricorb", activeItem.ownerAimPosition(), entity.id(), {1, 0}, false, {controlMovement = {maxSpeed = 50, controlForce = 1000}})
+  projectileId = world.spawnProjectile("v-stuttertest", activeItem.ownerAimPosition(), entity.id(), {1, 0}, false, {controlMovement = {maxSpeed = 50, controlForce = 1000}})
   activeItem.setScriptedAnimationParameter("riftTrailTrackingEntity", projectileId)
 end
 
