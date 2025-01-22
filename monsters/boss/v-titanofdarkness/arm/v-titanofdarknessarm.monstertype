@@ -1,0 +1,200 @@
+{
+  "type" : "v-titanofdarknessarm",
+
+  "categories" : [ "v-titanofdarknessarm" ],
+  "parts" : [ "arm" ],
+
+  "animation" : "v-titanofdarknessarm.animation",
+  "reversed" : true,
+
+  "dropPools" : [ "empty" ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/boss/v-titanofdarkness/arm/v-titanofdarknessarm.lua"
+    ],
+
+    "animationScripts" : [
+      "/monsters/boss/v-titanofdarkness/v-titanofdarknessanim.lua",
+      "/monsters/boss/v-titanofdarkness/arm/v-titanofdarknessrifttrail.lua"
+    ],
+
+    "renderLayer" : "ForegroundEntity",
+
+    "metaBoundBox" : [-5, -7.5, 5, 7.5],
+    "scale" : 1.0,
+
+    "riftTrails" : [  // Ordered from lowest to highest z-level.
+      {
+        "thickness" : 1.25,
+        "thicknessVariance" : 0.25,
+        "color" : [255, 255, 255, 26],
+        "fullbright" : true,
+        "renderLayer" : "ForegroundEntity"
+      },
+      {
+        "thickness" : 1,
+        "thicknessVariance" : 0.25,
+        "color" : [0, 0, 0],
+        "renderLayer" : "ForegroundEntity"
+      }
+    ],
+
+    "riftTrailDuration" : 2,
+    "riftTrailThicknessVariance" : 0.25,
+
+    "appearSpecs" : {
+      "appearTime" : 0.5,
+      "visionStartRotationRate" : 0,
+      "visionEndRotationRate" : 0.25,
+      "visionStartRadius" : 10,
+      "visionEndRadius" : 1
+    },
+
+    "taskConfig" : {
+      "grab" : {
+        "initialState" : "fist",
+        "grabDelay" : 2.5,
+        "grabRange" : 5,
+        "grabEndDistance" : 10,  // The number of additional blocks to travel beyond the player when grabbing.
+        "extendSpeed" : 75,
+        "extendForce" : 800,
+        "retractSpeed" : 50,
+        "retractForce" : 200,
+        "stopForce" : 200,
+        "tolerance" : 10
+      },
+      "burrowingRift" : {
+        "initialState" : "dig",
+        "emergeWaitTime" : 0.0,
+        "pointDistance" : 12.0,
+        "maxNumPrevPos" : 3,
+        "projectileType" : "v-titanburrowingrift",
+        "projectileConfig" : {"power" : 10},
+        "pointOffsetAngle" : -90,
+        "rotateHandSmoothly" : false,
+        "useAppearAnimation" : false
+      },
+      "punch" : {
+        "initialState" : "fist",
+        "punchDelay" : 1.0,
+        "punchEndDistance" : 10,
+        "extendSpeed" : 75,
+        "extendForce" : 800,
+        "retractSpeed" : 50,
+        "retractForce" : 200,
+        "stopForce" : 200,
+        "tolerance" : 10
+      },
+      "bomb" : {
+        "initialState" : "fist",
+        "releaseDelay" : 0.3,
+        "projectileParameters" : {"power" : 17},
+        "projectileType" : "v-titanbomb",
+        "rotateHandSmoothly" : false,
+        "useAppearAnimation" : false,
+        "followDistance" : 5
+      }
+    },
+
+    "selfDamagePoly" : [ ],
+
+    "movementSettings" : {
+      "gravityEnabled" : false,
+      "collisionEnabled" : false,
+      "collisionPoly" : [ [2, 2], [2, -2], [-2, -2], [-2, 2] ],
+
+      "flySpeed" : 10,
+      "airForce" : 6,
+
+      "physicsEffectCategories" : ["boss"]
+    },
+
+    "knockoutTime" : 0.0,
+    "knockoutEffect" : "",
+    "deathParticles" : "deathPoof",
+
+    "touchDamage" : {
+      "poly" : [ [2, 2], [2, -2], [-2, -2], [-2, 2] ],
+      "damage" : 15,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "hammer",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "robotic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : false,
+      "minimumLiquidStatusEffectPercentage" : 1.0,
+
+      // "primaryScriptSources" : [
+      //   "/stats/monster_primary.lua"
+      // ],
+      // "primaryScriptDelta" : 5,
+
+      "stats" : {
+        // "knockbackStunTime" : {
+        //   "baseValue" : 0.25
+        // },
+        // "grit" : {
+        //   "baseValue" : 1.0
+        // },
+        // "maxHealth" : {
+        //   "baseValue" : 1000
+        // },
+        // "protection" : {
+        //   "baseValue" : 0
+        // },
+        // "healthRegen" : {
+        //   "baseValue" : 0.0
+        // },
+        // "fireStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "iceStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "electricStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "poisonStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "specialStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "healingStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "stunImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        }
+      }
+
+      // "resources" : {
+      //   "stunned" : {
+      //     "deltaValue" : -1.0,
+      //     "initialValue" : 0.0,
+      //     "maxValue" : 0.0
+      //   },
+      //   "health" : {
+      //     "maxStat" : "maxHealth",
+      //     "deltaStat" : "healthRegen",
+      //     "defaultPercentage" : 1.0
+      //   }
+      // }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8]
+  }
+}

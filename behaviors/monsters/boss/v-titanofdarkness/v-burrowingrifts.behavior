@@ -1,0 +1,124 @@
+{
+  "name": "v-titanofdarkness-burrowingrifts",
+  "description": null,
+  "scripts": [
+    "/scripts/behavior.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/boss/v-titanofdarkness.lua",
+    "/scripts/actions/math.lua"
+  ],
+  "parameters": {
+    "maxLoops": 10
+  },
+  "root": {
+    "title": "sequence - structured to succeed on at least one successful repetition",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "orbitTarget"}
+        }
+      },
+      {
+        "title": "setNumber",
+        "type": "action",
+        "name": "setNumber",
+        "parameters": {
+          "number": {"key": "<maxLoops>"}
+        },
+        "output": {
+          "number": "remainingLoops"
+        }
+      },
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"key": "<maxLoops>"},
+          "untilSuccess": {"value": true}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"value": 1.3}
+              }
+            },
+            {
+              "title": "v_titanBurrowingRiftAttack",
+              "type": "action",
+              "name": "v_titanBurrowingRiftAttack",
+              "parameters": {
+                "target": {"key": "target"}
+              }
+            },
+            {
+              "title": "sub",
+              "type": "action",
+              "name": "sub",
+              "parameters": {
+                "first": {"key": "remainingLoops"},
+                "second": {"value": 1}
+              },
+              "output": {
+                "result": "remainingLoops"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "repeater",
+          "type": "decorator",
+          "name": "repeater",
+          "parameters": {
+            "maxLoops": {"key": "remainingLoops"},
+            "untilSuccess": {"value": false}
+          },
+          "child": {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 1.3}
+                }
+              },
+              {
+                "title": "v_titanBurrowingRiftAttack",
+                "type": "action",
+                "name": "v_titanBurrowingRiftAttack",
+                "parameters": {
+                  "target": {"key": "target"}
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

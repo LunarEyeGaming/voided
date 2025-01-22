@@ -1,0 +1,37 @@
+{
+  "projectileName" : "v-titanbomb",
+  // "timeToLive" : 1.4,
+  "timeToLive" : 0.5,
+  "image" : "titanbomb.png",
+  "animationCycle" : 0.1,
+  "frameNumber" : 1,
+  "orientationLocked" : true,
+  "fullbright" : true,
+  "emitters" : [ ],
+
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_titanbomb_appear.ogg" ]
+    }
+  ],
+
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-titanbombexplosion/v-titanbombexplosion.config"
+    }
+  ],
+
+  "speed" : 0,
+  "physics" : "illusion",
+  "bounces" : -1,
+
+  "onlyHitTerrain" : true,
+  "power" : 0,
+  "piercing" : true // ,
+
+  // "scripts" : ["v-titanbomb.lua"]
+}

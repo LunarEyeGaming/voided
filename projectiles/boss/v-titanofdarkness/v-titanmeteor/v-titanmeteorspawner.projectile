@@ -1,0 +1,41 @@
+{
+  "projectileName" : "v-titanmeteorspawner",
+  "image" : "titanmeteorspawner.png",
+  "timeToLive" : 2.0,
+  "windupFrames" : 6,
+  "winddownFrames" : 6,
+  "frameNumber" : 8,
+  "animationCycle" : 0.8,
+  "animationLoops" : true,
+  "fullbright" : true,
+
+  "orientationLocked" : true,
+
+  "physics" : "illusion",
+  "bounces" : -1,
+  "onlyHitTerrain" : true,
+  "speed" : 0,
+  // "speed" : 200,
+
+  // "timeToLive" : 5,
+
+  // "actionOnReap" : [
+  //   {
+  //     "action" : "projectile",
+  //     "type" : "v-titanmeteortele",
+  //     "inheritDamageFactor" : 1,
+  //     "fuzzAngle" : 10
+  //   }
+  // ],
+
+  "scripts" : ["v-titanmeteorspawner.lua"],
+  "scriptDelta" : 3,
+
+  "fuzzAngle" : 10,
+  "meteorProjectile" : "v-titanmeteor",
+  "meteorProjectileSpeed" : 50,
+  "meteorDamageFactor" : 1.0,
+  "teleProjectile" : "v-titanmeteortele",
+  "maxGroundDistance" : 100,
+  "spawnDelay" : 0.8
+}

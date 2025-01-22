@@ -1,0 +1,120 @@
+{
+  "objectName" : "v-facilityairlock",
+  "objectType" : "physics",
+  "colonyTags" : ["wired"],
+  "printable" : true,
+  "scannable" : true,
+  "rarity" : "Common",
+  "description" : "A large bulkhead door designed for vehicles.",
+  "shortdescription" : "Facility Airlock",
+  "race" : "human",
+  "health" : 1,
+
+  "category" : "wire",
+  "price" : 210,
+
+  "apexDescription" : "An airlock door that opens via a hinge.",
+  "avianDescription" : "An airlock door, cold to the touch and using a hinge to open itself.",
+  "floranDescription" : "Big door rotatesss open.",
+  "glitchDescription" : "Curious. This airlock door opens through a rotating mechanism.",
+  "humanDescription" : "This door must be airtight.",
+  "hylotlDescription" : "An airlock door with a niche opening mechanism.",
+  "novakidDescription" : "A big ol' door on a hinge.",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "spacescan.png",
+      "imagePosition" : [-16, 0],
+      "direction" : "right",
+
+      "animationParts" : {
+        "seal" : "seal.png",
+        "door" : "door.png"
+      },
+      "fgAnchors" : [ [-1, -1], [0, -1], [1, -1], [-1, 10], [0, 10], [1, 10] ],
+      "spaceScan" : 0.4,
+
+      "closedMaterialSpaces" : [
+        [[-1, 9], "metamaterial:v-doorconductive"], [[0, 9], "metamaterial:v-doorconductive"], [[1, 9], "metamaterial:v-doorconductive"],
+        [[-1, 8], "metamaterial:v-doorconductive"], [[0, 8], "metamaterial:v-doorconductive"], [[1, 8], "metamaterial:v-doorconductive"],
+        [[-1, 7], "metamaterial:v-doorconductive"], [[0, 7], "metamaterial:v-doorconductive"], [[1, 7], "metamaterial:v-doorconductive"],
+        [[-1, 6], "metamaterial:v-doorconductive"], [[0, 6], "metamaterial:v-doorconductive"], [[1, 6], "metamaterial:v-doorconductive"],
+        [[-1, 5], "metamaterial:v-doorconductive"], [[0, 5], "metamaterial:v-doorconductive"], [[1, 5], "metamaterial:v-doorconductive"],
+        [[-1, 4], "metamaterial:v-doorconductive"], [[0, 4], "metamaterial:v-doorconductive"], [[1, 4], "metamaterial:v-doorconductive"],
+        [[-1, 3], "metamaterial:v-doorconductive"], [[0, 3], "metamaterial:v-doorconductive"], [[1, 3], "metamaterial:v-doorconductive"],
+        [[-1, 2], "metamaterial:v-doorconductive"], [[0, 2], "metamaterial:v-doorconductive"], [[1, 2], "metamaterial:v-doorconductive"],
+        [[-1, 1], "metamaterial:v-doorconductive"], [[0, 1], "metamaterial:v-doorconductive"], [[1, 1], "metamaterial:v-doorconductive"],
+        [[-1, 0], "metamaterial:v-doorconductive"], [[0, 0], "metamaterial:v-doorconductive"], [[1, 0], "metamaterial:v-doorconductive"]
+      ],
+
+      "openMaterialSpaces" : [
+        [[2, 8], "metamaterial:v-doorconductive"], [[3, 8], "metamaterial:v-doorconductive"], [[4, 8], "metamaterial:v-doorconductive"],
+          [[5, 8], "metamaterial:v-doorconductive"], [[6, 8], "metamaterial:v-doorconductive"], [[7, 8], "metamaterial:v-doorconductive"],
+          [[8, 8], "metamaterial:v-doorconductive"], [[9, 8], "metamaterial:v-doorconductive"],
+        [[2, 7], "metamaterial:v-doorconductive"], [[3, 7], "metamaterial:v-doorconductive"], [[4, 7], "metamaterial:v-doorconductive"],
+          [[5, 7], "metamaterial:v-doorconductive"], [[6, 7], "metamaterial:v-doorconductive"], [[7, 7], "metamaterial:v-doorconductive"],
+          [[8, 7], "metamaterial:v-doorconductive"], [[9, 7], "metamaterial:v-doorconductive"],
+        [[3, 6], "metamaterial:v-doorconductive"], [[4, 6], "metamaterial:v-doorconductive"], [[5, 6], "metamaterial:v-doorconductive"],
+          [[6, 6], "metamaterial:v-doorconductive"], [[7, 6], "metamaterial:v-doorconductive"], [[8, 6], "metamaterial:v-doorconductive"]
+      ]
+    },
+    {
+      "image" : "spacescan.png",
+      "imagePosition" : [-80, 0],
+      "direction" : "left",
+      "flipImages" : true,
+
+      "animationParts" : {
+        "seal" : "seal.png",
+        "door" : "door.png"
+      },
+      "fgAnchors" : [ [-1, -1], [0, -1], [1, -1], [-1, 10], [0, 10], [1, 10] ],
+      "spaceScan" : 0.4,
+
+      "closedMaterialSpaces" : [
+        [[-1, 9], "metamaterial:v-doorconductive"], [[0, 9], "metamaterial:v-doorconductive"], [[1, 9], "metamaterial:v-doorconductive"],
+        [[-1, 8], "metamaterial:v-doorconductive"], [[0, 8], "metamaterial:v-doorconductive"], [[1, 8], "metamaterial:v-doorconductive"],
+        [[-1, 7], "metamaterial:v-doorconductive"], [[0, 7], "metamaterial:v-doorconductive"], [[1, 7], "metamaterial:v-doorconductive"],
+        [[-1, 6], "metamaterial:v-doorconductive"], [[0, 6], "metamaterial:v-doorconductive"], [[1, 6], "metamaterial:v-doorconductive"],
+        [[-1, 5], "metamaterial:v-doorconductive"], [[0, 5], "metamaterial:v-doorconductive"], [[1, 5], "metamaterial:v-doorconductive"],
+        [[-1, 4], "metamaterial:v-doorconductive"], [[0, 4], "metamaterial:v-doorconductive"], [[1, 4], "metamaterial:v-doorconductive"],
+        [[-1, 3], "metamaterial:v-doorconductive"], [[0, 3], "metamaterial:v-doorconductive"], [[1, 3], "metamaterial:v-doorconductive"],
+        [[-1, 2], "metamaterial:v-doorconductive"], [[0, 2], "metamaterial:v-doorconductive"], [[1, 2], "metamaterial:v-doorconductive"],
+        [[-1, 1], "metamaterial:v-doorconductive"], [[0, 1], "metamaterial:v-doorconductive"], [[1, 1], "metamaterial:v-doorconductive"],
+        [[-1, 0], "metamaterial:v-doorconductive"], [[0, 0], "metamaterial:v-doorconductive"], [[1, 0], "metamaterial:v-doorconductive"]
+      ],
+
+      "openMaterialSpaces" : [
+        [[-2, 8], "metamaterial:v-doorconductive"], [[-3, 8], "metamaterial:v-doorconductive"], [[-4, 8], "metamaterial:v-doorconductive"],
+          [[-5, 8], "metamaterial:v-doorconductive"], [[-6, 8], "metamaterial:v-doorconductive"], [[-7, 8], "metamaterial:v-doorconductive"],
+          [[-8, 8], "metamaterial:v-doorconductive"], [[-9, 8], "metamaterial:v-doorconductive"],
+        [[-2, 7], "metamaterial:v-doorconductive"], [[-3, 7], "metamaterial:v-doorconductive"], [[-4, 7], "metamaterial:v-doorconductive"],
+          [[-5, 7], "metamaterial:v-doorconductive"], [[-6, 7], "metamaterial:v-doorconductive"], [[-7, 7], "metamaterial:v-doorconductive"],
+          [[-8, 7], "metamaterial:v-doorconductive"], [[-9, 7], "metamaterial:v-doorconductive"],
+        [[-3, 6], "metamaterial:v-doorconductive"], [[-4, 6], "metamaterial:v-doorconductive"], [[-5, 6], "metamaterial:v-doorconductive"],
+          [[-6, 6], "metamaterial:v-doorconductive"], [[-7, 6], "metamaterial:v-doorconductive"], [[-8, 6], "metamaterial:v-doorconductive"]
+      ]
+    }
+  ],
+
+  "scripts" : [ "v-facilityairlock.lua" ],
+  "scriptDelta" : 1,
+
+  "hingePoint" : [4, 9],
+  "rotationTime" : 2.0,
+  "startRotation" : 0,
+  "endRotation" : 90,
+
+  "inputNodes" : [ [0, 0] ],
+
+  "animation" : "v-facilityairlock.animation",
+
+  "animationParts" : {
+    "seal" : "seal.png",
+    "door" : "door.png"
+  },
+  "animationPosition" : [-16, 0],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

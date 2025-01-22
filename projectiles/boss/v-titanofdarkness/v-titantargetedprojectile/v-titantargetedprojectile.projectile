@@ -1,0 +1,72 @@
+{
+  "projectileName" : "v-titantargetedprojectile",
+  "image" : "titantargetedprojectile.png",
+  "animationCycle" : 0.4,
+  "lightColor" : [51, 41, 71],
+  "renderLayer": "ForegroundEntity+10",
+  "frameNumber" : 4,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "physics" : "default",
+  "emitters" : [ ],
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-titantargetedtele/v-titantargetedtele.animation",
+        "fullbright" : true,
+        "size" : 1,
+        "layer" : "front",
+        "timeToLive" : 0.3
+      }
+    },
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/melee/giantsword_charge_full.ogg" ]
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 10,
+      "body" : [
+        {
+          "action" : "particle",
+          "rotate" : true,
+          "specification" : {
+            "type" : "animated",
+            "animation" : "/animations/v-titanriftbursttele/v-titanriftbursttele.animation",
+            "fullbright" : true,
+            "size" : 1,
+            "layer" : "middle",
+            "initialVelocity" : [25, 0],
+            "finalVelocity" : [0, 0],
+            "approach" : [75, 75],
+            "timeToLive" : 0.4,
+            "variance" : {
+              "initialVelocity" : [5.0, 5.0]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "damageKind" : "plasma",
+
+  "speed" : 0,
+  "timeToLive" : 1.5,
+
+  "explosionAction" : {
+    "action" : "actions",
+    "list" : []
+  },
+  "scripts" : [ "v-titantargetedprojectile.lua" ],
+  "scriptDelta" : 1
+}

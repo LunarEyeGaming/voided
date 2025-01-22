@@ -1,0 +1,42 @@
+{
+  "itemName" : "v-testitem",
+  "price" : 100,
+  "level" : 1,
+  "maxStack" : 1,
+  "rarity" : "Essential",
+  "category" : "tool",
+  "description" : "Does things.",
+  "shortdescription" : "Test Item",
+  "twoHanded" : true,
+
+  "inventoryIcon" : "/items/generic/crafting/bottle.png",
+  "animation" : "v-testitem.animation",
+  "animationParts" : {
+    "potion" : "/items/generic/crafting/bottle.png"
+  },
+  "scripts" : ["v-testitem.lua"],
+
+  "riftTrails" : [  // Ordered from lowest to highest z-level.
+    {
+      "thickness" : 1.25,
+      "thicknessVariance" : 0.125,
+      "color" : [255, 255, 255, 26],
+      "fullbright" : true,
+      "renderLayer" : "ForegroundEntity"
+    },
+    {
+      "thickness" : 1,
+      "thicknessVariance" : 0.125,
+      "color" : [0, 0, 0],
+      "renderLayer" : "ForegroundEntity"
+    }
+  ],
+
+  "riftTrailDuration" : 2,
+
+  "animationScripts" : [ "/monsters/boss/v-titanofdarkness/arm/v-titanofdarknessrifttrail.lua" ],
+
+  "statusEffect" : "burning",
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

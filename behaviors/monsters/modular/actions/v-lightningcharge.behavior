@@ -13,7 +13,7 @@
     "/scripts/actions/sensor.lua",
     "/scripts/actions/status.lua",
     "/scripts/actions/time.lua",
-    "/scripts/actions/v-monster.lua"
+    "/scripts/actions/v-movement.lua"
   ],
   "parameters": {
     "windupState": "chargewindup",
@@ -26,14 +26,14 @@
     "rotationOffset": 0,
     "skillName": "",
     "wallKnockback": false,
-    
+
     "leftOffset": [-10, 0],
     "rightOffset": [10, 0],
     "tolerance": 2,
-    
+
     "chargeSound": "charge",
     "postChargeVelocity": [50, 0],
-    
+
     "trailProjectile": "teslabolt",
     "trailProjectileConfig": {},
     "trailOffset": [0, 0],

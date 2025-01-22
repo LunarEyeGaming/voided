@@ -15,7 +15,7 @@ function init()
   windupTime = config.getParameter("windupTime")
   projectileType = config.getParameter("projectileType")
   projectileParameters = config.getParameter("projectileParameters", {})
-  projectileParameters.power = v_scaledPower(projectileParameters.power or 10)
+  projectileParameters.power = vAttack.scaledPower(projectileParameters.power or 10)
   projectileOffset = config.getParameter("projectileOffset", {0, 0})
 
   message.setHandler("v-wormFire", function(_, _, numSegments, targetId)

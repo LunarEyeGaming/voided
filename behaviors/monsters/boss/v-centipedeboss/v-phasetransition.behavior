@@ -53,6 +53,33 @@
         }
       },
       {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "warning"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "warning"},
+          "type": {"value": "turret"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": -1},
+          "sound": {"value": "alarm"}
+        }
+      },
+      {
         "title": "each",
         "type": "decorator",
         "name": "each",
@@ -67,8 +94,18 @@
           "parameters": {
             "arguments": {"value": []},
             "entity": {"key": "eachItem"},
-            "message": {"value": "reset"}
+            "message": {"value": "activatePhase2Warning"}
           }
+        }
+      },
+      {
+        "title": "sendEntityMessage",
+        "type": "action",
+        "name": "sendEntityMessage",
+        "parameters": {
+          "arguments": {"value": []},
+          "entity": {"key": "tailId"},
+          "message": {"value": "activatePhase2Warning"}
         }
       },
       {
@@ -153,6 +190,14 @@
             }
           }
         ]
+      },
+      {
+        "title": "stopAllSounds",
+        "type": "action",
+        "name": "stopAllSounds",
+        "parameters": {
+          "sound": {"value": "alarm"}
+        }
       },
       {
         "title": "setAnimationState",

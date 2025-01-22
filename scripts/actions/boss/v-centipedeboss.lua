@@ -1,5 +1,6 @@
 require "/monsters/boss/v-centipedeboss/v-sharedfunctions.lua"
 require "/scripts/v-behavior.lua"
+require "/scripts/v-movement.lua"
 require "/scripts/v-util.lua"
 require "/scripts/v-ellipse.lua"
 require "/scripts/util.lua"
@@ -134,7 +135,7 @@ function v_wormConstrict(args, _, _, dt)
     local targetPos = vEllipse.point(center, radius, ticker, args.numPoints, offsetAngle)
 
     -- If the worm has reached the target position after flying for the current tick...
-    if vBehavior.rotatedFlyToPositionTick(targetPos, args.speed, args.controlForce, args.tolerance) then
+    if vMovementA.rotatedFlyToPositionTick(targetPos, args.speed, args.controlForce, args.tolerance) then
       -- Find the next point on the ellipse that is out of reach of the worm.
       repeat
         targetPos = vEllipse.point(center, radius, ticker, args.numPoints, offsetAngle)

@@ -28,6 +28,7 @@
   {"op": "add", "path": "/genericScriptContexts/v-lightningbeandrop", "value": "/scripts/player/v-lightningbeandrop.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-playermessages", "value": "/scripts/player/v-teleporthandler.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-dungeonMusicPlayer", "value": "/scripts/player/v-dungeonmusicplayer.lua"},
+  {"op": "add", "path": "/genericScriptContexts/v-titanOfDarknessSpawn", "value": "/scripts/player/v-titanofdarknessspawn.lua"},
 
   // Client-side rendering scripts
   {
@@ -44,6 +45,11 @@
     "op": "add",
     "path": "/deploymentConfig/scripts/-",
     "value": "/scripts/rendering/v-specialeffects.lua"
+  },
+  {
+    "op": "add",
+    "path": "/deploymentConfig/scripts/-",
+    "value": "/scripts/rendering/v-titanofdarknessaura.lua"
   },
 
   // Depth poison mechanic

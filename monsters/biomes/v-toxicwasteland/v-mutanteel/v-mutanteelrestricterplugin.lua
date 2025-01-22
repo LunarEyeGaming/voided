@@ -8,7 +8,7 @@
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
-local oldDie = die or function() end
+local oldUninit = uninit or function() end
 
 local hasDespawned
 
@@ -23,11 +23,12 @@ function update(dt)
 
   -- Check for an active mutant eel only if this is a wild one.
   if not capturable or not capturable.podUuid() then
+    local eelId = world.getProperty("v-activeMutantEel")
     -- If the property has not been set or the entity does not exist...
-    if not world.getProperty("v-activeMutantEel") or not world.entityExists(world.getProperty("v-activeMutantEel")) then
+    if not eelId or not world.entityExists(eelId) then
       world.setProperty("v-activeMutantEel", entity.id())
     -- Otherwise, if it has not despawned yet and this is not the current active eel...
-    elseif not hasDespawned and world.getProperty("v-activeMutantEel") ~= entity.id() then
+    elseif not hasDespawned and eelId ~= entity.id() then
       status.setResourcePercentage("health", 0.0)
       monster.setDropPool(nil)
       mcontroller.setPosition({0, 0})
@@ -36,10 +37,10 @@ function update(dt)
   end
 end
 
-function die()
-  oldDie()
+function uninit()
+  oldUninit()
 
-  -- If this is the active mutant eel and it has died, unset it.
+  -- If this is the active mutant eel and it is uninitializing, unset it.
   if world.getProperty("v-activeMutantEel") == entity.id() then
     world.setProperty("v-activeMutantEel", nil)
   end

@@ -1,0 +1,48 @@
+{
+  "projectileName" : "v-titanmeteortele",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "image" : "titanmeteortele.png",
+  "animationCycle" : 0.4,
+  "frameNumber" : 4,
+  "windupFrames" : 2,
+  "lightColor" : [101, 69, 126],
+  "timeToLive" : 1.1,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "fullbright" : true,
+  "periodicActions" : [
+    // {
+    //   "time" : 0,
+    //   "repeat" : false,
+    //   "action" : "projectile",
+    //   "type" : "v-proxyprojectile",
+    //   "angleAdjust" : 180,
+    //   "inheritDamageFactor" : 1,
+    //   "config" : {
+    //     "speed" : 500,
+    //     "timeToLive" : 0.1,
+    //     "movementSettings" : {
+    //       "collisionEnabled" : false
+    //     },
+    //     "actionOnReap" : [
+    //       {
+    //         "action" : "projectile",
+    //         "type" : "v-titanmeteor",
+    //         "inheritDamageFactor" : 1,
+    //         "angleAdjust" : 180,
+    //         "config" : {
+    //           "speed" : 50
+    //         }
+    //       }
+    //     ]
+    //   }
+    // },
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_titanmeteor_tele.ogg" ]
+    }
+  ]
+}

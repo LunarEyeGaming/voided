@@ -14,7 +14,10 @@
     {
       "action" : "projectile",
       "type" : "v-toxicblobletstuck",
-      "inheritDamageFactor" : 1
+      "inheritDamageFactor" : 1,
+      "config" : {
+        "damageRepeatGroup" : "v-toxicblobburst"
+      }
     }
   ],
 

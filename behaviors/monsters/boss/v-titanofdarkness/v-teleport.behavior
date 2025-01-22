@@ -1,0 +1,108 @@
+{
+  "name": "v-titanofdarkness-teleport",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/boss/v-titanofdarkness.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/movement.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "inactive"},
+          "type": {"value": "lasers"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "inactive"},
+          "type": {"value": "beamcharge"}
+        }
+      },
+      {
+        "title": "v_stop",
+        "type": "action",
+        "name": "v_stop",
+        "parameters": {
+          "stopForce": {"value": 20}
+        }
+      },
+      {
+        "title": "v_titanSetLookActive",
+        "type": "action",
+        "name": "v_titanSetLookActive",
+        "parameters": {
+          "active": {"value": false}
+        }
+      },
+      {
+        "title": "v_titanAppear",
+        "type": "action",
+        "name": "v_titanAppear",
+        "parameters": {
+          "appearTime": {"value": 0.5},
+          "endAlpha": {"value": 0},
+          "startAlpha": {"value": 255},
+          "visionEndRadius": {"value": 10},
+          "visionEndRotationRate": {"value": 0},
+          "visionStartRadius": {"value": 1},
+          "visionStartRotationRate": {"value": 0.25}
+        }
+      },
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "target"}
+        },
+        "output": {
+          "position": "targetPos"
+        }
+      },
+      {
+        "title": "setPosition",
+        "type": "action",
+        "name": "setPosition",
+        "parameters": {
+          "footPosition": {"value": false},
+          "position": {"key": "targetPos"}
+        }
+      },
+      {
+        "title": "v_titanAppear",
+        "type": "action",
+        "name": "v_titanAppear",
+        "parameters": {
+          "appearTime": {"value": 0.5},
+          "visionEndRadius": {"value": 1},
+          "visionEndRotationRate": {"value": 0.25},
+          "visionStartRadius": {"value": 10},
+          "visionStartRotationRate": {"value": 0}
+        }
+      },
+      {
+        "title": "v_titanSetLookActive",
+        "type": "action",
+        "name": "v_titanSetLookActive",
+        "parameters": {
+          "active": {"value": true}
+        }
+      }
+    ]
+  }
+}

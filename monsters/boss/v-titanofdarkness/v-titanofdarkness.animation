@@ -1,0 +1,335 @@
+{
+  "globalTagDefaults" : {
+    "opacity" : "00"
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "lasers" : {
+        "default" : "inactive",
+        "priority" : 0,
+        "states" : {
+          "inactive" : {},
+          "windup" : {},
+          "fire" : {
+            "frames" : 6,
+            "cycle" : 0.15,
+            "mode" : "transition",
+            "transition" : "fireLoop",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/v_titanofdarkness_laser_blast.ogg",
+              "immediateSoundRangeMultiplier" : 5
+            }
+          },
+          "fireLoop" : {
+            "frames" : 4,
+            "cycle" : 0.1,
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/npc/boss/v_titanofdarkness_laser_loop.ogg",
+              "persistentSoundRangeMultiplier" : 5,
+              "persistentSoundStopTime" : 0.2
+            }
+          },
+          "fireEnd" : {
+            "frames" : 6,
+            "cycle" : 0.15,
+            "mode" : "transition",
+            "transition" : "inactive",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/v_titanofdarkness_laser_end.ogg",
+              "immediateSoundRangeMultiplier" : 5
+            }
+          }
+        }
+      },
+      "body" : {
+        "default" : "idle",
+        "priority" : 0,
+        "states" : {
+          "invisible" : {},
+          "idle" : {
+            "properties" : {
+              "persistentSound" : "/sfx/npc/boss/v_titanofdarkness_ambience.ogg",
+              "persistentSoundStartTime" : 5.0,
+              "persistentSoundStopTime" : 5.0
+            }
+          }
+        }
+      },
+      "beamcharge" : {
+        "default" : "inactive",
+        "priority" : 0,
+        "states" : {
+          "inactive" : {},
+          "active" : {
+            "frames" : 15,
+            "cycle" : 1.0,
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/v_titanofdarkness_laser_charge.ogg",
+              "immediateSoundRangeMultiplier" : 5
+            }
+          },
+          "bouncingtelegraph" : {
+            "frames" : 15,
+            "cycle" : 1.0,
+            "mode" : "transition",
+            "transition" : "inactive",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/v_titanofdarkness_bouncing_telegraph.ogg",
+              "immediateSoundRangeMultiplier" : 5
+            }
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "zLevel" : 1,
+          "fullbright" : true,
+          "centered" : true,
+          "offset" : [0, 0],
+          "leftEyeCenter" : [-2.875, 1.75],
+          "rightEyeCenter" : [4.625, 1]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>?multiply=ffffff<opacity>"
+              }
+            }
+          }
+        }
+      },
+      "leftpupil" : {
+        "properties" : {
+          "zLevel" : 0,
+          "centered" : true,
+          "offset" : [-2.875, 1.75],
+          "lookRadius" : 1,
+          "fullbright" : true,
+          "transformationGroups" : ["leftpupil"]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>?multiply=ffffff<opacity>"
+              }
+            }
+          }
+        }
+      },
+      "rightpupil" : {
+        "properties" : {
+          "zLevel" : 0,
+          "centered" : true,
+          "offset" : [4.625, 1],
+          "lookRadius" : 0.5,
+          "fullbright" : true,
+          "transformationGroups" : ["rightpupil"]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>?multiply=ffffff<opacity>"
+              }
+            }
+          }
+        }
+      },
+      "leftbeamcharge" : {
+        "properties" : {
+          "zLevel" : 2,
+          "centered" : true,
+          "offset" : [-2.875, 1.75],
+          "fullbright" : true,
+          "transformationGroups" : ["leftpupil"]
+        },
+        "partStates" : {
+          "beamcharge" : {
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            },
+            "bouncingtelegraph" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      },
+      "rightbeamcharge" : {
+        "properties" : {
+          "zLevel" : 2,
+          "centered" : true,
+          "offset" : [4.625, 1],
+          "fullbright" : true,
+          "transformationGroups" : ["rightpupil"]
+        },
+        "partStates" : {
+          "beamcharge" : {
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            },
+            "bouncingtelegraph" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      },
+      "leftbeam" : {
+        "properties" : {
+          "zLevel" : 5,
+          "centered" : true,
+          "offset" : [38.125, 1.75],
+          "fullbright" : true,
+          "transformationGroups" : [ "lefteye" ]
+        },
+        "partStates" : {
+          "lasers" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.1"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "fireLoop" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>",
+                "damageArea" : [ [40.0, -1.1875], [40.0, 1.1875], [-40.0, 1.1875], [-40.0, -1.1875] ]
+              }
+            },
+            "fireEnd" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "rightbeam" : {
+        "properties" : {
+          "zLevel" : 5,
+          "centered" : true,
+          "offset" : [45.125, 1],
+          "fullbright" : true,
+          "transformationGroups" : [ "righteye" ]
+        },
+        "partStates" : {
+          "lasers" : {
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.1"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "fireLoop" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>",
+                "damageArea" : [ [40.0, -1.1875], [40.0, 1.1875], [-40.0, 1.1875], [-40.0, -1.1875] ]
+              }
+            },
+            "fireEnd" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "lefteye" : {"interpolated" : true},
+    "righteye" : {"interpolated" : true},
+    "leftpupil" : {"interpolated" : true},
+    "rightpupil" : {"interpolated" : true}
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [
+      ]
+    }
+  },
+
+  "lights" : {
+    "lefteyelight" : {
+      "transformationGroups" : ["lefteye"],
+      "position" : [-2.875, 1.75],
+      "color" : [209, 235, 255],
+      "pointLight" : true,
+      "pointBeam" : 5,
+      "pointAngle" : 0,
+      "beamAmbience" : 0.35,
+      "active" : false
+    },
+    "righteyelight" : {
+      "transformationGroups" : ["righteye"],
+      "position" : [4.625, 1],
+      "color" : [209, 235, 255],
+      "pointLight" : true,
+      "pointBeam" : 5,
+      "pointAngle" : 0,
+      "beamAmbience" : 0.35,
+      "active" : false
+    },
+    "lefteyelightforward" : {
+      "transformationGroups" : ["lefteye"],
+      "position" : [-2.875, 1.75],
+      "color" : [94, 113, 128]
+    },
+    "righteyelightforward" : {
+      "transformationGroups" : ["righteye"],
+      "position" : [4.625, 1],
+      "color" : [94, 113, 128]
+    }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0.25,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "sounds" : {
+    "deathPuff" : [ ],
+    "bouncingOrbFire" : {
+      "pool" : [ "/sfx/npc/boss/v_titanofdarkness_bouncing_fire.ogg" ],
+      "rangeMultiplier" : 5
+    }
+  }
+}

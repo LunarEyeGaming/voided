@@ -1,0 +1,120 @@
+{
+  "name": "v-titanofdarkness-meteors",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/world.lua",
+    "/scripts/actions/v-sensor.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "target"}
+        },
+        "output": {
+          "position": "targetPos"
+        }
+      },
+      {
+        "title": "inverter",
+        "type": "decorator",
+        "name": "inverter",
+        "parameters": {},
+        "child": {
+          "title": "v_rectCollision",
+          "type": "action",
+          "name": "v_rectCollision",
+          "parameters": {
+            "position": {"key": "targetPos"},
+            "rect": {"value": [-15, 0, 15, 50]}
+          }
+        }
+      },
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "orbitTarget"}
+        }
+      },
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": 30},
+          "untilSuccess": {"value": false}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "entityPosition",
+              "type": "action",
+              "name": "entityPosition",
+              "parameters": {
+                "entity": {"key": "target"}
+              },
+              "output": {
+                "position": "targetPos"
+              }
+            },
+            {
+              "title": "random xOffset",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": -50},
+                "min": {"value": 50}
+              },
+              "output": {
+                "number": "xOffset"
+              }
+            },
+            {
+              "title": "spawnProjectile",
+              "type": "action",
+              "name": "spawnProjectile",
+              "parameters": {
+                "aimVector": {"value": [0, 0]},
+                "angle": {"value": 0},
+                "offset": {"value": ["xOffset", 50]},
+                "position": {"key": "targetPos"},
+                "projectileConfig": {"value": {"power": 15}},
+                "projectileType": {"value": "v-titanmeteorspawner"},
+                "scalePower": {"value": true},
+                "sourceEntity": {"key": "self"},
+                "trackSource": {"value": false},
+                "uniqueRepeatGroup": {"value": true}
+              }
+            },
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"value": 0.3}
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

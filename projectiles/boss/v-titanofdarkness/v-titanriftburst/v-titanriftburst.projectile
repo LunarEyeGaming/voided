@@ -1,0 +1,28 @@
+{
+  "projectileName" : "v-titanriftburst",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 0.2,
+  "lightColor" : [51, 41, 71],
+  "frameNumber" : 1,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "renderLayer": "ForegroundEntity+10",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "emitters" : [ ],
+  "periodicActions" : [
+    {
+      "time" : 0.1,
+      "action" : "projectile",
+      "type" : "v-titanriftprojectile",
+      "inheritDamageFactor" : 1,
+      "fuzzAngle" : 15
+    }
+  ],
+
+  "onlyHitTerrain" : true,
+
+  "speed" : 0,
+  "timeToLive" : 0.75
+}

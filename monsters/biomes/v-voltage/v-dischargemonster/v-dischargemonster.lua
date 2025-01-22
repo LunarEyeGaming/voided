@@ -56,7 +56,13 @@ function init()
 end
 
 function update(dt)
-  attackState:update()
+  local isStunned = status.resourcePositive("stunned")
+
+  animator.setAnimationState("damage", isStunned and "stunned" or "none")
+
+  if not isStunned then
+    attackState:update()
+  end
 
   -- Update animation parameters
   monster.setAnimationParameter("warningVectors", warningParams)
@@ -65,9 +71,11 @@ function update(dt)
   -- Reset warningParams
   warningParams = {}
 
-  capturable.update(dt)
-  updateVelocity()
-  mcontroller.controlDown()  -- Go through platforms
+  if not isStunned then
+    capturable.update(dt)
+    updateVelocity()
+    mcontroller.controlDown()  -- Go through platforms
+  end
 end
 
 function die()

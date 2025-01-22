@@ -1,4 +1,5 @@
 require "/scripts/v-behavior.lua"
+require "/scripts/v-movement.lua"
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
@@ -145,7 +146,7 @@ function v_wormFigure8(args, board, _, dt)
     world.debugPoint(nextPos, "green")
 
     -- Fly to position
-    vBehavior.rotatedFlyToPosition(nextPos, args.speed, 99999999, args.tolerance)
+    vMovementA.rotatedFlyToPosition(nextPos, args.speed, 99999999, args.tolerance)
   end
 end
 
@@ -158,7 +159,7 @@ function v_wormFlyToPosition(args, board)
 
   if not rq{"position", "speed", "tolerance", "controlForce"} then return false end
 
-  vBehavior.rotatedFlyToPosition(args.position, args.speed, args.controlForce, args.tolerance)
+  vMovementA.rotatedFlyToPosition(args.position, args.speed, args.controlForce, args.tolerance)
 
   return true
 end

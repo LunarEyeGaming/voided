@@ -1,0 +1,98 @@
+{
+  "name": "v-titanofdarkness-bouncespread-1",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/world.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/projectiles.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "target"}
+        },
+        "output": {
+          "position": "targetPosition"
+        }
+      },
+      {
+        "title": "flyToPosition",
+        "type": "action",
+        "name": "flyToPosition",
+        "parameters": {
+          "position": {"key": "targetPosition"},
+          "speed": {"value": 10},
+          "tolerance": {"value": 1}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "controlApproachVelocity",
+              "type": "action",
+              "name": "controlApproachVelocity",
+              "parameters": {
+                "force": {"value": 60},
+                "velocity": {"value": [0, 0]}
+              }
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 2}
+            }
+          }
+        ]
+      },
+      {
+        "title": "spawnProjectile",
+        "type": "action",
+        "name": "spawnProjectile",
+        "parameters": {
+          "angle": {"value": 0},
+          "offset": {"value": [0, 0]},
+          "position": {"key": "self"},
+          "projectileConfig": {"value": {"actionOnReap": [{"action": "loop", "count": 15, "body": [{"action": "projectile", "type": "v-ancientbouncingshot", "fuzzAngle": 180, "inheritDamageFactor": 1}]}]}},
+          "projectileType": {"value": "v-proxyprojectile"},
+          "scalePower": {"value": true},
+          "sourceEntity": {"key": "self"},
+          "trackSource": {"value": false},
+          "uniqueRepeatGroup": {"value": true}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 10}
+        }
+      }
+    ]
+  }
+}

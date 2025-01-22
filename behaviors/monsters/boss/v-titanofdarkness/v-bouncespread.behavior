@@ -1,0 +1,134 @@
+{
+  "name": "v-titanofdarkness-bouncespread",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/world.lua",
+    "/scripts/actions/v-movement.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/boss/v-titanofdarkness.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "target"}
+        },
+        "output": {
+          "position": "targetPosition"
+        }
+      },
+      {
+        "title": "v_flyToPositionNoFlip",
+        "type": "action",
+        "name": "v_flyToPositionNoFlip",
+        "parameters": {
+          "position": {"key": "targetPosition"},
+          "speed": {"value": 10},
+          "tolerance": {"value": 1}
+        }
+      },
+      {
+        "title": "v_stop",
+        "type": "action",
+        "name": "v_stop",
+        "parameters": {
+          "stopForce": {"value": 60}
+        }
+      },
+      {
+        "title": "Telegraph",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "Unset \"lookAtPlayer\" flag",
+            "type": "action",
+            "name": "unsetFlag",
+            "parameters": {
+              "name": {"value": "lookAtPlayer"}
+            }
+          },
+          {
+            "title": "setAnimationState",
+            "type": "action",
+            "name": "setAnimationState",
+            "parameters": {
+              "state": {"value": "bouncingtelegraph"},
+              "type": {"value": "beamcharge"}
+            }
+          },
+          {
+            "title": "v_titanSetLookActive",
+            "type": "action",
+            "name": "v_titanSetLookActive",
+            "parameters": {
+              "active": {"value": false}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 1.5}
+            }
+          },
+          {
+            "title": "Set \"lookatPlayer\" flag",
+            "type": "action",
+            "name": "setFlag",
+            "parameters": {
+              "name": {"value": "lookAtPlayer"}
+            }
+          },
+          {
+            "title": "v_titanSetLookActive",
+            "type": "action",
+            "name": "v_titanSetLookActive",
+            "parameters": {
+              "active": {"value": true}
+            }
+          }
+        ]
+      },
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "orbitTarget"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": 0},
+          "sound": {"value": "bouncingOrbFire"}
+        }
+      },
+      {
+        "title": "v_titanBouncingOrbAttack",
+        "type": "action",
+        "name": "v_titanBouncingOrbAttack",
+        "parameters": {
+          "projectileCount": {"value": 8},
+          "projectileType": {"value": "v-titanbouncingprojectile"},
+          "target": {"key": "target"}
+        }
+      }
+    ]
+  }
+}

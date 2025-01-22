@@ -1,7 +1,8 @@
 {
   "name" : "v-toxikitemarker",
   "effectConfig" : {
-    "poisonEffect" : "weakpoison"
+    "poisonEffect" : "weakpoison",
+    "strongPoisonEffect" : "v-strongpoison"
   },
   "defaultDuration" : 1.0,
   "scripts" : ["v-toxikitemarker.lua"]

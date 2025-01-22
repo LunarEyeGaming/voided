@@ -10,5 +10,32 @@
     "category": "v-sensor",
     "script": "/scripts/actions/v-sensor.lua",
     "output": {}
+  },
+  "v_rectCollision": {
+    "type": "action",
+    "name": "v_rectCollision",
+    "title": "v_rectCollision",
+    "properties": {
+      "offset": {"type": "vec2"},
+      "position": {"type": "position", "key": "self"},
+      "rect": {"type": "list"}
+    },
+    "category": "v-sensor",
+    "script": "/scripts/actions/v-sensor.lua",
+    "output": {}
+  },
+  "v_solidityTest": {
+    "type": "action",
+    "name": "v_solidityTest",
+    "title": "v_solidityTest",
+    "properties": {
+      "position": {"type": "position", "key": "self"},
+      "sampleStep": {"type": "number", "value": 1},
+      "testRegion": {"type": "list", "value": [-20, -20, 20, 20]},
+      "threshold": {"type": "number", "value": 0.5}
+    },
+    "category": "v-sensor",
+    "script": "/scripts/actions/v-sensor.lua",
+    "output": {}
   }
 }

@@ -1,0 +1,72 @@
+{
+  "name": "v-titanofdarkness-flytotarget",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/world.lua",
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {
+    "speed": 10,
+    "controlForce": 6,
+    "minRange": 30,
+    "maxRange": 50,
+    "minTime": 5
+  },
+  "root": {
+    "title": "parallel",
+    "type": "composite",
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": -1},
+      "success": {"value": 1}
+    },
+    "children": [
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": -1}
+        },
+        "children": [
+          {
+            "title": "entityPosition",
+            "type": "action",
+            "name": "entityPosition",
+            "parameters": {
+              "entity": {"key": "target"}
+            },
+            "output": {
+              "position": "targetPosition"
+            }
+          },
+          {
+            "title": "v_rangedFlyApproach",
+            "type": "action",
+            "name": "v_rangedFlyApproach",
+            "parameters": {
+              "avoidSurfaces": {"value": false},
+              "controlForce": {"key": "<controlForce>"},
+              "correctionStepSize": {"value": 0.03},
+              "maxRange": {"key": "<maxRange>"},
+              "minRange": {"key": "<minRange>"},
+              "position": {"key": "targetPosition"},
+              "speed": {"key": "<speed>"},
+              "faceDirection": {"value": false}
+            }
+          }
+        ]
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"key": "<minTime>"}
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "globalTagDefaults" : {
+    "opacity" : "00"
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "hand" : {
+        "default" : "fist",
+        "states" : {
+          "dig" : {},
+          "openhand" : {},
+          "fist" : {}
+        }
+      },
+      "forearm" : {
+        "default" : "normal",
+        "states" : {
+          "normal" : {},
+          "flipped" : {}
+        }
+      },
+      "reararm" : {
+        "default" : "normal",
+        "states" : {
+          "normal" : {},
+          "flipped" : {}
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+    "parts" : {
+      "hand" : {
+        "properties" : {
+          "zLevel" : 2,
+          "centered" : true,
+          "fullbright" : true,
+          "offset" : [5.75, 2.0],
+          "rotationRate" : 180,
+          "maxHandAngle" : 90,
+          "image" : "<partImage>?multiply=ffffff<opacity>",
+          "transformationGroups" : [ "hand", "facing" ]
+        },
+        "partStates" : {
+          "hand" : {
+            "dig" : {
+              "properties" : {
+                "image" : "<partImage>:dig.<frame>?multiply=ffffff<opacity>"
+              }
+            },
+            "openhand" : {
+              "properties" : {
+                "image" : "<partImage>:openhand.<frame>?multiply=ffffff<opacity>"
+              }
+            },
+            "fist" : {
+              "properties" : {
+                "image" : "<partImage>:fist.<frame>?multiply=ffffff<opacity>"
+              }
+            }
+          }
+        }
+      },
+      "forearm" : {
+        "properties" : {
+          "zLevel" : 1,
+          "transformationGroups" : [ "wristjoint" ],
+          // wrist radius: 31 px, arm length: 262 px.
+          "offset" : [14.375, -0.75],
+          "wristPoint" : [0, 0],
+          "elbowPoint" : [27.375, -3.125],
+          "length" : 28.5,
+          "image" : "<partImage>?multiply=ffffff<opacity>",
+          "fullbright" : true
+        },
+        "partStates" : {
+          "forearm" : {
+            "normal" : {
+              "properties" : {
+                "image" : "<partImage>:normal.<frame>?multiply=ffffff<opacity>"
+              }
+            },
+            "flipped" : {
+              "properties" : {
+                "image" : "<partImage>:flipped.<frame>?multiply=ffffff<opacity>"
+              }
+            }
+          }
+        }
+      },
+      "reararm" : {
+        "properties" : {
+          "anchorPart" : "forearm",
+          "zLevel" : 0,
+          "transformationGroups" : [ "elbowjoint" ],
+          // arm joint radius: 40 px, end-to-end arm length: 277 px. Take half of end-to-end arm length, subtract by
+          // arm joint radius, and then divide result by 8. Also add the offset of `forearm` because it also represents
+          // the distance to the other joint.
+          "offset" : [24.9375, -0.375],
+          "elbowPoint" : [13.125, -0.625],
+          "length" : 26.5,
+          "image" : "<partImage>?multiply=ffffff<opacity>",
+          "fullbright" : true
+        },
+        "partStates" : {
+          "reararm" : {
+            "normal" : {
+              "properties" : {
+                "image" : "<partImage>:normal.<frame>?multiply=ffffff<opacity>"
+              }
+            },
+            "flipped" : {
+              "properties" : {
+                "image" : "<partImage>:flipped.<frame>?multiply=ffffff<opacity>"
+              }
+            }
+          }
+        }
+      } // ,
+      // "forearmpivot" : {
+      //   "properties" : {
+      //     "zLevel" : 3,
+      //     "anchorPart" : "forearm",
+      //     "image" : "<partImage>",
+      //     "fullbright" : true
+      //   }
+      // },
+      // "reararmpivot" : {
+      //   "properties" : {
+      //     "zLevel" : 4,
+      //     "anchorPart" : "reararm",
+      //     "image" : "<partImage>",
+      //     "fullbright" : true
+      //   }
+      // }
+    }
+  },
+
+  "transformationGroups" : {
+    "hand" : { "interpolated" : true },
+    "elbowjoint" : { "interpolated" : true },
+    "wristjoint" : { "interpolated" : true },
+    "facing" : { "interpolated" : false}
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [
+      ]
+    }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0.25,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "sounds" : {
+    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+    "punch" : [ "/sfx/npc/boss/v_titanofdarkness_punch.ogg" ]
+  }
+}

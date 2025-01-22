@@ -7,7 +7,7 @@
   "rarity" : "Common",
   "description" : "These bricks have certainly survived the test of time.",
   "shortdescription" : "ceiling",
-  "race" : "generic",
+  "race" : "ancient",
   "health" : 1,
 
   "category" : "wire",
@@ -17,7 +17,7 @@
   "glitchDescription" : "ITS A CEILING",
 
   "renderLayer" : "ForegroundTile",
-  
+
   "inventoryIcon" : "icon.png",
   "orientations" : [
     {
@@ -26,7 +26,7 @@
       "direction" : "right",
 
       "renderLayer" : "ForegroundTile",
-      
+
       "animationParts" : {
         "wall" : "strongholdbossceiling.png"
       },
@@ -40,7 +40,7 @@
 
   "scripts" : [ "/objects/wired/v-slidingdoor/slidingdoor.lua" ],
   "scriptDelta" : 1,
-  
+
   "translationConfig" : {
     "duration" : 1,
     "distance" : 40,
@@ -49,7 +49,7 @@
     "isSolid" : true,
     "frames" : 42
   },
-  
+
   "inputNodes" : [ [0, 0] ],
 
   "animation" : "/objects/wired/v-slidingdoor/slidingdoor.animation",
@@ -58,13 +58,13 @@
     "wall" : "strongholdbossceiling.png"
   },
   "animationPosition" : [-16, -24],
-  
+
   "animationCustom" : {
     "sounds" : {
       "moveLoop" : ["/sfx/objects/v_strongholddoor_moveloop.ogg"],
       "moveEnd" : ["/sfx/objects/v_strongholddoor_impact.ogg"]
     }
   },
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

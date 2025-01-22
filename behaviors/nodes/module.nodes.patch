@@ -724,5 +724,178 @@
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-ancientturret2fire.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-custombehaviortemplate",
+    "value": {
+      "type": "module",
+      "name": "v-custombehaviortemplate",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\v-custombehaviortemplate.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarkness.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-rangedfly",
+    "value": {
+      "type": "module",
+      "name": "v-approach-rangedfly",
+      "title": "",
+      "properties": {
+        "controlForce": {"type": "json", "value": null},
+        "flyState": {"type": "json", "value": "fly"},
+        "idleState": {"type": "json", "value": ""},
+        "maxRange": {"type": "json", "value": 20},
+        "minRange": {"type": "json", "value": 10},
+        "speed": {"type": "json", "value": 20},
+        "usePathfinding": {"type": "json", "value": true}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-rangedflyapproach.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-laser",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-laser",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-laser.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-explosion",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-explosion",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-explosion.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-bouncespread",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-bouncespread",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-bouncespread.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-flytotarget",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-flytotarget",
+      "title": "",
+      "properties": {
+        "speed": {"type": "json", "value": 10},
+        "controlForce": {"type": "json", "value": 6},
+        "minRange": {"type": "json", "value": 30},
+        "maxRange": {"type": "json", "value": 50},
+        "minTime": {"type": "json", "value": 5}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-flytotarget.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-search",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-search",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-search.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-orbittarget",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-orbittarget",
+      "title": "",
+      "properties": {
+        "orbitPeriod": {"type": "json", "value": 1},
+        "orbitVector": {"type": "json", "value": [1, 0]}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-orbittarget.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-meteors",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-meteors",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-meteors.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-punch",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-punch",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-punch.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-disappear",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-disappear",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-disappear.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-teleport",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-teleport",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-teleport.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-burrowingrifts",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-burrowingrifts",
+      "title": "",
+      "properties": {
+        "maxLoops": {"type": "json", "value": 10}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-burrowingrifts.behavior"
+    }
   }
 ]

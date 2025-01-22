@@ -2,8 +2,30 @@ require "/scripts/util.lua"
 require "/scripts/rect.lua"
 
 --[[
-  A script for a door that uses transformation groups instead of frame-by-frame animation to render its visuals. The
-  door has a wide variety of options, including using a smooth transition for the
+  A script for a door that uses transformation groups instead of frame-by-frame animation to render its visuals. Used by
+  v-strongholdbossdoor, v-strongholdbossdoor2, v-strongholdbossfloor, v-strongholdbossceiling, v-strongholdbosswall, and
+  v-labreactordoor.
+
+  On initialization, the script builds a list of spaces to use, which are ordered from least to most open and are
+  stored in `storage.spaceStates`. In addition, some configuration parameters are prefetched for quick reference;
+  variables are initialized; sound positions are set; and the object's interactivity is set through the
+  `updateInteractive()` function. Most configuration parameters are set through the `translationConfig` object. The
+  exceptions are `openMaterial`, `openMaterialSpaces`, `closeMaterial`, `closeMaterialSpaces`, and `soundOffsets`.
+  `openMaterial` and `openMaterialSpaces` define spaces for parts of the door that are "open", with `openMaterial` being
+  a blanket default value and `openMaterialSpaces` being block-by-block definitions. Likewise, `closeMaterial` and
+  `closeMaterialSpaces` do the same for parts of the door that are "closed". `soundOffsets` set positions for animation
+  sounds. The object's interactivity is controlled through the `interactive` parameter and by whether or not it has a
+  wire attached to it, similar to normal doors.
+
+  On every tick that the input node is on (controlled by the `storage.active` variable), the `translationTimer` variable
+  is increased by `dt`. This variable controls the amount by which to translate the "door" transformation group as well
+  as what sounds to play, the material spaces to use, and the current global tag to use for frame indexing (the number
+  of frames in total being controlled by the `frames` parameter). When `openTranslationDelay` is defined to be positive,
+  a dedicated timer is continuously decreased by `dt` until it reaches zero before increasing `translationTimer`.
+
+  On every tick that the input node is off, the `translationTimer` variable is decreased by `dt`. When
+  `closeTranslationDelay` is defined to be positive, a dedicated timer is continuously decreased by `dt` until it
+  reaches zero before decreasing `translationTimer`.
 ]]
 
 local translationTime
@@ -18,7 +40,7 @@ local closeMaterial
 local closeMaterialSpaces
 local useSpacesTransition
 local openTranslationDelay
-local closeTransitionDelay
+local closeTranslationDelay
 local endOffset
 local translationTimer
 local openTranslationDelayTimer
@@ -31,7 +53,6 @@ local isMoving  -- Whether it is moving in the current tick
 local wasMoving  -- Whether it was moving in the previous tick
 
 function init()
-
   local translationConfig = config.getParameter("translationConfig")
 
   translationTime = translationConfig.duration  ---@type number # The amount of time the translation takes
@@ -39,24 +60,28 @@ function init()
   ---@type 1 | -1 # The direction to translate the door when opening. 1 for right / up, -1 for left / down.
   direction = translationConfig.direction or 1
   frames = translationConfig.frames or 1  ---@type integer # The number of frames for the image.
-  isSolid = translationConfig.isSolid  ---@type boolean # Whether or not the door is solid (e.g., for background doors).
-  useHorizontal = translationConfig.useHorizontal  ---@type boolean # `true` for horizontal movement, `false` otherwise.
+  ---@type boolean # Whether or not the door is solid (e.g., `false` for background doors).
+  isSolid = translationConfig.isSolid
+  ---@type boolean # `true` for horizontal movement (trapdoors), `false` otherwise.
+  useHorizontal = translationConfig.useHorizontal
   ---@type boolean? # Whether or not to use a transition for the material spaces. Not applicable if `isSolid` is `false`
   useSpacesTransition = translationConfig.useSpacesTransition
   ---@type number? # The amount of time to wait before opening the door.
   openTranslationDelay = translationConfig.openDelay or 0
   ---@type number? # The amount of time to wait before closing the door.
-  closeTransitionDelay = translationConfig.closeDelay or 0
+  closeTranslationDelay = translationConfig.closeDelay or 0
 
   ---@type string? # The material to use for empty spaces. Not applicable if `isSolid` is `false`.
   openMaterial = config.getParameter("openMaterial")
   ---@type string? # The material to use for door spaces. Not applicable if `isSolid` is `false`.
   closeMaterial = config.getParameter("closeMaterial", "metamaterial:door")
-  ---@type [Vec2I, string][]? # A list of associations between spaces and materials to use for empty spaces. Not
-  ---applicable if `isSolid` is `false`.
+  ---@type [Vec2I, string][]? # A list of associations between spaces and materials to use for parts of the door that
+  ---are open. Not applicable if `isSolid` is `false`. Spaces omitted in this list default to `openMaterial`, or air if
+  ---`openMaterial` is nil.
   openMaterialSpaces = config.getParameter("openMaterialSpaces")
-  ---@type [Vec2I, string][]? # A list of associations between spaces and materials to use for door spaces. Not
-  ---applicable if `isSolid` is `false`.
+  ---@type [Vec2I, string][]? # A list of associations between spaces and materials to use for parts of the door that
+  ---are closed. Not applicable if `isSolid` is `false`. Spaces omitted in this list default to `closeMaterial`, or
+  ---`metamaterial:door` if `closeMaterial` is nil.
   closeMaterialSpaces = config.getParameter("closeMaterialSpaces")
 
   -- Set end offset based on whether the door is horizontal or vertical.
@@ -71,15 +96,21 @@ function init()
   openTranslationDelayTimer = 0
   closeTranslationDelayTimer = 0
 
+  -- Initialize material spaces if isSolid is `true`
   if isSolid then
     if not storage.states then
       setupMaterialSpaces()
+    end
+
+    if not world.regionActive(object.boundBox()) then
+      sb.logInfo("slidingdoor.lua: Region not loaded!")
     end
 
     -- Set initial material spaces
     object.setMaterialSpaces(storage.spaceStates[1])
   end
 
+  -- Set active if not already set.
   if storage.active == nil then
     updateActive()
   end
@@ -166,7 +197,7 @@ function updateActive(active)
   if storage.active then
     openTranslationDelayTimer = openTranslationDelay
   else
-    closeTranslationDelayTimer = closeTransitionDelay
+    closeTranslationDelayTimer = closeTranslationDelay
   end
 end
 
@@ -425,5 +456,22 @@ function updateDoor(progress, endOffset)
 
   if useAntiCrush then
     physics.setForceEnabled(forceRegion, storage.active)
+  end
+end
+
+---Callscript funcion.
+---@param capability string
+---@return boolean
+function hasCapability(capability)
+  if object.isInputNodeConnected(0) then
+    return false
+  elseif capability == 'door' then
+    return true
+  elseif capability == 'closedDoor' then
+    return not storage.active
+  elseif capability == 'openDoor' then
+    return storage.active
+  else
+    return false
   end
 end

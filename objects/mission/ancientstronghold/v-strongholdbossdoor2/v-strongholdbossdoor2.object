@@ -7,7 +7,7 @@
   "rarity" : "Common",
   "description" : "A thick, ancient wall designed to trap invaders in this room.",
   "shortdescription" : "Back Door",
-  "race" : "generic",
+  "race" : "ancient",
   "health" : 1,
 
   "category" : "wire",
@@ -20,14 +20,14 @@
   "humanDescription" : "This old wall keeps me from getting out.",
   "hylotlDescription" : "The wall of an ancient death trap.",
   "novakidDescription" : "Looks like there's no goin' back.",
-  
+
   "inventoryIcon" : "icon.png",
   "orientations" : [
     {
       "image" : "strongholdbossdoor2.png:1",
       "imagePosition" : [0, 0],
       "direction" : "right",
-      
+
       "animationParts" : {
         "wall" : "strongholdbossdoor2.png"
       },
@@ -38,7 +38,7 @@
 
   "scripts" : [ "/objects/wired/v-slidingdoor/slidingdoor.lua" ],
   "scriptDelta" : 1,
-  
+
   "translationConfig" : {
     "duration" : 0.2,
     "distance" : 5,
@@ -50,7 +50,7 @@
 
   "useAntiCrush" : true,
   "queryArea" : [0, 0, 6, 5],
-  
+
   "physicsForces" : {
     "doorRight" : {
       "type" : "DirectionalForceRegion",
@@ -67,7 +67,7 @@
       "categoryWhitelist" : [ "player", "monster", "npc" ]
     }
   },
-  
+
   "inputNodes" : [ [0, 0] ],
 
   "animation" : "/objects/wired/v-slidingdoor/slidingdoor.animation",
@@ -76,13 +76,13 @@
     "wall" : "strongholdbossdoor2.png"
   },
   "animationPosition" : [0, 0],
-  
+
   "animationCustom" : {
     "sounds" : {
       "moveLoop" : ["/sfx/objects/v_strongholddoor_moveloop.ogg"],
       "moveEnd" : ["/sfx/objects/v_strongholddoor_impact.ogg"]
     }
   },
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }
