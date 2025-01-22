@@ -90,7 +90,7 @@ end
 function update(dt)
   state:update()
 
-  world.debugPoint(anchorPoint, "green")
+  -- world.debugPoint(anchorPoint, "green")
   updateArm()
   updateHandAngle(dt)
 end

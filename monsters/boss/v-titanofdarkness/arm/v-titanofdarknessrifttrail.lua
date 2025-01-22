@@ -75,7 +75,7 @@ function updateTrail()
       local halfTrailThickness = trail.thickness / 2
       -- For each tracked position...
       for i = 1, #trackedPositions - 1 do
-        world.debugPoint(trackedPositions[i].pos, "green")
+        -- world.debugPoint(trackedPositions[i].pos, "green")
         -- -- Note: Higher index = newer
         -- -- Calculate progress of each pair.
         -- local startProgress = (i + 1) / #trackedPositions
