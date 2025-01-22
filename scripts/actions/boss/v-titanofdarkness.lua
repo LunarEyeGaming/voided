@@ -7,35 +7,35 @@ require "/scripts/v-world.lua"
 local titanArmIds = {}
 local nextAnimKeyframeId = 0
 
-local debugSearchZones
+-- local debugSearchZones
 
-local oldUpdate = update or function() end
-function update(dt)
-  oldUpdate(dt)
+-- local oldUpdate = update or function() end
+-- function update(dt)
+--   oldUpdate(dt)
 
-  if debugSearchZones then
-    for i, zone in ipairs(debugSearchZones) do
-      local startPos = mcontroller.position()
-      if zone.sweep then
-        for _, angle in ipairs(zone.debugCluster) do
-          world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(angle, 20)), "yellow")
-        end
-        world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(zone.startAngle, 20)), "orange")
-        world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(zone.endAngle, 20)), "blue")
-        world.debugText("#%s start", i, vec2.add(startPos, vec2.withAngle(zone.startAngle, 20)), "orange")
-        world.debugText("#%s end", i, vec2.add(startPos, vec2.withAngle(zone.endAngle, 20)), "blue")
-      else
-        for _, angle in ipairs(zone.debugCluster) do
-          world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(angle, 20)), "red")
-        end
-        world.debugText("#%s", i, vec2.add(startPos, vec2.withAngle(zone.angle, 20)), "green")
-        world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(zone.angle, 20)), "green")
-      end
-    end
-  end
+--   if debugSearchZones then
+--     for i, zone in ipairs(debugSearchZones) do
+--       local startPos = mcontroller.position()
+--       if zone.sweep then
+--         for _, angle in ipairs(zone.debugCluster) do
+--           world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(angle, 20)), "yellow")
+--         end
+--         world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(zone.startAngle, 20)), "orange")
+--         world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(zone.endAngle, 20)), "blue")
+--         world.debugText("#%s start", i, vec2.add(startPos, vec2.withAngle(zone.startAngle, 20)), "orange")
+--         world.debugText("#%s end", i, vec2.add(startPos, vec2.withAngle(zone.endAngle, 20)), "blue")
+--       else
+--         for _, angle in ipairs(zone.debugCluster) do
+--           world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(angle, 20)), "red")
+--         end
+--         world.debugText("#%s", i, vec2.add(startPos, vec2.withAngle(zone.angle, 20)), "green")
+--         world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(zone.angle, 20)), "green")
+--       end
+--     end
+--   end
 
-  titanArmIds = util.filter(titanArmIds, function(x) return world.entityExists(x) end)
-end
+--   titanArmIds = util.filter(titanArmIds, function(x) return world.entityExists(x) end)
+-- end
 
 -- param target - The target entity to attack
 -- param windupTime - Amount of time to display the laser telegraphs
@@ -353,7 +353,7 @@ function v_titanSearch(args)
     while timer < turnTime do
       local curAngle = util.lerp(timer / turnTime, startAngle, interpEndAngle)
       timer = timer + dt
-      world.debugLine(mcontroller.position(), vec2.add(mcontroller.position(), vec2.withAngle(curAngle, 20)), "blue")
+      -- world.debugLine(mcontroller.position(), vec2.add(mcontroller.position(), vec2.withAngle(curAngle, 20)), "blue")
 
       coroutine.yield(nil, {angle = curAngle})
     end
@@ -363,7 +363,7 @@ function v_titanSearch(args)
   while true do
     local searchZones = processRaycastClusters(radialRaycast(mcontroller.position(), rayCount, maxRaycastLength))
 
-    debugSearchZones = searchZones
+    -- debugSearchZones = searchZones
 
     -- Go through each search zone.
     for _, zone in ipairs(searchZones) do
@@ -905,11 +905,13 @@ function processRaycastClusters(raycastClusters, sweepThreshold)
     -- If the angular span of the cluster exceeds the sweep threshold...
     if math.abs(util.angleDiff(cluster[1], cluster[#cluster])) > sweepThreshold then
       -- Mark as a sweep.
-      table.insert(searchZones, {sweep = true, startAngle = cluster[1], endAngle = cluster[#cluster], debugCluster = cluster})
+      -- table.insert(searchZones, {sweep = true, startAngle = cluster[1], endAngle = cluster[#cluster], debugCluster = cluster})
+      table.insert(searchZones, {sweep = true, startAngle = cluster[1], endAngle = cluster[#cluster]})
     else
       -- Compute midpoint between the two edge angles of the cluster.
       local middleAngle = (cluster[1] + cluster[#cluster]) / 2
-      table.insert(searchZones, {sweep = false, angle = middleAngle, debugCluster = cluster})
+      -- table.insert(searchZones, {sweep = false, angle = middleAngle, debugCluster = cluster})
+      table.insert(searchZones, {sweep = false, angle = middleAngle})
     end
   end
 
