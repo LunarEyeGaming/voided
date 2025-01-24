@@ -413,6 +413,91 @@
   },
   {
     "op" : "add",
+    "path" : "/planetTypes/v-ministar",
+    "value" : {
+      "threatRange" : [8, 8],
+      "gravityRange" : [80, 100],
+      "layers" : {
+        "space" : {
+          "primaryRegion" : [ "v-burningasteroids" ],
+
+          "dungeons" : [[1.0, "v-ministarspawn"]]
+        },
+        "surface" : {
+          "primaryRegion" : [ "v-ministar" ]
+        },
+        "subsurface" : {
+          "primaryRegion" : ["v-undergroundministar"],
+          "subRegionSize" : [0.5, 0.5]
+        },
+        "underground1" : {
+          "primaryRegion" : ["v-undergroundministar"],
+          "subRegionSize" : [0.5, 0.5]
+        },
+        "underground2" : {
+          "primaryRegion" : ["v-undergroundministar"],
+          "subRegionSize" : [0.5, 0.5]
+        },
+        "underground3" : {
+          "primaryRegion" : ["v-undergroundministar"],
+          "subRegionSize" : [0.5, 0.5]
+        // },
+        // "core" : {
+        //   "primaryRegion" : ["v-terraintest"]
+        }
+      }
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-burningasteroids",
+    "value" : {
+      "blockSelector" : [ "v-asteroidsDense" ],
+      "fgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-burningasteroids" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-ministar",
+    "value" : {
+      "oceanLiquid" : [ "lava" ],
+      "blockSelector" : [ "v-ministarSurface" ],
+      "fgCaveSelector" : [ "v-crystalMountainsCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-ministar" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-undergroundministarempty",
+    "value" : {
+      "blockSelector" : [ "empty" ],
+      "fgCaveSelector" : [ "empty" ],
+      "bgCaveSelector" : [ "empty" ],
+      "oceanLiquid" : ["lava"],
+      "oceanLevelOffset" : 1000,
+      "biome" : [
+        [1,["v-undergroundministarempty"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-undergroundministar",
+    "value" : {
+      "biome" : [
+        [1,["v-undergroundministar"]]
+      ],
+      "subRegion" : ["v-undergroundministarempty"]
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/planetTypes/v-terraintest",
     "value" : {
       "threatRange" : [1, 1],
