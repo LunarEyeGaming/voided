@@ -72,8 +72,7 @@
 
   "weather" : [
     [0, [
-      "/weather.config:magma",
-      "/weather.config:magmaMeteor"
+      "/weather.config:magma"
     ]]
   ],
 
@@ -137,7 +136,7 @@
   ],
 
   "mainBlock" : "obsidian",
-  "subBlocks" : [ "ash", "rock14" ],
+  "subBlocks" : [ "rock14" ],
   "ores" : "surface",
 
   "parallax" : "/parallax/surface/magma.parallax",

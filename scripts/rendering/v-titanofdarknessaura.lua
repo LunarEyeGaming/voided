@@ -20,10 +20,6 @@ local titanPosition
 local distance
 local fadeTimer
 
--- Camera can pan 600 px, or 75 blocks at 1x zoom. Will need double this value to ensure full coverage of viewing
--- range.
-local WINDOW_PADDING = 150
-
 function init()
   oldInit()
   -- message.setHandler("v-titanOfDarknessAura-activate", function(_, _, id)
@@ -93,7 +89,7 @@ function drawOverlays()
   local windowRegion = world.clientWindow()
   -- Make window region relative to the current entity. Account for world wrapping.
   local relativeWindowRegion = rect.translate(windowRegion, vec2.mul(world.nearestTo(rect.center(windowRegion), entity.position()), -1))
-  local drawingBounds = rect.pad(relativeWindowRegion, WINDOW_PADDING)  -- Pad region to account for camera panning
+  local drawingBounds = rect.pad(relativeWindowRegion, vAnimator.WINDOW_PADDING)  -- Pad region to account for camera panning
 
   local verticalMidPoint = (drawingBounds[4] + drawingBounds[2]) / 2
 

@@ -71,7 +71,6 @@ end
 ---@field fullbright boolean?
 ---@field duration number
 ---@field renderLayer string
----@field WINDOW_PADDING number
 ScreenFlash = {}
 
 ---Instantiates a screen flash.
@@ -88,10 +87,7 @@ function ScreenFlash:new(startColor, endColor, fullbright, duration, renderLayer
     fullbright = fullbright,
     duration = duration,
     timer = duration,
-    renderLayer = renderLayer or "ForegroundOverlay+10",
-    -- Camera can pan 600 px, or 75 blocks at 1x zoom. Will need double this value to ensure full coverage of viewing
-    -- range.
-    WINDOW_PADDING = 150
+    renderLayer = renderLayer or "ForegroundOverlay+10"
   }
   setmetatable(effectConfig, self)
   self.__index = self
@@ -106,7 +102,7 @@ function ScreenFlash:process(dt)
   local windowRegion = world.clientWindow()
   -- Make window region relative to the current entity.
   local relativeWindowRegion = rect.translate(windowRegion, vec2.mul(world.nearestTo(rect.center(windowRegion), entity.position()), -1))
-  local drawingBounds = rect.pad(relativeWindowRegion, self.WINDOW_PADDING)  -- Pad region to account for camera panning
+  local drawingBounds = rect.pad(relativeWindowRegion, vAnimator.WINDOW_PADDING)  -- Pad region to account for camera panning
 
   local verticalMidPoint = (drawingBounds[4] + drawingBounds[2]) / 2
 

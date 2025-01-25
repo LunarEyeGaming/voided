@@ -186,15 +186,20 @@
           // orange, sickly green, orange, magenta
           "mainColor" : [255, 255, 255],
 
-          "morningColors" : [ [99, 12, 12], [131, 131, 12] ],
-          "dayColors" : [ [147, 240, 34], [164, 255, 36] ],
-          "eveningColors" : [ [99, 12, 12], [131, 131, 12] ],
-          "nightColors" : [ [64, 9, 42, 80], [92, 25, 58, 160] ],
+          "morningColors" : [ [184, 163, 83], [242, 241, 157] ],
+          "dayColors" : [ [184, 163, 83], [242, 241, 157] ],
+          "eveningColors" : [ [184, 163, 83], [242, 241, 157] ],
+          "nightColors" : [ [184, 163, 83], [242, 241, 157] ],
 
-          "morningLightColor" : [125, 85, 65],
-          "dayLightColor" : [147, 240, 34],
-          "eveningLightColor" : [125, 85, 65],
-          "nightLightColor" : [31, 3, 21]
+          // "morningLightColor" : [46, 0, 0],
+          // "dayLightColor" : [46, 0, 0],
+          // "eveningLightColor" : [46, 0, 0],
+          // "nightLightColor" : [46, 0, 0]
+
+          "morningLightColor" : [184, 163, 83],
+          "dayLightColor" : [184, 163, 83],
+          "eveningLightColor" : [184, 163, 83],
+          "nightLightColor" : [184, 163, 83]
         },
         "satellites" : [ {
           "pos" : [ 0.310561, 0.35497 ],
