@@ -16,7 +16,29 @@
           [ 1.0, "scandroid" ]
         ]
       }
-    ]
+    ],
+    "monsterParameters" : {
+      "colors" : "magma",
+      "statusSettings" : {
+        "stats" : {
+          "fireResistance" : {
+            "baseValue" : 0.5
+          },
+          "iceResistance" : {
+            "baseValue" : -0.25
+          },
+          "lavaImmunity" : {
+            "baseValue" : 1.0
+          },
+          "fireStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 15.0
+          }
+        }
+      }
+    }
   },
 
   "statusEffects" : [ "biomeairless" ],

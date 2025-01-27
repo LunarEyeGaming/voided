@@ -423,6 +423,9 @@
 
           "dungeons" : [[1.0, "v-ministarspawn"]]
         },
+        "atmosphere" : {
+          "primaryRegion" : [ "v-ministaratmosphere" ]
+        },
         "surface" : {
           "primaryRegion" : [ "v-ministar" ]
         },
@@ -439,8 +442,7 @@
           "subRegionSize" : [0.5, 0.5]
         },
         "underground3" : {
-          "primaryRegion" : ["v-undergroundministar"],
-          "subRegionSize" : [0.5, 0.5]
+          "primaryRegion" : ["v-undergroundministarempty"]
         // },
         // "core" : {
         //   "primaryRegion" : ["v-terraintest"]
@@ -456,6 +458,18 @@
       "fgCaveSelector" : [ "empty" ],
       "biome" : [
         [0, [ "v-burningasteroids" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-ministaratmosphere",
+    "value" : {
+      "blockSelector" : [ "v-asteroidsSparse" ],
+      "fgCaveSelector" : [ "empty" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-ministaratmosphere" ]]
       ]
     }
   },

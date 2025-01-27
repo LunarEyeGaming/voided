@@ -46,7 +46,6 @@ end
 
 function update(dt)
   localAnimator.clearDrawables()
-  localAnimator.clearLightSources()
 
   oldUpdate(dt)  -- Drawables are implicitly cleared.
 
@@ -60,8 +59,9 @@ function update(dt)
   -- Compute predicted position.
   local predictedPos = vec2.add(ownPos, vec2.mul(ownVelocity, dt))
   -- predictedPos = world.resolvePolyCollision(collisionPoly, predictedPos, 1) or predictedPos
+  local window = world.clientWindow()
 
-  drawBurningBlocks(predictedPos, dt)
+  drawBurningBlocks(predictedPos, dt, window)
 
   local sunRayColor = vAnimator.lerpColor(sunProximityRatio, sunRayDimColor, sunRayBrightColor)
   -- local sunRayLightColor = {
@@ -69,96 +69,62 @@ function update(dt)
   --   math.floor(sunRayColor[2] * sunProximityRatio),
   --   math.floor(sunRayColor[3] * sunProximityRatio)
   -- }
-  local window = world.clientWindow()
 
   -- local entityPosMap = queryEntities(rect.pad(window, vAnimator.WINDOW_PADDING))
 
   -- For each horizontal strip in heightMap...
-  local prevV
   for i, v in ipairs(heightMap.list) do
     local x = i + heightMap.startXPos - 1
-    local bottomY = math.max(heightMap.minHeight, window[2])
-    local relativePos = vec2.sub({x, bottomY}, predictedPos)
 
-    -- If the value is not "completelyObstructed"...
-    if v.type ~= "completelyObstructed" then
-      -- Determine the y value to use (window[4] is the top of the screen)
-      y = v.type == "partiallyObstructed" and math.min(v.value, window[4]) or window[4]
+    -- If x is within window boundaries...
+    if window[1] <= x and x <= window[3] then
+      local bottomY = math.max(heightMap.minHeight, window[2])
+      local relativePos = vec2.sub({x, bottomY}, predictedPos)
 
-      -- Check if y is above the bottom point of the sun ray.
-      if y > bottomY then
-        -- Draw a line from the bottom of the screen to y.
-        localAnimator.addDrawable({
-          line = {{0.5, 0}, {0.5, y - bottomY}},
-          width = 8,
-          position = relativePos,
-          color = sunRayColor,
-          fullbright = true
-        }, "ForegroundTile-1")
+      -- If the value is not "completelyObstructed"...
+      if v.type ~= "completelyObstructed" then
+        -- Determine the y value to use (window[4] is the top of the screen)
+        y = v.type == "partiallyObstructed" and math.min(v.value, window[4]) or window[4]
+
+        -- Check if y is above the bottom point of the sun ray.
+        if y > bottomY then
+          -- Draw a line from the bottom of the screen to y.
+          localAnimator.addDrawable({
+            line = {{0.5, -1}, {0.5, y - bottomY}},
+            width = 8,
+            position = relativePos,
+            color = sunRayColor,
+            fullbright = true
+          }, "Liquid-1")
+          -- print(5)
+        end
       end
-
-      -- -- Add light source at topmost y value. Adding a light source at the bottom is unnecessary as the liquid already
-      -- -- provides a light source.
-      -- localAnimator.addLightSource({
-      --   position = {x, y},
-      --   color = sunRayLightColor
-      -- })
-
-      -- local idx = x - entityPosMap.startXPos
-      -- -- If there are entities at the current strip...
-      -- if entityPosMap.map[idx] then
-      --   -- Add light sources for each position in entityPosMap where the y component is below `y`.
-      --   for _, entityY in ipairs(entityPosMap.map[idx]) do
-      --     if entityY < y then
-      --       localAnimator.addLightSource({
-      --         position = {x, entityY},
-      --         color = sunRayLightColor
-      --       })
-      --     end
-      --   end
-      -- end
-    -- -- Otherwise, if the previous value is defined and is not completely obstructed...
-    -- elseif prevV and prevV.type ~= "completelyObstructed" then
-    --   -- Determine the topmost y value to use (window[4] is the top of the screen)
-    --   topY = prevV.type == "partiallyObstructed" and prevV.value or window[4]
-
-    --   local direction
-    --   if bottomY <= topY then
-    --     direction = 1
-    --   else
-    --     direction = -1
-    --   end
-    --   -- Add light sources across the strip.
-    --   for y = bottomY, topY, direction do
-    --     localAnimator.addLightSource({
-    --       position = {i + heightMap.startXPos - 2, y},
-    --       color = sunRayLightColor
-    --     })
-    --   end
     end
-
-    prevV = v
   end
 end
 
 ---Draws the burning blocks, also updating their heat.
 ---@param predictedPos Vec2F
 ---@param dt number
-function drawBurningBlocks(predictedPos, dt)
+---@param window RectI
+function drawBurningBlocks(predictedPos, dt, window)
   -- For each block in burningBlocks...
   for _, block in ipairs(burningBlocks) do
-    local relativePos = vec2.sub(block.pos, predictedPos)
+    -- If the block is visible inside of the window...
+    if window[1] <= block.pos[1] and block.pos[1] <= window[3] then
+      local relativePos = vec2.sub(block.pos, predictedPos)
 
-    -- Draw a square at that position
-    localAnimator.addDrawable({
-      line = {{0, 0.5}, {1, 0.5}},
-      width = 8,
-      position = relativePos,
-      color = vAnimator.lerpColor(block.heat / block.heatTolerance, startBurningColor, endBurningColor),
-      fullbright = true
-    }, "ForegroundEntity-1")
+      -- Draw a square at that position
+      localAnimator.addDrawable({
+        line = {{0, 0.5}, {1, 0.5}},
+        width = 8,
+        position = relativePos,
+        color = vAnimator.lerpColor(block.heat / block.heatTolerance, startBurningColor, endBurningColor),
+        fullbright = true
+      }, "ForegroundEntity-1")
 
-    block.heat = block.heat + dt  -- Continue increasing the heat.
+      block.heat = block.heat + dt  -- Continue increasing the heat.
+    end
   end
 end
 

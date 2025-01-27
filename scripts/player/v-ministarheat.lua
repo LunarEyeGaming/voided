@@ -102,98 +102,6 @@ function update(dt)
 
   syncHeightMapToGlobal(heightMap)
 
-  -- TODO: Store collision data in world properties. These would be split by chunk. Once the player loads that chunk,
-  -- the collision data is updated for it.
-  -- local globalHeightMapSerialized = world.getProperty("v-globalHeightMap", {})
-
-  -- -- Convert to hash map.
-  -- ---@type HeightMapItem[]
-  -- local globalHeightMap = {}
-  -- for _, value in ipairs(globalHeightMapSerialized) do
-  --   globalHeightMap[value.x] = value.value
-  -- end
-
-  -- local startXPosWrapped = world.xwrap(heightMap.startXPos)
-  -- -- For each entry in the list of `heightMap`...
-  -- for i, v in ipairs(heightMap.list) do
-  --   local x = i + startXPosWrapped - 1
-  --   -- If there is no corresponding entry in `globalHeightMap` or the type of `v` is `completelyObstructed`...
-  --   if not globalHeightMap[x] or v.type == "completelyObstructed" then
-  --     globalHeightMap[x] = v
-  --   else  -- Otherwise, `globalHeightMap[x]` is defined and the type of `v` is not `completelyObstructed`.
-  --     local globalV = globalHeightMap[x]
-  --     local sharedValue
-
-  --     -- If the global value type is `partiallyObstructed`...
-  --     if globalV.type == "partiallyObstructed" then
-  --       local tilePos = {x, globalV.value}
-  --       -- `globalHeightIsValid` is true if the position at `tilePos` is occupied by a block or is not loaded.
-  --       local globalHeightIsValid = world.pointTileCollision(tilePos, {"Null", "Block", "Platform"})
-
-  --       -- If `globalHeightIsValid` is false...
-  --       if not globalHeightIsValid then
-  --         sharedValue = v
-  --       -- TODO: Factorize cases.
-  --       -- Otherwise, if the local value type is `partiallyObstructed`...
-  --       elseif v.type == "partiallyObstructed" then
-  --         if v.value < globalV.value then
-  --           sharedValue = v
-  --         else
-  --           sharedValue = globalV
-  --         end
-  --       else
-  --         sharedValue = globalV
-  --       end
-  --     -- Otherwise, if the global value type is `completelyObstructed`...
-  --     elseif globalV.type == "completelyObstructed" then
-  --       local tilePos = {x, minDepth - 1}
-  --       -- `globalHeightIsValid` is true if either the position at `tilePos` is not loaded or it does not have sun
-  --       -- liquid.
-  --       local globalHeightIsValid = world.pointTileCollision(tilePos, {"Null"})
-  --       if not globalHeightIsValid then
-  --         local liquid = world.liquidAt(tilePos)
-  --         globalHeightIsValid = not liquid or liquid[1] ~= sunLiquidId
-  --       end
-
-  --       -- Use global value if valid, otherwise local value.
-  --       sharedValue = globalHeightIsValid and globalV or v
-  --     else  -- Otherwise, the global value type is `open`
-  --       sharedValue = v  -- Use local value.
-  --     end
-  --     heightMap.list[i] = sharedValue
-  --     globalHeightMap[x] = sharedValue
-  --     --[[
-  --       globalHeightIsValid = world.pointCollision({x, globalHeightMap[x].value})
-  --       case "partiallyObstructed" for local and "partiallyObstructed" for global:
-  --         local and global <-- the min of each other, assuming global is valid. Otherwise, local
-  --       case "partiallyObstructed" for local and "completelyObstructed" for global:
-  --         local and global <-- global, assuming global is valid. Otherwise, local
-  --       case "partiallyObstructed" for local and "open" for global:
-  --         local and global <-- depends on whether local is within global's scan range, in which case local. Otherwise, global
-  --       case "completelyObstructed" for local and "partiallyObstructed" for global:
-  --         local and global <-- local
-  --       case "completelyObstructed" for local and "completelyObstructed" for global:
-  --         local and global <-- local
-  --       case "completelyObstructed" for local and "open" for global:
-  --         local and global <-- local
-  --       case "open" for local and "partiallyObstructed" for global:
-  --         local and global <-- global, assuming global is valid. Otherwise, local
-  --       case "open" for local and "completelyObstructed" for global:
-  --         local and global <-- global, assuming global is valid. Otherwise, local
-  --       case "open" for local and "open" for global:
-  --         local and global <-- local
-  --     ]]
-  --   end
-  -- end
-
-  -- -- Convert to serialized format
-  -- globalHeightMapSerialized = {}
-  -- for x, value in pairs(globalHeightMap) do
-  --   table.insert(globalHeightMapSerialized, {x = x, value = value})
-  -- end
-
-  -- world.setProperty("v-globalHeightMap", globalHeightMapSerialized)
-
   -- Process existing entries.
   local tilesToDestroy = processHeatMap(affectedTiles, dt)
 
@@ -227,21 +135,11 @@ function surfaceTileQuery(pos, affectedTiles)
 
   local lowestSectors = findLowestLoadedSectors(checkMinX + pos[1], checkMaxX + pos[1], pos[2])
 
-  -- world.debugText("%s", lowestSectors, vec2.add(mcontroller.position(), {0, -1}), "green")
+  -- Convert lowestSectors into a horizontal position map.
+  local lowestSectorsMap = {}
 
-  -- Generate a set of tiles that are heated right now.
-  for i = checkMinX, checkMaxX do
-    local x = i + pos[1]
-    -- Find associated lowest sector.
-    local xSector = x // SECTOR_SIZE
-    local checkMinY
-    for _, sector in ipairs(lowestSectors) do
-      if sector[1] == xSector then
-        checkMinY = (sector[2] + 1) * SECTOR_SIZE
-        break
-      end
-    end
-
+  for _, sector in ipairs(lowestSectors) do
+    local checkMinY = (sector[2] + 1) * SECTOR_SIZE
     -- Variant of checkMinY that stops at minDepth; whether or not the value was capped.
     local cappedCheckMinY, checkMinYWasCapped
     if checkMinY < minDepth then
@@ -251,15 +149,25 @@ function surfaceTileQuery(pos, affectedTiles)
       cappedCheckMinY = checkMinY
       checkMinYWasCapped = false
     end
+    lowestSectorsMap[sector[1]] = {y = cappedCheckMinY, capped = checkMinYWasCapped}
+  end
+
+  -- world.debugText("%s", lowestSectors, vec2.add(mcontroller.position(), {0, -1}), "green")
+
+  -- Generate a set of tiles that are heated right now.
+  for i = checkMinX, checkMaxX do
+    local x = i + pos[1]
+    -- Find associated lowest sector.
+    local xSector = x // SECTOR_SIZE
+    local sectorValue = lowestSectorsMap[xSector]
+    local cappedCheckMinY = sectorValue.y
+    local checkMinYWasCapped = sectorValue.capped
 
     -- Proceed only if cappedCheckMinY is not actually capped or there is a liquid with ID sunLiquidId at the position
     -- directly below cappedCheckMinY.
     local shouldProceed = not checkMinYWasCapped
     if checkMinYWasCapped then
       local liquid = world.liquidAt({x, cappedCheckMinY - 1})
-      -- if i == checkMinX then
-      --   world.debugText("%s", liquid, vec2.add(mcontroller.position(), {0, -2}), "green")
-      -- end
       if liquid and liquid[1] == sunLiquidId then
         shouldProceed = true
       end
@@ -290,14 +198,31 @@ function surfaceTileQuery(pos, affectedTiles)
 end
 
 function syncHeightMapToGlobal(heightMap)
-  local globalHeightMapSerialized = world.getProperty("v-globalHeightMap", {})
+  local startXSector = heightMap.startXPos // SECTOR_SIZE
+  local endXSector = (heightMap.startXPos + #heightMap.list) // SECTOR_SIZE
 
-  -- Convert to hash map.
-  ---@type HeightMapItem[]
+  -- Map from horizontal positions to `HeightMapItem`.
+  ---@type table<integer, HeightMapItem>
   local globalHeightMap = {}
-  for _, value in ipairs(globalHeightMapSerialized) do
-    globalHeightMap[value.x] = value.value
+  -- For each `xSector` from `startXSector` to `endXSector`...
+  for xSector = startXSector, endXSector do
+    -- Get global height map section corresponding to `xSector`.
+    local globalHeightMapSection = world.getProperty("v-globalHeightMap." .. xSector) or {}
+
+    -- For each value in the section...
+    for _, value in ipairs(globalHeightMapSection) do
+      globalHeightMap[value.x] = value.value  -- Add to `globalHeightMap`
+    end
   end
+
+  -- local globalHeightMapSerialized = world.getProperty("v-globalHeightMap") or {}
+
+  -- -- Convert to hash map.
+  -- ---@type table<integer, HeightMapItem>
+  -- local globalHeightMap = {}
+  -- for _, value in ipairs(globalHeightMapSerialized) do
+  --   globalHeightMap[value.x] = value.value
+  -- end
 
   local startXPosWrapped = world.xwrap(heightMap.startXPos)
   -- For each entry in the list of `heightMap`...
@@ -320,13 +245,9 @@ function syncHeightMapToGlobal(heightMap)
         if not globalHeightIsValid then
           sharedValue = v
         -- TODO: Factorize cases.
-        -- Otherwise, if the local value type is `partiallyObstructed`...
-        elseif v.type == "partiallyObstructed" then
-          if v.value < globalV.value then
-            sharedValue = v
-          else
-            sharedValue = globalV
-          end
+        -- Otherwise, if the local value type is `partiallyObstructed` and its value is less than the global value...
+        elseif v.type == "partiallyObstructed" and v.value < globalV.value then
+          sharedValue = v
         else
           sharedValue = globalV
         end
@@ -372,13 +293,27 @@ function syncHeightMapToGlobal(heightMap)
     end
   end
 
-  -- Convert to serialized format
-  globalHeightMapSerialized = {}
-  for x, value in pairs(globalHeightMap) do
-    table.insert(globalHeightMapSerialized, {x = x, value = value})
+  -- Store globalHeightMap sections.
+  -- For each `xSector` from `startXSector` to `endXSector`...
+  for xSector = startXSector, endXSector do
+    local globalHeightMapSection = {}
+
+    -- For each x value in the sector...
+    for x = xSector * SECTOR_SIZE, (xSector + 1) * SECTOR_SIZE - 1 do
+      -- Add to the section.
+      table.insert(globalHeightMapSection, {x = x, value = globalHeightMap[x]})
+    end
+
+    world.setProperty("v-globalHeightMap." .. xSector, globalHeightMapSection)
   end
 
-  world.setProperty("v-globalHeightMap", globalHeightMapSerialized)
+  -- -- Convert to serialized format
+  -- globalHeightMapSerialized = {}
+  -- for x, value in pairs(globalHeightMap) do
+  --   table.insert(globalHeightMapSerialized, {x = x, value = value})
+  -- end
+
+  -- world.setProperty("v-globalHeightMap", globalHeightMapSerialized)
 end
 
 ---Coroutine function. Fills `affectedTiles` with tiles that are directly adjacent to spaces occupied by the liquid with

@@ -18,7 +18,7 @@
       }
     ],
     "monsterParameters" : {
-      "colors" : "v-voltage",
+      "colors" : "magma",
       "statusSettings" : {
         "stats" : {
           "fireResistance" : {
@@ -30,11 +30,11 @@
           "lavaImmunity" : {
             "baseValue" : 1.0
           },
-          "electricStatusImmunity" : {
+          "fireStatusImmunity" : {
             "baseValue" : 1.0
           },
           "protection" : {
-            "baseValue" : 20.0
+            "baseValue" : 35.0
           }
         }
       }
@@ -125,7 +125,7 @@
         "distribution" : "/biomes/distributions.config:undergroundweaponChests",
 
         "type" : "treasureBox",
-        "treasureBoxSets" : [ "v-electricWeaponChest" ]
+        "treasureBoxSets" : [ "v-fireWeaponChest" ]
       },
       {
         "mode" : "floor",
@@ -158,49 +158,49 @@
 
         "type" : "microdungeon",
         "microdungeons" : [ "undergroundencounterdungeons" ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundOreRocks",
+      } // ,
+      // {
+      //   "mode" : "floor",
+      //   "priority" : 1.0,
+      //   "variants" : 1,
+      //   "distribution" : "/biomes/distributions.config:undergroundOreRocks",
 
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-lavaspewer" ] ],
-            "parameters" : { }
-          }
-        ]
-      },
-      {
-        "mode" : "ceiling",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundOreRocks",
+      //   "type" : "object",
+      //   "objectSets" : [
+      //     {
+      //       "pool" : [ [1.0, "v-lavaspewer" ] ],
+      //       "parameters" : { }
+      //     }
+      //   ]
+      // },
+      // {
+      //   "mode" : "ceiling",
+      //   "priority" : 1.0,
+      //   "variants" : 1,
+      //   "distribution" : "/biomes/distributions.config:undergroundOreRocks",
 
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-lavaspewer" ] ],
-            "parameters" : { }
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+      //   "type" : "object",
+      //   "objectSets" : [
+      //     {
+      //       "pool" : [ [1.0, "v-lavaspewer" ] ],
+      //       "parameters" : { }
+      //     }
+      //   ]
+      // },
+      // {
+      //   "mode" : "floor",
+      //   "priority" : 1.0,
+      //   "variants" : 1,
+      //   "distribution" : "/biomes/distributions.config:undergroundCapsules",
 
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-lavadrain" ] ],
-            "parameters" : { }
-          }
-        ]
-      }
+      //   "type" : "object",
+      //   "objectSets" : [
+      //     {
+      //       "pool" : [ [1.0, "v-lavadrain" ] ],
+      //       "parameters" : { }
+      //     }
+      //   ]
+      // }
     ]
   },
 
