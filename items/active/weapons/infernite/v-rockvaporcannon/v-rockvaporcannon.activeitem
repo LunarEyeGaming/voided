@@ -1,0 +1,59 @@
+{
+  "itemName" : "v-rockvaporcannon",
+  "price" : 1500,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "'Turn your foes to ashes. Then burn the ashes.'",
+  "shortdescription" : "Rock Vapor Cannon",
+  "tooltipKind" : "base",
+  "category" : "v-uncategorizedWeapon",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged"],
+  "level" : 8,
+
+  "inventoryIcon" : "rockvaporcannon.png",
+
+  "animation" : "v-rockvaporcannon.animation",
+  "animationParts" : {
+    "middle" : "rockvaporcannon.png",
+    "middleFullbright" : "rockvaporcannonunlit.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fireStart" : [ "/sfx/npc/boss/dragonboss_fireball1.ogg" ],
+      "fireLoop" : ["/sfx/objects/flametrap_loop.ogg"],
+      "fireEnd" : [ "/sfx/gun/flamethrower_stop.ogg" ],
+      "altFire" : [ "/sfx/gun/dragonhead_charged_fire1.ogg" ]
+    }
+  },
+  "baseOffset" : [0.5, 0.75],
+  "muzzleOffset" : [1.0, 0.0],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+
+  "elementalType" : "fire",
+
+  "primaryAbilityType" : "flamethrower",
+  "primaryAbility" : {
+    "baseDps" : 25,
+    "energyUsage" : 30,
+    "projectileType" : "v-rockvaporcannonflame"
+  },
+
+  // "altAbilityType" : "grenadelaunchernosprite",
+  // "altAbility" : {
+  //   "elementalConfig" : {
+  //     "fire" : {
+  //       "projectileType" : "v-rockvaporcannonbomb"
+  //     }
+  //   },
+  //   "fireTime" : 2.5,
+  //   "projectileCount" : 3,
+  //   "inaccuracy" : 0.08,
+  //   "energyUsage" : 30,
+  //   "baseDps" : 50
+  // },
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

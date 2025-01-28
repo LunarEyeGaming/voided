@@ -1,0 +1,43 @@
+{
+  "projectileName" : "v-inferniteflamebg",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 100,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "timeToLive" : 0,
+  "actionOnReap" : [
+    {
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "looping" : true,
+        "animation" : "/animations/statuseffects/burning/burning.animation",
+        "position" : [0, 0],
+        "initialVelocity" : [0, 0],
+        "finalVelocity" : [0, 10],
+        "approach" : [50, 50],
+        "destructionAction" : "shrink",
+        "destructionTime" : 0.425,
+        "fade" : 1,
+        "fullbright" : true,
+        "light" : [218, 83, 2],
+        "size" : 0.5,
+        "layer" : "back",
+        "timeToLive" : 0.8,
+        "variance" : {
+          "initialVelocity" : [1.5, 1.5],
+          "finalVelocity" : [1.5, 1.5]
+        }
+      }
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/flame_burn.ogg" ]
+    }
+  ]
+}
