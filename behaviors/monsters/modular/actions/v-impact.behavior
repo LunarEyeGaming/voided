@@ -1,0 +1,53 @@
+{
+  "name": "v-action-impact",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/status.lua",
+    "/scripts/actions/v-movement.lua"
+  ],
+  "parameters": {
+    "useSticky": false,
+    "explosionProjectile": null,
+    "explosionConfig": {},
+    "explosionDistance": null,
+    "speedThreshold": 0
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "v_impactAction",
+        "type": "action",
+        "name": "v_impactAction",
+        "parameters": {
+          "useSticky": {"value": "<useSticky>"},
+          "explosionProjectile": {"value": "<explosionProjectile>"},
+          "explosionConfig": {"value": "<explosionConfig>"},
+          "explosionDistance": {"value": "<explosionDistance>"},
+          "speedThreshold": {"value": "<speedThreshold>"},
+          "target": {"key": "target"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.01}
+        }
+      },
+      {
+        "title": "setResource",
+        "type": "action",
+        "name": "setResource",
+        "parameters": {
+          "amount": {"value": 0},
+          "resource": {"value": "health"}
+        }
+      }
+    ]
+  }
+}

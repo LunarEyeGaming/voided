@@ -5,6 +5,7 @@ require "/scripts/actions/crawling.lua"
 require "/scripts/actions/projectiles.lua"
 require "/scripts/v-behavior.lua"
 require "/scripts/v-movement.lua"
+require "/scripts/v-attack.lua"
 
 -- param minRange
 -- param maxRange
@@ -173,6 +174,37 @@ function v_stop(args)
   end
 
   return true
+end
+
+-- param useSticky
+-- param explosionProjectile
+-- param explosionConfig
+-- param explosionDistance
+-- param speedThreshold
+-- param target
+function v_impactAction(args, board)
+  local collisionCond
+  if args.useSticky then
+    collisionCond = mcontroller.isCollisionStuck()
+    mcontroller.controlParameters({stickyCollision = true})
+  else
+    collisionCond = mcontroller.isColliding()
+  end
+
+  local explosionConfig = copy(args.explosionConfig)
+  explosionConfig.power = vAttack.scaledPower(explosionConfig.power or 10)
+
+  if (collisionCond or closeToTarget(args.target, args.explosionDistance)) and vec2.mag(mcontroller.velocity()) > args.speedThreshold then
+    world.spawnProjectile(args.explosionProjectile, mcontroller.position(), entity.id(), {0, 0}, false, explosionConfig)
+    status.setResourcePercentage("health", 0.0)
+    return true
+  end
+
+  return false
+end
+
+function closeToTarget(target, distance)
+  return world.magnitude(mcontroller.position(), world.entityPosition(target)) < distance
 end
 
 function _correctAngle(angle, speed, step, dt)

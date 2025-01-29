@@ -1,0 +1,26 @@
+{
+  "materialId" : 1211,
+  "materialName" : "v-moltenrock",
+  "particleColor" : [224, 161, 105, 255],
+  "itemDrop" : "v-moltenrockmaterial",
+  "description" : "<todo>",
+  "shortdescription" : "Molten Rock",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/v_footstep_moltenrock.ogg",
+  "cascading" : true,
+  "health" : 4,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-moltenrock.png",
+    "variants" : 3,
+    "lightTransparent" : false,
+    "multiColored" : true,
+    "occludesBelow" : true,
+    "zLevel" : 400,
+    "radiantLight" : [128, 64, 0]
+  }
+}

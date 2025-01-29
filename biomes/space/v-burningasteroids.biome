@@ -2,8 +2,8 @@
   "name" : "v-burningasteroids",
   "friendlyName" : "Burning Asteroids",
 
-  "mainBlock" : "magmarock",
-  "subBlocks" : [ "ash" ],
+  "mainBlock" : "v-burningmeteorite",
+  "subBlocks" : [ "v-moltenrock" ],
   "ores" : "v-ministar",
 
   "spawnProfile" : {
@@ -13,7 +13,7 @@
         "pool" : [
           [ 1.0, "ignome" ],
           [ 1.0, "pyromantle" ],
-          [ 1.0, "scandroid" ]
+          [ 1.0, "v-rammingasteroid" ]
         ]
       }
     ],
@@ -43,7 +43,7 @@
 
   "statusEffects" : [ "biomeairless" ],
 
-  "parallax" : "/parallax/space/asteroids.parallax",
+  "parallax" : "/parallax/space/v-burningasteroids.parallax",
 
   "ambientNoises" : {
     "day" : {

@@ -72,5 +72,21 @@
     "category": "v-movement",
     "script": "/scripts/actions/v-movement.lua",
     "output": {}
+  },
+  "v_impactAction": {
+    "type": "action",
+    "name": "v_impactAction",
+    "title": "v_impactAction",
+    "properties": {
+      "useSticky": {"type": "bool", "value": false},
+      "explosionProjectile": {"type": "string", "value": null},
+      "explosionConfig": {"type": "json", "value": {}},
+      "explosionDistance": {"type": "number", "value": null},
+      "speedThreshold": {"type": "number", "value": 0},
+      "target": {"type": "entity", "value": null}
+    },
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
+    "output": {}
   }
 }
