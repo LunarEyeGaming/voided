@@ -1,5 +1,7 @@
-require "/scripts/v-behavior.lua"
 require "/scripts/util.lua"
+require "/scripts/vec2.lua"
+
+require "/scripts/v-behavior.lua"
 
 -- param beamName
 -- param active
@@ -19,6 +21,34 @@ function v_setLaserBeamActive(args)
   end
   -- Update the parameter.
   monster.setAnimationParameter("enabledBeams", self.enabledLaserBeams)
+
+  return true
+end
+
+-- param speedThreshold
+-- param particleSpeedThreshold
+-- param particleEmitter
+-- param transformationGroup
+-- param stateType
+function v_speedEffect(args)
+  local rq = vBehavior.requireArgsGen("v_speedEffect", args)
+  if not rq{"stateType", "speedThreshold"} then return false end
+
+  local velocity = mcontroller.velocity()
+  local speed = vec2.mag(velocity)
+
+  if args.particleSpeedThreshold then
+    if not rq{"particleEmitter"} then return false end
+
+    animator.setParticleEmitterActive(args.particleEmitter, speed > args.particleSpeedThreshold)
+  end
+
+  animator.setAnimationState(args.stateType, speed > args.speedThreshold and "on" or "off")
+
+  if args.transformationGroup then
+    animator.resetTransformationGroup(args.transformationGroup)
+    animator.rotateTransformationGroup(args.transformationGroup, vec2.angle(velocity))
+  end
 
   return true
 end

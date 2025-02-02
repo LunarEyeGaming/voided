@@ -1,27 +1,44 @@
-require "/scripts/actions/v-sensor.lua"
+require "/scripts/util.lua"
+require "/scripts/vec2.lua"
 
-local projectileId
+local speed
+local arc
+local targetPos
 
 function init()
-  activeItem.setScriptedAnimationParameter("riftTrails", config.getParameter("riftTrails"))
-  activeItem.setScriptedAnimationParameter("riftTrailDuration", config.getParameter("riftTrailDuration"))
+  speed = 15
+  arc = {}
 end
 
 function update(dt)
-  if projectileId then
-    if world.entityExists(projectileId) then
-      world.sendEntityMessage(projectileId, "updateProjectile", activeItem.ownerAimPosition())
-    else
-      projectileId = nil
-      activeItem.setScriptedAnimationParameter("riftTrailTrackingEntity", nil)
-    end
+  if targetPos then
+    world.debugPoint(targetPos, "green")
+  end
+  for i = 1, #arc - 1 do
+    world.debugLine(arc[i], arc[i + 1], "green")
   end
 end
 
 function activate()
-  -- activeItem.interact("ScriptPane", root.assetJson("/interface/scripted/voideye-tier6skip/voideye-tier6skip.config"))
-  projectileId = world.spawnProjectile("v-stuttertest", activeItem.ownerAimPosition(), entity.id(), {1, 0}, false, {controlMovement = {maxSpeed = 50, controlForce = 1000}})
-  activeItem.setScriptedAnimationParameter("riftTrailTrackingEntity", projectileId)
+  arc = {}
+  targetPos = activeItem.ownerAimPosition()
+  local toTarget = world.distance(targetPos, mcontroller.position())
+  local gravityMultiplier = 1
+  local aimVector = vec2.norm(util.aimVector(toTarget, speed, gravityMultiplier, false))
+  -- Simulate the arc
+  local velocity = vec2.mul(aimVector, speed)
+  local startArc = mcontroller.position()
+  local x = 0
+  while x < math.abs(toTarget[1]) do
+    local time = x / math.abs(velocity[1])
+    local yVel = velocity[2] - (gravityMultiplier * world.gravity(mcontroller.position()) * time)
+    local step = vec2.add({util.toDirection(aimVector[1]) * x, ((velocity[2] + yVel) / 2) * time}, mcontroller.position())
+
+    startArc = step
+    table.insert(arc, startArc)
+    local arcVector = vec2.norm({velocity[1], yVel})
+    x = x + math.abs(arcVector[1])
+  end
 end
 
 function aStarAlgorithm(startPoint, endPoint)

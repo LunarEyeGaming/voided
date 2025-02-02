@@ -1,0 +1,234 @@
+{
+  "type" : "v-sunleaper",
+  "shortdescription" : "<todo>",
+  "description" : "<todo>",
+
+  "categories" : [ "v-sunleaper" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-sunleaper.animation",
+
+  "dropPools" : [  ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/monster.lua"
+    ],
+    "initialScriptDelta" : 3,
+    "behaviorUpdateDelta" : 1,
+
+    "behavior" : "monster",
+    "deathBehavior" : "monster-death",
+
+    "facingMode" : "transformation",
+
+    "behaviorConfig" : {
+      "damageOnTouch" : false,
+
+      "hurtWaitForGround" : false,
+
+      "targetQueryRange" : 20,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 200,
+      "targetOutOfSightTime" : 5.0,
+
+      "fleeActions" : [ ],
+
+      "hostileActions" : [
+        {
+          "name" : "action-fire",
+          "cooldown" : 0.5,
+          "parameters" : {
+            // Shoot shockwaves
+            "requireLineOfSight" : false,
+            "maximumRange" : 200,
+            "minimumRange" : 0,
+            "windupState" : "",
+            "windupTime" : 0.0,
+            "windupStopForce" : 200,
+
+            "aimAtTarget" : false,
+            "projectileType" : "v-proxyprojectile",
+            "projectileParameters" : {
+              "power" : 15,
+              "speed" : 0,
+              "actionOnReap" : [
+                {
+                  "action" : "projectile",
+                  "type" : "v-sunleapershockwave",
+                  "inheritDamageFactor" : 0.5,
+                  "angleAdjust" : 90
+                },
+                {
+                  "action" : "projectile",
+                  "type" : "v-sunleapershockwave",
+                  "inheritDamageFactor" : 0.5,
+                  "angleAdjust" : -90
+                },
+                {
+                  "action" : "config",
+                  "file" : "/projectiles/explosions/regularexplosion2/fireexplosionknockback.config"
+                }
+              ]
+            },
+            "fireOffset" : [0.0, 0.0],
+            "aimDirection" : [0, 1],
+            "projectileCount" : 1,
+            "projectileInterval" : 1,
+            "fireDelay" : 0.0,
+            "fireSound" : "",
+            "fireState" : "",
+
+            "winddownState" : "idle",
+            "winddownTime" : 3.0
+          }
+        }
+      ],
+
+      "periodicActions" : [ ],
+
+      "approachActions" : [
+        {
+          "name" : "v-approach-stickyhop",
+          "parameters" : {}
+        }
+      ],
+
+      "followActions" : [
+        {
+          "name" : "approach-teleport"
+        }
+      ],
+
+      "wanderActions" : [
+      ],
+
+      "concurrentActions" : [
+        {
+          "name" : "v-idle-crawloptional",
+          "parameters" : {
+            "stopForce" : 2500
+          }
+        }
+      ],
+
+      "concurrentHostileActions" : [
+        {
+          "name" : "v-idle-crawloptional",
+          "parameters" : {
+            "stopForce" : 2500
+          }
+        }
+      ]
+    },
+
+    "touchDamage" : {
+      "poly" : [ [0.41, 1.0],  [1.0, 0.41],  [1.0, -0.41],  [0.41, -1.0],  [-0.41, -1.0],  [-1.0, -0.41],  [-1.0, 0.41],  [-0.41, 1.0] ],
+      "damage" : 10,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "slash",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "selfDamagePoly" : [ [1.0, 1.5],  [1.5, 1.0],  [1.5, -1.0],  [1.0, -1.5],  [-1.0, -1.5],  [-1.5, -1.0],  [-1.5, 1.0],  [-1.0, 1.5] ],
+
+    "movementSettings" : {
+      "collisionPoly" : [ [0.41, 1.0],  [1.0, 0.41],  [1.0, -0.41],  [0.41, -1.0],  [-0.41, -1.0],  [-1.0, -0.41],  [-1.0, 0.41],  [-0.41, 1.0] ],
+
+      "mass" : 1.0,
+      "walkSpeed" : 4,
+      "runSpeed" : 12,
+
+      "airFriction" : 0,
+
+      "airJumpProfile" : {
+        "jumpSpeed" : 45.0,
+        "jumpInitialPercentage" : 1.0,
+        "jumpHoldTime" : 0.0
+      },
+      "physicsEffectCategories" : ["stationarymonster"]
+    },
+
+    "bodyMaterialKind" : "stone",
+
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "stone"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 0.0
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0.25
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 25
+        },
+        "maxHealth" : {
+          "baseValue" : 94
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 0.5
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "fireResistance" : {
+          "baseValue" : 0.5
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : false
+  }
+}

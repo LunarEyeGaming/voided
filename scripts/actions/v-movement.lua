@@ -194,8 +194,11 @@ function v_impactAction(args, board)
   local explosionConfig = copy(args.explosionConfig)
   explosionConfig.power = vAttack.scaledPower(explosionConfig.power or 10)
 
-  if (collisionCond or closeToTarget(args.target, args.explosionDistance)) and vec2.mag(mcontroller.velocity()) > args.speedThreshold then
-    world.spawnProjectile(args.explosionProjectile, mcontroller.position(), entity.id(), {0, 0}, false, explosionConfig)
+  local ownPos = mcontroller.position()
+
+  if (collisionCond or world.magnitude(ownPos, world.entityPosition(args.target)) < args.explosionDistance)
+  and vec2.mag(mcontroller.velocity()) > args.speedThreshold then
+    world.spawnProjectile(args.explosionProjectile, ownPos, entity.id(), {0, 0}, false, explosionConfig)
     status.setResourcePercentage("health", 0.0)
     return true
   end
@@ -203,8 +206,128 @@ function v_impactAction(args, board)
   return false
 end
 
-function closeToTarget(target, distance)
-  return world.magnitude(mcontroller.position(), world.entityPosition(target)) < distance
+-- param target
+function v_stickyHopApproach(args, _, _, dt)
+  local args2 = {
+    rayCount = 20,
+    minRaycastLength = 5,
+    maxRaycastLength = 50,
+    hopSpeed = 50,
+    postHopDelay = 0.1,
+    gravityMultiplier = 1.5
+  }
+
+  local targetCandidates = {}
+  local targetPos = world.entityPosition(args.target)
+
+  for i = 0, args2.rayCount - 1 do
+    local angle = 2 * math.pi * i / args2.rayCount
+
+    -- Attempt raycast
+    local raycast = world.lineCollision(targetPos, vec2.add(targetPos, vec2.withAngle(angle, args2.maxRaycastLength)))
+    -- If successful and the distance from the target to the raycast exceeds args.minRaycastLength...
+    if raycast and world.magnitude(targetPos, raycast) >= args2.minRaycastLength then
+      table.insert(targetCandidates, raycast)
+    end
+  end
+
+  local ownPos = mcontroller.position()
+
+  -- Find a valid hop position and get the corresponding velocity, accounting for gravity, upon success.
+  local hopPos, hopVelocity
+  -- Shuffle the list of positions.
+  shuffle(targetCandidates)
+
+  -- For each position...
+  for _, pos in ipairs(targetCandidates) do
+    -- If the position is in line of sight...
+    if not world.lineCollision(ownPos, pos) then
+      local success
+      -- Get the hopping velocity, accounting for gravity.
+      hopVelocity, success = util.aimVector(world.distance(pos, ownPos), args2.hopSpeed, args2.gravityMultiplier, false)
+
+      -- If successful...
+      if success then
+        hopPos = pos  -- Make that the hop position.
+        break  -- Exit the loop.
+      end
+    end
+  end
+
+  -- If no valid hop position was found...
+  if not hopPos then
+    local success
+    -- Use the first position listed as it is effectively a random position due to the shuffling.
+    local testPos = targetCandidates[1]
+
+    -- If it is actually defined...
+    if testPos then
+      -- Get the hopping velocity, accounting for gravity.
+      hopVelocity, success = util.aimVector(world.distance(testPos, ownPos), args2.hopSpeed, args2.gravityMultiplier, false)
+
+      -- If successful...
+      if success then
+        hopPos = testPos  -- Use the test position.
+      end
+    end
+  end
+
+  -- If no valid hop position was found still...
+  if not hopPos then
+    -- Hop directly toward the target
+    hopPos = targetPos
+    -- Get the hopping velocity, accounting for gravity.
+    hopVelocity = util.aimVector(world.distance(hopPos, ownPos), args2.hopSpeed, args2.gravityMultiplier, false)
+  end
+
+  -- y = y0 + vy * t - 1/2 * a * t^2
+  -- y = vy * t - 1/2 * g * t^2
+  -- -1/2 * g * t^2 + vy * t - y = 0
+  -- t = (-vy +/- sqrt(vy^2 - 4 * -1/2 * g * -y))
+  -- local arrivalTime =
+
+  local arc
+  do
+    arc = {}
+    local toTarget = world.distance(hopPos, mcontroller.position())
+    local aimVector = vec2.norm(util.aimVector(toTarget, args2.hopSpeed, args2.gravityMultiplier, false))
+    -- Simulate the arc
+    local velocity = vec2.mul(aimVector, args2.hopSpeed)
+    local startArc = mcontroller.position()
+    local x = 0
+    while x < math.abs(toTarget[1]) do
+      local time = x / math.abs(velocity[1])
+      local yVel = velocity[2] - (args2.gravityMultiplier * world.gravity(mcontroller.position()) * time)
+      local step = vec2.add({util.toDirection(aimVector[1]) * x, ((velocity[2] + yVel) / 2) * time}, mcontroller.position())
+
+      startArc = step
+      table.insert(arc, startArc)
+      local arcVector = vec2.norm({velocity[1], yVel})
+      x = x + math.abs(arcVector[1])
+    end
+  end
+
+  -- Jump
+  mcontroller.setVelocity(hopVelocity)
+
+  -- Wait for a brief time before doing any tests.
+  util.run(args2.postHopDelay, function() end)
+
+  local testRect = rect.pad(mcontroller.boundBox(), 0.25)
+
+  -- Wait until the entity has attached to something or has reached its destination (as a more reliable check).
+  while not world.rectCollision(rect.translate(testRect, mcontroller.position()))
+  and world.magnitude(hopPos, mcontroller.position()) > 4 do
+    world.debugPoint(hopPos, "green")
+    for i = 1, #arc - 1 do
+      world.debugLine(arc[i], arc[i + 1], "green")
+    end
+    coroutine.yield()
+  end
+
+  -- mcontroller.setVelocity({0, 0})
+
+  return true
 end
 
 function _correctAngle(angle, speed, step, dt)

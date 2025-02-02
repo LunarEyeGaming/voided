@@ -478,9 +478,85 @@
     },
 
     "groupSize" : [1, 1],
-    "spawnChance" : 0.01,
+    "spawnChance" : 0.005,
     "monsterType" : [
       [1.0, "v-rammingasteroid"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-sunleaper",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "v-sunleaper"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-sunleaperground",
+
+    "spawnParameters" : {
+      "area" : "surface",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "v-sunleaper"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-fireelemental",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-fireelemental"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-novamonster",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-novamonster"]
     ],
     "monsterParameters" : {
       "aggressive" : true

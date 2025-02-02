@@ -1,0 +1,220 @@
+{
+  "type" : "v-fireelemental",
+  "shortdescription" : "Fire Elemental",
+  "description" : "A wandering fireball that will shoot fireballs at its target.",
+
+  "categories" : [ "v-fireelemental" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-fireelemental.animation",
+
+  "dropPools" : [ { "default" : "pyromantleTreasure", "bow" : "pyromantleHunting" } ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/monster.lua"
+    ],
+
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 3,
+
+    "behavior" : "monster",
+    "deathBehavior" : "monster-death",
+
+    "facingMode" : "transformation",
+
+    "seeThroughLiquid" : false,
+    "behaviorConfig" : {
+      "damageOnTouch" : false,
+
+      "targetQueryRange" : 30,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 60,
+      "targetOutOfSightTime" : 5.0,
+
+      "hurtWaitForGround" : false,
+
+      "wanderActions" : [
+        {
+          "name" : "wander-fly",
+          "parameters" : {
+            "wanderTime" : 10,
+            "groundDistance" : 4,
+            "ceilingDistance" : 4,
+            "xVelocity" : 2,
+            "yVelocity" : 12,
+            "flyState" : "idle"
+          }
+        }
+      ],
+
+      "approachActions" : [
+        {
+          "name" : "v-approach-rangedfly",
+          "parameters" : {
+            "minRange" : 20,
+            "maxRange" : 35,
+            "speed" : 25,
+            "flyState" : "fly"
+          }
+        }
+      ],
+
+      "concurrentActions" : [
+        {
+          "name" : "rotate-part",
+          "parameters" : {
+            "group" : "orbiter1",
+            "speed" : 0.3
+          }
+        },
+        {
+          "name" : "rotate-part",
+          "parameters" : {
+            "group" : "orbiter2",
+            "speed" : -0.15
+          }
+        }
+      ],
+
+      "concurrentHostileActions" : [
+        {
+          "name" : "rotate-part",
+          "parameters" : {
+            "group" : "orbiter1",
+            "speed" : 2.0
+          }
+        },
+        {
+          "name" : "rotate-part",
+          "parameters" : {
+            "group" : "orbiter2",
+            "speed" : -1.0
+          }
+        },
+        {
+          "name" : "v-fireelemental-shoot",
+          "cooldown" : 2,
+          "parameters" : {
+            "projectileType" : "v-fireelementalfireballwindup",
+            "minX" : -2,
+            "maxX" : 2,
+            "minY" : -2,
+            "maxY" : 2,
+            "projectileParameters" : {"power" : 10}
+          }
+        }
+      ],
+
+      "deathActions" : [
+        {
+          "name" : "action-projectile",
+          "parameters" : {
+            "projectileCount" : 1,
+            "projectileType" : "fireplasmaexplosion",
+            "projectileParameters" : {},
+            "aimDirection" : [1, 0],
+            "inaccuracy" : 0,
+            "fireOffset" : [0, 0]
+          }
+        }
+      ]
+    },
+
+    "touchDamage" : {
+      "poly" : [ [0.625, 0.9375], [1.125, 0.4375], [1.125, -0.4375], [0.625, -0.9375], [-0.625, -0.9375], [-1.125, -0.4375], [-1.125, 0.4375], [-0.625, 0.9375] ],
+      "damage" : 0,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "impact",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [ [0.625, 0.9375], [1.125, 0.4375], [1.125, -0.4375], [0.625, -0.9375], [-0.625, -0.9375], [-1.125, -0.4375], [-1.125, 0.4375], [-0.625, 0.9375] ],
+
+      "mass" : 2.0,
+      "walkSpeed" : 4,
+      "runSpeed" : 12,
+      "gravityEnabled" : false,
+
+      "bounceFactor" : 0.5,
+      "groundFriction" : 10,
+
+      "airFriction" : 0,
+      "airForce" : 15,
+      "flySpeed" : 15
+    },
+
+    "bodyMaterialKind" : "stone",
+
+    "knockoutTime" : 0.75,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "stunDamageSuppression" : 0.2,
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "stone"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 0.25
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0.3
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9
+        },
+        "maxHealth" : {
+          "baseValue" : 80
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : false
+  }
+}

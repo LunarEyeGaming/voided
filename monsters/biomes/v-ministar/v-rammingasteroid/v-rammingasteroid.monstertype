@@ -26,7 +26,7 @@
     "behaviorConfig" : {
       "damageOnTouch" : false,
 
-      "targetQueryRange" : 25,
+      "targetQueryRange" : 50,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
       "keepTargetInRange" : 100,
@@ -90,7 +90,9 @@
             "explosionProjectile" : "v-proxyprojectile",
             "explosionConfig" : {"power" : 20, "actionOnReap" : [{"action" : "config", "file" : "/projectiles/explosions/regularexplosion2/fireexplosionknockback.config"}]},
             "explosionDistance" : 3,
-            "speedThreshold" : 25
+            "speedThreshold" : 25,
+            "particleSpeedThreshold" : 15,
+            "particleEmitter" : "firetrail"
           }
         }
       ],
@@ -119,7 +121,7 @@
       "runSpeed" : 12,
       "gravityEnabled" : false,
 
-      "bounceFactor" : 1.0,
+      "bounceFactor" : 0.5,
       "groundFriction" : 10,
 
       "airFriction" : 0,
@@ -163,7 +165,7 @@
           "baseValue" : 50
         },
         "maxHealth" : {
-          "baseValue" : 100
+          "baseValue" : 150
         },
         "protection" : {
           "baseValue" : 0.0

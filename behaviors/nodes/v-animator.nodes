@@ -10,5 +10,20 @@
     "category": "v-animator",
     "script": "/scripts/actions/v-animator.lua",
     "output": {}
+  },
+  "v_speedEffect": {
+    "type": "action",
+    "name": "v_speedEffect",
+    "title": "v_speedEffect",
+    "properties": {
+      "particleEmitter": {"type": "string"},
+      "particleSpeedThreshold": {"type": "number"},
+      "speedThreshold": {"type": "number", "value": 1},
+      "stateType": {"type": "string"},
+      "transformationGroup": {"type": "string"}
+    },
+    "category": "v-animator",
+    "script": "/scripts/actions/v-animator.lua",
+    "output": {}
   }
 }

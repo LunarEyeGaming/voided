@@ -73,17 +73,28 @@
     "script": "/scripts/actions/v-movement.lua",
     "output": {}
   },
+  "v_stickyHopApproach": {
+    "type": "action",
+    "name": "v_stickyHopApproach",
+    "title": "v_stickyHopApproach",
+    "properties": {
+      "target": {"type": "entity"}
+    },
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
+    "output": {}
+  },
   "v_impactAction": {
     "type": "action",
     "name": "v_impactAction",
     "title": "v_impactAction",
     "properties": {
-      "useSticky": {"type": "bool", "value": false},
-      "explosionProjectile": {"type": "string", "value": null},
       "explosionConfig": {"type": "json", "value": {}},
-      "explosionDistance": {"type": "number", "value": null},
+      "explosionDistance": {"type": "number"},
+      "explosionProjectile": {"type": "string"},
       "speedThreshold": {"type": "number", "value": 0},
-      "target": {"type": "entity", "value": null}
+      "target": {"type": "entity"},
+      "useSticky": {"type": "bool", "value": false}
     },
     "category": "v-movement",
     "script": "/scripts/actions/v-movement.lua",

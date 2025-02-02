@@ -3,8 +3,9 @@ require "/scripts/rect.lua"
 --- Utility functions related to the world.
 vWorld = {}
 
---- Utility coroutine functions related to the world.
-vWorldA = {}
+---A constant list of vectors in the four cardinal directions.
+---@type [Vec2I, Vec2I, Vec2I, Vec2I]
+vWorld.ADJACENT_TILES = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}
 
 -- Certain scripts may not work under specific script contexts due to some built-in tables being
 -- unavailable. The legend below is intended to help in knowing when using each function is appropriate.
@@ -23,6 +24,46 @@ function vWorld.sendEntityMessage(entityId, messageType, ...)
     return world.sendEntityMessage(entityId, messageType, ...)
   end
 end
+
+---Returns a random position in the given `region` that meets the given `predicate` within `maxAttempts` attempts, or
+---`nil` if more than `maxAttempts` attempts are made.
+---@param region RectF a rectangle in world coordinates
+---@param predicate fun(position: Vec2F): boolean the condition that must be met for the position to be "valid"
+---@param maxAttempts integer the maximum number of attempts allowed. Required if `predicate` is given.
+---@return Vec2F?
+function vWorld.randomPositionInRegion(region, predicate, maxAttempts)
+  -- Attempt to find a random point that meets the predicate within maxAttempts attempts.
+  local pos
+  local attempts = 0
+  repeat
+    pos = rect.randomPoint(region)
+    attempts = attempts + 1
+  until attempts > maxAttempts or predicate(pos)
+
+  -- If the loop above stopped because more than maxAttempts attempts were made...
+  if attempts > maxAttempts then
+    return nil
+  end
+
+  return pos
+end
+
+---Returns whether or not the given position is adjacent to a solid tile.
+---@param position Vec2F
+---@return boolean
+function vWorld.isGroundAdjacent(position)
+  -- Go through all the spaces adjacent to the position and return true if any of them are occupied by a tile.
+  for _, offset in ipairs(vWorld.ADJACENT_TILES) do
+    if world.material({position[1] + offset[1], position[2] + offset[2]}, "foreground") then
+      return true
+    end
+  end
+
+  return false
+end
+
+--- Utility coroutine functions related to the world.
+vWorldA = {}
 
 --[[
   Requirements: #world, must be called in a coroutine
@@ -64,27 +105,4 @@ function vWorldA.sendEntityMessageToTargets(successCallback, errorCallback, targ
       end
     end
   end
-end
-
----Returns a random position in the given `region` that meets the given `predicate` within `maxAttempts` attempts, or
----`nil` if more than `maxAttempts` attempts are made.
----@param region RectF a rectangle in world coordinates
----@param predicate fun(position: Vec2F): boolean the condition that must be met for the position to be "valid"
----@param maxAttempts integer the maximum number of attempts allowed. Required if `predicate` is given.
----@return Vec2F?
-function vWorld.randomPositionInRegion(region, predicate, maxAttempts)
-  -- Attempt to find a random point that meets the predicate within maxAttempts attempts.
-  local pos
-  local attempts = 0
-  repeat
-    pos = rect.randomPoint(region)
-    attempts = attempts + 1
-  until attempts > maxAttempts or predicate(pos)
-
-  -- If the loop above stopped because more than maxAttempts attempts were made...
-  if attempts > maxAttempts then
-    return nil
-  end
-
-  return pos
 end

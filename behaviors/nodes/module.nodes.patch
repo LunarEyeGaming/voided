@@ -897,5 +897,68 @@
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-burrowingrifts.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-stickyhop",
+    "value": {
+      "type": "module",
+      "name": "v-approach-stickyhop",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\modular\\movement\\v-stickyhopapproach.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-idle-crawloptional",
+    "value": {
+      "type": "module",
+      "name": "v-idle-crawloptional",
+      "title": "",
+      "properties": {
+        "stopForce": {"type": "json", "value": 0}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-crawlidleoptional.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-fireelemental-shoot",
+    "value": {
+      "type": "module",
+      "name": "v-fireelemental-shoot",
+      "title": "",
+      "properties": {
+        "maxX": {"type": "json", "value": 2},
+        "maxY": {"type": "json", "value": 2},
+        "minX": {"type": "json", "value": -2},
+        "minY": {"type": "json", "value": -2},
+        "projectileParameters": {"type": "json", "value": {"power": 14}},
+        "projectileType": {"type": "json", "value": "v-fireelementalfireballwindup"}
+      },
+      "pathToTree": "..\\monsters\\unique\\v-firelemental-shoot.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-impact",
+    "value": {
+      "type": "module",
+      "name": "v-action-impact",
+      "title": "",
+      "properties": {
+        "useSticky": {"type": "json", "value": false},
+        "explosionProjectile": {"type": "json", "value": null},
+        "explosionConfig": {"type": "json", "value": {}},
+        "explosionDistance": {"type": "json", "value": null},
+        "speedThreshold": {"type": "json", "value": 0},
+        "speedEffectTransformationGroup": {"type": "json", "value": null},
+        "speedEffectStateType": {"type": "json", "value": null},
+        "particleSpeedThreshold": {"type": "json", "value": 0},
+        "particleEmitter": {"type": "json", "value": null}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-impact.behavior"
+    }
   }
 ]

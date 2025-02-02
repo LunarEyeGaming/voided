@@ -8,17 +8,36 @@
           "idle" : {
             "frames" : 6,
             "cycle" : 0.4,
-            "mode" : "loop",
-            "properties" : {
-              "persistentSound" : "/sfx/npc/monsters/erchiusghost_loop.ogg"
-            }
+            "mode" : "loop"// ,
+            // "properties" : {
+            //   "persistentSound" : "/sfx/npc/monsters/erchiusghost_loop.ogg"
+            // }
           },
           "fly" : {
             "frames" : 4,
             "cycle" : 0.3,
+            "mode" : "loop"// ,
+            // "properties" : {
+            //   "persistentSound" : "/sfx/npc/monsters/erchiusghost_loop.ogg"
+            // }
+          }
+        }
+      },
+      "fireball" : {
+        "default" : "off",
+        "states" : {
+          "off" : {
+            "properties" : {
+              "immediateSound" : "/sfx/objects/flametrap_off.ogg"
+            }
+          },
+          "on" : {
+            "frames" : 3,
+            "cycle" : 0.3,
             "mode" : "loop",
             "properties" : {
-              "persistentSound" : "/sfx/npc/monsters/erchiusghost_loop.ogg"
+              "immediateSound" : "/sfx/objects/flametrap_on.ogg",
+              "persistentSound" : "/sfx/projectiles/fireball_loop.ogg"
             }
           }
         }
@@ -93,6 +112,23 @@
             }
           }
         }
+      },
+      "fireball" : {
+        "properties" : {
+          "zLevel" : 30,
+          "offset" : [-3, 0],
+          "transformationGroups" : ["fireball"],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "fireball" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -101,7 +137,8 @@
 
   "transformationGroups" : {
     "body" : { "interpolated" : true },
-    "facing" : { "interpolated" : false }
+    "facing" : { "interpolated" : false },
+    "fireball" : { "interpolated" : true }
   },
 
   "effects" : {
@@ -121,6 +158,35 @@
         {"particle" : "masteroidshard2"},
         {"particle" : "masteroidshard3"},
         {"particle" : "masteroidshard4"}
+      ]
+    },
+    "firetrail" : {
+      "offsetRegion" : [-3.0, -3.0, 3.0, 3.0],
+      "emissionRate" : 10,
+      "particles" : [
+        {"particle" : "fireswoosh1"},
+        {"particle" : "fireswoosh2"},
+        {"particle" : "fireswoosh1"}
+        /*{"particle" : {
+          "type" : "animated",
+          "looping" : true,
+          "animation" : "/animations/statuseffects/burning/burning.animation",
+          "position" : [0, 0],
+          "initialVelocity" : [0, 0],
+          "finalVelocity" : [0, 0],
+          "approach" : [3, 3],
+          "destructionAction" : "shrink",
+          "destructionTime" : 0.425,
+          "fade" : 1,
+          "fullbright" : true,
+          "light" : [218, 83, 2],
+          "size" : 1.0,
+          "layer" : "middle",
+          "timeToLive" : 0.8,
+          "variance" : {
+            "initialVelocity" : [1.5, 1.5]
+          }
+        }, "count" : 5}*/
       ]
     }
   },

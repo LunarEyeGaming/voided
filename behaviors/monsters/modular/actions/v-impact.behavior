@@ -1,16 +1,22 @@
 {
   "name": "v-action-impact",
-  "description": "",
+  "description": null,
   "scripts": [
-    "/scripts/actions/status.lua",
-    "/scripts/actions/v-movement.lua"
+    "/scripts/actions/v-animator.lua",
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/status.lua"
   ],
   "parameters": {
     "useSticky": false,
     "explosionProjectile": null,
     "explosionConfig": {},
     "explosionDistance": null,
-    "speedThreshold": 0
+    "speedThreshold": 0,
+    "speedEffectTransformationGroup": null,
+    "speedEffectStateType": null,
+    "particleSpeedThreshold": 0,
+    "particleEmitter": null
   },
   "root": {
     "title": "sequence",
@@ -19,16 +25,30 @@
     "parameters": {},
     "children": [
       {
+        "title": "v_speedEffect",
+        "type": "action",
+        "name": "v_speedEffect",
+        "parameters": {
+          "speedThreshold": {"key": "<speedThreshold>"},
+          "stateType": {"value": "fireball"},
+          "transformationGroup": {"value": "fireball"},
+          "particleSpeedThreshold": {"key": "<particleSpeedThreshold>"},
+          "particleEmitter": {"key": "<particleEmitter>"}
+        }
+      },
+      {
         "title": "v_impactAction",
         "type": "action",
         "name": "v_impactAction",
         "parameters": {
-          "useSticky": {"value": "<useSticky>"},
-          "explosionProjectile": {"value": "<explosionProjectile>"},
-          "explosionConfig": {"value": "<explosionConfig>"},
-          "explosionDistance": {"value": "<explosionDistance>"},
-          "speedThreshold": {"value": "<speedThreshold>"},
-          "target": {"key": "target"}
+          "explosionConfig": {"key": "<explosionConfig>"},
+          "explosionDistance": {"key": "<explosionDistance>"},
+          "explosionProjectile": {"key": "<explosionProjectile>"},
+          "speedThreshold": {"key": "<speedThreshold>"},
+          "target": {"key": "target"},
+          "useSticky": {"key": "<useSticky>"},
+          "particleSpeedThreshold": {"key": "<particleSpeedThreshold>"},
+          "particleEmitter": {"key": "<particleEmitter>"}
         }
       },
       {

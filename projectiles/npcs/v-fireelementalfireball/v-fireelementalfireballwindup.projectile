@@ -1,0 +1,42 @@
+{
+  "projectileName" : "v-fireelementalfireballwindup",
+  "physics" : "laser",
+  "bounces" : 0,
+  "onlyHitTerrain" : true,
+  "timeToLive" : 1.5,
+  "image" : "fireelementalfireball.png",
+  "damageKindImage" : "icon.png",
+  "speed" : 0,
+  "animationCycle" : 0.5,
+  "lightColor" : [84, 47, 26],
+  "frameNumber" : 4,
+  "fullbright" : true,
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : ["/sfx/melee/travelingslash_fire2.ogg"]
+    },
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "loop",
+      "count" : 4,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "fireshard"
+        }
+      ]
+    }
+  ],
+  "emitters" : [ "fireswoosh" ],
+
+  "scripts" : [ "/scripts/projectiles/v-targetedprojectile.lua" ],
+  "scriptDelta" : 1,
+
+  "projectileType" : "v-fireelementalfireball",
+  "projectileParameters" : {},
+  "inheritDamageFactor" : 1.0
+}

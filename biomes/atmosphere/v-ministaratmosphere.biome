@@ -7,14 +7,9 @@
       {
         "select" : 3,
         "pool" : [
-          [ 0.1111, "crustoise" ],
-          [ 0.1111, "fennix" ],
-          [ 0.1111, "crabcano" ],
-          [ 0.1111, "ignome" ],
-          [ 0.1111, "pyromantle" ],
-          [ 0.1111, "smoglin" ],
-          [ 0.1111, "scandroid" ],
-          [ 0.1111, "peblit" ]
+          [ 1.0, "v-sunleaperground" ],
+          [ 1.0, "v-fireelemental" ],
+          [ 1.0, "v-novamonster" ]
         ]
       },
       {
@@ -62,6 +57,9 @@
             "baseValue" : -0.25
           },
           "lavaImmunity" : {
+            "baseValue" : 1.0
+          },
+          "v-evaporatingImmunity" : {
             "baseValue" : 1.0
           },
           "fireStatusImmunity" : {

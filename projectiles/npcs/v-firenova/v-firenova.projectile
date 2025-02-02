@@ -1,0 +1,48 @@
+{
+  "projectileName" : "v-firenova",
+  "physics" : "statuspod",
+  "bounces" : -1,
+  "timeToLive" : 1.0,
+  "speed" : 0,
+  "damageKindImage" : "icon.png",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "periodicActions" : [
+    {
+      "time" : 0.05,
+      "action" : "option",
+      "options" : [
+        {
+          "action" : "projectile",
+          "type" : "v-firenovafireball",
+          "inheritDamageFactor" : 1,
+          "fuzzAngle" : 180,
+          "config" : {
+            "speed" : 15
+          }
+        },
+        {
+          "action" : "projectile",
+          "type" : "v-firenovafireball",
+          "inheritDamageFactor" : 1,
+          "fuzzAngle" : 180,
+          "config" : {
+            "speed" : 30
+          }
+        },
+        {
+          "action" : "projectile",
+          "type" : "v-firenovafireball",
+          "inheritDamageFactor" : 1,
+          "fuzzAngle" : 180,
+          "config" : {
+            "speed" : 45
+          }
+        }
+      ]
+    }
+  ],
+  "onlyHitTerrain" : true,
+  "flippable" : true
+}

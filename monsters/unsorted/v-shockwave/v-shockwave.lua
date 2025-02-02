@@ -1,7 +1,9 @@
 require "/scripts/vec2.lua"
 require "/scripts/set.lua"
 require "/scripts/poly.lua"
+
 require "/scripts/v-vec2.lua"
+require "/scripts/v-world.lua"
 
 -- Script for a damaging wave that propagates through a specific set of blocks.
 
@@ -144,7 +146,7 @@ function expandWave()
   local temp = {}
 
   for blockStr, _ in pairs(nextBlocks) do
-    for _, offset in ipairs({{1, 0}, {0, 1}, {-1, 0}, {0, -1}}) do
+    for _, offset in ipairs(vWorld.ADJACENT_TILES) do
       local block = vVec2.fFromString(blockStr)
       local adjacent = vec2.add(block, offset)
 

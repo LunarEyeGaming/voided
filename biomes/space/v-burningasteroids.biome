@@ -11,8 +11,8 @@
       {
         "select" : 3,
         "pool" : [
-          [ 1.0, "ignome" ],
-          [ 1.0, "pyromantle" ],
+          [ 1.0, "v-sunleaper" ],
+          [ 1.0, "v-fireelemental" ],
           [ 1.0, "v-rammingasteroid" ]
         ]
       }
@@ -28,6 +28,9 @@
             "baseValue" : -0.25
           },
           "lavaImmunity" : {
+            "baseValue" : 1.0
+          },
+          "v-evaporatingImmunity" : {
             "baseValue" : 1.0
           },
           "fireStatusImmunity" : {
