@@ -95,6 +95,16 @@
 
     {
       "op" : "add",
+      "path" : "/visitableTypeDescription/v-ministar",
+      "value" : [
+        "<todo> <description 1>",
+        "<todo> <description 2>",
+        "<todo> <description 3>"
+      ]
+    },
+
+    {
+      "op" : "add",
       "path" : "/visitableTypeDescription/v-strongholdgateway",
       "value" : [
         "A ^#571cff;strange asteroid^white; emitting unknown energy signatures. Caution is advised.",
@@ -119,6 +129,11 @@
       "path" : "/planetTypeNames/v-toxicwasteland",
       "value" : "Toxic Wasteland"
     },
+    {
+      "op" : "add",
+      "path" : "/planetTypeNames/v-ministar",
+      "value" : "Ministar"
+    },
 
     // Add planet label colors
     {
@@ -136,6 +151,11 @@
       "path": "/planetTypeColors/v-toxicwasteland",
       "value" : [162, 112, 181]
     },
+    {
+      "op": "add",
+      "path": "/planetTypeColors/v-ministar",
+      "value" : [253, 143, 77]
+    },
 
     // Add new star type label
     {
@@ -149,7 +169,7 @@
       "value" : "Outsider Star"
     },
 
-    // Add T7 label (planets)
+    // Add T8 label (planets)
     {
       "op": "replace",
       "path": "/threatLevelText/default/7",
@@ -163,7 +183,7 @@
 
     // TODO: Change this so that it is compatible with other mods that define a threat color and text for T6+ space
     // objects
-    // Add T7 label (anomalies, hostile ships, etc.)
+    // Add T8 label (anomalies, hostile ships, etc.)
     {
       "op": "add",
       "path": "/objectThreatColors/available/-",
@@ -190,6 +210,14 @@
       "value" : {
         "displayName" : "Toxikite",
         "icon" : "/items/generic/crafting/v-toxikiteore.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayOres/v-infernite",
+      "value" : {
+        "displayName" : "Infernite",
+        "icon" : "/items/generic/crafting/v-inferniteore.png"
       }
     },
 

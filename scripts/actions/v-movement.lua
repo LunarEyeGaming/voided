@@ -209,10 +209,10 @@ end
 -- param target
 function v_stickyHopApproach(args, _, _, dt)
   local args2 = {
-    rayCount = 20,
+    rayCount = 40,
     minRaycastLength = 5,
     maxRaycastLength = 50,
-    hopSpeed = 50,
+    hopSpeed = 60,
     postHopDelay = 0.1,
     gravityMultiplier = 1.5
   }
@@ -245,6 +245,8 @@ function v_stickyHopApproach(args, _, _, dt)
       local success
       -- Get the hopping velocity, accounting for gravity.
       hopVelocity, success = util.aimVector(world.distance(pos, ownPos), args2.hopSpeed, args2.gravityMultiplier, false)
+
+      world.debugLine(ownPos, pos, success and "green" or "red")
 
       -- If successful...
       if success then

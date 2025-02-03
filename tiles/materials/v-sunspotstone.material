@@ -1,0 +1,24 @@
+{
+  "materialId" : 1212,
+  "materialName" : "v-sunspotstone",
+  "particleColor" : [92, 90, 87, 255],
+  "itemDrop" : "v-sunspotstonematerial",
+  "description" : "<todo>",
+  "shortdescription" : "Sunspot Stone",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_stone3.ogg",
+  "health" : 24,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-sunspotstone.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1500
+  }
+}

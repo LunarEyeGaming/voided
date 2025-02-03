@@ -25,7 +25,7 @@
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
-      
+
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "floor.png",
@@ -39,7 +39,7 @@
       "image" : "floor.png:<color>.<frame>",
       "imagePosition" : [0, 0],
       "direction" : "right",
-      
+
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "floor.png",
@@ -53,7 +53,7 @@
       "image" : "left.png:<color>.<frame>",
       "imagePosition" : [0, -8],
       "direction" : "right",
-      
+
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "left.png",
@@ -67,7 +67,7 @@
       "image" : "right.png:<color>.<frame>",
       "imagePosition" : [0, -8],
       "direction" : "right",
-      
+
       "animationPosition" : [0, -8],
       "animationParts" : {
         "bg" : "right.png",
@@ -82,7 +82,7 @@
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
-      
+
       "animationPosition" : [-8, 0],
       "animationParts" : {
         "bg" : "ceiling.png",
@@ -96,7 +96,7 @@
       "image" : "ceiling.png:<color>.<frame>",
       "imagePosition" : [0, 0],
       "direction" : "right",
-      
+
       "animationPosition" : [0, 0],
       "animationParts" : {
         "bg" : "ceiling.png",
@@ -122,7 +122,7 @@
       }
     }
   }, */
-  
+
   "health" : 5,
 
   /* "smashable" : true,
@@ -133,9 +133,9 @@
 
   "scripts" : [ "v-lavaspewer.lua" ],
   "scriptDelta" : 2,
-  
+
   "liquidId" : 2,  // Numeric ID because Starbound :P
   "liquidRate" : 0.2,  // Rate at which liquid spawns per tick.
-  "activeDuration" : [50, 100],
-  "inactiveDuration" : [150, 300]
+  "activeDuration" : [1, 1.5],
+  "inactiveDuration" : [5, 10]
 }

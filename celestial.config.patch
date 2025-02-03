@@ -44,6 +44,25 @@
   },
   {
     "op" : "add",
+    "path" : "/terrestrialHorizonGraphics/v-ministar",
+    "value" : {
+      "baseImages" : "/celestial/system/terrestrial/horizon/textures/magma_<selector>.png",
+      "maskTextures" : "/celestial/system/terrestrial/horizon/masks/ocean/<mask>_<selector>.png",
+      "maskRange" : [1, 25],
+      "maskPerPlanetRange" : [3, 3]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/terrestrialGraphics/v-ministar",
+    "value" : {
+      "baseImages" : "/celestial/system/terrestrial/biomes/magma/maskie<num>.png",
+      "dynamicsImages" : "/celestial/system/terrestrial/dynamics/ocean/<num>.png",
+      "dynamicsRange" : [1, 30]
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/floatingDungeonHorizons/v-strongholdgateway",
     "value" : "/celestial/system/v-strangeasteroid/horizon/asteroid_<selector>.png"
   },
@@ -154,7 +173,7 @@
         "description" : "Elemental (Voided)",
         "smallImage" : "/celestial/system/planet_small.png",
 
-        "terrestrialType" : [ "v-voltage", "v-toxicwasteland" ]
+        "terrestrialType" : [ "v-voltage", "v-toxicwasteland", "v-ministar" ]
       },
 
       "variationParameters" : [
@@ -205,7 +224,7 @@
         "description" : "Elemental Moon (Voided)",
         "smallImage" : "/celestial/system/planet_small.png",
 
-        "terrestrialType" : [ "v-voltage", "v-toxicwasteland" ]
+        "terrestrialType" : [ "v-voltage", "v-toxicwasteland", "v-ministar" ]
       },
 
       "variationParameters" : [

@@ -1,6 +1,6 @@
 {
-  "name" : "v-undergroundministar",
-  "friendlyName" : "Ministar Caves",
+  "name" : "v-shallowundergroundministar",
+  "friendlyName" : "Shallow Ministar Caves",
 
   "spawnProfile" : {
     "groups" : [
@@ -37,7 +37,7 @@
             "baseValue" : 1.0
           },
           "protection" : {
-            "baseValue" : 45.0
+            "baseValue" : 35.0
           }
         }
       }
@@ -48,7 +48,7 @@
 
   "mainBlock" : "v-sunspotstone",
   "subBlocks" : [ "magmarock", "rock14" ],
-  "ores" : "v-ministarcore",
+  "ores" : "v-deepundergroundministar",
 
   "ambientNoises" : {
     "day" : {
@@ -161,34 +161,6 @@
 
         "type" : "microdungeon",
         "microdungeons" : [ "undergroundencounterdungeons" ]
-      },
-      {
-        "mode" : "ceiling",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundOreRocks",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-lavaspewer" ] ],
-            "parameters" : { }
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:v-lavaDrain",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-lavadrain" ] ],
-            "parameters" : { }
-          }
-        ]
       }
     ]
   },

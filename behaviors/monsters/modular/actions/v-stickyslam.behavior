@@ -1,10 +1,11 @@
 {
-  "name": "v-approach-stickyhop",
-  "description": "",
+  "name": "v-action-stickyslam",
+  "description": null,
   "scripts": [
     "/scripts/behavior.lua",
+    "/scripts/actions/time.lua",
     "/scripts/actions/v-movement.lua",
-    "/scripts/actions/time.lua"
+    "/scripts/actions/projectiles.lua"
   ],
   "parameters": {},
   "root": {
@@ -19,6 +20,14 @@
         "name": "setFlag",
         "parameters": {
           "name": {"value": "shouldNotCrawl"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.1}
         }
       },
       {
@@ -38,11 +47,19 @@
         }
       },
       {
-        "title": "timer",
+        "title": "spawnProjectile",
         "type": "action",
-        "name": "timer",
+        "name": "spawnProjectile",
         "parameters": {
-          "time": {"value": 1.5}
+          "angle": {"value": 0},
+          "offset": {"value": [0, 0]},
+          "position": {"key": "self"},
+          "projectileConfig": {"value": {}},
+          "projectileType": {"value": "\"bullet-4\""},
+          "scalePower": {"value": true},
+          "sourceEntity": {"key": "self"},
+          "trackSource": {"value": false},
+          "uniqueRepeatGroup": {"value": true}
         }
       }
     ]
