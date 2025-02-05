@@ -109,7 +109,7 @@ function update(dt)
   -- Update heatMap for v-ministareffects.lua
   world.sendEntityMessage(player.id(), "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio)
 
-  addToHeatMap(affectedTiles, dt)
+  addToHeatMap(affectedTiles, heightMap, dt)
 
   -- Destroy tiles.
   world.damageTiles(tilesToDestroy, "foreground", mcontroller.position(), "blockish", 2 ^ 32 - 1, 0)
@@ -445,16 +445,28 @@ end
 
 ---Adds `affectedTiles` to `heatMap` that are below the `maxDepth` value and are meltable.
 ---@param affectedTiles table<string, boolean>
+---@param heightMap HeightMap
 ---@param dt number
-function addToHeatMap(affectedTiles, dt)
+function addToHeatMap(affectedTiles, heightMap, dt)
   -- For each tile in `affectedTiles`...
   for tileHash, _ in pairs(affectedTiles) do
     local tile = vVec2.iFromString(tileHash)
     local material = world.material(tile, "foreground")
+
+    local heightMapValue = heightMap.list[tile[1] - heightMap.startXPos + 1]
+    local isExposed  -- Whether or not the affected tile is exposed (and therefore should be burned).
+    if not heightMapValue or heightMapValue.type == "open" then
+      isExposed = true
+    elseif heightMapValue.type == "partiallyObstructed" then
+      isExposed = tile[2] <= heightMapValue.value
+    else
+      isExposed = tile[2] <= minDepth
+    end
+
     world.debugPoint(tile, "red")
 
-    -- If there is a material at this tile...
-    if material then
+    -- If there is a material at this tile and it is exposed...
+    if material and isExposed then
       -- Compute tolerance multiplier (tiles that are closer to minDepth have a lower heat tolerance). Capped at 0.
       local toleranceMultiplier = math.max(0, (tile[2] - minDepth) / (maxDepth - minDepth))
 

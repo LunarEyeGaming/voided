@@ -493,6 +493,7 @@
       "blockSelector" : [ "empty" ],
       "fgCaveSelector" : [ "empty" ],
       "bgCaveSelector" : [ "empty" ],
+      "subBlockSelector" : ["v-ministarUndergroundSubBlocks"],
       "oceanLiquid" : [ "v-sun" ],
       "oceanLevelOffset" : 1000,
       "biome" : [
@@ -505,6 +506,7 @@
     "path" : "/regionTypes/v-shallowundergroundministar",
     "value" : {
       "fgCaveSelector" : [ "v-ministarUndergroundCaves" ],
+      "subBlockSelector" : ["v-ministarUndergroundSubBlocks"],
       "caveLiquid" : [ "lava" ],
       "caveLiquidSeedDensityRange" : [1, 3],
       "biome" : [

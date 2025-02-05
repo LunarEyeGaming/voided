@@ -1,0 +1,115 @@
+{
+  "name" : "v-ministarUndergroundSubBlocks",
+
+  "type" : "minmax",
+  "sources" : [
+    // Horizontal caves
+    {
+      "type" : "displacement",
+      "xType" : "perlin",
+      "xOctaves" : 1,
+      "xFreq" : 0.05,
+      "xAmp" : 2,
+      "xXInfluence" : 0.2,
+      "yType" : "perlin",
+      "yOctaves" : 1,
+      "yFreq" : 0.05,
+      "yAmp" : 10,
+      "yYInfluence" : 0.5,
+
+      "source" : {
+        "type" : "wormcave",
+
+        "sectorSize" : 100,
+        "sectorRadius" : 5,
+        "numberOfWormsPerSectorRange" : [0.7, 0.7],
+        "wormSpeed" : 1.0,
+
+        "wormSizeRange" : [13, 18],
+        "wormLengthRange" : [80, 360],
+        "wormTaperDistance" : 15,
+        "wormAngleRange" : [2.94524, 3.33794],
+        "wormTurnChance" : 0.2,
+        "wormTurnRate" : 0.08
+      }
+    },
+    {
+      "type" : "displacement",
+      "xType" : "perlin",
+      "xOctaves" : 1,
+      "xFreq" : 0.05,
+      "xAmp" : 2,
+      "xXInfluence" : 0.2,
+      "yType" : "perlin",
+      "yOctaves" : 1,
+      "yFreq" : 0.05,
+      "yAmp" : 10,
+      "yYInfluence" : 0.5,
+
+      "source" : {
+        "type" : "wormcave",
+
+        "sectorSize" : 100,
+        "sectorRadius" : 5,
+        "numberOfWormsPerSectorRange" : [1.5, 1.5],
+        "wormSpeed" : 1.0,
+
+        "wormSizeRange" : [5, 9],
+        "wormLengthRange" : [40, 100],
+        "wormTaperDistance" : 15,
+        "wormAngleRange" : [2.94524, 3.33794],
+        "wormTurnChance" : 0.2,
+        "wormTurnRate" : 0.08
+      }
+    } /*,
+    {
+      "type" : "perlin",
+      "function" : "perlin",
+      "octaves" : 1,
+      "freq" : 0.1,
+      "amp" : 3,
+      "bias" : -0.45,
+      "xInfluence" : 0.8,
+      "yInfluence" : 0.2
+    }*/
+    /* {
+      "type" : "karstcave",
+
+      "layerResolution" : 15,
+      "layerDensity" : 0.07,
+
+      "layerHeightVariation" : {
+        "type" : "perlin",
+        "octaves" : 2,
+        "frequency" : 0.009,
+        "amplitude" : 60
+      },
+      "bufferHeight" : 50,
+
+      "caveDecision" : {
+        "type" : "perlin",
+        "octaves" : 2,
+        "frequency" : 0.01,
+        "amplitude" : 1,
+        "bias" : 0
+      },
+      "caveTaperPoint" : 0.08,
+
+      "caveHeightVariation" : {
+        "type" : "perlin",
+        "octaves" : 2,
+        "frequency" : 0.032,
+        "amplitude" : 14,
+        "bias" : 6
+      },
+
+      "caveFloorVariation" : {
+        "type" : "perlin",
+        "octaves" : 2,
+        "frequency" : 0.1,
+        "amplitude" : 4,
+        "bias" : -2
+      }
+    } */
+  ]
+}
