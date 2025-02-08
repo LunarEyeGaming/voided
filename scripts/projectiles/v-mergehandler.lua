@@ -3,9 +3,12 @@ local actionOnMerge
 local actionOnNonMerge
 
 function init()
-  message.setHandler("v-handleMerge", function()
-    useActionOnMerge = true
-    projectile.die()
+  message.setHandler("v-handleMerge", function(_, _, senderSourceEntity)
+    -- Ensure that the sender has the same source entity as the current projectile.
+    if senderSourceEntity == projectile.sourceEntity() then
+      useActionOnMerge = true
+      projectile.die()
+    end
   end)
   useActionOnMerge = false
   actionOnMerge = config.getParameter("actionOnMerge")
@@ -14,7 +17,7 @@ function init()
 end
 
 function update(dt)
-  
+
 end
 
 function v_isMergerType(type_)

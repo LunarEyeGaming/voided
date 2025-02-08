@@ -20,11 +20,11 @@ end
 function update(dt)
   mergeTimer = mergeTimer - dt
     if mergeTimer <= 0 then
-    queriedGlobes = world.entityQuery(mcontroller.position(), mergeRadius, {callScript = "v_isMergerType", callScriptArgs = {targetType}, includedTypes = {"projectile"}, order = "nearest"})
+    local queriedMergers = world.entityQuery(mcontroller.position(), mergeRadius, {callScript = "v_isMergerType", callScriptArgs = {targetType}, includedTypes = {"projectile"}, order = "nearest"})
     -- If the second condition is not included then it will detonate based on where the globe was *previously* and not
     -- where it is right now.
-    if #queriedGlobes > 0 and world.magnitude(world.entityPosition(queriedGlobes[1]), mcontroller.position()) < mergeRadius then
-      world.sendEntityMessage(queriedGlobes[1], "v-handleMerge")
+    if #queriedMergers > 0 and world.magnitude(world.entityPosition(queriedMergers[1]), mcontroller.position()) < mergeRadius then
+      world.sendEntityMessage(queriedMergers[1], "v-handleMerge", projectile.sourceEntity())
       hasMerged = true
       projectile.die()
     end

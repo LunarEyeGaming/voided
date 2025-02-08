@@ -1,0 +1,135 @@
+{
+  "itemName" : "v-solarflareboomerang",
+  "price" : 3000,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "level" : 8,
+  "category" : "boomerang",
+  "description" : "A boomerang infused with the power of the sun.",
+  "shortdescription" : "^infernite;Solar Flarerang",
+  "tooltipKind" : "base",
+  "twoHanded" : false,
+  "itemTags" : ["weapon"],
+
+  "inventoryIcon" : "solarflareboomerang.png",
+  "animation" : "/items/active/weapons/boomerang/boomerang.animation",
+  "animationParts" : {
+    "boomerang" : "solarflareboomerang.png",
+    "boomerangfullbright" : "solarflareboomerangfullbright.png"
+  },
+  "animationCustom" : {
+    "animatedParts" : {
+      "stateTypes" : {
+        "weapon" : {
+          "default" : "visible",
+          "states" : {
+            "visible" : {
+              "properties" : {
+                "lightsOn" : ["glow"]
+              }
+            },
+            "hidden" : {
+              "properties" : {
+                "lightsOff" : ["glow"]
+              }
+            }
+          }
+        }
+      },
+      "parts" : {
+        "boomerangfullbright" : {
+          "properties" : {
+            "centered" : true,
+            "zLevel" : 1,
+            "anchorPart" : "boomerang",
+            "fullbright" : true
+          },
+
+          "partStates" : {
+            "weapon" : {
+              "visible" : {
+                "properties" : {
+                  "image" : "<partImage>"
+                }
+              },
+              "hidden" : {
+                "properties" : {
+                  "image" : ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "lights" : {
+      "glow" : {
+        "active" : true,
+        "color" : [218, 83, 2]
+      }
+    }
+  },
+  "scripts" : ["/items/active/weapons/boomerang/boomerang.lua", "v-solarflareboomerangplugin.lua"],
+  "fireOffset" : [1.25, 0.5],
+  "fireAngleOffset" : 20,
+
+  "cooldownTime" : 0.6,
+
+  "dualFireGracePeriod" : 0.25,
+
+  "projectileType" : "v-solarflareboomerang",
+  "projectileParameters" : {
+    "power" : 4.5,
+    "knockback" : 20,
+
+    "ignoreTerrain" : false,
+    "controlForce" : 140,
+    "pullForce" : 80,
+    "speed" : 90,
+    "pickupDistance" : 3.0,
+    "snapDistance" : 8.0
+  },
+
+  "stances" : {
+    "idle" : {
+      "armRotation" : -20,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : true,
+      "allowFlip" : true
+    },
+    "windup" : {
+      "duration" : 0.1,
+      "transition" : "throw",
+      "transitionFunction" : "fire",
+      "armRotation" : 70,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : false,
+      "allowFlip" : false
+    },
+    "throw" : {
+      "armRotation" : 0,
+      "animationState" : {
+        "weapon" : "hidden"
+      },
+      "allowRotate" : true,
+      "allowFlip" : true
+    },
+    "catch" : {
+      "duration" : 0.2,
+      "transition" : "idle",
+      "armRotation" : 60,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : false,
+      "allowFlip" : true
+    }
+  },
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}
