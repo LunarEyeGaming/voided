@@ -80,6 +80,26 @@
           "amplitude" : 20,
           "bias" : 90
         }
+      },
+      {
+        "type" : "displacement",
+        "xType" : "perlin",
+        "xOctaves" : 1,
+        "xFreq" : 0.01,
+        "xAmp" : 0,
+        "yType" : "perlin",
+        "yOctaves" : 2,
+        "yFreq" : 0.02,
+        "yAmp" : 20,
+        "yClamp" : [-20, -10],
+        "yClampSmoothing" : 5,
+        "yYInfluence" : 0.2,
+
+        "source" : {
+          "type" : "flatSurface",
+
+          "adjustment" : -70
+        }
       }
     ]
   }

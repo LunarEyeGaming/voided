@@ -1,0 +1,23 @@
+{
+  "kind" : "v-geyserjetflame",
+  "definition" : {
+    "type" : "animated",
+    "animation" : "/animations/statuseffects/burning/burning.animation",
+    "position" : [0, 0],
+    "initialVelocity" : [50, 0],
+    "finalVelocity" : [0, 0.0],
+    "approach" : [50, 50],
+    "light" : [218, 83, 2],
+    "fullbright" : true,
+    "fade" : 1,
+    "size" : 1.0,
+    "destructionAction" : "shrink",
+    "destructionTime" : 0.5,
+    "timeToLive" : 0.5,
+    "layer" : "middle",
+    "collidesForeground" : true,
+    "variance" : {
+      "initialVelocity" : [15, 15]
+    }
+  }
+}

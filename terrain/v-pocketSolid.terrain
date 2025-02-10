@@ -1,0 +1,26 @@
+{
+  "name" : "v-pocketSolid",
+  "type" : "displacement",
+  "xType" : "perlin",
+  "xOctaves" : 2,
+  "xFreq" : 0.2,
+  "xAmp" : 1,
+  "xXInfluence" : 0,
+  "yType" : "perlin",
+  "yOctaves" : 2,
+  "yFreq" : 0.2,
+  "yAmp" : 1,
+  "yYInfluence" : 0,
+
+  "source" : {
+    "type" : "perlin",
+    "seedBias" : 1,
+    "function" : "perlin",
+    "octaves" : 1,
+    "freq" : 0.07,
+    "amp" : 29.9,
+    "bias" : 30.0,
+    "xInfluence" : 0.66,
+    "yInfluence" : 1.0
+  }
+}

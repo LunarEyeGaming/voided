@@ -1,0 +1,15 @@
+{
+  "projectileName" : "v-geyserjetdamage",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "speed" : 50,
+  "onlyHitTerrain" : false,
+  "timeToLive" : 0.5,
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "damageKind" : "fire",
+  "damageType" : "IgnoresDef",
+  "statusEffects" : ["burning"]
+}

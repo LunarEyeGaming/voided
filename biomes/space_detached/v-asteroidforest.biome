@@ -1,6 +1,6 @@
 {
-  "name" : "v-burningasteroids",
-  "friendlyName" : "Burning Asteroids",
+  "name" : "v-asteroidforest",
+  "friendlyName" : "Hanging Forest",
 
   "mainBlock" : "v-burningmeteorite",
   "subBlocks" : [ "v-moltenrock" ],
@@ -46,29 +46,12 @@
 
   "statusEffects" : [ "biomeairless" ],
 
-  "parallax" : "/parallax/space/v-burningasteroids.parallax",
-
-  "ambientNoises" : {
-    "day" : {
-      "tracks" : [ "/sfx/environmental/space_loop1.ogg" ]
-    },
-    "night" : {
-      "tracks" : [ "/sfx/environmental/space_loop1.ogg" ]
-    }
-  },
-
-  "musicTrack" : {
-    "day" : {
-      "tracks" : [ "/music/jupiter.ogg", "/music/arctic-constellation1.ogg", "/music/arctic-constellation2.ogg", "/music/mercury.ogg", "/music/mira.ogg", "/music/procyon.ogg", "/music/tranquility-base.ogg", "/music/psyche.ogg", "/music/accretion-disc.ogg", "/music/cygnus-x1.ogg", "/music/eridanus-supervoid.ogg", "/music/horsehead-nebula.ogg", "/music/large-magellanic-cloud.ogg", "/music/m54.ogg", "/music/nomads.ogg", "/music/on-the-beach-at-night.ogg" ]
-    },
-    "night" : {
-      "tracks" : [ "/music/jupiter.ogg", "/music/arctic-constellation1.ogg", "/music/arctic-constellation2.ogg", "/music/mercury.ogg", "/music/mira.ogg", "/music/procyon.ogg", "/music/tranquility-base.ogg", "/music/psyche.ogg", "/music/accretion-disc.ogg", "/music/cygnus-x1.ogg", "/music/eridanus-supervoid.ogg", "/music/horsehead-nebula.ogg", "/music/large-magellanic-cloud.ogg", "/music/m54.ogg", "/music/nomads.ogg", "/music/on-the-beach-at-night.ogg" ]
-    }
-  },
-
   "hueShiftOptions" : [0],
 
   "surfacePlaceables" : {
+    "ceilingGrassMod" : [ "v-blueceilinggrass" ],
+    "ceilingGrassModDensity" : 0.9,
+
     "items" : [
       {
         "mode" : "floor",
@@ -145,6 +128,72 @@
             }
           }
         ]
+      }
+    ]
+  },
+
+  "undergroundPlaceables" : {
+    "ceilingGrassMod" : [ "v-blueceilinggrass" ],
+    "ceilingGrassModDensity" : 0.9,
+
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:layer2Chests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "basicChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:overgroundRareChests",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-statuspodtoxic" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 2.0,
+        "variants" : 3,
+        "distribution" : "/biomes/distributions.config:denseMedium",
+
+        "type" : "tree",
+        "treeFoliageHueShiftMax" : 60,
+        "treeStemHueShiftMax" : 40,
+        "treeStemList" : [ "v-hangingtree" ],
+        "treeFoliageList" : [ "v-hangingfoliage" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundweaponChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "v-fireWeaponChest" ]
       }
     ]
   }

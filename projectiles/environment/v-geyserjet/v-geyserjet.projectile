@@ -1,0 +1,42 @@
+{
+  "projectileName" : "v-geyserjet",
+  "physics" : "laser",
+  "bounces" : -1,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "timeToLive" : 2,
+  "periodicActions" : [
+    {
+      "time" : 0.05,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : "v-geyserjetsmoke"
+    },
+    {
+      "time" : 0.05,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : "v-geyserjetflame"
+    },
+    {
+      "time" : 0.25,
+      "action" : "projectile",
+      "type" : "v-geyserjetdamage",
+      "inheritDamageFactor" : 1.0,
+      "fuzzAngle" : 0
+    }
+  ] // ,
+
+  // "boundBox" : [-2, 0, 2, 20],
+  // "physicsForces" : {
+  //   "jet" : {
+  //     "type" : "DirectionalForceRegion",
+  //     "yTargetVelocity" : 50,
+  //     "controlForce" : 350,
+  //     "rectRegion" : [-2, 0, 2, 20]
+  //   }
+  // }
+}

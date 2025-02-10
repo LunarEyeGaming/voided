@@ -420,6 +420,7 @@
       "layers" : {
         "space" : {
           "primaryRegion" : [ "v-burningasteroids" ],
+          "secondaryRegions" : [ "v-asteroidforest" ],
 
           "dungeons" : [[1.0, "v-ministarspawn"]]
         },
@@ -456,8 +457,21 @@
     "value" : {
       "blockSelector" : [ "v-asteroidsDense" ],
       "fgCaveSelector" : [ "empty" ],
+      "bgCaveSelector" : [ "empty" ],
       "biome" : [
         [0, [ "v-burningasteroids" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-asteroidforest",
+    "value" : {
+      "blockSelector" : [ "v-asteroidForest" ],
+      "fgCaveSelector" : [ "v-asteroidForestCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-asteroidforest" ]]
       ]
     }
   },
@@ -505,6 +519,7 @@
     "op" : "add",
     "path" : "/regionTypes/v-shallowundergroundministar",
     "value" : {
+      "blockSelector" : [ "v-pocketSolid" ],
       "fgCaveSelector" : [ "v-ministarUndergroundCaves" ],
       "subBlockSelector" : ["v-ministarUndergroundSubBlocks"],
       "caveLiquid" : [ "lava" ],
@@ -519,6 +534,7 @@
     "op" : "add",
     "path" : "/regionTypes/v-undergroundministar",
     "value" : {
+      "blockSelector" : [ "v-pocketSolid" ],
       "fgCaveSelector" : [ "v-ministarUndergroundCaves" ],
       "caveLiquid" : [ "lava" ],
       "caveLiquidSeedDensityRange" : [1, 3],
