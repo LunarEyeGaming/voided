@@ -561,5 +561,24 @@
     "monsterParameters" : {
       "aggressive" : true
     }
+  },
+
+  {
+    "name" : "v-hangingfiremonster",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 2],
+    "spawnChance" : 0.16,
+    "monsterType" : [
+      [1.0, "v-hangingfiremonster"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
   }
 ]

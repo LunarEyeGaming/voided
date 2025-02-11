@@ -9,11 +9,10 @@
   "spawnProfile" : {
     "groups" : [
       {
-        "select" : 1,
+        "select" : 2,
         "pool" : [
-          [ 1.0, "v-fireelemental" ],
-          [ 1.0, "v-rammingasteroid" ],
-          [ 1.0, "v-sunleaper" ]
+          [ 1.0, "v-hangingfiremonster" ],
+          [ 1.0, "v-rammingasteroid" ]
         ]
       }
     ],
@@ -95,20 +94,6 @@
         "objectSets" : [
           {
             "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
-            "parameters" : { }
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundCapsules",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-asteroidtrap" ] ],
             "parameters" : { }
           }
         ]

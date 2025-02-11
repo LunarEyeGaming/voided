@@ -192,6 +192,17 @@
         "bias" : -0.40,
         "xInfluence" : 0.66,
         "yInfluence" : 1.0
+      },
+      {
+        "type" : "perlin",
+        "seedBias" : 3,
+        "function" : "perlin",
+        "octaves" : 1,
+        "freq" : 0.12,
+        "amp" : 1,
+        "bias" : -0.40,
+        "xInfluence" : 0.66,
+        "yInfluence" : 1.0
       }
     ]
   }

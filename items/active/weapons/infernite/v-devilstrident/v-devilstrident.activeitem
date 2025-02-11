@@ -1,0 +1,44 @@
+{
+  "itemName" : "v-devilstrident",
+  "price" : 960,
+  "level" : 8,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "<todo>",
+  "shortdescription" : "Devil's Trident",
+  "tooltipKind" : "sword",
+  "category" : "spear",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","melee","spear"],
+
+  "inventoryIcon" : "devilstrident.png",
+
+  "animation" : "/items/active/weapons/melee/spear/spear.animation",
+  "animationParts" : {
+    "handle" : "",
+    "blade" : "devilstrident.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : [ "/sfx/melee/swing_spear_fire1.ogg", "/sfx/melee/swing_spear_fire2.ogg", "/sfx/melee/swing_spear_fire3.ogg" ]
+    }
+  },
+
+  "scripts" : ["/items/active/weapons/melee/meleeweapon.lua"],
+
+  "elementalType" : "fire",
+
+  "aimOffset" : -1.0,
+
+  "primaryAbilityType" : "v-spearskewer",
+  "primaryAbility" : {
+    "fireTime" : 0.95,
+    "baseDps" : 10.5,
+    "damageConfig" : { "damageSourceKind" : "firespear", "statusEffects" : [ "burning" ] }
+  },
+
+  "altAbilityType" : "v-spewoil",
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}
