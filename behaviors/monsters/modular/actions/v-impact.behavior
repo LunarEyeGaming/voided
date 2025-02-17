@@ -15,8 +15,11 @@
     "speedThreshold": 0,
     "speedEffectTransformationGroup": null,
     "speedEffectStateType": null,
-    "particleSpeedThreshold": 0,
-    "particleEmitter": null
+    "warningSpeedThreshold": 0,
+    "flipTransformationGroup": null,
+    "flipRotateTransformationGroup": null,
+    "speedStateType": null,
+    "transformationGroup": null
   },
   "root": {
     "title": "sequence",
@@ -29,11 +32,12 @@
         "type": "action",
         "name": "v_speedEffect",
         "parameters": {
+          "flipTransformationGroup": {"key": "<flipTransformationGroup>"},
           "speedThreshold": {"key": "<speedThreshold>"},
-          "stateType": {"value": "fireball"},
-          "transformationGroup": {"value": "fireball"},
-          "particleSpeedThreshold": {"key": "<particleSpeedThreshold>"},
-          "particleEmitter": {"key": "<particleEmitter>"}
+          "stateType": {"key": "<speedStateType>"},
+          "transformationGroup": {"key": "<transformationGroup>"},
+          "warningSpeedThreshold": {"key": "<warningSpeedThreshold>"},
+          "flipRotateTransformationGroup": {"key": "<flipRotateTransformationGroup>"}
         }
       },
       {
@@ -46,9 +50,7 @@
           "explosionProjectile": {"key": "<explosionProjectile>"},
           "speedThreshold": {"key": "<speedThreshold>"},
           "target": {"key": "target"},
-          "useSticky": {"key": "<useSticky>"},
-          "particleSpeedThreshold": {"key": "<particleSpeedThreshold>"},
-          "particleEmitter": {"key": "<particleEmitter>"}
+          "useSticky": {"key": "<useSticky>"}
         }
       },
       {

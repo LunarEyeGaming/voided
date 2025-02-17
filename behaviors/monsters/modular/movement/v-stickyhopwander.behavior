@@ -1,0 +1,50 @@
+{
+  "name": "v-wander-stickyhop",
+  "description": null,
+  "scripts": [
+    "/scripts/behavior.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/v-movement.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "shouldNotCrawl"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.1}
+        }
+      },
+      {
+        "title": "v_stickyHopApproach",
+        "type": "action",
+        "name": "v_stickyHopApproach",
+        "parameters": {
+          "targetPos": {"key": "self"}
+        }
+      },
+      {
+        "title": "unsetFlag",
+        "type": "action",
+        "name": "unsetFlag",
+        "parameters": {
+          "name": {"value": "shouldNotCrawl"}
+        }
+      }
+    ]
+  }
+}

@@ -73,17 +73,6 @@
     "script": "/scripts/actions/v-movement.lua",
     "output": {}
   },
-  "v_stickyHopApproach": {
-    "type": "action",
-    "name": "v_stickyHopApproach",
-    "title": "v_stickyHopApproach",
-    "properties": {
-      "target": {"type": "entity"}
-    },
-    "category": "v-movement",
-    "script": "/scripts/actions/v-movement.lua",
-    "output": {}
-  },
   "v_impactAction": {
     "type": "action",
     "name": "v_impactAction",
@@ -95,6 +84,24 @@
       "speedThreshold": {"type": "number", "value": 0},
       "target": {"type": "entity"},
       "useSticky": {"type": "bool", "value": false}
+    },
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
+    "output": {}
+  },
+  "v_stickyHopApproach": {
+    "type": "action",
+    "name": "v_stickyHopApproach",
+    "title": "v_stickyHopApproach",
+    "properties": {
+      "gravityMultiplier": {"type": "number", "value": 1.5},
+      "hopSpeed": {"type": "number", "value": 60},
+      "maxRaycastLength": {"type": "number", "value": 50},
+      "minRaycastLength": {"type": "number", "value": 5},
+      "postHopDelay": {"type": "number", "value": 0.1},
+      "rayCount": {"type": "number", "value": 40},
+      "target": {"type": "entity"},
+      "targetPos": {"type": "position"}
     },
     "category": "v-movement",
     "script": "/scripts/actions/v-movement.lua",

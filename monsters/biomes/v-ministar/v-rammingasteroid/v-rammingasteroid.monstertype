@@ -87,12 +87,15 @@
           "name" : "v-action-impact",
           "parameters" : {
             "useSticky" : false,
-            "explosionProjectile" : "v-proxyprojectile",
-            "explosionConfig" : {"power" : 20, "actionOnReap" : [{"action" : "config", "file" : "/projectiles/explosions/regularexplosion2/fireexplosionknockback.config"}]},
+            "explosionProjectile" : "spacemineexplosion",
+            "explosionConfig" : {"power" : 20},
             "explosionDistance" : 3,
             "speedThreshold" : 25,
-            "particleSpeedThreshold" : 15,
-            "particleEmitter" : "firetrail"
+            "warningSpeedThreshold" : 15,
+            "speedStateType" : "fireball",
+            "transformationGroup" : "fireball",
+            "flipTransformationGroup" : "facing",
+            "flipRotateTransformationGroup" : "body"
           }
         }
       ],

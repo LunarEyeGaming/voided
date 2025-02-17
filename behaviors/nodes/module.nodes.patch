@@ -942,6 +942,32 @@
   },
   {
     "op": "add",
+    "path": "/v-action-stickyslam",
+    "value": {
+      "type": "module",
+      "name": "v-action-stickyslam",
+      "title": "",
+      "properties": {
+        "slamProjectileType": {"type": "json", "value": "fireplasmaexplosion"},
+        "slamProjectileParameters": {"type": "json", "value": {}},
+        "aimDirection": {"type": "json", "value": [0, 1]}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-wander-stickyhop",
+    "value": {
+      "type": "module",
+      "name": "v-wander-stickyhop",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\modular\\movement\\v-stickyhopwander.behavior"
+    }
+  },
+  {
+    "op": "add",
     "path": "/v-action-impact",
     "value": {
       "type": "module",
@@ -955,21 +981,35 @@
         "speedThreshold": {"type": "json", "value": 0},
         "speedEffectTransformationGroup": {"type": "json", "value": null},
         "speedEffectStateType": {"type": "json", "value": null},
-        "particleSpeedThreshold": {"type": "json", "value": 0},
-        "particleEmitter": {"type": "json", "value": null}
+        "warningSpeedThreshold": {"type": "json", "value": 0},
+        "flipTransformationGroup": {"type": "json", "value": null},
+        "flipRotateTransformationGroup": {"type": "json", "value": null},
+        "speedStateType": {"type": "json", "value": null},
+        "transformationGroup": {"type": "json", "value": null}
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-impact.behavior"
     }
   },
   {
     "op": "add",
-    "path": "/v-action-stickyslam",
+    "path": "/v-strongholdboss-coreattack3",
     "value": {
       "type": "module",
-      "name": "v-action-stickyslam",
+      "name": "v-strongholdboss-coreattack3",
       "title": "",
       "properties": {},
-      "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
+      "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\coreattack3.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-strongholdboss-coreattack4",
+    "value": {
+      "type": "module",
+      "name": "v-strongholdboss-coreattack4",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\coreattack4.behavior"
     }
   }
 ]

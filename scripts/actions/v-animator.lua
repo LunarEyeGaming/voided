@@ -26,9 +26,10 @@ function v_setLaserBeamActive(args)
 end
 
 -- param speedThreshold
--- param particleSpeedThreshold
--- param particleEmitter
+-- param warningSpeedThreshold
 -- param transformationGroup
+-- param flipTransformationGroup
+-- param flipRotateTransformationGroup
 -- param stateType
 function v_speedEffect(args)
   local rq = vBehavior.requireArgsGen("v_speedEffect", args)
@@ -37,17 +38,43 @@ function v_speedEffect(args)
   local velocity = mcontroller.velocity()
   local speed = vec2.mag(velocity)
 
-  if args.particleSpeedThreshold then
-    if not rq{"particleEmitter"} then return false end
-
-    animator.setParticleEmitterActive(args.particleEmitter, speed > args.particleSpeedThreshold)
+  if speed > args.speedThreshold then
+    animator.setAnimationState(args.stateType, "on")
+  elseif args.warningSpeedThreshold and speed > args.warningSpeedThreshold then
+    animator.setAnimationState(args.stateType, "warning")
+  else
+    animator.setAnimationState(args.stateType, "off")
   end
 
-  animator.setAnimationState(args.stateType, speed > args.speedThreshold and "on" or "off")
 
   if args.transformationGroup then
+    local angle = vec2.angle(velocity)
+
+    if args.flipTransformationGroup then
+      if not rq{"flipRotateTransformationGroup"} then return false end
+
+      local adjustedAngle
+      local direction
+      if math.pi / 2 < angle and angle < 3 * math.pi / 2 then
+        adjustedAngle = math.pi - angle
+        direction = -1
+      else
+        adjustedAngle = angle
+        direction = 1
+      end
+
+      animator.resetTransformationGroup(args.flipRotateTransformationGroup)
+      animator.resetTransformationGroup(args.flipTransformationGroup)
+      animator.rotateTransformationGroup(args.flipRotateTransformationGroup, adjustedAngle)
+      animator.scaleTransformationGroup(args.flipTransformationGroup, {direction, 1})
+    end
+
     animator.resetTransformationGroup(args.transformationGroup)
-    animator.rotateTransformationGroup(args.transformationGroup, vec2.angle(velocity))
+    animator.rotateTransformationGroup(args.transformationGroup, angle)
+
+  -- animator.rotateTransformationGroup("hand", adjustedAngle)
+  -- animator.scaleTransformationGroup("facing", {direction, 1})
+
   end
 
   return true

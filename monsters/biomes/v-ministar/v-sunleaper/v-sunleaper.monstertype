@@ -36,21 +36,60 @@
       "fleeActions" : [ ],
 
       "hostileActions" : [
-        {
-          "name" : "action-fire",
-          "cooldown" : 0.5,
-          "parameters" : {
-            // Shoot shockwaves
-            "requireLineOfSight" : false,
-            "maximumRange" : 200,
-            "minimumRange" : 0,
-            "windupState" : "",
-            "windupTime" : 0.0,
-            "windupStopForce" : 200,
+        // {
+        //   "name" : "action-fire",
+        //   "cooldown" : 0.5,
+        //   "parameters" : {
+        //     // Shoot shockwaves
+        //     "requireLineOfSight" : false,
+        //     "maximumRange" : 200,
+        //     "minimumRange" : 0,
+        //     "windupState" : "",
+        //     "windupTime" : 0.0,
+        //     "windupStopForce" : 200,
 
-            "aimAtTarget" : false,
-            "projectileType" : "v-proxyprojectile",
-            "projectileParameters" : {
+        //     "aimAtTarget" : false,
+        //     "projectileType" : "v-proxyprojectile",
+        //     "projectileParameters" : {
+        //       "power" : 15,
+        //       "speed" : 0,
+        //       "actionOnReap" : [
+        //         {
+        //           "action" : "projectile",
+        //           "type" : "v-sunleapershockwave",
+        //           "inheritDamageFactor" : 0.5,
+        //           "angleAdjust" : 90
+        //         },
+        //         {
+        //           "action" : "projectile",
+        //           "type" : "v-sunleapershockwave",
+        //           "inheritDamageFactor" : 0.5,
+        //           "angleAdjust" : -90
+        //         },
+        //         {
+        //           "action" : "config",
+        //           "file" : "/projectiles/explosions/regularexplosion2/fireexplosionknockback.config"
+        //         }
+        //       ]
+        //     },
+        //     "fireOffset" : [0.0, 0.0],
+        //     "aimDirection" : [0, 1],
+        //     "projectileCount" : 1,
+        //     "projectileInterval" : 1,
+        //     "fireDelay" : 0.0,
+        //     "fireSound" : "",
+        //     "fireState" : "",
+
+        //     "winddownState" : "idle",
+        //     "winddownTime" : 3.0
+        //   }
+        // }
+        {
+          "name" : "v-action-stickyslam",
+          "cooldown" : 3.0,
+          "parameters" : {
+            "slamProjectileType" : "v-proxyprojectile",
+            "slamProjectileParameters" : {
               "power" : 15,
               "speed" : 0,
               "actionOnReap" : [
@@ -71,17 +110,7 @@
                   "file" : "/projectiles/explosions/regularexplosion2/fireexplosionknockback.config"
                 }
               ]
-            },
-            "fireOffset" : [0.0, 0.0],
-            "aimDirection" : [0, 1],
-            "projectileCount" : 1,
-            "projectileInterval" : 1,
-            "fireDelay" : 0.0,
-            "fireSound" : "",
-            "fireState" : "",
-
-            "winddownState" : "idle",
-            "winddownTime" : 3.0
+            }
           }
         }
       ],
@@ -90,8 +119,10 @@
 
       "approachActions" : [
         {
-          "name" : "v-approach-stickyhop",
-          "parameters" : {}
+          "name" : "idle-crawl",
+          "parameters" : {
+            "stopForce" : 2500
+          }
         }
       ],
 
@@ -102,6 +133,10 @@
       ],
 
       "wanderActions" : [
+        {
+          "name" : "v-wander-stickyhop",
+          "cooldown" : 5.0
+        }
       ],
 
       "concurrentActions" : [
@@ -114,12 +149,12 @@
       ],
 
       "concurrentHostileActions" : [
-        {
-          "name" : "v-idle-crawloptional",
-          "parameters" : {
-            "stopForce" : 2500
-          }
-        }
+        // {
+        //   "name" : "v-idle-crawloptional",
+        //   "parameters" : {
+        //     "stopForce" : 2500
+        //   }
+        // }
       ]
     },
 

@@ -17,9 +17,23 @@
   "animation" : "/items/active/weapons/melee/spear/spear.animation",
   "animationParts" : {
     "handle" : "",
-    "blade" : "devilstrident.png"
+    "blade" : "devilstrident.png",
+    "bladefullbright" : "devilstridentfullbright.png"
   },
   "animationCustom" : {
+    "animatedParts" : {
+      "parts" : {
+        "bladefullbright" : {
+          "properties" : {
+            "zLevel" : 2,
+            "centered" : true,
+            "fullbright" : true,
+            "anchorPart" : "blade",
+            "image" : "<partImage><paletteSwaps>"
+          }
+        }
+      }
+    },
     "sounds" : {
       "fire" : [ "/sfx/melee/swing_spear_fire1.ogg", "/sfx/melee/swing_spear_fire2.ogg", "/sfx/melee/swing_spear_fire3.ogg" ]
     }

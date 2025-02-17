@@ -43,11 +43,13 @@ function SpearSkewer:hold()
   self.weapon:setStance(self.stances.hold)
   self.weapon:updateAim()
 
+  local prevPos
+
   while self.fireMode == "primary" do
     local damageArea = partDamageArea("blade")
     self.weapon:setDamage(self.holdDamageConfig, damageArea)
 
-    self:updateSkewered()
+    prevPos = self:updateSkewered(prevPos)
 
     coroutine.yield()
   end
@@ -64,13 +66,13 @@ function SpearSkewer:hold()
   self.cooldownTimer = self:cooldownTime()
 end
 
-function SpearSkewer:updateSkewered()
+function SpearSkewer:updateSkewered(prevPos)
   -- Calculate the new position to set for each skewered entity.
-  local newPos = vec2.add(mcontroller.position(), activeItem.handPosition(animator.partPoint("blade", "damageCenter")))
-  world.debugPoint(newPos, "green")
+  local newPos = activeItem.handPosition(animator.partPoint("blade", "damageCenter"))
 
-  -- If the new position is not inside of a block...
-  if not world.pointCollision(newPos) then
+  -- If the new position is not the same as the previous position...
+  if (not prevPos or not vec2.eq(prevPos, newPos)) then
+    world.debugPoint(vec2.add(mcontroller.position(), newPos), "green")
     -- For each skewered entity (iterated through backwards)...
     for i = #self.skewedEntities, 1, -1 do
       local skewedId = self.skewedEntities[i]
@@ -78,10 +80,12 @@ function SpearSkewer:updateSkewered()
       -- If the entity exists...
       if world.entityExists(skewedId) then
         -- Update its position.
-        world.sendEntityMessage(skewedId, "v-spearskewer-updatePos", newPos, self.holdDamageConfig.knockback)
+        world.sendEntityMessage(skewedId, "v-spearskewer-updatePos", newPos, self.holdDamageConfig.knockback, entity.id())
       else
         table.remove(self.skewedEntities, i)
       end
     end
   end
+
+  return newPos
 end

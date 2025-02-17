@@ -207,26 +207,35 @@ function v_impactAction(args, board)
 end
 
 -- param target
+-- param targetPos
+-- param rayCount
+-- param minRaycastLength
+-- param maxRaycastLength
+-- param hopSpeed
+-- param postHopDelay
+-- param gravityMultiplier
 function v_stickyHopApproach(args, _, _, dt)
-  local args2 = {
-    rayCount = 40,
-    minRaycastLength = 5,
-    maxRaycastLength = 50,
-    hopSpeed = 60,
-    postHopDelay = 0.1,
-    gravityMultiplier = 1.5
-  }
+  local rq = vBehavior.requireArgsGen("v_stickyHopApproach", args)
+
+  if not rq{"rayCount", "minRaycastLength", "maxRaycastLength", "hopSpeed", "postHopDelay", "gravityMultiplier"} then
+    return false
+  end
+
+  if not args.target and not args.targetPos then
+    sb.logWarn("v_stickyHopApproach: 'target' or 'targetPos' must be defined")
+    return false
+  end
 
   local targetCandidates = {}
-  local targetPos = world.entityPosition(args.target)
+  local targetPos = args.targetPos or world.entityPosition(args.target)
 
-  for i = 0, args2.rayCount - 1 do
-    local angle = 2 * math.pi * i / args2.rayCount
+  for i = 0, args.rayCount - 1 do
+    local angle = 2 * math.pi * i / args.rayCount
 
     -- Attempt raycast
-    local raycast = world.lineCollision(targetPos, vec2.add(targetPos, vec2.withAngle(angle, args2.maxRaycastLength)))
+    local raycast = world.lineCollision(targetPos, vec2.add(targetPos, vec2.withAngle(angle, args.maxRaycastLength)))
     -- If successful and the distance from the target to the raycast exceeds args.minRaycastLength...
-    if raycast and world.magnitude(targetPos, raycast) >= args2.minRaycastLength then
+    if raycast and world.magnitude(targetPos, raycast) >= args.minRaycastLength then
       table.insert(targetCandidates, raycast)
     end
   end
@@ -244,7 +253,7 @@ function v_stickyHopApproach(args, _, _, dt)
     if not world.lineCollision(ownPos, pos) then
       local success
       -- Get the hopping velocity, accounting for gravity.
-      hopVelocity, success = util.aimVector(world.distance(pos, ownPos), args2.hopSpeed, args2.gravityMultiplier, false)
+      hopVelocity, success = util.aimVector(world.distance(pos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
 
       world.debugLine(ownPos, pos, success and "green" or "red")
 
@@ -265,7 +274,7 @@ function v_stickyHopApproach(args, _, _, dt)
     -- If it is actually defined...
     if testPos then
       -- Get the hopping velocity, accounting for gravity.
-      hopVelocity, success = util.aimVector(world.distance(testPos, ownPos), args2.hopSpeed, args2.gravityMultiplier, false)
+      hopVelocity, success = util.aimVector(world.distance(testPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
 
       -- If successful...
       if success then
@@ -279,7 +288,7 @@ function v_stickyHopApproach(args, _, _, dt)
     -- Hop directly toward the target
     hopPos = targetPos
     -- Get the hopping velocity, accounting for gravity.
-    hopVelocity = util.aimVector(world.distance(hopPos, ownPos), args2.hopSpeed, args2.gravityMultiplier, false)
+    hopVelocity = util.aimVector(world.distance(hopPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
   end
 
   -- y = y0 + vy * t - 1/2 * a * t^2
@@ -292,14 +301,14 @@ function v_stickyHopApproach(args, _, _, dt)
   do
     arc = {}
     local toTarget = world.distance(hopPos, mcontroller.position())
-    local aimVector = vec2.norm(util.aimVector(toTarget, args2.hopSpeed, args2.gravityMultiplier, false))
+    local aimVector = vec2.norm(util.aimVector(toTarget, args.hopSpeed, args.gravityMultiplier, false))
     -- Simulate the arc
-    local velocity = vec2.mul(aimVector, args2.hopSpeed)
+    local velocity = vec2.mul(aimVector, args.hopSpeed)
     local startArc = mcontroller.position()
     local x = 0
     while x < math.abs(toTarget[1]) do
       local time = x / math.abs(velocity[1])
-      local yVel = velocity[2] - (args2.gravityMultiplier * world.gravity(mcontroller.position()) * time)
+      local yVel = velocity[2] - (args.gravityMultiplier * world.gravity(mcontroller.position()) * time)
       local step = vec2.add({util.toDirection(aimVector[1]) * x, ((velocity[2] + yVel) / 2) * time}, mcontroller.position())
 
       startArc = step
@@ -313,7 +322,7 @@ function v_stickyHopApproach(args, _, _, dt)
   mcontroller.setVelocity(hopVelocity)
 
   -- Wait for a brief time before doing any tests.
-  util.run(args2.postHopDelay, function() end)
+  util.run(args.postHopDelay, function() end)
 
   local testRect = rect.pad(mcontroller.boundBox(), 0.25)
 
