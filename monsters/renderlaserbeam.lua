@@ -1,4 +1,4 @@
-local oldInit = init
+local oldInit = init or function() end
 
 function init()
   oldInit()

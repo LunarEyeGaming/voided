@@ -6,6 +6,7 @@ require "/scripts/actions/projectiles.lua"
 require "/scripts/v-behavior.lua"
 require "/scripts/v-movement.lua"
 require "/scripts/v-attack.lua"
+require "/scripts/v-world.lua"
 
 -- param minRange
 -- param maxRange
@@ -226,29 +227,36 @@ function v_stickyHopApproach(args, _, _, dt)
     return false
   end
 
-  local targetCandidates = {}
   local targetPos = args.targetPos or world.entityPosition(args.target)
+  -- local targetCandidates = {}
 
-  for i = 0, args.rayCount - 1 do
-    local angle = 2 * math.pi * i / args.rayCount
+  -- for i = 0, args.rayCount - 1 do
+  --   local angle = 2 * math.pi * i / args.rayCount
 
-    -- Attempt raycast
-    local raycast = world.lineCollision(targetPos, vec2.add(targetPos, vec2.withAngle(angle, args.maxRaycastLength)))
-    -- If successful and the distance from the target to the raycast exceeds args.minRaycastLength...
-    if raycast and world.magnitude(targetPos, raycast) >= args.minRaycastLength then
-      table.insert(targetCandidates, raycast)
-    end
-  end
+  --   -- Attempt raycast
+  --   local raycast = world.lineCollision(targetPos, vec2.add(targetPos, vec2.withAngle(angle, args.maxRaycastLength)))
+  --   -- If successful and the distance from the target to the raycast exceeds args.minRaycastLength...
+  --   if raycast and world.magnitude(targetPos, raycast) >= args.minRaycastLength then
+  --     table.insert(targetCandidates, raycast)
+  --   end
+  -- end
+  local raycasts = vWorld.radialRaycast{
+    center = targetPos,
+    raycastCount = args.rayCount,
+    maxRaycastLength = args.maxRaycastLength,
+    minRaycastLength = args.minRaycastLength
+  }
 
   local ownPos = mcontroller.position()
 
   -- Find a valid hop position and get the corresponding velocity, accounting for gravity, upon success.
   local hopPos, hopVelocity
   -- Shuffle the list of positions.
-  shuffle(targetCandidates)
+  shuffle(raycasts)
 
   -- For each position...
-  for _, pos in ipairs(targetCandidates) do
+  for _, raycast in ipairs(raycasts) do
+    local pos = raycast.position
     -- If the position is in line of sight...
     if not world.lineCollision(ownPos, pos) then
       local success
@@ -269,7 +277,7 @@ function v_stickyHopApproach(args, _, _, dt)
   if not hopPos then
     local success
     -- Use the first position listed as it is effectively a random position due to the shuffling.
-    local testPos = targetCandidates[1]
+    local testPos = raycasts[1].position
 
     -- If it is actually defined...
     if testPos then
