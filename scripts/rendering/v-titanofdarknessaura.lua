@@ -30,7 +30,7 @@ function init()
   bgStartColor = {94, 113, 128, 0}
   bgEndColor = {18, 5, 20, 255}
   fgStartColor = {94, 113, 128, 0}
-  fgEndColor = {18, 5, 20, 100}
+  fgEndColor = {18, 5, 20, 255}
   bgRenderLayer = "BackgroundOverlay-10"
   fgRenderLayer = "ForegroundOverlay+10"
 
@@ -106,9 +106,10 @@ function drawOverlays()
 
   -- Foreground overlay
   localAnimator.addDrawable({
-    line = {{drawingBounds[1], verticalMidPoint}, {drawingBounds[3], verticalMidPoint}},
+    -- line = {{drawingBounds[1], verticalMidPoint}, {drawingBounds[3], verticalMidPoint}},
+    image = "/scripts/rendering/v-titanvignette.png",
     position = {0, 0},
-    width = (drawingBounds[4] - drawingBounds[2]) * 8,
+    -- width = (drawingBounds[4] - drawingBounds[2]) * 8,
     fullbright = false,
     color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, fgStartColor, fgEndColor)
   }, fgRenderLayer)
