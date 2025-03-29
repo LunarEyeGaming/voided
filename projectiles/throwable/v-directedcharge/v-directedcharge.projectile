@@ -1,0 +1,40 @@
+{
+  "projectileName" : "v-directedcharge",
+  "physics" : "sticky",
+  "bounces" : -1,
+  "speed" : 0,
+  "timeToLive" : 3,
+  "image" : "directedcharge.png",
+  "animationCycle" : 1,
+  "lightColor" : [105, 64, 0],
+  "frameNumber" : 1,
+  "power" : 60,
+  "onlyHitTerrain" : true,
+  "emitters" : [ "sparks" ],
+
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-proxyprojectile",
+      "inheritDamageFactor" : 1,
+      "config" : {
+        "bounces" : -1,
+        "movementSettings" : {
+          "collisionEnabled" : false
+        },
+        "timeToLive" : 0.75,
+        "periodicActions" : [
+          {
+            "time" : 0.1,
+            "action" : "projectile",
+            "type" : "v-directedchargeactive",
+            "inheritDamageFactor" : 1
+          }
+        ]
+      }
+    }
+  ],
+
+  "scripts" : [ "v-directedcharge.lua" ],
+  "scriptDelta" : 1
+}

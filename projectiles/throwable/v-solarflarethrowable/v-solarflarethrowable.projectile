@@ -1,0 +1,37 @@
+{
+  "projectileName" : "v-solarflarethrowable",
+  "physics" : "grenadenobounce",
+  "bounces" : -1,
+  "timeToLive" : 20,
+  "image" : "solarflarethrowable.png",
+  "animationCycle" : 0.25,
+  "lightColor" : [253, 209, 77],
+  "frameNumber" : 2,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/smoke/smoke.config"
+    }
+  ],
+  "power" : 0,
+  "onlyHitTerrain" : true,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+
+  "scripts" : [ "v-solarflarethrowable.lua" ],
+  "scriptDelta" : 4,
+
+  "flashbangAction" : {
+    "action" : "projectile",
+    "type" : "v-proxyprojectile",
+    "config" : {
+      "actionOnReap" : [
+        {
+          "action" : "config",
+          "file" : "/projectiles/explosions/v-solarflareflashbang/v-solarflareflashbang.config"
+        }
+      ]
+    }
+  },
+  "flashbangAirTime" : 1.5
+}

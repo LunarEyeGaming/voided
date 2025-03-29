@@ -1,0 +1,20 @@
+{
+  "projectileName" : "v-directedchargeactive",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "timeToLive" : 5,
+  "damageKindImage" : "icon.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "onlyHitTerrain" : true,
+
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/bombblockexplosion/v-bombblockexplosiondrops.config"
+    }
+  ],
+
+  "speed" : 250
+}

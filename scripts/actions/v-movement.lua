@@ -276,8 +276,8 @@ function v_stickyHopApproach(args, _, _, dt)
   -- If no valid hop position was found...
   if not hopPos then
     local success
-    -- Use the first position listed as it is effectively a random position due to the shuffling.
-    local testPos = raycasts[1].position
+    -- Use the first position listed (or nil if empty) as it is effectively a random position due to the shuffling.
+    local testPos = raycasts[1] and raycasts[1].position
 
     -- If it is actually defined...
     if testPos then
