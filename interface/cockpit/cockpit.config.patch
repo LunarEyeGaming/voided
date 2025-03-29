@@ -1,7 +1,7 @@
 [
-  // More Planet Info Support
+  // More Planet Info & Planet Search Support
   [
-    // Check if More Planet Info is installed. If not, none of the patches below will be applied.
+    // Check if More Planet Info or Planet Search is installed. If not, none of the patches below will be applied.
     {"op" : "test", "path" : "/displayDungeons"},
 
     // Dungeon icons and labels.
@@ -9,10 +9,34 @@
       "op" : "add",
       "path" : "/displayDungeons/v-strongholdgateway",
       "value" : {
+        "name" : "Stronghold Gateway (LEGACY)",
         "description" : "A large, unknown structure engulfed in magma. Heavy energy readings resonate from this area.",
         "icon" : "/interface/cockpit/dungeons/v-strongholdgateway.png"
       }
     },
+    {
+      "op" : "add",
+      "path" : "/displayDungeons/v-voltagecity",
+      "value" : {
+        "name" : "Voltropolis",
+        "description" : "A large city located near the center of the planet. Holds military-grade weapons supercharged with electricity.",
+        "icon" : "/items/generic/quest/v-powercube.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayDungeons/v-toxiclaboratory",
+      "value" : {
+        "name" : "Fungal Laboratory",
+        "description" : "A laboratory situated deep underground. Does research on fungal bioweapons.",
+        "icon" : "/items/generic/quest/v-keycard.png:0"
+      }
+    }
+  ],
+
+  // More Planet Info Support
+  [
+    {"op" : "test", "path" : "/planetTypeNames"},
 
     // Make label for Rusted Voltage biomes visible.
     {"op" : "add", "path" : "/planetTypeNames/v-voltagerusty", "value" : "Rusted Voltage"},
@@ -58,16 +82,130 @@
         "displayName" : "Mycotoxin", "icon" : "/interface/cockpit/hazards/v-biomepoison.png"}},
 
     // Threat level support for weather. Weather types not included have a threat level of 0.
-    {"op" : "add", "path": "/weatherThreatValues/v-copperstorm", "value": 1.5},
-    {"op" : "add", "path": "/weatherThreatValues/v-copperstorm2", "value": 1.0},
-    {"op" : "add", "path": "/weatherThreatValues/v-copperstormlight", "value": 0.3},
-    {"op" : "add", "path": "/weatherThreatValues/v-copperstormlight2", "value": 0.3},
-    {"op" : "add", "path": "/weatherThreatValues/v-lightningstorm", "value": 2.0},
-    {"op" : "add", "path": "/weatherThreatValues/v-coppersuperstorm", "value": 3.0},
-    {"op" : "add", "path": "/weatherThreatValues/v-coppersuperstorm2", "value": 2.5},
-    {"op" : "add", "path": "/weatherThreatValues/v-chargedground", "value": 1.0},
-    {"op" : "add", "path": "/weatherThreatValues/v-toxichaze", "value": 5.0},
-    {"op" : "add", "path": "/weatherThreatValues/v-toxicblobs", "value": 2.0}
+    {"op" : "add", "path" : "/weatherThreatValues/v-copperstorm", "value": 1.5},
+    {"op" : "add", "path" : "/weatherThreatValues/v-copperstorm2", "value": 1.0},
+    {"op" : "add", "path" : "/weatherThreatValues/v-copperstormlight", "value": 0.3},
+    {"op" : "add", "path" : "/weatherThreatValues/v-copperstormlight2", "value": 0.3},
+    {"op" : "add", "path" : "/weatherThreatValues/v-lightningstorm", "value": 2.0},
+    {"op" : "add", "path" : "/weatherThreatValues/v-coppersuperstorm", "value": 3.0},
+    {"op" : "add", "path" : "/weatherThreatValues/v-coppersuperstorm2", "value": 2.5},
+    {"op" : "add", "path" : "/weatherThreatValues/v-chargedground", "value": 1.0},
+    {"op" : "add", "path" : "/weatherThreatValues/v-toxichaze", "value": 5.0},
+    {"op" : "add", "path" : "/weatherThreatValues/v-toxicblobs", "value": 2.0}
+  ],
+
+  // Planet Search Patches
+  [
+    {"op" : "test", "path" : "/displayBiomes"},
+    // VOLTAGE
+    {"op" : "add", "path" : "/displayBiomes/v-voltageatmosphererusty", "value" : {
+      "name" : "Rust-Filled Atmosphere", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltageatmosphere", "value" : {
+      "name" : "Electrified Atmosphere", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltage", "value" : {
+      "name" : "Shallow Electrified Caves", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltageruins", "value" : {
+      "name" : "Shallow Electrified Caves (Ruins)", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltagetraps", "value" : {
+      "name" : "Shallow Electrified Caves (Traps)", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltagerusty", "value" : {
+      "name" : "Rusted Caves", "icon" : "/items/materials/v-rustedironrockmaterial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-undergroundvoltage", "value" : {
+      "name" : "Electrified Caves", "icon" : "/items/materials/v-ironrockmaterial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-undergroundvoltagetraps", "value" : {
+      "name" : "Electrified Caves (Traps)", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-deepundergroundvoltage", "value" : {
+      "name" : "Deep Electrified Caves", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagecorelayer", "value" : {
+      "name" : "Electrified Core", "icon" : "/items/materials/v-chargedstonematerial.png"
+    }},
+
+    {"op" : "add", "path" : "/displayBiomes/v-voltageforest", "value" : {
+      "name" : "Electric Forest", "icon" : "/items/generic/crafting/v-insulatingsap.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagespikes", "value" : {
+      "name" : "Voltage (Spikes)", "icon" : "/objects/biome/v-voltage/v-climbingarctrap/icon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagespikesrusty", "value" : {
+      "name" : "Rusted Voltage (Spikes)", "icon" : "/objects/biome/v-voltage/v-climbingarctrap/icon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagewastes", "value" : {
+      "name" : "Charged Hills", "icon" : "/objects/biome/v-voltage/v-dischargetrap/dischargetrapicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagewastesoxidized", "value" : {
+      "name" : "Charged Hills (Oxidized)", "icon" : "/objects/biome/v-voltage/v-oxidizeddischargetrap/oxidizeddischargetrapicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagedesertruins", "value" : {
+      "name" : "Copper Desert", "icon" : "/items/materials/v-coppersandmaterial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagedesertruinsoxidized", "value" : {
+      "name" : "Oxidized Copper Desert", "icon" : "/items/materials/v-oxidizedcoppersandmaterial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-deepvoltagewastes", "value" : {
+      "name" : "Charged Caverns", "icon" : "/objects/biome/v-voltage/v-dischargetrap/dischargetrapicon.png?flipy"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-barrencaves", "value" : {
+      "name" : "Barren Caves", "icon" : "/items/materials/v-ironrockmaterial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-coilcaves", "value" : {
+      // TODO: Use properly-sized icon.
+      "name" : "Coil Caves", "icon" : "/objects/biome/v-voltage/v-giantcoil/coil.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-pairingcaves", "value" : {
+      "name" : "Pairing Hollows", "icon" : "/objects/biome/v-voltage/v-electricpairingtrap/electricpairingtrapicon.png"
+    }},
+    // TOXIC WASTELAND
+    {"op" : "add", "path" : "/displayBiomes/v-toxicatmosphere", "value" : {
+      "name" : "Toxic Atmosphere", "icon" : "/interface/bookmarks/icons/v-toxicwasteland.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundtoxic", "value" : {
+      "name" : "Shallow Toxic Caves", "icon" : "/interface/bookmarks/icons/v-toxicwasteland.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-undergroundtoxic", "value" : {
+      "name" : "Toxic Caves", "icon" : "/items/materials/v-toxicstonematerial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-deepundergroundtoxic", "value" : {
+      "name" : "Deep Toxic Caves", "icon" : "/interface/bookmarks/icons/v-toxicwasteland.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-toxicwastelandcorelayer", "value" : {
+      "name" : "Fungal Core", "icon" : "/items/materials/v-toxicmyceliummaterial.png"
+    }},
+
+    {"op" : "add", "path" : "/displayBiomes/v-crystalmountains", "value" : {
+      "name" : "Crystal Mountains", "icon" : "/items/materials/purplecrystal.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-toxiclake", "value" : {
+      "name" : "Colony's Corpse", "icon" : "/items/liquids/v-liquidsuperpoisonicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-poisonfloodedcaves", "value" : {
+      "name" : "Poison-Flooded Caves", "icon" : "/items/liquids/liquidpoisonicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-flowerfield", "value" : {
+      "name" : "Flower Field", "icon" : "/items/materials/v-toxicsoilmaterial.png"
+    }}
+  ],
+
+  [
+    {"op" : "test", "path" : "/planetSearch_ignore"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-toxicatmosphere"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundtoxic"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-deepundergroundtoxic"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-voltageatmosphere"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-voltageatmosphererusty"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundvoltage"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundvoltageruins"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundvoltagetraps"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-undergroundvoltagetraps"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-deepundergroundvoltage"}
   ],
 
   // Vanilla Patches
