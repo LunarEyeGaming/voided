@@ -1,32 +1,3 @@
--- local cooldownTimer
--- local prevFireMode
-
--- function init()
---   cooldownTimer = 0
---   cooldownTime = 0.4
--- end
-
--- function update(dt, fireMode)
---   cooldownTimer = cooldownTimer - dt
-
---   if fireMode ~= prevFireMode then
---     if fireMode == "primary" and cooldownTimer <= 0 then
---       throw()
---       cooldownTimer = cooldownTime
---     end
---   end
-
---   prevFireMode = fireMode
--- end
-
--- function throw()
---   local aimVector = world.distance(activeItem.ownerAimPosition(), mcontroller.position())
---   world.spawnProjectile("zbomb", mcontroller.position(), entity.id(), aimVector, false, {})
--- end
-
--- function detonate()
--- end
-
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
@@ -56,11 +27,13 @@ end
 states = {}
 
 function states.idle()
-  coroutine.yield()
+  coroutine.yield()  -- Prevent code below from running before chargePlacementPoint is defined.
+  activeItem.setScriptedAnimationParameter("placementPreviewMode", "position")
 
+  -- Show preview
   while trackedFireMode ~= "primary" do
     world.debugLine(mcontroller.position(), chargePlacementPoint, canPlaceCharge and "green" or "red")
-    -- activeItem.setScriptedAnimationParameter("placementPos", chargePlacementPoint)
+    activeItem.setScriptedAnimationParameter("placementPos", chargePlacementPoint)
 
     coroutine.yield()
   end
@@ -70,6 +43,8 @@ end
 
 function states.placing()
   if canPlaceCharge then
+    activeItem.setScriptedAnimationParameter("placementPreviewMode", "direction")
+
     local placementPos = chargePlacementPoint  -- Save placement position
 
     local direction
@@ -91,7 +66,6 @@ function states.placing()
     -- Transition back to idle
     state:set(states.idle)
   end
-
 end
 
 function states.place(position, direction)

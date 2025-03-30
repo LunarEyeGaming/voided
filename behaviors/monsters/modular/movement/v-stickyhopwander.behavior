@@ -2,17 +2,65 @@
   "name": "v-wander-stickyhop",
   "description": null,
   "scripts": [
-    "/scripts/behavior.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
-    "/scripts/actions/v-movement.lua"
+    "/scripts/behavior.lua",
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/math.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "jumpState": "jump",
+    "jumpStateType": "body",
+    "jumpDelay": 0,
+    "windupState": "windup",
+    "windupStateType": "body",
+    "windupTime": 0,
+    "winddownState": "winddown",
+    "winddownStateType": "body",
+    "winddownTime": 0
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
     "name": "sequence",
     "parameters": {},
     "children": [
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "<windupState>"},
+          "type": {"value": "<windupStateType>"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": "<windupTime>"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"key": "<jumpState>"},
+          "type": {"key": "<jumpStateType>"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"key": "<jumpDelay>"}
+        }
+      },
       {
         "title": "setFlag",
         "type": "action",
@@ -34,8 +82,82 @@
         "type": "action",
         "name": "v_stickyHopApproach",
         "parameters": {
-          "targetPos": {"key": "self"}
+          "postHopDelay": {"value": 0.1},
+          "targetPos": {"key": "self"},
+          "preferDirectAttacks": {"value": false}
         }
+      },
+      {
+        "title": "wait for collision with surface",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "boundsCollision",
+            "type": "action",
+            "name": "boundsCollision",
+            "parameters": {}
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "velocity",
+                  "type": "action",
+                  "name": "velocity",
+                  "parameters": {},
+                  "output": {
+                    "velocity": "velocity"
+                  }
+                },
+                {
+                  "title": "vecAngle",
+                  "type": "action",
+                  "name": "vecAngle",
+                  "parameters": {
+                    "vector": {"key": "velocity"}
+                  },
+                  "output": {
+                    "angle": "velAngle"
+                  }
+                },
+                {
+                  "title": "add",
+                  "type": "action",
+                  "name": "add",
+                  "parameters": {
+                    "addend": {"key": "velAngle"},
+                    "number": {"value": 1.5707963}
+                  },
+                  "output": {
+                    "result": "facingAngle"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "transform",
+            "type": "action",
+            "name": "transform",
+            "parameters": {
+              "group": {"value": "body"},
+              "rotation": {"key": "facingAngle"}
+            }
+          }
+        ]
       },
       {
         "title": "unsetFlag",
@@ -43,6 +165,31 @@
         "name": "unsetFlag",
         "parameters": {
           "name": {"value": "shouldNotCrawl"}
+        }
+      },
+      {
+        "title": "setVelocity",
+        "type": "action",
+        "name": "setVelocity",
+        "parameters": {
+          "velocity": {"value": [0, 0]}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"key": "<winddownState>"},
+          "type": {"key": "<winddownStateType>"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"key": "<winddownTime>"}
         }
       }
     ]

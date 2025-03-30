@@ -14,7 +14,7 @@
     "scripts" : [
       "/monsters/monster.lua"
     ],
-    "initialScriptDelta" : 3,
+    "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 1,
 
     "behavior" : "monster",
@@ -32,6 +32,17 @@
       "keepTargetInSight" : true,
       "keepTargetInRange" : 200,
       "targetOutOfSightTime" : 5.0,
+
+      "foundTargetActions" : [
+        {
+          "name" : "action-animate",
+          "parameters" : {
+            "stateType" : "body",
+            "state" : "roar",
+            "animationTimer" : 1.0
+          }
+        }
+      ],
 
       "fleeActions" : [ ],
 
@@ -86,8 +97,19 @@
         // }
         {
           "name" : "v-action-stickyslam",
-          "cooldown" : 3.0,
+          "cooldown" : 1.5,
           "parameters" : {
+            "windupTime" : 0.66,
+            "windupState" : "jumpwindup",
+            "windupStateType" : "body",
+            "faceTarget" : false,
+            "requireLineOfSight" : false,
+            "maximumRange" : 1000,
+            "onGround" : true,
+
+            "jumpState" : "jump",
+            "jumpStateType" : "body",
+            "jumpDelay" : 0.2,
             "slamProjectileType" : "v-proxyprojectile",
             "slamProjectileParameters" : {
               "power" : 15,
@@ -110,7 +132,11 @@
                   "file" : "/projectiles/explosions/regularexplosion2/fireexplosionknockback.config"
                 }
               ]
-            }
+            },
+
+            "winddownState" : "impact",
+            "winddownStateType" : "body",
+            "winddownTime" : 1.5
           }
         }
       ],
@@ -118,12 +144,12 @@
       "periodicActions" : [ ],
 
       "approachActions" : [
-        {
-          "name" : "idle-crawl",
-          "parameters" : {
-            "stopForce" : 2500
-          }
-        }
+        // {
+        //   "name" : "idle-crawl",
+        //   "parameters" : {
+        //     "stopForce" : 2500
+        //   }
+        // }
       ],
 
       "followActions" : [
@@ -135,7 +161,24 @@
       "wanderActions" : [
         {
           "name" : "v-wander-stickyhop",
-          "cooldown" : 5.0
+          "cooldown" : 3.5,
+          "parameters" : {
+            "windupTime" : 0.66,
+            "windupState" : "jumpwindup",
+            "windupStateType" : "body",
+            "faceTarget" : false,
+            "requireLineOfSight" : false,
+            "maximumRange" : 1000,
+            "onGround" : true,
+
+            "jumpState" : "jump",
+            "jumpStateType" : "body",
+            "jumpDelay" : 0.2,
+
+            "winddownState" : "impact",
+            "winddownStateType" : "body",
+            "winddownTime" : 1.5
+          }
         }
       ],
 
@@ -149,12 +192,12 @@
       ],
 
       "concurrentHostileActions" : [
-        // {
-        //   "name" : "v-idle-crawloptional",
-        //   "parameters" : {
-        //     "stopForce" : 2500
-        //   }
-        // }
+        {
+          "name" : "v-idle-crawloptional",
+          "parameters" : {
+            "stopForce" : 2500
+          }
+        }
       ]
     },
 
@@ -163,7 +206,7 @@
       "damage" : 10,
 
       "teamType" : "enemy",
-      "damageSourceKind" : "slash",
+      "damageSourceKind" : "firespear",
       "knockback" : 20,
       "statusEffects" : [ ]
     },
@@ -172,6 +215,16 @@
     "scale" : 1.0,
 
     "selfDamagePoly" : [ [1.0, 1.5],  [1.5, 1.0],  [1.5, -1.0],  [1.0, -1.5],  [-1.0, -1.5],  [-1.5, -1.0],  [-1.5, 1.0],  [-1.0, 1.5] ],
+
+    "damageParts" : {
+      "body" : {
+        "damage" : 10,
+
+        "teamType" : "enemy",
+        "damageSourceKind" : "firespear",
+        "knockback" : 20
+      }
+    },
 
     "movementSettings" : {
       "collisionPoly" : [ [0.41, 1.0],  [1.0, 0.41],  [1.0, -0.41],  [0.41, -1.0],  [-0.41, -1.0],  [-1.0, -0.41],  [-1.0, 0.41],  [-0.41, 1.0] ],
@@ -215,7 +268,7 @@
 
       "stats" : {
         "grit" : {
-          "baseValue" : 0.0
+          "baseValue" : 1.0
         },
         "knockbackStunTime" : {
           "baseValue" : 0.25

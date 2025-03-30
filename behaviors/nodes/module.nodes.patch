@@ -942,32 +942,6 @@
   },
   {
     "op": "add",
-    "path": "/v-action-stickyslam",
-    "value": {
-      "type": "module",
-      "name": "v-action-stickyslam",
-      "title": "",
-      "properties": {
-        "slamProjectileType": {"type": "json", "value": "fireplasmaexplosion"},
-        "slamProjectileParameters": {"type": "json", "value": {}},
-        "aimDirection": {"type": "json", "value": [0, 1]}
-      },
-      "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/v-wander-stickyhop",
-    "value": {
-      "type": "module",
-      "name": "v-wander-stickyhop",
-      "title": "",
-      "properties": {},
-      "pathToTree": "..\\monsters\\modular\\movement\\v-stickyhopwander.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-action-impact",
     "value": {
       "type": "module",
@@ -1010,6 +984,39 @@
       "title": "",
       "properties": {},
       "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\coreattack4.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-stickyslam",
+    "value": {
+      "type": "module",
+      "name": "v-action-stickyslam",
+      "title": "",
+      "properties": {
+        "slamProjectileType": {"type": "json", "value": "fireplasmaexplosion"},
+        "slamProjectileParameters": {"type": "json", "value": {}},
+        "aimDirection": {"type": "json", "value": [0, 1]},
+        "jumpState": {"type": "json", "value": "jump"},
+        "jumpStateType": {"type": "json", "value": "body"},
+        "jumpDelay": {"type": "json", "value": 0}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-wander-stickyhop",
+    "value": {
+      "type": "module",
+      "name": "v-wander-stickyhop",
+      "title": "",
+      "properties": {
+        "jumpState": {"type": "json", "value": "jump"},
+        "jumpStateType": {"type": "json", "value": "body"},
+        "jumpDelay": {"type": "json", "value": 0}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-stickyhopwander.behavior"
     }
   }
 ]

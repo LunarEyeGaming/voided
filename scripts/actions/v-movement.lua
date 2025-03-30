@@ -228,70 +228,61 @@ function v_stickyHopApproach(args, _, _, dt)
   end
 
   local targetPos = args.targetPos or world.entityPosition(args.target)
-  -- local targetCandidates = {}
-
-  -- for i = 0, args.rayCount - 1 do
-  --   local angle = 2 * math.pi * i / args.rayCount
-
-  --   -- Attempt raycast
-  --   local raycast = world.lineCollision(targetPos, vec2.add(targetPos, vec2.withAngle(angle, args.maxRaycastLength)))
-  --   -- If successful and the distance from the target to the raycast exceeds args.minRaycastLength...
-  --   if raycast and world.magnitude(targetPos, raycast) >= args.minRaycastLength then
-  --     table.insert(targetCandidates, raycast)
-  --   end
-  -- end
-  local raycasts = vWorld.radialRaycast{
-    center = targetPos,
-    raycastCount = args.rayCount,
-    maxRaycastLength = args.maxRaycastLength,
-    minRaycastLength = args.minRaycastLength
-  }
-
   local ownPos = mcontroller.position()
 
   -- Find a valid hop position and get the corresponding velocity, accounting for gravity, upon success.
   local hopPos, hopVelocity
-  -- Shuffle the list of positions.
-  shuffle(raycasts)
 
-  -- For each position...
-  for _, raycast in ipairs(raycasts) do
-    local pos = raycast.position
-    -- If the position is in line of sight...
-    if not world.lineCollision(ownPos, pos) then
+  if not args.preferDirectAttacks or world.lineCollision(ownPos, targetPos) then
+    local raycasts = vWorld.radialRaycast{
+      center = targetPos,
+      raycastCount = args.rayCount,
+      maxRaycastLength = args.maxRaycastLength,
+      minRaycastLength = args.minRaycastLength
+    }
+
+    -- Shuffle the list of positions.
+    shuffle(raycasts)
+
+    -- For each position...
+    for _, raycast in ipairs(raycasts) do
+      local pos = raycast.position
+      -- If the position is in line of sight...
+      if not world.lineCollision(ownPos, pos) then
+        local success
+        -- Get the hopping velocity, accounting for gravity.
+        hopVelocity, success = util.aimVector(world.distance(pos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
+
+        -- world.debugLine(ownPos, pos, success and "green" or "red")
+
+        -- If successful...
+        if success then
+          hopPos = pos  -- Make that the hop position.
+          break  -- Exit the loop.
+        end
+      end
+    end
+
+    -- If no valid hop position was found...
+    if not hopPos then
       local success
-      -- Get the hopping velocity, accounting for gravity.
-      hopVelocity, success = util.aimVector(world.distance(pos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
+      -- Use the first position listed (or nil if empty) as it is effectively a random position due to the shuffling.
+      local testPos = raycasts[1] and raycasts[1].position
 
-      world.debugLine(ownPos, pos, success and "green" or "red")
+      -- If it is actually defined...
+      if testPos then
+        -- Get the hopping velocity, accounting for gravity.
+        hopVelocity, success = util.aimVector(world.distance(testPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
 
-      -- If successful...
-      if success then
-        hopPos = pos  -- Make that the hop position.
-        break  -- Exit the loop.
+        -- If successful...
+        if success then
+          hopPos = testPos  -- Use the test position.
+        end
       end
     end
   end
 
-  -- If no valid hop position was found...
-  if not hopPos then
-    local success
-    -- Use the first position listed (or nil if empty) as it is effectively a random position due to the shuffling.
-    local testPos = raycasts[1] and raycasts[1].position
-
-    -- If it is actually defined...
-    if testPos then
-      -- Get the hopping velocity, accounting for gravity.
-      hopVelocity, success = util.aimVector(world.distance(testPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
-
-      -- If successful...
-      if success then
-        hopPos = testPos  -- Use the test position.
-      end
-    end
-  end
-
-  -- If no valid hop position was found still...
+  -- If no valid hop position was found still (or the hop position is meant to be targetPos)...
   if not hopPos then
     -- Hop directly toward the target
     hopPos = targetPos
@@ -299,50 +290,20 @@ function v_stickyHopApproach(args, _, _, dt)
     hopVelocity = util.aimVector(world.distance(hopPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
   end
 
-  -- y = y0 + vy * t - 1/2 * a * t^2
-  -- y = vy * t - 1/2 * g * t^2
-  -- -1/2 * g * t^2 + vy * t - y = 0
-  -- t = (-vy +/- sqrt(vy^2 - 4 * -1/2 * g * -y))
-  -- local arrivalTime =
-
-  local arc
-  do
-    arc = {}
-    local toTarget = world.distance(hopPos, mcontroller.position())
-    local aimVector = vec2.norm(util.aimVector(toTarget, args.hopSpeed, args.gravityMultiplier, false))
-    -- Simulate the arc
-    local velocity = vec2.mul(aimVector, args.hopSpeed)
-    local startArc = mcontroller.position()
-    local x = 0
-    while x < math.abs(toTarget[1]) do
-      local time = x / math.abs(velocity[1])
-      local yVel = velocity[2] - (args.gravityMultiplier * world.gravity(mcontroller.position()) * time)
-      local step = vec2.add({util.toDirection(aimVector[1]) * x, ((velocity[2] + yVel) / 2) * time}, mcontroller.position())
-
-      startArc = step
-      table.insert(arc, startArc)
-      local arcVector = vec2.norm({velocity[1], yVel})
-      x = x + math.abs(arcVector[1])
-    end
-  end
-
-  -- Jump
+  world.debugLine(ownPos, vec2.add(ownPos, hopVelocity), "green")
   mcontroller.setVelocity(hopVelocity)
 
   -- Wait for a brief time before doing any tests.
   util.run(args.postHopDelay, function() end)
 
-  local testRect = rect.pad(mcontroller.boundBox(), 0.25)
+  -- local testRect = rect.pad(mcontroller.boundBox(), 0.25)
+  -- local tolerance = 4
 
-  -- Wait until the entity has attached to something or has reached its destination (as a more reliable check).
-  while not world.rectCollision(rect.translate(testRect, mcontroller.position()))
-  and world.magnitude(hopPos, mcontroller.position()) > 4 do
-    world.debugPoint(hopPos, "green")
-    for i = 1, #arc - 1 do
-      world.debugLine(arc[i], arc[i + 1], "green")
-    end
-    coroutine.yield()
-  end
+  -- -- Wait until the entity has attached to something or has reached its destination (as a more reliable check).
+  -- while not world.rectCollision(rect.translate(testRect, mcontroller.position()))
+  -- and world.magnitude(hopPos, mcontroller.position()) > tolerance do
+  --   coroutine.yield()
+  -- end
 
   -- mcontroller.setVelocity({0, 0})
 
