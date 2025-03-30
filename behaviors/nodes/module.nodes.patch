@@ -988,6 +988,27 @@
   },
   {
     "op": "add",
+    "path": "/v-wander-stickyhop",
+    "value": {
+      "type": "module",
+      "name": "v-wander-stickyhop",
+      "title": "",
+      "properties": {
+        "jumpState": {"type": "json", "value": "jump"},
+        "jumpStateType": {"type": "json", "value": "body"},
+        "jumpDelay": {"type": "json", "value": 0},
+        "windupState": {"type": "json", "value": "windup"},
+        "windupStateType": {"type": "json", "value": "body"},
+        "windupTime": {"type": "json", "value": 0},
+        "winddownState": {"type": "json", "value": "winddown"},
+        "winddownStateType": {"type": "json", "value": "body"},
+        "winddownTime": {"type": "json", "value": 0}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-stickyhopwander.behavior"
+    }
+  },
+  {
+    "op": "add",
     "path": "/v-action-stickyslam",
     "value": {
       "type": "module",
@@ -999,24 +1020,11 @@
         "aimDirection": {"type": "json", "value": [0, 1]},
         "jumpState": {"type": "json", "value": "jump"},
         "jumpStateType": {"type": "json", "value": "body"},
-        "jumpDelay": {"type": "json", "value": 0}
+        "jumpDelay": {"type": "json", "value": 0},
+        "rayCount": {"type": "json", "value": 40},
+        "preferDirectAttacks": {"type": "json", "value": true}
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/v-wander-stickyhop",
-    "value": {
-      "type": "module",
-      "name": "v-wander-stickyhop",
-      "title": "",
-      "properties": {
-        "jumpState": {"type": "json", "value": "jump"},
-        "jumpStateType": {"type": "json", "value": "body"},
-        "jumpDelay": {"type": "json", "value": 0}
-      },
-      "pathToTree": "..\\monsters\\modular\\movement\\v-stickyhopwander.behavior"
     }
   }
 ]

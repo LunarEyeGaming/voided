@@ -101,7 +101,8 @@
       "postHopDelay": {"type": "number", "value": 0.1},
       "rayCount": {"type": "number", "value": 40},
       "target": {"type": "entity"},
-      "targetPos": {"type": "position"}
+      "targetPos": {"type": "position"},
+      "preferDirectAttacks": {"type": "bool", "value": false}
     },
     "category": "v-movement",
     "script": "/scripts/actions/v-movement.lua",
