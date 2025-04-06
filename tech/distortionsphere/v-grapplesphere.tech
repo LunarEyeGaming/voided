@@ -1,0 +1,60 @@
+{
+  "name" : "v-grapplesphere",
+  "type" : "head",
+
+  "scripts" : ["v-grapplesphere.lua"],
+  "animator" : "v-grapplesphere.animation",
+
+  "description" : "Grapples onto surfaces. ^green;[F]^reset; Transform, ^green;[Shift]^reset; Re-Grapple",
+  "shortDescription" : "Grapple Sphere",
+  "rarity" : "Legendary",
+  "icon" : "/tech/v-grapplesphere.png",
+
+  "chipCost" : 8,
+
+  "animationParts" : {
+    "ballGlow" : "v-grapplesphereglow.png",
+    "ball" : "v-grapplesphere.png",
+    "beam" : "v-grapplespherebeam.png",
+    "hookbase" : "v-grapplespherehookbase.png",
+    "hookbaseglow" : "v-grapplespherehookbaseglow.png"
+  },
+
+  "transformedMovementParameters" : {
+    "collisionPoly" : [ [-0.85, -0.35], [-0.35, -0.85], [0.35, -0.85], [0.85, -0.35], [0.85, 0.35], [0.35, 0.85], [-0.35, 0.85], [-0.85, 0.35] ],
+
+    "airForce" : 0.0,
+    "liquidForce" : 0.0,
+
+    "airJumpProfile" : {
+      "jumpSpeed" : 0.0
+    },
+
+    "liquidJumpProfile" : {
+      "jumpSpeed" : 0.0,
+      "jumpControlForce" : 0.0,
+
+      "multiJump" : false,
+      "autoJump" : false
+    }
+  },
+
+  "ignorePlatforms" : true,
+
+  "ballSpeed" : 10,
+
+  "energyCost" : 50,
+
+  "ballRadius" : 1,
+  "ballFrames" : 4,
+
+  "hookProjectileType" : "v-grapplespherehook",
+  "launchSpeed" : 100,
+  "launchDistance" : 35,
+  "reelSpeed" : 100,
+  "reelForce" : 2000,
+  "finishTolerance" : 1,  // Maximum distance at which to stop reeling.
+  "hookLaunchCost" : 25,  // Cost for subsequent hook launches.
+
+  "damageDisableTime" : 0.2
+}

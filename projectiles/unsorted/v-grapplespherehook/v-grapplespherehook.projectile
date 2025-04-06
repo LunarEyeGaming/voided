@@ -1,0 +1,34 @@
+{
+  "projectileName" : "v-grapplespherehook",
+  "image" : "grapplespherehook.png",
+  "fullbright" : true,
+  "physics" : "grapplehook",
+  "bounces" : 0,
+  "timeToLive" : 1.0,
+  "animationCycle" : 1,
+  "speed" : 0,
+  "frameNumber" : 1,
+  "power" : 0,
+  "onlyHitTerrain" : true,
+
+  "actionOnCollide" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/objects/v_brokenancientfabricator_impact.ogg" ]
+    },
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "spark"
+        }
+      ]
+    }
+  ],
+
+  "scripts" : ["v-grapplespherehook.lua"],
+  "scriptDelta" : 1,
+
+  "breakOnSlipperyCollision" : true
+}
