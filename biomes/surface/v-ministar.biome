@@ -1,6 +1,8 @@
 {
   "name" : "v-ministar",
   "friendlyName" : "Sunspot Islands",
+  "airless" : true,
+  // "horizonClouds" : false,
 
   "statusEffects" : [ "biomeheat", "v-quickhealnerf", "v-monsterresistance" ],
 
@@ -104,7 +106,7 @@
   "subBlocks" : [ "rock14" ],
   "ores" : "v-undergroundministar",
 
-  "parallax" : "/parallax/surface/magma.parallax",
+  "parallax" : "/parallax/surface/v-ministar.parallax",
 
   "ambientNoises" : {
     "day" : {

@@ -48,6 +48,8 @@
     "value" : {
       "baseImages" : "/celestial/system/terrestrial/horizon/textures/magma_<selector>.png",
       "maskTextures" : "/celestial/system/terrestrial/horizon/masks/ocean/<mask>_<selector>.png",
+      "shadowTextures" : "/celestial/system/terrestrial/horizon/shadow/v-no_shadow_<selector>.png",
+      "atmosphereTextures" : "/celestial/system/terrestrial/horizon/atmosphere/v-ministaratmosphere_<selector>.png",
       "maskRange" : [1, 25],
       "maskPerPlanetRange" : [3, 3]
     }
@@ -58,6 +60,8 @@
     "value" : {
       "baseImages" : "/celestial/system/terrestrial/biomes/magma/maskie<num>.png",
       "dynamicsImages" : "/celestial/system/terrestrial/dynamics/ocean/<num>.png",
+      "shadowNumber" : [1, 1],
+      "shadowImages" : "/celestial/system/terrestrial/glow/v-ministar.png",
       "dynamicsRange" : [1, 30]
     }
   },

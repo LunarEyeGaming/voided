@@ -1,0 +1,22 @@
+{
+  "verticalOrigin" : 0,
+
+  "layers" : [
+    {
+      "kind" : "v-ministar/glow",
+      "offset" : [0, 180],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 8
+    },
+    {
+      "kind" : "v-ministar/glowloop",
+      "offset" : [0, 0],
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "tileLimitTop" : 180,
+      "parallax" : 8
+    }
+  ]
+}
