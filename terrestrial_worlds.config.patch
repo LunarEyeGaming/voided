@@ -257,7 +257,7 @@
         "surface" : {
           "primaryRegion" : [ "v-toxicwasteland" ],
           "secondaryRegions" : [ "v-crystalmountains", "v-toxiclake" ],
-          "secondaryRegionCount" : [0, 2]
+          "secondaryRegionCount" : [1, 2]
           // "secondaryRegions" : [ "v-toxiclake" ],
           // "secondaryRegionCount" : [1, 1]
         },
@@ -497,6 +497,20 @@
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
         [0, [ "v-ministar" ]]
+      ],
+      "subRegion" : [ "v-basalticislands" ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-basalticislands",
+    "value" : {
+      "oceanLiquid" : [ "v-sun" ],
+      "blockSelector" : [ "v-basalticIslands" ],
+      "fgCaveSelector" : [ "v-crystalMountainsCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-basalticislands" ]]
       ]
     }
   },
@@ -511,7 +525,7 @@
       "oceanLiquid" : [ "v-sun" ],
       "oceanLevelOffset" : 1000,
       "biome" : [
-        [1,["v-undergroundministarempty"]]
+        [1,[ "v-undergroundministarempty" ]]
       ]
     }
   },

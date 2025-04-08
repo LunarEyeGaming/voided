@@ -1,5 +1,5 @@
 {
-  "objectName" : "v-asteroidtrap",
+  "objectName" : "v-geysertrap",
   "colonyTags" : ["evil"],
   "printable" : false,
   "rarity" : "Common",
@@ -18,18 +18,18 @@
   "category" : "trap",
   "price" : 200,
 
-  "inventoryIcon" : "asteroidtrapicon.png",
+  "inventoryIcon" : "geysertrapicon.png",
   "orientations" : [
     {
-      "image" : "asteroidtrap.png:<color>.<frame>",
+      "image" : "geysertrap.png:<color>.<frame>",
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
 
       "animationPosition" : [-8, 0],
       "animationParts" : {
-        "bg" : "asteroidtrap.png",
-        "fg" : "asteroidtrap.png"
+        "bg" : "geysertrap.png",
+        "fg" : "geysertrap.png"
       },
 
       "projectileDirection" : [0, 1],
@@ -39,14 +39,14 @@
       "anchors" : [ "bottom" ]
     },
     {
-      "image" : "asteroidtrap.png:<color>.<frame>",
+      "image" : "geysertrap.png:<color>.<frame>",
       "imagePosition" : [0, 0],
       "direction" : "right",
 
       "animationPosition" : [0, 0],
       "animationParts" : {
-        "bg" : "asteroidtrap.png",
-        "fg" : "asteroidtrap.png"
+        "bg" : "geysertrap.png",
+        "fg" : "geysertrap.png"
       },
 
       "projectileDirection" : [0, 1],
@@ -56,14 +56,14 @@
       "anchors" : [ "bottom" ]
     },
     {
-      "image" : "asteroidtrapleft.png:<color>.<frame>",
+      "image" : "geysertrapleft.png:<color>.<frame>",
       "imagePosition" : [0, -8],
       "direction" : "right",
 
       "animationPosition" : [0, -8],
       "animationParts" : {
-        "bg" : "asteroidtrapleft.png",
-        "fg" : "asteroidtrapleft.png"
+        "bg" : "geysertrapleft.png",
+        "fg" : "geysertrapleft.png"
       },
 
       "projectileDirection" : [1, 0],
@@ -73,14 +73,14 @@
       "anchors" : [ "left" ]
     },
     {
-      "image" : "asteroidtrapright.png:<color>.<frame>",
+      "image" : "geysertrapright.png:<color>.<frame>",
       "imagePosition" : [0, -8],
       "direction" : "right",
 
       "animationPosition" : [0, -8],
       "animationParts" : {
-        "bg" : "asteroidtrapright.png",
-        "fg" : "asteroidtrapright.png"
+        "bg" : "geysertrapright.png",
+        "fg" : "geysertrapright.png"
       },
 
       "projectileDirection" : [-1, 0],
@@ -90,15 +90,15 @@
       "anchors" : [ "right" ]
     },
     {
-      "image" : "asteroidtrapceiling.png:<color>.<frame>",
+      "image" : "geysertrapceiling.png:<color>.<frame>",
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
 
       "animationPosition" : [-8, 0],
       "animationParts" : {
-        "bg" : "asteroidtrapceiling.png",
-        "fg" : "asteroidtrapceiling.png"
+        "bg" : "geysertrapceiling.png",
+        "fg" : "geysertrapceiling.png"
       },
 
       "projectileDirection" : [0, -1],
@@ -108,14 +108,14 @@
       "anchors" : [ "top" ]
     },
     {
-      "image" : "asteroidtrapceiling.png:<color>.<frame>",
+      "image" : "geysertrapceiling.png:<color>.<frame>",
       "imagePosition" : [0, 0],
       "direction" : "right",
 
       "animationPosition" : [0, 0],
       "animationParts" : {
-        "bg" : "asteroidtrapceiling.png",
-        "fg" : "asteroidtrapceiling.png"
+        "bg" : "geysertrapceiling.png",
+        "fg" : "geysertrapceiling.png"
       },
 
       "projectileDirection" : [0, -1],
