@@ -9,16 +9,19 @@
   "animationCycle" : 0.5,
   "lightColor" : [84, 47, 26],
   "frameNumber" : 4,
-  "actionOnReap" : [
-    {
-      "action" : "config",
-      "file" : "/projectiles/explosions/smallregularexplosion/smallregularexplosion.config"
-    }
-  ],
-  "power" : 50,
+  // "power" : 50,
   "emitters" : [ "fireplasma", "smoke", "flames", "fireplasma", "smoke", "flames" ],
-  "damageType" : "NoDamage",
-  "damageKind" : "slash",
+  "onlyHitTerrain" : true,
+
+  // "periodicActions" : [
+  //   {
+  //     "time" : 0.1,
+  //     "action" : "sound",
+  //     "options" : [ "/sfx/gun/flamethrower_stop.ogg" ]
+  //   }
+  // ],
+
+  "persistentAudio" : "/sfx/projectiles/burning_loop.ogg",
 
   "scripts" : ["v-sunleapershockwave.lua"],
   "scriptDelta" : 3

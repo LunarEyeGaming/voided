@@ -9,6 +9,7 @@ local currentDirectionIdx
 function init()
   local startRotation = util.wrapAngle(mcontroller.rotation())
 
+  -- Choose currentDirectionIdx value to use based on current rotation.
   for i = 1, #directions do
     if vec2.angle(directions[i]) <= startRotation and startRotation <= vec2.angle(directions[i % #directions + 1]) then
       currentDirectionIdx = i
@@ -16,6 +17,7 @@ function init()
     end
   end
 
+  -- Default
   if not currentDirectionIdx then
     currentDirectionIdx = 1
   end
@@ -55,8 +57,28 @@ function update(dt)
 
   -- If a next position was found...
   if nextPos then
+    local leftDirection = getDirection(currentDirectionIdx + 2)
+    -- local rightDirection = directions[(currentDirectionIdx - 2 - 1) % #directions + 1]
+    local collidePointLeft = world.pointCollision(vec2.add(nextPos, leftDirection))
+    -- local collidePointRight = world.pointCollision(vec2.add(nextPos, rightDirection))
+
+    local shockwaveDirection
+    if collidePointLeft then
+      shockwaveDirection = getDirection(currentDirectionIdx + 4)  -- 180 degrees
+    else
+      shockwaveDirection = directions[currentDirectionIdx]
+    end
+    world.spawnProjectile("v-fireshockwavenoflip", nextPos, projectile.sourceEntity(), shockwaveDirection, false, {
+      power = projectile.power(),
+      powerMultiplier = projectile.powerMultiplier()
+    })
     mcontroller.setPosition(nextPos)
   else
     -- projectile.die()
   end
+end
+
+function getDirection(index)
+  -- Wrapped index access
+  return directions[(index - 1) % #directions + 1]
 end
