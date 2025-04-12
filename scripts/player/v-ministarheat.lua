@@ -33,6 +33,8 @@ local undergroundTileQueryThread
 local ADJACENT_TILES = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}
 local SECTOR_SIZE = 32
 
+-- TODO: Fix cache issue, which has to do with world wrap.
+
 ---@class HeightMap
 ---@field startXPos integer the starting horizontal position
 ---@field minHeight integer the minimum height to use
@@ -241,12 +243,9 @@ function syncHeightMapToGlobal(heightMap)
         -- `globalHeightIsValid` is true if the position at `tilePos` is occupied by a block or is not loaded.
         local globalHeightIsValid = world.pointTileCollision(tilePos, {"Null", "Block", "Platform"})
 
-        -- If `globalHeightIsValid` is false...
-        if not globalHeightIsValid then
-          sharedValue = v
-        -- TODO: Factorize cases.
-        -- Otherwise, if the local value type is `partiallyObstructed` and its value is less than the global value...
-        elseif v.type == "partiallyObstructed" and v.value < globalV.value then
+        -- If `globalHeightIsValid` is false, or if the local value type is `partiallyObstructed` and its value is less
+        -- than the global value...
+        if not globalHeightIsValid or v.type == "partiallyObstructed" and v.value < globalV.value then
           sharedValue = v
         else
           sharedValue = globalV
@@ -323,6 +322,7 @@ end
 ---@param dt number
 function undergroundTileQuery(pos, affectedTiles, dt)
   local rollingAffectedTiles = {}  -- Maintained map of affected tiles.
+
   local updateAffectedTiles = function(affectedTiles)
     -- Update affectedTiles with rollingAffectedTiles.
     for tilePosHash, _ in pairs(rollingAffectedTiles) do
@@ -367,6 +367,7 @@ function undergroundTileQuery(pos, affectedTiles, dt)
       cappedCheckMaxY = math.min(checkMaxY + pos[2], minDepth) -- Update cappedCheckMinY
     end
   end
+
   -- Repeat indefinitely.
   while true do
     local cappedCheckMaxY = math.min(checkMaxY + pos[2], minDepth)
@@ -415,13 +416,11 @@ function processHeatMap(affectedTiles, dt)
 
     -- If the tile is in affectedTiles...
     if affectedTiles[tilePosHash] then
-      -- Increase the heat amount.
       tile.heat = tile.heat + dt
 
-      -- If the heat exceeds the tile's tolerance...
       if tile.heat > tile.heatTolerance then
-        table.insert(tilesToDestroy, tile.pos)  -- Add to list of tiles to destroy.
-        table.remove(heatMap, i)  -- Remove tile from heatMap.
+        table.insert(tilesToDestroy, tile.pos)
+        table.remove(heatMap, i)
       end
 
       -- Remove entry from affectedTiles to avoid excess inserts.
@@ -430,12 +429,10 @@ function processHeatMap(affectedTiles, dt)
     elseif not world.pointTileCollision(tile.pos, collisionSet) then
       table.remove(heatMap, i)
     else
-      -- Decrease heat.
       tile.heat = tile.heat - dt
 
-      -- If the heat drops below zero...
       if tile.heat <= 0 then
-        table.remove(heatMap, i)  -- Remove tile from heatMap.
+        table.remove(heatMap, i)
       end
     end
   end
@@ -482,10 +479,13 @@ function addToHeatMap(affectedTiles, heightMap, dt)
             }
           end
         end
-        -- Get base tolerance
+        local tileConfig = cfg.tileConfigs[material]
+        local toleranceOffset = 0
+        if tileConfig and tileConfig.toleranceOffset then
+          toleranceOffset = tileConfig.toleranceOffset
+        end
         local baseTolerance = materialConfigs[material].falling and cfg.fallingTileDefaultTolerance or cfg.defaultTolerance
-        -- Add to heat map.
-        local tolerance = baseTolerance * toleranceMultiplier
+        local tolerance = baseTolerance * toleranceMultiplier + toleranceOffset
         table.insert(heatMap, {pos = tile, heat = 0, heatTolerance = tolerance > dt and tolerance or 0})
       end
     end
@@ -500,37 +500,8 @@ function isExposedForeground(heightMap)
   local boundBox = rect.translate(mcontroller.boundBox(), pos)
   local y = pos[2]
 
-  -- -- Regarding [1][2]: findLowestLoadedSectors will always return exactly one entry in this case. [1] means first entry;
-  -- -- [2] means y value of that entry.
-  -- local checkMinY = (findLowestLoadedSectors(pos[1], pos[1], y)[1][2] + 1) * SECTOR_SIZE
-
-  -- -- Variant of checkMinY that stops at minDepth; whether or not the value was capped.
-  -- local cappedCheckMinY, checkMinYWasCapped
-  -- if checkMinY < minDepth then
-  --   cappedCheckMinY = minDepth
-  --   checkMinYWasCapped = true
-  -- else
-  --   cappedCheckMinY = checkMinY
-  --   checkMinYWasCapped = false
-  -- end
-
   -- For each x across the current bounding box...
   for x = boundBox[1], boundBox[3] do
-    -- -- Proceed only if cappedCheckMinY is not actually capped or there is a liquid with ID sunLiquidId at the position
-    -- -- directly below cappedCheckMinY.
-    -- local shouldProceed = not checkMinYWasCapped
-    -- if not shouldProceed then
-    --   local liquid = world.liquidAt({x, cappedCheckMinY - 1})
-    --   if liquid and liquid[1] == sunLiquidId then
-    --     shouldProceed = true
-    --   end
-    -- end
-
-    -- -- If we should proceed and there is a section beneath the player that is exposed...
-    -- if shouldProceed and not world.lineTileCollision({x, y}, {x, cappedCheckMinY}, {"Block"}) then
-    --   return true
-    -- end
-
     local heightMapItem = heightMap.list[math.floor(x) - heightMap.startXPos + 1]
 
     -- If the height map item type is `open` or it is `partiallyObstructed` and its value is greater than y...

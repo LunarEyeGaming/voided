@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":28,
+ "tilecount":31,
  "tiledversion":"1.11.0",
  "tileheight":8,
  "tileproperties":
@@ -100,9 +100,21 @@
         {
          "material":"v-oxidizeddeepcopperrock"
         },
+     "28":
+        {
+         "material":"v-burningmeteorite"
+        },
+     "29":
+        {
+         "material":"v-moltenrock"
+        },
      "3":
         {
          "material":"v-deepcopperrock"
+        },
+     "30":
+        {
+         "material":"v-sunspotstone"
         },
      "4":
         {
@@ -218,7 +230,19 @@
         {
          "material":"string"
         },
+     "28":
+        {
+         "material":"string"
+        },
+     "29":
+        {
+         "material":"string"
+        },
      "3":
+        {
+         "material":"string"
+        },
+     "30":
         {
          "material":"string"
         },
@@ -375,9 +399,27 @@
          "imageheight":8,
          "imagewidth":8
         },
+     "28":
+        {
+         "image":"..\/images\/tilesandliquids\/burningmeteorite.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "29":
+        {
+         "image":"..\/images\/tilesandliquids\/moltenrock.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
      "3":
         {
          "image":"..\/images\/tilesandliquids\/deepcopperrock.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "30":
+        {
+         "image":"..\/images\/tilesandliquids\/sunspotstone.png",
          "imageheight":8,
          "imagewidth":8
         },

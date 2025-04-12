@@ -1,6 +1,6 @@
 {
   "name": "v-action-stickyslam",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
@@ -71,7 +71,7 @@
         "type": "action",
         "name": "v_stickyHopApproach",
         "parameters": {
-          "postHopDelay": {"value": 0.1},
+          "postHopDelay": {"value": 0},
           "rayCount": {"key": "<rayCount>"},
           "target": {"key": "target"},
           "preferDirectAttacks": {"key": "<preferDirectAttacks>"}
@@ -87,10 +87,26 @@
         },
         "children": [
           {
-            "title": "boundsCollision",
-            "type": "action",
-            "name": "boundsCollision",
-            "parameters": {}
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 0.05}
+                }
+              },
+              {
+                "title": "boundsCollision",
+                "type": "action",
+                "name": "boundsCollision",
+                "parameters": {}
+              }
+            ]
           },
           {
             "title": "failer",

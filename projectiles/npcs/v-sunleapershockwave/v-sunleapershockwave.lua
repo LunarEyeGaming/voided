@@ -3,6 +3,8 @@ require "/scripts/util.lua"
 
 require "/scripts/v-world.lua"
 
+-- TODO: Fix issue encountered due to world wrap.
+
 local directions = {{1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1}, {0, -1}, {1, -1}}
 local currentDirectionIdx
 
