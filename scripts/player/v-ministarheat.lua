@@ -33,7 +33,6 @@ local undergroundTileQueryThread
 local ADJACENT_TILES = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}
 local SECTOR_SIZE = 32
 
--- TODO: Fix cache issue, which has to do with world wrap.
 
 ---@class HeightMap
 ---@field startXPos integer the starting horizontal position
@@ -42,7 +41,7 @@ local SECTOR_SIZE = 32
 
 ---@class HeightMapItem
 ---@field type "partiallyObstructed" | "completelyObstructed" | "open"
----@field value integer? defined if type is "completelyObstructed". The y value in world space given.
+---@field value integer? defined if type is not "open". The y value in world space given.
 ---@field minValue integer? defined if type is "open". The minimum y value used for scanning.
 ---@field maxValue integer? defined if type is "open". The maximum y value used for scanning.
 
@@ -179,7 +178,6 @@ function surfaceTileQuery(pos, affectedTiles)
       local collidePointPair = world.lineTileCollisionPoint({x, cappedCheckMinY}, {x, checkMaxY + pos[2]}, collisionSet)
       if collidePointPair then
         local collidePoint = collidePointPair[1]
-        -- world.debugText("%s", collidePoint[2], {x, x % 2 == 0 and pos[2] - 5 or pos[2] - 6}, "green")
         world.debugPoint(collidePoint, "green")
         -- Round the tile's position to the nearest integer
         local collideTile = {math.floor(collidePoint[1] + 0.5), math.floor(collidePoint[2] + 0.5)}
@@ -208,28 +206,63 @@ function syncHeightMapToGlobal(heightMap)
   local globalHeightMap = {}
   -- For each `xSector` from `startXSector` to `endXSector`...
   for xSector = startXSector, endXSector do
+    local xSectorWrapped = world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE
     -- Get global height map section corresponding to `xSector`.
-    local globalHeightMapSection = world.getProperty("v-globalHeightMap." .. xSector) or {}
+    local globalHeightMapSection = world.getProperty("v-globalHeightMap." .. xSectorWrapped) or {}
 
-    -- For each value in the section...
+    -- Copy the section over to globalHeightMap.
     for _, value in ipairs(globalHeightMapSection) do
-      globalHeightMap[value.x] = value.value  -- Add to `globalHeightMap`
+      globalHeightMap[value.x] = value.value
     end
   end
 
-  -- local globalHeightMapSerialized = world.getProperty("v-globalHeightMap") or {}
+  -- local pos = vec2.floor(mcontroller.position())
+  -- world.debugText("startXSector: %s, endXSector: %s", startXSector, endXSector, {pos[1], pos[2] + 3}, "green")
 
-  -- -- Convert to hash map.
-  -- ---@type table<integer, HeightMapItem>
-  -- local globalHeightMap = {}
-  -- for _, value in ipairs(globalHeightMapSerialized) do
-  --   globalHeightMap[value.x] = value.value
-  -- end
-
-  local startXPosWrapped = world.xwrap(heightMap.startXPos)
+  -- local startXPosWrapped = world.xwrap(heightMap.startXPos)
   -- For each entry in the list of `heightMap`...
   for i, v in ipairs(heightMap.list) do
-    local x = i + startXPosWrapped - 1
+    local x = world.xwrap(i + heightMap.startXPos - 1)
+
+    -- do
+    --   local value
+    --   if v.type ~= "open" then
+    --     value = v.value
+    --   else
+    --     value = nil
+    --   end
+    --   local gValue
+    --   if globalHeightMap[x] and globalHeightMap[x].type ~= "open" then
+    --     gValue = globalHeightMap[x].value
+    --   else
+    --     gValue = nil
+    --   end
+    --   world.debugText("%s: %s", x, value, {x, pos[2] - (5 + x % 4)}, "green")
+    --   world.debugText("%s: %s", x, gValue, {x, pos[2] - (8 + x % 4)}, "yellow")
+    -- end
+
+    --[[
+      globalHeightIsValid = world.pointCollision({x, globalHeightMap[x].value})
+      case "partiallyObstructed" for local and "partiallyObstructed" for global:
+        local and global <-- the min of each other, assuming global is valid. Otherwise, local
+      case "partiallyObstructed" for local and "completelyObstructed" for global:
+        local and global <-- global, assuming global is valid. Otherwise, local
+      case "partiallyObstructed" for local and "open" for global:
+        local and global <-- depends on whether local is within global's scan range, in which case local. Otherwise, global
+      case "completelyObstructed" for local and "partiallyObstructed" for global:
+        local and global <-- local
+      case "completelyObstructed" for local and "completelyObstructed" for global:
+        local and global <-- local
+      case "completelyObstructed" for local and "open" for global:
+        local and global <-- local
+      case "open" for local and "partiallyObstructed" for global:
+        local and global <-- global, assuming global is valid. Otherwise, local
+      case "open" for local and "completelyObstructed" for global:
+        local and global <-- global, assuming global is valid. Otherwise, local
+      case "open" for local and "open" for global:
+        local and global <-- local
+    ]]
+
     -- If there is no corresponding entry in `globalHeightMap` or the type of `v` is `completelyObstructed`...
     if not globalHeightMap[x] or v.type == "completelyObstructed" then
       globalHeightMap[x] = v
@@ -268,27 +301,6 @@ function syncHeightMapToGlobal(heightMap)
       end
       heightMap.list[i] = sharedValue
       globalHeightMap[x] = sharedValue
-      --[[
-        globalHeightIsValid = world.pointCollision({x, globalHeightMap[x].value})
-        case "partiallyObstructed" for local and "partiallyObstructed" for global:
-          local and global <-- the min of each other, assuming global is valid. Otherwise, local
-        case "partiallyObstructed" for local and "completelyObstructed" for global:
-          local and global <-- global, assuming global is valid. Otherwise, local
-        case "partiallyObstructed" for local and "open" for global:
-          local and global <-- depends on whether local is within global's scan range, in which case local. Otherwise, global
-        case "completelyObstructed" for local and "partiallyObstructed" for global:
-          local and global <-- local
-        case "completelyObstructed" for local and "completelyObstructed" for global:
-          local and global <-- local
-        case "completelyObstructed" for local and "open" for global:
-          local and global <-- local
-        case "open" for local and "partiallyObstructed" for global:
-          local and global <-- global, assuming global is valid. Otherwise, local
-        case "open" for local and "completelyObstructed" for global:
-          local and global <-- global, assuming global is valid. Otherwise, local
-        case "open" for local and "open" for global:
-          local and global <-- local
-      ]]
     end
   end
 
@@ -296,14 +308,15 @@ function syncHeightMapToGlobal(heightMap)
   -- For each `xSector` from `startXSector` to `endXSector`...
   for xSector = startXSector, endXSector do
     local globalHeightMapSection = {}
+    local xSectorWrapped = world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE
 
     -- For each x value in the sector...
-    for x = xSector * SECTOR_SIZE, (xSector + 1) * SECTOR_SIZE - 1 do
+    for x = xSectorWrapped * SECTOR_SIZE, (xSectorWrapped + 1) * SECTOR_SIZE - 1 do
       -- Add to the section.
       table.insert(globalHeightMapSection, {x = x, value = globalHeightMap[x]})
     end
 
-    world.setProperty("v-globalHeightMap." .. xSector, globalHeightMapSection)
+    world.setProperty("v-globalHeightMap." .. xSectorWrapped, globalHeightMapSection)
   end
 
   -- -- Convert to serialized format

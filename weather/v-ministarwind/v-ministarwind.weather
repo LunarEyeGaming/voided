@@ -1,0 +1,30 @@
+{
+  "name" : "v-ministarwind",
+
+  "particles" : [
+    {
+
+      "density" : 0.02,
+      "autoRotate" : true,
+
+      "particle" : {
+        "type" : "textured",
+        "image" : "/particles/v-ministarcloud/1.png",
+        "velocity" : [0, 0],
+        "approach" : [15, 15],
+        "light" : [64, 47, 15],
+        "angularVelocity" : 0,
+        "timeToLive" : 20,
+        "collidesForeground" : true,
+        "collidesLiquid" : true,
+        "destructionAction" : "shrink",
+        "destructionTime" : 2,
+        "ignoreWind" : false,
+        "fullbright" : true
+      }
+    }
+  ],
+
+  "duration" : [50, 240],
+  "maximumWind" : 42.0
+}

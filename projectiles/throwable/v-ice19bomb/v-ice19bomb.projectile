@@ -1,0 +1,28 @@
+{
+  "projectileName" : "v-ice19bomb",
+  "physics" : "grenade",
+  "bounces" : 0,
+  "speed" : 0,
+  "timeToLive" : 3,
+  "image" : "ice19bomb.png",
+  "animationCycle" : 1,
+  "lightColor" : [105, 64, 0],
+  "frameNumber" : 1,
+  "power" : 60,
+  "onlyHitTerrain" : true,
+  "hydrophobic" : true,
+  "emitters" : [ "sparks" ],
+
+  "actionOnReap" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/gun/grenadeblast_ice1.ogg", "/sfx/gun/grenadeblast_ice2.ogg", "/sfx/gun/grenadeblast_ice3.ogg" ]
+    }
+  ],
+
+  "scripts" : [ "v-ice19bomb.lua" ],
+  "scriptDelta" : 1,
+
+  "radius" : 6,
+  "material" : "ice"
+}
