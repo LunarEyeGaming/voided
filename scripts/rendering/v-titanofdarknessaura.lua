@@ -6,6 +6,7 @@ local oldInit = init or function() end
 local oldUpdate = update or function() end
 
 local fadeTime
+local particleInterval
 local bgStartColor
 local bgEndColor
 local fgStartColor
@@ -48,7 +49,7 @@ end
 function update(dt)
   oldUpdate(dt)
 
-  updateTitanPosition()
+  v_titanOfDarknessAura_updateTitanPosition()
 
   -- Update timers
   if titanPosition then
@@ -58,17 +59,17 @@ function update(dt)
     fadeTimer = math.max(0, fadeTimer - dt)
   end
 
-  drawOverlays()
+  v_titanOfDarknessAura_drawOverlays()
 
   -- if fadeTimer == fadeTime then
   --   drawParticles(dt)
   -- end
-  drawParticles(dt)
+  v_titanOfDarknessAura_drawParticles(dt)
 end
 
 ---Asynchronously updates the position of the Titan as frequently as the server allows.
 ---@postconditions: upon titanPositionPromise finishing, titanPosition is modified and titanPositionPromise is unset
-function updateTitanPosition()
+function v_titanOfDarknessAura_updateTitanPosition()
   -- If no promise is pending...
   if not titanPositionPromise then
     -- Request the position of the Titan.
@@ -92,7 +93,7 @@ function updateTitanPosition()
   end
 end
 
-function drawOverlays()
+function v_titanOfDarknessAura_drawOverlays()
   world.debugText("v-titanofdarknessaura.lua::drawOverlays() called", entity.position(), "green")
   -- This uses a thick line to create a colored rectangle that covers the entire screen.
   local windowRegion = world.clientWindow()
@@ -116,22 +117,19 @@ function drawOverlays()
 
   -- Foreground overlay
   localAnimator.addDrawable({
-    -- line = {{drawingBounds[1], verticalMidPoint}, {drawingBounds[3], verticalMidPoint}},
     image = "/scripts/rendering/v-titanvignette.png",
     position = {0, 0},
-    -- width = (drawingBounds[4] - drawingBounds[2]) * 8,
     fullbright = false,
     color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, fgStartColor, fgEndColor)
   }, fgRenderLayer)
 end
 
-function drawParticles(dt)
+function v_titanOfDarknessAura_drawParticles(dt)
   if fadeTimer == 0 then return end
 
   particleTimer = particleTimer - dt
 
   if particleTimer <= 0 then
-
     local fallOffAmount = 1 - math.max(0, distance - minFallOffDistance) / (maxFallOffDistance - minFallOffDistance)
     local windowRegion = world.clientWindow()
 
@@ -148,41 +146,9 @@ function drawParticles(dt)
       rightHorizontalSpeed = 10
     end
 
-    -- if horizontalSpeed == 0 then
-    --   horizontalSpeed = 10  -- Default speed
-    -- end
-
-    -- -- Determine horizontal spawning position
-    -- local horizontalPosition
-
-    -- if horizontalSpeed < 0 then
-    --   horizontalPosition = windowRegion[3]
-    -- else
-    --   horizontalPosition = windowRegion[1]
-    -- end
-
-    -- local verticalPosition = math.random() * (windowRegion[4] - windowRegion[2]) + windowRegion[2]
-
-    -- localAnimator.spawnParticle({
-    --   type = "textured",
-    --   image = "/scripts/rendering/v-titanparticles.png",
-    --   initialVelocity = {horizontalSpeed, 0},
-    --   approach = {2, 2},
-    --   timeToLive = 10,
-    --   destructionAction = "fade",
-    --   destructionTime = 5,
-    --   angularVelocity = 0,
-    --   layer = "front",
-    --   variance = {
-    --     angularVelocity = 12,
-    --     initialVelocity = {0, 10},
-    --     finalVelocity = {0, 10}
-    --   }
-    -- }, vec2.add(entity.position(), {horizontalPosition, verticalPosition}))
-
     localAnimator.spawnParticle({
       type = "textured",
-      image = "/scripts/rendering/v-titanparticles.png",
+      image = "/particles/images/v-titanparticles.png",
       initialVelocity = {leftHorizontalSpeed, 0},
       approach = {2, 2},
       timeToLive = 10,
@@ -200,7 +166,7 @@ function drawParticles(dt)
 
     localAnimator.spawnParticle({
       type = "textured",
-      image = "/scripts/rendering/v-titanparticles.png",
+      image = "/particles/images/v-titanparticles.png",
       initialVelocity = {rightHorizontalSpeed, 0},
       approach = {2, 2},
       timeToLive = 10,

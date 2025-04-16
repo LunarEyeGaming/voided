@@ -8,7 +8,6 @@ require "/scripts/vec2.lua"
 local oldInit = init or function() end
 local oldUpdate = update or function() end
 
-local itemName
 local glyphHSpacing
 local digitPath
 local xDisplayPath
@@ -41,12 +40,12 @@ function update(dt)
 
     -- The xDisplay and yDisplay drawables each consist of 2 glyphs. The third additional glyph offset is a space
     -- Show X coordinate
-    showGlyph(xDisplayPath, displayOffset)
-    showNumber(flooredXPos, vec2.add(displayOffset, {glyphHSpacing * 3, 0}))
+    v_gpsDisplay_showGlyph(xDisplayPath, displayOffset)
+    v_gpsDisplay_showNumber(flooredXPos, vec2.add(displayOffset, {glyphHSpacing * 3, 0}))
 
     -- Show Y coordinate
-    showGlyph(yDisplayPath, vec2.add(displayOffset, {0, -glyphVSpacing}))
-    showNumber(flooredYPos, vec2.add(displayOffset, {glyphHSpacing * 3, -glyphVSpacing}))
+    v_gpsDisplay_showGlyph(yDisplayPath, vec2.add(displayOffset, {0, -glyphVSpacing}))
+    v_gpsDisplay_showNumber(flooredYPos, vec2.add(displayOffset, {glyphHSpacing * 3, -glyphVSpacing}))
   end
 end
 
@@ -54,13 +53,13 @@ end
 ---position is located at the bottom-left corner of the displayed number.
 ---@param number integer
 ---@param startingOffset Vec2F
-function showNumber(number, startingOffset)
+function v_gpsDisplay_showNumber(number, startingOffset)
   local xOffset = 0  -- Declared up here because it is used all throughout the function
 
   -- If the number is negative...
   if number < 0 then
     -- Add a negative symbol, increase the xOffset, and make the number positive for displaying purposes
-    showDigitChar("-", {startingOffset[1] + xOffset, startingOffset[2]})
+    v_gpsDisplay_showDigitChar("-", {startingOffset[1] + xOffset, startingOffset[2]})
 
     xOffset = xOffset + glyphHSpacing  -- Increase xOffset by glyphHSpacing
     number = -number
@@ -81,7 +80,7 @@ function showNumber(number, startingOffset)
   -- Traverse the list backwards since the digits come out backwards
   for i = #digits, 1, -1 do
     -- Add the drawable
-    showDigitChar(tostring(digits[i]), vec2.add(startingOffset, {xOffset, 0}))
+    v_gpsDisplay_showDigitChar(tostring(digits[i]), vec2.add(startingOffset, {xOffset, 0}))
 
     xOffset = xOffset + glyphHSpacing  -- Increase xOffset by glyphHSpacing
   end
@@ -90,15 +89,15 @@ end
 ---Shows a digit character `ch` with offset `offset`.
 ---@param ch string
 ---@param offset Vec2F
-function showDigitChar(ch, offset)
-  showGlyph(string.format("%s:%s", digitPath, ch), offset)
+function v_gpsDisplay_showDigitChar(ch, offset)
+  v_gpsDisplay_showGlyph(string.format("%s:%s", digitPath, ch), offset)
 end
 
 ---Shows a glyph with path `path` and relative position `offset`. This drawable is fullbright, not centered,
 ---and has a render layer of `overlay+5`.
 ---@param path string
 ---@param offset Vec2F
-function showGlyph(path, offset)
+function v_gpsDisplay_showGlyph(path, offset)
   localAnimator.addDrawable({
     image = path,
     position = offset,

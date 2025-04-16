@@ -6,6 +6,7 @@ require "/scripts/v-animator.lua"
 local oldInit = init or function() end
 local oldUpdate = update or function() end
 
+local particleInterval
 local startBurningColor
 local endBurningColor
 local sunRayDimColor
@@ -16,6 +17,8 @@ local burningBlocks
 local heightMap
 
 local isActive
+
+local particleTimer
 
 function init()
   oldInit()
@@ -38,10 +41,12 @@ function init()
   heightMap = {list = {}}
   sunProximityRatio = 0
 
+  particleInterval = 0.05
   startBurningColor = {255, 0, 0, 0}
   endBurningColor = {255, 119, 0, 255}
   sunRayDimColor = {255, 0, 0, 0}
   sunRayBrightColor = {255, 216, 107, 128}
+  particleTimer = particleInterval
 end
 
 function update(dt)
@@ -51,8 +56,6 @@ function update(dt)
 
   if not isActive then return end  -- Do nothing if this script is not active
 
-  -- if sunProximityRatio <= 0 then return end  -- Also do nothing if sunProximityRatio is 0 (no light)
-
   -- Get position relative to player.
   local ownPos = entity.position()
   local ownVelocity = world.entityVelocity(entity.id())  --[[@as Vec2F]]
@@ -61,16 +64,9 @@ function update(dt)
   -- predictedPos = world.resolvePolyCollision(collisionPoly, predictedPos, 1) or predictedPos
   local window = world.clientWindow()
 
-  drawBurningBlocks(predictedPos, dt, window)
+  v_ministarEffects_drawBurningBlocks(predictedPos, dt, window)
 
   local sunRayColor = vAnimator.lerpColor(sunProximityRatio, sunRayDimColor, sunRayBrightColor)
-  -- local sunRayLightColor = {
-  --   math.floor(sunRayColor[1] * sunProximityRatio),
-  --   math.floor(sunRayColor[2] * sunProximityRatio),
-  --   math.floor(sunRayColor[3] * sunProximityRatio)
-  -- }
-
-  -- local entityPosMap = queryEntities(rect.pad(window, vAnimator.WINDOW_PADDING))
 
   -- For each horizontal strip in heightMap...
   for i, v in ipairs(heightMap.list) do
@@ -101,13 +97,15 @@ function update(dt)
       end
     end
   end
+
+  v_ministarEffects_drawParticles(sunRayColor, dt)
 end
 
 ---Draws the burning blocks, also updating their heat.
 ---@param predictedPos Vec2F
 ---@param dt number
 ---@param window RectI
-function drawBurningBlocks(predictedPos, dt, window)
+function v_ministarEffects_drawBurningBlocks(predictedPos, dt, window)
   -- For each block in burningBlocks...
   for _, block in ipairs(burningBlocks) do
     -- If the block is visible inside of the window...
@@ -128,26 +126,60 @@ function drawBurningBlocks(predictedPos, dt, window)
   end
 end
 
----Queries entities inside of `window`, returning the positions of each entity as a map from integral horizontal
----positions to a list of vertical positions.
----@param window RectI
----@return {startXPos: integer, map: table<integer, number[]>}
-function queryEntities(window)
-  local positionMap = {startXPos = window[1], map = {}}
-  local queried = world.entityQuery({window[1], window[2]}, {window[3], window[4]}, {includedTypes = {"mobile",
-  "object"}})
+function v_ministarEffects_drawParticles(color, dt)
+  if sunProximityRatio == 0 then return end
 
-  for _, entityId in ipairs(queried) do
-    local entityPos = world.entityPosition(entityId)
+  particleTimer = particleTimer - dt
 
-    local idx = math.floor(entityPos[1]) - window[1]
+  if particleTimer <= 0 then
+    local windowRegion = world.clientWindow()
 
-    -- Create list if not defined.
-    if not positionMap[idx] then
-      positionMap[idx] = {}
+    local leftPosition = {windowRegion[1], math.random() * (windowRegion[4] - windowRegion[2]) + windowRegion[2]}
+    local rightPosition = {windowRegion[3], math.random() * (windowRegion[4] - windowRegion[2]) + windowRegion[2]}
+
+    -- Note: windLevel is zero if there is a background block.
+    local leftHorizontalSpeed = world.windLevel(leftPosition)
+    if leftHorizontalSpeed == 0 then
+      leftHorizontalSpeed = 40
     end
-    table.insert(positionMap[idx], entityPos[2])
-  end
+    local rightHorizontalSpeed = world.windLevel(rightPosition)
+    if rightHorizontalSpeed == 0 then
+      rightHorizontalSpeed = 40
+    end
 
-  return positionMap
+    if not world.material(leftPosition, "background") then
+      localAnimator.spawnParticle({
+        type = "textured",
+        image = "/particles/v-ministarcloud/1.png",
+        initialVelocity = {leftHorizontalSpeed, 0},
+        approach = {2, 2},
+        timeToLive = 20,
+        destructionAction = "fade",
+        destructionTime = 2,
+        angularVelocity = 0,
+        layer = "middle",
+        collidesForeground = true,
+        color = color
+      }, leftPosition)
+    end
+
+    if not world.material(rightPosition, "background") then
+      localAnimator.spawnParticle({
+        type = "textured",
+        image = "/particles/v-ministarcloud/1.png",
+        initialVelocity = {rightHorizontalSpeed, 0},
+        approach = {2, 2},
+        timeToLive = 20,
+        destructionAction = "shrink",
+        destructionTime = 2,
+        angularVelocity = 0,
+        layer = "middle",
+        collidesForeground = true,
+        color = color
+      }, rightPosition)
+    end
+
+    local velocity = world.entityVelocity(entity.id())
+    particleTimer = particleInterval / (math.sqrt(vec2.mag(velocity)) + 1)
+  end
 end
