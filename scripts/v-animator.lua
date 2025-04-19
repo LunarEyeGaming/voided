@@ -71,7 +71,7 @@ end
 ---Requires: None
 ---@param color ColorTable
 ---@return string
-function vAnimator.stringOfColor(color)
+function vAnimator.colorToString(color)
   local rChannel = color[1]  -- red
   local gChannel = color[2]  -- green
   local bChannel = color[3]  -- blue
@@ -93,8 +93,8 @@ end
 ---
 ---Requires: None
 ---@param str string
----@return ColorTable|nil
-function vAnimator.colorOfString(str)
+---@return ColorTable?
+function vAnimator.stringToColor(str)
   local result
 
   -- If the string is long enough to contain the red, green, and blue channels...
@@ -125,4 +125,97 @@ end
 ---@return number
 function vAnimator.frameNumber(frameTime, frameCycle, startFrame, numFrames)
   return math.floor(frameTime / frameCycle * numFrames) + startFrame
+end
+
+---@class LightningInstance
+---@field startPos Vec2F
+---@field endPos Vec2F
+---@field ttl number
+
+---@class LightningController
+---@field _lightningCfg table
+---@field _startColor ColorTable
+---@field _endColor ColorTable
+---@field _duration number
+---@field _animateManually boolean
+---@field _instances LightningInstance[]
+---@field _setAnimParam fun(key: string, value: any)
+vAnimator.LightningController = {}
+
+---Instantiates a LightningController
+---@param cfg table the lightning config to use
+---@param startC ColorTable the start color of the lightning
+---@param endC ColorTable the end color of the lightning
+---@param dur number how long the lightning lasts
+---@param animateManually boolean? whether or not to animate the colors manually.
+---@return LightningController
+function vAnimator.LightningController:new(cfg, startC, endC, dur, animateManually)
+  if animateManually == nil then animateManually = true end
+
+  local fields = {
+    _lightningCfg = cfg,
+    _startColor = startC,
+    _endColor = endC,
+    _duration = dur,
+    _animateManually = animateManually,
+    _instances = {},
+    -- Choose the right function to use depending on the context
+    _setAnimParam = (activeItem and activeItem.setScriptedAnimationParameter)
+      or (monster and monster.setAnimationParameter)
+      or (object and object.setAnimationParameter)
+  }
+  setmetatable(fields, self)
+  self.__index = self
+
+  return fields
+end
+
+---Add an instance of lightning.
+function vAnimator.LightningController:add(startPos, endPos)
+  table.insert(self._instances, {startPos = startPos, endPos = endPos, ttl = self._duration})
+end
+
+function vAnimator.LightningController:update(dt)
+  local lightning = {}
+
+  -- For each instance in self._instances (removable)...
+  for i = #self._instances, 1, -1 do
+    local instance = self._instances[i]
+
+    if instance.ttl <= 0 then
+      table.remove(self._instances, i)
+    else
+      local cfg = copy(self._lightningCfg)
+      cfg.color = vAnimator.lerpColor(1 - instance.ttl / self._duration, self._startColor, self._endColor)
+      cfg.worldStartPosition = instance.startPos
+      cfg.worldEndPosition = instance.endPos
+
+      table.insert(lightning, cfg)
+    end
+
+    instance.ttl = instance.ttl - dt
+  end
+
+  self._setAnimParam("lightning", lightning)
+end
+
+---Sends the currently stored lightning instances to the local animator, clearing them from this LightningController.
+function vAnimator.LightningController:flush()
+  local lightning = {}
+
+  -- For each instance in self._instances...
+  for _, instance in ipairs(self._instances) do
+
+    local cfg = copy(self._lightningCfg)
+    cfg.startColor = self._startColor
+    cfg.endColor = self._endColor
+    cfg.worldStartPosition = instance.startPos
+    cfg.worldEndPosition = instance.endPos
+
+    table.insert(lightning, cfg)
+  end
+
+  self._instances = {}
+
+  self._setAnimParam("lightning", lightning)
 end

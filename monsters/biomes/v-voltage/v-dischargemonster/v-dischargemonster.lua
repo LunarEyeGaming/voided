@@ -15,6 +15,7 @@ local lightningConfig
 local warningParams
 local target
 local attackState
+local lightning
 
 function init()
   script.setUpdateDelta(config.getParameter("updateDelta", 1))
@@ -44,10 +45,13 @@ function init()
   capturable.init()
 
   target = nil
-
   warningParams = {}
+
   attackState = FSM:new()
   attackState:set(states.initialCooldown)
+
+  lightning = vAnimator.LightningController:new(lightningConfig, lightningConfig.startColor, lightningConfig.endColor,
+    dischargeTime)
 
   -- If initialVelocity is defined, use it.
   if initialVelocity then
@@ -67,6 +71,7 @@ function update(dt)
   -- Update animation parameters
   monster.setAnimationParameter("warningVectors", warningParams)
   monster.setAnimationParameter("ownPosition", mcontroller.position())
+  lightning:update(dt)
 
   -- Reset warningParams
   warningParams = {}
@@ -130,15 +135,11 @@ function states.discharge()
     local ownPosition = mcontroller.position()
     local targetPos = world.nearestTo(ownPosition, world.entityPosition(target))
     world.spawnProjectile(dischargeProjectileType, targetPos, entity.id(), {0, 0}, false, dischargeProjectileParameters)
+    lightning:add(ownPosition, targetPos)
 
-    local timer = 0
-    util.wait(dischargeTime, function(dt)
-      drawLightning(timer / dischargeTime, ownPosition, targetPos)
-      timer = timer + dt
-    end)
+    util.wait(dischargeTime)
   end
 
-  monster.setAnimationParameter("lightning", {})
   target = nil
 
   attackState:set(states.cooldown)
@@ -166,28 +167,11 @@ function states.warning()
 end
 
 --[[
-  Draws lightning with a specific color progress from startPos to endPos.
-  progress: How close to the end value the color of the lightning should be
-  startPos: The starting absolute position of the lightning
-  endPos: The ending absolute position of the lightning
-]]
-function drawLightning(progress, startPos, endPos)
-  local cfgCopy = copy(lightningConfig)
-
-  cfgCopy.color = vAnimator.lerpColor(progress, lightningConfig.startColor, lightningConfig.endColor)
-  cfgCopy.worldStartPosition = startPos
-  cfgCopy.worldEndPosition = endPos
-
-  monster.setAnimationParameter("lightning", {cfgCopy})
-end
-
---[[
   Updates the velocity of the entity so that it always attempts to travel at the configured flySpeed (and is influenced
   by external forces). If the speed is precisely 0, it will choose a random direction.
 ]]
 function updateVelocity()
   local params = mcontroller.baseParameters()
-  local velocityDirection = vec2.norm(mcontroller.velocity())
 
   -- If speed is not zero...
   if vec2.mag(mcontroller.velocity()) ~= 0 then

@@ -1,15 +1,23 @@
 require "/scripts/vec2.lua"
 require "/scripts/v-animator.lua"
 
+local oldInit = init or function() end
+local oldUpdate = update or function() end
+
 local dt
+local ttl
 local animConfig
 local startColor
 local endColor
 local fullbright
 local blocks
+local gatherTicks = 3
+local gatherTickTimer
 
 function init()
-  script.setUpdateDelta(3)
+  oldInit()
+
+  -- script.setUpdateDelta(3)
   ttl = animationConfig.animationParameter("ttl")
   animConfig = animationConfig.animationParameter("animationConfig")
   startColor = animConfig.startColor
@@ -19,17 +27,35 @@ function init()
   blocks = {}
 
   dt = script.updateDt()
+
+  gatherTickTimer = gatherTicks
 end
 
 function update()
   localAnimator.clearDrawables()
 
+  oldUpdate()
+
   local center = entity.position()
 
-  local nextBlocks = animationConfig.animationParameter("nextBlocks")
+  gatherTickTimer = gatherTickTimer - 1
+  if gatherTickTimer <= 0 then
+    local nextBlocks = animationConfig.animationParameter("nextBlocks")
 
-  if nextBlocks then
-    table.insert(blocks, {ttl, nextBlocks})
+    if nextBlocks then
+      table.insert(blocks, {ttl, nextBlocks})
+    end
+
+    local particleNextBlocks = animationConfig.animationParameter("particleNextBlocks")
+
+    -- Spawn particles
+    if particleNextBlocks then
+      for _, block in ipairs(particleNextBlocks) do
+        localAnimator.spawnParticle(animConfig.damageIndicatorParticle, vec2.add(entity.position(), block))
+      end
+    end
+
+    gatherTickTimer = gatherTicks
   end
 
   local i = 1
@@ -50,15 +76,6 @@ function update()
       end
       blockSet[1] = blockSet[1] - dt
       i = i + 1
-    end
-  end
-
-  local particleNextBlocks = animationConfig.animationParameter("particleNextBlocks")
-
-  -- Spawn particles
-  if particleNextBlocks then
-    for _, block in ipairs(particleNextBlocks) do
-      localAnimator.spawnParticle(animConfig.damageIndicatorParticle, vec2.add(entity.position(), block))
     end
   end
 end
