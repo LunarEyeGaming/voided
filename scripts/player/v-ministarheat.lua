@@ -28,6 +28,8 @@ local collisionSet
 local sunLiquidId
 local materialConfigs
 
+local sunscreenEffect
+
 local undergroundTileQueryThread
 
 local ADJACENT_TILES = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}
@@ -69,7 +71,6 @@ function init()
   heatMap = {}
   maxDepth = 1980  -- Depth that heats up the slowest
   minDepth = 1000  -- Depth that heats up the fastest. Also the depth at which the player takes the most burn damage.
-  undergroundDepthThreshold = 800 -- Depth that the player must be at to use the "underground" variants of some variables
 
   burnDepth = 1500  -- Depth at which the player starts burning
   minBurnDamage = 1
@@ -87,6 +88,8 @@ function init()
   sunLiquidId = 218
   materialConfigs = {}
 
+  sunscreenEffect = "v-sunscreen"
+
   undergroundTileQueryThread = coroutine.create(undergroundTileQuery)
 end
 
@@ -94,9 +97,6 @@ function update(dt)
   local pos = vec2.floor(mcontroller.position())
   local affectedTiles = {}  -- hash map
 
-  -- if pos[2] <= undergroundDepthThreshold then
-  --   return
-  -- end
   coroutine.resume(undergroundTileQueryThread, pos, affectedTiles, dt)
 
   local heightMap = surfaceTileQuery(pos, affectedTiles)
@@ -116,7 +116,7 @@ function update(dt)
   world.damageTiles(tilesToDestroy, "foreground", mcontroller.position(), "blockish", 2 ^ 32 - 1, 0)
 
   -- If the player should be burned...
-  if pos[2] <= burnDepth and isExposedForeground(heightMap) then
+  if pos[2] <= burnDepth and isExposedForeground(heightMap) and not status.uniqueStatusEffectActive(sunscreenEffect) then
     -- Update damage amount. It is a linear interpolation between maxBurnDamage and minBurnDamage, where damage grows as
     -- depth (aka y position) decreases.
     tickDamage.damageRequest.damage = interp.linear((pos[2] - minDepth) / (burnDepth - minDepth), maxBurnDamage, minBurnDamage)
@@ -152,8 +152,6 @@ function surfaceTileQuery(pos, affectedTiles)
     end
     lowestSectorsMap[sector[1]] = {y = cappedCheckMinY, capped = checkMinYWasCapped}
   end
-
-  -- world.debugText("%s", lowestSectors, vec2.add(mcontroller.position(), {0, -1}), "green")
 
   -- Generate a set of tiles that are heated right now.
   for i = checkMinX, checkMaxX do
@@ -216,30 +214,9 @@ function syncHeightMapToGlobal(heightMap)
     end
   end
 
-  -- local pos = vec2.floor(mcontroller.position())
-  -- world.debugText("startXSector: %s, endXSector: %s", startXSector, endXSector, {pos[1], pos[2] + 3}, "green")
-
-  -- local startXPosWrapped = world.xwrap(heightMap.startXPos)
   -- For each entry in the list of `heightMap`...
   for i, v in ipairs(heightMap.list) do
     local x = world.xwrap(i + heightMap.startXPos - 1)
-
-    -- do
-    --   local value
-    --   if v.type ~= "open" then
-    --     value = v.value
-    --   else
-    --     value = nil
-    --   end
-    --   local gValue
-    --   if globalHeightMap[x] and globalHeightMap[x].type ~= "open" then
-    --     gValue = globalHeightMap[x].value
-    --   else
-    --     gValue = nil
-    --   end
-    --   world.debugText("%s: %s", x, value, {x, pos[2] - (5 + x % 4)}, "green")
-    --   world.debugText("%s: %s", x, gValue, {x, pos[2] - (8 + x % 4)}, "yellow")
-    -- end
 
     --[[
       globalHeightIsValid = world.pointCollision({x, globalHeightMap[x].value})
@@ -318,14 +295,6 @@ function syncHeightMapToGlobal(heightMap)
 
     world.setProperty("v-globalHeightMap." .. xSectorWrapped, globalHeightMapSection)
   end
-
-  -- -- Convert to serialized format
-  -- globalHeightMapSerialized = {}
-  -- for x, value in pairs(globalHeightMap) do
-  --   table.insert(globalHeightMapSerialized, {x = x, value = value})
-  -- end
-
-  -- world.setProperty("v-globalHeightMap", globalHeightMapSerialized)
 end
 
 ---Coroutine function. Fills `affectedTiles` with tiles that are directly adjacent to spaces occupied by the liquid with
@@ -404,8 +373,6 @@ function undergroundTileQuery(pos, affectedTiles, dt)
         pos, affectedTiles, dt = coroutine.yield()  -- Halt for the current frame and update the arguments.
         cappedCheckMaxY = math.min(checkMaxY + pos[2], minDepth) -- Update cappedCheckMinY
       end
-      -- pos, affectedTiles, dt = coroutine.yield()  -- Halt for the current frame and update the arguments.
-      -- cappedCheckMaxY = math.min(checkMaxY + pos[2], minDepth) -- Update cappedCheckMinY
     end
 
     updateAffectedTiles(affectedTiles)
@@ -472,8 +439,6 @@ function addToHeatMap(affectedTiles, heightMap, dt)
     else
       isExposed = tile[2] <= minDepth
     end
-
-    world.debugPoint(tile, "red")
 
     -- If there is a material at this tile and it is exposed...
     if material and isExposed then

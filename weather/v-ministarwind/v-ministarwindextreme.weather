@@ -1,0 +1,64 @@
+{
+  "name" : "v-ministarwindextreme",
+
+  "particles" : [
+    {
+      "density" : 0.02,
+      "autoRotate" : true,
+
+      "particle" : {
+        "type" : "streak",
+        "size" : 1.0,
+        "color" : [220, 220, 220, 200],
+        "fade" : 0.9,
+        "position" : [0.0, 0.0],
+        "initialVelocity" : [64.0, 0.0],
+        "finalVelocity" : [0, 0.0],
+        "destructionTime" : 0.0,
+        "approach" : [0, 10],
+        "timeToLive" : 20.0,
+        "length" : 10.0,
+        "ignoreWind" : false,
+        "fullbright" : false,
+        "collidesForeground" : true,
+        "collidesLiquid" : true
+      }
+    }
+  ],
+
+  // "projectiles" : [
+  //   {
+  //     "projectile" : "v-depthweatherparticle",
+  //     "parameters" : {
+  //       "depthRange" : [1000, 2000],
+  //       "autoRotate" : true,
+  //       "particle" : {
+  //         "type" : "textured",
+  //         "image" : "/particles/v-ministarcloud/1.png",
+  //         "velocity" : [0, 0],
+  //         "approach" : [15, 15],
+  //         "light" : [64, 47, 15],
+  //         "angularVelocity" : 0,
+  //         "timeToLive" : 20,
+  //         "collidesForeground" : true,
+  //         "collidesLiquid" : true,
+  //         "destructionAction" : "shrink",
+  //         "destructionTime" : 2,
+  //         "ignoreWind" : false,
+  //         "fullbright" : true
+  //       }
+  //     },
+  //     "velocity" : [0, -100],
+  //     "ratePerX" : 1,
+  //     "spawnAboveRegion" : 0,
+  //     "spawnHorizontalPad" : 1,
+  //     "windAffectAmount" : 1
+  //   }
+  // ],
+
+  "statusEffects" : ["v-depthburning"],
+
+  "duration" : [30, 50],
+  "maximumWind" : 200.0,
+  "weatherNoises" : [ "/sfx/weather/v_ministarwindextreme.ogg" ]
+}

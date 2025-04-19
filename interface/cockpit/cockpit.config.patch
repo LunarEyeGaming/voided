@@ -424,6 +424,7 @@
         "icon" : "/interface/cockpit/weather/v-chargedground.png"
       }
     },
+
     {
       "op" : "add",
       "path" : "/displayWeathers/v-toxichaze",
@@ -438,6 +439,23 @@
       "value" : {
         "displayName" : "Strange Blobs",
         "icon" : "/interface/cockpit/weather/v-toxicblobs.png"
+      }
+    },
+
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-ministarwind",
+      "value" : {
+        "displayName" : "Solar Wind",
+        "icon" : "/interface/cockpit/weather/todo.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-ministarwindextreme",
+      "value" : {
+        "displayName" : "Coronal Hole",
+        "icon" : "/interface/cockpit/weather/todo.png"
       }
     },
     // Scripts

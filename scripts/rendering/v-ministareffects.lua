@@ -6,7 +6,6 @@ require "/scripts/v-animator.lua"
 local oldInit = init or function() end
 local oldUpdate = update or function() end
 
-local particleInterval
 local startBurningColor
 local endBurningColor
 local sunRayDimColor
@@ -17,8 +16,6 @@ local burningBlocks
 local heightMap
 
 local isActive
-
-local particleTimer
 
 function init()
   oldInit()
@@ -41,12 +38,11 @@ function init()
   heightMap = {list = {}}
   sunProximityRatio = 0
 
-  particleInterval = 0.05
+  particleInterval = 0.01
   startBurningColor = {255, 0, 0, 0}
   endBurningColor = {255, 119, 0, 255}
   sunRayDimColor = {255, 0, 0, 0}
   sunRayBrightColor = {255, 216, 107, 128}
-  particleTimer = particleInterval
 end
 
 function update(dt)
@@ -129,31 +125,26 @@ end
 function v_ministarEffects_drawParticles(color, dt)
   if sunProximityRatio == 0 then return end
 
-  particleTimer = particleTimer - dt
+  local windowRegion = world.clientWindow()
 
-  if particleTimer <= 0 then
-    local windowRegion = world.clientWindow()
+  for y = windowRegion[2], windowRegion[4] do
+    local leftPosition = {windowRegion[1], y}
 
-    local leftPosition = {windowRegion[1], math.random() * (windowRegion[4] - windowRegion[2]) + windowRegion[2]}
-    local rightPosition = {windowRegion[3], math.random() * (windowRegion[4] - windowRegion[2]) + windowRegion[2]}
+    if math.random() <= 0.02 and not world.material(leftPosition, "background") then
+      -- Note: windLevel is zero if there is a background block.
+      local leftHorizontalSpeed = world.windLevel(leftPosition)
 
-    -- Note: windLevel is zero if there is a background block.
-    local leftHorizontalSpeed = world.windLevel(leftPosition)
-    if leftHorizontalSpeed == 0 then
-      leftHorizontalSpeed = 40
-    end
-    local rightHorizontalSpeed = world.windLevel(rightPosition)
-    if rightHorizontalSpeed == 0 then
-      rightHorizontalSpeed = 40
-    end
+      if leftHorizontalSpeed == 0 then
+        leftHorizontalSpeed = 40
+      end
 
-    if not world.material(leftPosition, "background") then
       localAnimator.spawnParticle({
         type = "textured",
         image = "/particles/v-ministarcloud/1.png",
         initialVelocity = {leftHorizontalSpeed, 0},
         approach = {2, 2},
         timeToLive = 20,
+        light = {143, 99, 17},
         destructionAction = "fade",
         destructionTime = 2,
         angularVelocity = 0,
@@ -163,13 +154,21 @@ function v_ministarEffects_drawParticles(color, dt)
       }, leftPosition)
     end
 
-    if not world.material(rightPosition, "background") then
+    local rightPosition = {windowRegion[3], y}
+
+    if math.random() <= 0.02 and not world.material(rightPosition, "background") then
+      local rightHorizontalSpeed = world.windLevel(rightPosition)
+      if rightHorizontalSpeed == 0 then
+        rightHorizontalSpeed = 40
+      end
+
       localAnimator.spawnParticle({
         type = "textured",
         image = "/particles/v-ministarcloud/1.png",
         initialVelocity = {rightHorizontalSpeed, 0},
         approach = {2, 2},
         timeToLive = 20,
+        light = {143, 99, 17},
         destructionAction = "shrink",
         destructionTime = 2,
         angularVelocity = 0,
@@ -178,8 +177,8 @@ function v_ministarEffects_drawParticles(color, dt)
         color = color
       }, rightPosition)
     end
-
-    local velocity = world.entityVelocity(entity.id())
-    particleTimer = particleInterval / (math.sqrt(vec2.mag(velocity)) + 1)
   end
+
+  -- local velocity = world.entityVelocity(entity.id())
+  -- particleTimer = particleInterval / (math.sqrt(vec2.mag(velocity)) + 1)
 end
