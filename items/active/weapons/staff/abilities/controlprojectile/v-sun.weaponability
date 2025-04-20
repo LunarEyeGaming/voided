@@ -1,0 +1,17 @@
+{
+  "ability" : {
+    "type" : "v-sun",
+    "name" : "Microstar",
+    "scripts" : ["/items/active/weapons/staff/abilities/controlprojectile/controlprojectile.lua"],
+    "class" : "ControlProjectile",
+
+    "energyCost" : 300,
+
+    "maxCastRange" : 25,
+
+    "projectileType" : "v-sun",
+    "projectileParameters" : {
+      "baseDamage" : 8
+    }
+  }
+}

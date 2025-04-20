@@ -1,0 +1,100 @@
+{
+  "itemName" : "v-meteorwand",
+  "price" : 960,
+  "maxStack" : 1,
+  "level" : 8,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "<todo>",
+  "shortdescription" : "^infernite;Meteor Wand",
+  "category" : "wand",
+  "twoHanded" : false,
+  "itemTags" : ["weapon","wand"],
+  "tooltipKind" : "staff",
+
+  "animation" : "/items/active/weapons/wand/wand.animation",
+  "animationParts" : {
+    "wand" : "meteorwand.png",
+    "stone" : "stone.png",
+    "chargeEffect" : "wandglow.png"
+  },
+  "animationCustom" : {
+    "lights" : { "glow" : {
+      "color" : [74, 74, 181]
+    }}
+  },
+
+  "inventoryIcon" : "meteorwand.png",
+  // "inventoryIcon" : [
+  //   { "image" : "/projectiles/weather/smallmeteor/smallmeteor.png", "position" : [ 0, 14 ] },
+  //   { "image" : "/items/active/weapons/staff/generated/handle/1.png", "position" : [ 0, 0 ] },
+  //   { "image" : "/items/active/weapons/staff/generated/crown/2.png", "position" : [ 0, 0 ] }
+  // ],
+
+  "scripts" : ["/items/active/weapons/staff/staff.lua"],
+
+  "stances" : {
+    "idle" : {
+      "weaponOffset" : [-0.125, 1.0],
+
+      "armRotation" : -90,
+      "weaponRotation" : 0,
+      "twoHanded" : false,
+
+      "allowRotate" : false,
+      "allowFlip" : true
+    },
+    "charge" : {
+      "weaponOffset" : [0.125, 1.5],
+
+      "duration" : 1.0,
+      "armRotation" : 20,
+      "weaponRotation" : -20,
+      "twoHanded" : false,
+
+      "allowRotate" : false,
+      "allowFlip" : true
+    },
+    "charged" : {
+      "weaponOffset" : [0.125, 1.5],
+
+      "armRotation" : 20,
+      "weaponRotation" : -20,
+      "twoHanded" : false,
+
+      "allowRotate" : false,
+      "allowFlip" : true
+    },
+    "discharge" : {
+      "weaponOffset" : [0.125, 1.5],
+
+      "duration" : 0.5,
+      "armRotation" : -10,
+      "weaponRotation" : -50,
+      "twoHanded" : false,
+
+      "allowRotate" : true,
+      "allowFlip" : true
+    },
+    "cooldown" : {
+      "weaponOffset" : [-0.125, 1.0],
+
+      "duration" : 0.5,
+      "armRotation" : -45,
+      "weaponRotation" : 0,
+      "twoHanded" : false,
+
+      "allowRotate" : false,
+      "allowFlip" : true
+    }
+  },
+
+  "elementalType" : "fire",
+
+  "baseDamageFactor" : 0.5,
+  "primaryAbilityType" : "v-meteors",
+  "primaryAbility" : {
+  },
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

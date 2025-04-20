@@ -35,7 +35,6 @@ local blocks
 local bufferedBlocks
 
 local lightningBlocks
-local prevAnimLightningBlocksFront
 -- Similar in structure to an adjacency list in graph theory.
 local animLightningBlocks
 local expandWaveCalledWhileAnimLightningBlocksEmpty
@@ -190,11 +189,9 @@ function expandWave()
             table.insert(animLightningBlocksBack, adjacent)
           end
           vVec2.fSetInsert(nextLightningBlocks, adjacent)
-          world.debugPoint(vec2.add(center, adjacent), "yellow")
 
           -- Ignore blocks that are not connected to any other blocks.
           if vVec2.fSetContains(lightningBlocks, block) then
-            world.debugLine(vec2.add(center, block), vec2.add(center, adjacent), "green")
             if not animLightningBlocks[blockStr] then
               animLightningBlocks[blockStr] = {}
             end
@@ -255,7 +252,6 @@ function placeWave()
   for blockStr, adjacentBlocks in pairs(flattenedLightningBlocks) do
     local block = vVec2.fFromString(blockStr)
     for _, adjacent in ipairs(adjacentBlocks) do
-      world.debugLine(vec2.add(center, block), vec2.add(center, adjacent), "red")
       lightning:add(vec2.add(center, block), vec2.add(center, adjacent))
     end
   end
@@ -283,7 +279,6 @@ end
 function flatten(blocksMap, startBlocks)
   local flattened = {}
   for _, block in ipairs(startBlocks) do
-    world.debugPoint(vec2.add(center, block), "blue")
     local blockStr = vVec2.fToString(block)
     flattened[blockStr] = {}
     findEndBlocks(blocksMap, block, flattened[blockStr])

@@ -1,0 +1,32 @@
+{
+  "projectileName" : "v-meteorwandspawner",
+
+  "image" : "/projectiles/activeitems/staff/elementorb/fireorb.png",
+  "frameNumber" : 4,
+  "animationCycle" : 0.3,
+  "lightColor" : [110, 70, 30],
+  "fullbright" : true,
+
+  "timeToLive" : 10,
+
+  "speed" : 0,
+  "bounces" : -1,
+  "physics" : "laser",
+  "onlyHitTerrain" : true,
+
+  "scripts" : [ "/projectiles/activeitems/staff/staffprojectile.lua", "v-meteorwandspawnerplugin.lua" ],
+  "scriptDelta" : 1,
+
+  "controlMovement" : {
+    "maxSpeed" : 50,
+    "controlForce" : 500
+  },
+
+  "spawnInterval" : 0.2,
+  "fuzzAngle" : 15,
+  "meteorProjectile" : "v-meteorwand",
+  "meteorProjectileSpeed" : 50,
+  "meteorProjectileParameters" : {},
+  "meteorDamageFactor" : 1.0,
+  "spawnHeight" : 50
+}

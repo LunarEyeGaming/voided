@@ -41,7 +41,7 @@ local scriptIsEnabled
 
 function init()
   scriptIsEnabled = true
-  worldTypeWhitelist = {"v-voltage", "v-toxicwasteland"}
+  worldTypeWhitelist = {"v-voltage", "v-toxicwasteland", "v-ministar"}
 
   local worldType = world.type()
   -- If the current world type is not in the worldTypeWhitelist...

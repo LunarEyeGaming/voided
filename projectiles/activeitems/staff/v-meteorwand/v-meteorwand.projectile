@@ -1,0 +1,33 @@
+{
+  "projectileName" : "v-meteorwand",
+
+  "image" : "/projectiles/weather/smallmeteor/smallmeteor.png",
+  "frameNumber" : 1,
+  "animationCycle" : 1,
+  "emitters" : [ "sparks" ],
+  "lightColor" : [253, 160, 57],
+  "flippable" : true,
+
+  "timeToLive" : 5,
+
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/fireexplosionknockback.config"
+    }
+  ],
+
+  "power" : 1,
+  "damageKind" : "default",
+  "damageType" : "NoDamage",
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+
+  "speed" : 50,
+  "bounces" : 0,
+  "physics" : "grenade",
+
+  "scripts" : [ "v-meteorwand.lua" ],
+  "scriptDelta" : 1,
+
+  "maxTargetRange" : 5
+}
