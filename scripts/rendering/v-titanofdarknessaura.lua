@@ -7,12 +7,14 @@ local oldUpdate = update or function() end
 
 local fadeTime
 local particleInterval
+
 local bgStartColor
 local bgEndColor
 local fgStartColor
 local fgEndColor
 local bgRenderLayer
 local fgRenderLayer
+
 local minFallOffDistance
 local maxFallOffDistance
 
@@ -31,6 +33,7 @@ function init()
 
   fadeTime = 10
   particleInterval = 0.5
+
   bgStartColor = {94, 113, 128, 0}
   bgEndColor = {18, 5, 20, 255}
   fgStartColor = {94, 113, 128, 0}
@@ -78,14 +81,6 @@ function v_titanOfDarknessAura_updateTitanPosition()
 
   -- If the promise has finished...
   if titanPositionPromise:finished() then
-    -- -- If the promise succeeded...
-    -- if titanPositionPromise:succeeded() then
-    --   -- Update position
-    --   titanPosition = titanPositionPromise:result()
-    -- else
-    --   -- Set position to nil.
-    --   titanPosition = nil
-    -- end
     titanPosition = titanPositionPromise:result()
 
     -- Unset promise

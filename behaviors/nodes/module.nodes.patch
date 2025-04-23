@@ -1026,5 +1026,44 @@
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-downspitter2-fire",
+    "value": {
+      "type": "module",
+      "name": "v-downspitter2-fire",
+      "title": "",
+      "properties": {
+        "aimAtTarget": {"type": "json", "value": true},
+        "aimDirection": {"type": "json", "value": [1, 0]},
+        "damageRepeatGroup": {"type": "json", "value": "monsterfire"},
+        "faceTarget": {"type": "json", "value": true},
+        "fireArc": {"type": "json", "value": false},
+        "fireDelay": {"type": "json", "value": 0},
+        "fireOffset": {"type": "json", "value": [0, 0]},
+        "fireOffsets": {"type": "json", "value": []},
+        "fireParticleBurst": {"type": "json", "value": ""},
+        "fireSound": {"type": "json", "value": "fire"},
+        "fireState": {"type": "json", "value": "fire"},
+        "fireStateType": {"type": "json", "value": "body"},
+        "highArc": {"type": "json", "value": false},
+        "holdAim": {"type": "json", "value": false},
+        "inaccuracy": {"type": "json", "value": 0},
+        "projectileCount": {"type": "json", "value": 1},
+        "projectileInterval": {"type": "json", "value": 0.25},
+        "projectileParameters": {"type": "json", "value": {}},
+        "projectileSpeed": {"type": "json", "value": 0},
+        "projectileType": {"type": "json", "value": "standardbullet"},
+        "rotateAim": {"type": "json", "value": false},
+        "rotationCenter": {"type": "json", "value": [0, 0]},
+        "skillName": {"type": "json", "value": ""},
+        "winddownState": {"type": "json", "value": "firewinddown"},
+        "windupState": {"type": "json", "value": "firewindup"},
+        "windupState2": {"type": "json", "value": "firewindup2"},
+        "windupTime2": {"type": "json", "value": 0.25}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-downspitter2fire.behavior"
+    }
   }
 ]
