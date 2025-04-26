@@ -14,22 +14,22 @@
 
   "animation" : "/items/active/weapons/wand/wand.animation",
   "animationParts" : {
-    "wand" : "/items/active/weapons/wand/generated/handle/1.png",
-    "stone" : "/projectiles/guns/unsorted/lightglobes/orangeglobe/orangeglobe.png:0",
-    "chargeEffect" : ""
+    "wand" : "sunwand.png",
+    "stone" : "stone.png",
+    "chargeEffect" : "wandglow.png"
   },
   "animationCustom" : {
     "lights" : { "glow" : {
-      "color" : [74, 74, 181]
+      "color" : [218, 83, 2]
     }}
   },
 
-  // "inventoryIcon" : "electrictrapwand.png",
-  "inventoryIcon" : [
-    { "image" : "/projectiles/guns/unsorted/lightglobes/orangeglobe/orangeglobe.png:0", "position" : [ 0, 14 ] },
-    { "image" : "/items/active/weapons/staff/generated/handle/1.png", "position" : [ 0, 0 ] },
-    { "image" : "/items/active/weapons/staff/generated/crown/2.png", "position" : [ 0, 0 ] }
-  ],
+  "inventoryIcon" : "sunwand.png",
+  // "inventoryIcon" : [
+  //   { "image" : "/projectiles/guns/unsorted/lightglobes/orangeglobe/orangeglobe.png:0", "position" : [ 0, 14 ] },
+  //   { "image" : "/items/active/weapons/staff/generated/handle/1.png", "position" : [ 0, 0 ] },
+  //   { "image" : "/items/active/weapons/staff/generated/crown/2.png", "position" : [ 0, 0 ] }
+  // ],
 
   "scripts" : ["/items/active/weapons/staff/staff.lua"],
 

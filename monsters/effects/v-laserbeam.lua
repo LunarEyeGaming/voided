@@ -1,6 +1,8 @@
 require "/scripts/vec2.lua"
 require "/scripts/util.lua"
 
+-- This is a copy of /items/active/effects/laserbeam.lua changed to be used for monsters.
+
 function update()
   localAnimator.clearDrawables()
   local beams = animationConfig.animationParameter("beams") or {}

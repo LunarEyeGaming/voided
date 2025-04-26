@@ -1,6 +1,6 @@
 {
-  "projectileName" : "v-giantpoisoncloudghost",
-  "image" : "giantpoisoncloud.png",
+  "projectileName" : "v-downspittercloud",
+  "image" : "/projectiles/guns/clouds/largecloud/largepoisoncloud.png",
   "physics" : "illusion",
   "renderLayer" : "ForegroundEntity+10",
   "frameNumber" : 13,
@@ -9,7 +9,7 @@
   "speed" : 15,
   "timeToLive" : 1.5,
   "bounces" : -1,
-  "damagePoly" : [ [-32, 0], [-24, -24], [0, -32], [24, -24], [32, 0], [24, 24], [0, 32], [-24, 24] ],
+  "damagePoly" : [ [-16, 0], [-12, -12], [0, -16], [12, -12], [16, 0], [12, 12], [0, 16], [-12, 12] ],
   "piercing" : true,
   "emitters" : [ ],
   "damageKind" : "poison",
