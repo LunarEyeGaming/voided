@@ -43,3 +43,15 @@ function update(dt)
   end
 
 end
+
+-- function uninit()
+--   -- Remove set bonus effects
+--   for _, bonusEffect in pairs(setBonuses) do
+--     if type(bonusEffect) == "table" then
+--       setBonusEffect = bonusEffect["effect"]
+--     else
+--       setBonusEffect = bonusEffect
+--     end
+--     status.removeEphemeralEffect(setBonusEffect)
+--   end
+-- end

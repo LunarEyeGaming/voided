@@ -1,0 +1,14 @@
+{
+  "name" : "v-infernitehead",
+
+  "effectConfig" : {
+    "chestEffect" : "v-infernitechestplate",
+    "pantsEffect" : "v-infernitepants",
+    "setBonuses" : [{"effect" : "v-infernitesetbonus", "duration" : 1}]
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "/stats/effects/v-setbonuses/v-setbonuscheck.lua"
+  ]
+}
