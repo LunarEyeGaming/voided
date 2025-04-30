@@ -8,7 +8,6 @@ local projectileConfig
 
 local fireballActive
 local projectileId
-local invulGroupId
 
 function init()
   level = 8
@@ -26,19 +25,27 @@ function update(dt)
   local speed = vec2.mag(velocity)
   local angle = vec2.angle(velocity)
 
+  -- This code effectively triggers only once (activation edge).
   if speed >= speedThreshold and not fireballActive then
     projectileId = world.spawnProjectile(damageProjectileType, mcontroller.position(), entity.id(),
     velocity, false, projectileConfig)
-    invulGroupId = effect.addStatModifierGroup({{stat = "invulnerable", amount = 1}})
+    -- effect.addStatModifierGroup({{stat = "invulnerable", amount = 1}})
+
     animator.setAnimationState("fireball", "on")
+    animator.burstParticleEmitter("flames")
     animator.playSound("activate")
     animator.playSound("active", -1)
+
     fireballActive = true
   end
 
+  if fireballActive then
+    status.addEphemeralEffect("invulnerable", 0.1)
+  end
+
+  -- Deactivation edge.
   if speed < speedThreshold and fireballActive then
     world.sendEntityMessage(projectileId, "kill")
-    effect.removeStatModifierGroup(invulGroupId)
     animator.setAnimationState("fireball", "off")
     animator.playSound("deactivate")
     animator.stopAllSounds("active")

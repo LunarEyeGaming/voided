@@ -130,7 +130,9 @@ function v_ministarEffects_drawParticles(color, dt)
   for y = windowRegion[2], windowRegion[4] do
     local leftPosition = {windowRegion[1], y}
 
-    if math.random() <= 0.02 and not world.material(leftPosition, "background") then
+    if math.random() <= 0.02
+        and not world.material(leftPosition, "background")
+        and not world.underground(leftPosition) then
       -- Note: windLevel is zero if there is a background block.
       local leftHorizontalSpeed = world.windLevel(leftPosition)
 
@@ -156,7 +158,9 @@ function v_ministarEffects_drawParticles(color, dt)
 
     local rightPosition = {windowRegion[3], y}
 
-    if math.random() <= 0.02 and not world.material(rightPosition, "background") then
+    if math.random() <= 0.02
+        and not world.material(rightPosition, "background")
+        and not world.underground(rightPosition) then
       local rightHorizontalSpeed = world.windLevel(rightPosition)
       if rightHorizontalSpeed == 0 then
         rightHorizontalSpeed = 40

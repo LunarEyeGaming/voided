@@ -52,7 +52,7 @@ function destroy()
     local maxSpeed = config.getParameter("maxProjectileSpeed")
     local baseDamage = config.getParameter("baseProjectileDamage")
     local maxDamage = config.getParameter("maxProjectileDamage")
-    local explosionAction = config.getParameter("explosionAction")
+    local explosionActions = config.getParameter("explosionActions")
 
     local params = {
       speed = maxSpeed and math.min(maxSpeed, baseSpeed * flamePotency) or baseSpeed * flamePotency,
@@ -63,16 +63,19 @@ function destroy()
 
     local ownPos = mcontroller.position()
 
-    -- Spawn projectiles in a 360-degree spread.
-    for i = 1, projectileCount do
-      local angle = 2 * math.pi * i / projectileCount
+    spawnProjectileRing(projectileType, vec2.add(ownPos, offset), projectileCount, params)
 
-      world.spawnProjectile(projectileType, vec2.add(ownPos, offset), projectile.sourceEntity(), vec2.withAngle(angle),
-      false, params)
-    end
-
-    if explosionAction then
-      projectile.processAction(explosionAction)
+    if explosionActions then
+      -- Sort explosion actions by potency threshold in descending order.
+      table.sort(explosionActions, function(action1, action2)
+        return action1.potencyThreshold > action2.potencyThreshold
+      end)
+      -- Process the first action with a threshold that is less than or equal to flamePotency.
+      for _, action in ipairs(explosionActions) do
+        if flamePotency >= action.potencyThreshold then
+          projectile.processAction(action)
+        end
+      end
     end
   end
 end
@@ -105,11 +108,17 @@ function broadcastMergeRequests()
   local queried = world.entityQuery(mcontroller.position(), mergeRadius, {includedTypes = {"projectile"},
       withoutEntityId = entity.id()})
 
-  -- Merge with other bolts
+  -- Merge with other flames
   for _, id in ipairs(queried) do
-    -- awaitingMerge = true
-    -- sb.logInfo("Before message %s", entity.id())
     table.insert(mergePromises, world.sendEntityMessage(id, "v-inferniteMerge", entity.id()))
-    -- sb.logInfo("After message %s", entity.id())
+  end
+end
+
+function spawnProjectileRing(type_, pos, count, params)
+  -- Spawn projectiles in a 360-degree spread.
+  for i = 1, count do
+    local angle = 2 * math.pi * i / count
+
+    world.spawnProjectile(type_, pos, projectile.sourceEntity(), vec2.withAngle(angle), false, params)
   end
 end

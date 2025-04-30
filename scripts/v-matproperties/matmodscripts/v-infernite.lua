@@ -10,7 +10,7 @@ function ModProperty.update(position, layer)
   -- If the radio message was not sent and the player is close enough...
   if not cuedRadioMessage and world.magnitude(position, mcontroller.position()) < radioMessageRange then
     -- Make SAIL caution the player about mining this ore.
-    world.sendEntityMessage(player.id(), "queueRadioMessage", "v-voltite")
+    world.sendEntityMessage(player.id(), "queueRadioMessage", "v-infernite")
     cuedRadioMessage = true
   end
 

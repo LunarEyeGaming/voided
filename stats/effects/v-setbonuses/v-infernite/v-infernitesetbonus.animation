@@ -51,6 +51,7 @@
   "particleEmitters" : {
     "flames" : {
       "emissionRate" : 50,
+      "burstCount" : 10,
       "offsetRegion" : [-2.5, -2.5, 2.5, 2.5],
       "particles" : [
         {"particle" : "fireswoosh1"},

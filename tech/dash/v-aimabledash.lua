@@ -1,10 +1,14 @@
 require "/tech/doubletap.lua"
 require "/scripts/vec2.lua"
 
+-- State variables
 local dashDirection
 local dashTimer
 local dashCooldownTimer
 local rechargeEffectTimer
+local heldUpLastTick
+
+-- Parameters
 local dashControlForce
 local dashSpeed
 local dashDuration
@@ -13,7 +17,6 @@ local groundOnly
 local stopAfterDash
 local rechargeDirectives
 local rechargeEffectTime
-local heldUpLastTick
 
 function init()
   dashDirection = 0
@@ -29,8 +32,6 @@ function init()
   stopAfterDash = config.getParameter("stopAfterDash")
   rechargeDirectives = config.getParameter("rechargeDirectives", "?fade=CCCCFFFF=0.25")
   rechargeEffectTime = config.getParameter("rechargeEffectTime", 0.1)
-
-  animator.setAnimationState("dashing", "off")
 end
 
 function uninit()
@@ -39,14 +40,7 @@ function uninit()
 end
 
 function update(args)
-  if dashCooldownTimer > 0 then
-    dashCooldownTimer = math.max(0, dashCooldownTimer - args.dt)
-    if dashCooldownTimer == 0 then
-      rechargeEffectTimer = rechargeEffectTime
-      tech.setParentDirectives(rechargeDirectives)
-      animator.playSound("recharge")
-    end
-  end
+  updateRecharge(args.dt)
 
   if rechargeEffectTimer > 0 then
     rechargeEffectTimer = math.max(0, rechargeEffectTimer - args.dt)
@@ -58,7 +52,7 @@ function update(args)
   if args.moves["up"]
       and not heldUpLastTick
       and dashTimer == 0
-      and dashCooldownTimer == 0
+      and canDash()
       and groundValid()
       and not mcontroller.crouching()
       and not status.statPositive("activeMovementAbilities") then
@@ -66,7 +60,6 @@ function update(args)
     local direction = vec2.norm(world.distance(tech.aimPosition(), mcontroller.position()))
     startDash(direction)
   end
-  -- doubleTap:update(args.dt, args.moves)
 
   if dashTimer > 0 then
     mcontroller.controlApproachVelocity(vec2.mul(dashDirection, dashSpeed), dashControlForce)
@@ -88,6 +81,10 @@ function update(args)
   heldUpLastTick = args.moves["up"]
 end
 
+function canDash()
+  return dashCooldownTimer == 0
+end
+
 function groundValid()
   return mcontroller.groundMovement() or not groundOnly
 end
@@ -97,7 +94,6 @@ function startDash(direction)
   dashTimer = dashDuration
   status.setPersistentEffects("movementAbility", {{stat = "activeMovementAbilities", amount = 1}})
   animator.playSound("startDash")
-  animator.setAnimationState("dashing", "on")
   animator.setParticleEmitterActive("dashParticles", true)
 end
 
@@ -115,6 +111,20 @@ function endDash()
 
   dashCooldownTimer = dashCooldown
 
-  animator.setAnimationState("dashing", "off")
   animator.setParticleEmitterActive("dashParticles", false)
+end
+
+function updateRecharge(dt)
+  if dashCooldownTimer > 0 then
+    dashCooldownTimer = math.max(0, dashCooldownTimer - dt)
+    if dashCooldownTimer == 0 then
+      triggerRecharge()
+    end
+  end
+end
+
+function triggerRecharge()
+  rechargeEffectTimer = rechargeEffectTime
+  tech.setParentDirectives(rechargeDirectives)
+  animator.playSound("recharge")
 end
