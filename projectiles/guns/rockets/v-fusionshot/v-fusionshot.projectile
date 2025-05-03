@@ -3,7 +3,7 @@
   "image" : "fusionshot.png",
   "animationCycle" : 0.5,
   "frameNumber" : 2,
-  "lightColor" : [72, 131, 47],
+  "lightColor" : [77, 134, 253],
   "pointLight" : true,
   "fullbright" : true,
 
@@ -14,7 +14,7 @@
   "power" : 10.0,
   "damageType" : "NoDamage",
   "damageKind" : "default",
-  
+
   "periodicActions" : [
     {
       "time" : 0.05,
@@ -32,10 +32,10 @@
       }
     }
   ],
-  
+
   "scripts" : ["/scripts/projectiles/v-merger.lua"],
   "scriptDelta" : 1,
-  
+
   "mergeRadius" : 3,
   "nonMergeAction" : {
     "action" : "config",

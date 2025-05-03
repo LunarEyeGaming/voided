@@ -5,12 +5,10 @@ local oldInit = init or function() end
 local oldUpdate = update or function() end
 local oldUninit = uninit or function() end
 
--- TODO: Put fearLevel in storage (somehow).
--- TODO: Make fearLevel -math.huge if the player has killed the Titan.
-
 -- Parameters
 local fearIncreaseRate
-local fearDecayRate
+local fearDecreaseRate
+local victoryFearDecreaseMultiplier
 local maxFearDistance
 local sleepStatuses
 
@@ -34,8 +32,9 @@ function init()
   oldInit()
 
   fearIncreaseRate = 0.3 / 120
-  fearDecayRate = 0.99
-  maxFearDistance = 150
+  fearDecreaseRate = 1 / 7200
+  victoryFearDecreaseMultiplier = 0.1
+  maxFearDistance = 200
   sleepStatuses = {"bed1", "bed2", "bed3", "bed4", "bed5", "bed6"}
 
   -- fearLevel = 0
@@ -48,8 +47,12 @@ function init()
 
   vTime.addInterval(1, function()
     if not v_titanHallucination_nearTitan() then
-      fearLevel = fearLevel * fearDecayRate
+      fearLevel = math.max(0, fearLevel - fearDecreaseRate)
     end
+  end)
+
+  message.setHandler("v-titanHallucination-victory", function()
+    fearLevel = fearLevel * victoryFearDecreaseMultiplier
   end)
 
   hMaxTime = 60 * 15
@@ -82,7 +85,7 @@ function update(dt)
 
   oldUpdate(dt)
 
-  -- world.debugText("fearLevel: %s", fearLevel, vec2.add(entity.position(), {0, -5}), "green")
+  -- world.debugText("fearLevel: %s, shouldHallucinate: %s", fearLevel, shouldHallucinate, vec2.add(entity.position(), {0, -5}), "green")
 
   vTime.update(dt)
 

@@ -11,9 +11,11 @@ local endBurningColor
 local sunRayDimColor
 local sunRayBrightColor
 local sunProximityRatio
+local particleDensity
 
 local burningBlocks
 local heightMap
+
 
 local isActive
 
@@ -43,6 +45,7 @@ function init()
   endBurningColor = {255, 119, 0, 255}
   sunRayDimColor = {255, 0, 0, 0}
   sunRayBrightColor = {255, 216, 107, 128}
+  particleDensity = 0.02
 end
 
 function update(dt)
@@ -130,7 +133,7 @@ function v_ministarEffects_drawParticles(color, dt)
   for y = windowRegion[2], windowRegion[4] do
     local leftPosition = {windowRegion[1], y}
 
-    if math.random() <= 0.02
+    if math.random() <= particleDensity
         and not world.material(leftPosition, "background")
         and not world.underground(leftPosition) then
       -- Note: windLevel is zero if there is a background block.
@@ -158,7 +161,7 @@ function v_ministarEffects_drawParticles(color, dt)
 
     local rightPosition = {windowRegion[3], y}
 
-    if math.random() <= 0.02
+    if math.random() <= particleDensity
         and not world.material(rightPosition, "background")
         and not world.underground(rightPosition) then
       local rightHorizontalSpeed = world.windLevel(rightPosition)

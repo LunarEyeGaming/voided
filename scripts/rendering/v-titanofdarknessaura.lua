@@ -6,7 +6,7 @@ local oldInit = init or function() end
 local oldUpdate = update or function() end
 
 local fadeTime
-local particleInterval
+local particleDensity
 
 local bgStartColor
 local bgEndColor
@@ -23,8 +23,6 @@ local titanPosition
 local distance
 local fadeTimer
 
-local particleTimer
-
 function init()
   oldInit()
   -- message.setHandler("v-titanOfDarknessAura-activate", function(_, _, id)
@@ -32,7 +30,7 @@ function init()
   -- end)
 
   fadeTime = 10
-  particleInterval = 0.5
+  particleDensity = 0.001
 
   bgStartColor = {94, 113, 128, 0}
   bgEndColor = {18, 5, 20, 255}
@@ -46,7 +44,6 @@ function init()
 
   distance = 0
   fadeTimer = 0
-  particleTimer = particleInterval
 end
 
 function update(dt)
@@ -122,62 +119,119 @@ end
 function v_titanOfDarknessAura_drawParticles(dt)
   if fadeTimer == 0 then return end
 
-  particleTimer = particleTimer - dt
+  local windowRegion = world.clientWindow()
 
-  if particleTimer <= 0 then
-    local fallOffAmount = 1 - math.max(0, distance - minFallOffDistance) / (maxFallOffDistance - minFallOffDistance)
-    local windowRegion = world.clientWindow()
+  local fallOffAmount = 1 - math.max(0, distance - minFallOffDistance) / (maxFallOffDistance - minFallOffDistance)
+  local color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, bgStartColor, bgEndColor)
 
-    local leftPosition = {windowRegion[1], math.random() * (windowRegion[4] - windowRegion[2]) + windowRegion[2]}
-    local rightPosition = {windowRegion[3], math.random() * (windowRegion[4] - windowRegion[2]) + windowRegion[2]}
+  for y = windowRegion[2], windowRegion[4] do
+    local leftPosition = {windowRegion[1], y}
 
-    -- Note: windLevel is zero if there is a background block.
-    local leftHorizontalSpeed = world.windLevel(leftPosition)
-    if leftHorizontalSpeed == 0 then
-      leftHorizontalSpeed = 10
+    if math.random() <= particleDensity then
+      -- Note: windLevel is zero if there is a background block.
+      local leftHorizontalSpeed = world.windLevel(leftPosition)
+
+      if leftHorizontalSpeed == 0 then
+        leftHorizontalSpeed = 10
+      end
+
+      localAnimator.spawnParticle({
+          type = "textured",
+          image = "/particles/images/v-titanparticles.png",
+          initialVelocity = {leftHorizontalSpeed, 0},
+          approach = {2, 2},
+          timeToLive = 10,
+          destructionAction = "fade",
+          destructionTime = 5,
+          angularVelocity = 0,
+          layer = "front",
+          color = color,
+          variance = {
+            angularVelocity = 12,
+            initialVelocity = {0, 10},
+            finalVelocity = {0, 10}
+          }
+        }, leftPosition)
     end
-    local rightHorizontalSpeed = world.windLevel(rightPosition)
-    if rightHorizontalSpeed == 0 then
-      rightHorizontalSpeed = 10
+
+    local rightPosition = {windowRegion[3], y}
+
+    if math.random() <= particleDensity then
+      -- Note: windLevel is zero if there is a background block.
+      local rightHorizontalSpeed = world.windLevel(rightPosition)
+
+      if rightHorizontalSpeed == 0 then
+        rightHorizontalSpeed = 10
+      end
+
+      localAnimator.spawnParticle({
+        type = "textured",
+        image = "/particles/images/v-titanparticles.png",
+        initialVelocity = {rightHorizontalSpeed, 0},
+        approach = {2, 2},
+        timeToLive = 10,
+        destructionAction = "fade",
+        destructionTime = 5,
+        angularVelocity = 0,
+        layer = "front",
+        color = color,
+        variance = {
+          angularVelocity = 12,
+          initialVelocity = {0, 10},
+          finalVelocity = {0, 10}
+        }
+      }, rightPosition)
     end
-
-    localAnimator.spawnParticle({
-      type = "textured",
-      image = "/particles/images/v-titanparticles.png",
-      initialVelocity = {leftHorizontalSpeed, 0},
-      approach = {2, 2},
-      timeToLive = 10,
-      destructionAction = "fade",
-      destructionTime = 5,
-      angularVelocity = 0,
-      layer = "front",
-      color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, bgStartColor, bgEndColor),
-      variance = {
-        angularVelocity = 12,
-        initialVelocity = {0, 10},
-        finalVelocity = {0, 10}
-      }
-    }, leftPosition)
-
-    localAnimator.spawnParticle({
-      type = "textured",
-      image = "/particles/images/v-titanparticles.png",
-      initialVelocity = {rightHorizontalSpeed, 0},
-      approach = {2, 2},
-      timeToLive = 10,
-      destructionAction = "fade",
-      destructionTime = 5,
-      angularVelocity = 0,
-      layer = "front",
-      color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, bgStartColor, bgEndColor),
-      variance = {
-        angularVelocity = 12,
-        initialVelocity = {0, 10},
-        finalVelocity = {0, 10}
-      }
-    }, rightPosition)
-
-    local velocity = world.entityVelocity(entity.id())
-    particleTimer = particleInterval / (math.sqrt(vec2.mag(velocity)) + 1)
   end
+    -- local windowRegion = world.clientWindow()
+
+    -- local leftPosition = {windowRegion[1], math.random() * (windowRegion[4] - windowRegion[2]) + windowRegion[2]}
+    -- local rightPosition = {windowRegion[3], math.random() * (windowRegion[4] - windowRegion[2]) + windowRegion[2]}
+
+    -- -- Note: windLevel is zero if there is a background block.
+    -- local leftHorizontalSpeed = world.windLevel(leftPosition)
+    -- if leftHorizontalSpeed == 0 then
+    --   leftHorizontalSpeed = 10
+    -- end
+
+    -- localAnimator.spawnParticle({
+    --   type = "textured",
+    --   image = "/particles/images/v-titanparticles.png",
+    --   initialVelocity = {leftHorizontalSpeed, 0},
+    --   approach = {2, 2},
+    --   timeToLive = 10,
+    --   destructionAction = "fade",
+    --   destructionTime = 5,
+    --   angularVelocity = 0,
+    --   layer = "front",
+    --   color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, bgStartColor, bgEndColor),
+    --   variance = {
+    --     angularVelocity = 12,
+    --     initialVelocity = {0, 10},
+    --     finalVelocity = {0, 10}
+    --   }
+    -- }, leftPosition)
+
+    -- local rightHorizontalSpeed = world.windLevel(rightPosition)
+    -- if rightHorizontalSpeed == 0 then
+    --   rightHorizontalSpeed = 10
+    -- end
+
+    -- localAnimator.spawnParticle({
+    --   type = "textured",
+    --   image = "/particles/images/v-titanparticles.png",
+    --   initialVelocity = {rightHorizontalSpeed, 0},
+    --   approach = {2, 2},
+    --   timeToLive = 10,
+    --   destructionAction = "fade",
+    --   destructionTime = 5,
+    --   angularVelocity = 0,
+    --   layer = "front",
+    --   color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, bgStartColor, bgEndColor),
+    --   variance = {
+    --     angularVelocity = 12,
+    --     initialVelocity = {0, 10},
+    --     finalVelocity = {0, 10}
+    --   }
+    -- }, rightPosition)
 end

@@ -76,7 +76,9 @@
             "title": "v_titanStun",
             "type": "action",
             "name": "v_titanStun",
-            "parameters": {}
+            "parameters": {
+              "stunRange": {"value": 200}
+            }
           },
           {
             "title": "v_titanMusic",
@@ -672,10 +674,78 @@
                                     ]
                                   },
                                   {
-                                    "title": "v-titanofdarkness-disappear",
-                                    "type": "module",
-                                    "name": "v-titanofdarkness-disappear",
-                                    "parameters": {}
+                                    "title": "sequence",
+                                    "type": "composite",
+                                    "name": "sequence",
+                                    "parameters": {},
+                                    "children": [
+                                      {
+                                        "title": "succeeder",
+                                        "type": "decorator",
+                                        "name": "succeeder",
+                                        "parameters": {},
+                                        "child": {
+                                          "title": "sequence",
+                                          "type": "composite",
+                                          "name": "sequence",
+                                          "parameters": {},
+                                          "children": [
+                                            {
+                                              "title": "playersInWorld",
+                                              "type": "action",
+                                              "name": "playersInWorld",
+                                              "parameters": {},
+                                              "output": {
+                                                "list": "players"
+                                              }
+                                            },
+                                            {
+                                              "title": "each",
+                                              "type": "decorator",
+                                              "name": "each",
+                                              "parameters": {
+                                                "list": {"key": "players"},
+                                                "type": {"value": "entity"}
+                                              },
+                                              "child": {
+                                                "title": "sequence",
+                                                "type": "composite",
+                                                "name": "sequence",
+                                                "parameters": {},
+                                                "children": [
+                                                  {
+                                                    "title": "entityInRange",
+                                                    "type": "action",
+                                                    "name": "entityInRange",
+                                                    "parameters": {
+                                                      "entity": {"key": "eachItem"},
+                                                      "position": {"key": "self"},
+                                                      "range": {"value": 150}
+                                                    }
+                                                  },
+                                                  {
+                                                    "title": "sendEntityMessage",
+                                                    "type": "action",
+                                                    "name": "sendEntityMessage",
+                                                    "parameters": {
+                                                      "arguments": {"value": []},
+                                                      "entity": {"key": "eachItem"},
+                                                      "message": {"value": "v-titanHallucination-victory"}
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        "title": "v-titanofdarkness-disappear",
+                                        "type": "module",
+                                        "name": "v-titanofdarkness-disappear",
+                                        "parameters": {}
+                                      }
+                                    ]
                                   }
                                 ]
                               }

@@ -31,7 +31,7 @@ function update(args)
 
   oldUpdate(args)
 
-  world.debugText("stamina: %s\nprevStamina: %s\nnextRechargeThreshold: %s", stamina, prevStamina, nextRechargeThreshold, vec2.add(mcontroller.position(), {0, -5}), "green")
+  -- world.debugText("stamina: %s\nprevStamina: %s\nnextRechargeThreshold: %s", stamina, prevStamina, nextRechargeThreshold, vec2.add(mcontroller.position(), {0, -5}), "green")
 
   prevStamina = stamina
 end

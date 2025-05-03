@@ -7,39 +7,48 @@
   "power" : 10,
   "timeToLive" : 1.5,
   "actionOnReap" : [ ],
+  "damagePoly" : [[8.0, 0.0], [5.657, 5.657], [0.0, 8.0], [-5.657, 5.657], [-8.0, 0.0], [-5.657, -5.657], [-0.0, -8.0], [5.657, -5.657]],
   "periodicActions" : [
     {
       "time" : 0.02,
-      "action" : "loop",
-      "count" : 1,
-      "body" : [
-        {
-          "action" : "particle",
-          "specification" : {
-            "type" : "animated",
-            "animation" : "/animations/mediumflamefire/mediumflamefire.animation",
-            "position" : [0, 0],
-            "initialVelocity" : [0, 0.0],
-            "finalVelocity" : [0, 0.0],
-            "approach" : [1, 1],
-            "size" : 1.0,
-            "timeToLive" : 0.6,
-            "layer" : "middle",
-            "fullbright" : true,
-            "light" : [160, 30, 30],
-            "collidesForeground" : false,
-            "variance" : {
-              "position" : [0.2, 0.2],
-              "initialVelocity" : [1, 1]
-            }
-          }
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/mediumflamefire/mediumflamefire.animation",
+        "position" : [0, 0],
+        "initialVelocity" : [0, 0.0],
+        "finalVelocity" : [0, 0.0],
+        "approach" : [1, 1],
+        "size" : 1.0,
+        "timeToLive" : 0.6,
+        "layer" : "middle",
+        "fullbright" : true,
+        "light" : [160, 30, 30],
+        "collidesForeground" : false,
+        "variance" : {
+          "position" : [0.2, 0.2],
+          "initialVelocity" : [1, 1]
         }
-      ]
+      }
+    },
+    {
+      "time" : 0.0,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-rockvaporcannonflametrail",
+      "inheritDamageFactor" : 1
+    },
+    {
+      "time" : 0.2,
+      "action" : "projectile",
+      "type" : "v-rockvaporcannonflametrail",
+      "inheritDamageFactor" : 1
     }
   ],
   "animationLoops" : false,
   "flippable" : true,
   "fullbright" : true,
   "piercing" : true,
-  "damageKind" : "fire"
+  "damageKind" : "fire",
+  "statusEffects" : ["burning"]
 }

@@ -1,0 +1,17 @@
+{
+  "projectileName" : "v-rockvaporcannonflametrail",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "laser",
+  "frameNumber" : 1,
+  "speed" : 0,
+  "power" : 10,
+  "timeToLive" : 0.5,
+  "actionOnReap" : [ ],
+  "damagePoly" : [[48.0, 0.0], [33.941, 5.656], [0.0, 8.0], [-33.941, 5.656], [-48.0, 0.0], [-33.941, -5.656], [-0.0, -8.0], [33.941, -5.656]],
+  "animationLoops" : false,
+  "flippable" : true,
+  "fullbright" : true,
+  "piercing" : true,
+  "damageKind" : "fire",
+  "statusEffects" : ["burning"]
+}
