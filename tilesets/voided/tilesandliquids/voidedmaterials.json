@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":31,
+ "tilecount":33,
  "tiledversion":"1.11.0",
  "tileheight":8,
  "tileproperties":
@@ -115,6 +115,15 @@
      "30":
         {
          "material":"v-sunspotstone"
+        },
+     "31":
+        {
+         "liquid":"v-sun"
+        },
+     "32":
+        {
+         "liquid":"v-sun",
+         "source":"true"
         },
      "4":
         {
@@ -245,6 +254,15 @@
      "30":
         {
          "material":"string"
+        },
+     "31":
+        {
+         "liquid":"string"
+        },
+     "32":
+        {
+         "liquid":"string",
+         "source":"string"
         },
      "4":
         {
@@ -420,6 +438,18 @@
      "30":
         {
          "image":"..\/images\/tilesandliquids\/sunspotstone.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "31":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidsun.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "32":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidsunsource.png",
          "imageheight":8,
          "imagewidth":8
         },
