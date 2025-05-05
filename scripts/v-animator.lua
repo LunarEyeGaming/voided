@@ -47,6 +47,26 @@ function vAnimator.lerpColor(ratio, colorA, colorB)
   }
 end
 
+---Uncapped version of `vAnimator.lerpColor`.
+---
+---WARNING: This function does not check if `colorA` or `colorB` represent valid values, or that `ratio` is between 0
+---and 1 inclusive.
+---
+---Requires: None
+---@param ratio number The amount of progress in the interpolation
+---@param colorA ColorTable Starting color
+---@param colorB ColorTable Ending color
+---@return ColorTable
+function vAnimator.lerpColorU(ratio, colorA, colorB)
+  -- Return the linear interpolation of colorA and colorB with ratio, capped between 0 and 255 and in integer form.
+  return {
+    math.floor(colorA[1] + (colorB[1] - colorA[1]) * ratio),
+    math.floor(colorA[2] + (colorB[2] - colorA[2]) * ratio),
+    math.floor(colorA[3] + (colorB[3] - colorA[3]) * ratio),
+    math.floor(colorA[4] + (colorB[4] - colorA[4]) * ratio)
+  }
+end
+
 ---Returns the linear interpolation between two RGB colors with a given ratio. Result is in integer form and capped
 ---between 0 and 255.
 ---

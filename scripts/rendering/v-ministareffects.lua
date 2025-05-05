@@ -12,6 +12,7 @@ local sunRayDimColor
 local sunRayBrightColor
 local sunProximityRatio
 local particleDensity
+local blockDrawable
 
 local burningBlocks
 local heightMap
@@ -46,6 +47,13 @@ function init()
   sunRayDimColor = {255, 0, 0, 0}
   sunRayBrightColor = {255, 216, 107, 128}
   particleDensity = 0.02
+  blockDrawable = {  -- Construct table once. position and color will change.
+    line = {{0, 0.5}, {1, 0.5}},
+    width = 8,
+    position = {0, 0},  -- Placeholder value
+    color = {0, 0, 0, 0},  -- Placeholder value
+    fullbright = true
+  }
 end
 
 function update(dt)
@@ -67,35 +75,7 @@ function update(dt)
 
   local sunRayColor = vAnimator.lerpColor(sunProximityRatio, sunRayDimColor, sunRayBrightColor)
 
-  -- For each horizontal strip in heightMap...
-  for i, v in ipairs(heightMap.list) do
-    local x = i + heightMap.startXPos - 1
-
-    -- If x is within window boundaries...
-    if window[1] <= x and x <= window[3] then
-      local bottomY = math.max(heightMap.minHeight, window[2])
-      local relativePos = vec2.sub({x, bottomY}, predictedPos)
-
-      -- If the value is not "completelyObstructed"...
-      if v.type ~= "completelyObstructed" then
-        -- Determine the y value to use (window[4] is the top of the screen)
-        y = v.type == "partiallyObstructed" and math.min(v.value, window[4]) or window[4]
-
-        -- Check if y is above the bottom point of the sun ray.
-        if y > bottomY then
-          -- Draw a line from the bottom of the screen to y.
-          localAnimator.addDrawable({
-            line = {{0.5, -1}, {0.5, y - bottomY}},
-            width = 8,
-            position = relativePos,
-            color = sunRayColor,
-            fullbright = true
-          }, "Liquid-1")
-          -- print(5)
-        end
-      end
-    end
-  end
+  v_ministarEffects_drawSunRays(predictedPos, sunRayColor, window)
 
   v_ministarEffects_drawParticles(sunRayColor, dt)
 end
@@ -105,22 +85,97 @@ end
 ---@param dt number
 ---@param window RectI
 function v_ministarEffects_drawBurningBlocks(predictedPos, dt, window)
+  local blockRenderLayer = "ForegroundEntity-1"
   -- For each block in burningBlocks...
   for _, block in ipairs(burningBlocks) do
     -- If the block is visible inside of the window...
     if window[1] <= block.pos[1] and block.pos[1] <= window[3] then
-      local relativePos = vec2.sub(block.pos, predictedPos)
-
       -- Draw a square at that position
-      localAnimator.addDrawable({
-        line = {{0, 0.5}, {1, 0.5}},
-        width = 8,
-        position = relativePos,
-        color = vAnimator.lerpColor(block.heat / block.heatTolerance, startBurningColor, endBurningColor),
-        fullbright = true
-      }, "ForegroundEntity-1")
+      blockDrawable.position = vec2.sub(block.pos, predictedPos)
+      blockDrawable.color = vAnimator.lerpColorU(block.heat / block.heatTolerance, startBurningColor, endBurningColor)
+      -- blockDrawable.color = vAnimator.lerpColor(block.heat / block.heatTolerance, startBurningColor, endBurningColor)
+      -- vAnimator.lerpColorO(block.heat / block.heatTolerance, startBurningColor, endBurningColor, blockDrawable.color)
+      localAnimator.addDrawable(blockDrawable, blockRenderLayer)
 
-      block.heat = block.heat + dt  -- Continue increasing the heat.
+      block.heat = block.heat + block.heatDeltaDir * dt  -- Continue increasing the heat.
+    end
+  end
+end
+
+-- ---Draws the burning blocks, also updating their heat.
+-- ---@param predictedPos Vec2F
+-- ---@param dt number
+-- ---@param window RectI
+-- function v_ministarEffects_drawBurningBlocks(predictedPos, dt, window)
+--   -- For each block in burningBlocks...
+--   for _, block in ipairs(burningBlocks) do
+--     -- If the block is visible inside of the window...
+--     if window[1] <= block.pos[1] and block.pos[1] <= window[3] then
+--       local relativePos = vec2.sub(block.pos, predictedPos)
+
+--       -- Draw a square at that position
+--       localAnimator.addDrawable({
+--         line = {{0, 0.5}, {1, 0.5}},
+--         width = 8,
+--         position = relativePos,
+--         color = vAnimator.lerpColor(block.heat / block.heatTolerance, startBurningColor, endBurningColor),
+--         fullbright = true
+--       }, "ForegroundEntity-1")
+
+--       block.heat = block.heat + dt  -- Continue increasing the heat.
+--     end
+--   end
+-- end
+
+function v_ministarEffects_drawSunRays(predictedPos, color, window)
+  local sunRayDrawable = {
+    line = true,  -- Placeholder
+    width = 8,
+    position = true,  -- Placeholder
+    color = color,
+    fullbright = true
+  }
+  -- For each horizontal strip in heightMap...
+  for i, v in ipairs(heightMap.list) do
+    local x = i + heightMap.startXPos - 1
+
+    -- If x is within window boundaries...
+    if window[1] <= x and x <= window[3] then
+      local topY = v.maxValue
+      -- local bottomY = math.max(heightMap.minHeight, window[2])
+      local bottomY = heightMap.minHeight
+      local relativePos = vec2.sub({x, bottomY}, predictedPos)
+
+      -- world.debugText("%s", topY, {x, predictedPos[2]})
+
+      -- -- If the value is not "completelyObstructed"...
+      -- if v.type ~= "completelyObstructed" then
+      --   -- Determine the y value to use (window[4] is the top of the screen)
+      --   y = v.type == "partiallyObstructed" and math.min(v.value, window[4]) or window[4]
+
+      --   -- Check if y is above the bottom point of the sun ray.
+      --   if y > bottomY then
+      --     -- Draw a line from the bottom of the screen to y.
+      --     localAnimator.addDrawable({
+      --       line = {{0.5, -1}, {0.5, y - bottomY}},
+      --       width = 8,
+      --       position = relativePos,
+      --       color = sunRayColor,
+      --       fullbright = true
+      --     }, "Liquid-1")
+      --     -- print(5)
+      --   end
+      -- end
+      -- localAnimator.addDrawable({
+      --   line = {{0.5, -1}, {0.5, topY - bottomY}},
+      --   width = 8,
+      --   position = relativePos,
+      --   color = color,
+      --   fullbright = true
+      -- }, "Liquid-1")
+      sunRayDrawable.line = {{0.5, -1}, {0.5, topY - bottomY}}
+      sunRayDrawable.position = relativePos
+      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
     end
   end
 end

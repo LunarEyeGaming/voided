@@ -24,6 +24,7 @@ local checkMaxX
 local checkMinY
 local checkMaxY
 
+local solidCollisionSet
 local collisionSet
 local sunLiquidId
 local materialConfigs
@@ -42,15 +43,14 @@ local SECTOR_SIZE = 32
 ---@field list HeightMapItem[] the list of height map values.
 
 ---@class HeightMapItem
----@field type "partiallyObstructed" | "completelyObstructed" | "open"
----@field value integer? defined if type is not "open". The y value in world space given.
----@field minValue integer? defined if type is "open". The minimum y value used for scanning.
----@field maxValue integer? defined if type is "open". The maximum y value used for scanning.
+---@field minValue integer the lowest y value to use
+---@field maxValue integer the highest y value to use
 
 ---@class HeatedTile
 ---@field pos Vec2I
 ---@field heatTolerance number
 ---@field heat number
+---@field heatDeltaDir number
 
 function init()
   -- Do not run this script on planets that are not of type "v-ministar"
@@ -84,6 +84,7 @@ function init()
   checkMinY = -100
   checkMaxY = 100
 
+  solidCollisionSet = {"Block"}
   collisionSet = {"Block", "Platform"}
   sunLiquidId = 218
   materialConfigs = {}
@@ -173,22 +174,71 @@ function surfaceTileQuery(pos, affectedTiles)
     end
 
     if shouldProceed then
-      local collidePointPair = world.lineTileCollisionPoint({x, cappedCheckMinY}, {x, checkMaxY + pos[2]}, collisionSet)
-      if collidePointPair then
-        local collidePoint = collidePointPair[1]
-        world.debugPoint(collidePoint, "green")
-        -- Round the tile's position to the nearest integer
-        local collideTile = {math.floor(collidePoint[1] + 0.5), math.floor(collidePoint[2] + 0.5)}
+      local collidePoints = world.collisionBlocksAlongLine({x, cappedCheckMinY}, {x, checkMaxY + pos[2]}, collisionSet)
+
+      -- local collidePoint = collidePoints[1]
+      -- world.debugPoint(collidePoint, "green")
+      -- -- Round the tile's position to the nearest integer
+      -- local collideTile = {math.floor(collidePoint[1] + 0.5), math.floor(collidePoint[2] + 0.5)}
+      -- local collideTileStr = vVec2.iToString(collideTile)
+      -- affectedTiles[collideTileStr] = true
+      -- -- Add to height map.
+      -- heightMap.list[i - checkMinX + 1] = {type = "partiallyObstructed", value = collideTile[2]}
+
+      -- Mark all tiles as affected. Stop after reaching the first solid, opaque tile.
+      local foundSolidTile = false
+      for _, collideTile in ipairs(collidePoints) do
         local collideTileStr = vVec2.iToString(collideTile)
         affectedTiles[collideTileStr] = true
-
-        -- Add to height map.
-        heightMap.list[i - checkMinX + 1] = {type = "partiallyObstructed", value = collideTile[2]}
-      else
-        heightMap.list[i - checkMinX + 1] = {type = "open", minValue = cappedCheckMinY, maxValue = checkMaxY + pos[2]}
+        -- if world.pointTileCollision(collideTile, solidCollisionSet) then
+        --   local material = world.material(collideTile, "foreground")
+        --   if material then
+        --     local matCfg = getMaterialConfig(material)
+        --     if matCfg and not matCfg.renderParameters.lightTransparent then
+        --       -- Add to height map.
+        --       heightMap.list[i - checkMinX + 1] = {type = "partiallyObstructed", value = collideTile[2]}
+        --       foundSolidTile = true
+        --       break
+        --     end
+        --   end
+        --   -- -- Add to height map.
+        --   -- heightMap.list[i - checkMinX + 1] = {type = "partiallyObstructed", value = collideTile[2]}
+        --   -- foundSolidTile = true
+        --   -- break
+        -- end
+        local material = world.material(collideTile, "foreground")
+        if material then
+          local matCfg = getMaterialConfig(material)
+          if matCfg and not matCfg.renderParameters.lightTransparent and matCfg.collisionKind == "solid" then
+            -- Add to height map.
+            heightMap.list[i - checkMinX + 1] = {minValue = cappedCheckMinY, maxValue = collideTile[2]}
+            foundSolidTile = true
+            break
+          end
+        end
       end
+
+      -- Manually set the heightMap entry if no solid, opaque tile was found, or collidePoints is empty.
+      if not foundSolidTile then
+        heightMap.list[i - checkMinX + 1] = {minValue = cappedCheckMinY, maxValue = checkMaxY + pos[2]}
+      end
+
+      -- local collidePointPair = world.lineTileCollisionPoint({x, cappedCheckMinY}, {x, checkMaxY + pos[2]}, collisionSet)
+      -- if collidePointPair then
+      --   local collidePoint = collidePointPair[1]
+      --   world.debugPoint(collidePoint, "green")
+      --   -- Round the tile's position to the nearest integer
+      --   local collideTile = {math.floor(collidePoint[1] + 0.5), math.floor(collidePoint[2] + 0.5)}
+      --   local collideTileStr = vVec2.iToString(collideTile)
+      --   affectedTiles[collideTileStr] = true
+
+      --   -- Add to height map.
+      --   heightMap.list[i - checkMinX + 1] = {type = "partiallyObstructed", value = collideTile[2]}
+      -- else
+      --   heightMap.list[i - checkMinX + 1] = {type = "open", minValue = cappedCheckMinY, maxValue = checkMaxY + pos[2]}
+      -- end
     else
-      heightMap.list[i - checkMinX + 1] = {type = "completelyObstructed"}
+      heightMap.list[i - checkMinX + 1] = {minValue = cappedCheckMinY, maxValue = cappedCheckMinY}
     end
   end
 
@@ -240,45 +290,64 @@ function syncHeightMapToGlobal(heightMap)
         local and global <-- local
     ]]
 
-    -- If there is no corresponding entry in `globalHeightMap` or the type of `v` is `completelyObstructed`...
-    if not globalHeightMap[x] or v.type == "completelyObstructed" then
+    if not globalHeightMap[x] then
       globalHeightMap[x] = v
-    else  -- Otherwise, `globalHeightMap[x]` is defined and the type of `v` is not `completelyObstructed`.
+    else
       local globalV = globalHeightMap[x]
-      local sharedValue
 
-      -- If the global value type is `partiallyObstructed`...
-      if globalV.type == "partiallyObstructed" then
-        local tilePos = {x, globalV.value}
-        -- `globalHeightIsValid` is true if the position at `tilePos` is occupied by a block or is not loaded.
-        local globalHeightIsValid = world.pointTileCollision(tilePos, {"Null", "Block", "Platform"})
-
-        -- If `globalHeightIsValid` is false, or if the local value type is `partiallyObstructed` and its value is less
-        -- than the global value...
-        if not globalHeightIsValid or v.type == "partiallyObstructed" and v.value < globalV.value then
-          sharedValue = v
-        else
-          sharedValue = globalV
-        end
-      -- Otherwise, if the global value type is `completelyObstructed`...
-      elseif globalV.type == "completelyObstructed" then
-        local tilePos = {x, minDepth - 1}
-        -- `globalHeightIsValid` is true if either the position at `tilePos` is not loaded or it does not have sun
-        -- liquid.
-        local globalHeightIsValid = world.pointTileCollision(tilePos, {"Null"})
-        if not globalHeightIsValid then
-          local liquid = world.liquidAt(tilePos)
-          globalHeightIsValid = not liquid or liquid[1] ~= sunLiquidId
-        end
-
-        -- Use global value if valid, otherwise local value.
-        sharedValue = globalHeightIsValid and globalV or v
-      else  -- Otherwise, the global value type is `open`
-        sharedValue = v  -- Use local value.
+      local sharedValue = {
+        minValue = math.min(globalV.minValue, v.minValue),
+        maxValue = true  -- Placeholder value to avoid rehashing.
+      }
+      if v.maxValue < globalV.maxValue or not world.pointCollision({x, globalV.maxValue}, {"Null"}) then
+        sharedValue.maxValue = v.maxValue
+      else
+        sharedValue.maxValue = globalV.maxValue
       end
+
       heightMap.list[i] = sharedValue
       globalHeightMap[x] = sharedValue
     end
+
+  --   -- If there is no corresponding entry in `globalHeightMap` or the type of `v` is `completelyObstructed`...
+  --   if not globalHeightMap[x] or v.type == "completelyObstructed" then
+  --     globalHeightMap[x] = v
+  --   else  -- Otherwise, `globalHeightMap[x]` is defined and the type of `v` is not `completelyObstructed`.
+  --     local globalV = globalHeightMap[x]
+  --     local sharedValue
+
+  --     -- If the global value type is `partiallyObstructed`...
+  --     if globalV.type == "partiallyObstructed" then
+  --       local tilePos = {x, globalV.value}
+  --       -- `globalHeightIsValid` is true if the position at `tilePos` is occupied by a block or is not loaded.
+  --       local globalHeightIsValid = world.pointTileCollision(tilePos, {"Null", "Block", "Platform"})
+
+  --       -- If `globalHeightIsValid` is false, or if the local value type is `partiallyObstructed` and its value is less
+  --       -- than the global value...
+  --       if not globalHeightIsValid or v.type == "partiallyObstructed" and v.value < globalV.value then
+  --         sharedValue = v
+  --       else
+  --         sharedValue = globalV
+  --       end
+  --     -- Otherwise, if the global value type is `completelyObstructed`...
+  --     elseif globalV.type == "completelyObstructed" then
+  --       local tilePos = {x, minDepth - 1}
+  --       -- `globalHeightIsValid` is true if either the position at `tilePos` is not loaded or it does not have sun
+  --       -- liquid.
+  --       local globalHeightIsValid = world.pointTileCollision(tilePos, {"Null"})
+  --       if not globalHeightIsValid then
+  --         local liquid = world.liquidAt(tilePos)
+  --         globalHeightIsValid = not liquid or liquid[1] ~= sunLiquidId
+  --       end
+
+  --       -- Use global value if valid, otherwise local value.
+  --       sharedValue = globalHeightIsValid and globalV or v
+  --     else  -- Otherwise, the global value type is `open`
+  --       sharedValue = v  -- Use local value.
+  --     end
+  --     heightMap.list[i] = sharedValue
+  --     globalHeightMap[x] = sharedValue
+  --   end
   end
 
   -- Store globalHeightMap sections.
@@ -397,6 +466,7 @@ function processHeatMap(affectedTiles, dt)
     -- If the tile is in affectedTiles...
     if affectedTiles[tilePosHash] then
       tile.heat = tile.heat + dt
+      tile.heatDeltaDir = 1
 
       if tile.heat > tile.heatTolerance then
         table.insert(tilesToDestroy, tile.pos)
@@ -410,6 +480,7 @@ function processHeatMap(affectedTiles, dt)
       table.remove(heatMap, i)
     else
       tile.heat = tile.heat - dt
+      tile.heatDeltaDir = -1
 
       if tile.heat <= 0 then
         table.remove(heatMap, i)
@@ -431,14 +502,7 @@ function addToHeatMap(affectedTiles, heightMap, dt)
     local material = world.material(tile, "foreground")
 
     local heightMapValue = heightMap.list[tile[1] - heightMap.startXPos + 1]
-    local isExposed  -- Whether or not the affected tile is exposed (and therefore should be burned).
-    if not heightMapValue or heightMapValue.type == "open" then
-      isExposed = true
-    elseif heightMapValue.type == "partiallyObstructed" then
-      isExposed = tile[2] <= heightMapValue.value
-    else
-      isExposed = tile[2] <= minDepth
-    end
+    local isExposed = not heightMapValue or tile[2] <= heightMapValue.maxValue  -- Whether or not the affected tile is exposed (and therefore should be burned).
 
     -- If there is a material at this tile and it is exposed...
     if material and isExposed then
@@ -447,24 +511,20 @@ function addToHeatMap(affectedTiles, heightMap, dt)
 
       -- If the tolerance multiplier is at most 1 and the tile is not unmeltable...
       if not unmeltableMaterials[material] and toleranceMultiplier <= 1.0 then
-        -- Register material if it is valid and is not already registered.
-        if not materialConfigs[material] then
-          local matConfigAndPath = root.materialConfig(material)
-          if matConfigAndPath then
-            local matConfig = matConfigAndPath.config
-            materialConfigs[material] = {
-              falling = matConfig.falling
-            }
-          end
-        end
+        local matCfg = getMaterialConfig(material)
         local tileConfig = cfg.tileConfigs[material]
         local toleranceOffset = 0
         if tileConfig and tileConfig.toleranceOffset then
           toleranceOffset = tileConfig.toleranceOffset
         end
-        local baseTolerance = materialConfigs[material].falling and cfg.fallingTileDefaultTolerance or cfg.defaultTolerance
+        local baseTolerance
+        if matCfg then
+          baseTolerance = matCfg.falling and cfg.fallingTileDefaultTolerance or cfg.defaultTolerance
+        else
+          baseTolerance = cfg.defaultTolerance
+        end
         local tolerance = baseTolerance * toleranceMultiplier + toleranceOffset
-        table.insert(heatMap, {pos = tile, heat = 0, heatTolerance = tolerance > dt and tolerance or 0})
+        table.insert(heatMap, {pos = tile, heat = 0, heatTolerance = tolerance > dt and tolerance or 0, heatDeltaDir = 1})
       end
     end
   end
@@ -482,8 +542,8 @@ function isExposedForeground(heightMap)
   for x = boundBox[1], boundBox[3] do
     local heightMapItem = heightMap.list[math.floor(x) - heightMap.startXPos + 1]
 
-    -- If the height map item type is `open` or it is `partiallyObstructed` and its value is greater than y...
-    if heightMapItem.type == "open" or heightMapItem.type == "partiallyObstructed" and heightMapItem.value > y then
+    -- If the height map's maxValue is greater than y...
+    if heightMapItem.maxValue > y then
       return true
     end
   end
@@ -532,4 +592,24 @@ function findLowestLoadedSectors(xStart, xEnd, yStart)
   end
 
   return lowestSectors
+end
+
+---Gets the material config, caching what is relevant if it is not already cached.
+---@param material string
+---@return Json?
+function getMaterialConfig(material)
+  -- Register material if it is valid and is not already registered.
+  if not materialConfigs[material] then
+    local matConfigAndPath = root.materialConfig(material)
+    if matConfigAndPath then
+      local matConfig = matConfigAndPath.config
+      materialConfigs[material] = {
+        falling = matConfig.falling,
+        renderParameters = matConfig.renderParameters,
+        collisionKind = matConfig.collisionKind or "solid"
+      }
+    end
+  end
+
+  return materialConfigs[material]
 end
