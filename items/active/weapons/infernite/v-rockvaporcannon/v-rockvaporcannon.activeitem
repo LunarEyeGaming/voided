@@ -23,12 +23,11 @@
     "sounds" : {
       "fireStart" : [ "/sfx/npc/boss/dragonboss_fireball1.ogg" ],
       "fireLoop" : ["/sfx/objects/flametrap_loop.ogg"],
-      "fireEnd" : [ "/sfx/gun/flamethrower_stop.ogg" ],
-      "altFire" : [ "/sfx/gun/dragonhead_charged_fire1.ogg" ]
+      "fireEnd" : [ "/sfx/gun/flamethrower_stop.ogg" ]
     }
   },
-  "baseOffset" : [0.5, 0.75],
-  "muzzleOffset" : [1.0, 0.0],
+  "baseOffset" : [0.5, 0.375],
+  "muzzleOffset" : [1.5, 0.375],
 
   "scripts" : ["/items/active/weapons/ranged/gun.lua"],
 
@@ -41,19 +40,7 @@
     "projectileType" : "v-rockvaporcannonflame"
   },
 
-  // "altAbilityType" : "grenadelaunchernosprite",
-  // "altAbility" : {
-  //   "elementalConfig" : {
-  //     "fire" : {
-  //       "projectileType" : "v-rockvaporcannonbomb"
-  //     }
-  //   },
-  //   "fireTime" : 2.5,
-  //   "projectileCount" : 3,
-  //   "inaccuracy" : 0.08,
-  //   "energyUsage" : 30,
-  //   "baseDps" : 50
-  // },
+  "altAbilityType" : "v-pointblankblast",
 
   "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
 }
