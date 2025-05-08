@@ -1,0 +1,24 @@
+{
+  "materialId" : 1213,
+  "materialName" : "v-sunspotglass",
+  "particleColor" : [0, 0, 0, 255],
+  "itemDrop" : "glassmaterial",
+  "description" : "<todo>",
+  "shortdescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_glass.ogg",
+  "health" : 4,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-sunspotglass.png",
+    "variants" : 5,
+    "lightTransparent" : true,
+    "occludesBelow" : false,
+    "multiColored" : true,
+    "zLevel" : 470
+  }
+}

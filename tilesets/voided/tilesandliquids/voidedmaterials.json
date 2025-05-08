@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":33,
+ "tilecount":34,
  "tiledversion":"1.11.0",
  "tileheight":8,
  "tileproperties":
@@ -124,6 +124,10 @@
         {
          "liquid":"v-sun",
          "source":"true"
+        },
+     "33":
+        {
+         "material":"v-sunspotglass"
         },
      "4":
         {
@@ -263,6 +267,10 @@
         {
          "liquid":"string",
          "source":"string"
+        },
+     "33":
+        {
+         "material":"string"
         },
      "4":
         {
@@ -450,6 +458,12 @@
      "32":
         {
          "image":"..\/images\/tilesandliquids\/liquidsunsource.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "33":
+        {
+         "image":"..\/images\/tilesandliquids\/sunspotglass.png",
          "imageheight":8,
          "imagewidth":8
         },

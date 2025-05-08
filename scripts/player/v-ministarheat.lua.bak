@@ -5,9 +5,6 @@ require "/scripts/rect.lua"
 require "/scripts/v-vec2.lua"
 require "/scripts/statuseffects/v-tickdamage.lua"
 
--- Invalidate global height map segments with:
--- /entityeval for x = 0, world.size()[1] // 32 do world.setProperty("v-globalHeightMap." .. x .. ".0", nil) end
-
 local cfg
 local unmeltableMaterials
 
@@ -26,7 +23,6 @@ local checkMinX
 local checkMaxX
 local checkMinY
 local checkMaxY
-local maxPenetration
 
 local solidCollisionSet
 local collisionSet
@@ -87,7 +83,6 @@ function init()
   checkMaxX = 100
   checkMinY = -100
   checkMaxY = 100
-  maxPenetration = 40  -- Maximum number of transparent blocks to penetrate.
 
   solidCollisionSet = {"Block"}
   collisionSet = {"Block", "Platform"}
@@ -179,15 +174,15 @@ function surfaceTileQuery(pos, affectedTiles)
     end
 
     if shouldProceed then
-      local collidePoints = world.collisionBlocksAlongLine({x, cappedCheckMinY}, {x, checkMaxY + pos[2]}, collisionSet, maxPenetration)
+      local collidePoints = world.collisionBlocksAlongLine({x, cappedCheckMinY}, {x, checkMaxY + pos[2]}, collisionSet)
 
       -- Mark all tiles as affected. Stop after reaching the first solid, opaque tile.
       local foundSolidTile = false
       for _, collideTile in ipairs(collidePoints) do
+        local collideTileStr = vVec2.iToString(collideTile)
+        affectedTiles[collideTileStr] = true
         local material = world.material(collideTile, "foreground")
         if material then
-          local collideTileStr = vVec2.iToString(collideTile)
-          affectedTiles[collideTileStr] = true
           local matCfg = getMaterialConfig(material)
           if matCfg and not matCfg.renderParameters.lightTransparent and matCfg.collisionKind == "solid" then
             -- Add to height map.
@@ -293,6 +288,7 @@ function undergroundTileQuery(pos, affectedTiles, dt)
     for tilePosHash, _ in pairs(rollingAffectedTiles) do
       local tilePos = vVec2.iFromString(tilePosHash)
 
+      -- If the tile is no longer occupied...
       if not world.pointTileCollision(tilePos, collisionSet) then
         rollingAffectedTiles[tilePosHash] = nil  -- Clear the entry.
 
@@ -313,7 +309,7 @@ function undergroundTileQuery(pos, affectedTiles, dt)
       rollingAffectedTiles[tilePosHash] = true
     end
 
-    -- Halt for one tick if too much time has passed.
+    -- If the time elapsed exceeds dt * 0.00001...
     if os.clock() - startTime > dt * 0.0001 then
       updateAffectedTiles(affectedTiles)
       pos, affectedTiles, dt = coroutine.yield()  -- Halt for the current frame and update the arguments.
@@ -339,7 +335,7 @@ function undergroundTileQuery(pos, affectedTiles, dt)
           (world.pointTileCollision(tilePos, collisionSet) and isAdjacentToSunLiquid(tilePos)) or nil
       end
       -- If the time elapsed exceeds dt * 0.0000001...
-      if os.clock() - startTime > dt * 0.001 then
+      if os.clock() - startTime > dt * 0.0001 then
         updateAffectedTiles(affectedTiles)
         pos, affectedTiles, dt = coroutine.yield()  -- Halt for the current frame and update the arguments.
         cappedCheckMaxY = math.min(checkMaxY + pos[2], minDepth) -- Update cappedCheckMinY
@@ -444,7 +440,8 @@ function isExposedForeground(heightMap)
   for x = boundBox[1], boundBox[3] do
     local heightMapItem = heightMap.list[math.floor(x) - heightMap.startXPos + 1]
 
-    if heightMapItem.minValue < y and y < heightMapItem.maxValue then
+    -- If the height map's maxValue is greater than y...
+    if heightMapItem.maxValue > y then
       return true
     end
   end
