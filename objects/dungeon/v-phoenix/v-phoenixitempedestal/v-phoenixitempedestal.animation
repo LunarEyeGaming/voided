@@ -1,0 +1,64 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "pedestal" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {},
+          "activating" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "active"
+          },
+          "active" : {},
+          "deactivating" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "inactive"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "pedestal" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1
+        },
+
+        "partStates" : {
+          "pedestal" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "<partImage>:inactive.<frame>"
+              }
+            },
+            "activating" : {
+              "properties" : {
+                "image" : "<partImage>:activating.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            },
+            "deactivating" : {
+              "properties" : {
+                "image" : "<partImage>:deactivating.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "sounds" : {
+    "activate" : [ "/sfx/objects/hiddenswitch1.ogg" ],
+    "deactivate" : [ "/sfx/objects/tinywallswitch.ogg" ]
+  }
+}

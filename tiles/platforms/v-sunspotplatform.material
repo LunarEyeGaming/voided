@@ -1,0 +1,23 @@
+{
+  "materialId" : 1217,
+  "materialName" : "v-sunspotplatform",
+  "collisionKind" : "platform",
+  "itemDrop" : "v-sunspotplatformmaterial",
+  "shortdescription" : "<todo>",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_stone2.ogg",
+  "category" : "Supports",
+
+  "renderTemplate" : "/tiles/platformtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-sunspotplatform.png",
+    "variants" : 3,
+    "lightTransparent" : true,
+    "occludesBelow" : false,
+    "multiColored" : true,
+    "zLevel" : 0
+  }
+}

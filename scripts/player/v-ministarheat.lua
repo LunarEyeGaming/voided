@@ -46,9 +46,7 @@ local SECTOR_SIZE = 32
 ---@field minHeight integer the minimum height to use
 ---@field list HeightMapItem[] the list of height map values.
 
----@class HeightMapItem
----@field minValue integer the lowest y value to use
----@field maxValue integer the highest y value to use
+---@alias HeightMapItem integer
 
 ---@class HeatedTile
 ---@field pos Vec2I
@@ -191,7 +189,7 @@ function surfaceTileQuery(pos, affectedTiles)
           local matCfg = getMaterialConfig(material)
           if matCfg and not matCfg.renderParameters.lightTransparent and matCfg.collisionKind == "solid" then
             -- Add to height map.
-            heightMap.list[i - checkMinX + 1] = {minValue = cappedCheckMinY, maxValue = collideTile[2]}
+            heightMap.list[i - checkMinX + 1] = collideTile[2]
             foundSolidTile = true
             break
           end
@@ -200,10 +198,10 @@ function surfaceTileQuery(pos, affectedTiles)
 
       -- Manually set the heightMap entry if no solid, opaque tile was found, or collidePoints is empty.
       if not foundSolidTile then
-        heightMap.list[i - checkMinX + 1] = {minValue = cappedCheckMinY, maxValue = checkMaxY + pos[2]}
+        heightMap.list[i - checkMinX + 1] = checkMaxY + pos[2]
       end
     else
-      heightMap.list[i - checkMinX + 1] = {minValue = cappedCheckMinY, maxValue = cappedCheckMinY}
+      heightMap.list[i - checkMinX + 1] = cappedCheckMinY
     end
   end
 
@@ -238,14 +236,11 @@ function syncHeightMapToGlobal(heightMap)
     else
       local globalV = globalHeightMap[x]
 
-      local sharedValue = {
-        minValue = math.min(globalV.minValue, v.minValue),
-        maxValue = true  -- Placeholder value to avoid rehashing.
-      }
-      if v.maxValue < globalV.maxValue or not world.pointCollision({x, globalV.maxValue}, {"Null"}) then
-        sharedValue.maxValue = v.maxValue
+      local sharedValue
+      if v < globalV or not world.pointCollision({x, globalV}, {"Null"}) then
+        sharedValue = v
       else
-        sharedValue.maxValue = globalV.maxValue
+        sharedValue = globalV
       end
 
       heightMap.list[i] = sharedValue
@@ -404,7 +399,7 @@ function addToHeatMap(affectedTiles, heightMap, dt)
     local material = world.material(tile, "foreground")
 
     local heightMapValue = heightMap.list[tile[1] - heightMap.startXPos + 1]
-    local isExposed = not heightMapValue or tile[2] <= heightMapValue.maxValue  -- Whether or not the affected tile is exposed (and therefore should be burned).
+    local isExposed = not heightMapValue or tile[2] <= heightMapValue  -- Whether or not the affected tile is exposed (and therefore should be burned).
 
     -- If there is a material at this tile and it is exposed...
     if material and isExposed then
@@ -444,7 +439,7 @@ function isExposedForeground(heightMap)
   for x = boundBox[1], boundBox[3] do
     local heightMapItem = heightMap.list[math.floor(x) - heightMap.startXPos + 1]
 
-    if heightMapItem.minValue < y and y < heightMapItem.maxValue then
+    if minDepth < y and y < heightMapItem then
       return true
     end
   end

@@ -40,10 +40,22 @@ function update(dt, fireMode, shiftHeld)
   if storage.firing and animator.animationState("firing") == "off" then
     if player then
       local tech = config.getParameter("unlockedTech")
-      if not contains(player.enabledTechs(), tech) then
-        player.makeTechAvailable(tech)
-        player.enableTech(tech)
+      local equipTech = config.getParameter("forceEquipTech")
 
+      local techIsUnlocked = contains(player.enabledTechs(), tech)
+
+      if not techIsUnlocked or equipTech then
+        if not techIsUnlocked then
+          player.makeTechAvailable(tech)
+          player.enableTech(tech)
+        end
+
+        if equipTech then
+          player.equipTech(tech)
+        end
+
+        -- As this uses currencies for notifications, programmers adding a new tech chip should change the text
+        -- according to whether or not forceEquipTech is true.
         player.giveItem(config.getParameter("unlockedTechNotifierName"))
 
         item.consume(1)

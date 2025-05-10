@@ -1,0 +1,84 @@
+{
+  "objectName" : "v-phoenixitempedestal",
+  "colonyTags" : ["storage"],
+  "rarity" : "Common",
+  "objectType" : "container",
+  "tooltipKind" : "container",
+  "printable" : false,
+
+  "category" : "storage",
+  "price" : 70,
+  "description" : "This pedestal is rigged to something.",
+  "shortdescription" : "Phoenix Item Pedestal",
+  "race" : "avian",
+  "health" : 1.5,
+
+  // "apexDescription" : "<todo>",
+  // "avianDescription" : "<todo>",
+  // "floranDescription" : "<todo>",
+  // "glitchDescription" : "<todo>",
+  // "humanDescription" : "<todo>",
+  // "hylotlDescription" : "<todo>",
+  // "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "phoenixitempedestal.png:inactive.1",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "phoenixitempedestal.png:inactive.1" } ],
+      "imagePosition" : [-8, 0],
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "pedestal" : "phoenixitempedestal.png"
+      },
+
+      "direction" : "left",
+      "flipImages" : true,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "imageLayers" : [ { "image" : "phoenixitempedestal.png:inactive.1" } ],
+      "imagePosition" : [-8, 0],
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "pedestal" : "phoenixitempedestal.png"
+      },
+
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "animation" : "v-phoenixitempedestal.animation",
+
+  "initialItems" : [ "v-aimablemultidashtechchip" ],
+
+  "outputNodes" : [ [0, 0] ],
+  "scripts" : [ "/objects/wired/v-wiredlock.lua" ],
+  "acceptedItems" : [ "v-aimablemultidashtechchip" ],
+  "deleteItem" : false,
+
+  "unlockStateType" : "pedestal",
+
+  "unlockingState" : "activating",
+  "lockingState" : "deactivating",
+  "unlockedState" : "active",
+  "lockedState" : "inactive",
+
+  "unlockSound" : "activate",
+  "lockSound" : "deactivate",
+
+  "openSounds" : [ "/sfx/other/v_silence.ogg" ],
+  "closeSounds" : [ "/sfx/other/v_silence.ogg" ],
+  "slotCount" : 1,
+  "uiConfig" : "/interface/chests/chest<slots>.config",
+  "frameCooldown" : 5,
+  "autoCloseCooldown" : 3600,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

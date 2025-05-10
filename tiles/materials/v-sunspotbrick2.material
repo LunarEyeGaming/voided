@@ -1,0 +1,24 @@
+{
+  "materialId" : 1215,
+  "materialName" : "v-sunspotbrick2",
+  "particleColor" : [92, 90, 87, 255],
+  "itemDrop" : "v-sunspotbrick2material",
+  "shortdescription" : "<todo>",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_stone3.ogg",
+  "health" : 16,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-sunspotbrick2.png",
+    "variants" : 10,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 3220
+  }
+}
