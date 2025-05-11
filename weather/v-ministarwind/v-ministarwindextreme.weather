@@ -23,56 +23,37 @@
         "collidesForeground" : true,
         "collidesLiquid" : true
       }
-    },
-    {
-      "density" : 0.01,
-      "autoRotate" : false,
-
-      "particle" : {
-        "type" : "animated",
-        "animation" : "/animations/mediumflame/mediumflame.animation",
-        "initialVelocity" : [0.0, 0.0],
-        "position" : [0, 0],
-        "light" : [218, 83, 2],
-        "timeToLive" : 0.6,
-        "fade" : 1.67,
-        "ignoreWind" : false,
-        "fullbright" : true,
-        "collidesForeground" : true,
-        "collidesLiquid" : true
-      }
     }
   ],
 
-  // "projectiles" : [
-  //   {
-  //     "projectile" : "v-depthweatherparticle",
-  //     "parameters" : {
-  //       "depthRange" : [1000, 2000],
-  //       "autoRotate" : true,
-  //       "particle" : {
-  //         "type" : "textured",
-  //         "image" : "/particles/v-ministarcloud/1.png",
-  //         "velocity" : [0, 0],
-  //         "approach" : [15, 15],
-  //         "light" : [64, 47, 15],
-  //         "angularVelocity" : 0,
-  //         "timeToLive" : 20,
-  //         "collidesForeground" : true,
-  //         "collidesLiquid" : true,
-  //         "destructionAction" : "shrink",
-  //         "destructionTime" : 2,
-  //         "ignoreWind" : false,
-  //         "fullbright" : true
-  //       }
-  //     },
-  //     "velocity" : [0, -100],
-  //     "ratePerX" : 1,
-  //     "spawnAboveRegion" : 0,
-  //     "spawnHorizontalPad" : 1,
-  //     "windAffectAmount" : 1
-  //   }
-  // ],
+  "projectiles" : [
+    {
+      "projectile" : "v-depthweatherparticle",
+      "parameters" : {
+        "depthRange" : [1000, 2000],
+        "density" : 0.02,
+        "autoRotate" : true,
+        "particle" : {
+          "type" : "animated",
+          "animation" : "/animations/mediumflame/mediumflame.animation",
+          "initialVelocity" : [0.0, 0.0],
+          "position" : [0, 0],
+          "light" : [218, 83, 2],
+          "timeToLive" : 0.6,
+          "fade" : 1.67,
+          "ignoreWind" : false,
+          "fullbright" : true,
+          "collidesForeground" : true,
+          "collidesLiquid" : true
+        }
+      },
+      "velocity" : [0, -100],
+      "ratePerX" : 0.1,
+      "spawnAboveRegion" : 50,
+      "spawnHorizontalPad" : 50,
+      "windAffectAmount" : 0
+    }
+  ],
 
   "statusEffects" : ["v-depthburning"],
 

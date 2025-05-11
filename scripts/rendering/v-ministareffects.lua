@@ -6,21 +6,30 @@ require "/scripts/v-animator.lua"
 local oldInit = init or function() end
 local oldUpdate = update or function() end
 
+-- User-configurable parameters (TODO)
+local renderConfig
+local particleDensity
+local lightInterval
+local useLights
+local useImagesForRays
+
+-- Internal parameters
 local startBurningColor
 local endBurningColor
 local sunRayDimColor
 local sunRayBrightColor
-local sunProximityRatio
-local particleDensity
+
+-- Cached drawable tables
 local blockDrawable
 local sunRayDrawable
+local sunRayDrawableFunc
+local sunParticle
 
-local lightInterval
-
+-- State variables
 local burningBlocks
 local heightMap
-
 local lightDrawBounds
+local sunProximityRatio
 
 local isActive
 
@@ -34,24 +43,80 @@ function init()
 
   isActive = true
 
+  renderConfig = player.getProperty("v-ministareffects-renderConfig", {
+    particleDensity = 0.02,
+    lightInterval = 16,
+    useLights = true,
+    useImagesForRays = true
+  })
+  particleDensity = renderConfig.particleDensity
+  lightInterval = renderConfig.lightInterval
+  useLights = renderConfig.useLights
+  useImagesForRays = renderConfig.useImagesForRays
+  if useImagesForRays then
+    sunRayDrawable = {
+      transformation = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}},  -- Placeholder
+      image = "/scripts/rendering/v-ministarray.png",
+      position = {},  -- Placeholder
+      color = {},  -- Placeholder
+      fullbright = true
+    }
+    sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
+      local relativePos = {x - predictedPos[1] + 0.5, (topY + bottomY) / 2 - predictedPos[2]}
+
+      sunRayDrawable.transformation = {
+        {1.0, 0.0, 0.0},
+        {0.0, topY - bottomY, 0.0},
+        {0.0, 0.0, 1.0}  -- Hmm these bottom three values could be used to make a parallax effect me thinks.
+      }
+      sunRayDrawable.position = relativePos
+      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
+    end
+  else
+    sunRayDrawable = {
+      line = {{0, 0}, {0, 0}},  -- Placeholder
+      width = 8,
+      position = {0, 0},  -- Placeholder
+      color = {0, 0, 0, 0},  -- Placeholder
+      fullbright = true
+    }
+    sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
+      local relativePos = {x - predictedPos[1], bottomY - predictedPos[2]}
+
+      sunRayDrawable.line = {{0.5, -1}, {0.5, topY - bottomY}}
+      sunRayDrawable.position = relativePos
+      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
+    end
+  end
+
   -- Synchronizes data
   message.setHandler("v-ministareffects-updateBlocks", function(_, _, burningBlocks_, heightMap_, sunProximityRatio_)
     burningBlocks = burningBlocks_
     heightMap = heightMap_
     sunProximityRatio = sunProximityRatio_
-    v_ministarEffects_computeLightBounds(heightMap)
+    v_ministarEffects_computeLightBounds()
+  end)
+
+  message.setHandler("v-ministareffects-spawnWeatherParticle", function(_, _, particle, density, minDepth, maxDepth, ignoreWind)
+    vLocalAnimator.spawnOffscreenParticles(particle, {
+      density = density,
+      exposedOnly = true,
+      pred = function(pos)
+        return minDepth <= pos[2] and pos[2] <= maxDepth
+      end,
+      ignoreWind = ignoreWind
+    })
   end)
 
   burningBlocks = {}
   lightDrawBounds = {}
   sunProximityRatio = 0
 
-  particleInterval = 0.01
   startBurningColor = {255, 0, 0, 0}
   endBurningColor = {255, 119, 0, 255}
   sunRayDimColor = {255, 0, 0, 0}
   sunRayBrightColor = {255, 216, 107, 128}
-  particleDensity = 0.02
+
   blockDrawable = {  -- Construct table once. position and color will change.
     line = {{0, 0.5}, {1, 0.5}},
     width = 8,
@@ -59,14 +124,21 @@ function init()
     color = {0, 0, 0, 0},  -- Placeholder value
     fullbright = true
   }
-  sunRayDrawable = {
-    line = true,  -- Placeholder
-    width = 8,
-    position = true,  -- Placeholder
-    color = true,  -- Placeholder
-    fullbright = true
+
+  sunParticle = {
+    type = "textured",
+    image = "/particles/v-ministarcloud/1.png",
+    initialVelocity = {40, 0},
+    approach = {2, 2},
+    timeToLive = 20,
+    light = {143, 99, 17},
+    destructionAction = "shrink",
+    destructionTime = 2,
+    angularVelocity = 0,
+    layer = "middle",
+    collidesForeground = true,
+    color = true  -- Placeholder value
   }
-  lightInterval = 16
 end
 
 function update(dt)
@@ -94,8 +166,8 @@ function update(dt)
     math.floor(sunRayColor[3] * sunProximityRatio)
   }
 
-  v_ministarEffects_drawSunRays(predictedPos, sunRayColor, sunRayLightColor, window)
-
+  v_ministarEffects_drawSunRays(predictedPos, sunRayColor)
+  v_ministarEffects_drawSunRayLights(sunRayLightColor, window)
   v_ministarEffects_drawParticles(sunRayColor, dt)
 end
 
@@ -119,15 +191,10 @@ function v_ministarEffects_drawBurningBlocks(predictedPos, dt, window)
   end
 end
 
-function v_ministarEffects_drawSunRays(predictedPos, color, lightColor, window)
+function v_ministarEffects_drawSunRays(predictedPos, color)
   if not heightMap then return end
 
   sunRayDrawable.color = color
-
-  local sunRayLightSource = {
-    position = true,  -- Placeholder
-    color = lightColor
-  }
 
   local bottomY = heightMap.minHeight
 
@@ -140,14 +207,11 @@ function v_ministarEffects_drawSunRays(predictedPos, color, lightColor, window)
     -- local lightTopY = math.min(window[4], topY)
     -- local relativePos = vec2.sub({x, bottomY}, predictedPos)
 
-    local relativePos = {x - predictedPos[1], bottomY - predictedPos[2]}
     -- world.debugText("%s", topY, {x, predictedPos[2] - x % 3}, "green")
     -- world.debugText("%s", bottomY, {x, predictedPos[2] - x % 3 - 5}, "red")
 
     if topY ~= bottomY then
-      sunRayDrawable.line = {{0.5, -1}, {0.5, topY - bottomY}}
-      sunRayDrawable.position = relativePos
-      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
+      sunRayDrawableFunc(x, bottomY, topY, predictedPos)
 
       -- for y = lightBottomY, lightTopY, lightInterval do
       --   localAnimator.addLightSource({
@@ -162,9 +226,17 @@ function v_ministarEffects_drawSunRays(predictedPos, color, lightColor, window)
 
     -- prevWasDrawn = topY ~= bottomY
   end
+end
 
-  -- Integer-dividing and then multiplying these values gets rid of some scrolling weirdness.
-  local lightBottomY = math.max(window[2], bottomY) // lightInterval * lightInterval
+function v_ministarEffects_drawSunRayLights(lightColor, window)
+  if not heightMap then return end
+  if not useLights then return end
+
+  local sunRayLightSource = {
+    position = true,  -- Placeholder
+    color = lightColor
+  }
+
 
   -- -- Derive a starting index based on startXPos.
   -- local startI = heightMap.startXPos // lightInterval * lightInterval - heightMap.startXPos + 1
@@ -178,8 +250,10 @@ function v_ministarEffects_drawSunRays(predictedPos, color, lightColor, window)
   -- Draw lights
   for i, v in ipairs(lightDrawBounds) do
     local x = i + heightMap.startXPos - 1
-    if v.s ~= v.e and lightBottomY <= v.e then
+    if v.s ~= v.e then
       local inc
+
+      world.debugLine({x, v.s}, {x, v.e}, "white")
 
       if v.s < v.e then
         inc = lightInterval
@@ -187,16 +261,25 @@ function v_ministarEffects_drawSunRays(predictedPos, color, lightColor, window)
         inc = -lightInterval
       end
 
-      for y = lightBottomY, v.e, inc do
+      for y = v.s, v.e, inc do
         sunRayLightSource.position = {x, y}
         localAnimator.addLightSource(sunRayLightSource)
       end
+
+      sunRayLightSource.position = {x, v.e}
+      localAnimator.addLightSource(sunRayLightSource)
     end
   end
 end
 
-function v_ministarEffects_computeLightBounds(heightMap)
+function v_ministarEffects_computeLightBounds()
+  if not useLights then return end
+
+  local window = world.clientWindow()
+
   local bottomY = heightMap.minHeight
+
+  local lightBottomY = math.max(window[2], bottomY) // lightInterval * lightInterval
 
   -- local prevWasDrawn  -- Whether or not the previous strip was drawn.
   -- Draw sun rays and compute light drawing boundaries based on change in max value.
@@ -208,13 +291,15 @@ function v_ministarEffects_computeLightBounds(heightMap)
     -- prevWasDrawn = topY ~= bottomY
   end
 
-  local lightInterval = 16
-
   -- Derive a starting index based on startXPos.
-  local startI = heightMap.startXPos // lightInterval * lightInterval - heightMap.startXPos + 1
+  -- sb.logInfo("startXPos: %s, startXPos (clamped): %s", heightMap.startXPos, heightMap.startXPos // lightInterval * lightInterval)
+  local startI = (heightMap.startXPos // lightInterval + 1) * lightInterval - heightMap.startXPos + 1
   -- Add periodic lights
   for i = startI, #heightMap.list, lightInterval do
-    lightDrawBounds[i] = {s = bottomY, e = heightMap.list[i]}
+    -- sb.logInfo("startI: %s, end: %s", startI, #heightMap.list)
+    if lightBottomY <= heightMap.list[i] and heightMap.list[i] ~= bottomY then
+      lightDrawBounds[i] = {s = lightBottomY, e = heightMap.list[i]}
+    end
   end
 end
 
@@ -255,61 +340,12 @@ end
 function v_ministarEffects_drawParticles(color, dt)
   if sunProximityRatio == 0 then return end
 
-  local windowRegion = world.clientWindow()
-
-  for y = windowRegion[2], windowRegion[4] do
-    local leftPosition = {windowRegion[1], y}
-
-    if math.random() <= particleDensity
-        and not world.material(leftPosition, "background")
-        and not world.underground(leftPosition) then
-      -- Note: windLevel is zero if there is a background block.
-      local leftHorizontalSpeed = world.windLevel(leftPosition)
-
-      if leftHorizontalSpeed == 0 then
-        leftHorizontalSpeed = 40
-      end
-
-      localAnimator.spawnParticle({
-        type = "textured",
-        image = "/particles/v-ministarcloud/1.png",
-        initialVelocity = {leftHorizontalSpeed, 0},
-        approach = {2, 2},
-        timeToLive = 20,
-        light = {143, 99, 17},
-        destructionAction = "fade",
-        destructionTime = 2,
-        angularVelocity = 0,
-        layer = "middle",
-        collidesForeground = true,
-        color = color
-      }, leftPosition)
+  sunParticle.color = color
+  vLocalAnimator.spawnOffscreenParticles(sunParticle, {
+    density = particleDensity,
+    exposedOnly = true,
+    pred = function(pos)
+      return not world.underground(pos)
     end
-
-    local rightPosition = {windowRegion[3], y}
-
-    if math.random() <= particleDensity
-        and not world.material(rightPosition, "background")
-        and not world.underground(rightPosition) then
-      local rightHorizontalSpeed = world.windLevel(rightPosition)
-      if rightHorizontalSpeed == 0 then
-        rightHorizontalSpeed = 40
-      end
-
-      localAnimator.spawnParticle({
-        type = "textured",
-        image = "/particles/v-ministarcloud/1.png",
-        initialVelocity = {rightHorizontalSpeed, 0},
-        approach = {2, 2},
-        timeToLive = 20,
-        light = {143, 99, 17},
-        destructionAction = "shrink",
-        destructionTime = 2,
-        angularVelocity = 0,
-        layer = "middle",
-        collidesForeground = true,
-        color = color
-      }, rightPosition)
-    end
-  end
+  })
 end

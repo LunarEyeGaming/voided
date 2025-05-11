@@ -58,7 +58,7 @@ end
 ---@param colorB ColorTable Ending color
 ---@return ColorTable
 function vAnimator.lerpColorU(ratio, colorA, colorB)
-  -- Return the linear interpolation of colorA and colorB with ratio, capped between 0 and 255 and in integer form.
+  -- Return the linear interpolation of colorA and colorB with ratio
   return {
     math.floor(colorA[1] + (colorB[1] - colorA[1]) * ratio),
     math.floor(colorA[2] + (colorB[2] - colorA[2]) * ratio),
@@ -238,4 +238,72 @@ function vAnimator.LightningController:flush()
   self._instances = {}
 
   self._setAnimParam("lightning", lightning)
+end
+
+vLocalAnimator = {}
+
+---@class VLocalAnimator_SpawnOffscreenParticlesArgs
+---@field density number
+---@field exposedOnly boolean
+---@field ignoreWind boolean?
+---@field pred (fun(pos: Vec2I): boolean)?
+
+---Spawns a particle `particle` from offscreen with density `density`. If there is any wind, the x component of its
+---initial velocity will be the wind level.
+---
+---If `exposedOnly` is `true`, the `particle` will spawn only if the spawning position does not have a material in the
+---background. The predicate function `pred` is optional. If defined, it adds an addiitonal condition for the particle
+---to spawn.
+---
+---@param particle table
+---@param options VLocalAnimator_SpawnOffscreenParticlesArgs
+function vLocalAnimator.spawnOffscreenParticles(particle, options)
+  local density = options.density
+  local exposedOnly = options.exposedOnly
+  local ignoreWind = options.ignoreWind
+  local pred = options.pred or function() return true end
+
+  local windowRegion = world.clientWindow()
+
+  for y = windowRegion[2], windowRegion[4] do
+    local leftPosition = {windowRegion[1], y}
+
+    if math.random() <= density
+        and (not exposedOnly or not world.material(leftPosition, "background"))
+        and pred(leftPosition) then
+
+      if not ignoreWind then
+        -- Note: windLevel is zero if there is a background block.
+        local horizontalSpeed = world.windLevel(leftPosition)
+
+        if horizontalSpeed ~= 0 then
+          local initialVelocity = particle.initialVelocity or {0, 0}
+          initialVelocity[1] = horizontalSpeed
+          particle.initialVelocity = initialVelocity
+        end
+      end
+
+      localAnimator.spawnParticle(particle, leftPosition)
+    end
+
+    local rightPosition = {windowRegion[3], y}
+
+    if math.random() <= density
+        and (not exposedOnly or not world.material(rightPosition, "background"))
+        and pred(rightPosition) then
+
+      if not ignoreWind then
+        -- Note: windLevel is zero if there is a background block.
+        local horizontalSpeed = world.windLevel(rightPosition)
+
+        if horizontalSpeed ~= 0 then
+          local initialVelocity = particle.initialVelocity or {0, 0}
+          initialVelocity[1] = horizontalSpeed
+          particle.initialVelocity = initialVelocity
+        end
+      end
+
+      localAnimator.spawnParticle(particle, rightPosition)
+    end
+  end
 end
