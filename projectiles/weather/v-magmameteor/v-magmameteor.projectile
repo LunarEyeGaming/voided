@@ -1,0 +1,41 @@
+{
+  "projectileName" : "v-magmameteor",
+  "image" : "magmameteor.png",
+  "animationCycle" : 0.3,
+  "physics" : "grenadezbomb",
+  "movementSettings" : {
+    "collisionPoly" : [ [1, -2], [-2, 0], [1, 2], [2, 0] ]
+  },
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "windupFrames": 1,
+  "frameNumber" : 3,
+  "pointLight" : true,
+  "lightColor" : [255, 113, 0],
+  "renderLayer" : "Monster+10",
+  "speed" : 50,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/regularexplosionknockback.config"
+    },
+    {
+      "action" : "loop",
+      "count" : 3,
+      "body" : [
+        {
+          "action" : "projectile",
+          "type" : "molotovflamemonster",
+          "fuzzAngle" : 180,
+          "inheritDamageFactor" : 0.05,
+          "angleAdjust" : 0
+        }
+      ]
+    }
+  ],
+  "power" : 10.0,
+  "damageKind" : "default",
+
+  "persistentAudio" : "/sfx/projectiles/dragonprojectile_loop.ogg"
+}
+
+

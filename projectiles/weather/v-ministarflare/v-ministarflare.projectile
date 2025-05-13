@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-ministarflare",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "timeToLive" : 0,
+  "animationCycle" : 1,
+  "speed" : 200,
+  "frameNumber" : 1,
+
+  "onlyHitTerrain" : true,
+
+  "scripts" : ["v-ministarflare.lua"],
+  "scriptDelta" : 0,
+
+  "duration" : 120,
+  "potency" : 0.5,
+  "spread" : 300
+}

@@ -1,0 +1,22 @@
+{
+  "name" : "v-ministarflaresmall",
+
+  "projectiles" : [
+    {
+      "projectile" : "v-ministarflare",
+      "parameters" : {
+        "duration" : 300,
+        "potency" : 0.25,
+        "spread" : 1000
+      },
+      "velocity" : [0, -100],
+      "ratePerX" : 0.002,
+      "spawnAboveRegion" : 30,
+      "spawnHorizontalPad" : 30,
+      "windAffectAmount" : 0.0
+    }
+  ],
+
+  "duration" : [10, 10],
+  "maximumWind" : 40.0
+}

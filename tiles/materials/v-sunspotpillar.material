@@ -1,0 +1,24 @@
+{
+  "materialId" : 1218,
+  "materialName" : "v-sunspotpillar",
+  "particleColor" : [92, 90, 87, 255],
+  "itemDrop" : "v-sunspotpillarmaterial",
+  "shortdescription" : "<todo>",
+  "description" : "<todo>.",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_stone2.ogg",
+  "health" : 6,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/pipetemplate.config",
+  "renderParameters" : {
+    "texture" : "v-sunspotpillar.png",
+    "variants" : 1,
+    "lightTransparent" : false,
+    "occludesBelow" : false,
+    "multiColored" : false,
+    "zLevel" : 1
+  }
+}

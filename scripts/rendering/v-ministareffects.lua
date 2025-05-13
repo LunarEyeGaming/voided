@@ -62,11 +62,11 @@ function init()
       fullbright = true
     }
     sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
-      local relativePos = {x - predictedPos[1] + 0.5, (topY + bottomY) / 2 - predictedPos[2]}
+      local relativePos = {x - predictedPos[1] + 0.5, (topY + bottomY) / 2 - predictedPos[2] - 0.5}
 
       sunRayDrawable.transformation = {
         {1.0, 0.0, 0.0},
-        {0.0, topY - bottomY, 0.0},
+        {0.0, topY - bottomY + 1.0, 0.0},
         {0.0, 0.0, 1.0}  -- Hmm these bottom three values could be used to make a parallax effect me thinks.
       }
       sunRayDrawable.position = relativePos
@@ -160,15 +160,10 @@ function update(dt)
   v_ministarEffects_drawBurningBlocks(predictedPos, dt, window)
 
   local sunRayColor = vAnimator.lerpColor(sunProximityRatio, sunRayDimColor, sunRayBrightColor)
-  local sunRayLightColor = {
-    math.floor(sunRayColor[1] * sunProximityRatio),
-    math.floor(sunRayColor[2] * sunProximityRatio),
-    math.floor(sunRayColor[3] * sunProximityRatio)
-  }
 
-  v_ministarEffects_drawSunRays(predictedPos, sunRayColor)
-  v_ministarEffects_drawSunRayLights(sunRayLightColor, window)
-  v_ministarEffects_drawParticles(sunRayColor, dt)
+  v_ministarEffects_drawSunRays(predictedPos, sunProximityRatio)
+  v_ministarEffects_drawSunRayLights(sunProximityRatio)
+  v_ministarEffects_drawParticles(sunRayColor)
 end
 
 ---Draws the burning blocks, also updating their heat.
@@ -191,10 +186,8 @@ function v_ministarEffects_drawBurningBlocks(predictedPos, dt, window)
   end
 end
 
-function v_ministarEffects_drawSunRays(predictedPos, color)
+function v_ministarEffects_drawSunRays(predictedPos, ratio)
   if not heightMap then return end
-
-  sunRayDrawable.color = color
 
   local bottomY = heightMap.minHeight
 
@@ -211,6 +204,7 @@ function v_ministarEffects_drawSunRays(predictedPos, color)
     -- world.debugText("%s", bottomY, {x, predictedPos[2] - x % 3 - 5}, "red")
 
     if topY ~= bottomY then
+      sunRayDrawable.color = vAnimator.lerpColorU(math.min(1.0, ratio + v_ministarEffects_computeSolarFlareBoost(x)), sunRayDimColor, sunRayBrightColor)
       sunRayDrawableFunc(x, bottomY, topY, predictedPos)
 
       -- for y = lightBottomY, lightTopY, lightInterval do
@@ -228,13 +222,13 @@ function v_ministarEffects_drawSunRays(predictedPos, color)
   end
 end
 
-function v_ministarEffects_drawSunRayLights(lightColor, window)
+function v_ministarEffects_drawSunRayLights(ratio)
   if not heightMap then return end
   if not useLights then return end
 
   local sunRayLightSource = {
     position = true,  -- Placeholder
-    color = lightColor
+    color = {0, 0, 0, 0}
   }
 
 
@@ -253,18 +247,30 @@ function v_ministarEffects_drawSunRayLights(lightColor, window)
     if v.s ~= v.e then
       local inc
 
-      world.debugLine({x, v.s}, {x, v.e}, "white")
-
       if v.s < v.e then
         inc = lightInterval
       else
         inc = -lightInterval
       end
 
+      local rayRatio = math.min(1.0, ratio + v_ministarEffects_computeSolarFlareBoost(x))
+
+      local sunRayColor = vAnimator.lerpColorU(rayRatio, sunRayDimColor, sunRayBrightColor)
+      local sunRayLightColor = {
+        math.floor(sunRayColor[1] * rayRatio),
+        math.floor(sunRayColor[2] * rayRatio),
+        math.floor(sunRayColor[3] * rayRatio)
+      }
+      sunRayLightSource.color = sunRayLightColor
+
       for y = v.s, v.e, inc do
         sunRayLightSource.position = {x, y}
         localAnimator.addLightSource(sunRayLightSource)
       end
+
+      -- world.debugText("%s", rayRatio, {x, v.e}, "green")
+
+      -- world.debugLine({x, v.s}, {x, v.e}, "#" .. vAnimator.colorToString(sunRayLightColor))
 
       sunRayLightSource.position = {x, v.e}
       localAnimator.addLightSource(sunRayLightSource)
@@ -337,7 +343,7 @@ end
 --   end
 -- end
 
-function v_ministarEffects_drawParticles(color, dt)
+function v_ministarEffects_drawParticles(color)
   if sunProximityRatio == 0 then return end
 
   sunParticle.color = color
@@ -348,4 +354,30 @@ function v_ministarEffects_drawParticles(color, dt)
       return not world.underground(pos)
     end
   })
+end
+
+function v_ministarEffects_computeSolarFlareBoost(x)
+  --[[
+    Schema: {
+      x: integer,  // Where the solar flare is located
+      startTime: number,  // World time at which the solar flare started
+      duration: number,  // How long the flare lasts.
+      potency: number,  // Between 0 and 1. How potent the solar flare is.
+      spread: number  // Controls the width of the solar flare.
+    }[]
+  ]]
+  local solarFlares = world.getProperty("v-solarFlares") or {}
+
+  local boost = 0
+  for _, flare in ipairs(solarFlares) do
+    local durationStdDev = flare.duration / 6
+    local durationMean = flare.startTime + flare.duration / 2
+    boost = boost + v_ministarEffects_normalDistribution(flare.x, flare.spread / 3, x) * flare.potency * v_ministarEffects_normalDistribution(durationMean, durationStdDev, world.time())
+  end
+
+  return boost
+end
+
+function v_ministarEffects_normalDistribution(mean, stdDev, x)
+  return math.exp(-(x - mean) ^ 2 / (2 * stdDev ^ 2))
 end

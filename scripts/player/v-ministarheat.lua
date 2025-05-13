@@ -12,10 +12,10 @@ local cfg
 local unmeltableMaterials
 
 local heatMap
-local maxDepth
-local minDepth
+local maxDepth  -- Depth that heats up the slowest
+local minDepth  -- Depth that heats up the fastest. Also the depth at which the player takes the most burn damage.
 
-local burnDepth
+local burnDepth  -- Depth at which the player starts burning
 local minBurnDamage
 local maxBurnDamage
 local tickTime
@@ -28,7 +28,6 @@ local checkMinY
 local checkMaxY
 local maxPenetration
 
-local solidCollisionSet
 local collisionSet
 local sunLiquidId
 local materialConfigs
@@ -36,6 +35,8 @@ local materialConfigs
 local sunscreenEffect
 
 local undergroundTileQueryThread
+
+local celestialParamsFetched
 
 local ADJACENT_TILES = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}
 local SECTOR_SIZE = 32
@@ -71,10 +72,7 @@ function init()
 
   ---@type HeatedTile[]
   heatMap = {}
-  maxDepth = 1980  -- Depth that heats up the slowest
-  minDepth = 1000  -- Depth that heats up the fastest. Also the depth at which the player takes the most burn damage.
 
-  burnDepth = 1500  -- Depth at which the player starts burning
   minBurnDamage = 1
   maxBurnDamage = 20
   tickTime = 0.5
@@ -87,7 +85,6 @@ function init()
   checkMaxY = 100
   maxPenetration = 40  -- Maximum number of transparent blocks to penetrate.
 
-  solidCollisionSet = {"Block"}
   collisionSet = {"Block", "Platform"}
   sunLiquidId = 218
   materialConfigs = {}
@@ -95,9 +92,37 @@ function init()
   sunscreenEffect = "v-sunscreen"
 
   undergroundTileQueryThread = coroutine.create(undergroundTileQuery)
+
+  celestialParamsFetched = false
+end
+
+function fetchCelestialParams()
+  -- Initialize depth-related parameters
+  local coords = getCelestialCoordinates()
+  if coords then
+    local celestialParams = celestial.visitableParameters(coords)  --[[@as VisitableParameters]]
+    if celestialParams then
+      maxDepth = celestialParams.spaceLayer.layerMinHeight
+      minDepth = celestialParams.surfaceLayer.primarySubRegion.oceanLiquidLevel
+      burnDepth = (minDepth + maxDepth) / 2
+      celestialParamsFetched = true
+    end
+  else
+    maxDepth = 2000
+    minDepth = 1000
+    burnDepth = 1500
+    celestialParamsFetched = true
+  end
 end
 
 function update(dt)
+  -- Need to try fetching celestial parameters repeatedly because celestial.visitableParameters returns nil until
+  -- shortly after the world is created (as opposed to immediately afterwards).
+  if not celestialParamsFetched then
+    fetchCelestialParams()
+    return
+  end
+
   local pos = vec2.floor(mcontroller.position())
   local affectedTiles = {}  -- hash map
 
@@ -119,14 +144,32 @@ function update(dt)
   -- Destroy tiles.
   world.damageTiles(tilesToDestroy, "foreground", mcontroller.position(), "blockish", 2 ^ 32 - 1, 0)
 
+  local burnRatio = (1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + computeSolarFlareBoost(pos[1])
+  world.debugText("%s", burnRatio, {pos[1], pos[2] - 5}, "green")
+
   -- If the player should be burned...
-  if pos[2] <= burnDepth and isExposedForeground(heightMap) and not status.uniqueStatusEffectActive(sunscreenEffect) then
+  if burnRatio > 0.0 and isExposedForeground(heightMap) and not status.uniqueStatusEffectActive(sunscreenEffect) then
     -- Update damage amount. It is a linear interpolation between maxBurnDamage and minBurnDamage, where damage grows as
     -- depth (aka y position) decreases.
-    tickDamage.damageRequest.damage = interp.linear((pos[2] - minDepth) / (burnDepth - minDepth), maxBurnDamage, minBurnDamage)
+    tickDamage.damageRequest.damage = interp.linear(burnRatio, minBurnDamage, maxBurnDamage)
     tickDamage:update(dt)  -- Run the tickDamage object for one tick.
   else
     tickDamage:reset()
+  end
+end
+
+---Returns celestial coordinates for the current world, if it is a celestial world. Returns `nil` otherwise.
+---@return CelestialCoordinate?
+function getCelestialCoordinates()
+  local worldId = player.worldId()
+  local first, last, x, y, z, planet = worldId:find("CelestialWorld:(%-?%d+):(%-?%d+):(%-?%d+):(%-?%d+)")
+  if first then  -- Other values will be assigned to nil otherwise.
+    local satellite = worldId:match(":(%-?%d+)", last)  -- tonumber returns nil if satellite is nil.
+    return {
+      location = {tonumber(x), tonumber(y), tonumber(z)},
+      planet = tonumber(planet),
+      satellite = tonumber(satellite)
+    }
   end
 end
 
@@ -508,4 +551,30 @@ function getMaterialConfig(material)
   end
 
   return materialConfigs[material]
+end
+
+function computeSolarFlareBoost(x)
+  --[[
+    Schema: {
+      x: integer,  // Where the solar flare is located
+      startTime: number,  // World time at which the solar flare started
+      duration: number,  // How long the flare lasts.
+      potency: number,  // Between 0 and 1. How potent the solar flare is.
+      spread: number  // Controls the width of the solar flare.
+    }[]
+  ]]
+  local solarFlares = world.getProperty("v-solarFlares") or {}
+
+  local boost = 0
+  for _, flare in ipairs(solarFlares) do
+    local durationStdDev = flare.duration / 6
+    local durationMean = flare.startTime + flare.duration / 2
+    boost = boost + normalDistribution(flare.x, flare.spread / 3, x) * flare.potency * normalDistribution(durationMean, durationStdDev, world.time())
+  end
+
+  return boost
+end
+
+function normalDistribution(mean, stdDev, x)
+  return math.exp(-(x - mean) ^ 2 / (2 * stdDev ^ 2))
 end

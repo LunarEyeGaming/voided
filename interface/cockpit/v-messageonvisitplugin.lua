@@ -9,6 +9,8 @@ local sentMessage
 local oldInit = init or function() end
 local oldUpdate = update or function() end
 
+-- local oldViewPlanet = View.showPlanetInfo
+
 function init()
   oldInit()
 
@@ -39,3 +41,13 @@ function isInExtradimensionalSystem()
   local currentSystemParams = celestial.planetParameters(celestial.currentSystem())
   return currentSystemParams and currentSystemParams.typeName == "v-extradimensional"
 end
+
+-- function View:showPlanetInfo(planet)
+--   oldViewPlanet(self, planet)
+
+--   if planet then
+--     sb.logInfo(planet)
+--     sb.logInfo(sb.printJson(celestial.visitableParameters(planet), 2))
+--     sb.logInfo(sb.printJson(celestial.planetParameters(planet), 2))
+--   end
+-- end
