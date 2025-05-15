@@ -1,0 +1,13 @@
+{
+  // This stagehand spawns stagehands that make items float in the ocean.
+  "type" : "v-ministarcloudspawnerspawner",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-ministarcloudspawnerspawner/v-ministarcloudspawnerspawner.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-1, -1, 1, 1],
+
+  "spawnType" : "v-ministarcloudspawner",
+  "spawnSpacing" : 100
+}

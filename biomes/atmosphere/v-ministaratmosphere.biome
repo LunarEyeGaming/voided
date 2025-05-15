@@ -9,6 +9,7 @@
         "pool" : [
           [ 1.0, "v-sunleaperground" ],
           [ 1.0, "v-fireelemental" ],
+          [ 1.0, "v-rammingasteroid" ],
           [ 1.0, "v-novamonster" ]
         ]
       },
@@ -208,6 +209,15 @@
             }
           }
         ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-ministaratmospheremicrodungeons" ]
       }
     ]
   }

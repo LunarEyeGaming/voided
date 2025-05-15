@@ -37,7 +37,7 @@ local ADJACENT_TILES = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}
 local SECTOR_SIZE = 32
 
 
----@class HeightMap
+---@class RawHeightMap
 ---@field startXPos integer the starting horizontal position
 ---@field minHeight integer the minimum height to use
 ---@field list HeightMapItem[] the list of height map values.
@@ -130,7 +130,7 @@ end
 ---Populates `affectedTiles` with a list of tiles that are exposed to the surface below given a central position `pos`.
 ---@param pos Vec2I
 ---@param affectedTiles table<string, boolean>
----@return HeightMap
+---@return RawHeightMap
 function surfaceTileQuery(pos, affectedTiles)
   -- Maps horizontal positions relative to startXPos to collision heights.
   local heightMap = {startXPos = checkMinX + pos[1], list = {}, minHeight = minDepth}
@@ -391,7 +391,7 @@ end
 
 ---Adds `affectedTiles` to `heatMap` that are below the `maxDepth` value and are meltable.
 ---@param affectedTiles table<string, boolean>
----@param heightMap HeightMap
+---@param heightMap RawHeightMap
 ---@param dt number
 function addToHeatMap(affectedTiles, heightMap, dt)
   -- For each tile in `affectedTiles`...
@@ -429,7 +429,7 @@ function addToHeatMap(affectedTiles, heightMap, dt)
 end
 
 ---Returns whether or not the player is exposed to the sunlight below provided a `heightMap`.
----@param heightMap HeightMap
+---@param heightMap RawHeightMap
 ---@return boolean
 function isExposedForeground(heightMap)
   local pos = mcontroller.position()

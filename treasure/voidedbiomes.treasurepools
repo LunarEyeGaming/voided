@@ -93,7 +93,7 @@
     }]
   ],
 
-  "v-ministarTreasure" : [
+  "v-burningasteroidsTreasure" : [
     [1, {
       "pool" : [
         {"weight" : 0.5, "pool" : "basicTreasure"},
@@ -101,7 +101,20 @@
         {"weight" : 0.05, "pool" : "v-fireWeapon"},
         {"weight" : 0.05, "item" : "v-inferniteore"},
         {"weight" : 0.125, "item" : ["v-solarflare", 3]},
-        {"weight" : 0.125, "item" : ["v-miningdrone", 3]}
+        {"weight" : 0.125, "item" : ["miningdrone", 3]}
+      ]
+    }]
+  ],
+
+  "v-ministarTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.25, "item" : "v-sunscreen"},
+        {"weight" : 0.05, "pool" : "v-fireWeapon"},
+        {"weight" : 0.05, "item" : "v-inferniteore"},
+        {"weight" : 0.125, "item" : ["v-solarflare", 3]},
+        {"weight" : 0.125, "item" : ["miningdrone", 3]}
       ]
     }]
   ]

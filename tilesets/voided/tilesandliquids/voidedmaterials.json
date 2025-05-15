@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":38,
+ "tilecount":39,
  "tiledversion":"1.11.0",
  "tileheight":8,
  "tileproperties":
@@ -144,6 +144,10 @@
      "37":
         {
          "material":"v-sunspotplatform"
+        },
+     "38":
+        {
+         "material":"v-sunspotpillar"
         },
      "4":
         {
@@ -301,6 +305,10 @@
          "material":"string"
         },
      "37":
+        {
+         "material":"string"
+        },
+     "38":
         {
          "material":"string"
         },
@@ -520,6 +528,12 @@
      "37":
         {
          "image":"..\/images\/tilesandliquids\/sunspotplatform.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "38":
+        {
+         "image":"..\/images\/tilesandliquids\/sunspotpillar.png",
          "imageheight":8,
          "imagewidth":8
         },

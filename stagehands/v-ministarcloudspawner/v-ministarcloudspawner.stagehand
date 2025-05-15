@@ -1,0 +1,19 @@
+{
+  // This stagehand spawns clouds.
+  "type" : "v-ministarcloudspawner",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-ministarcloudspawner/v-ministarcloudspawner.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-1, -1, 1, 1],
+
+  "xPosRange" : [-50, 50],
+  "timeRange" : [10.0, 20.0],
+  "spawnHeight" : -10,
+  "projectileType" : "v-ministarcloud",
+  "projectileDirection" : [0, 1],
+  "projectileParameters" : {},
+  "projectileCheckRegion" : [-10, -2, 10, 12],
+  "liquidId" : 218
+}

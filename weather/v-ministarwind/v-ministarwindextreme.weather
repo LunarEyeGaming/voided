@@ -37,6 +37,8 @@
           "type" : "animated",
           "animation" : "/animations/mediumflame/mediumflame.animation",
           "initialVelocity" : [0.0, 0.0],
+          "approach" : [0, 80],
+          "finalVelocity" : [0, -10000],
           "position" : [0, 0],
           "light" : [218, 83, 2],
           "timeToLive" : 0.6,

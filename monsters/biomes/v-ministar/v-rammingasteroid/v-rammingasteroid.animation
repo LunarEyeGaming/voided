@@ -16,10 +16,10 @@
           "fly" : {
             "frames" : 2,
             "cycle" : 0.1,
-            "mode" : "loop"// ,
-            // "properties" : {
-            //   "persistentSound" : "/sfx/npc/monsters/erchiusghost_loop.ogg"
-            // }
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/quadruped/angstyhead_turnhostile.ogg"
+            }
           }
         }
       },

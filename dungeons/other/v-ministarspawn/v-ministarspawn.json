@@ -1,4 +1,5 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":32,
  "infinite":false,
  "layers":[
@@ -7,6 +8,7 @@
          "data":"eJzt1jEKACAMQ9He\/6zdvIC7IEVb+x0SyPxCF3Uzc3XbbEg7s6E6pH2y4XVIO9pA+t2RL1++fPnyf\/Dp93c0l7TXDbRP3797Q\/QHp9zKPbdWdydNT6dv",
          "encoding":"base64",
          "height":32,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -20,6 +22,7 @@
          "data":"eJzt0DEKACAMBMH8\/7t+wN7GRnIEZyD1LakCAAB+s5ovuX02pPfT\/+9uuEntvuyZYgNw+qgE",
          "encoding":"base64",
          "height":32,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,8 +46,28 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "height":16,
+                 "id":691,
+                 "name":"",
+                 "properties":
+                    {
+                     "stagehand":"v-ministarcloudspawnerspawner"
+                    },
+                 "propertytypes":
+                    {
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":176
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -53,6 +77,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":5,
          "name":"wiring - lights & guns",
          "objects":[],
          "opacity":1,
@@ -64,6 +89,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":6,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -75,6 +101,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":7,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -85,6 +112,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -95,6 +123,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"anchors etc",
          "objects":[
                 {
@@ -213,6 +242,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -221,10 +251,11 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":691,
+ "nextlayerid":11,
+ "nextobjectid":692,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.0",
  "tileheight":8,
  "tilesets":[
         {
@@ -329,6 +360,6 @@
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":32
 }

@@ -3,6 +3,7 @@ require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
 
 require "/scripts/v-vec2.lua"
+require "/scripts/v-ministarutil.lua"
 require "/scripts/statuseffects/v-tickdamage.lua"
 
 -- Invalidate global height map segments with:
@@ -10,6 +11,8 @@ require "/scripts/statuseffects/v-tickdamage.lua"
 
 local cfg
 local unmeltableMaterials
+
+local entityHeightMaps
 
 local heatMap
 local maxDepth  -- Depth that heats up the slowest
@@ -19,6 +22,7 @@ local burnDepth  -- Depth at which the player starts burning
 local minBurnDamage
 local maxBurnDamage
 local tickTime
+local tickTimeFast
 
 local tickDamage
 
@@ -33,6 +37,7 @@ local sunLiquidId
 local materialConfigs
 
 local sunscreenEffect
+local biomeHazardEffect
 
 local undergroundTileQueryThread
 
@@ -42,7 +47,7 @@ local ADJACENT_TILES = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}
 local SECTOR_SIZE = 32
 
 
----@class HeightMap
+---@class RawHeightMap
 ---@field startXPos integer the starting horizontal position
 ---@field minHeight integer the minimum height to use
 ---@field list HeightMapItem[] the list of height map values.
@@ -73,9 +78,16 @@ function init()
   ---@type HeatedTile[]
   heatMap = {}
 
+  entityHeightMaps = {}
+
+  message.setHandler("v-ministarheat-setEntityCollision", function(_, _, sourceId, heightMap)
+    entityHeightMaps[sourceId] = heightMap
+  end)
+
   minBurnDamage = 1
   maxBurnDamage = 20
   tickTime = 0.5
+  tickTimeFast = 0.3
 
   tickDamage = VTickDamage:new{ kind = "fire", amount = minBurnDamage, damageType = "IgnoresDef", interval = tickTime, source = player.id() }
 
@@ -90,6 +102,7 @@ function init()
   materialConfigs = {}
 
   sunscreenEffect = "v-sunscreen"
+  biomeHazardEffect = "v-biomesun"
 
   undergroundTileQueryThread = coroutine.create(undergroundTileQuery)
 
@@ -105,12 +118,22 @@ function fetchCelestialParams()
       maxDepth = celestialParams.spaceLayer.layerMinHeight
       minDepth = celestialParams.surfaceLayer.primarySubRegion.oceanLiquidLevel
       burnDepth = (minDepth + maxDepth) / 2
+
+      message.setHandler("v-ministarheat-getOceanLevel", function()
+        return minDepth
+      end)
+
       celestialParamsFetched = true
     end
   else
     maxDepth = 2000
     minDepth = 1000
     burnDepth = 1500
+
+    message.setHandler("v-ministarheat-getOceanLevel", function()
+      return minDepth
+    end)
+
     celestialParamsFetched = true
   end
 end
@@ -132,12 +155,14 @@ function update(dt)
 
   syncHeightMapToGlobal(heightMap)
 
+  applyEntityHeightMaps(heightMap)
+
   -- Process existing entries.
   local tilesToDestroy = processHeatMap(affectedTiles, dt)
 
   local sunProximityRatio = 1 - math.max(0, math.min((pos[2] - minDepth) / (maxDepth - minDepth), 1))
   -- Update heatMap for v-ministareffects.lua
-  world.sendEntityMessage(player.id(), "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio)
+  world.sendEntityMessage(player.id(), "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth)
 
   addToHeatMap(affectedTiles, heightMap, dt)
 
@@ -145,7 +170,12 @@ function update(dt)
   world.damageTiles(tilesToDestroy, "foreground", mcontroller.position(), "blockish", 2 ^ 32 - 1, 0)
 
   local burnRatio = (1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + computeSolarFlareBoost(pos[1])
-  world.debugText("%s", burnRatio, {pos[1], pos[2] - 5}, "green")
+
+  if status.uniqueStatusEffectActive(biomeHazardEffect) then
+    tickDamage.interval = tickTimeFast
+  else
+    tickDamage.interval = tickTime
+  end
 
   -- If the player should be burned...
   if burnRatio > 0.0 and isExposedForeground(heightMap) and not status.uniqueStatusEffectActive(sunscreenEffect) then
@@ -260,7 +290,7 @@ function syncHeightMapToGlobal(heightMap)
   local globalHeightMap = {}
   -- For each `xSector` from `startXSector` to `endXSector`...
   for xSector = startXSector, endXSector do
-    local xSectorWrapped = world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE
+    local xSectorWrapped = math.floor(world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
     -- Get global height map section corresponding to `xSector`.
     local globalHeightMapSection = world.getProperty("v-globalHeightMap." .. xSectorWrapped) or {}
 
@@ -295,7 +325,7 @@ function syncHeightMapToGlobal(heightMap)
   -- For each `xSector` from `startXSector` to `endXSector`...
   for xSector = startXSector, endXSector do
     local globalHeightMapSection = {}
-    local xSectorWrapped = world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE
+    local xSectorWrapped = math.floor(world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
 
     -- For each x value in the sector...
     for x = xSectorWrapped * SECTOR_SIZE, (xSectorWrapped + 1) * SECTOR_SIZE - 1 do
@@ -304,6 +334,36 @@ function syncHeightMapToGlobal(heightMap)
     end
 
     world.setProperty("v-globalHeightMap." .. xSectorWrapped, globalHeightMapSection)
+  end
+end
+
+function applyEntityHeightMaps(heightMap)
+  local minXPos = math.huge
+  for _, entityHeightMap in pairs(entityHeightMaps) do
+    if entityHeightMap.startXPos < minXPos then
+      minXPos = entityHeightMap.startXPos
+    end
+  end
+
+  local flattenedEntityHeightMap = vMinistar.HeightMap:new(minXPos)
+
+  for _, entityHeightMap in pairs(entityHeightMaps) do
+    local entityHeightMapObj = vMinistar.HeightMap:new(entityHeightMap.startXPos, entityHeightMap.list)
+    for x, v in entityHeightMapObj:xvalues() do
+      local otherV = flattenedEntityHeightMap:get(x)
+      if not otherV or v < otherV then
+        flattenedEntityHeightMap:set(x, v)
+      end
+    end
+  end
+
+  for i = 1, #heightMap.list do
+    local x = i + heightMap.startXPos - 1
+    local v = heightMap.list[i]
+    local otherV = flattenedEntityHeightMap:get(x)
+    if otherV and otherV < v then
+      heightMap.list[i] = otherV
+    end
   end
 end
 

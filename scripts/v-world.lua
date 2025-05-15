@@ -8,6 +8,9 @@ vWorld = {}
 ---@type [Vec2I, Vec2I, Vec2I, Vec2I]
 vWorld.ADJACENT_TILES = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}
 
+---The size of each sector.
+vWorld.SECTOR_SIZE = 32
+
 -- Certain scripts may not work under specific script contexts due to some built-in tables being
 -- unavailable. The legend below is intended to help in knowing when using each function is appropriate.
 -- * = works under any script context
