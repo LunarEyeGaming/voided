@@ -1,7 +1,7 @@
 {
   "projectileName" : "v-ministarcloud",
   "physics" : "default",
-  "timeToLive" : 60,
+  "timeToLive" : 25,
   "image" : "ministarcloud.png",
   "animationCycle" : 0.5,
   "windupFrames" : 9,
@@ -41,7 +41,7 @@
   "liquidId" : 218,
   "moveForce" : 20,
 
-  "heightMapSetRange" : [-9, 9],
+  "heightMapSetRange" : [-8, 8],
 
   "disappearProjectile" : "v-ministarclouddisappear"
 }

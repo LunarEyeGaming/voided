@@ -16,9 +16,7 @@
       {
         "select" : 1,
         "pool" : [
-          [ 0.4, "flameroach" ],
-          [ 0.3, "lavahopper" ],
-          [ 0.3, "fireygiant" ]
+          [ 1.0, "v-ministarcloudspawner" ]
         ]
       },
       {
@@ -99,10 +97,10 @@
 
   "musicTrack" : {
     "day" : {
-      "tracks" : [ ]
+      "tracks" : [ "/music/accretion-disc.ogg", "/music/M54.ogg", "/music/psyche.ogg" ]
     },
     "night" : {
-      "tracks" : [ ]
+      "tracks" : [ "/music/accretion-disc.ogg", "/music/M54.ogg", "/music/psyche.ogg" ]
     }
   },
 
