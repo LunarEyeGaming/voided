@@ -16,10 +16,10 @@ end
 function update(dt)
   for _, playerId in ipairs(world.players()) do
     if not playerPromises[playerId] then
-      playerPromises[playerId] = world.sendEntityMessage(playerId, "v-ministarheat-getOceanLevel")
+      playerPromises[playerId] = world.sendEntityMessage(playerId, "v-ministarheat-getSpawnRange")
     elseif playerPromises[playerId]:finished() and playerPromises[playerId]:succeeded() then
-      local oceanLevel = playerPromises[playerId]:result()
-      spawnStagehands(oceanLevel)
+      local spawnRange = playerPromises[playerId]:result()
+      spawnStagehands(spawnRange)
       stagehand.die()
 
       return
@@ -27,10 +27,13 @@ function update(dt)
   end
 end
 
-function spawnStagehands(oceanLevel)
+function spawnStagehands(spawnRange)
   local worldSize = world.size()
+  local params = {spawnRegion = {-spawnSpacing / 2, -spawnSpacing / 2, spawnSpacing / 2, spawnSpacing / 2}}
 
   for x = 0, worldSize[1] - 1, spawnSpacing do
-    world.spawnStagehand({x, oceanLevel}, spawnType)
+    for y = spawnRange[1], spawnRange[2], spawnSpacing do
+      world.spawnStagehand({x, y}, spawnType, params)
+    end
   end
 end

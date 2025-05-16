@@ -5,6 +5,7 @@ require "/scripts/rect.lua"
 require "/scripts/v-vec2.lua"
 require "/scripts/v-ministarutil.lua"
 require "/scripts/statuseffects/v-tickdamage.lua"
+require "/scripts/v-time.lua"
 
 -- Invalidate global height map segments with:
 -- /entityeval for x = 0, world.size()[1] // 32 do world.setProperty("v-globalHeightMap." .. x .. ".0", nil) end
@@ -107,6 +108,14 @@ function init()
   undergroundTileQueryThread = coroutine.create(undergroundTileQuery)
 
   celestialParamsFetched = false
+
+  vTime.addInterval(5, function()
+    for entityId, _ in ipairs(entityHeightMaps) do
+      if not world.entityExists(entityId) then
+        entityHeightMaps[entityId] = nil
+      end
+    end
+  end)
 end
 
 function fetchCelestialParams()
@@ -119,8 +128,8 @@ function fetchCelestialParams()
       minDepth = celestialParams.surfaceLayer.primarySubRegion.oceanLiquidLevel
       burnDepth = (minDepth + maxDepth) / 2
 
-      message.setHandler("v-ministarheat-getOceanLevel", function()
-        return minDepth
+      message.setHandler("v-ministarheat-getSpawnRange", function()
+        return {celestialParams.atmosphereLayer.layerMinHeight, maxDepth}
       end)
 
       celestialParamsFetched = true
@@ -130,8 +139,8 @@ function fetchCelestialParams()
     minDepth = 1000
     burnDepth = 1500
 
-    message.setHandler("v-ministarheat-getOceanLevel", function()
-      return minDepth
+    message.setHandler("v-ministarheat-getSpawnRange", function()
+      return {1400, maxDepth}
     end)
 
     celestialParamsFetched = true
@@ -139,6 +148,8 @@ function fetchCelestialParams()
 end
 
 function update(dt)
+  vTime.update(dt)
+
   -- Need to try fetching celestial parameters repeatedly because celestial.visitableParameters returns nil until
   -- shortly after the world is created (as opposed to immediately afterwards).
   if not celestialParamsFetched then

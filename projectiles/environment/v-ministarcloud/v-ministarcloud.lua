@@ -19,10 +19,13 @@ function init()
   heightMapSetRange = config.getParameter("heightMapSetRange")
   minDepth = world.oceanLevel(mcontroller.position()  --[[@as Vec2I]])
 
-  if math.random() <= 0.5 then
-    moveDirection = 1
-  else
-    moveDirection = -1
+  moveDirection = config.getParameter("moveDirection")
+  if not moveDirection then
+    if math.random() <= 0.5 then
+      moveDirection = 1
+    else
+      moveDirection = -1
+    end
   end
 
   if dieInProtectedAreas and world.isTileProtected(mcontroller.position()) then
@@ -73,9 +76,11 @@ end
 
 function destroy()
   if not diedInInit then
-    local action = config.getParameter("disappearAction")
-    if action then
-      projectile.processAction(action)
+    local disappearProjectile = config.getParameter("disappearProjectile")
+    if disappearProjectile then
+      world.spawnProjectile(disappearProjectile, mcontroller.position(), projectile.sourceEntity(), {moveDirection, 0}, false, {
+        moveDirection = moveDirection
+      })
     end
   end
 end
