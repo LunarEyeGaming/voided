@@ -110,7 +110,7 @@ function init()
   celestialParamsFetched = false
 
   vTime.addInterval(5, function()
-    for entityId, _ in ipairs(entityHeightMaps) do
+    for entityId, _ in pairs(entityHeightMaps) do
       if not world.entityExists(entityId) then
         entityHeightMaps[entityId] = nil
       end

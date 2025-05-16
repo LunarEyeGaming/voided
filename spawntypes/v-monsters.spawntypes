@@ -580,5 +580,24 @@
     "monsterParameters" : {
       "aggressive" : true
     }
+  },
+
+  {
+    "name" : "v-ministarcloudspawner",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 2],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-ministarcloudspawner"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
   }
 ]
