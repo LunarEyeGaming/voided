@@ -3,19 +3,20 @@
   "fixedLevel" : false,
   "price" : 630,
   "maxStack" : 1,
-  "rarity" : "Uncommon",
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
   "category" : "shield",
-  "description" : "Stops attacks cold.",
-  "shortdescription" : "Frost Shield",
+  "description" : "On perfect blocks, fires a projectile.",
+  "shortdescription" : "Infernite Shield",
   "tooltipKind" : "Shield",
   "twoHanded" : false,
   "itemTags" : ["shield"],
 
-  "inventoryIcon" : "/items/active/shields/images/frost.png:nearidle",
+  "inventoryIcon" : "inferniteshield.png:nearidle",
 
   "animation" : "/items/active/shields/shield.animation",
   "animationParts" : {
-    "shield" : "/items/active/shields/images/frost.png"
+    "shield" : "inferniteshield.png"
   },
   "animationCustom" : {
     "animatedParts" : { "parts" : { "shield" : { "properties" : {
@@ -57,5 +58,5 @@
     }
   },
 
-  "builder" : "/items/buildscripts/buildunrandshield.lua"
+  "builder" : "/items/buildscripts/v-buildunrandshield.lua"
 }
