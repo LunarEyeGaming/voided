@@ -1,3 +1,9 @@
+local tickTime
+local tickTimer
+local damage
+local sunscreenEffect
+local sunscreenResistance
+
 function init()
   animator.setParticleEmitterOffsetRegion("flames", mcontroller.boundBox())
   animator.setParticleEmitterActive("flames", true)
@@ -5,9 +11,11 @@ function init()
 
   script.setUpdateDelta(5)
 
-  self.tickTime = 1.0
-  self.tickTimer = self.tickTime
-  self.damage = 120
+  tickTime = 1.0
+  tickTimer = tickTime
+  damage = 120
+  sunscreenEffect = "v-sunscreen"
+  sunscreenResistance = 0.5
 
   status.applySelfDamageRequest({
       damageType = "IgnoresDef",
@@ -18,13 +26,17 @@ function init()
 end
 
 function update(dt)
-  self.tickTimer = self.tickTimer - dt
-  if self.tickTimer <= 0 then
-    self.tickTimer = self.tickTime
-    self.damage = self.damage * 2
+  tickTimer = tickTimer - dt
+  if tickTimer <= 0 then
+    tickTimer = tickTime
+    damage = damage * 2
+    local appliedDamage = damage
+    if status.uniqueStatusEffectActive(sunscreenEffect) then
+      appliedDamage = appliedDamage * (1 - sunscreenResistance)
+    end
     status.applySelfDamageRequest({
         damageType = "IgnoresDef",
-        damage = self.damage,
+        damage = appliedDamage,
         damageSourceKind = "fire",
         sourceEntityId = entity.id()
       })

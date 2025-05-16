@@ -48,7 +48,7 @@ function vUtil.polarRect(xLength, yLength, angle)
   end
 end
 
--- *
+-- Requires: None
 -- Not really by Void Eye Gaming
 function vUtil.strStartsWith(str, start)
   return str:sub(1, #start) == start

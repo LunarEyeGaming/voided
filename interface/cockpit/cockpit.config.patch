@@ -80,6 +80,8 @@
         "displayName" : "Dangerously Conductive", "icon" : "/interface/cockpit/hazards/v-biomeelectric.png"}},
     {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomepoison", "value" : {
         "displayName" : "Mycotoxin", "icon" : "/interface/cockpit/hazards/v-biomepoison.png"}},
+    {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomesun", "value" : {
+        "displayName" : "Solar Radiation", "icon" : "/interface/cockpit/hazards/v-biomesun.png"}},
 
     // Threat level support for weather. Weather types not included have a threat level of 0.
     {"op" : "add", "path" : "/weatherThreatValues/v-copperstorm", "value": 1.5},
@@ -455,6 +457,22 @@
       "path" : "/displayWeathers/v-ministarwindextreme",
       "value" : {
         "displayName" : "Coronal Gust",
+        "icon" : "/interface/cockpit/weather/todo.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-ministarflaresmall",
+      "value" : {
+        "displayName" : "Solar Flare",
+        "icon" : "/interface/cockpit/weather/todo.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-magmameteors",
+      "value" : {
+        "displayName" : "Magma Meteors",
         "icon" : "/interface/cockpit/weather/todo.png"
       }
     },
