@@ -1,0 +1,12 @@
+[
+  {
+    "op" : "add",
+    "path" : "/items/voided:ministarrenderconfig",
+    "value" : {
+      "label" : "Ministar Render Settings",
+      "icon" : "/interface/scripted/v-ministarrenderconfig/quickbaricon.png",
+      "weight" : 837,
+      "action" : [ "pane", "/interface/scripted/v-ministarrenderconfig/v-ministarrenderconfig.config" ]
+    }
+  }
+]

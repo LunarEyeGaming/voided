@@ -7,13 +7,12 @@ local oldInit = init or function() end
 local oldUpdate = update or function() end
 
 -- User-configurable parameters (TODO)
-local renderConfig
-local particleDensity
 local lightInterval
 local useLights
 local useImagesForRays
 
 -- Internal parameters
+local particleDensity
 local startBurningColor
 local endBurningColor
 local sunRayDimColor
@@ -44,51 +43,16 @@ function init()
 
   isActive = true
 
-  renderConfig = player.getProperty("v-ministareffects-renderConfig", {
-    particleDensity = 0.02,
-    lightInterval = 16,
+  local renderConfig = player.getProperty("v-ministareffects-renderConfig", {
+    lightIntervalIdx = 2,
     useLights = true,
     useImagesForRays = true
   })
-  particleDensity = renderConfig.particleDensity
-  lightInterval = renderConfig.lightInterval
-  useLights = renderConfig.useLights
-  useImagesForRays = renderConfig.useImagesForRays
-  if useImagesForRays then
-    sunRayDrawable = {
-      transformation = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}},  -- Placeholder
-      image = "/scripts/rendering/v-ministarray.png",
-      position = {},  -- Placeholder
-      color = {},  -- Placeholder
-      fullbright = true
-    }
-    sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
-      local relativePos = {x - predictedPos[1] + 0.5, (topY + bottomY) / 2 - predictedPos[2] - 0.5}
+  v_ministarEffects_applyRenderConfig(renderConfig)
 
-      sunRayDrawable.transformation = {
-        {1.0, 0.0, 0.0},
-        {0.0, topY - bottomY + 1.0, 0.0},
-        {0.0, 0.0, 1.0}  -- Hmm these bottom three values could be used to make a parallax effect me thinks.
-      }
-      sunRayDrawable.position = relativePos
-      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
-    end
-  else
-    sunRayDrawable = {
-      line = {{0, 0}, {0, 0}},  -- Placeholder
-      width = 8,
-      position = {0, 0},  -- Placeholder
-      color = {0, 0, 0, 0},  -- Placeholder
-      fullbright = true
-    }
-    sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
-      local relativePos = {x - predictedPos[1], bottomY - predictedPos[2]}
-
-      sunRayDrawable.line = {{0.5, -1}, {0.5, topY - bottomY}}
-      sunRayDrawable.position = relativePos
-      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
-    end
-  end
+  message.setHandler("v-ministareffects-applyRenderConfig", function(_, _, cfg)
+    v_ministarEffects_applyRenderConfig(cfg)
+  end)
 
   -- Synchronizes data
   message.setHandler("v-ministareffects-updateBlocks", function(_, _, burningBlocks_, heightMap_, sunProximityRatio_, minHeight_)
@@ -114,6 +78,7 @@ function init()
   lightDrawBounds = {}
   sunProximityRatio = 0
 
+  particleDensity = 0.02
   startBurningColor = {255, 0, 0, 0}
   endBurningColor = {255, 119, 0, 255}
   sunRayDimColor = {255, 0, 0, 0}
@@ -392,4 +357,46 @@ end
 
 function v_ministarEffects_normalDistribution(mean, stdDev, x)
   return math.exp(-(x - mean) ^ 2 / (2 * stdDev ^ 2))
+end
+
+function v_ministarEffects_applyRenderConfig(cfg)
+  local lightIntervals = {8, 16, 32, 64, 128}
+  lightInterval = lightIntervals[cfg.lightIntervalIdx]
+  useLights = cfg.useLights
+  useImagesForRays = cfg.useImagesForRays
+  if useImagesForRays then
+    sunRayDrawable = {
+      transformation = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}},  -- Placeholder
+      image = "/scripts/rendering/v-ministarray.png",
+      position = {},  -- Placeholder
+      color = {},  -- Placeholder
+      fullbright = true
+    }
+    sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
+      local relativePos = {x - predictedPos[1] + 0.5, (topY + bottomY) / 2 - predictedPos[2] - 0.5}
+
+      sunRayDrawable.transformation = {
+        {1.0, 0.0, 0.0},
+        {0.0, topY - bottomY + 1.0, 0.0},
+        {0.0, 0.0, 1.0}  -- Hmm these bottom three values could be used to make a parallax effect me thinks.
+      }
+      sunRayDrawable.position = relativePos
+      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
+    end
+  else
+    sunRayDrawable = {
+      line = {{0, 0}, {0, 0}},  -- Placeholder
+      width = 8,
+      position = {0, 0},  -- Placeholder
+      color = {0, 0, 0, 0},  -- Placeholder
+      fullbright = true
+    }
+    sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
+      local relativePos = {x - predictedPos[1], bottomY - predictedPos[2]}
+
+      sunRayDrawable.line = {{0.5, -1}, {0.5, topY - bottomY}}
+      sunRayDrawable.position = relativePos
+      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
+    end
+  end
 end
