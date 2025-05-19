@@ -14,10 +14,11 @@ vMinistar.HeightMap = {}
 ---@param list? table<integer, integer>
 ---@return HeightMap
 function vMinistar.HeightMap:new(startXPos, list)
+  list = list or {}
   local instance = {
     startXPos = startXPos,
-    list = list or {},
-    endXPos = startXPos
+    list = list,
+    endXPos = startXPos + #list
   }
   setmetatable(instance, self)
   self.__index = self
@@ -30,6 +31,14 @@ end
 ---@return integer?
 function vMinistar.HeightMap:get(x)
   return self.list[x - self.startXPos + 1]
+end
+
+---Returns the index as well as the height map value at `x`, or `nil` if not defined.
+---@param x integer
+---@return integer, integer?
+function vMinistar.HeightMap:geti(x)
+  local i = x - self.startXPos + 1
+  return i, self.list[i]
 end
 
 ---Sets the height map value at `x` to `v`.

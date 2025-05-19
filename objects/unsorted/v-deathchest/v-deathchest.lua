@@ -1,9 +1,11 @@
 require "/scripts/util.lua"
 require "/scripts/rect.lua"
+-- require "/scripts/v-world.lua"
 
-local playerDetectRadius
-local playerDetectOffset
-local itemDetectRadius
+local playerDetectRadius  -- Maximum player detection range relative to player detection position
+local playerDetectOffset  -- Player detection position is based on this variable and the object's position.
+local playerDetectOffset2  -- If provided, defines the other corner.
+local itemDetectRadius  -- Maximum item detection range relative to dead player position.
 local openWaitTime  -- The amount of time to wait after opening and before collecting the item
 local postCollectWaitTime  -- The amount of time to wait after collecting.
 local closeWaitTime  -- The amount of time to wait after closing and before changing the fill status.
@@ -28,6 +30,7 @@ local wasOpened
 function init()
   playerDetectRadius = config.getParameter("playerDetectRadius", 50)
   playerDetectOffset = config.getParameter("playerDetectOffset", {0, 0})
+  playerDetectOffset2 = config.getParameter("playerDetectOffset2")
   itemDetectRadius = config.getParameter("itemDetectRadius", 20)
   openWaitTime = config.getParameter("openWaitTime", 0.5)
   postCollectWaitTime = config.getParameter("postCollectWaitTime", 0.5)
@@ -72,11 +75,17 @@ end
 
 function update(dt)
   -- Keep own chunk loaded
-  world.loadRegion(rect.translate({-1, -1, 1, 1}, object.position()))
+  local ownPos = object.position()
+  world.loadRegion(rect.translate({-1, -1, 1, 1}, ownPos))
 
   prevAlivePlayers = alivePlayers
-  local queryPos = {object.position()[1] + playerDetectOffset[1], object.position()[2] + playerDetectOffset[2]}
-  alivePlayers = world.entityQuery(queryPos, playerDetectRadius, {includedTypes = {"player"}})
+  local queryPos = {ownPos[1] + playerDetectOffset[1], ownPos[2] + playerDetectOffset[2]}
+  local queryPos2
+  if playerDetectOffset2 then
+    queryPos2 = {ownPos[1] + playerDetectOffset2[1], ownPos[2] + playerDetectOffset2[2]}
+  end
+  alivePlayers = world.entityQuery(queryPos, queryPos2 or playerDetectRadius, {includedTypes = {"player"}})
+  -- vWorld.debugQueryArea(queryPos, queryPos2 or playerDetectRadius, "green")
 
   -- Appear if invisible and at least one alive player was found.
   if storage.isInvisible and #alivePlayers > 0 then

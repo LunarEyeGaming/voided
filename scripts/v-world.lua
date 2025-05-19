@@ -1,5 +1,6 @@
 require "/scripts/rect.lua"
 require "/scripts/vec2.lua"
+require "/scripts/v-ellipse.lua"
 
 --- Utility functions related to the world.
 vWorld = {}
@@ -93,6 +94,23 @@ function vWorld.radialRaycast(args)
   end
 
   return results
+end
+
+---Debugs a query area.
+---@param position Vec2F
+---@param positionOrRadius Vec2F | number
+---@param color string
+function vWorld.debugQueryArea(position, positionOrRadius, color)
+  if type(positionOrRadius) == "table" then
+    world.debugPoly({
+      {position[1], position[2]},
+      {positionOrRadius[1], position[2]},
+      {positionOrRadius[1], positionOrRadius[2]},
+      {position[1], positionOrRadius[2]}
+    }, color)
+  else
+    vEllipse.debug(position, positionOrRadius, 50, color)
+  end
 end
 
 --- Utility coroutine functions related to the world.

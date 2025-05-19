@@ -2,6 +2,7 @@ require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
 
 require "/scripts/v-animator.lua"
+require "/scripts/v-ministarutil.lua"
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
@@ -57,7 +58,7 @@ function init()
   -- Synchronizes data
   message.setHandler("v-ministareffects-updateBlocks", function(_, _, burningBlocks_, heightMap_, sunProximityRatio_, minHeight_)
     burningBlocks = burningBlocks_
-    heightMap = heightMap_
+    heightMap = vMinistar.HeightMap:new(heightMap_.startXPos, heightMap_.list)
     sunProximityRatio = sunProximityRatio_
     minHeight = minHeight_
     v_ministarEffects_computeLightBounds()
@@ -131,8 +132,8 @@ function update(dt)
   if heightMap then
     local boosts = v_ministarEffects_computeSolarFlareBoosts(heightMap.startXPos, heightMap.startXPos + #heightMap.list)
 
-    v_ministarEffects_drawSunRays(predictedPos, sunProximityRatio, boosts)
-    v_ministarEffects_drawSunRayLights(sunProximityRatio, boosts)
+    v_ministarEffects_drawSunRays(predictedPos, sunProximityRatio, boosts, window)
+    v_ministarEffects_drawSunRayLights(sunProximityRatio, boosts, window)
   end
   v_ministarEffects_drawParticles(sunRayColor)
 end
@@ -157,41 +158,31 @@ function v_ministarEffects_drawBurningBlocks(predictedPos, dt, window)
   end
 end
 
-function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts)
+function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts, window)
   local bottomY = minHeight
 
-  -- local prevWasDrawn  -- Whether or not the previous strip was drawn.
-  -- Draw sun rays and compute light drawing boundaries based on change in max value.
-  -- local prevTopY = heightMap.list[1]  -- Default
-  for i, topY in ipairs(heightMap.list) do
-    local x = i + heightMap.startXPos - 1
+  -- Draw sun rays.
+  -- for i, topY in ipairs(heightMap.list) do
+  --   local x = i + heightMap.startXPos - 1
 
-    -- local lightTopY = math.min(window[4], topY)
-    -- local relativePos = vec2.sub({x, bottomY}, predictedPos)
-
-    -- world.debugText("%s", topY, {x, predictedPos[2] - x % 3}, "green")
-    -- world.debugText("%s", bottomY, {x, predictedPos[2] - x % 3 - 5}, "red")
+  --   if topY ~= bottomY then
+  --     sunRayDrawable.color = vAnimator.lerpColorU(math.min(1.0, ratio + boosts[i]), sunRayDimColor, sunRayBrightColor)
+  --     sunRayDrawableFunc(x, bottomY, topY, predictedPos)
+  --   end
+  -- end
+  local startX = math.max(window[1], heightMap.startXPos)
+  local endX = math.min(window[3], heightMap.endXPos)
+  for x = startX, endX do
+    local i, topY = heightMap:geti(x)
 
     if topY ~= bottomY then
       sunRayDrawable.color = vAnimator.lerpColorU(math.min(1.0, ratio + boosts[i]), sunRayDimColor, sunRayBrightColor)
       sunRayDrawableFunc(x, bottomY, topY, predictedPos)
-
-      -- for y = lightBottomY, lightTopY, lightInterval do
-      --   localAnimator.addLightSource({
-      --     position = {x, y},
-      --     color = lightColor
-      --   })
-      -- end
     end
-
-    -- lightDrawBounds[i] = {s = prevTopY, e = topY}
-    -- prevTopY = topY
-
-    -- prevWasDrawn = topY ~= bottomY
   end
 end
 
-function v_ministarEffects_drawSunRayLights(ratio, boosts)
+function v_ministarEffects_drawSunRayLights(ratio, boosts, window)
   if not useLights then return end
 
   local sunRayLightSource = {
@@ -199,30 +190,21 @@ function v_ministarEffects_drawSunRayLights(ratio, boosts)
     color = {0, 0, 0, 0}
   }
 
-
-  -- -- Derive a starting index based on startXPos.
-  -- local startI = heightMap.startXPos // lightInterval * lightInterval - heightMap.startXPos + 1
-  -- -- Add periodic lights
-  -- for i = startI, #heightMap.list, lightInterval do
-  --   lightDrawBounds[i] = {s = bottomY, e = heightMap.list[i]}
-  -- end
-
-  -- sb.logInfo("%s", lightDrawBounds)
+  local startX = math.max(window[1], heightMap.startXPos)
+  local endX = math.min(window[3], heightMap.endXPos)
 
   -- Draw lights
-  for i, v in ipairs(lightDrawBounds) do
-    local x = i + heightMap.startXPos - 1
+  for x = startX, endX do
+    local i = x - heightMap.startXPos + 1
+    local v = lightDrawBounds[i]
     if v.s ~= v.e then
       local inc
-
       if v.s < v.e then
         inc = lightInterval
       else
         inc = -lightInterval
       end
-
       local rayRatio = math.min(1.0, ratio + boosts[i])
-
       local sunRayColor = vAnimator.lerpColorU(rayRatio, sunRayDimColor, sunRayBrightColor)
       local sunRayLightColor = {
         math.floor(sunRayColor[1] * rayRatio),
@@ -230,20 +212,44 @@ function v_ministarEffects_drawSunRayLights(ratio, boosts)
         math.floor(sunRayColor[3] * rayRatio)
       }
       sunRayLightSource.color = sunRayLightColor
-
       for y = v.s, v.e, inc do
         sunRayLightSource.position = {x, y}
         localAnimator.addLightSource(sunRayLightSource)
       end
-
-      -- world.debugText("%s", rayRatio, {x, v.e}, "green")
-
-      -- world.debugLine({x, v.s}, {x, v.e}, "#" .. vAnimator.colorToString(sunRayLightColor))
-
       sunRayLightSource.position = {x, v.e}
       localAnimator.addLightSource(sunRayLightSource)
     end
   end
+  -- for i, v in ipairs(lightDrawBounds) do
+  --   local x = i + heightMap.startXPos - 1
+  --   if v.s ~= v.e then
+  --     local inc
+
+  --     if v.s < v.e then
+  --       inc = lightInterval
+  --     else
+  --       inc = -lightInterval
+  --     end
+
+  --     local rayRatio = math.min(1.0, ratio + boosts[i])
+
+  --     local sunRayColor = vAnimator.lerpColorU(rayRatio, sunRayDimColor, sunRayBrightColor)
+  --     local sunRayLightColor = {
+  --       math.floor(sunRayColor[1] * rayRatio),
+  --       math.floor(sunRayColor[2] * rayRatio),
+  --       math.floor(sunRayColor[3] * rayRatio)
+  --     }
+  --     sunRayLightSource.color = sunRayLightColor
+
+  --     for y = v.s, v.e, inc do
+  --       sunRayLightSource.position = {x, y}
+  --       localAnimator.addLightSource(sunRayLightSource)
+  --     end
+
+  --     sunRayLightSource.position = {x, v.e}
+  --     localAnimator.addLightSource(sunRayLightSource)
+  --   end
+  -- end
 end
 
 function v_ministarEffects_computeLightBounds()
@@ -255,61 +261,22 @@ function v_ministarEffects_computeLightBounds()
 
   local lightBottomY = math.max(window[2], bottomY) // lightInterval * lightInterval
 
-  -- local prevWasDrawn  -- Whether or not the previous strip was drawn.
   -- Draw sun rays and compute light drawing boundaries based on change in max value.
   local prevTopY = heightMap.list[1]  -- Default
   for i, topY in ipairs(heightMap.list) do
     lightDrawBounds[i] = {s = prevTopY, e = topY}
     prevTopY = topY
-
-    -- prevWasDrawn = topY ~= bottomY
   end
 
   -- Derive a starting index based on startXPos.
-  -- sb.logInfo("startXPos: %s, startXPos (clamped): %s", heightMap.startXPos, heightMap.startXPos // lightInterval * lightInterval)
   local startI = (heightMap.startXPos // lightInterval + 1) * lightInterval - heightMap.startXPos + 1
   -- Add periodic lights
   for i = startI, #heightMap.list, lightInterval do
-    -- sb.logInfo("startI: %s, end: %s", startI, #heightMap.list)
     if lightBottomY <= heightMap.list[i] and heightMap.list[i] ~= bottomY then
       lightDrawBounds[i] = {s = lightBottomY, e = heightMap.list[i]}
     end
   end
 end
-
--- function v_ministarEffects_drawSunRays(predictedPos, color, window)
---   local sunRayDrawable = {
---     line = true,  -- Placeholder
---     width = 8,
---     position = true,  -- Placeholder
---     color = color,
---     fullbright = true
---   }
---   -- For each horizontal strip in heightMap...
---   for _, jsonV in ipairs(heightMap.list) do
---     local i = jsonV.i
---     local heightSectorMap = jsonV.v
---     for j, v in ipairs(heightSectorMap) do
---       local x = (i - 1) * SECTOR_SIZE + j - 1
-
---       -- If x is within window boundaries...
---       if window[1] <= x and x <= window[3] then
---         local topY = v
---         local bottomY = minHeight
---         local relativePos = vec2.sub({x, bottomY}, predictedPos)
-
---         -- world.debugText("%s", topY, {x, predictedPos[2] - x % 3}, "green")
---         -- world.debugText("%s", bottomY, {x, predictedPos[2] - x % 3 - 5}, "red")
-
---         if topY ~= bottomY then
---           sunRayDrawable.line = {{0.5, -1}, {0.5, topY - bottomY}}
---           sunRayDrawable.position = relativePos
---           localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
---         end
---       end
---     end
---   end
--- end
 
 function v_ministarEffects_drawParticles(color)
   if sunProximityRatio == 0 then return end
@@ -349,7 +316,6 @@ function v_ministarEffects_computeSolarFlareBoosts(startX, endX)
       local i = x - startX + 1
       boosts[i] = boosts[i] + v_ministarEffects_normalDistribution(flare.x, flare.spread / 3, x) * flare.potency * timeMultiplier
     end
-    -- boost = boost + v_ministarEffects_normalDistribution(flare.x, flare.spread / 3, x) * flare.potency * v_ministarEffects_normalDistribution(durationMean, durationStdDev, world.time())
   end
 
   return boosts

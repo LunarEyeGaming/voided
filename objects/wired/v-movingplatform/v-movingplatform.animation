@@ -1,0 +1,23 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "doorState" : {
+        "default" : "closed",
+        "states" : {
+          "closed" : {},
+          "open" : {}
+        }
+      }
+    },
+    "parts" : {
+      "door" : {
+        "properties" : {}
+      }
+    }
+  },
+
+  "sounds" : {
+    "open" : [],
+    "close" : []
+  }
+}
