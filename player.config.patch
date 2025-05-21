@@ -82,5 +82,13 @@
       "initialValue": 0,
       "deltaStat": "v-depthPoisonDelta"
     }
+  },
+
+  {
+    "op": "add",
+    "path": "/statusControllerSettings/stats/v-ministarHeatTickMultiplier",
+    "value": {
+      "baseValue": 1.0
+    }
   }
 ]

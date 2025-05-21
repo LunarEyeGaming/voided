@@ -8,6 +8,8 @@ function init()
   script.setUpdateDelta(6)
 
   tickDamage = VTickDamage:new{ kind = "fire", amount = 15, interval = 10, damageType = "IgnoresDef" }
+
+  effect.addStatModifierGroup({{stat = "v-ministarHeatTickMultiplier", effectiveMultiplier = 0.6}})
 end
 
 function update(dt)

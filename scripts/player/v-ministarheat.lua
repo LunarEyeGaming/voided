@@ -23,7 +23,6 @@ local burnDepth  -- Depth at which the player starts burning
 local minBurnDamage
 local maxBurnDamage
 local tickTime
-local tickTimeFast
 
 local tickDamage
 
@@ -36,9 +35,6 @@ local maxPenetration
 local collisionSet
 local sunLiquidId
 local materialConfigs
-
-local sunscreenEffect
-local biomeHazardEffect
 
 local undergroundTileQueryThread
 
@@ -88,7 +84,6 @@ function init()
   minBurnDamage = 1
   maxBurnDamage = 20
   tickTime = 0.5
-  tickTimeFast = 0.3
 
   tickDamage = VTickDamage:new{ kind = "fire", amount = minBurnDamage, damageType = "IgnoresDef", interval = tickTime, source = player.id() }
 
@@ -101,9 +96,6 @@ function init()
   collisionSet = {"Block", "Platform"}
   sunLiquidId = 218
   materialConfigs = {}
-
-  sunscreenEffect = "v-sunscreen"
-  biomeHazardEffect = "v-biomesun"
 
   undergroundTileQueryThread = coroutine.create(undergroundTileQuery)
 
@@ -182,17 +174,17 @@ function update(dt)
 
   local burnRatio = (1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + computeSolarFlareBoost(pos[1])
 
-  if status.uniqueStatusEffectActive(biomeHazardEffect) then
-    tickDamage.interval = tickTimeFast
-  else
-    tickDamage.interval = tickTime
+  if status.statPositive("v-ministarHeatTickMultiplier") then
+    tickDamage.interval = tickTime * status.stat("v-ministarHeatTickMultiplier")
   end
 
+  local multiplier = 1 - status.stat("v-ministarHeatResistance")
+
   -- If the player should be burned...
-  if burnRatio > 0.0 and isExposedForeground(heightMap) and not status.uniqueStatusEffectActive(sunscreenEffect) then
+  if burnRatio > 0.0 and isExposedForeground(heightMap) and multiplier > 0.0 then
     -- Update damage amount. It is a linear interpolation between maxBurnDamage and minBurnDamage, where damage grows as
     -- depth (aka y position) decreases.
-    tickDamage.damageRequest.damage = interp.linear(burnRatio, minBurnDamage, maxBurnDamage)
+    tickDamage.damageRequest.damage = interp.linear(burnRatio, minBurnDamage, maxBurnDamage) * multiplier
     tickDamage:update(dt)  -- Run the tickDamage object for one tick.
   else
     tickDamage:reset()

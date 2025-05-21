@@ -1,0 +1,174 @@
+{
+  "objectName" : "v-wildmissilebloom",
+  "colonyTags" : ["nature"],
+  "rarity" : "Common",
+  "category" : "seed",
+  "description" : "<todo>",
+  "shortdescription" : "Missilebloom",
+  "printable" : false,
+  "price" : 50,
+  "hasObjectItem" : false,
+
+  "biomePlaced" : true,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "chiliseedicon.png",
+
+  "orientations" : [
+    {
+      "dualImage" : "chiliseed.png:<color>.<stage>.<alt>",
+      "animationParts" : {
+        "crop" : "chiliseed.png"
+      },
+      "imagePosition" : [0, 0],
+      "animationPosition" : [0, 0],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaces" : [ [1, 0], [0, 0], [1, 1], [0, 1], [1, 2], [0, 2], [1, 3], [0, 3], [1, 4], [0, 4] ],
+      "requireTilledAnchors" : false,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "animation" : "/objects/farmables/v-scriptedfarmable.animation",
+  "animationCustom" : {
+    "particleEmitters" : {
+      "hazard" : {
+        "emissionRate" : 2.0,
+        "offsetRegion" : [0, 0, 1, 4],
+        // emissionRateVariance is broken in objects for some reason. This'll have to do.
+        "randomSelectCount" : 1,
+        "particles" : [
+          {
+            "particle" : {
+              "type" : "textured",
+              "image" : "/particles/hazard/hazardstat.png",
+              "size" : 0.5,
+              "color" : [231, 223, 189, 175],
+              "fade" : 0,
+              "destructionAction" : "fade",
+              "destructionTime" : 0.5,
+              "initialVelocity" : [0, -1],
+              "finalVelocity" : [0, -2],
+              "approach" : [4, 1],
+              "timeToLive" : 0.5,
+              "layer" : "middle",
+              "collidesForeground" : false,
+              "variance" : {
+                "position" : [0.5, 0.5],
+                "initialVelocity" : [2, 0],
+                "finalVelocity" : [1, 0]
+              }
+            }
+          },
+          {
+            "particle" : {
+              "type" : "textured",
+              "image" : "/assetmissing.png",
+              "timeToLive" : 0
+            },
+            "count" : 0
+          },
+          {
+            "particle" : {
+              "type" : "textured",
+              "image" : "/assetmissing.png",
+              "timeToLive" : 0
+            },
+            "count" : 0
+          },
+          {
+            "particle" : {
+              "type" : "textured",
+              "image" : "/assetmissing.png",
+              "timeToLive" : 0
+            },
+            "count" : 0
+          }
+        ]
+      }
+    }
+  },
+
+  "radioMessagesOnPickup" : [ "pickupseed" ],
+
+  "stages" : [
+    {
+      "duration" : [430, 470]
+    },
+    {
+      "duration" : [430, 470]
+    },
+    {
+      "alts" : 5,
+      "duration" : [430, 470]
+    },
+    {
+      "alts" : 5,
+      "duration" : [430, 470],
+      "fireThreshold" : 25,
+      "fireChance" : 0.1,
+      "projectileType" : "v-missilebloom",
+      "projectileCount" : 1,
+      "fuzzAngle" : 180,
+      "offsetRegion" : [0, 0, 1, 4],
+      "resetToStage" : 2,
+      "activateHazardParticle" : true
+    },
+    {
+      "alts" : 5,
+      "duration" : [430, 470],
+      "fireThreshold" : 25,
+      "fireChance" : 0.2,
+      "projectileType" : "v-missilebloom",
+      "projectileCount" : 1,
+      "fuzzAngle" : 180,
+      "offsetRegion" : [0, 0, 1, 4],
+      "resetToStage" : 3,
+      "activateHazardParticle" : true
+    },
+    {
+      "alts" : 5,
+      "duration" : [430, 470],
+      "fireThreshold" : 25,
+      "fireChance" : 0.3,
+      "projectileType" : "v-missilebloom",
+      "projectileCount" : 1,
+      "fuzzAngle" : 180,
+      "offsetRegion" : [0, 0, 1, 4],
+      "resetToStage" : 4,
+      "activateHazardParticle" : true
+    },
+    {
+      "alts" : 5,
+      "fireThreshold" : 25,
+      "fireChance" : 0.4,
+      "projectileType" : "v-missilebloom",
+      "projectileCount" : 1,
+      "fuzzAngle" : 180,
+      "offsetRegion" : [0, 0, 1, 4],
+      "resetToStage" : 5,
+      "activateHazardParticle" : true
+    }
+  ],
+
+  "breakDropOptions" : [
+    [ [ "v-missilebloom", 1, { } ] ]
+  ],
+
+  "maxImmersion" : 0.1,
+  "consumeSoilMoisture" : false,
+
+  "scripts" : [ "v-missilebloom.lua" ],
+  "scriptDelta" : 3,
+
+  "detectRegion" : [0, 0, 1, 4]
+}

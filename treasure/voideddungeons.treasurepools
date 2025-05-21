@@ -141,5 +141,41 @@
         [0.1, 4]
       ]
     }]
+  ],
+  "v-multidashpyramidReward" : [
+    [1, {
+      "fill" : [
+        {"pool" : "v-sunspotblockBlueprint"}
+      ],
+      "pool" : [
+        {"weight" : 0.1, "item" : ["manipulatormodule", 5]},
+        {"weight" : 0.1, "item" : ["v-infernitebar", 10]},
+        {"weight" : 0.1, "item" : ["money", 200]},
+        {"weight" : 0.1, "pool" : "v-rareFireGun"},
+        {"weight" : 0.15, "pool" : "v-rareFireMelee"},
+        {"weight" : 0.1, "pool" : "shield"}
+      ],
+      "poolRounds" : [
+        [0.5, 4],
+        [0.5, 5]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-sunspotblockBlueprint" : [
+    [1, {
+      "fill" : [ ],
+      "pool" : [
+        {"weight" : 1.0, "item" : "v-sunspotbrick1material-recipe"},
+        {"weight" : 1.0, "item" : "v-sunspotbrick2material-recipe"},
+        {"weight" : 1.0, "item" : "v-sunspotbrick3material-recipe"},
+        {"weight" : 1.0, "item" : "v-sunspotglassmaterial-recipe"},
+        {"weight" : 1.0, "item" : "v-sunspotpillarmaterial-recipe"}
+      ],
+      "poolRounds" : [
+        [1.0, 1]
+      ],
+      "allowDuplication" : false
+    }]
   ]
 }

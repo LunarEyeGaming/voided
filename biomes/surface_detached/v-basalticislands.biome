@@ -1,17 +1,13 @@
 {
   "name" : "v-basalticislands",
   "friendlyName" : "Basaltic Islands",
-  "airless" : true,
-  // "horizonClouds" : false,
 
   "spawnProfile" : {
     "groups" : [
       {
-        "select" : 3,
+        "select" : 1,
         "pool" : [
-          [ 1.0, "v-sunleaperground" ],
-          [ 1.0, "v-fireelemental" ],
-          [ 1.0, "v-novamonster" ]
+          [ 1.0, "yokat" ]
         ]
       },
       {
@@ -21,14 +17,6 @@
           [ 0.3, "lavahopper" ],
           [ 0.3, "fireygiant" ]
         ]
-      },
-      {
-        "select" : 1,
-        "pool" : "generatedGroundAggroDay"
-      },
-      {
-        "select" : 3,
-        "pool" : "nightTerrors"
       },
       {
         "select" : 2,
@@ -220,15 +208,17 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1.0,
+        "priority" : 0.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+        "distribution" : "/biomes/distributions.config:everywhere",
 
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1.0, "v-geysertrap" ] ],
-            "parameters" : { }
+            "pool" : [ [1, "v-wildmissilebloom" ] ],
+            "parameters" : {
+              "startingStage" : 7
+            }
           }
         ]
       }

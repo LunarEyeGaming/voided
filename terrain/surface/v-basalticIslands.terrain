@@ -34,7 +34,7 @@
         },
 
         "aSource" : {
-          // large islands with mountainous terrain
+          // large islands with hilly terrain
           "type" : "islandSurface",
 
           "islandElevation" : -1,
@@ -51,9 +51,9 @@
           "islandHeight" : {
             "type" : "perlin",
             "octaves" : 2,
-            "frequency" : 0.02,
-            "amplitude" : 150,
-            "bias" : 75
+            "frequency" : 0.001,
+            "amplitude" : 50,
+            "bias" : 25
           },
 
           "islandDepth" : {

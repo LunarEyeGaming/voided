@@ -4,11 +4,13 @@
   "category" : "block",
   "rarity" : "Uncommon",
   "inventoryIcon" : "v-sunspotbrick3material.png",
-  "shortdescription" : "<todo>",
+  "shortdescription" : "Sunspot Engraving",
   "description" : "<todo>",
   "glitchdescription" : "<todo>",
   "florandescription" : "<todo>",
   "novakiddescription" : "<todo>",
+
+  "builder" : "/items/buildscripts/v-builditem.lua",
 
   "materialId" : 1216,
   "learnBlueprintsOnPickup" : [ "v-sunspotbrick3material" ]

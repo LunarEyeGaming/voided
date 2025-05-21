@@ -4,11 +4,13 @@
   "category" : "block",
   "rarity" : "Uncommon",
   "inventoryIcon" : "v-sunspotbrick2material.png",
-  "shortdescription" : "<todo>",
+  "shortdescription" : "Sunspot Bricks",
   "description" : "<todo>",
   "glitchdescription" : "<todo>",
   "florandescription" : "<todo>",
   "novakiddescription" : "<todo>",
+
+  "builder" : "/items/buildscripts/v-builditem.lua",
 
   "materialId" : 1215,
   "learnBlueprintsOnPickup" : [ "v-sunspotbrick2material" ]

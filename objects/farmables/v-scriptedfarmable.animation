@@ -1,0 +1,17 @@
+{
+  "globalTagDefaults" : {
+    "stage" : "default",
+    "alt" : "default"
+  },
+
+  "animatedParts" : {
+    "parts" : {
+      "crop" : {
+        "properties" : {
+          "centered" : false,
+          "image" : "<partImage>:<color>.<stage>.<alt>"
+        }
+      }
+    }
+  }
+}

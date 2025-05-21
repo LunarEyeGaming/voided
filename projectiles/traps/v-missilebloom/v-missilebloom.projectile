@@ -1,0 +1,62 @@
+{
+  "projectileName" : "v-missilebloom",
+
+  "image" : "missilebloom.png",
+  "animationCycle" : 1.0,
+  "frameNumber" : 1,
+
+  "physics" : "stickygrenade",
+  "speed" : 50,
+  "timeToLive" : 3.0,
+  "bounces" : -1,
+
+  "piercing" : false,
+  "power" : 300,
+  "damageType" : "NoDamage",
+
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_missilepod_launch1.ogg", "/sfx/projectiles/v_missilepod_launch2.ogg", "/sfx/projectiles/v_missilepod_launch3.ogg" ]
+    },
+    {
+      "time" : 0.2,
+      "action" : "loop",
+      "count" : 3,
+      "body" : [
+        {
+          "action" : "particle",
+          "rotate" : true,
+          "specification" : {
+            "type" : "ember",
+            "size" : 2,
+            "color" : [253, 209, 77],
+            "initialVelocity" : [-37.5, 0],
+            "approach" : [25, 25],
+            "finalVelocity" : [0, 0],
+            "timeToLive" : 0.25,
+            "destructionAction" : "fade",
+            "destructionTime" : 0.25,
+            "fullbright" : true,
+            "variance" : {
+              "initialVelocity": [12.5, 12.5]
+            }
+          }
+        }
+      ]
+    }
+  ],
+
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-missilebloomexplosion/v-missilebloomexplosion.config"
+    }
+  ],
+
+  "scripts" : [ "/scripts/projectiles/v-variedtimetolive.lua" ],
+
+  "timeToLiveRange" : [2.0, 3.0]
+}

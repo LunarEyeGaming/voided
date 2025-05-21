@@ -1,4 +1,12 @@
 {
+  "v-skimbusStrongholdTreasure" : [
+    [1, {
+      "fill" : [
+        {"item" : "cryonicextract"}
+      ],
+      "allowDuplication" : false
+    }]
+  ],
   // VOLTAGE TREASURE
   "v-electricelementalTreasure" : [
     [1, {
@@ -78,7 +86,7 @@
   "v-bulbheadTreasure" : [
     [1, {
       "pool" : [
-        {"weight" : 0.800, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.800, "pool" : "basicMonsterTreasure"},
         {"weight" : 0.100, "item" : "staticcell"},
         {"weight" : 0.100, "item" : "v-ascensioncomponentmaterial"}
       ],
@@ -283,10 +291,32 @@
     }]
   ],
 
-  "v-skimbusStrongholdTreasure" : [
+  // MINISTAR TREASURE
+
+  "v-fireelementalTreasure" : [
     [1, {
-      "fill" : [
-        {"item" : "cryonicextract"}
+      "pool" : [
+        {"weight" : 0.750, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.250, "item" : "scorchedcore"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-sunleaperTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "basicMonsterTreasure"},
+        {"weight" : 0.100, "item" : "scorchedcore"},
+        {"weight" : 0.100, "item" : "v-sunleaperbeak"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
       ],
       "allowDuplication" : false
     }]

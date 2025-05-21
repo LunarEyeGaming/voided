@@ -4,11 +4,13 @@
   "category" : "block",
   "rarity" : "Uncommon",
   "inventoryIcon" : "v-sunspotpillarmaterial.png",
-  "shortdescription" : "<todo>",
+  "shortdescription" : "Sunspot Pillar",
   "description" : "<todo>",
   "glitchdescription" : "<todo>",
   "florandescription" : "<todo>",
   "novakiddescription" : "<todo>",
+
+  "builder" : "/items/buildscripts/v-builditem.lua",
 
   "materialId" : 1218,
   "learnBlueprintsOnPickup" : [ "v-sunspotpillarmaterial" ]

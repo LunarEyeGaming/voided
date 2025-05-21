@@ -26,11 +26,11 @@ end
 
 function update(dt)
   tickTimer = tickTimer - dt
-  
+
   if tickTimer <= 0 and #orbiters < maxCount then
     addOrbiter()
   end
-  
+
   local pos = mcontroller.position()
   local queried = world.entityQuery(pos, attackRange, {includedTypes = {"creature"}, order = "nearest"})
   for _, entity in ipairs(queried) do
@@ -60,8 +60,9 @@ function addOrbiter()
   end
 
   local orbiterId = world.spawnProjectile(util.randomFromList(orbiterTypes), mcontroller.position(), entity.id(), {0, 0}, false, orbiterConfig)
+  world.sendEntityMessage(orbiterId, "fresh")
   table.insert(orbiters, orbiterId)
-  
+
   tickTimer = spawnInterval
 end
 

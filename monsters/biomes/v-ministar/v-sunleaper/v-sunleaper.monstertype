@@ -1,14 +1,14 @@
 {
   "type" : "v-sunleaper",
-  "shortdescription" : "<todo>",
-  "description" : "<todo>",
+  "shortdescription" : "Sun Leaper",
+  "description" : "A bird-like creature that uses its strong legs to leap around.",
 
   "categories" : [ "v-sunleaper" ],
   "parts" : [ "body" ],
 
   "animation" : "v-sunleaper.animation",
 
-  "dropPools" : [  ],
+  "dropPools" : [ "v-sunleaperTreasure"  ],
 
   "baseParameters" : {
     "scripts" : [

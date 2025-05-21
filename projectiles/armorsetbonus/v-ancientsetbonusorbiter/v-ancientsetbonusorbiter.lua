@@ -1,5 +1,6 @@
 require "/scripts/vec2.lua"
 
+local isFresh
 local orbitRadius
 local orbitPeriod
 local masterId
@@ -22,19 +23,26 @@ function init()
   projectileConfig.power = projectileConfig.power or projectile.power()
   projectileConfig.powerMultiplier = projectileConfig.powerMultiplier or projectile.powerMultiplier()
 
+  message.setHandler("fresh", function()
+    isFresh = true
+  end)
+
   message.setHandler("kill", function(_, _, id)
     targetId = id
     projectile.die()
   end)
-  
+
   message.setHandler("reset", function(_, _, angle)
     orbitAngle = angle
   end)
-  
+
   mcontroller.setVelocity({0, 0})
 end
 
 function update(dt)
+  if not isFresh then
+    projectile.die()
+  end
   if not masterId or not world.entityExists(masterId) then return end
 
   if projectile.timeToLive() > 0 then

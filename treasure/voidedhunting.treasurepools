@@ -45,8 +45,9 @@
   "v-bulbheadHunting" : [
     [1, {
       "pool" : [
-        {"weight" : 0.5, "item" : "staticcell"},
-        {"weight" : 0.5, "item" : "v-ascensioncomponentmaterial"}
+        {"weight" : 0.5, "item" : "alienmeat"},
+        {"weight" : 0.25, "item" : "staticcell"},
+        {"weight" : 0.25, "item" : "v-ascensioncomponentmaterial"}
       ],
       "poolRounds" : [
         [0.6, 0],
@@ -99,7 +100,7 @@
       "allowDuplication" : false
     } ]
   ],
-  
+
   "v-bigpufferHunting" : [
     [1, {
       "pool" : [
