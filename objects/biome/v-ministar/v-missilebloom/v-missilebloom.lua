@@ -9,6 +9,7 @@ local MAX_TRACK_TICKS = 3
 -- Parameters
 local stages
 local detectRegion
+local keepRegionRect  -- Region in which to keep entities
 local startingStage
 
 -- State variables
@@ -17,6 +18,7 @@ local positionData  -- Track projectile velocities manually.
 
 function init()
   stages = config.getParameter("stages")
+  keepRegionRect = rect.translate(rect.pad(config.getParameter("detectRegion"), config.getParameter("keepRegionPadding", 1.0)), object.position())
   detectRegion = vEntity.getRegionPoints(config.getParameter("detectRegion"))
   startingStage = config.getParameter("startingStage", 1)
 
@@ -74,7 +76,7 @@ function setStage(stageNum)
   storage.stage = stageNum
   stageConfig = stages[stageNum]
   if stageConfig.duration then
-    storage.nextStageTime = storage.nextStageTime or world.time() + math.random(stageConfig.duration[1], stageConfig.duration[2])
+    storage.nextStageTime = (storage.nextStageTime or world.time()) + math.random(stageConfig.duration[1], stageConfig.duration[2])
   else
     storage.nextStageTime = nil
   end
@@ -85,6 +87,8 @@ function setStage(stageNum)
 
   if stageConfig.alts then
     animator.setGlobalTag("alt", sb.staticRandomI32Range(0, stageConfig.alts - 1, object.position()[1]))
+  else
+    animator.setGlobalTag("alt", 0)
   end
 end
 
@@ -128,7 +132,7 @@ function fireProjectiles()
     local angle = stageConfig.angle or 0
 
     if stageConfig.fuzzAngle then
-      angle = angle + math.random() * 2 * stageConfig.fuzzAngle
+      angle = angle + math.random() * 2 * stageConfig.fuzzAngle - stageConfig.fuzzAngle
     end
 
     angle = angle * math.pi / 180
@@ -145,7 +149,7 @@ end
 
 function updatePositionData()
   for entityId, positions in pairs(positionData) do
-    if world.entityExists(entityId) then
+    if world.entityExists(entityId) and rect.contains(keepRegionRect, positions[1]) then
       if #positions == MAX_TRACK_TICKS then
         table.remove(positions, 1)
       end

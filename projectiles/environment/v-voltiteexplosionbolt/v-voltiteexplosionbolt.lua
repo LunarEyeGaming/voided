@@ -1,4 +1,4 @@
--- require "/scripts/projectiles/v-shockwavespawner.lua"
+require "/scripts/projectiles/v-mergergeneric.lua"
 --[[
   Script for v-voltiteexplosionbolt, which is created as a consequence of mining voltite ore. This script makes the
   bolt merge with others, increasing the size and damage of the resulting electric shock. It works by sending entity
@@ -8,39 +8,30 @@
   each other simultaneously, they do not delete each other).
 ]]
 
-local mergeRadius
-
-local mergePromises
 local boltPotency
-local suppressShockwave
+
+local merger
 
 function init()
-  message.setHandler("v-voltiteMerge", function(_, _, sourceId)
-    -- This comparison is arbitrary and is made to prevent both bolts from disappearing.
-    if not suppressShockwave and entity.id() < sourceId then
-      projectile.die()
-      suppressShockwave = true  -- Suppress shockwave
+  boltPotency = 1  -- Used to scale the shockwave.
 
-      return boltPotency
-    end
+  vMergeHandler.set("v-voltiteexplosionbolt", true, function()
+    return true, boltPotency
   end)
 
-  mergeRadius = config.getParameter("mergeRadius")
-
-  mergePromises = {}
-  boltPotency = 1  -- Used to scale the shockwave.
-  suppressShockwave = false
+  merger = VMerger:new("v-voltiteexplosionbolt", config.getParameter("mergeRadius"), true, false)
 end
 
 function update(dt)
-  broadcastMergeRequests()
-
-  processPromises()
+  local results = merger:process()
+  for _, result in ipairs(results) do
+    boltPotency = boltPotency + result
+  end
 end
 
 function destroy()
-  -- If the projectile has not merged...
-  if not suppressShockwave then
+  -- If the projectile has not received a request to merge...
+  if not vMergeHandler.isMerged then
     -- Load parameters
     local offset = config.getParameter("spawnOffset", {0, 0})
     local damageFactor = config.getParameter("shockwaveDamageFactor", 1.0)
@@ -61,39 +52,5 @@ function destroy()
     -- Create shockwave
     local ownPos = mcontroller.position()
     world.spawnMonster(monsterType, {ownPos[1] + offset[1], ownPos[2] + offset[2]}, monsterParameters)
-  end
-end
-
--- Process promises for entity messages
-function processPromises()
-  local i = 1
-  while i <= #mergePromises do
-    local promise = mergePromises[i]
-
-    -- If a promise finished, handle its result and remove it.
-    if promise:finished() then
-      if promise:succeeded() then
-        local result = promise:result()
-
-        -- If the projectile accepted the message, combine boltPotency values
-        if result then
-          boltPotency = boltPotency + promise:result()
-        end
-      end
-
-      table.remove(mergePromises, i)
-    else
-      i = i + 1
-    end
-  end
-end
-
-function broadcastMergeRequests()
-  local queried = world.entityQuery(mcontroller.position(), mergeRadius, {includedTypes = {"projectile"},
-      withoutEntityId = entity.id()})
-
-  -- Merge with other bolts
-  for _, id in ipairs(queried) do
-    table.insert(mergePromises, world.sendEntityMessage(id, "v-voltiteMerge", entity.id()))
   end
 end

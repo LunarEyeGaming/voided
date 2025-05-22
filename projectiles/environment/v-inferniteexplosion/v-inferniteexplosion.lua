@@ -1,4 +1,6 @@
 require "/scripts/vec2.lua"
+
+require "/scripts/projectiles/v-mergergeneric.lua"
 --[[
   Script for v-inferniteexplosion, which is created as a consequence of mining infernite ore. This script makes the
   projectile merge with others, increasing the ranges and damage of the resulting fire burst. It works by sending
@@ -8,9 +10,6 @@ require "/scripts/vec2.lua"
   that when two projectiles send merge messages to each other simultaneously, they do not delete each other).
 ]]
 
-local mergeRadius
-
-local mergePromises
 local flamePotency
 local suppressFlames
 -- local awaitingMerge
@@ -27,23 +26,26 @@ function init()
       return flamePotency
     end
   end)
-
-  mergeRadius = config.getParameter("mergeRadius")
-
-  mergePromises = {}
   flamePotency = 1  -- Used to scale the flames.
   suppressFlames = false
+
+  vMergeHandler.set("v-inferniteexplosion", true, function()
+    return true, flamePotency
+  end)
+
+  merger = VMerger:new("v-inferniteexplosion", config.getParameter("mergeRadius"), true, false)
 end
 
 function update(dt)
-  broadcastMergeRequests()
-
-  processPromises()
+  local results = merger:process()
+  for _, result in ipairs(results) do
+    flamePotency = flamePotency + result
+  end
 end
 
 function destroy()
-  -- If the projectile has not merged...
-  if not suppressFlames then
+  -- If the projectile has not received a request to merge...
+  if not vMergeHandler.isMerged then
     -- Load parameters
     local offset = config.getParameter("spawnOffset", {0, 0})
     local projectileType = config.getParameter("projectileType")
@@ -77,40 +79,6 @@ function destroy()
         end
       end
     end
-  end
-end
-
--- Process promises for entity messages
-function processPromises()
-  local i = 1
-  while i <= #mergePromises do
-    local promise = mergePromises[i]
-
-    -- If a promise finished, handle its result and remove it.
-    if promise:finished() then
-      if promise:succeeded() then
-        local result = promise:result()
-
-        -- If the projectile accepted the message, combine flamePotency values
-        if result then
-          flamePotency = flamePotency + promise:result()
-        end
-      end
-
-      table.remove(mergePromises, i)
-    else
-      i = i + 1
-    end
-  end
-end
-
-function broadcastMergeRequests()
-  local queried = world.entityQuery(mcontroller.position(), mergeRadius, {includedTypes = {"projectile"},
-      withoutEntityId = entity.id()})
-
-  -- Merge with other flames
-  for _, id in ipairs(queried) do
-    table.insert(mergePromises, world.sendEntityMessage(id, "v-inferniteMerge", entity.id()))
   end
 end
 

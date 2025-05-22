@@ -170,8 +170,8 @@ function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts, window)
   --     sunRayDrawableFunc(x, bottomY, topY, predictedPos)
   --   end
   -- end
-  local startX = math.max(window[1], heightMap.startXPos)
-  local endX = math.min(window[3], heightMap.endXPos)
+  local startX = math.max(world.nearestTo(heightMap.startXPos, window[1]), heightMap.startXPos)
+  local endX = math.min(world.nearestTo(heightMap.endXPos, window[3]), heightMap.endXPos)
   for x = startX, endX do
     local i, topY = heightMap:geti(x)
 

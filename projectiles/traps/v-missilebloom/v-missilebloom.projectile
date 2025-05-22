@@ -13,6 +13,7 @@
   "piercing" : false,
   "power" : 300,
   "damageType" : "NoDamage",
+  "damageTeam" : { "type" : "indiscriminate" },
 
   "periodicActions" : [
     {
@@ -22,17 +23,17 @@
       "options" : [ "/sfx/projectiles/v_missilepod_launch1.ogg", "/sfx/projectiles/v_missilepod_launch2.ogg", "/sfx/projectiles/v_missilepod_launch3.ogg" ]
     },
     {
-      "time" : 0.2,
+      "time" : 0.06,
       "action" : "loop",
-      "count" : 3,
+      "count" : 1,
       "body" : [
         {
           "action" : "particle",
           "rotate" : true,
           "specification" : {
-            "type" : "ember",
-            "size" : 2,
-            "color" : [253, 209, 77],
+            "type" : "animated",
+            "animation" : "/animations/statuseffects/burning/burning.animation",
+            "size" : 1,
             "initialVelocity" : [-37.5, 0],
             "approach" : [25, 25],
             "finalVelocity" : [0, 0],

@@ -2,7 +2,7 @@
   "kind" : "v-geyserjetflame",
   "definition" : {
     "type" : "animated",
-    "animation" : "/animations/statuseffects/burning/burning.animation",
+    "animation" : "/animations/mediumflame/mediumflame.animation",
     "position" : [0, 0],
     "initialVelocity" : [50, 0],
     "finalVelocity" : [0, 0.0],
@@ -17,7 +17,7 @@
     "layer" : "middle",
     "collidesForeground" : true,
     "variance" : {
-      "initialVelocity" : [15, 15]
+      "initialVelocity" : [15, 3]
     }
   }
 }

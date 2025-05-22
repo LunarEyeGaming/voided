@@ -4,7 +4,7 @@
   "rarity" : "Common",
   "category" : "seed",
   "description" : "<todo>",
-  "shortdescription" : "Missilebloom",
+  "shortdescription" : "Missilebloom Seed",
   "printable" : false,
   "price" : 50,
   "hasObjectItem" : false,
@@ -23,11 +23,11 @@
 
   "orientations" : [
     {
-      "dualImage" : "chiliseed.png:<color>.<stage>.<alt>",
-      "animationParts" : {
-        "crop" : "chiliseed.png"
-      },
+      "dualImage" : "missilebloom.png:<color>.<stage>.<alt>",
       "imagePosition" : [0, 0],
+      "animationParts" : {
+        "crop" : "missilebloom.png"
+      },
       "animationPosition" : [0, 0],
       "frames" : 1,
       "animationCycle" : 0.5,
@@ -115,10 +115,11 @@
       "alts" : 5,
       "duration" : [430, 470],
       "fireThreshold" : 25,
-      "fireChance" : 0.1,
+      "fireChance" : 0.625,
       "projectileType" : "v-missilebloom",
       "projectileCount" : 1,
-      "fuzzAngle" : 180,
+      "fuzzAngle" : 45,
+      "angle" : 90,
       "offsetRegion" : [0, 0, 1, 4],
       "resetToStage" : 2,
       "activateHazardParticle" : true
@@ -127,10 +128,11 @@
       "alts" : 5,
       "duration" : [430, 470],
       "fireThreshold" : 25,
-      "fireChance" : 0.2,
+      "fireChance" : 0.75,
       "projectileType" : "v-missilebloom",
       "projectileCount" : 1,
-      "fuzzAngle" : 180,
+      "fuzzAngle" : 45,
+      "angle" : 90,
       "offsetRegion" : [0, 0, 1, 4],
       "resetToStage" : 3,
       "activateHazardParticle" : true
@@ -139,10 +141,11 @@
       "alts" : 5,
       "duration" : [430, 470],
       "fireThreshold" : 25,
-      "fireChance" : 0.3,
+      "fireChance" : 0.875,
       "projectileType" : "v-missilebloom",
       "projectileCount" : 1,
-      "fuzzAngle" : 180,
+      "fuzzAngle" : 45,
+      "angle" : 90,
       "offsetRegion" : [0, 0, 1, 4],
       "resetToStage" : 4,
       "activateHazardParticle" : true
@@ -150,10 +153,11 @@
     {
       "alts" : 5,
       "fireThreshold" : 25,
-      "fireChance" : 0.4,
+      "fireChance" : 1.0,
       "projectileType" : "v-missilebloom",
       "projectileCount" : 1,
-      "fuzzAngle" : 180,
+      "fuzzAngle" : 45,
+      "angle" : 90,
       "offsetRegion" : [0, 0, 1, 4],
       "resetToStage" : 5,
       "activateHazardParticle" : true

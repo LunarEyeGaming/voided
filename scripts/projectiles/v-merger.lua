@@ -1,9 +1,10 @@
-local mergeRadius
+require "/scripts/projectiles/v-mergergeneric.lua"
+
 local nonMergeAction
-local targetType
 local mergeDelay
 local mergeTimer
-local hasMerged
+
+local merger  ---@type VMerger
 
 function init()
   mergeRadius = config.getParameter("mergeRadius")
@@ -11,30 +12,19 @@ function init()
   targetType = config.getParameter("targetType")
   mergeDelay = config.getParameter("mergeDelay", 0)
   mergeTimer = mergeDelay
-  hasMerged = false
+
+  merger = VMerger:new(config.getParameter("targetType"), config.getParameter("mergeRadius"), false, true)
 end
 
 function update(dt)
   mergeTimer = mergeTimer - dt
   if mergeTimer <= 0 then
-    local queriedMergers = world.entityQuery(mcontroller.position(), mergeRadius, {
-      callScript = "v_isMergerType",
-      callScriptArgs = {targetType},
-      includedTypes = {"projectile"},
-      order = "nearest"
-    })
-    -- If the second condition is not included then it will detonate based on where the merger was *previously* and not
-    -- where it is right now.
-    if #queriedMergers > 0 and world.magnitude(world.entityPosition(queriedMergers[1]), mcontroller.position()) < mergeRadius then
-      world.sendEntityMessage(queriedMergers[1], "v-handleMerge", projectile.sourceEntity())
-      hasMerged = true
-      projectile.die()
-    end
+    merger:process(projectile.sourceEntity())
   end
 end
 
 function destroy()
-  if not hasMerged then
+  if not merger:isMerged() then
     projectile.processAction(nonMergeAction)
   end
 end
