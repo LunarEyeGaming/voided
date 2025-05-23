@@ -18,8 +18,10 @@ local fgRenderLayer
 
 local minFallOffDistance
 local maxFallOffDistance
+local titanPositionTimeout
 
 local titanPositionPromise
+local titanPositionTimeoutTimer
 local titanPosition
 local distance
 local fadeTimer
@@ -60,6 +62,9 @@ function init()
   minFallOffDistance = 1000
   maxFallOffDistance = 1500
 
+  titanPositionTimeout = 2
+  titanPositionTimeoutTimer = titanPositionTimeout
+
   distance = 0
   fadeTimer = 0
 end
@@ -67,7 +72,7 @@ end
 function update(dt)
   oldUpdate(dt)
 
-  v_titanOfDarknessAura_updateTitanPosition()
+  v_titanOfDarknessAura_updateTitanPosition(dt)
 
   -- Update timers
   if titanPosition then
@@ -87,12 +92,20 @@ end
 
 ---Asynchronously updates the position of the Titan as frequently as the server allows.
 ---@postconditions: upon titanPositionPromise finishing, titanPosition is modified and titanPositionPromise is unset
-function v_titanOfDarknessAura_updateTitanPosition()
+function v_titanOfDarknessAura_updateTitanPosition(dt)
+  -- titanPosition = world.findUniqueEntity("v-titanofdarkness"):result()
+  -- sb.setLogMap("titanPosition", "%s", titanPosition)
+
   -- If no promise is pending...
   if not titanPositionPromise then
     -- Request the position of the Titan.
     titanPositionPromise = world.findUniqueEntity("v-titanofdarkness")
   end
+
+  sb.setLogMap("titanPositionPromise", "%s", titanPositionPromise)
+  sb.setLogMap("titanPosition", "%s", titanPosition)
+  sb.setLogMap("titanPositionPromise:finished()", "%s", titanPositionPromise:finished())
+  sb.setLogMap("titanPositionPromise:succeeded()", "%s", titanPositionPromise:succeeded())
 
   -- If the promise has finished...
   if titanPositionPromise:finished() then
@@ -100,11 +113,19 @@ function v_titanOfDarknessAura_updateTitanPosition()
 
     -- Unset promise
     titanPositionPromise = nil
+
+    titanPositionTimeoutTimer = titanPositionTimeout
+  else
+    titanPositionTimeoutTimer = titanPositionTimeoutTimer - dt
+
+    if titanPositionTimeoutTimer <= 0 then
+      titanPositionPromise = nil
+      titanPositionTimeoutTimer = titanPositionTimeout
+    end
   end
 end
 
 function v_titanOfDarknessAura_drawOverlays()
-  world.debugText("v-titanofdarknessaura.lua::drawOverlays() called", entity.position(), "green")
   -- This uses a thick line to create a colored rectangle that covers the entire screen.
   local windowRegion = world.clientWindow()
   -- Make window region relative to the current entity. Account for world wrapping.
