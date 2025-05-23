@@ -1,5 +1,5 @@
 {
-  "objectName" : "v-wildmissilebloom",
+  "objectName" : "v-wildmissilebloomseed",
   "colonyTags" : ["nature"],
   "rarity" : "Common",
   "category" : "seed",
@@ -19,14 +19,14 @@
   "hylotlDescription" : "<todo>",
   "novakidDescription" : "<todo>",
 
-  "inventoryIcon" : "chiliseedicon.png",
+  "inventoryIcon" : "missilebloomseedicon.png",
 
   "orientations" : [
     {
-      "dualImage" : "missilebloom.png:<color>.<stage>.<alt>",
+      "dualImage" : "missilebloomseed.png:<color>.<stage>.<alt>",
       "imagePosition" : [0, 0],
       "animationParts" : {
-        "crop" : "missilebloom.png"
+        "crop" : "missilebloomseed.png"
       },
       "animationPosition" : [0, 0],
       "frames" : 1,
@@ -122,6 +122,8 @@
       "angle" : 90,
       "offsetRegion" : [0, 0, 1, 4],
       "resetToStage" : 2,
+      "cascadeHarvest" : true,
+      "harvestPool" : "v-missilebloomHarvest",
       "activateHazardParticle" : true
     },
     {
@@ -135,6 +137,8 @@
       "angle" : 90,
       "offsetRegion" : [0, 0, 1, 4],
       "resetToStage" : 3,
+      "cascadeHarvest" : true,
+      "harvestPool" : "v-missilebloomHarvest",
       "activateHazardParticle" : true
     },
     {
@@ -148,6 +152,8 @@
       "angle" : 90,
       "offsetRegion" : [0, 0, 1, 4],
       "resetToStage" : 4,
+      "cascadeHarvest" : true,
+      "harvestPool" : "v-missilebloomHarvest",
       "activateHazardParticle" : true
     },
     {
@@ -160,18 +166,20 @@
       "angle" : 90,
       "offsetRegion" : [0, 0, 1, 4],
       "resetToStage" : 5,
+      "cascadeHarvest" : true,
+      "harvestPool" : "v-missilebloomHarvest",
       "activateHazardParticle" : true
     }
   ],
 
   "breakDropOptions" : [
-    [ [ "v-missilebloom", 1, { } ] ]
+    [ [ "v-missilebloomseed", 1, { } ] ]
   ],
 
   "maxImmersion" : 0.1,
   "consumeSoilMoisture" : false,
 
-  "scripts" : [ "v-missilebloom.lua" ],
+  "scripts" : [ "v-missilebloomseed.lua" ],
   "scriptDelta" : 3,
 
   "detectRegion" : [0, 0, 1, 4]

@@ -1,7 +1,7 @@
 {
-  "projectileName" : "v-missilebloom",
+  "projectileName" : "v-missilebloomplayer",
 
-  "image" : "missilebloom.png",
+  "image" : "/projectiles/traps/v-missilebloom/missilebloom.png",
   "animationCycle" : 0.3,
   "frameNumber" : 3,
   "animationLoops" : true,
@@ -15,7 +15,6 @@
   "piercing" : false,
   "power" : 300,
   "damageType" : "NoDamage",
-  "damageTeam" : { "type" : "indiscriminate" },
 
   "periodicActions" : [
     {
@@ -56,11 +55,11 @@
   "actionOnReap" : [
     {
       "action" : "config",
-      "file" : "/projectiles/explosions/v-missilebloomexplosion/v-missilebloomexplosion.config"
+      "file" : "/projectiles/explosions/v-missilebloomexplosion/v-missilebloomexplosionplayer.config"
     }
   ],
 
   "scripts" : [ "/scripts/projectiles/v-variedtimetolive.lua" ],
 
-  "timeToLiveRange" : [3.0, 4.0]
+  "timeToLiveRange" : [2.0, 3.0]
 }

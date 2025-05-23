@@ -1,0 +1,79 @@
+{
+  "itemName" : "v-missilebloom",
+  "rarity" : "Uncommon",
+  "category" : "throwableItem",
+  "inventoryIcon" : "v-missilebloomicon.png",
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "image" : "v-missilebloom.png",
+  "shortdescription" : "Missilebloom Pod",
+  "description" : "A pod from a missile bloom. Consumes 3 per use.",
+  "price" : 25,
+
+  "ammoUsage" : 3,
+
+  "edgeTrigger" : true,
+  "windupTime" : 0.0,
+  "cooldown" : 0.3,
+
+  "projectileType" : "v-proxyprojectile",
+  "projectileConfig" : {
+    "actionOnReap" : [
+      {
+        "action" : "loop",
+        "count" : 3,
+        "body" : [
+          {
+            "action" : "projectile",
+            "type" : "v-missilebloomplayer",
+            "fuzzAngle" : 5,
+            "config" : {
+              "speed" : 50,
+              "power" : 60,
+              "periodicActions" : [
+                {
+                  "time" : 0,
+                  "repeat" : false,
+                  "action" : "sound",
+                  "options" : [ "/sfx/projectiles/throw_item_small.ogg" ]
+                },
+                {
+                  "time" : 0,
+                  "repeat" : false,
+                  "action" : "sound",
+                  "options" : [ "/sfx/projectiles/v_missilepod_launch1.ogg", "/sfx/projectiles/v_missilepod_launch2.ogg", "/sfx/projectiles/v_missilepod_launch3.ogg" ]
+                },
+                {
+                  "time" : 0.06,
+                  "action" : "loop",
+                  "count" : 1,
+                  "body" : [
+                    {
+                      "action" : "particle",
+                      "rotate" : true,
+                      "specification" : {
+                        "type" : "animated",
+                        "animation" : "/animations/statuseffects/burning/burning.animation",
+                        "size" : 1,
+                        "initialVelocity" : [-37.5, 0],
+                        "position" : [-0.5, 0],
+                        "approach" : [25, 25],
+                        "finalVelocity" : [0, 0],
+                        "timeToLive" : 0.25,
+                        "destructionAction" : "fade",
+                        "destructionTime" : 0.25,
+                        "fullbright" : true,
+                        "variance" : {
+                          "initialVelocity": [12.5, 12.5]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
