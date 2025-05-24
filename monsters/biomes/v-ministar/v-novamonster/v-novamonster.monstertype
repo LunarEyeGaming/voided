@@ -1,6 +1,6 @@
 {
   "type" : "v-novamonster",
-  "shortdescription" : "<todo>",
+  "shortdescription" : "Nova Goliath",
   "description" : "<todo>",
 
   "categories" : [ "v-novamonster" ],
@@ -44,16 +44,16 @@
           "cooldown" : 3.0,
           "parameters" : {
             "requireLineOfSight" : true,
-            "maximumRange" : 10,
-            "minimumRange" : 5,
+            "maximumRange" : 8,
+            "minimumRange" : 0,
             "onGround" : false,
             "windupStopForce" : 50,
             "windupState" : "fire",
-            "windupTime" : 0.5,
+            "windupTime" : 1.0,
 
             "projectileType" : "v-firenova",
             "projectileParameters" : {
-              "power" : 10
+              "power" : 20
             },
             "fireOffset" : [0.0, 0.0],
             "aimAtTarget" : false,
@@ -63,6 +63,30 @@
             "fireState" : "",
             "fireDelay" : 0.0,
             "fireSound" : "",
+
+            "winddownState" : "fly",
+            "winddownTime" : 0.5
+          }
+        },
+        {
+          "name" : "action-charge",
+          "cooldown" : 3.0,
+          "parameters" : {
+            "requireLineOfSight" : true,
+            "maximumRange" : 100,
+            "minimumRange" : 30,
+            "onGround" : false,
+            "windupStopForce" : 50,
+            "windupState" : "fire",
+            "windupTime" : 1.0,
+
+            "aimAtTarget" : true,
+            "inaccuracy" : 0,
+            "chargeState" : "charge",
+            "chargeTime" : 0.75,
+            "chargeSpeed" : 50,
+            "chargeControlForce" : 300,
+            "wallCrashSound" : "",
 
             "winddownState" : "fly",
             "winddownTime" : 0.5
@@ -107,8 +131,17 @@
       "concurrentHostileActions" : [ ]
     },
 
+    "damageParts" : {
+      "body" : {
+        "damage" : 10,
+        "damageSourceKind" : "firehammer",
+
+        "knockback" : 20
+      }
+    },
+
     "touchDamage" : {
-      "poly" : [ [0.125, 1.375], [0.875, 0.625], [0.875, -0.625], [0.125, -1.375], [-0.125, -1.375], [-0.875, -0.625], [-0.875, 0.625], [-0.125, 1.375] ],
+      "poly" : [ [0.25, 2.75], [1.75, 1.25], [1.75, -1.25], [0.25, -2.75], [-0.25, -2.75], [-1.75, -1.25], [-1.75, 1.25], [-0.25, 2.75] ],
       "damage" : 8,
 
       "teamType" : "enemy",
@@ -120,11 +153,11 @@
     "metaBoundBox" : [-4, -4, 4, 4],
     "scale" : 1.0,
 
-    "selfDamagePoly" : [ [0.125, 1.375], [0.875, 0.625], [0.875, -0.625], [0.125, -1.375], [-0.125, -1.375], [-0.875, -0.625], [-0.875, 0.625], [-0.125, 1.375] ],
+    "selfDamagePoly" : [ [0.25, 2.75], [1.75, 1.25], [1.75, -1.25], [0.25, -2.75], [-0.25, -2.75], [-1.75, -1.25], [-1.75, 1.25], [-0.25, 2.75] ],
 
     "movementSettings" : {
       "collisionEnabled" : false,
-      "collisionPoly" : [ [0.125, 1.375], [0.875, 0.625], [0.875, -0.625], [0.125, -1.375], [-0.125, -1.375], [-0.875, -0.625], [-0.875, 0.625], [-0.125, 1.375] ],
+      "collisionPoly" : [ [0.25, 2.75], [1.75, 1.25], [1.75, -1.25], [0.25, -2.75], [-0.25, -2.75], [-1.75, -1.25], [-1.75, 1.25], [-0.25, 2.75] ],
 
       "mass" : 1.0,
       "walkSpeed" : 4,
@@ -133,7 +166,7 @@
 
       "airFriction" : 2.0,
       "airForce" : 25,
-      "flySpeed" : 18
+      "flySpeed" : 40
     },
 
     "bodyMaterialKind" : "organic",
@@ -161,10 +194,10 @@
 
       "stats" : {
         "knockbackStunTime" : {
-          "baseValue" : 0.25
+          "baseValue" : 2.0
         },
         "knockbackThreshold" : {
-          "baseValue" : 9
+          "baseValue" : 35
         },
         "maxHealth" : {
           "baseValue" : 100

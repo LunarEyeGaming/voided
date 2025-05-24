@@ -228,12 +228,18 @@
                       }
                     },
                     {
-                      "title": "v_rectCollision",
-                      "type": "action",
-                      "name": "v_rectCollision",
-                      "parameters": {
-                        "position": {"key": "startingPos"},
-                        "rect": {"value": [-2, -2, 2, 2]}
+                      "title": "inverter",
+                      "type": "decorator",
+                      "name": "inverter",
+                      "parameters": {},
+                      "child": {
+                        "title": "v_rectCollision",
+                        "type": "action",
+                        "name": "v_rectCollision",
+                        "parameters": {
+                          "position": {"key": "startingPos"},
+                          "rect": {"value": [-2, -2, 2, 2]}
+                        }
                       }
                     }
                   ]

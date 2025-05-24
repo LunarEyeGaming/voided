@@ -1,0 +1,161 @@
+{
+  "objectName" : "v-phoenixoilcleanser",
+  "colonyTags" : ["avian","aviantemple"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "<todo>",
+  "shortdescription" : "Phoenix Oil Trap",
+  "race" : "avian",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "trap",
+  "price" : 200,
+
+  "inventoryIcon" : "flametrapicon.png",
+  "orientations" : [
+    {
+      "image" : "flametrap.png:<color>.<frame>",
+      "imagePosition" : [-8, 0],
+      "direction" : "left",
+      "flipImages" : true,
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "bg" : "flametrap.png",
+        "fg" : "flametrap.png"
+      },
+
+      "projectileDirection" : [0, 1],
+      "projectilePosition" : [0, 0.7],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "flametrap.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+
+      "animationPosition" : [0, 0],
+      "animationParts" : {
+        "bg" : "flametrap.png",
+        "fg" : "flametrap.png"
+      },
+
+      "projectileDirection" : [0, 1],
+      "projectilePosition" : [1, 0.7],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "flametrapleft.png:<color>.<frame>",
+      "imagePosition" : [0, -8],
+      "direction" : "right",
+
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "flametrapleft.png",
+        "fg" : "flametrapleft.png"
+      },
+
+      "projectileDirection" : [1, 0],
+      "projectilePosition" : [0.7, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left" ]
+    },
+    {
+      "image" : "flametrapright.png:<color>.<frame>",
+      "imagePosition" : [0, -8],
+      "direction" : "right",
+
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "flametrapright.png",
+        "fg" : "flametrapright.png"
+      },
+
+      "projectileDirection" : [-1, 0],
+      "projectilePosition" : [0.3, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "right" ]
+    },
+    {
+      "image" : "flametrapceiling.png:<color>.<frame>",
+      "imagePosition" : [-8, 0],
+      "direction" : "left",
+      "flipImages" : true,
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "bg" : "flametrapceiling.png",
+        "fg" : "flametrapceiling.png"
+      },
+
+      "projectileDirection" : [0, -1],
+      "projectilePosition" : [0, 0.3],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    },
+    {
+      "image" : "flametrapceiling.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+
+      "animationPosition" : [0, 0],
+      "animationParts" : {
+        "bg" : "flametrapceiling.png",
+        "fg" : "flametrapceiling.png"
+      },
+
+      "projectileDirection" : [0, -1],
+      "projectilePosition" : [1, 0.3],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/projectiletrap/projectiletrap.lua" ],
+  "scriptDelta" : 2,
+
+  "animation" : "/objects/wired/projectiletrap/projectiletrap.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "shoot" : [ ],
+      "on" : [ ],
+      "off" : [ ]
+    }
+  },
+
+  "inputNodes" : [ [0, 0] ],
+
+  "inactiveLightColor" : [0, 0, 0], // light color to emit when the object is 'off'
+  "activeLightColor" : [0, 0, 0], // light color to emit when the object is 'on'
+
+  "fireTime" : 0.115, // rate of fire
+  "fireTimeVariance" : 0.015, // variation in rate of fire
+  "projectile" : "watergun", // name of projectile (required)
+  "projectileConfig" : { // extra configuration overrides for projectile
+    "damageTeam" : { "type" : "environment" },
+    "power" : 0,
+    "speed" : 30,
+    "statusEffects" : [ "wet", "v-oilcleanser" ]
+  },
+
+  "health" : 5,
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
+  "smashParticles" : [ { "count" : 5, "particle" : "potshard" } ]
+}

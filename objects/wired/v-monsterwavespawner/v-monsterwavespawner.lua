@@ -46,7 +46,7 @@ function init()
 
   reset()
 
-  self.debug = true
+  self.debug = false
   interiorRegionDebug = rect.translate(config.getParameter("interiorRegion"), object.position())
   exteriorRegionsDebug = {}
   for _, region in ipairs(config.getParameter("exteriorRegions")) do

@@ -140,5 +140,20 @@
       ],
       "allowDuplication" : false
     } ]
+  ],
+
+  "v-sunleaperHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "rawpoultry"},
+        {"weight" : 0.25, "item" : "scorchedcore"},
+        {"weight" : 0.25, "item" : "v-sunleaperbeak"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
   ]
 }

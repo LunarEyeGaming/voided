@@ -25,9 +25,6 @@ function init()
 end
 
 function update(dt)
-  for i, signal in ipairs(signals) do
-    world.debugPoint({object.position()[1] + i - 1, object.position()[2]}, signal and "green" or "red")
-  end
   advanceTimer = advanceTimer - dt
 
   if advanceTimer <= 0 then

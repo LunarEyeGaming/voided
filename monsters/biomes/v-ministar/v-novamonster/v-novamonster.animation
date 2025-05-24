@@ -17,6 +17,11 @@
             "frames" : 4,
             "cycle" : 0.25,
             "mode" : "loop"
+          },
+          "charge" : {
+            "frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "loop"
           }
         }
       },
@@ -76,6 +81,12 @@
               "properties" : {
                 "image" : "<partImage>:fly.<frame>"
               }
+            },
+            "charge" : {
+              "properties" : {
+                "image" : "<partImage>:fly.<frame>",
+                "damageArea" : [ [0.25, 2.75], [1.75, 1.25], [1.75, -1.25], [0.25, -2.75], [-0.25, -2.75], [-1.75, -1.25], [-1.75, 1.25], [-0.25, 2.75] ]
+              }
             }
           },
           "damage" : {
@@ -106,7 +117,7 @@
     "flames" : {
       "active" : true,
       "emissionRate" : 12.0,
-      "offsetRegion" : [-0.75, -1.0, 0.75, 0.5],
+      "offsetRegion" : [-1.5, -2.0, 1.5, 1.0],
       "particles" : [
         { "particle" : "burningdustfront" }
       ]

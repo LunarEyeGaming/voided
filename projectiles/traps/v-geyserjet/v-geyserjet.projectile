@@ -22,7 +22,10 @@
       "inheritDamageFactor" : 1.0,
       "fuzzAngle" : 0
     }
-  ] // ,
+  ],
+
+  "scripts" : [ "/projectiles/tracksourcestatus.lua" ],
+  "scriptDelta" : 6 // ,
 
   // "boundBox" : [-2, 0, 2, 20],
   // "physicsForces" : {

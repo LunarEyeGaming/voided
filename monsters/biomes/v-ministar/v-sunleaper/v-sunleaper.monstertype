@@ -8,7 +8,7 @@
 
   "animation" : "v-sunleaper.animation",
 
-  "dropPools" : [ "v-sunleaperTreasure"  ],
+  "dropPools" : [ { "default" : "v-sunleaperTreasure", "bow" : "v-sunleaperHunting" } ],
 
   "baseParameters" : {
     "scripts" : [
@@ -202,7 +202,7 @@
     },
 
     "touchDamage" : {
-      "poly" : [ [0.41, 1.0],  [1.0, 0.41],  [1.0, -0.41],  [0.41, -1.0],  [-0.41, -1.0],  [-1.0, -0.41],  [-1.0, 0.41],  [-0.41, 1.0] ],
+      "poly" : [ [0.205, 0.5],  [0.5, 0.205],  [0.5, -0.205],  [0.205, -0.5],  [-0.205, -0.5],  [-0.5, -0.205],  [-0.5, 0.205],  [-0.205, 0.5] ],
       "damage" : 10,
 
       "teamType" : "enemy",
