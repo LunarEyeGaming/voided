@@ -48,23 +48,23 @@
             "minimumRange" : 0,
             "onGround" : false,
             "windupStopForce" : 50,
-            "windupState" : "fire",
+            "windupState" : "novawindup",
             "windupTime" : 1.0,
 
             "projectileType" : "v-firenova",
             "projectileParameters" : {
-              "power" : 20
+              "power" : 25
             },
             "fireOffset" : [0.0, 0.0],
             "aimAtTarget" : false,
             "inaccuracy" : 0,
             "projectileCount" : 1,
             "projectileInterval" : 0.0,
-            "fireState" : "",
+            "fireState" : "novablast",
             "fireDelay" : 0.0,
             "fireSound" : "",
 
-            "winddownState" : "fly",
+            "winddownState" : "",
             "winddownTime" : 0.5
           }
         },
@@ -72,12 +72,12 @@
           "name" : "action-charge",
           "cooldown" : 3.0,
           "parameters" : {
-            "requireLineOfSight" : true,
+            "requireLineOfSight" : false,
             "maximumRange" : 100,
             "minimumRange" : 30,
             "onGround" : false,
             "windupStopForce" : 50,
-            "windupState" : "fire",
+            "windupState" : "chargewindup",
             "windupTime" : 1.0,
 
             "aimAtTarget" : true,
@@ -86,6 +86,7 @@
             "chargeTime" : 0.75,
             "chargeSpeed" : 50,
             "chargeControlForce" : 300,
+            "wallCollide" : false,
             "wallCrashSound" : "",
 
             "winddownState" : "fly",
@@ -193,6 +194,9 @@
       "primaryScriptDelta" : 5,
 
       "stats" : {
+        "grit" : {
+          "baseValue" : 0.5
+        },
         "knockbackStunTime" : {
           "baseValue" : 2.0
         },

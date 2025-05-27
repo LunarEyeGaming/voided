@@ -9,19 +9,45 @@
             "frames" : 1
           },
           "fly" : {
-            "frames" : 4,
+            "frames" : 2,
             "cycle" : 0.4,
             "mode" : "loop"
           },
-          "fire" : {
-            "frames" : 4,
-            "cycle" : 0.25,
+          "novawindup" : {
+            "frames" : 1,
+            "cycle" : 0.66,
+            "mode" : "transition",
+            "transition" : "novawindup2",
+            "properties" : {
+              "persistentSound" : "/sfx/melee/staff_charge2_fire.ogg"
+            }
+          },
+          "novawindup2" : {
+            "frames" : 1,
+            "cycle" : 1,
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/melee/elemental_aura_activate.ogg"
+            }
+          },
+          "novablast" : {
+            "frames" : 1,
+            "cycle" : 1,
+            "mode" : "transition",
+            "transition" : "fly"
+          },
+          "chargewindup" : {
+            "frames" : 1,
+            "cycle" : 1,
             "mode" : "loop"
           },
           "charge" : {
-            "frames" : 4,
-            "cycle" : 0.25,
-            "mode" : "loop"
+            "frames" : 1,
+            "cycle" : 1,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_novamonster_punch.ogg"
+            }
           }
         }
       },
@@ -77,14 +103,29 @@
                 "image" : "<partImage>:fly.<frame>"
               }
             },
-            "fire" : {
+            "novawindup" : {
               "properties" : {
-                "image" : "<partImage>:fly.<frame>"
+                "image" : "<partImage>:novawindup.<frame>"
+              }
+            },
+            "novawindup2" : {
+              "properties" : {
+                "image" : "<partImage>:novawindup2.<frame>"
+              }
+            },
+            "novablast" : {
+              "properties" : {
+                "image" : "<partImage>:novablast.<frame>"
+              }
+            },
+            "chargewindup" : {
+              "properties" : {
+                "image" : "<partImage>:punchwindup.<frame>"
               }
             },
             "charge" : {
               "properties" : {
-                "image" : "<partImage>:fly.<frame>",
+                "image" : "<partImage>:punch.<frame>",
                 "damageArea" : [ [0.25, 2.75], [1.75, 1.25], [1.75, -1.25], [0.25, -2.75], [-0.25, -2.75], [-1.75, -1.25], [-1.75, 1.25], [-0.25, 2.75] ]
               }
             }
