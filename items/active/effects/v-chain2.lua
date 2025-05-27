@@ -109,7 +109,7 @@ function update()
           local segmentAngle = chainStartAngle + (i - 1) * chainDirection * (arcAngle / segmentCount)
 
           thisOffset = vec2.rotate(thisOffset, chainVec[1] >= 0 and segmentAngle or -segmentAngle)
-          
+
           local segmentPos = vec2.add(currentBaseOffset, thisOffset)
           local drawable = {
             image = image,

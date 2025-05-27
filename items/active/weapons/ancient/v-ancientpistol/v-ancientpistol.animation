@@ -5,6 +5,18 @@
 
   "animatedParts" : {
     "stateTypes" : {
+      "gun" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "fire" : {
+            "frames" : 3,
+            "cycle" : 0.105,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      },
       "firing" : {
         "default" : "off",
         "states" : {
@@ -24,8 +36,21 @@
         "properties" : {
           "centered" : true,
           "offset" : [0.25, 0.25],
-          "transformationGroups" : ["weapon"],
-          "image" : "<partImage>"
+          "transformationGroups" : ["weapon"]
+        },
+        "partStates" : {
+          "gun" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
         }
       },
       "gunFullbright" : {
@@ -33,8 +58,21 @@
           "centered" : true,
           "zLevel" : 1,
           "anchorPart" : "gun",
-          "image" : "<partImage>",
           "fullbright" : true
+        },
+        "partStates" : {
+          "gun" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
         }
       },
       "muzzleFlash" : {

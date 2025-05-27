@@ -12,7 +12,7 @@
   "itemTags" : ["weapon","ranged","pistol"],
   "level" : 7,
 
-  "inventoryIcon" : "ancientpistol.png",
+  "inventoryIcon" : "ancientpistol.png:idle.1",
 
   "animation" : "v-ancientpistol.animation",
   "animationParts" : {
@@ -32,7 +32,7 @@
   },
 
   "baseOffset" : [1.0, 0.25],
-  "muzzleOffset" : [1.25, 0.25],
+  "muzzleOffset" : [1.1875, 0.0625],
 
   "scripts" : ["/items/active/weapons/ranged/gun.lua"],
 
@@ -70,7 +70,11 @@
         "twoHanded" : false,
 
         "allowRotate" : false,
-        "allowFlip" : true
+        "allowFlip" : true,
+
+        "animationStates" : {
+          "gun" : "fire"
+        }
       },
       "cooldown" : {
         "duration" : 0.11,
