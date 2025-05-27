@@ -13,13 +13,13 @@ function init()
 
   tickTime = 1.0
   tickTimer = tickTime
-  damage = 120
+  damage = 60
   sunscreenEffect = "v-sunscreen"
   sunscreenResistance = 0.5
 
   status.applySelfDamageRequest({
       damageType = "IgnoresDef",
-      damage = 120,
+      damage = 60,
       damageSourceKind = "fire",
       sourceEntityId = entity.id()
     })
