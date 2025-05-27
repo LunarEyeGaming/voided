@@ -7,36 +7,6 @@ require "/scripts/v-world.lua"
 local titanArmIds = {}
 local nextAnimKeyframeId = 0
 
--- local debugSearchZones
-
--- local oldUpdate = update or function() end
--- function update(dt)
---   oldUpdate(dt)
-
---   if debugSearchZones then
---     for i, zone in ipairs(debugSearchZones) do
---       local startPos = mcontroller.position()
---       if zone.sweep then
---         for _, angle in ipairs(zone.debugCluster) do
---           world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(angle, 20)), "yellow")
---         end
---         world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(zone.startAngle, 20)), "orange")
---         world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(zone.endAngle, 20)), "blue")
---         world.debugText("#%s start", i, vec2.add(startPos, vec2.withAngle(zone.startAngle, 20)), "orange")
---         world.debugText("#%s end", i, vec2.add(startPos, vec2.withAngle(zone.endAngle, 20)), "blue")
---       else
---         for _, angle in ipairs(zone.debugCluster) do
---           world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(angle, 20)), "red")
---         end
---         world.debugText("#%s", i, vec2.add(startPos, vec2.withAngle(zone.angle, 20)), "green")
---         world.debugLine(startPos, vec2.add(startPos, vec2.withAngle(zone.angle, 20)), "green")
---       end
---     end
---   end
-
---   titanArmIds = util.filter(titanArmIds, function(x) return world.entityExists(x) end)
--- end
-
 -- param target - The target entity to attack
 -- param windupTime - Amount of time to display the laser telegraphs
 -- param attackTime - Amount of time to spend rotating the lasers
@@ -58,10 +28,6 @@ function v_titanLaserRotation(args, board)
   -- Show telegraph
   animator.setAnimationState("lasers", "windup")
 
-  -- animator.resetTransformationGroup("lefteye")
-  -- animator.resetTransformationGroup("righteye")
-  -- animator.rotateTransformationGroup("lefteye", leftEyeStartAngle, leftEyeCenter)
-  -- animator.rotateTransformationGroup("righteye", rightEyeStartAngle, rightEyeCenter)
   v_titanRotateEyes{ leftEyeAngle = leftEyeStartAngle, rightEyeAngle = rightEyeStartAngle }
 
   util.run(args.windupTime, function() end)
@@ -89,10 +55,6 @@ function v_titanLaserRotation(args, board)
     local rightEyeAngle = util.lerp(timer / args.attackTime, rightEyeStartAngle, rightEyeEndAngle)
 
     -- Rotate lasers
-    -- animator.resetTransformationGroup("lefteye")
-    -- animator.resetTransformationGroup("righteye")
-    -- animator.rotateTransformationGroup("lefteye", leftEyeAngle, leftEyeCenter)
-    -- animator.rotateTransformationGroup("righteye", rightEyeAngle, rightEyeCenter)
     v_titanRotateEyes{ leftEyeAngle = leftEyeAngle, rightEyeAngle = rightEyeAngle }
 
     timer = timer + dt
@@ -188,40 +150,11 @@ function v_titanBouncingOrbAttack(args)
         break
       end
     end
-    -- local nextIdx
-    -- local attempts = 0
-    -- repeat
-    --   nextIdx = math.random(1, #projectiles)
-    --   attempts = attempts + 1
-    -- until attempts > maxAttempts
-    -- or (world.entityExists(projectiles[nextIdx])
-    -- and not world.lineCollision(targetPos, world.nearestTo(targetPos, world.entityPosition(projectiles[nextIdx]))))
-
-    -- sb.logInfo("attempts: %s, nextIdx: %s", attempts, nextIdx)
-
-    -- -- If the loop above exited because a valid choice was found...
-    -- if attempts <= maxAttempts then
-    --   -- Trigger the projectile to fly towards the player.
-    --   vWorld.sendEntityMessage(projectiles[nextIdx], "v-titanbouncingprojectile-fling", args.target)
-    --   -- local projectilePos = world.entityPosition(projectiles[nextIdx])
-    --   -- spawnArm(projectilePos, vec2.add(projectilePos, vec2.withAngle(math.random() * 2 * math.pi, 20)), "flick", {
-    --   --   projectileId = projectiles[nextIdx],
-    --   --   target = args.target
-    --   -- })
-
-    --   -- Delete projectile from list
-    --   table.remove(projectiles, nextIdx)
-    -- end
 
     -- If the loop above exited because a valid choice was found...
     if nextProjectile then
       -- Trigger the projectile to fly towards the player.
       vWorld.sendEntityMessage(nextProjectile, "v-titanbouncingprojectile-fling", args.target)
-      -- local projectilePos = world.entityPosition(projectiles[nextIdx])
-      -- spawnArm(projectilePos, vec2.add(projectilePos, vec2.withAngle(math.random() * 2 * math.pi, 20)), "flick", {
-      --   projectileId = projectiles[nextIdx],
-      --   target = args.target
-      -- })
       -- Delete projectile from list
       table.remove(projectiles, nextIdx)
     end
@@ -245,24 +178,6 @@ function v_titanBurrowingRiftAttack(args)
   -- Locals
   local targetPos = world.entityPosition(args.target)
   local anchorRadius = args.armAnchorRadius or 15
-
-  -- local spawnPos
-  -- local attempts = 0
-
-  -- -- Pick a random position (within a rectangular region relative to the target's position) that is inside of collision
-  -- -- geometry within maxAttempts attempts.
-  -- repeat
-  --   spawnPos = vec2.add(targetPos, rect.randomPoint(spawnRange))
-  --   attempts = attempts + 1
-  -- until world.pointCollision(spawnPos) or attempts > maxAttempts
-
-  -- -- If successful in choosing a spawn position...
-  -- if attempts <= maxAttempts then
-  --   local anchorPoint = vec2.add(spawnPos, vec2.withAngle(math.random() * 2 * math.pi, 15))
-  --   -- Spawn an arm to follow the projectile.
-  --   spawnArm(spawnPos, anchorPoint, "burrowingRift", {target = args.target})
-  --   return true
-  -- end
 
   -- Pick a random position (within a rectangular region relative to the target's position) that is inside of collision
   -- geometry within maxAttempts attempts.
@@ -353,7 +268,6 @@ function v_titanSearch(args)
     while timer < turnTime do
       local curAngle = util.lerp(timer / turnTime, startAngle, interpEndAngle)
       timer = timer + dt
-      -- world.debugLine(mcontroller.position(), vec2.add(mcontroller.position(), vec2.withAngle(curAngle, 20)), "blue")
 
       coroutine.yield(nil, {angle = curAngle})
     end
@@ -371,9 +285,7 @@ function v_titanSearch(args)
       if zone.sweep then
         turn(currentAngle, zone.startAngle)
         turn(zone.startAngle, zone.endAngle)
-        -- wait(turnWaitTime, zone.endAngle)
         util.run(args.eyeTurnWaitTime, function() end)
-        -- wait(turnWaitTime, zone.startAngle)
         turn(zone.endAngle, zone.startAngle)
         util.run(args.eyeTurnWaitTime, function() end)
 
@@ -381,7 +293,6 @@ function v_titanSearch(args)
       else
         -- A spot turns to the angle
         turn(currentAngle, zone.angle)
-        -- wait(turnWaitTime, zone.angle)
         util.run(args.eyeTurnWaitTime, function() end)
 
         currentAngle = zone.angle
@@ -576,18 +487,6 @@ function v_titanGrab(args)
 
   local maxAttempts = args.maxSelectionAttempts or 200
 
-  -- Pick a random arm spawning position that is within line of sight and has a surrounding region of air with
-  -- dimensions args.requiredAirRegion.
-  -- local spawnPos
-  -- local attempts = 0
-  -- repeat
-  --   spawnPos = vec2.add(mcontroller.position(), rect.randomPoint(armSpawnRegion))
-  --   attempts = attempts + 1
-  -- until (not world.lineCollision(mcontroller.position(), spawnPos) and not world.rectCollision(rect.translate(args.requiredAirRegion, spawnPos))) or attempts > maxAttempts
-
-  -- -- If no arm spawning position is available, fail.
-  -- if attempts > maxAttempts then return false end
-
   local spawnPos = vWorld.randomPositionInRegion(rect.translate(args.spawnRegion, mcontroller.position()), function(pos)
     return not world.lineCollision(mcontroller.position(), pos)
     and not world.rectCollision(rect.translate(args.requiredAirRegion, pos))
@@ -709,10 +608,6 @@ function v_titanMusic(args)
     COMBAT = 1,
     NONE = 2
   }
-  local stealthMusic = {"/music/v-symmetry-stealth.ogg"}
-  local combatMusic = {"/music/v-symmetry-combat.ogg"}
-  local musicFadeInTime = 5.0
-  local musicFadeOutTime = 5.0
 
   local prevPlayers = {}
   local prevMusicState = args.musicState
@@ -905,12 +800,10 @@ function processRaycastClusters(raycastClusters, sweepThreshold)
     -- If the angular span of the cluster exceeds the sweep threshold...
     if math.abs(util.angleDiff(cluster[1], cluster[#cluster])) > sweepThreshold then
       -- Mark as a sweep.
-      -- table.insert(searchZones, {sweep = true, startAngle = cluster[1], endAngle = cluster[#cluster], debugCluster = cluster})
       table.insert(searchZones, {sweep = true, startAngle = cluster[1], endAngle = cluster[#cluster]})
     else
       -- Compute midpoint between the two edge angles of the cluster.
       local middleAngle = (cluster[1] + cluster[#cluster]) / 2
-      -- table.insert(searchZones, {sweep = false, angle = middleAngle, debugCluster = cluster})
       table.insert(searchZones, {sweep = false, angle = middleAngle})
     end
   end
