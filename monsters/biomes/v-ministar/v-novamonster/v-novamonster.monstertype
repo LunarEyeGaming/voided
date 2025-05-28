@@ -34,7 +34,16 @@
       "damageTakenActions" : [
       ],
 
-      "foundTargetActions" : [ ],
+      "foundTargetActions" : [
+        {
+          "name" : "action-animate",
+          "parameters" : {
+            "stateType" : "body",
+            "state" : "aggro",
+            "animationTimer" : 1.0
+          }
+        }
+      ],
 
       "fleeActions" : [ ],
 
@@ -44,7 +53,7 @@
           "cooldown" : 3.0,
           "parameters" : {
             "requireLineOfSight" : true,
-            "maximumRange" : 8,
+            "maximumRange" : 12,
             "minimumRange" : 0,
             "onGround" : false,
             "windupStopForce" : 50,
@@ -74,7 +83,7 @@
           "parameters" : {
             "requireLineOfSight" : false,
             "maximumRange" : 100,
-            "minimumRange" : 30,
+            "minimumRange" : 15,
             "onGround" : false,
             "windupStopForce" : 50,
             "windupState" : "chargewindup",
@@ -102,7 +111,7 @@
           "name" : "approach-fly",
           "parameters" : {
             "usePathfinding" : false,
-            "excludeLiquidIds" : [2]
+            "excludeLiquidIds" : [2, 218]
           }
         }
       ],
@@ -170,7 +179,7 @@
       "flySpeed" : 40
     },
 
-    "bodyMaterialKind" : "organic",
+    "bodyMaterialKind" : "stone",
 
     "knockoutTime" : 0.3,
     "knockoutAnimationStates" : {
@@ -181,7 +190,7 @@
 
     "statusSettings" : {
       "statusProperties" : {
-        "targetMaterialKind" : "organic"
+        "targetMaterialKind" : "stone"
       },
 
       "appliesEnvironmentStatusEffects" : false,
@@ -195,7 +204,7 @@
 
       "stats" : {
         "grit" : {
-          "baseValue" : 0.5
+          "baseValue" : 0.0
         },
         "knockbackStunTime" : {
           "baseValue" : 2.0
@@ -204,7 +213,7 @@
           "baseValue" : 35
         },
         "maxHealth" : {
-          "baseValue" : 100
+          "baseValue" : 150
         },
         "protection" : {
           "baseValue" : 0.0

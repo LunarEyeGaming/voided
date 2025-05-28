@@ -1,6 +1,6 @@
 {
   "name": "v-action-stickyslam",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
@@ -19,7 +19,9 @@
     "jumpStateType": "body",
     "jumpDelay": 0,
     "rayCount": 40,
-    "preferDirectAttacks": true
+    "preferDirectAttacks": true,
+    "airborneState": "airborne",
+    "airborneStateType": "body"
   },
   "root": {
     "title": "sequence",
@@ -75,6 +77,15 @@
           "rayCount": {"key": "<rayCount>"},
           "target": {"key": "target"},
           "preferDirectAttacks": {"key": "<preferDirectAttacks>"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"key": "<airborneState>"},
+          "type": {"key": "<airborneStateType>"}
         }
       },
       {

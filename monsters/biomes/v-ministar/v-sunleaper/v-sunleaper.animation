@@ -27,8 +27,7 @@
           "jump" : {
             "frames" : 2,
             "cycle" : 0.2,
-            "mode" : "transition",
-            "transition" : "airborne",
+            "mode" : "end",
             "properties" : {
               "immediateSound" : "/sfx/npc/monsters/v_sunleaper_jump.ogg"
             }
@@ -178,6 +177,13 @@
   "transformationGroups" : {
     "body" : { "interpolated" : true },
     "facing" : { "interpolated" : false }
+  },
+
+  "lights" : {
+    "glow" : {
+      "active" : true,
+      "color" : [44, 14, 10]
+    }
   },
 
   "effects" : {

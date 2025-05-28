@@ -988,47 +988,6 @@
   },
   {
     "op": "add",
-    "path": "/v-wander-stickyhop",
-    "value": {
-      "type": "module",
-      "name": "v-wander-stickyhop",
-      "title": "",
-      "properties": {
-        "jumpState": {"type": "json", "value": "jump"},
-        "jumpStateType": {"type": "json", "value": "body"},
-        "jumpDelay": {"type": "json", "value": 0},
-        "windupState": {"type": "json", "value": "windup"},
-        "windupStateType": {"type": "json", "value": "body"},
-        "windupTime": {"type": "json", "value": 0},
-        "winddownState": {"type": "json", "value": "winddown"},
-        "winddownStateType": {"type": "json", "value": "body"},
-        "winddownTime": {"type": "json", "value": 0}
-      },
-      "pathToTree": "..\\monsters\\modular\\movement\\v-stickyhopwander.behavior"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/v-action-stickyslam",
-    "value": {
-      "type": "module",
-      "name": "v-action-stickyslam",
-      "title": "",
-      "properties": {
-        "slamProjectileType": {"type": "json", "value": "fireplasmaexplosion"},
-        "slamProjectileParameters": {"type": "json", "value": {}},
-        "aimDirection": {"type": "json", "value": [0, 1]},
-        "jumpState": {"type": "json", "value": "jump"},
-        "jumpStateType": {"type": "json", "value": "body"},
-        "jumpDelay": {"type": "json", "value": 0},
-        "rayCount": {"type": "json", "value": 40},
-        "preferDirectAttacks": {"type": "json", "value": true}
-      },
-      "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-downspitter2-fire",
     "value": {
       "type": "module",
@@ -1064,6 +1023,51 @@
         "windupTime2": {"type": "json", "value": 0.25}
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-downspitter2fire.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-stickyslam",
+    "value": {
+      "type": "module",
+      "name": "v-action-stickyslam",
+      "title": "",
+      "properties": {
+        "slamProjectileType": {"type": "json", "value": "fireplasmaexplosion"},
+        "slamProjectileParameters": {"type": "json", "value": {}},
+        "aimDirection": {"type": "json", "value": [0, 1]},
+        "jumpState": {"type": "json", "value": "jump"},
+        "jumpStateType": {"type": "json", "value": "body"},
+        "jumpDelay": {"type": "json", "value": 0},
+        "rayCount": {"type": "json", "value": 40},
+        "preferDirectAttacks": {"type": "json", "value": true},
+        "airborneState": {"type": "json", "value": "airborne"},
+        "airborneStateType": {"type": "json", "value": "body"}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-wander-stickyhop",
+    "value": {
+      "type": "module",
+      "name": "v-wander-stickyhop",
+      "title": "",
+      "properties": {
+        "jumpState": {"type": "json", "value": "jump"},
+        "jumpStateType": {"type": "json", "value": "body"},
+        "jumpDelay": {"type": "json", "value": 0},
+        "windupState": {"type": "json", "value": "windup"},
+        "windupStateType": {"type": "json", "value": "body"},
+        "windupTime": {"type": "json", "value": 0},
+        "winddownState": {"type": "json", "value": "winddown"},
+        "winddownStateType": {"type": "json", "value": "body"},
+        "winddownTime": {"type": "json", "value": 0},
+        "airborneState": {"type": "json", "value": "airborne"},
+        "airborneStateType": {"type": "json", "value": "body"}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-stickyhopwander.behavior"
     }
   }
 ]

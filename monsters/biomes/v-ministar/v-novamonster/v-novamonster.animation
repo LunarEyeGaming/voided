@@ -8,31 +8,37 @@
           "idle" : {
             "frames" : 1
           },
+          "aggro" : {
+            "frames" : 10,
+            "cycle" : 1.0,
+            "mode" : "transition",
+            "transition" : "fly"
+          },
           "fly" : {
-            "frames" : 2,
-            "cycle" : 0.4,
+            "frames" : 6,
+            "cycle" : 0.9,
             "mode" : "loop"
           },
           "novawindup" : {
-            "frames" : 1,
+            "frames" : 6,
             "cycle" : 0.66,
             "mode" : "transition",
             "transition" : "novawindup2",
             "properties" : {
-              "persistentSound" : "/sfx/melee/staff_charge2_fire.ogg"
+              "persistentSound" : "/sfx/npc/monsters/v_novamonster_novawindup.ogg"
             }
           },
           "novawindup2" : {
-            "frames" : 1,
-            "cycle" : 1,
+            "frames" : 3,
+            "cycle" : 0.33,
             "mode" : "loop",
             "properties" : {
-              "immediateSound" : "/sfx/melee/elemental_aura_activate.ogg"
+              "immediateSound" : "/sfx/npc/monsters/v_novamonster_novacharged.ogg"
             }
           },
           "novablast" : {
-            "frames" : 1,
-            "cycle" : 1,
+            "frames" : 5,
+            "cycle" : 0.5,
             "mode" : "transition",
             "transition" : "fly"
           },
@@ -98,6 +104,70 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
+            "aggro" : {
+              "properties" : {
+                "image" : "<partImage>:awaken.<frame>"
+              }
+            },
+            "fly" : {
+              "properties" : {
+                "image" : "<partImage>:fly.<frame>"
+              }
+            },
+            "novawindup" : {
+              "properties" : {
+                "image" : "<partImage>:novawindup.<frame>"
+              }
+            },
+            "novawindup2" : {
+              "properties" : {
+                "image" : "<partImage>:novawindup2.<frame>"
+              }
+            },
+            "novablast" : {
+              "properties" : {
+                "image" : "<partImage>:novablast.<frame>"
+              }
+            },
+            "chargewindup" : {
+              "properties" : {
+                "image" : "<partImage>:punchwindup.<frame>"
+              }
+            },
+            "charge" : {
+              "properties" : {
+                "image" : "<partImage>:punch.<frame>",
+                "damageArea" : [ [0.25, 2.75], [1.75, 1.25], [1.75, -1.25], [0.25, -2.75], [-0.25, -2.75], [-1.75, -1.25], [-1.75, 1.25], [-0.25, 2.75] ]
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "anchorPart" : "body",
+          "fullbright" : true,
+          "zLevel" : 1
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "aggro" : {
+              "properties" : {
+                "image" : "<partImage>:awaken.<frame>"
+              }
+            },
             "fly" : {
               "properties" : {
                 "image" : "<partImage>:fly.<frame>"
@@ -142,6 +212,13 @@
     }
   },
 
+  "lights" : {
+    "glow" : {
+      "active" : true,
+      "color" : [218, 83, 2]
+    }
+  },
+
   "transformationGroups" : {
     "body" : { "interpolated" : true }
   },
@@ -160,7 +237,7 @@
       "emissionRate" : 12.0,
       "offsetRegion" : [-1.5, -2.0, 1.5, 1.0],
       "particles" : [
-        { "particle" : "burningdustfront" }
+        { "particle" : "v-burningdustfrontfullbright" }
       ]
     },
     "deathPoof" : {

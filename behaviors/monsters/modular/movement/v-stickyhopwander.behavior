@@ -19,7 +19,9 @@
     "windupTime": 0,
     "winddownState": "winddown",
     "winddownStateType": "body",
-    "winddownTime": 0
+    "winddownTime": 0,
+    "airborneState": "airborne",
+    "airborneStateType": "body"
   },
   "root": {
     "title": "sequence",
@@ -85,6 +87,15 @@
           "postHopDelay": {"value": 0.1},
           "targetPos": {"key": "self"},
           "preferDirectAttacks": {"value": false}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"key": "<airborneState>"},
+          "type": {"key": "<airborneStateType>"}
         }
       },
       {
