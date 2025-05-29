@@ -21,7 +21,7 @@
           },
           "novawindup" : {
             "frames" : 6,
-            "cycle" : 0.66,
+            "cycle" : 0.6,
             "mode" : "transition",
             "transition" : "novawindup2",
             "properties" : {
@@ -30,30 +30,36 @@
           },
           "novawindup2" : {
             "frames" : 3,
-            "cycle" : 0.33,
-            "mode" : "loop",
+            "cycle" : 0.3,
+            "mode" : "end",
             "properties" : {
               "immediateSound" : "/sfx/npc/monsters/v_novamonster_novacharged.ogg"
             }
           },
           "novablast" : {
-            "frames" : 5,
-            "cycle" : 0.5,
+            "frames" : 6,
+            "cycle" : 0.6,
             "mode" : "transition",
             "transition" : "fly"
           },
           "chargewindup" : {
-            "frames" : 1,
-            "cycle" : 1,
-            "mode" : "loop"
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "end"
           },
           "charge" : {
-            "frames" : 1,
-            "cycle" : 1,
+            "frames" : 3,
+            "cycle" : 0.3,
             "mode" : "end",
             "properties" : {
               "immediateSound" : "/sfx/npc/monsters/v_novamonster_punch.ogg"
             }
+          },
+          "chargewinddown" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "fly"
           }
         }
       },
@@ -139,6 +145,11 @@
                 "image" : "<partImage>:punch.<frame>",
                 "damageArea" : [ [0.25, 2.75], [1.75, 1.25], [1.75, -1.25], [0.25, -2.75], [-0.25, -2.75], [-1.75, -1.25], [-1.75, 1.25], [-0.25, 2.75] ]
               }
+            },
+            "chargewinddown" : {
+              "properties" : {
+                "image" : "<partImage>:punchwinddown.<frame>"
+              }
             }
           },
           "damage" : {
@@ -197,6 +208,11 @@
               "properties" : {
                 "image" : "<partImage>:punch.<frame>",
                 "damageArea" : [ [0.25, 2.75], [1.75, 1.25], [1.75, -1.25], [0.25, -2.75], [-0.25, -2.75], [-1.75, -1.25], [-1.75, 1.25], [-0.25, 2.75] ]
+              }
+            },
+            "chargewinddown" : {
+              "properties" : {
+                "image" : "<partImage>:punchwinddown.<frame>"
               }
             }
           },

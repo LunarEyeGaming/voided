@@ -251,6 +251,8 @@ vLocalAnimator = {}
 ---Spawns a particle `particle` from offscreen with density `density`. If there is any wind, the x component of its
 ---initial velocity will be the wind level.
 ---
+---NOTE: For performance reasons, this function will modify the particle's initial velocity.
+---
 ---If `exposedOnly` is `true`, the `particle` will spawn only if the spawning position does not have a material in the
 ---background. The predicate function `pred` is optional. If defined, it adds an addiitonal condition for the particle
 ---to spawn.
@@ -265,6 +267,7 @@ function vLocalAnimator.spawnOffscreenParticles(particle, options)
 
   local windowRegion = world.clientWindow()
 
+  -- TODO: Iterate through x positions that are changed.
   for y = windowRegion[2], windowRegion[4] do
     local leftPosition = {windowRegion[1], y}
 

@@ -12,6 +12,7 @@ local detectRegion
 local keepRegionRect  -- Region in which to keep entities
 local startingStage
 local consumeSoilMoisture
+local fireOnDeath
 
 -- State variables
 local stageConfig  -- Config for the current stage
@@ -23,6 +24,7 @@ function init()
   detectRegion = vEntity.getRegionPoints(config.getParameter("detectRegion"))
   startingStage = config.getParameter("startingStage", 1)
   consumeSoilMoisture = config.getParameter("consumeSoilMoisture", true)
+  fireOnDeath = config.getParameter("fireOnDeath", true)
 
   if not storage.stage then
     setStage(startingStage)
@@ -30,11 +32,11 @@ function init()
 
   -- Initialize stage
   stageConfig = stages[storage.stage]
-  if stageConfig.duration then
-    storage.nextStageTime = world.time() + math.random(stageConfig.duration[1], stageConfig.duration[2])
-  else
-    storage.nextStageTime = nil
-  end
+  -- if stageConfig.duration then
+  --   storage.nextStageTime = world.time() + math.random(stageConfig.duration[1], stageConfig.duration[2])
+  -- else
+  --   storage.nextStageTime = nil
+  -- end
 
   animator.setGlobalTag("stage", storage.stage - 1)
 
@@ -56,7 +58,7 @@ function update(dt)
     local foundEntity = detectFastEntities(dt)
 
     if foundEntity and (not stageConfig.fireChance or math.random() < stageConfig.fireChance) then
-      fireProjectiles()
+      fireProjectiles(stageConfig)
 
       setStage(stageConfig.resetToStage + 1)
     end
@@ -71,14 +73,38 @@ end
 function onInteraction()
   if stageConfig.cascadeHarvest then
     while stageConfig.cascadeHarvest do
-      world.spawnTreasure(object.position(), stageConfig.harvestPool, world.threatLevel())
+      harvest(stageConfig.harvestPool)
 
       setStage(stageConfig.resetToStage + 1)
     end
   else
-    world.spawnTreasure(object.position(), stageConfig.harvestPool, world.threatLevel())
+    harvest(stageConfig.harvestPool)
 
     setStage(stageConfig.resetToStage + 1)
+  end
+end
+
+function die()
+  if fireOnDeath then
+    local currentStageNum = storage.stage
+    local currentStage = stages[currentStageNum]
+
+    while currentStage.fireThreshold do
+      fireProjectiles(currentStage)
+
+      currentStageNum = currentStageNum - 1
+      currentStage = stages[currentStageNum]
+    end
+  else
+    local currentStageNum = storage.stage
+    local currentStage = stages[currentStageNum]
+
+    while currentStage.cascadeHarvest do
+      harvest(currentStage.harvestPool)
+
+      currentStageNum = currentStageNum - 1
+      currentStage = stages[currentStageNum]
+    end
   end
 end
 
@@ -141,28 +167,32 @@ function detectFastEntities(dt)
   return false
 end
 
-function fireProjectiles()
+function fireProjectiles(stage)
   local ownPos = object.position()
-  for _ = 1, stageConfig.projectileCount do
+  for _ = 1, stage.projectileCount do
     local pos
-    if stageConfig.offsetRegion then
-      pos = vec2.add(ownPos, rect.randomPoint(stageConfig.offsetRegion))
-    elseif stageConfig.offset then
-      pos = vec2.add(ownPos, stageConfig.offset)
+    if stage.offsetRegion then
+      pos = vec2.add(ownPos, rect.randomPoint(stage.offsetRegion))
+    elseif stage.offset then
+      pos = vec2.add(ownPos, stage.offset)
     else
       pos = ownPos
     end
 
-    local angle = stageConfig.angle or 0
+    local angle = stage.angle or 0
 
-    if stageConfig.fuzzAngle then
-      angle = angle + math.random() * 2 * stageConfig.fuzzAngle - stageConfig.fuzzAngle
+    if stage.fuzzAngle then
+      angle = angle + math.random() * 2 * stage.fuzzAngle - stage.fuzzAngle
     end
 
     angle = angle * math.pi / 180
 
-    world.spawnProjectile(stageConfig.projectileType, pos, entity.id(), vec2.withAngle(angle), false, stageConfig.projectileParameters)
+    world.spawnProjectile(stage.projectileType, pos, entity.id(), vec2.withAngle(angle), false, stage.projectileParameters)
   end
+end
+
+function harvest(pool)
+  world.spawnTreasure(vec2.add(object.position(), {1, 1}), pool, world.threatLevel())
 end
 
 function addPositionData(entityId)

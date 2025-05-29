@@ -44,7 +44,7 @@
     "particleEmitters" : {
       "hazard" : {
         "emissionRate" : 2.0,
-        "offsetRegion" : [0, 0, 1, 4],
+        "offsetRegion" : [0, 1, 1, 4],
         // emissionRateVariance is broken in objects for some reason. This'll have to do.
         "randomSelectCount" : 1,
         "particles" : [
@@ -121,7 +121,7 @@
       "projectileCount" : 1,
       "fuzzAngle" : 45,
       "angle" : 90,
-      "offsetRegion" : [0, 0, 1, 4],
+      "offsetRegion" : [0, 1, 1, 4],
       "resetToStage" : 2,
       "cascadeHarvest" : true,
       "harvestPool" : "v-missilebloomHarvest",
@@ -136,7 +136,7 @@
       "projectileCount" : 1,
       "fuzzAngle" : 45,
       "angle" : 90,
-      "offsetRegion" : [0, 0, 1, 4],
+      "offsetRegion" : [0, 1, 1, 4],
       "resetToStage" : 3,
       "cascadeHarvest" : true,
       "harvestPool" : "v-missilebloomHarvest",
@@ -151,7 +151,7 @@
       "projectileCount" : 1,
       "fuzzAngle" : 45,
       "angle" : 90,
-      "offsetRegion" : [0, 0, 1, 4],
+      "offsetRegion" : [0, 1, 1, 4],
       "resetToStage" : 4,
       "cascadeHarvest" : true,
       "harvestPool" : "v-missilebloomHarvest",
@@ -165,7 +165,7 @@
       "projectileCount" : 1,
       "fuzzAngle" : 45,
       "angle" : 90,
-      "offsetRegion" : [0, 0, 1, 4],
+      "offsetRegion" : [0, 1, 1, 4],
       "resetToStage" : 5,
       "cascadeHarvest" : true,
       "harvestPool" : "v-missilebloomHarvest",
@@ -179,6 +179,7 @@
   "scriptDelta" : 3,
 
   "detectRegion" : [0, 0, 1, 4],
+  "fireOnDeath" : false,
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

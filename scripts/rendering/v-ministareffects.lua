@@ -18,12 +18,14 @@ local startBurningColor
 local endBurningColor
 local sunRayDimColor
 local sunRayBrightColor
+local sunLiquidId
 
 -- Cached drawable tables
 local blockDrawable
 local sunRayDrawable
 local sunRayDrawableFunc
 local sunParticle
+local liquidSunParticle
 
 -- State variables
 local burningBlocks
@@ -84,6 +86,7 @@ function init()
   endBurningColor = {255, 119, 0, 255}
   sunRayDimColor = {255, 0, 0, 0}
   sunRayBrightColor = {255, 216, 107, 128}
+  sunLiquidId = 218
 
   blockDrawable = {  -- Construct table once. position and color will change.
     line = {{0, 0.5}, {1, 0.5}},
@@ -107,6 +110,22 @@ function init()
     collidesForeground = true,
     color = true  -- Placeholder value
   }
+
+  liquidSunParticle = {
+    type = "textured",
+    image = "/particles/v-ministarcloud/2.png",
+    initialVelocity = {0, 50},
+    approach = {2, 2},
+    timeToLive = 5,
+    destructionAction = "shrink",
+    destructionTime = 2,
+    angularVelocity = 0,
+    layer = "middle",
+    collidesForeground = true,
+    variance = {
+      initialVelocity = {5, 5}
+    }
+  }
 end
 
 function update(dt)
@@ -122,7 +141,6 @@ function update(dt)
   local ownVelocity = world.entityVelocity(entity.id())  --[[@as Vec2F]]
   -- Compute predicted position.
   local predictedPos = vec2.add(ownPos, vec2.mul(ownVelocity, dt))
-  -- predictedPos = world.resolvePolyCollision(collisionPoly, predictedPos, 1) or predictedPos
   local window = world.clientWindow()
 
   v_ministarEffects_drawBurningBlocks(predictedPos, dt, window)
@@ -136,6 +154,7 @@ function update(dt)
     v_ministarEffects_drawSunRayLights(sunProximityRatio, boosts, window)
   end
   v_ministarEffects_drawParticles(sunRayColor)
+  v_ministarEffects_drawLiquidParticles(window)
 end
 
 ---Draws the burning blocks, also updating their heat.
@@ -162,14 +181,6 @@ function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts, window)
   local bottomY = minHeight
 
   -- Draw sun rays.
-  -- for i, topY in ipairs(heightMap.list) do
-  --   local x = i + heightMap.startXPos - 1
-
-  --   if topY ~= bottomY then
-  --     sunRayDrawable.color = vAnimator.lerpColorU(math.min(1.0, ratio + boosts[i]), sunRayDimColor, sunRayBrightColor)
-  --     sunRayDrawableFunc(x, bottomY, topY, predictedPos)
-  --   end
-  -- end
   local startX = math.max(world.nearestTo(heightMap.startXPos, window[1]), heightMap.startXPos)
   local endX = math.min(world.nearestTo(heightMap.endXPos, window[3]), heightMap.endXPos)
   for x = startX, endX do
@@ -220,36 +231,6 @@ function v_ministarEffects_drawSunRayLights(ratio, boosts, window)
       localAnimator.addLightSource(sunRayLightSource)
     end
   end
-  -- for i, v in ipairs(lightDrawBounds) do
-  --   local x = i + heightMap.startXPos - 1
-  --   if v.s ~= v.e then
-  --     local inc
-
-  --     if v.s < v.e then
-  --       inc = lightInterval
-  --     else
-  --       inc = -lightInterval
-  --     end
-
-  --     local rayRatio = math.min(1.0, ratio + boosts[i])
-
-  --     local sunRayColor = vAnimator.lerpColorU(rayRatio, sunRayDimColor, sunRayBrightColor)
-  --     local sunRayLightColor = {
-  --       math.floor(sunRayColor[1] * rayRatio),
-  --       math.floor(sunRayColor[2] * rayRatio),
-  --       math.floor(sunRayColor[3] * rayRatio)
-  --     }
-  --     sunRayLightSource.color = sunRayLightColor
-
-  --     for y = v.s, v.e, inc do
-  --       sunRayLightSource.position = {x, y}
-  --       localAnimator.addLightSource(sunRayLightSource)
-  --     end
-
-  --     sunRayLightSource.position = {x, v.e}
-  --     localAnimator.addLightSource(sunRayLightSource)
-  --   end
-  -- end
 end
 
 function v_ministarEffects_computeLightBounds()
@@ -289,6 +270,19 @@ function v_ministarEffects_drawParticles(color)
       return not world.underground(pos)
     end
   })
+end
+
+function v_ministarEffects_drawLiquidParticles(window)
+  local pos = rect.randomPoint(window)
+
+  local liquid = world.liquidAt(pos)
+  if liquid and liquid[1] == sunLiquidId then
+    local windLevel = world.windLevel(pos)
+    local initialVelocity = liquidSunParticle.initialVelocity or {0, 0}
+    initialVelocity[1] = windLevel
+    liquidSunParticle.initialVelocity = initialVelocity
+    localAnimator.spawnParticle(liquidSunParticle, pos)
+  end
 end
 
 function v_ministarEffects_computeSolarFlareBoosts(startX, endX)

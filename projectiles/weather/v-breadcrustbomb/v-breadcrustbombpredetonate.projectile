@@ -1,0 +1,55 @@
+{
+  "projectileName" : "v-breadcrustbombpredetonate",
+
+  "image" : "breadcrustbombpredetonate.png",
+  "animationCycle" : 0.1,
+  "frameNumber" : 1,
+  "winddownFrames" : 4,
+  "lightColor" : [218, 83, 2],
+
+  "physics" : "rollingboulder",
+  "movementSettings" : {
+    "collisionPoly" : [ [-1.125, 0], [-0.75, -0.75], [0, -1.125], [0.75, -0.75], [1.125, 0], [0.75, 0.75], [0, 1.125], [-0.75, 0.75] ],
+    "bounceFactor" : 0.1,
+    "groundFriction" : 1.0
+  },
+  "bounces" : -1,
+  "speed" : 15,
+  "onlyHitTerrain" : true,
+  "orientationLocked" : true,
+
+  "timeToLive" : 1.5,
+
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/regularexplosionknockback.config"
+    },
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "projectile",
+          "type" : "v-breadcrustbombshard",
+          "inheritDamageFactor" : 1,
+          "fuzzAngle" : 180
+        }
+      ]
+    }
+  ],
+
+  "emitters" : [ "fireswoosh" ],
+
+  "power" : 10.0,
+  "damageKind" : "default",
+
+  "persistentAudio" : "/sfx/projectiles/burning_loop.ogg",
+
+  "scripts" : [ "/scripts/projectiles/v-spinningprojectile.lua" ],
+  "scriptDelta" : 1,
+
+  "radius" : 1.5
+}
+
+

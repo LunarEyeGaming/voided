@@ -74,7 +74,7 @@
             "fireSound" : "",
 
             "winddownState" : "",
-            "winddownTime" : 0.5
+            "winddownTime" : 0.6
           }
         },
         {
@@ -87,7 +87,7 @@
             "onGround" : false,
             "windupStopForce" : 50,
             "windupState" : "chargewindup",
-            "windupTime" : 1.0,
+            "windupTime" : 0.5,
 
             "aimAtTarget" : true,
             "inaccuracy" : 0,
@@ -98,7 +98,7 @@
             "wallCollide" : false,
             "wallCrashSound" : "",
 
-            "winddownState" : "fly",
+            "winddownState" : "chargewinddown",
             "winddownTime" : 0.5
           }
         }
