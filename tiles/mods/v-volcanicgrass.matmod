@@ -1,0 +1,16 @@
+{
+  "modId" : 366,
+  "modName" : "v-volcanicgrass",
+  "description" : "Volcanic grass.",
+  "footstepSound" : "/sfx/blocks/footstep_grass.ogg",
+  "health" : 0,
+  "breaksWithTile" : false,
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-volcanicgrass.png",
+    "variants" : 5,
+    "multiColored" : false,
+    "zLevel" : 0
+  }
+}

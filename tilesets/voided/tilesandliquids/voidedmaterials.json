@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":39,
+ "tilecount":40,
  "tiledversion":"1.11.0",
  "tileheight":8,
  "tileproperties":
@@ -148,6 +148,10 @@
      "38":
         {
          "material":"v-sunspotpillar"
+        },
+     "39":
+        {
+         "material":"v-stonysoil"
         },
      "4":
         {
@@ -309,6 +313,10 @@
          "material":"string"
         },
      "38":
+        {
+         "material":"string"
+        },
+     "39":
         {
          "material":"string"
         },
@@ -534,6 +542,12 @@
      "38":
         {
          "image":"..\/images\/tilesandliquids\/sunspotpillar.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "39":
+        {
+         "image":"..\/images\/tilesandliquids\/stonysoil.png",
          "imageheight":8,
          "imagewidth":8
         },

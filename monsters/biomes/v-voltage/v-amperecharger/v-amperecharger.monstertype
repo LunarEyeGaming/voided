@@ -1,6 +1,6 @@
 {
   "type" : "v-amperecharger",
-  "shortdescription" : "Ampere Charger",
+  "shortdescription" : "Skimblitz",
   "description" : "An offshoot of the Skimbus, this creature has evolved to charge at lightning speeds.",
 
   "categories" : [ "v-amperecharger" ],
@@ -14,7 +14,7 @@
     "scripts" : [
       "/monsters/monster.lua"
     ],
-    
+
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 3,
 
@@ -60,7 +60,7 @@
             "winddownState" : "idle",
             "winddownStopForce" : 100,
             "winddownTime" : 1.0,
-            
+
             "trailProjectile" : "v-amperechargertrail",
             "trailDirection" : [0, 0],
             "trailProjectileConfig" : {

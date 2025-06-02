@@ -174,6 +174,8 @@ function update(dt)
 
   local burnRatio = (1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + computeSolarFlareBoost(pos[1])
 
+  sb.setLogMap("burnRatio", "%s", burnRatio)
+
   if status.statPositive("v-ministarHeatTickMultiplier") then
     tickDamage.interval = tickTime * status.stat("v-ministarHeatTickMultiplier")
   end

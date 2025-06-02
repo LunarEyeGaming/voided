@@ -1,0 +1,26 @@
+{
+  "materialId" : 1219,
+  "materialName" : "v-stonysoil",
+  "particleColor" : [112, 88, 93, 255],
+  "itemDrop" : "v-stonysoilmaterial",
+  "description" : "A firm, grayish-red soil.",
+  "shortdescription" : "Stony Soil",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/v_footstep_stonysoil.ogg",
+  "soil" : true,
+  "tillableMod" : 32,
+  "health" : 12,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-stonysoil.png",
+    "variants" : 15,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1920
+  }
+}

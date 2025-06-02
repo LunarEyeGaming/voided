@@ -1,6 +1,6 @@
 {
   "name" : "v-shallowundergroundtoxic",
-  "friendlyName" : "Toxic Caves",
+  "friendlyName" : "Toxic Caves Shallow",
 
   "spawnProfile" : {
     "groups" : [
@@ -183,7 +183,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-poisongasprimerlite" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground/v-shallowundergroundtoxic" }
           }
         ]
       },

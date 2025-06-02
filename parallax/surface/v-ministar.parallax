@@ -3,6 +3,21 @@
 
   "layers" : [
     {
+      "kind" : "divider/blackrock",
+      "offset" : [0, 350],
+      "nohueshift" : true,
+      "lightMapped" : true,
+      "parallax" : 1.199
+    },
+    {
+      "kind" : "tile/magmarock",
+      "nohueshift" : true,
+      "lightMapped" : true,
+      "repeatY" : true,
+      "tileLimitTop" : 275,
+      "parallax" : 1.2
+    },
+    {
       "kind" : "v-ministar/glowfade",
       "nohueshift" : true,
       "unlit" : true,

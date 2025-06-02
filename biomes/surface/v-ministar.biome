@@ -1,6 +1,6 @@
 {
   "name" : "v-ministar",
-  "friendlyName" : "Sunspot Islands",
+  "friendlyName" : "Ministar",
   "airless" : true,
   // "horizonClouds" : false,
 
@@ -263,6 +263,20 @@
       },
       {
         "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-biomeinvisible" ] ],
+            "parameters" : { "originBiome" : "surface/v-ministar" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
         "priority" : 99.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
@@ -331,6 +345,20 @@
           {
             "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
             "parameters" : { "breakDropPool" : "v-capsuleMinistar", "smashDropPool" : "v-capsuleMinistar" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-biomeinvisible" ] ],
+            "parameters" : { "originBiome" : "surface/v-ministar" }
           }
         ]
       },

@@ -19,7 +19,7 @@
       "path" : "/displayDungeons/v-voltagecity",
       "value" : {
         "name" : "Voltropolis",
-        "description" : "A large city located near the center of the planet. Holds military-grade weapons supercharged with electricity.",
+        "description" : "A small city located near the center of the planet. Holds military-grade weapons supercharged with electricity.",
         "icon" : "/items/generic/quest/v-powercube.png"
       }
     },
@@ -36,7 +36,7 @@
 
   // More Planet Info Support
   [
-    {"op" : "test", "path" : "/planetTypeNames"},
+    {"op" : "test", "path" : "/wordsList"},
 
     // Make label for Rusted Voltage biomes visible.
     {"op" : "add", "path" : "/planetTypeNames/v-voltagerusty", "value" : "Rusted Voltage"},

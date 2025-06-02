@@ -187,7 +187,7 @@ function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts, window)
     local i, topY = heightMap:geti(x)
 
     if topY ~= bottomY then
-      sunRayDrawable.color = vAnimator.lerpColorU(math.min(1.0, ratio + boosts[i]), sunRayDimColor, sunRayBrightColor)
+      sunRayDrawable.color = vAnimator.lerpColor(ratio + boosts[i], sunRayDimColor, sunRayBrightColor)
       sunRayDrawableFunc(x, bottomY, topY, predictedPos)
     end
   end
@@ -215,8 +215,10 @@ function v_ministarEffects_drawSunRayLights(ratio, boosts, window)
       else
         inc = -lightInterval
       end
-      local rayRatio = math.min(1.0, ratio + boosts[i])
-      local sunRayColor = vAnimator.lerpColorU(rayRatio, sunRayDimColor, sunRayBrightColor)
+      -- local rayRatio = math.min(1.0, ratio + boosts[i])
+      local rayRatio = ratio + boosts[i]
+      -- local sunRayColor = vAnimator.lerpColorU(rayRatio, sunRayDimColor, sunRayBrightColor)
+      local sunRayColor = vAnimator.lerpColor(rayRatio, sunRayDimColor, sunRayBrightColor)
       local sunRayLightColor = {
         math.floor(sunRayColor[1] * rayRatio),
         math.floor(sunRayColor[2] * rayRatio),

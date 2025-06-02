@@ -1,6 +1,6 @@
 {
   "name" : "v-shallowundergroundministar",
-  "friendlyName" : "Shallow Ministar Caves",
+  "friendlyName" : "Ministar Caves Shallow",
 
   "spawnProfile" : {
     "groups" : [
@@ -52,10 +52,10 @@
 
   "ambientNoises" : {
     "day" : {
-      "tracks" : [ "/sfx/environmental/desert_underground.ogg", "/sfx/environmental/arid_underground.ogg" ]
+      "tracks" : [ "/sfx/environmental/v_ministar_underground.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/sfx/environmental/desert_underground.ogg", "/sfx/environmental/arid_underground.ogg" ]
+      "tracks" : [ "/sfx/environmental/v_ministar_underground.ogg" ]
     }
   },
 
@@ -138,6 +138,20 @@
 
         "type" : "treasureBox",
         "treasureBoxSets" : [ "techChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-biomeinvisible" ] ],
+            "parameters" : { "originBiome" : "underground_detached/v-shallowundergroundministar" }
+          }
+        ]
       },
       {
         "mode" : "floor",

@@ -1,4 +1,5 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":22,
  "infinite":false,
  "layers":[
@@ -7,6 +8,7 @@
          "data":"eJx7w8DA8AaIP0PxGzQ+NvwGDeNTS8gccvVSC1PqfnLCAV0fOW6gNPwHQ\/wNB\/3USD+Uxh+l6Wcg0i81wp8amB75H5s8TAwAckNMoQ==",
          "encoding":"base64",
          "height":22,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -20,6 +22,7 @@
          "data":"eJxjYICAz1DMgMbHhtEBPrWEzCFXL7Uwpe7HBsjRMwpGwWAB5KTd0fxPWB02MQByWY5j",
          "encoding":"base64",
          "height":22,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[
                 {
@@ -49,6 +54,14 @@
                  "height":80,
                  "id":815,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"originBiome\" : \"underground_detached\/v-coilcaves\" }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -65,6 +78,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":5,
          "name":"wiring - lights & guns",
          "objects":[],
          "opacity":1,
@@ -76,6 +90,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":6,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -87,6 +102,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":7,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -97,6 +113,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -107,6 +124,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"anchors etc",
          "objects":[
                 {
@@ -189,6 +207,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -197,10 +216,11 @@
          "x":0,
          "y":0
         }],
+ "nextlayerid":11,
  "nextobjectid":822,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.0",
  "tileheight":8,
  "tilesets":[
         {
@@ -266,7 +286,8 @@
         {
          "firstgid":5628,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/door.json"
-        }, 
+        },
+    
         {
          "firstgid":5760,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/farmable.json"
@@ -330,7 +351,8 @@
         {
          "firstgid":8624,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-type\/noisy.json"
-        }, 
+        },
+    
         {
          "firstgid":8665,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-type\/teleporter.json"
@@ -345,6 +367,6 @@
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":16
 }

@@ -118,6 +118,20 @@
       },
       {
         "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-biomeinvisible" ] ],
+            "parameters" : { "originBiome" : "space/v-burningasteroids" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
         "priority" : 0.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:denseSurfaceCrops",

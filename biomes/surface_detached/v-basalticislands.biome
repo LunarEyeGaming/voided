@@ -90,12 +90,12 @@
     }
   ],
 
-  "mainBlock" : "v-sunspotstone",
-  "subBlocks" : [ "rock03" ],
+  "mainBlock" : "v-stonysoil",
+  "subBlocks" : [ "rock03", "v-sunspotstone" ],
   "ores" : "v-undergroundministar",
 
   "surfacePlaceables" : {
-    "grassMod" : [ "ash" ],
+    "grassMod" : [ "v-volcanicgrass" ],
     "grassModDensity" : 0.9,
 
     "items" : [
@@ -219,7 +219,8 @@
           {
             "pool" : [ [1, "v-wildmissilebloomseed" ] ],
             "parameters" : {
-              "startingStage" : 7
+              "startingStage" : 7,
+              "originBiome" : "surface_detached/v-basalticislands"
             }
           }
         ]
@@ -228,7 +229,7 @@
   },
 
   "undergroundPlaceables" : {
-    "grassMod" : [ "ash" ],
+    "grassMod" : [ "v-volcanicgrass" ],
     "grassModDensity" : 0.6,
 
     "items" : [
@@ -260,7 +261,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-geysertrap" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface_detached/v-basalticislands" }
           }
         ]
       },
@@ -274,7 +275,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-geysertrap" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface_detached/v-basalticislands" }
           }
         ]
       },
