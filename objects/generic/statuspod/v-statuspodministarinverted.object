@@ -104,7 +104,17 @@
     },
     {
       "levelRange" : [1, 10],
-      "projectileType" : "v-fusionstatusprojectile",
+      "projectileType" : "v-fusionstatusprojectileinverted",
+      "projectileParams" : { }
+    },
+    {
+      "levelRange" : [1, 10],
+      "projectileType" : "v-oilstatusprojectileinverted",
+      "projectileParams" : { }
+    },
+    {
+      "levelRange" : [1, 10],
+      "projectileType" : "v-ice19bombstatusprojectileinverted",
       "projectileParams" : { }
     }
   ],

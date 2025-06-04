@@ -98,11 +98,11 @@
       "hopSpeed": {"type": "number", "value": 60},
       "maxRaycastLength": {"type": "number", "value": 50},
       "minRaycastLength": {"type": "number", "value": 5},
-      "postHopDelay": {"type": "number", "value": 0.1},
+      "preHopDelay": {"type": "number", "value": 0.1},
+      "preferDirectAttacks": {"type": "bool", "value": false},
       "rayCount": {"type": "number", "value": 40},
       "target": {"type": "entity"},
-      "targetPos": {"type": "position"},
-      "preferDirectAttacks": {"type": "bool", "value": false}
+      "targetPos": {"type": "position"}
     },
     "category": "v-movement",
     "script": "/scripts/actions/v-movement.lua",

@@ -1,102 +1,10 @@
 --[[
+  This module adds functionality for creating projectiles that can merge with each other. This can include projectiles
+  of different types as well as projectiles of the same types.
 
--- Two types of scenarios:
--- 1. The projectile wants to merge with another projectile of a different type.
--- 2. The projectile wants to merge with another projectile of the same type
--- In the first scenario, use Merger for the first projectile and MergeHandler for the second.
--- In the second scenario, use both.
--- Currently, only two projectiles are in the second group, and they both simply aggregate a result.
--- However, I plan on adding a third projectile to the second group that will, instead of aggregating a result, spawn a
--- new projectile in its place.
--- I may also make the sludge merge with itself. This will also require keeping track of a value.
-
-class Merger
-  const field _mergeRange: number  -- The range at which to broadcast merge requests.
-  const field _dieOnMerge: boolean  -- Whether or not the projectile doing the merge request should die as well.
-
-  field _promises: RpcPromise<any>[]  -- Internal list of promises.
-  field _isMerged: boolean  -- Whether or not the projectile has merged.
-
-  -- kind: The kind of merger. Use this to prevent merges from other projectiles.
-  constructor(kind, mergeRange, dieOnMerge)
-
-    self._mergeRange = mergeRange
-    self._dieOnMerge = dieOnMerge
-
-    self._promises = {}
-    self._isMerged = false
-  end
-
-  -- Whether or not the projectile has merged.
-  method isMerged() -> boolean
-    return self._isMerged
-  end
-
-  method process() -> any[]  -- Broadcasts merge requests, then processes the promises. Returns the list of results.
-    _broadcast()
-    return _processPromises()
-  end
-
-  method _broadcast()
-    local queried = world.entityQuery(mcontroller.position(), self.mergeRange, {
-      callScript = "v_isMergerType",
-      callScriptArgs = {self._kind},
-      includedTypes = {"projectile"},
-      order = "nearest"
-    })
-
-    -- Merge with other projectiles
-    for _, id in ipairs(queried) do
-      if world.magnitude(world.entityPosition(queried[1]), mcontroller.position()) < self.mergeRange then
-        table.insert(mergePromises, world.sendEntityMessage(id, "v-handleMerge", entity.id()))
-      end
-    end
-  end
-  method _processPromises() -> any[]
-    local results = {}
-
-    for i = #self._promises, 1, -1 do
-      local promise = self._promises[i]
-
-      -- If a promise finished, handle its result and remove it.
-      if promise:finished() then
-        if promise:succeeded() then
-          local result = promise:result()
-
-          -- If the projectile accepted the message, add the result
-          if result then
-            table.insert(results, promise:result())
-          end
-        end
-
-        table.remove(mergePromises, i)
-      end
-    end
-
-    return results
-  end
-end
-
-class MergeHandler
-  field _kind: string  -- The kind of merger. Use this to prevent merges from other projectiles.
-  field _isMerged: boolean
-  field _onMerge: fun()
-
-  method isMerged() -> boolean  -- Whether or not the projectile has merged.
-end
-
-class SelfMerger
-  field _promises: RpcPromise<any>[]  -- Internal list of promises.
-  field _kind: string  -- The kind of merger. Use this to prevent merges from other projectiles.
-  field _mergeRange: number  -- The range at which to broadcast merge requests.
-  field _dieOnMerge: false  -- Whether or not the projectile doing the merge request should die as well (which means it will send only one merge request).
-  field _onMerge: fun()
-
-  method process() -> any[]  -- Broadcasts merge requests, then processes the promises. Returns the list of results.
-
-  method _broadcast()
-  method _processPromises() -> any[]
-end
+  The `VMerger` class is for sending merge requests, while the `vMergeHandler` table is for receiving merge requests. If
+  the projectile sending the merge requests and the projectile receiving the merge requests are the same, then you put
+  both in the same script. Otherwise, put them in different scripts.
 ]]
 
 ---@class VMerger
@@ -110,10 +18,10 @@ end
 VMerger = {}
 
 ---Instantiates a merger.
----@param kind string
----@param mergeRange number
----@param mergeMultiple boolean
----@param dieOnMerge? boolean
+---@param kind string the type of merger it is. Use in conjunction with `vMergeHandler.set`'s `kind` argument.
+---@param mergeRange number the maximum range at which projectiles to merge are detected
+---@param mergeMultiple boolean whether or not to send merge requests to multiple queried projectiles.
+---@param dieOnMerge? boolean whether or not to kill the current projectile on a merge request.
 ---@return VMerger
 function VMerger:new(kind, mergeRange, mergeMultiple, dieOnMerge)
   local instance = {
@@ -138,10 +46,10 @@ function VMerger:new(kind, mergeRange, mergeMultiple, dieOnMerge)
   return instance
 end
 
----Broadcasts merge requests, then processes the promises. Returns the list of results.
+---Broadcasts merge requests, then returns the list of results for requests that finished. Call on each tick.
 ---
----If _dieOnMerge is true, then the projectile dies immediately after a merge.
----@param ... any the arguments to forward to the message.
+---If `_dieOnMerge` is `true`, then the projectile dies immediately after a merge.
+---@param ... any (optional) the arguments to forward to the message.
 ---@return any[]
 function VMerger:process(...)
   self:_broadcast(...)
@@ -154,7 +62,7 @@ function VMerger:isMerged()
   return self._isMerged
 end
 
----Broadcasts a merge message to merge handlers.
+---Helper method. Broadcasts a merge message to merge handlers.
 ---@param ... any the arguments to forward to the message.
 function VMerger:_broadcast(...)
   local pos = mcontroller.position()
@@ -185,6 +93,8 @@ function VMerger:_broadcast(...)
   end
 end
 
+---Helper method. Goes through the promises that finished, removes them, and aggregates the results of the promises that
+---succeeded.
 ---@return any[]
 function VMerger:_processPromises()
   local results = {}
@@ -219,7 +129,7 @@ vMergeHandler = {}
 
 ---Sets the handler for merging the current projectile.
 ---@param kind string the merge kind to match. Should be the same as the one specified in a VMerger instance.
----@param resolveMergeConflicts? boolean whether or not to resolve merge conflicts via comparison of entity IDs. Use if your projectiles can send merge requests to each other.
+---@param resolveMergeConflicts? boolean whether or not to resolve merge conflicts via comparison of entity IDs. Set to `true` if your projectiles can send merge requests to each other.
 ---@param onMerge fun(...: any): boolean, any a function that receives the source entity followed by the arguments forwarded from the merge request.
 function vMergeHandler.set(kind, resolveMergeConflicts, onMerge)
   vMergeHandler._kind = kind
@@ -239,6 +149,9 @@ function vMergeHandler.set(kind, resolveMergeConflicts, onMerge)
   end)
 end
 
+---Helper function. Returns whether or not the projectile handles merge requests of the given `kind`.
+---@param kind string
+---@return boolean
 function vMergeHandler._hasType(kind)
   return vMergeHandler._kind == kind
 end

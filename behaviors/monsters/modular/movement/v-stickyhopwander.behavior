@@ -21,7 +21,8 @@
     "winddownStateType": "body",
     "winddownTime": 0,
     "airborneState": "airborne",
-    "airborneStateType": "body"
+    "airborneStateType": "body",
+    "preHopDelay": 0.1
   },
   "root": {
     "title": "sequence",
@@ -72,21 +73,13 @@
         }
       },
       {
-        "title": "timer",
-        "type": "action",
-        "name": "timer",
-        "parameters": {
-          "time": {"value": 0.1}
-        }
-      },
-      {
         "title": "v_stickyHopApproach",
         "type": "action",
         "name": "v_stickyHopApproach",
         "parameters": {
-          "postHopDelay": {"value": 0.1},
-          "targetPos": {"key": "self"},
-          "preferDirectAttacks": {"value": false}
+          "preHopDelay": {"key": "<preHopDelay>"},
+          "preferDirectAttacks": {"value": false},
+          "targetPos": {"key": "self"}
         }
       },
       {

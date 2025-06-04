@@ -218,7 +218,7 @@ end
 function v_stickyHopApproach(args, _, _, dt)
   local rq = vBehavior.requireArgsGen("v_stickyHopApproach", args)
 
-  if not rq{"rayCount", "minRaycastLength", "maxRaycastLength", "hopSpeed", "postHopDelay", "gravityMultiplier"} then
+  if not rq{"rayCount", "minRaycastLength", "maxRaycastLength", "hopSpeed", "preHopDelay", "gravityMultiplier"} then
     return false
   end
 
@@ -290,11 +290,11 @@ function v_stickyHopApproach(args, _, _, dt)
     hopVelocity = util.aimVector(world.distance(hopPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
   end
 
+  util.run(args.preHopDelay, function() end)
+
+  -- Jump!
   world.debugLine(ownPos, vec2.add(ownPos, hopVelocity), "green")
   mcontroller.setVelocity(hopVelocity)
-
-  -- Wait for a brief time before doing any tests.
-  util.run(args.postHopDelay, function() end)
 
   -- local testRect = rect.pad(mcontroller.boundBox(), 0.25)
   -- local tolerance = 4

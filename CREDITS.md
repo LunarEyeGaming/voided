@@ -26,7 +26,7 @@ Edited into two loop sections "stealth" and "combat"
 
 Disclaimer: the authors of these sound samples and music do not endorse Voided.
 
-I would like to thank Portal Mech and mister gadfly for playtesting and providing feedback for the mod.
+I would like to thank Portal Mech, mister gadfly, and newt546 for playtesting and providing feedback for the mod.
 
 I would also like to thank the members on the Starbound Discord for their feedback, advice, and ideas.
 

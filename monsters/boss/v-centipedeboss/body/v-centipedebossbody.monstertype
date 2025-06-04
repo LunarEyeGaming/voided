@@ -73,7 +73,7 @@
         "winddownTime" : 0.25,
         "projectileType" : "v-centipedeelectricshot",
         "projectileOffset" : [4, 0],
-        "projectileParameters" : {"power" : 20, "speed" : 1, "acceleration" : 100}
+        "projectileParameters" : {"power" : 20, "speed" : 1, "acceleration" : 100, "damageRepeatGroup" : "v-centipedeelectricshot3"}
       },
       "laserConstrict" : {
         "laserStateName" : "laserpoison",
@@ -132,6 +132,8 @@
     "touchDamage" : {
       "poly" : [ [3, 3], [-3, 3], [-3, -3], [3, -3] ],
       "damage" : 10,
+
+      "damageRepeatGroup" : "v-centipedebossbody",
 
       "teamType" : "enemy",
       "damageSourceKind" : "impact",

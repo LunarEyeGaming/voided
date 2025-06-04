@@ -17,6 +17,26 @@
   "power" : 50,
   "damageKindImage" : "icon.png",
 
+  "periodicActions" : [
+    {
+      "time" : 0.03,
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/smallflame/smallflame.animation",
+        "position" : [0, 0],
+        "fullbright" : true,
+        "layer" : "middle",
+        "timeToLive" : 0.6,
+        "variance" : {
+          "position" : [1.5, 1.5],
+          "initialVelocity" : [5, 5],
+          "rotation" : 180
+        }
+      }
+    }
+  ],
+
   "scripts" : ["/scripts/projectiles/v-mergehandler.lua"],
   "scriptDelta" : 1,
 

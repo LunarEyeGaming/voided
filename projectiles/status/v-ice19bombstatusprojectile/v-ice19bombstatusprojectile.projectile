@@ -1,5 +1,5 @@
 {
-  "projectileName" : "v-beeswarmstatusprojectile",
+  "projectileName" : "v-ice19bombstatusprojectile",
   "physics" : "statuspod",
   "bounces" : -1,
   "timeToLive" : 1.5,
@@ -10,10 +10,12 @@
   "frameNumber" : 4,
   "periodicActions" : [
     {
-      "time" : 0.25,
-      "action" : "spawnmonster",
-      "type" : "v-killerbeeswarm",
-      "level" : 8
+      "time" : 0.35,
+      "action" : "projectile",
+      "type" : "v-ice19bomb",
+      "angle" : 90,
+      "fuzzAngle" : 90,
+      "offset" : [0, 0.5]
     }
   ],
   "power" : 0,
