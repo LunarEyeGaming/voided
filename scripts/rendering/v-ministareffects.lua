@@ -216,7 +216,8 @@ function v_ministarEffects_drawSunRayLights(ratio, boosts, window)
         inc = -lightInterval
       end
       -- local rayRatio = math.min(1.0, ratio + boosts[i])
-      local rayRatio = ratio + boosts[i]
+      -- local rayRatio = ratio + boosts[i]
+      local rayRatio = math.min(1.0, math.max(0.0, ratio + boosts[i]))
       -- local sunRayColor = vAnimator.lerpColorU(rayRatio, sunRayDimColor, sunRayBrightColor)
       local sunRayColor = vAnimator.lerpColor(rayRatio, sunRayDimColor, sunRayBrightColor)
       local sunRayLightColor = {

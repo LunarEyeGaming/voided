@@ -119,8 +119,31 @@ function getNextPos(pos)
     -- Get corresponding direction and add it to pos to get the test position.
     local testPos = vec2.add(pos, testDirection)
 
+    -- Handle special cases like:
+    -- #####<
+    --      #############
+    -- where the entity is heading leftwards and may slip through a diagonal gap.
+    -- The result should be:
+    --     *
+    -- #####
+    --      #############
+    -- and not
+    -- #####
+    --     *#############
+    local passedSpecialCase = true
+    if testIdx % 2 == 0 then
+      local testDirection2 = getDirection(testIdx + 1)
+      local testDirection3 = getDirection(testIdx - 1)
+      local testPos2 = vec2.add(pos, testDirection2)
+      local testPos3 = vec2.add(pos, testDirection3)
+
+      if world.pointCollision(testPos2) and world.pointCollision(testPos3) then
+        passedSpecialCase = false
+      end
+    end
+
     -- If the position is empty and is adjacent to some tiles...
-    if not world.pointCollision(testPos) and vWorld.isGroundAdjacent(testPos) then
+    if passedSpecialCase and not world.pointCollision(testPos) and vWorld.isGroundAdjacent(testPos) then
       return testPos, testIdx
     end
   end

@@ -1,7 +1,7 @@
 {
   "animationCustom" : {
     "sounds" : {
-      "altFire" : [ "/sfx/gun/v_fusionplasmalauncher_fire.ogg" ]
+      "altFire" : [ "/sfx/gun/dragonhead_charged_fire1.ogg" ]
     }
   },
 
@@ -32,9 +32,7 @@
         "allowRotate" : false,
         "allowFlip" : false,
         "animationStates" : {
-          "gun" : "fire2",
-          "cells" : "fire2",
-          "lamp" : "switch2",
+          "gun" : "fireorange",
           "muzzle" : "on2"
         }
       },

@@ -1,20 +1,20 @@
 {
   "name": "v-cityminiboss-dying",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/animator.lua",
-    "/scripts/actions/entity.lua",
-    "/scripts/actions/math.lua",
-    "/scripts/actions/movement.lua",
-    "/scripts/actions/world.lua",
-    "/scripts/actions/position.lua",
     "/scripts/actions/projectiles.lua",
-    "/scripts/actions/sensor.lua",
-    "/scripts/actions/miniboss/v-cityminiboss.lua"
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/miniboss/v-cityminiboss.lua",
+    "/scripts/actions/entity.lua"
   ],
   "parameters": {
     "kickUpVelocity": [0, 75],
-    "crashVelocity": [50, -25]
+    "crashVelocity": [50, -25],
+    "explosionInterval": [0.01, 0.5]
   },
   "root": {
     "title": "sequence",
@@ -46,7 +46,7 @@
         "parameters": {
           "aimVector": {"value": [1, 0]},
           "offset": {"value": [0, 0]},
-          "projectileConfig": {"value": {"power" : 0, "actionOnReap" : [{"action" : "config", "file" : "/projectiles/explosions/v-cityminibossdyingexplosion/v-cityminibossdyingexplosion.config"}]}},
+          "projectileConfig": {"value": {"power": 0, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/v-cityminibossdyingexplosion/v-cityminibossdyingexplosion.config"}]}},
           "projectileType": {"value": "v-proxyprojectile"}
         }
       },
@@ -55,8 +55,8 @@
         "type": "action",
         "name": "setParticleEmitterActive",
         "parameters": {
-          "emitter": {"value": "jetpackFumes"},
-          "active": {"value": true}
+          "active": {"value": true},
+          "emitter": {"value": "jetpackFumes"}
         }
       },
       {
@@ -89,12 +89,38 @@
         },
         "children": [
           {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "spawnProjectile",
+                "type": "action",
+                "name": "spawnProjectile",
+                "parameters": {
+                  "aimVector": {"value": [1, 0]},
+                  "offset": {"value": [0, 0]},
+                  "projectileConfig": {"value": {"power": 0, "actionOnReap": [{"action": "config", "file": "/projectiles/explosions/v-cityminibossdyingexplosion/v-cityminibossdyingexplosion.config"}]}},
+                  "projectileType": {"value": "v-proxyprojectile"}
+                }
+              },
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"key": "<explosionInterval>"}
+                }
+              }
+            ]
+          },
+          {
             "title": "controlApproachVelocity",
             "type": "action",
             "name": "controlApproachVelocity",
             "parameters": {
-              "velocity": {"key": "crashVelocity"},
-              "controlForce": {"value": 150}
+              "velocity": {"key": "crashVelocity"}
             }
           },
           {
@@ -134,7 +160,7 @@
         "parameters": {
           "aimVector": {"value": [1, 0]},
           "offset": {"value": [0, 0]},
-          "projectileConfig": {"value": {"power" : 0, "knockback" : 0}},
+          "projectileConfig": {"value": {"power": 0, "knockback": 0}},
           "projectileType": {"value": "electricplasmaexplosion"}
         }
       },

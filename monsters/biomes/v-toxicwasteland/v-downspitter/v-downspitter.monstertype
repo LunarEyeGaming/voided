@@ -72,7 +72,7 @@
       "periodicActions" : [ ],
 
       "approachActions" : [
-        {
+        /* {
           "name" : "v-approach-rangedfly",
           "parameters" : {
             "minRange" : 8,
@@ -81,13 +81,13 @@
             "controlForce" : 50,
             "usePathfinding" : false
           }
-        }
-        /* {
+        } */
+        {
           "name" : "approach-fly",
           "parameters" : {
             "usePathfinding" : false
           }
-        } */
+        }
       ],
 
       "followActions" : [

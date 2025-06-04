@@ -20,10 +20,6 @@
   "animationParts" : {
     "gun" : "gun.png",
     "gunfullbright" : "gunfullbright.png",
-    "cells" : "cells.png",
-    "cellsfullbright" : "cellsfullbright.png",
-    "lamp": "lamp.png",
-    "lampfullbright": "lampfullbright.png",
     "muzzleFlash" : "muzzleflash.png"
   },
   "animationCustom" : {
@@ -37,7 +33,7 @@
     }
   },
   "baseOffset" : [0.75, -0.375],
-  "muzzleOffset" : [1.375, 0.75],
+  "muzzleOffset" : [2.5625, 1.0],
 
   "scripts" : ["/items/active/weapons/ranged/gun.lua"],
 
@@ -77,9 +73,7 @@
         "allowRotate" : false,
         "allowFlip" : false,
         "animationStates" : {
-          "gun" : "fire",
-          "cells" : "fire",
-          "lamp" : "switch",
+          "gun" : "fireblue",
           "muzzle" : "on1"
         }
       },
@@ -99,41 +93,40 @@
   "altAbility" : {
     "elementalConfig" : {
       "fire" : { "name" : "Fusion Globe", "projectileType" : "v-fusionglobe", "projectileParameters" : {}, "fireTime" : 1.0, "energyUsage" : 75}
-    },
+    } // ,
 
-    "stances" : {
-      "idle" : {
-        "armRotation" : 0,
-        "weaponRotation" : 0,
-        "twoHanded" : true,
+    // "stances" : {
+    //   "idle" : {
+    //     "armRotation" : 0,
+    //     "weaponRotation" : 0,
+    //     "twoHanded" : true,
 
-        "allowRotate" : true,
-        "allowFlip" : true
-      },
-      "fire" : {
-        "duration" : 0,
-        "armRotation" : 5,
-        "weaponRotation" : 5,
-        "twoHanded" : true,
+    //     "allowRotate" : true,
+    //     "allowFlip" : true
+    //   },
+    //   "fire" : {
+    //     "duration" : 0,
+    //     "armRotation" : 5,
+    //     "weaponRotation" : 5,
+    //     "twoHanded" : true,
 
-        "allowRotate" : false,
-        "allowFlip" : false,
-        "animationStates" : {
-          "gun" : "fire2",
-          "cells" : "fire2",
-          "lamp" : "switch2"
-        }
-      },
-      "cooldown" : {
-        "duration" : 1.0,
-        "armRotation" : 5,
-        "weaponRotation" : 5,
-        "twoHanded" : true,
+    //     "allowRotate" : false,
+    //     "allowFlip" : false,
+    //     "animationStates" : {
+    //       "gun" : "fireorange",
+    //       "muzzle" : "on2"
+    //     }
+    //   },
+    //   "cooldown" : {
+    //     "duration" : 1.0,
+    //     "armRotation" : 5,
+    //     "weaponRotation" : 5,
+    //     "twoHanded" : true,
 
-        "allowRotate" : false,
-        "allowFlip" : false
-      }
-    }
+    //     "allowRotate" : false,
+    //     "allowFlip" : false
+    //   }
+    // }
   },
 
   "builder" : "/items/buildscripts/v-buildunrandweapon.lua"

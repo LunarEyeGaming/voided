@@ -149,20 +149,6 @@
   },
   {
     "op": "add",
-    "path": "/v-cityminiboss-dying",
-    "value": {
-      "type": "module",
-      "name": "v-cityminiboss-dying",
-      "title": "",
-      "properties": {
-        "crashVelocity": {"type": "json", "value": [50, -25]},
-        "kickUpVelocity": {"type": "json", "value": [0, 75]}
-      },
-      "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-dying.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-cityminiboss",
     "value": {
       "type": "module",
@@ -1027,28 +1013,6 @@
   },
   {
     "op": "add",
-    "path": "/v-action-stickyslam",
-    "value": {
-      "type": "module",
-      "name": "v-action-stickyslam",
-      "title": "",
-      "properties": {
-        "slamProjectileType": {"type": "json", "value": "fireplasmaexplosion"},
-        "slamProjectileParameters": {"type": "json", "value": {}},
-        "aimDirection": {"type": "json", "value": [0, 1]},
-        "jumpState": {"type": "json", "value": "jump"},
-        "jumpStateType": {"type": "json", "value": "body"},
-        "jumpDelay": {"type": "json", "value": 0},
-        "rayCount": {"type": "json", "value": 40},
-        "preferDirectAttacks": {"type": "json", "value": true},
-        "airborneState": {"type": "json", "value": "airborne"},
-        "airborneStateType": {"type": "json", "value": "body"}
-      },
-      "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-wander-stickyhop",
     "value": {
       "type": "module",
@@ -1068,6 +1032,43 @@
         "airborneStateType": {"type": "json", "value": "body"}
       },
       "pathToTree": "..\\monsters\\modular\\movement\\v-stickyhopwander.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-stickyslam",
+    "value": {
+      "type": "module",
+      "name": "v-action-stickyslam",
+      "title": "",
+      "properties": {
+        "slamProjectileType": {"type": "json", "value": "fireplasmaexplosion"},
+        "slamProjectileParameters": {"type": "json", "value": {}},
+        "aimDirection": {"type": "json", "value": [0, -1]},
+        "jumpState": {"type": "json", "value": "jump"},
+        "jumpStateType": {"type": "json", "value": "body"},
+        "jumpDelay": {"type": "json", "value": 0},
+        "rayCount": {"type": "json", "value": 40},
+        "preferDirectAttacks": {"type": "json", "value": true},
+        "airborneState": {"type": "json", "value": "airborne"},
+        "airborneStateType": {"type": "json", "value": "body"}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-cityminiboss-dying",
+    "value": {
+      "type": "module",
+      "name": "v-cityminiboss-dying",
+      "title": "",
+      "properties": {
+        "kickUpVelocity": {"type": "json", "value": [0, 75]},
+        "crashVelocity": {"type": "json", "value": [50, -25]},
+        "explosionInterval": {"type": "json", "value": [0.01, 0.5]}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-dying.behavior"
     }
   }
 ]

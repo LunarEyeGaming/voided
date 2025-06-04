@@ -113,7 +113,8 @@
             "slamProjectileType" : "v-proxyprojectile",
             "slamProjectileParameters" : {
               "power" : 15,
-              "speed" : 0,
+              "speed" : 50,
+              "timeToLive" : 0.01,
               "actionOnReap" : [
                 {
                   "action" : "projectile",

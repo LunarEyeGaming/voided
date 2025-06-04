@@ -9,12 +9,13 @@
     "/scripts/actions/sensor.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/math.lua",
+    "/scripts/actions/crawling.lua",
     "/scripts/actions/projectiles.lua"
   ],
   "parameters": {
     "slamProjectileType": "fireplasmaexplosion",
     "slamProjectileParameters": {},
-    "aimDirection": [0, 1],
+    "aimDirection": [0, -1],
     "jumpState": "jump",
     "jumpStateType": "body",
     "jumpDelay": 0,
@@ -173,6 +174,32 @@
               "group": {"value": "body"},
               "rotation": {"key": "facingAngle"}
             }
+          }
+        ]
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "wallSit",
+            "type": "action",
+            "name": "wallSit",
+            "parameters": {},
+            "output": {
+              "forwardAngle": "heading"
+            }
+          },
+          {
+            "title": "success",
+            "type": "action",
+            "name": "success",
+            "parameters": {}
           }
         ]
       },

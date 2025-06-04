@@ -33,6 +33,7 @@ function DblHelixBeamFire:fire()
   animator.playSound("fireStart")
   animator.playSound("fireLoop", -1)
   animator.playSound("fireBedding", -1)
+  animator.setAnimationState("gun", "fire")
 
   while self.fireMode == (self.activatingFireMode or self.abilitySlot) do
     self.progressTimer = math.min(self.windupTime, self.progressTimer + self.dt)
@@ -113,7 +114,7 @@ function DblHelixBeamFire:winddown()
     coroutine.yield()
   end
   --activeItem.setScriptedAnimationParameter("chains", {})
-  
+
   --animator.setAnimationState("body", "idle")
   animator.stopAllSounds("fireLoop")
 end
@@ -145,7 +146,7 @@ function DblHelixBeamFire:animateBeam(includeImpact)
 
   self:drawBeam(beamEnd, collidePoint, beamLength / self.beamLength * self.progressTimer / self.windupTime)
   animator.setGlobalTag("beamOriginPhase", self:beamFrame())
-  
+
   return beamLength
 end
 
@@ -170,7 +171,7 @@ function DblHelixBeamFire:drawBeam(endPos, didCollide, amplitudeSizeFactor)
   if newChain.endSegmentImage then
     newChain.endSegmentImage = newChain.endSegmentImage:gsub("<beamFrame>", currentFrame)
   end
-  
+
   local newChain2 = copy(newChain)
   if newChain2.waveform and newChain2.waveform.amplitude then
     newChain2.waveform.amplitude = -newChain2.waveform.amplitude
@@ -213,4 +214,5 @@ function DblHelixBeamFire:reset2()
   animator.setParticleEmitterActive("beamCollision", false)
   animator.stopAllSounds("fireStart")
   animator.stopAllSounds("fireBedding")
+  animator.setAnimationState("gun", "idle")
 end

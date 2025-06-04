@@ -137,7 +137,7 @@
 
     "items" : [
       {
-        "mode" : "floor",
+        "mode" : "ceiling",
         "priority" : 1.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:undergroundCapsules",
@@ -145,7 +145,7 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "pool" : [ [0.35, "v-invertedcapsulesmall" ], [0.35, "v-invertedcapsulemed" ], [0.35, "v-invertedcapsulebig" ] ],
             "parameters" : { "breakDropPool" : "v-capsuleMinistar", "smashDropPool" : "v-capsuleMinistar" }
           }
         ]
@@ -160,7 +160,7 @@
         "treasureBoxSets" : [ "basicChest" ]
       },
       {
-        "mode" : "floor",
+        "mode" : "ceiling",
         "priority" : 1.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:overgroundRareChests",
@@ -168,7 +168,7 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1, "v-statuspodministar" ] ],
+            "pool" : [ [1, "v-statuspodministarinverted" ] ],
             "parameters" : { }
           }
         ]

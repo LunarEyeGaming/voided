@@ -7,7 +7,7 @@
   "pointLight" : true,
   "fullbright" : true,
 
-  "speed" : 1,
+  "speed" : 30,
   "acceleration" : 160,
   "physics" : "rocket",
 
@@ -17,18 +17,39 @@
 
   "periodicActions" : [
     {
-      "time" : 0.05,
+      "time" : 0.01,
       "action" : "particle",
-      "rotate" : true,
       "specification" : {
         "type" : "animated",
-        "animation" : "/animations/v-fusionshottrail/v-fusionshottrail.animation",
+        "animation" : "/animations/v-smallblueflame/v-smallblueflame.animation",
         "position" : [0, 0],
         "fullbright" : true,
-        "layer" : "back",
-        "destructionAction" : "fade",
-        "timeToLive" : 0.2,
-        "destructionTime" : 0.2
+        "layer" : "middle",
+        "timeToLive" : 0.6,
+        "variance" : {
+          "position" : [0.25, 0.25],
+          "initialVelocity" : [5, 5],
+          "rotation" : 180
+        }
+      }
+    },
+    {
+      "time" : 0.05,
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/dusttest/dusttest.animation",
+        "position" : [0, 0],
+        "approach" : [0, 10],
+        "finalVelocity" : [0, 10],
+        "fullbright" : false,
+        "layer" : "middle",
+        "timeToLive" : 0.85,
+        "variance" : {
+          "position" : [0.25, 0.25],
+          "initialVelocity" : [2, 2],
+          "rotation" : 180
+        }
       }
     }
   ],
