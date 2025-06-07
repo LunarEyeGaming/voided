@@ -25,9 +25,10 @@ function update(dt)
   local pos = mcontroller.position()
   -- If the player should be burned...
   if pos[2] <= maxDepth then
+    local damage = interp.linear((pos[2] - minDepth) / (maxDepth - minDepth), maxDamage, minDamage)
     -- Update damage amount. It is a linear interpolation between maxDamage and minDamage, where damage grows as depth
     -- (aka y position) decreases.
-    tickDamage.damageRequest.damage = interp.linear((pos[2] - minDepth) / (maxDepth - minDepth), maxDamage, minDamage)
+    tickDamage.damageRequest.damage = damage * (1 - status.stat("v-ministarHeatResistance"))
     tickDamage:update(dt)  -- Run the tickDamage object for one tick.
   else
     effect.expire()

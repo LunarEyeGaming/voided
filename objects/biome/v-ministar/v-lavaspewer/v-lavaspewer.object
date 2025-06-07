@@ -109,27 +109,12 @@
   ],
 
   "animation" : "/objects/wired/projectiletrap/projectiletrap.animation",
-  /* "animationCustom" : {
-    "sounds" : {
-      "shoot" : [ "/sfx/objects/v_voltagedischarge.ogg" ],
-      "on" : [ ],
-      "off" : [ ]
-    },
-    "lights" : {
-      "glow" : {
-        "active" : true,
-        "color" : [27, 27, 84]
-      }
-    }
-  }, */
 
   "health" : 5,
 
-  /* "smashable" : true,
+  "smashOnBreak" : true,
   "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
-  "smashParticles" : [ { "count" : 6, "particle" : "greystoneshard" } ],
-  "breakDropPool" : "v-dischargetrapTreasure",
-  "smashDropPool" : "v-dischargetrapTreasure", */
+  "smashParticles" : [ { "count" : 5, "particle" : "blackstoneshard" } ],
 
   "scripts" : [ "v-lavaspewer.lua" ],
   "scriptDelta" : 2,

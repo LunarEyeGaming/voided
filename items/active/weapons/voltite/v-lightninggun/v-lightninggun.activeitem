@@ -6,7 +6,8 @@
   "customRarity" : "Mythical",
   "description" : "A gun that shoots extremely high voltage electricity.",
   "shortdescription" : "^voltite;Lightning Gun",
-  "tooltipKind" : "gun",
+  "extraInfo" : "Short-ranged but automatically deals damage within a limited field of view.",
+  "tooltipKind" : "v-biggun",
   "category" : "v-uncategorizedWeapon",
   "twoHanded" : true,
   "itemTags" : ["weapon","ranged"],
@@ -53,9 +54,9 @@
     "inaccuracy" : 0.0,
     "connectRadius" : 25,
     "maxConnections" : 12,
-    
+
     "fov" : 90,
-    
+
     "lightningStartColor" : [225, 225, 255, 220],
     "lightningEndColor" : [115, 115, 255, 0],
 
@@ -67,7 +68,7 @@
       "width" : 1.0,
       "color" : [196, 196, 245, 220]
     },
-    
+
     "groundLightningInterval" : 0.1,
     "groundLightningLength" : 15,
     "groundLightningTtl" : 0.5,
@@ -124,7 +125,7 @@
       }
     }
   },
-  
+
   "altAbilityType" : "v-lightninggunalt",
   "altAbility" : {},
 

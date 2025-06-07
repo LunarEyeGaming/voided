@@ -53,8 +53,8 @@ function init()
   end
 
   allowedEquipmentLevels = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
-  minSpawnCooldown = 60 * 30
-  minPlanetStayTime = 60 * 30
+  minSpawnCooldown = 60 * 60 * 2
+  minPlanetStayTime = 60 * 60 * 2
   spawnAttemptInterval = 30
   spawnProbability = 0.05
   titanMonsterType = "v-titanofdarkness"

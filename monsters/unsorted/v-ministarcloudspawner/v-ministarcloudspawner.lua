@@ -1,6 +1,7 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
+require "/scripts/v-entity.lua"
 
 local spawnRegion
 local timeRange
@@ -30,10 +31,17 @@ function update(dt)
 
   if timer < 0 then
     local pos = rect.randomPoint(spawnRegion)
+    local checkRegion = rect.translate(projectileBoundBox, pos)
+    local checkCoords = {rect.ll(checkRegion), rect.ur(checkRegion)}
 
-    if not world.rectCollision(rect.translate(projectileBoundBox, pos)) then
+    if not world.rectCollision(checkRegion)
+        and #world.entityQuery(checkCoords[1], checkCoords[2], {includedTypes = {"player"}}) == 0 then
       world.spawnProjectile(projectileType, pos, nil, projectileDirection, false, projectileParameters)
       timer = util.randomInRange(timeRange)
+    end
+
+    if #world.entityQuery(checkCoords[1], checkCoords[2], {includedTypes = {"player"}}) ~= 0 then
+      sb.logInfo("Failed to spawn Ministar cloud due to collision with player.")
     end
   end
 end

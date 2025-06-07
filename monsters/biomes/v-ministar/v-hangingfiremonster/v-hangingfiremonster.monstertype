@@ -50,8 +50,10 @@
 
             "projectileType" : "molotovflamemonster",
             "projectileParameters" : {
-              "power" : 10,
-              "speed" : 50
+              "power" : 5,
+              "speed" : 50,
+              "damageRepeatGroup" : "v-hangingfiremonster",
+              "statusEffects" : [ {"effect" : "burning", "duration" : 10} ]
             },
             "fireOffset" : [0.5, 0.75],
             "projectileCount" : 6,

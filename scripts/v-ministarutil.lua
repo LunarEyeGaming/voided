@@ -1,5 +1,7 @@
 vMinistar = {}
 
+-- TODO: Figure out how to handle world wrapping in this class.
+
 ---The size of each sector.
 vMinistar.SECTOR_SIZE = 32
 

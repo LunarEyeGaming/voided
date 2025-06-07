@@ -1,5 +1,5 @@
 {
-  "name": "v-downspitter2-fire",
+  "name": "v-action-holdfire",
   "description": null,
   "scripts": [
     "/scripts/behavior.lua",
@@ -196,9 +196,9 @@
                               "type": "action",
                               "name": "rotateTransformationGroup",
                               "parameters": {
-                                "transformationGroup": {"value": "aim"},
                                 "angle": {"key": "entityAngle"},
-                                "rotationCenter": {"key": "<rotationCenter>"}
+                                "rotationCenter": {"key": "<rotationCenter>"},
+                                "transformationGroup": {"value": "aim"}
                               }
                             }
                           ]
@@ -234,11 +234,11 @@
                     "name": "action-windup",
                     "parameters": {
                       "windupState": {"value": "<windupState2>"},
+                      "faceTarget": {"value": false},
                       "windupTime": {"value": "<windupTime2>"},
-                      "skillName": {"value": "<skillName>"},
-                      "rotateToTarget": {"value": false},
                       "aimAtTarget": {"value": false},
-                      "faceTarget": {"value": false}
+                      "rotateToTarget": {"value": false},
+                      "skillName": {"value": "<skillName>"}
                     }
                   },
                   {

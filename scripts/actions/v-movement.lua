@@ -189,7 +189,7 @@ function v_impactAction(args, board)
     collisionCond = mcontroller.isCollisionStuck()
     mcontroller.controlParameters({stickyCollision = true})
   else
-    collisionCond = mcontroller.isColliding()
+    collisionCond = world.rectCollision(rect.translate(rect.pad(mcontroller.boundBox(), 0.25), mcontroller.position()))
   end
 
   local explosionConfig = copy(args.explosionConfig)

@@ -77,7 +77,7 @@ function onInteraction()
 
       setStage(stageConfig.resetToStage + 1)
     end
-  else
+  elseif stageConfig.harvestPool then
     harvest(stageConfig.harvestPool)
 
     setStage(stageConfig.resetToStage + 1)

@@ -37,7 +37,7 @@
 
       "hostileActions" : [
         {
-          "name" : "v-downspitter2-fire",
+          "name" : "v-action-holdfire",
           "parameters" : {
             "onGround" : false,
             "requireLineOfSight" : true,
@@ -98,7 +98,7 @@
           "name" : "v-action-expectsolid"
         }
       ],
-      
+
       "deathActions" : [
         {
           "name" : "action-spawnmonster",

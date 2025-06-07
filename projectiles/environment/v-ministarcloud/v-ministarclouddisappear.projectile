@@ -61,7 +61,8 @@
   "onlyHitTerrain" : true,
 
   "movementSettings" : {
-    "collisionPoly" : [ [0, 2], [4, 1], [8, 0.5], [10, -1], [10, -2], [-10, -2], [-8, 0.5], [-4, 1] ]
+    "collisionPoly" : [ [0, 2], [4, 1], [8, 0.5], [10, -1], [10, -2], [-10, -2], [-8, 0.5], [-4, 1] ],
+    "physicsEffectCategories" : [ "v-ministarcloud" ]
   },
 
   "physicsCollisions" : {

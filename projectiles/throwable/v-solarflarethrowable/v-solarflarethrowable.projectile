@@ -22,16 +22,8 @@
   "scriptDelta" : 4,
 
   "flashbangAction" : {
-    "action" : "projectile",
-    "type" : "v-proxyprojectile",
-    "config" : {
-      "actionOnReap" : [
-        {
-          "action" : "config",
-          "file" : "/projectiles/explosions/v-solarflareflashbang/v-solarflareflashbang.config"
-        }
-      ]
-    }
+    "action" : "config",
+    "file" : "/projectiles/explosions/v-solarflareflashbang/v-lua-solarflareflashbang.config"
   },
   "flashbangAirTime" : 1.0
 }

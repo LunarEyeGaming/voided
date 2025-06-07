@@ -186,7 +186,7 @@ function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts, window)
   for x = startX, endX do
     local i, topY = heightMap:geti(x)
 
-    if topY ~= bottomY then
+    if topY and topY ~= bottomY then
       sunRayDrawable.color = vAnimator.lerpColor(ratio + boosts[i], sunRayDimColor, sunRayBrightColor)
       sunRayDrawableFunc(x, bottomY, topY, predictedPos)
     end

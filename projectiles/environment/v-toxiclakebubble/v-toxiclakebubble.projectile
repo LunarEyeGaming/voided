@@ -8,6 +8,7 @@
   "animationLoops" : true,
   "damageKindImage" : "/interface/statuses/fire.png",
   "frameNumber" : 1,
+  "lightColor" : [69, 0, 90],
   "power" : 50,
   "speed" : 25,
   "timeToLive" : 120,
@@ -26,7 +27,7 @@
       "file" : "/projectiles/explosions/regularexplosion2/poisonexplosionknockback.config"
     }
   ] */
-  
+
   "scripts" : ["v-toxiclakebubble.lua"],
   "actionOnExitLiquid" : {
     "action" : "projectile",
