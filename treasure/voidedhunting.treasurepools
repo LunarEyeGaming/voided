@@ -155,5 +155,50 @@
       ],
       "allowDuplication" : false
     } ]
+  ],
+
+  "v-hangingfiremonsterHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "alienmeat"},
+        {"weight" : 0.25, "item" : "scorchedcore"},
+        {"weight" : 0.25, "item" : "hardenedcarapace"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-lurkanoHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "alienmeat"},
+        {"weight" : 0.25, "item" : "scorchedcore"},
+        {"weight" : 0.25, "item" : "hardenedcarapace"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-novamonsterHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "alienmeat"},
+        {"weight" : 0.25, "item" : "scorchedcore"},
+        {"weight" : 0.25, "item" : "hardenedcarapace"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
   ]
 }

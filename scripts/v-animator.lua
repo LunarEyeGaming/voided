@@ -245,7 +245,9 @@ vLocalAnimator = {}
 ---@class VLocalAnimator_SpawnOffscreenParticlesArgs
 ---@field density number
 ---@field exposedOnly boolean
+---@field vertical boolean?
 ---@field ignoreWind boolean?
+---@field onMovementOnly boolean?
 ---@field pred (fun(pos: Vec2I): boolean)?
 
 vLocalAnimator.spawnOffscreenParticles = (function()
@@ -265,10 +267,33 @@ vLocalAnimator.spawnOffscreenParticles = (function()
   ---@param particle table
   ---@param options VLocalAnimator_SpawnOffscreenParticlesArgs
   return function(particle, options)
+
     local density = options.density
     local exposedOnly = options.exposedOnly
     local ignoreWind = options.ignoreWind
+    local vertical = options.vertical
     local pred = options.pred or function() return true end
+
+    -- Helper function.
+    local spawnParticle = function(position)
+      if math.random() <= density
+          and (not exposedOnly or not world.material(position, "background"))
+          and pred(position) then
+
+        if not ignoreWind then
+          -- Note: windLevel is zero if there is a background block.
+          local horizontalSpeed = world.windLevel(position)
+
+          if horizontalSpeed ~= 0 then
+            local initialVelocity = particle.initialVelocity or {0, 0}
+            initialVelocity[1] = horizontalSpeed
+            particle.initialVelocity = initialVelocity
+          end
+        end
+
+        localAnimator.spawnParticle(particle, position)
+      end
+    end
 
     local windowRegion = world.clientWindow()
 
@@ -277,50 +302,43 @@ vLocalAnimator.spawnOffscreenParticles = (function()
       prevWindowRegion = windowRegion
     end
 
+    local windowRegionXL, windowRegionYB, windowRegionXR, windowRegionYT
+    if options.onMovementOnly then
+      -- Fudge window region values to ensure that iteration occurs only when the window has moved.
+      windowRegionXL = windowRegion[1] - 1
+      windowRegionYB = windowRegion[2] - 1
+      windowRegionXR = windowRegion[3] + 1
+      windowRegionYT = windowRegion[4] + 1
+    else
+      windowRegionXL = windowRegion[1]
+      windowRegionYB = windowRegion[2]
+      windowRegionXR = windowRegion[3]
+      windowRegionYT = windowRegion[4]
+    end
     local prevWindowXLeft = world.nearestTo(windowRegion[1], prevWindowRegion[1])
     local prevWindowXRight = world.nearestTo(windowRegion[3], prevWindowRegion[3])
     for y = windowRegion[2], windowRegion[4] do
-      for x = prevWindowXLeft, windowRegion[1] do
-        local leftPosition = {x, y}
-
-        if math.random() <= density
-            and (not exposedOnly or not world.material(leftPosition, "background"))
-            and pred(leftPosition) then
-
-          if not ignoreWind then
-            -- Note: windLevel is zero if there is a background block.
-            local horizontalSpeed = world.windLevel(leftPosition)
-
-            if horizontalSpeed ~= 0 then
-              local initialVelocity = particle.initialVelocity or {0, 0}
-              initialVelocity[1] = horizontalSpeed
-              particle.initialVelocity = initialVelocity
-            end
-          end
-
-          localAnimator.spawnParticle(particle, leftPosition)
-        end
+      -- Left
+      for x = prevWindowXLeft, windowRegionXL do
+        spawnParticle({x, y})
       end
 
-      for x = prevWindowXRight, windowRegion[3] do
-        local rightPosition = {x, y}
+      -- Right
+      for x = windowRegionXR, prevWindowXRight do
+        spawnParticle({x, y})
+      end
+    end
 
-        if math.random() <= density
-            and (not exposedOnly or not world.material(rightPosition, "background"))
-            and pred(rightPosition) then
+    if vertical then
+      for x = windowRegion[1], windowRegion[3] do
+        -- Bottom
+        for y = prevWindowRegion[2], windowRegionYB do
+          spawnParticle({x, y})
+        end
 
-          if not ignoreWind then
-            -- Note: windLevel is zero if there is a background block.
-            local horizontalSpeed = world.windLevel(rightPosition)
-
-            if horizontalSpeed ~= 0 then
-              local initialVelocity = particle.initialVelocity or {0, 0}
-              initialVelocity[1] = horizontalSpeed
-              particle.initialVelocity = initialVelocity
-            end
-          end
-
-          localAnimator.spawnParticle(particle, rightPosition)
+        -- Top
+        for y = windowRegionYT, prevWindowRegion[4] do
+          spawnParticle({x, y})
         end
       end
     end

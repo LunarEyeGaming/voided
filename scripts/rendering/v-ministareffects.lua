@@ -14,6 +14,9 @@ local useImagesForRays
 
 -- Internal parameters
 local particleDensity
+local liquidParticleDensity
+local liquidParticleDensityBG
+local liquidParticleDensityFG
 local startBurningColor
 local endBurningColor
 local sunRayDimColor
@@ -82,6 +85,7 @@ function init()
   sunProximityRatio = 0
 
   particleDensity = 0.02
+  liquidParticleDensity = 0.01
   startBurningColor = {255, 0, 0, 0}
   endBurningColor = {255, 119, 0, 255}
   sunRayDimColor = {255, 0, 0, 0}
@@ -112,20 +116,65 @@ function init()
   }
 
   liquidSunParticle = {
-    type = "textured",
-    image = "/particles/v-ministarcloud/2.png",
-    initialVelocity = {0, 50},
+    type = "animated",
+    animation = "/animations/v-solarplasma/v-solarplasma.animation",
+    initialVelocity = {0, 3},
     approach = {2, 2},
-    timeToLive = 5,
-    destructionAction = "shrink",
-    destructionTime = 2,
+    timeToLive = 2,
+    destructionAction = "fade",
+    destructionTime = 1,
     angularVelocity = 0,
     layer = "middle",
     collidesForeground = true,
     variance = {
-      initialVelocity = {5, 5}
+      initialVelocity = {0, 2}
     }
   }
+  -- liquidSunParticleBG = {
+  --   type = "animated",
+  --   animation = "/animations/v-solarplasmabg/v-solarplasmabg.animation",
+  --   initialVelocity = {0, 5},
+  --   approach = {2, 2},
+  --   timeToLive = 2,
+  --   destructionAction = "fade",
+  --   destructionTime = 1,
+  --   angularVelocity = 0,
+  --   layer = "back",
+  --   collidesForeground = true,
+  --   variance = {
+  --     initialVelocity = {0, 0}
+  --   }
+  -- }
+  -- liquidSunParticleFG = {
+  --   type = "animated",
+  --   animation = "/animations/v-solarplasmafg/v-solarplasmafg.animation",
+  --   initialVelocity = {0, 5},
+  --   approach = {2, 2},
+  --   timeToLive = 2,
+  --   destructionAction = "fade",
+  --   destructionTime = 1,
+  --   angularVelocity = 0,
+  --   layer = "middle",
+  --   collidesForeground = true,
+  --   variance = {
+  --     initialVelocity = {0, 0}
+  --   }
+  -- }
+  -- liquidSunParticle = {
+  --   type = "textured",
+  --   image = "/particles/v-ministarcloud/2.png",
+  --   initialVelocity = {0, 50},
+  --   approach = {2, 2},
+  --   timeToLive = 5,
+  --   destructionAction = "shrink",
+  --   destructionTime = 2,
+  --   angularVelocity = 0,
+  --   layer = "middle",
+  --   collidesForeground = true,
+  --   variance = {
+  --     initialVelocity = {5, 5}
+  --   }
+  -- }
 end
 
 function update(dt)
@@ -152,9 +201,9 @@ function update(dt)
 
     v_ministarEffects_drawSunRays(predictedPos, sunProximityRatio, boosts, window)
     v_ministarEffects_drawSunRayLights(sunProximityRatio, boosts, window)
+    v_ministarEffects_drawLiquidParticles(window)
   end
   v_ministarEffects_drawParticles(sunRayColor)
-  v_ministarEffects_drawLiquidParticles(window)
 end
 
 ---Draws the burning blocks, also updating their heat.
@@ -276,16 +325,51 @@ function v_ministarEffects_drawParticles(color)
 end
 
 function v_ministarEffects_drawLiquidParticles(window)
-  local pos = rect.randomPoint(window)
-
-  local liquid = world.liquidAt(pos)
-  if liquid and liquid[1] == sunLiquidId then
-    local windLevel = world.windLevel(pos)
-    local initialVelocity = liquidSunParticle.initialVelocity or {0, 0}
-    initialVelocity[1] = windLevel
-    liquidSunParticle.initialVelocity = initialVelocity
-    localAnimator.spawnParticle(liquidSunParticle, pos)
+  for x = window[1], window[3] do
+    local y = heightMap:get(x)
+    if y ~= minHeight and math.random() <= liquidParticleDensity then
+      localAnimator.spawnParticle(liquidSunParticle, {x, minHeight - 3})
+      -- localAnimator.spawnParticle(liquidSunParticleBG, {x, minHeight})
+      -- localAnimator.spawnParticle(liquidSunParticleFG, {x, minHeight})
+    end
   end
+  for _ = 1, 1 do
+    local pos = rect.randomPoint(rect.pad(window, 0))
+
+    local liquid = world.liquidAt(pos)
+    -- local liquid2 = world.liquidAt({pos[1], pos[2] + 1})
+    if liquid and liquid[1] == sunLiquidId then
+      -- local windLevel = world.windLevel(pos)
+      -- local initialVelocity = liquidSunParticle.initialVelocity or {0, 0}
+      -- initialVelocity[1] = windLevel
+      -- liquidSunParticle.initialVelocity = initialVelocity
+      localAnimator.spawnParticle(liquidSunParticle, pos)
+      -- localAnimator.spawnParticle(liquidSunParticleBG, pos)
+      -- localAnimator.spawnParticle(liquidSunParticleFG, pos)
+    end
+  end
+  -- vLocalAnimator.spawnOffscreenParticles(liquidSunParticle, {
+  --   density = liquidParticleDensity,
+  --   exposedOnly = false,
+  --   ignoreWind = true,
+  --   vertical = true,
+  --   onMovementOnly = true,
+  --   pred = function(pos)
+  --     local liquid = world.liquidAt(pos)
+  --     local liquid2 = world.liquidAt({pos[1], pos[2] + 1})
+  --     return liquid and liquid[1] == sunLiquidId and not liquid2
+  --   end
+  -- })
+  -- local pos = rect.randomPoint(window)
+
+  -- local liquid = world.liquidAt(pos)
+  -- if liquid and liquid[1] == sunLiquidId then
+  --   local windLevel = world.windLevel(pos)
+  --   local initialVelocity = liquidSunParticle.initialVelocity or {0, 0}
+  --   initialVelocity[1] = windLevel
+  --   liquidSunParticle.initialVelocity = initialVelocity
+  --   localAnimator.spawnParticle(liquidSunParticle, pos)
+  -- end
 end
 
 function v_ministarEffects_computeSolarFlareBoosts(startX, endX)

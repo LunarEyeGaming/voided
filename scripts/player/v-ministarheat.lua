@@ -129,6 +129,7 @@ function fetchCelestialParams()
   else
     maxDepth = 2000
     minDepth = 1000
+    -- minDepth = 990
     burnDepth = 1500
 
     message.setHandler("v-ministarheat-getSpawnRange", function()
