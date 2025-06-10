@@ -36,12 +36,172 @@ local collisionSet
 local sunLiquidId
 local materialConfigs
 
-local undergroundTileQueryThread
+local liquidScanner
+
+local isActive
+
+-- local undergroundTileQueryThread
 
 local celestialParamsFetched
 
 local ADJACENT_TILES = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}
 local SECTOR_SIZE = 32
+
+-- ---@class VLiquidScanner
+-- ---@field _checkMinX integer
+-- ---@field _checkMaxX integer
+-- ---@field _checkMinY integer
+-- ---@field _checkMaxY integer
+-- ---@field _sunLiquidId LiquidId
+-- ---@field _CHUNK_SIZE integer
+-- ---@field _hotRegions table
+-- VLiquidScanner = {}
+
+-- ---Instantiates a new liquid scanner.
+-- ---@param args table
+-- ---@return VLiquidScanner
+-- function VLiquidScanner:new(args)
+--   local instance = {
+--     _checkMinX = args.checkMinX,
+--     _checkMaxX = args.checkMaxX,
+--     _checkMinY = args.checkMinY,
+--     _checkMaxY = args.checkMaxY,
+--     _sunLiquidId = args.sunLiquidId,
+--     _CHUNK_SIZE = 16,
+--     _hotRegions = {}
+--   }
+
+--   setmetatable(instance, self)
+--   self.__index = self
+
+--   return instance
+-- end
+
+-- ---Attempts to runs a query at position `pos`, returning the tiles that are adjacent to liquid sun. Should be called
+-- ---every tick.
+-- ---
+-- ---@param pos Vec2I
+-- ---@return Vec2I[]
+-- function VLiquidScanner:update(pos)
+--   local CHUNK_SIZE = self._CHUNK_SIZE
+--   local sunLiquidId = self._sunLiquidId
+--   local chunkMinX = (self._checkMinX + pos[1]) // CHUNK_SIZE
+--   local chunkMinY = (self._checkMinY + pos[2]) // CHUNK_SIZE
+--   local chunkMaxX = (self._checkMaxX + pos[1]) // CHUNK_SIZE
+--   local chunkMaxY = (self._checkMaxY + pos[2]) // CHUNK_SIZE
+--   local boundaryTiles = {}
+
+--   for chunkX = chunkMinX, chunkMaxX do
+--     for chunkY = chunkMinY, chunkMaxY do
+--       local chunkStr = vVec2.iToString({chunkX, chunkY})
+
+--       if self._hotRegions[chunkStr] and self._hotRegions[chunkStr] > 0 then
+--         local res = world.liquidAt({
+--           chunkX * CHUNK_SIZE,
+--           chunkY * CHUNK_SIZE,
+--           (chunkX + 1) * CHUNK_SIZE,
+--           (chunkY + 1) * CHUNK_SIZE
+--         })
+
+--         -- Process regions not completely filled with sun liquid.
+--         if res and res[1] == sunLiquidId and res[2] < 1.0 then
+--           local minXInChunk = chunkX * CHUNK_SIZE
+--           local minYInChunk = chunkY * CHUNK_SIZE
+--           local maxXInChunk = (chunkX + 1) * CHUNK_SIZE
+--           local maxYInChunk = (chunkY + 1) * CHUNK_SIZE
+
+--           -- world.debugPoly({
+--           --   {minXInChunk, minYInChunk},
+--           --   {minXInChunk, maxYInChunk},
+--           --   {maxXInChunk, maxYInChunk},
+--           --   {maxXInChunk, minYInChunk}
+--           -- }, "green")
+
+--           -- Build matrix of matches and non-matches (row-major order). The matrix is padded for boundary cases.
+--           local liqMat = {}
+
+--           for y = minYInChunk - 1, maxYInChunk + 1 do
+--             local row = {}
+--             for x = minXInChunk - 1, maxXInChunk + 1 do
+--               row[x] = false
+--             end
+--             liqMat[y] = row
+--           end
+
+--           for x = minXInChunk - 1, maxXInChunk + 1 do
+--             local liqs = world.liquidAlongLine({x, minYInChunk - 1}, {x, maxYInChunk + 1})
+
+--             for _, posLiquidPair in ipairs(liqs) do
+--               local position = posLiquidPair[1]
+--               local liquid = posLiquidPair[2]
+--               liqMat[position[2]][position[1]] = liquid[1] == sunLiquidId
+--             end
+--           end
+
+--           -- Find all of the tile spaces that act as boundaries for the liquid.
+--           for y = minYInChunk, maxYInChunk do
+--             local row = liqMat[y]
+--             for x = minXInChunk, maxXInChunk do
+--               local isSunLiquid = row[x]
+--               -- If the current space is sun liquid...
+--               if isSunLiquid then
+--                 -- Add all adjacent spaces that are not sun liquid.
+--                 if not row[x + 1] then
+--                   table.insert(boundaryTiles, {x + 1, y})
+--                 end
+--                 if not row[x - 1] then
+--                   table.insert(boundaryTiles, {x - 1, y})
+--                 end
+--                 if not liqMat[y + 1][x] then
+--                   table.insert(boundaryTiles, {x, y + 1})
+--                 end
+--                 if not liqMat[y - 1][x] then
+--                   table.insert(boundaryTiles, {x, y - 1})
+--                 end
+--               end
+--             end
+--           end
+--         -- else
+--         --   world.debugPoly({
+--         --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE},
+--         --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, (chunkY + 1) * LIQUID_QUERY_CHUNK_SIZE},
+--         --     {(chunkX + 1) * LIQUID_QUERY_CHUNK_SIZE, (chunkY + 1) * LIQUID_QUERY_CHUNK_SIZE},
+--         --     {(chunkX + 1) * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE}
+--         --   }, "red")
+--         end
+
+--         -- Decrement hot region time remaining.
+--         self._hotRegions[chunkStr] = self._hotRegions[chunkStr] - 1
+--       end
+--     end
+--   end
+
+--   return boundaryTiles
+-- end
+
+-- ---Refreshes the entire nearby area, forcing the liquid scanner to requery it all next update.
+-- ---@param pos Vec2I
+-- function VLiquidScanner:refresh(pos)
+--   local chunkMinX = (self._checkMinX + pos[1]) // self._CHUNK_SIZE
+--   local chunkMinY = (self._checkMinY + pos[2]) // self._CHUNK_SIZE
+--   local chunkMaxX = (self._checkMaxX + pos[1]) // self._CHUNK_SIZE
+--   local chunkMaxY = (self._checkMaxY + pos[2]) // self._CHUNK_SIZE
+
+--   for chunkX = chunkMinX, chunkMaxX do
+--     for chunkY = chunkMinY, chunkMaxY do
+--       local chunkStr = vVec2.iToString({chunkX, chunkY})
+--       self._hotRegions[chunkStr] = 1
+--     end
+--   end
+-- end
+
+-- ---Marks a region as "hot" by the given tile for the given number of ticks.
+-- ---@param tile Vec2I
+-- ---@param time integer
+-- function VLiquidScanner:markRegionByTile(tile, time)
+--   local tileChunkStr = vVec2.iToString({tile[1] // self._CHUNK_SIZE, tile[2] // self._CHUNK_SIZE})
+--   self._hotRegions[tileChunkStr] = time
+-- end
 
 
 ---@class RawHeightMap
@@ -58,13 +218,23 @@ local SECTOR_SIZE = 32
 ---@field heatDeltaDir number
 
 function init()
+  checkMinX = -100
+  checkMaxX = 100
+  checkMinY = -100
+  checkMaxY = 100
+  sunLiquidId = 218
+
+  initLiquidScanner()
+
+  script.setUpdateDelta(6)
+
   -- Do not run this script on planets that are not of type "v-ministar"
   if world.type() ~= "v-ministar" then
-    script.setUpdateDelta(0)
+    isActive = false
     return
   end
 
-  script.setUpdateDelta(6)
+  isActive = true
 
   cfg = root.assetJson("/v-matattributes.config:ministarHeatConfig")
   unmeltableMaterials = {}
@@ -87,17 +257,11 @@ function init()
 
   tickDamage = VTickDamage:new{ kind = "fire", amount = minBurnDamage, damageType = "IgnoresDef", interval = tickTime, source = player.id() }
 
-  checkMinX = -100
-  checkMaxX = 100
-  checkMinY = -100
-  checkMaxY = 100
   maxPenetration = 40  -- Maximum number of transparent blocks to penetrate.
 
   collisionSet = {"Block", "Platform"}
-  sunLiquidId = 218
   materialConfigs = {}
-
-  undergroundTileQueryThread = coroutine.create(undergroundTileQuery)
+  -- undergroundTileQueryThread = coroutine.create(undergroundTileQuery)
 
   celestialParamsFetched = false
 
@@ -107,6 +271,35 @@ function init()
         entityHeightMaps[entityId] = nil
       end
     end
+  end)
+end
+
+function initLiquidScanner()
+  liquidScanner = vMinistar.LiquidScanner:new{
+    checkMinX = checkMinX,
+    checkMaxX = checkMaxX,
+    checkMinY = checkMinY,
+    checkMaxY = checkMaxY,
+    liquidId = sunLiquidId,
+    liquidThreshold = 1.0
+  }
+
+  -- Periodically mark all regions as "hot."
+  vTime.addInterval(5, function()
+    local pos = vec2.floor(mcontroller.position())
+    liquidScanner:refresh(pos)
+  end)
+
+  -- Mark regions where tiles are broken as "hot."
+  message.setHandler("tileBroken", function(_, _, pos, layer)
+    if layer == "foreground" then
+      liquidScanner:markRegionByTile(pos, 3)
+    end
+  end)
+
+  -- Mark other regions as "hot."
+  message.setHandler("v-ministarheat-onTileAdded", function(_, _, pos)
+    liquidScanner:markRegionByTile(pos, 3)
   end)
 end
 
@@ -143,54 +336,70 @@ end
 function update(dt)
   vTime.update(dt)
 
-  -- Need to try fetching celestial parameters repeatedly because celestial.visitableParameters returns nil until
-  -- shortly after the world is created (as opposed to immediately afterwards).
-  if not celestialParamsFetched then
-    fetchCelestialParams()
-    return
-  end
+  -- Run the main portion of the Ministar heat script if active. Otherwise, just run the liquid scanner.
+  if isActive then
+    -- Need to try fetching celestial parameters repeatedly because celestial.visitableParameters returns nil until
+    -- shortly after the world is created (as opposed to immediately afterwards).
+    if not celestialParamsFetched then
+      fetchCelestialParams()
+      return
+    end
 
-  local pos = vec2.floor(mcontroller.position())
-  local affectedTiles = {}  -- hash map
+    local pos = vec2.floor(mcontroller.position())
+    local affectedTiles = {}  -- hash map
 
-  coroutine.resume(undergroundTileQueryThread, pos, affectedTiles, dt)
+    -- coroutine.resume(undergroundTileQueryThread, pos, affectedTiles, dt)
+    local boundaryTiles, particleSpawnPoints = liquidScanner:update(pos)
 
-  local heightMap = surfaceTileQuery(pos, affectedTiles)
+    for _, tile in ipairs(boundaryTiles) do
+      local tileStr = vVec2.iToString(tile)
+      if not affectedTiles[tileStr] and world.pointTileCollision(tile) then
+        affectedTiles[tileStr] = true
+        -- world.debugPoint(tile, "green")
+      end
+    end
 
-  syncHeightMapToGlobal(heightMap)
+    local heightMap = surfaceTileQuery(pos, affectedTiles)
 
-  applyEntityHeightMaps(heightMap)
+    syncHeightMapToGlobal(heightMap)
 
-  -- Process existing entries.
-  local tilesToDestroy = processHeatMap(affectedTiles, dt)
+    applyEntityHeightMaps(heightMap)
 
-  local sunProximityRatio = 1 - math.max(0, math.min((pos[2] - minDepth) / (maxDepth - minDepth), 1))
-  -- Update heatMap for v-ministareffects.lua
-  world.sendEntityMessage(player.id(), "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth)
+    -- Process existing entries.
+    local tilesToDestroy = processHeatMap(affectedTiles, dt)
 
-  addToHeatMap(affectedTiles, heightMap, dt)
+    local sunProximityRatio = 1 - math.max(0, math.min((pos[2] - minDepth) / (maxDepth - minDepth), 1))
+    -- Update heatMap for v-ministareffects.lua
+    world.sendEntityMessage(player.id(), "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth, particleSpawnPoints)
 
-  -- Destroy tiles.
-  world.damageTiles(tilesToDestroy, "foreground", mcontroller.position(), "blockish", 2 ^ 32 - 1, 0)
+    addToHeatMap(affectedTiles, heightMap, dt)
 
-  local burnRatio = (1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + computeSolarFlareBoost(pos[1])
+    -- Destroy tiles.
+    world.damageTiles(tilesToDestroy, "foreground", mcontroller.position(), "blockish", 2 ^ 32 - 1, 0)
 
-  sb.setLogMap("burnRatio", "%s", burnRatio)
+    local burnRatio = (1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + computeSolarFlareBoost(pos[1])
 
-  if status.statPositive("v-ministarHeatTickMultiplier") then
-    tickDamage.interval = tickTime * status.stat("v-ministarHeatTickMultiplier")
-  end
+    sb.setLogMap("burnRatio", "%s", burnRatio)
 
-  local multiplier = 1 - status.stat("v-ministarHeatResistance")
+    if status.statPositive("v-ministarHeatTickMultiplier") then
+      tickDamage.interval = tickTime * status.stat("v-ministarHeatTickMultiplier")
+    end
 
-  -- If the player should be burned...
-  if burnRatio > 0.0 and isExposedForeground(heightMap) and multiplier > 0.0 then
-    -- Update damage amount. It is a linear interpolation between maxBurnDamage and minBurnDamage, where damage grows as
-    -- depth (aka y position) decreases.
-    tickDamage.damageRequest.damage = interp.linear(burnRatio, minBurnDamage, maxBurnDamage) * multiplier
-    tickDamage:update(dt)  -- Run the tickDamage object for one tick.
+    local multiplier = 1 - status.stat("v-ministarHeatResistance")
+
+    -- If the player should be burned...
+    if burnRatio > 0.0 and isExposedForeground(heightMap) and multiplier > 0.0 then
+      -- Update damage amount. It is a linear interpolation between maxBurnDamage and minBurnDamage, where damage grows as
+      -- depth (aka y position) decreases.
+      tickDamage.damageRequest.damage = interp.linear(burnRatio, minBurnDamage, maxBurnDamage) * multiplier
+      tickDamage:update(dt)  -- Run the tickDamage object for one tick.
+    else
+      tickDamage:reset()
+    end
   else
-    tickDamage:reset()
+    local pos = vec2.floor(mcontroller.position())
+    local _, particleSpawnPoints = liquidScanner:update(pos)
+    world.sendEntityMessage(player.id(), "v-ministareffects-updateLiquidParticles", particleSpawnPoints)
   end
 end
 
@@ -373,87 +582,87 @@ function applyEntityHeightMaps(heightMap)
   end
 end
 
----Coroutine function. Fills `affectedTiles` with tiles that are directly adjacent to spaces occupied by the liquid with
----ID `sunLiquidId`.
----@param pos Vec2I
----@param affectedTiles table<string, boolean>
----@param dt number
-function undergroundTileQuery(pos, affectedTiles, dt)
-  local rollingAffectedTiles = {}  -- Maintained map of affected tiles.
+-- ---Coroutine function. Fills `affectedTiles` with tiles that are directly adjacent to spaces occupied by the liquid with
+-- ---ID `sunLiquidId`.
+-- ---@param pos Vec2I
+-- ---@param affectedTiles table<string, boolean>
+-- ---@param dt number
+-- function undergroundTileQuery(pos, affectedTiles, dt)
+--   local rollingAffectedTiles = {}  -- Maintained map of affected tiles.
 
-  local updateAffectedTiles = function(affectedTiles)
-    -- Update affectedTiles with rollingAffectedTiles.
-    for tilePosHash, _ in pairs(rollingAffectedTiles) do
-      affectedTiles[tilePosHash] = true
-    end
-  end
-  -- Queries tiles that are next to entries in rollingAffectedTiles that no longer exist.
-  local hotTileQuery = function()
-    local startTime = os.clock()  -- Record start time.
-    -- Store list of additions because adding to rollingAffectedTiles directly while looping over rollingAffectedTiles
-    -- is not recommended.
-    local rollingAffectedTilesAdditions = {}
-    -- For each tile in rollingAffectedTiles...
-    for tilePosHash, _ in pairs(rollingAffectedTiles) do
-      local tilePos = vVec2.iFromString(tilePosHash)
+--   local updateAffectedTiles = function(affectedTiles)
+--     -- Update affectedTiles with rollingAffectedTiles.
+--     for tilePosHash, _ in pairs(rollingAffectedTiles) do
+--       affectedTiles[tilePosHash] = true
+--     end
+--   end
+--   -- Queries tiles that are next to entries in rollingAffectedTiles that no longer exist.
+--   local hotTileQuery = function()
+--     local startTime = os.clock()  -- Record start time.
+--     -- Store list of additions because adding to rollingAffectedTiles directly while looping over rollingAffectedTiles
+--     -- is not recommended.
+--     local rollingAffectedTilesAdditions = {}
+--     -- For each tile in rollingAffectedTiles...
+--     for tilePosHash, _ in pairs(rollingAffectedTiles) do
+--       local tilePos = vVec2.iFromString(tilePosHash)
 
-      if not world.pointTileCollision(tilePos, collisionSet) then
-        rollingAffectedTiles[tilePosHash] = nil  -- Clear the entry.
+--       if not world.pointTileCollision(tilePos, collisionSet) then
+--         rollingAffectedTiles[tilePosHash] = nil  -- Clear the entry.
 
-        -- For each adjacent tile...
-        for _, offset in ipairs(ADJACENT_TILES) do
-          local offsetTilePos = vec2.add(tilePos, offset)
+--         -- For each adjacent tile...
+--         for _, offset in ipairs(ADJACENT_TILES) do
+--           local offsetTilePos = vec2.add(tilePos, offset)
 
-          -- If the tile is solid and is adjacent to sun liquid...
-          if world.pointTileCollision(offsetTilePos, collisionSet) and isAdjacentToSunLiquid(offsetTilePos) then
-            rollingAffectedTilesAdditions[vVec2.iToString(offsetTilePos)] = true  -- Add entry to additions.
-          end
-        end
-      end
-    end
+--           -- If the tile is solid and is adjacent to sun liquid...
+--           if world.pointTileCollision(offsetTilePos, collisionSet) and isAdjacentToSunLiquid(offsetTilePos) then
+--             rollingAffectedTilesAdditions[vVec2.iToString(offsetTilePos)] = true  -- Add entry to additions.
+--           end
+--         end
+--       end
+--     end
 
-    -- Merge additions into rollingAffectedTiles.
-    for tilePosHash, _ in pairs(rollingAffectedTilesAdditions) do
-      rollingAffectedTiles[tilePosHash] = true
-    end
+--     -- Merge additions into rollingAffectedTiles.
+--     for tilePosHash, _ in pairs(rollingAffectedTilesAdditions) do
+--       rollingAffectedTiles[tilePosHash] = true
+--     end
 
-    -- Halt for one tick if too much time has passed.
-    if os.clock() - startTime > dt * 0.0001 then
-      updateAffectedTiles(affectedTiles)
-      pos, affectedTiles, dt = coroutine.yield()  -- Halt for the current frame and update the arguments.
-      cappedCheckMaxY = math.min(checkMaxY + pos[2], minDepth) -- Update cappedCheckMinY
-    end
-  end
+--     -- Halt for one tick if too much time has passed.
+--     if os.clock() - startTime > dt * 0.0001 then
+--       updateAffectedTiles(affectedTiles)
+--       pos, affectedTiles, dt = coroutine.yield()  -- Halt for the current frame and update the arguments.
+--       cappedCheckMaxY = math.min(checkMaxY + pos[2], minDepth) -- Update cappedCheckMinY
+--     end
+--   end
 
-  -- Repeat indefinitely.
-  while true do
-    local cappedCheckMaxY = math.min(checkMaxY + pos[2], minDepth)
+--   -- Repeat indefinitely.
+--   while true do
+--     local cappedCheckMaxY = math.min(checkMaxY + pos[2], minDepth)
 
-    -- For each horizontal strip...
-    for x = checkMinX, checkMaxX do
-      hotTileQuery()
-      local startTime = os.clock()  -- Record start time.
-      local absX = x + pos[1]  -- Get x in world coordinates.
-      -- For each vertical position...
-      for y = checkMinY + pos[2], cappedCheckMaxY do
-        local tilePos = {absX, y}
-        -- If there is a tile and it is adjacent to sun liquid, then set the corresponding entry to true. Otherwise,
-        -- delete it.
-        rollingAffectedTiles[vVec2.iToString(tilePos)] =
-          (world.pointTileCollision(tilePos, collisionSet) and isAdjacentToSunLiquid(tilePos)) or nil
-      end
-      -- If the time elapsed exceeds dt * 0.0000001...
-      if os.clock() - startTime > dt * 0.001 then
-        updateAffectedTiles(affectedTiles)
-        pos, affectedTiles, dt = coroutine.yield()  -- Halt for the current frame and update the arguments.
-        cappedCheckMaxY = math.min(checkMaxY + pos[2], minDepth) -- Update cappedCheckMinY
-      end
-    end
+--     -- For each horizontal strip...
+--     for x = checkMinX, checkMaxX do
+--       hotTileQuery()
+--       local startTime = os.clock()  -- Record start time.
+--       local absX = x + pos[1]  -- Get x in world coordinates.
+--       -- For each vertical position...
+--       for y = checkMinY + pos[2], cappedCheckMaxY do
+--         local tilePos = {absX, y}
+--         -- If there is a tile and it is adjacent to sun liquid, then set the corresponding entry to true. Otherwise,
+--         -- delete it.
+--         rollingAffectedTiles[vVec2.iToString(tilePos)] =
+--           (world.pointTileCollision(tilePos, collisionSet) and isAdjacentToSunLiquid(tilePos)) or nil
+--       end
+--       -- If the time elapsed exceeds dt * 0.0000001...
+--       if os.clock() - startTime > dt * 0.001 then
+--         updateAffectedTiles(affectedTiles)
+--         pos, affectedTiles, dt = coroutine.yield()  -- Halt for the current frame and update the arguments.
+--         cappedCheckMaxY = math.min(checkMaxY + pos[2], minDepth) -- Update cappedCheckMinY
+--       end
+--     end
 
-    updateAffectedTiles(affectedTiles)
-    pos, affectedTiles, dt = coroutine.yield()  -- Update the arguments
-  end
-end
+--     updateAffectedTiles(affectedTiles)
+--     pos, affectedTiles, dt = coroutine.yield()  -- Update the arguments
+--   end
+-- end
 
 ---Given a hash set of `affectedTiles`, updates `heatMap`. Each entry in `heatMap` that is also present in
 ---`affectedTiles` has its heat increased (decreased otherwise). Returns a list of tiles to destroy. Note: This also
@@ -478,6 +687,8 @@ function processHeatMap(affectedTiles, dt)
         table.insert(tilesToDestroy, tile.pos)
         table.remove(heatMap, i)
       end
+
+      liquidScanner:markRegionByTile(tile.pos, 3)
 
       -- Remove entry from affectedTiles to avoid excess inserts.
       affectedTiles[tilePosHash] = nil
@@ -508,12 +719,21 @@ function addToHeatMap(affectedTiles, heightMap, dt)
     local material = world.material(tile, "foreground")
 
     local heightMapValue = heightMap.list[tile[1] - heightMap.startXPos + 1]
-    local isExposed = not heightMapValue or tile[2] <= heightMapValue  -- Whether or not the affected tile is exposed (and therefore should be burned).
+    -- Whether or not the affected tile is exposed (and therefore should be burned). Used to address false positives.
+    local isExposed = not heightMapValue or tile[2] <= heightMapValue
+    local nextToSunLiquid = isAdjacentToSunLiquid(tile)
+    -- local isExposed = true
 
-    -- If there is a material at this tile and it is exposed...
-    if material and isExposed then
-      -- Compute tolerance multiplier (tiles that are closer to minDepth have a lower heat tolerance). Capped at 0.
-      local toleranceMultiplier = math.max(0, (tile[2] - minDepth) / (maxDepth - minDepth))
+    -- If there is a material at this tile and it is exposed or next to sun liquid...
+    if material and (isExposed or nextToSunLiquid) then
+      -- Compute tolerance multiplier (tiles that are closer to minDepth have a lower heat tolerance). Capped at 0. This
+      -- is immediately set to 0 if next to sun liquid.
+      local toleranceMultiplier
+      if nextToSunLiquid then
+        toleranceMultiplier = 0
+      else
+        toleranceMultiplier = math.max(0, (tile[2] - minDepth) / (maxDepth - minDepth))
+      end
 
       -- If the tolerance multiplier is at most 1 and the tile is not unmeltable...
       if not unmeltableMaterials[material] and toleranceMultiplier <= 1.0 then
@@ -531,6 +751,9 @@ function addToHeatMap(affectedTiles, heightMap, dt)
         end
         local tolerance = baseTolerance * toleranceMultiplier + toleranceOffset
         table.insert(heatMap, {pos = tile, heat = 0, heatTolerance = tolerance > dt and tolerance or 0, heatDeltaDir = 1})
+        -- world.debugPoint({tile[1] + 0.5, tile[2] + 0.5}, "yellow")
+
+        liquidScanner:markRegionByTile(tile, 3)
       end
     end
   end

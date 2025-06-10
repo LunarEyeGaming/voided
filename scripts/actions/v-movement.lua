@@ -287,7 +287,12 @@ function v_stickyHopApproach(args, _, _, dt)
     -- Hop directly toward the target
     hopPos = targetPos
     -- Get the hopping velocity, accounting for gravity.
-    hopVelocity = util.aimVector(world.distance(hopPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
+    hopVelocity, success = util.aimVector(world.distance(hopPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
+
+    -- If not successful, then ACTUALLY hop directly. This is to make the AI more predictable.
+    if not success then
+      hopVelocity = vec2.mul(vec2.norm(world.distance(hopPos, ownPos)), args.hopSpeed)
+    end
   end
 
   util.run(args.preHopDelay, function() end)

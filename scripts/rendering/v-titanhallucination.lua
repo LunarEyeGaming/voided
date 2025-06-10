@@ -18,6 +18,7 @@ local wasSleeping  -- Whether or not the player had the sleeping status in the p
 local shouldHallucinate
 local titanPositionPromise
 local titanPosition
+local ticker
 
 -- Variables having to do with the hallucination itself are prefixed with "h".
 local hMaxTime  -- Amount of time that must elapse before the hallucination is at max opacity and the music has stopped.
@@ -45,7 +46,9 @@ function init()
   titanPositionPromise = nil
   titanPosition = nil
 
-  vTime.addInterval(1, function()
+  ticker = VTicker:new()
+
+  ticker:addInterval(1, function()
     if not v_titanHallucination_nearTitan() then
       fearLevel = math.max(0, fearLevel - fearDecreaseRate)
     end
@@ -87,7 +90,7 @@ function update(dt)
 
   -- world.debugText("fearLevel: %s, shouldHallucinate: %s", fearLevel, shouldHallucinate, vec2.add(entity.position(), {0, -5}), "green")
 
-  vTime.update(dt)
+  ticker:update(dt)
 
   if v_titanHallucination_nearTitan() then
     fearLevel = fearLevel + fearIncreaseRate * dt

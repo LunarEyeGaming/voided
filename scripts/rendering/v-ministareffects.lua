@@ -3,9 +3,18 @@ require "/scripts/rect.lua"
 
 require "/scripts/v-animator.lua"
 require "/scripts/v-ministarutil.lua"
+require "/scripts/v-vec2.lua"
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
+
+-- Stuff for liquid particles.
+local liquidParticleDensity
+local liquidSunParticle
+local liquidSunParticleLarge
+local sunLiquidId
+
+local liquidParticlePoints
 
 -- User-configurable parameters (TODO)
 local lightInterval
@@ -14,23 +23,19 @@ local useImagesForRays
 
 -- Internal parameters
 local particleDensity
-local liquidParticleDensity
-local liquidParticleDensityBG
-local liquidParticleDensityFG
 local startBurningColor
 local endBurningColor
 local sunRayDimColor
 local sunRayBrightColor
-local sunLiquidId
 
 -- Cached drawable tables
 local blockDrawable
 local sunRayDrawable
 local sunRayDrawableFunc
 local sunParticle
-local liquidSunParticle
 
 -- State variables
+local ticker
 local burningBlocks
 local heightMap
 local minHeight
@@ -41,7 +46,13 @@ local isActive
 
 function init()
   oldInit()
-  -- Do not run this script on planets that are not of type "v-ministar"
+
+  ticker = VTicker:new()
+
+  -- Initialization code to take care of liquid particles.
+  v_ministarEffects_initLiquidParticles()
+
+  -- Do not run the remainder of this script on planets that are not of type "v-ministar."
   if world.type() ~= "v-ministar" then
     isActive = false
     return
@@ -61,11 +72,18 @@ function init()
   end)
 
   -- Synchronizes data
-  message.setHandler("v-ministareffects-updateBlocks", function(_, _, burningBlocks_, heightMap_, sunProximityRatio_, minHeight_)
+  message.setHandler("v-ministareffects-updateBlocks", function(_, _, burningBlocks_, heightMap_, sunProximityRatio_, minHeight_, liquidParticlePoints_)
     burningBlocks = burningBlocks_
     heightMap = vMinistar.HeightMap:new(heightMap_.startXPos, heightMap_.list)
     sunProximityRatio = sunProximityRatio_
     minHeight = minHeight_
+
+    -- Merge on top of existing liquid particle points.
+    for chunk, tiles in pairs(liquidParticlePoints_) do
+      if #tiles > 0 then
+        liquidParticlePoints[chunk] = tiles
+      end
+    end
     v_ministarEffects_computeLightBounds()
   end)
 
@@ -85,12 +103,10 @@ function init()
   sunProximityRatio = 0
 
   particleDensity = 0.02
-  liquidParticleDensity = 0.01
   startBurningColor = {255, 0, 0, 0}
   endBurningColor = {255, 119, 0, 255}
   sunRayDimColor = {255, 0, 0, 0}
   sunRayBrightColor = {255, 216, 107, 128}
-  sunLiquidId = 218
 
   blockDrawable = {  -- Construct table once. position and color will change.
     line = {{0, 0.5}, {1, 0.5}},
@@ -114,13 +130,37 @@ function init()
     collidesForeground = true,
     color = true  -- Placeholder value
   }
+end
 
+function v_ministarEffects_initLiquidParticles()
+  sunLiquidId = 218
+  liquidParticleDensity = 0.01
   liquidSunParticle = {
     type = "animated",
     animation = "/animations/v-solarplasma/v-solarplasma.animation",
+    initialVelocity = {0, 6},
+    approach = {2, 2},
+    position = {0, -1},
+    light = {143, 99, 17},
+    timeToLive = 2,
+    destructionAction = "fade",
+    destructionTime = 1,
+    angularVelocity = 0,
+    layer = "middle",
+    collidesForeground = true,
+    variance = {
+      initialVelocity = {0, 4}
+    }
+  }
+
+  liquidSunParticleLarge = {
+    type = "animated",
+    animation = "/animations/v-solarplasma/v-solarplasmalarge.animation",
     initialVelocity = {0, 3},
     approach = {2, 2},
-    timeToLive = 2,
+    position = {0, -1},
+    light = {143, 99, 17},
+    timeToLive = 4,
     destructionAction = "fade",
     destructionTime = 1,
     angularVelocity = 0,
@@ -130,51 +170,32 @@ function init()
       initialVelocity = {0, 2}
     }
   }
-  -- liquidSunParticleBG = {
-  --   type = "animated",
-  --   animation = "/animations/v-solarplasmabg/v-solarplasmabg.animation",
-  --   initialVelocity = {0, 5},
-  --   approach = {2, 2},
-  --   timeToLive = 2,
-  --   destructionAction = "fade",
-  --   destructionTime = 1,
-  --   angularVelocity = 0,
-  --   layer = "back",
-  --   collidesForeground = true,
-  --   variance = {
-  --     initialVelocity = {0, 0}
-  --   }
-  -- }
-  -- liquidSunParticleFG = {
-  --   type = "animated",
-  --   animation = "/animations/v-solarplasmafg/v-solarplasmafg.animation",
-  --   initialVelocity = {0, 5},
-  --   approach = {2, 2},
-  --   timeToLive = 2,
-  --   destructionAction = "fade",
-  --   destructionTime = 1,
-  --   angularVelocity = 0,
-  --   layer = "middle",
-  --   collidesForeground = true,
-  --   variance = {
-  --     initialVelocity = {0, 0}
-  --   }
-  -- }
-  -- liquidSunParticle = {
-  --   type = "textured",
-  --   image = "/particles/v-ministarcloud/2.png",
-  --   initialVelocity = {0, 50},
-  --   approach = {2, 2},
-  --   timeToLive = 5,
-  --   destructionAction = "shrink",
-  --   destructionTime = 2,
-  --   angularVelocity = 0,
-  --   layer = "middle",
-  --   collidesForeground = true,
-  --   variance = {
-  --     initialVelocity = {5, 5}
-  --   }
-  -- }
+
+  liquidParticlePoints = {}
+
+  ticker:addInterval(5, function()
+    local window = rect.pad(world.clientWindow(), 100)
+
+    for chunkStr, _ in pairs(liquidParticlePoints) do
+      local chunk = vVec2.iFromString(chunkStr)
+      local chunkRect = {chunk[1] * 16, chunk[2] * 16, (chunk[1] + 1) * 16, (chunk[2] + 1) * 16}
+
+      if not rect.intersects(window, chunkRect) then
+        liquidParticlePoints[chunkStr] = nil
+      end
+    end
+  end)
+
+  -- Synchronizes liquid particle points only
+  message.setHandler("v-ministareffects-updateLiquidParticles", function(_, _, liquidParticlePoints_)
+    -- Merge on top of existing liquid particle points.
+    for chunk, tiles in pairs(liquidParticlePoints_) do
+      if #tiles > 0 then
+        liquidParticlePoints[chunk] = tiles
+      end
+    end
+    v_ministarEffects_computeLightBounds()
+  end)
 end
 
 function update(dt)
@@ -183,14 +204,23 @@ function update(dt)
 
   oldUpdate(dt)  -- Drawables are implicitly cleared.
 
-  if not isActive then return end  -- Do nothing if this script is not active
+  local window = world.clientWindow()
+  ticker:update(dt)
+
+  if liquidParticlePoints then
+    v_ministarEffects_drawLiquidParticles(window)
+  end
+
+  -- Do nothing else if this script is not active
+  if not isActive then
+    return
+  end
 
   -- Get position relative to player.
   local ownPos = entity.position()
   local ownVelocity = world.entityVelocity(entity.id())  --[[@as Vec2F]]
   -- Compute predicted position.
   local predictedPos = vec2.add(ownPos, vec2.mul(ownVelocity, dt))
-  local window = world.clientWindow()
 
   v_ministarEffects_drawBurningBlocks(predictedPos, dt, window)
 
@@ -201,7 +231,6 @@ function update(dt)
 
     v_ministarEffects_drawSunRays(predictedPos, sunProximityRatio, boosts, window)
     v_ministarEffects_drawSunRayLights(sunProximityRatio, boosts, window)
-    v_ministarEffects_drawLiquidParticles(window)
   end
   v_ministarEffects_drawParticles(sunRayColor)
 end
@@ -325,51 +354,28 @@ function v_ministarEffects_drawParticles(color)
 end
 
 function v_ministarEffects_drawLiquidParticles(window)
-  for x = window[1], window[3] do
-    local y = heightMap:get(x)
-    if y ~= minHeight and math.random() <= liquidParticleDensity then
-      localAnimator.spawnParticle(liquidSunParticle, {x, minHeight - 3})
-      -- localAnimator.spawnParticle(liquidSunParticleBG, {x, minHeight})
-      -- localAnimator.spawnParticle(liquidSunParticleFG, {x, minHeight})
-    end
-  end
-  for _ = 1, 1 do
-    local pos = rect.randomPoint(rect.pad(window, 0))
-
-    local liquid = world.liquidAt(pos)
-    -- local liquid2 = world.liquidAt({pos[1], pos[2] + 1})
-    if liquid and liquid[1] == sunLiquidId then
-      -- local windLevel = world.windLevel(pos)
-      -- local initialVelocity = liquidSunParticle.initialVelocity or {0, 0}
-      -- initialVelocity[1] = windLevel
-      -- liquidSunParticle.initialVelocity = initialVelocity
-      localAnimator.spawnParticle(liquidSunParticle, pos)
-      -- localAnimator.spawnParticle(liquidSunParticleBG, pos)
-      -- localAnimator.spawnParticle(liquidSunParticleFG, pos)
-    end
-  end
-  -- vLocalAnimator.spawnOffscreenParticles(liquidSunParticle, {
-  --   density = liquidParticleDensity,
-  --   exposedOnly = false,
-  --   ignoreWind = true,
-  --   vertical = true,
-  --   onMovementOnly = true,
-  --   pred = function(pos)
-  --     local liquid = world.liquidAt(pos)
-  --     local liquid2 = world.liquidAt({pos[1], pos[2] + 1})
-  --     return liquid and liquid[1] == sunLiquidId and not liquid2
+  -- for x = window[1], window[3] do
+  --   local y = heightMap:get(x)
+  --   if y ~= minHeight and math.random() <= liquidParticleDensity then
+  --     localAnimator.spawnParticle(liquidSunParticle, {x, minHeight - (math.random() * 3)})
   --   end
-  -- })
-  -- local pos = rect.randomPoint(window)
-
-  -- local liquid = world.liquidAt(pos)
-  -- if liquid and liquid[1] == sunLiquidId then
-  --   local windLevel = world.windLevel(pos)
-  --   local initialVelocity = liquidSunParticle.initialVelocity or {0, 0}
-  --   initialVelocity[1] = windLevel
-  --   liquidSunParticle.initialVelocity = initialVelocity
-  --   localAnimator.spawnParticle(liquidSunParticle, pos)
   -- end
+  -- for _ = 1, 1 do
+  -- end
+
+  for _, tiles in pairs(liquidParticlePoints) do
+    for _, tile in ipairs(tiles) do
+      if rect.contains(window, tile) and math.random() <= liquidParticleDensity then
+        localAnimator.spawnParticle(liquidSunParticle, tile)
+      end
+    end
+  end
+  local pos = rect.randomPoint(window)
+
+  local liquid = world.liquidAt(pos)
+  if liquid and liquid[1] == sunLiquidId then
+    localAnimator.spawnParticle(liquidSunParticleLarge, pos)
+  end
 end
 
 function v_ministarEffects_computeSolarFlareBoosts(startX, endX)
@@ -383,6 +389,8 @@ function v_ministarEffects_computeSolarFlareBoosts(startX, endX)
     }[]
   ]]
   local solarFlares = world.getProperty("v-solarFlares") or {}
+
+  sb.setLogMap("solarFlares", "%s", #solarFlares)
 
   local boosts = {}
   for x = startX, endX do
