@@ -5,7 +5,7 @@
     "rules" : [
     ],
 
-    "anchor" : [ "lavalake1", "lavalake1", "lavalake1", "pyramid1", "pyramid1", "pyramid1", "orevein1" ],
+    "anchor" : [ "lavalake1", "lavalake1", "lavalake1", "pyramid1", "pyramid2", "pyramid3", "orevein1" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -27,6 +27,20 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "pyramid1.json" ]
+    },
+    {
+      "name" : "pyramid2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "pyramid2.json" ]
+    },
+    {
+      "name" : "pyramid3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "pyramid3.json" ]
     },
     {
       "name" : "orevein1",

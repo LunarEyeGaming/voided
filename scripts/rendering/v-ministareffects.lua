@@ -108,14 +108,6 @@ function init()
   sunRayDimColor = {255, 0, 0, 0}
   sunRayBrightColor = {255, 216, 107, 128}
 
-  blockDrawable = {  -- Construct table once. position and color will change.
-    line = {{0, 0.5}, {1, 0.5}},
-    width = 8,
-    position = {0, 0},  -- Placeholder value
-    color = {0, 0, 0, 0},  -- Placeholder value
-    fullbright = true
-  }
-
   sunParticle = {
     type = "textured",
     image = "/particles/v-ministarcloud/1.png",
@@ -139,7 +131,7 @@ function v_ministarEffects_initLiquidParticles()
     type = "animated",
     animation = "/animations/v-solarplasma/v-solarplasma.animation",
     initialVelocity = {0, 6},
-    approach = {2, 2},
+    approach = {0, 2},
     position = {0, -1},
     light = {143, 99, 17},
     timeToLive = 2,
@@ -149,7 +141,7 @@ function v_ministarEffects_initLiquidParticles()
     layer = "middle",
     collidesForeground = true,
     variance = {
-      initialVelocity = {0, 4}
+      initialVelocity = {4, 4}
     }
   }
 
@@ -157,7 +149,7 @@ function v_ministarEffects_initLiquidParticles()
     type = "animated",
     animation = "/animations/v-solarplasma/v-solarplasmalarge.animation",
     initialVelocity = {0, 3},
-    approach = {2, 2},
+    approach = {0, 2},
     position = {0, -1},
     light = {143, 99, 17},
     timeToLive = 4,
@@ -167,7 +159,7 @@ function v_ministarEffects_initLiquidParticles()
     layer = "middle",
     collidesForeground = true,
     variance = {
-      initialVelocity = {0, 2}
+      initialVelocity = {2, 2}
     }
   }
 
@@ -196,6 +188,67 @@ function v_ministarEffects_initLiquidParticles()
     end
     v_ministarEffects_computeLightBounds()
   end)
+end
+
+function v_ministarEffects_applyRenderConfig(cfg)
+  local lightIntervals = {8, 16, 32, 64, 128}
+  lightInterval = lightIntervals[cfg.lightIntervalIdx]
+  useLights = cfg.useLights
+  useImagesForRays = cfg.useImagesForRays
+  if useImagesForRays then
+    sunRayDrawable = {
+      transformation = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}},  -- Placeholder
+      image = "/scripts/rendering/v-ministarray.png",
+      position = {},  -- Placeholder
+      color = {},  -- Placeholder
+      fullbright = true
+    }
+    blockDrawable = {  -- Construct table once. position and color will change.
+      image = "/scripts/rendering/v-ministarhotspot.png",
+      transformation = {
+        {1, 0, 0.5},
+        {0, 1, 0.5},
+        {0, 0, 1}
+      },
+      width = 8,
+      position = {0, 0},  -- Placeholder value
+      color = {0, 0, 0, 0},  -- Placeholder value
+      fullbright = true
+    }
+    sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
+      local relativePos = {x - predictedPos[1] + 0.5, (topY + bottomY) / 2 - predictedPos[2] - 0.5}
+
+      sunRayDrawable.transformation = {
+        {1.0, 0.0, 0.0},
+        {0.0, topY - bottomY + 1.0, 0.0},
+        {0.0, 0.0, 1.0}
+      }
+      sunRayDrawable.position = relativePos
+      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
+    end
+  else
+    sunRayDrawable = {
+      line = {{0, 0}, {0, 0}},  -- Placeholder
+      width = 8,
+      position = {0, 0},  -- Placeholder
+      color = {0, 0, 0, 0},  -- Placeholder
+      fullbright = true
+    }
+    blockDrawable = {
+      line = {{0, 0.5}, {1, 0.5}},
+      width = 8,
+      position = {0, 0},  -- Placeholder value
+      color = {0, 0, 0, 0},  -- Placeholder value
+      fullbright = true
+    }
+    sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
+      local relativePos = {x - predictedPos[1], bottomY - predictedPos[2]}
+
+      sunRayDrawable.line = {{0.5, -1}, {0.5, topY - bottomY}}
+      sunRayDrawable.position = relativePos
+      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
+    end
+  end
 end
 
 function update(dt)
@@ -412,46 +465,4 @@ end
 
 function v_ministarEffects_normalDistribution(mean, stdDev, x)
   return math.exp(-(x - mean) ^ 2 / (2 * stdDev ^ 2))
-end
-
-function v_ministarEffects_applyRenderConfig(cfg)
-  local lightIntervals = {8, 16, 32, 64, 128}
-  lightInterval = lightIntervals[cfg.lightIntervalIdx]
-  useLights = cfg.useLights
-  useImagesForRays = cfg.useImagesForRays
-  if useImagesForRays then
-    sunRayDrawable = {
-      transformation = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}},  -- Placeholder
-      image = "/scripts/rendering/v-ministarray.png",
-      position = {},  -- Placeholder
-      color = {},  -- Placeholder
-      fullbright = true
-    }
-    sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
-      local relativePos = {x - predictedPos[1] + 0.5, (topY + bottomY) / 2 - predictedPos[2] - 0.5}
-
-      sunRayDrawable.transformation = {
-        {1.0, 0.0, 0.0},
-        {0.0, topY - bottomY + 1.0, 0.0},
-        {0.0, 0.0, 1.0}  -- Hmm these bottom three values could be used to make a parallax effect me thinks.
-      }
-      sunRayDrawable.position = relativePos
-      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
-    end
-  else
-    sunRayDrawable = {
-      line = {{0, 0}, {0, 0}},  -- Placeholder
-      width = 8,
-      position = {0, 0},  -- Placeholder
-      color = {0, 0, 0, 0},  -- Placeholder
-      fullbright = true
-    }
-    sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
-      local relativePos = {x - predictedPos[1], bottomY - predictedPos[2]}
-
-      sunRayDrawable.line = {{0.5, -1}, {0.5, topY - bottomY}}
-      sunRayDrawable.position = relativePos
-      localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
-    end
-  end
 end

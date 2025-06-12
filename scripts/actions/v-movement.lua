@@ -284,6 +284,7 @@ function v_stickyHopApproach(args, _, _, dt)
 
   -- If no valid hop position was found still (or the hop position is meant to be targetPos)...
   if not hopPos then
+    local success
     -- Hop directly toward the target
     hopPos = targetPos
     -- Get the hopping velocity, accounting for gravity.

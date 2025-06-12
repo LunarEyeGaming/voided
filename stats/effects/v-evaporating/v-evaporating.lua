@@ -17,9 +17,14 @@ function init()
   sunscreenEffect = "v-sunscreen"
   sunscreenResistance = 0.5
 
+  local appliedDamage = damage
+  if status.uniqueStatusEffectActive(sunscreenEffect) then
+    appliedDamage = appliedDamage * (1 - sunscreenResistance)
+  end
+
   status.applySelfDamageRequest({
       damageType = "IgnoresDef",
-      damage = 60,
+      damage = appliedDamage,
       damageSourceKind = "fire",
       sourceEntityId = entity.id()
     })
