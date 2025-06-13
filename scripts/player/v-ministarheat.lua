@@ -72,7 +72,8 @@ function init()
 
   script.setUpdateDelta(6)
 
-  -- Do not run this script on planets that are not of type "v-ministar"
+  -- Do not run this script on planets that are not of type "v-ministar," except for the liquid scanner - that will keep
+  -- running.
   if world.type() ~= "v-ministar" then
     isActive = false
     return
@@ -92,7 +93,11 @@ function init()
   entityHeightMaps = {}
 
   message.setHandler("v-ministarheat-setEntityCollision", function(_, _, sourceId, heightMap)
-    entityHeightMaps[sourceId] = heightMap
+    if heightMap then
+      entityHeightMaps[sourceId] = vMinistar.HeightMap:fromJson(heightMap)
+    else
+      entityHeightMaps[sourceId] = nil
+    end
   end)
 
   minBurnDamage = 1
@@ -106,7 +111,6 @@ function init()
   collisionSet = {"Block", "Platform"}
   materialConfigs = {}
   heatConfigs = {}
-  -- undergroundTileQueryThread = coroutine.create(undergroundTileQuery)
 
   celestialParamsFetched = false
 
@@ -193,14 +197,13 @@ function update(dt)
     local pos = vec2.floor(mcontroller.position())
     local affectedTiles = {}  -- hash map
 
-    -- coroutine.resume(undergroundTileQueryThread, pos, affectedTiles, dt)
     local boundaryTiles, particleSpawnPoints = liquidScanner:update(pos)
 
+    -- Update affectedTiles with the boundaryTiles that actually have foreground blocks.
     for _, tile in ipairs(boundaryTiles) do
       local tileStr = vVec2.iToString(tile)
       if not affectedTiles[tileStr] and world.pointTileCollision(tile) then
         affectedTiles[tileStr] = true
-        -- world.debugPoint(tile, "green")
       end
     end
 
@@ -213,8 +216,8 @@ function update(dt)
     -- Process existing entries.
     local tilesToDestroy = processHeatMap(affectedTiles, dt)
 
-    local sunProximityRatio = 1 - math.max(0, math.min((pos[2] - minDepth) / (maxDepth - minDepth), 1))
     -- Update heatMap for v-ministareffects.lua
+    local sunProximityRatio = 1 - math.max(0, math.min((pos[2] - minDepth) / (maxDepth - minDepth), 1))
     world.sendEntityMessage(player.id(), "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth, particleSpawnPoints)
 
     addToHeatMap(affectedTiles, heightMap, dt)
@@ -253,7 +256,7 @@ end
 function getCelestialCoordinates()
   local worldId = player.worldId()
   local first, last, x, y, z, planet = worldId:find("CelestialWorld:(%-?%d+):(%-?%d+):(%-?%d+):(%-?%d+)")
-  if first then  -- Other values will be assigned to nil otherwise.
+  if first then  -- Check if the string pattern matching succeeded.
     local satellite = worldId:match(":(%-?%d+)", last)  -- tonumber returns nil if satellite is nil.
     return {
       location = {tonumber(x), tonumber(y), tonumber(z)},
@@ -268,8 +271,7 @@ end
 ---@param affectedTiles table<string, boolean>
 ---@return HeightMap
 function surfaceTileQuery(pos, affectedTiles)
-  -- Maps horizontal positions relative to startXPos to collision heights.
-  local heightMap = {startXPos = checkMinX + pos[1], list = {}, minHeight = minDepth}
+  local heightMap = vMinistar.HeightMap:new()
 
   local lowestSectors = findLowestLoadedSectors(checkMinX + pos[1], checkMaxX + pos[1], pos[2])
 
@@ -322,7 +324,8 @@ function surfaceTileQuery(pos, affectedTiles)
           local matCfg = getMaterialConfig(material)
           if matCfg and not matCfg.renderParameters.lightTransparent and matCfg.collisionKind == "solid" then
             -- Add to height map.
-            heightMap.list[i - checkMinX + 1] = collideTile[2]
+            -- heightMap.list[i - checkMinX + 1] = collideTile[2]
+            heightMap:set(x, collideTile[2])
             foundSolidTile = true
             break
           end
@@ -331,19 +334,26 @@ function surfaceTileQuery(pos, affectedTiles)
 
       -- Manually set the heightMap entry if no solid, opaque tile was found, or collidePoints is empty.
       if not foundSolidTile then
-        heightMap.list[i - checkMinX + 1] = checkMaxY + pos[2]
+        -- heightMap.list[i - checkMinX + 1] = checkMaxY + pos[2]
+        heightMap:set(x, checkMaxY + pos[2])
       end
     else
-      heightMap.list[i - checkMinX + 1] = cappedCheckMinY
+      -- heightMap.list[i - checkMinX + 1] = cappedCheckMinY
+      heightMap:set(x, cappedCheckMinY)
     end
   end
 
   return heightMap
 end
 
+---Syncs the given height map to the global height map.
+---@param heightMap HeightMap
 function syncHeightMapToGlobal(heightMap)
-  local startXSector = heightMap.startXPos // SECTOR_SIZE
-  local endXSector = (heightMap.startXPos + #heightMap.list) // SECTOR_SIZE
+  local startX, endX = heightMap:xbounds()
+  local startXSector = startX // SECTOR_SIZE
+  local endXSector = endX // SECTOR_SIZE
+  sb.setLogMap("ministarheat_startXSector", "%s", startXSector)
+  sb.setLogMap("ministarheat_endXSector", "%s", endXSector)
 
   -- Map from horizontal positions to `HeightMapItem`.
   ---@type table<integer, HeightMapItem>
@@ -361,22 +371,37 @@ function syncHeightMapToGlobal(heightMap)
   end
 
   -- For each entry in the list of `heightMap`...
-  for i, v in ipairs(heightMap.list) do
-    local x = world.xwrap(i + heightMap.startXPos - 1)
+  -- for i, v in ipairs(heightMap.list) do
+  --   local x = world.xwrap(i + heightMap.startXPos - 1)
 
+  --   if not globalHeightMap[x] then
+  --     globalHeightMap[x] = v
+  --   else
+  --     local globalV = globalHeightMap[x]
+
+  --     local sharedValue
+  --     if v < globalV or not world.pointCollision({x, globalV}, {"Null"}) then
+  --       sharedValue = v
+  --     else
+  --       sharedValue = globalV
+  --     end
+
+  --     heightMap.list[i] = sharedValue
+  --     globalHeightMap[x] = sharedValue
+  --   end
+  -- end
+  for x, v in heightMap:xvalues() do
     if not globalHeightMap[x] then
       globalHeightMap[x] = v
     else
       local globalV = globalHeightMap[x]
-
       local sharedValue
       if v < globalV or not world.pointCollision({x, globalV}, {"Null"}) then
         sharedValue = v
       else
         sharedValue = globalV
       end
-
-      heightMap.list[i] = sharedValue
+      heightMap:set(x, sharedValue)
       globalHeightMap[x] = sharedValue
     end
   end
@@ -397,19 +422,14 @@ function syncHeightMapToGlobal(heightMap)
   end
 end
 
+---Applies received entity height maps to the given `heightMap`.
+---@param heightMap HeightMap
 function applyEntityHeightMaps(heightMap)
-  local minXPos = math.huge
-  for _, entityHeightMap in pairs(entityHeightMaps) do
-    if entityHeightMap.startXPos < minXPos then
-      minXPos = entityHeightMap.startXPos
-    end
-  end
+  local flattenedEntityHeightMap = vMinistar.HeightMap:new()
 
-  local flattenedEntityHeightMap = vMinistar.HeightMap:new(minXPos)
-
+  -- Merge entity height map values into one height map.
   for _, entityHeightMap in pairs(entityHeightMaps) do
-    local entityHeightMapObj = vMinistar.HeightMap:new(entityHeightMap.startXPos, entityHeightMap.list)
-    for x, v in entityHeightMapObj:xvalues() do
+    for x, v in entityHeightMap:xvalues() do
       local otherV = flattenedEntityHeightMap:get(x)
       if not otherV or v < otherV then
         flattenedEntityHeightMap:set(x, v)
@@ -417,12 +437,11 @@ function applyEntityHeightMaps(heightMap)
     end
   end
 
-  for i = 1, #heightMap.list do
-    local x = i + heightMap.startXPos - 1
-    local v = heightMap.list[i]
+  -- Merge height map with flattenedEntityHeightMap
+  for x, v in heightMap:xvalues() do
     local otherV = flattenedEntityHeightMap:get(x)
     if otherV and otherV < v then
-      heightMap.list[i] = otherV
+      heightMap:set(x, otherV)
     end
   end
 end
@@ -486,7 +505,7 @@ function addToHeatMap(affectedTiles, heightMap, dt)
     local tile = vVec2.iFromString(tileHash)
     local material = world.material(tile, "foreground")
 
-    local heightMapValue = heightMap.list[tile[1] - heightMap.startXPos + 1]
+    local heightMapValue = heightMap:get(tile[1])
     -- Whether or not the affected tile is exposed (and therefore should be burned). Used to address false positives.
     local isExposed = not heightMapValue or tile[2] <= heightMapValue
     local nextToSunLiquid = isAdjacentToSunLiquid(tile)
@@ -532,7 +551,8 @@ function isExposedForeground(heightMap)
 
   -- For each x across the current bounding box...
   for x = boundBox[1], boundBox[3] do
-    local heightMapItem = heightMap.list[math.floor(x) - heightMap.startXPos + 1]
+    -- local heightMapItem = heightMap.list[math.floor(x) - heightMap.startXPos + 1]
+    local heightMapItem = heightMap:get(math.floor(world.xwrap(x)))
 
     if minDepth < y and y < heightMapItem then
       return true

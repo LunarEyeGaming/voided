@@ -64,7 +64,7 @@ function update(dt)
     local startX = ownPosI[1] + heightMapSetRange[1]
     local endX = ownPosI[1] + heightMapSetRange[2]
 
-    local heightMap = vMinistar.HeightMap:new(startX)
+    local heightMap = vMinistar.HeightMap:new()
 
     for x = startX, endX do
       heightMap:set(math.floor(x), ownPosI[2])

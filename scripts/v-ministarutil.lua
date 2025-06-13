@@ -1,29 +1,46 @@
 vMinistar = {}
 
--- TODO: Figure out how to handle world wrapping in this class.
-
 ---The size of each sector.
 vMinistar.SECTOR_SIZE = 32
 
 ---@class HeightMap
----@field startXPos integer
+---@field startXPos integer First wrapped x coordinate that contains a value
+---@field endXPos integer Last wrapped x coordinate that contains a value
 ---@field list table<integer, integer>
----@field endXPos integer
 vMinistar.HeightMap = {}
 
 ---Returns a new instance of a height map.
----@param startXPos integer
----@param list? table<integer, integer>
 ---@return HeightMap
-function vMinistar.HeightMap:new(startXPos, list)
-  list = list or {}
+function vMinistar.HeightMap:new()
   local instance = {
-    startXPos = startXPos,
-    list = list,
-    endXPos = startXPos + #list
+    startXPos = nil,
+    endXPos = nil,
+    list = {}
   }
   setmetatable(instance, self)
   self.__index = self
+
+  return instance
+end
+
+---Creates a height map from a table.
+---@param json table
+---@return HeightMap
+function vMinistar.HeightMap:fromJson(json)
+  local list = {}
+
+  local instance = vMinistar.HeightMap:new()
+
+  -- Build the list and a parallel list for sorting. Then, find the biggest gap between two consecutive values in the sorted list.
+  for xStr, v in pairs(json.list) do
+    local x = tonumber(xStr)
+    assert(x ~= nil, "JSON must be an array or an object containing keys representing numbers")
+
+    list[x] = v
+  end
+  instance.list = list
+  instance.startXPos = json.startXPos
+  instance.endXPos = json.endXPos
 
   return instance
 end
@@ -32,56 +49,82 @@ end
 ---@param x integer
 ---@return integer?
 function vMinistar.HeightMap:get(x)
-  return self.list[x - self.startXPos + 1]
-end
-
----Returns the index as well as the height map value at `x`, or `nil` if not defined.
----@param x integer
----@return integer, integer?
-function vMinistar.HeightMap:geti(x)
-  local i = x - self.startXPos + 1
-  return i, self.list[i]
+  return self.list[world.xwrap(x)]
 end
 
 ---Sets the height map value at `x` to `v`.
----
----Performance note: setting a value at `x` if `x < self.startXPos` will shift all current entries to the right.
 ---@param x integer
 ---@param v integer
 function vMinistar.HeightMap:set(x, v)
-  if x < self.startXPos then  -- TODO: Test
-    table.move(self.list, 1, self.endXPos - self.startXPos + 1, self.startXPos - x + 1)
+  x = world.xwrap(x)
+
+  -- Update boundaries. Use world.nearestTo to account for world wrapping
+  if not self.startXPos then
     self.startXPos = x
-  elseif x > self.endXPos then
     self.endXPos = x
+  else
+    local startX = world.nearestTo(x, self.startXPos)
+    local endX = world.nearestTo(x, self.endXPos)
+    if not (startX <= x and x <= endX) then
+      -- If the start is the closer boundary, then assign x to be it. Otherwise, assign x to be the end.
+      if math.abs(x - startX) < math.abs(x - endX) then
+        self.startXPos = x
+      else
+        self.endXPos = x
+      end
+    end
   end
+
+  -- if x < world.nearestTo(x, self.startXPos) and x <= world.nearestTo(x, self.endXPos) then
+  --   if x <= world.nearestTo(x, self.endXPos) then
+  --     self.startXPos = x
+
+  --   end
+  -- elseif x > world.nearestTo(x, self.endXPos) then
+  --   self.endXPos = x
+  -- end
   -- sb.logInfo("%s -> %s: %s", tostring(x), tostring(x - self.startXPos + 1), v)
-  self.list[x - self.startXPos + 1] = v
+  self.list[x] = v
 end
 
----Contiguous height map iterator.
+---Iterates through the x values within the height map's `xbounds()`, even `nil` values.
 ---
----Adding new values to height map while iterating will not change how far it iterates.
+---Defining new x values in the height map while using this method will not affect its traversal.
 function vMinistar.HeightMap:xvalues()
-  local i = 0
+  local startX, endX = self:xbounds()
+  local x = startX
   return function()
-    i = i + 1
-    local v = self.list[i]
-    if v ~= nil then
-      return i + self.startXPos - 1, v
+    x = x + 1
+    local xWrapped = world.xwrap(x)
+    local v = self.list[xWrapped]
+    if x <= endX then
+      return xWrapped, v
     end
   end
 end
 
----Non-contiguous height map iterator
+---Equivalent to pairs(self.list)
 function vMinistar.HeightMap:values()
-  local idx = nil
-  return function()
-    idx, v = next(self.list, idx)
-    if idx then
-      return idx + self.startXPos - 1, v
-    end
+  -- local idx = nil
+  -- return function()
+  --   idx, v = next(self.list, idx)
+  --   if idx then
+  --     return idx, v
+  --   end
+  -- end
+  return pairs(self.list)
+end
+
+---Returns the boundaries of the height map for easy iteration.
+---@return integer
+---@return integer
+function vMinistar.HeightMap:xbounds()
+  local startX = self.startXPos
+  local endX = self.endXPos
+  if startX > endX then
+    endX = endX + world.size()[1]
   end
+  return startX, endX
 end
 
 ---@class VLiquidScanner
@@ -260,9 +303,12 @@ function vMinistar.LiquidScanner:markRegionByTile(tile, time)
   self._hotRegions[tileChunkStr] = time
 end
 
+---Sets the appropriate sectors of the globalHeightMap world property to contain the values in heightMap.
+---@param heightMap HeightMap
 function vMinistar.setGlobalHeightMap(heightMap)
-  local startXSector = heightMap.startXPos // vMinistar.SECTOR_SIZE
-  local endXSector = (heightMap.startXPos + #heightMap.list) // vMinistar.SECTOR_SIZE
+  local startX, endX = heightMap:xbounds()
+  local startXSector = startX // vMinistar.SECTOR_SIZE
+  local endXSector = endX // vMinistar.SECTOR_SIZE
 
   -- Map from horizontal positions to `HeightMapItem`.
   ---@type table<integer, HeightMapItem>
@@ -280,9 +326,12 @@ function vMinistar.setGlobalHeightMap(heightMap)
   end
 
   -- For each entry in the list of `heightMap`...
-  for i, v in ipairs(heightMap.list) do
-    local x = math.floor(world.xwrap(i + heightMap.startXPos - 1))
+  -- for i, v in ipairs(heightMap.list) do
+  --   local x = math.floor(world.xwrap(i + heightMap.startXPos - 1))
 
+  --   globalHeightMap[x] = v
+  -- end
+  for x, v in heightMap:xvalues() do
     globalHeightMap[x] = v
   end
 

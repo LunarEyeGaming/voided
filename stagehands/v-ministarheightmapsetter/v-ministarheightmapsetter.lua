@@ -6,10 +6,10 @@ function init()
 
   local pos = stagehand.position()
 
-  local startX = broadcastArea[1] + pos[1]
-  local endX = broadcastArea[3] + pos[1]
+  local startX = math.floor(broadcastArea[1] + pos[1])
+  local endX = math.floor(broadcastArea[3] + pos[1])
 
-  local heightMap = vMinistar.HeightMap:new(startX)
+  local heightMap = vMinistar.HeightMap:new()
   for x = startX, endX do
     heightMap:set(x, maxDepth + pos[2])
   end
