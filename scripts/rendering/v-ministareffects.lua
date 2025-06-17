@@ -41,6 +41,7 @@ local heightMap  ---@type HeightMap
 local minHeight
 local lightDrawBounds
 local sunProximityRatio
+local flareBoosts
 
 local isActive
 
@@ -72,11 +73,12 @@ function init()
   end)
 
   -- Synchronizes data
-  message.setHandler("v-ministareffects-updateBlocks", function(_, _, burningBlocks_, heightMap_, sunProximityRatio_, minHeight_, liquidParticlePoints_)
+  message.setHandler("v-ministareffects-updateBlocks", function(_, _, burningBlocks_, heightMap_, sunProximityRatio_, minHeight_, liquidParticlePoints_, flareBoosts_)
     burningBlocks = burningBlocks_
     heightMap = vMinistar.HeightMap:fromJson(heightMap_)
     sunProximityRatio = sunProximityRatio_
     minHeight = minHeight_
+    flareBoosts = vMinistar.HeightMap:fromJson(flareBoosts_)
 
     -- Merge on top of existing liquid particle points.
     for chunk, tiles in pairs(liquidParticlePoints_) do
@@ -210,7 +212,6 @@ function v_ministarEffects_applyRenderConfig(cfg)
         {0, 1, 0.5},
         {0, 0, 1}
       },
-      width = 8,
       position = {0, 0},  -- Placeholder value
       color = {0, 0, 0, 0},  -- Placeholder value
       fullbright = true
@@ -282,10 +283,8 @@ function update(dt)
   if heightMap then
     sb.setLogMap("ministareffects_heightMapBounds", "%s %s", heightMap:xbounds())
 
-    local boosts = v_ministarEffects_computeSolarFlareBoosts(heightMap:xbounds())
-
-    v_ministarEffects_drawSunRays(predictedPos, sunProximityRatio, boosts, window)
-    v_ministarEffects_drawSunRayLights(sunProximityRatio, boosts, window)
+    v_ministarEffects_drawSunRays(predictedPos, sunProximityRatio, flareBoosts, window)
+    v_ministarEffects_drawSunRayLights(sunProximityRatio, flareBoosts, window)
   end
   v_ministarEffects_drawParticles(sunRayColor)
 end

@@ -1,0 +1,109 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "clock" : {
+        "default" : "off",
+        "states" : {
+          "off" : {
+            "frames" : 1,
+            "cycle" : 1.0,
+            "mode" : "loop"
+          },
+          "on" : {
+            "frames" : 2,
+            "cycle" : 0.5,
+            "mode" : "loop"
+          }
+        }
+      },
+      "lock" : {
+        "default" : "unlocked",
+        "states" : {
+          "unlocked" : {},
+          "locking" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "locked"
+          },
+          "locked" : {},
+          "unlocking" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "unlocked"
+          }
+        }
+      }
+    },
+    "parts" : {
+      "base" : {
+        "properties" : {
+          "centered" : false,
+          "image" : "<partImage>"
+        }
+      },
+      "hand" : {
+        "properties" : {
+          "centered" : false,
+          "image" : "<partImage>",
+          "transformationGroups" : [ "hand" ],
+          "rotationPivot" : [0.125, 0.125],
+          "offset" : [1.375, 1.375],
+          "zLevel" : 1
+        }
+      },
+      "stone" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 2,
+          "offset" : [1.125, 1.125]
+        },
+        "partStates" : {
+          "clock" : {
+            "off" : {
+              "properties" : {
+                "image" : "<partImage>:off.<frame>"
+              }
+            },
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>:on.<frame>",
+                "fullbright" : true
+              }
+            }
+          }
+        }
+      },
+      "locks" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 3,
+          "offset" : [-0.125, -0.125]
+        },
+        "partStates" : {
+          "lock" : {
+            "locking" : {
+              "properties" : {
+                "image" : "<partImage>:locking.<frame>"
+              }
+            },
+            "locked" : {
+              "properties" : {
+                "image" : "<partImage>:locked.<frame>"
+              }
+            },
+            "unlocking" : {
+              "properties" : {
+                "image" : "<partImage>:unlocking.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "transformationGroups" : {
+    "hand" : { "interpolated" : true }
+  }
+}

@@ -216,16 +216,19 @@ function update(dt)
     -- Process existing entries.
     local tilesToDestroy = processHeatMap(affectedTiles, dt)
 
+    -- Calculate solar flare boosts.
+    local boosts = computeSolarFlareBoosts(heightMap:xbounds())
+
     -- Update heatMap for v-ministareffects.lua
     local sunProximityRatio = 1 - math.max(0, math.min((pos[2] - minDepth) / (maxDepth - minDepth), 1))
-    world.sendEntityMessage(player.id(), "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth, particleSpawnPoints)
+    world.sendEntityMessage(player.id(), "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth, particleSpawnPoints, boosts)
 
     addToHeatMap(affectedTiles, heightMap, dt)
 
     -- Destroy tiles.
     world.damageTiles(tilesToDestroy, "foreground", mcontroller.position(), "blockish", 2 ^ 32 - 1, 0)
 
-    local burnRatio = (1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + computeSolarFlareBoost(pos[1])
+    local burnRatio = (1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + boosts:get(pos[1])
 
     sb.setLogMap("burnRatio", "%s", burnRatio)
 
@@ -657,7 +660,11 @@ function getHeatConfig(material)
   return heatConfigs[material]
 end
 
-function computeSolarFlareBoost(x)
+---
+---@param startX integer
+---@param endX integer
+---@return HeightMap
+function computeSolarFlareBoosts(startX, endX)
   --[[
     Schema: {
       x: integer,  // Where the solar flare is located
@@ -669,14 +676,25 @@ function computeSolarFlareBoost(x)
   ]]
   local solarFlares = world.getProperty("v-solarFlares") or {}
 
-  local boost = 0
+  sb.setLogMap("solarFlares", "%s", #solarFlares)
+
+  local boosts = vMinistar.HeightMap:new()
+  for x = startX, endX do
+    boosts:set(x, 0)
+  end
+
+  sb.setLogMap("boostsBounds", "%s %s", boosts.startXPos, boosts.endXPos)
   for _, flare in ipairs(solarFlares) do
     local durationStdDev = flare.duration / 6
     local durationMean = flare.startTime + flare.duration / 2
-    boost = boost + normalDistribution(flare.x, flare.spread / 3, x) * flare.potency * normalDistribution(durationMean, durationStdDev, world.time())
+    local timeMultiplier = normalDistribution(durationMean, durationStdDev, world.time())
+
+    for x = startX, endX do
+      boosts:set(x, boosts:get(x) + normalDistribution(flare.x, flare.spread / 3, x) * flare.potency * timeMultiplier)
+    end
   end
 
-  return boost
+  return boosts
 end
 
 function normalDistribution(mean, stdDev, x)

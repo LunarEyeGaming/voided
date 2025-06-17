@@ -34,39 +34,16 @@
   {"op": "add", "path": "/genericScriptContexts/v-titanOfDarknessSpawn", "value": "/scripts/player/v-titanofdarknessspawn.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-ministarHeat", "value": "/scripts/player/v-ministarheat.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-terralibwarning", "value": "/scripts/player/v-requiresterralib.lua"},
+  // CPU Hog. Uncomment to activate.
   // {"op": "add", "path": "/genericScriptContexts/v-hog", "value": "/scripts/player/v-hog.lua"},
 
   // Client-side rendering scripts
-  {
-    "op": "add",
-    "path": "/deploymentConfig/scripts/-",
-    "value": "/scripts/rendering/v-depthpoisonmeter.lua"
-  },
-  {
-    "op": "add",
-    "path": "/deploymentConfig/scripts/-",
-    "value": "/scripts/rendering/v-gpsdisplay.lua"
-  },
-  {
-    "op": "add",
-    "path": "/deploymentConfig/scripts/-",
-    "value": "/scripts/rendering/v-specialeffects.lua"
-  },
-  {
-    "op": "add",
-    "path": "/deploymentConfig/scripts/-",
-    "value": "/scripts/rendering/v-titanofdarknessaura.lua"
-  },
-  {
-    "op": "add",
-    "path": "/deploymentConfig/scripts/-",
-    "value": "/scripts/rendering/v-ministareffects.lua"
-  },
-  {
-    "op": "add",
-    "path": "/deploymentConfig/scripts/-",
-    "value": "/scripts/rendering/v-titanhallucination.lua"
-  },
+  {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-depthpoisonmeter.lua"},
+  {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-gpsdisplay.lua"},
+  {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-specialeffects.lua"},
+  {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-titanofdarknessaura.lua"},
+  {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-ministareffects.lua"},
+  {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-titanhallucination.lua"},
 
   // Depth poison mechanic
   {

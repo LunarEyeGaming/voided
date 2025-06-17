@@ -1,0 +1,63 @@
+{
+  "objectName" : "v-phoenixtimer",
+  "colonyTags" : ["avian","aviantomb","light"],
+  "rarity" : "Common",
+  "category" : "wire",
+  "price" : 60,
+
+  "description" : "<todo>",
+  "shortdescription" : "Phoenix Timer",
+  "race" : "avian",
+
+  // TODO
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "base.png",
+      "imagePosition" : [-8, -8],
+
+      "direction" : "left",
+      "flipImages" : true,
+      "animationPosition" : [-8, -8],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    },
+    {
+      "image" : "base.png",
+      "imagePosition" : [-8, -8],
+
+      "direction" : "right",
+      "animationPosition" : [-8, -8],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "animation" : "v-phoenixtimer.animation",
+  "animationParts" : {
+    "base" : "base.png",
+    "hand" : "hand.png",
+    "stone" : "stone.png",
+    "locks" : "locks.png"
+  },
+
+  "scripts" : [ "v-phoenixtimer.lua" ],
+  "scriptDelta" : 3,
+
+  "duration" : 5,
+
+  "inputNodes" : [ [-1, -1], [0, -1] ],
+  "outputNodes" : [ [-1, 0] ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

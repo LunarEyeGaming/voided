@@ -184,6 +184,24 @@
   },
   {
     "op" : "add",
+    "path" : "/v-ministarMicrodungeon",
+    "value" : {
+      "type" : "random",
+
+      "blockProbability" : 0.6
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-ministarMicrodungeonDense",
+    "value" : {
+      "type" : "random",
+
+      "blockProbability" : 0.9
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/v-testDistribution",
     "value" : {
       "type" : "periodic",

@@ -18,18 +18,18 @@
   "category" : "trap",
   "price" : 200,
 
-  "inventoryIcon" : "flametrapicon.png",
+  "inventoryIcon" : "phoenixoiltrapicon.png",
   "orientations" : [
     {
-      "image" : "flametrap.png:<color>.<frame>",
+      "image" : "phoenixoiltrap.png:<color>.<frame>",
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
 
       "animationPosition" : [-8, 0],
       "animationParts" : {
-        "bg" : "flametrap.png",
-        "fg" : "flametrap.png"
+        "bg" : "phoenixoiltrap.png",
+        "fg" : "phoenixoiltrap.png"
       },
 
       "projectileDirection" : [0, 1],
@@ -39,14 +39,14 @@
       "anchors" : [ "bottom" ]
     },
     {
-      "image" : "flametrap.png:<color>.<frame>",
+      "image" : "phoenixoiltrap.png:<color>.<frame>",
       "imagePosition" : [0, 0],
       "direction" : "right",
 
       "animationPosition" : [0, 0],
       "animationParts" : {
-        "bg" : "flametrap.png",
-        "fg" : "flametrap.png"
+        "bg" : "phoenixoiltrap.png",
+        "fg" : "phoenixoiltrap.png"
       },
 
       "projectileDirection" : [0, 1],
@@ -56,14 +56,14 @@
       "anchors" : [ "bottom" ]
     },
     {
-      "image" : "flametrapleft.png:<color>.<frame>",
+      "image" : "phoenixoiltrapleft.png:<color>.<frame>",
       "imagePosition" : [0, -8],
       "direction" : "right",
 
       "animationPosition" : [0, -8],
       "animationParts" : {
-        "bg" : "flametrapleft.png",
-        "fg" : "flametrapleft.png"
+        "bg" : "phoenixoiltrapleft.png",
+        "fg" : "phoenixoiltrapleft.png"
       },
 
       "projectileDirection" : [1, 0],
@@ -73,14 +73,14 @@
       "anchors" : [ "left" ]
     },
     {
-      "image" : "flametrapright.png:<color>.<frame>",
+      "image" : "phoenixoiltrapright.png:<color>.<frame>",
       "imagePosition" : [0, -8],
       "direction" : "right",
 
       "animationPosition" : [0, -8],
       "animationParts" : {
-        "bg" : "flametrapright.png",
-        "fg" : "flametrapright.png"
+        "bg" : "phoenixoiltrapright.png",
+        "fg" : "phoenixoiltrapright.png"
       },
 
       "projectileDirection" : [-1, 0],
@@ -90,15 +90,15 @@
       "anchors" : [ "right" ]
     },
     {
-      "image" : "flametrapceiling.png:<color>.<frame>",
+      "image" : "phoenixoiltrapceiling.png:<color>.<frame>",
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
 
       "animationPosition" : [-8, 0],
       "animationParts" : {
-        "bg" : "flametrapceiling.png",
-        "fg" : "flametrapceiling.png"
+        "bg" : "phoenixoiltrapceiling.png",
+        "fg" : "phoenixoiltrapceiling.png"
       },
 
       "projectileDirection" : [0, -1],
@@ -108,14 +108,14 @@
       "anchors" : [ "top" ]
     },
     {
-      "image" : "flametrapceiling.png:<color>.<frame>",
+      "image" : "phoenixoiltrapceiling.png:<color>.<frame>",
       "imagePosition" : [0, 0],
       "direction" : "right",
 
       "animationPosition" : [0, 0],
       "animationParts" : {
-        "bg" : "flametrapceiling.png",
-        "fg" : "flametrapceiling.png"
+        "bg" : "phoenixoiltrapceiling.png",
+        "fg" : "phoenixoiltrapceiling.png"
       },
 
       "projectileDirection" : [0, -1],
