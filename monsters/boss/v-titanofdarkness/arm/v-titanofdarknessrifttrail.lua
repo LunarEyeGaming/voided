@@ -165,26 +165,27 @@ function updateTrail()
 
         local trailPoly = {
           {
-            startPos[1] - startProgress * halfTrailThickness * sinStart * topThicknessStart,
-            startPos[2] + startProgress * halfTrailThickness * cosStart * topThicknessStart,
+            -startProgress * halfTrailThickness * sinStart * topThicknessStart,
+            startProgress * halfTrailThickness * cosStart * topThicknessStart,
           },
           {
-            startPos[1] + startProgress * halfTrailThickness * sinStart * bottomThicknessStart,
-            startPos[2] - startProgress * halfTrailThickness * cosStart * bottomThicknessStart,
+            startProgress * halfTrailThickness * sinStart * bottomThicknessStart,
+            -startProgress * halfTrailThickness * cosStart * bottomThicknessStart,
           },
           {
-            startPos[1] + distance * cosEnd + endProgress * halfTrailThickness * sinEnd * bottomThicknessEnd,
-            startPos[2] + distance * sinEnd - endProgress * halfTrailThickness * cosEnd * bottomThicknessEnd,
+            distance * cosEnd + endProgress * halfTrailThickness * sinEnd * bottomThicknessEnd,
+            distance * sinEnd - endProgress * halfTrailThickness * cosEnd * bottomThicknessEnd,
           },
           {
-            startPos[1] + distance * cosEnd - endProgress * halfTrailThickness * sinEnd * topThicknessEnd,
-            startPos[2] + distance * sinEnd + endProgress * halfTrailThickness * cosEnd * topThicknessEnd,
+            distance * cosEnd - endProgress * halfTrailThickness * sinEnd * topThicknessEnd,
+            distance * sinEnd + endProgress * halfTrailThickness * cosEnd * topThicknessEnd,
           }
         }
 
         localAnimator.addDrawable({
           poly = trailPoly,
           color = trail.color,
+          position = startPos,
           fullbright = trail.fullbright
         }, trail.renderLayer)
       end

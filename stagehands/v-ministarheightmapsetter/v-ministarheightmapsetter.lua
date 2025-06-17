@@ -11,7 +11,7 @@ function init()
 
   local heightMap = vMinistar.HeightMap:new()
   for x = startX, endX do
-    heightMap:set(x, maxDepth + pos[2], true)
+    heightMap:set(x, maxDepth + pos[2])
   end
 
   vMinistar.setGlobalHeightMap(heightMap)

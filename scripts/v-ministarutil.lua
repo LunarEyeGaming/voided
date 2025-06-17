@@ -55,7 +55,7 @@ end
 ---Sets the height map value at `x` to `v`.
 ---@param x integer
 ---@param v integer
-function vMinistar.HeightMap:set(x, v, debug)
+function vMinistar.HeightMap:set(x, v)
   x = world.xwrap(x)
 
   -- Update boundaries. Use world.nearestTo to account for world wrapping
@@ -65,10 +65,7 @@ function vMinistar.HeightMap:set(x, v, debug)
   else
     local startX = world.nearestTo(x, self.startXPos)
     local endX = world.nearestTo(x, self.endXPos)
-    if debug then
-      sb.logInfo("startX: %s, endX: %s", startX, endX)
 
-    end
     if not (startX <= x and x <= endX) then
       -- If the start is the closer boundary, then assign x to be it. Otherwise, assign x to be the end.
       if math.abs(x - startX) < math.abs(x - endX) then
