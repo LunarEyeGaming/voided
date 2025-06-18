@@ -408,7 +408,7 @@ function v_ministarEffects_computeLightBounds()
     local v = heightMap:get(x)
     if v >= lightMinHeight and v ~= minHeight then
       lightDrawBounds:set(x, {s = lightMinHeight, e = v})
-      world.debugLine({x, lightMinHeight}, {x, v}, "white")
+      -- world.debugLine({x, lightMinHeight}, {x, v}, "white")
     end
   end
 end
