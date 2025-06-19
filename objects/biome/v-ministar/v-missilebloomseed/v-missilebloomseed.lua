@@ -42,6 +42,8 @@ function init()
 
   if stageConfig.alts then
     animator.setGlobalTag("alt", sb.staticRandomI32Range(0, stageConfig.alts - 1, object.position()[1]))
+  else
+    animator.setGlobalTag("alt", "0")
   end
 
   positionData = {}

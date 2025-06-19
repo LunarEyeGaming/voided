@@ -250,7 +250,7 @@ vLocalAnimator = {}
 ---@field onMovementOnly boolean?
 ---@field pred (fun(pos: Vec2I): boolean)?
 
-vLocalAnimator.spawnOffscreenParticles = (function()
+do
   -- State variable
   local prevWindowRegion
 
@@ -266,8 +266,7 @@ vLocalAnimator.spawnOffscreenParticles = (function()
   ---
   ---@param particle table
   ---@param options VLocalAnimator_SpawnOffscreenParticlesArgs
-  return function(particle, options)
-
+  function vLocalAnimator.spawnOffscreenParticles(particle, options)
     local density = options.density
     local exposedOnly = options.exposedOnly
     local ignoreWind = options.ignoreWind
@@ -345,4 +344,101 @@ vLocalAnimator.spawnOffscreenParticles = (function()
 
     prevWindowRegion = windowRegion
   end
-end)()
+end
+
+-- vLocalAnimator.spawnOffscreenParticles = (function()
+--   -- State variable
+--   local prevWindowRegion
+
+--   ---Spawns particles with definition `particle` from offscreen with density `density`. If there is any wind, the x
+--   ---component of its initial velocity will be the wind level. Also spawns more or less particles depending on how much
+--   ---the client window has moved.
+--   ---
+--   ---NOTE: For performance reasons, this function will modify the particle's initial velocity.
+--   ---
+--   ---If `exposedOnly` is `true`, the `particle` will spawn only if the spawning position does not have a material in the
+--   ---background. The predicate function `pred` is optional. If defined, it adds an additional condition for the particle
+--   ---to spawn.
+--   ---
+--   ---@param particle table
+--   ---@param options VLocalAnimator_SpawnOffscreenParticlesArgs
+--   return function(particle, options)
+
+--     local density = options.density
+--     local exposedOnly = options.exposedOnly
+--     local ignoreWind = options.ignoreWind
+--     local vertical = options.vertical
+--     local pred = options.pred or function() return true end
+
+--     -- Helper function.
+--     local spawnParticle = function(position)
+--       if math.random() <= density
+--           and (not exposedOnly or not world.material(position, "background"))
+--           and pred(position) then
+
+--         if not ignoreWind then
+--           -- Note: windLevel is zero if there is a background block.
+--           local horizontalSpeed = world.windLevel(position)
+
+--           if horizontalSpeed ~= 0 then
+--             local initialVelocity = particle.initialVelocity or {0, 0}
+--             initialVelocity[1] = horizontalSpeed
+--             particle.initialVelocity = initialVelocity
+--           end
+--         end
+
+--         localAnimator.spawnParticle(particle, position)
+--       end
+--     end
+
+--     local windowRegion = world.clientWindow()
+
+--     -- Define prevWindowRegion on first call
+--     if not prevWindowRegion then
+--       prevWindowRegion = windowRegion
+--     end
+
+--     local windowRegionXL, windowRegionYB, windowRegionXR, windowRegionYT
+--     if options.onMovementOnly then
+--       -- Fudge window region values to ensure that iteration occurs only when the window has moved.
+--       windowRegionXL = windowRegion[1] - 1
+--       windowRegionYB = windowRegion[2] - 1
+--       windowRegionXR = windowRegion[3] + 1
+--       windowRegionYT = windowRegion[4] + 1
+--     else
+--       windowRegionXL = windowRegion[1]
+--       windowRegionYB = windowRegion[2]
+--       windowRegionXR = windowRegion[3]
+--       windowRegionYT = windowRegion[4]
+--     end
+--     local prevWindowXLeft = world.nearestTo(windowRegion[1], prevWindowRegion[1])
+--     local prevWindowXRight = world.nearestTo(windowRegion[3], prevWindowRegion[3])
+--     for y = windowRegion[2], windowRegion[4] do
+--       -- Left
+--       for x = prevWindowXLeft, windowRegionXL do
+--         spawnParticle({x, y})
+--       end
+
+--       -- Right
+--       for x = windowRegionXR, prevWindowXRight do
+--         spawnParticle({x, y})
+--       end
+--     end
+
+--     if vertical then
+--       for x = windowRegion[1], windowRegion[3] do
+--         -- Bottom
+--         for y = prevWindowRegion[2], windowRegionYB do
+--           spawnParticle({x, y})
+--         end
+
+--         -- Top
+--         for y = windowRegionYT, prevWindowRegion[4] do
+--           spawnParticle({x, y})
+--         end
+--       end
+--     end
+
+--     prevWindowRegion = windowRegion
+--   end
+-- end)()
