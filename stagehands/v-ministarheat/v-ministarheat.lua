@@ -34,7 +34,8 @@ local liquidScanner
 
 local isActive
 
-local ADJACENT_TILES = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}
+local postInitCalled
+
 local SECTOR_SIZE = 32
 
 ---@class RawHeightMap
@@ -51,6 +52,8 @@ local SECTOR_SIZE = 32
 ---@field heatDeltaDir number
 
 function init()
+  postInitCalled = false
+
   checkMinX = -100
   checkMaxX = 100
   checkMinY = -100
@@ -59,6 +62,8 @@ function init()
 
   minDepth = config.getParameter("minDepth")
   maxDepth = config.getParameter("maxDepth")
+
+  sb.logInfo("v-ministarheat.lua::init (stagehand) called")
 
   initLiquidScanner()
 
@@ -137,73 +142,257 @@ function initLiquidScanner()
   end)
 end
 
+function postInit()
+  sb.logInfo("v-ministarheat.lua::postInit (stagehand) called")
+  local stagehandId = world.loadUniqueEntity("v-ministarheat-stagehand")
+  sb.logInfo("stagehandId: %s", stagehandId)
+
+  -- Clear unique ID
+  if stagehandId == 0 then
+    stagehand.setUniqueId("v-ministarheat-stagehand")
+  elseif stagehandId ~= entity.id() then
+    stagehand.die()
+  end
+end
+
 function update(dt)
+  if not postInitCalled then
+    postInit()
+    postInitCalled = true
+    return
+  end
+
   vTime.update(dt)
 
   -- TODO: Add multiplayer support.
   -- Run the main portion of the Ministar heat script if active. Otherwise, just run the liquid scanner.
   if isActive then
-    local playerId = world.players()[1]
+    local playerIds = world.players()
 
-    if not playerId then return end
+    -- Filter out nonexistent players.
+    for i = #playerIds, 1, -1 do
+      local playerId = playerIds[i]
 
-    local playerPos = world.entityPosition(playerId)
-
-    if not playerPos then return end
-
-    local pos = vec2.floor(playerPos)
-    local affectedTiles = {}  -- hash map
-
-    local boundaryTiles, particleSpawnPoints = liquidScanner:update(pos)
-
-    -- Update affectedTiles with the boundaryTiles that actually have foreground blocks.
-    for _, tile in ipairs(boundaryTiles) do
-      local tileStr = vVec2.iToString(tile)
-      if not affectedTiles[tileStr] and world.pointTileCollision(tile) then
-        affectedTiles[tileStr] = true
+      if not world.entityExists(playerId) then
+        table.remove(playerIds, i)
       end
     end
 
-    local heightMap = surfaceTileQuery(pos, affectedTiles)
+    if #playerIds > 0 then
+      local anchorPos = world.entityPosition(playerIds[1])  -- Anchor position to a player.
+      if not anchorPos then return end  -- TODO: Remove check.
 
-    syncHeightMapToGlobal(heightMap)
+      -- Get query regions
+      local positions = getPlayerPositions(playerIds)
+      local regions = getPlayerRegions(positions)
+      local mergedRegions = mergeRegions(regions)
 
-    applyEntityHeightMaps(heightMap)
+      local affectedTiles = {}  -- hash map
+      local liquidTouchedTiles = {}  -- hash map
+      local boostSets = {}  -- List of boosts for each region.
 
-    -- Process existing entries.
-    local tilesToDestroy = processHeatMap(affectedTiles, dt)
+      -- Run liquid query on merged regions
+      local boundaryTiles, particleSpawnPoints = liquidScanner:update(mergedRegions)
 
-    -- Calculate solar flare boosts.
-    local boosts = computeSolarFlareBoosts(heightMap:xbounds())
+      -- Update affectedTiles with the boundaryTiles that actually have foreground blocks.
+      for _, tile in ipairs(boundaryTiles) do
+        local tileStr = vVec2.iToString(tile)
+        if not affectedTiles[tileStr] and world.pointTileCollision(tile) then
+          affectedTiles[tileStr] = true
+          liquidTouchedTiles[tileStr] = true
+        end
+      end
 
-    -- Update heatMap for v-ministareffects.lua
-    local sunProximityRatio = 1 - math.max(0, math.min((pos[2] - minDepth) / (maxDepth - minDepth), 1))
-    world.sendEntityMessage(playerId, "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth, particleSpawnPoints, boosts)
+      local heightMaps = {}  -- Height maps for each region. Used for entity messaging.
 
-    addToHeatMap(affectedTiles, heightMap, dt)
+      -- Run surface queries on merged regions
+      for _, region in ipairs(mergedRegions) do
+        -- Get the height map for the current player and add it to the list.
+        local heightMap = surfaceTileQuery(region[1], region[3], region[4], affectedTiles)
+        table.insert(heightMaps, heightMap)
 
-    -- Destroy tiles.
-    world.damageTiles(tilesToDestroy, "foreground", pos, "blockish", 2 ^ 32 - 1, 0)
+        -- Calculate solar flare boosts for the current player and add it to the list.
+        local boosts = computeSolarFlareBoosts(heightMap:xbounds())
+        table.insert(boostSets, boosts)
+      end
 
-    stagehand.setPosition(pos)
+      -- for _, heightMap in ipairs(heightMaps) do
+      --   for x, v in heightMap:xvalues() do
+      --     world.debugText("%s, %s", x, v, {x, anchorPos[2] + x % 5}, "green")
+      --   end
+      -- end
+
+      syncHeightMapsToGlobal(heightMaps)
+      applyEntityHeightMaps(heightMaps)
+
+      local combinedHeightMap = vMinistar.HeightMap:merge(heightMaps)
+      local combinedBoosts = vMinistar.HeightMap:merge(boostSets)
+
+      -- Process existing entries.
+      local tilesToDestroy = processHeatMap(affectedTiles, dt)
+
+      -- Update information for v-ministareffects.lua
+      for i, playerId in ipairs(playerIds) do
+        local pos = positions[i]
+        local region = regions[i]
+        local sunProximityRatio = 1 - math.max(0, math.min((pos[2] - minDepth) / (maxDepth - minDepth), 1))
+        local heightMap = combinedHeightMap:slice(region[1], region[3])
+        -- sb.logInfo("%s, %s", region[1], region[3])
+        world.sendEntityMessage(playerId, "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth, particleSpawnPoints, combinedBoosts)
+      end
+
+      addToHeatMap(affectedTiles, combinedHeightMap, liquidTouchedTiles, dt)
+
+      -- Destroy tiles.
+      world.damageTiles(tilesToDestroy, "foreground", {0, 0}, "blockish", 2 ^ 32 - 1, 0)
+
+      stagehand.setPosition(anchorPos)
+    end
+    -- local playerId = world.players()[1]
+
+    -- if not playerId then return end
+
+    -- local playerPos = world.entityPosition(playerId)
+
+    -- if not playerPos then return end
+
+    -- local pos = vec2.floor(playerPos)
+
+    -- local boundaryTiles, particleSpawnPoints = liquidScanner:update(pos)
+
+    -- local affectedTiles = {}  -- hash map
+    -- local liquidTouchedTiles = {}  -- hash map
+
+    -- -- Update affectedTiles with the boundaryTiles that actually have foreground blocks.
+    -- for _, tile in ipairs(boundaryTiles) do
+    --   local tileStr = vVec2.iToString(tile)
+    --   if not affectedTiles[tileStr] and world.pointTileCollision(tile) then
+    --     affectedTiles[tileStr] = true
+    --     liquidTouchedTiles[tileStr] = true
+    --   end
+    -- end
+
+    -- local heightMap = surfaceTileQuery(pos, affectedTiles)
+
+    -- syncHeightMapToGlobal(heightMap)
+
+    -- applyEntityHeightMaps(heightMap)
+
+    -- -- Process existing entries.
+    -- local tilesToDestroy = processHeatMap(affectedTiles, dt)
+
+    -- -- Calculate solar flare boosts.
+    -- local boosts = computeSolarFlareBoosts(heightMap:xbounds())
+
+    -- -- Update heatMap for v-ministareffects.lua
+    -- local sunProximityRatio = 1 - math.max(0, math.min((pos[2] - minDepth) / (maxDepth - minDepth), 1))
+    -- world.sendEntityMessage(playerId, "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth, particleSpawnPoints, boosts)
+
+    -- addToHeatMap(affectedTiles, heightMap, liquidTouchedTiles, dt)
+
+    -- -- Destroy tiles.
+    -- world.damageTiles(tilesToDestroy, "foreground", {0, 0}, "blockish", 2 ^ 32 - 1, 0)
+
+    -- stagehand.setPosition(pos)
   else
-    local playerId = world.players()[1]
-    local pos = vec2.floor(world.entityPosition(playerId))
-    local _, particleSpawnPoints = liquidScanner:update(pos)
-    world.sendEntityMessage(playerId, "v-ministareffects-updateLiquidParticles", particleSpawnPoints)
+    local playerIds = world.players()
 
-    stagehand.setPosition(pos)
+    -- Filter out nonexistent players.
+    for i = #playerIds, 1, -1 do
+      local playerId = playerIds[i]
+
+      if not world.entityExists(playerId) then
+        table.remove(playerIds, i)
+      end
+    end
+
+    if #playerIds > 0 then
+      local anchorPos = world.entityPosition(playerIds[1])  -- Anchor position to a player.
+      if not anchorPos then return end  -- TODO: Remove check.
+
+      -- Get query regions
+      local positions = getPlayerPositions(playerIds)
+      local regions = getPlayerRegions(positions)
+      local mergedRegions = mergeRegions(regions)
+
+      -- Query for liquids
+      local _, particleSpawnPoints = liquidScanner:update(mergedRegions)
+
+      -- Update information for v-ministareffects.lua
+      for _, playerId in ipairs(playerIds) do
+        world.sendEntityMessage(playerId, "v-ministareffects-updateLiquidParticles", particleSpawnPoints)
+      end
+
+      stagehand.setPosition(anchorPos)
+    end
   end
 end
 
----Populates `affectedTiles` with a list of tiles that are exposed to the surface below given a central position `pos`.
----@param pos Vec2I
----@param affectedTiles table<string, boolean>
----@return HeightMap
-function surfaceTileQuery(pos, affectedTiles)
-  local heightMap = vMinistar.HeightMap:new()
+---Returns a list of the positions (floored) of all existing players.
+---@param playerIds EntityId[]
+---@return Vec2I[]
+function getPlayerPositions(playerIds)
+  local positions = {}
 
-  local lowestSectors = findLowestLoadedSectors(checkMinX + pos[1], checkMaxX + pos[1], pos[2])
+  for _, playerId in ipairs(playerIds) do
+    local playerPos = world.entityPosition(playerId)
+
+    -- TODO: Remove this check as all players are guaranteed to exist at this point.
+    if playerPos then
+      local playerPosFloored = vec2.floor(playerPos)
+      table.insert(positions, playerPosFloored)
+    end
+  end
+
+  return positions
+end
+
+---Returns a list of regions surrounding each position in `positions`.
+---@param positions Vec2I[]
+---@return RectI[]
+function getPlayerRegions(positions)
+  local regions = {}
+
+  for _, playerPos in ipairs(positions) do
+    local region = {
+      checkMinX + playerPos[1],
+      checkMinY + playerPos[2],
+      checkMaxX + playerPos[1],
+      checkMaxY + playerPos[2]
+    }
+    table.insert(regions, region)
+  end
+
+  return regions
+end
+
+function mergeRegions(regions)
+  return regions  -- TODO: Stub
+end
+
+---Populates `affectedTiles` with a list of tiles that are exposed to the surface below given a central position `pos`.
+---@param startX integer
+---@param endX integer
+---@param yTop integer
+---@param affectedTiles table<string, boolean>
+---@param heightMap? HeightMap
+---@return HeightMap
+function surfaceTileQuery(startX, endX, yTop, affectedTiles, heightMap)
+  local world_liquidAt = world.liquidAt
+  local world_collisionBlocksAlongLine = world.collisionBlocksAlongLine
+  local world_material = world.material
+  local world_xwrap = world.xwrap
+  local vVec2_iToString = vVec2.iToString
+
+  heightMap = heightMap or vMinistar.HeightMap:new()
+
+  -- Set x boundaries for the height map.
+  heightMap.startXPos = world_xwrap(startX)
+  heightMap.endXPos = world_xwrap(endX)
+
+  local heightMap_list = heightMap.list
+
+  local lowestSectors = findLowestLoadedSectors(startX, endX, yTop)
 
   -- Convert lowestSectors into a horizontal position map.
   local lowestSectorsMap = {}
@@ -223,8 +412,7 @@ function surfaceTileQuery(pos, affectedTiles)
   end
 
   -- Generate a set of tiles that are heated right now.
-  for i = checkMinX, checkMaxX do
-    local x = i + pos[1]
+  for x = startX, endX do
     -- Find associated lowest sector.
     local xSector = x // SECTOR_SIZE
     local sectorValue = lowestSectorsMap[xSector]
@@ -235,41 +423,41 @@ function surfaceTileQuery(pos, affectedTiles)
     -- directly below cappedCheckMinY.
     local shouldProceed = not checkMinYWasCapped
     if checkMinYWasCapped then
-      local liquid = world.liquidAt({x, cappedCheckMinY - 1})
+      local liquid = world_liquidAt({x, cappedCheckMinY - 1})
       if liquid and liquid[1] == sunLiquidId then
         shouldProceed = true
       end
     end
 
     if shouldProceed then
-      local collidePoints = world.collisionBlocksAlongLine({x, cappedCheckMinY}, {x, checkMaxY + pos[2]}, collisionSet, maxPenetration)
+      local collidePoints = world_collisionBlocksAlongLine({x, cappedCheckMinY}, {x, yTop}, collisionSet, maxPenetration)
 
       -- Mark all tiles as affected. Stop after reaching the first solid, opaque tile.
       local foundSolidTile = false
       for _, collideTile in ipairs(collidePoints) do
-        local material = world.material(collideTile, "foreground")
+        local material = world_material(collideTile, "foreground")
         if material then
-          local collideTileStr = vVec2.iToString(collideTile)
+          local collideTileStr = vVec2_iToString(collideTile)
           affectedTiles[collideTileStr] = true
           local matCfg = getMaterialConfig(material)
           if matCfg and not matCfg.renderParameters.lightTransparent and matCfg.collisionKind == "solid" then
             -- Add to height map.
-            -- heightMap.list[i - checkMinX + 1] = collideTile[2]
-            heightMap:set(x, collideTile[2])
+            heightMap_list[world_xwrap(x)] = collideTile[2]
+            -- heightMap:set(x, collideTile[2])
             foundSolidTile = true
             break
           end
         end
       end
 
-      -- Manually set the heightMap entry if no solid, opaque tile was found, or collidePoints is empty.
+      -- Manually set the heightMap entry if no solid, opaque tile was found, or if collidePoints is empty.
       if not foundSolidTile then
-        -- heightMap.list[i - checkMinX + 1] = checkMaxY + pos[2]
-        heightMap:set(x, checkMaxY + pos[2])
+        heightMap_list[world_xwrap(x)] = yTop
+        -- heightMap:set(x, checkMaxY + pos[2])
       end
     else
-      -- heightMap.list[i - checkMinX + 1] = cappedCheckMinY
-      heightMap:set(x, cappedCheckMinY)
+      heightMap_list[world_xwrap(x)] = cappedCheckMinY
+      -- heightMap:set(x, cappedCheckMinY)
     end
   end
 
@@ -277,104 +465,110 @@ function surfaceTileQuery(pos, affectedTiles)
 end
 
 ---Syncs the given height map to the global height map.
----@param heightMap HeightMap
-function syncHeightMapToGlobal(heightMap)
-  local startX, endX = heightMap:xbounds()
-  local startXSector = startX // SECTOR_SIZE
-  local endXSector = endX // SECTOR_SIZE
-  sb.setLogMap("ministarheat_startXSector", "%s", startXSector)
-  sb.setLogMap("ministarheat_endXSector", "%s", endXSector)
+---@param heightMaps HeightMap[]
+function syncHeightMapsToGlobal(heightMaps)
+  for _, heightMap in ipairs(heightMaps) do
+    local startX, endX = heightMap:xbounds()
+    local startXSector = startX // SECTOR_SIZE
+    local endXSector = endX // SECTOR_SIZE
+    sb.setLogMap("ministarheat_startXSector", "%s", startXSector)
+    sb.setLogMap("ministarheat_endXSector", "%s", endXSector)
 
-  -- Map from horizontal positions to `HeightMapItem`.
-  ---@type table<integer, HeightMapItem>
-  local globalHeightMap = {}
-  -- For each `xSector` from `startXSector` to `endXSector`...
-  for xSector = startXSector, endXSector do
-    local xSectorWrapped = math.floor(world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
-    -- Get global height map section corresponding to `xSector`.
-    local globalHeightMapSection = world.getProperty("v-globalHeightMap." .. xSectorWrapped) or {}
+    -- Map from horizontal positions to `HeightMapItem`.
+    ---@type table<integer, HeightMapItem>
+    local globalHeightMap = {}
+    -- For each `xSector` from `startXSector` to `endXSector`...
+    for xSector = startXSector, endXSector do
+      local xSectorWrapped = math.floor(world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
+      -- Get global height map section corresponding to `xSector`.
+      local globalHeightMapSection = world.getProperty("v-globalHeightMap." .. xSectorWrapped) or {}
 
-    -- Copy the section over to globalHeightMap.
-    for _, value in ipairs(globalHeightMapSection) do
-      globalHeightMap[value.x] = value.value
-    end
-  end
-
-  -- For each entry in the list of `heightMap`...
-  -- for i, v in ipairs(heightMap.list) do
-  --   local x = world.xwrap(i + heightMap.startXPos - 1)
-
-  --   if not globalHeightMap[x] then
-  --     globalHeightMap[x] = v
-  --   else
-  --     local globalV = globalHeightMap[x]
-
-  --     local sharedValue
-  --     if v < globalV or not world.pointCollision({x, globalV}, {"Null"}) then
-  --       sharedValue = v
-  --     else
-  --       sharedValue = globalV
-  --     end
-
-  --     heightMap.list[i] = sharedValue
-  --     globalHeightMap[x] = sharedValue
-  --   end
-  -- end
-
-  -- local stagehandPos = stagehand.position()
-
-  -- for x = -25 + stagehandPos[1], 25 + stagehandPos[1] do
-  --   world.debugText("x: %s\nlv: %s\ngv: %s\n", x, heightMap:get(x), globalHeightMap[x], {x, stagehandPos[2] + 10 + 4 * (x % 3)}, "green")
-  -- end
-
-  -- for sectorX = -10, 10 do
-  --   for sectorY = -10, 10 do
-  --     local displayX = stagehandPos[1] + sectorX
-  --     local displayY = stagehandPos[2] + sectorY
-  --     local x = stagehandPos[1] + sectorX * SECTOR_SIZE
-  --     local y = stagehandPos[2] + sectorY * SECTOR_SIZE
-  --     local color = world.pointCollision({x, y}, {"Null"}) and "red" or "green"
-
-  --     world.debugPoint({displayX, displayY}, color)
-  --   end
-  -- end
-
-  -- For each entry in the list of `heightMap`...
-  for x, v in heightMap:xvalues() do
-    if not globalHeightMap[x] then
-      globalHeightMap[x] = v
-    else
-      local globalV = globalHeightMap[x]
-      local sharedValue
-      if v < globalV or not world.pointCollision({x, globalV}, {"Null"}) then
-        sharedValue = v
-      else
-        sharedValue = globalV
+      -- Copy the section over to globalHeightMap.
+      for _, value in ipairs(globalHeightMapSection) do
+        globalHeightMap[value.x] = value.value
       end
-      heightMap:set(x, sharedValue)
-      globalHeightMap[x] = sharedValue
-    end
-  end
-
-  -- Store globalHeightMap sections.
-  -- For each `xSector` from `startXSector` to `endXSector`...
-  for xSector = startXSector, endXSector do
-    local globalHeightMapSection = {}
-    local xSectorWrapped = math.floor(world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
-
-    -- For each x value in the sector...
-    for x = xSectorWrapped * SECTOR_SIZE, (xSectorWrapped + 1) * SECTOR_SIZE - 1 do
-      -- Add to the section.
-      table.insert(globalHeightMapSection, {x = x, value = globalHeightMap[x]})
     end
 
-    world.setProperty("v-globalHeightMap." .. xSectorWrapped, globalHeightMapSection)
+    -- For each entry in the list of `heightMap`...
+    -- for i, v in ipairs(heightMap.list) do
+    --   local x = world.xwrap(i + heightMap.startXPos - 1)
+
+    --   if not globalHeightMap[x] then
+    --     globalHeightMap[x] = v
+    --   else
+    --     local globalV = globalHeightMap[x]
+
+    --     local sharedValue
+    --     if v < globalV or not world.pointCollision({x, globalV}, {"Null"}) then
+    --       sharedValue = v
+    --     else
+    --       sharedValue = globalV
+    --     end
+
+    --     heightMap.list[i] = sharedValue
+    --     globalHeightMap[x] = sharedValue
+    --   end
+    -- end
+
+    -- local stagehandPos = stagehand.position()
+
+    -- for x, v in heightMap:xvalues() do
+    --   world.debugText("x: %s\nlv: %s\ngv: %s\n", x, v, globalHeightMap[x], {x, stagehandPos[2] + 10 + 4 * (x % 5)}, "green")
+    -- end
+
+    -- for sectorX = -10, 10 do
+    --   for sectorY = -10, 10 do
+    --     local displayX = stagehandPos[1] + sectorX
+    --     local displayY = stagehandPos[2] + sectorY
+    --     local x = stagehandPos[1] + sectorX * SECTOR_SIZE
+    --     local y = stagehandPos[2] + sectorY * SECTOR_SIZE
+    --     local color = world.pointCollision({x, y}, {"Null"}) and "red" or "green"
+
+    --     world.debugPoint({displayX, displayY}, color)
+    --   end
+    -- end
+
+    -- For each entry in the list of `heightMap`...
+    for x, v in heightMap:xvalues() do
+      if not globalHeightMap[x] then
+        globalHeightMap[x] = v
+      else
+        local globalV = globalHeightMap[x]
+        local sharedValue
+        if v < globalV or not world.pointCollision({x, globalV}, {"Null"}) then
+          sharedValue = v
+        else
+          sharedValue = globalV
+        end
+        heightMap:set(x, sharedValue)
+        globalHeightMap[x] = sharedValue
+      end
+    end
+
+    -- for x, v in heightMap:xvalues() do
+    --   world.debugText("x: %s\nlv: %s\ngv: %s\n", x, v, globalHeightMap[x], {x, stagehandPos[2] - 20 + 4 * (x % 5)}, "yellow")
+    -- end
+
+    -- Store globalHeightMap sections.
+    -- For each `xSector` from `startXSector` to `endXSector`...
+    for xSector = startXSector, endXSector do
+      local globalHeightMapSection = {}
+      local xSectorWrapped = math.floor(world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
+
+      -- For each x value in the sector...
+      for x = xSectorWrapped * SECTOR_SIZE, (xSectorWrapped + 1) * SECTOR_SIZE - 1 do
+        -- Add to the section.
+        table.insert(globalHeightMapSection, {x = x, value = globalHeightMap[x]})
+      end
+
+      world.setProperty("v-globalHeightMap." .. xSectorWrapped, globalHeightMapSection)
+    end
   end
 end
 
 ---Applies received entity height maps to the given `heightMap`.
----@param heightMap HeightMap
-function applyEntityHeightMaps(heightMap)
+---@param heightMaps HeightMap[]
+function applyEntityHeightMaps(heightMaps)
   local flattenedEntityHeightMap = vMinistar.HeightMap:new()
 
   -- Merge entity height map values into one height map.
@@ -387,11 +581,13 @@ function applyEntityHeightMaps(heightMap)
     end
   end
 
-  -- Merge height map with flattenedEntityHeightMap
-  for x, v in heightMap:xvalues() do
-    local otherV = flattenedEntityHeightMap:get(x)
-    if otherV and otherV < v then
-      heightMap:set(x, otherV)
+  -- Merge height maps with flattenedEntityHeightMap
+  for _, heightMap in ipairs(heightMaps) do
+    for x, v in heightMap:xvalues() do
+      local otherV = flattenedEntityHeightMap:get(x)
+      if otherV and otherV < v then
+        heightMap:set(x, otherV)
+      end
     end
   end
 end
@@ -448,8 +644,9 @@ end
 ---Adds `affectedTiles` to `heatMap` that are below the `maxDepth` value and are meltable.
 ---@param affectedTiles table<string, boolean>
 ---@param heightMap HeightMap
+---@param liquidTouchedTiles table<string, boolean> tiles touched by the sun liquid.
 ---@param dt number
-function addToHeatMap(affectedTiles, heightMap, dt)
+function addToHeatMap(affectedTiles, heightMap, liquidTouchedTiles, dt)
   -- For each tile in `affectedTiles`...
   for tileHash, _ in pairs(affectedTiles) do
     local tile = vVec2.iFromString(tileHash)
@@ -458,7 +655,7 @@ function addToHeatMap(affectedTiles, heightMap, dt)
     local heightMapValue = heightMap:get(tile[1])
     -- Whether or not the affected tile is exposed (and therefore should be burned). Used to address false positives.
     local isExposed = not heightMapValue or tile[2] <= heightMapValue
-    local nextToSunLiquid = isAdjacentToSunLiquid(tile)
+    local nextToSunLiquid = liquidTouchedTiles[tileHash]
     -- local isExposed = true
 
     -- If there is a material at this tile and it is exposed or next to sun liquid...
@@ -491,30 +688,15 @@ function addToHeatMap(affectedTiles, heightMap, dt)
   end
 end
 
----Returns whether or not the given position `pos` is adjacent to a liquid with ID `sunLiquidId`.
----@param pos Vec2I
-function isAdjacentToSunLiquid(pos)
-  -- For each adjacent tile...
-  for _, offset in ipairs(ADJACENT_TILES) do
-    local liquid = world.liquidAt(vec2.add(pos, offset))  -- Get the liquid at that position.
-    -- If a liquid is present and its ID is `sunLiquidId`...
-    if liquid and liquid[1] == sunLiquidId then
-      return true
-    end
-  end
-
-  return false
-end
-
----Returns a list of the lowest sectors loaded between `xStart` and `xEnd`, starting at `yStart`.
+---Returns a list of the lowest sectors loaded between `xStart` and `xEnd` up to `yTop`.
 ---@param xStart number
 ---@param xEnd number
----@param yStart number
+---@param yTop number
 ---@return Vec2I[]
-function findLowestLoadedSectors(xStart, xEnd, yStart)
+function findLowestLoadedSectors(xStart, xEnd, yTop)
   local xSectorStart = xStart // SECTOR_SIZE
   local xSectorEnd = xEnd // SECTOR_SIZE
-  local ySectorStart = yStart // SECTOR_SIZE
+  local ySectorStart = yTop // SECTOR_SIZE
 
   local lowestSectors = {}
 

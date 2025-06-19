@@ -55,11 +55,6 @@ function fetchCelestialParams()
       minDepth = celestialParams.surfaceLayer.primarySubRegion.oceanLiquidLevel
       burnDepth = (minDepth + maxDepth) / 2
 
-      world.spawnStagehand(mcontroller.position(), "v-ministarheat", {
-        minDepth = minDepth,
-        maxDepth = maxDepth
-      })
-
       celestialParamsFetched = true
     end
   else

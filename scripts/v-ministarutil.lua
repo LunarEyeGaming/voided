@@ -66,6 +66,8 @@ function vMinistar.HeightMap:set(x, v)
     local startX = world.nearestTo(x, self.startXPos)
     local endX = world.nearestTo(x, self.endXPos)
 
+    -- TODO: Handle setting values in descending order. Possible solution: when self.startXPos == self.endXPos, if x > self.endXPos,
+    -- set self.endXPos to x. Otherwise, set self.startXPos to x.
     if not (startX <= x and x <= endX) then
       -- If the start is the closer boundary, then assign x to be it. Otherwise, assign x to be the end.
       if math.abs(x - startX) < math.abs(x - endX) then
@@ -128,6 +130,112 @@ function vMinistar.HeightMap:xbounds()
   return startX, endX
 end
 
+---Returns a combined height map containing the contents of all of the given height maps.
+---@param maps HeightMap[]
+---@return HeightMap
+function vMinistar.HeightMap:merge(maps)
+  -- TODO: Optimize.
+  local merged = vMinistar.HeightMap:new()
+  local mergedStartXPos, mergedEndXPos
+  if #maps > 0 then
+    mergedStartXPos, mergedEndXPos = maps[1]:xbounds()
+  end
+
+  local xSize = world.size()[1]
+
+  for _, map in ipairs(maps) do
+    local startX, endX = map:xbounds()
+
+    if endX >= xSize then
+      local preWrapX = xSize - 1
+      local postWrapX = 0
+      endX = endX - xSize
+
+      table.move(map.list, startX, preWrapX, startX, merged.list)
+      table.move(map.list, postWrapX, endX, postWrapX, merged.list)
+    else
+      table.move(map.list, startX, endX, startX, merged.list)
+    end
+
+    mergedStartXPos, mergedEndXPos = vMinistar.HeightMap:expandBounds(startX, mergedStartXPos, mergedEndXPos)
+    mergedStartXPos, mergedEndXPos = vMinistar.HeightMap:expandBounds(endX, mergedStartXPos, mergedEndXPos)
+    -- for x, v in map:xvalues() do
+    --   merged:set(x, v)
+    -- end
+  end
+
+  return merged
+end
+
+---Given a value `x` and boundaries defined by `startXPos` and `endXPos`, returns new values `startXPos2` and `endXPos2`
+---such that `startXPos2 <= x <= endPos2`.
+---@param x integer
+---@param startXPos integer
+---@param endXPos integer
+---@return integer startXPos2
+---@return integer endXPos2
+function vMinistar.HeightMap:expandBounds(x, startXPos, endXPos)
+  local startX = world.nearestTo(x, startXPos)
+  local endX = world.nearestTo(x, endXPos)
+  if not (startX <= x and x <= endX) then
+    -- If the start is the closer boundary, then assign x to be it. Otherwise, assign x to be the end.
+    if math.abs(x - startX) < math.abs(x - endX) then
+      startXPos = x
+    else
+      endXPos = x
+    end
+  end
+
+  return startXPos, endXPos
+end
+
+---Returns a slice of the given height map. If the provided boundaries go outside of the defined values of the current
+---height map, then the corresponding values in the slice will be `nil`.
+---@param startX integer
+---@param endX integer
+---@return HeightMap
+function vMinistar.HeightMap:slice(startX, endX)
+  -- TODO: Optimize
+  local sliced = vMinistar.HeightMap:new()
+
+  if startX > endX then
+    error("startX must be less than endX")
+  end
+
+  local xSize = world.size()[1]
+
+  if endX - startX > xSize then
+    error("Slice sizes exceeding world width are not supported")
+  end
+
+  if endX >= xSize then
+    local preWrapX = xSize - 1
+    local postWrapX = 0
+    endX = endX - xSize
+
+    table.move(self.list, startX, preWrapX, startX, sliced.list)
+    table.move(self.list, postWrapX, endX, postWrapX, sliced.list)
+  elseif startX < 0 then
+    local preWrapX = xSize - 1
+    local postWrapX = 0
+    startX = startX + xSize
+
+    table.move(self.list, startX, preWrapX, startX, sliced.list)
+    table.move(self.list, postWrapX, endX, postWrapX, sliced.list)
+  else
+    table.move(self.list, startX, endX, startX, sliced.list)
+  end
+
+  -- for x = startX, endX do
+  --   sliced:set(x, self.list[world.xwrap(x)])
+  -- end
+
+  sliced.startXPos = startX
+  sliced.endXPos = endX
+
+  return sliced
+end
+
 ---@class VLiquidScanner
 ---@field _checkMinX integer
 ---@field _checkMaxX integer
@@ -162,115 +270,120 @@ function vMinistar.LiquidScanner:new(args)
   return instance
 end
 
----Attempts to runs a query at position `pos`, returning the tiles that are adjacent to liquid sun and a list of
+---Attempts to runs a query in all regions `regions`, returning the tiles that are adjacent to liquid sun and a list of
 ---particle spawn points for each chunk that was queried. Should be called every tick.
 ---
----@param pos Vec2I
+---@param regions RectI[]
 ---@return Vec2I[], table<string, Vec2I[]>
-function vMinistar.LiquidScanner:update(pos)
+function vMinistar.LiquidScanner:update(regions)
   local CHUNK_SIZE = self._CHUNK_SIZE
   local liquidId = self._liquidId
-  local chunkMinX = (self._checkMinX + pos[1]) // CHUNK_SIZE
-  local chunkMinY = (self._checkMinY + pos[2]) // CHUNK_SIZE
-  local chunkMaxX = (self._checkMaxX + pos[1]) // CHUNK_SIZE
-  local chunkMaxY = (self._checkMaxY + pos[2]) // CHUNK_SIZE
+
   local boundaryTiles = {}
   local liquidChunks = {}  -- Map of chunks to corresponding liquid values retrieved from world.liquidAt
   local particleSpawnPoints = {}  -- Map of chunks to lists of particle spawn points.
 
-  for chunkX = chunkMinX, chunkMaxX do
-    for chunkY = chunkMinY, chunkMaxY do
-      local res = world.liquidAt({
-        chunkX * CHUNK_SIZE,
-        chunkY * CHUNK_SIZE,
-        (chunkX + 1) * CHUNK_SIZE,
-        (chunkY + 1) * CHUNK_SIZE
-      })
+  for _, region in ipairs(regions) do
+    local chunkMinX = region[1] // CHUNK_SIZE
+    local chunkMinY = region[2] // CHUNK_SIZE
+    local chunkMaxX = region[3] // CHUNK_SIZE
+    local chunkMaxY = region[4] // CHUNK_SIZE
 
-      local chunkStr = vVec2.iToString({chunkX, chunkY})
+    for chunkX = chunkMinX, chunkMaxX do
+      for chunkY = chunkMinY, chunkMaxY do
+        local res = world.liquidAt({
+          chunkX * CHUNK_SIZE,
+          chunkY * CHUNK_SIZE,
+          (chunkX + 1) * CHUNK_SIZE,
+          (chunkY + 1) * CHUNK_SIZE
+        })
 
-      liquidChunks[chunkStr] = res
+        local chunkStr = vVec2.iToString({chunkX, chunkY})
 
-      if not particleSpawnPoints[chunkStr] then
-        particleSpawnPoints[chunkStr] = {}
-      end
+        liquidChunks[chunkStr] = res
 
-      -- Process the region in more detail if it is not completely filled with sun liquid.
-      if res and res[1] == liquidId and res[2] < 1.0 then
-        local prevRes = self._prevLiquidChunks[chunkStr]
-        if self._hotRegions[chunkStr] and self._hotRegions[chunkStr] > 0
-            or (not prevRes or prevRes[1] ~= res[1] or math.abs(prevRes[2] - res[2]) * CHUNK_SIZE * CHUNK_SIZE >= 1) then
-          local minXInChunk = chunkX * CHUNK_SIZE
-          local minYInChunk = chunkY * CHUNK_SIZE
-          local maxXInChunk = (chunkX + 1) * CHUNK_SIZE
-          local maxYInChunk = (chunkY + 1) * CHUNK_SIZE
+        if not particleSpawnPoints[chunkStr] then
+          particleSpawnPoints[chunkStr] = {}
+        end
 
-          world.debugPoly({
-            {minXInChunk, minYInChunk},
-            {minXInChunk, maxYInChunk},
-            {maxXInChunk, maxYInChunk},
-            {maxXInChunk, minYInChunk}
-          }, "green")
+        -- Process the region in more detail if it is not completely filled with sun liquid.
+        if res and res[1] == liquidId and res[2] < 1.0 then
+          local prevRes = self._prevLiquidChunks[chunkStr]
+          if self._hotRegions[chunkStr] and self._hotRegions[chunkStr] > 0
+              or (not prevRes or prevRes[1] ~= res[1] or math.abs(prevRes[2] - res[2]) * CHUNK_SIZE * CHUNK_SIZE >= 1) then
+            local minXInChunk = chunkX * CHUNK_SIZE
+            local minYInChunk = chunkY * CHUNK_SIZE
+            local maxXInChunk = (chunkX + 1) * CHUNK_SIZE
+            local maxYInChunk = (chunkY + 1) * CHUNK_SIZE
 
-          -- Build matrix of matches and non-matches (row-major order). The matrix is padded for boundary cases.
-          local liqMat = {}
+            world.debugPoly({
+              {minXInChunk, minYInChunk},
+              {minXInChunk, maxYInChunk},
+              {maxXInChunk, maxYInChunk},
+              {maxXInChunk, minYInChunk}
+            }, "green")
 
-          for y = minYInChunk - 1, maxYInChunk + 1 do
-            local row = {}
+            -- Build matrix of matches and non-matches (row-major order). The matrix is padded for boundary cases.
+            local liqMat = {}
+
+            for y = minYInChunk - 1, maxYInChunk + 1 do
+              local row = {}
+              for x = minXInChunk - 1, maxXInChunk + 1 do
+                row[x] = false
+              end
+              liqMat[y] = row
+            end
+
             for x = minXInChunk - 1, maxXInChunk + 1 do
-              row[x] = false
+              local liqs = world.liquidAlongLine({x, minYInChunk - 1}, {x, maxYInChunk + 1})
+
+              for _, posLiquidPair in ipairs(liqs) do
+                local position = posLiquidPair[1]
+                local liquid = posLiquidPair[2]
+                liqMat[position[2]][position[1]] = liquid[1] == liquidId and liquid[2] >= self._liquidThreshold
+              end
             end
-            liqMat[y] = row
-          end
 
-          for x = minXInChunk - 1, maxXInChunk + 1 do
-            local liqs = world.liquidAlongLine({x, minYInChunk - 1}, {x, maxYInChunk + 1})
-
-            for _, posLiquidPair in ipairs(liqs) do
-              local position = posLiquidPair[1]
-              local liquid = posLiquidPair[2]
-              liqMat[position[2]][position[1]] = liquid[1] == liquidId and liquid[2] >= self._liquidThreshold
-            end
-          end
-
-          -- Find all of the tile spaces that act as boundaries for the liquid.
-          for y = minYInChunk, maxYInChunk do
-            local row = liqMat[y]
-            for x = minXInChunk, maxXInChunk do
-              local isSunLiquid = row[x]
-              -- If the current space is sun liquid...
-              if isSunLiquid then
-                -- Add all adjacent spaces that are not sun liquid.
-                if not row[x + 1] then
-                  table.insert(boundaryTiles, {x + 1, y})
-                end
-                if not row[x - 1] then
-                  table.insert(boundaryTiles, {x - 1, y})
-                end
-                if not liqMat[y + 1][x] then
-                  table.insert(boundaryTiles, {x, y + 1})
-                  table.insert(particleSpawnPoints[chunkStr], {x, y + 1})
-                end
-                if not liqMat[y - 1][x] then
-                  table.insert(boundaryTiles, {x, y - 1})
+            -- Find all of the tile spaces that act as boundaries for the liquid.
+            for y = minYInChunk, maxYInChunk do
+              local row = liqMat[y]
+              for x = minXInChunk, maxXInChunk do
+                local isSunLiquid = row[x]
+                -- If the current space is sun liquid...
+                if isSunLiquid then
+                  -- Add all adjacent spaces that are not sun liquid.
+                  if not row[x + 1] then
+                    table.insert(boundaryTiles, {x + 1, y})
+                  end
+                  if not row[x - 1] then
+                    table.insert(boundaryTiles, {x - 1, y})
+                  end
+                  if not liqMat[y + 1][x] then
+                    table.insert(boundaryTiles, {x, y + 1})
+                    table.insert(particleSpawnPoints[chunkStr], {x, y + 1})
+                  end
+                  if not liqMat[y - 1][x] then
+                    table.insert(boundaryTiles, {x, y - 1})
+                  end
                 end
               end
             end
+            -- Decrement hot region time remaining.
+            if self._hotRegions[chunkStr] then
+              self._hotRegions[chunkStr] = self._hotRegions[chunkStr] - 1
+            end
           end
-          -- Decrement hot region time remaining.
-          if self._hotRegions[chunkStr] then
-            self._hotRegions[chunkStr] = self._hotRegions[chunkStr] - 1
-          end
-        end
 
-      else
-        table.insert(particleSpawnPoints[chunkStr], {0, 0})
-      --   world.debugPoly({
-      --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE},
-      --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, (chunkY + 1) * LIQUID_QUERY_CHUNK_SIZE},
-      --     {(chunkX + 1) * LIQUID_QUERY_CHUNK_SIZE, (chunkY + 1) * LIQUID_QUERY_CHUNK_SIZE},
-      --     {(chunkX + 1) * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE}
-      --   }, "red")
+        else
+          -- Add one particle spawn point to differentiate from the spawn point being undefined.
+          table.insert(particleSpawnPoints[chunkStr], {0, 0})
+        --   world.debugPoly({
+        --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE},
+        --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, (chunkY + 1) * LIQUID_QUERY_CHUNK_SIZE},
+        --     {(chunkX + 1) * LIQUID_QUERY_CHUNK_SIZE, (chunkY + 1) * LIQUID_QUERY_CHUNK_SIZE},
+        --     {(chunkX + 1) * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE}
+        --   }, "red")
+        end
       end
     end
   end

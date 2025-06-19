@@ -10,6 +10,7 @@ local oldUpdate = update or function() end
 
 -- Stuff for liquid particles.
 local liquidParticleDensity
+local particleCullPadding
 local liquidSunParticle
 local liquidSunParticleLarge
 local sunLiquidId
@@ -80,10 +81,14 @@ function init()
     minHeight = minHeight_
     flareBoosts = vMinistar.HeightMap:fromJson(flareBoosts_)
 
-    -- Merge on top of existing liquid particle points.
-    for chunk, tiles in pairs(liquidParticlePoints_) do
-      if #tiles > 0 then
-        liquidParticlePoints[chunk] = tiles
+    -- Merge on top of existing liquid particle points, excluding particles outside of the particle cull window.
+    local window = rect.pad(world.clientWindow(), particleCullPadding)
+    for chunkStr, tiles in pairs(liquidParticlePoints_) do
+      local chunk = vVec2.iFromString(chunkStr)
+      local chunkRect = {chunk[1] * 16, chunk[2] * 16, (chunk[1] + 1) * 16, (chunk[2] + 1) * 16}
+
+      if #tiles > 0 and rect.intersects(window, chunkRect) then
+        liquidParticlePoints[chunkStr] = tiles
       end
     end
     v_ministarEffects_computeLightBounds()
@@ -129,6 +134,8 @@ end
 function v_ministarEffects_initLiquidParticles()
   sunLiquidId = 218
   liquidParticleDensity = 0.01
+  particleCullPadding = 100
+
   liquidSunParticle = {
     type = "animated",
     animation = "/animations/v-solarplasma/v-solarplasma.animation",
@@ -168,7 +175,7 @@ function v_ministarEffects_initLiquidParticles()
   liquidParticlePoints = {}
 
   ticker:addInterval(5, function()
-    local window = rect.pad(world.clientWindow(), 100)
+    local window = rect.pad(world.clientWindow(), particleCullPadding)
 
     for chunkStr, _ in pairs(liquidParticlePoints) do
       local chunk = vVec2.iFromString(chunkStr)
@@ -182,10 +189,14 @@ function v_ministarEffects_initLiquidParticles()
 
   -- Synchronizes liquid particle points only
   message.setHandler("v-ministareffects-updateLiquidParticles", function(_, _, liquidParticlePoints_)
-    -- Merge on top of existing liquid particle points.
-    for chunk, tiles in pairs(liquidParticlePoints_) do
-      if #tiles > 0 then
-        liquidParticlePoints[chunk] = tiles
+    local window = rect.pad(world.clientWindow(), particleCullPadding)
+    -- Merge on top of existing liquid particle points, excluding particles outside of the particle cull window.
+    for chunkStr, tiles in pairs(liquidParticlePoints_) do
+      local chunk = vVec2.iFromString(chunkStr)
+      local chunkRect = {chunk[1] * 16, chunk[2] * 16, (chunk[1] + 1) * 16, (chunk[2] + 1) * 16}
+
+      if #tiles > 0 and rect.intersects(window, chunkRect) then
+        liquidParticlePoints[chunkStr] = tiles
       end
     end
     v_ministarEffects_computeLightBounds()
@@ -317,10 +328,14 @@ end
 function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts, window)
   local bottomY = minHeight
 
-  -- Draw sun rays.
+  -- Get boundaries
   local startXPos, endXPos = heightMap:xbounds()
+
+  -- Constrain startX and endX to window boundaries.
   local startX = math.max(world.nearestTo(startXPos, window[1]), startXPos)
   local endX = math.min(world.nearestTo(endXPos, window[3]), endXPos)
+
+  -- Draw sun rays
   for x = startX, endX do
     local topY = heightMap:get(x)
 
@@ -328,6 +343,8 @@ function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts, window)
       sunRayDrawable.color = vAnimator.lerpColor(ratio + boosts:get(x), sunRayDimColor, sunRayBrightColor)
       sunRayDrawableFunc(x, bottomY, topY, predictedPos)
     end
+
+    -- world.debugText("%s", topY, {x, (window[2] + window[4]) / 2 + x % 3}, "green")
   end
 end
 
@@ -343,18 +360,22 @@ function v_ministarEffects_drawSunRayLights(ratio, boosts, window)
     color = {0, 0, 0, 0}
   }
 
-  local startX = math.max(window[1], heightMap.startXPos)
-  local endX = math.min(window[3], heightMap.endXPos)
+  local startXPos, endXPos = heightMap:xbounds()
+  local startX = math.max(window[1], startXPos)
+  local endX = math.min(window[3], endXPos)
+
+  -- world.debugText("%s, %s", startX, endX, entity.position(), "green")
 
   -- Draw lights
   for x = startX, endX do
     local v = lightDrawBounds:get(x)
-    if not v then
-      sb.logInfo("--------------------------------------lightDrawBounds------------------------------------------")
-      for x2, v2 in lightDrawBounds:values() do
-        sb.logInfo("%s: %s", x2, v2)
-      end
-    end
+    -- if not v then
+    --   sb.logInfo("--------------------------------------lightDrawBounds------------------------------------------")
+    --   for x2, v2 in lightDrawBounds:values() do
+    --     sb.logInfo("%s: %s", x2, v2)
+    --   end
+    -- end
+    -- world.debugText("%s, %s", v.s, v.e, {x, v.e + x % 5}, "white")
     if v.s ~= v.e then
       local inc
       if v.s < v.e then
@@ -376,9 +397,11 @@ function v_ministarEffects_drawSunRayLights(ratio, boosts, window)
       for y = v.s, v.e, inc do
         sunRayLightSource.position = {x, y}
         localAnimator.addLightSource(sunRayLightSource)
+        -- world.debugPoint({x, y}, "white")
       end
       sunRayLightSource.position = {x, v.e}
       localAnimator.addLightSource(sunRayLightSource)
+      -- world.debugPoint({x, v.e}, "white")
     end
   end
 end
@@ -390,21 +413,24 @@ function v_ministarEffects_computeLightBounds()
 
   local lightMinHeight = math.max(window[2], minHeight) // lightInterval * lightInterval
 
+  local startXPos, endXPos = heightMap:xbounds()
+
   -- Compute light drawing boundaries based on change in value.
-  local prevTopY = heightMap.list[heightMap.startXPos]  -- Default
+  local prevTopY = heightMap.list[startXPos]  -- Default
   -- for i, topY in ipairs(heightMap.list) do
   --   lightDrawBounds[i] = {s = prevTopY, e = topY}
   --   prevTopY = topY
   -- end
   for x, topY in heightMap:xvalues() do
     lightDrawBounds:set(x, {s = prevTopY, e = topY})
+    -- world.debugLine({x, prevTopY}, {x, topY}, "white")
     prevTopY = topY
   end
 
   -- Derive a starting position based on startXPos.
-  local startX = (heightMap.startXPos // lightInterval + 1) * lightInterval
+  local startX = (startXPos // lightInterval + 1) * lightInterval
   -- Add periodic strips of lights
-  for x = startX, #heightMap.list, lightInterval do
+  for x = startX, endXPos, lightInterval do
     local v = heightMap:get(x)
     if v >= lightMinHeight and v ~= minHeight then
       lightDrawBounds:set(x, {s = lightMinHeight, e = v})
