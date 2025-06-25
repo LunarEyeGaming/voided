@@ -63,8 +63,6 @@ function init()
   minDepth = config.getParameter("minDepth")
   maxDepth = config.getParameter("maxDepth")
 
-  sb.logInfo("v-ministarheat.lua::init (stagehand) called")
-
   initLiquidScanner()
 
   script.setUpdateDelta(6)
@@ -124,9 +122,25 @@ function initLiquidScanner()
 
   -- Periodically mark all regions as "hot."
   vTime.addInterval(5, function()
-    local playerId = world.players()[1]
-    local pos = vec2.floor(world.entityPosition(playerId))
-    liquidScanner:refresh(pos)
+    local playerIds = world.players()
+
+    -- Filter out nonexistent players.
+    for i = #playerIds, 1, -1 do
+      local playerId = playerIds[i]
+
+      if not world.entityExists(playerId) then
+        table.remove(playerIds, i)
+      end
+    end
+
+    if #playerIds > 0 then
+      -- Get query regions
+      local positions = getPlayerPositions(playerIds)
+      local regions = getPlayerRegions(positions)
+      local mergedRegions = mergeRegions(regions)
+
+      liquidScanner:refresh(mergedRegions)
+    end
   end)
 
   -- Mark regions where tiles are broken as "hot."
@@ -143,11 +157,10 @@ function initLiquidScanner()
 end
 
 function postInit()
-  sb.logInfo("v-ministarheat.lua::postInit (stagehand) called")
   local stagehandId = world.loadUniqueEntity("v-ministarheat-stagehand")
-  sb.logInfo("stagehandId: %s", stagehandId)
 
-  -- Clear unique ID
+  -- Set unique ID if no stagehand with that unique ID exists. Otherwise (if it is not the stagehand with the unique
+  -- ID), die.
   if stagehandId == 0 then
     stagehand.setUniqueId("v-ministarheat-stagehand")
   elseif stagehandId ~= entity.id() then
@@ -164,29 +177,27 @@ function update(dt)
 
   vTime.update(dt)
 
-  -- TODO: Add multiplayer support.
-  -- Run the main portion of the Ministar heat script if active. Otherwise, just run the liquid scanner.
-  if isActive then
-    local playerIds = world.players()
+  local playerIds = world.players()
 
-    -- Filter out nonexistent players.
-    for i = #playerIds, 1, -1 do
-      local playerId = playerIds[i]
+  -- Filter out nonexistent players.
+  for i = #playerIds, 1, -1 do
+    local playerId = playerIds[i]
 
-      if not world.entityExists(playerId) then
-        table.remove(playerIds, i)
-      end
+    if not world.entityExists(playerId) then
+      table.remove(playerIds, i)
     end
+  end
 
-    if #playerIds > 0 then
-      local anchorPos = world.entityPosition(playerIds[1])  -- Anchor position to a player.
-      if not anchorPos then return end  -- TODO: Remove check.
+  if #playerIds > 0 then
+    local anchorPos = world.entityPosition(playerIds[1])  -- Anchor position to a player.
 
-      -- Get query regions
-      local positions = getPlayerPositions(playerIds)
-      local regions = getPlayerRegions(positions)
-      local mergedRegions = mergeRegions(regions)
+    -- Get query regions
+    local positions = getPlayerPositions(playerIds)
+    local regions = getPlayerRegions(positions)
+    local mergedRegions = mergeRegions(regions)
 
+    -- Run the main portion of the Ministar heat script if active. Otherwise, just run the liquid scanner.
+    if isActive then
       local affectedTiles = {}  -- hash map
       local liquidTouchedTiles = {}  -- hash map
       local boostSets = {}  -- List of boosts for each region.
@@ -216,12 +227,6 @@ function update(dt)
         table.insert(boostSets, boosts)
       end
 
-      -- for _, heightMap in ipairs(heightMaps) do
-      --   for x, v in heightMap:xvalues() do
-      --     world.debugText("%s, %s", x, v, {x, anchorPos[2] + x % 5}, "green")
-      --   end
-      -- end
-
       syncHeightMapsToGlobal(heightMaps)
       applyEntityHeightMaps(heightMaps)
 
@@ -237,84 +242,16 @@ function update(dt)
         local region = regions[i]
         local sunProximityRatio = 1 - math.max(0, math.min((pos[2] - minDepth) / (maxDepth - minDepth), 1))
         local heightMap = combinedHeightMap:slice(region[1], region[3])
+        local boosts = combinedBoosts:slice(region[1], region[3])
         -- sb.logInfo("%s, %s", region[1], region[3])
-        world.sendEntityMessage(playerId, "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth, particleSpawnPoints, combinedBoosts)
+        world.sendEntityMessage(playerId, "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth, particleSpawnPoints, boosts)
       end
 
       addToHeatMap(affectedTiles, combinedHeightMap, liquidTouchedTiles, dt)
 
       -- Destroy tiles.
       world.damageTiles(tilesToDestroy, "foreground", {0, 0}, "blockish", 2 ^ 32 - 1, 0)
-
-      stagehand.setPosition(anchorPos)
-    end
-    -- local playerId = world.players()[1]
-
-    -- if not playerId then return end
-
-    -- local playerPos = world.entityPosition(playerId)
-
-    -- if not playerPos then return end
-
-    -- local pos = vec2.floor(playerPos)
-
-    -- local boundaryTiles, particleSpawnPoints = liquidScanner:update(pos)
-
-    -- local affectedTiles = {}  -- hash map
-    -- local liquidTouchedTiles = {}  -- hash map
-
-    -- -- Update affectedTiles with the boundaryTiles that actually have foreground blocks.
-    -- for _, tile in ipairs(boundaryTiles) do
-    --   local tileStr = vVec2.iToString(tile)
-    --   if not affectedTiles[tileStr] and world.pointTileCollision(tile) then
-    --     affectedTiles[tileStr] = true
-    --     liquidTouchedTiles[tileStr] = true
-    --   end
-    -- end
-
-    -- local heightMap = surfaceTileQuery(pos, affectedTiles)
-
-    -- syncHeightMapToGlobal(heightMap)
-
-    -- applyEntityHeightMaps(heightMap)
-
-    -- -- Process existing entries.
-    -- local tilesToDestroy = processHeatMap(affectedTiles, dt)
-
-    -- -- Calculate solar flare boosts.
-    -- local boosts = computeSolarFlareBoosts(heightMap:xbounds())
-
-    -- -- Update heatMap for v-ministareffects.lua
-    -- local sunProximityRatio = 1 - math.max(0, math.min((pos[2] - minDepth) / (maxDepth - minDepth), 1))
-    -- world.sendEntityMessage(playerId, "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth, particleSpawnPoints, boosts)
-
-    -- addToHeatMap(affectedTiles, heightMap, liquidTouchedTiles, dt)
-
-    -- -- Destroy tiles.
-    -- world.damageTiles(tilesToDestroy, "foreground", {0, 0}, "blockish", 2 ^ 32 - 1, 0)
-
-    -- stagehand.setPosition(pos)
-  else
-    local playerIds = world.players()
-
-    -- Filter out nonexistent players.
-    for i = #playerIds, 1, -1 do
-      local playerId = playerIds[i]
-
-      if not world.entityExists(playerId) then
-        table.remove(playerIds, i)
-      end
-    end
-
-    if #playerIds > 0 then
-      local anchorPos = world.entityPosition(playerIds[1])  -- Anchor position to a player.
-      if not anchorPos then return end  -- TODO: Remove check.
-
-      -- Get query regions
-      local positions = getPlayerPositions(playerIds)
-      local regions = getPlayerRegions(positions)
-      local mergedRegions = mergeRegions(regions)
-
+    else
       -- Query for liquids
       local _, particleSpawnPoints = liquidScanner:update(mergedRegions)
 
@@ -322,9 +259,9 @@ function update(dt)
       for _, playerId in ipairs(playerIds) do
         world.sendEntityMessage(playerId, "v-ministareffects-updateLiquidParticles", particleSpawnPoints)
       end
-
-      stagehand.setPosition(anchorPos)
     end
+
+    stagehand.setPosition(anchorPos)
   end
 end
 
@@ -367,7 +304,64 @@ function getPlayerRegions(positions)
 end
 
 function mergeRegions(regions)
-  return regions  -- TODO: Stub
+  if #regions < 2 then
+    return regions
+  end
+
+  local rectNearestTo = function(source, target)
+    local targetLl = rect.ll(target)
+    return rect.translate(target, vec2.sub(world.nearestTo(rect.ll(source), targetLl), targetLl))
+  end
+
+  local rectArea = function(r)
+    return (r[3] - r[1]) * (r[4] - r[2])
+  end
+
+  -- TODO: DON'T use a brute-force approach.
+  -- Repeat ... until the number of regions has not changed.
+  local newRegions = {}
+  repeat
+    -- For each pair of regions...
+    for i = 1, #regions - 1 do
+      for j = i + 1, #regions do
+        local region1 = regions[i]
+        local region2 = regions[j]
+        region2 = rectNearestTo(region1, region2)
+
+        local combinedRegion = {
+          math.min(region1[1], region2[1]),
+          math.min(region1[2], region2[2]),
+          math.max(region1[3], region2[3]),
+          math.max(region1[4], region2[4])
+        }
+
+        local intersectingRegion = {
+          math.max(region1[1], region2[1]),
+          math.max(region1[2], region2[2]),
+          math.min(region1[3], region2[3]),
+          math.min(region1[4], region2[4])
+        }
+
+        -- Calculate cost and benefit (cost is extra area incurred by combining the rectangles; benefit is area saved by
+        -- combining them)
+        local combinedArea = rectArea(combinedRegion)
+        local intersectingArea = rectArea(intersectingRegion)
+        local region1Area = rectArea(region1)
+        local region2Area = rectArea(region2)
+        local cost = combinedArea - (region1Area + region2Area - intersectingArea)
+        local benefit = intersectingArea
+
+        if benefit > cost then
+          table.insert(newRegions, combinedRegion)
+        else
+          table.insert(newRegions, region1)
+          table.insert(newRegions, region2)
+        end
+      end
+    end
+  until #newRegions == #regions
+
+  return newRegions
 end
 
 ---Populates `affectedTiles` with a list of tiles that are exposed to the surface below given a central position `pos`.
@@ -783,6 +777,7 @@ function computeSolarFlareBoosts(startX, endX)
     }[]
   ]]
   local solarFlares = world.getProperty("v-solarFlares") or {}
+  local noFlareZones = world.getProperty("v-noFlareZones") or {}
 
   sb.setLogMap("solarFlares", "%s", #solarFlares)
 
@@ -798,11 +793,27 @@ function computeSolarFlareBoosts(startX, endX)
     local timeMultiplier = normalDistribution(durationMean, durationStdDev, world.time())
 
     for x = startX, endX do
-      boosts:set(x, boosts:get(x) + normalDistribution(flare.x, flare.spread / 3, x) * flare.potency * timeMultiplier)
+      if not inNoFlareZone(x, noFlareZones) then
+        boosts:set(x, boosts:get(x) + normalDistribution(flare.x, flare.spread / 3, x) * flare.potency * timeMultiplier)
+      end
     end
   end
 
   return boosts
+end
+
+---Returns whether or not `x` is inside of a no-flare zone (with the no-flare zones given by `noFlareZones`).
+---@param x integer
+---@param noFlareZones {startX: integer, endX: integer}[]
+---@return boolean
+function inNoFlareZone(x, noFlareZones)
+  for _, zone in ipairs(noFlareZones) do
+    if zone.startX <= x and x <= zone.endX then
+      return true
+    end
+  end
+
+  return false
 end
 
 function normalDistribution(mean, stdDev, x)

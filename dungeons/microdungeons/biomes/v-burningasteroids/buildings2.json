@@ -5,7 +5,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt2rENg2AMRGEvEIZgkkhZjDWYEToWiPtIUSL9+OD8itffJ7feI5adPtoi4sp1MI6yq\/dWutUbK83qbdVm9a5Kr3pTtVm9B+95XvWWarN6B168ePHixYvXN7ze4fUOr3d4I6bska3ZM5uzV3ZcYC\/3xYsXr3oHXrx48eLFi9c3vN7h9Q6vd3i96+rtYO78X9fR62zm\/9nX\/M3qZv7F6uD+13lH+wijY29wD5az",
+         "data":"eJzt2tENAiEMBmAW0CGcxMTFHMAFnNF7uwXEGJOLArZAW678l\/yP0n6U3MPJEsJ1QX7yCCGMnBmMvezW\/Wq6rXvUNFv3pm227kvTa92Tttm6H3jlvNa9aJut+2hN6rH2HgUDL7zwwgsvvPDqe2+JwMvzSvY74nm2NsELL7z\/vbnH2oT5zuvNnU94397Xbw4x95hzzCnmErM69e59vlvfDN7e810HMLXsgbf5prJ999TMtyaUPS\/tZ23dlJXibalHqV8yS9SkzFfT+zFL1ZQ+z1xvz\/Nk7eXMWKqWlpfqlK7H\/V6nYW01l9aU9NY6a+tS1qn5Hvu9dqpWb2+uLndvvfy\/Dy+88PrPTHewZr5fN6PXsxn3n\/2aS1ZvZorVg5vr3KO9h9FjnqBjiqg=",
          "encoding":"base64",
          "height":60,
          "id":1,
@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztzrENABAARUELMIRJJKY0pwX8WqfS3CWvf6UAAAAAAADwoqWaVhqpp5n2xycAAAAAAAAAuB0AyQJN",
+         "data":"eJztlssRwjAMBWkAiqASZmiPBigtdaQBnGvG+dh+shSzO6NDLnraIDK63QAAAAAAIBoPw4rIv\/pG76kC35g9VUSezQJ8x6an76dTzh5X81XdBpOwLG+QKLfQdHKmVlr7KOaYVs+W\/xFv37Wroucenr4519aeR3j5brm29DyDh++ea23PqBy5joS167IT91TfVK9Uz1TvVLNxbg5+1zGJ5LrsteX9rOp9lfvZwrfl2zNXVsk735q5tnp61uarXCM4n0Xl6rHPpdnKffL2Lcn3dFXkR89TztEzS+laOkPvXCvWvXNZFvm5XGtXAAAAAAAAGIcfqcwl8A==",
          "encoding":"base64",
          "height":60,
          "id":2,
@@ -48,7 +48,91 @@
          "draworder":"topdown",
          "id":4,
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":5701,
+                 "height":40,
+                 "id":738,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":192,
+                 "y":272
+                }, 
+                {
+                 "gid":5701,
+                 "height":40,
+                 "id":739,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":72,
+                 "y":272
+                }, 
+                {
+                 "gid":5701,
+                 "height":40,
+                 "id":740,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":360,
+                 "y":272
+                }, 
+                {
+                 "gid":5701,
+                 "height":40,
+                 "id":741,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":360,
+                 "y":176
+                }, 
+                {
+                 "gid":8794,
+                 "height":16,
+                 "id":742,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":312,
+                 "y":144
+                }, 
+                {
+                 "gid":8794,
+                 "height":16,
+                 "id":743,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":256,
+                 "y":224
+                }, 
+                {
+                 "gid":8794,
+                 "height":16,
+                 "id":744,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":144,
+                 "y":224
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -125,7 +209,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":738,
+ "nextobjectid":745,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -266,6 +350,10 @@
         {
          "firstgid":8692,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/huge-objects.json"
+        }, 
+        {
+         "firstgid":8793,
+         "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }],
  "tilewidth":8,
  "type":"map",

@@ -5,7 +5,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt2rENg2AMRGEvEIZgkkhZjDWYEToWiPtIUSL9+OD8itffJ7feI5adPtoi4sp1MI6yq\/dWutUbK83qbdVm9a5Kr3pTtVm9B+95XvWWarN6B168ePHixYvXN7ze4fUOr3d4I6bska3ZM5uzV3ZcYC\/3xYsXr3oHXrx48eLFi9c3vN7h9Q6vd3i96+rtYO78X9fR62zm\/9nX\/M3qZv7F6uD+13lH+wijY29wD5az",
+         "data":"eJztmdsNwjAMRbsADMEkSCzGGuzYvy5ALRSJj1Bi5147aXIk\/1Rq49OkzqPrsjzXGepYgES7eHm26sxyRHpb7s21iXS5ZgLhjLoXTalvae7W+yLHbymaHM\/gq2X6ntO39fkHSc1c1iNo39x8chSeMPpW6+vpzBrHr4prTFjfaq++1udO3+n76xqTnnxRdb8XXwE1z\/Xii3ouuo9b9xVQvsy1lYev1pm5nkSPG4TzpojI\/k3UOmt8N0Vegrcvw1lDhG+Jc86p1lWI8tU4565ZXAXPeoVcj2iw1HvEOf309XNOoGq\/1fWXr7zby\/L5ju573PZ4\/MkB7erpywA5r7fuKozUt4lR+vabo7VMCT04ohjB8ZuRXIXpW+Ya\/Z+vhul7zrGcaMXXc6xE+4pjzdkHYi+obLKK2rMeSz1pydeLVvYCnoxQoxPRNdqb0X3P7Gxdd7D3HKz3r82ZfU7AfI+anDWe1tyYbViezciH3YaXZ0k+rDYiHHuIN5fcmrU=",
          "encoding":"base64",
          "height":60,
          "id":1,
@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztzrENABAARUELMIRJJKY0pwX8WqfS3CWvf6UAAAAAAADwoqWaVhqpp5n2xycAAAAAAAAAuB0AyQJN",
+         "data":"eJzt18sJgDAQRdE0oEVYiWCV1mkDJouAiijjL2bePTAbV7kiSQwBAAAAwBda49ROqRUAsKay\/6ud7ShP7ZtT6cwmw3jotvROhdb4NPXevWdeWrO9Jq+tb7Cec7XuhVc6a+5d+uven95tE2eM08fp4gw312BtrX2PUGpN1HoTpdbs6C4DAABsPP3XnEmNnu9IW97vhFtKrZlaLwAAgGczxFeCOA==",
          "encoding":"base64",
          "height":60,
          "id":2,
@@ -48,7 +48,63 @@
          "draworder":"topdown",
          "id":4,
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":2147486586,
+                 "height":16,
+                 "id":738,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePools\" : [ \"v-burningasteroidsTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":232,
+                 "y":360
+                }, 
+                {
+                 "gid":5724,
+                 "height":16,
+                 "id":739,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":352,
+                 "y":384
+                }, 
+                {
+                 "gid":5724,
+                 "height":16,
+                 "id":740,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":64,
+                 "y":352
+                }, 
+                {
+                 "gid":5724,
+                 "height":16,
+                 "id":741,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":248,
+                 "y":48
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -125,7 +181,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":738,
+ "nextobjectid":742,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",

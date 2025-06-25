@@ -237,10 +237,6 @@ function vMinistar.HeightMap:slice(startX, endX)
 end
 
 ---@class VLiquidScanner
----@field _checkMinX integer
----@field _checkMaxX integer
----@field _checkMinY integer
----@field _checkMaxY integer
 ---@field _liquidId LiquidId
 ---@field _liquidThreshold number
 ---@field _CHUNK_SIZE integer
@@ -253,10 +249,6 @@ vMinistar.LiquidScanner = {}
 ---@return VLiquidScanner
 function vMinistar.LiquidScanner:new(args)
   local instance = {
-    _checkMinX = args.checkMinX,
-    _checkMaxX = args.checkMaxX,
-    _checkMinY = args.checkMinY,
-    _checkMaxY = args.checkMaxY,
     _liquidId = args.liquidId,
     _liquidThreshold = args.liquidThreshold or 0,
     _CHUNK_SIZE = 16,
@@ -270,8 +262,8 @@ function vMinistar.LiquidScanner:new(args)
   return instance
 end
 
----Attempts to runs a query in all regions `regions`, returning the tiles that are adjacent to liquid sun and a list of
----particle spawn points for each chunk that was queried. Should be called every tick.
+---Attempts to runs a query in all regions `regions`, returning the tiles that are adjacent to the liquid with ID
+---`_liquidId` and a list of particle spawn points for each chunk that was queried. Should be called every tick.
 ---
 ---@param regions RectI[]
 ---@return Vec2I[], table<string, Vec2I[]>
@@ -394,17 +386,19 @@ function vMinistar.LiquidScanner:update(regions)
 end
 
 ---Refreshes the entire nearby area, forcing the liquid scanner to requery it all next update.
----@param pos Vec2I
-function vMinistar.LiquidScanner:refresh(pos)
-  local chunkMinX = (self._checkMinX + pos[1]) // self._CHUNK_SIZE
-  local chunkMinY = (self._checkMinY + pos[2]) // self._CHUNK_SIZE
-  local chunkMaxX = (self._checkMaxX + pos[1]) // self._CHUNK_SIZE
-  local chunkMaxY = (self._checkMaxY + pos[2]) // self._CHUNK_SIZE
+---@param regions RectI[]
+function vMinistar.LiquidScanner:refresh(regions)
+  for _, region in ipairs(regions) do
+    local chunkMinX = region[1] // self._CHUNK_SIZE
+    local chunkMinY = region[2] // self._CHUNK_SIZE
+    local chunkMaxX = region[3] // self._CHUNK_SIZE
+    local chunkMaxY = region[4] // self._CHUNK_SIZE
 
-  for chunkX = chunkMinX, chunkMaxX do
-    for chunkY = chunkMinY, chunkMaxY do
-      local chunkStr = vVec2.iToString({chunkX, chunkY})
-      self._hotRegions[chunkStr] = 1
+    for chunkX = chunkMinX, chunkMaxX do
+      for chunkY = chunkMinY, chunkMaxY do
+        local chunkStr = vVec2.iToString({chunkX, chunkY})
+        self._hotRegions[chunkStr] = 1
+      end
     end
   end
 end

@@ -5,7 +5,7 @@
     "rules" : [
     ],
 
-    "anchor" : [ "platforms1" ],
+    "anchor" : [ "platforms1", "platforms2", "platforms3", "platforms4", "platforms5", "platforms6", "buildings1", "buildings2" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -20,6 +20,55 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "platforms1.json" ]
+    },
+    {
+      "name" : "platforms2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "platforms2.json" ]
+    },
+    {
+      "name" : "platforms3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "platforms3.json" ]
+    },
+    {
+      "name" : "platforms4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "platforms4.json" ]
+    },
+    {
+      "name" : "platforms5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "platforms5.json" ]
+    },
+    {
+      "name" : "platforms6",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "platforms6.json" ]
+    },
+    {
+      "name" : "buildings1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "buildings1.json" ]
+    },
+    {
+      "name" : "buildings2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "buildings2.json" ]
     }
   ]
 }

@@ -5,7 +5,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt2rENg2AMRGEvEIZgkkhZjDWYEToWiPtIUSL9+OD8itffJ7feI5adPtoi4sp1MI6yq\/dWutUbK83qbdVm9a5Kr3pTtVm9B+95XvWWarN6B168ePHixYvXN7ze4fUOr3d4I6bska3ZM5uzV3ZcYC\/3xYsXr3oHXrx48eLFi9c3vN7h9Q6vd3i96+rtYO78X9fR62zm\/9nX\/M3qZv7F6uD+13lH+wijY29wD5az",
+         "data":"eJztmFEOwiAMhrmAHsKTmHgxr+Ed97YLaKNLyIQx4G8p0C\/pCxPaL9SNbXHuuVj8hdshmSuFVN7WnqhapPIgPGvrkcjB4VlSk0SOVJ7Vi9g1ZD0Zy2XnS\/1+jUToWmkN0n0WI+Z6FGfR5lvimuOtaY9rXVHOYK0gKNcz3i19r+BAOMMlPbh9Y86t+\/lVOLb+xnJ7u1ffbcx8zZfQ8Czaaq4ZQ+zraL6lrqHnQC2tfY9q0+hLlJ4xMkuFgPBNocEXfb5K0XpvpX03WvZyC8x3bEK+9H+4uO\/97\/6J2yceLu97kVZsf8di\/wwa2VfD+4Ek5mu+I8Hly\/GeiIDrm0avvqP1tfmO7UvM6Ez05Iu4H87mS\/Tii2I2X2J239b1cDOzL2pNredpgmNftfrO0Ms9nTOImlp7OTefOeOnaq6dL0GOZ6pm5Fwtnghff75EL9S6hupArMnhzZWf2zflLJ1XwtfPLZ1POm9v8QY3jTqD",
          "encoding":"base64",
          "height":60,
          "id":1,
@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztzrENABAARUELMIRJJKY0pwX8WqfS3CWvf6UAAAAAAADwoqWaVhqpp5n2xycAAAAAAAAAuB0AyQJN",
+         "data":"eJzt1rENwyAURVEWcIbIJJYyZeZkAeMuRUiBIfqYc6RXUd0CQUoAtMgfq53dRa7s29nsaq2\/NquW1lm7r7bO1NyrNXr3o\/OiN4\/ujdjcm+b7W633tGLvSvTCWL3\/V9Gt1gv\/ct6Hrexdtpc9y17JuwYAAAAAAABALAdV6XAK",
          "encoding":"base64",
          "height":60,
          "id":2,
@@ -48,7 +48,75 @@
          "draworder":"topdown",
          "id":4,
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":5724,
+                 "height":16,
+                 "id":738,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":128,
+                 "y":296
+                }, 
+                {
+                 "gid":5724,
+                 "height":16,
+                 "id":739,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":160,
+                 "y":400
+                }, 
+                {
+                 "gid":5724,
+                 "height":16,
+                 "id":740,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":320,
+                 "y":344
+                }, 
+                {
+                 "gid":5724,
+                 "height":16,
+                 "id":741,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":80,
+                 "y":168
+                }, 
+                {
+                 "gid":2147486586,
+                 "height":16,
+                 "id":743,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePools\" : [ \"v-burningasteroidsTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":304,
+                 "y":176
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -125,7 +193,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":738,
+ "nextobjectid":744,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
