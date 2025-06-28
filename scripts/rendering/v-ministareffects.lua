@@ -29,16 +29,20 @@ local endBurningColor
 local sunRayDimColor
 local sunRayBrightColor
 
--- Cached drawable tables
+-- Cached drawable info
 local blockDrawable
 local sunRayDrawable
+local nonOceanSunRayDrawable
+local nonOceanSunRayDrawableSize
 local sunRayDrawableFunc
+local nonOceanSunRayDrawableFunc
 local sunParticle
 
 -- State variables
 local ticker
 local burningBlocks
-local heightMap  ---@type HeightMap
+local heightMap  ---@type XMap
+local rayLocationsMap ---@type XMap
 local minHeight
 local lightDrawBounds
 local sunProximityRatio
@@ -60,6 +64,12 @@ function init()
     return
   end
 
+  particleDensity = 0.02
+  startBurningColor = {255, 0, 0, 0}
+  endBurningColor = {255, 119, 0, 255}
+  sunRayDimColor = {255, 0, 0, 0}
+  sunRayBrightColor = {255, 216, 107, 128}
+
   isActive = true
 
   local renderConfig = player.getProperty("v-ministareffects-renderConfig", {
@@ -74,12 +84,13 @@ function init()
   end)
 
   -- Synchronizes data
-  message.setHandler("v-ministareffects-updateBlocks", function(_, _, burningBlocks_, heightMap_, sunProximityRatio_, minHeight_, liquidParticlePoints_, flareBoosts_)
+  message.setHandler("v-ministareffects-updateBlocks", function(_, _, burningBlocks_, heightMap_, sunProximityRatio_, minHeight_, liquidParticlePoints_, flareBoosts_, rayLocationsMap_)
     burningBlocks = burningBlocks_
-    heightMap = vMinistar.HeightMap:fromJson(heightMap_)
+    heightMap = vMinistar.XMap:fromJson(heightMap_)
+    rayLocationsMap = vMinistar.XMap:fromJson(rayLocationsMap_)
     sunProximityRatio = sunProximityRatio_
     minHeight = minHeight_
-    flareBoosts = vMinistar.HeightMap:fromJson(flareBoosts_)
+    flareBoosts = vMinistar.XMap:fromJson(flareBoosts_)
 
     -- Merge on top of existing liquid particle points, excluding particles outside of the particle cull window.
     local window = rect.pad(world.clientWindow(), particleCullPadding)
@@ -87,7 +98,9 @@ function init()
       local chunk = vVec2.iFromString(chunkStr)
       local chunkRect = {chunk[1] * 16, chunk[2] * 16, (chunk[1] + 1) * 16, (chunk[2] + 1) * 16}
 
-      if #tiles > 0 and rect.intersects(window, chunkRect) then
+      if tiles == "clear" then
+        liquidParticlePoints[chunkStr] = nil
+      elseif #tiles > 0 and rect.intersects(window, chunkRect) then
         liquidParticlePoints[chunkStr] = tiles
       end
     end
@@ -106,14 +119,8 @@ function init()
   end)
 
   burningBlocks = {}
-  lightDrawBounds = vMinistar.HeightMap:new()
+  lightDrawBounds = vMinistar.XMap:new()
   sunProximityRatio = 0
-
-  particleDensity = 0.02
-  startBurningColor = {255, 0, 0, 0}
-  endBurningColor = {255, 119, 0, 255}
-  sunRayDimColor = {255, 0, 0, 0}
-  sunRayBrightColor = {255, 216, 107, 128}
 
   sunParticle = {
     type = "textured",
@@ -195,7 +202,9 @@ function v_ministarEffects_initLiquidParticles()
       local chunk = vVec2.iFromString(chunkStr)
       local chunkRect = {chunk[1] * 16, chunk[2] * 16, (chunk[1] + 1) * 16, (chunk[2] + 1) * 16}
 
-      if #tiles > 0 and rect.intersects(window, chunkRect) then
+      if tiles == "clear" then
+        liquidParticlePoints[chunkStr] = nil
+      elseif #tiles > 0 and rect.intersects(window, chunkRect) then
         liquidParticlePoints[chunkStr] = tiles
       end
     end
@@ -216,6 +225,12 @@ function v_ministarEffects_applyRenderConfig(cfg)
       color = {},  -- Placeholder
       fullbright = true
     }
+    nonOceanSunRayDrawable = {
+      image = "/scripts/rendering/v-ministarray2.png",
+      position = {},  -- Placeholder
+      fullbright = true
+    }
+    nonOceanSunRayDrawableSize = root.imageSize(nonOceanSunRayDrawable.image)
     blockDrawable = {  -- Construct table once. position and color will change.
       image = "/scripts/rendering/v-ministarhotspot.png",
       transformation = {
@@ -238,6 +253,17 @@ function v_ministarEffects_applyRenderConfig(cfg)
       sunRayDrawable.position = relativePos
       localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
     end
+    nonOceanSunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
+      local relativePos = {x - predictedPos[1] + 0.5, (topY + bottomY) / 2 - predictedPos[2]}
+
+      local temp = nonOceanSunRayDrawable.image
+      nonOceanSunRayDrawable.image = temp .. string.format("?crop=%d;%d;%d;%d", 0, 0, nonOceanSunRayDrawableSize[1], (topY - bottomY) * 8)
+
+      nonOceanSunRayDrawable.position = relativePos
+      localAnimator.addDrawable(nonOceanSunRayDrawable, "Liquid-1")
+
+      nonOceanSunRayDrawable.image = temp
+    end
   else
     sunRayDrawable = {
       line = {{0, 0}, {0, 0}},  -- Placeholder
@@ -253,12 +279,26 @@ function v_ministarEffects_applyRenderConfig(cfg)
       color = {0, 0, 0, 0},  -- Placeholder value
       fullbright = true
     }
+    nonOceanSunRayDrawable = {
+      line = {{0, 0}, {0, 0}},
+      width = 8,
+      position = {},  -- Placeholder
+      color = sunRayBrightColor,
+      fullbright = true
+    }
     sunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
       local relativePos = {x - predictedPos[1], bottomY - predictedPos[2]}
 
       sunRayDrawable.line = {{0.5, -1}, {0.5, topY - bottomY}}
       sunRayDrawable.position = relativePos
       localAnimator.addDrawable(sunRayDrawable, "Liquid-1")
+    end
+    nonOceanSunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
+      local relativePos = {x - predictedPos[1], bottomY - predictedPos[2]}
+
+      nonOceanSunRayDrawable.line = {{0.5, -1}, {0.5, topY - bottomY}}
+      nonOceanSunRayDrawable.position = relativePos
+      localAnimator.addDrawable(nonOceanSunRayDrawable, "Liquid-1")
     end
   end
 end
@@ -292,8 +332,6 @@ function update(dt)
   local sunRayColor = vAnimator.lerpColor(sunProximityRatio, sunRayDimColor, sunRayBrightColor)
 
   if heightMap then
-    sb.setLogMap("ministareffects_heightMapBounds", "%s %s", heightMap:xbounds())
-
     v_ministarEffects_drawSunRays(predictedPos, sunProximityRatio, flareBoosts, window)
     v_ministarEffects_drawSunRayLights(sunProximityRatio, flareBoosts, window)
   end
@@ -323,11 +361,9 @@ end
 ---
 ---@param predictedPos Vec2F
 ---@param ratio number
----@param boosts HeightMap
+---@param boosts XMap
 ---@param window RectI
 function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts, window)
-  local bottomY = minHeight
-
   -- Get boundaries
   local startXPos, endXPos = heightMap:xbounds()
 
@@ -335,22 +371,38 @@ function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts, window)
   local startX = math.max(world.nearestTo(startXPos, window[1]), startXPos)
   local endX = math.min(world.nearestTo(endXPos, window[3]), endXPos)
 
-  -- Draw sun rays
+  -- -- Draw sun rays
+  -- for x = startX, endX do
+  --   local topY = heightMap:get(x)
+
+  --   if topY and topY ~= minHeight then
+  --     sunRayDrawable.color = vAnimator.lerpColor(ratio + boosts:get(x), sunRayDimColor, sunRayBrightColor)
+  --     sunRayDrawableFunc(x, minHeight, topY, predictedPos)
+  --   end
+  -- end
+  -- Draw all sun rays
   for x = startX, endX do
     local topY = heightMap:get(x)
 
-    if topY and topY ~= bottomY then
+    if topY then
       sunRayDrawable.color = vAnimator.lerpColor(ratio + boosts:get(x), sunRayDimColor, sunRayBrightColor)
-      sunRayDrawableFunc(x, bottomY, topY, predictedPos)
-    end
+      if topY ~= minHeight then
+        sunRayDrawableFunc(x, minHeight, topY, predictedPos)
+      end
 
-    -- world.debugText("%s", topY, {x, (window[2] + window[4]) / 2 + x % 3}, "green")
+      local otherRays = rayLocationsMap:get(x)
+      if otherRays then
+        for _, ray in ipairs(otherRays) do
+          nonOceanSunRayDrawableFunc(x, ray.s, ray.e, predictedPos)
+        end
+      end
+    end
   end
 end
 
 ---
 ---@param ratio number
----@param boosts HeightMap
+---@param boosts XMap
 ---@param window RectI
 function v_ministarEffects_drawSunRayLights(ratio, boosts, window)
   if not useLights then return end
@@ -462,58 +514,23 @@ function v_ministarEffects_drawLiquidParticles(window)
   -- for _ = 1, 1 do
   -- end
 
+  local count = 0
+
   for _, tiles in pairs(liquidParticlePoints) do
     for _, tile in ipairs(tiles) do
       if rect.contains(window, tile) and math.random() <= liquidParticleDensity then
         localAnimator.spawnParticle(liquidSunParticle, tile)
       end
+      count = count + 1
     end
   end
+
+  sb.setLogMap("v-ministareffects_exposedSunCount", "%s", count)
+
   local pos = rect.randomPoint(window)
 
   local liquid = world.liquidAt(pos)
   if liquid and liquid[1] == sunLiquidId then
     localAnimator.spawnParticle(liquidSunParticleLarge, pos)
   end
-end
-
----
----@param startX integer
----@param endX integer
----@return HeightMap
-function v_ministarEffects_computeSolarFlareBoosts(startX, endX)
-  --[[
-    Schema: {
-      x: integer,  // Where the solar flare is located
-      startTime: number,  // World time at which the solar flare started
-      duration: number,  // How long the flare lasts.
-      potency: number,  // Between 0 and 1. How potent the solar flare is.
-      spread: number  // Controls the width of the solar flare.
-    }[]
-  ]]
-  local solarFlares = world.getProperty("v-solarFlares") or {}
-
-  sb.setLogMap("solarFlares", "%s", #solarFlares)
-
-  local boosts = vMinistar.HeightMap:new()
-  for x = startX, endX do
-    boosts:set(x, 0)
-  end
-
-  sb.setLogMap("boostsBounds", "%s %s", boosts.startXPos, boosts.endXPos)
-  for _, flare in ipairs(solarFlares) do
-    local durationStdDev = flare.duration / 6
-    local durationMean = flare.startTime + flare.duration / 2
-    local timeMultiplier = v_ministarEffects_normalDistribution(durationMean, durationStdDev, world.time())
-
-    for x = startX, endX do
-      boosts:set(x, boosts:get(x) + v_ministarEffects_normalDistribution(flare.x, flare.spread / 3, x) * flare.potency * timeMultiplier)
-    end
-  end
-
-  return boosts
-end
-
-function v_ministarEffects_normalDistribution(mean, stdDev, x)
-  return math.exp(-(x - mean) ^ 2 / (2 * stdDev ^ 2))
 end

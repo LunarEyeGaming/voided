@@ -17,6 +17,7 @@ local burnDepth  -- Depth at which the player starts burning
 local minBurnDamage
 local maxBurnDamage
 local tickTime
+local nonOceanMaxReach
 
 local tickDamage
 local isActive
@@ -24,6 +25,8 @@ local celestialParamsFetched
 local stagehandSpawned
 
 local SECTOR_SIZE = 32
+
+local rayLocationsMap
 
 function init()
   script.setUpdateDelta(6)
@@ -35,9 +38,14 @@ function init()
     return
   end
 
+  message.setHandler("v-ministarheat-receiveRayLocations", function(_, _, rayLocationsMap_)
+    rayLocationsMap = vMinistar.XMap:fromJson(rayLocationsMap_)
+  end)
+
   minBurnDamage = 1
   maxBurnDamage = 20
   tickTime = 0.5
+  nonOceanMaxReach = 100
 
   tickDamage = VTickDamage:new{ kind = "fire", amount = minBurnDamage, damageType = "IgnoresDef", interval = tickTime, source = player.id() }
   isActive = true
@@ -89,11 +97,9 @@ function update(dt)
     local pos = vec2.floor(mcontroller.position())
 
     -- Calculate solar flare boosts.
-    local boosts = computeSolarFlareBoosts(pos[1], pos[1])
+    local burnRatio = getBurnRatio()
 
-    local burnRatio = (1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + boosts:get(pos[1])
-
-    sb.setLogMap("burnRatio", "%s", burnRatio)
+    sb.setLogMap("v-ministarheat(player)_burnRatio", "%s", burnRatio)
 
     if status.statPositive("v-ministarHeatTickMultiplier") then
       tickDamage.interval = tickTime * status.stat("v-ministarHeatTickMultiplier")
@@ -102,7 +108,7 @@ function update(dt)
     local multiplier = 1 - status.stat("v-ministarHeatResistance")
 
     -- If the player should be burned...
-    if burnRatio > 0.0 and isExposedForeground() and multiplier > 0.0 then
+    if burnRatio > 0.0 and multiplier > 0.0 then
       -- Update damage amount. It is a linear interpolation between maxBurnDamage and minBurnDamage, where damage grows as
       -- depth (aka y position) decreases.
       tickDamage.damageRequest.damage = interp.linear(burnRatio, minBurnDamage, maxBurnDamage) * multiplier
@@ -134,13 +140,20 @@ function getCelestialCoordinates()
 end
 
 ---Returns whether or not the player is exposed to the sunlight below provided a `heightMap`.
----@return boolean
-function isExposedForeground()
+---@return number
+function getBurnRatio()
   local pos = mcontroller.position()
   local boundBox = rect.translate(mcontroller.boundBox(), pos)
   local y = pos[2]
 
+  local boosts = computeSolarFlareBoosts(pos[1], pos[1])
+  local baseBurnRatio = math.max(-(burnDepth - minDepth) / (maxDepth - minDepth), 1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + boosts:get(pos[1])
+
   local heightMap = getHeightMap(boundBox[1], boundBox[3])
+
+  local burnRatio = 0
+
+  local blockToBoundBoxRatio = 1 / (math.ceil(boundBox[3] - boundBox[1]))
 
   -- For each x across the current bounding box...
   for x = boundBox[1], boundBox[3] do
@@ -148,20 +161,32 @@ function isExposedForeground()
     local heightMapItem = heightMap:get(math.floor(world.xwrap(x)))
 
     if heightMapItem and minDepth < y and y < heightMapItem then
-      return true
+      burnRatio = burnRatio + baseBurnRatio
+    end
+
+    if rayLocationsMap then
+      local rayLocationsMapItem = rayLocationsMap:get(math.floor(world.xwrap(x)))
+
+      if rayLocationsMapItem then
+        for _, ray in ipairs(rayLocationsMapItem) do
+          if ray.s < y and y < ray.e then
+            burnRatio = burnRatio + (y - ray.s) / nonOceanMaxReach
+          end
+        end
+      end
     end
   end
 
-  return false
+  return burnRatio * blockToBoundBoxRatio
 end
 
 ---Retrieves a section of the global height map and returns it.
----@return HeightMap
+---@return XMap
 function getHeightMap(startX, endX)
   local startXSector = startX // SECTOR_SIZE
   local endXSector = endX // SECTOR_SIZE
 
-  local heightMap = vMinistar.HeightMap:new()
+  local heightMap = vMinistar.XMap:new()
 
   -- For each `xSector` from `startXSector` to `endXSector`...
   for xSector = startXSector, endXSector do
@@ -171,7 +196,7 @@ function getHeightMap(startX, endX)
 
     -- Copy the section over to heightMap.
     for _, value in ipairs(globalHeightMapSection) do
-      if startX <= value.x and value.x <= endX then
+      if math.floor(startX) <= value.x and value.x <= math.floor(endX) then
         heightMap:set(value.x, value.value)
       end
     end
@@ -183,7 +208,7 @@ end
 ---
 ---@param startX integer
 ---@param endX integer
----@return HeightMap
+---@return XMap
 function computeSolarFlareBoosts(startX, endX)
   --[[
     Schema: {
@@ -196,7 +221,7 @@ function computeSolarFlareBoosts(startX, endX)
   ]]
   local solarFlares = world.getProperty("v-solarFlares") or {}
 
-  local boosts = vMinistar.HeightMap:new()
+  local boosts = vMinistar.XMap:new()
   for x = startX, endX do
     boosts:set(x, 0)
   end

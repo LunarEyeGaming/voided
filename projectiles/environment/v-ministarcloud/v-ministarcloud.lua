@@ -64,7 +64,7 @@ function update(dt)
     local startX = ownPosI[1] + heightMapSetRange[1]
     local endX = ownPosI[1] + heightMapSetRange[2]
 
-    local heightMap = vMinistar.HeightMap:new()
+    local heightMap = vMinistar.XMap:new()
 
     for x = startX, endX do
       heightMap:set(math.floor(x), ownPosI[2])
@@ -90,13 +90,13 @@ function uninit()
 end
 
 function registerEntityCollision(heightMap)
-  for _, entityId in ipairs(world.entityQuery(mcontroller.position(), 250, {includedTypes = {"player"}})) do
+  for _, entityId in ipairs(world.entityQuery(mcontroller.position(), 250, {includedTypes = {"stagehand"}})) do
     world.sendEntityMessage(entityId, "v-ministarheat-setEntityCollision", entity.id(), heightMap)
   end
 end
 
 function deregisterEntityCollision()
-  for _, entityId in ipairs(world.entityQuery(mcontroller.position(), 250, {includedTypes = {"player"}})) do
+  for _, entityId in ipairs(world.entityQuery(mcontroller.position(), 250, {includedTypes = {"stagehand"}})) do
     world.sendEntityMessage(entityId, "v-ministarheat-setEntityCollision", entity.id(), nil)
   end
 end

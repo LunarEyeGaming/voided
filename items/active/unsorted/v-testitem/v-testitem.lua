@@ -38,7 +38,7 @@ end
 --   local startX = aimPosI[1] + heightMapSetRange[1]
 --   local endX = aimPosI[1] + heightMapSetRange[2]
 
---   local heightMap = vMinistar.HeightMap:new(startX)
+--   local heightMap = vMinistar.XMap:new(startX)
 
 --   for x = startX, endX do
 --     heightMap:set(math.floor(x), aimPosI[2])

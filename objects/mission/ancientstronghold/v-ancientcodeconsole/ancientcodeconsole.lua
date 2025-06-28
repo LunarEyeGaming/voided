@@ -72,7 +72,7 @@ function pushActiveInput()
 end
 
 function evalInCode()
-  res = matchInCode()
+  local res = matchInCode()
   if res then
     object.setOutputNodeLevel(CORRECT_NODE, true)
     finished = true

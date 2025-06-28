@@ -167,6 +167,34 @@
             "parameters" : { }
           }
         ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundOreRocks",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-lavaspewer" ] ],
+            "parameters" : { "originBiome" : "underground_detached/v-shallowundergroundministar" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-lavaDrain",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-lavadrain" ] ],
+            "parameters" : { "originBiome" : "underground_detached/v-shallowundergroundministar" }
+          }
+        ]
       }
     ]
   },

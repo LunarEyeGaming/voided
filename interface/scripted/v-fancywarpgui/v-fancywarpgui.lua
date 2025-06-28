@@ -4,13 +4,20 @@ require "/scripts/rect.lua"
 local sounds
 local settings
 local canvasWindowSize
-local canvas
+local canvas  ---@type CanvasWidget
 local canvasWindowRect
 
 local destInfoBoxHeight
 
 local destinationSettings
 local mapObject
+-- Drawables with a zero or negative z-level. Ordered by z-level. Drawables with the same z-level do not have a stable
+-- order.
+local belowDrawables
+-- Drawables with an undefined z-level. They render above everything in belowDrawables in the order they are listed.
+local noZLevelDrawables
+-- Drawables with a positive z-level. Ordered by z-level. Drawables with the same z-level do not have a stable order.
+local aboveDrawables
 
 local wasHovering
 local isHovering
@@ -32,6 +39,29 @@ function init()
   destinationSettings = config.getParameter("destinationSettings")
   mapObject = destinationSettings.mapObject
 
+  local otherDrawables = destinationSettings.otherDrawables
+
+  -- Build lists of drawables
+  belowDrawables = {}
+  noZLevelDrawables = {}
+  aboveDrawables = {}
+
+  for _, drawable in ipairs(otherDrawables) do
+    if drawable.zLevel then
+      if drawable.zLevel > 0 then
+        table.insert(aboveDrawables, drawable)
+      else
+        table.insert(belowDrawables, drawable)
+      end
+    else
+      table.insert(noZLevelDrawables, drawable)
+    end
+  end
+
+  -- Sort aboveDrawables and belowDrawables by zLevel
+  table.sort(aboveDrawables, function(a, b) return a.zLevel < b.zLevel end)
+  table.sort(belowDrawables, function(a, b) return a.zLevel < b.zLevel end)
+
   populateInfoBox()
 
   -- Hide info box.
@@ -43,7 +73,19 @@ function update(dt)
 
   renderBackground()
 
+  for _, drawable in ipairs(belowDrawables) do
+    canvas:drawImageDrawable(drawable.image, drawable.position, drawable.scale or 1.0)
+  end
+
+  for _, drawable in ipairs(noZLevelDrawables) do
+    canvas:drawImageDrawable(drawable.image, drawable.position, drawable.scale or 1.0)
+  end
+
   canvas:drawImageDrawable(mapObject.image, mapObject.position, mapObject.scale or 1.0)
+
+  for _, drawable in ipairs(aboveDrawables) do
+    canvas:drawImageDrawable(drawable.image, drawable.position, drawable.scale or 1.0)
+  end
 
   if isSelected then
     selectionTimer = selectionTimer + dt
@@ -151,14 +193,14 @@ function updateInfoBox()
     local position = vec2.add(vec2.add(mapObject.position, {0, -height / 2}), settings.destInfo.offset)
 
     local box = rect.withSize(vec2.add(position, rect.ll(canvasWindowRect)), {size[1], height})
-    box = rect.bound(box, rect.pad(canvasWindowRect, -5))
+    box = rect.bound(box, rect.pad(canvasWindowRect, -settings.windowBorderMargin))
 
     -- Calculate endpoints of elbow line and adjust info box bounds to use the minimum offset
     local line
     if box[1] - mapObject.position[1] < settings.destInfo.minOffset then
       box[3] = mapObject.position[1] - settings.destInfo.offset[1]
       box[1] = box[3] - size[1]
-      box = rect.bound(box, rect.pad(canvasWindowRect, -5))
+      box = rect.bound(box, rect.pad(canvasWindowRect, -settings.windowBorderMargin))
       line = {
         vec2.sub({math.floor(box[3] - 1), (box[4] + box[2]) / 2}, {canvasWindowRect[1], canvasWindowRect[2]}),
         vec2.add(mapObject.position, {-3, 0})

@@ -3,15 +3,15 @@ vMinistar = {}
 ---The size of each sector.
 vMinistar.SECTOR_SIZE = 32
 
----@class HeightMap
+---@class XMap
 ---@field startXPos integer First wrapped x coordinate that contains a value
 ---@field endXPos integer Last wrapped x coordinate that contains a value
----@field list table<integer, integer>
-vMinistar.HeightMap = {}
+---@field list table<integer, any>
+vMinistar.XMap = {}
 
 ---Returns a new instance of a height map.
----@return HeightMap
-function vMinistar.HeightMap:new()
+---@return XMap
+function vMinistar.XMap:new()
   local instance = {
     startXPos = nil,
     endXPos = nil,
@@ -25,11 +25,11 @@ end
 
 ---Creates a height map from a table.
 ---@param json table
----@return HeightMap
-function vMinistar.HeightMap:fromJson(json)
+---@return XMap
+function vMinistar.XMap:fromJson(json)
   local list = {}
 
-  local instance = vMinistar.HeightMap:new()
+  local instance = vMinistar.XMap:new()
 
   -- Build the list and a parallel list for sorting. Then, find the biggest gap between two consecutive values in the sorted list.
   for xStr, v in pairs(json.list) do
@@ -47,15 +47,15 @@ end
 
 ---Returns the height map value at `x`, or `nil` if not defined.
 ---@param x integer
----@return integer?
-function vMinistar.HeightMap:get(x)
+---@return any
+function vMinistar.XMap:get(x)
   return self.list[world.xwrap(x)]
 end
 
 ---Sets the height map value at `x` to `v`.
 ---@param x integer
----@param v integer
-function vMinistar.HeightMap:set(x, v)
+---@param v any
+function vMinistar.XMap:set(x, v)
   x = world.xwrap(x)
 
   -- Update boundaries. Use world.nearestTo to account for world wrapping
@@ -66,26 +66,34 @@ function vMinistar.HeightMap:set(x, v)
     local startX = world.nearestTo(x, self.startXPos)
     local endX = world.nearestTo(x, self.endXPos)
 
-    -- TODO: Handle setting values in descending order. Possible solution: when self.startXPos == self.endXPos, if x > self.endXPos,
-    -- set self.endXPos to x. Otherwise, set self.startXPos to x.
-    if not (startX <= x and x <= endX) then
-      -- If the start is the closer boundary, then assign x to be it. Otherwise, assign x to be the end.
-      if math.abs(x - startX) < math.abs(x - endX) then
-        self.startXPos = x
-      else
+    if startX == endX then
+      if x > endX then
         self.endXPos = x
+      else
+        self.startXPos = x
+      end
+    else
+      if not (startX <= x and x <= endX) then
+        -- If the start is the closer boundary, then assign x to be it. Otherwise, assign x to be the end.
+        if math.abs(x - startX) < math.abs(x - endX) then
+          self.startXPos = x
+        else
+          self.endXPos = x
+        end
       end
     end
+
+    -- TODO: Handle setting values in descending order. Possible solution: when self.startXPos == self.endXPos, if x > self.endXPos,
+    -- set self.endXPos to x. Otherwise, set self.startXPos to x.
+    -- if not (startX <= x and x <= endX) then
+    --   -- If the start is the closer boundary, then assign x to be it. Otherwise, assign x to be the end.
+    --   if math.abs(x - startX) < math.abs(x - endX) then
+    --     self.startXPos = x
+    --   else
+    --     self.endXPos = x
+    --   end
+    -- end
   end
-
-  -- if x < world.nearestTo(x, self.startXPos) and x <= world.nearestTo(x, self.endXPos) then
-  --   if x <= world.nearestTo(x, self.endXPos) then
-  --     self.startXPos = x
-
-  --   end
-  -- elseif x > world.nearestTo(x, self.endXPos) then
-  --   self.endXPos = x
-  -- end
   -- sb.logInfo("%s -> %s: %s", tostring(x), tostring(x - self.startXPos + 1), v)
   self.list[x] = v
 end
@@ -93,7 +101,7 @@ end
 ---Iterates through the x values within the height map's `xbounds()`, even `nil` values.
 ---
 ---Defining new x values in the height map while using this method will not affect its traversal.
-function vMinistar.HeightMap:xvalues()
+function vMinistar.XMap:xvalues()
   local startX, endX = self:xbounds()
   local x = startX - 1
   return function()
@@ -107,21 +115,14 @@ function vMinistar.HeightMap:xvalues()
 end
 
 ---Equivalent to pairs(self.list)
-function vMinistar.HeightMap:values()
-  -- local idx = nil
-  -- return function()
-  --   idx, v = next(self.list, idx)
-  --   if idx then
-  --     return idx, v
-  --   end
-  -- end
+function vMinistar.XMap:values()
   return pairs(self.list)
 end
 
 ---Returns the boundaries of the height map for easy iteration.
 ---@return integer
 ---@return integer
-function vMinistar.HeightMap:xbounds()
+function vMinistar.XMap:xbounds()
   local startX = self.startXPos
   local endX = self.endXPos
   if startX > endX then
@@ -131,11 +132,10 @@ function vMinistar.HeightMap:xbounds()
 end
 
 ---Returns a combined height map containing the contents of all of the given height maps.
----@param maps HeightMap[]
----@return HeightMap
-function vMinistar.HeightMap:merge(maps)
-  -- TODO: Optimize.
-  local merged = vMinistar.HeightMap:new()
+---@param maps XMap[]
+---@return XMap
+function vMinistar.XMap:merge(maps)
+  local merged = vMinistar.XMap:new()
   local mergedStartXPos, mergedEndXPos
   if #maps > 0 then
     mergedStartXPos, mergedEndXPos = maps[1]:xbounds()
@@ -157,11 +157,8 @@ function vMinistar.HeightMap:merge(maps)
       table.move(map.list, startX, endX, startX, merged.list)
     end
 
-    mergedStartXPos, mergedEndXPos = vMinistar.HeightMap:expandBounds(startX, mergedStartXPos, mergedEndXPos)
-    mergedStartXPos, mergedEndXPos = vMinistar.HeightMap:expandBounds(endX, mergedStartXPos, mergedEndXPos)
-    -- for x, v in map:xvalues() do
-    --   merged:set(x, v)
-    -- end
+    mergedStartXPos, mergedEndXPos = vMinistar.XMap:_expandBounds(startX, mergedStartXPos, mergedEndXPos)
+    mergedStartXPos, mergedEndXPos = vMinistar.XMap:_expandBounds(endX, mergedStartXPos, mergedEndXPos)
   end
 
   return merged
@@ -174,15 +171,23 @@ end
 ---@param endXPos integer
 ---@return integer startXPos2
 ---@return integer endXPos2
-function vMinistar.HeightMap:expandBounds(x, startXPos, endXPos)
+function vMinistar.XMap:_expandBounds(x, startXPos, endXPos)
   local startX = world.nearestTo(x, startXPos)
   local endX = world.nearestTo(x, endXPos)
-  if not (startX <= x and x <= endX) then
-    -- If the start is the closer boundary, then assign x to be it. Otherwise, assign x to be the end.
-    if math.abs(x - startX) < math.abs(x - endX) then
-      startXPos = x
-    else
+  if startX == endX then
+    if x > endX then
       endXPos = x
+    else
+      startXPos = x
+    end
+  else
+    if not (startX <= x and x <= endX) then
+      -- If the start is the closer boundary, then assign x to be it. Otherwise, assign x to be the end.
+      if math.abs(x - startX) < math.abs(x - endX) then
+        startXPos = x
+      else
+        endXPos = x
+      end
     end
   end
 
@@ -193,10 +198,9 @@ end
 ---height map, then the corresponding values in the slice will be `nil`.
 ---@param startX integer
 ---@param endX integer
----@return HeightMap
-function vMinistar.HeightMap:slice(startX, endX)
-  -- TODO: Optimize
-  local sliced = vMinistar.HeightMap:new()
+---@return XMap
+function vMinistar.XMap:slice(startX, endX)
+  local sliced = vMinistar.XMap:new()
 
   if startX > endX then
     error("startX must be less than endX")
@@ -225,10 +229,6 @@ function vMinistar.HeightMap:slice(startX, endX)
   else
     table.move(self.list, startX, endX, startX, sliced.list)
   end
-
-  -- for x = startX, endX do
-  --   sliced:set(x, self.list[world.xwrap(x)])
-  -- end
 
   sliced.startXPos = startX
   sliced.endXPos = endX
@@ -266,7 +266,7 @@ end
 ---`_liquidId` and a list of particle spawn points for each chunk that was queried. Should be called every tick.
 ---
 ---@param regions RectI[]
----@return Vec2I[], table<string, Vec2I[]>
+---@return Vec2I[], table<string, Vec2I[] | "clear">
 function vMinistar.LiquidScanner:update(regions)
   local CHUNK_SIZE = self._CHUNK_SIZE
   local liquidId = self._liquidId
@@ -299,13 +299,13 @@ function vMinistar.LiquidScanner:update(regions)
         end
 
         -- Process the region in more detail if it is not completely filled with sun liquid.
-        if res and res[1] == liquidId and res[2] < 1.0 then
+        if (res and res[1] == liquidId and res[2] < 1.0) then
           local prevRes = self._prevLiquidChunks[chunkStr]
           if self._hotRegions[chunkStr] and self._hotRegions[chunkStr] > 0
               or (not prevRes or prevRes[1] ~= res[1] or math.abs(prevRes[2] - res[2]) * CHUNK_SIZE * CHUNK_SIZE >= 1) then
             local minXInChunk = chunkX * CHUNK_SIZE
             local minYInChunk = chunkY * CHUNK_SIZE
-            local maxXInChunk = (chunkX + 1) * CHUNK_SIZE
+            local maxXInChunk = (chunkX + 1) * CHUNK_SIZE - 1
             local maxYInChunk = (chunkY + 1) * CHUNK_SIZE
 
             world.debugPoly({
@@ -368,7 +368,7 @@ function vMinistar.LiquidScanner:update(regions)
 
         else
           -- Add one particle spawn point to differentiate from the spawn point being undefined.
-          table.insert(particleSpawnPoints[chunkStr], {0, 0})
+          particleSpawnPoints[chunkStr] = "clear"
         --   world.debugPoly({
         --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE},
         --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, (chunkY + 1) * LIQUID_QUERY_CHUNK_SIZE},
@@ -412,7 +412,7 @@ function vMinistar.LiquidScanner:markRegionByTile(tile, time)
 end
 
 ---Sets the appropriate sectors of the globalHeightMap world property to contain the values in heightMap.
----@param heightMap HeightMap
+---@param heightMap XMap
 function vMinistar.setGlobalHeightMap(heightMap)
   local startX, endX = heightMap:xbounds()
   local startXSector = startX // vMinistar.SECTOR_SIZE

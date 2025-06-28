@@ -9,7 +9,7 @@ function init()
   local startX = math.floor(broadcastArea[1] + pos[1])
   local endX = math.floor(broadcastArea[3] + pos[1])
 
-  local heightMap = vMinistar.HeightMap:new()
+  local heightMap = vMinistar.XMap:new()
   for x = startX, endX do
     heightMap:set(x, maxDepth + pos[2])
   end

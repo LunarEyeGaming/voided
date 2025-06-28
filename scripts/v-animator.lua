@@ -45,6 +45,13 @@ function vAnimator.lerpColor(ratio, colorA, colorB)
     math.floor(math.max(math.min(colorA[3] + (colorB[3] - colorA[3]) * ratio, 255), 0)),
     math.floor(math.max(math.min(colorA[4] + (colorB[4] - colorA[4]) * ratio, 255), 0))
   }
+  -- local math_floor, math_max, math_min = math.floor, math.max, math.min
+  -- return {
+  --   math_floor(math_max(math_min(colorA[1] + (colorB[1] - colorA[1]) * ratio, 255), 0)),
+  --   math_floor(math_max(math_min(colorA[2] + (colorB[2] - colorA[2]) * ratio, 255), 0)),
+  --   math_floor(math_max(math_min(colorA[3] + (colorB[3] - colorA[3]) * ratio, 255), 0)),
+  --   math_floor(math_max(math_min(colorA[4] + (colorB[4] - colorA[4]) * ratio, 255), 0))
+  -- }
 end
 
 ---Uncapped version of `vAnimator.lerpColor`.
