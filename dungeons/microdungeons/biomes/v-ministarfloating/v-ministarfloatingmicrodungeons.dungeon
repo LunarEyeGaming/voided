@@ -5,7 +5,7 @@
     "rules" : [
     ],
 
-    "anchor" : [ "floating1" ],
+    "anchor" : [ "floating1", "floating2", "floating3" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -20,6 +20,20 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floating1.json" ]
+    },
+    {
+      "name" : "floating2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floating2.json" ]
+    },
+    {
+      "name" : "floating3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floating3.json" ]
     }
   ]
 }

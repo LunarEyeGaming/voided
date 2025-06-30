@@ -3,10 +3,10 @@ require "/scripts/vec2.lua"
 
 --[[
   This script is for an object that creates a climbing arc (aka Jacob's ladder) hazard. It specifically handles things
-  like the movement, drawing, and damage of the hazard. Periodically, an arc is created that spans from the leftmost 
-  tile to the rightmost tile. If the width of this arc exceeds the specifiable limit, it disappears. The arc slowly 
+  like the movement, drawing, and damage of the hazard. Periodically, an arc is created that spans from the leftmost
+  tile to the rightmost tile. If the width of this arc exceeds the specifiable limit, it disappears. The arc slowly
   rises with the previous conditions applying--i.e., it will eventually reach the "top" and disappear. Note that the arc
-  will touch tiles of all materials regardless of whether they are tagged as "conductive" (see v-matattributes.config).
+  will touch tiles of all materials regardless of whether they are tagged as "conductive" (see v-conductivity.config).
   The object also has the ability to "roll" down to a local minimum. Due to API limitations, the parameter overrides to
   keep after doing this action must be manually specified in a list called "overriddenParams."
 ]]
@@ -34,10 +34,10 @@ function init()
   waitTime = config.getParameter("waitTime")
   damageSourceConfig = config.getParameter("damageSourceConfig")
   shouldRollDown = config.getParameter("shouldRollDown")
-  
+
   state = FSM:new()
   state:set(wait)
-  
+
   if shouldRollDown then
     rollDownHill()
   end
@@ -69,7 +69,7 @@ function arc()
 
   local arcWidth
   local arcHeight = 0
-  
+
   -- Turn animations on
   animator.playSound("ambient", -1)
   animator.setParticleEmitterActive("impactLeft", true)
@@ -91,7 +91,7 @@ function arc()
     end
     arcHeight = arcHeight + climbingSpeed * dt
   until (arcWidth > maxArcWidth or arcWidth < minArcWidth) or arcHeight > maxHeight
-  
+
   -- Reset everything
   animator.stopAllSounds("ambient")
 
@@ -108,14 +108,14 @@ function arc()
 
   object.setAnimationParameter("lightning", {})
   object.setDamageSources()
-  
+
   state:set(wait)
 end
 
 --[[
   Handles the damage and drawing of the arc at a specific height. Returns the width of the arc and the midpoint of the
   colliding positions.
-  
+
   startPos: The midpoint of the current iteration
   return: the width of the arc, the new midpoint
 ]]
@@ -125,27 +125,27 @@ function generateArc(startPos)
 
   local leftCollide = world.lineCollision(startPos, leftTest)
   local rightCollide = world.lineCollision(startPos, rightTest)
-  
+
   if not leftCollide or not rightCollide then
     return math.huge  -- Force the arc not to form if either endpoint is too far from the object.
   end
-  
+
   local midpoint = getMidpoint(leftCollide, rightCollide)
-  
+
   local leftLength = world.magnitude(startPos, leftCollide)
   local rightLength = world.magnitude(startPos, rightCollide)
-  
+
   setDamageArc(leftCollide, rightCollide)
   drawLightning(leftCollide, rightCollide)
   updateEffects(leftCollide, midpoint, rightCollide)
-  
+
   return leftLength + rightLength, midpoint
 end
 
 --[[
   Sets the damage region to be a horizontal line with a starting absolute position of "from" and an ending absolute
   position of "to."
-  
+
   from: The starting absolute position
   to: The ending absolute position
 ]]
@@ -172,7 +172,7 @@ end
 
 --[[
   Updates transformation groups and sound positions to reflect the leftmost, middle, and rightmost portions of the arc.
-  
+
   left: The leftmost point to use
   middle: The middle point to use
   right: The rightmost point to use
@@ -188,13 +188,13 @@ function updateEffects(left, mid, right)
   -- Update transformation groups, accounting for the object's direction so that particle positions are correct.
   animator.resetTransformationGroup("leftpoint")
   animator.translateTransformationGroup("leftpoint", vec2.mul(relativeLeft, {dir, 1}))
-  
+
   animator.resetTransformationGroup("midpoint")
   animator.translateTransformationGroup("midpoint", vec2.mul(relativeMid, {dir, 1}))
-  
+
   animator.resetTransformationGroup("rightpoint")
   animator.translateTransformationGroup("rightpoint", vec2.mul(relativeRight, {dir, 1}))
-  
+
   animator.setSoundPosition("ambient", vec2.mul(relativeMid, {dir, 1}))
 end
 
@@ -238,7 +238,7 @@ end
 --[[
   Algorithm for finding the lowest ground position within a certain number of iterations. Returns nil if it rolls back
   to its original spot. This is a helper method for the bidirectional variant of this function.
-  
+
   initialDirection: The starting direction to use.
 ]]
 function findLocalMinimum_(initialDirection)
@@ -262,12 +262,12 @@ function findLocalMinimum_(initialDirection)
     else
       break
     end
-    
+
     if vec2.eq(curPos, initialPos) then
       break
     end
   end
-  
+
   -- Return nothing if the loop resulted in the target rolling back to the initial position to avoid infinite recursion.
   if not vec2.eq(curPos, initialPos) then
     return curPos

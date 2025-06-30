@@ -10,9 +10,9 @@ local effectQueryRadius
 local effects
 
 function init()
-  local matAttributes = root.assetJson("/v-matattributes.config")
-  conductiveMats = set.new(matAttributes.conductiveMaterials)
-  conductiveMatMods = set.new(matAttributes.conductiveMatMods)
+  local conductiveThings = root.assetJson("/v-conductivity.config")
+  conductiveMats = set.new(conductiveThings.conductiveMaterials)
+  conductiveMatMods = set.new(conductiveThings.conductiveMatMods)
 
   sparkProjectileType = "v-voltitesparkfg"
   effectQueryRadius = 150

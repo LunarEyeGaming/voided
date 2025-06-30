@@ -284,10 +284,10 @@ function vMinistar.LiquidScanner:update(regions)
     for chunkX = chunkMinX, chunkMaxX do
       for chunkY = chunkMinY, chunkMaxY do
         local res = world.liquidAt({
-          chunkX * CHUNK_SIZE,
-          chunkY * CHUNK_SIZE,
-          (chunkX + 1) * CHUNK_SIZE,
-          (chunkY + 1) * CHUNK_SIZE
+          chunkX * CHUNK_SIZE - 1,
+          chunkY * CHUNK_SIZE - 1,
+          (chunkX + 1) * CHUNK_SIZE + 1,
+          (chunkY + 1) * CHUNK_SIZE + 1
         })
 
         local chunkStr = vVec2.iToString({chunkX, chunkY})
@@ -367,7 +367,7 @@ function vMinistar.LiquidScanner:update(regions)
           end
 
         else
-          -- Add one particle spawn point to differentiate from the spawn point being undefined.
+          -- Mark this chunk to be cleared.
           particleSpawnPoints[chunkStr] = "clear"
         --   world.debugPoly({
         --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE},

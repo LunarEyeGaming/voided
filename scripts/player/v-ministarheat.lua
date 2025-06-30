@@ -170,7 +170,7 @@ function getBurnRatio()
       if rayLocationsMapItem then
         for _, ray in ipairs(rayLocationsMapItem) do
           if ray.s < y and y < ray.e then
-            burnRatio = burnRatio + (y - ray.s) / nonOceanMaxReach
+            burnRatio = burnRatio + (1 - (y - ray.s) / nonOceanMaxReach)
           end
         end
       end

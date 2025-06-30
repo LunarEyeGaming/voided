@@ -39,9 +39,9 @@ function init()
   script.setUpdateDelta(1)
   animTicks = 3
 
-  local matAttributes = root.assetJson("/v-matattributes.config")
-  validMats = set.new(matAttributes.conductiveMaterials or {})
-  validMatMods = set.new(matAttributes.conductiveMatMods or {})
+  local conductiveThings = root.assetJson("/v-conductivity.config")
+  validMats = set.new(conductiveThings.conductiveMaterials or {})
+  validMatMods = set.new(conductiveThings.conductiveMatMods or {})
 
   -- Used so that monsters can target whoever fired a projectile that created a shockwave
   sourceEntity = config.getParameter("sourceEntity", entity.id())
