@@ -157,5 +157,7 @@
 
   "smashOnBreak" : true,
   "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
-  "smashParticles" : [ { "count" : 5, "particle" : "potshard" } ]
+  "smashParticles" : [ { "count" : 5, "particle" : "potshard" } ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

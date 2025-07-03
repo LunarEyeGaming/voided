@@ -53,5 +53,7 @@
   "detectArea" : [ [-1.95, 0.5], [2.95, 1.25] ],
 
   "stayClosedTime" : 0.4, // before the platform disappears
-  "stayOpenTime" : 2.0 // after the platform has disappeared and all players have left
+  "stayOpenTime" : 2.0, // after the platform has disappeared and all players have left
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

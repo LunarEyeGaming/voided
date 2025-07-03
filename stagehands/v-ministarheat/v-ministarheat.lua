@@ -460,18 +460,24 @@ function surfaceTileQuery(startX, endX, yTop, affectedTiles, nonOceanAffectedTil
   local firstPart = function(rayLocationsMap_list)
     local table_insert = table.insert
 
-    -- Partition the list of liquid surface points by x position (use an XMap). DO NOT USE xvalues OR xbounds ON THIS.
-    local surfacePointsMap = getSurfacePointsMap()
-    -- For each vertical strip...
-    for x = startX, endX do
-      local rayLocations = {}
+    -- For each surface point in liquidSurfacePoints...
+    for _, tiles in pairs(liquidSurfacePoints) do
+      for _, tile in ipairs(tiles) do
+        local tileX, tileY = tile[1], tile[2] - 1
 
-      -- Go through each `surfacePoint` in surfacePointsMap:get(x)...
-      for _, surfaceY in ipairs(surfacePointsMap:get(x) or {}) do
-        -- Skip if surfacePoint == minDepth - 1
-        if surfaceY ~= minDepth - 1 then
-          local maxReach = surfaceY + nonOceanMaxReach
-          local points = world_collisionBlocksAlongLine({x, surfaceY}, {x, maxReach}, collisionSet)
+        -- Skip if tileY == minDepth - 1
+        if tileY ~= minDepth - 1 then
+
+          -- Initialize entry if it is not initialized yet.
+          local tileXWrapped = world_xwrap(tileX)
+          local rayLocations = rayLocationsMap_list[tileXWrapped]
+          if not rayLocations then
+            rayLocations = {}
+            rayLocationsMap_list[tileXWrapped] = rayLocations
+          end
+
+          local maxReach = tileY + nonOceanMaxReach
+          local points = world_collisionBlocksAlongLine(tile, {tileX, maxReach}, collisionSet)
 
           -- Add to affectedTiles and nonOceanAffectedTiles all blocks in `points` that are below (or at the level of)
           -- the first solid, opaque block.
@@ -483,11 +489,11 @@ function surfaceTileQuery(startX, endX, yTop, affectedTiles, nonOceanAffectedTil
             if material then
               local collideTileStr = vVec2_iToString(collideTile)
               affectedTiles[collideTileStr] = true
-              nonOceanAffectedTiles[collideTileStr] = collideTileY - surfaceY
+              nonOceanAffectedTiles[collideTileStr] = collideTileY - tileY
               local matCfg = getMaterialConfig(material)
               if matCfg and not matCfg.renderParameters.lightTransparent and matCfg.collisionKind == "solid" then
                 -- world.debugLine({x, surfaceY}, {x, collideTile[2]}, "green")
-                table_insert(rayLocations, {s = surfaceY, e = collideTileY})
+                table_insert(rayLocations, {s = tileY, e = collideTileY})
                 foundSolidTile = true
                 break
               end
@@ -498,13 +504,57 @@ function surfaceTileQuery(startX, endX, yTop, affectedTiles, nonOceanAffectedTil
           -- if no such tile is found) as well as the `surfaceY`.
           if not foundSolidTile then
             -- world.debugLine({x, surfaceY}, {x, surfaceY + nonOceanMaxReach}, "red")
-            table_insert(rayLocations, {s = surfaceY, e = maxReach})
+            table_insert(rayLocations, {s = tileY, e = maxReach})
           end
         end
       end
-      -- Set the corresponding entry of rayLocationsMap_list.
-      rayLocationsMap_list[world_xwrap(x)] = rayLocations
     end
+
+    -- -- Partition the list of liquid surface points by x position (use an XMap). DO NOT USE xvalues OR xbounds ON THIS.
+    -- local surfacePointsMap = getSurfacePointsMap()
+    -- -- For each vertical strip...
+    -- for x = startX, endX do
+    --   local rayLocations = {}
+
+    --   -- Go through each `surfacePoint` in surfacePointsMap:get(x)...
+    --   for _, surfaceY in ipairs(surfacePointsMap:get(x) or {}) do
+    --     -- Skip if surfacePoint == minDepth - 1
+    --     if surfaceY ~= minDepth - 1 then
+    --       local maxReach = surfaceY + nonOceanMaxReach
+    --       local points = world_collisionBlocksAlongLine({x, surfaceY}, {x, maxReach}, collisionSet)
+
+    --       -- Add to affectedTiles and nonOceanAffectedTiles all blocks in `points` that are below (or at the level of)
+    --       -- the first solid, opaque block.
+    --       local foundSolidTile = false
+    --       for _, collideTile in ipairs(points) do
+    --         local collideTileY = collideTile[2]
+
+    --         local material = world_material(collideTile, "foreground")
+    --         if material then
+    --           local collideTileStr = vVec2_iToString(collideTile)
+    --           affectedTiles[collideTileStr] = true
+    --           nonOceanAffectedTiles[collideTileStr] = collideTileY - surfaceY
+    --           local matCfg = getMaterialConfig(material)
+    --           if matCfg and not matCfg.renderParameters.lightTransparent and matCfg.collisionKind == "solid" then
+    --             -- world.debugLine({x, surfaceY}, {x, collideTile[2]}, "green")
+    --             table_insert(rayLocations, {s = surfaceY, e = collideTileY})
+    --             foundSolidTile = true
+    --             break
+    --           end
+    --         end
+    --       end
+
+    --       -- Add to rayLocations the first solid, opaque block (or a y-value `nonOceanMaxReach` blocks above `surfaceY`
+    --       -- if no such tile is found) as well as the `surfaceY`.
+    --       if not foundSolidTile then
+    --         -- world.debugLine({x, surfaceY}, {x, surfaceY + nonOceanMaxReach}, "red")
+    --         table_insert(rayLocations, {s = surfaceY, e = maxReach})
+    --       end
+    --     end
+    --   end
+    --   -- Set the corresponding entry of rayLocationsMap_list.
+    --   rayLocationsMap_list[world_xwrap(x)] = rayLocations
+    -- end
   end
 
   local secondPart = function(lowestSectorsMap, heightMap_list)

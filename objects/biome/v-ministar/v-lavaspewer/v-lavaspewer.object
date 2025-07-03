@@ -122,5 +122,7 @@
   "liquidId" : 2,  // Numeric ID because Starbound :P
   "liquidRate" : 0.2,  // Rate at which liquid spawns per tick.
   "activeDuration" : [1, 1.5],
-  "inactiveDuration" : [5, 10]
+  "inactiveDuration" : [5, 10],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

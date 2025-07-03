@@ -177,11 +177,11 @@
         "mode" : "ceiling",
         "priority" : 2.0,
         "variants" : 3,
-        "distribution" : "/biomes/distributions.config:denseMedium",
+        "distribution" : "/biomes/distributions.config:everywhere",
 
         "type" : "tree",
-        "treeFoliageHueShiftMax" : 60,
-        "treeStemHueShiftMax" : 40,
+        "treeFoliageHueShiftMax" : 0,
+        "treeStemHueShiftMax" : 0,
         "treeStemList" : [ "v-hangingtree" ],
         "treeFoliageList" : [ "v-hangingfoliage" ]
       },
