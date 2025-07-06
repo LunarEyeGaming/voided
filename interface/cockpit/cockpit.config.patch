@@ -482,11 +482,24 @@
       "path" : "/scripts/-",
       "value" : "/interface/cockpit/v-messageonvisitplugin.lua"
     },
+    {
+      "op" : "add",
+      "path" : "/scripts/-",
+      "value" : "/interface/cockpit/v-starriftdrawingplugin.lua"
+    },
     // Miscellaneous Parameters
     {
       "op" : "add",
       "path" : "/v-extradimensionalStarMessages",
       "value" : ["v-extradimensionalstar", "v-turnontutorialmessages"]
+    },
+    {
+      "op" : "add",
+      "path" : "/v-starRiftDrawable",
+      "value" : {
+        "image" : "/celestial/system/v-extradimensionalstarrift.png",
+        "scale" : 0.01
+      }
     }
   ]
 ]

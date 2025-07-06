@@ -5,7 +5,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt2ssNgzAQBFDXklZSVi5pIjVxo6bk4ihCYC94nf3MrDQ3sPwsWGyJpZTnwnxTghWC8ahQnNtCstZCstZC9SKYkd5hlD59dc+xfu79zePmJ9u5je6vtuN59141741T83KUozlqWaN4peaeNZK3Z5ZY6fXtbZnpze3N2K\/ozfv9lXoz7K\/opZfe+F6U8yCiV2pF8\/aeEWujplfS76yNWl6JlV6\/3pZZaqWXXk\/eIzO99Eb1jpqtjfTO7dPWRk1vpvOC1JvlPCi1ZvIinffPeFtma6PUe8baMt8dRdOK6N0zW\/+DNON\/pKjeUevZvaZltKw1xXlpez2bZ1i9umdbpebe9aNr+C+nxTpaz4mJkTc9KXrU",
+         "data":"eJzt2G1qwzAMBmBfIDtETjLYsZZC\/vUEOVP\/7UxLIS5C+EOOlFqqbHihc93Ej50YsUcI62PklWCseTDmmhcnbp6ssXmyxubV68Hs6R32ck6frTn+9t\/C3GY9wXPj1lf4etG7oOC+1BjpcSnvWXPqOjHbnuXIhpLqS4UzDt47N0cpK\/beUWJfau6Ucbnr4b6al2quWS15a2aKdXh1e0vm4bV7Pks90+uRBXzuEXj\/K72t+3NV4P053poZrm\/v51lifylmynlVC2ec5Ps7vMM7vHq9FGuLV3u9wfWuwU69QbWWvHCNU8\/f87ufI5vQmFQo9YbEswzXt3d9JbG\/lPPOyvsrYbV0PnvzlsxU6\/AOryZvznzWq\/l8lvCuwU59JeGFa1yqf6SSq79a\/p\/DMcP11V5fSe3xO\/aVGuqcOed0vNe0ZwZ5\/v2d6MfhjpsEvRTzp3lrZmvemvWTvBSrR2\/J3PtMpp7PLdac+UthpKw576Qo0l5s\/p31RdJqzcu1ttaaPSNljQnKm7RXs\/kKq1b31VaquTaeu4bvcvZYx95zGrGRfw2+x9I=",
          "encoding":"base64",
          "height":60,
          "id":1,
@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt1sERwiAQhWFqSStW5ViHbVmTB8Mlg+wDdjcLvH9mT0mQb6KJKTHGGGOMMe8+l3kdvymVj3nNdW\/a1ujeXnNpnTzvc0q9neffHrWss3hRs2SVvD31rId4JTNipXc8S2\/NTG+\/t\/Rskc5tScObwOu1vT3R2\/9eQr1eY+2VzLt674xeenf0otE7n7elnbzSdwR5L9aOtZwjjeVzSsP7OAc5pzYaXsS60v3V8Ho1+nxGrfTeE71tZnrpvXq9ZtQ7as6fhfwvGJ1I3tnvL2qe7fdb8ybg2tW8Sbh2Ni\/SKl603bypssYs3p5K63i8d9HRtO7oLZkjpW0trRkpq71FtOas9vY8Yo9Fd5s8rVHdXrXuo\/V4FKd1K9uYbV8TeYq\/",
+         "data":"eJztmm1uwyAMhn2B7RC9yk41NZO4RH\/tTjvTVBWrETLGBgMh8SO9UhUI4anzgaIAOI7jOI7jOKP5S\/Jze4UC20YlnZu1K\/puGd8ttmGfNOn2ln6Ub60zNQ7m8fSqHJfiEaNhi\/vk5qiBc13FV+pccl3Jt+QscXVf3mGfUl8NUl\/OeZZvDe7b55wOMb+7371DsT9+T1+s1QZ0DXuEYn\/8Ft+Sc4B3fWdiVV9k5POoBqvrF3Ff952J+9a7QmGMK\/kG4J9HAcprhZo+aSTPIw1cbbn6Ptu+YnJrBW0fKpL1hhTu\/AjA11eyNqrpk8aqvpL73SrXbwmJq\/vOofX+LHV13zm4r87ZfekEOMf7HE1tsb7c+scqFu9zWpwDvOs78\/2Vpr6tNcb\/fiY4B+mcc1zNFwT7ns0XCvuu5ivhLL5SruYLzBir+NaQjvF5wFi55nw\/iKTbR\/az9E2d75nvkGZx7\/wN1tF9rbAez5Jec\/u+HTs9mO000vWo3qPQzkPbfhTP3pzZzenLPwK2QcE=",
          "encoding":"base64",
          "height":60,
          "id":2,
@@ -58,8 +58,8 @@
                  "type":"",
                  "visible":true,
                  "width":40,
-                 "x":176,
-                 "y":248
+                 "x":192,
+                 "y":232
                 }, 
                 {
                  "gid":5743,
@@ -70,8 +70,8 @@
                  "type":"",
                  "visible":true,
                  "width":40,
-                 "x":248,
-                 "y":248
+                 "x":264,
+                 "y":232
                 }, 
                 {
                  "gid":5735,
@@ -162,6 +162,14 @@
                  "height":8,
                  "id":948,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"detectArea\" : [ [-1, -1], [12, 6] ], \"detectDuration\" : 1 }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -210,8 +218,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":176,
-                 "y":240
+                 "x":192,
+                 "y":224
                 }, 
                 {
                  "gid":7862,
@@ -230,14 +238,22 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":248,
-                 "y":240
+                 "x":264,
+                 "y":224
                 }, 
                 {
                  "gid":7862,
                  "height":8,
                  "id":971,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"detectArea\" : [ [-5, -1], [5, 6] ], \"detectDuration\" : 1 }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -466,8 +482,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":184,
-                 "y":232
+                 "x":200,
+                 "y":216
                 }, 
                 {
                  "height":0,
@@ -486,8 +502,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":256,
-                 "y":232
+                 "x":272,
+                 "y":216
                 }, 
                 {
                  "height":0,

@@ -5,7 +5,8 @@
     "rules" : [
     ],
 
-    "anchor" : [ "lavalake1", "lavalake2", "lavalake3", "lavalake4", "pyramid1", "pyramid2", "pyramid3", "orevein1" ],
+    "anchor" : [ "lavalake1", "lavalake2", "lavalake3", "lavalake4", "pyramid1", "pyramid2", "pyramid3", "orevein1",
+    "orevein2", "orevein3" ],
     // "anchor" : [ "floating1" ],
 
     "gravity" : 80,
@@ -70,6 +71,20 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "orevein1.json" ]
+    },
+    {
+      "name" : "orevein2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "orevein2.json" ]
+    },
+    {
+      "name" : "orevein3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "orevein3.json" ]
     }
   ]
 }
