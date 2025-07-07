@@ -19,6 +19,9 @@ end
 function btnPrettyRays()
 end
 
+function btnLiquidParticles()
+end
+
 function btnApply()
   applySettings()
 end
@@ -33,6 +36,7 @@ function getSettings()
     widget.setSelectedOption("ambientLightPrecision", cfg.lightIntervalIdx - 2)
     widget.setChecked("btnAmbientLight", cfg.useLights)
     widget.setChecked("btnPrettyRays", cfg.useImagesForRays)
+    widget.setChecked("btnLiquidParticles", cfg.useLiquidParticles)
   end
 end
 
@@ -40,7 +44,8 @@ function applySettings()
   local cfg = {
     lightIntervalIdx = widget.getSelectedOption("ambientLightPrecision") + 2,
     useLights = widget.getChecked("btnAmbientLight"),
-    useImagesForRays = widget.getChecked("btnPrettyRays")
+    useImagesForRays = widget.getChecked("btnPrettyRays"),
+    useLiquidParticles = widget.getChecked("btnLiquidParticles")
   }
   player.setProperty("v-ministareffects-renderConfig", cfg)
   world.sendEntityMessage(player.id(), "v-ministareffects-applyRenderConfig", cfg)

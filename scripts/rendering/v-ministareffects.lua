@@ -21,6 +21,7 @@ local liquidParticlePoints
 local lightInterval
 local useLights
 local useImagesForRays
+local useLiquidParticles
 
 -- Internal parameters
 local particleDensity
@@ -75,7 +76,8 @@ function init()
   local renderConfig = player.getProperty("v-ministareffects-renderConfig", {
     lightIntervalIdx = 2,
     useLights = true,
-    useImagesForRays = true
+    useImagesForRays = true,
+    useLiquidParticles = true
   })
   v_ministarEffects_applyRenderConfig(renderConfig)
 
@@ -217,6 +219,7 @@ function v_ministarEffects_applyRenderConfig(cfg)
   lightInterval = lightIntervals[cfg.lightIntervalIdx]
   useLights = cfg.useLights
   useImagesForRays = cfg.useImagesForRays
+  useLiquidParticles = cfg.useLiquidParticles
   if useImagesForRays then
     sunRayDrawable = {
       transformation = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}},  -- Placeholder
@@ -371,15 +374,6 @@ function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts, window)
   local startX = math.max(world.nearestTo(startXPos, window[1]), startXPos)
   local endX = math.min(world.nearestTo(endXPos, window[3]), endXPos)
 
-  -- -- Draw sun rays
-  -- for x = startX, endX do
-  --   local topY = heightMap:get(x)
-
-  --   if topY and topY ~= minHeight then
-  --     sunRayDrawable.color = vAnimator.lerpColor(ratio + boosts:get(x), sunRayDimColor, sunRayBrightColor)
-  --     sunRayDrawableFunc(x, minHeight, topY, predictedPos)
-  --   end
-  -- end
   -- Draw all sun rays
   for x = startX, endX do
     local topY = heightMap:get(x)
@@ -505,6 +499,7 @@ function v_ministarEffects_drawParticles(color)
 end
 
 function v_ministarEffects_drawLiquidParticles(window)
+  if not useLiquidParticles then return end
   -- for x = window[1], window[3] do
   --   local y = heightMap:get(x)
   --   if y ~= minHeight and math.random() <= liquidParticleDensity then
