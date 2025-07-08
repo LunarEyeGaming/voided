@@ -1,10 +1,8 @@
-require "/scripts/interp.lua"
 require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
 
 require "/scripts/v-vec2.lua"
 require "/scripts/v-ministarutil.lua"
-require "/scripts/statuseffects/v-tickdamage.lua"
 require "/scripts/v-time.lua"
 
 -- Invalidate global height map segments with:
@@ -110,6 +108,25 @@ function init()
       if not world.entityExists(entityId) then
         entityHeightMaps[entityId] = nil
       end
+    end
+  end)
+
+  vTime.addInterval(cfg.solarFlaresCleanUpInterval, function()
+    local solarFlares = world.getProperty("v-solarFlares") or {}
+    local time = world.time()
+
+    -- Clean up expired entries
+    for i = #solarFlares, 1, -1 do
+      local flare = solarFlares[i]
+      if time > flare.startTime + flare.duration then
+        table.remove(solarFlares, i)
+      end
+    end
+
+    -- If there are more than maxSolarFlares entries, delete the oldest entry repeatedly until there are maxSolarFlares
+    -- entries.
+    while #solarFlares > cfg.maxSolarFlares do
+      table.remove(solarFlares, 1)
     end
   end)
 
@@ -276,7 +293,7 @@ function update(dt)
         table.insert(rayLocationsMaps, rayLocationsMap)
 
         -- Calculate solar flare boosts for the current player and add it to the list.
-        local boosts = computeSolarFlareBoosts(heightMap:xbounds())
+        local boosts = vMinistar.computeSolarFlareBoosts(heightMap:xbounds())
         table.insert(boostSets, boosts)
       end
 
@@ -436,29 +453,9 @@ function surfaceTileQuery(startX, endX, yTop, affectedTiles, nonOceanAffectedTil
   local world_xwrap = world.xwrap
   local vVec2_iToString = vVec2.iToString
 
-  local getSurfacePointsMap = function()
-    local surfacePointsMap = vMinistar.XMap:new()
-    local surfacePointsMap_list = surfacePointsMap.list
-    local table_insert = table.insert
-
-    for _, tiles in pairs(liquidSurfacePoints) do
-      for _, tile in ipairs(tiles) do
-        local tileX = tile[1]
-        local surfaceYs = surfacePointsMap:get(tileX)
-        if not surfaceYs then
-          surfaceYs = {}
-          surfacePointsMap_list[world_xwrap(tileX)] = surfaceYs
-        end
-
-        table_insert(surfaceYs, tile[2] - 1)
-      end
-    end
-
-    return surfacePointsMap
-  end
-
   local firstPart = function(rayLocationsMap_list)
     local table_insert = table.insert
+    local math_min = math.min
 
     -- For each surface point in liquidSurfacePoints...
     for _, tiles in pairs(liquidSurfacePoints) do
@@ -467,7 +464,6 @@ function surfaceTileQuery(startX, endX, yTop, affectedTiles, nonOceanAffectedTil
 
         -- Skip if tileY == minDepth - 1
         if tileY ~= minDepth - 1 then
-
           -- Initialize entry if it is not initialized yet.
           local tileXWrapped = world_xwrap(tileX)
           local rayLocations = rayLocationsMap_list[tileXWrapped]
@@ -489,7 +485,10 @@ function surfaceTileQuery(startX, endX, yTop, affectedTiles, nonOceanAffectedTil
             if material then
               local collideTileStr = vVec2_iToString(collideTile)
               affectedTiles[collideTileStr] = true
-              nonOceanAffectedTiles[collideTileStr] = collideTileY - tileY
+
+              local oldValue = nonOceanAffectedTiles[collideTileStr]
+              nonOceanAffectedTiles[collideTileStr] = oldValue and math_min(oldValue, collideTileY - tileY) or collideTileY - tileY
+
               local matCfg = getMaterialConfig(material)
               if matCfg and not matCfg.renderParameters.lightTransparent and matCfg.collisionKind == "solid" then
                 -- world.debugLine({x, surfaceY}, {x, collideTile[2]}, "green")
@@ -509,52 +508,6 @@ function surfaceTileQuery(startX, endX, yTop, affectedTiles, nonOceanAffectedTil
         end
       end
     end
-
-    -- -- Partition the list of liquid surface points by x position (use an XMap). DO NOT USE xvalues OR xbounds ON THIS.
-    -- local surfacePointsMap = getSurfacePointsMap()
-    -- -- For each vertical strip...
-    -- for x = startX, endX do
-    --   local rayLocations = {}
-
-    --   -- Go through each `surfacePoint` in surfacePointsMap:get(x)...
-    --   for _, surfaceY in ipairs(surfacePointsMap:get(x) or {}) do
-    --     -- Skip if surfacePoint == minDepth - 1
-    --     if surfaceY ~= minDepth - 1 then
-    --       local maxReach = surfaceY + nonOceanMaxReach
-    --       local points = world_collisionBlocksAlongLine({x, surfaceY}, {x, maxReach}, collisionSet)
-
-    --       -- Add to affectedTiles and nonOceanAffectedTiles all blocks in `points` that are below (or at the level of)
-    --       -- the first solid, opaque block.
-    --       local foundSolidTile = false
-    --       for _, collideTile in ipairs(points) do
-    --         local collideTileY = collideTile[2]
-
-    --         local material = world_material(collideTile, "foreground")
-    --         if material then
-    --           local collideTileStr = vVec2_iToString(collideTile)
-    --           affectedTiles[collideTileStr] = true
-    --           nonOceanAffectedTiles[collideTileStr] = collideTileY - surfaceY
-    --           local matCfg = getMaterialConfig(material)
-    --           if matCfg and not matCfg.renderParameters.lightTransparent and matCfg.collisionKind == "solid" then
-    --             -- world.debugLine({x, surfaceY}, {x, collideTile[2]}, "green")
-    --             table_insert(rayLocations, {s = surfaceY, e = collideTileY})
-    --             foundSolidTile = true
-    --             break
-    --           end
-    --         end
-    --       end
-
-    --       -- Add to rayLocations the first solid, opaque block (or a y-value `nonOceanMaxReach` blocks above `surfaceY`
-    --       -- if no such tile is found) as well as the `surfaceY`.
-    --       if not foundSolidTile then
-    --         -- world.debugLine({x, surfaceY}, {x, surfaceY + nonOceanMaxReach}, "red")
-    --         table_insert(rayLocations, {s = surfaceY, e = maxReach})
-    --       end
-    --     end
-    --   end
-    --   -- Set the corresponding entry of rayLocationsMap_list.
-    --   rayLocationsMap_list[world_xwrap(x)] = rayLocations
-    -- end
   end
 
   local secondPart = function(lowestSectorsMap, heightMap_list)
@@ -628,22 +581,12 @@ function surfaceTileQuery(startX, endX, yTop, affectedTiles, nonOceanAffectedTil
     lowestSectorsMap[sector[1]] = {y = cappedCheckMinY, uncappedY = checkMinY, capped = checkMinYWasCapped}
   end
 
-  local rayLocationsMap = vMinistar.XMap:new()
-
-  -- Set x boundaries for the other-heights map.
-  rayLocationsMap.startXPos = world_xwrap(startX)
-  rayLocationsMap.endXPos = world_xwrap(endX)
-
+  local rayLocationsMap = vMinistar.XMap:new(startX, endX)
   local rayLocationsMap_list = rayLocationsMap.list
 
   firstPart(rayLocationsMap_list)
 
-  local heightMap = vMinistar.XMap:new()
-
-  -- Set x boundaries for the height map.
-  heightMap.startXPos = world_xwrap(startX)
-  heightMap.endXPos = world_xwrap(endX)
-
+  local heightMap = vMinistar.XMap:new(startX, endX)
   local heightMap_list = heightMap.list
 
   secondPart(lowestSectorsMap, heightMap_list)
@@ -654,6 +597,13 @@ end
 ---Syncs the given height map to the global height map.
 ---@param heightMaps XMap[]
 function syncHeightMapsToGlobal(heightMaps)
+  local math_floor = math.floor
+  local world_xwrap = world.xwrap
+  local world_getProperty = world.getProperty
+  local world_pointCollision = world.pointCollision
+  local world_setProperty = world.setProperty
+  local table_insert = table.insert
+
   for _, heightMap in ipairs(heightMaps) do
     local startX, endX = heightMap:xbounds()
     local startXSector = startX // SECTOR_SIZE
@@ -666,9 +616,9 @@ function syncHeightMapsToGlobal(heightMaps)
     local globalHeightMap = {}
     -- For each `xSector` from `startXSector` to `endXSector`...
     for xSector = startXSector, endXSector do
-      local xSectorWrapped = math.floor(world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
+      local xSectorWrapped = math_floor(world_xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
       -- Get global height map section corresponding to `xSector`.
-      local globalHeightMapSection = world.getProperty("v-globalHeightMap." .. xSectorWrapped) or {}
+      local globalHeightMapSection = world_getProperty("v-globalHeightMap." .. xSectorWrapped) or {}
 
       -- Copy the section over to globalHeightMap.
       for _, value in ipairs(globalHeightMapSection) do
@@ -677,19 +627,17 @@ function syncHeightMapsToGlobal(heightMaps)
     end
 
     -- For each entry in the list of `heightMap`...
+    local heightMap_list = heightMap.list
     for x, v in heightMap:xvalues() do
       if not globalHeightMap[x] then
         globalHeightMap[x] = v
       else
         local globalV = globalHeightMap[x]
-        local sharedValue
-        if v < globalV or not world.pointCollision({x, globalV}, {"Null"}) then
-          sharedValue = v
+        if v < globalV or not world_pointCollision({x, globalV}, {"Null"}) then
+          globalHeightMap[x] = v
         else
-          sharedValue = globalV
+          heightMap_list[x] = globalV
         end
-        heightMap:set(x, sharedValue)
-        globalHeightMap[x] = sharedValue
       end
     end
 
@@ -701,20 +649,20 @@ function syncHeightMapsToGlobal(heightMaps)
     -- For each `xSector` from `startXSector` to `endXSector`...
     for xSector = startXSector, endXSector do
       local globalHeightMapSection = {}
-      local xSectorWrapped = math.floor(world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
+      local xSectorWrapped = math_floor(world_xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
 
       -- For each x value in the sector...
       for x = xSectorWrapped * SECTOR_SIZE, (xSectorWrapped + 1) * SECTOR_SIZE - 1 do
         -- Add to the section.
-        table.insert(globalHeightMapSection, {x = x, value = globalHeightMap[x]})
+        table_insert(globalHeightMapSection, {x = x, value = globalHeightMap[x]})
       end
 
-      world.setProperty("v-globalHeightMap." .. xSectorWrapped, globalHeightMapSection)
+      world_setProperty("v-globalHeightMap." .. xSectorWrapped, globalHeightMapSection)
     end
   end
 end
 
----Applies received entity height maps to the given `heightMap`.
+---Applies received entity height maps to the given `heightMaps`.
 ---@param heightMaps XMap[]
 function applyEntityHeightMaps(heightMaps)
   local flattenedEntityHeightMap = vMinistar.XMap:new()
@@ -748,6 +696,11 @@ end
 ---@return Vec2I[]
 ---@return {id: LiquidId, pos: Vec2I}[]
 function processHeatMap(affectedTiles, dt)
+  local vVec2_iToString = vVec2.iToString
+  local table_insert = table.insert
+  local table_remove = table.remove
+  local world_pointTileCollision = world.pointTileCollision
+
   local tilesToDestroy = {}
   local liquidsToPlace = {}
   -- For each tile in the heatMap (iterated through backwards)...
@@ -755,7 +708,7 @@ function processHeatMap(affectedTiles, dt)
     local tile = heatMap[i]
     local tilePos = tile.pos
 
-    local tilePosHash = vVec2.iToString(tilePos)
+    local tilePosHash = vVec2_iToString(tilePos)
 
     -- If the tile is in affectedTiles...
     if affectedTiles[tilePosHash] then
@@ -763,11 +716,8 @@ function processHeatMap(affectedTiles, dt)
       tile.heatDeltaDir = 1
 
       if tile.heat > tile.heatTolerance then
-        table.insert(tilesToDestroy, tilePos)
-        if tile.liquidConversion then
-          table.insert(liquidsToPlace, {id = tile.liquidConversion, pos = tilePos})
-        end
-        table.remove(heatMap, i)
+        table_insert(tilesToDestroy, tilePos)
+        table_remove(heatMap, i)
       end
 
       liquidScanner:markRegionByTile(tilePos, 3)
@@ -775,14 +725,14 @@ function processHeatMap(affectedTiles, dt)
       -- Remove entry from affectedTiles to avoid excess inserts.
       affectedTiles[tilePosHash] = nil
     -- Otherwise, if the tile no longer exists...
-    elseif not world.pointTileCollision(tilePos, collisionSet) then
-      table.remove(heatMap, i)
+    elseif not world_pointTileCollision(tilePos, collisionSet) then
+      table_remove(heatMap, i)
     else
       tile.heat = tile.heat - dt
       tile.heatDeltaDir = -1
 
       if tile.heat <= 0 then
-        table.remove(heatMap, i)
+        table_remove(heatMap, i)
       end
     end
   end
@@ -797,14 +747,22 @@ end
 ---@param nonOceanAffectedTiles table<string, integer>
 ---@param dt number
 function addToHeatMap(affectedTiles, heightMap, liquidTouchedTiles, nonOceanAffectedTiles, dt)
+  local vVec2_iFromString = vVec2.iFromString
+  local world_material = world.material
+  local table_insert = table.insert
+  local math_min = math.min
+  local math_max = math.max
+  local math_huge = math.huge
+
   -- For each tile in `affectedTiles`...
   for tileHash, _ in pairs(affectedTiles) do
-    local tile = vVec2.iFromString(tileHash)
-    local material = world.material(tile, "foreground")
+    local tile = vVec2_iFromString(tileHash)
+    local tileY = tile[2]
+    local material = world_material(tile, "foreground")
 
     local heightMapValue = heightMap:get(tile[1])
     -- Whether or not the affected tile is exposed (and therefore should be burned). Used to address false positives.
-    local isExposed = not heightMapValue or minDepth <= tile[2] and tile[2] <= heightMapValue
+    local isExposed = not heightMapValue or minDepth <= tileY and tileY <= heightMapValue
     local nextToSunLiquid = liquidTouchedTiles[tileHash]
     local nonOceanDistance = nonOceanAffectedTiles[tileHash]
     -- local isExposed = true
@@ -818,12 +776,12 @@ function addToHeatMap(affectedTiles, heightMap, liquidTouchedTiles, nonOceanAffe
       if nextToSunLiquid then
         toleranceMultiplier = 0
       else
-        toleranceMultiplier = math.huge
+        toleranceMultiplier = math_huge
         if nonOceanDistance then
           toleranceMultiplier = nonOceanDistance / nonOceanMaxReach
         end
         if isExposed then
-          toleranceMultiplier = math.min(toleranceMultiplier, math.max(0, (tile[2] - minDepth) / (maxDepth - minDepth)))
+          toleranceMultiplier = math_min(toleranceMultiplier, math_max(0, (tileY - minDepth) / (maxDepth - minDepth)))
         end
       end
 
@@ -831,12 +789,11 @@ function addToHeatMap(affectedTiles, heightMap, liquidTouchedTiles, nonOceanAffe
       if toleranceMultiplier <= 1.0 then
         local heatCfg = getHeatConfig(material)
         local tolerance = heatCfg.tolerance * toleranceMultiplier ^ 2 + heatCfg.toleranceOffset
-        table.insert(heatMap, {
+        table_insert(heatMap, {
           pos = tile,
           heat = 0,
           heatTolerance = tolerance > dt and tolerance or 0,
-          heatDeltaDir = 1,
-          liquidConversion = heatCfg.liquidConversion
+          heatDeltaDir = 1
         })
         -- world.debugPoint({tile[1] + 0.5, tile[2] + 0.5}, "yellow")
 
@@ -924,61 +881,4 @@ function getHeatConfig(material)
   end
 
   return heatConfigs[material]
-end
-
----
----@param startX integer
----@param endX integer
----@return XMap
-function computeSolarFlareBoosts(startX, endX)
-  --[[
-    Schema: {
-      x: integer,  // Where the solar flare is located
-      startTime: number,  // World time at which the solar flare started
-      duration: number,  // How long the flare lasts.
-      potency: number,  // Between 0 and 1. How potent the solar flare is.
-      spread: number  // Controls the width of the solar flare.
-    }[]
-  ]]
-  local solarFlares = world.getProperty("v-solarFlares") or {}
-  local noFlareZones = world.getProperty("v-noFlareZones") or {}
-
-  sb.setLogMap("v-ministarheat(stagehand)_solarFlares", "%s", #solarFlares)
-
-  local boosts = vMinistar.XMap:new()
-  for x = startX, endX do
-    boosts:set(x, 0)
-  end
-
-  for _, flare in ipairs(solarFlares) do
-    local durationStdDev = flare.duration / 6
-    local durationMean = flare.startTime + flare.duration / 2
-    local timeMultiplier = normalDistribution(durationMean, durationStdDev, world.time())
-
-    for x = startX, endX do
-      if not inNoFlareZone(x, noFlareZones) then
-        boosts:set(x, boosts:get(x) + normalDistribution(flare.x, flare.spread / 3, x) * flare.potency * timeMultiplier)
-      end
-    end
-  end
-
-  return boosts
-end
-
----Returns whether or not `x` is inside of a no-flare zone (with the no-flare zones given by `noFlareZones`).
----@param x integer
----@param noFlareZones {startX: integer, endX: integer}[]
----@return boolean
-function inNoFlareZone(x, noFlareZones)
-  for _, zone in ipairs(noFlareZones) do
-    if zone.startX <= x and x <= zone.endX then
-      return true
-    end
-  end
-
-  return false
-end
-
-function normalDistribution(mean, stdDev, x)
-  return math.exp(-(x - mean) ^ 2 / (2 * stdDev ^ 2))
 end

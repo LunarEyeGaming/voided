@@ -9,12 +9,22 @@ vMinistar.SECTOR_SIZE = 32
 ---@field list table<integer, any>
 vMinistar.XMap = {}
 
----Returns a new instance of a height map.
+---Returns a new instance of a height map. `startXPos` and `endXPos` can optionally be provided to pre-set the
+---boundaries of the height map.
+---@param startXPos integer?
+---@param endXPos integer?
 ---@return XMap
-function vMinistar.XMap:new()
+function vMinistar.XMap:new(startXPos, endXPos)
+  if startXPos then
+    startXPos = world.xwrap(startXPos)
+  end
+  if endXPos then
+    endXPos = world.xwrap(endXPos)
+  end
+
   local instance = {
-    startXPos = nil,
-    endXPos = nil,
+    startXPos = startXPos,
+    endXPos = endXPos,
     list = {}
   }
   setmetatable(instance, self)
@@ -82,17 +92,6 @@ function vMinistar.XMap:set(x, v)
         end
       end
     end
-
-    -- TODO: Handle setting values in descending order. Possible solution: when self.startXPos == self.endXPos, if x > self.endXPos,
-    -- set self.endXPos to x. Otherwise, set self.startXPos to x.
-    -- if not (startX <= x and x <= endX) then
-    --   -- If the start is the closer boundary, then assign x to be it. Otherwise, assign x to be the end.
-    --   if math.abs(x - startX) < math.abs(x - endX) then
-    --     self.startXPos = x
-    --   else
-    --     self.endXPos = x
-    --   end
-    -- end
   end
   -- sb.logInfo("%s -> %s: %s", tostring(x), tostring(x - self.startXPos + 1), v)
   self.list[x] = v
@@ -268,6 +267,12 @@ end
 ---@param regions RectI[]
 ---@return Vec2I[], table<string, Vec2I[] | "clear">
 function vMinistar.LiquidScanner:update(regions)
+  local world_liquidAt = world.liquidAt
+  local world_liquidAlongLine = world.liquidAlongLine
+  local vVec2_iToString = vVec2.iToString
+  local math_abs = math.abs
+  local table_insert = table.insert
+
   local CHUNK_SIZE = self._CHUNK_SIZE
   local liquidId = self._liquidId
 
@@ -283,14 +288,14 @@ function vMinistar.LiquidScanner:update(regions)
 
     for chunkX = chunkMinX, chunkMaxX do
       for chunkY = chunkMinY, chunkMaxY do
-        local res = world.liquidAt({
+        local res = world_liquidAt({
           chunkX * CHUNK_SIZE - 1,
           chunkY * CHUNK_SIZE - 1,
           (chunkX + 1) * CHUNK_SIZE + 1,
           (chunkY + 1) * CHUNK_SIZE + 1
         })
 
-        local chunkStr = vVec2.iToString({chunkX, chunkY})
+        local chunkStr = vVec2_iToString({chunkX, chunkY})
 
         liquidChunks[chunkStr] = res
 
@@ -298,11 +303,13 @@ function vMinistar.LiquidScanner:update(regions)
           particleSpawnPoints[chunkStr] = {}
         end
 
-        -- Process the region in more detail if it is not completely filled with sun liquid.
-        if (res and res[1] == liquidId and res[2] < 1.0) then
+        -- Process the region in more detail if it is not completely filled with sun liquid and it is a hot region,
+        -- solar plasma became the most plentiful liquid in the region, or the change in the total quantity since the
+        -- last call to update is at least 1.
+        if res and res[1] == liquidId and res[2] < 1.0 then
           local prevRes = self._prevLiquidChunks[chunkStr]
           if self._hotRegions[chunkStr] and self._hotRegions[chunkStr] > 0
-              or (not prevRes or prevRes[1] ~= res[1] or math.abs(prevRes[2] - res[2]) * CHUNK_SIZE * CHUNK_SIZE >= 1) then
+              or (not prevRes or prevRes[1] ~= res[1] or math_abs(prevRes[2] - res[2]) * CHUNK_SIZE * CHUNK_SIZE >= 1) then
             local minXInChunk = chunkX * CHUNK_SIZE
             local minYInChunk = chunkY * CHUNK_SIZE
             local maxXInChunk = (chunkX + 1) * CHUNK_SIZE - 1
@@ -327,7 +334,7 @@ function vMinistar.LiquidScanner:update(regions)
             end
 
             for x = minXInChunk - 1, maxXInChunk + 1 do
-              local liqs = world.liquidAlongLine({x, minYInChunk - 1}, {x, maxYInChunk + 1})
+              local liqs = world_liquidAlongLine({x, minYInChunk - 1}, {x, maxYInChunk + 1})
 
               for _, posLiquidPair in ipairs(liqs) do
                 local position = posLiquidPair[1]
@@ -345,17 +352,17 @@ function vMinistar.LiquidScanner:update(regions)
                 if isSunLiquid then
                   -- Add all adjacent spaces that are not sun liquid.
                   if not row[x + 1] then
-                    table.insert(boundaryTiles, {x + 1, y})
+                    table_insert(boundaryTiles, {x + 1, y})
                   end
                   if not row[x - 1] then
-                    table.insert(boundaryTiles, {x - 1, y})
+                    table_insert(boundaryTiles, {x - 1, y})
                   end
                   if not liqMat[y + 1][x] then
-                    table.insert(boundaryTiles, {x, y + 1})
-                    table.insert(particleSpawnPoints[chunkStr], {x, y + 1})
+                    table_insert(boundaryTiles, {x, y + 1})
+                    table_insert(particleSpawnPoints[chunkStr], {x, y + 1})
                   end
                   if not liqMat[y - 1][x] then
-                    table.insert(boundaryTiles, {x, y - 1})
+                    table_insert(boundaryTiles, {x, y - 1})
                   end
                 end
               end
@@ -457,4 +464,66 @@ function vMinistar.setGlobalHeightMap(heightMap)
 
     world.setProperty("v-globalHeightMap." .. xSectorWrapped, globalHeightMapSection)
   end
+end
+
+---Returns an XMap containing boost values for each x value from `startX` to `endX`.
+---@param startX integer
+---@param endX integer
+---@return XMap
+function vMinistar.computeSolarFlareBoosts(startX, endX)
+  local function normalDistribution(mean, stdDev, x)
+    return math.exp(-(x - mean) ^ 2 / (2 * stdDev ^ 2))
+  end
+
+  ---Returns whether or not `x` is inside of a no-flare zone (with the no-flare zones given by `noFlareZones`).
+  ---@param x integer
+  ---@param noFlareZones {startX: integer, endX: integer}[]
+  ---@return boolean
+  local function inNoFlareZone(x, noFlareZones)
+    for _, zone in ipairs(noFlareZones) do
+      if zone.startX <= x and x <= zone.endX then
+        return true
+      end
+    end
+
+    return false
+  end
+
+  --[[
+    Schema: {
+      x: integer,  // Where the solar flare is located
+      startTime: number,  // World time at which the solar flare started
+      duration: number,  // How long the flare lasts.
+      potency: number,  // Between 0 and 1. How potent the solar flare is.
+      spread: number  // Controls the width of the solar flare.
+    }[]
+  ]]
+  local solarFlares = world.getProperty("v-solarFlares") or {}
+  local noFlareZones = world.getProperty("v-noFlareZones") or {}
+
+  sb.setLogMap("v-ministarheat(stagehand)_solarFlares", "%s", #solarFlares)
+
+  local world_xwrap = world.xwrap
+
+  local boosts = vMinistar.XMap:new(startX, endX)
+  local boosts_list = boosts.list
+  for x = startX, endX do
+    boosts_list[world_xwrap(x)] = 0
+  end
+
+  for _, flare in ipairs(solarFlares) do
+    local durationStdDev = flare.duration / 6
+    local durationMean = flare.startTime + flare.duration / 2
+    local timeMultiplier = normalDistribution(durationMean, durationStdDev, world.time())
+
+    for x = startX, endX do
+      if not inNoFlareZone(x, noFlareZones) then
+        local xWrapped = world_xwrap(x)
+        boosts_list[xWrapped] = boosts_list[xWrapped] + normalDistribution(flare.x, flare.spread / 3, x) * flare.potency
+          * timeMultiplier
+      end
+    end
+  end
+
+  return boosts
 end

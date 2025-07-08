@@ -114,7 +114,9 @@
         {"weight" : 0.5, "pool" : "basicTreasure"},
         {"weight" : 0.25, "item" : "v-sunscreen"},
         {"weight" : 0.05, "pool" : "v-fireWeapon"},
-        {"weight" : 0.05, "item" : "v-inferniteore"},
+        {"weight" : 0.05, "item" : ["v-inferniteore", 3]},
+        {"weight" : 0.25, "item" : ["medkit", 6]},
+        {"weight" : 0.25, "item" : ["nanowrap", 4]},
         {"weight" : 0.1875, "item" : ["v-solarflare", 3]},
         {"weight" : 0.0625, "item" : ["miningdrone", 3]}
       ]

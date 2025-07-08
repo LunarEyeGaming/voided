@@ -2,10 +2,8 @@ require "/scripts/interp.lua"
 require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
 
-require "/scripts/v-vec2.lua"
 require "/scripts/v-ministarutil.lua"
 require "/scripts/statuseffects/v-tickdamage.lua"
-require "/scripts/v-time.lua"
 
 -- Invalidate global height map segments with:
 -- /entityeval for x = 0, world.size()[1] // 32 do world.setProperty("v-globalHeightMap." .. x .. ".0", nil) end
@@ -146,7 +144,7 @@ function getBurnRatio()
   local boundBox = rect.translate(mcontroller.boundBox(), pos)
   local y = pos[2]
 
-  local boosts = computeSolarFlareBoosts(pos[1], pos[1])
+  local boosts = vMinistar.computeSolarFlareBoosts(pos[1], pos[1])
   local baseBurnRatio = math.max(-(burnDepth - minDepth) / (maxDepth - minDepth), 1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + boosts:get(pos[1])
 
   local heightMap = getHeightMap(boundBox[1], boundBox[3])
@@ -203,40 +201,6 @@ function getHeightMap(startX, endX)
   end
 
   return heightMap
-end
-
----
----@param startX integer
----@param endX integer
----@return XMap
-function computeSolarFlareBoosts(startX, endX)
-  --[[
-    Schema: {
-      x: integer,  // Where the solar flare is located
-      startTime: number,  // World time at which the solar flare started
-      duration: number,  // How long the flare lasts.
-      potency: number,  // Between 0 and 1. How potent the solar flare is.
-      spread: number  // Controls the width of the solar flare.
-    }[]
-  ]]
-  local solarFlares = world.getProperty("v-solarFlares") or {}
-
-  local boosts = vMinistar.XMap:new()
-  for x = startX, endX do
-    boosts:set(x, 0)
-  end
-
-  for _, flare in ipairs(solarFlares) do
-    local durationStdDev = flare.duration / 6
-    local durationMean = flare.startTime + flare.duration / 2
-    local timeMultiplier = normalDistribution(durationMean, durationStdDev, world.time())
-
-    for x = startX, endX do
-      boosts:set(x, boosts:get(x) + normalDistribution(flare.x, flare.spread / 3, x) * flare.potency * timeMultiplier)
-    end
-  end
-
-  return boosts
 end
 
 function normalDistribution(mean, stdDev, x)

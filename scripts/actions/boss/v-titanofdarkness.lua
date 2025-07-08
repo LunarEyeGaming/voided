@@ -834,6 +834,11 @@ function findRandomAirPosition(maxAttempts, center, initialSelectionArea, requir
       -- Tell LuaLS to disregard results potentially being nil.
       ---@diagnostic disable: need-check-nil
       nextPos = results.position
+
+      -- Discard result if there is a liquid at that position.
+      if world.liquidAt(nextPos) then
+        nextPos = nil
+      end
     end
     attempts = attempts + 1
   end
