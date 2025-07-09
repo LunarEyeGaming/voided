@@ -15,6 +15,7 @@ local entityHeightMaps
 
 local liquidSurfacePoints
 local nonOceanMaxReach  -- Maximum number of blocks that the light reaches when it is from a liquid not at minDepth
+local surfaceProcessingLimit  -- Maximum number of surface points to process per tick.
 
 local heatMap
 local maxDepth  -- Depth that heats up the slowest
@@ -32,6 +33,7 @@ local materialConfigs
 local heatConfigs
 
 local liquidScanner
+local lightScanner
 
 local isActive
 
@@ -84,6 +86,7 @@ function init()
     unmeltableMaterials[material] = true
   end
   nonOceanMaxReach = cfg.nonOceanMaxReach
+  surfaceProcessingLimit = cfg.surfaceProcessingLimit
   maxPenetration = cfg.maxPenetration  -- Maximum number of transparent blocks to penetrate.
 
 
@@ -94,6 +97,7 @@ function init()
   collisionSet = {"Block", "Platform"}
   materialConfigs = {}
   heatConfigs = {}
+  lightScanner = LightScanner:new{}
 
   message.setHandler("v-ministarheat-setEntityCollision", function(_, _, sourceId, heightMap)
     if heightMap then
@@ -165,7 +169,7 @@ function init()
 end
 
 function initLiquidScanner()
-  liquidScanner = vMinistar.LiquidScanner:new{
+  liquidScanner = LiquidScanner:new{
     liquidId = sunLiquidId,
     liquidThreshold = cfg.liquidScannerThreshold
   }
@@ -283,14 +287,18 @@ function update(dt)
       end
 
       local heightMaps = {}  -- Height maps for each region. Used for entity messaging.
-      local rayLocationsMaps = {}
+
+      local combinedRayLocationsMaps = lightScanner:query(affectedTiles, nonOceanAffectedTiles)
+
+      -- Abort if no rayLocationsMap is given. For now.
+      if not combinedRayLocationsMaps then return end
 
       -- Run surface queries on merged regions
       for _, region in ipairs(mergedRegions) do
         -- Get the height map for the current player and add it to the list.
-        local heightMap, rayLocationsMap = surfaceTileQuery(region[1], region[3], region[4], affectedTiles, nonOceanAffectedTiles)
+        local heightMap = oceanSurfaceQuery(region[1], region[3], region[4], affectedTiles)
+
         table.insert(heightMaps, heightMap)
-        table.insert(rayLocationsMaps, rayLocationsMap)
 
         -- Calculate solar flare boosts for the current player and add it to the list.
         local boosts = vMinistar.computeSolarFlareBoosts(heightMap:xbounds())
@@ -302,7 +310,6 @@ function update(dt)
 
       local combinedHeightMap = vMinistar.XMap:merge(heightMaps)
       local combinedBoosts = vMinistar.XMap:merge(boostSets)
-      local combinedRayLocationsMaps = vMinistar.XMap:merge(rayLocationsMaps)
 
       -- Process existing entries.
       local tilesToDestroy = processHeatMap(affectedTiles, dt)
@@ -438,164 +445,180 @@ function mergeRegions(regions)
   return newRegions
 end
 
----Populates `affectedTiles` with a list of tiles that are exposed to the surface below given a central position `pos`.
+---Coroutine.
+function nonOceanSurfaceQuery()
+  local rayLocationsMap = vMinistar.XMap:new()
+  local rayLocationsMap_list = rayLocationsMap.list
+  local affectedTiles = {}
+  local nonOceanAffectedTiles = {}
+
+  local world_xwrap = world.xwrap
+  local table_insert = table.insert
+  local math_min = math.min
+  local math_max = math.max
+  local world_collisionBlocksAlongLine = world.collisionBlocksAlongLine
+  local world_material = world.material
+  local vVec2_iToString = vVec2.iToString
+
+  local processSurfacePoint = function(tile)
+    local tileX, tileY = tile[1], tile[2] - 1
+
+    -- Skip if tileY == minDepth - 1
+    if tileY ~= minDepth - 1 then
+      -- Initialize entry if it is not initialized yet.
+      local tileXWrapped = world_xwrap(tileX)
+      local rayLocations = rayLocationsMap_list[tileXWrapped]
+      if not rayLocations then
+        rayLocations = {}
+        rayLocationsMap_list[tileXWrapped] = rayLocations
+      end
+
+      local maxReach = tileY + nonOceanMaxReach
+      local points = world_collisionBlocksAlongLine(tile, {tileX, maxReach}, collisionSet)
+
+      -- Add to affectedTiles and nonOceanAffectedTiles all blocks in `points` that are below (or at the level of)
+      -- the first solid, opaque block.
+      local foundSolidTile = false
+      for _, collideTile in ipairs(points) do
+        local collideTileY = collideTile[2]
+
+        local material = world_material(collideTile, "foreground")
+        if material then
+          -- This check takes advantage of the fact that we've already acquired the material.
+          if not unmeltableMaterials[material] then
+            local collideTileStr = vVec2_iToString(collideTile)
+            affectedTiles[collideTileStr] = true
+            local oldValue = nonOceanAffectedTiles[collideTileStr]
+            nonOceanAffectedTiles[collideTileStr] = oldValue and math_min(oldValue, collideTileY - tileY) or collideTileY - tileY
+          end
+
+          local matCfg = getMaterialProperties(material)
+          if matCfg and matCfg.isSolidAndOpaque then
+            -- world.debugLine({x, surfaceY}, {x, collideTile[2]}, "green")
+            table_insert(rayLocations, {s = tileY, e = collideTileY})
+            foundSolidTile = true
+            break
+          end
+        end
+      end
+
+      -- Add to rayLocations the first solid, opaque block (or a y-value `nonOceanMaxReach` blocks above `surfaceY`
+      -- if no such tile is found) as well as the `surfaceY`.
+      if not foundSolidTile then
+        -- world.debugLine({x, surfaceY}, {x, surfaceY + nonOceanMaxReach}, "red")
+        table_insert(rayLocations, {s = tileY, e = maxReach})
+      end
+    end
+  end
+
+  -- Flatten liquidSurfacePoints list.
+  local flattenedSurfacePoints = {}
+  for _, tiles in pairs(liquidSurfacePoints) do
+    table.move(tiles, 1, #tiles, #flattenedSurfacePoints + 1, flattenedSurfacePoints)
+  end
+
+  local numSurfacePoints = #flattenedSurfacePoints
+
+  -- Process the points in steps.
+  local startX = math.huge
+  local endX = -math.huge
+  for stride = 1, numSurfacePoints, surfaceProcessingLimit do
+    local strideEnd = math_min(stride + surfaceProcessingLimit - 1, numSurfacePoints)
+
+    for i = stride, strideEnd do
+      local tile = flattenedSurfacePoints[i]
+      processSurfacePoint(tile)
+      startX = math_min(startX, tile[1])
+      endX = math_max(endX, tile[2])
+    end
+
+    coroutine.yield()
+  end
+
+  rayLocationsMap.startXPos = startX
+  rayLocationsMap.endXPos = endX
+
+  return rayLocationsMap, affectedTiles, nonOceanAffectedTiles
+end
+
+---Not a coroutine.
 ---@param startX integer
 ---@param endX integer
 ---@param yTop integer
 ---@param affectedTiles table<string, boolean>
----@param nonOceanAffectedTiles table<string, integer>
----@return XMap heightMapNew
----@return XMap rayLocationsMap
-function surfaceTileQuery(startX, endX, yTop, affectedTiles, nonOceanAffectedTiles)
-  local world_liquidAt = world.liquidAt
-  local world_collisionBlocksAlongLine = world.collisionBlocksAlongLine
-  local world_material = world.material
-  local world_xwrap = world.xwrap
-  local vVec2_iToString = vVec2.iToString
-
-  local firstPart = function(rayLocationsMap_list)
-    local table_insert = table.insert
-    local math_min = math.min
-
-    -- For each surface point in liquidSurfacePoints...
-    for _, tiles in pairs(liquidSurfacePoints) do
-      for _, tile in ipairs(tiles) do
-        local tileX, tileY = tile[1], tile[2] - 1
-
-        -- Skip if tileY == minDepth - 1
-        if tileY ~= minDepth - 1 then
-          -- Initialize entry if it is not initialized yet.
-          local tileXWrapped = world_xwrap(tileX)
-          local rayLocations = rayLocationsMap_list[tileXWrapped]
-          if not rayLocations then
-            rayLocations = {}
-            rayLocationsMap_list[tileXWrapped] = rayLocations
-          end
-
-          local maxReach = tileY + nonOceanMaxReach
-          local points = world_collisionBlocksAlongLine(tile, {tileX, maxReach}, collisionSet)
-
-          -- Add to affectedTiles and nonOceanAffectedTiles all blocks in `points` that are below (or at the level of)
-          -- the first solid, opaque block.
-          local foundSolidTile = false
-          for _, collideTile in ipairs(points) do
-            local collideTileY = collideTile[2]
-
-            local material = world_material(collideTile, "foreground")
-            if material then
-              local collideTileStr = vVec2_iToString(collideTile)
-              affectedTiles[collideTileStr] = true
-
-              local oldValue = nonOceanAffectedTiles[collideTileStr]
-              nonOceanAffectedTiles[collideTileStr] = oldValue and math_min(oldValue, collideTileY - tileY) or collideTileY - tileY
-
-              local matCfg = getMaterialConfig(material)
-              if matCfg and not matCfg.renderParameters.lightTransparent and matCfg.collisionKind == "solid" then
-                -- world.debugLine({x, surfaceY}, {x, collideTile[2]}, "green")
-                table_insert(rayLocations, {s = tileY, e = collideTileY})
-                foundSolidTile = true
-                break
-              end
-            end
-          end
-
-          -- Add to rayLocations the first solid, opaque block (or a y-value `nonOceanMaxReach` blocks above `surfaceY`
-          -- if no such tile is found) as well as the `surfaceY`.
-          if not foundSolidTile then
-            -- world.debugLine({x, surfaceY}, {x, surfaceY + nonOceanMaxReach}, "red")
-            table_insert(rayLocations, {s = tileY, e = maxReach})
-          end
-        end
-      end
-    end
-  end
-
-  local secondPart = function(lowestSectorsMap, heightMap_list)
-    -- Generate a set of tiles that are heated right now.
-    for x = startX, endX do
-      -- Find associated lowest sector.
-      local xSector = x // SECTOR_SIZE
-      local sectorValue = lowestSectorsMap[xSector]
-      local cappedCheckMinY = sectorValue.y
-      local checkMinYWasCapped = sectorValue.capped
-
-      -- Proceed only if cappedCheckMinY is not actually capped or there is a liquid with ID sunLiquidId at the position
-      -- directly below cappedCheckMinY.
-      local shouldProceed = not checkMinYWasCapped
-      if checkMinYWasCapped then
-        local liquid = world_liquidAt({x, cappedCheckMinY - 1})
-        if liquid and liquid[1] == sunLiquidId then
-          shouldProceed = true
-        end
-      end
-
-      if shouldProceed then
-        local collidePoints = world_collisionBlocksAlongLine({x, cappedCheckMinY}, {x, yTop}, collisionSet, maxPenetration)
-
-        -- Mark all tiles as affected. Stop after reaching the first solid, opaque tile.
-        local foundSolidTile = false
-        for _, collideTile in ipairs(collidePoints) do
-          local material = world_material(collideTile, "foreground")
-          if material then
-            local collideTileStr = vVec2_iToString(collideTile)
-            affectedTiles[collideTileStr] = true
-            local matCfg = getMaterialConfig(material)
-            if matCfg and not matCfg.renderParameters.lightTransparent and matCfg.collisionKind == "solid" then
-              -- Add to height map.
-              heightMap_list[world_xwrap(x)] = collideTile[2]
-              -- heightMap:set(x, collideTile[2])
-              foundSolidTile = true
-              break
-            end
-          end
-        end
-
-        -- Manually set the heightMap entry if no solid, opaque tile was found, or if collidePoints is empty.
-        if not foundSolidTile then
-          heightMap_list[world_xwrap(x)] = yTop
-          -- heightMap:set(x, checkMaxY + pos[2])
-        end
-      else
-        heightMap_list[world_xwrap(x)] = cappedCheckMinY
-        -- heightMap:set(x, cappedCheckMinY)
-      end
-    end
-  end
-
-  local lowestSectors = findLowestLoadedSectors(startX, endX, yTop)
-
-  -- Convert lowestSectors into a horizontal position map.
-  local lowestSectorsMap = {}
-
-  for _, sector in ipairs(lowestSectors) do
-    local checkMinY = (sector[2] + 1) * SECTOR_SIZE
-    -- Variant of checkMinY that stops at minDepth; whether or not the value was capped.
-    local cappedCheckMinY, checkMinYWasCapped
-    if checkMinY < minDepth then
-      cappedCheckMinY = minDepth
-      checkMinYWasCapped = true
-    else
-      cappedCheckMinY = checkMinY
-      checkMinYWasCapped = false
-    end
-    lowestSectorsMap[sector[1]] = {y = cappedCheckMinY, uncappedY = checkMinY, capped = checkMinYWasCapped}
-  end
-
-  local rayLocationsMap = vMinistar.XMap:new(startX, endX)
-  local rayLocationsMap_list = rayLocationsMap.list
-
-  firstPart(rayLocationsMap_list)
-
+---@return VXMap
+function oceanSurfaceQuery(startX, endX, yTop, affectedTiles)
   local heightMap = vMinistar.XMap:new(startX, endX)
   local heightMap_list = heightMap.list
 
-  secondPart(lowestSectorsMap, heightMap_list)
+  -- Variant of checkMinY that stops at minDepth; whether or not the value was capped.
+  local cappedCheckMinY, checkMinYWasCapped
+  if checkMinY < minDepth then
+    cappedCheckMinY = minDepth
+    checkMinYWasCapped = true
+  else
+    cappedCheckMinY = checkMinY
+    checkMinYWasCapped = false
+  end
 
-  return heightMap, rayLocationsMap
+  local world_xwrap = world.xwrap
+  local world_liquidAt = world.liquidAt
+  local world_collisionBlocksAlongLine = world.collisionBlocksAlongLine
+  local world_material = world.material
+  local vVec2_iToString = vVec2.iToString
+
+  -- Generate a set of tiles that are heated right now.
+  for x = startX, endX do
+    -- Proceed only if cappedCheckMinY is not actually capped or there is a liquid with ID sunLiquidId at the position
+    -- directly below cappedCheckMinY.
+    local shouldProceed = not checkMinYWasCapped
+    if checkMinYWasCapped then
+      local liquid = world_liquidAt({x, cappedCheckMinY - 1})
+      if liquid and liquid[1] == sunLiquidId then
+        shouldProceed = true
+      end
+    end
+
+    if shouldProceed then
+      local collidePoints = world_collisionBlocksAlongLine({x, cappedCheckMinY}, {x, yTop}, collisionSet, maxPenetration)
+
+      -- Mark all tiles as affected. Stop after reaching the first solid, opaque tile.
+      local foundSolidTile = false
+      for _, collideTile in ipairs(collidePoints) do
+        local material = world_material(collideTile, "foreground")
+        if material then
+          -- This check takes advantage of the fact that we've already acquired the material.
+          if not unmeltableMaterials[material] then
+            local collideTileStr = vVec2_iToString(collideTile)
+            affectedTiles[collideTileStr] = true
+          end
+          local matCfg = getMaterialProperties(material)
+          if matCfg and matCfg.isSolidAndOpaque then
+            -- Add to height map.
+            heightMap_list[world_xwrap(x)] = collideTile[2]
+            -- heightMap:set(x, collideTile[2])
+            foundSolidTile = true
+            break
+          end
+        end
+      end
+
+      -- Manually set the heightMap entry if no solid, opaque tile was found, or if collidePoints is empty.
+      if not foundSolidTile then
+        heightMap_list[world_xwrap(x)] = yTop
+        -- heightMap:set(x, checkMaxY + pos[2])
+      end
+    else
+      heightMap_list[world_xwrap(x)] = cappedCheckMinY
+      -- heightMap:set(x, cappedCheckMinY)
+    end
+  end
+
+  return heightMap
 end
 
 ---Syncs the given height map to the global height map.
----@param heightMaps XMap[]
+---@param heightMaps VXMap[]
 function syncHeightMapsToGlobal(heightMaps)
   local math_floor = math.floor
   local world_xwrap = world.xwrap
@@ -663,7 +686,7 @@ function syncHeightMapsToGlobal(heightMaps)
 end
 
 ---Applies received entity height maps to the given `heightMaps`.
----@param heightMaps XMap[]
+---@param heightMaps VXMap[]
 function applyEntityHeightMaps(heightMaps)
   local flattenedEntityHeightMap = vMinistar.XMap:new()
 
@@ -742,7 +765,7 @@ end
 
 ---Adds `affectedTiles` to `heatMap` that are below the `maxDepth` value and are meltable.
 ---@param affectedTiles table<string, boolean>
----@param heightMap XMap
+---@param heightMap VXMap
 ---@param liquidTouchedTiles table<string, boolean> tiles touched by the sun liquid.
 ---@param nonOceanAffectedTiles table<string, integer>
 ---@param dt number
@@ -834,7 +857,7 @@ end
 ---Gets the material config, caching what is relevant if it is not already cached.
 ---@param material string
 ---@return Json?
-function getMaterialConfig(material)
+function getMaterialProperties(material)
   -- Register material if it is valid and is not already registered.
   if not materialConfigs[material] then
     local matConfigAndPath = root.materialConfig(material)
@@ -842,9 +865,8 @@ function getMaterialConfig(material)
       local matConfig = matConfigAndPath.config
       materialConfigs[material] = {
         falling = matConfig.falling,
-        renderParameters = matConfig.renderParameters,
         footstepSound = matConfig.footstepSound,
-        collisionKind = matConfig.collisionKind or "solid"
+        isSolidAndOpaque = not matConfig.renderParameters.lightTransparent and (matConfig.collisionKind or "solid") == "solid"
       }
     end
   end
@@ -855,7 +877,7 @@ end
 function getHeatConfig(material)
   -- Build config if it is not cached already.
   if not heatConfigs[material] then
-    local matCfg = getMaterialConfig(material)
+    local matCfg = getMaterialProperties(material)
     local default, inferred, override  -- inferred is from inferredTileConfigs (which are chosen based on footstep
                                        -- sound). override is from tileConfigs.
     default = {
@@ -881,4 +903,241 @@ function getHeatConfig(material)
   end
 
   return heatConfigs[material]
+end
+
+------------------------------------------------HELPER CLASSES---------------------------------------------------
+
+---@class VLiquidScanner
+---@field _liquidId LiquidId
+---@field _liquidThreshold number
+---@field _CHUNK_SIZE integer
+---@field _hotRegions table
+---@field _prevLiquidChunks table
+LiquidScanner = {}
+
+---Instantiates a new liquid scanner.
+---@param args table
+---@return VLiquidScanner
+function LiquidScanner:new(args)
+  local instance = {
+    _liquidId = args.liquidId,
+    _liquidThreshold = args.liquidThreshold or 0,
+    _CHUNK_SIZE = 16,
+    _hotRegions = {},
+    _prevLiquidChunks = {}
+  }
+
+  setmetatable(instance, self)
+  self.__index = self
+
+  return instance
+end
+
+---Attempts to runs a query in all regions `regions`, returning the tiles that are adjacent to the liquid with ID
+---`_liquidId` and a list of particle spawn points for each chunk that was queried. Should be called every tick.
+---
+---@param regions RectI[]
+---@return Vec2I[], table<string, Vec2I[] | "clear">
+function LiquidScanner:update(regions)
+  local world_liquidAt = world.liquidAt
+  local world_liquidAlongLine = world.liquidAlongLine
+  local vVec2_iToString = vVec2.iToString
+  local math_abs = math.abs
+  local table_insert = table.insert
+
+  local CHUNK_SIZE = self._CHUNK_SIZE
+  local liquidId = self._liquidId
+
+  local boundaryTiles = {}
+  local liquidChunks = {}  -- Map of chunks to corresponding liquid values retrieved from world.liquidAt
+  local particleSpawnPoints = {}  -- Map of chunks to lists of particle spawn points.
+
+  for _, region in ipairs(regions) do
+    local chunkMinX = region[1] // CHUNK_SIZE
+    local chunkMinY = region[2] // CHUNK_SIZE
+    local chunkMaxX = region[3] // CHUNK_SIZE
+    local chunkMaxY = region[4] // CHUNK_SIZE
+
+    for chunkX = chunkMinX, chunkMaxX do
+      for chunkY = chunkMinY, chunkMaxY do
+        local res = world_liquidAt({
+          chunkX * CHUNK_SIZE - 1,
+          chunkY * CHUNK_SIZE - 1,
+          (chunkX + 1) * CHUNK_SIZE + 1,
+          (chunkY + 1) * CHUNK_SIZE + 1
+        })
+
+        local chunkStr = vVec2_iToString({chunkX, chunkY})
+
+        liquidChunks[chunkStr] = res
+
+        if not particleSpawnPoints[chunkStr] then
+          particleSpawnPoints[chunkStr] = {}
+        end
+
+        -- Process the region in more detail if it is not completely filled with sun liquid and it is a hot region,
+        -- solar plasma became the most plentiful liquid in the region, or the change in the total quantity since the
+        -- last call to update is at least 1.
+        if res and res[1] == liquidId and res[2] < 1.0 then
+          local prevRes = self._prevLiquidChunks[chunkStr]
+          if self._hotRegions[chunkStr] and self._hotRegions[chunkStr] > 0
+              or (not prevRes or prevRes[1] ~= res[1] or math_abs(prevRes[2] - res[2]) * CHUNK_SIZE * CHUNK_SIZE >= 1) then
+            local minXInChunk = chunkX * CHUNK_SIZE
+            local minYInChunk = chunkY * CHUNK_SIZE
+            local maxXInChunk = (chunkX + 1) * CHUNK_SIZE - 1
+            local maxYInChunk = (chunkY + 1) * CHUNK_SIZE
+
+            world.debugPoly({
+              {minXInChunk, minYInChunk},
+              {minXInChunk, maxYInChunk},
+              {maxXInChunk, maxYInChunk},
+              {maxXInChunk, minYInChunk}
+            }, "green")
+
+            -- Build matrix of matches and non-matches (row-major order). The matrix is padded for boundary cases.
+            local liqMat = {}
+
+            for y = minYInChunk - 1, maxYInChunk + 1 do
+              local row = {}
+              for x = minXInChunk - 1, maxXInChunk + 1 do
+                row[x] = false
+              end
+              liqMat[y] = row
+            end
+
+            for x = minXInChunk - 1, maxXInChunk + 1 do
+              local liqs = world_liquidAlongLine({x, minYInChunk - 1}, {x, maxYInChunk + 1})
+
+              for _, posLiquidPair in ipairs(liqs) do
+                local position = posLiquidPair[1]
+                local liquid = posLiquidPair[2]
+                liqMat[position[2]][position[1]] = liquid[1] == liquidId and liquid[2] >= self._liquidThreshold
+              end
+            end
+
+            -- Find all of the tile spaces that act as boundaries for the liquid.
+            for y = minYInChunk, maxYInChunk do
+              local row = liqMat[y]
+              for x = minXInChunk, maxXInChunk do
+                local isSunLiquid = row[x]
+                -- If the current space is sun liquid...
+                if isSunLiquid then
+                  -- Add all adjacent spaces that are not sun liquid.
+                  if not row[x + 1] then
+                    table_insert(boundaryTiles, {x + 1, y})
+                  end
+                  if not row[x - 1] then
+                    table_insert(boundaryTiles, {x - 1, y})
+                  end
+                  if not liqMat[y + 1][x] then
+                    table_insert(boundaryTiles, {x, y + 1})
+                    table_insert(particleSpawnPoints[chunkStr], {x, y + 1})
+                  end
+                  if not liqMat[y - 1][x] then
+                    table_insert(boundaryTiles, {x, y - 1})
+                  end
+                end
+              end
+            end
+            -- Decrement hot region time remaining.
+            if self._hotRegions[chunkStr] then
+              self._hotRegions[chunkStr] = self._hotRegions[chunkStr] - 1
+            end
+          end
+
+        else
+          -- Mark this chunk to be cleared.
+          particleSpawnPoints[chunkStr] = "clear"
+        --   world.debugPoly({
+        --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE},
+        --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, (chunkY + 1) * LIQUID_QUERY_CHUNK_SIZE},
+        --     {(chunkX + 1) * LIQUID_QUERY_CHUNK_SIZE, (chunkY + 1) * LIQUID_QUERY_CHUNK_SIZE},
+        --     {(chunkX + 1) * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE}
+        --   }, "red")
+        end
+      end
+    end
+  end
+
+  self._prevLiquidChunks = liquidChunks
+
+  return boundaryTiles, particleSpawnPoints
+end
+
+---Refreshes the entire nearby area, forcing the liquid scanner to requery it all next update.
+---@param regions RectI[]
+function LiquidScanner:refresh(regions)
+  for _, region in ipairs(regions) do
+    local chunkMinX = region[1] // self._CHUNK_SIZE
+    local chunkMinY = region[2] // self._CHUNK_SIZE
+    local chunkMaxX = region[3] // self._CHUNK_SIZE
+    local chunkMaxY = region[4] // self._CHUNK_SIZE
+
+    for chunkX = chunkMinX, chunkMaxX do
+      for chunkY = chunkMinY, chunkMaxY do
+        local chunkStr = vVec2.iToString({chunkX, chunkY})
+        self._hotRegions[chunkStr] = 1
+      end
+    end
+  end
+end
+
+---Marks a region as "hot" by the given tile for the given number of ticks.
+---@param tile Vec2I
+---@param time integer
+function LiquidScanner:markRegionByTile(tile, time)
+  local tileChunkStr = vVec2.iToString({tile[1] // self._CHUNK_SIZE, tile[2] // self._CHUNK_SIZE})
+  self._hotRegions[tileChunkStr] = time
+end
+
+-- TODO: Rewrite to account for multiplayer.
+---@class VLightScanner
+LightScanner = {}
+
+---Instantiates a new light scanner.
+---@param args table
+---@return VLightScanner
+function LightScanner:new(args)
+  local instance = {
+    _rayLocationsMap = nil,
+    _nonOceanSurfaceQueryCoroutine = coroutine.create(nonOceanSurfaceQuery)
+  }
+
+  setmetatable(instance, self)
+  self.__index = self
+
+  return instance
+end
+
+---Populates `affectedTiles` with a list of tiles that are exposed to the surface below given a central position `pos`.
+---@param affectedTiles table<string, boolean>
+---@param nonOceanAffectedTiles table<string, integer>
+---@return VXMap rayLocationsMap
+function LightScanner:query(affectedTiles, nonOceanAffectedTiles)
+  -- Attempt to resume it.
+  local status, rayLocationsMapOrErr, ownAffectedTiles, ownNonOceanAffectedTiles = coroutine.resume(self._nonOceanSurfaceQueryCoroutine)
+  if not status then
+    error(rayLocationsMapOrErr)
+  end
+
+  -- If the coroutine just died, restart it and update the values to return / move.
+  if coroutine.status(self._nonOceanSurfaceQueryCoroutine) == "dead" then
+    self._nonOceanSurfaceQueryCoroutine = coroutine.create(nonOceanSurfaceQuery)
+
+    self._rayLocationsMap = rayLocationsMapOrErr
+    self._ownAffectedTiles = ownAffectedTiles
+    self._ownNonOceanAffectedTiles = ownNonOceanAffectedTiles
+  end
+
+  if self._ownAffectedTiles then
+    for k, v in pairs(self._ownAffectedTiles) do
+      affectedTiles[k] = v
+    end
+
+    for k, v in pairs(self._ownNonOceanAffectedTiles) do
+      nonOceanAffectedTiles[k] = v
+    end
+  end
+
+  return self._rayLocationsMap
 end

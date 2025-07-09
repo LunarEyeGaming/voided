@@ -179,7 +179,7 @@ function getBurnRatio()
 end
 
 ---Retrieves a section of the global height map and returns it.
----@return XMap
+---@return VXMap
 function getHeightMap(startX, endX)
   local startXSector = startX // SECTOR_SIZE
   local endXSector = endX // SECTOR_SIZE

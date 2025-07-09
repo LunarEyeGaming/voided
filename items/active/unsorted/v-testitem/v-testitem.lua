@@ -13,9 +13,9 @@ end
 function update(dt, fireMode)
   if fireMode ~= prevFireMode then
     if fireMode == "primary" then
-      openUi()
-    -- elseif fireMode == "alt" then
-    --   clearCollisions()
+      addSolarFlare()
+    elseif fireMode == "alt" then
+      clearSolarFlares()
     end
   end
   prevFireMode = fireMode
@@ -55,20 +55,22 @@ end
 --   id = 0
 -- end
 
--- function addSolarFlare()
---   local solarFlares = world.getProperty("v-solarFlares") or {}
+function addSolarFlare()
+  local solarFlares = world.getProperty("v-solarFlares") or {}
 
---   table.insert(solarFlares, {
---     x = activeItem.ownerAimPosition()[1],
---     startTime = world.time(),
---     duration = 10,
---     potency = 0.5,
---     spread = 300
---   })
+  for _ = 1, 5 do
+    table.insert(solarFlares, {
+      x = activeItem.ownerAimPosition()[1],
+      startTime = world.time(),
+      duration = 300,
+      potency = 0.5,
+      spread = 300
+    })
+  end
 
---   world.setProperty("v-solarFlares", solarFlares)
--- end
+  world.setProperty("v-solarFlares", solarFlares)
+end
 
--- function clearSolarFlares()
---   world.setProperty("v-solarFlares", jarray())
--- end
+function clearSolarFlares()
+  world.setProperty("v-solarFlares", jarray())
+end

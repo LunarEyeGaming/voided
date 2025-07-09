@@ -42,8 +42,8 @@ local sunParticle
 -- State variables
 local ticker
 local burningBlocks
-local heightMap  ---@type XMap
-local rayLocationsMap ---@type XMap
+local heightMap  ---@type VXMap
+local rayLocationsMap ---@type VXMap
 local minHeight
 local lightDrawBounds
 local sunProximityRatio
@@ -364,7 +364,7 @@ end
 ---
 ---@param predictedPos Vec2F
 ---@param ratio number
----@param boosts XMap
+---@param boosts VXMap
 ---@param window RectI
 function v_ministarEffects_drawSunRays(predictedPos, ratio, boosts, window)
   -- Get boundaries
@@ -396,7 +396,7 @@ end
 
 ---
 ---@param ratio number
----@param boosts XMap
+---@param boosts VXMap
 ---@param window RectI
 function v_ministarEffects_drawSunRayLights(ratio, boosts, window)
   if not useLights then return end
