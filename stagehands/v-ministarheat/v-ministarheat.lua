@@ -6,7 +6,7 @@ require "/scripts/v-ministarutil.lua"
 require "/scripts/v-time.lua"
 
 -- Invalidate global height map segments with:
--- /entityeval for x = 0, world.size()[1] // 32 do world.setProperty("v-globalHeightMap." .. x .. ".0", nil) end
+-- /entityeval for x = 0, world.size()[1] // 32 do world.setProperty("v-globalHeightMap." .. x, nil) end
 
 local cfg
 local unmeltableMaterials
@@ -66,6 +66,9 @@ function init()
   sunLiquidId = cfg.sunLiquidId
 
   minDepth = config.getParameter("minDepth")
+  if not minDepth then
+    sb.logInfo("minDepth was never defined")
+  end
   maxDepth = config.getParameter("maxDepth")
 
   initLiquidScanner()
@@ -132,6 +135,8 @@ function init()
     while #solarFlares > cfg.maxSolarFlares do
       table.remove(solarFlares, 1)
     end
+
+    world.setProperty("v-solarFlares", solarFlares)
   end)
 
   -- Periodically cull liquidSurfacePoints chunks that are not in any player regions at the moment.
@@ -249,6 +254,7 @@ function update(dt)
     local positions = getPlayerPositions(playerIds)
     local regions = getPlayerRegions(positions)
     local mergedRegions = mergeRegions(regions)
+    prioritizeRegions(mergedRegions)
 
     -- Run the main portion of the Ministar heat script if active. Otherwise, just run the liquid scanner.
     if isActive then
@@ -305,7 +311,15 @@ function update(dt)
         table.insert(boostSets, boosts)
       end
 
+      -- for i, heightMap in ipairs(heightMaps) do
+      --   heightMap:debug(stagehand.position()[2] + 20 + i * 8, 5, "green")
+      -- end
+
       syncHeightMapsToGlobal(heightMaps)
+
+      -- for i, heightMap in ipairs(heightMaps) do
+      --   heightMap:debug(stagehand.position()[2] + i * 8, 5, "yellow")
+      -- end
       applyEntityHeightMaps(heightMaps)
 
       local combinedHeightMap = vMinistar.XMap:merge(heightMaps)
@@ -445,6 +459,46 @@ function mergeRegions(regions)
   return newRegions
 end
 
+---Sorts the regions by merge priority so that the resulting height maps merge properly. Regions with higher priorities
+---are placed later in the list.
+---
+---Regions with y-max values < minDepth take the lowest priority and are collectively followed by regions with y-max
+---values >= minDepth. Regions with y-max values >= minDepth are sorted among each other, in descending order, by their
+---y-max values (so lower values take higher priority).
+---@param regions RectI[]
+function prioritizeRegions(regions)
+  -- Sort regions in descending order.
+  table.sort(regions, function(a, b) return a[4] > b[4] end)
+
+  -- Find the index of the first value whose max y < minDepth
+  local idx
+  for i = 1, #regions do
+    if not minDepth then
+      sb.logInfo("minDepth is not defined")
+    end
+    if regions[i][4] < minDepth then
+      idx = i
+      break
+    end
+  end
+
+  -- If an index is found
+  if idx then
+    -- Take all elements from that index and onwards...
+    local lowPriorityRegions = {}
+    local nextRegion
+    repeat
+      nextRegion = table.remove(regions, idx)
+      table.insert(lowPriorityRegions, nextRegion)  -- If nextElement is nil, this call has no effect.
+    until not nextRegion
+
+    -- ...and move them to the beginning of the list.
+    for _, region in ipairs(lowPriorityRegions) do
+      table.insert(regions, 1, region)
+    end
+  end
+end
+
 ---Coroutine.
 function nonOceanSurfaceQuery()
   local rayLocationsMap = vMinistar.XMap:new()
@@ -548,17 +602,31 @@ end
 ---@param affectedTiles table<string, boolean>
 ---@return VXMap
 function oceanSurfaceQuery(startX, endX, yTop, affectedTiles)
+  -- If minDepth > yTop, abort this function call.
+  if minDepth > yTop then
+    return vMinistar.getHeightMap(startX, endX, minDepth)
+  end
+
   local heightMap = vMinistar.XMap:new(startX, endX)
   local heightMap_list = heightMap.list
 
-  -- Variant of checkMinY that stops at minDepth; whether or not the value was capped.
-  local cappedCheckMinY, checkMinYWasCapped
-  if checkMinY < minDepth then
-    cappedCheckMinY = minDepth
-    checkMinYWasCapped = true
-  else
-    cappedCheckMinY = checkMinY
-    checkMinYWasCapped = false
+  local lowestSectors = findLowestLoadedSectors(startX, endX, yTop)
+  -- Convert lowestSectors into a horizontal position map.
+  local lowestSectorsMap = {}
+
+  for _, sector in ipairs(lowestSectors) do
+    local checkMinY = (sector[2] + 1) * SECTOR_SIZE
+    -- Variant of checkMinY that stops at minDepth; whether or not the value was capped.
+    local cappedCheckMinY, checkMinYWasCapped
+    if checkMinY < minDepth then
+      cappedCheckMinY = minDepth
+      checkMinYWasCapped = true
+    else
+      cappedCheckMinY = checkMinY
+      checkMinYWasCapped = false
+    end
+
+    lowestSectorsMap[sector[1]] = {y = cappedCheckMinY, uncappedY = checkMinY, capped = checkMinYWasCapped}
   end
 
   local world_xwrap = world.xwrap
@@ -569,6 +637,12 @@ function oceanSurfaceQuery(startX, endX, yTop, affectedTiles)
 
   -- Generate a set of tiles that are heated right now.
   for x = startX, endX do
+    -- Find associated lowest sector.
+    local xSector = x // SECTOR_SIZE
+    local sectorValue = lowestSectorsMap[xSector]
+    local cappedCheckMinY = sectorValue.y
+    local checkMinYWasCapped = sectorValue.capped
+
     -- Proceed only if cappedCheckMinY is not actually capped or there is a liquid with ID sunLiquidId at the position
     -- directly below cappedCheckMinY.
     local shouldProceed = not checkMinYWasCapped
@@ -579,7 +653,9 @@ function oceanSurfaceQuery(startX, endX, yTop, affectedTiles)
       end
     end
 
-    if shouldProceed then
+    -- world.debugText("%s, %s", yTop, cappedCheckMinY, {x, stagehand.position()[2] - 20 + x % 6 - yTop / 50}, "red")
+
+    if shouldProceed and cappedCheckMinY <= yTop then
       local collidePoints = world_collisionBlocksAlongLine({x, cappedCheckMinY}, {x, yTop}, collisionSet, maxPenetration)
 
       -- Mark all tiles as affected. Stop after reaching the first solid, opaque tile.
@@ -658,8 +734,10 @@ function syncHeightMapsToGlobal(heightMaps)
         local globalV = globalHeightMap[x]
         if v < globalV or not world_pointCollision({x, globalV}, {"Null"}) then
           globalHeightMap[x] = v
+          -- world.debugText("O", {x, stagehand.position()[2]}, "green")
         else
           heightMap_list[x] = globalV
+          -- world.debugText("X", {x, stagehand.position()[2]}, "red")
         end
       end
     end

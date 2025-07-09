@@ -478,7 +478,7 @@ function v_ministarEffects_computeLightBounds()
   -- Add periodic strips of lights
   for x = startX, endXPos, lightInterval do
     local v = heightMap:get(x)
-    if v >= lightMinHeight and v ~= minHeight then
+    if v and v >= lightMinHeight and v ~= minHeight then
       lightDrawBounds:set(x, {s = lightMinHeight, e = v})
       -- world.debugLine({x, lightMinHeight}, {x, v}, "white")
     end

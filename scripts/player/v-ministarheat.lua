@@ -147,7 +147,7 @@ function getBurnRatio()
   local boosts = vMinistar.computeSolarFlareBoosts(pos[1], pos[1])
   local baseBurnRatio = math.max(-(burnDepth - minDepth) / (maxDepth - minDepth), 1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + boosts:get(pos[1])
 
-  local heightMap = getHeightMap(boundBox[1], boundBox[3])
+  local heightMap = vMinistar.getHeightMap(boundBox[1], boundBox[3])
 
   local burnRatio = 0
 
@@ -176,31 +176,6 @@ function getBurnRatio()
   end
 
   return burnRatio * blockToBoundBoxRatio
-end
-
----Retrieves a section of the global height map and returns it.
----@return VXMap
-function getHeightMap(startX, endX)
-  local startXSector = startX // SECTOR_SIZE
-  local endXSector = endX // SECTOR_SIZE
-
-  local heightMap = vMinistar.XMap:new()
-
-  -- For each `xSector` from `startXSector` to `endXSector`...
-  for xSector = startXSector, endXSector do
-    local xSectorWrapped = math.floor(world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
-    -- Get global height map section corresponding to `xSector`.
-    local globalHeightMapSection = world.getProperty("v-globalHeightMap." .. xSectorWrapped) or {}
-
-    -- Copy the section over to heightMap.
-    for _, value in ipairs(globalHeightMapSection) do
-      if math.floor(startX) <= value.x and value.x <= math.floor(endX) then
-        heightMap:set(value.x, value.value)
-      end
-    end
-  end
-
-  return heightMap
 end
 
 function normalDistribution(mean, stdDev, x)

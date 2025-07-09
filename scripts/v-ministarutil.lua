@@ -9,8 +9,8 @@ vMinistar.SECTOR_SIZE = 32
 ---@field list table<integer, any>
 vMinistar.XMap = {}
 
----Returns a new instance of a height map. `startXPos` and `endXPos` can optionally be provided to pre-set the
----boundaries of the height map.
+---Returns a new instance of a x-map. `startXPos` and `endXPos` can optionally be provided to pre-set the
+---boundaries of the x-map.
 ---@param startXPos integer?
 ---@param endXPos integer?
 ---@return VXMap
@@ -33,7 +33,7 @@ function vMinistar.XMap:new(startXPos, endXPos)
   return instance
 end
 
----Creates a height map from a table.
+---Creates a x-map from a table.
 ---@param json table
 ---@return VXMap
 function vMinistar.XMap:fromJson(json)
@@ -55,14 +55,14 @@ function vMinistar.XMap:fromJson(json)
   return instance
 end
 
----Returns the height map value at `x`, or `nil` if not defined.
+---Returns the x-map value at `x`, or `nil` if not defined.
 ---@param x integer
 ---@return any
 function vMinistar.XMap:get(x)
   return self.list[world.xwrap(x)]
 end
 
----Sets the height map value at `x` to `v`.
+---Sets the x-map value at `x` to `v`.
 ---@param x integer
 ---@param v any
 function vMinistar.XMap:set(x, v)
@@ -97,9 +97,9 @@ function vMinistar.XMap:set(x, v)
   self.list[x] = v
 end
 
----Iterates through the x values within the height map's `xbounds()`, even `nil` values.
+---Iterates through the x values within the x-map's `xbounds()`, even `nil` values.
 ---
----Defining new x values in the height map while using this method will not affect its traversal.
+---Defining new x values in the x-map while using this method will not affect its traversal.
 function vMinistar.XMap:xvalues()
   local startX, endX = self:xbounds()
   local x = startX - 1
@@ -118,7 +118,7 @@ function vMinistar.XMap:values()
   return pairs(self.list)
 end
 
----Returns the boundaries of the height map for easy iteration.
+---Returns the boundaries of the x-map for easy iteration.
 ---@return integer
 ---@return integer
 function vMinistar.XMap:xbounds()
@@ -130,7 +130,8 @@ function vMinistar.XMap:xbounds()
   return startX, endX
 end
 
----Returns a combined height map containing the contents of all of the given height maps.
+---Returns a combined x-map containing the contents of all of the given x-maps. If any x-maps overlap in entries, maps
+---listed later will take a higher priority.
 ---@param maps VXMap[]
 ---@return VXMap
 function vMinistar.XMap:merge(maps)
@@ -193,8 +194,8 @@ function vMinistar.XMap:_expandBounds(x, startXPos, endXPos)
   return startXPos, endXPos
 end
 
----Returns a slice of the given height map. If the provided boundaries go outside of the defined values of the current
----height map, then the corresponding values in the slice will be `nil`.
+---Returns a slice of the given x-map. If the provided boundaries go outside of the defined values of the current
+---x-map, then the corresponding values in the slice will be `nil`.
 ---@param startX integer
 ---@param endX integer
 ---@return VXMap
@@ -235,6 +236,23 @@ function vMinistar.XMap:slice(startX, endX)
   return sliced
 end
 
+---Draws debug text for the current XMap.
+---@param y number
+---@param peakY integer
+---@param color Color
+---@param displayX boolean?
+function vMinistar.XMap:debug(y, peakY, color, displayX)
+  if displayX then
+    for x, v in self:values() do
+      world.debugText("%s: %s", x, v, {x, y + x % peakY}, color)
+    end
+  else
+    for x, v in self:values() do
+      world.debugText("%s", v, {x, y + x % peakY}, color)
+    end
+  end
+end
+
 ---Sets the appropriate sectors of the globalHeightMap world property to contain the values in heightMap.
 ---@param heightMap VXMap
 function vMinistar.setGlobalHeightMap(heightMap)
@@ -248,7 +266,7 @@ function vMinistar.setGlobalHeightMap(heightMap)
   -- For each `xSector` from `startXSector` to `endXSector`...
   for xSector = startXSector, endXSector do
     local xSectorWrapped = math.floor(world.xwrap(xSector * vMinistar.SECTOR_SIZE) // vMinistar.SECTOR_SIZE)
-    -- Get global height map section corresponding to `xSector`.
+    -- Get global x-map section corresponding to `xSector`.
     local globalHeightMapSection = world.getProperty("v-globalHeightMap." .. xSectorWrapped) or {}
 
     -- Copy the section over to globalHeightMap.
@@ -347,4 +365,37 @@ function vMinistar.computeSolarFlareBoosts(startX, endX)
   end
 
   return boosts
+end
+
+---Retrieves a section of the global height map and returns it.
+---@param startX integer
+---@param endX integer
+---@param default integer? Default value to use for undefined sections of the height map.
+---@return VXMap
+function vMinistar.getHeightMap(startX, endX, default)
+  local SECTOR_SIZE = vMinistar.SECTOR_SIZE
+  local startXSector = startX // SECTOR_SIZE
+  local endXSector = endX // SECTOR_SIZE
+
+  local heightMap = vMinistar.XMap:new(startX, endX)
+  local heightMap_list = heightMap.list
+  for x = startX, endX do
+    heightMap_list[world.xwrap(x)] = default
+  end
+
+  -- For each `xSector` from `startXSector` to `endXSector`...
+  for xSector = startXSector, endXSector do
+    local xSectorWrapped = math.floor(world.xwrap(xSector * SECTOR_SIZE) // SECTOR_SIZE)
+    -- Get global height map section corresponding to `xSector`.
+    local globalHeightMapSection = world.getProperty("v-globalHeightMap." .. xSectorWrapped) or {}
+
+    -- Copy the section over to heightMap.
+    for _, value in ipairs(globalHeightMapSection) do
+      if math.floor(startX) <= value.x and value.x <= math.floor(endX) then
+        heightMap_list[world.xwrap(value.x)] = value.value
+      end
+    end
+  end
+
+  return heightMap
 end
