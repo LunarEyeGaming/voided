@@ -29,29 +29,26 @@ function vAnimator.updateCircleBar(lPart, rPart, cur, max)
   end
 end
 
----Returns the linear interpolation between two RGBA colors with a given ratio. Result is in integer form and capped
----between 0 and 255.
----
----Requires: None
----@param ratio number The amount of progress in the interpolation
----@param colorA ColorTable Starting color
----@param colorB ColorTable Ending color
----@return ColorTable
-function vAnimator.lerpColor(ratio, colorA, colorB)
-  -- Return the linear interpolation of colorA and colorB with ratio, capped between 0 and 255 and in integer form.
-  return {
-    math.floor(math.max(math.min(colorA[1] + (colorB[1] - colorA[1]) * ratio, 255), 0)),
-    math.floor(math.max(math.min(colorA[2] + (colorB[2] - colorA[2]) * ratio, 255), 0)),
-    math.floor(math.max(math.min(colorA[3] + (colorB[3] - colorA[3]) * ratio, 255), 0)),
-    math.floor(math.max(math.min(colorA[4] + (colorB[4] - colorA[4]) * ratio, 255), 0))
-  }
-  -- local math_floor, math_max, math_min = math.floor, math.max, math.min
-  -- return {
-  --   math_floor(math_max(math_min(colorA[1] + (colorB[1] - colorA[1]) * ratio, 255), 0)),
-  --   math_floor(math_max(math_min(colorA[2] + (colorB[2] - colorA[2]) * ratio, 255), 0)),
-  --   math_floor(math_max(math_min(colorA[3] + (colorB[3] - colorA[3]) * ratio, 255), 0)),
-  --   math_floor(math_max(math_min(colorA[4] + (colorB[4] - colorA[4]) * ratio, 255), 0))
-  -- }
+do
+  local math_floor, math_max, math_min = math.floor, math.max, math.min
+
+  ---Returns the linear interpolation between two RGBA colors with a given ratio. The resulting channels are in
+  ---integer form and are capped between 0 and 255.
+  ---
+  ---Requires: None
+  ---@param ratio number The amount of progress in the interpolation
+  ---@param colorA ColorTable Starting color
+  ---@param colorB ColorTable Ending color
+  ---@return ColorTable
+  function vAnimator.lerpColor(ratio, colorA, colorB)
+    -- Return the linear interpolation of colorA and colorB with ratio, capped between 0 and 255 and in integer form.
+    return {
+      math_floor(math_max(math_min(colorA[1] + (colorB[1] - colorA[1]) * ratio, 255), 0)),
+      math_floor(math_max(math_min(colorA[2] + (colorB[2] - colorA[2]) * ratio, 255), 0)),
+      math_floor(math_max(math_min(colorA[3] + (colorB[3] - colorA[3]) * ratio, 255), 0)),
+      math_floor(math_max(math_min(colorA[4] + (colorB[4] - colorA[4]) * ratio, 255), 0))
+    }
+  end
 end
 
 ---Uncapped version of `vAnimator.lerpColor`.
@@ -274,6 +271,11 @@ do
   ---@param particle table
   ---@param options VLocalAnimator_SpawnOffscreenParticlesArgs
   function vLocalAnimator.spawnOffscreenParticles(particle, options)
+    local world_material = world.material
+    local world_windLevel = world.windLevel
+    local localAnimator_spawnParticle = localAnimator.spawnParticle
+    local math_random = math.random
+
     local density = options.density
     local exposedOnly = options.exposedOnly
     local ignoreWind = options.ignoreWind
@@ -282,13 +284,13 @@ do
 
     -- Helper function.
     local spawnParticle = function(position)
-      if math.random() <= density
-          and (not exposedOnly or not world.material(position, "background"))
+      if math_random() <= density
+          and (not exposedOnly or not world_material(position, "background"))
           and pred(position) then
 
         if not ignoreWind then
           -- Note: windLevel is zero if there is a background block.
-          local horizontalSpeed = world.windLevel(position)
+          local horizontalSpeed = world_windLevel(position)
 
           if horizontalSpeed ~= 0 then
             local initialVelocity = particle.initialVelocity or {0, 0}
@@ -297,7 +299,7 @@ do
           end
         end
 
-        localAnimator.spawnParticle(particle, position)
+        localAnimator_spawnParticle(particle, position)
       end
     end
 
@@ -352,100 +354,3 @@ do
     prevWindowRegion = windowRegion
   end
 end
-
--- vLocalAnimator.spawnOffscreenParticles = (function()
---   -- State variable
---   local prevWindowRegion
-
---   ---Spawns particles with definition `particle` from offscreen with density `density`. If there is any wind, the x
---   ---component of its initial velocity will be the wind level. Also spawns more or less particles depending on how much
---   ---the client window has moved.
---   ---
---   ---NOTE: For performance reasons, this function will modify the particle's initial velocity.
---   ---
---   ---If `exposedOnly` is `true`, the `particle` will spawn only if the spawning position does not have a material in the
---   ---background. The predicate function `pred` is optional. If defined, it adds an additional condition for the particle
---   ---to spawn.
---   ---
---   ---@param particle table
---   ---@param options VLocalAnimator_SpawnOffscreenParticlesArgs
---   return function(particle, options)
-
---     local density = options.density
---     local exposedOnly = options.exposedOnly
---     local ignoreWind = options.ignoreWind
---     local vertical = options.vertical
---     local pred = options.pred or function() return true end
-
---     -- Helper function.
---     local spawnParticle = function(position)
---       if math.random() <= density
---           and (not exposedOnly or not world.material(position, "background"))
---           and pred(position) then
-
---         if not ignoreWind then
---           -- Note: windLevel is zero if there is a background block.
---           local horizontalSpeed = world.windLevel(position)
-
---           if horizontalSpeed ~= 0 then
---             local initialVelocity = particle.initialVelocity or {0, 0}
---             initialVelocity[1] = horizontalSpeed
---             particle.initialVelocity = initialVelocity
---           end
---         end
-
---         localAnimator.spawnParticle(particle, position)
---       end
---     end
-
---     local windowRegion = world.clientWindow()
-
---     -- Define prevWindowRegion on first call
---     if not prevWindowRegion then
---       prevWindowRegion = windowRegion
---     end
-
---     local windowRegionXL, windowRegionYB, windowRegionXR, windowRegionYT
---     if options.onMovementOnly then
---       -- Fudge window region values to ensure that iteration occurs only when the window has moved.
---       windowRegionXL = windowRegion[1] - 1
---       windowRegionYB = windowRegion[2] - 1
---       windowRegionXR = windowRegion[3] + 1
---       windowRegionYT = windowRegion[4] + 1
---     else
---       windowRegionXL = windowRegion[1]
---       windowRegionYB = windowRegion[2]
---       windowRegionXR = windowRegion[3]
---       windowRegionYT = windowRegion[4]
---     end
---     local prevWindowXLeft = world.nearestTo(windowRegion[1], prevWindowRegion[1])
---     local prevWindowXRight = world.nearestTo(windowRegion[3], prevWindowRegion[3])
---     for y = windowRegion[2], windowRegion[4] do
---       -- Left
---       for x = prevWindowXLeft, windowRegionXL do
---         spawnParticle({x, y})
---       end
-
---       -- Right
---       for x = windowRegionXR, prevWindowXRight do
---         spawnParticle({x, y})
---       end
---     end
-
---     if vertical then
---       for x = windowRegion[1], windowRegion[3] do
---         -- Bottom
---         for y = prevWindowRegion[2], windowRegionYB do
---           spawnParticle({x, y})
---         end
-
---         -- Top
---         for y = windowRegionYT, prevWindowRegion[4] do
---           spawnParticle({x, y})
---         end
---       end
---     end
-
---     prevWindowRegion = windowRegion
---   end
--- end)()

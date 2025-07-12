@@ -38,6 +38,7 @@ function update(dt, fireMode, shiftHeld)
   self.active = false
 
   if storage.firing and animator.animationState("firing") == "off" then
+    local consumeOnUse = config.getParameter("consumeOnUse", true)
     if player then
       local tech = config.getParameter("unlockedTech")
       local equipTech = config.getParameter("forceEquipTech")
@@ -58,12 +59,16 @@ function update(dt, fireMode, shiftHeld)
         -- according to whether or not forceEquipTech is true.
         player.giveItem(config.getParameter("unlockedTechNotifierName"))
 
-        item.consume(1)
+        if consumeOnUse then
+          item.consume(1)
+        end
       else
         player.giveItem("v-techalreadyunlockednotifier")
       end
     else
-      item.consume(1)
+      if consumeOnUse then
+        item.consume(1)
+      end
     end
     storage.firing = false
     return

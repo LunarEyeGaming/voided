@@ -193,6 +193,15 @@
 
         "type" : "treasureBox",
         "treasureBoxSets" : [ "v-fireWeaponChest" ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-asteroidforestmicrodungeons" ]
       }
     ]
   }

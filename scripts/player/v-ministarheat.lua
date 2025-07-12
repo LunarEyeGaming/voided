@@ -24,6 +24,7 @@ local stagehandSpawned
 
 local SECTOR_SIZE = 32
 
+local heightMap
 local rayLocationsMap
 
 function init()
@@ -36,8 +37,9 @@ function init()
     return
   end
 
-  message.setHandler("v-ministarheat-receiveRayLocations", function(_, _, rayLocationsMap_)
+  message.setHandler("v-ministarheat-updateBlocks", function(_, _, heightMap_, rayLocationsMap_)
     rayLocationsMap = vMinistar.XMap:fromJson(rayLocationsMap_)
+    heightMap = vMinistar.XMap:fromJson(heightMap_)
   end)
 
   minBurnDamage = 1
@@ -137,17 +139,20 @@ function getCelestialCoordinates()
   end
 end
 
----Returns whether or not the player is exposed to the sunlight below provided a `heightMap`.
+---Returns a positive number if the player is exposed to the sunlight below provided a defined `heightMap`. Otherwise,
+---returns 0.
 ---@return number
 function getBurnRatio()
+  if not heightMap then
+    return 0
+  end
+
   local pos = mcontroller.position()
   local boundBox = rect.translate(mcontroller.boundBox(), pos)
   local y = pos[2]
 
   local boosts = vMinistar.computeSolarFlareBoosts(pos[1], pos[1])
   local baseBurnRatio = math.max(-(burnDepth - minDepth) / (maxDepth - minDepth), 1 - (pos[2] - minDepth) / (burnDepth - minDepth)) + boosts:get(pos[1])
-
-  local heightMap = vMinistar.getHeightMap(boundBox[1], boundBox[3])
 
   local burnRatio = 0
 

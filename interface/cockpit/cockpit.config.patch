@@ -31,6 +31,23 @@
         "description" : "A laboratory situated deep underground. Does research on fungal bioweapons.",
         "icon" : "/items/generic/quest/v-keycard.png:0"
       }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayDungeons/v-ministarspawn",
+      "value" : {
+        "description" : "",
+        "icon" : ""
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayDungeons/v-multidashpyramid",
+      "value" : {
+        "name" : "Phoenix Pyramid",
+        "description" : "A very large pyramid with signs of Avian technology.",
+        "icon" : "/interface/cockpit/dungeons/v-multidashpyramid.png"
+      }
     }
   ],
 
@@ -207,7 +224,9 @@
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundvoltageruins"},
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundvoltagetraps"},
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-undergroundvoltagetraps"},
-    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-deepundergroundvoltage"}
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-deepundergroundvoltage"},
+
+    {"op" : "add", "path" : "/planetSearch_ignore/dungeons/-", "value" : "v-ministarspawn"}
   ],
 
   // Vanilla Patches

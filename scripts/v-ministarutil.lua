@@ -102,11 +102,15 @@ end
 ---Defining new x values in the x-map while using this method will not affect its traversal.
 function vMinistar.XMap:xvalues()
   local startX, endX = self:xbounds()
+
+  local world_xwrap = world.xwrap
+  local list = self.list
+
   local x = startX - 1
   return function()
     x = x + 1
-    local xWrapped = world.xwrap(x)
-    local v = self.list[xWrapped]
+    local xWrapped = world_xwrap(x)
+    local v = list[xWrapped]
     if x <= endX then
       return xWrapped, v
     end
@@ -316,7 +320,8 @@ function vMinistar.computeSolarFlareBoosts(startX, endX)
   ---@return boolean
   local function inNoFlareZone(x, noFlareZones)
     for _, zone in ipairs(noFlareZones) do
-      if zone.startX <= x and x <= zone.endX then
+      local nearestX = world.nearestTo(zone.startX, x)
+      if zone.startX <= nearestX and nearestX <= zone.endX then
         return true
       end
     end
@@ -339,6 +344,7 @@ function vMinistar.computeSolarFlareBoosts(startX, endX)
   sb.setLogMap("v-ministarheat(stagehand)_solarFlares", "%s", #solarFlares)
 
   local world_xwrap = world.xwrap
+  local math_abs = math.abs
 
   local boosts = vMinistar.XMap:new(startX, endX)
   local boosts_list = boosts.list
@@ -346,20 +352,28 @@ function vMinistar.computeSolarFlareBoosts(startX, endX)
     boosts_list[world_xwrap(x)] = 0
   end
 
+  local flareZoneChecks = vMinistar.XMap:new(startX, endX)
+  local flareZoneChecks_list = flareZoneChecks.list
+  for x = startX, endX do
+    flareZoneChecks_list[world_xwrap(x)] = not inNoFlareZone(x, noFlareZones)
+  end
+
+  -- All flares follow a triangular distribution with a peak value at flare.x. The statements below have undergone heavy
+  -- mathematical simplification and use caching a lot as necessary.
   for _, flare in ipairs(solarFlares) do
-    -- Dividing by 6 makes it so that all points within the duration are within 3 standard deviations of the mean in either direction.
-    local durationStdDev = flare.duration / 6
-    local durationMean = flare.startTime + flare.duration / 2
-    local timeMultiplier = normalDistribution(durationMean, durationStdDev, world.time())
-    local invSpread = 1 / flare.spread
     local flareX = flare.x
-    local potency = flare.potency
+    local boostFactor = flare.potency * normalDistribution(
+      flare.startTime + flare.duration / 2,
+      -- Dividing by 6 makes it so that all points within the duration are within 3 standard deviations of the mean in
+      -- either direction.
+      flare.duration / 6,
+      world.time()
+    ) / flare.spread
 
     for x = startX, endX do
-      if not inNoFlareZone(x, noFlareZones) then
-        local xWrapped = world_xwrap(x)
-        boosts_list[xWrapped] = boosts_list[xWrapped] + math.abs(x - flareX) * invSpread * potency
-          * timeMultiplier
+      local xWrapped = world_xwrap(x)
+      if flareZoneChecks_list[xWrapped] then
+        boosts_list[xWrapped] = boosts_list[xWrapped] + math_abs(x - flareX) * boostFactor
       end
     end
   end
@@ -391,7 +405,7 @@ function vMinistar.getHeightMap(startX, endX, default)
 
     -- Copy the section over to heightMap.
     for _, value in ipairs(globalHeightMapSection) do
-      if math.floor(startX) <= value.x and value.x <= math.floor(endX) then
+      if value.value and math.floor(startX) <= value.x and value.x <= math.floor(endX) then
         heightMap_list[world.xwrap(value.x)] = value.value
       end
     end

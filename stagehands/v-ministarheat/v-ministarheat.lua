@@ -28,6 +28,7 @@ local checkMaxY
 local maxPenetration
 
 local collisionSet
+local nullCollisionSet
 local sunLiquidId
 local materialConfigs
 local heatConfigs
@@ -66,9 +67,6 @@ function init()
   sunLiquidId = cfg.sunLiquidId
 
   minDepth = config.getParameter("minDepth")
-  if not minDepth then
-    sb.logInfo("minDepth was never defined")
-  end
   maxDepth = config.getParameter("maxDepth")
 
   initLiquidScanner()
@@ -98,6 +96,7 @@ function init()
   entityHeightMaps = {}
   liquidSurfacePoints = {}
   collisionSet = {"Block", "Platform"}
+  nullCollisionSet = {"Null"}
   materialConfigs = {}
   heatConfigs = {}
   lightScanner = LightScanner:new{}
@@ -202,15 +201,8 @@ function initLiquidScanner()
     end
   end)
 
-  -- Mark regions where tiles are broken as "hot."
-  message.setHandler("tileBroken", function(_, _, pos, layer)
-    if layer == "foreground" then
-      liquidScanner:markRegionByTile(pos, 3)
-    end
-  end)
-
   -- Mark other regions as "hot."
-  message.setHandler("v-ministarheat-onTileAdded", function(_, _, pos)
+  message.setHandler("v-ministarheat-onTileModified", function(_, _, pos)
     liquidScanner:markRegionByTile(pos, 3)
   end)
 end
@@ -254,10 +246,11 @@ function update(dt)
     local positions = getPlayerPositions(playerIds)
     local regions = getPlayerRegions(positions)
     local mergedRegions = mergeRegions(regions)
-    prioritizeRegions(mergedRegions)
 
     -- Run the main portion of the Ministar heat script if active. Otherwise, just run the liquid scanner.
     if isActive then
+      prioritizeRegions(mergedRegions)
+
       local affectedTiles = {}  -- hash map
       local liquidTouchedTiles = {}  -- hash map
       local nonOceanAffectedTiles = {}  -- hash map of the tiles that were affected by liquids at a depth other than minDepth.
@@ -338,8 +331,16 @@ function update(dt)
         local rayLocationsMap = combinedRayLocationsMaps:slice(region[1], region[3])
         -- sb.logInfo("%s, %s", region[1], region[3])
         -- TODO: Convert arguments into a table.
-        world.sendEntityMessage(playerId, "v-ministareffects-updateBlocks", heatMap, heightMap, sunProximityRatio, minDepth, particleSpawnPoints, boosts, rayLocationsMap)
-        world.sendEntityMessage(playerId, "v-ministarheat-receiveRayLocations", rayLocationsMap)
+        world.sendEntityMessage(playerId, "v-ministareffects-updateBlocks", {
+          heatMap = heatMap,
+          heightMap = heightMap,
+          sunProximityRatio = sunProximityRatio,
+          minHeight = minDepth,
+          liquidParticlePoints = particleSpawnPoints,
+          flareBoosts = boosts,
+          rayLocationsMap = rayLocationsMap
+        })
+        world.sendEntityMessage(playerId, "v-ministarheat-updateBlocks", heightMap, rayLocationsMap)
       end
 
       addToHeatMap(affectedTiles, combinedHeightMap, liquidTouchedTiles, nonOceanAffectedTiles, dt)
@@ -473,9 +474,6 @@ function prioritizeRegions(regions)
   -- Find the index of the first value whose max y < minDepth
   local idx
   for i = 1, #regions do
-    if not minDepth then
-      sb.logInfo("minDepth is not defined")
-    end
     if regions[i][4] < minDepth then
       idx = i
       break
@@ -732,7 +730,7 @@ function syncHeightMapsToGlobal(heightMaps)
         globalHeightMap[x] = v
       else
         local globalV = globalHeightMap[x]
-        if v < globalV or not world_pointCollision({x, globalV}, {"Null"}) then
+        if v < globalV or not world_pointCollision({x, globalV}, nullCollisionSet) then
           globalHeightMap[x] = v
           -- world.debugText("O", {x, stagehand.position()[2]}, "green")
         else
@@ -914,19 +912,24 @@ function findLowestLoadedSectors(xStart, xEnd, yTop)
   local xSectorEnd = xEnd // SECTOR_SIZE
   local ySectorStart = yTop // SECTOR_SIZE
 
+  local world_pointCollision = world.pointCollision
+  local table_insert = table.insert
+
   local lowestSectors = {}
 
   -- For each column of sectors intersecting the area between xStart and xEnd...
   for xSector = xSectorStart, xSectorEnd do
+    local x = xSector * SECTOR_SIZE
+
     local ySector = 0
     -- While the current sector is not loaded...
     -- while world.material({xSector * SECTOR_SIZE, ySector * SECTOR_SIZE}, "foreground") ~= nil do
-    while world.pointCollision({xSector * SECTOR_SIZE, ySector * SECTOR_SIZE}, {"Null"}) and ySector <= ySectorStart do
+    while world_pointCollision({x, ySector * SECTOR_SIZE}, nullCollisionSet) and ySector <= ySectorStart do
       ySector = ySector + 1
     end
 
     -- Add result to lowestSectors
-    table.insert(lowestSectors, {xSector, ySector - 1})
+    table_insert(lowestSectors, {xSector, ySector - 1})
   end
 
   return lowestSectors
@@ -1019,12 +1022,14 @@ end
 function LiquidScanner:update(regions)
   local world_liquidAt = world.liquidAt
   local world_liquidAlongLine = world.liquidAlongLine
-  local vVec2_iToString = vVec2.iToString
+  local vVec2_iToString2 = vVec2.iToString2
   local math_abs = math.abs
-  local table_insert = table.insert
 
   local CHUNK_SIZE = self._CHUNK_SIZE
   local liquidId = self._liquidId
+  local liquidThreshold = self._liquidThreshold
+  local prevLiquidChunks = self._prevLiquidChunks
+  local hotRegions = self._hotRegions
 
   local boundaryTiles = {}
   local liquidChunks = {}  -- Map of chunks to corresponding liquid values retrieved from world.liquidAt
@@ -1045,20 +1050,21 @@ function LiquidScanner:update(regions)
           (chunkY + 1) * CHUNK_SIZE + 1
         })
 
-        local chunkStr = vVec2_iToString({chunkX, chunkY})
+        local chunkStr = vVec2_iToString2(chunkX, chunkY)
 
         liquidChunks[chunkStr] = res
 
         if not particleSpawnPoints[chunkStr] then
           particleSpawnPoints[chunkStr] = {}
         end
+        local chunkPoints = particleSpawnPoints[chunkStr]
 
         -- Process the region in more detail if it is not completely filled with sun liquid and it is a hot region,
         -- solar plasma became the most plentiful liquid in the region, or the change in the total quantity since the
         -- last call to update is at least 1.
         if res and res[1] == liquidId and res[2] < 1.0 then
-          local prevRes = self._prevLiquidChunks[chunkStr]
-          if self._hotRegions[chunkStr] and self._hotRegions[chunkStr] > 0
+          local prevRes = prevLiquidChunks[chunkStr]
+          if hotRegions[chunkStr] and hotRegions[chunkStr] > 0
               or (not prevRes or prevRes[1] ~= res[1] or math_abs(prevRes[2] - res[2]) * CHUNK_SIZE * CHUNK_SIZE >= 1) then
             local minXInChunk = chunkX * CHUNK_SIZE
             local minYInChunk = chunkY * CHUNK_SIZE
@@ -1089,7 +1095,7 @@ function LiquidScanner:update(regions)
               for _, posLiquidPair in ipairs(liqs) do
                 local position = posLiquidPair[1]
                 local liquid = posLiquidPair[2]
-                liqMat[position[2]][position[1]] = liquid[1] == liquidId and liquid[2] >= self._liquidThreshold
+                liqMat[position[2]][position[1]] = liquid[1] == liquidId and liquid[2] >= liquidThreshold
               end
             end
 
@@ -1102,24 +1108,24 @@ function LiquidScanner:update(regions)
                 if isSunLiquid then
                   -- Add all adjacent spaces that are not sun liquid.
                   if not row[x + 1] then
-                    table_insert(boundaryTiles, {x + 1, y})
+                    boundaryTiles[#boundaryTiles + 1] = {x + 1, y}
                   end
                   if not row[x - 1] then
-                    table_insert(boundaryTiles, {x - 1, y})
+                    boundaryTiles[#boundaryTiles + 1] = {x - 1, y}
                   end
                   if not liqMat[y + 1][x] then
-                    table_insert(boundaryTiles, {x, y + 1})
-                    table_insert(particleSpawnPoints[chunkStr], {x, y + 1})
+                    boundaryTiles[#boundaryTiles + 1] = {x, y + 1}
+                    chunkPoints[#chunkPoints + 1] = {x, y + 1}
                   end
                   if not liqMat[y - 1][x] then
-                    table_insert(boundaryTiles, {x, y - 1})
+                    boundaryTiles[#boundaryTiles + 1] = {x, y - 1}
                   end
                 end
               end
             end
             -- Decrement hot region time remaining.
-            if self._hotRegions[chunkStr] then
-              self._hotRegions[chunkStr] = self._hotRegions[chunkStr] - 1
+            if hotRegions[chunkStr] then
+              hotRegions[chunkStr] = hotRegions[chunkStr] - 1
             end
           end
 
@@ -1145,16 +1151,21 @@ end
 ---Refreshes the entire nearby area, forcing the liquid scanner to requery it all next update.
 ---@param regions RectI[]
 function LiquidScanner:refresh(regions)
+  local CHUNK_SIZE = self._CHUNK_SIZE
+  local hotRegions = self._hotRegions
+
+  local vVec2_iToString2 = vVec2.iToString2
+
   for _, region in ipairs(regions) do
-    local chunkMinX = region[1] // self._CHUNK_SIZE
-    local chunkMinY = region[2] // self._CHUNK_SIZE
-    local chunkMaxX = region[3] // self._CHUNK_SIZE
-    local chunkMaxY = region[4] // self._CHUNK_SIZE
+    local chunkMinX = region[1] // CHUNK_SIZE
+    local chunkMinY = region[2] // CHUNK_SIZE
+    local chunkMaxX = region[3] // CHUNK_SIZE
+    local chunkMaxY = region[4] // CHUNK_SIZE
 
     for chunkX = chunkMinX, chunkMaxX do
       for chunkY = chunkMinY, chunkMaxY do
-        local chunkStr = vVec2.iToString({chunkX, chunkY})
-        self._hotRegions[chunkStr] = 1
+        local chunkStr = vVec2_iToString2(chunkX, chunkY)
+        hotRegions[chunkStr] = 1
       end
     end
   end

@@ -5,7 +5,7 @@
   "maxStack" : 1,
   "rarity" : "Legendary",
   "category" : "v-techChip",
-  "description" : "Provides the user with the ability to dash 3 times in any direction. ^yellow;Force Equips^reset;.",
+  "description" : "Provides the user with the ability to dash 3 times in any direction (^green;[W]^reset;). ^yellow;Force Equips^reset;.",
   "shortdescription" : "^1;Multi-Dash",
   "twoHanded" : true,
 
@@ -22,5 +22,6 @@
 
   "unlockedTech" : "v-aimablemultidash",
   "unlockedTechNotifierName" : "v-aimablemultidashtechchipnotifier",  // Hacky way of displaying a message at the bottom of the screen
-  "forceEquipTech" : true
+  "forceEquipTech" : true,
+  "consumeOnUse" : false
 }
