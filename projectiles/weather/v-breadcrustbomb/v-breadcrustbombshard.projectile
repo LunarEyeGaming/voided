@@ -4,6 +4,15 @@
   "image" : "breadcrustbombshard.png",
   "animationCycle" : 1,
   "frameNumber" : 1,
+  "lightColor" : [253, 143, 77],
+
+  "periodicActions" : [
+    {
+      "time" : 0.1,
+      "action" : "particle",
+      "specification" : "v-moltenrockshard"
+    }
+  ],
 
   "physics" : "grenadezbomb",
   "bounces" : 0,

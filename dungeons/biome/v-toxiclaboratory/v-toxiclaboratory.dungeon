@@ -134,7 +134,7 @@
       "name" : "floor1corridor1-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
-          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
+          "floor1corridor4-left", "floor1corridor5-left", "floor1corridorrare-left", "floor1staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor1-left.json" ],
       "chance" : 200
@@ -143,7 +143,7 @@
       "name" : "floor1corridor2-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
-          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
+          "floor1corridor4-left", "floor1corridor5-left", "floor1corridorrare-left", "floor1staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor2-left.json" ],
       "chance" : 200
@@ -152,7 +152,7 @@
       "name" : "floor1corridor3-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
-          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
+          "floor1corridor4-left", "floor1corridor5-left", "floor1corridorrare-left", "floor1staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor3-left.json" ],
       "chance" : 200
@@ -161,7 +161,7 @@
       "name" : "floor1corridor4-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
-          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
+          "floor1corridor4-left", "floor1corridor5-left", "floor1corridorrare-left", "floor1staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor4-left.json" ],
       "chance" : 200
@@ -170,7 +170,7 @@
       "name" : "floor1corridor5-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
-          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
+          "floor1corridor4-left", "floor1corridor5-left", "floor1corridorrare-left", "floor1staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor5-left.json" ],
       "chance" : 200
@@ -179,10 +179,19 @@
       "name" : "floor1staircorridor-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
-          "floor1corridor4-left", "floor1corridor5-left", "floor1staircorridor-left" ] ]
+          "floor1corridor4-left", "floor1corridor5-left", "floor1corridorrare-left", "floor1staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1staircorridor-left.json" ],
       "chance" : 200
+    },
+    {
+      "name" : "floor1corridorrare-left",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor1corridor1-left", "floor1corridor2-left", "floor1corridor3-left",
+          "floor1corridor4-left", "floor1corridor5-left", "floor1corridorrare-left", "floor1staircorridor-left" ] ]
+      ],
+      "def" : [ "tmx", "floor1/floor1corridorrare-left.json" ],
+      "chance" : 10
     },
 
     {
@@ -304,7 +313,7 @@
       "name" : "floor1corridor1-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
-          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
+          "floor1corridor4-right", "floor1corridor5-right", "floor1corridorrare-right", "floor1staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor1-right.json" ],
       "chance" : 200
@@ -313,7 +322,7 @@
       "name" : "floor1corridor2-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
-          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
+          "floor1corridor4-right", "floor1corridor5-right", "floor1corridorrare-right", "floor1staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor2-right.json" ],
       "chance" : 200
@@ -322,7 +331,7 @@
       "name" : "floor1corridor3-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
-          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
+          "floor1corridor4-right", "floor1corridor5-right", "floor1corridorrare-right", "floor1staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor3-right.json" ],
       "chance" : 200
@@ -331,7 +340,7 @@
       "name" : "floor1corridor4-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
-          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
+          "floor1corridor4-right", "floor1corridor5-right", "floor1corridorrare-right", "floor1staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor4-right.json" ],
       "chance" : 200
@@ -340,7 +349,7 @@
       "name" : "floor1corridor5-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
-          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
+          "floor1corridor4-right", "floor1corridor5-right", "floor1corridorrare-right", "floor1staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1corridor5-right.json" ],
       "chance" : 200
@@ -349,11 +358,20 @@
       "name" : "floor1staircorridor-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
-          "floor1corridor4-right", "floor1corridor5-right", "floor1staircorridor-right" ] ]
+          "floor1corridor4-right", "floor1corridor5-right", "floor1corridorrare-right", "floor1staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor1/floor1staircorridor-right.json" ],
       "chance" : 200
       /* "chance" : 10000000 */
+    },
+    {
+      "name" : "floor1corridorrare-right",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor1corridor1-right", "floor1corridor2-right", "floor1corridor3-right",
+          "floor1corridor4-right", "floor1corridor5-right", "floor1corridorrare-right", "floor1staircorridor-right" ] ]
+      ],
+      "def" : [ "tmx", "floor1/floor1corridorrare-right.json" ],
+      "chance" : 10
     },
 
     {
@@ -426,7 +444,7 @@
       "name" : "floor2corridor1-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
-          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
+          "floor2corridor4-left", "floor2corridor5-left", "floor2corridorrare-left", "floor2staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor1-left.json" ],
       "chance" : 200
@@ -435,7 +453,7 @@
       "name" : "floor2corridor2-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
-          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
+          "floor2corridor4-left", "floor2corridor5-left", "floor2corridorrare-left", "floor2staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor2-left.json" ],
       "chance" : 200
@@ -444,7 +462,7 @@
       "name" : "floor2corridor3-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
-          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
+          "floor2corridor4-left", "floor2corridor5-left", "floor2corridorrare-left", "floor2staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor3-left.json" ],
       "chance" : 200
@@ -453,7 +471,7 @@
       "name" : "floor2corridor4-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
-          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
+          "floor2corridor4-left", "floor2corridor5-left", "floor2corridorrare-left", "floor2staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor4-left.json" ],
       "chance" : 200
@@ -462,7 +480,7 @@
       "name" : "floor2corridor5-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
-          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
+          "floor2corridor4-left", "floor2corridor5-left", "floor2corridorrare-left", "floor2staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor5-left.json" ],
       "chance" : 200
@@ -471,10 +489,19 @@
       "name" : "floor2staircorridor-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
-          "floor2corridor4-left", "floor2corridor5-left", "floor2staircorridor-left" ] ]
+          "floor2corridor4-left", "floor2corridor5-left", "floor2corridorrare-left", "floor2staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2staircorridor-left.json" ],
       "chance" : 200
+    },
+    {
+      "name" : "floor2corridorrare-left",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor2corridor1-left", "floor2corridor2-left", "floor2corridor3-left",
+          "floor2corridor4-left", "floor2corridor5-left", "floor2corridorrare-left", "floor2staircorridor-left" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2corridorrare-left.json" ],
+      "chance" : 10
     },
 
     {
@@ -596,7 +623,7 @@
       "name" : "floor2corridor1-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
-          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
+          "floor2corridor4-right", "floor2corridor5-right", "floor2corridorrare-right", "floor2staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor1-right.json" ],
       "chance" : 200
@@ -605,7 +632,7 @@
       "name" : "floor2corridor2-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
-          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
+          "floor2corridor4-right", "floor2corridor5-right", "floor2corridorrare-right", "floor2staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor2-right.json" ],
       "chance" : 200
@@ -614,7 +641,7 @@
       "name" : "floor2corridor3-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
-          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
+          "floor2corridor4-right", "floor2corridor5-right", "floor2corridorrare-right", "floor2staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor3-right.json" ],
       "chance" : 200
@@ -623,7 +650,7 @@
       "name" : "floor2corridor4-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
-          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
+          "floor2corridor4-right", "floor2corridor5-right", "floor2corridorrare-right", "floor2staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor4-right.json" ],
       "chance" : 200
@@ -632,7 +659,7 @@
       "name" : "floor2corridor5-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
-          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
+          "floor2corridor4-right", "floor2corridor5-right", "floor2corridorrare-right", "floor2staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2corridor5-right.json" ],
       "chance" : 200
@@ -641,10 +668,19 @@
       "name" : "floor2staircorridor-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
-          "floor2corridor4-right", "floor2corridor5-right", "floor2staircorridor-right" ] ]
+          "floor2corridor4-right", "floor2corridor5-right", "floor2corridorrare-right", "floor2staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor2/floor2staircorridor-right.json" ],
       "chance" : 200
+    },
+    {
+      "name" : "floor2corridorrare-right",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor2corridor1-right", "floor2corridor2-right", "floor2corridor3-right",
+          "floor2corridor4-right", "floor2corridor5-right", "floor2corridorrare-right", "floor2staircorridor-right" ] ]
+      ],
+      "def" : [ "tmx", "floor2/floor2corridorrare-right.json" ],
+      "chance" : 10
     },
 
     {
@@ -809,7 +845,7 @@
       "name" : "floor3corridor1-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
-          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+          "floor3corridor4-left", "floor3corridor5-left", "floor3corridorrare-left", "floor3staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3corridor1-left.json" ],
       "chance" : 200
@@ -818,7 +854,7 @@
       "name" : "floor3corridor2-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
-          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+          "floor3corridor4-left", "floor3corridor5-left", "floor3corridorrare-left", "floor3staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3corridor2-left.json" ],
       "chance" : 200
@@ -827,7 +863,7 @@
       "name" : "floor3corridor3-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
-          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+          "floor3corridor4-left", "floor3corridor5-left", "floor3corridorrare-left", "floor3staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3corridor3-left.json" ],
       "chance" : 200
@@ -836,7 +872,7 @@
       "name" : "floor3corridor4-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
-          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+          "floor3corridor4-left", "floor3corridor5-left", "floor3corridorrare-left", "floor3staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3corridor4-left.json" ],
       "chance" : 200
@@ -845,7 +881,7 @@
       "name" : "floor3corridor5-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
-          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+          "floor3corridor4-left", "floor3corridor5-left", "floor3corridorrare-left", "floor3staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3corridor5-left.json" ],
       "chance" : 200
@@ -854,10 +890,19 @@
       "name" : "floor3staircorridor-left",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
-          "floor3corridor4-left", "floor3corridor5-left", "floor3staircorridor-left" ] ]
+          "floor3corridor4-left", "floor3corridor5-left", "floor3corridorrare-left", "floor3staircorridor-left" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3staircorridor-left.json" ],
       "chance" : 200
+    },
+    {
+      "name" : "floor3corridorrare-left",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-left", "floor3corridor2-left", "floor3corridor3-left",
+          "floor3corridor4-left", "floor3corridor5-left", "floor3corridorrare-left", "floor3staircorridor-left" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridorrare-left.json" ],
+      "chance" : 10
     },
 
     {
@@ -973,7 +1018,7 @@
       "name" : "floor3corridor1-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
-          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+          "floor3corridor4-right", "floor3corridor5-right", "floor3corridorrare-right", "floor3staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3corridor1-right.json" ],
       "chance" : 200
@@ -982,7 +1027,7 @@
       "name" : "floor3corridor2-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
-          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+          "floor3corridor4-right", "floor3corridor5-right", "floor3corridorrare-right", "floor3staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3corridor2-right.json" ],
       "chance" : 200
@@ -991,7 +1036,7 @@
       "name" : "floor3corridor3-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
-          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+          "floor3corridor4-right", "floor3corridor5-right", "floor3corridorrare-right", "floor3staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3corridor3-right.json" ],
       "chance" : 200
@@ -1000,7 +1045,7 @@
       "name" : "floor3corridor4-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
-          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+          "floor3corridor4-right", "floor3corridor5-right", "floor3corridorrare-right", "floor3staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3corridor4-right.json" ],
       "chance" : 200
@@ -1009,7 +1054,7 @@
       "name" : "floor3corridor5-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
-          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+          "floor3corridor4-right", "floor3corridor5-right", "floor3corridorrare-right", "floor3staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3corridor5-right.json" ],
       "chance" : 200
@@ -1018,10 +1063,19 @@
       "name" : "floor3staircorridor-right",
       "rules" : [
         [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
-          "floor3corridor4-right", "floor3corridor5-right", "floor3staircorridor-right" ] ]
+          "floor3corridor4-right", "floor3corridor5-right", "floor3corridorrare-right", "floor3staircorridor-right" ] ]
       ],
       "def" : [ "tmx", "floor3/floor3staircorridor-right.json" ],
       "chance" : 200
+    },
+    {
+      "name" : "floor3corridorrare-right",
+      "rules" : [
+        [ "doNotCombineWith", [ "floor3corridor1-right", "floor3corridor2-right", "floor3corridor3-right",
+          "floor3corridor4-right", "floor3corridor5-right", "floor3corridorrare-right", "floor3staircorridor-right" ] ]
+      ],
+      "def" : [ "tmx", "floor3/floor3corridorrare-right.json" ],
+      "chance" : 10
     },
 
     {

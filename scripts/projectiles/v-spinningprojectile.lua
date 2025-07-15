@@ -5,7 +5,12 @@ local radius
 local rotationalVelocity
 local rotation
 
+local oldInit = init or function() end
+local oldUpdate = update or function() end
+
 function init()
+  oldInit()
+
   radius = config.getParameter("radius", 1)
 
   rotationalVelocity = 0
@@ -13,6 +18,8 @@ function init()
 end
 
 function update(dt)
+  oldUpdate(dt)
+
   local velocity = mcontroller.velocity()
 
   local rotationalVelocityDir

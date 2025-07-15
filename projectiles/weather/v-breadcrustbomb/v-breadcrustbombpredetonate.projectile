@@ -50,10 +50,12 @@
 
   "persistentAudio" : "/sfx/projectiles/burning_loop.ogg",
 
-  "scripts" : [ "/scripts/projectiles/v-spinningprojectile.lua" ],
+  "scripts" : [ "/scripts/projectiles/v-spinningprojectile.lua", "/scripts/projectiles/v-treasureprojectile.lua" ],
   "scriptDelta" : 1,
 
-  "radius" : 1.5
+  "radius" : 1.5,
+
+  "treasurePool" : "v-breadcrustbombTreasure"
 }
 
 
