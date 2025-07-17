@@ -5,7 +5,8 @@
     "rules" : [
     ],
 
-    "anchor" : [ "platforms1", "platforms2", "platforms3", "platforms4", "platforms5", "platforms6", "buildings1", "buildings2" ],
+    "anchor" : [ "platforms1", "platforms2", "platforms3", "platforms4", "platforms5", "platforms6", "buildings1",
+      "buildings2", "buildings3", "buildings4", "buildings5" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -69,6 +70,27 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "buildings2.json" ]
+    },
+    {
+      "name" : "buildings3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "buildings3.json" ]
+    },
+    {
+      "name" : "buildings4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "buildings4.json" ]
+    },
+    {
+      "name" : "buildings5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "buildings5.json" ]
     }
   ]
 }

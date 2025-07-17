@@ -587,6 +587,25 @@
   },
 
   {
+    "name" : "v-dragon",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-dragon"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
     "name" : "v-lurkano",
 
     "spawnParameters" : {
