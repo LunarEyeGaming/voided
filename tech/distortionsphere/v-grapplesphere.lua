@@ -41,8 +41,6 @@ function update(args)
   local ownPos = mcontroller.position()
 
   if self.active then
-    world.debugText("state: %s", state, ownPos, "green")
-
     if not state
     and not args.moves["run"]
     and prevDown ~= args.moves["run"]
@@ -100,31 +98,6 @@ function update(args)
 
       state = nil
     end
-    -- elseif state == "grapple" then
-    --   if world.entityExists(hookId) then
-    --     local anchored = world.callScriptedEntity(hookId, "anchored")
-
-    --     if anchored then
-    --       state = "reel"
-    --     end
-    --   else
-    --     state = nil
-    --   end
-    -- elseif state == "reel" then
-    --   if world.entityExists(hookId) then
-    --     local direction = vec2.norm(world.distance(world.entityPosition(hookId), mcontroller.position()))
-    --     mcontroller.controlApproachVelocity(vec2.mul(direction, reelSpeed), reelForce)
-
-    --     -- If the player has touched a surface...
-    --     if world.rectCollision(rect.translate(rect.pad(mcontroller.boundBox(), 0.25), mcontroller.position())) then
-    --       world.callScriptedEntity(hookId, "kill")
-    --       hookId = nil
-    --       state = nil  -- Finish grapple.
-    --     end
-    --   else
-    --     state = nil
-    --   end
-    -- end
   end
 end
 

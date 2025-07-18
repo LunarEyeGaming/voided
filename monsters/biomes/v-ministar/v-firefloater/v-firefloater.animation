@@ -7,43 +7,19 @@
         "states" : {
           "idle" : {
             "frames" : 2,
-            "cycle" : 0.4,
+            "cycle" : 0.2,
             "mode" : "loop"
           },
-          "roar" : {
-            "frames" : 6,
-            "cycle" : 0.6,
-            "mode" : "transition",
-            "transition" : "idle",
-            "properties" : {
-              "immediateSound" : "/sfx/npc/monsters/scaveran_attack.ogg"
-            }
-          },
-          "jumpwindup" : {
-            "frames" : 3,
-            "cycle" : 0.3,
-            "mode" : "end"
-          },
-          "jump" : {
+          "fly" : {
             "frames" : 2,
             "cycle" : 0.2,
-            "mode" : "end",
-            "properties" : {
-              "immediateSound" : "/sfx/npc/monsters/v_sunleaper_jump.ogg"
-            }
+            "mode" : "loop"
           },
-          "airborne" : {},
-          "impact" : {
-            "frames" : 3,
-            "cycle" : 0.3,
+          "fire" : {
+            "frames" : 4,
+            "cycle" : 0.4,
             "mode" : "transition",
-            "transition" : "pull"
-          },
-          "pull" : {
-            "frames" : 13,
-            "cycle" : 1.3,
-            "mode" : "transition",
-            "transition" : "idle"
+            "transition" : "fly"
           }
         }
       },
@@ -56,6 +32,11 @@
           },
           "stunned" : {
             "frames" : 1
+          },
+          "killed" : {
+            "frames" : 7,
+            "cycle" : 0.7,
+            "mode" : "end"
           }
         }
       },
@@ -84,9 +65,9 @@
     "parts" : {
       "body" : {
         "properties" : {
-          "transformationGroups" : [ "body" ],
-          "offset" : [0.0, 0.625],
-          "zLevel" : 1
+          "zLevel" : 10,
+          "transformationGroups" : [ "body", "facing" ],
+          "offset" : [0.0, 0.0]
         },
         "partStates" : {
           "body" : {
@@ -95,40 +76,24 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
-            "roar" : {
+            "fly" : {
               "properties" : {
-                "image" : "<partImage>:roar.<frame>"
+                "image" : "<partImage>:fly.<frame>"
               }
             },
-            "jumpwindup" : {
+            "fire" : {
               "properties" : {
-                "image" : "<partImage>:jumpwindup.<frame>"
-              }
-            },
-            "jump" : {
-              "properties" : {
-                "image" : "<partImage>:jump.<frame>"
-              }
-            },
-            "airborne" : {
-              "properties" : {
-                "image" : "<partImage>:airborne.<frame>",
-                "damageArea" : [ [0.41, 1.0],  [1.0, 0.41],  [1.0, -0.41],  [0.41, -1.0],  [-0.41, -1.0],  [-1.0, -0.41],  [-1.0, 0.41],  [-0.41, 1.0] ]
-              }
-            },
-            "impact" : {
-              "properties" : {
-                "image" : "<partImage>:impact.<frame>"
-              }
-            },
-            "pull" : {
-              "properties" : {
-                "image" : "<partImage>:pull.<frame>"
+                "image" : "<partImage>:fire.<frame>"
               }
             }
           },
           "damage" : {
             "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            },
+            "killed" : {
               "properties" : {
                 "image" : "<partImage>:hurt.<frame>"
               }
@@ -138,8 +103,8 @@
       },
       "bodyfullbright" : {
         "properties" : {
+          "zLevel" : 20,
           "anchorPart" : "body",
-          "zLevel" : 2,
           "fullbright" : true
         },
         "partStates" : {
@@ -149,39 +114,24 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
-            "roar" : {
+            "fly" : {
               "properties" : {
-                "image" : "<partImage>:roar.<frame>"
+                "image" : "<partImage>:fly.<frame>"
               }
             },
-            "jumpwindup" : {
+            "fire" : {
               "properties" : {
-                "image" : "<partImage>:jumpwindup.<frame>"
-              }
-            },
-            "jump" : {
-              "properties" : {
-                "image" : "<partImage>:jump.<frame>"
-              }
-            },
-            "airborne" : {
-              "properties" : {
-                "image" : "<partImage>:airborne.<frame>"
-              }
-            },
-            "impact" : {
-              "properties" : {
-                "image" : "<partImage>:impact.<frame>"
-              }
-            },
-            "pull" : {
-              "properties" : {
-                "image" : "<partImage>:pull.<frame>"
+                "image" : "<partImage>:fire.<frame>"
               }
             }
           },
           "damage" : {
             "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            },
+            "killed" : {
               "properties" : {
                 "image" : "<partImage>:hurt.<frame>"
               }
@@ -199,13 +149,6 @@
     "facing" : { "interpolated" : false }
   },
 
-  "lights" : {
-    "glow" : {
-      "active" : true,
-      "color" : [44, 14, 10]
-    }
-  },
-
   "effects" : {
     "blink" : {
       "type" : "flash",
@@ -215,6 +158,77 @@
   },
 
   "particleEmitters" : {
+    "thrusters" : {
+      "active" : true,
+      "emissionRate" : 10,
+      "transformationGroups" : [ "body", "facing" ],
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/smallflame/smallflame.animation",
+            "fullbright" : true,
+            "light" : [218, 83, 2],
+            "layer" : "middle",
+
+            "timeToLive" : 0.6,
+
+            "position" : [0, -0.5],
+            "initialVelocity" : [-5, -10],
+            "finalVelocity" : [0, 10],
+            "approach" : [0, 8]
+          }
+        },
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/smallflame/smallflame.animation",
+            "fullbright" : true,
+            "light" : [218, 83, 2],
+            "layer" : "middle",
+
+            "timeToLive" : 0.6,
+
+            "position" : [-1.125, -0.5],
+            "initialVelocity" : [-5, -10],
+            "finalVelocity" : [0, 10],
+            "approach" : [0, 8]
+          }
+        },
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/smallflame/smallflame.animation",
+            "fullbright" : true,
+            "light" : [218, 83, 2],
+            "layer" : "back",
+
+            "timeToLive" : 0.6,
+
+            "position" : [0.25, -0.5],
+            "initialVelocity" : [5, -10],
+            "finalVelocity" : [0, 10],
+            "approach" : [0, 8]
+          }
+        },
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/smallflame/smallflame.animation",
+            "fullbright" : true,
+            "light" : [218, 83, 2],
+            "layer" : "back",
+
+            "timeToLive" : 0.6,
+
+            "position" : [1.25, -0.5],
+            "initialVelocity" : [5, -10],
+            "finalVelocity" : [0, 10],
+            "approach" : [0, 8]
+          }
+        }
+      ]
+    },
     "deathPoof" : {
       "particles" : [
         { "particle" : "monstersplosion" },
@@ -265,6 +279,7 @@
 
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ]
+    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+    "fire" : [ "/sfx/projectiles/fireball_poof.ogg" ]
   }
 }

@@ -546,6 +546,7 @@
     "path" : "/regionTypes/v-shallowundergroundministar",
     "value" : {
       "blockSelector" : [ "v-pocketSolid" ],
+      "bgCaveSelector" : [ "v-denseBackgroundCaves" ],
       "fgCaveSelector" : [ "v-ministarUndergroundCaves" ],
       "subBlockSelector" : ["v-ministarUndergroundSubBlocks"],
       "caveLiquid" : [ "lava" ],
@@ -562,6 +563,7 @@
     "value" : {
       "blockSelector" : [ "v-pocketSolid" ],
       "fgCaveSelector" : [ "v-ministarUndergroundCaves" ],
+      "bgCaveSelector" : [ "v-denseBackgroundCaves" ],
       "caveLiquid" : [ "v-sun" ],
       "caveLiquidSeedDensityRange" : [1, 3],
       "biome" : [

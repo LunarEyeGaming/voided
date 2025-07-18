@@ -910,24 +910,6 @@
   },
   {
     "op": "add",
-    "path": "/v-fireelemental-shoot",
-    "value": {
-      "type": "module",
-      "name": "v-fireelemental-shoot",
-      "title": "",
-      "properties": {
-        "maxX": {"type": "json", "value": 2},
-        "maxY": {"type": "json", "value": 2},
-        "minX": {"type": "json", "value": -2},
-        "minY": {"type": "json", "value": -2},
-        "projectileParameters": {"type": "json", "value": {"power": 14}},
-        "projectileType": {"type": "json", "value": "v-fireelementalfireballwindup"}
-      },
-      "pathToTree": "..\\monsters\\unique\\v-firelemental-shoot.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-action-impact",
     "value": {
       "type": "module",

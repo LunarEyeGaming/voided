@@ -1,0 +1,37 @@
+{
+  "layers" : [
+    {
+      "kind" : "tile/lavacavernhollow",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.2,
+      "repeatY" : true
+    },
+    {
+      "kind" : "tile/lavafall",
+      "nohueshift" : false,
+      "lightMapped" : false,
+      "unlit" : true,
+      "parallax" : 1.35,
+      "repeatY" : true
+    },
+    {
+      "kind" : "tile/lavafall",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 2,
+      "unlit" : true,
+      "noRandomOffset" : true,
+      "repeatY" : true
+    },
+    {
+      "kind" : "v-undergroundministar/back",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 2,
+      "unlit" : false,
+      "noRandomOffset" : true,
+      "repeatY" : true
+    }
+  ]
+}

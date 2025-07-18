@@ -317,6 +317,9 @@
 
     "mouthOffset" : [0, 0],
     "feetOffset" : [0, -8],
-    "capturable" : false
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-sunleaper" }
   }
 }

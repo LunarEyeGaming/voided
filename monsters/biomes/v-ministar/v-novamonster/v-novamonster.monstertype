@@ -1,7 +1,7 @@
 {
   "type" : "v-novamonster",
   "shortdescription" : "Nova Goliath",
-  "description" : "<todo>",
+  "description" : "Unlike the Pyromantle, this creature is actually capable of throwing a good punch.",
 
   "categories" : [ "v-novamonster" ],
   "parts" : [ "body" ],
@@ -274,6 +274,6 @@
     "capturable" : true,
     "captureHealthFraction" : 0.5,
     "nametagColor" : [64, 200, 255],
-    "captureCollectables" : { "monsters" : "pyromantle" }
+    "captureCollectables" : { "monsters" : "v-novamonster" }
   }
 }

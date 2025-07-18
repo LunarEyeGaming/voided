@@ -374,19 +374,17 @@
     [0, {
       "fill" : [],
       "pool" : [
-        {"weight" : 0.5, "pool" : "empty"},
-        {"weight" : 0.5, "pool" : "v-breadcrustbombMinerals"}
-      ]
-    }]
-  ],
-
-  "v-breadcrustbombMinerals" : [
-    [0, {
-      "fill" : [],
-      "pool" : [
         {"weight" : 0.75, "item" : "obsidian"},
         {"weight" : 0.20, "item" : "liquidlava"},
         {"weight" : 0.05, "item" : "v-inferniteore"}
+      ],
+      "poolRounds" : [
+        [0.5, 1],
+        [0.25, 2],
+        [0.125, 3],
+        [0.0625, 4],
+        [0.03125, 5],
+        [0.03125, 6]
       ]
     }]
   ],

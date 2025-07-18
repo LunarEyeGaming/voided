@@ -37,14 +37,24 @@
 
       "wanderActions" : [
         {
+          "name" : "land-fly",
+          "cooldown" : 2,
+          "parameters" : {
+            "landDirection" : [0, 1],
+            "flySpeed" : 12,
+            "flyControlForce" : 25,
+            "idleTime" : [5,10]
+          }
+        },
+        {
           "name" : "wander-fly",
           "parameters" : {
-            "wanderTime" : 10,
+            "wanderTime" : [2, 4],
             "groundDistance" : 8,
             "ceilingDistance" : 8,
-            "xVelocity" : 2,
-            "yVelocity" : 12,
-            "flyState" : "idle"
+            "xVelocity" : 15,
+            "yVelocity" : 20,
+            "flyState" : "fly"
           }
         }
       ],
@@ -53,7 +63,7 @@
         {
           "name" : "v-approach-rangedfly",
           "parameters" : {
-            "minRange" : 20,
+            "minRange" : 35,
             "maxRange" : 35,
             "speed" : 25,
             "flyState" : "fly"
@@ -86,9 +96,9 @@
             "projectileType" : "flame",
             "projectileParameters" : {
               "speed" : 75,
-              "power" : 5,
+              "power" : 15,
               "damageRepeatGroup" : "v-dragon",
-              "statusEffects" : [ {"effect" : "burning", "duration" : 10} ]
+              "statusEffects" : [ {"effect" : "burning", "duration" : 5} ]
             },
             "projectileInterval" : 0.05,
 
@@ -135,7 +145,7 @@
 
       "airFriction" : 0,
       "airForce" : 60,
-      "flySpeed" : 25
+      "flySpeed" : 15
     },
 
     "bodyMaterialKind" : "organic",
@@ -174,7 +184,7 @@
           "baseValue" : 9
         },
         "maxHealth" : {
-          "baseValue" : 60
+          "baseValue" : 80
         },
         "protection" : {
           "baseValue" : 0.0

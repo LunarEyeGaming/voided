@@ -530,7 +530,7 @@
   },
 
   {
-    "name" : "v-fireelemental",
+    "name" : "v-firefloater",
 
     "spawnParameters" : {
       "area" : "air",
@@ -539,9 +539,9 @@
     },
 
     "groupSize" : [5, 7],
-    "spawnChance" : 0.001,
+    "spawnChance" : 0.002,
     "monsterType" : [
-      [1.0, "v-fireelemental"]
+      [1.0, "v-firefloater"]
     ],
     "monsterParameters" : {
       "aggressive" : true

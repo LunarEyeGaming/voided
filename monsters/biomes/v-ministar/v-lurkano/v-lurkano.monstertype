@@ -1,7 +1,7 @@
 {
   "type" : "v-lurkano",
   "shortdescription" : "Lurkano",
-  "description" : "<todo>",
+  "description" : "A relative of the Crabcano that has adapted to a stationary lifestyle.",
 
   "categories" : [ "v-lurkano" ],
   "parts" : [ "body" ],
@@ -234,6 +234,9 @@
 
     "mouthOffset" : [0, 0],
     "feetOffset" : [0, -8],
-    "capturable" : false
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-lurkano" }
   }
 }

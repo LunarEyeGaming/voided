@@ -1,14 +1,14 @@
 {
-  "type" : "v-fireelemental",
-  "shortdescription" : "Fire Elemental",
-  "description" : "A wandering fireball that will shoot fireballs at its target.",
+  "type" : "v-firefloater",
+  "shortdescription" : "Fire Floater",
+  "description" : "Its large belly contains fuel reserves that it uses to keep itself afloat.",
 
-  "categories" : [ "v-fireelemental" ],
+  "categories" : [ "v-firefloater" ],
   "parts" : [ "body" ],
 
-  "animation" : "v-fireelemental.animation",
+  "animation" : "v-firefloater.animation",
 
-  "dropPools" : [ { "default" : "pyromantleTreasure", "bow" : "pyromantleHunting" } ],
+  "dropPools" : [ "v-firefloaterTreasure" ],
 
   "baseParameters" : {
     "scripts" : [
@@ -20,8 +20,6 @@
 
     "behavior" : "monster",
     "deathBehavior" : "monster-death",
-
-    "facingMode" : "transformation",
 
     "seeThroughLiquid" : false,
     "behaviorConfig" : {
@@ -62,47 +60,38 @@
       ],
 
       "concurrentActions" : [
-        {
-          "name" : "rotate-part",
-          "parameters" : {
-            "group" : "orbiter1",
-            "speed" : 0.3
-          }
-        },
-        {
-          "name" : "rotate-part",
-          "parameters" : {
-            "group" : "orbiter2",
-            "speed" : -0.15
-          }
-        }
       ],
 
       "concurrentHostileActions" : [
+      ],
+
+      "hostileActions" : [
         {
-          "name" : "rotate-part",
+          "name" : "action-fire",
+          "cooldown" : 1.6,
           "parameters" : {
-            "group" : "orbiter1",
-            "speed" : 2.0
-          }
-        },
-        {
-          "name" : "rotate-part",
-          "parameters" : {
-            "group" : "orbiter2",
-            "speed" : -1.0
-          }
-        },
-        {
-          "name" : "v-fireelemental-shoot",
-          "cooldown" : 2,
-          "parameters" : {
-            "projectileType" : "v-fireelementalfireballwindup",
-            "minX" : -2,
-            "maxX" : 2,
-            "minY" : -2,
-            "maxY" : 2,
-            "projectileParameters" : {"power" : 10}
+            "onGround" : false,
+            "requireLineOfSight" : true,
+            "maximumRange" : 60,
+            "minimumRange" : 0,
+            "windupTime" : 0.0,
+            "windupStopForce" : 0,
+            "windupState" : "",
+
+            "projectileType" : "v-firefloaterfireball",
+            "projectileParameters" : {
+              "power" : 10,
+              "speed" : 30
+            },
+            "rotationCenter" : [1.625, 0.875],
+            "projectileCount" : 1,
+            "inaccuracy" : 0.0,
+            "fireSound" : "fire",
+            "fireState" : "fire",
+            "fireDelay" : 0.2,
+
+            "winddownState" : "",
+            "winddownTime" : 0.2
           }
         }
       ],
@@ -138,7 +127,7 @@
     "scale" : 1.0,
 
     "movementSettings" : {
-      "collisionPoly" : [ [0.625, 1.9375], [1.125, 1.4375], [1.125, -0.4375], [0.625, -0.9375], [-0.625, -0.9375], [-1.125, -0.4375], [-1.125, 1.4375], [-0.625, 1.9375] ],
+      "collisionPoly" : [ [1.625, 1.4375], [2.125, 0.9375], [2.125, -0.6875], [1.625, -1.4375], [-1.625, -1.4375], [-2.125, -0.6875], [-2.125, 0.9375], [-1.625, 1.4375] ],
 
       "mass" : 2.0,
       "walkSpeed" : 4,
@@ -153,11 +142,11 @@
       "flySpeed" : 15
     },
 
-    "bodyMaterialKind" : "stone",
+    "bodyMaterialKind" : "organic",
 
     "knockoutTime" : 0.75,
     "knockoutAnimationStates" : {
-      "damage" : "stunned"
+      "damage" : "killed"
     },
     "deathParticles" : "deathPoof",
     "knockoutEffect" : "",
@@ -166,7 +155,7 @@
 
     "statusSettings" : {
       "statusProperties" : {
-        "targetMaterialKind" : "stone"
+        "targetMaterialKind" : "organic"
       },
 
       "appliesEnvironmentStatusEffects" : false,
@@ -217,6 +206,9 @@
 
     "mouthOffset" : [0, 0],
     "feetOffset" : [0, -8],
-    "capturable" : false
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-firefloater" }
   }
 }

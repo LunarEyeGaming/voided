@@ -1,0 +1,24 @@
+{
+  "projectileName" : "v-firefloaterfireball",
+  "physics" : "laser",
+  "bounces" : 0,
+  "timeToLive" : 5,
+  "image" : "firefloaterfireball.png",
+  "damageKindImage" : "icon.png",
+  "speed" : 30,
+  "windupFrames" : 4,
+  "animationCycle" : 0.5,
+  "lightColor" : [84, 47, 26],
+  "frameNumber" : 4,
+  "fullbright" : true,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-smallfireexplosion/v-smallfireexplosionweak.config"
+    }
+  ],
+  "power" : 20,
+  "damageKind" : "fire",
+  "damageRepeatGroup" : "v-firefloaterfireball",
+  "emitters" : [ "fireswoosh" ]
+}
