@@ -426,8 +426,9 @@ function v_ministarEffects_drawSunRayLights(rayColors, window)
   }
 
   local startXPos, endXPos = heightMap:xbounds()
-  local startX = math.max(window[1], startXPos)
-  local endX = math.min(window[3], endXPos)
+  -- Constrain startX and endX to window boundaries.
+  local startX = math.max(world.nearestTo(startXPos, window[1]), startXPos)
+  local endX = math.min(world.nearestTo(endXPos, window[3]), endXPos)
 
   -- world.debugText("%s, %s", startX, endX, entity.position(), "green")
 
@@ -466,6 +467,9 @@ end
 function v_ministarEffects_computeLightBounds()
   if not useLights then return end
 
+  local heightMap_list = heightMap.list
+  local world_xwrap = world.xwrap
+
   local window = world.clientWindow()
 
   local lightMinHeight = math.max(window[2], minHeight) // lightInterval * lightInterval
@@ -487,9 +491,10 @@ function v_ministarEffects_computeLightBounds()
   local startXPos2 = (startXPos // lightInterval + 1) * lightInterval
   -- Add periodic strips of lights
   for x = startXPos2, endXPos, lightInterval do
-    local v = heightMap:get(x)
+    local xWrapped = world_xwrap(x)
+    local v = heightMap_list[xWrapped]
     if v and v >= lightMinHeight and v ~= minHeight then
-      lightDrawBounds_list[x] = {s = lightMinHeight, e = v}
+      lightDrawBounds_list[xWrapped] = {s = lightMinHeight, e = v}
       -- world.debugLine({x, lightMinHeight}, {x, v}, "white")
     end
   end

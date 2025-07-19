@@ -30,8 +30,8 @@
       "targetQueryRange" : 30,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
-      "keepTargetInRange" : 60,
-      "targetOutOfSightTime" : 5.0,
+      "keepTargetInRange" : 90,
+      "targetOutOfSightTime" : 10.0,
 
       "hurtWaitForGround" : false,
 
@@ -65,7 +65,7 @@
           "parameters" : {
             "minRange" : 35,
             "maxRange" : 35,
-            "speed" : 25,
+            "speed" : 50,
             "flyState" : "fly"
           }
         }
@@ -87,7 +87,7 @@
             "maximumRange" : 70,
             "minimumRange" : 2,
             "windupTime" : 1.0,
-            "windupStopForce" : 50,
+            "windupStopForce" : 25,
             "windupState" : "windup",
             "windupState2" : "prefire",
             "windupTime2" : 0.3,

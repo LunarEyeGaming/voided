@@ -183,38 +183,54 @@
                         }
                       },
                       {
-                        "title": "selector",
-                        "type": "composite",
-                        "name": "selector",
-                        "parameters": {},
-                        "children": [
-                          {
-                            "title": "optional",
-                            "type": "decorator",
-                            "name": "optional",
-                            "parameters": {
-                              "shouldRun": {"key": "<rotateAim>"}
-                            },
-                            "child": {
-                              "title": "transform",
-                              "type": "action",
-                              "name": "transform",
-                              "parameters": {
-                                "group": {"value": "aim"},
-                                "rotation": {"key": "entityAngle"},
-                                "rotationCenter": {"key": "<rotationCenter>"}
+                        "title": "optional",
+                        "type": "decorator",
+                        "name": "optional",
+                        "parameters": {
+                          "shouldRun": {"key": "<rotateAim>"}
+                        },
+                        "child": {
+                          "title": "failer",
+                          "type": "decorator",
+                          "name": "failer",
+                          "parameters": {},
+                          "child": {
+                            "title": "sequence",
+                            "type": "composite",
+                            "name": "sequence",
+                            "parameters": {},
+                            "children": [
+                              {
+                                "title": "resetTransformationGroup",
+                                "type": "action",
+                                "name": "resetTransformationGroup",
+                                "parameters": {
+                                  "transformationGroup": {"value": "aim"}
+                                }
+                              },
+                              {
+                                "title": "rotateTransformationGroup",
+                                "type": "action",
+                                "name": "rotateTransformationGroup",
+                                "parameters": {
+                                  "angle": {"key": "entityAngle"},
+                                  "rotationCenter": {"key": "<rotationCenter>"},
+                                  "transformationGroup": {"value": "aim"}
+                                }
                               }
-                            }
-                          },
-                          {
-                            "title": "runner",
-                            "type": "action",
-                            "name": "runner",
-                            "parameters": {}
+                            ]
                           }
-                        ]
+                        }
                       }
                     ]
+                  },
+                  {
+                    "title": "timer",
+                    "type": "action",
+                    "name": "timer",
+                    "parameters": {
+                      "time": {"value": 0.01}
+                    }
                   },
                   {
                     "title": "distance",

@@ -3,32 +3,23 @@
   "colonyTags" : ["crafting", "ancient"],
   "category" : "crafting",
   "rarity" : "Legendary",
-  "description" : "<todo>",
+  "description" : "Can be used to produce advanced materials and objects.",
   "shortdescription" : "^orange;Ancient Assembly^reset;",
   "race" : "ancient",
   "interactAction" : "OpenCraftingInterface",
   "interactData" : {
-    "config" : "/interface/windowconfig/craftingfurniture.config",
-    "paneLayoutOverride" : {
-      "windowtitle" : {
-        "title" : " Ancient Assembly",
-        "subtitle" : " ^#b9b5b2;Objects and blocks",
-        "icon" : {
-          "file" : "/interface/crafting/v-ancientfurniturestationicon.png"
-        }
-      }
-    },
+    "config" : "/interface/windowconfig/v-ancientfurniturestation.config",
     "filter" : [ "v-ancientfurniturestation" ]
   },
   "price" : 1500,
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "A large station that can be used to produce complex materials and objects.",
+  "avianDescription" : "A hefty station for advanced materials and objects.",
+  "floranDescription" : "Big ssstation for big objectssss.",
+  "glitchDescription" : "Excited. This technology can be used to make advanced materials and objects.",
+  "humanDescription" : "A big station for producing complex materials and objects.",
+  "hylotlDescription" : "A large station made of ancient materials.",
+  "novakidDescription" : "A big ol' station used for real advanced stuff.",
 
   "inventoryIcon" : "icon.png",
   "orientations" : [
