@@ -11,6 +11,7 @@
   "lightColor" : [84, 47, 26],
   "frameNumber" : 4,
   "fullbright" : true,
+  "flippable" : true,
   "actionOnReap" : [
     {
       "action" : "config",
@@ -19,6 +20,7 @@
   ],
   "power" : 20,
   "damageKind" : "fire",
+  "damageType" : "nodamage",
   "damageRepeatGroup" : "v-firefloaterfireball",
   "emitters" : [ "fireswoosh" ]
 }

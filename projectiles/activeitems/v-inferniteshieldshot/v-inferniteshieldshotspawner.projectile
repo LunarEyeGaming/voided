@@ -1,0 +1,73 @@
+{
+  "projectileName" : "v-inferniteshieldshotspawner",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "timeToLive" : 0,
+  "frameNumber" : 1,
+  "speed" : 0,
+  "animationLoops" : false,
+  "piercing" : true,
+  "flippable" : true,
+  "damageKind" : "default",
+  "damageType" : "NoDamage",
+
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-inferniteshieldshot",
+      "inheritDamageFactor" : 1
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-inferniteshieldblast",
+      "inheritDamageFactor" : 1
+    },
+    {
+      "action" : "loop",
+      "count" : 20,
+      "body" : [
+        {
+          "action" : "particle",
+          "rotate" : true,
+          "specification" : {
+            "type" : "animated",
+            "animation" : "/animations/ember1/ember1.animation",
+            "approach" : [25, 25],
+            "initialVelocity" : [25, 0],
+            "finalVelocity" : [0, 0],
+            "timeToLive" : 0.6,
+            "variance" : {
+              "timeToLive" : 0.15,
+              "initialVelocity" : [15, 15],
+              "rotation" : 180
+            }
+          }
+        }
+      ]
+    },
+    {
+      "action" : "loop",
+      "count" : 7,
+      "body" : [
+        {
+          "action" : "particle",
+          "rotate" : true,
+          "specification" : {
+            "type" : "animated",
+            "animation" : "/animations/smallflame/smallflame.animation",
+            "approach" : [25, 25],
+            "initialVelocity" : [25, 0],
+            "finalVelocity" : [0, 0],
+            "timeToLive" : 1.5,
+            "variance" : {
+              "initialVelocity" : [5, 5],
+              "timeToLive" : 0.5
+            }
+          }
+        }
+      ]
+    }
+  ],
+
+  "lightColor" : [115, 119, 38]
+}

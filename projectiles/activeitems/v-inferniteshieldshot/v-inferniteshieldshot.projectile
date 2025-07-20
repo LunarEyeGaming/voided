@@ -1,0 +1,42 @@
+{
+  "projectileName" : "v-inferniteshieldshot",
+  "image" : "inferniteshieldshot.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "damageKindImage" : "icon.png",
+  "fallSpeed" : 0,
+  "lightColor" : [115, 119, 38],
+  "fullbright" : true,
+  "pointLight" : false,
+  "periodicActions" : [
+    {
+      "time" : 0.05,
+      "action" : "particle",
+      "rotate" : true,
+      "specification": {
+        "type" : "textured",
+        "image" : "/projectiles/activeitems/v-inferniteshieldshot/inferniteshieldshot.png:0",
+        "layer" : "middle",
+        "timeToLive" : 0,
+        "destructionAction" : "fade",
+        "destructionTime" : 0.2,
+        "fullbright" : true
+      }
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/fireexplosionknockback.config"
+    }
+  ],
+  "statusEffects" : [ ],
+  "emitters" : [ "fireplasma", "smoke", "flames" ],
+  "power" : 10.0,
+  "speed" : 100,
+  "physics" : "laser",
+  "damageType" : "NoDamage",
+  "damageKind" : "fireplasma",
+  "damageRepeatGroup" : "v-inferniteshield",
+  "damagePoly" : [ [-32, 0], [19, 7], [32, 0], [19, -7] ]
+}
