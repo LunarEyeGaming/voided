@@ -7,9 +7,11 @@ local oldRaiseShield = raiseShield or function() end
 local deflectProjectile
 local deflectBaseDamage
 local deflectCooldown
-local deflectCooldownTimer
 local deflectProjectileOffset
 local deflectProjectileParameters
+
+local damageLevelMultiplier
+local deflectCooldownTimer
 
 function init()
   oldInit()
@@ -19,7 +21,9 @@ function init()
   deflectBaseDamage = config.getParameter("deflectBaseDamage")
   deflectCooldown = config.getParameter("deflectCooldown")
   deflectProjectileParameters = config.getParameter("deflectProjectileParameters", {})
-  deflectProjectileParameters.power = deflectBaseDamage * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
+
+  damageLevelMultiplier = root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
+
   deflectCooldownTimer = 0
 end
 
@@ -49,6 +53,7 @@ function raiseShield()
 
           local fireDirection = getAimVector()
           deflectProjectileParameters.powerMultiplier = activeItem.ownerPowerMultiplier()
+          deflectProjectileParameters.power = deflectBaseDamage * damageLevelMultiplier
           world.spawnProjectile(deflectProjectile, firePosition(), entity.id(), fireDirection, false, deflectProjectileParameters)
 
           deflectCooldownTimer = deflectCooldown

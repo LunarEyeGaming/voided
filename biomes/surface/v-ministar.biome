@@ -121,12 +121,19 @@
     }
   },
 
+  // Duplicates are listed for weighted music selection.
   "musicTrack" : {
     "day" : {
-      "tracks" : [ "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg" ]
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/i-was-the-sun.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg" ]
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/i-was-the-sun.ogg" ]
     }
   },
 

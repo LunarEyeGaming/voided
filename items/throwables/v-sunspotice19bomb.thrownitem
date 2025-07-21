@@ -1,12 +1,12 @@
 {
-  "itemName" : "v-ice19bomb",
+  "itemName" : "v-sunspotice19bomb",
   "rarity" : "Uncommon",
   "category" : "throwableItem",
-  "inventoryIcon" : "v-ice19bomb.png",
+  "inventoryIcon" : "v-sunspotice19bomb.png",
   "builder" : "/items/buildscripts/v-builditem.lua",
-  "image" : "v-ice19bomb.png",
-  "shortdescription" : "Ice-19 Bomb",
-  "description" : "Explodes into a large sphere of ice on impact.",
+  "image" : "v-sunspotice19bomb.png",
+  "shortdescription" : "Sunspot Ice-19 Bomb",
+  "description" : "Explodes into a large sphere of ice wrapped in Sunspot Stone on impact.",
   "price" : 250,
 
   "ammoUsage" : 1,
@@ -15,7 +15,7 @@
   "windupTime" : 0.0,
   "cooldown" : 0.8,
 
-  "projectileType" : "v-ice19bomb",
+  "projectileType" : "v-sunspotice19bomb",
   "projectileConfig" : {
     "speed" : 40,
     "power" : 0,
@@ -27,7 +27,5 @@
         "options" : [ "/sfx/projectiles/throw_item_small.ogg" ]
       }
     ]
-  },
-
-  "learnBlueprintsOnPickup" : [ "v-ice19bomb", "v-sunspotice19bomb" ]
+  }
 }
