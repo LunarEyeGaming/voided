@@ -35,11 +35,11 @@ function init()
   message.setHandler("reset", function(_, _, angle)
     orbitAngle = angle
   end)
-
-  mcontroller.setVelocity({0, 0})
 end
 
 function update(dt)
+  mcontroller.setVelocity({0, 0})
+
   if not isFresh then
     projectile.die()
   end

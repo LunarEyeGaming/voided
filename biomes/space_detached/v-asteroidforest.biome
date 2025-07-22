@@ -11,7 +11,7 @@
       {
         "select" : 2,
         "pool" : [
-          [ 1.0, "v-hangingfiremonster" ],
+          [ 1.0, "v-pyrebush" ],
           [ 1.0, "v-dragon" ]
         ]
       }
@@ -184,6 +184,20 @@
         "treeStemHueShiftMax" : 0,
         "treeStemList" : [ "v-hangingtree" ],
         "treeFoliageList" : [ "v-hangingfoliage" ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseMedium",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "v-hangingbush1" ], [0.35, "v-hangingbush2" ], [0.35, "v-hangingbush3" ], [0.35, "v-hangingbush4" ], [0.35, "v-hangingbush5" ], [0.35, "v-hangingbush6" ] ],
+            "parameters" : { }
+          }
+        ]
       },
       {
         "mode" : "floor",

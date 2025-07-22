@@ -1,14 +1,14 @@
 {
-  "type" : "v-hangingfiremonsterling",
-  "shortdescription" : "Flamaggot",
-  "description" : "<todo>",
+  "type" : "v-pyremander",
+  "shortdescription" : "Pyremander",
+  "description" : "...However, the delicate nature of their formation suggests that they do this to intimidate.",
 
-  "categories" : [ "v-hangingfiremonsterling" ],
+  "categories" : [ "v-pyremander" ],
   "parts" : [ "body" ],
 
-  "animation" : "v-hangingfiremonsterling.animation",
+  "animation" : "v-pyremander.animation",
 
-  "dropPools" : [ { "default" : "v-hangingfiremonsterTreasure", "bow" : "v-hangingfiremonsterHunting" } ],
+  "dropPools" : [ { "default" : "v-pyremanderTreasure", "bow" : "v-pyremanderHunting" } ],
 
   "baseParameters" : {
     "scripts" : [
@@ -76,13 +76,13 @@
             "maximumRange" : 30,
             "minimumRange" : 2,
             "windupState" : "windup",
-            "windupTime" : 1.0,
+            "windupTime" : 0.6,
 
             "projectileType" : "molotovflamemonster",
             "projectileParameters" : {
               "power" : 7,
               "speed" : 50,
-              "damageRepeatGroup" : "v-hangingfiremonster",
+              "damageRepeatGroup" : "v-pyremander",
               "statusEffects" : [ {"effect" : "burning", "duration" : 5} ]
             },
             "fireDelay" : 0.1,
@@ -92,6 +92,10 @@
             "aimAtTarget" : true,
             "fireSound" : "fire",
             "fireState" : "fire",
+
+            "fireArc" : true,
+            "projectileSpeed" : 50,
+            "gravityMultiplier" : 0.6,
 
             "winddownState" : "",
             "winddownTime" : 0.3

@@ -568,7 +568,7 @@
   },
 
   {
-    "name" : "v-hangingfiremonster",
+    "name" : "v-pyrebush",
 
     "spawnParameters" : {
       "area" : "ceiling",
@@ -579,7 +579,7 @@
     "groupSize" : [1, 2],
     "spawnChance" : 0.16,
     "monsterType" : [
-      [1.0, "v-hangingfiremonster"]
+      [1.0, "v-pyrebush"]
     ],
     "monsterParameters" : {
       "aggressive" : true
@@ -596,7 +596,7 @@
     },
 
     "groupSize" : [1, 1],
-    "spawnChance" : 0.01,
+    "spawnChance" : 0.005,
     "monsterType" : [
       [1.0, "v-dragon"]
     ],

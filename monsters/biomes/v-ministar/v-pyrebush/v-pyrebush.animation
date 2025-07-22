@@ -7,7 +7,7 @@
         "states" : {
           "idle" : {
             "frames" : 1,
-            "cycle" : 2.5,
+            "cycle" : 1,
             "mode" : "loop"
           },
           "walk" : {
@@ -15,19 +15,20 @@
             "cycle" : 0.6,
             "mode" : "loop"
           },
-          "windup" : {
-            "frames" : 2,
-            "cycle" : 0.2,
+          "firewindup" : {
+            "frames" : 4,
+            "cycle" : 0.25,
             "mode" : "loop",
             "properties" : {
               "immediateSound" : "/sfx/npc/monsters/crabcano_windup3.ogg"
             }
           },
           "fire" : {
-            "frames" : 4,
-            "cycle" : 0.4,
-            "mode" : "transition",
-            "transition" : "idle"
+            "frames" : 1,
+            "cycle" : 0.1
+          },
+          "fall" : {
+            "frames" : 2
           }
         }
       },
@@ -68,8 +69,9 @@
     "parts" : {
       "body" : {
         "properties" : {
+          "zLevel" : 1,
           "transformationGroups" : [ "facing", "body" ],
-          "offset" : [-0.0625, 0.375]
+          "offset" : [0.0, 0.5]
         },
         "partStates" : {
           "body" : {
@@ -83,7 +85,7 @@
                 "image" : "<partImage>:walk.<frame>"
               }
             },
-            "windup" : {
+            "firewindup" : {
               "properties" : {
                 "image" : "<partImage>:windup.<frame>"
               }
@@ -91,6 +93,11 @@
             "fire" : {
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
+              }
+            },
+            "firewinddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
               }
             }
           },
@@ -105,8 +112,8 @@
       },
       "bodyfullbright" : {
         "properties" : {
+          "zLevel" : 2,
           "anchorPart" : "body",
-          "zLevel" : 1,
           "fullbright" : true
         },
         "partStates" : {
@@ -121,7 +128,7 @@
                 "image" : "<partImage>:walk.<frame>"
               }
             },
-            "windup" : {
+            "firewindup" : {
               "properties" : {
                 "image" : "<partImage>:windup.<frame>"
               }
@@ -129,6 +136,11 @@
             "fire" : {
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
+              }
+            },
+            "firewinddown" : {
+              "properties" : {
+                "image" : "<partImage>:winddown.<frame>"
               }
             }
           },
@@ -159,24 +171,9 @@
 
   "particleEmitters" : {
     "deathPoof" : {
+      "offsetRegion" : [-2, -0.75, 2, 2.5],
       "particles" : [
-        { "particle" : "monstersplosion" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathember" },
-        { "particle" : "deathfizz1left" },
-        { "particle" : "deathfizz1right" },
-        { "particle" : "deathfizz2left" },
-        { "particle" : "deathfizz2right" },
-        { "particle" : "deathfizz3left" },
-        { "particle" : "deathfizz3right" },
-        { "particle" : "deathfizz4left" },
-        { "particle" : "deathfizz4right" }
+        { "particle" : "v-hangingleaf1", "count" : 20 }
       ]
     },
     "captureParticles" : {
@@ -208,7 +205,7 @@
 
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "fire" : [ "/sfx/projectiles/fireball_spit.ogg" ]
+    "deathPuff" : [ "/sfx/objects/plant_break1.ogg", "/sfx/objects/plant_break2.ogg", "/sfx/objects/plant_break3.ogg", "/sfx/objects/plant_break4.ogg", "/sfx/objects/plant_break5.ogg", "/sfx/objects/plant_break6.ogg" ],
+    "fire" : [ "/sfx/projectiles/fireball_poof.ogg" ]
   }
 }

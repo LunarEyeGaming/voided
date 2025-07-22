@@ -120,12 +120,12 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:surfaceCapsules",
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
 
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1, "v-biomeinvisible" ] ],
+            "pool" : [ [1, "v-geyserlauncher" ] ],
             "parameters" : { "originBiome" : "space/v-burningasteroids" }
           }
         ]

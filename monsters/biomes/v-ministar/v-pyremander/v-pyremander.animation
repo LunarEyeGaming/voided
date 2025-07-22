@@ -7,7 +7,7 @@
         "states" : {
           "idle" : {
             "frames" : 1,
-            "cycle" : 1,
+            "cycle" : 2.5,
             "mode" : "loop"
           },
           "walk" : {
@@ -15,20 +15,19 @@
             "cycle" : 0.6,
             "mode" : "loop"
           },
-          "firewindup" : {
-            "frames" : 4,
-            "cycle" : 0.25,
+          "windup" : {
+            "frames" : 2,
+            "cycle" : 0.2,
             "mode" : "loop",
             "properties" : {
-              "immediateSound" : "/sfx/npc/monsters/crabcano_windup3.ogg"
+              "immediateSound" : "/sfx/npc/monsters/v_pyremander_windup.ogg"
             }
           },
           "fire" : {
-            "frames" : 1,
-            "cycle" : 0.1
-          },
-          "fall" : {
-            "frames" : 2
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "idle"
           }
         }
       },
@@ -69,9 +68,8 @@
     "parts" : {
       "body" : {
         "properties" : {
-          "zLevel" : 1,
           "transformationGroups" : [ "facing", "body" ],
-          "offset" : [0.0, 0.5]
+          "offset" : [-0.0625, 0.375]
         },
         "partStates" : {
           "body" : {
@@ -85,7 +83,7 @@
                 "image" : "<partImage>:walk.<frame>"
               }
             },
-            "firewindup" : {
+            "windup" : {
               "properties" : {
                 "image" : "<partImage>:windup.<frame>"
               }
@@ -93,11 +91,6 @@
             "fire" : {
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
-              }
-            },
-            "firewinddown" : {
-              "properties" : {
-                "image" : "<partImage>:winddown.<frame>"
               }
             }
           },
@@ -112,8 +105,8 @@
       },
       "bodyfullbright" : {
         "properties" : {
-          "zLevel" : 2,
           "anchorPart" : "body",
+          "zLevel" : 1,
           "fullbright" : true
         },
         "partStates" : {
@@ -128,7 +121,7 @@
                 "image" : "<partImage>:walk.<frame>"
               }
             },
-            "firewindup" : {
+            "windup" : {
               "properties" : {
                 "image" : "<partImage>:windup.<frame>"
               }
@@ -136,11 +129,6 @@
             "fire" : {
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
-              }
-            },
-            "firewinddown" : {
-              "properties" : {
-                "image" : "<partImage>:winddown.<frame>"
               }
             }
           },
@@ -173,12 +161,6 @@
     "deathPoof" : {
       "particles" : [
         { "particle" : "monstersplosion" },
-        { "particle" : "dust4" },
-        { "particle" : "dust4" },
-        { "particle" : "dust4" },
-        { "particle" : "dust4" },
-        { "particle" : "dust4" },
-        { "particle" : "dust4" },
         { "particle" : "deathember" },
         { "particle" : "deathember" },
         { "particle" : "deathember" },
@@ -187,14 +169,14 @@
         { "particle" : "deathember" },
         { "particle" : "deathember" },
         { "particle" : "deathember" },
-        { "particle" : "dust2" },
-        { "particle" : "dust2" },
-        { "particle" : "dust2" },
-        { "particle" : "dust2" },
-        { "particle" : "dust2" },
-        { "particle" : "dust2" },
-        { "particle" : "dust2" },
-        { "particle" : "dust2" }
+        { "particle" : "deathfizz1left" },
+        { "particle" : "deathfizz1right" },
+        { "particle" : "deathfizz2left" },
+        { "particle" : "deathfizz2right" },
+        { "particle" : "deathfizz3left" },
+        { "particle" : "deathfizz3right" },
+        { "particle" : "deathfizz4left" },
+        { "particle" : "deathfizz4right" }
       ]
     },
     "captureParticles" : {
@@ -227,6 +209,6 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "fire" : [ "/sfx/projectiles/fireball_poof.ogg" ]
+    "fire" : [ "/sfx/projectiles/fireball_spit.ogg" ]
   }
 }

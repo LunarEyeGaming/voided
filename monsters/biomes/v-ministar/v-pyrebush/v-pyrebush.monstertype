@@ -1,12 +1,12 @@
 {
-  "type" : "v-hangingfiremonster",
-  "shortdescription" : "Bush Nest",
-  "description" : "<todo>",
+  "type" : "v-pyrebush",
+  "shortdescription" : "Pyrebush",  // Thanks to Mabra for the name.
+  "description" : "Pyremanders group together like Nutmidgelings. This shared characteristic may be due to convergent evolution.",
 
-  "categories" : [ "v-hangingfiremonster" ],
+  "categories" : [ "v-pyrebush" ],
   "parts" : [ "body" ],
 
-  "animation" : "v-hangingfiremonster.animation",
+  "animation" : "v-pyrebush.animation",
 
   "dropPools" : [ "empty" ],
 
@@ -53,7 +53,7 @@
             "projectileParameters" : {
               "power" : 15,
               "speed" : 50,
-              "damageRepeatGroup" : "v-hangingfiremonster",
+              "damageRepeatGroup" : "v-pyrebush",
               "statusEffects" : [ {"effect" : "burning", "duration" : 5} ]
             },
             "fireOffset" : [0.5, 0.75],
@@ -62,7 +62,7 @@
             "inaccuracy" : 0.1,
             "fireSound" : "fire",
             "fireState" : "fire",
-            "fireDelay" : 0.3,
+            "fireDelay" : 0.0,
             "holdAim" : true,
 
             "fireArc": true,
@@ -121,7 +121,7 @@
           "name" : "action-spawnmonster",
           "parameters" : {
             "offset" : [0,0],
-            "monsterType" : "v-hangingfiremonsterling",
+            "monsterType" : "v-pyremander",
             "replacement" : true
           }
         },
@@ -129,7 +129,7 @@
           "name" : "action-spawnmonster",
           "parameters" : {
             "offset" : [0,0],
-            "monsterType" : "v-hangingfiremonsterling",
+            "monsterType" : "v-pyremander",
             "replacement" : true
           }
         },
@@ -137,7 +137,7 @@
           "name" : "action-spawnmonster",
           "parameters" : {
             "offset" : [0,0],
-            "monsterType" : "v-hangingfiremonsterling",
+            "monsterType" : "v-pyremander",
             "replacement" : true
           }
         }

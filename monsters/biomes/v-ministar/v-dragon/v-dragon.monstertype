@@ -80,7 +80,7 @@
       "hostileActions" : [
         {
           "name" : "v-action-holdfire",
-          "cooldown" : 2,
+          "cooldown" : 3,
           "parameters" : {
             "onGround" : false,
             "requireLineOfSight" : true,
@@ -92,7 +92,7 @@
             "windupState2" : "prefire",
             "windupTime2" : 0.3,
 
-            "projectileCount" : 25,
+            "projectileCount" : 15,
             "projectileType" : "flame",
             "projectileParameters" : {
               "speed" : 75,
