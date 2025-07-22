@@ -92,6 +92,25 @@
       ]
     }]
   ],
+  "v-burningasteroidsChestTreasure" : [
+    [1, {
+      "fill" : [
+        {"pool" : "valuableTreasure"}
+      ],
+      "pool" : [
+        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.5, "pool" : "v-burningasteroidsTreasure"}
+      ],
+      "poolRounds" : [
+        [0.05, 1],
+        [0.40, 2],
+        [0.30, 3],
+        [0.15, 4],
+        [0.10, 5]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
 
   "v-burningasteroidsTreasure" : [
     [1, {
@@ -105,6 +124,26 @@
         {"weight" : 0.1875, "item" : ["v-solarflare", 3]},
         {"weight" : 0.0625, "item" : ["miningdrone", 3]}
       ]
+    }]
+  ],
+
+  "v-ministarChestTreasure" : [
+    [1, {
+      "fill" : [
+        {"pool" : "valuableTreasure"}
+      ],
+      "pool" : [
+        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.5, "pool" : "v-ministarTreasure"}
+      ],
+      "poolRounds" : [
+        [0.05, 1],
+        [0.40, 2],
+        [0.30, 3],
+        [0.15, 4],
+        [0.10, 5]
+      ],
+      "allowDuplication" : false
     }]
   ],
 

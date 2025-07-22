@@ -29,6 +29,7 @@ local maxPenetration
 
 local collisionSet
 local nullCollisionSet
+local blockOrNullCollisionSet
 local sunLiquidId
 local materialConfigs
 local heatConfigs
@@ -97,6 +98,7 @@ function init()
   liquidSurfacePoints = {}
   collisionSet = {"Block", "Platform"}
   nullCollisionSet = {"Null"}
+  blockOrNullCollisionSet = {"Block", "Null"}
   materialConfigs = {}
   heatConfigs = {}
   lightScanner = LightScanner:new{}
@@ -259,27 +261,22 @@ function update(dt)
       -- Run liquid query on merged regions
       local boundaryTiles, particleSpawnPoints = liquidScanner:update(mergedRegions)
 
-      -- Process particleSpawnPoints. This both modifies particleSpawnPoints to exclude points with collisions and
-      -- updates liquidSurfacePoints to contain the correct entries.
+      -- Process particleSpawnPoints.
       for chunkStr, tiles in pairs(particleSpawnPoints) do
         if tiles == "clear" then
           liquidSurfacePoints[chunkStr] = nil
         elseif #tiles > 0 then
-          for i = #tiles, 1, -1 do
-            local tile = tiles[i]
-
-            if world.pointTileCollision(tile) then
-              table.remove(tiles, i)
-            end
-          end
           liquidSurfacePoints[chunkStr] = tiles
         end
       end
 
+      local vVec2_iToString = vVec2.iToString
+      local world_pointTileCollision = world.pointTileCollision
+
       -- Update affectedTiles with the boundaryTiles that actually have foreground blocks.
       for _, tile in ipairs(boundaryTiles) do
-        local tileStr = vVec2.iToString(tile)
-        if not affectedTiles[tileStr] and world.pointTileCollision(tile) then
+        local tileStr = vVec2_iToString(tile)
+        if not affectedTiles[tileStr] and world_pointTileCollision(tile) then
           affectedTiles[tileStr] = true
           liquidTouchedTiles[tileStr] = true
         end
@@ -295,7 +292,7 @@ function update(dt)
       -- Run surface queries on merged regions
       for _, region in ipairs(mergedRegions) do
         -- Get the height map for the current player and add it to the list.
-        local heightMap = oceanSurfaceQuery(region[1], region[3], region[4], affectedTiles)
+        local heightMap = oceanSurfaceQuery(region[1], region[3], region[2], region[4], affectedTiles)
 
         table.insert(heightMaps, heightMap)
 
@@ -593,13 +590,21 @@ function nonOceanSurfaceQuery()
   return rayLocationsMap, affectedTiles, nonOceanAffectedTiles
 end
 
+-- ---Not a coroutine.
+-- ---@param startX integer
+-- ---@param endX integer
+-- ---@param yTop integer
+-- ---@param affectedTiles table<string, boolean>
+-- ---@return VXMap
+-- function oceanSurfaceQuery(startX, endX, yTop, affectedTiles)
 ---Not a coroutine.
 ---@param startX integer
 ---@param endX integer
+---@param yBottom integer
 ---@param yTop integer
 ---@param affectedTiles table<string, boolean>
 ---@return VXMap
-function oceanSurfaceQuery(startX, endX, yTop, affectedTiles)
+function oceanSurfaceQuery(startX, endX, yBottom, yTop, affectedTiles)
   -- If minDepth > yTop, abort this function call.
   if minDepth > yTop then
     return vMinistar.getHeightMap(startX, endX, minDepth)
@@ -608,23 +613,35 @@ function oceanSurfaceQuery(startX, endX, yTop, affectedTiles)
   local heightMap = vMinistar.XMap:new(startX, endX)
   local heightMap_list = heightMap.list
 
-  local lowestSectors = findLowestLoadedSectors(startX, endX, yTop)
-  -- Convert lowestSectors into a horizontal position map.
-  local lowestSectorsMap = {}
+  -- local lowestSectors = findLowestLoadedSectors(startX, endX, yTop)
+  -- -- Convert lowestSectors into a horizontal position map.
+  -- local lowestSectorsMap = {}
 
-  for _, sector in ipairs(lowestSectors) do
-    local checkMinY = (sector[2] + 1) * SECTOR_SIZE
-    -- Variant of checkMinY that stops at minDepth; whether or not the value was capped.
-    local cappedCheckMinY, checkMinYWasCapped
-    if checkMinY < minDepth then
-      cappedCheckMinY = minDepth
-      checkMinYWasCapped = true
-    else
-      cappedCheckMinY = checkMinY
-      checkMinYWasCapped = false
-    end
+  -- for _, sector in ipairs(lowestSectors) do
+  --   local checkMinY = (sector[2] + 1) * SECTOR_SIZE
+  --   -- Variant of checkMinY that stops at minDepth; whether or not the value was capped.
+  --   local cappedCheckMinY, checkMinYWasCapped
+  --   if checkMinY < minDepth then
+  --     cappedCheckMinY = minDepth
+  --     checkMinYWasCapped = true
+  --   else
+  --     cappedCheckMinY = checkMinY
+  --     checkMinYWasCapped = false
+  --   end
+  --   local x = sector[1] * SECTOR_SIZE
+  --   world.debugText("%s", checkMinY, {x, stagehand.position()[2] + x % 6}, "yellow")
 
-    lowestSectorsMap[sector[1]] = {y = cappedCheckMinY, uncappedY = checkMinY, capped = checkMinYWasCapped}
+  --   lowestSectorsMap[sector[1]] = {y = cappedCheckMinY, uncappedY = checkMinY, capped = checkMinYWasCapped}
+  -- end
+
+  local cappedCheckMinY
+  local checkMinYWasCapped
+  if yBottom < minDepth then
+    cappedCheckMinY = minDepth
+    checkMinYWasCapped = true
+  else
+    cappedCheckMinY = yBottom
+    checkMinYWasCapped = false
   end
 
   local world_xwrap = world.xwrap
@@ -635,11 +652,11 @@ function oceanSurfaceQuery(startX, endX, yTop, affectedTiles)
 
   -- Generate a set of tiles that are heated right now.
   for x = startX, endX do
-    -- Find associated lowest sector.
-    local xSector = x // SECTOR_SIZE
-    local sectorValue = lowestSectorsMap[xSector]
-    local cappedCheckMinY = sectorValue.y
-    local checkMinYWasCapped = sectorValue.capped
+    -- -- Find associated lowest sector.
+    -- local xSector = x // SECTOR_SIZE
+    -- local sectorValue = lowestSectorsMap[xSector]
+    -- local cappedCheckMinY = sectorValue.y
+    -- local checkMinYWasCapped = sectorValue.capped
 
     -- Proceed only if cappedCheckMinY is not actually capped or there is a liquid with ID sunLiquidId at the position
     -- directly below cappedCheckMinY.
@@ -681,9 +698,11 @@ function oceanSurfaceQuery(startX, endX, yTop, affectedTiles)
       if not foundSolidTile then
         heightMap_list[world_xwrap(x)] = yTop
         -- heightMap:set(x, checkMaxY + pos[2])
+        -- world.debugText("1", {x, stagehand.position()[2] - 20 + x % 6 - yTop / 50}, "yellow")
       end
     else
       heightMap_list[world_xwrap(x)] = cappedCheckMinY
+        -- world.debugText("2", {x, stagehand.position()[2] - 20 + x % 6 - yTop / 50}, "red")
       -- heightMap:set(x, cappedCheckMinY)
     end
   end
@@ -697,7 +716,8 @@ function syncHeightMapsToGlobal(heightMaps)
   local math_floor = math.floor
   local world_xwrap = world.xwrap
   local world_getProperty = world.getProperty
-  local world_pointCollision = world.pointCollision
+  local world_pointTileCollision = world.pointTileCollision
+  local world_liquidAt = world.liquidAt
   local world_setProperty = world.setProperty
   local table_insert = table.insert
 
@@ -723,6 +743,11 @@ function syncHeightMapsToGlobal(heightMaps)
       end
     end
 
+    -- local stagehandPos = stagehand.position()
+    -- for x, v in heightMap:xvalues() do
+    --   world.debugText("x: %s\nlv: %s\ngv: %s\n", x, v, globalHeightMap[x], {x, stagehandPos[2] - 20 + 4 * (x % 5)}, "yellow")
+    -- end
+
     -- For each entry in the list of `heightMap`...
     local heightMap_list = heightMap.list
     for x, v in heightMap:xvalues() do
@@ -730,19 +755,18 @@ function syncHeightMapsToGlobal(heightMaps)
         globalHeightMap[x] = v
       else
         local globalV = globalHeightMap[x]
-        if v < globalV or not world_pointCollision({x, globalV}, nullCollisionSet) then
-          globalHeightMap[x] = v
+        -- If v < globalV or the region at globalV is loaded and that point is empty and either there is a liquid at minDepth - 1 or the position at minDepth - 1 is unloaded...
+        if v < globalV or
+          (not world_pointTileCollision({x, globalV}, blockOrNullCollisionSet) and
+            (world_liquidAt({x, minDepth - 1}) or world_pointTileCollision({x, minDepth - 1}, nullCollisionSet))) then
+          globalHeightMap[x] = v  -- Local value takes priority
           -- world.debugText("O", {x, stagehand.position()[2]}, "green")
         else
-          heightMap_list[x] = globalV
+          heightMap_list[x] = globalV  -- Global value takes priority
           -- world.debugText("X", {x, stagehand.position()[2]}, "red")
         end
       end
     end
-
-    -- for x, v in heightMap:xvalues() do
-    --   world.debugText("x: %s\nlv: %s\ngv: %s\n", x, v, globalHeightMap[x], {x, stagehandPos[2] - 20 + 4 * (x % 5)}, "yellow")
-    -- end
 
     -- Store globalHeightMap sections.
     -- For each `xSector` from `startXSector` to `endXSector`...
@@ -917,6 +941,10 @@ function findLowestLoadedSectors(xStart, xEnd, yTop)
 
   local lowestSectors = {}
 
+  -- local stagehandX = stagehand.position()[1]
+  -- local stagehandY = stagehand.position()[2]
+  -- local stagehandXSector = stagehandX // SECTOR_SIZE
+  -- local stagehandYSector = stagehandY // SECTOR_SIZE
   -- For each column of sectors intersecting the area between xStart and xEnd...
   for xSector = xSectorStart, xSectorEnd do
     local x = xSector * SECTOR_SIZE
@@ -925,8 +953,10 @@ function findLowestLoadedSectors(xStart, xEnd, yTop)
     -- While the current sector is not loaded...
     -- while world.material({xSector * SECTOR_SIZE, ySector * SECTOR_SIZE}, "foreground") ~= nil do
     while world_pointCollision({x, ySector * SECTOR_SIZE}, nullCollisionSet) and ySector <= ySectorStart do
+      -- world.debugPoint({stagehandX + (xSector - stagehandXSector), stagehandY + (ySector - stagehandYSector)}, "red")
       ySector = ySector + 1
     end
+      -- world.debugPoint({stagehandX + (xSector - stagehandXSector), stagehandY + (ySector - stagehandYSector)}, "green")
 
     -- Add result to lowestSectors
     table_insert(lowestSectors, {xSector, ySector - 1})

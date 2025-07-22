@@ -315,9 +315,8 @@
   "v-hangingfiremonsterTreasure" : [
     [1, {
       "pool" : [
-        {"weight" : 0.800, "pool" : "basicMonsterTreasure"},
-        {"weight" : 0.100, "item" : "scorchedcore"},
-        {"weight" : 0.100, "item" : "hardenedcarapace"}
+        {"weight" : 0.900, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : "scorchedcore"}
       ],
       "poolRounds" : [
         [0.20, 0],
@@ -346,6 +345,21 @@
     [1, {
       "pool" : [
         {"weight" : 0.800, "pool" : "basicMonsterTreasure"},
+        {"weight" : 0.100, "item" : "scorchedcore"},
+        {"weight" : 0.100, "item" : "hardenedcarapace"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-rammingasteroidTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "noMeatMonsterTreasure"},
         {"weight" : 0.100, "item" : "scorchedcore"},
         {"weight" : 0.100, "item" : "hardenedcarapace"}
       ],

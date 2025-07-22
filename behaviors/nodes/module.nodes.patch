@@ -1054,5 +1054,25 @@
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-holdfire.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-wander-crawl",
+    "value": {
+      "type": "module",
+      "name": "v-wander-crawl",
+      "title": "",
+      "properties": {
+        "idleState": {"type": "json", "value": "idle"},
+        "idleTime": {"type": "json", "value": [3, 6]},
+        "moveState": {"type": "json", "value": "walk"},
+        "resetHeading": {"type": "json", "value": true},
+        "stickForce": {"type": "json", "value": 50},
+        "stopForce": {"type": "json", "value": 0},
+        "testDistance": {"type": "json", "value": 0.25},
+        "wanderTime": {"type": "json", "value": [1, 4]}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-crawlwander.behavior"
+    }
   }
 ]

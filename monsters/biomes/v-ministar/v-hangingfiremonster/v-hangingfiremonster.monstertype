@@ -1,6 +1,6 @@
 {
   "type" : "v-hangingfiremonster",
-  "shortdescription" : "<todo>",
+  "shortdescription" : "Bush Nest",
   "description" : "<todo>",
 
   "categories" : [ "v-hangingfiremonster" ],
@@ -8,7 +8,7 @@
 
   "animation" : "v-hangingfiremonster.animation",
 
-  "dropPools" : [ { "default" : "v-hangingfiremonsterTreasure", "bow" : "v-hangingfiremonsterHunting" } ],
+  "dropPools" : [ "empty" ],
 
   "baseParameters" : {
     "scripts" : [
@@ -19,6 +19,7 @@
     "behaviorUpdateDelta" : 3,
 
     "behavior" : "monster",
+    "deathBehavior" : "monster-death",
 
     "facingMode" : "transformation",
 
@@ -78,7 +79,11 @@
 
       "approachActions" : [
         {
-          "name" : "approach-crawl"
+          "name" : "v-approach-crawl",
+          "parameters" : {
+            "testDistance" : 0.4,
+            "stickForce" : 100
+          }
         }
       ],
 
@@ -89,18 +94,51 @@
           }
         },
         {
-          "name" : "approach-crawl"
+          "name" : "v-approach-crawl",
+          "parameters" : {
+            "testDistance" : 0.4,
+            "stickForce" : 100
+          }
         }
       ],
 
       "wanderActions" : [
         {
-          "name" : "wander-crawl",
+          "name" : "v-wander-crawl",
           "cooldown" : 1,
           "parameters" : {
-            "wanderTime" : 1.5,
+            "wanderTime" : [2.5, 5.0],
             "stopForce" : 200,
-            "idleTime" : 1.0
+            "idleTime" : [1.0, 3.0],
+            "testDistance" : 0.4,
+            "stickForce" : 100
+          }
+        }
+      ],
+
+      "deathActions" : [
+        {
+          "name" : "action-spawnmonster",
+          "parameters" : {
+            "offset" : [0,0],
+            "monsterType" : "v-hangingfiremonsterling",
+            "replacement" : true
+          }
+        },
+        {
+          "name" : "action-spawnmonster",
+          "parameters" : {
+            "offset" : [0,0],
+            "monsterType" : "v-hangingfiremonsterling",
+            "replacement" : true
+          }
+        },
+        {
+          "name" : "action-spawnmonster",
+          "parameters" : {
+            "offset" : [0,0],
+            "monsterType" : "v-hangingfiremonsterling",
+            "replacement" : true
           }
         }
       ],
@@ -178,7 +216,7 @@
           "baseValue" : 9
         },
         "maxHealth" : {
-          "baseValue" : 45
+          "baseValue" : 10
         },
         "protection" : {
           "baseValue" : 0.0
