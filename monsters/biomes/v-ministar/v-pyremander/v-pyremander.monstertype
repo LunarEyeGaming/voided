@@ -73,14 +73,14 @@
           "cooldown" : 3.0,
           "parameters" : {
             "requireLineOfSight" : true,
-            "maximumRange" : 30,
+            "maximumRange" : 20,
             "minimumRange" : 2,
             "windupState" : "windup",
-            "windupTime" : 0.6,
+            "windupTime" : 1.0,
 
             "projectileType" : "molotovflamemonster",
             "projectileParameters" : {
-              "power" : 7,
+              "power" : 5,
               "speed" : 50,
               "damageRepeatGroup" : "v-pyremander",
               "statusEffects" : [ {"effect" : "burning", "duration" : 5} ]

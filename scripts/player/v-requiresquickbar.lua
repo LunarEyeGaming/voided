@@ -1,5 +1,5 @@
 --[[
-  Script that shows a simple warning to the player that Voided requires TerraLib if the player doesn't have it
+  Script that shows a simple warning to the player that Voided requires a Quickbar mod if the player doesn't have one
   installed.
 ]]
 
@@ -9,8 +9,9 @@ local showMessageDelay
 local showMessageTimer
 
 function init()
-  expectedPopupId = "TerraLib"
-  showMessageInterval = 1  -- measured in the number of seconds
+  expectedPopupId = "Quickbar"
+  showMessageInterval = 60 * 60 * 24  -- measured in the number of seconds
+  -- showMessageInterval = 1  -- measured in the number of seconds
   showMessageDelay = 60  -- measured in the number of ticks
   showMessageTimer = showMessageDelay
 
@@ -22,13 +23,11 @@ function init()
     storage.showAgain = false
   end)
 
-  local tempInit, tempUpdate, tempShowMessage = init, update, showMessage
-  local status, _ = pcall(require, "/scripts/terra_wormbody.lua")
+  local status, _ = pcall(root.assetJson, "/quickbar/icons.json")
 
   if not status then
-    sb.logWarn("[Voided: Expansion Mod] Could not load file '/scripts/terra_wormbody.lua'. Assuming TerraLib is not installed.")
+    sb.logWarn("[Voided: Expansion Mod] Could not load file '/quickbar/icons.json'. Assuming no Quickbar mod is installed.")
   else
-    init, update, showMessage = tempInit, tempUpdate, tempShowMessage
     script.setUpdateDelta(0)  -- Don't show message
   end
 end
@@ -50,7 +49,7 @@ function showMessage()
   storage.lastShown = os.time()
   messageShown = true
 
-  local configData = root.assetJson("/interface/scripted/v-terralibwarning/v-terralibwarning.config")
+  local configData = root.assetJson("/interface/scripted/v-quickbarwarning/v-quickbarwarning.config")
   configData.popupId = expectedPopupId
   player.interact("ScriptPane", configData, player.id())
 end

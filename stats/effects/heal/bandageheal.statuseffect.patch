@@ -11,6 +11,11 @@
   },
   {
     "op": "add",
+    "path": "/effectConfig/v-cooldownPath",
+    "value": "fastCooldown"
+  },
+  {
+    "op": "add",
     "path": "/scripts/-",
     "value": "v-nerfedhealplugin.lua"
   }
