@@ -6,31 +6,32 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1,
-            "cycle" : 0.6,
-            "mode" : "loop"
-          },
-          "fly" : {
-            "frames" : 1,
-            "cycle" : 0.6,
+            "frames" : 8,
+            "cycle" : 0.8,
             "mode" : "loop"
           },
           "windup" : {
-            "frames" : 1,
-            "cycle" : 0.6,
-            "mode" : "loop",
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "end",
             "properties" : {
               "immediateSound" : "/sfx/npc/monsters/v_dragon_windup.ogg"
             }
           },
-          "prefire" : {
-            "frames" : 1,
-            "cycle" : 0.6,
-            "mode" : "loop"
-          },
           "fire" : {
-            "frames" : 1,
-            "cycle" : 0.6,
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          }
+        }
+      },
+      "fins" : {
+        "priority" : 0,
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 8,
+            "cycle" : 0.8,
             "mode" : "loop"
           }
         }
@@ -53,18 +54,12 @@
       "body" : {
         "properties" : {
           "zLevel" : 10,
-          "transformationGroups" : [ "body", "facing" ],
-          "offset" : [0.0, 0.0],
-          "image" : "<partImage>"
+          "transformationGroups" : [ "aim", "facing" ],
+          "offset" : [0.0, 0.0]
         },
         "partStates" : {
           "body" : {
             "idle" : {
-              "properties" : {
-                "image" : "<partImage>:idle.<frame>"
-              }
-            },
-            "fly" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
               }
@@ -74,14 +69,51 @@
                 "image" : "<partImage>:windup.<frame>"
               }
             },
-            "prefire" : {
+            "fire" : {
               "properties" : {
-                "image" : "<partImage>:prefire.<frame>"
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "zLevel" : 15,
+          "anchorPart" : "body",
+          "fullbright" : true
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
               }
             },
             "fire" : {
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "fins" : {
+        "properties" : {
+          "zLevel" : 20,
+          "transformationGroups" : [ "aim", "facing" ],
+          "offset" : [0.0, 0.0]
+        },
+        "partStates" : {
+          "fins" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
               }
             }
           }
@@ -94,7 +126,8 @@
 
   "transformationGroups" : {
     "body" : { "interpolated" : true },
-    "facing" : { "interpolated" : false }
+    "facing" : { "interpolated" : false },
+    "aim" : { "interpolated" : true }
   },
 
   "effects" : {

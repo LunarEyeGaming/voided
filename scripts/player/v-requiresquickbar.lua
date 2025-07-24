@@ -51,5 +51,5 @@ function showMessage()
 
   local configData = root.assetJson("/interface/scripted/v-quickbarwarning/v-quickbarwarning.config")
   configData.popupId = expectedPopupId
-  player.interact("ScriptPane", configData, player.id())
+  player.interact("ScriptPane", configData)
 end

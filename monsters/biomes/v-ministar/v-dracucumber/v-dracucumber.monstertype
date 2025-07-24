@@ -1,14 +1,14 @@
 {
-  "type" : "v-dragon",
-  "shortdescription" : "<todo>",
-  "description" : "<todo>",
+  "type" : "v-dracucumber",
+  "shortdescription" : "Dracucumber",
+  "description" : "A primitive organism that flees from anything it senses via jet propulsion.",
 
-  "categories" : [ "v-dragon" ],
+  "categories" : [ "v-dracucumber" ],
   "parts" : [ "body" ],
 
-  "animation" : "v-dragon.animation",
+  "animation" : "v-dracucumber.animation",
 
-  "dropPools" : [ { "default" : "pyromantleTreasure", "bow" : "pyromantleHunting" } ],
+  "dropPools" : [ { "default" : "v-dracucumberTreasure", "bow" : "v-dracucumberHunting" } ],
 
   "baseParameters" : {
     "scripts" : [
@@ -31,30 +31,26 @@
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
       "keepTargetInRange" : 90,
-      "targetOutOfSightTime" : 10.0,
+      "targetOutOfSightTime" : 2.0,
 
       "hurtWaitForGround" : false,
 
+      "foundTargetActions" : [
+        {
+          "name" : "action-animate",
+          "parameters" : {
+            "stateType" : "body",
+            "state" : "windup",
+            "animationTimer" : 1.0
+          }
+        }
+      ],
+
       "wanderActions" : [
         {
-          "name" : "land-fly",
-          "cooldown" : 2,
+          "name" : "action-stop",
           "parameters" : {
-            "landDirection" : [0, 1],
-            "flySpeed" : 12,
-            "flyControlForce" : 25,
-            "idleTime" : [5,10]
-          }
-        },
-        {
-          "name" : "wander-fly",
-          "parameters" : {
-            "wanderTime" : [2, 4],
-            "groundDistance" : 8,
-            "ceilingDistance" : 8,
-            "xVelocity" : 15,
-            "yVelocity" : 20,
-            "flyState" : "fly"
+            "stopForce" : 10
           }
         }
       ],
@@ -63,41 +59,46 @@
         {
           "name" : "v-approach-rangedfly",
           "parameters" : {
-            "minRange" : 35,
-            "maxRange" : 35,
-            "speed" : 50,
-            "flyState" : "fly"
+            "minRange" : 1000,
+            "maxRange" : 1000,
+            "speed" : 100,
+            "flyState" : "fire",
+            "usePathfinding" : false,
+            "faceDirection" : false
           }
         }
       ],
 
       "concurrentActions" : [
+        {
+          "name" : "action-animate",
+          "parameters" : {
+            "stateType" : "body",
+            "state" : "idle",
+            "animationTimer" : 1.0
+          }
+        }
       ],
 
       "concurrentHostileActions" : [
-      ],
-
-      "hostileActions" : [
         {
-          "name" : "v-action-holdfire",
-          "cooldown" : 3,
+          "name" : "action-fire",
+          "cooldown" : 0,
           "parameters" : {
             "onGround" : false,
-            "requireLineOfSight" : true,
-            "maximumRange" : 70,
-            "minimumRange" : 2,
+            "requireLineOfSight" : false,
+            "maximumRange" : 100,
+            "minimumRange" : 0,
             "windupTime" : 1.0,
-            "windupStopForce" : 25,
-            "windupState" : "windup",
-            "windupState2" : "prefire",
-            "windupTime2" : 0.3,
+            "windupStopForce" : 0,
+            "windupState" : "",
 
-            "projectileCount" : 15,
+            "projectileCount" : 2147483647,
             "projectileType" : "flame",
             "projectileParameters" : {
-              "speed" : 75,
+              "speed" : 50,
               "power" : 15,
-              "damageRepeatGroup" : "v-dragon",
+              "damageRepeatGroup" : "v-dracucumber",
               "statusEffects" : [ {"effect" : "burning", "duration" : 5} ]
             },
             "projectileInterval" : 0.05,
@@ -108,12 +109,15 @@
             "fireState" : "fire",
             "fireDelay" : 0.0,
             "faceTarget" : true,
-            "holdAim" : true,
+            "rotateAim" : true,
 
             "winddownState" : "",
-            "winddownTime" : 0.2
+            "winddownTime" : 0.0
           }
         }
+      ],
+
+      "hostileActions" : [
       ],
 
       "deathActions" : [ ]
@@ -132,19 +136,21 @@
     "metaBoundBox" : [-4, -4, 4, 4],
     "scale" : 1.0,
 
+    "selfDamagePoly" : [ [-2.5, -2.5], [2.5, -2.5], [2.5, 2.5], [-2.5, 2.5] ],
+
     "movementSettings" : {
-      "collisionPoly" : [ [-2.5, -2.5], [2.5, -2.5], [2.5, 2.5], [-2.5, 2.5] ],
+      "collisionPoly" : [[1.5, 0.621], [0.621, 1.5], [-0.621, 1.5], [-1.5, 0.621], [-1.5, -0.621], [-0.621, -1.5], [0.621, -1.5], [1.5, -0.621]],
 
       "mass" : 2.0,
       "walkSpeed" : 4,
       "runSpeed" : 12,
       "gravityEnabled" : false,
 
-      "bounceFactor" : 0.5,
+      "bounceFactor" : 1.0,
       "groundFriction" : 10,
 
       "airFriction" : 0,
-      "airForce" : 60,
+      "airForce" : 30,
       "flySpeed" : 15
     },
 

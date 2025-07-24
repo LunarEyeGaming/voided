@@ -384,5 +384,19 @@
       ],
       "allowDuplication" : false
     }]
+  ],
+
+  "v-dracucumberTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.900, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : "scorchedcore"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
   ]
 }

@@ -735,25 +735,6 @@
   },
   {
     "op": "add",
-    "path": "/v-approach-rangedfly",
-    "value": {
-      "type": "module",
-      "name": "v-approach-rangedfly",
-      "title": "",
-      "properties": {
-        "controlForce": {"type": "json", "value": null},
-        "flyState": {"type": "json", "value": "fly"},
-        "idleState": {"type": "json", "value": ""},
-        "maxRange": {"type": "json", "value": 20},
-        "minRange": {"type": "json", "value": 10},
-        "speed": {"type": "json", "value": 20},
-        "usePathfinding": {"type": "json", "value": true}
-      },
-      "pathToTree": "..\\monsters\\modular\\movement\\v-rangedflyapproach.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-titanofdarkness-laser",
     "value": {
       "type": "module",
@@ -1073,6 +1054,26 @@
         "wanderTime": {"type": "json", "value": [1, 4]}
       },
       "pathToTree": "..\\monsters\\modular\\movement\\v-crawlwander.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-rangedfly",
+    "value": {
+      "type": "module",
+      "name": "v-approach-rangedfly",
+      "title": "",
+      "properties": {
+        "minRange": {"type": "json", "value": 10},
+        "maxRange": {"type": "json", "value": 20},
+        "speed": {"type": "json", "value": 20},
+        "controlForce": {"type": "json", "value": null},
+        "flyState": {"type": "json", "value": "fly"},
+        "usePathfinding": {"type": "json", "value": true},
+        "idleState": {"type": "json", "value": ""},
+        "faceDirection": {"type": "json", "value": true}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-rangedflyapproach.behavior"
     }
   }
 ]

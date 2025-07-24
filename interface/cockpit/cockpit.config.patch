@@ -124,13 +124,13 @@
       "name" : "Electrified Atmosphere", "icon" : "/interface/bookmarks/icons/v-voltage.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltage", "value" : {
-      "name" : "Shallow Electrified Caves", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+      "name" : "Electrified Caves Shallow", "icon" : "/interface/bookmarks/icons/v-voltage.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltageruins", "value" : {
-      "name" : "Shallow Electrified Caves (Ruins)", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+      "name" : "Electrified Caves Shallow (Ruins)", "icon" : "/interface/bookmarks/icons/v-voltage.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltagetraps", "value" : {
-      "name" : "Shallow Electrified Caves (Traps)", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+      "name" : "Electrified Caves Shallow (Traps)", "icon" : "/interface/bookmarks/icons/v-voltage.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltagerusty", "value" : {
       "name" : "Rusted Caves", "icon" : "/items/materials/v-rustedironrockmaterial.png"
@@ -142,7 +142,7 @@
       "name" : "Electrified Caves (Traps)", "icon" : "/interface/bookmarks/icons/v-voltage.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-deepundergroundvoltage", "value" : {
-      "name" : "Deep Electrified Caves", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+      "name" : "Electrified Caves Deep", "icon" : "/interface/bookmarks/icons/v-voltage.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-voltagecorelayer", "value" : {
       "name" : "Electrified Core", "icon" : "/items/materials/v-chargedstonematerial.png"
@@ -176,8 +176,7 @@
       "name" : "Barren Caves", "icon" : "/items/materials/v-ironrockmaterial.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-coilcaves", "value" : {
-      // TODO: Use properly-sized icon.
-      "name" : "Coil Caves", "icon" : "/objects/biome/v-voltage/v-giantcoil/coil.png"
+      "name" : "Coil Caves", "icon" : "/objects/biome/v-voltage/v-giantcoil/icon.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-pairingcaves", "value" : {
       "name" : "Pairing Hollows", "icon" : "/objects/biome/v-voltage/v-electricpairingtrap/electricpairingtrapicon.png"
@@ -187,13 +186,13 @@
       "name" : "Toxic Atmosphere", "icon" : "/interface/bookmarks/icons/v-toxicwasteland.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundtoxic", "value" : {
-      "name" : "Shallow Toxic Caves", "icon" : "/interface/bookmarks/icons/v-toxicwasteland.png"
+      "name" : "Toxic Caves Shallow", "icon" : "/interface/bookmarks/icons/v-toxicwasteland.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-undergroundtoxic", "value" : {
       "name" : "Toxic Caves", "icon" : "/items/materials/v-toxicstonematerial.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-deepundergroundtoxic", "value" : {
-      "name" : "Deep Toxic Caves", "icon" : "/interface/bookmarks/icons/v-toxicwasteland.png"
+      "name" : "Toxic Caves Deep", "icon" : "/interface/bookmarks/icons/v-toxicwasteland.png"
     }},
     {"op" : "add", "path" : "/displayBiomes/v-toxicwastelandcorelayer", "value" : {
       "name" : "Fungal Core", "icon" : "/items/materials/v-toxicmyceliummaterial.png"
@@ -210,14 +209,39 @@
     }},
     {"op" : "add", "path" : "/displayBiomes/v-flowerfield", "value" : {
       "name" : "Flower Field", "icon" : "/items/materials/v-toxicsoilmaterial.png"
+    }},
+    // MINISTAR
+    {"op" : "add", "path" : "/displayBiomes/v-burningasteroids", "value" : {
+      "name" : "Burning Asteroids", "icon" : "/items/materials/v-burningmeteoritematerial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-ministaratmosphere", "value" : {
+      "name" : "Ministar Atmosphere", "icon" : "/interface/bookmarks/icons/v-ministar.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundministar", "value" : {
+      "name" : "Ministar Caves Shallow", "icon" : "/interface/bookmarks/icons/v-ministar.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-undergroundministar", "value" : {
+      "name" : "Ministar Caves", "icon" : "/items/materials/v-sunspotstonematerial.png"
+    }},
+
+    {"op" : "add", "path" : "/displayBiomes/v-basalticislands", "value" : {
+      "name" : "Basaltic Islands", "icon" : "/objects/biome/v-ministar/v-missilebloomseed/missilebloomseedicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-asteroidforest", "value" : {
+      "name" : "Hanging Forest", "icon" : "/items/generic/crafting/v-charredbark.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-undergroundministarempty", "value" : {
+      "name" : "Ministar Mantle", "icon" : "/items/liquids/v-liquidsunicon.png"
     }}
   ],
 
   [
     {"op" : "test", "path" : "/planetSearch_ignore"},
+
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-toxicatmosphere"},
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundtoxic"},
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-deepundergroundtoxic"},
+
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-voltageatmosphere"},
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-voltageatmosphererusty"},
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundvoltage"},
@@ -225,6 +249,9 @@
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundvoltagetraps"},
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-undergroundvoltagetraps"},
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-deepundergroundvoltage"},
+
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-ministaratmosphere"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundministar"},
 
     {"op" : "add", "path" : "/planetSearch_ignore/dungeons/-", "value" : "v-ministarspawn"}
   ],

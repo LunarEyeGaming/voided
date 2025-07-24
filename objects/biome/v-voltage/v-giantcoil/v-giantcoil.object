@@ -4,7 +4,7 @@
   "printable" : false,
   "rarity" : "Legendary",
   "description" : "A device that uses electromagnetism to break rocks from the ground.",
-  "shortdescription" : "Giant Electromagnetic Coil",
+  "shortdescription" : "Electromagnetic Coil",
   "race" : "generic",
 
   "apexDescription" : "A giant electromagnetic coil that generates a magnetic field strong enough to tear rocks from the ground and break them open.",
@@ -18,14 +18,14 @@
   "category" : "trap",
   "price" : 0,
 
-  "inventoryIcon" : "coil.png",
+  "inventoryIcon" : "icon.png",
   "orientations" : [
     {
       "image" : "coil.png",
       "imagePosition" : [-40, -40],
       "direction" : "left",
       "flipImages" : true,
-      
+
       "animationPosition" : [-40, -40],
       "animationParts" : {
         "coil" : "coil.png",
@@ -34,7 +34,7 @@
       },
 
       "collision" : "solid",
-      
+
       "renderLayer" : "Player+10",
 
       "spaceScan" : 0.5,
@@ -44,7 +44,7 @@
       "image" : "coil.png",
       "imagePosition" : [-40, -40],
       "direction" : "right",
-      
+
       "animationPosition" : [-40, -40],
       "animationParts" : {
         "coil" : "coil.png",
@@ -53,14 +53,14 @@
       },
 
       "collision" : "solid",
-      
+
       "renderLayer" : "Player+10",
 
       "spaceScan" : 0.5,
       "anchors" : [ "bottom", "top" ]
     }
   ],
-  
+
   "health" : 20,
   "rooting" : true,
 
@@ -70,7 +70,7 @@
 
   "scripts" : [ "v-giantcoil.lua" ],
   "scriptDelta" : 2,
-  
+
   // Script parameters
   "inactiveTime" : 10.0,
   "activationTime" : 5.0,
@@ -82,25 +82,25 @@
   "maxAttractRange" : 35,
 
   "centerOffset" : [0, 0],
-  
+
   "whirStartVolume" : 0,
   "whirEndVolume" : 1.5,
   "whirStartPitch" : 0.1,
   "whirEndPitch" : 2.0,
-  
+
   "startSpawnRockInterval" : 1.5,
   "endSpawnRockInterval" : 0.5,
   "speedPowerThreshold" : 25,
   "speedPowerMultiplier" : 5,
-  
+
   "projectileType" : "v-coilrock",
   "projectileParameters" : {},
-  
+
   "warningSize" : 35,
-  
+
   "warningParticleEmitter" : {
     "emissionRate" : 5,
-    
+
     "particle" : {
       "type" : "textured",
       "image" : "/objects/biome/v-voltage/v-giantcoil/warning.png",
@@ -111,10 +111,10 @@
       "destructionTime" : 1.0
     }
   },
-  
+
   "glowLightColor" : [131, 131, 223],
-  
+
   "activationRange" : 40,
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

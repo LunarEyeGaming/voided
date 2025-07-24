@@ -1,0 +1,156 @@
+[
+  // -------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------TOXIC WASTELAND--------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+  {
+    "name" : "v-downspitterunderground",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.05,
+    "monsterType" : [
+      [1.0, "v-downspitter"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-downspitter2underground",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.05,
+    "monsterType" : [
+      [1.0, "v-downspitter2"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-gasmonsterunderground",
+
+    "spawnParameters" : {
+      "area" : "surface",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.05,
+    "monsterType" : [
+      [1.0, "v-gasmonster"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-killerbee",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.05,
+    "monsterType" : [
+      [1.0, "v-killerbee"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-fumeballoon",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.015,
+    "monsterType" : [
+      [1.0, "v-fumeballoon"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-bigpuffer",
+
+    "spawnParameters" : {
+      "area" : "liquid",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.1,
+    "monsterType" : [
+      [1.0, "v-bigpuffer"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-mutanteel",
+
+    "spawnParameters" : {
+      "area" : "liquid",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.005,
+    "monsterType" : [
+      [1.0, "v-mutanteelhead"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-mushroomspider",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.05,
+    "monsterType" : [
+      [1.0, "v-mushroomspider"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  }
+]
