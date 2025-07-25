@@ -1,0 +1,23 @@
+{
+  "projectileName" : "v-dracucumberflame",
+  "image" : "dracucumberflame.png",
+  "physics" : "flame",
+  "animationCycle" : 0.7875,
+  "animationLoops" : true,
+  "damageKindImage" : "/interface/statuses/fire.png",
+  "frameNumber" : 9,
+  "winddownFrames" : 3,
+  "intangibleWinddown" : true,
+  "power" : 50,
+  "speed" : 25,
+  "timeToLive" : 1,
+  "bounces" : 4,
+  "piercing" : false,
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "lightColor" : [255, 180, 0],
+  "damageKind" : "fire",
+  "statusEffects" : [
+    "burning"
+  ],
+  "hydrophobic" : true
+}

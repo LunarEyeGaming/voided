@@ -43,6 +43,12 @@
             "minY" : -5,
             "maxY" : 5
           }
+        },
+        {
+          "name" : "v-action-randomangle",
+          "parameters" : {
+            "flipRotate" : true
+          }
         }
       ],
 
@@ -58,6 +64,20 @@
       ], */
 
       "approachActions" : [
+        {
+          "name" : "approach-fall",
+          "parameters" : {
+            "flyState" : "fly",
+            "idleState" : "idle",
+            "friction" : 25,
+            "dampenDistance" : 20,
+            "dampenMultiplier" : 2
+          }
+        }
+      ],
+
+      // TODO: Add a proper follow action.
+      "followActions" : [
         {
           "name" : "approach-fall",
           "parameters" : {
@@ -155,7 +175,7 @@
       "minimumLiquidStatusEffectPercentage" : 0.1,
 
       "primaryScriptSources" : [
-        "/stats/monster_primary.lua"
+        "/stats/spacemonster_primary.lua"
       ],
       "primaryScriptDelta" : 5,
 

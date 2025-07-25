@@ -1,0 +1,104 @@
+{
+  "name": "v-action-wallcrash",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/math.lua"
+  ],
+  "parameters": {
+    "crashSound": "",
+    "velocityMultiplier": -1
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "boundsCollision",
+        "type": "action",
+        "name": "boundsCollision",
+        "parameters": {}
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "inverter",
+            "type": "decorator",
+            "name": "inverter",
+            "parameters": {},
+            "child": {
+              "title": "boundsCollision",
+              "type": "action",
+              "name": "boundsCollision",
+              "parameters": {}
+            }
+          },
+          {
+            "title": "runner",
+            "type": "action",
+            "name": "runner",
+            "parameters": {}
+          }
+        ]
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "playSound",
+          "type": "action",
+          "name": "playSound",
+          "parameters": {
+            "loops": {"value": 0},
+            "sound": {"key": "<crashSound>"}
+          }
+        }
+      },
+      {
+        "title": "velocity",
+        "type": "action",
+        "name": "velocity",
+        "parameters": {},
+        "output": {
+          "velocity": "newVelocity"
+        }
+      },
+      {
+        "title": "vecMultiply",
+        "type": "action",
+        "name": "vecMultiply",
+        "parameters": {
+          "first": {"key": "newVelocity"},
+          "number": {"key": "<velocityMultiplier>"}
+        },
+        "output": {
+          "vector": "newVelocity"
+        }
+      },
+      {
+        "title": "vecAngle",
+        "type": "action",
+        "name": "vecAngle",
+        "parameters": {
+          "vector": {"key": "newVelocity"}
+        },
+        "output": {
+          "angle": "headingAngle"
+        }
+      }
+    ]
+  }
+}

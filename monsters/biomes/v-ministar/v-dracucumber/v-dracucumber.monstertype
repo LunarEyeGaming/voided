@@ -30,21 +30,39 @@
       "targetQueryRange" : 30,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
-      "keepTargetInRange" : 90,
+      "keepTargetInRange" : 60,
       "targetOutOfSightTime" : 2.0,
 
       "hurtWaitForGround" : false,
 
-      "foundTargetActions" : [
+      "spawnActions" : [
         {
-          "name" : "action-animate",
+          "name" : "action-nudge",
           "parameters" : {
-            "stateType" : "body",
-            "state" : "windup",
-            "animationTimer" : 1.0
+            "minX" : -10,
+            "maxX" : 10,
+            "minY" : -10,
+            "maxY" : 10
+          }
+        },
+        {
+          "name" : "v-action-randomangle",
+          "parameters" : {
+            "flipRotate" : true
           }
         }
       ],
+
+      // "foundTargetActions" : [
+      //   {
+      //     "name" : "action-animate",
+      //     "parameters" : {
+      //       "stateType" : "body",
+      //       "state" : "windup",
+      //       "animationTimer" : 1.0
+      //     }
+      //   }
+      // ],
 
       "wanderActions" : [
         {
@@ -55,46 +73,18 @@
         }
       ],
 
-      "approachActions" : [
+      "followActions" : [
         {
-          "name" : "v-approach-rangedfly",
+          "name" : "v-action-rocketdirect",
           "parameters" : {
-            "minRange" : 1000,
-            "maxRange" : 1000,
-            "speed" : 100,
-            "flyState" : "fire",
-            "usePathfinding" : false,
-            "faceDirection" : false
-          }
-        }
-      ],
-
-      "concurrentActions" : [
-        {
-          "name" : "action-animate",
-          "parameters" : {
-            "stateType" : "body",
-            "state" : "idle",
-            "animationTimer" : 1.0
-          }
-        }
-      ],
-
-      "concurrentHostileActions" : [
-        {
-          "name" : "action-fire",
-          "cooldown" : 0,
-          "parameters" : {
-            "onGround" : false,
             "requireLineOfSight" : false,
             "maximumRange" : 100,
             "minimumRange" : 0,
             "windupTime" : 1.0,
             "windupStopForce" : 0,
-            "windupState" : "",
+            "windupState" : "windup",
 
-            "projectileCount" : 2147483647,
-            "projectileType" : "flame",
+            "projectileType" : "v-dracucumberflame",
             "projectileParameters" : {
               "speed" : 50,
               "power" : 15,
@@ -107,17 +97,69 @@
             "fireOffset" : [0, 0],
             "fireSound" : "fire",
             "fireState" : "fire",
+            "fireStateFallback" : "idle",
             "fireDelay" : 0.0,
             "faceTarget" : true,
             "rotateAim" : true,
+            "flipRotate" : true,
 
-            "winddownState" : "",
-            "winddownTime" : 0.0
+            "repelSpeed" : 25,
+            "repelForce" : 30,
+
+            "crashSound" : "crash"
+          }
+        },
+        {
+          "name" : "approach-teleport",
+          "parameters" : {
           }
         }
       ],
 
+      "approachActions" : [
+      ],
+
+      "concurrentActions" : [ ],
+
+      "concurrentHostileActions" : [
+      ],
+
       "hostileActions" : [
+        {
+          "name" : "v-action-rocket",
+          "parameters" : {
+            "requireLineOfSight" : false,
+            "maximumRange" : 100,
+            "minimumRange" : 0,
+            "windupTime" : 1.0,
+            "windupStopForce" : 0,
+            "windupState" : "windup",
+
+            "projectileType" : "v-dracucumberflame",
+            "projectileParameters" : {
+              "speed" : 50,
+              "power" : 15,
+              "damageRepeatGroup" : "v-dracucumber",
+              "statusEffects" : [ {"effect" : "burning", "duration" : 5} ]
+            },
+            "projectileInterval" : 0.05,
+
+            "inaccuracy" : 0.05,
+            "fireOffset" : [0, 0],
+            "fireSound" : "fire",
+            "fireState" : "fire",
+            "fireStateFallback" : "idle",
+            "fireDelay" : 0.0,
+            "faceTarget" : true,
+            "rotateAim" : true,
+            "flipRotate" : true,
+
+            "repelSpeed" : 25,
+            "repelForce" : 30,
+
+            "crashSound" : "crash"
+          }
+        }
       ],
 
       "deathActions" : [ ]
@@ -175,7 +217,7 @@
       "minimumLiquidStatusEffectPercentage" : 0.1,
 
       "primaryScriptSources" : [
-        "/stats/monster_primary.lua"
+        "/stats/spacemonster_primary.lua"
       ],
       "primaryScriptDelta" : 5,
 
@@ -218,6 +260,9 @@
 
     "mouthOffset" : [0, 0],
     "feetOffset" : [0, -8],
-    "capturable" : false
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-dracucumber" }
   }
 }

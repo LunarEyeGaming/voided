@@ -107,5 +107,21 @@
     "category": "v-movement",
     "script": "/scripts/actions/v-movement.lua",
     "output": {}
+  },
+  "v_turnTowardTarget": {
+    "type": "action",
+    "name": "v_turnTowardTarget",
+    "title": "v_turnTowardTarget",
+    "properties": {
+      "entity": {"type": "entity"},
+      "turnSpeed": {"type": "number"},
+      "angle": {"type": "number"}
+    },
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
+    "output": {
+      "angle": {"type": "number", "key": null},
+      "direction": {"type": "number", "key": null}
+    }
   }
 }

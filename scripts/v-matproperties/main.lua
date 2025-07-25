@@ -2,7 +2,6 @@ require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/v-matproperties/sector.lua"
 require "/scripts/v-vec2.lua"
--- require "/scripts/tbworkaround/interface.lua"
 
 --[[
   A script that runs a framework based on v-matproperties.config to essentially hook scripts to matmods (materials not
@@ -56,8 +55,8 @@ function init()
 
   claimBroadcastRange = (sectorRange + 1) * SECTOR_SIZE
 
-  message.setHandler("tileBroken", handleBrokenTile)
-  -- tbWorkaround.onTileBroken(handleBrokenTile)
+  -- message.setHandler("tileBroken", handleBrokenTile)
+  message.setHandler("v-matproperties-tileBroken", handleBrokenTile)
 
   message.setHandler("v-updateSector", function(_, _, sector)
     invalidateSector(sector)

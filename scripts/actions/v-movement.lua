@@ -316,6 +316,36 @@ function v_stickyHopApproach(args, _, _, dt)
   return true
 end
 
+-- param entity
+-- param turnSpeed
+-- param angle
+-- output angle
+-- output direction
+function v_turnTowardTarget(args, _, _, dt)
+  local rq = vBehavior.requireArgsGen("v_turnTowardTarget", args)
+
+  if not rq{"entity", "turnSpeed", "angle"} then return false end
+
+  local targetPosition = world.entityPosition(args.entity)
+  while true do
+    local toTarget = world.distance(targetPosition, mcontroller.position())
+    local angle = args.angle
+
+    local targetAngle = vec2.angle(toTarget)
+    local diff = util.angleDiff(angle, targetAngle)
+    if diff ~= 0 then
+      angle = angle + (util.toDirection(diff) * args.turnSpeed) * dt
+      if util.angleDiff(angle, targetAngle) * diff < 0 then
+        angle = targetAngle
+      end
+    end
+
+    coroutine.yield(nil, {angle = angle, direction = diff})
+
+    targetPosition = world.entityPosition(args.entity)
+  end
+end
+
 function _correctAngle(angle, speed, step, dt)
   local collisionPoly = mcontroller.collisionBody()
   local pos = mcontroller.position()

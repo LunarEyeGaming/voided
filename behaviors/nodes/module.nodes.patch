@@ -1075,5 +1075,87 @@
       },
       "pathToTree": "..\\monsters\\modular\\movement\\v-rangedflyapproach.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-randomangle",
+    "value": {
+      "type": "module",
+      "name": "v-action-randomangle",
+      "title": "",
+      "properties": {
+        "minAngle": {"type": "json", "value": 0},
+        "maxAngle": {"type": "json", "value": 6.2831853},
+        "flipRotate": {"type": "json", "value": false}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-randomangle.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-wallcrash",
+    "value": {
+      "type": "module",
+      "name": "v-action-wallcrash",
+      "title": "",
+      "properties": {
+        "crashSound": {"type": "json", "value": ""},
+        "velocityMultiplier": {"type": "json", "value": -1}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-wallcrash.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-rocketdirect",
+    "value": {
+      "type": "module",
+      "name": "v-action-rocketdirect",
+      "title": "",
+      "properties": {
+        "damageRepeatGroup": {"type": "json", "value": "monsterfire"},
+        "fireParticleBurst": {"type": "json", "value": ""},
+        "fireSound": {"type": "json", "value": ""},
+        "fireState": {"type": "json", "value": ""},
+        "fireStateFallback": {"type": "json", "value": ""},
+        "fireStateType": {"type": "json", "value": "body"},
+        "flipRotate": {"type": "json", "value": false},
+        "inaccuracy": {"type": "json", "value": 0},
+        "maxFollowRange": {"type": "json", "value": 40},
+        "projectileInterval": {"type": "json", "value": 1},
+        "projectileParameters": {"type": "json", "value": {}},
+        "projectileType": {"type": "json", "value": "standardbullet"},
+        "repelForce": {"type": "json", "value": 10},
+        "repelSpeed": {"type": "json", "value": 100},
+        "turnSpeed": {"type": "json", "value": 1}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-rocketdirect.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-rocket",
+    "value": {
+      "type": "module",
+      "name": "v-action-rocket",
+      "title": "",
+      "properties": {
+        "projectileInterval": {"type": "json", "value": 1},
+        "projectileType": {"type": "json", "value": "standardbullet"},
+        "projectileParameters": {"type": "json", "value": {}},
+        "damageRepeatGroup": {"type": "json", "value": "monsterfire"},
+        "repelSpeed": {"type": "json", "value": 100},
+        "fireState": {"type": "json", "value": ""},
+        "fireStateType": {"type": "json", "value": "body"},
+        "fireSound": {"type": "json", "value": ""},
+        "fireParticleBurst": {"type": "json", "value": ""},
+        "inaccuracy": {"type": "json", "value": 0},
+        "repelForce": {"type": "json", "value": 10},
+        "turnSpeed": {"type": "json", "value": 1},
+        "flipRotate": {"type": "json", "value": false},
+        "fireStateFallback": {"type": "json", "value": ""}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-rocket.behavior"
+    }
   }
 ]

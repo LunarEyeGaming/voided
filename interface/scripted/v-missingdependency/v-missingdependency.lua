@@ -6,7 +6,7 @@ end
 
 function dismissed()
   if widget.getChecked("btnNeverShowAgain") then
-    world.sendEntityMessage(player.id(), "v-neverShowAgain-" .. config.getParameter("popupId"))
+    world.sendEntityMessage(player.id(), "v-neverShowAgain", config.getParameter("popupId"))
   end
 end
 
