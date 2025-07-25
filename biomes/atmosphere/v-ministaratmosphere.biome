@@ -104,7 +104,7 @@
   },
 
   "surfacePlaceables" : {
-    "grassMod" : [ "ash" ],
+    "grassMod" : [ "blackash" ],
     "grassModDensity" : 0.9,
 
     "items" : [
@@ -207,20 +207,20 @@
           }
         ]
       },
-      // {
-      //   "mode" : "floor",
-      //   "priority" : -1.0,
-      //   "variants" : 1,
-      //   "distribution" : "/biomes/distributions.config:everywhere",
+      {
+        "mode" : "floor",
+        "priority" : -1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:everywhere",
 
-      //   "type" : "object",
-      //   "objectSets" : [
-      //     {
-      //       "pool" : [ [1, "v-biomeinvisible" ] ],
-      //       "parameters" : { "originBiome" : "atmosphere/v-ministaratmosphere" }
-      //     }
-      //   ]
-      // },
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-biomeinvisible" ] ],
+            "parameters" : { "originBiome" : "atmosphere/v-ministaratmosphere" }
+          }
+        ]
+      },
       {
         "mode" : "floor",
         "priority" : 99.0,

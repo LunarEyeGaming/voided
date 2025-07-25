@@ -1,15 +1,17 @@
 require "/scripts/vec2.lua"
 
-function init()
-end
+local material
+local outerMaterial
+local points
+local outerPoints
 
-function destroy()
+function init()
   local radius = config.getParameter("radius")
-  local material = config.getParameter("material")
-  local outerMaterial = config.getParameter("outerMaterial", material)
+  material = config.getParameter("material")
+  outerMaterial = config.getParameter("outerMaterial", material)
   -- Generate a list of points in a circle.
-  local points = {}
-  local outerPoints = {}
+  points = {}
+  outerPoints = {}
   for x = -radius, radius do
     for y = -radius, radius do
       local point = {x, y}
@@ -27,6 +29,10 @@ function destroy()
     return p1.mag < p2.mag
   end)
 
+  projectile.setTimeToLive(script.updateDt() * 4 * radius)  -- Necessary in the case of remote connections.
+end
+
+function update()
   -- Place the materials
   local ownPos = mcontroller.position()
   for _, point in ipairs(points) do
