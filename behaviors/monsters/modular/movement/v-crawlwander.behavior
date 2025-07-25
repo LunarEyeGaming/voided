@@ -1,0 +1,259 @@
+{
+  "name": "v-wander-crawl",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/crawling.lua",
+    "/scripts/behavior.lua"
+  ],
+  "parameters": {
+    "wanderTime": [1, 4],
+    "idleTime": [3, 6],
+    "moveState": "walk",
+    "idleState": "idle",
+    "stopForce": 0,
+    "resetHeading": true,
+    "testDistance": 0.25,
+    "stickForce": 50
+  },
+  "root": {
+    "title": "parallel",
+    "type": "composite",
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": 1},
+      "success": {"value": -1}
+    },
+    "children": [
+      {
+        "title": "controlDown",
+        "type": "action",
+        "name": "controlDown",
+        "parameters": {}
+      },
+      {
+        "title": "dynamic",
+        "type": "composite",
+        "name": "dynamic",
+        "parameters": {},
+        "children": [
+          {
+            "title": "cooldown",
+            "type": "decorator",
+            "name": "cooldown",
+            "parameters": {
+              "cooldown": {"key": "<idleTime>"},
+              "onFail": {"value": true},
+              "onSuccess": {"value": true}
+            },
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "setDirection",
+                  "type": "action",
+                  "name": "setDirection",
+                  "parameters": {},
+                  "output": {
+                    "direction": "crawlDirection"
+                  }
+                },
+                {
+                  "title": "faceDirection",
+                  "type": "action",
+                  "name": "faceDirection",
+                  "parameters": {
+                    "direction": {"key": "crawlDirection"}
+                  }
+                },
+                {
+                  "title": "setAnimationState",
+                  "type": "action",
+                  "name": "setAnimationState",
+                  "parameters": {
+                    "state": {"value": "<moveState>"},
+                    "type": {"value": "body"}
+                  }
+                },
+                {
+                  "title": "parallel",
+                  "type": "composite",
+                  "name": "parallel",
+                  "parameters": {
+                    "fail": {"value": 1},
+                    "success": {"value": 1}
+                  },
+                  "children": [
+                    {
+                      "title": "v_crawl",
+                      "type": "action",
+                      "name": "v_crawl",
+                      "parameters": {
+                        "direction": {"key": "crawlDirection"},
+                        "run": {"value": false},
+                        "testDistance": {"key": "<testDistance>"},
+                        "stickForce": {"key": "<stickForce>"}
+                      },
+                      "output": {
+                        "headingAngle": "heading"
+                      }
+                    },
+                    {
+                      "title": "failer",
+                      "type": "decorator",
+                      "name": "failer",
+                      "parameters": {},
+                      "child": {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": "<wanderTime>"}
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "title": "setVelocity",
+                  "type": "action",
+                  "name": "setVelocity",
+                  "parameters": {
+                    "velocity": {"value": [0, 0]}
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "setAnimationState",
+                "type": "action",
+                "name": "setAnimationState",
+                "parameters": {
+                  "state": {"value": "<idleState>"},
+                  "type": {"value": "body"}
+                }
+              },
+              {
+                "title": "parallel",
+                "type": "composite",
+                "name": "parallel",
+                "parameters": {
+                  "fail": {"value": 1},
+                  "success": {"value": -1}
+                },
+                "children": [
+                  {
+                    "title": "wallSit",
+                    "type": "action",
+                    "name": "wallSit",
+                    "parameters": {},
+                    "output": {
+                      "forwardAngle": "heading"
+                    }
+                  },
+                  {
+                    "title": "controlApproachVelocity",
+                    "type": "action",
+                    "name": "controlApproachVelocity",
+                    "parameters": {
+                      "force": {"key": "<stopForce>"},
+                      "velocity": {"value": [0, 0]}
+                    }
+                  },
+                  {
+                    "title": "faceDirection",
+                    "type": "action",
+                    "name": "faceDirection",
+                    "parameters": {
+                      "direction": {"key": "crawlDirection"}
+                    }
+                  },
+                  {
+                    "title": "runner",
+                    "type": "action",
+                    "name": "runner",
+                    "parameters": {}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "controlFlag",
+        "type": "action",
+        "name": "controlFlag",
+        "parameters": {
+          "bool": {"value": true}
+        },
+        "output": {
+          "bool": "crawling"
+        }
+      },
+      {
+        "title": "selector",
+        "type": "composite",
+        "name": "selector",
+        "parameters": {},
+        "children": [
+          {
+            "title": "optional",
+            "type": "decorator",
+            "name": "optional",
+            "parameters": {
+              "shouldRun": {"key": "<resetHeading>"}
+            },
+            "child": {
+              "title": "transform",
+              "type": "action",
+              "name": "transform",
+              "parameters": {
+                "group": {"value": "body"},
+                "rotation": {"key": "heading"}
+              }
+            }
+          },
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "resetTransformationGroup",
+                "type": "action",
+                "name": "resetTransformationGroup",
+                "parameters": {
+                  "transformationGroup": {"value": "body"}
+                }
+              },
+              {
+                "title": "rotateTransformationGroup",
+                "type": "action",
+                "name": "rotateTransformationGroup",
+                "parameters": {
+                  "angle": {"key": "heading"},
+                  "transformationGroup": {"value": "body"}
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

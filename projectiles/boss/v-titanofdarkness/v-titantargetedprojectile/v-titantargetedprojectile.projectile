@@ -63,10 +63,10 @@
   "speed" : 0,
   "timeToLive" : 1.5,
 
-  "explosionAction" : {
-    "action" : "actions",
-    "list" : []
-  },
-  "scripts" : [ "v-titantargetedprojectile.lua" ],
+  "projectileType" : "v-titanriftprojectile",
+  "projectileParameters" : {"speed" : 50},
+  "inheritDamageFactor" : 1.0,
+
+  "scripts" : [ "/scripts/projectiles/v-targetedprojectile.lua" ],
   "scriptDelta" : 1
 }

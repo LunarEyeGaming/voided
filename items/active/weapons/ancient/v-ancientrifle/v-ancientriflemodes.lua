@@ -4,10 +4,12 @@ require "/scripts/util.lua"
 AncientRifleModes = AdaptableAmmo:new()
 
 function AncientRifleModes:adaptAbility()
-  AdaptableAmmo.adaptAbility(self)
-  
+  local ability = self.weapon.abilities[self.adaptedAbilityIndex]
+  util.mergeTable(ability, copy(self.ammoTypes[self.ammoIndex]))  -- use copy to protect ammoTypes from mutations
+  animator.setAnimationState("ammoType", tostring(self.ammoIndex))
+
   activeItem.setInventoryIcon(string.format("%s:%d", self.baseIcon, self.ammoIndex))
-  
+
   if item.tooltipKind() ~= "base" then
     self:updateTooltip()
   end

@@ -1,5 +1,15 @@
 {
-  // VOLTAGE TREASURE
+  "v-skimbusStrongholdTreasure" : [
+    [1, {
+      "fill" : [
+        {"item" : "cryonicextract"}
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  // -------------------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------VOLTAGE------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
   "v-electricelementalTreasure" : [
     [1, {
       "pool" : [
@@ -78,7 +88,7 @@
   "v-bulbheadTreasure" : [
     [1, {
       "pool" : [
-        {"weight" : 0.800, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.800, "pool" : "basicMonsterTreasure"},
         {"weight" : 0.100, "item" : "staticcell"},
         {"weight" : 0.100, "item" : "v-ascensioncomponentmaterial"}
       ],
@@ -121,7 +131,9 @@
     }]
   ],
 
-  // TOXIC WASTELAND TREASURE
+  // -------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------TOXIC WASTELAND--------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
   "v-killerbeeTreasure" : [
     [1, {
       "pool" : [
@@ -283,10 +295,106 @@
     }]
   ],
 
-  "v-skimbusStrongholdTreasure" : [
+  // -------------------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------MINISTAR-----------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+  "v-firefloaterTreasure" : [
     [1, {
-      "fill" : [
-        {"item" : "cryonicextract"}
+      "pool" : [
+        {"weight" : 0.750, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.250, "item" : "scorchedcore"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-pyremanderTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.900, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : "scorchedcore"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-lurkanoTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "basicMonsterTreasure"},
+        {"weight" : 0.100, "item" : "scorchedcore"},
+        {"weight" : 0.100, "item" : "hardenedcarapace"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-novamonsterTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "basicMonsterTreasure"},
+        {"weight" : 0.100, "item" : "scorchedcore"},
+        {"weight" : 0.100, "item" : "hardenedcarapace"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-rammingasteroidTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : "scorchedcore"},
+        {"weight" : 0.100, "item" : "hardenedcarapace"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-sunleaperTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "flyingMonsterTreasure"},
+        {"weight" : 0.100, "item" : "scorchedcore"},
+        {"weight" : 0.100, "item" : "v-sunleaperbeak"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-dracucumberTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.900, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.100, "item" : "scorchedcore"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
       ],
       "allowDuplication" : false
     }]

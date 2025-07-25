@@ -4,6 +4,9 @@
     "path": "/planetTypes/magma/layers/surface/dungeons",
     "value": [[1.0, "v-strongholdgateway"]]
   }, */
+  // -------------------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------VOLTAGE------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
   {
     "op" : "add",
     "path" : "/planetTypes/v-voltage",
@@ -244,12 +247,15 @@
       ]
     }
   },
+  // -------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------TOXIC WASTELAND--------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
   {
     "op" : "add",
     "path" : "/planetTypes/v-toxicwasteland",
     "value" : {
       "threatRange" : [8, 8],
-      "gravityRange" : [80, 100],
+      "gravityRange" : [70, 90],
       "layers" : {
         "atmosphere" : {
           "primaryRegion" : [ "v-toxicatmosphere" ]
@@ -257,7 +263,7 @@
         "surface" : {
           "primaryRegion" : [ "v-toxicwasteland" ],
           "secondaryRegions" : [ "v-crystalmountains", "v-toxiclake" ],
-          "secondaryRegionCount" : [0, 2]
+          "secondaryRegionCount" : [1, 2]
           // "secondaryRegions" : [ "v-toxiclake" ],
           // "secondaryRegionCount" : [1, 1]
         },
@@ -409,6 +415,161 @@
       "biome": [
         [1,["v-poisonfloodedcaves"]]
       ]
+    }
+  },
+  // -------------------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------MINISTAR-----------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+  {
+    "op" : "add",
+    "path" : "/planetTypes/v-ministar",
+    "value" : {
+      "threatRange" : [8, 8],
+      "gravityRange" : [60, 80],
+      "layers" : {
+        "space" : {
+          "primaryRegion" : [ "v-burningasteroids" ],
+          "secondaryRegions" : [ "v-asteroidforest" ],
+
+          "dungeons" : [[1.0, "v-ministarspawn"]]
+        },
+        "atmosphere" : {
+          "primaryRegion" : [ "v-ministaratmosphere" ]
+        },
+        "surface" : {
+          "primaryRegion" : [ "v-ministar" ],
+
+          "dungeons" : [[1.0, "v-multidashpyramid"]]
+        },
+        "subsurface" : {
+          "primaryRegion" : ["v-shallowundergroundministar"],
+          "subRegionSize" : [0.25, 0.25]
+        },
+        "underground1" : {
+          "primaryRegion" : ["v-shallowundergroundministar"],
+          "subRegionSize" : [0.25, 0.25]
+        },
+        "underground2" : {
+          "primaryRegion" : ["v-undergroundministar"],
+          "subRegionSize" : [0.5, 0.5]
+        },
+        "underground3" : {
+          "primaryRegion" : ["v-undergroundministarempty"]
+        },
+        "core" : {
+          "primaryRegion" : ["v-undergroundministarempty"]
+        }
+      }
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-burningasteroids",
+    "value" : {
+      "blockSelector" : [ "v-asteroidsDense" ],
+      "fgCaveSelector" : [ "empty" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-burningasteroids" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-asteroidforest",
+    "value" : {
+      "blockSelector" : [ "v-asteroidForest" ],
+      "fgCaveSelector" : [ "v-asteroidForestCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-asteroidforest" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-ministaratmosphere",
+    "value" : {
+      "blockSelector" : [ "asteroids" ],
+      "fgCaveSelector" : [ "empty" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-ministaratmosphere" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-ministar",
+    "value" : {
+      "oceanLiquid" : [ "v-sun" ],
+      // "oceanLevelOffset" : -8,
+      "blockSelector" : [ "v-ministarSurface" ],
+      "fgCaveSelector" : [ "v-crystalMountainsCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-ministar" ]]
+      ],
+      "subRegion" : [ "v-basalticislands" ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-basalticislands",
+    "value" : {
+      "oceanLiquid" : [ "v-sun" ],
+      "blockSelector" : [ "v-basalticIslands" ],
+      "fgCaveSelector" : [ "surfaceCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-basalticislands" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-undergroundministarempty",
+    "value" : {
+      "blockSelector" : [ "empty" ],
+      "fgCaveSelector" : [ "empty" ],
+      "bgCaveSelector" : [ "empty" ],
+      "subBlockSelector" : ["v-ministarUndergroundSubBlocks"],
+      "oceanLiquid" : [ "v-sun" ],
+      "oceanLevelOffset" : 1000,
+      "biome" : [
+        [1,[ "v-undergroundministarempty" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-shallowundergroundministar",
+    "value" : {
+      "blockSelector" : [ "v-pocketSolid" ],
+      "bgCaveSelector" : [ "v-denseBackgroundCaves" ],
+      "fgCaveSelector" : [ "v-ministarUndergroundCaves" ],
+      "subBlockSelector" : ["v-ministarUndergroundSubBlocks"],
+      "caveLiquid" : [ "lava" ],
+      "caveLiquidSeedDensityRange" : [1, 3],
+      "biome" : [
+        [1,["v-shallowundergroundministar"]]
+      ],
+      "subRegion" : ["v-undergroundministarempty"]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-undergroundministar",
+    "value" : {
+      "blockSelector" : [ "v-pocketSolid" ],
+      "fgCaveSelector" : [ "v-ministarUndergroundCaves" ],
+      "bgCaveSelector" : [ "v-denseBackgroundCaves" ],
+      "caveLiquid" : [ "v-sun" ],
+      "caveLiquidSeedDensityRange" : [1, 3],
+      "biome" : [
+        [1,["v-undergroundministar"]]
+      ],
+      "subRegion" : ["v-undergroundministarempty"]
     }
   },
   {

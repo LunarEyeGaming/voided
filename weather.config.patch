@@ -92,5 +92,55 @@
     "value": [
       [1.0, "v-toxicblobs"]
     ]
+  },
+  // MINISTAR
+  {
+    "op": "add",
+    "path": "/v-ministarMeteorsAndFlares",
+    "value": [
+      [0.4, "v-ministarwind"],
+      [0.2, "v-ministardimming"],
+      [0.125, "v-ministarflaresmall"],
+      [0.06, "v-ministarflaremedium"],
+      [0.015, "v-ministarflarelarge"],
+      [0.1, "v-breadcrustbombs"],
+      [0.1, "v-ministarwindextreme"]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-ministarFlares",
+    "value": [
+      [0.5, "v-ministarwind"],
+      [0.2, "v-ministardimming"],
+      [0.125, "v-ministarflaresmall"],
+      [0.06, "v-ministarflaremedium"],
+      [0.015, "v-ministarflarelarge"],
+      [0.1, "v-ministarwindextreme"]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-ministarMeteors",
+    "value": [
+      [0.8, "v-ministarwind"],
+      [0.1, "v-breadcrustbombs"],
+      [0.1, "v-ministarwindextreme"]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-ministar",
+    "value": [
+      [0.9, "v-ministarwind"],
+      [0.1, "v-ministarwindextreme"]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-ministarTest",
+    "value": [
+      [1.0, "v-breadcrustbombs"]
+    ]
   }
 ]

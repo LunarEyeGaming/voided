@@ -1,0 +1,19 @@
+{
+  "itemName" : "v-directedcharge",
+  "price" : 0,
+  "rarity" : "Legendary",
+  "category" : "throwableItem",
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "inventoryIcon" : "gpsicon.png:on",
+  "description" : "Displays your position. Use the item to toggle it.",
+  "shortdescription" : "Directed Charge",
+
+  "animationScripts" : [ "/items/active/unsorted/v-directedcharge/v-directedchargepreview.lua" ],
+  "animation" : "v-directedcharge.animation",
+  "animationParts" : {
+    "gps" : "gps.png",
+    "gpsfullbright" : "gpsfullbright.png"
+  },
+
+  "scripts" : ["v-directedcharge.lua"]
+}

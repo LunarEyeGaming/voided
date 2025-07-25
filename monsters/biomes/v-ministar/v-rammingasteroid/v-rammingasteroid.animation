@@ -1,0 +1,258 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "body" : {
+        "priority" : 0,
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "loop"// ,
+            // "properties" : {
+            //   "persistentSound" : "/sfx/npc/monsters/erchiusghost_loop.ogg"
+            // }
+          },
+          "fly" : {
+            "frames" : 2,
+            "cycle" : 0.1,
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/quadruped/angstyhead_turnhostile.ogg"
+            }
+          }
+        }
+      },
+      "fireball" : {
+        "default" : "off",
+        "states" : {
+          "off" : {
+            "properties" : {
+              "particleEmittersOff" : ["firetrail"]
+            }
+          },
+          "warning" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "loop",
+            "properties" : {
+              "particleEmittersOn" : ["firetrail"],
+              "immediateSound" : "/sfx/objects/flametrap_off.ogg",
+              "persistentSound" : "/sfx/npc/monsters/v_rammingasteroid_warning_loop.ogg"
+            }
+          },
+          "on" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/dragonboss_fireball1.ogg",
+              "persistentSound" : "/sfx/npc/monsters/v_rammingasteroid_active_loop.ogg"
+            }
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      },
+      "releaseParticles" : {
+        "default" : "off",
+        "states" : {
+          "off" : {
+            "frames" : 1,
+            "properties" : {
+              "particleEmittersOff" : [ "releaseParticles" ]
+            }
+          },
+          "on" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "off",
+            "properties" : {
+              "particleEmittersOn" : [ "releaseParticles" ]
+            }
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "zLevel" : 10,
+          "transformationGroups" : [ "body", "facing" ],
+          "offset" : [0.0, 0.0]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:inactive.<frame>"
+              }
+            },
+            "fly" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "zLevel" : 20,
+          "anchorPart" : "body",
+          "fullbright" : true
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:inactive.<frame>"
+              }
+            },
+            "fly" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "fireball" : {
+        "properties" : {
+          "zLevel" : 30,
+          "offset" : [-3, 0],
+          "transformationGroups" : ["fireball"],
+          "fullbright" : true
+        },
+        "partStates" : {
+          "fireball" : {
+            "warning" : {
+              "properties" : {
+                "image" : "<partImage>:warning.<frame>"
+              }
+            },
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>:on.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "globalTagDefaults" : {
+  },
+
+  "transformationGroups" : {
+    "body" : { "interpolated" : true },
+    "facing" : { "interpolated" : false },
+    "fireball" : { "interpolated" : true }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "offsetRegion" : [-3.0, -3.0, 3.0, 3.0],
+      "burstCount" : 5,
+      "particles" : [
+        {"particle" : "v-rammingasteroidshard1"},
+        {"particle" : "v-rammingasteroidshard2"},
+        {"particle" : "v-rammingasteroidshard3"},
+        {"particle" : "v-rammingasteroidshard4"}
+      ]
+    },
+    "firetrail" : {
+      "offsetRegion" : [-3.0, -3.0, 3.0, 3.0],
+      "emissionRate" : 10,
+      "particles" : [
+        {"particle" : "fireswoosh1"},
+        {"particle" : "fireswoosh2"},
+        {"particle" : "fireswoosh1"}
+        /*{"particle" : {
+          "type" : "animated",
+          "looping" : true,
+          "animation" : "/animations/statuseffects/burning/burning.animation",
+          "position" : [0, 0],
+          "initialVelocity" : [0, 0],
+          "finalVelocity" : [0, 0],
+          "approach" : [3, 3],
+          "destructionAction" : "shrink",
+          "destructionTime" : 0.425,
+          "fade" : 1,
+          "fullbright" : true,
+          "light" : [218, 83, 2],
+          "size" : 1.0,
+          "layer" : "middle",
+          "timeToLive" : 0.8,
+          "variance" : {
+            "initialVelocity" : [1.5, 1.5]
+          }
+        }, "count" : 5}*/
+      ]
+    },
+    "captureParticles" : {
+      "particles" : [
+        { "particle" : "monstercapture" }
+      ]
+    },
+    "releaseParticles" : {
+      "particles" : [
+        { "particle" : "monsterrelease" }
+      ]
+    },
+    "teleportOut" : {
+      "particles" : [
+        { "particle" : "monstercapture" }
+      ]
+    },
+    "teleportIn" : {
+      "particles" : [
+        { "particle" : "monsterrelease" }
+      ]
+    },
+    "levelUp" : {
+      "particles" : [
+        { "particle" : "monsterlevelup" }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
+    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ]
+  }
+}

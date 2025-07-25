@@ -1,0 +1,222 @@
+{
+  "name" : "v-asteroidforest",
+  "friendlyName" : "Hanging Forest",
+
+  "mainBlock" : "v-burningmeteorite",
+  "subBlocks" : [ "v-moltenrock" ],
+  "ores" : "v-ministar",
+
+  "spawnProfile" : {
+    "groups" : [
+      {
+        "select" : 2,
+        "pool" : [
+          [ 1.0, "v-pyrebush" ],
+          [ 1.0, "v-dracucumber" ]
+        ]
+      }
+    ],
+    "monsterParameters" : {
+      "colors" : "magma",
+      "statusSettings" : {
+        "stats" : {
+          "fireResistance" : {
+            "baseValue" : 0.5
+          },
+          "iceResistance" : {
+            "baseValue" : -0.25
+          },
+          "lavaImmunity" : {
+            "baseValue" : 1.0
+          },
+          "v-evaporatingImmunity" : {
+            "baseValue" : 1.0
+          },
+          "fireStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 15.0
+          }
+        }
+      }
+    }
+  },
+
+  "statusEffects" : [ "biomeairless" ],
+
+  "hueShiftOptions" : [0],
+
+  "surfacePlaceables" : {
+    "ceilingGrassMod" : [ "v-blueceilinggrass" ],
+    "ceilingGrassModDensity" : 0.9,
+
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:overgroundChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "basicChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundweaponChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "v-fireWeaponChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundChests",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-statuspodministar" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-biomeinvisible" ] ],
+            "parameters" : { "originBiome" : "space_detached/v-asteroidforest" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { "breakDropPool" : "v-capsuleMinistar", "smashDropPool" : "v-capsuleMinistar" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseSurfaceCrops",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "wildchiliseed" ] ],
+            "parameters" : {
+              "startingStage" : 4
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  "undergroundPlaceables" : {
+    "ceilingGrassMod" : [ "v-blueceilinggrass" ],
+    "ceilingGrassModDensity" : 0.9,
+
+    "items" : [
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "v-invertedcapsulesmall" ], [0.35, "v-invertedcapsulemed" ], [0.35, "v-invertedcapsulebig" ] ],
+            "parameters" : { "breakDropPool" : "v-capsuleMinistar", "smashDropPool" : "v-capsuleMinistar" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:layer2Chests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "basicChest" ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:overgroundRareChests",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-statuspodministarinverted" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 2.0,
+        "variants" : 3,
+        "distribution" : "/biomes/distributions.config:everywhere",
+
+        "type" : "tree",
+        "treeFoliageHueShiftMax" : 0,
+        "treeStemHueShiftMax" : 0,
+        "treeStemList" : [ "v-hangingtree" ],
+        "treeFoliageList" : [ "v-hangingfoliage" ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseMedium",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "v-hangingbush1" ], [0.35, "v-hangingbush2" ], [0.35, "v-hangingbush3" ], [0.35, "v-hangingbush4" ], [0.35, "v-hangingbush5" ], [0.35, "v-hangingbush6" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundweaponChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "v-fireWeaponChest" ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-asteroidforestmicrodungeons" ]
+      }
+    ]
+  }
+}

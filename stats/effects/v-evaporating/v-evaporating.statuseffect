@@ -1,0 +1,16 @@
+{
+  "name" : "v-evaporating",
+  "blockingStat" : "v-evaporatingImmunity",
+
+  "effectConfig" : {},
+  "defaultDuration" : 0.5,
+
+  "scripts" : [
+    "v-evaporating.lua"
+  ],
+
+  "animationConfig" : "v-evaporating.animation",
+
+  "label" : "Vaporizing - You are vaporizing from the heat of the sun",
+  "icon" : "/interface/statuses/v-biomesun.png"
+}

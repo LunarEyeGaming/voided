@@ -1,55 +1,76 @@
-require "/scripts/actions/v-sensor.lua"
+require "/scripts/util.lua"
+require "/scripts/vec2.lua"
 
-local projectileId
+require "/scripts/v-ministarutil.lua"
+
+local id
+local prevFireMode
 
 function init()
-  activeItem.setScriptedAnimationParameter("riftTrails", config.getParameter("riftTrails"))
-  activeItem.setScriptedAnimationParameter("riftTrailDuration", config.getParameter("riftTrailDuration"))
+  id = 0
 end
 
-function update(dt)
-  if projectileId then
-    if world.entityExists(projectileId) then
-      world.sendEntityMessage(projectileId, "updateProjectile", activeItem.ownerAimPosition())
-    else
-      projectileId = nil
-      activeItem.setScriptedAnimationParameter("riftTrailTrackingEntity", nil)
+function update(dt, fireMode)
+  if fireMode ~= prevFireMode then
+    if fireMode == "primary" then
+      addSolarFlare()
+    elseif fireMode == "alt" then
+      clearSolarFlares()
     end
   end
+  prevFireMode = fireMode
 end
 
-function activate()
-  -- activeItem.interact("ScriptPane", root.assetJson("/interface/scripted/voideye-tier6skip/voideye-tier6skip.config"))
-  projectileId = world.spawnProjectile("v-stuttertest", activeItem.ownerAimPosition(), entity.id(), {1, 0}, false, {controlMovement = {maxSpeed = 50, controlForce = 1000}})
-  activeItem.setScriptedAnimationParameter("riftTrailTrackingEntity", projectileId)
+function openUi()
+  local uiConfig = root.assetJson("/interface/scripted/v-ministarrenderconfig/v-ministarrenderconfig.config")
+  player.interact("ScriptPane", uiConfig, entity.id())
 end
 
-function aStarAlgorithm(startPoint, endPoint)
-  local exploredPoints = {}
-  local queue = {}  -- Priority queue, sorted by cost (actual distance + Euclidean distance). Each entry contains the position and the cost.
-  local distances = {}  -- Distance of each position from the startPoint. Hash map
-  local predecessors = {}  -- The predecessor of each position. Hash map
+-- function addCollision()
+--   local aimPos = activeItem.ownerAimPosition()
+--   local aimPosI = {
+--     math.floor(aimPos[1]),
+--     math.floor(aimPos[2])
+--   }
 
-  ---Inserts a position into the priority queue, or updates it if it is already in the queue.
-  ---@param positionHash string
-  ---@param cost number
-  local insertToQueue = function(positionHash, cost)
-    -- Traverse through the queue in descending order, shifting elements until we find the right one. If the element to
-    -- insert is already in the queue,
-    local i = #queue
-    -- while
+--   local heightMapSetRange = {-5, 5}
+
+--   local startX = aimPosI[1] + heightMapSetRange[1]
+--   local endX = aimPosI[1] + heightMapSetRange[2]
+
+--   local heightMap = vMinistar.XMap:new(startX)
+
+--   for x = startX, endX do
+--     heightMap:set(math.floor(x), aimPosI[2])
+--   end
+
+--   world.sendEntityMessage(entity.id(), "v-ministarheat-setEntityCollision", id, heightMap)
+--   id = id + 1
+-- end
+
+-- function clearCollisions()
+--   for i = 0, id do
+--     world.sendEntityMessage(entity.id(), "v-ministarheat-setEntityCollision", i)
+--   end
+--   id = 0
+-- end
+
+function addSolarFlare()
+  local solarFlares = world.getProperty("v-solarFlares") or {}
+
+  for _ = 1, 5 do
+    table.insert(solarFlares, {
+      x = activeItem.ownerAimPosition()[1],
+      startTime = world.time(),
+      duration = 300,
+      potency = 0.5,
+      spread = 300
+    })
   end
 
-  --[[
-    Algorithm:
-    explored = {}
-    queue = new Queue({position = startPoint, cost = distance(startPoint, endPoint)})
-    distances = {}  -- nil means infinity
-    predecessors = {}  -- predecessor of each position. nil = no predecessor.
-    while queue is not empty:
-      next = queue.remove()  -- Remove from queue
-      explored.push(next)
-      for each neighbor of next:
-        if distances[next] + distance > ???
-  ]]
+  world.setProperty("v-solarFlares", solarFlares)
+end
+
+function clearSolarFlares()
+  world.setProperty("v-solarFlares", jarray())
 end

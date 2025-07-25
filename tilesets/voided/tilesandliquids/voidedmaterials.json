@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":28,
+ "tilecount":40,
  "tiledversion":"1.11.0",
  "tileheight":8,
  "tileproperties":
@@ -100,9 +100,58 @@
         {
          "material":"v-oxidizeddeepcopperrock"
         },
+     "28":
+        {
+         "material":"v-burningmeteorite"
+        },
+     "29":
+        {
+         "material":"v-moltenrock"
+        },
      "3":
         {
          "material":"v-deepcopperrock"
+        },
+     "30":
+        {
+         "material":"v-sunspotstone"
+        },
+     "31":
+        {
+         "liquid":"v-sun"
+        },
+     "32":
+        {
+         "liquid":"v-sun",
+         "source":"true"
+        },
+     "33":
+        {
+         "material":"v-sunspotglass"
+        },
+     "34":
+        {
+         "material":"v-sunspotbrick1"
+        },
+     "35":
+        {
+         "material":"v-sunspotbrick2"
+        },
+     "36":
+        {
+         "material":"v-sunspotbrick3"
+        },
+     "37":
+        {
+         "material":"v-sunspotplatform"
+        },
+     "38":
+        {
+         "material":"v-sunspotpillar"
+        },
+     "39":
+        {
+         "material":"v-stonysoil"
         },
      "4":
         {
@@ -218,7 +267,56 @@
         {
          "material":"string"
         },
+     "28":
+        {
+         "material":"string"
+        },
+     "29":
+        {
+         "material":"string"
+        },
      "3":
+        {
+         "material":"string"
+        },
+     "30":
+        {
+         "material":"string"
+        },
+     "31":
+        {
+         "liquid":"string"
+        },
+     "32":
+        {
+         "liquid":"string",
+         "source":"string"
+        },
+     "33":
+        {
+         "material":"string"
+        },
+     "34":
+        {
+         "material":"string"
+        },
+     "35":
+        {
+         "material":"string"
+        },
+     "36":
+        {
+         "material":"string"
+        },
+     "37":
+        {
+         "material":"string"
+        },
+     "38":
+        {
+         "material":"string"
+        },
+     "39":
         {
          "material":"string"
         },
@@ -375,9 +473,81 @@
          "imageheight":8,
          "imagewidth":8
         },
+     "28":
+        {
+         "image":"..\/images\/tilesandliquids\/burningmeteorite.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "29":
+        {
+         "image":"..\/images\/tilesandliquids\/moltenrock.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
      "3":
         {
          "image":"..\/images\/tilesandliquids\/deepcopperrock.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "30":
+        {
+         "image":"..\/images\/tilesandliquids\/sunspotstone.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "31":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidsun.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "32":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidsunsource.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "33":
+        {
+         "image":"..\/images\/tilesandliquids\/sunspotglass.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "34":
+        {
+         "image":"..\/images\/tilesandliquids\/sunspotbrick1.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "35":
+        {
+         "image":"..\/images\/tilesandliquids\/sunspotbrick2.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "36":
+        {
+         "image":"..\/images\/tilesandliquids\/sunspotbrick3.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "37":
+        {
+         "image":"..\/images\/tilesandliquids\/sunspotplatform.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "38":
+        {
+         "image":"..\/images\/tilesandliquids\/sunspotpillar.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "39":
+        {
+         "image":"..\/images\/tilesandliquids\/stonysoil.png",
          "imageheight":8,
          "imagewidth":8
         },

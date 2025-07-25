@@ -1,0 +1,66 @@
+{
+  "projectileName" : "v-missilebloom",
+
+  "image" : "missilebloom.png",
+  "animationCycle" : 0.3,
+  "frameNumber" : 3,
+  "animationLoops" : true,
+  "lightColor" : [218, 83, 2],
+
+  "physics" : "stickygrenade",
+  "speed" : 50,
+  "timeToLive" : 3.0,
+  "bounces" : -1,
+
+  "piercing" : false,
+  "power" : 300,
+  "damageType" : "NoDamage",
+  "damageTeam" : { "type" : "indiscriminate" },
+
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_missilepod_launch1.ogg", "/sfx/projectiles/v_missilepod_launch2.ogg", "/sfx/projectiles/v_missilepod_launch3.ogg" ]
+    },
+    {
+      "time" : 0.06,
+      "action" : "loop",
+      "count" : 1,
+      "body" : [
+        {
+          "action" : "particle",
+          "rotate" : true,
+          "specification" : {
+            "type" : "animated",
+            "animation" : "/animations/statuseffects/burning/burning.animation",
+            "size" : 1,
+            "initialVelocity" : [-37.5, 0],
+            "position" : [-0.5, 0],
+            "approach" : [25, 25],
+            "finalVelocity" : [0, 0],
+            "timeToLive" : 0.25,
+            "destructionAction" : "fade",
+            "destructionTime" : 0.25,
+            "fullbright" : true,
+            "variance" : {
+              "initialVelocity": [12.5, 12.5]
+            }
+          }
+        }
+      ]
+    }
+  ],
+
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-missilebloomexplosion/v-missilebloomexplosion.config"
+    }
+  ],
+
+  "scripts" : [ "/scripts/projectiles/v-variedtimetolive.lua" ],
+
+  "timeToLiveRange" : [3.0, 4.0]
+}

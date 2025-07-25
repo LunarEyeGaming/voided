@@ -141,5 +141,75 @@
         [0.1, 4]
       ]
     }]
+  ],
+  "v-multidashpyramidReward" : [
+    [1, {
+      "fill" : [
+        {"pool" : "v-sunspotblockBlueprint"}
+      ],
+      "pool" : [
+        {"weight" : 1.0, "item" : ["manipulatormodule", 5]},
+        {"weight" : 1.0, "item" : ["v-infernitebar", 10]},
+        {"weight" : 1.0, "item" : ["money", 200]},
+        {"weight" : 1.0, "pool" : "v-rareFireGun"},
+        {"weight" : 1.5, "pool" : "v-rareFireMelee"},
+        {"weight" : 1.0, "pool" : "shield"}
+      ],
+      "poolRounds" : [
+        [0.5, 4],
+        [0.5, 5]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-multidashpyramidTimedReward1" : [
+    [1, {
+      "fill" : [ ],
+      "pool" : [
+        {"weight" : 1.0, "item" : ["v-infernitebar", 10]},
+        {"weight" : 1.0, "item" : ["money", 400]}
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-multidashpyramidTimedReward2" : [
+    [1, {
+      "fill" : [ ],
+      "pool" : [
+        {"weight" : 1.0, "item" : ["v-ice19bomb", 6]},
+        {"weight" : 1.0, "item" : ["v-sunscreen", 3]}
+      ],
+      "poolRounds" : [
+        [0.5, 1],
+        [0.5, 2]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-multidashpyramidTimedReward3" : [
+    [1, {
+      "fill" : [ ],
+      "pool" : [
+        {"weight" : 1.0, "item" : "v-fusionplasmalauncher"}
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-sunspotblockBlueprint" : [
+    [1, {
+      "fill" : [ ],
+      "pool" : [
+        {"weight" : 1.0, "item" : "v-sunspotbrick1material-recipe"},
+        {"weight" : 1.0, "item" : "v-sunspotbrick2material-recipe"},
+        {"weight" : 1.0, "item" : "v-sunspotbrick3material-recipe"},
+        {"weight" : 1.0, "item" : "v-sunspotglassmaterial-recipe"},
+        {"weight" : 1.0, "item" : "v-sunspotpillarmaterial-recipe"},
+        {"weight" : 1.0, "item" : "v-sunspotplatform-recipe"}
+      ],
+      "poolRounds" : [
+        [1.0, 1]
+      ],
+      "allowDuplication" : false
+    }]
   ]
 }

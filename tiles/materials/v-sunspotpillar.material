@@ -1,0 +1,24 @@
+{
+  "materialId" : 1218,
+  "materialName" : "v-sunspotpillar",
+  "particleColor" : [92, 90, 87, 255],
+  "itemDrop" : "v-sunspotpillarmaterial",
+  "shortdescription" : "Sunspot Pillar",
+  "description" : "A refined column of material, unable to melt under solar heat.",
+  "glitchDescription" : "Awestruck. This pillar has a high contour complexity.",
+  "floranDescription" : "Pillar iss made of dark ssstone. Can't be melted by sssun.",
+  "novakidDescription" : "A big ol' pillar of dark rock.",
+  "footstepSound" : "/sfx/blocks/footstep_stone2.ogg",
+  "health" : 24,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/pipetemplate.config",
+  "renderParameters" : {
+    "texture" : "v-sunspotpillar.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : false,
+    "multiColored" : true,
+    "zLevel" : 3100
+  }
+}

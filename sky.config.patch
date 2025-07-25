@@ -1,4 +1,11 @@
 [
-  {"op" : "add", "path" : "/stars/list/-", "value" : "/sky/stars/v-bigp_star.png"},
-  {"op" : "add", "path" : "/stars/list/-", "value" : "/sky/stars/v-smallp_star.png"}
+  [
+    {"op" : "add", "path" : "/stars/list/-", "value" : "/sky/stars/v-bigp_star.png"},
+    {"op" : "add", "path" : "/stars/list/-", "value" : "/sky/stars/v-smallp_star.png"}
+  ],
+  [
+    {"op" : "test", "path" : "/sun/dynamicImage"},
+    {"op" : "add", "path" : "/sun/dynamicImage/images/v-extradimensional", "value" : "/sky/orbitals/v-outsidersun.png"},
+    {"op" : "add", "path" : "/sun/dynamicImage/rayColors/v-extradimensional", "value" : [51, 41, 71]}
+  ]
 ]

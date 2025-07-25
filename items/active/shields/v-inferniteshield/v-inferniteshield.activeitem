@@ -1,0 +1,69 @@
+{
+  "itemName" : "v-inferniteshield",
+  "fixedLevel" : true,
+  "level" : 8,
+  "price" : 630,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "category" : "shield",
+  "description" : "On perfect blocks, fires a projectile.",
+  "shortdescription" : "^infernite;Infernite Shield",
+  "tooltipKind" : "Shield",
+  "twoHanded" : false,
+  "itemTags" : ["shield"],
+
+  "inventoryIcon" : "inferniteshield.png:nearidle",
+
+  "animation" : "v-inferniteshield.animation",
+  "animationParts" : {
+    "shield" : "inferniteshield.png",
+    "shieldfullbright" : "inferniteshieldfullbright.png"
+  },
+  "animationCustom" : {
+    "animatedParts" : { "parts" : { "shield" : { "properties" : {
+        "shieldPoly" : [ [-0.5, -2.5], [-0.5, 2.25], [0.75, 1.5], [0.75, -1.75] ]
+    }}}},
+    "sounds" : {
+      "raiseShield" : [ "/sfx/melee/sword_guard.ogg" ],
+      "perfectBlock" : [ "/sfx/melee/v_inferniteshield_block_perfect.ogg" ],
+      "deflect" : [ "/sfx/melee/v_inferniteshield_deflect.ogg" ],
+      "block" : [ "/sfx/melee/v_inferniteshield_block.ogg" ],
+      "break" : [ "/sfx/melee/v_inferniteshield_break.ogg" ]
+    }
+  },
+
+  "scripts" : ["/items/active/shields/shield.lua", "v-inferniteshieldplugin.lua"],
+
+  "minActiveTime" : 0.2,
+
+  "forceWalk" : true,
+  "baseShieldHealth" : 35,
+  "cooldownTime" : 0.65,
+
+  "perfectBlockDirectives" : "?border=2;AACCFFFF;00000000",
+  "perfectBlockTime" : 0.3,
+
+  "knockback" : 10,
+
+  "deflectProjectile" : "v-inferniteshieldshotspawner",
+  "deflectBaseDamage" : 12.5,
+  "deflectCooldown" : 0.5,
+
+  "stances" : {
+    "idle" : {
+      "armRotation" : -90,
+      "shieldRotation" : 0,
+      "allowRotate" : true,
+      "allowFlip" : true
+    },
+    "raised" : {
+      "armRotation" : 0,
+      "shieldRotation" : 0,
+      "allowRotate" : true,
+      "allowFlip" : true
+    }
+  },
+
+  "builder" : "/items/buildscripts/v-buildunrandshield.lua"
+}

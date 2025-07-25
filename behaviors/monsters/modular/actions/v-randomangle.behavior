@@ -1,0 +1,121 @@
+{
+  "name": "v-action-randomangle",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/math.lua",
+    "/scripts/actions/voidedutil.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/animator.lua"
+  ],
+  "parameters": {
+    "minAngle": 0,
+    "maxAngle": 6.2831853,
+    "flipRotate": false
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "random",
+        "type": "action",
+        "name": "random",
+        "parameters": {
+          "max": {"key": "<maxAngle>"},
+          "min": {"key": "<minAngle>"}
+        },
+        "output": {
+          "number": "headingAngle"
+        }
+      },
+      {
+        "title": "selector",
+        "type": "composite",
+        "name": "selector",
+        "parameters": {},
+        "children": [
+          {
+            "title": "optional",
+            "type": "decorator",
+            "name": "optional",
+            "parameters": {
+              "shouldRun": {"key": "<flipRotate>"}
+            },
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "v_angleAndDirection",
+                  "type": "action",
+                  "name": "v_angleAndDirection",
+                  "parameters": {
+                    "angle": {"key": "headingAngle"}
+                  },
+                  "output": {
+                    "angle": "targetAngle",
+                    "direction": "targetDirection"
+                  }
+                },
+                {
+                  "title": "faceDirection",
+                  "type": "action",
+                  "name": "faceDirection",
+                  "parameters": {
+                    "direction": {"key": "targetDirection"}
+                  }
+                },
+                {
+                  "title": "resetTransformationGroup",
+                  "type": "action",
+                  "name": "resetTransformationGroup",
+                  "parameters": {
+                    "transformationGroup": {"value": "body"}
+                  }
+                },
+                {
+                  "title": "rotateTransformationGroup",
+                  "type": "action",
+                  "name": "rotateTransformationGroup",
+                  "parameters": {
+                    "angle": {"key": "targetAngle"},
+                    "transformationGroup": {"value": "body"}
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "resetTransformationGroup",
+                "type": "action",
+                "name": "resetTransformationGroup",
+                "parameters": {
+                  "transformationGroup": {"value": "body"}
+                }
+              },
+              {
+                "title": "rotateTransformationGroup",
+                "type": "action",
+                "name": "rotateTransformationGroup",
+                "parameters": {
+                  "angle": {"key": "headingAngle"},
+                  "transformationGroup": {"value": "body"}
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

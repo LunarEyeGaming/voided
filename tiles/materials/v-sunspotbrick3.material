@@ -1,0 +1,24 @@
+{
+  "materialId" : 1216,
+  "materialName" : "v-sunspotbrick3",
+  "particleColor" : [92, 90, 87, 255],
+  "itemDrop" : "v-sunspotbrick3material",
+  "shortdescription" : "Sunspot Engraving",
+  "description" : "Giant slabs of heat-resistant rock with drawings engraved into the surface.",
+  "glitchDescription" : "Surprised. These bricks have a high melting point.",
+  "floranDescription" : "Dark bricksss with silly drawingsss. Sssun cannot melt them.",
+  "novakidDescription" : "It ain't a surprise that these bricks lasted.",
+  "footstepSound" : "/sfx/blocks/footstep_stone3.ogg",
+  "health" : 24,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-sunspotbrick3.png",
+    "variants" : 25,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 3210
+  }
+}

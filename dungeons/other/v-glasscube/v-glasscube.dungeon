@@ -1,0 +1,23 @@
+{
+  "metadata" : {
+    "name" : "v-glasscube",
+    "species" : "generic",
+    "rules" : [
+    ],
+    "anchor" : [ "glasscube" ],
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "glasscube",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "glasscube.json" ]
+    }
+  ]
+}

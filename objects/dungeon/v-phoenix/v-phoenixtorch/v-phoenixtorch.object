@@ -1,0 +1,69 @@
+{
+  "objectName" : "v-phoenixtorch",
+  "colonyTags" : ["avian","aviantomb","light"],
+  "rarity" : "Common",
+  "category" : "light",
+  "price" : 60,
+
+  "description" : "The crystal is tinted with the color orange.",
+  "shortdescription" : "Phoenix Crystal Torch",
+  "race" : "avian",
+  "printable" : false,
+  "learnBlueprintsOnPickup" : [ "v-phoenixtorch" ],
+
+  "apexDescription" : "The crystal glows a dim orange.",
+  "avianDescription" : "The crystal appears to be a mix of Avolite and some other material.",
+  "floranDescription" : "Color of fire, yet Floran likess it.",
+  "glitchDescription" : "Intrigued. This crystal glow orange like fire yet is not fire itself.",
+  "humanDescription" : "The crystal is warm, both in color and in touch.",
+  "hylotlDescription" : "Something adds to the chorus of colors. It is now orange instead of red.",
+  "novakidDescription" : "That ain't a real torch.",
+
+  "statusEffects" : [ ],
+
+  "lightColor" : [217, 122, 65],
+
+  "flickerPeriod" : 0.5,
+  "flickerMinIntensity" : 0.725,
+  "flickerMaxIntensity" : 0.8,
+  "flickerPeriodVariance" : 0,
+  "flickerIntensityVariance" : 0,
+
+  "inventoryIcon" : "phoenixtorchicon.png",
+  "orientations" : [
+    {
+      "image" : "phoenixtorch.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+
+      "direction" : "left",
+      "flipImages" : true,
+      "animationPosition" : [0, 0],
+
+      "spaces" : [ [0, 0], [0, 1] ],
+      "anchors" : [ "background" ]
+    },
+    {
+      "image" : "phoenixtorch.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+
+      "direction" : "right",
+      "animationPosition" : [0, 0],
+
+      "spaces" : [ [0, 0], [0, 1] ],
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "animation" : "v-phoenixtorch.animation",
+  "animationParts" : {
+    "bg" : "phoenixtorch.png",
+    "fg" : "phoenixtorchlit.png"
+  },
+
+  "scripts" : [ "/objects/wired/light/light.lua" ],
+  "scriptDelta" : 60,
+
+  "inputNodes" : [ [0, 0] ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

@@ -148,7 +148,7 @@
       "walkSpeed" : 4,
       "runSpeed" : 12,
 
-      "airFriction" : 0,
+      "airFriction" : 1,
 
       "airJumpProfile" : {
         "jumpSpeed" : 45.0,
@@ -183,13 +183,13 @@
 
       "stats" : {
         "grit" : {
-          "baseValue" : 1.0
+          "baseValue" : 0.5
         },
         "knockbackStunTime" : {
-          "baseValue" : 0.25
+          "baseValue" : 0.0
         },
         "knockbackThreshold" : {
-          "baseValue" : 9
+          "baseValue" : 4
         },
         "maxHealth" : {
           "baseValue" : 95

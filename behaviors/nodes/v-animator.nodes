@@ -10,5 +10,21 @@
     "category": "v-animator",
     "script": "/scripts/actions/v-animator.lua",
     "output": {}
+  },
+  "v_speedEffect": {
+    "type": "action",
+    "name": "v_speedEffect",
+    "title": "v_speedEffect",
+    "properties": {
+      "flipTransformationGroup": {"type": "string"},
+      "speedThreshold": {"type": "number", "value": 1},
+      "stateType": {"type": "string"},
+      "transformationGroup": {"type": "string"},
+      "warningSpeedThreshold": {"type": "number", "value": 1},
+      "flipRotateTransformationGroup": {"type": "string"}
+    },
+    "category": "v-animator",
+    "script": "/scripts/actions/v-animator.lua",
+    "output": {}
   }
 }

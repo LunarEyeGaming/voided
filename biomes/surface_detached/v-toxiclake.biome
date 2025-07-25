@@ -89,7 +89,7 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1.0,
+        "priority" : 2.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:denseSmall",
 
@@ -97,7 +97,21 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-fungalblob1" ], [1.0, "v-fungalblob2" ], [1.0, "v-fungalblob3" ], [1.0, "v-fungalblob4" ], [1.0, "v-fungalblob5" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface_detached/v-toxiclake" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-biomeinvisible" ] ],
+            "parameters" : { "originBiome" : "surface_detached/v-toxiclake" }
           }
         ]
       }

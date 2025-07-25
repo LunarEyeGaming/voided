@@ -1,0 +1,17 @@
+{
+  "ability" : {
+    "type" : "v-meteors",
+    "name" : "Meteors",
+    "scripts" : ["/items/active/weapons/staff/abilities/controlprojectile/controlprojectile.lua"],
+    "class" : "ControlProjectile",
+
+    "energyCost" : 300,
+
+    "maxCastRange" : 25,
+
+    "projectileType" : "v-meteorwandspawner",
+    "projectileParameters" : {
+      "baseDamage" : 8
+    }
+  }
+}

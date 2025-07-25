@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-inferniteshieldblast",
+  "image" : "inferniteshieldblast.png",
+  "animationCycle" : 0.3,
+  "timeToLive" : 0.3,
+  "frameNumber" : 6,
+  "speed" : 0,
+  "animationLoops" : false,
+  "fullbright" : true,
+  "piercing" : true,
+  "flippable" : true,
+  // "damageKind" : "default",
+  // "damageType" : "NoDamage",
+  "damageKind" : "fire",
+  "damageRepeatGroup" : "v-inferniteshield",
+  "damagePoly" : [ [0, 32], [12, 22], [16, 0], [12, -22], [0, -32], [-12, -22], [-16, 0], [-12, 22] ],
+
+  "lightColor" : [115, 119, 38]
+}

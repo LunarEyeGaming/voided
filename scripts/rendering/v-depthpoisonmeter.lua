@@ -30,15 +30,15 @@ local oldUpdate = update or function() end
 function init()
   oldInit()
 
-  message.setHandler("v-depthPoison-showMeter", showMeter)
+  message.setHandler("v-depthPoison-showMeter", v_depthPoisonMeter_showMeter)
 
-  message.setHandler("v-depthPoison-hideMeter", hideMeter)
+  message.setHandler("v-depthPoison-hideMeter", v_depthPoisonMeter_hideMeter)
 
   message.setHandler("v-depthPoison-setRatio", function(_, _, ratio)
-    displayPoisonRatio(ratio)
+    v_depthPoisonMeter_displayPoisonRatio(ratio)
   end)
 
-  message.setHandler("v-depthPoison-flash", flash)
+  message.setHandler("v-depthPoison-flash", v_depthPoisonMeter_flash)
 
   message.setHandler("v-depthPoison-setShimmerTime", function(_, _, time)
     if time then
@@ -81,29 +81,29 @@ function update(dt)
 
   -- Show meter if active
   if meterActive then
-    updateAnim(dt)
-    updateTimers(dt)
-    drawShimmer(dt)
+    v_depthPoisonMeter_updateAnim(dt)
+    v_depthPoisonMeter_updateTimers(dt)
+    v_depthPoisonMeter_drawShimmer(dt)
   end
 end
 
-function showMeter()
+function v_depthPoisonMeter_showMeter()
   meterActive = true
 end
 
-function hideMeter()
+function v_depthPoisonMeter_hideMeter()
   meterActive = false
 end
 
-function displayPoisonRatio(ratio)
+function v_depthPoisonMeter_displayPoisonRatio(ratio)
   poisonRatio = ratio
 end
 
-function flash()
+function v_depthPoisonMeter_flash()
   flashTimer = flashTime
 end
 
-function updateAnim(dt)
+function v_depthPoisonMeter_updateAnim(dt)
   localAnimator.addDrawable({
     image = baseLayerImage,
     position = meterOffset,
@@ -139,7 +139,7 @@ function updateAnim(dt)
   }, meterRenderLayer)
 end
 
-function updateTimers(dt)
+function v_depthPoisonMeter_updateTimers(dt)
   flashTimer = math.max(0, flashTimer - dt)
 
   if poisonRatio >= warningThreshold then
@@ -152,7 +152,7 @@ function updateTimers(dt)
   end
 end
 
-function drawShimmer(dt)
+function v_depthPoisonMeter_drawShimmer(dt)
   if shouldShimmer then
     shimmerTimer = shimmerTimer + dt
     if shimmerTimer > shimmerTime then

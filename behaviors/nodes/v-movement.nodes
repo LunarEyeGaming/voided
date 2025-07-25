@@ -72,5 +72,56 @@
     "category": "v-movement",
     "script": "/scripts/actions/v-movement.lua",
     "output": {}
+  },
+  "v_impactAction": {
+    "type": "action",
+    "name": "v_impactAction",
+    "title": "v_impactAction",
+    "properties": {
+      "explosionConfig": {"type": "json", "value": {}},
+      "explosionDistance": {"type": "number"},
+      "explosionProjectile": {"type": "string"},
+      "speedThreshold": {"type": "number", "value": 0},
+      "target": {"type": "entity"},
+      "useSticky": {"type": "bool", "value": false}
+    },
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
+    "output": {}
+  },
+  "v_stickyHopApproach": {
+    "type": "action",
+    "name": "v_stickyHopApproach",
+    "title": "v_stickyHopApproach",
+    "properties": {
+      "gravityMultiplier": {"type": "number", "value": 1.5},
+      "hopSpeed": {"type": "number", "value": 60},
+      "maxRaycastLength": {"type": "number", "value": 50},
+      "minRaycastLength": {"type": "number", "value": 5},
+      "preHopDelay": {"type": "number", "value": 0.1},
+      "preferDirectAttacks": {"type": "bool", "value": false},
+      "rayCount": {"type": "number", "value": 40},
+      "target": {"type": "entity"},
+      "targetPos": {"type": "position"}
+    },
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
+    "output": {}
+  },
+  "v_turnTowardTarget": {
+    "type": "action",
+    "name": "v_turnTowardTarget",
+    "title": "v_turnTowardTarget",
+    "properties": {
+      "entity": {"type": "entity"},
+      "turnSpeed": {"type": "number"},
+      "angle": {"type": "number"}
+    },
+    "category": "v-movement",
+    "script": "/scripts/actions/v-movement.lua",
+    "output": {
+      "angle": {"type": "number", "key": null},
+      "direction": {"type": "number", "key": null}
+    }
   }
 }

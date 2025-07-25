@@ -1,0 +1,28 @@
+{
+  "projectileName" : "v-ice19bombstatusprojectileinverted",
+  "physics" : "statuspod",
+  "bounces" : -1,
+  "timeToLive" : 1.5,
+  "speed" : 0,
+  "damageKindImage" : "icon.png",
+  "image" : "/projectiles/status/v-invisiblestatusprojectile.png",
+  "animationCycle" : 0.5,
+  "frameNumber" : 4,
+  "periodicActions" : [
+    {
+      "time" : 0.35,
+      "action" : "projectile",
+      "type" : "v-ice19bomb",
+      "angle" : -90,
+      "fuzzAngle" : 90,
+      "offset" : [0, 0.5]
+    }
+  ],
+  "power" : 0,
+  "piercing" : true,
+  "damageKind" : "hidden",
+  "damageType" : "ignoresdef",
+  "damagePoly" : [ [-80, -80], [-80, 80], [80, 80], [80, -80]  ],
+  "flippable" : true,
+  "damageTeam" : { "type" : "indiscriminate" }
+}

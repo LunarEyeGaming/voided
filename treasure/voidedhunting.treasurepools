@@ -45,8 +45,9 @@
   "v-bulbheadHunting" : [
     [1, {
       "pool" : [
-        {"weight" : 0.5, "item" : "staticcell"},
-        {"weight" : 0.5, "item" : "v-ascensioncomponentmaterial"}
+        {"weight" : 0.5, "item" : "alienmeat"},
+        {"weight" : 0.25, "item" : "staticcell"},
+        {"weight" : 0.25, "item" : "v-ascensioncomponentmaterial"}
       ],
       "poolRounds" : [
         [0.6, 0],
@@ -99,7 +100,7 @@
       "allowDuplication" : false
     } ]
   ],
-  
+
   "v-bigpufferHunting" : [
     [1, {
       "pool" : [
@@ -132,6 +133,77 @@
       "pool" : [
         {"weight" : 1.000, "item" : "sharpenedclaw"},
         {"weight" : 1.000, "item" : "venomsample"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-sunleaperHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "rawpoultry"},
+        {"weight" : 0.25, "item" : "scorchedcore"},
+        {"weight" : 0.25, "item" : "v-sunleaperbeak"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-pyremanderHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 1.0, "item" : "scorchedcore"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-lurkanoHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "alienmeat"},
+        {"weight" : 0.25, "item" : "scorchedcore"},
+        {"weight" : 0.25, "item" : "hardenedcarapace"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-novamonsterHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "alienmeat"},
+        {"weight" : 0.25, "item" : "scorchedcore"},
+        {"weight" : 0.25, "item" : "hardenedcarapace"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-dracucumberHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 1.0, "item" : "scorchedcore"}
       ],
       "poolRounds" : [
         [0.6, 0],

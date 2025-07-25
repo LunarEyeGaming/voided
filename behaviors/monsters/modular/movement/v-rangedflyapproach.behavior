@@ -1,11 +1,12 @@
 {
   "name": "v-approach-rangedfly",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/animator.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/entity.lua",
     "/scripts/actions/v-movement.lua",
-    "/scripts/actions/query.lua",
-    "/scripts/actions/world.lua"
+    "/scripts/actions/movement.lua"
   ],
   "parameters": {
     "minRange": 10,
@@ -14,7 +15,8 @@
     "controlForce": null,
     "flyState": "fly",
     "usePathfinding": true,
-    "idleState": ""
+    "idleState": "",
+    "faceDirection": true
   },
   "root": {
     "title": "parallel",
@@ -83,11 +85,13 @@
                     "type": "action",
                     "name": "v_rangedFlyApproach",
                     "parameters": {
-                      "minRange": {"key": "<minRange>"},
+                      "avoidSurfaces": {"value": false},
+                      "controlForce": {"key": "<controlForce>"},
                       "maxRange": {"key": "<maxRange>"},
+                      "minRange": {"key": "<minRange>"},
                       "position": {"key": "targetPosition"},
                       "speed": {"key": "<speed>"},
-                      "controlForce": {"key": "<controlForce>"}
+                      "faceDirection": {"key": "<faceDirection>"}
                     }
                   }
                 ]
@@ -124,11 +128,13 @@
                 "type": "action",
                 "name": "v_rangedFlyApproach",
                 "parameters": {
-                  "minRange": {"key": "<minRange>"},
+                  "avoidSurfaces": {"value": false},
+                  "controlForce": {"key": "<controlForce>"},
                   "maxRange": {"key": "<maxRange>"},
+                  "minRange": {"key": "<minRange>"},
                   "position": {"key": "targetPosition"},
                   "speed": {"key": "<speed>"},
-                  "controlForce": {"key": "<controlForce>"}
+                  "faceDirection": {"key": "<faceDirection>"}
                 }
               }
             ]

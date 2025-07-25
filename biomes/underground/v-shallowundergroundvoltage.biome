@@ -1,6 +1,6 @@
 {
   "name" : "v-shallowundergroundvoltage",
-  "friendlyName" : "Shallow Electrified Caves",
+  "friendlyName" : "Voltage Caves Shallow",
 
   "spawnProfile" : {
     "groups" : [
@@ -149,15 +149,6 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundBiomeEncounterDungeon",
-
-        "type" : "microdungeon",
-        "microdungeons" : [ "undergroundencounterdungeons" ]
-      },
-      {
-        "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:denseSmall",
@@ -166,7 +157,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-ironspikes1" ], [1.0, "v-ironspikes2" ], [1.0, "v-ironspikes3" ], [1.0, "v-ironspikes4" ], [1.0, "v-ironspikes5" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground/v-shallowundergroundvoltage" }
           }
         ]
       }

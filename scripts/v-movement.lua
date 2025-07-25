@@ -1,3 +1,30 @@
+require "/scripts/vec2.lua"
+
+---Utility functions related to movement
+vMovement = {}
+
+---__Actor movement controller only__
+---
+---Approaches the provided position at `speed` and with force `controlForce`.
+---@param pos Vec2F
+---@param speed number
+---@param controlForce number
+function vMovement.controlApproachPosition(pos, speed, controlForce)
+  local direction = vec2.norm(world.distance(pos, mcontroller.position()))
+  mcontroller.controlApproachVelocity(vec2.mul(direction, speed), controlForce)
+end
+
+---__Movement controller only__
+---
+---Approaches the provided position at `speed` and with force `controlForce`.
+---@param pos Vec2F
+---@param speed number
+---@param controlForce number
+function vMovement.approachPosition(pos, speed, controlForce)
+  local direction = vec2.norm(world.distance(pos, mcontroller.position()))
+  mcontroller.approachVelocity(vec2.mul(direction, speed), controlForce)
+end
+
 ---Utility coroutine functions related to movement.
 vMovementA = {}
 

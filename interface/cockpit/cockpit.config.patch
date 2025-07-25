@@ -1,7 +1,7 @@
 [
-  // More Planet Info Support
+  // More Planet Info & Planet Search Support
   [
-    // Check if More Planet Info is installed. If not, none of the patches below will be applied.
+    // Check if More Planet Info or Planet Search is installed. If not, none of the patches below will be applied.
     {"op" : "test", "path" : "/displayDungeons"},
 
     // Dungeon icons and labels.
@@ -9,10 +9,51 @@
       "op" : "add",
       "path" : "/displayDungeons/v-strongholdgateway",
       "value" : {
+        "name" : "Stronghold Gateway (LEGACY)",
         "description" : "A large, unknown structure engulfed in magma. Heavy energy readings resonate from this area.",
         "icon" : "/interface/cockpit/dungeons/v-strongholdgateway.png"
       }
     },
+    {
+      "op" : "add",
+      "path" : "/displayDungeons/v-voltagecity",
+      "value" : {
+        "name" : "Voltropolis",
+        "description" : "A small city located near the center of the planet. Holds military-grade weapons supercharged with electricity.",
+        "icon" : "/items/generic/quest/v-powercube.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayDungeons/v-toxiclaboratory",
+      "value" : {
+        "name" : "Fungal Laboratory",
+        "description" : "A laboratory situated deep underground. Does research on fungal bioweapons.",
+        "icon" : "/items/generic/quest/v-keycard.png:0"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayDungeons/v-ministarspawn",
+      "value" : {
+        "description" : "",
+        "icon" : ""
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayDungeons/v-multidashpyramid",
+      "value" : {
+        "name" : "Phoenix Pyramid",
+        "description" : "A very large pyramid with signs of Avian technology.",
+        "icon" : "/interface/cockpit/dungeons/v-multidashpyramid.png"
+      }
+    }
+  ],
+
+  // More Planet Info Support
+  [
+    {"op" : "test", "path" : "/wordsList"},
 
     // Make label for Rusted Voltage biomes visible.
     {"op" : "add", "path" : "/planetTypeNames/v-voltagerusty", "value" : "Rusted Voltage"},
@@ -56,18 +97,163 @@
         "displayName" : "Dangerously Conductive", "icon" : "/interface/cockpit/hazards/v-biomeelectric.png"}},
     {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomepoison", "value" : {
         "displayName" : "Mycotoxin", "icon" : "/interface/cockpit/hazards/v-biomepoison.png"}},
+    {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomesun", "value" : {
+        "displayName" : "Solar Radiation", "icon" : "/interface/cockpit/hazards/v-biomesun.png"}},
 
     // Threat level support for weather. Weather types not included have a threat level of 0.
-    {"op" : "add", "path": "/weatherThreatValues/v-copperstorm", "value": 1.5},
-    {"op" : "add", "path": "/weatherThreatValues/v-copperstorm2", "value": 1.0},
-    {"op" : "add", "path": "/weatherThreatValues/v-copperstormlight", "value": 0.3},
-    {"op" : "add", "path": "/weatherThreatValues/v-copperstormlight2", "value": 0.3},
-    {"op" : "add", "path": "/weatherThreatValues/v-lightningstorm", "value": 2.0},
-    {"op" : "add", "path": "/weatherThreatValues/v-coppersuperstorm", "value": 3.0},
-    {"op" : "add", "path": "/weatherThreatValues/v-coppersuperstorm2", "value": 2.5},
-    {"op" : "add", "path": "/weatherThreatValues/v-chargedground", "value": 1.0},
-    {"op" : "add", "path": "/weatherThreatValues/v-toxichaze", "value": 5.0},
-    {"op" : "add", "path": "/weatherThreatValues/v-toxicblobs", "value": 2.0}
+    {"op" : "add", "path" : "/weatherThreatValues/v-copperstorm", "value": 1.5},
+    {"op" : "add", "path" : "/weatherThreatValues/v-copperstorm2", "value": 1.0},
+    {"op" : "add", "path" : "/weatherThreatValues/v-copperstormlight", "value": 0.3},
+    {"op" : "add", "path" : "/weatherThreatValues/v-copperstormlight2", "value": 0.3},
+    {"op" : "add", "path" : "/weatherThreatValues/v-lightningstorm", "value": 2.0},
+    {"op" : "add", "path" : "/weatherThreatValues/v-coppersuperstorm", "value": 3.0},
+    {"op" : "add", "path" : "/weatherThreatValues/v-coppersuperstorm2", "value": 2.5},
+    {"op" : "add", "path" : "/weatherThreatValues/v-chargedground", "value": 1.0},
+    {"op" : "add", "path" : "/weatherThreatValues/v-toxichaze", "value": 5.0},
+    {"op" : "add", "path" : "/weatherThreatValues/v-toxicblobs", "value": 2.0}
+  ],
+
+  // Planet Search Patches
+  [
+    {"op" : "test", "path" : "/displayBiomes"},
+    // VOLTAGE
+    {"op" : "add", "path" : "/displayBiomes/v-voltageatmosphererusty", "value" : {
+      "name" : "Rust-Filled Atmosphere", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltageatmosphere", "value" : {
+      "name" : "Electrified Atmosphere", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltage", "value" : {
+      "name" : "Electrified Caves Shallow", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltageruins", "value" : {
+      "name" : "Electrified Caves Shallow (Ruins)", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltagetraps", "value" : {
+      "name" : "Electrified Caves Shallow (Traps)", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundvoltagerusty", "value" : {
+      "name" : "Rusted Caves", "icon" : "/items/materials/v-rustedironrockmaterial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-undergroundvoltage", "value" : {
+      "name" : "Electrified Caves", "icon" : "/items/materials/v-ironrockmaterial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-undergroundvoltagetraps", "value" : {
+      "name" : "Electrified Caves (Traps)", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-deepundergroundvoltage", "value" : {
+      "name" : "Electrified Caves Deep", "icon" : "/interface/bookmarks/icons/v-voltage.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagecorelayer", "value" : {
+      "name" : "Electrified Core", "icon" : "/items/materials/v-chargedstonematerial.png"
+    }},
+
+    {"op" : "add", "path" : "/displayBiomes/v-voltageforest", "value" : {
+      "name" : "Electric Forest", "icon" : "/items/generic/crafting/v-insulatingsap.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagespikes", "value" : {
+      "name" : "Voltage (Spikes)", "icon" : "/objects/biome/v-voltage/v-climbingarctrap/icon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagespikesrusty", "value" : {
+      "name" : "Rusted Voltage (Spikes)", "icon" : "/objects/biome/v-voltage/v-climbingarctrap/icon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagewastes", "value" : {
+      "name" : "Charged Hills", "icon" : "/objects/biome/v-voltage/v-dischargetrap/dischargetrapicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagewastesoxidized", "value" : {
+      "name" : "Charged Hills (Oxidized)", "icon" : "/objects/biome/v-voltage/v-oxidizeddischargetrap/oxidizeddischargetrapicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagedesertruins", "value" : {
+      "name" : "Copper Desert", "icon" : "/items/materials/v-coppersandmaterial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-voltagedesertruinsoxidized", "value" : {
+      "name" : "Oxidized Copper Desert", "icon" : "/items/materials/v-oxidizedcoppersandmaterial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-deepvoltagewastes", "value" : {
+      "name" : "Charged Caverns", "icon" : "/objects/biome/v-voltage/v-dischargetrap/dischargetrapicon.png?flipy"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-barrencaves", "value" : {
+      "name" : "Barren Caves", "icon" : "/items/materials/v-ironrockmaterial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-coilcaves", "value" : {
+      "name" : "Coil Caves", "icon" : "/objects/biome/v-voltage/v-giantcoil/icon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-pairingcaves", "value" : {
+      "name" : "Pairing Hollows", "icon" : "/objects/biome/v-voltage/v-electricpairingtrap/electricpairingtrapicon.png"
+    }},
+    // TOXIC WASTELAND
+    {"op" : "add", "path" : "/displayBiomes/v-toxicatmosphere", "value" : {
+      "name" : "Toxic Atmosphere", "icon" : "/interface/bookmarks/icons/v-toxicwasteland.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundtoxic", "value" : {
+      "name" : "Toxic Caves Shallow", "icon" : "/interface/bookmarks/icons/v-toxicwasteland.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-undergroundtoxic", "value" : {
+      "name" : "Toxic Caves", "icon" : "/items/materials/v-toxicstonematerial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-deepundergroundtoxic", "value" : {
+      "name" : "Toxic Caves Deep", "icon" : "/interface/bookmarks/icons/v-toxicwasteland.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-toxicwastelandcorelayer", "value" : {
+      "name" : "Fungal Core", "icon" : "/items/materials/v-toxicmyceliummaterial.png"
+    }},
+
+    {"op" : "add", "path" : "/displayBiomes/v-crystalmountains", "value" : {
+      "name" : "Crystal Mountains", "icon" : "/items/materials/purplecrystal.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-toxiclake", "value" : {
+      "name" : "Colony's Corpse", "icon" : "/items/liquids/v-liquidsuperpoisonicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-poisonfloodedcaves", "value" : {
+      "name" : "Poison-Flooded Caves", "icon" : "/items/liquids/liquidpoisonicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-flowerfield", "value" : {
+      "name" : "Flower Field", "icon" : "/items/materials/v-toxicsoilmaterial.png"
+    }},
+    // MINISTAR
+    {"op" : "add", "path" : "/displayBiomes/v-burningasteroids", "value" : {
+      "name" : "Burning Asteroids", "icon" : "/items/materials/v-burningmeteoritematerial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-ministaratmosphere", "value" : {
+      "name" : "Ministar Atmosphere", "icon" : "/interface/bookmarks/icons/v-ministar.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundministar", "value" : {
+      "name" : "Ministar Caves Shallow", "icon" : "/interface/bookmarks/icons/v-ministar.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-undergroundministar", "value" : {
+      "name" : "Ministar Caves", "icon" : "/items/materials/v-sunspotstonematerial.png"
+    }},
+
+    {"op" : "add", "path" : "/displayBiomes/v-basalticislands", "value" : {
+      "name" : "Basaltic Islands", "icon" : "/objects/biome/v-ministar/v-missilebloomseed/missilebloomseedicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-asteroidforest", "value" : {
+      "name" : "Hanging Forest", "icon" : "/items/generic/crafting/v-charredbark.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-undergroundministarempty", "value" : {
+      "name" : "Ministar Mantle", "icon" : "/items/liquids/v-liquidsunicon.png"
+    }}
+  ],
+
+  [
+    {"op" : "test", "path" : "/planetSearch_ignore"},
+
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-toxicatmosphere"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundtoxic"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-deepundergroundtoxic"},
+
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-voltageatmosphere"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-voltageatmosphererusty"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundvoltage"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundvoltageruins"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundvoltagetraps"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-undergroundvoltagetraps"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-deepundergroundvoltage"},
+
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-ministaratmosphere"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundministar"},
+
+    {"op" : "add", "path" : "/planetSearch_ignore/dungeons/-", "value" : "v-ministarspawn"}
   ],
 
   // Vanilla Patches
@@ -90,6 +276,16 @@
         "Cloud-penetrating scans indicate a barren ^#a270b5;toxic wasteland^reset;. Mitigating the effects of the ^red;mycotoxic^reset; atmosphere is strongly advised.",
         "A thick, ^red;mycotoxic^reset; haze blocks the surface of the ^#a270b5;toxic wasteland^reset;.",
         "The ^red;mycotoxic^reset; atmosphere of this ^#a270b5;toxic wasteland^reset; poses a threat to any unprepared explorer."
+      ]
+    },
+
+    {
+      "op" : "add",
+      "path" : "/visitableTypeDescription/v-ministar",
+      "value" : [
+        "A ^#ff8547;ministar^reset;, emanating ^red;solar radiation^reset; from the surface. The safest beam site is in the asteroids.",
+        "Definitively an anomaly of our universe, this ^#ff8547;ministar^reset; constantly emits ^red;solar radiation^reset;.",
+        "Defying all laws of physics, this planet undergoes fusion in its core, making it a ^#ff8547;ministar^reset;. Be wary of its ^red;solar radiation^reset;."
       ]
     },
 
@@ -119,6 +315,11 @@
       "path" : "/planetTypeNames/v-toxicwasteland",
       "value" : "Toxic Wasteland"
     },
+    {
+      "op" : "add",
+      "path" : "/planetTypeNames/v-ministar",
+      "value" : "Ministar"
+    },
 
     // Add planet label colors
     {
@@ -136,6 +337,11 @@
       "path": "/planetTypeColors/v-toxicwasteland",
       "value" : [162, 112, 181]
     },
+    {
+      "op": "add",
+      "path": "/planetTypeColors/v-ministar",
+      "value" : [255, 133, 71]
+    },
 
     // Add new star type label
     {
@@ -149,7 +355,7 @@
       "value" : "Outsider Star"
     },
 
-    // Add T7 label (planets)
+    // Add T8 label (planets)
     {
       "op": "replace",
       "path": "/threatLevelText/default/7",
@@ -163,7 +369,7 @@
 
     // TODO: Change this so that it is compatible with other mods that define a threat color and text for T6+ space
     // objects
-    // Add T7 label (anomalies, hostile ships, etc.)
+    // Add T8 label (anomalies, hostile ships, etc.)
     {
       "op": "add",
       "path": "/objectThreatColors/available/-",
@@ -190,6 +396,14 @@
       "value" : {
         "displayName" : "Toxikite",
         "icon" : "/items/generic/crafting/v-toxikiteore.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayOres/v-infernite",
+      "value" : {
+        "displayName" : "Infernite",
+        "icon" : "/items/generic/crafting/v-inferniteore.png"
       }
     },
 
@@ -258,6 +472,7 @@
         "icon" : "/interface/cockpit/weather/v-chargedground.png"
       }
     },
+
     {
       "op" : "add",
       "path" : "/displayWeathers/v-toxichaze",
@@ -274,17 +489,63 @@
         "icon" : "/interface/cockpit/weather/v-toxicblobs.png"
       }
     },
+
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-ministarwind",
+      "value" : {
+        "displayName" : "Solar Wind",
+        "icon" : "/interface/cockpit/weather/v-ministarwind.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-ministarwindextreme",
+      "value" : {
+        "displayName" : "Coronal Gust",
+        "icon" : "/interface/cockpit/weather/v-ministarwindextreme.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-ministarflaresmall",
+      "value" : {
+        "displayName" : "Solar Flare",
+        "icon" : "/interface/cockpit/weather/v-ministarflare.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-breadcrustbombs",
+      "value" : {
+        "displayName" : "Bread Crust Bombs",
+        "icon" : "/interface/cockpit/weather/v-breadcrustbombs.png"
+      }
+    },
     // Scripts
     {
       "op" : "add",
       "path" : "/scripts/-",
       "value" : "/interface/cockpit/v-messageonvisitplugin.lua"
     },
+    {
+      "op" : "add",
+      "path" : "/scripts/-",
+      "value" : "/interface/cockpit/v-starriftdrawingplugin.lua"
+    },
     // Miscellaneous Parameters
     {
       "op" : "add",
       "path" : "/v-extradimensionalStarMessages",
       "value" : ["v-extradimensionalstar", "v-turnontutorialmessages"]
+    },
+    {
+      "op" : "add",
+      "path" : "/v-starRiftDrawable",
+      "value" : {
+        "image" : "/celestial/system/v-extradimensionalstarrift.png",
+        "scale" : 0.01
+      }
     }
   ]
 ]

@@ -1,0 +1,20 @@
+{
+  "kind" : "v-downspitterseedwarningwide1",
+  "definition" : {
+    "type" : "animated",
+    "animation" : "/animations/statuseffects/poison/poisonshort.animation",
+    "position" : [0, 0],
+    "initialVelocity" : [100, 0],
+    "finalVelocity" : [0, 0],
+    "approach" : [50, 50],
+    "layer" : "front",
+    "collidesForeground" : false,
+    "size" : 1.0,
+    "timeToLive" : 0.45,
+    "fade" : 0.5,
+    "light" : [50, 90, 0],
+    "variance" : {
+      "initialVelocity" : [15, 15]
+    }
+  }
+}

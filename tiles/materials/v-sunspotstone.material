@@ -1,0 +1,24 @@
+{
+  "materialId" : 1212,
+  "materialName" : "v-sunspotstone",
+  "particleColor" : [92, 90, 87, 255],
+  "itemDrop" : "v-sunspotstonematerial",
+  "description" : "A tough, rocky substance with an incredibly high melting point.",
+  "shortdescription" : "Sunspot Stone",
+  "glitchDescription" : "Amazed. This stone has a high hardness value and melting point.",
+  "floranDescription" : "Dark rocksss can't be melted by sun.",
+  "novakidDescription" : "Some tough n' smooth rock. It can't be melted by the sun.",
+  "footstepSound" : "/sfx/blocks/footstep_stone3.ogg",
+  "health" : 24,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-sunspotstone.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1500
+  }
+}

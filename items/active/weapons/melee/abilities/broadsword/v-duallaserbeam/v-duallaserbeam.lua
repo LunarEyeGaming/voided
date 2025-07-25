@@ -233,7 +233,7 @@ function DualBeam:getCollidePointAndDistance(partName)
   local collideEnd = vec2.add(mcontroller.position(), activeItem.handPosition(animator.transformPoint({
       self.beamLength + self.beamMuzzleOffset[1], self.beamMuzzleOffset[2]}, partName)))
 
-  world.debugLine(collideStart, collideEnd, "green")
+  -- world.debugLine(collideStart, collideEnd, "green")
 
   local collidePoint = world.lineCollision(collideStart, collideEnd)
 

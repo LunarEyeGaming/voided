@@ -1,6 +1,6 @@
 {
   "name" : "v-deepundergroundvoltage",
-  "friendlyName" : "Deep Electrified Caves",
+  "friendlyName" : "Voltage Caves Deep",
 
   "spawnProfile" : {
     "groups" : [
@@ -160,15 +160,6 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundBiomeEncounterDungeon",
-
-        "type" : "microdungeon",
-        "microdungeons" : [ "undergroundencounterdungeons" ]
-      },
-      {
-        "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:denseSmall",
@@ -191,7 +182,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-electriccrystal1" ], [1.0, "v-electriccrystal2" ], [1.0, "v-electriccrystal3" ], [1.0, "v-electriccrystal4" ], [1.0, "v-electriccrystal5" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground/v-deepundergroundvoltage" }
           }
         ]
       },
@@ -205,7 +196,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-electriccrystal1" ], [1.0, "v-electriccrystal2" ], [1.0, "v-electriccrystal3" ], [1.0, "v-electriccrystal4" ], [1.0, "v-electriccrystal5" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground/v-deepundergroundvoltage" }
           }
         ]
       }

@@ -1,0 +1,49 @@
+{
+  "projectileName" : "v-ancientsetbonusorbiter2",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "actionOnReap" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/gun/impact_plasma.ogg" ]
+    },
+    {
+      "action" : "loop",
+      "count" : 2,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "ancientenergy1"
+        },
+        {
+          "action" : "particle",
+          "specification" : "ancientenergy2"
+        },
+        {
+          "action" : "particle",
+          "specification" : "ancientenergy3"
+        }
+      ]
+    }
+  ],
+  "foundTargetAction" : {},
+  "renderLayer" : "ForegroundEntity+1",
+  "image" : "ancientsetbonusorbiter2.png",
+  "animationCycle" : 0.1,
+  "frameNumber" : 1,
+  "lightColor" : [130, 70, 160],
+  "fullbright" : true,
+  "timeToLive" : 1,
+  "onlyHitTerrain" : true,
+  "orientationLocked" : true,
+  "speed" : 25,
+  "damageKind" : "plasma",
+  "scripts" : [ "v-ancientsetbonusorbiter.lua" ],
+  "scriptDelta" : 1,
+
+  "orbitRadius" : 3,
+  "orbitPeriod" : 3,
+  "orbitControlForce" : 1000,
+  "firedProjectile" : "v-ancientsetbonusshot2",
+  "firedProjectileConfig" : {}
+}

@@ -41,7 +41,7 @@ local scriptIsEnabled
 
 function init()
   scriptIsEnabled = true
-  worldTypeWhitelist = {"v-voltage", "v-toxicwasteland"}
+  worldTypeWhitelist = {"v-voltage", "v-toxicwasteland", "v-ministar"}
 
   local worldType = world.type()
   -- If the current world type is not in the worldTypeWhitelist...
@@ -53,7 +53,7 @@ function init()
   end
 
   allowedEquipmentLevels = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
-  minSpawnCooldown = 60 * 30
+  minSpawnCooldown = 60 * 60
   minPlanetStayTime = 60 * 30
   spawnAttemptInterval = 30
   spawnProbability = 0.05

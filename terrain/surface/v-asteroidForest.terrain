@@ -1,0 +1,209 @@
+{
+  "name" : "v-asteroidForest",
+
+  "type" : "displacement",
+  "xType" : "perlin",
+  "xOctaves" : 2,
+  "xFreq" : 0.2,
+  "xAmp" : 1,
+  "xXInfluence" : 0,
+  "yType" : "perlin",
+  "yOctaves" : 2,
+  "yFreq" : 0.2,
+  "yAmp" : 1,
+  "yYInfluence" : 0,
+
+  "source" : {
+    "type" : "max",
+
+    "sources" : [
+      {
+        //islands, layer 1
+        "type" : "islandSurface",
+
+        "seedBias" : 1,
+
+        "islandElevation" : 0,
+
+        "islandDecision" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 1.1,
+          "bias" : -0.05
+        },
+        "islandTaperPoint" : 0.2,
+
+        "islandHeight" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.035,
+          "amplitude" : 13,
+          "bias" : 15
+        },
+
+        "islandDepth" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 13,
+          "bias" : 15
+        }
+      },
+      {
+        //islands, layer 2
+        "type" : "islandSurface",
+
+        "seedBias" : 2,
+
+        "islandElevation" : -160,
+
+        "islandDecision" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 1.1,
+          "bias" : -0.05
+        },
+        "islandTaperPoint" : 0.2,
+
+        "islandHeight" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.035,
+          "amplitude" : 13,
+          "bias" : 15
+        },
+
+        "islandDepth" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 13,
+          "bias" : 15
+        }
+      },
+      {
+        //islands, layer 3
+        "type" : "islandSurface",
+
+        "seedBias" : 3,
+
+        "islandElevation" : 160,
+
+        "islandDecision" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 1.1,
+          "bias" : -0.05
+        },
+        "islandTaperPoint" : 0.2,
+
+        "islandHeight" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.035,
+          "amplitude" : 13,
+          "bias" : 15
+        },
+
+        "islandDepth" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 13,
+          "bias" : 15
+        }
+      },
+      {
+        //islands, layer 4
+        "type" : "islandSurface",
+
+        "seedBias" : 4,
+
+        "islandElevation" : -320,
+
+        "islandDecision" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 1.1,
+          "bias" : -0.05
+        },
+        "islandTaperPoint" : 0.2,
+
+        "islandHeight" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.035,
+          "amplitude" : 13,
+          "bias" : 15
+        },
+
+        "islandDepth" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 13,
+          "bias" : 15
+        }
+      },
+      {
+        //islands, layer 5
+        "type" : "islandSurface",
+
+        "seedBias" : 5,
+
+        "islandElevation" : 320,
+
+        "islandDecision" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 1.1,
+          "bias" : -0.05
+        },
+        "islandTaperPoint" : 0.2,
+
+        "islandHeight" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.035,
+          "amplitude" : 13,
+          "bias" : 15
+        },
+
+        "islandDepth" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 13,
+          "bias" : 15
+        }
+      },
+      {
+        "type" : "perlin",
+        "seedBias" : 2,
+        "function" : "perlin",
+        "octaves" : 1,
+        "freq" : 0.08,
+        "amp" : 1,
+        "bias" : -0.40,
+        "xInfluence" : 0.66,
+        "yInfluence" : 1.0
+      },
+      {
+        "type" : "perlin",
+        "seedBias" : 3,
+        "function" : "perlin",
+        "octaves" : 1,
+        "freq" : 0.12,
+        "amp" : 1,
+        "bias" : -0.40,
+        "xInfluence" : 0.66,
+        "yInfluence" : 1.0
+      }
+    ]
+  }
+}

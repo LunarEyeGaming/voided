@@ -1,0 +1,23 @@
+{
+  "materialId" : 1217,
+  "materialName" : "v-sunspotplatform",
+  "collisionKind" : "platform",
+  "itemDrop" : "v-sunspotplatform",
+  "shortdescription" : "Sunspot Platform",
+  "description" : "A platform made of a material that cannot be melted by the sun.",
+  "glitchDescription" : "Impressed. The toughness of this material makes carving it difficult.",
+  "floranDescription" : "Platform made from dark bricksss.",
+  "novakidDescription" : "Platforms made outta hard, dark rocks.",
+  "footstepSound" : "/sfx/blocks/footstep_stone2.ogg",
+  "category" : "Supports",
+
+  "renderTemplate" : "/tiles/platformtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-sunspotplatform.png",
+    "variants" : 3,
+    "lightTransparent" : true,
+    "occludesBelow" : false,
+    "multiColored" : true,
+    "zLevel" : 0
+  }
+}

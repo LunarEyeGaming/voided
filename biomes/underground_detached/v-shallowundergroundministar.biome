@@ -1,0 +1,203 @@
+{
+  "name" : "v-shallowundergroundministar",
+  "friendlyName" : "Ministar Caves Shallow",
+
+  "spawnProfile" : {
+    "groups" : [
+      {
+        "select" : 3,
+        "pool" : [
+          [ 1.0, "v-sunleaperground" ],
+          [ 1.0, "v-firefloater" ],
+          [ 1.0, "v-novamonster" ],
+          [ 1.0, "v-lurkano" ]
+        ]
+      },
+      {
+        "select" : 1,
+        "pool" : "generatedGroundAggroDay"
+      }
+    ],
+    "monsterParameters" : {
+      "colors" : "magma",
+      "statusSettings" : {
+        "stats" : {
+          "fireResistance" : {
+            "baseValue" : 0.5
+          },
+          "iceResistance" : {
+            "baseValue" : -0.25
+          },
+          "lavaImmunity" : {
+            "baseValue" : 1.0
+          },
+          "v-evaporatingImmunity" : {
+            "baseValue" : 1.0
+          },
+          "fireStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 35.0
+          }
+        }
+      }
+    }
+  },
+
+  "parallax" : "/parallax/underground/v-undergroundministar.parallax",
+
+  "mainBlock" : "v-sunspotstone",
+  "subBlocks" : [ "magmarock", "rock14" ],
+  "ores" : "v-deepundergroundministar",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/v_ministar_underground.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/v_ministar_underground.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/lava-exploration2.ogg", "/music/forsaken-grotto.ogg", "/music/procyon.ogg", "/music/tranquility-base.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/lava-exploration2.ogg", "/music/forsaken-grotto.ogg", "/music/procyon.ogg", "/music/tranquility-base.ogg" ]
+    }
+  },
+
+  "undergroundPlaceables" : {
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { "breakDropPool" : "v-capsuleMinistar", "smashDropPool" : "v-capsuleMinistar" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundOreRocks",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.18, "copperrocksmall" ], [0.06, "copperrock" ], [0.48, "silverrocksmall" ], [0.16, "silverrock" ], [0.09, "goldrocksmall" ], [0.03, "goldrock" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "background",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundFossils",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.15, "dirtyfossil1" ], [0.15, "dirtyfossil2" ], [0.15, "dirtyfossil3" ], [0.15, "dirtyfossil4" ], [0.1, "dirtyfossil5" ], [0.1, "dirtyfossil6" ], [0.1, "dirtyfossil7" ], [0.1, "dirtyfossil8" ] ],
+            "parameters" : {  "materials" : ["gravel", "rock17", "bonematerial"]}
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:layer2Chests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "basicChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundweaponChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "v-fireWeaponChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundtechChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "techChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-biomeinvisible" ] ],
+            "parameters" : { "originBiome" : "underground_detached/v-shallowundergroundministar" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundChests",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-statuspodministar" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundOreRocks",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-lavaspewer" ] ],
+            "parameters" : { "originBiome" : "underground_detached/v-shallowundergroundministar" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-lavaDrain",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-lavadrain" ] ],
+            "parameters" : { "originBiome" : "underground_detached/v-shallowundergroundministar" }
+          }
+        ]
+      }
+    ]
+  },
+
+  "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15]
+}

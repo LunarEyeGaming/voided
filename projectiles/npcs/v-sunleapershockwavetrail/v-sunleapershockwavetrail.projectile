@@ -1,0 +1,23 @@
+{
+  "projectileName" : "v-sunleapershockwavetrail",
+  "image" : "sunleapershockwavetrail.png",
+  "animationCycle" : 0.05,
+  "animationLoops" : true,
+  "timeToLive" : 0.25,
+  "windupFrames" : 1,
+  "frameNumber" : 1,
+  "winddownFrames" : 3,
+  "intangibleWindup" : true,
+  "intangibleWinddown" : true,
+  "power" : 50,
+  "speed" : 0,
+  "orientationLocked" : true,
+  "piercing" : true,
+  "flippable" : false,
+  "knockback" : 20,
+  "knockbackDirectional" : true,
+  "damagePoly" : [ [-4, 11], [4, 11], [4, -11], [-4, -11] ],
+  "lightColor" : [255, 150, 150],
+  "damageKind" : "fire",
+  "damageRepeatGroup" : "v-sunleapershockwavetrail"
+}

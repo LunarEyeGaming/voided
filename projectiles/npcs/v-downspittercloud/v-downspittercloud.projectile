@@ -1,0 +1,17 @@
+{
+  "projectileName" : "v-downspittercloud",
+  "image" : "/projectiles/guns/clouds/largecloud/largepoisoncloud.png",
+  "physics" : "illusion",
+  "renderLayer" : "ForegroundEntity+10",
+  "frameNumber" : 13,
+  "animationCycle" : 1.5,
+  "power" : 1,
+  "speed" : 15,
+  "timeToLive" : 1.5,
+  "bounces" : -1,
+  "damagePoly" : [ [-16, 0], [-12, -12], [0, -16], [12, -12], [16, 0], [12, 12], [0, 16], [-12, 12] ],
+  "piercing" : true,
+  "emitters" : [ ],
+  "damageKind" : "poison",
+  "statusEffects" : [ "weakpoison" ]
+}

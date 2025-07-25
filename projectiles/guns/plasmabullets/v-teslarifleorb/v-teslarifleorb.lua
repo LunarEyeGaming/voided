@@ -1,18 +1,16 @@
-local detonate
+require "/scripts/projectiles/v-mergergeneric.lua"
+
 local detonationProjectileType
 local detonationParameters
 
 function init()
-  detonate = false
   detonationProjectileType = config.getParameter("detonationProjectileType")
   detonationParameters = config.getParameter("detonationParameters", {})
-  
+
   detonationParameters.power = detonationParameters.power or projectile.power()
   detonationParameters.powerMultiplier = detonationParameters.powerMultiplier or projectile.powerMultiplier()
 
-  message.setHandler("v-triggerDetonation", function(_, _, power, powerMultiplier)
-    detonate = true
-
+  vMergeHandler.set("v-teslarifleorb", false, function(_, power, powerMultiplier)
     if power then
       detonationParameters.power = power
     end
@@ -20,16 +18,12 @@ function init()
       detonationParameters.powerMultiplier = powerMultiplier
     end
 
-    projectile.die()
+    return true
   end)
 end
 
-function v_isTeslaRifleOrb()
-  return true
-end
-
 function destroy()
-  if detonate and detonationProjectileType then
+  if vMergeHandler.isMerged and detonationProjectileType then
     world.spawnProjectile(detonationProjectileType, mcontroller.position(), projectile.sourceEntity(), {0, 0}, false, detonationParameters)
   end
 end

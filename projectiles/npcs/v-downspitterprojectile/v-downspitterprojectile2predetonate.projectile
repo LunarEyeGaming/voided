@@ -42,13 +42,13 @@
     },
     {
       "action" : "config",
-      "file" : "/projectiles/npcs/v-downspitterprojectile/v-giantpoisoncloudline.config"
+      "file" : "/projectiles/npcs/v-downspitterprojectile/v-poisoncloudline.config"
     }
   ],
   "power" : 2.0,
   "damageKind" : "acid",
   "onlyHitTerrain" : true,
   "emitters" : [ "poisonplasma" ],
-  
+
   "persistentAudio" : "/sfx/projectiles/v_downspitterpredetonate_warning.ogg"
 }

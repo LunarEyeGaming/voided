@@ -1,0 +1,51 @@
+{
+  "projectileName" : "v-ministarcloud",
+  "physics" : "default",
+  "timeToLive" : 25,
+  "image" : "ministarcloud.png",
+  "animationCycle" : 0.5,
+  "windupFrames" : 9,
+  "frameNumber" : 1,
+  "actionOnReap" : [],
+  "flippable" : true,
+  "speed" : 10,
+  "power" : 0,
+
+  "onlyHitTerrain" : true,
+
+  "movementSettings" : {
+    "collisionPoly" : [ [0, 2], [4, 1], [8, 0.5], [10, -1], [10, -2], [-10, -2], [-8, 0.5], [-4, 1] ],
+    "physicsEffectCategories" : [ "v-ministarcloud" ]
+  },
+
+  "physicsCollisions" : {
+    "cloud" : {
+      "collision" : [ [0, 2], [4, 1], [8, 0.5], [10, -1], [10, -2], [-10, -2], [-8, 0.5], [-4, 1] ],
+      "collisionKind" : "slippery",
+      "categoryWhitelist" : ["monster", "player", "npc", "vehicle", "itemdrop", "projectile"]
+    }
+  },
+  "persistentStatusEffects" : ["nofalldamage"],
+  "statusEffectArea" : [ [-10, 20], [-10, 0], [10, 0], [10, 20] ],
+  "boundBox" : [-10, -10, 10, 20],
+
+  "renderLayer" : "Liquid+1",
+  "orientationLocked" : true,
+  "fullbright" : true,
+  "emitters" : [ ],
+
+  "piercing" : true,
+  "bounces" : 5,
+
+  "scripts" : [ "v-ministarcloud.lua" ],
+  "scriptDelta" : 6,
+
+  "dieInProtectedAreas" : true,
+
+  "liquidId" : 218,
+  "moveForce" : 20,
+
+  "heightMapSetRange" : [-8, 8],
+
+  "disappearProjectile" : "v-ministarclouddisappear"
+}

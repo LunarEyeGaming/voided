@@ -1,0 +1,45 @@
+{
+  "objectName" : "v-hangingbush4",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "category" : "breakable",
+  "printable" : false,
+
+  "description" : "An upside-down bush made of blue leaves.",
+  "shortdescription" : "Hanging Bush",
+  "race" : "generic",
+
+  // "lightColor" : [49, 100, 223],
+  // "lightPosition" : [0, 0],
+
+  "apexDescription" : "This bush seems to absorb everything but blue light.",
+  "avianDescription" : "This bush hangs from the ceiling and is colored blue.",
+  "floranDescription" : "Floran thinksss blue bussh is pretty.",
+  "glitchDescription" : "Intrigued. This bush has blue leaves and hangs from the ceiling.",
+  "humanDescription" : "A bush with blue leaves that hangs from the ceiling.",
+  "hylotlDescription" : "How peculiar. A bush with the color of the ocean.",
+  "novakidDescription" : "A bush with the color of the sky and hangin' from the ceilin'.",
+
+  "inventoryIcon" : "capsulebigicon.png",
+  "orientations" : [
+    {
+      "image" : "hangingbush4.png",
+      "imagePosition" : [-8, -16],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+
+    }
+  ],
+  "smashable" : true,
+  "smashSounds" : [ "/sfx/objects/plant_break1.ogg", "/sfx/objects/plant_break2.ogg", "/sfx/objects/plant_break3.ogg",
+    "/sfx/objects/plant_break4.ogg", "/sfx/objects/plant_break5.ogg", "/sfx/objects/plant_break6.ogg" ],
+  "smashParticles" : [ { "count" : 5, "particle" : "v-hangingleaf1" } ],
+  "smashDropOptions" : [
+    [ [ "plantfibre", 1, { } ] ]
+  ],
+
+  "biomePlaced" : true
+}

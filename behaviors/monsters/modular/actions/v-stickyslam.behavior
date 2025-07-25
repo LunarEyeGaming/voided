@@ -1,0 +1,273 @@
+{
+  "name": "v-action-stickyslam",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/behavior/bdata.lua",
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/crawling.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/projectiles.lua"
+  ],
+  "parameters": {
+    "slamProjectileType": "fireplasmaexplosion",
+    "slamProjectileParameters": {},
+    "aimDirection": [0, -1],
+    "jumpState": "jump",
+    "jumpStateType": "body",
+    "jumpDelay": 0,
+    "rayCount": 40,
+    "preferDirectAttacks": true,
+    "airborneState": "airborne",
+    "airborneStateType": "body",
+    "preHopDelay": 0.1
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "action-windup",
+        "type": "module",
+        "name": "action-windup",
+        "parameters": {}
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"key": "<jumpState>"},
+          "type": {"key": "<jumpStateType>"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"key": "<jumpDelay>"}
+        }
+      },
+      {
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "shouldNotCrawl"}
+        }
+      },
+      {
+        "title": "v_stickyHopApproach",
+        "type": "action",
+        "name": "v_stickyHopApproach",
+        "parameters": {
+          "preHopDelay": {"key": "<preHopDelay>"},
+          "preferDirectAttacks": {"key": "<preferDirectAttacks>"},
+          "rayCount": {"key": "<rayCount>"},
+          "target": {"key": "target"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"key": "<airborneState>"},
+          "type": {"key": "<airborneStateType>"}
+        }
+      },
+      {
+        "title": "wait for collision with surface",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 0.05}
+                }
+              },
+              {
+                "title": "boundsCollision",
+                "type": "action",
+                "name": "boundsCollision",
+                "parameters": {}
+              }
+            ]
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "velocity",
+                  "type": "action",
+                  "name": "velocity",
+                  "parameters": {},
+                  "output": {
+                    "velocity": "velocity"
+                  }
+                },
+                {
+                  "title": "vecAngle",
+                  "type": "action",
+                  "name": "vecAngle",
+                  "parameters": {
+                    "vector": {"key": "velocity"}
+                  },
+                  "output": {
+                    "angle": "velAngle"
+                  }
+                },
+                {
+                  "title": "add",
+                  "type": "action",
+                  "name": "add",
+                  "parameters": {
+                    "addend": {"key": "velAngle"},
+                    "number": {"value": 1.5707963}
+                  },
+                  "output": {
+                    "result": "facingAngle"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "transform",
+            "type": "action",
+            "name": "transform",
+            "parameters": {
+              "group": {"value": "body"},
+              "rotation": {"key": "facingAngle"}
+            }
+          }
+        ]
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "wallSit",
+            "type": "action",
+            "name": "wallSit",
+            "parameters": {},
+            "output": {
+              "forwardAngle": "heading"
+            }
+          },
+          {
+            "title": "success",
+            "type": "action",
+            "name": "success",
+            "parameters": {}
+          }
+        ]
+      },
+      {
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "vecMultiply",
+            "type": "action",
+            "name": "vecMultiply",
+            "parameters": {
+              "first": {"key": "<aimDirection>"},
+              "second": {"value": ["facingDirection", 1]}
+            },
+            "output": {
+              "vector": "aimVector"
+            }
+          },
+          {
+            "title": "vecRotate",
+            "type": "action",
+            "name": "vecRotate",
+            "parameters": {
+              "angle": {"key": "heading"},
+              "vector": {"key": "aimVector"}
+            },
+            "output": {
+              "vector": "aimVector"
+            }
+          }
+        ]
+      },
+      {
+        "title": "spawnProjectile",
+        "type": "action",
+        "name": "spawnProjectile",
+        "parameters": {
+          "aimVector": {"key": "aimVector"},
+          "angle": {"value": 0},
+          "offset": {"value": [0, 0]},
+          "position": {"key": "self"},
+          "projectileConfig": {"key": "<slamProjectileParameters>"},
+          "projectileType": {"key": "<slamProjectileType>"},
+          "scalePower": {"value": true},
+          "sourceEntity": {"key": "self"},
+          "trackSource": {"value": false},
+          "uniqueRepeatGroup": {"value": true}
+        }
+      },
+      {
+        "title": "unsetFlag",
+        "type": "action",
+        "name": "unsetFlag",
+        "parameters": {
+          "name": {"value": "shouldNotCrawl"}
+        }
+      },
+      {
+        "title": "setVelocity",
+        "type": "action",
+        "name": "setVelocity",
+        "parameters": {
+          "velocity": {"value": [0, 0]}
+        }
+      },
+      {
+        "title": "action-winddown",
+        "type": "module",
+        "name": "action-winddown",
+        "parameters": {}
+      }
+    ]
+  }
+}

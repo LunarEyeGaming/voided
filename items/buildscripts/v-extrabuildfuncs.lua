@@ -16,7 +16,7 @@ function applyRarity(config, rarity)
     end
     config.tooltipFields.rarityLabel = "^#a600cc;Mythical"
   end
-  
+
   return config
 end
 
@@ -28,9 +28,9 @@ function setVoidedIcon(config)
   if not config.tooltipFields then
     config.tooltipFields = {}
   end
-  
+
   config.tooltipFields.voidedIconImage = "/interface/tooltips/voidedicon.png"
-  
+
   return config
 end
 
@@ -39,9 +39,12 @@ end
   config: The config table passed in from the build() function
   prefix: The prefix to add
 ]]
-function addHiddenPrefix(config, prefix)
-  if prefix then
-    config.shortdescription = string.format("^%s;%s", prefix, config.shortdescription)
+function addExtraInfo(config, info)
+  if info then
+    if not config.tooltipFields then
+      config.tooltipFields = {}
+    end
+    config.tooltipFields.extraInfoLabel = info
   end
 
   return config
@@ -64,7 +67,7 @@ function applyExtraBuildFuncs(directory, config, parameters, level, seed)
 
   config = applyRarity(config, configParameter("customRarity"))
   config = setVoidedIcon(config)
-  config = addHiddenPrefix(config, configParameter("hiddenPrefix"))
+  config = addExtraInfo(config, configParameter("extraInfo"))
 
   return config, parameters
 end

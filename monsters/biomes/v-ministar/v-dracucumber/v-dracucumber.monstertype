@@ -1,0 +1,268 @@
+{
+  "type" : "v-dracucumber",
+  "shortdescription" : "Dracucumber",
+  "description" : "A primitive organism that flees from anything it senses via jet propulsion.",
+
+  "categories" : [ "v-dracucumber" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-dracucumber.animation",
+
+  "dropPools" : [ { "default" : "v-dracucumberTreasure", "bow" : "v-dracucumberHunting" } ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/monster.lua"
+    ],
+
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 3,
+
+    "behavior" : "monster",
+    "deathBehavior" : "monster-death",
+
+    "facingMode" : "transformation",
+
+    "seeThroughLiquid" : false,
+    "behaviorConfig" : {
+      "damageOnTouch" : false,
+
+      "targetQueryRange" : 30,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 60,
+      "targetOutOfSightTime" : 2.0,
+
+      "hurtWaitForGround" : false,
+
+      "spawnActions" : [
+        {
+          "name" : "action-nudge",
+          "parameters" : {
+            "minX" : -10,
+            "maxX" : 10,
+            "minY" : -10,
+            "maxY" : 10
+          }
+        },
+        {
+          "name" : "v-action-randomangle",
+          "parameters" : {
+            "flipRotate" : true
+          }
+        }
+      ],
+
+      // "foundTargetActions" : [
+      //   {
+      //     "name" : "action-animate",
+      //     "parameters" : {
+      //       "stateType" : "body",
+      //       "state" : "windup",
+      //       "animationTimer" : 1.0
+      //     }
+      //   }
+      // ],
+
+      "wanderActions" : [
+        {
+          "name" : "action-stop",
+          "parameters" : {
+            "stopForce" : 10
+          }
+        }
+      ],
+
+      "followActions" : [
+        {
+          "name" : "v-action-rocketdirect",
+          "parameters" : {
+            "requireLineOfSight" : false,
+            "maximumRange" : 100,
+            "minimumRange" : 0,
+            "windupTime" : 1.0,
+            "windupStopForce" : 0,
+            "windupState" : "windup",
+
+            "projectileType" : "v-dracucumberflame",
+            "projectileParameters" : {
+              "speed" : 50,
+              "power" : 15,
+              "damageRepeatGroup" : "v-dracucumber",
+              "statusEffects" : [ {"effect" : "burning", "duration" : 5} ]
+            },
+            "projectileInterval" : 0.05,
+
+            "inaccuracy" : 0.05,
+            "fireOffset" : [0, 0],
+            "fireSound" : "fire",
+            "fireState" : "fire",
+            "fireStateFallback" : "idle",
+            "fireDelay" : 0.0,
+            "faceTarget" : true,
+            "rotateAim" : true,
+            "flipRotate" : true,
+
+            "repelSpeed" : 25,
+            "repelForce" : 30,
+
+            "crashSound" : "crash"
+          }
+        },
+        {
+          "name" : "approach-teleport",
+          "parameters" : {
+          }
+        }
+      ],
+
+      "approachActions" : [
+      ],
+
+      "concurrentActions" : [ ],
+
+      "concurrentHostileActions" : [
+      ],
+
+      "hostileActions" : [
+        {
+          "name" : "v-action-rocket",
+          "parameters" : {
+            "requireLineOfSight" : false,
+            "maximumRange" : 100,
+            "minimumRange" : 0,
+            "windupTime" : 1.0,
+            "windupStopForce" : 0,
+            "windupState" : "windup",
+
+            "projectileType" : "v-dracucumberflame",
+            "projectileParameters" : {
+              "speed" : 50,
+              "power" : 15,
+              "damageRepeatGroup" : "v-dracucumber",
+              "statusEffects" : [ {"effect" : "burning", "duration" : 5} ]
+            },
+            "projectileInterval" : 0.05,
+
+            "inaccuracy" : 0.05,
+            "fireOffset" : [0, 0],
+            "fireSound" : "fire",
+            "fireState" : "fire",
+            "fireStateFallback" : "idle",
+            "fireDelay" : 0.0,
+            "faceTarget" : true,
+            "rotateAim" : true,
+            "flipRotate" : true,
+
+            "repelSpeed" : 25,
+            "repelForce" : 30,
+
+            "crashSound" : "crash"
+          }
+        }
+      ],
+
+      "deathActions" : [ ]
+    },
+
+    "touchDamage" : {
+      "poly" : [ [0.625, 0.9375], [1.125, 0.4375], [1.125, -0.4375], [0.625, -0.9375], [-0.625, -0.9375], [-1.125, -0.4375], [-1.125, 0.4375], [-0.625, 0.9375] ],
+      "damage" : 0,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "impact",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "selfDamagePoly" : [ [-2.5, -2.5], [2.5, -2.5], [2.5, 2.5], [-2.5, 2.5] ],
+
+    "movementSettings" : {
+      "collisionPoly" : [[1.5, 0.621], [0.621, 1.5], [-0.621, 1.5], [-1.5, 0.621], [-1.5, -0.621], [-0.621, -1.5], [0.621, -1.5], [1.5, -0.621]],
+
+      "mass" : 2.0,
+      "walkSpeed" : 4,
+      "runSpeed" : 12,
+      "gravityEnabled" : false,
+
+      "bounceFactor" : 1.0,
+      "groundFriction" : 10,
+
+      "airFriction" : 0,
+      "airForce" : 30,
+      "flySpeed" : 15
+    },
+
+    "bodyMaterialKind" : "organic",
+
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "stunDamageSuppression" : 0.2,
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/spacemonster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 0.25
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0.3
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9
+        },
+        "maxHealth" : {
+          "baseValue" : 80
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-dracucumber" }
+  }
+}

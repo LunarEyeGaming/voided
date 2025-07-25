@@ -1,9 +1,38 @@
 [
   {
     "op" : "add",
-    "path" : "/vinstakill",
+    "path" : "/v_instakill",
     "value" : [
       "/entityeval status.setResourcePercentage(\"health\", 0)"
+    ]
+  },
+  {
+    "op" : "add",
+    "path" : "/v_tier6kitlite",
+    "value" : [
+      "/spawnitem solidfuel 200",
+      "/spawnitem rarebroadsword 1 '{\"level\":6}'",
+      "/spawnitem rareassaultrifle 1 '{\"level\":6}'",
+      "/spawnitem humantier6mhead",
+      "/spawnitem humantier6mpants",
+      "/spawnitem humantier6mchest",
+      "/spawnitem heatprotectionback",
+      "/spawnitem manipulatormodule 60",
+      "/giveessentialitem beamaxe beamaxe",
+      "/giveessentialitem wiretool wiretool",
+      "/giveessentialitem painttool painttool",
+      "/enabletech sprint",
+      "/enabletech doublejump",
+      "/enabletech multijump",
+      "/enabletech rocketjump",
+      "/enabletech walljump",
+      "/enabletech distortionsphere",
+      "/enabletech spikesphere",
+      "/enabletech aquasphere",
+      "/enabletech sonicsphere",
+      "/enabletech dash",
+      "/enabletech airdash",
+      "/enabletech blinkdash"
     ]
   }
 ]

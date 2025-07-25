@@ -1,6 +1,6 @@
 {
   "name" : "v-voltagedesertruinsoxidized",
-  "friendlyName" : "Oxidized Copper Desert (Ruins)",
+  "friendlyName" : "Oxidized Copper Desert",
 
   "spawnProfile" : {
     "groups" : [
@@ -94,7 +94,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-copperpowderemitter2" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface_detached/v-voltagedesertruinsoxidized" }
           }
         ]
       },

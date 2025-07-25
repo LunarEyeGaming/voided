@@ -1,0 +1,13 @@
+{
+  // This stagehand sets some values in the v-globalHeightMap property. Useful for when a dungeon contains a hole deep
+  // enough to make the v-ministarheat.lua script think that the bottom is open to the Ministar's heat.
+  "type" : "v-ministarheightmapsetter",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-ministarheightmapsetter/v-ministarheightmapsetter.lua"],
+  "scriptDelta" : 10,
+
+  "maxDepth" : 0,
+
+  "broadcastArea" : [-1, -1, 1, 1]
+}

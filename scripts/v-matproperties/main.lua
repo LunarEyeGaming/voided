@@ -22,6 +22,7 @@ local queriedModSectors
 local queriedModSectorSet
 local lockedModSectors
 local claimedModSectors
+local brokenTiles  -- Tiles broken in current tick. Exists to prevent a single tile from triggering multiple times.
 
 local tickDelta
 local tickTimer
@@ -39,6 +40,7 @@ function init()
   queriedModSectorSet = {}
   lockedModSectors = {}
   claimedModSectors = {}
+  brokenTiles = {}
 
   -- Initialize function lists.
   loadScripts()
@@ -53,7 +55,8 @@ function init()
 
   claimBroadcastRange = (sectorRange + 1) * SECTOR_SIZE
 
-  message.setHandler("tileBroken", handleBrokenTile)
+  -- message.setHandler("tileBroken", handleBrokenTile)
+  message.setHandler("v-matproperties-tileBroken", handleBrokenTile)
 
   message.setHandler("v-updateSector", function(_, _, sector)
     invalidateSector(sector)
@@ -131,6 +134,7 @@ function matUpdate(dt)
   querySectors()
   cleanUpSectors()
   cleanUpClaimedSectors()
+  brokenTiles = {}
 
   -- world.debugText("number of cached sectors: %s", #queriedModSectors, mcontroller.position(), "green")
 end
@@ -350,8 +354,11 @@ function handleBrokenTile(_, _, pos, layer)
   --sb.logInfo("Received tileBroken handler")
   -- This function only triggers for the person who mined it, so there isn't any need to check if the sector
   -- corresponding to pos is claimed.
-  runDestroyHook(pos, layer)
-  invalidateSector(getSector(pos))
+  if not contains(brokenTiles, {pos, layer}) then
+    table.insert(brokenTiles, {pos, layer})
+    runDestroyHook(pos, layer)
+    invalidateSector(getSector(pos))
+  end
 
   -- showInvalidatedSector(getSector(pos), 0.5)
   -- sb.logInfo("invalidated: %s", invalidateSector(getSector(pos)))

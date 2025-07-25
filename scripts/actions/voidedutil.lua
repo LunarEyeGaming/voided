@@ -156,3 +156,27 @@ function v_listRemove(args, board)
   -- Removing the list failed.
   return false
 end
+
+-- Returns the angle and direction.
+-- param angle
+-- output angle
+-- output direction
+function v_angleAndDirection(args)
+  local rq = vBehavior.requireArgsGen("v_angleAndDirection", args)
+
+  if not rq{"angle"} then return false end
+
+  local angle = args.angle
+
+  local adjustedAngle
+  local direction
+  if math.pi / 2 < angle and angle < 3 * math.pi / 2 then
+    adjustedAngle = math.pi - angle
+    direction = -1
+  else
+    adjustedAngle = angle
+    direction = 1
+  end
+
+  return true, {angle = adjustedAngle, direction = direction}
+end

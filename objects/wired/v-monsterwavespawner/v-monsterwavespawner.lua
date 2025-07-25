@@ -1,6 +1,8 @@
 require "/scripts/util.lua"
 require "/scripts/rect.lua"
+
 require "/scripts/v-world.lua"
+require "/scripts/v-entity.lua"
 
 local firstWaveDelay
 local nextWaveDelay
@@ -23,7 +25,7 @@ local state
 function init()
   firstWaveDelay = config.getParameter("firstWaveDelay", 1.0)
   nextWaveDelay = config.getParameter("nextWaveDelay", 1.0)
-  interiorRegion = getRegionPoints(config.getParameter("interiorRegion"))
+  interiorRegion = vEntity.getRegionPoints(config.getParameter("interiorRegion"))
   waveEntityType = config.getParameter("waveEntityType", "v-wavemonsterspawnpoint")
   waveTriggerEntityType = config.getParameter("waveTriggerEntityType", "v-wavetrigger")
   gracePeriod = config.getParameter("gracePeriod")
@@ -31,7 +33,7 @@ function init()
 
   exteriorRegions = {}
   for _, region in ipairs(config.getParameter("exteriorRegions")) do
-    table.insert(exteriorRegions, getRegionPoints(region))
+    table.insert(exteriorRegions, vEntity.getRegionPoints(region))
   end
 
   state = FSM:new()
@@ -44,7 +46,7 @@ function init()
 
   reset()
 
-  self.debug = true
+  self.debug = false
   interiorRegionDebug = rect.translate(config.getParameter("interiorRegion"), object.position())
   exteriorRegionsDebug = {}
   for _, region in ipairs(config.getParameter("exteriorRegions")) do
@@ -422,7 +424,7 @@ function activateTriggers(waveTriggers)
   -- For each trigger in the wave...
   for _, trigger in ipairs(waveTriggers) do
     -- Query the targets
-    local points = getRegionPoints(trigger.queryArea)
+    local points = vEntity.getRegionPoints(trigger.queryArea)
     local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
 
     -- Make the trigger send the messages (no error handler this time).
@@ -446,7 +448,7 @@ function resetTriggers(waveNum)
       -- If the trigger resets on subsequent waves...
       if trigger.resetOnSubsequentWaves then
         -- Query the targets
-        local points = getRegionPoints(trigger.queryArea)
+        local points = vEntity.getRegionPoints(trigger.queryArea)
         local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
 
         -- Send the messages
@@ -461,7 +463,7 @@ function resetTriggers(waveNum)
   -- Tell all trigger targets in the current wave to reset.
   for _, trigger in ipairs(wave.triggers) do
     -- Query the targets
-    local points = getRegionPoints(trigger.queryArea)
+    local points = vEntity.getRegionPoints(trigger.queryArea)
     local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
 
     -- Send the messages
@@ -503,15 +505,6 @@ function friendlyInsideRegions(regions)
   end
 
   return false
-end
-
---[[
-  Converts a relative rectangle into a table of the bottom-left and top-right points (absolute) and returns the result.
-]]
-function getRegionPoints(rectangle)
-  local absoluteRectangle = rect.translate(rectangle, object.position())
-
-  return {rect.ll(absoluteRectangle), rect.ur(absoluteRectangle)}
 end
 
 --[[

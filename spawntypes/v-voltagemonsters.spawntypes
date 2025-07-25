@@ -1,0 +1,314 @@
+[
+  // -------------------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------VOLTAGE------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+
+  {
+    "name" : "v-electricelemental",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 3],
+    "spawnChance" : 0.007,
+    "monsterType" : [
+      [1.0, "v-electricelemental"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-electricelementalunderground",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 3],
+    "spawnChance" : 0.035,
+    "monsterType" : [
+      [1.0, "v-electricelemental"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-dischargemonster",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.035,
+    "monsterType" : [
+      [1.0, "v-dischargemonster"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-electriccrawler",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.07,
+    "monsterType" : [
+      [1.0, "v-electriccrawler"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-amperecharger",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-amperecharger"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-amperechargerunderground",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.05,
+    "monsterType" : [
+      [1.0, "v-amperecharger"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-amperechargerrusty",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-amperechargerrusty"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-amperechargerrustyunderground",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.05,
+    "monsterType" : [
+      [1.0, "v-amperechargerrusty"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-metalmite",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-metalmite"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-currentcrawler",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "v-currentcrawler"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-balllightning",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-balllightning"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-voltspitter",
+
+    "spawnParameters" : {
+      "area" : "surface",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "v-voltspitter"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-bulbhead",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-bulbhead"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-bulbheadrusty",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-bulbheadrusty"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    "name" : "v-wardrone",
+
+    "spawnParameters" : {
+      "area" : "surface",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.02,
+    "monsterType" : [
+      [1.0, "v-wardrone"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    // Spawntype introduced by Voided. To be replaced b/c this is pretty lazy.
+    "name" : "v-electricvoltip",
+
+    "spawnParameters" : {
+      "area" : "surface",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "electricvoltip"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+  {
+    // Spawntype introduced by Voided. To be replaced b/c this is pretty lazy.
+    "name" : "v-electricignome",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "electricignome"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  }
+]

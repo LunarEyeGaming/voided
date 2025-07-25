@@ -164,5 +164,19 @@
       "list": {"type": "list", "key": null},
       "string": {"type": "string", "key": null}
     }
+  },
+  "v_angleAndDirection": {
+    "type": "action",
+    "name": "v_angleAndDirection",
+    "title": "v_angleAndDirection",
+    "properties": {
+      "angle": {"type": "number"}
+    },
+    "category": "voidedutil",
+    "script": "/scripts/actions/voidedutil.lua",
+    "output": {
+      "angle": {"type": "number", "key": null},
+      "direction": {"type": "number", "key": null}
+    }
   }
 }

@@ -159,6 +159,15 @@
       "def" : [ "tmx", "floor1/floor1staircorridor-left.json" ],
       "chance" : 200
     },
+    {
+      "name" : "floor1corridorrare-left",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor1/floor1corridorrare-left.json" ],
+      "chance" : 200
+      /* "chance" : 10000000 */
+    },
 
     {
       "name" : "floor1end-left",
@@ -301,6 +310,15 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "floor1/floor1staircorridor-right.json" ],
+      "chance" : 200
+      /* "chance" : 10000000 */
+    },
+    {
+      "name" : "floor1corridorrare-right",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "floor1/floor1corridorrare-right.json" ],
       "chance" : 200
       /* "chance" : 10000000 */
     },

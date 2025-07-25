@@ -1,0 +1,23 @@
+{
+  "kind" : "v-hangingleaf1",
+  "definition" : {
+    "type" : "textured",
+    "image" : "/particles/v-hangingleaf/hangingleaf1.png",
+    "position" : [0, 1],
+    "initialVelocity" : [0, -10],
+    "approach" : [10, 0],
+    "finalVelocity": [0, -10],
+    "size" : 1,
+    "layer" : "middle",
+    "timeToLive" : 0.5,
+    "fade" : 1,
+    "angularVelocity" : 90,
+    "destructionAction" : "fade",
+    "destructionTime" : 0.5,
+    "variance" : {
+      "initialVelocity" : [8, 5],
+      "finalVelocity": [8, 5],
+      "rotation" : 180
+    }
+  }
+}

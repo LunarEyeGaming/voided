@@ -1,0 +1,106 @@
+{
+  "name" : "v-ministarSurface",
+
+  //jaggy ledges
+  "type" : "displacement",
+  "xType" : "perlin",
+  "xOctaves" : 3,
+  "xFreq" : 0.08,
+  "xAmp" : 12,
+  "xXInfluence" : 0.5,
+  "xYInfluence" : 0.5,
+  "yType" : "perlin",
+  "yOctaves" : 1,
+  "yFreq" : 0.1,
+  "yAmp" : 2,
+  "yYInfluence" : 0,
+
+  "source" : {
+    "type" : "max",
+
+    "sources" : [
+      {
+        //roughish, small islands
+        "type" : "islandSurface",
+
+        "islandElevation" : -1,
+
+        "islandDecision" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.05,
+          "amplitude" : 1.1,
+          "bias" : -0.25
+        },
+        "islandTaperPoint" : 0.1,
+
+        "islandHeight" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.035,
+          "amplitude" : 2,
+          "bias" : 2
+        },
+
+        "islandDepth" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.08,
+          "amplitude" : 4,
+          "bias" : 6
+        }
+      },
+      {
+        //roughish, large islands
+        "type" : "islandSurface",
+
+        "islandElevation" : -1,
+
+        "islandDecision" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.005,
+          "amplitude" : 1.1,
+          "bias" : -0.05
+        },
+        "islandTaperPoint" : 0.2,
+
+        "islandHeight" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.035,
+          "amplitude" : 26,
+          "bias" : 30
+        },
+
+        "islandDepth" : {
+          "type" : "perlin",
+          "octaves" : 2,
+          "frequency" : 0.02,
+          "amplitude" : 20,
+          "bias" : 90
+        }
+      },
+      {
+        "type" : "displacement",
+        "xType" : "perlin",
+        "xOctaves" : 1,
+        "xFreq" : 0.01,
+        "xAmp" : 0,
+        "yType" : "perlin",
+        "yOctaves" : 2,
+        "yFreq" : 0.02,
+        "yAmp" : 20,
+        "yClamp" : [-20, -10],
+        "yClampSmoothing" : 5,
+        "yYInfluence" : 0.2,
+
+        "source" : {
+          "type" : "flatSurface",
+
+          "adjustment" : -70
+        }
+      }
+    ]
+  }
+}

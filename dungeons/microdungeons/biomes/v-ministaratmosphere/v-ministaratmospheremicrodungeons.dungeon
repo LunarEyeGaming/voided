@@ -1,0 +1,90 @@
+{
+  "metadata" : {
+    "name" : "v-ministaratmospheremicrodungeons",
+    "species" : "avian",
+    "rules" : [
+    ],
+
+    "anchor" : [ "lavalake1", "lavalake2", "lavalake3", "lavalake4", "pyramid1", "pyramid2", "pyramid3", "orevein1",
+    "orevein2", "orevein3" ],
+    // "anchor" : [ "floating1" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "lavalake1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "lavalake1.json" ]
+    },
+    {
+      "name" : "lavalake2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "lavalake2.json" ]
+    },
+    {
+      "name" : "lavalake3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "lavalake3.json" ]
+    },
+    {
+      "name" : "lavalake4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "lavalake4.json" ]
+    },
+    {
+      "name" : "pyramid1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "pyramid1.json" ]
+    },
+    {
+      "name" : "pyramid2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "pyramid2.json" ]
+    },
+    {
+      "name" : "pyramid3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "pyramid3.json" ]
+    },
+    {
+      "name" : "orevein1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "orevein1.json" ]
+    },
+    {
+      "name" : "orevein2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "orevein2.json" ]
+    },
+    {
+      "name" : "orevein3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "orevein3.json" ]
+    }
+  ]
+}

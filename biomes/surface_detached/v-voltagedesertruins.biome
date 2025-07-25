@@ -1,6 +1,6 @@
 {
   "name" : "v-voltagedesertruins",
-  "friendlyName" : "Copper Desert (Ruins)",
+  "friendlyName" : "Copper Desert",
 
   "spawnProfile" : {
     "groups" : [
@@ -94,7 +94,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-copperpowderemitter" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface_detached/v-voltagedesertruins" }
           }
         ]
       },

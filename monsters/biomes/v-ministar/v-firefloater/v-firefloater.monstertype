@@ -1,0 +1,242 @@
+{
+  "type" : "v-firefloater",
+  "shortdescription" : "Fire Floater",
+  "description" : "Its large belly contains fuel reserves that it uses to keep itself afloat.",
+
+  "categories" : [ "v-firefloater" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-firefloater.animation",
+
+  "dropPools" : [ "v-firefloaterTreasure" ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/monster.lua"
+    ],
+
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 3,
+
+    "behavior" : "monster",
+    "deathBehavior" : "monster-death",
+
+    "seeThroughLiquid" : false,
+    "behaviorConfig" : {
+      "damageOnTouch" : false,
+
+      "targetQueryRange" : 30,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 60,
+      "targetOutOfSightTime" : 5.0,
+
+      "hurtWaitForGround" : false,
+
+      "wanderActions" : [
+        {
+          "name" : "wander-fly",
+          "parameters" : {
+            "wanderTime" : 10,
+            "groundDistance" : 4,
+            "ceilingDistance" : 4,
+            "xVelocity" : 2,
+            "yVelocity" : 12,
+            "flyState" : "idle"
+          }
+        }
+      ],
+
+      "approachActions" : [
+        {
+          "name" : "v-approach-rangedfly",
+          "parameters" : {
+            "minRange" : 20,
+            "maxRange" : 35,
+            "speed" : 25,
+            "flyState" : "fly"
+          }
+        }
+      ],
+
+      "concurrentActions" : [
+      ],
+
+      "concurrentHostileActions" : [
+      ],
+
+      "hostileActions" : [
+        {
+          "name" : "action-fire",
+          "cooldown" : 1.6,
+          "parameters" : {
+            "onGround" : false,
+            "requireLineOfSight" : true,
+            "maximumRange" : 60,
+            "minimumRange" : 0,
+            "windupTime" : 0.0,
+            "windupStopForce" : 0,
+            "windupState" : "",
+
+            "projectileType" : "v-firefloaterfireball",
+            "projectileParameters" : {
+              "power" : 10,
+              "speed" : 30
+            },
+            "rotationCenter" : [1.625, 0.875],
+            "projectileCount" : 1,
+            "inaccuracy" : 0.0,
+            "fireSound" : "fire",
+            "fireState" : "fire",
+            "fireDelay" : 0.2,
+
+            "winddownState" : "",
+            "winddownTime" : 0.2
+          }
+        }
+      ],
+
+      "deathActions" : [
+        {
+          "name" : "action-projectile",
+          "parameters" : {
+            "projectileCount" : 1,
+            "projectileType" : "fireplasmaexplosion",
+            "projectileParameters" : {
+              "damageTeam" : { "type" : "enemy", "team" : 0 },
+              "power" : 20
+            },
+            "aimDirection" : [1, 0],
+            "inaccuracy" : 0,
+            "fireOffset" : [0, 0]
+          }
+        }
+      ]
+    },
+
+    "touchDamage" : {
+      "poly" : [ [0.625, 0.9375], [1.125, 0.4375], [1.125, -0.4375], [0.625, -0.9375], [-0.625, -0.9375], [-1.125, -0.4375], [-1.125, 0.4375], [-0.625, 0.9375] ],
+      "damage" : 0,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "impact",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [ [1.625, 1.4375], [2.125, 0.9375], [2.125, -0.6875], [1.625, -1.4375], [-1.625, -1.4375], [-2.125, -0.6875], [-2.125, 0.9375], [-1.625, 1.4375] ],
+
+      "mass" : 2.0,
+      "walkSpeed" : 4,
+      "runSpeed" : 12,
+      "gravityEnabled" : false,
+
+      "bounceFactor" : 0.5,
+      "groundFriction" : 10,
+
+      "airFriction" : 0,
+      "airForce" : 15,
+      "flySpeed" : 15
+    },
+
+    "bodyMaterialKind" : "organic",
+
+    "knockoutTime" : 0.75,
+    "knockoutAnimationStates" : {
+      "damage" : "killed"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "stunDamageSuppression" : 0.2,
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 0.25
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0.3
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9
+        },
+        "maxHealth" : {
+          "baseValue" : 30
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "physicalResistance" : {
+          "baseValue" : 0.0
+        },
+        "fireResistance" : {
+          "baseValue" : 0.5
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "iceResistance" : {
+          "baseValue" : -0.5
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "electricResistance" : {
+          "baseValue" : 0.0
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 0.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 0.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-firefloater" }
+  }
+}

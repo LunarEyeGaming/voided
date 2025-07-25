@@ -14,13 +14,13 @@
     "scripts" : [
       "/scripts/terra_wormheadcustom.lua",
       "/scripts/bookofspirits/v-bookofspirits_wormplugin.lua",
-      "/monsters/renderlaserbeam.lua"
+      "/monsters/v-renderlaserbeam.lua"
     ],
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 1,
 
     "animationScripts" : [
-      "/monsters/effects/laserbeam.lua"
+      "/monsters/effects/v-laserbeam.lua"
     ],
 
     "beams" : [
@@ -183,6 +183,15 @@
           "baseValue" : 1.0
         },
         "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "specialStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "healingStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "stunImmunity" : {
           "baseValue" : 1.0
         },
 

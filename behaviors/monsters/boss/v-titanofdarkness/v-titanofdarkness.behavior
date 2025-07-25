@@ -10,7 +10,11 @@
     "/scripts/actions/world.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/query.lua",
-    "/scripts/actions/movement.lua"
+    "/scripts/actions/math.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/v-sensor.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/behavior/bdata.lua"
   ],
   "parameters": {},
   "root": {
@@ -76,14 +80,17 @@
             "title": "v_titanStun",
             "type": "action",
             "name": "v_titanStun",
-            "parameters": {}
+            "parameters": {
+              "stunRange": {"value": 200}
+            }
           },
           {
             "title": "v_titanMusic",
             "type": "action",
             "name": "v_titanMusic",
             "parameters": {
-              "musicState": {"key": "musicState"}
+              "musicState": {"key": "musicState"},
+              "musicRange": {"value": 160}
             }
           },
           {
@@ -170,6 +177,83 @@
                 },
                 "output": {
                   "number": "targetAngle"
+                }
+              },
+              {
+                "title": "repeater",
+                "type": "decorator",
+                "name": "repeater",
+                "parameters": {
+                  "maxLoops": {"value": 200},
+                  "untilSuccess": {"value": true}
+                },
+                "child": {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "random",
+                      "type": "action",
+                      "name": "random",
+                      "parameters": {
+                        "max": {"value": -20},
+                        "min": {"value": 20}
+                      },
+                      "output": {
+                        "number": "xOffset"
+                      }
+                    },
+                    {
+                      "title": "random",
+                      "type": "action",
+                      "name": "random",
+                      "parameters": {
+                        "max": {"value": -20},
+                        "min": {"value": 20}
+                      },
+                      "output": {
+                        "number": "yOffset"
+                      }
+                    },
+                    {
+                      "title": "offsetPosition",
+                      "type": "action",
+                      "name": "offsetPosition",
+                      "parameters": {
+                        "offset": {"value": ["xOffset", "yOffset"]},
+                        "position": {"key": "self"}
+                      },
+                      "output": {
+                        "position": "startingPos"
+                      }
+                    },
+                    {
+                      "title": "inverter",
+                      "type": "decorator",
+                      "name": "inverter",
+                      "parameters": {},
+                      "child": {
+                        "title": "v_rectCollision",
+                        "type": "action",
+                        "name": "v_rectCollision",
+                        "parameters": {
+                          "position": {"key": "startingPos"},
+                          "rect": {"value": [-2, -2, 2, 2]}
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "setPosition",
+                "type": "action",
+                "name": "setPosition",
+                "parameters": {
+                  "footPosition": {"value": false},
+                  "position": {"key": "startingPos"}
                 }
               },
               {
@@ -672,10 +756,78 @@
                                     ]
                                   },
                                   {
-                                    "title": "v-titanofdarkness-disappear",
-                                    "type": "module",
-                                    "name": "v-titanofdarkness-disappear",
-                                    "parameters": {}
+                                    "title": "sequence",
+                                    "type": "composite",
+                                    "name": "sequence",
+                                    "parameters": {},
+                                    "children": [
+                                      {
+                                        "title": "succeeder",
+                                        "type": "decorator",
+                                        "name": "succeeder",
+                                        "parameters": {},
+                                        "child": {
+                                          "title": "sequence",
+                                          "type": "composite",
+                                          "name": "sequence",
+                                          "parameters": {},
+                                          "children": [
+                                            {
+                                              "title": "playersInWorld",
+                                              "type": "action",
+                                              "name": "playersInWorld",
+                                              "parameters": {},
+                                              "output": {
+                                                "list": "players"
+                                              }
+                                            },
+                                            {
+                                              "title": "each",
+                                              "type": "decorator",
+                                              "name": "each",
+                                              "parameters": {
+                                                "list": {"key": "players"},
+                                                "type": {"value": "entity"}
+                                              },
+                                              "child": {
+                                                "title": "sequence",
+                                                "type": "composite",
+                                                "name": "sequence",
+                                                "parameters": {},
+                                                "children": [
+                                                  {
+                                                    "title": "entityInRange",
+                                                    "type": "action",
+                                                    "name": "entityInRange",
+                                                    "parameters": {
+                                                      "entity": {"key": "eachItem"},
+                                                      "position": {"key": "self"},
+                                                      "range": {"value": 150}
+                                                    }
+                                                  },
+                                                  {
+                                                    "title": "sendEntityMessage",
+                                                    "type": "action",
+                                                    "name": "sendEntityMessage",
+                                                    "parameters": {
+                                                      "arguments": {"value": []},
+                                                      "entity": {"key": "eachItem"},
+                                                      "message": {"value": "v-titanHallucination-victory"}
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        "title": "v-titanofdarkness-disappear",
+                                        "type": "module",
+                                        "name": "v-titanofdarkness-disappear",
+                                        "parameters": {}
+                                      }
+                                    ]
                                   }
                                 ]
                               }

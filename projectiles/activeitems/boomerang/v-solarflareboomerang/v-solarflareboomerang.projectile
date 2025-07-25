@@ -1,0 +1,89 @@
+{
+  "projectileName" : "v-solarflareboomerang",
+  "image" : "solarflareboomerang.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "damageKindImage" : "icon.png",
+  "lightColor" : [218, 83, 2],
+  "pointLight" : false,
+  "flippable" : false,
+  "orientationLocked" : true,
+  "periodicActions" : [
+    {
+      "time" : 0.05,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "textured",
+        "image" : "/projectiles/activeitems/boomerang/v-solarflareboomerang/trail.png",
+        "timeToLive" : 0,
+        "destructionAction" : "fade",
+        "destructionTime" : 0.5,
+        "fullbright" : true,
+        "layer" : "back"
+      }
+    }
+  ],
+  "actionOnCollide" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-smallfireexplosion/v-smallfireexplosionknockback.config"
+    }
+  ],
+  "statusEffects" : [ "burning" ],
+  "damagePoly" : [[-8, 4], [-4, 8], [4, 8], [8, 4], [8, -4], [4, -8], [-4, -8], [-8, -4]],
+  "power" : 5.0,
+  "speed" : 60,
+  "damageKind" : "firehammer",
+  "physics" : "laser",
+  "bounces" : -1,
+  "piercing" : true,
+  "timeToLive" : 3,
+  "emitters" : [ "fireplasma", "smoke", "flames" ],
+  "persistentAudio" : "/sfx/melee/spear_twirl_loop.ogg",
+
+  "rotationRate" : 3,
+
+  "pullForce" : 150,
+  "collideRadius" : 2,
+
+  "explosionProjectileType" : "fireplasmaexplosion",
+  "explosionProjectileParameters" : {
+    "periodicActions" : [
+      {
+        "time" : 0,
+        "repeat" : false,
+        "action" : "projectile",
+        "type" : "v-solarflareshockwave",
+        "inheritDamageFactor" : 1.0
+      },
+      {
+        "time" : 0,
+        "repeat" : false,
+        "action" : "projectile",
+        "type" : "v-solarflareshockwave",
+        "inheritDamageFactor" : 1.0,
+        "angleAdjust" : 90
+      },
+      {
+        "time" : 0,
+        "repeat" : false,
+        "action" : "projectile",
+        "type" : "v-solarflareshockwave",
+        "inheritDamageFactor" : 1.0,
+        "angleAdjust" : 180
+      },
+      {
+        "time" : 0,
+        "repeat" : false,
+        "action" : "projectile",
+        "type" : "v-solarflareshockwave",
+        "inheritDamageFactor" : 1.0,
+        "angleAdjust" : 270
+      }
+    ]
+  },
+  "explosionDamageFactor" : 1.0,
+
+  "scripts" : [ "/scripts/projectiles/boomerangprojectile.lua", "v-solarflareboomerangplugin.lua" ]
+}

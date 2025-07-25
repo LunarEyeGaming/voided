@@ -41,12 +41,15 @@ function BowShotImproved:draw()
 
   animator.playSound("draw")
 
+  local playedSoundCue = false
+
   while self.fireMode == (self.activatingFireMode or self.abilitySlot) do
     if self.walkWhileFiring then mcontroller.controlModifiers({runningSuppressed = true}) end
 
     self.drawTime = self.drawTime + self.dt
-    if self:shouldCue() then
+    if self:shouldCue() and not playedSoundCue then
       animator.playSound("cue")
+      playedSoundCue = true
     end
 
     local drawFrame = math.floor(root.evalFunction(self.drawFrameSelector, self.drawTime))
@@ -96,7 +99,7 @@ function BowShotImproved:perfectTiming()
 end
 
 function BowShotImproved:shouldCue()
-  return self.drawTime > self.powerProjectileTime[1] - self.dt and self.drawTime < self.powerProjectileTime[1]
+  return self.drawTime > self.powerProjectileTime[1]
 end
 
 function BowShotImproved:currentProjectileParameters()

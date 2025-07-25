@@ -1,0 +1,25 @@
+{
+  "name" : "v-aimablemultidash",
+  "type" : "body",
+
+  "scripts" : ["v-aimablemultidash.lua"],
+  "animator" : "v-aimablemultidash.animation",
+
+  "description" : "Can dash 3 times at once (^green;[W]^reset;). Cooldown per dash: 0.8s",
+  "shortDescription" : "Multi-Dash",
+  "rarity" : "Uncommon",
+  "icon" : "/tech/v-aimablemultidash.png",
+
+  "chipCost" : 2,
+
+  "dashControlForce" : 2000,
+  "dashSpeed" : 100,
+  "dashDuration" : 0.15,
+  "dashCooldown" : 0.8,
+  "stopAfterDash" : true,
+  "groundOnly" : false,
+
+  "maxDashCount" : 3,
+  "dashRegenRate" : 0.75,
+  "dashThresholdPitches" : [0.5, 1.0, 1.5]
+}

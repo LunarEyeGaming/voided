@@ -1,6 +1,6 @@
 {
   "name" : "v-shallowundergroundtoxic",
-  "friendlyName" : "Toxic Caves",
+  "friendlyName" : "Toxic Caves Shallow",
 
   "spawnProfile" : {
     "groups" : [
@@ -163,7 +163,7 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:overgroundRareChests",
+        "distribution" : "/biomes/distributions.config:undergroundChests",
 
         "type" : "object",
         "objectSets" : [
@@ -183,7 +183,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-poisongasprimerlite" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground/v-shallowundergroundtoxic" }
           }
         ]
       },

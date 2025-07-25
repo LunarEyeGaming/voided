@@ -1,0 +1,126 @@
+{
+  "objectName" : "v-lavadrain",
+  "colonyTags" : ["evil"],
+  "printable" : false,
+  "rarity" : "Legendary",
+  "description" : "A hole that drains out liquids.",
+  "shortdescription" : "Lava Drain",
+  "race" : "generic",
+
+  "apexDescription" : "The start of a tunnel deep into the ground. Liquids will be drained here.",
+  "avianDescription" : "A small hole that drains out liquids.",
+  "floranDescription" : "Tiny hole drainsss liquidsss.",
+  "glitchDescription" : "Relieved. This tunnel will drain out liquids.",
+  "humanDescription" : "It's a liquid-draining hole.",
+  "hylotlDescription" : "A hole that drains out liquids.",
+  "novakidDescription" : "A hole that drains liquids.",
+
+  "category" : "trap",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "floor.png:<color>.<frame>",
+      "imagePosition" : [-8, 0],
+      "direction" : "left",
+      "flipImages" : true,
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "bg" : "floor.png",
+        "fg" : "floor.png"
+      },
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "floor.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+
+      "animationPosition" : [0, 0],
+      "animationParts" : {
+        "bg" : "floor.png",
+        "fg" : "floor.png"
+      },
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "left.png:<color>.<frame>",
+      "imagePosition" : [0, -8],
+      "direction" : "right",
+
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "left.png",
+        "fg" : "left.png"
+      },
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left" ]
+    },
+    {
+      "image" : "right.png:<color>.<frame>",
+      "imagePosition" : [0, -8],
+      "direction" : "right",
+
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "right.png",
+        "fg" : "right.png"
+      },
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "right" ]
+    },
+    {
+      "image" : "ceiling.png:<color>.<frame>",
+      "imagePosition" : [-8, 0],
+      "direction" : "left",
+      "flipImages" : true,
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "bg" : "ceiling.png",
+        "fg" : "ceiling.png"
+      },
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    },
+    {
+      "image" : "ceiling.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+
+      "animationPosition" : [0, 0],
+      "animationParts" : {
+        "bg" : "ceiling.png",
+        "fg" : "ceiling.png"
+      },
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    }
+  ],
+
+  "animation" : "/objects/wired/projectiletrap/projectiletrap.animation",
+
+  "health" : 5,
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
+  "smashParticles" : [ { "count" : 5, "particle" : "blackstoneshard" } ],
+
+  "scripts" : [ "v-lavadrain.lua" ],
+  "scriptDelta" : 2,
+
+  "activeDuration" : 99999999999,
+  "inactiveDuration" : 0,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

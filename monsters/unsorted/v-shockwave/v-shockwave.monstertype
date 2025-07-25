@@ -15,11 +15,10 @@
     ],
 
     "animationScripts" : [
+      "/monsters/unsorted/v-shockwave/v-shockwavelightning.lua",
       "/monsters/unsorted/v-shockwave/v-shockwaveanim.lua"
     ],
 
-    "projectileType" : "v-shockwavedamage",
-    "projectileParameters" : {},
     "damage" : 20,
     "damageKind" : "electric",
     "damagePoly" : [[0.75, 0.75], [0.75, -0.75], [-0.75, -0.75], [-0.75, 0.75]],
@@ -49,6 +48,19 @@
 
     "nailDetectionRadius" : 4.0,
     "intangibleTime" : 0.05,
+
+    "lightningDensity" : 0.9,
+
+    "lightningConfig" : {
+      "displacement" : 1.0,
+      "minDisplacement" : 0.5,
+      "forks" : 0,
+      "forkAngleRange" : 0.45,
+      // "endPointDisplacement" : 0.5,
+      "width" : 1.0,
+      "startColor" : [255, 255, 255, 255],
+      "endColor" : [196, 196, 245, 0]
+    },
 
     "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
     "scale" : 1.0,

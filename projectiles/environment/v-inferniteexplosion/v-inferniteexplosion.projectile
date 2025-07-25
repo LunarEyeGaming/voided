@@ -1,0 +1,59 @@
+{
+  "projectileName" : "v-inferniteexplosion",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "timeToLive" : 0.2,
+  "frameNumber" : 1,
+  "power" : 0,
+  "speed" : 0,
+  "animationLoops" : false,
+  "bounces" : -1,
+  "onlyHitTerrain" : true,
+
+  "scripts" : ["v-inferniteexplosion.lua"],
+
+  "mergeRadius" : 3,
+  "projectileType" : "flame",
+  "projectileCount" : 20,
+  "baseProjectileSpeed" : 10,
+  "maxProjectileSpeed" : 100,
+  "baseProjectileDamage" : 50,
+  "maxProjectileDamage" : 1200,
+  "explosionActions" : [
+    {
+      "action" : "projectile",
+      "type" : "v-proxyprojectile",
+      "potencyThreshold" : 0,
+      "config" : {
+        "actionOnReap" : [
+          {
+            "action" : "sound",
+            "options" : [ "/sfx/projectiles/fireball_spit.ogg" ]
+          }
+        ]
+      }
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-proxyprojectile",
+      "potencyThreshold" : 10,
+      "config" : {
+        "actionOnReap" : [
+          {
+            "action" : "config",
+            "file" : "/projectiles/explosions/regularexplosion2/fireexplosionknockback.config"
+          }
+        ]
+      }
+    }
+  ]
+
+  /* "scripts" : ["/scripts/projectiles/v-shockwavespawner.lua"],
+
+  "monsterType" : "v-shockwave",
+  "spawnOffset" : [0, 0],
+  "shockwaveDamageFactor" : 0.5,
+  "monsterParameters" : {
+    "maxArea" : 200
+  } */
+}

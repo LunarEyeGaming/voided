@@ -1,0 +1,14 @@
+{
+  "itemName" : "v-infernitebar",
+  "price" : 300,
+  "rarity" : "Legendary",
+  "category" : "craftingMaterial",
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "inventoryIcon" : "v-infernitebar.png",
+  "description" : "Infernite crystals encased in obsidian. Used for crafting infernal equipment.",
+  "shortdescription" : "Infernite Geode",
+  "itemTags" : [ "reagent" ],
+  "learnBlueprintsOnPickup" : ["v-rockvaporcannon", "v-fusionplasmalauncher", "v-sunwand", "v-meteorwand",
+    "v-solarflareboomerang", "v-inferniteshield", "v-devilstrident", "v-infernitehead", "v-infernitechest",
+    "v-infernitepants"]
+}

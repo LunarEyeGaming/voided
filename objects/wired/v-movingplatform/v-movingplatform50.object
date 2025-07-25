@@ -1,0 +1,59 @@
+{
+  "objectName" : "v-movingplatform50",  // 50 blocks wide
+  "colonyTags" : ["door"],
+  "rarity" : "Common",
+
+  "category" : "door",
+  "price" : 200,
+  "printable" : false,
+  "description" : "A floor that moves in a single direction.",
+  "shortdescription" : "Moving Platform",
+  "race" : "generic",
+  "health" : 1.5,
+
+  "apexDescription" : "The floor seems to be moving. Moving accordingly is advisable.",
+  "avianDescription" : "The floor moves.",
+  "floranDescription" : "Floor iss moving.",
+  "glitchDescription" : "Confused. The holes in the floor are moving.",
+  "humanDescription" : "The floor is moving.",
+  "hylotlDescription" : "The floor seems to be shifting.",
+  "novakidDescription" : "The floor's got a mind of its own.",
+
+  "inventoryIcon" : "secretdooricon.png",
+
+  "animation" : "v-movingplatform.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "open" : {
+        "pool" : [ "/sfx/objects/stonedoor_open_fast.ogg" ],
+        "rangeMultiplier" : 0.5
+      },
+      "close" : {
+        "pool" : [ "/sfx/objects/stonedoor_close_fast.ogg" ],
+        "rangeMultiplier" : 0.5
+      }
+    }
+  },
+  "animationPosition" : [0, 0],
+
+  "orientations" : [
+    {
+      "image" : "movingplatform50preview.png",
+      "imagePosition" : [0, 0],
+
+      "spaceScan" : 0.1,
+
+      "anchors" : [ "background" ],
+
+      "direction" : "right"
+    }
+  ],
+
+  "inputNodes" : [ [0, 4] ],
+  "outputNodes" : [ [49, 0] ],
+
+  "scripts" : [ "v-movingplatform.lua" ],
+  "scriptDelta" : 3,
+
+  "advanceInterval" : 0.25
+}

@@ -193,6 +193,103 @@
     }]
   ],
 
+  "v-fireWeaponChestTreasure" : [
+    [0, {
+      "fill" : [
+        {"pool" : "v-fireWeapon"}
+      ],
+      "poolRounds" : [
+        [0.5, 2],
+        [0.3, 3],
+        [0.2, 4]
+      ],
+      "pool" : [
+        {"weight" : 1.0, "pool" : "basicTreasure"}
+      ]
+    }]
+  ],
+
+  "v-fireWeapon" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 3, "pool" : "v-uncommonFireGun"},
+        {"weight" : 4.5, "pool" : "v-uncommonFireMelee"},
+        {"weight" : 1, "pool" : "v-rareFireGun"},
+        {"weight" : 1.5, "pool" : "v-rareFireMelee"},
+
+        {"weight" : 0.3, "item" : {"name" : "rarestaff", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.3, "item" : {"name" : "rarewand", "parameters" : {"elementalType" : "fire"}}}
+      ]
+    }]
+  ],
+
+  "v-uncommonFireMelee" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.007, "item" : {"name" : "uncommonbroadsword", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonaxe", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonspear", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonhammer", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommondagger", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonshortsword", "parameters" : {"elementalType" : "fire"}}}
+      ]
+    }]
+  ],
+
+  "v-rareFireMelee" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.007, "item" : {"name" : "rarebroadsword", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.007, "item" : {"name" : "rareaxe", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.007, "item" : {"name" : "rarespear", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.007, "item" : {"name" : "rarehammer", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.007, "item" : {"name" : "raredagger", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.007, "item" : {"name" : "rareshortsword", "parameters" : {"elementalType" : "fire"}}}
+      ]
+    }]
+  ],
+
+  "v-uncommonFireGun" : [
+    [0, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "uncommonpistol", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonmachinepistol", "parameters" : {"elementalType" : "fire"}}}
+      ]
+    }],
+    [1.9, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "uncommongrenadelauncher", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonassaultrifle", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonshotgun", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonsniperrifle", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonpistol", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonmachinepistol", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.7, "item" : {"name" : "uncommonrocketlauncher", "parameters" : {"elementalType" : "fire"}}}
+      ]
+    }]
+  ],
+
+  "v-rareFireGun" : [
+    [0, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "rarepistol", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "raremachinepistol", "parameters" : {"elementalType" : "fire"}}}
+      ]
+    }],
+    [1.9, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "rareassaultrifle", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "rareshotgun", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "raresniperrifle", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "rarepistol", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "raremachinepistol", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 1.0, "item" : {"name" : "raregrenadelauncher", "parameters" : {"elementalType" : "fire"}}},
+        {"weight" : 0.7, "item" : {"name" : "rarerocketlauncher", "parameters" : {"elementalType" : "fire"}}}
+      ]
+    }]
+  ],
+
   "v-dischargetrapTreasure" : [
     [0, {
       "fill" : [],
@@ -269,6 +366,25 @@
         {"weight" : 0.0625, "item" : "copperore"},
         {"weight" : 0.03125, "item" : "silverore"},
         {"weight" : 0.015625, "item" : "goldore"}
+      ]
+    }]
+  ],
+
+  "v-breadcrustbombTreasure" : [
+    [0, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 0.75, "item" : "obsidian"},
+        {"weight" : 0.20, "item" : "liquidlava"},
+        {"weight" : 0.05, "item" : "v-inferniteore"}
+      ],
+      "poolRounds" : [
+        [0.5, 1],
+        [0.25, 2],
+        [0.125, 3],
+        [0.0625, 4],
+        [0.03125, 5],
+        [0.03125, 6]
       ]
     }]
   ],

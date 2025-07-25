@@ -12,7 +12,8 @@
 
   "baseParameters" : {
     "scripts" : [
-      "/monsters/monster.lua"
+      "/monsters/monster.lua",
+      "/monsters/biomes/v-voltage/v-wardrone/v-wardronestunplugin.lua"
     ],
 
     "initialScriptDelta" : 1,
@@ -241,7 +242,7 @@
 
       "stats" : {
         "knockbackStunTime" : {
-          "baseValue" : 0.25
+          "baseValue" : 2.0
         },
         "knockbackThreshold" : {
           "baseValue" : 35

@@ -1,0 +1,27 @@
+{
+  "itemName" : "v-aimablemultidashtechchip",
+  "price" : 0,
+  "level" : 1,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "category" : "v-techChip",
+  "description" : "Provides the user with the ability to dash 3 times in any direction (^green;[W]^reset;). ^yellow;Force Equips^reset;.",
+  "shortdescription" : "^1;Multi-Dash",
+  "twoHanded" : true,
+
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "customRarity" : "Mythical",
+
+  "inventoryIcon" : "aimablemultidashtechchip.png",
+  "animation" : "v-techchip.animation",
+  "animationCustom" : {},
+  "scripts" : ["v-techchip.lua"],
+
+  "fireTime" : 2.0,
+  "fireOffset" : [1.0, 0.0],
+
+  "unlockedTech" : "v-aimablemultidash",
+  "unlockedTechNotifierName" : "v-aimablemultidashtechchipnotifier",  // Hacky way of displaying a message at the bottom of the screen
+  "forceEquipTech" : true,
+  "consumeOnUse" : false
+}

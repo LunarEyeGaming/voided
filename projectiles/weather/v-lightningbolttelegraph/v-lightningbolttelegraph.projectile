@@ -35,6 +35,11 @@
           "rotation" : 180
         }
       }
+    },
+    {
+      "time" : 0.1,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_lightning_warning1.ogg", "/sfx/projectiles/v_lightning_warning2.ogg", "/sfx/projectiles/v_lightning_warning3.ogg" ]
     }
   ],
   "actionOnReap" : [

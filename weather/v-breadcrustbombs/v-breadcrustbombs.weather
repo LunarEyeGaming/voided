@@ -1,0 +1,20 @@
+{
+  "name" : "v-breadcrustbombs",
+
+  "projectiles" : [
+    {
+      "projectile" : "v-breadcrustbomb",
+      "parameters" : {
+        "power" : 250
+      },
+      "velocity" : [100, -100],
+      "ratePerX" : 0.005,
+      "spawnAboveRegion" : 30,
+      "spawnHorizontalPad" : 100,
+      "windAffectAmount" : 0.0
+    }
+  ],
+
+  "duration" : [60, 90],
+  "maximumWind" : 40.0
+}

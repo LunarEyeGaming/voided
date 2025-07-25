@@ -1,0 +1,163 @@
+{
+  "objectName" : "v-geysertrap",
+  "colonyTags" : ["evil"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "A formation that shoots out searing hot flames.",
+  "shortdescription" : "Geyser",
+  "race" : "generic",
+
+  "apexDescription" : "This geyser occasionally shoots out flames.",
+  "avianDescription" : "Hot gases escape from this vent.",
+  "floranDescription" : "Floran fearsss flamess.",
+  "glitchDescription" : "Distressed. A vent that periodically emits flames.",
+  "humanDescription" : "Need to look out for that fire.",
+  "hylotlDescription" : "A small geyser that emits fire.",
+  "novakidDescription" : "A lil' geyser. Better avoid the flames.",
+
+  "biomePlaced" : true,
+
+  "category" : "trap",
+  "price" : 200,
+
+  "inventoryIcon" : "geysertrapicon.png",
+  "orientations" : [
+    {
+      "image" : "geysertrap.png:<color>.<frame>",
+      "imagePosition" : [-8, 0],
+      "direction" : "left",
+      "flipImages" : true,
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "bg" : "geysertrap.png",
+        "fg" : "geysertrap.png"
+      },
+
+      "projectileDirection" : [0, 1],
+      "projectilePosition" : [0, 0.7],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "geysertrap.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+
+      "animationPosition" : [0, 0],
+      "animationParts" : {
+        "bg" : "geysertrap.png",
+        "fg" : "geysertrap.png"
+      },
+
+      "projectileDirection" : [0, 1],
+      "projectilePosition" : [1, 0.7],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "geysertrapleft.png:<color>.<frame>",
+      "imagePosition" : [0, -8],
+      "direction" : "right",
+
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "geysertrapleft.png",
+        "fg" : "geysertrapleft.png"
+      },
+
+      "projectileDirection" : [1, 0],
+      "projectilePosition" : [0.7, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left" ]
+    },
+    {
+      "image" : "geysertrapright.png:<color>.<frame>",
+      "imagePosition" : [0, -8],
+      "direction" : "right",
+
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "geysertrapright.png",
+        "fg" : "geysertrapright.png"
+      },
+
+      "projectileDirection" : [-1, 0],
+      "projectilePosition" : [0.3, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "right" ]
+    },
+    {
+      "image" : "geysertrapceiling.png:<color>.<frame>",
+      "imagePosition" : [-8, 0],
+      "direction" : "left",
+      "flipImages" : true,
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "bg" : "geysertrapceiling.png",
+        "fg" : "geysertrapceiling.png"
+      },
+
+      "projectileDirection" : [0, -1],
+      "projectilePosition" : [0, 0.3],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    },
+    {
+      "image" : "geysertrapceiling.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+
+      "animationPosition" : [0, 0],
+      "animationParts" : {
+        "bg" : "geysertrapceiling.png",
+        "fg" : "geysertrapceiling.png"
+      },
+
+      "projectileDirection" : [0, -1],
+      "projectilePosition" : [1, 0.3],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/projectiletrap/projectiletrap.lua" ],
+  "scriptDelta" : 2,
+
+  "animation" : "/objects/wired/projectiletrap/projectiletrap.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "shoot" : [ "/sfx/npc/boss/v_strongholdcore_steamrelease.ogg" ],
+      "on" : [ ],
+      "off" : [ ]
+    }
+  },
+
+  "inputNodes" : [ [0, 0] ],
+
+  "inactiveLightColor" : [0, 0, 0], // light color to emit when the object is 'off'
+  "activeLightColor" : [0, 0, 0], // light color to emit when the object is 'on'
+
+  "fireTime" : 5.0, // rate of fire
+  "fireTimeVariance" : 1.0, // variation in rate of fire
+  "projectile" : "v-geyserjet", // name of projectile (required)
+  "projectileConfig" : { // extra configuration overrides for projectile
+    "damageTeam" : { "type" : "Environment" },
+    "power" : 10,
+    "speed" : 0,
+    "damageType" : "ignoresdef"
+  },
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
+  "smashParticles" : [ { "count" : 5, "particle" : "blackstoneshard" } ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

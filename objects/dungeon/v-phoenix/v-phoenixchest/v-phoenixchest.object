@@ -1,0 +1,44 @@
+{
+  "objectName" : "v-phoenixchest",
+  "colonyTags" : ["avian","aviantomb","storage"],
+  "rarity" : "Uncommon",
+  "objectType" : "container",
+  "tooltipKind" : "container",
+
+  "category" : "storage",
+  "price" : 90,
+  "description" : "A large chest made of sunspot stone.",
+  "shortdescription" : "Large Phoenix Chest",
+  "race" : "avian",
+  "health" : 1.5,
+  "printable" : false,
+  "learnBlueprintsOnPickup" : [ "v-phoenixchest" ],
+
+  "apexDescription" : "A sunspot stone chest with carvings etched into it. Its frame is made of iron.",
+  "avianDescription" : "A large, decorated sunspot stone chest.",
+  "floranDescription" : "Big chessst made of sstone! Musst be full of goodiesss.",
+  "glitchDescription" : "Anticipation. What valuables could be in a chest so large?",
+  "humanDescription" : "It looks like someone swapped out wood for stone when making this chest.",
+  "hylotlDescription" : "A large stone chest. What valuables may I find?",
+  "novakidDescription" : "Maybe I can steal a few things from this chest.",
+
+  "inventoryIcon" : "phoenixchesticon.png",
+  "orientations" : [
+    {
+      "dualImage" : "phoenixchest.png:<color>.<key>",
+      "imagePosition" : [-8, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "openSounds" : [ "/sfx/objects/chest_medium_open.ogg" ],
+  "closeSounds" : [ "/sfx/objects/chest_medium_close.ogg" ],
+  "slotCount" : 24,
+  "uiConfig" : "/interface/chests/chest<slots>.config",
+  "frameCooldown" : 5,
+  "autoCloseCooldown" : 3600,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

@@ -1,0 +1,71 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "fireball" : {
+        "default" : "off",
+        "states" : {
+          "off" : {
+            "properties" : {
+              "lightsOff" : ["glow"],
+              "particleEmittersOff" : ["flames"]
+            }
+          },
+          "on" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "loop",
+            "properties" : {
+              "lightsOn" : ["glow"],
+              "particleEmittersOn" : ["flames"]
+            }
+          }
+        }
+      }
+    },
+    "parts" : {
+      "fireball" : {
+        "properties" : {
+          "offset" : [-2.5, 0],
+          "centered" : true,
+          "fullbright" : true,
+          "transformationGroups" : ["fireball"]
+        },
+        "partStates" : {
+          "fireball" : {
+            "on" : {
+              "properties" : {
+                "image" : "fireball.png:<frameIndex>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "lights" : {
+    "glow" : {
+      "active" : false,
+      "color" : [218, 83, 2]
+    }
+  },
+  "particleEmitters" : {
+    "flames" : {
+      "emissionRate" : 50,
+      "burstCount" : 10,
+      "offsetRegion" : [-2.5, -2.5, 2.5, 2.5],
+      "particles" : [
+        {"particle" : "fireswoosh1"},
+        {"particle" : "fireswoosh2"},
+        {"particle" : "fireswoosh3"}
+      ]
+    }
+  },
+  "transformationGroups" : {
+    "fireball" : {"interpolated" : true}
+  },
+  "sounds" : {
+    "activate" : ["/sfx/statuseffects/v_infernitesetbonus_activate1.ogg", "/sfx/statuseffects/v_infernitesetbonus_activate2.ogg", "/sfx/statuseffects/v_infernitesetbonus_activate3.ogg"],
+    "active" : ["/sfx/projectiles/fireball_loop.ogg"],
+    "deactivate" : ["/sfx/objects/flametrap_off.ogg"]
+  }
+}

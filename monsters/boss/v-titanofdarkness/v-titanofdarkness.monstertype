@@ -38,6 +38,10 @@
 
       "flySpeed" : 15,
       "airForce" : 40,
+      "liquidForce" : 40,
+
+      "liquidFriction" : 0,
+      "liquidImpedance" : 0,
 
       "physicsEffectCategories" : ["boss"]
     },
@@ -73,6 +77,7 @@
 
     "statusSettings" : {
       "statusProperties" : {
+        "displayTitle" : "Boss",  // Book of Spirits support
         "targetMaterialKind" : "stone"
       },
 

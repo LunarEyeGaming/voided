@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-firenovafireball",
+  "physics" : "hover",
+  "bounces" : -1,
+  "timeToLive" : 1,
+  "image" : "firenovafireball.png",
+  "speed" : 30,
+  "animationCycle" : 0.5,
+  "lightColor" : [84, 47, 26],
+  "frameNumber" : 4,
+  "fullbright" : true,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/regularexplosion2/fireexplosionknockback.config"
+    }
+  ],
+  "onlyHitTerrain" : true
+}

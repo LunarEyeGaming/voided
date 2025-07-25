@@ -44,6 +44,29 @@
   },
   {
     "op" : "add",
+    "path" : "/terrestrialHorizonGraphics/v-ministar",
+    "value" : {
+      "baseImages" : "/celestial/system/terrestrial/horizon/textures/magma_<selector>.png",
+      "maskTextures" : "/celestial/system/terrestrial/horizon/masks/ocean/<mask>_<selector>.png",
+      "shadowTextures" : "/celestial/system/terrestrial/horizon/shadow/v-no_shadow_<selector>.png",
+      "atmosphereTextures" : "/celestial/system/terrestrial/horizon/atmosphere/v-ministaratmosphere_<selector>.png",
+      "maskRange" : [1, 25],
+      "maskPerPlanetRange" : [3, 3]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/terrestrialGraphics/v-ministar",
+    "value" : {
+      "baseImages" : "/celestial/system/terrestrial/biomes/magma/maskie<num>.png",
+      "dynamicsImages" : "/celestial/system/terrestrial/dynamics/ocean/<num>.png",
+      "shadowNumber" : [1, 1],
+      "shadowImages" : "/celestial/system/terrestrial/glow/v-ministar.png",
+      "dynamicsRange" : [1, 20]
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/floatingDungeonHorizons/v-strongholdgateway",
     "value" : "/celestial/system/v-strangeasteroid/horizon/asteroid_<selector>.png"
   },
@@ -69,7 +92,7 @@
           "description" : "Small Extradimensional Star",
           "imageScale" : 0.04,
           "twinkleFrames" : "/celestial/stars/v-star7pxExtradimensional.png",
-          "twinkleBackground" : "/celestial/stars/backgrounds/star7px.png",
+          "twinkleBackground" : "/celestial/stars/backgrounds/v-star7pxExtradimensional.png",
           "brightness" : [1, 1]
         },
         {
@@ -77,7 +100,7 @@
           "description" : "Medium Extradimensional Star",
           "imageScale" : 0.055,
           "twinkleFrames" : "/celestial/stars/v-star13pxExtradimensional.png",
-          "twinkleBackground" : "/celestial/stars/backgrounds/star13px.png",
+          "twinkleBackground" : "/celestial/stars/backgrounds/v-star13pxExtradimensional.png",
           "brightness" : [1, 1]
         },
         {
@@ -85,7 +108,7 @@
           "description" : "Large Extradimensional Star",
           "imageScale" : 0.075,
           "twinkleFrames" : "/celestial/stars/v-star17pxExtradimensional.png",
-          "twinkleBackground" : "/celestial/stars/backgrounds/star17px.png",
+          "twinkleBackground" : "/celestial/stars/backgrounds/v-star17pxExtradimensional.png",
           "brightness" : [1, 1]
         }
       ],
@@ -154,7 +177,7 @@
         "description" : "Elemental (Voided)",
         "smallImage" : "/celestial/system/planet_small.png",
 
-        "terrestrialType" : [ "v-voltage", "v-toxicwasteland" ]
+        "terrestrialType" : [ "v-voltage", "v-toxicwasteland", "v-ministar" ]
       },
 
       "variationParameters" : [
@@ -205,7 +228,7 @@
         "description" : "Elemental Moon (Voided)",
         "smallImage" : "/celestial/system/planet_small.png",
 
-        "terrestrialType" : [ "v-voltage", "v-toxicwasteland" ]
+        "terrestrialType" : [ "v-voltage", "v-toxicwasteland", "v-ministar" ]
       },
 
       "variationParameters" : [

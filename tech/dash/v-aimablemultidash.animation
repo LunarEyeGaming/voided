@@ -1,0 +1,57 @@
+{
+  "globalTagDefaults" : {
+    "stamina" : "1"
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "recharge" : {
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "on" : {
+            "frames" : 5,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "off"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "rechargeeffect" : {
+        "properties" : {
+          "centered" : true,
+          "offset" : [0, -0.5]
+        },
+
+        "partStates" : {
+          "recharge" : {
+            "on" : {
+              "properties" : {
+                "image" : "v-multidashrecharge.png:<stamina>.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "particleEmitters" : {
+    "dashParticles" : {
+      "emissionRate" : 40.0,
+      "particles" : [
+        {
+          "particle" : "v-aimablemultidash",
+          "flip" : true
+        }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "startDash" : [ "/sfx/tech/tech_dash.ogg" ],
+    "recharge" : [ "/sfx/tech/tech_dash_cooldown2.ogg" ]
+  }
+}

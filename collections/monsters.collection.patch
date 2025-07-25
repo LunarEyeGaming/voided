@@ -1,4 +1,7 @@
 [
+  // -------------------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------VOLTAGE------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
   {
     "op" : "add",
     "path" : "/collectables/v-amperecharger",
@@ -80,6 +83,11 @@
       "icon" : "/monsters/biomes/v-voltage/v-electricelemental/body.png:idle.1"
     }
   },
+
+  // -------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------TOXIC WASTELAND--------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+
   {
     "op" : "add",
     "path" : "/collectables/v-downspitter",
@@ -141,6 +149,83 @@
       "order" : 76,
       "monsterType" : "v-mutanteelhead",
       "icon" : "/monsters/biomes/v-toxicwasteland/v-mutanteel/captureicon.png"
+    }
+  },
+
+  // -------------------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------MINISTAR-----------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+
+  {
+    "op" : "add",
+    "path" : "/collectables/v-firefloater",
+    "value" : {
+      "order" : 77,
+      "monsterType" : "v-firefloater",
+      "icon" : "/monsters/biomes/v-ministar/v-firefloater/firefloater.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-lurkano",
+    "value" : {
+      "order" : 78,
+      "monsterType" : "v-lurkano",
+      "icon" : "/monsters/biomes/v-ministar/v-lurkano/lurkano.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-novamonster",
+    "value" : {
+      "order" : 79,
+      "monsterType" : "v-novamonster",
+      "icon" : "/monsters/biomes/v-ministar/v-novamonster/novamonster.png:fly.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-rammingasteroid",
+    "value" : {
+      "order" : 80,
+      "monsterType" : "v-rammingasteroid",
+      "icon" : "/monsters/biomes/v-ministar/v-rammingasteroid/rammingasteroid.png:active.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-sunleaper",
+    "value" : {
+      "order" : 81,
+      "monsterType" : "v-sunleaper",
+      "icon" : "/monsters/biomes/v-ministar/v-sunleaper/body.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-pyrebush",
+    "value" : {
+      "order" : 82,
+      "monsterType" : "v-pyrebush",
+      "icon" : "/monsters/biomes/v-ministar/v-pyrebush/pyrebush.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-pyremander",
+    "value" : {
+      "order" : 83,
+      "monsterType" : "v-pyremander",
+      "icon" : "/monsters/biomes/v-ministar/v-pyremander/pyremander.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-dracucumber",
+    "value" : {
+      "order" : 84,
+      "monsterType" : "v-dracucumber",
+      "icon" : "/monsters/biomes/v-ministar/v-dracucumber/captureicon.png"
     }
   }
 ]

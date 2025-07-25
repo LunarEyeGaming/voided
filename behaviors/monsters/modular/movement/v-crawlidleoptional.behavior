@@ -1,0 +1,82 @@
+{
+  "name": "v-idle-crawloptional",
+  "description": "",
+  "scripts": [
+    "/scripts/behavior.lua",
+    "/scripts/actions/crawling.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/animator.lua"
+  ],
+  "parameters": {
+    "stopForce": 0
+  },
+  "root": {
+    "title": "parallel",
+    "type": "composite",
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": 1},
+      "success": {"value": -1}
+    },
+    "children": [
+      {
+        "title": "inverter",
+        "type": "decorator",
+        "name": "inverter",
+        "parameters": {},
+        "child": {
+          "title": "hasFlag",
+          "type": "action",
+          "name": "hasFlag",
+          "parameters": {
+            "name": {"key": "shouldNotCrawl"}
+          }
+        }
+      },
+      {
+        "title": "wallSit",
+        "type": "action",
+        "name": "wallSit",
+        "parameters": {},
+        "output": {
+          "forwardAngle": "heading"
+        }
+      },
+      {
+        "title": "controlApproachVelocity",
+        "type": "action",
+        "name": "controlApproachVelocity",
+        "parameters": {
+          "force": {"key": "<stopForce>"},
+          "velocity": {"value": [0, 0]}
+        }
+      },
+      {
+        "title": "transform",
+        "type": "action",
+        "name": "transform",
+        "parameters": {
+          "group": {"value": "body"},
+          "rotation": {"key": "heading"}
+        }
+      },
+      {
+        "title": "controlFlag",
+        "type": "action",
+        "name": "controlFlag",
+        "parameters": {
+          "bool": {"value": true}
+        },
+        "output": {
+          "bool": "crawling"
+        }
+      },
+      {
+        "title": "runner",
+        "type": "action",
+        "name": "runner",
+        "parameters": {}
+      }
+    ]
+  }
+}

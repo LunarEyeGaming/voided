@@ -4,9 +4,10 @@
   "maxStack" : 1,
   "rarity" : "Legendary",
   "customRarity" : "Mythical",
-  "description" : "A gun that shoots slow-moving lightning orbs, which the alt can detonate.",
+  "description" : "A chargeable gun that shoots slow-moving lightning orbs.",
   "shortdescription" : "^voltite;Tesla Rifle",
-  "tooltipKind" : "base",
+  "extraInfo" : "Special ability causes existing lightning orbs to explode in a chain reaction.",
+  "tooltipKind" : "v-biggun",
   "category" : "v-uncategorizedWeapon",
   "twoHanded" : true,
   "itemTags" : ["weapon","ranged"],
@@ -27,6 +28,11 @@
 
   "primaryAbilityType" : "chargefire",
   "primaryAbility" : {
+    // Display stats
+    "baseDps" : 3.95,  // (1 / (0 + 0.15) + 2 / (0.8 + 0.25) + 7 / (1.6 + 0.25) + 10 / (2.4 + 0.5)) / 4
+    "fireTime" : 1.4875, // ((0 + 0.15) + (0.8 + 0.25) + (1.6 + 0.25) + (2.4 + 0.5)) / 4
+    "energyUsage" : 51.49,  // (10 / (0 + 0.15) + 30 / (0.8 + 0.25) + 90 / (1.6 + 0.25) + 180 / (2.4 + 0.5)) / 4
+
     "chargeLevels" : [
       {
         "time" : 0,
@@ -117,7 +123,7 @@
       }
     }
   },
-  
+
   "altAbilityType" : "v-teslariflealt",
 
   "builder" : "/items/buildscripts/v-buildunrandweapon.lua"

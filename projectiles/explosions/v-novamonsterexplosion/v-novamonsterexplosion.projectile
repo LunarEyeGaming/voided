@@ -1,0 +1,21 @@
+{
+  "projectileName" : "v-novamonsterexplosion",
+  "image" : "novamonsterexplosion.png",
+  "timeToLive" : 0.6,
+  "animationCycle" : 0.3,
+  "frameNumber" : 3,
+  "winddownFrames" : 3,
+  "intangibleWinddown" : true,
+  "fullbright" : true,
+  "speed" : 0,
+  "damagePoly" : [ [-80, 0], [-50, -50], [0, -80], [50, -50], [80, 0], [50, 50], [0, 80], [-50, 50] ],
+  "animationLoops" : true,
+  "piercing" : true,
+  "bounces" : -1,
+  "flippable" : true,
+  "lightColor" : [253, 143, 77],
+  "power" : 2,
+  "knockback" : 60,
+  "damageKind" : "fireplasma",
+  "renderLayer" : "ForegroundEntity+10"
+}

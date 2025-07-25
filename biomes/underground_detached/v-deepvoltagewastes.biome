@@ -1,6 +1,6 @@
 {
   "name" : "v-deepvoltagewastes",
-  "friendlyName" : "Deep Charged Wastes",
+  "friendlyName" : "Charged Caverns",
 
   "spawnProfile" : {
     "groups" : [
@@ -81,7 +81,7 @@
         "objectSets" : [
           {
             "pool" : [ [1, "v-dischargetrap"] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground_detached/v-deepvoltagewastes" }
           }
         ]
       },
@@ -95,7 +95,7 @@
         "objectSets" : [
           {
             "pool" : [ [1, "v-dischargetrap"] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground_detached/v-deepvoltagewastes" }
           }
         ]
       },
@@ -118,7 +118,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-copperrock1" ], [1.0, "v-copperrock2" ], [1.0, "v-copperrock3" ], [1.0, "v-copperrock4" ], [1.0, "v-copperrock5" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground_detached/v-deepvoltagewastes" }
           }
         ]
       }

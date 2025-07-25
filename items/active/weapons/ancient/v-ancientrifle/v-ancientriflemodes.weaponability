@@ -16,6 +16,12 @@
               "cycle" : 0.5,
               "mode" : "loop"
             },
+            "fire1" : {
+              "frames" : 3,
+              "cycle" : 0.1,
+              "mode" : "transition",
+              "transition" : "idle1"
+            },
             "2" : {
               "frames" : 2,
               "cycle" : 0.2,
@@ -27,6 +33,12 @@
               "cycle" : 0.5,
               "mode" : "loop"
             },
+            "fire2" : {
+              "frames" : 7,
+              "cycle" : 0.28,
+              "mode" : "transition",
+              "transition" : "idle2"
+            },
             "3" : {
               "frames" : 2,
               "cycle" : 0.2,
@@ -37,6 +49,12 @@
               "frames" : 8,
               "cycle" : 0.5,
               "mode" : "loop"
+            },
+            "fire3" : {
+              "frames" : 10,
+              "cycle" : 0.5,
+              "mode" : "transition",
+              "transition" : "idle3"
             }
           }
         }
@@ -60,6 +78,11 @@
                   "image" : "<partImage>:auto.<frame><paletteSwaps>"
                 }
               },
+              "fire1" : {
+                "properties" : {
+                  "image" : "<partImage>:autoFire.<frame><paletteSwaps>"
+                }
+              },
               "2" : {
                 "properties" : {
                   "image" : "<partImage>:burstForm.<frame><paletteSwaps>"
@@ -70,6 +93,11 @@
                   "image" : "<partImage>:burst.<frame><paletteSwaps>"
                 }
               },
+              "fire2" : {
+                "properties" : {
+                  "image" : "<partImage>:burstFire.<frame><paletteSwaps>"
+                }
+              },
               "3" : {
                 "properties" : {
                   "image" : "<partImage>:grenadeForm.<frame><paletteSwaps>"
@@ -78,6 +106,11 @@
               "idle3" : {
                 "properties" : {
                   "image" : "<partImage>:grenade.<frame><paletteSwaps>"
+                }
+              },
+              "fire3" : {
+                "properties" : {
+                  "image" : "<partImage>:grenadeFire.<frame><paletteSwaps>"
                 }
               }
             }
@@ -100,6 +133,11 @@
                   "image" : "<partImage>:auto.<frame><paletteSwaps>"
                 }
               },
+              "fire1" : {
+                "properties" : {
+                  "image" : "<partImage>:autoFire.<frame><paletteSwaps>"
+                }
+              },
               "2" : {
                 "properties" : {
                   "image" : "<partImage>:burstForm.<frame><paletteSwaps>"
@@ -110,6 +148,11 @@
                   "image" : "<partImage>:burst.<frame><paletteSwaps>"
                 }
               },
+              "fire2" : {
+                "properties" : {
+                  "image" : "<partImage>:burstFire.<frame><paletteSwaps>"
+                }
+              },
               "3" : {
                 "properties" : {
                   "image" : "<partImage>:grenadeForm.<frame><paletteSwaps>"
@@ -118,6 +161,11 @@
               "idle3" : {
                 "properties" : {
                   "image" : "<partImage>:grenade.<frame><paletteSwaps>"
+                }
+              },
+              "fire3" : {
+                "properties" : {
+                  "image" : "<partImage>:grenadeFire.<frame><paletteSwaps>"
                 }
               }
             }
@@ -138,7 +186,7 @@
     "class" : "AncientRifleModes",
 
     "baseIcon" : "/items/active/weapons/ancient/v-ancientrifle/ancientrifleicons.png",
-    
+
     "adaptedAbilityIndex" : 1,
 
     "ammoTypes" : [
@@ -147,7 +195,15 @@
         "energyUsage" : 50,
         "fireTime" : 0.1,
         "fireType" : "auto",
-        "baseDps" : 13.0
+        "baseDps" : 13.0,
+
+        "stances" : {
+          "fire" : {
+            "animationStates" : {
+              "ammoType" : "fire1"
+            }
+          }
+        }
       },
       {
         "projectileType" : "v-ancientlasershot",
@@ -156,15 +212,37 @@
         "burstCount" : 3,
         "burstTime" : 0.08,
         "fireTime" : 0.2,
-        "baseDps" : 15.5
+        "baseDps" : 15.5,
+
+        "stances" : {
+          "fire" : {
+            "animationStates" : {
+              "ammoType" : "fire2"
+            }
+          }
+        }
       },
       {
         "projectileType" : "v-ancientgrenade",
         "energyUsage" : 50,
         "fireTime" : 3.0,
         "fireType" : "auto",
-        "baseDps" : 6.5
+        "baseDps" : 6.5,
+
+        "stances" : {
+          "fire" : {
+            "animationStates" : {
+              "ammoType" : "fire3"
+            }
+          }
+        }
       }
+    ],
+
+    "ammoStates" : [
+      "auto",
+      "burst",
+      "grenade"
     ],
 
     "stances" : {
@@ -172,7 +250,7 @@
         "armRotation" : 0,
         "weaponRotation" : 0,
         "twoHanded" : true,
-  
+
         "allowRotate" : true,
         "allowFlip" : true
       },
@@ -184,7 +262,7 @@
         "armAngularVelocity" : 100,
         "twoHanded" : true,
         "duration" : 0.4,
-  
+
         "allowRotate" : false,
         "allowFlip" : true
       }

@@ -1,11 +1,15 @@
 require "/scripts/vec2.lua"
 require "/scripts/set.lua"
 require "/scripts/poly.lua"
+
 require "/scripts/v-vec2.lua"
+require "/scripts/v-world.lua"
+
+require "/scripts/v-animator.lua"
 
 -- Script for a damaging wave that propagates through a specific set of blocks.
 
-local animTicks
+local bufferTicks  -- Number of ticks for which to buffer
 
 local validMats
 local validMatMods
@@ -19,15 +23,22 @@ local disappearDelay
 local sourceEntity
 local nailDetectionRadius
 local intangibleTime
+local lightningDensity
 
 local area
 local disappearTimer
-local animTickTimer
+local bufferTickTimer
 local intangibleTimer
 
 local previousBlocks
-local nextBlocks
-local animNextBlocks
+local blocks
+local bufferedBlocks
+
+local lightningBlocks
+-- Similar in structure to an adjacency list in graph theory.
+local animLightningBlocks
+local expandWaveCalledWhileAnimLightningBlocksEmpty
+local animLightningBlocksBack
 
 local center
 local hasStopped
@@ -35,13 +46,15 @@ local shouldDieVar
 
 local nails
 
+local lightning
+
 function init()
   script.setUpdateDelta(1)
-  animTicks = 3
+  bufferTicks = 3
 
-  local matAttributes = root.assetJson("/v-matattributes.config")
-  validMats = set.new(matAttributes.conductiveMaterials or {})
-  validMatMods = set.new(matAttributes.conductiveMatMods or {})
+  local conductiveThings = root.assetJson("/v-conductivity.config")
+  validMats = set.new(conductiveThings.conductiveMaterials or {})
+  validMatMods = set.new(conductiveThings.conductiveMatMods or {})
 
   -- Used so that monsters can target whoever fired a projectile that created a shockwave
   sourceEntity = config.getParameter("sourceEntity", entity.id())
@@ -56,6 +69,7 @@ function init()
   disappearDelay = config.getParameter("dissipationTime", 0.25)
   nailDetectionRadius = config.getParameter("nailDetectionRadius", 1)
   intangibleTime = config.getParameter("intangibleTime", 0.1)  -- Amount of time before the shockwave actually begins.
+  lightningDensity = config.getParameter("lightningDensity")
 
   monster.setAnimationParameter("ttl", disappearDelay)
 
@@ -63,15 +77,19 @@ function init()
 
   area = 0
   disappearTimer = disappearDelay
-  animTickTimer = animTicks
+  bufferTickTimer = bufferTicks
   intangibleTimer = intangibleTime
 
   previousBlocks = {}
 
-  nextBlocks = {}  -- vec2 set
-  vVec2.fSetInsert(nextBlocks, {0, 0})
+  blocks = {}  -- vec2 set
+  vVec2.fSetInsert(blocks, {0, 0})
+  lightningBlocks = {}  -- vec2 set
+  vVec2.fSetInsert(lightningBlocks, {0, 0})
 
-  animNextBlocks = {}
+  bufferedBlocks = {}
+  animLightningBlocksBack = {}
+  animLightningBlocks = {}
   local ownPos = mcontroller.position()
 
   -- Lock position to center of tile
@@ -90,6 +108,15 @@ function init()
     nails[nailId] = position
   end)
 
+  local lightningConfig = config.getParameter("lightningConfig")
+
+  lightning = vAnimator.LightningController:new(
+    lightningConfig,
+    lightningConfig.startColor,
+    lightningConfig.endColor,
+    disappearDelay
+  )
+
   monster.setDamageBar("None")
 end
 
@@ -103,9 +130,11 @@ function update(dt)
     return  -- Do nothing until the timer runs out
   end
 
+  -- lightning:update(dt)
+
   -- If no new blocks were found or the shockwave has spread far enough, disappear. Special case: nails are there and
   -- the shockwave just spawned.
-  if area > maxArea or next(nextBlocks) == nil then
+  if area > maxArea or next(blocks) == nil then
     -- This code is executed immediately after the wave has stopped and not on subsequent ticks.
     if not hasStopped then
       placeWave()
@@ -121,53 +150,77 @@ function update(dt)
 
     monster.setAnimationParameter("nextBlocks", nil)
     monster.setAnimationParameter("particleNextBlocks", nil)
+    monster.setAnimationParameter("lightning", nil)
 
     return
   end
 
   -- Animation parameters seem to update at a rate much less than 60 times per second, so if this script updates
   -- faster than that, the wave appears broken without this code segment.
-  animTickTimer = animTickTimer - 1
+  bufferTickTimer = bufferTickTimer - 1
 
-  if animTickTimer <= 0 then
+  if bufferTickTimer <= 0 then
     placeWave()
   end
 
-  for blockStr, _ in pairs(nextBlocks) do
-    table.insert(animNextBlocks, vVec2.fFromString(blockStr))
+  for blockStr, _ in pairs(blocks) do
+    table.insert(bufferedBlocks, vVec2.fFromString(blockStr))
   end
 
   expandWave()
 end
 
 function expandWave()
-  local temp = {}
+  local nextBlocks = {}
+  local nextLightningBlocks = {}
 
-  for blockStr, _ in pairs(nextBlocks) do
-    for _, offset in ipairs({{1, 0}, {0, 1}, {-1, 0}, {0, -1}}) do
-      local block = vVec2.fFromString(blockStr)
+  for blockStr, _ in pairs(blocks) do
+    local block = vVec2.fFromString(blockStr)
+
+    for _, offset in ipairs(vWorld.ADJACENT_TILES) do
       local adjacent = vec2.add(block, offset)
 
-      if not vVec2.fSetContains(previousBlocks, adjacent) and not vVec2.fSetContains(temp, adjacent)
+      -- If the adjacent block is conductive and was not previously used...
+      if not vVec2.fSetContains(previousBlocks, adjacent) and not vVec2.fSetContains(nextBlocks, adjacent)
           and containsConductive(vec2.add(center, adjacent)) then
 
-        vVec2.fSetInsert(temp, adjacent)
+        if math.random() < lightningDensity then
+          if expandWaveCalledWhileAnimLightningBlocksEmpty then
+            table.insert(animLightningBlocksBack, adjacent)
+          end
+          vVec2.fSetInsert(nextLightningBlocks, adjacent)
+
+          -- Ignore blocks that are not connected to any other blocks.
+          if vVec2.fSetContains(lightningBlocks, block) then
+            if not animLightningBlocks[blockStr] then
+              animLightningBlocks[blockStr] = {}
+            end
+
+            table.insert(animLightningBlocks[blockStr], adjacent)
+          end
+        end
+
+        vVec2.fSetInsert(nextBlocks, adjacent)
         area = area + 1
       end
     end
   end
 
-  previousBlocks = nextBlocks
-  nextBlocks = temp
+  expandWaveCalledWhileAnimLightningBlocksEmpty = false
+
+  previousBlocks = blocks
+  blocks = nextBlocks
+  lightningBlocks = nextLightningBlocks
 end
 
 ---Processes the wave so far.
 function placeWave()
-  monster.setAnimationParameter("nextBlocks", animNextBlocks)
+  -- monster.setAnimationParameter("nextBlocks", bufferedBlocks)
 
   local particleNextBlocks = {}
   local damageSources = {}
-  for _, block in ipairs(animNextBlocks) do
+  -- Process bufferedBlocks. Adding of damage sources is deferred to the buffer to synchronize it with animation.
+  for _, block in ipairs(bufferedBlocks) do
     local blockPos = vec2.add(center, block)
 
     if isExposed(blockPos) or containsCreature(blockPos) then
@@ -181,17 +234,57 @@ function placeWave()
         damageRepeatGroup = "v-shockwave",
         sourceEntityId = sourceEntity
       } --[[@as DamageSource]])
-      -- world.spawnProjectile(projectileType, blockPos, sourceEntity, {0, 0}, false, projectileParameters)
       table.insert(particleNextBlocks, block)
       triggerReceivers(blockPos)
     end
   end
 
   monster.setAnimationParameter("particleNextBlocks", particleNextBlocks)
+  monster.setAnimationParameter("nextBlocks", particleNextBlocks)
   monster.setDamageSources(damageSources)
 
-  animTickTimer = animTicks
-  animNextBlocks = {}
+  bufferTickTimer = bufferTicks
+  bufferedBlocks = {}
+
+  -- Make animLightningBlocks skip `bufferTicks - 1` steps.
+  local flattenedLightningBlocks = flatten(animLightningBlocks, animLightningBlocksBack)
+
+  for blockStr, adjacentBlocks in pairs(flattenedLightningBlocks) do
+    local block = vVec2.fFromString(blockStr)
+    for _, adjacent in ipairs(adjacentBlocks) do
+      lightning:add(vec2.add(center, block), vec2.add(center, adjacent))
+    end
+  end
+
+  lightning:flush()
+
+  animLightningBlocks = {}
+  animLightningBlocksBack = {}
+  expandWaveCalledWhileAnimLightningBlocksEmpty = true
+end
+
+function findEndBlocks(blocksMap, bl, out)
+  local blStr = vVec2.fToString(bl)
+  if not blocksMap[blStr] then return end
+  for _, adjacent in ipairs(blocksMap[blStr]) do
+    -- If the adjacent block has no neighbors...
+    if not blocksMap[vVec2.fToString(adjacent)] then
+      table.insert(out, adjacent)
+    else
+      findEndBlocks(blocksMap, adjacent, out)
+    end
+  end
+end
+
+function flatten(blocksMap, startBlocks)
+  local flattened = {}
+  for _, block in ipairs(startBlocks) do
+    local blockStr = vVec2.fToString(block)
+    flattened[blockStr] = {}
+    findEndBlocks(blocksMap, block, flattened[blockStr])
+  end
+
+  return flattened
 end
 
 function isExposed(position)
@@ -237,9 +330,6 @@ end
 ---@param block any
 function triggerReceivers(block)
   local queried = world.entityQuery(block, 1, {includedTypes = {"object"}, callScript = "v_onShockwaveReceived"})
-  for _, entityId in ipairs(queried) do
-    world.debugPoint(world.entityPosition(entityId), "green")
-  end
 end
 
 function isShockwave()

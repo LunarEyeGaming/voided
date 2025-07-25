@@ -14,6 +14,14 @@ function vVec2.iToString(vector)
   return string.format("%d,%d", vector[1], vector[2])
 end
 
+---Returns a string representation of a `Vec2I` with components `x` and `y` to be used for hash lookups.
+---@param x integer
+---@param y integer
+---@return string
+function vVec2.iToString2(x, y)
+  return string.format("%d,%d", x, y)
+end
+
 ---Returns a `Vec2F` from a string `str`.
 ---@param str string
 ---@return Vec2F

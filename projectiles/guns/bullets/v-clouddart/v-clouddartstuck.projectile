@@ -20,8 +20,35 @@
       "type" : "v-largepoisoncloudlessparticles",
       "inheritDamageFactor" : 0.3,
       "fuzzAngle" : 180
+    },
+    {
+      "time" : 0.05,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-clouddarttrail/v-clouddarttrail.animation",
+        "timeToLive" : 0.8,
+        "initialVelocity" : [-20, 0],
+        "approach" : [10, 10],
+        "finalVelocity" : [0, 10],
+        "size" : 1.0,
+        "layer" : "middle",
+        "variance" : {
+          "initialVelocity" : [3, 3]
+        }
+      }
     }
   ],
+
+  "actionOnTimeout" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_clouddart_off.ogg" ]
+    }
+  ],
+
+  "persistentAudio" : "/sfx/projectiles/v_clouddart_loop.ogg",
 
   "scripts" : [ "v-clouddartstuck.lua" ],
   "scriptDelta" : 1

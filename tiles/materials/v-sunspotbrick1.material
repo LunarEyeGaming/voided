@@ -1,0 +1,24 @@
+{
+  "materialId" : 1214,
+  "materialName" : "v-sunspotbrick1",
+  "particleColor" : [92, 90, 87, 255],
+  "itemDrop" : "v-sunspotbrick1material",
+  "shortdescription" : "Sunspot Slab",
+  "description" : "A slab of tough, unmeltable stone.",
+  "glitchDescription" : "Intrigued. The melting point of these bricks is above 2500 *C.",
+  "floranDescription" : "Big bricksss that don't melt.",
+  "novakidDescription" : "These bricks can't be melted by nothin'.",
+  "footstepSound" : "/sfx/blocks/footstep_stone3.ogg",
+  "health" : 24,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-sunspotbrick1.png",
+    "variants" : 10,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 3220
+  }
+}

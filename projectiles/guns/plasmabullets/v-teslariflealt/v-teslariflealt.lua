@@ -1,31 +1,23 @@
-local detonateRadius
+require "/scripts/projectiles/v-mergergeneric.lua"
+
 local detonateDelay
-local detonateMultiple
 local detonateDamageMultiplier
 local detonateTimer
 
+local merger
+
 function init()
-  detonateRadius = config.getParameter("detonateRadius")
   detonateDelay = config.getParameter("detonateDelay")
-  detonateMultiple = config.getParameter("detonateMultiple")
   detonateDamageMultiplier = config.getParameter("detonateDamageMultiplier", 1.0)
   detonateTimer = detonateDelay
+
+  merger = VMerger:new("v-teslarifleorb", config.getParameter("detonateRadius"), config.getParameter("detonateMultiple"), true)
 end
 
 function update(dt)
   detonateTimer = detonateTimer - dt
   if detonateTimer <= 0 then
-    local queriedOrbs = world.entityQuery(mcontroller.position(), detonateRadius, {callScript = "v_isTeslaRifleOrb", includedTypes = {"projectile"}, order = "nearest"})
-    if #queriedOrbs > 0 then
-      if detonateMultiple then
-        for _, orb in ipairs(queriedOrbs) do
-          detonateProjectile(orb)
-        end
-      else
-        detonateProjectile(queriedOrbs[1])
-      end
-      projectile.die()
-    end
+    merger:process(projectile.power() * detonateDamageMultiplier, projectile.powerMultiplier())
   end
 end
 

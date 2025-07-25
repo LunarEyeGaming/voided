@@ -11,9 +11,9 @@ local tickTime
 local tickDamage
 
 function init()
-  local matAttributes = root.assetJson("/v-matattributes.config")
-  conductiveMats = set.new(matAttributes.conductiveMaterials)
-  conductiveMatMods = set.new(matAttributes.conductiveMatMods)
+  local conductiveThings = root.assetJson("/v-conductivity.config")
+  conductiveMats = set.new(conductiveThings.conductiveMaterials)
+  conductiveMatMods = set.new(conductiveThings.conductiveMatMods)
 
   local boundBox = mcontroller.boundBox()
   animator.setParticleEmitterOffsetRegion("sparks", {boundBox[1], boundBox[2], boundBox[3], boundBox[2]})

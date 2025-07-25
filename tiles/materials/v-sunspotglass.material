@@ -1,0 +1,24 @@
+{
+  "materialId" : 1213,
+  "materialName" : "v-sunspotglass",
+  "particleColor" : [255, 255, 255, 184],
+  "itemDrop" : "v-sunspotglassmaterial",
+  "description" : "Glass wrapped in a heat-resistant frame.",
+  "shortdescription" : "Sunspot Glass",
+  "glitchDescription" : "Nervous. This glass is sunlight-permeable and has a high melting point.",
+  "floranDescription" : "Glasss iss protected from heat by sstone bordersss.",
+  "novakidDescription" : "This 'ere glass is tougher 'n ordinary glass.",
+  "footstepSound" : "/sfx/blocks/footstep_glass.ogg",
+  "health" : 4,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/pipetemplate.config",
+  "renderParameters" : {
+    "texture" : "v-sunspotglass.png",
+    "variants" : 5,
+    "lightTransparent" : true,
+    "occludesBelow" : false,
+    "multiColored" : true,
+    "zLevel" : 470
+  }
+}

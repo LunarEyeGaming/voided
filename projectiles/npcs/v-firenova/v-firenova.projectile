@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-firenova",
+  "physics" : "statuspod",
+  "bounces" : -1,
+  "timeToLive" : 0.0,
+  "speed" : 0,
+  "damageKindImage" : "icon.png",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-novamonsterexplosion/v-novamonsterexplosion.config"
+    }
+  ],
+  "onlyHitTerrain" : true,
+  "flippable" : true
+}

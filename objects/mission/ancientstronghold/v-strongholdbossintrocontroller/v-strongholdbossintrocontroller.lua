@@ -1,5 +1,5 @@
 --[[
-  A script that controls the intro for the Prison. The following is the sequence of events that this script goes 
+  A script that controls the intro for the Prison. The following is the sequence of events that this script goes
   through:
     * Waits for a player to enter lightsRegion.
     * Activates the row of lights one by one first (time between each one specified by bottomLightInterval). Uses
@@ -13,12 +13,14 @@
     * After arenaRevealDelay seconds, the floor and ceiling open, and the lights turn on (by activating
       ARENA_REVEAL_OUTPUT_NODE).
     * From here on out, if no players are present in arenaRegion for resetDelay seconds, everything resets. However, if
-      the boss is defeated, DOOR_OUTPUT_NODE is activated, TURRET_OUTPUT_NODE is deactivated, and the object does 
+      the boss is defeated, DOOR_OUTPUT_NODE is activated, TURRET_OUTPUT_NODE is deactivated, and the object does
       nothing forever (using storage.bossDefeated).
 ]]
 
 require "/scripts/util.lua"
 require "/scripts/rect.lua"
+
+require "/scripts/v-entity.lua"
 
 local BOTTOM_LIGHT_OUTPUT_NODES = {0, 1, 2, 3}
 local SPOTLIGHT_OUTPUT_NODE = 4
@@ -38,27 +40,25 @@ local bottomLightInterval
 local spotlightDelay
 local doorCloseDelay
 local arenaRevealDelay
-local resetDelay
 
 local bossUniqueId
 
 function init()
-  lightsRegion = getRegionPoints(config.getParameter("lightsRegion"))
-  trapRegion = getRegionPoints(config.getParameter("trapRegion"))
-  arenaRegion = getRegionPoints(config.getParameter("arenaRegion"))
-  
+  lightsRegion = vEntity.getRegionPoints(config.getParameter("lightsRegion"))
+  trapRegion = vEntity.getRegionPoints(config.getParameter("trapRegion"))
+  arenaRegion = vEntity.getRegionPoints(config.getParameter("arenaRegion"))
+
   bottomLightInterval = config.getParameter("bottomLightInterval")
   spotlightDelay = config.getParameter("spotlightDelay")
   doorCloseDelay = config.getParameter("doorCloseDelay")
   arenaRevealDelay = config.getParameter("arenaRevealDelay")
-  resetDelay = config.getParameter("resetDelay")
-  
+
   bossUniqueId = config.getParameter("bossUniqueId")
-  
+
   util.setDebug(true)
 
   controllerState = FSM:new()
-  
+
   if not storage.bossDefeated then
     initializeNodes()
     controllerState:set(states.phase1Wait)
@@ -69,7 +69,7 @@ end
 
 function update(dt)
   controllerState:update()
-  
+
   util.debugRect(rect.translate(config.getParameter("lightsRegion"), object.position()), "green")
   util.debugRect(rect.translate(config.getParameter("trapRegion"), object.position()), "green")
   util.debugRect(rect.translate(config.getParameter("arenaRegion"), object.position()), "green")
@@ -88,7 +88,7 @@ function states.phase1Wait()
   while not playerInRegion(lightsRegion) do
     coroutine.yield()
   end
-  
+
   controllerState:set(states.phase1)
 end
 
@@ -111,11 +111,11 @@ function states.phase1()
 
     object.setOutputNodeLevel(node, true)
   end
-  
+
   util.wait(spotlightDelay, attemptPhase2Transition)
-  
+
   object.setOutputNodeLevel(SPOTLIGHT_OUTPUT_NODE, true)
-  
+
   controllerState:set(states.phase2Wait)
 end
 
@@ -126,12 +126,12 @@ function states.phase2Wait()
   while not playerInRegion(trapRegion) do
     coroutine.yield()
   end
-  
+
   controllerState:set(states.phase2)
 end
 
 --[[
-  Deactivates the floor lights, activates an alarm light, activates the spotlights (if they aren't active already), 
+  Deactivates the floor lights, activates an alarm light, activates the spotlights (if they aren't active already),
   closes the backdoor, and then closes the doors (also deactivating the alarm light) before revealing the arena.
 ]]
 function states.phase2()
@@ -139,20 +139,20 @@ function states.phase2()
   for _, node in ipairs(BOTTOM_LIGHT_OUTPUT_NODES) do
     object.setOutputNodeLevel(node, false)
   end
-  
+
   object.setOutputNodeLevel(SPOTLIGHT_OUTPUT_NODE, true)  -- Immediately activate spotlight node if it isn't active
   object.setOutputNodeLevel(ALARM_LIGHT_OUTPUT_NODE, true)  -- Activate alarm light
   object.setOutputNodeLevel(BACKDOOR_OUTPUT_NODE, false)  -- Close the backdoor.
-  
+
   util.wait(doorCloseDelay)
-  
+
   object.setOutputNodeLevel(DOOR_OUTPUT_NODE, false)  -- Close doors
   object.setOutputNodeLevel(ALARM_LIGHT_OUTPUT_NODE, false)  -- Deactivate alarm light
-  
+
   util.wait(arenaRevealDelay)
-  
+
   object.setOutputNodeLevel(ARENA_REVEAL_OUTPUT_NODE, true)  -- Reveal the arena
-  
+
   controllerState:set(states.phase3)
 end
 
@@ -166,15 +166,15 @@ function states.phase3()
   while world.loadUniqueEntity(bossUniqueId) ~= 0 and playerInRegion(arenaRegion) do
     coroutine.yield()
   end
-  
+
   -- If the boss was defeated...
   if world.loadUniqueEntity(bossUniqueId) == 0 then
     object.setOutputNodeLevel(DOOR_OUTPUT_NODE, true)  -- Open doors
     object.setOutputNodeLevel(BACKDOOR_OUTPUT_NODE, true)  -- Open backdoor
     object.setOutputNodeLevel(TURRET_OUTPUT_NODE, false)  -- Deactivate turrets
-    
+
     storage.bossDefeated = true  -- Permanently deactivate object
-  
+
     controllerState:set(states.noop)
   else
     initializeNodes()
@@ -197,17 +197,8 @@ end
 -- **************************************************
 
 --[[
-  Converts a relative rectangle into a table of the bottom-left and top-right points (absolute) and returns the result.
-]]
-function getRegionPoints(rectangle)
-  local absoluteRectangle = rect.translate(rectangle, object.position())
-  
-  return {rect.ll(absoluteRectangle), rect.ur(absoluteRectangle)}
-end
-
---[[
   Returns true if at least one player is inside the given region and false otherwise.
-  
+
   region: A pair of Vec2F's
 ]]
 function playerInRegion(region)
@@ -223,7 +214,7 @@ function initializeNodes()
   for _, node in ipairs(BOTTOM_LIGHT_OUTPUT_NODES) do
     object.setOutputNodeLevel(node, false)
   end
-  
+
   object.setOutputNodeLevel(SPOTLIGHT_OUTPUT_NODE, false)
   object.setOutputNodeLevel(ALARM_LIGHT_OUTPUT_NODE, false)
   object.setOutputNodeLevel(BACKDOOR_OUTPUT_NODE, true)

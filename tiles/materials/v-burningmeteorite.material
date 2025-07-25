@@ -1,0 +1,25 @@
+{
+  "materialId" : 1210,
+  "materialName" : "v-burningmeteorite",
+  "particleColor" : [224, 161, 105, 255],
+  "itemDrop" : "v-burningmeteoritematerial",
+  "description" : "Meteorite rock that has become red-hot.",
+  "shortdescription" : "Burning Meteorite",
+  "glitchDescription" : "Observant. These rocks are hot enough to glow red.",
+  "floranDescription" : "Rocksss burn Floran'ss feet.",
+  "novakidDescription" : "Burnin' hot rocks from outer space.",
+  "footstepSound" : "/sfx/blocks/footstep_rock.ogg",
+  "health" : 12,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-burningmeteorite.png",
+    "variants" : 15,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1910,
+    "radiantLight" : [128, 64, 0]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name" : "v-depthburning",
+  "effectConfig" : {
+    "minDepth" : 1000,
+    "maxDepth" : 1500,
+    "minDamage" : 1,
+    "maxDamage" : 20,
+    "damageInterval" : 0.3
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "v-depthburning.lua"
+  ],
+
+  "label" : "Burning Winds - The wind fries your body",
+  "icon" : "/interface/statuses/v-depthburning.png"
+}

@@ -9,14 +9,18 @@ local clingControlForce
 
 function init()
   oldInit()
-  
+
   clingSpeed = config.getParameter("clingSpeed", 50)
   clingControlForce = config.getParameter("clingControlForce", 1000)
 end
 
 function update(dt)
   oldUpdate(dt)
-  
+
+  updateStick()
+end
+
+function updateStick()
   -- Adjust rotation to face into the ground.
   local groundDirection = findGroundDirection(0.75)
   local headingAngle
@@ -47,7 +51,7 @@ function findGroundDirection(testDistance)
       break
     end
   end
-  
+
   -- Clockwise
   local angle2
   for i = 0, pointCount - 1 do
@@ -58,19 +62,19 @@ function findGroundDirection(testDistance)
       break
     end
   end
-  
+
   if not (angle1 and angle2) then
     return nil
   end
-  
-  -- Since there are two possibilities, test the two angles that bisect angle1 and angle2 and see which one leads to a 
+
+  -- Since there are two possibilities, test the two angles that bisect angle1 and angle2 and see which one leads to a
   -- collision.
   local angle = (angle1 + angle2) / 2
   local testPos = vec2.add(mcontroller.position(), vec2.withAngle(angle, testDistance))
   if world.polyCollision(poly.translate(mcontroller.collisionPoly(), testPos)) then
     return vec2.withAngle(angle, 1.0)
   end
-  
+
   angle = angle + math.pi
   local testPos = vec2.add(mcontroller.position(), vec2.withAngle(angle, testDistance))
   if world.polyCollision(poly.translate(mcontroller.collisionPoly(), testPos)) then

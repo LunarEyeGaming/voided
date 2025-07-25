@@ -25,10 +25,10 @@
     "controller" : "image.png"
   },
   "animationPosition" : [0, 0],
-  
+
   "health" : 5,
   "smashOnBreak" : true,
-  
+
   "outputNodes" : [
     [2, 3], [3, 3], [4, 3], [5, 3],  // Bottom lights
     [2, 2], [5, 2],  // Spotlight and alarm light
@@ -38,18 +38,17 @@
 
   "scripts" : [ "v-strongholdbossintrocontroller.lua" ],
   "scriptDelta" : 1,
-  
+
   "lightsRegion" : null,
   "trapRegion" : null,
   "arenaRegion" : null,
-  
+
   "bottomLightInterval" : 0.5,
   "spotlightDelay" : 1.5,
   "doorCloseDelay" : 1.5,
   "arenaRevealDelay" : 1.0,
-  "resetDelay" : 2.0,
-  
+
   "bossUniqueId" : "strongholdboss",
-  
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

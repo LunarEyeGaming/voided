@@ -14,7 +14,7 @@
     "scripts" : [
       "/monsters/monster.lua"
     ],
-    
+
     "initialScriptDelta" : 1,
     "behaviorUpdateDelta" : 3,
 
@@ -43,7 +43,7 @@
           }
         }
       ],
-      
+
       "wanderActions" : [
         {
           "name" : "action-stop",
@@ -99,7 +99,7 @@
           "parameters" : {}
         }
       ],
-      
+
       "concurrentHostileActions" : [
         {
           "name" : "rotate-part",
@@ -176,18 +176,6 @@
         },
         "powerMultiplier" : {
           "baseValue" : 1.0
-        },
-        "poisonStatusImmunity" : {
-          "baseValue" : 1.0
-        },
-        "poisonResistance" : {
-          "baseValue" : 0.5
-        },
-        "fireStatusImmunity" : {
-          "baseValue" : 1.0
-        },
-        "fireResistance" : {
-          "baseValue" : 0.5
         }
       },
 

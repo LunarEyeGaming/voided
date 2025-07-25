@@ -33,8 +33,8 @@ function init()
   gracePeriodEndPaletteSwap = {}
 
   for oldColor, newColor in pairs(config.getParameter("gracePeriodPaletteSwap", {})) do
-    gracePeriodStartPaletteSwap[oldColor] = vAnimator.colorOfString(newColor)
-    gracePeriodEndPaletteSwap[oldColor] = vAnimator.colorOfString(oldColor)
+    gracePeriodStartPaletteSwap[oldColor] = vAnimator.stringToColor(newColor)
+    gracePeriodEndPaletteSwap[oldColor] = vAnimator.stringToColor(oldColor)
   end
 
   gracePeriodPaletteSwapTime = config.getParameter("gracePeriodPaletteSwapTime")
@@ -69,7 +69,7 @@ function onGracePeriodTick(dt)
       local oldColorT = gracePeriodEndPaletteSwap[oldColor]
 
       -- Lerp to new color
-      newPaletteSwap[oldColor] = vAnimator.stringOfColor(vAnimator.lerpColorRGB(progress, oldColorT, newColorT))
+      newPaletteSwap[oldColor] = vAnimator.colorToString(vAnimator.lerpColorRGB(progress, oldColorT, newColorT))
     end
 
     applyPaletteSwap(newPaletteSwap)
@@ -84,7 +84,7 @@ function onGracePeriodTick(dt)
       local oldColorT = gracePeriodEndPaletteSwap[oldColor]
 
       -- Lerp back to old color
-      newPaletteSwap[oldColor] = vAnimator.stringOfColor(vAnimator.lerpColorRGB(progress, newColorT, oldColorT))
+      newPaletteSwap[oldColor] = vAnimator.colorToString(vAnimator.lerpColorRGB(progress, newColorT, oldColorT))
     end
 
     applyPaletteSwap(newPaletteSwap)

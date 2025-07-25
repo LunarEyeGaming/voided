@@ -149,20 +149,6 @@
   },
   {
     "op": "add",
-    "path": "/v-cityminiboss-dying",
-    "value": {
-      "type": "module",
-      "name": "v-cityminiboss-dying",
-      "title": "",
-      "properties": {
-        "crashVelocity": {"type": "json", "value": [50, -25]},
-        "kickUpVelocity": {"type": "json", "value": [0, 75]}
-      },
-      "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-dying.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-cityminiboss",
     "value": {
       "type": "module",
@@ -749,25 +735,6 @@
   },
   {
     "op": "add",
-    "path": "/v-approach-rangedfly",
-    "value": {
-      "type": "module",
-      "name": "v-approach-rangedfly",
-      "title": "",
-      "properties": {
-        "controlForce": {"type": "json", "value": null},
-        "flyState": {"type": "json", "value": "fly"},
-        "idleState": {"type": "json", "value": ""},
-        "maxRange": {"type": "json", "value": 20},
-        "minRange": {"type": "json", "value": 10},
-        "speed": {"type": "json", "value": 20},
-        "usePathfinding": {"type": "json", "value": true}
-      },
-      "pathToTree": "..\\monsters\\modular\\movement\\v-rangedflyapproach.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-titanofdarkness-laser",
     "value": {
       "type": "module",
@@ -896,6 +863,299 @@
         "maxLoops": {"type": "json", "value": 10}
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-burrowingrifts.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-stickyhop",
+    "value": {
+      "type": "module",
+      "name": "v-approach-stickyhop",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\modular\\movement\\v-stickyhopapproach.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-idle-crawloptional",
+    "value": {
+      "type": "module",
+      "name": "v-idle-crawloptional",
+      "title": "",
+      "properties": {
+        "stopForce": {"type": "json", "value": 0}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-crawlidleoptional.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-impact",
+    "value": {
+      "type": "module",
+      "name": "v-action-impact",
+      "title": "",
+      "properties": {
+        "useSticky": {"type": "json", "value": false},
+        "explosionProjectile": {"type": "json", "value": null},
+        "explosionConfig": {"type": "json", "value": {}},
+        "explosionDistance": {"type": "json", "value": null},
+        "speedThreshold": {"type": "json", "value": 0},
+        "speedEffectTransformationGroup": {"type": "json", "value": null},
+        "speedEffectStateType": {"type": "json", "value": null},
+        "warningSpeedThreshold": {"type": "json", "value": 0},
+        "flipTransformationGroup": {"type": "json", "value": null},
+        "flipRotateTransformationGroup": {"type": "json", "value": null},
+        "speedStateType": {"type": "json", "value": null},
+        "transformationGroup": {"type": "json", "value": null}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-impact.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-strongholdboss-coreattack3",
+    "value": {
+      "type": "module",
+      "name": "v-strongholdboss-coreattack3",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\coreattack3.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-strongholdboss-coreattack4",
+    "value": {
+      "type": "module",
+      "name": "v-strongholdboss-coreattack4",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\boss\\v-strongholdboss\\coreattack4.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-cityminiboss-dying",
+    "value": {
+      "type": "module",
+      "name": "v-cityminiboss-dying",
+      "title": "",
+      "properties": {
+        "kickUpVelocity": {"type": "json", "value": [0, 75]},
+        "crashVelocity": {"type": "json", "value": [50, -25]},
+        "explosionInterval": {"type": "json", "value": [0.01, 0.5]}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-cityminiboss\\v-dying.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-stickyslam",
+    "value": {
+      "type": "module",
+      "name": "v-action-stickyslam",
+      "title": "",
+      "properties": {
+        "slamProjectileType": {"type": "json", "value": "fireplasmaexplosion"},
+        "slamProjectileParameters": {"type": "json", "value": {}},
+        "aimDirection": {"type": "json", "value": [0, -1]},
+        "jumpState": {"type": "json", "value": "jump"},
+        "jumpStateType": {"type": "json", "value": "body"},
+        "jumpDelay": {"type": "json", "value": 0},
+        "rayCount": {"type": "json", "value": 40},
+        "preferDirectAttacks": {"type": "json", "value": true},
+        "airborneState": {"type": "json", "value": "airborne"},
+        "airborneStateType": {"type": "json", "value": "body"},
+        "preHopDelay": {"type": "json", "value": 0.1}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-wander-stickyhop",
+    "value": {
+      "type": "module",
+      "name": "v-wander-stickyhop",
+      "title": "",
+      "properties": {
+        "jumpState": {"type": "json", "value": "jump"},
+        "jumpStateType": {"type": "json", "value": "body"},
+        "jumpDelay": {"type": "json", "value": 0},
+        "windupState": {"type": "json", "value": "windup"},
+        "windupStateType": {"type": "json", "value": "body"},
+        "windupTime": {"type": "json", "value": 0},
+        "winddownState": {"type": "json", "value": "winddown"},
+        "winddownStateType": {"type": "json", "value": "body"},
+        "winddownTime": {"type": "json", "value": 0},
+        "airborneState": {"type": "json", "value": "airborne"},
+        "airborneStateType": {"type": "json", "value": "body"},
+        "preHopDelay": {"type": "json", "value": 0.1}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-stickyhopwander.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-holdfire",
+    "value": {
+      "type": "module",
+      "name": "v-action-holdfire",
+      "title": "",
+      "properties": {
+        "aimAtTarget": {"type": "json", "value": true},
+        "aimDirection": {"type": "json", "value": [1, 0]},
+        "damageRepeatGroup": {"type": "json", "value": "monsterfire"},
+        "faceTarget": {"type": "json", "value": true},
+        "fireArc": {"type": "json", "value": false},
+        "fireDelay": {"type": "json", "value": 0},
+        "fireOffset": {"type": "json", "value": [0, 0]},
+        "fireOffsets": {"type": "json", "value": []},
+        "fireParticleBurst": {"type": "json", "value": ""},
+        "fireSound": {"type": "json", "value": "fire"},
+        "fireState": {"type": "json", "value": "fire"},
+        "fireStateType": {"type": "json", "value": "body"},
+        "highArc": {"type": "json", "value": false},
+        "holdAim": {"type": "json", "value": false},
+        "inaccuracy": {"type": "json", "value": 0},
+        "projectileCount": {"type": "json", "value": 1},
+        "projectileInterval": {"type": "json", "value": 0.25},
+        "projectileParameters": {"type": "json", "value": {}},
+        "projectileSpeed": {"type": "json", "value": 0},
+        "projectileType": {"type": "json", "value": "standardbullet"},
+        "rotateAim": {"type": "json", "value": false},
+        "rotationCenter": {"type": "json", "value": [0, 0]},
+        "skillName": {"type": "json", "value": ""},
+        "winddownState": {"type": "json", "value": "firewinddown"},
+        "windupState": {"type": "json", "value": "firewindup"},
+        "windupState2": {"type": "json", "value": "firewindup2"},
+        "windupTime2": {"type": "json", "value": 0.25}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-holdfire.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-wander-crawl",
+    "value": {
+      "type": "module",
+      "name": "v-wander-crawl",
+      "title": "",
+      "properties": {
+        "idleState": {"type": "json", "value": "idle"},
+        "idleTime": {"type": "json", "value": [3, 6]},
+        "moveState": {"type": "json", "value": "walk"},
+        "resetHeading": {"type": "json", "value": true},
+        "stickForce": {"type": "json", "value": 50},
+        "stopForce": {"type": "json", "value": 0},
+        "testDistance": {"type": "json", "value": 0.25},
+        "wanderTime": {"type": "json", "value": [1, 4]}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-crawlwander.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-rangedfly",
+    "value": {
+      "type": "module",
+      "name": "v-approach-rangedfly",
+      "title": "",
+      "properties": {
+        "minRange": {"type": "json", "value": 10},
+        "maxRange": {"type": "json", "value": 20},
+        "speed": {"type": "json", "value": 20},
+        "controlForce": {"type": "json", "value": null},
+        "flyState": {"type": "json", "value": "fly"},
+        "usePathfinding": {"type": "json", "value": true},
+        "idleState": {"type": "json", "value": ""},
+        "faceDirection": {"type": "json", "value": true}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-rangedflyapproach.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-randomangle",
+    "value": {
+      "type": "module",
+      "name": "v-action-randomangle",
+      "title": "",
+      "properties": {
+        "minAngle": {"type": "json", "value": 0},
+        "maxAngle": {"type": "json", "value": 6.2831853},
+        "flipRotate": {"type": "json", "value": false}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-randomangle.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-wallcrash",
+    "value": {
+      "type": "module",
+      "name": "v-action-wallcrash",
+      "title": "",
+      "properties": {
+        "crashSound": {"type": "json", "value": ""},
+        "velocityMultiplier": {"type": "json", "value": -1}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-wallcrash.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-rocketdirect",
+    "value": {
+      "type": "module",
+      "name": "v-action-rocketdirect",
+      "title": "",
+      "properties": {
+        "damageRepeatGroup": {"type": "json", "value": "monsterfire"},
+        "fireParticleBurst": {"type": "json", "value": ""},
+        "fireSound": {"type": "json", "value": ""},
+        "fireState": {"type": "json", "value": ""},
+        "fireStateFallback": {"type": "json", "value": ""},
+        "fireStateType": {"type": "json", "value": "body"},
+        "flipRotate": {"type": "json", "value": false},
+        "inaccuracy": {"type": "json", "value": 0},
+        "maxFollowRange": {"type": "json", "value": 40},
+        "projectileInterval": {"type": "json", "value": 1},
+        "projectileParameters": {"type": "json", "value": {}},
+        "projectileType": {"type": "json", "value": "standardbullet"},
+        "repelForce": {"type": "json", "value": 10},
+        "repelSpeed": {"type": "json", "value": 100},
+        "turnSpeed": {"type": "json", "value": 1}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-rocketdirect.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-rocket",
+    "value": {
+      "type": "module",
+      "name": "v-action-rocket",
+      "title": "",
+      "properties": {
+        "projectileInterval": {"type": "json", "value": 1},
+        "projectileType": {"type": "json", "value": "standardbullet"},
+        "projectileParameters": {"type": "json", "value": {}},
+        "damageRepeatGroup": {"type": "json", "value": "monsterfire"},
+        "repelSpeed": {"type": "json", "value": 100},
+        "fireState": {"type": "json", "value": ""},
+        "fireStateType": {"type": "json", "value": "body"},
+        "fireSound": {"type": "json", "value": ""},
+        "fireParticleBurst": {"type": "json", "value": ""},
+        "inaccuracy": {"type": "json", "value": 0},
+        "repelForce": {"type": "json", "value": 10},
+        "turnSpeed": {"type": "json", "value": 1},
+        "flipRotate": {"type": "json", "value": false},
+        "fireStateFallback": {"type": "json", "value": ""}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-rocket.behavior"
     }
   }
 ]

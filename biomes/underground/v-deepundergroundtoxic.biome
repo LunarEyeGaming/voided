@@ -164,7 +164,7 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:overgroundRareChests",
+        "distribution" : "/biomes/distributions.config:undergroundChests",
 
         "type" : "object",
         "objectSets" : [
@@ -210,7 +210,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-poisongasprimerlite2" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground/v-deepundergroundtoxic" }
           }
         ]
       },

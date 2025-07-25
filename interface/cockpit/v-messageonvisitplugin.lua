@@ -18,7 +18,7 @@ end
 function update(dt)
   oldUpdate(dt)
   -- If a message has not been sent yet and the player is in an extradimensional star system...
-  if not sentMessage and isInExtradimensionalSystem() then
+  if not sentMessage and v_isInExtradimensionalSystem() then
     local queried = world.entityQuery(world.entityPosition(player.id()), messageSendRadius)
 
     local messages = config.getParameter("v-extradimensionalStarMessages")
@@ -35,7 +35,7 @@ end
 
 ---Returns `true` if the player is (for certain) in an Outsider Star system and `false` otherwise.
 ---@return boolean
-function isInExtradimensionalSystem()
+function v_isInExtradimensionalSystem()
   local currentSystemParams = celestial.planetParameters(celestial.currentSystem())
   return currentSystemParams and currentSystemParams.typeName == "v-extradimensional"
 end

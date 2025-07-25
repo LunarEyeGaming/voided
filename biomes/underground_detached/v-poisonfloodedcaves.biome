@@ -53,7 +53,8 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [0.20, "v-ceilingglowplant1" ], [0.20, "v-ceilingglowplant2" ], [0.20, "v-ceilingglowplant3" ], [0.20, "v-ceilingglowplant4" ], [0.20, "v-ceilingglowplant5" ]]
+            "pool" : [ [0.20, "v-ceilingglowplant1" ], [0.20, "v-ceilingglowplant2" ], [0.20, "v-ceilingglowplant3" ], [0.20, "v-ceilingglowplant4" ], [0.20, "v-ceilingglowplant5" ] ],
+            "parameters" : { "originBiome" : "underground_detached/v-poisonfloodedcaves" }
           }
         ]
       },

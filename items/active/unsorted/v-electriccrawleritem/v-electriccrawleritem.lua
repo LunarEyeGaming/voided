@@ -6,6 +6,7 @@ local monsterType
 local initialStunTime
 local initialHealthPercentage
 local uniqueParameters
+local prevFireMode
 
 function init()
   level = config.getParameter("level")
@@ -28,7 +29,7 @@ function throw()
 
   local velocity = vec2.mul(getAimVector(), throwSpeed)
   -- The monster is assumed to be scripted to handle all these parameters properly.
-  local params = {level = level, flingVelocity = velocity, initialStunTime = initialStunTime, 
+  local params = {level = level, flingVelocity = velocity, initialStunTime = initialStunTime,
       initialHealthPercentage = initialHealthPercentage}
   world.spawnMonster(monsterType, mcontroller.position(), sb.jsonMerge(uniqueParameters, params))
 

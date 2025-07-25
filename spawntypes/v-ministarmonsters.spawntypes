@@ -1,0 +1,196 @@
+[
+  // -------------------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------MINISTAR-----------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+
+  {
+    "name" : "v-rammingasteroid",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.005,
+    "monsterType" : [
+      [1.0, "v-rammingasteroid"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-sunleaper",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "v-sunleaper"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-sunleaperground",
+
+    "spawnParameters" : {
+      "area" : "surface",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.08,
+    "monsterType" : [
+      [1.0, "v-sunleaper"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-firefloater",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [5, 7],
+    "spawnChance" : 0.002,
+    "monsterType" : [
+      [1.0, "v-firefloater"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-novamonster",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.0025,
+    "monsterType" : [
+      [1.0, "v-novamonster"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-pyrebush",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 2],
+    "spawnChance" : 0.16,
+    "monsterType" : [
+      [0.99, "v-pyrebush"],
+      [0.01, "v-pyremander"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-dracucumber",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.005,
+    "monsterType" : [
+      [1.0, "v-dracucumber"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-lurkano",
+
+    "spawnParameters" : {
+      "area" : "ceiling",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.16,
+    "monsterType" : [
+      [1.0, "v-lurkano"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-lurkanoground",
+
+    "spawnParameters" : {
+      "area" : "surface",
+      "region" : "enclosed",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.16,
+    "monsterType" : [
+      [1.0, "v-lurkano"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-ministarcloudspawner",
+
+    "spawnParameters" : {
+      "area" : "air",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 2],
+    "spawnChance" : 0.01,
+    "monsterType" : [
+      [1.0, "v-ministarcloudspawner"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  }
+]

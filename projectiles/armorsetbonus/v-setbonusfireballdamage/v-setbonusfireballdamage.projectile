@@ -1,0 +1,23 @@
+{
+  "projectileName" : "v-setbonusfireballdamage",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+
+  "animationCycle" : 0.1,
+  "frameNumber" : 1,
+
+  "timeToLive" : 1,
+
+  "speed" : 0,
+  "physics" : "illusion",
+  "bounces" : -1,
+
+  "damagePoly" : [ [24.0, 0.0], [16.971, 16.971], [0.0, 24.0], [-16.971, 16.971], [-24.0, 0.0], [-16.971, -16.971],
+  [-0.0, -24.0], [16.971, -16.971] ],
+  "damageKind" : "firehammer",
+  "power" : 20,
+  "knockback" : 34,
+  "knockbackDirectional" : false,
+
+  "scripts" : [ "/projectiles/killable.lua", "/scripts/projectiles/v-foreverprojectile.lua", "/scripts/projectiles/v-follower.lua" ],
+  "scriptDelta" : 1
+}

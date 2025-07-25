@@ -16,7 +16,7 @@ function init()
   -- maps special effect names to special effect constructor calls
   local validSpecialEffects = {
     screenFlash = function(args)
-      return ScreenFlash:new(args.startColor, args.endColor, args.fullbright, args.duration, args.renderLayer)
+      return v_ScreenFlash:new(args.startColor, args.endColor, args.fullbright, args.duration, args.renderLayer)
     end
   }
 
@@ -71,8 +71,7 @@ end
 ---@field fullbright boolean?
 ---@field duration number
 ---@field renderLayer string
----@field WINDOW_PADDING number
-ScreenFlash = {}
+v_ScreenFlash = {}
 
 ---Instantiates a screen flash.
 ---
@@ -81,17 +80,14 @@ ScreenFlash = {}
 ---@param fullbright? boolean
 ---@param duration number
 ---@return ScreenFlash
-function ScreenFlash:new(startColor, endColor, fullbright, duration, renderLayer)
+function v_ScreenFlash:new(startColor, endColor, fullbright, duration, renderLayer)
   local effectConfig = {
     startColor = startColor,
     endColor = endColor,
     fullbright = fullbright,
     duration = duration,
     timer = duration,
-    renderLayer = renderLayer or "ForegroundOverlay+10",
-    -- Camera can pan 600 px, or 75 blocks at 1x zoom. Will need double this value to ensure full coverage of viewing
-    -- range.
-    WINDOW_PADDING = 150
+    renderLayer = renderLayer or "ForegroundOverlay+10"
   }
   setmetatable(effectConfig, self)
   self.__index = self
@@ -99,14 +95,14 @@ function ScreenFlash:new(startColor, endColor, fullbright, duration, renderLayer
   return effectConfig
 end
 
-function ScreenFlash:process(dt)
+function v_ScreenFlash:process(dt)
   self.timer = self.timer - dt
 
   -- This uses a thick line to create a colored rectangle that covers the entire screen.
   local windowRegion = world.clientWindow()
   -- Make window region relative to the current entity.
   local relativeWindowRegion = rect.translate(windowRegion, vec2.mul(world.nearestTo(rect.center(windowRegion), entity.position()), -1))
-  local drawingBounds = rect.pad(relativeWindowRegion, self.WINDOW_PADDING)  -- Pad region to account for camera panning
+  local drawingBounds = rect.pad(relativeWindowRegion, vAnimator.WINDOW_PADDING)  -- Pad region to account for camera panning
 
   local verticalMidPoint = (drawingBounds[4] + drawingBounds[2]) / 2
 

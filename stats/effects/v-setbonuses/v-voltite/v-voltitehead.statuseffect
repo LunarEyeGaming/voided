@@ -1,0 +1,14 @@
+{
+  "name" : "v-voltitehead",
+
+  "effectConfig" : {
+    "chestEffect" : "v-voltitechestplate",
+    "pantsEffect" : "v-voltitepants",
+    "setBonuses" : [{"effect" : "v-voltitesetbonus", "duration" : 1}]
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "/stats/effects/v-setbonuses/v-setbonuscheck.lua"
+  ]
+}

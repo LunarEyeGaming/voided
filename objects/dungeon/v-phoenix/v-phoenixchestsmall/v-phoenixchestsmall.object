@@ -1,0 +1,40 @@
+{
+  "objectName" : "v-phoenixchestsmall",
+  "colonyTags" : ["avian","aviantomb","storage"],
+  "rarity" : "Common",
+  "objectType" : "container",
+  "tooltipKind" : "container",
+
+  "category" : "storage",
+  "price" : 70,
+  "description" : "A chest made of sunspot stone and with Avian art carved into it.",
+  "shortdescription" : "Phoenix Chest",
+  "race" : "avian",
+  "health" : 1.5,
+
+  "apexDescription" : "Someone spent the time to decorate this chest. I should look inside",
+  "avianDescription" : "A familiar looking chest.",
+  "floranDescription" : "Floran likess pretty drawingsss carved into sstone.",
+  "glitchDescription" : "Analytical. This chest has art carved into it, 73% Avian in origin.",
+  "humanDescription" : "This looks a bit similar to something I've encountered.",
+  "hylotlDescription" : "An impressive feat of craftsmanship given the tough nature of the material.",
+  "novakidDescription" : "A real pretty lookin' chest.",
+
+  "inventoryIcon" : "phoenixchestsmallicon.png",
+  "orientations" : [
+    {
+      "dualImage" : "phoenixchestsmall.png:<color>.<key>",
+      "imagePosition" : [-8, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "openSounds" : [ "/sfx/objects/chest_small_open.ogg" ],
+  "closeSounds" : [ "/sfx/objects/chest_small_close.ogg" ],
+  "slotCount" : 16,
+  "uiConfig" : "/interface/chests/chest<slots>.config",
+  "frameCooldown" : 5,
+  "autoCloseCooldown" : 3600
+}

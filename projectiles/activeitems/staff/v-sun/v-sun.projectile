@@ -1,0 +1,39 @@
+{
+  "projectileName" : "v-sun",
+
+  "image" : "sun.png",
+  "frameNumber" : 12,
+  "animationCycle" : 1.2,
+  "fullbright" : true,
+  "lightColor" : [253, 209, 77],
+
+  "damagePoly" : [[24.0, 0.0], [16.971, 16.971], [0.0, 24.0], [-16.971, 16.971], [-24.0, 0.0], [-16.971, -16.971], [-0.0, -24.0], [16.971, -16.971]],
+
+  "timeToLive" : 20,
+
+  "movementSettings" : {
+    "collisionPoly" : [[3.0, 0.0], [2.121, 2.121], [0.0, 3.0], [-2.121, 2.121], [-3.0, 0.0], [-2.121, -2.121], [-0.0, -3.0], [2.121, -2.121]]
+  },
+  "physics" : "laser",
+  "bounces" : -1,
+  "orientationLocked" : true,
+
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-sunexplosion/v-sunexplosion.config"
+    }
+  ],
+
+  "scripts" : [ "/projectiles/activeitems/staff/staffprojectile.lua", "v-sunplugin.lua" ],
+  "scriptDelta" : 1,
+
+  "controlMovement" : {
+    "maxSpeed" : 50,
+    "controlForce" : 50
+  },
+
+  "attractRadius" : 25,
+  "attractSpeed" : 50,
+  "attractForce" : 150
+}

@@ -1,0 +1,185 @@
+{
+  "objectName" : "v-missilebloomseed",
+  "colonyTags" : ["nature"],
+  "rarity" : "Common",
+  "category" : "seed",
+  "description" : "This plant shoots out explosive seeds when something moves past it.",
+  "shortdescription" : "Missilebloom Seed",
+  "printable" : false,
+  "price" : 50,
+
+  "apexDescription" : "A plant that launches explosive seeds when it senses motion.",
+  "avianDescription" : "I must tread carefully around these plants.",
+  "floranDescription" : "Floran hitss plant and makes ssseeds fly out.",
+  "glitchDescription" : "Cautious. Moving too quickly will cause seeds to launch from this plant.",
+  "humanDescription" : "The seeds on this plant shoot out like fireworks when something brushes against it.",
+  "hylotlDescription" : "Is this a self-defense mechanism or a method of reproduction?",
+  "novakidDescription" : "You can 'ere one of these launchin' seeds from a distance.",
+
+  "inventoryIcon" : "missilebloomseedicon.png",
+
+  "tooltipKind" : "seed",
+  "largeImage" : "missilebloomseed.png:default.6.0",
+
+  "orientations" : [
+    {
+      "dualImage" : "missilebloomseed.png:<color>.<stage>.<alt>",
+      "imagePosition" : [0, 0],
+      "animationParts" : {
+        "crop" : "missilebloomseed.png"
+      },
+      "animationPosition" : [0, 0],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaces" : [ [1, 0], [0, 0], [1, 1], [0, 1], [1, 2], [0, 2], [1, 3], [0, 3], [1, 4], [0, 4] ],
+      "requireTilledAnchors" : true,
+      "anchors" : [ "bottom" ]
+
+    }
+  ],
+
+  "animation" : "/objects/farmables/v-scriptedfarmable.animation",
+  "animationCustom" : {
+    "particleEmitters" : {
+      "hazard" : {
+        "emissionRate" : 2.0,
+        "offsetRegion" : [0, 1, 1, 4],
+        // emissionRateVariance is broken in objects for some reason. This'll have to do.
+        "randomSelectCount" : 1,
+        "particles" : [
+          {
+            "particle" : {
+              "type" : "textured",
+              "image" : "/particles/hazard/hazardstat.png",
+              "size" : 0.5,
+              "color" : [231, 223, 189, 175],
+              "fade" : 0,
+              "destructionAction" : "fade",
+              "destructionTime" : 0.5,
+              "initialVelocity" : [0, -1],
+              "finalVelocity" : [0, -2],
+              "approach" : [4, 1],
+              "timeToLive" : 0.5,
+              "layer" : "middle",
+              "collidesForeground" : false,
+              "variance" : {
+                "position" : [0.5, 0.5],
+                "initialVelocity" : [2, 0],
+                "finalVelocity" : [1, 0]
+              }
+            }
+          },
+          {
+            "particle" : {
+              "type" : "textured",
+              "image" : "/assetmissing.png",
+              "timeToLive" : 0
+            },
+            "count" : 0
+          },
+          {
+            "particle" : {
+              "type" : "textured",
+              "image" : "/assetmissing.png",
+              "timeToLive" : 0
+            },
+            "count" : 0
+          },
+          {
+            "particle" : {
+              "type" : "textured",
+              "image" : "/assetmissing.png",
+              "timeToLive" : 0
+            },
+            "count" : 0
+          }
+        ]
+      }
+    }
+  },
+
+  "radioMessagesOnPickup" : [ "pickupseed" ],
+
+  "stages" : [
+    {
+      "duration" : [430, 470]
+    },
+    {
+      "duration" : [430, 470]
+    },
+    {
+      "alts" : 5,
+      "duration" : [430, 470]
+    },
+    {
+      "alts" : 5,
+      "duration" : [430, 470],
+      "fireThreshold" : 25,
+      "fireChance" : 0.625,
+      "projectileType" : "v-missilebloom",
+      "projectileCount" : 1,
+      "fuzzAngle" : 45,
+      "angle" : 90,
+      "offsetRegion" : [0, 1, 1, 4],
+      "resetToStage" : 2,
+      "cascadeHarvest" : true,
+      "harvestPool" : "v-missilebloomHarvest",
+      "activateHazardParticle" : true
+    },
+    {
+      "alts" : 5,
+      "duration" : [430, 470],
+      "fireThreshold" : 25,
+      "fireChance" : 0.75,
+      "projectileType" : "v-missilebloom",
+      "projectileCount" : 1,
+      "fuzzAngle" : 45,
+      "angle" : 90,
+      "offsetRegion" : [0, 1, 1, 4],
+      "resetToStage" : 3,
+      "cascadeHarvest" : true,
+      "harvestPool" : "v-missilebloomHarvest",
+      "activateHazardParticle" : true
+    },
+    {
+      "alts" : 5,
+      "duration" : [430, 470],
+      "fireThreshold" : 25,
+      "fireChance" : 0.875,
+      "projectileType" : "v-missilebloom",
+      "projectileCount" : 1,
+      "fuzzAngle" : 45,
+      "angle" : 90,
+      "offsetRegion" : [0, 1, 1, 4],
+      "resetToStage" : 4,
+      "cascadeHarvest" : true,
+      "harvestPool" : "v-missilebloomHarvest",
+      "activateHazardParticle" : true
+    },
+    {
+      "alts" : 5,
+      "fireThreshold" : 25,
+      "fireChance" : 1.0,
+      "projectileType" : "v-missilebloom",
+      "projectileCount" : 1,
+      "fuzzAngle" : 45,
+      "angle" : 90,
+      "offsetRegion" : [0, 1, 1, 4],
+      "resetToStage" : 5,
+      "cascadeHarvest" : true,
+      "harvestPool" : "v-missilebloomHarvest",
+      "activateHazardParticle" : true
+    }
+  ],
+
+  "maxImmersion" : 0.1,
+
+  "scripts" : [ "v-missilebloomseed.lua" ],
+  "scriptDelta" : 3,
+
+  "detectRegion" : [0, 0, 1, 4],
+  "fireOnDeath" : false,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

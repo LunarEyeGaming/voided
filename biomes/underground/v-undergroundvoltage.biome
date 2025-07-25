@@ -1,6 +1,6 @@
 {
   "name" : "v-undergroundvoltage",
-  "friendlyName" : "Electrified Caves",
+  "friendlyName" : "Voltage Caves",
 
   "spawnProfile" : {
     "groups" : [
@@ -150,15 +150,6 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundBiomeEncounterDungeon",
-
-        "type" : "microdungeon",
-        "microdungeons" : [ "undergroundencounterdungeons" ]
-      },
-      {
-        "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:denseSmall",
@@ -167,7 +158,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-ironspikes1" ], [1.0, "v-ironspikes2" ], [1.0, "v-ironspikes3" ], [1.0, "v-ironspikes4" ], [1.0, "v-ironspikes5" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground/v-undergroundvoltage" }
           }
         ]
       },
@@ -181,7 +172,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-electriccrystal1" ], [1.0, "v-electriccrystal2" ], [1.0, "v-electriccrystal3" ], [1.0, "v-electriccrystal4" ], [1.0, "v-electriccrystal5" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground/v-undergroundvoltage" }
           }
         ]
       },
@@ -195,7 +186,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-electriccrystal1" ], [1.0, "v-electriccrystal2" ], [1.0, "v-electriccrystal3" ], [1.0, "v-electriccrystal4" ], [1.0, "v-electriccrystal5" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground/v-undergroundvoltage" }
           }
         ]
       }

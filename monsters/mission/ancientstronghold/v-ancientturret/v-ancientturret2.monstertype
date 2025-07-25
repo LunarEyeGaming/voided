@@ -13,11 +13,11 @@
   "baseParameters" : {
     "scripts" : [
       "/monsters/monster.lua",
-      "/monsters/renderlaserbeam.lua"
+      "/monsters/v-renderlaserbeam.lua"
     ],
 
     "animationScripts" : [
-      "/monsters/effects/laserbeam.lua"
+      "/monsters/effects/v-laserbeam.lua"
     ],
 
     "beams" : [
@@ -206,18 +206,6 @@
         },
         "powerMultiplier" : {
           "baseValue" : 1.0
-        },
-        "poisonStatusImmunity" : {
-          "baseValue" : 1.0
-        },
-        "poisonResistance" : {
-          "baseValue" : 0.5
-        },
-        "fireStatusImmunity" : {
-          "baseValue" : 1.0
-        },
-        "fireResistance" : {
-          "baseValue" : 0.5
         }
       },
 

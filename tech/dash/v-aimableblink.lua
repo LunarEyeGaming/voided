@@ -152,7 +152,7 @@ function findBlinkTargetPosition(direction)
   -- particles.
   for i = 0, blinkDistance / stepDistance do
     blinkPos = vec2.add(blinkPos, vec2.mul(direction, stepDistance))
-    blinkPos = world.resolvePolyCollision(mcontroller.collisionPoly(), blinkPos, 1, {"Null", "Block", "Dynamic", "Slippery"})
+    blinkPos = world.resolvePolyCollision(mcontroller.collisionPoly(), blinkPos, 2, {"Null", "Block", "Dynamic", "Slippery"})
     if i % traceStep == 0 then
       world.spawnProjectile("v-proxyprojectile", blinkPos, nil, {0, 0}, false, {actionOnReap = {{action = "particle", specification = traceParticle}}})
     end

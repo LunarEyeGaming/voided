@@ -1,0 +1,24 @@
+{
+  "metadata" : {
+    "name" : "v-ministarspawn",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : ["ministarspawn"],
+
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "ministarspawn",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "v-ministarspawn.json" ]
+    }
+  ]
+}

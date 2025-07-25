@@ -1,38 +1,29 @@
-local mergeRadius
+require "/scripts/projectiles/v-mergergeneric.lua"
+
 local liveCollisionAction
-local targetType
 local mergeDelay
 local mergeTimer
-local hasMerged
 local deadCollisionAction
 
 function init()
-  mergeRadius = config.getParameter("mergeRadius")
   liveCollisionAction = config.getParameter("liveCollisionAction")
-  targetType = config.getParameter("targetType")
   mergeDelay = config.getParameter("mergeDelay", 0)
   mergeTimer = mergeDelay
-  hasMerged = false
 
   deadCollisionAction = config.getParameter("deadCollisionAction")
+
+  merger = VMerger:new(config.getParameter("targetType"), config.getParameter("mergeRadius"), false, true)
 end
 
 function update(dt)
   mergeTimer = mergeTimer - dt
-    if mergeTimer <= 0 then
-    queriedGlobes = world.entityQuery(mcontroller.position(), mergeRadius, {callScript = "v_isMergerType", callScriptArgs = {targetType}, includedTypes = {"projectile"}, order = "nearest"})
-    -- If the second condition is not included then it will detonate based on where the globe was *previously* and not
-    -- where it is right now.
-    if #queriedGlobes > 0 and world.magnitude(world.entityPosition(queriedGlobes[1]), mcontroller.position()) < mergeRadius then
-      world.sendEntityMessage(queriedGlobes[1], "v-handleMerge")
-      hasMerged = true
-      projectile.die()
-    end
+  if mergeTimer <= 0 then
+    merger:process(projectile.sourceEntity())
   end
 end
 
 function destroy()
-  if not hasMerged then
+  if not merger:isMerged() then
     if mcontroller.isColliding() then
       projectile.processAction(deadCollisionAction)
     else

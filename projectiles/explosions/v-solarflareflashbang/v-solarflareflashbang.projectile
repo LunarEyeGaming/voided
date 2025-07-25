@@ -1,0 +1,16 @@
+{
+  "projectileName" : "v-solarflareflashbang",
+  "image" : "solarflareflashbang.png",
+  "frameNumber" : 1,
+  "speed" : 50,
+  "damagePoly" : [ [-36, 0], [-24, -24], [0, -36], [24, -24], [36, 0], [24, 24], [0, 36], [-24, 24] ],
+  "lightColor" : [253, 209, 77],
+  "animationLoops" : false,
+  "piercing" : true,
+
+  "damageKind" : "default",
+
+  "power" : 0,
+
+  "statusEffects" : [ {"effect" : "v-solarflarestun", "duration" : 5} ]
+}

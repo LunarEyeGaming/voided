@@ -1,0 +1,17 @@
+{
+  "projectileName" : "v-ice19bombblockgen",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "speed" : 0,
+  "timeToLive" : 0.1,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "onlyHitTerrain" : true,
+
+  "scripts" : [ "v-ice19bombblockgen.lua" ],
+  "scriptDelta" : 1,
+
+  "radius" : 6,
+  "material" : "ice"
+}

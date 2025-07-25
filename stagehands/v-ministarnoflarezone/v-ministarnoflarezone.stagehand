@@ -1,0 +1,11 @@
+{
+  // This stagehand prohibits flares from affecting sun rays within the x coordinates represented by its broadcast area
+  // by adding an entry to the v-noFlareZones world property.
+  "type" : "v-ministarnoflarezone",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-ministarnoflarezone/v-ministarnoflarezone.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-1, -1, 1, 1]
+}

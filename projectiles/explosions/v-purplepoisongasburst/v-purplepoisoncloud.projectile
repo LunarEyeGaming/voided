@@ -2,12 +2,15 @@
   "projectileName" : "v-purplepoisoncloud",
   "image" : "purplepoisoncloud.png",
   "physics" : "gas",
-  "frameNumber" : 6,
+  "frameNumber" : 15,
   "animationCycle" : 2,
   "power" : 1,
   "speed" : 5,
   "timeToLive" : 2,
   "bounces" : -1,
+  "movementSettings" : {
+    "collisionPoly" : [ [-2, 0], [-1.5, -1.5], [0, -2], [1.5, -1.5], [2, 0], [1.5, 1.5], [0, 2], [-1.5, 1.5] ]
+  },
   "damagePoly" : [ [-32, 0], [-24, -24], [0, -32], [24, -24], [32, 0], [24, 24], [0, 32], [-24, 24] ],
   "piercing" : true,
   "emitters" : [ ],

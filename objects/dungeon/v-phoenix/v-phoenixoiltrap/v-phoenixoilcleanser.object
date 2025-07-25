@@ -1,0 +1,163 @@
+{
+  "objectName" : "v-phoenixoilcleanser",
+  "colonyTags" : ["avian","aviantemple"],
+  "printable" : false,
+  "rarity" : "Common",
+  "description" : "It cleanses oil.",
+  "shortdescription" : "Phoenix Oil Cleanser",
+  "race" : "avian",
+
+  "apexDescription" : "This hole emits a watery mix that cleans oil. It is a good idea for me to stand beneath it.",
+  "avianDescription" : "Finally. My feathers can breathe.",
+  "floranDescription" : "Floran sstandss beneath hole and becomesss nice and clean.",
+  "glitchDescription" : "Relieved. This water cleans the oil off my chassis.",
+  "humanDescription" : "I should stand beneath this to clean this oil off my body.",
+  "hylotlDescription" : "How generous of the architects to put this here.",
+  "novakidDescription" : "Nothin' like a good ol' shower to clean the dirt n' grime.",
+
+  "category" : "trap",
+  "price" : 200,
+
+  "inventoryIcon" : "phoenixoiltrapicon.png",
+  "orientations" : [
+    {
+      "image" : "phoenixoiltrap.png:<color>.<frame>",
+      "imagePosition" : [-8, 0],
+      "direction" : "left",
+      "flipImages" : true,
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "bg" : "phoenixoiltrap.png",
+        "fg" : "phoenixoiltrap.png"
+      },
+
+      "projectileDirection" : [0, 1],
+      "projectilePosition" : [0, 0.7],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "phoenixoiltrap.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+
+      "animationPosition" : [0, 0],
+      "animationParts" : {
+        "bg" : "phoenixoiltrap.png",
+        "fg" : "phoenixoiltrap.png"
+      },
+
+      "projectileDirection" : [0, 1],
+      "projectilePosition" : [1, 0.7],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "phoenixoiltrapleft.png:<color>.<frame>",
+      "imagePosition" : [0, -8],
+      "direction" : "right",
+
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "phoenixoiltrapleft.png",
+        "fg" : "phoenixoiltrapleft.png"
+      },
+
+      "projectileDirection" : [1, 0],
+      "projectilePosition" : [0.7, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "left" ]
+    },
+    {
+      "image" : "phoenixoiltrapright.png:<color>.<frame>",
+      "imagePosition" : [0, -8],
+      "direction" : "right",
+
+      "animationPosition" : [0, -8],
+      "animationParts" : {
+        "bg" : "phoenixoiltrapright.png",
+        "fg" : "phoenixoiltrapright.png"
+      },
+
+      "projectileDirection" : [-1, 0],
+      "projectilePosition" : [0.3, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "right" ]
+    },
+    {
+      "image" : "phoenixoiltrapceiling.png:<color>.<frame>",
+      "imagePosition" : [-8, 0],
+      "direction" : "left",
+      "flipImages" : true,
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "bg" : "phoenixoiltrapceiling.png",
+        "fg" : "phoenixoiltrapceiling.png"
+      },
+
+      "projectileDirection" : [0, -1],
+      "projectilePosition" : [0, 0.3],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    },
+    {
+      "image" : "phoenixoiltrapceiling.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+      "direction" : "right",
+
+      "animationPosition" : [0, 0],
+      "animationParts" : {
+        "bg" : "phoenixoiltrapceiling.png",
+        "fg" : "phoenixoiltrapceiling.png"
+      },
+
+      "projectileDirection" : [0, -1],
+      "projectilePosition" : [1, 0.3],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/projectiletrap/projectiletrap.lua" ],
+  "scriptDelta" : 2,
+
+  "animation" : "/objects/wired/projectiletrap/projectiletrap.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "shoot" : [ ],
+      "on" : [ ],
+      "off" : [ ]
+    }
+  },
+
+  "inputNodes" : [ [0, 0] ],
+
+  "inactiveLightColor" : [0, 0, 0], // light color to emit when the object is 'off'
+  "activeLightColor" : [0, 0, 0], // light color to emit when the object is 'on'
+
+  "fireTime" : 0.115, // rate of fire
+  "fireTimeVariance" : 0.015, // variation in rate of fire
+  "projectile" : "watergun", // name of projectile (required)
+  "projectileConfig" : { // extra configuration overrides for projectile
+    "damageTeam" : { "type" : "environment" },
+    "power" : 0,
+    "speed" : 30,
+    "statusEffects" : [ "wet", "v-oilcleanser" ]
+  },
+
+  "health" : 5,
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
+  "smashParticles" : [ { "count" : 5, "particle" : "potshard" } ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

@@ -5,6 +5,8 @@ require "/scripts/actions/crawling.lua"
 require "/scripts/actions/projectiles.lua"
 require "/scripts/v-behavior.lua"
 require "/scripts/v-movement.lua"
+require "/scripts/v-attack.lua"
+require "/scripts/v-world.lua"
 
 -- param minRange
 -- param maxRange
@@ -173,6 +175,175 @@ function v_stop(args)
   end
 
   return true
+end
+
+-- param useSticky
+-- param explosionProjectile
+-- param explosionConfig
+-- param explosionDistance
+-- param speedThreshold
+-- param target
+function v_impactAction(args, board)
+  local collisionCond
+  if args.useSticky then
+    collisionCond = mcontroller.isCollisionStuck()
+    mcontroller.controlParameters({stickyCollision = true})
+  else
+    collisionCond = world.rectCollision(rect.translate(rect.pad(mcontroller.boundBox(), 0.25), mcontroller.position()))
+  end
+
+  local explosionConfig = copy(args.explosionConfig)
+  explosionConfig.power = vAttack.scaledPower(explosionConfig.power or 10)
+
+  local ownPos = mcontroller.position()
+
+  if (collisionCond or world.magnitude(ownPos, world.entityPosition(args.target)) < args.explosionDistance)
+  and vec2.mag(mcontroller.velocity()) > args.speedThreshold then
+    world.spawnProjectile(args.explosionProjectile, ownPos, entity.id(), {0, 0}, false, explosionConfig)
+    status.setResourcePercentage("health", 0.0)
+    return true
+  end
+
+  return false
+end
+
+-- param target
+-- param targetPos
+-- param rayCount
+-- param minRaycastLength
+-- param maxRaycastLength
+-- param hopSpeed
+-- param postHopDelay
+-- param gravityMultiplier
+function v_stickyHopApproach(args, _, _, dt)
+  local rq = vBehavior.requireArgsGen("v_stickyHopApproach", args)
+
+  if not rq{"rayCount", "minRaycastLength", "maxRaycastLength", "hopSpeed", "preHopDelay", "gravityMultiplier"} then
+    return false
+  end
+
+  if not args.target and not args.targetPos then
+    sb.logWarn("v_stickyHopApproach: 'target' or 'targetPos' must be defined")
+    return false
+  end
+
+  local targetPos = args.targetPos or world.entityPosition(args.target)
+  local ownPos = mcontroller.position()
+
+  -- Find a valid hop position and get the corresponding velocity, accounting for gravity, upon success.
+  local hopPos, hopVelocity
+
+  if not args.preferDirectAttacks or world.lineCollision(ownPos, targetPos) then
+    local raycasts = vWorld.radialRaycast{
+      center = targetPos,
+      raycastCount = args.rayCount,
+      maxRaycastLength = args.maxRaycastLength,
+      minRaycastLength = args.minRaycastLength
+    }
+
+    -- Shuffle the list of positions.
+    shuffle(raycasts)
+
+    -- For each position...
+    for _, raycast in ipairs(raycasts) do
+      local pos = raycast.position
+      -- If the position is in line of sight...
+      if not world.lineCollision(ownPos, pos) then
+        local success
+        -- Get the hopping velocity, accounting for gravity.
+        hopVelocity, success = util.aimVector(world.distance(pos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
+
+        -- world.debugLine(ownPos, pos, success and "green" or "red")
+
+        -- If successful...
+        if success then
+          hopPos = pos  -- Make that the hop position.
+          break  -- Exit the loop.
+        end
+      end
+    end
+
+    -- If no valid hop position was found...
+    if not hopPos then
+      local success
+      -- Use the first position listed (or nil if empty) as it is effectively a random position due to the shuffling.
+      local testPos = raycasts[1] and raycasts[1].position
+
+      -- If it is actually defined...
+      if testPos then
+        -- Get the hopping velocity, accounting for gravity.
+        hopVelocity, success = util.aimVector(world.distance(testPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
+
+        -- If successful...
+        if success then
+          hopPos = testPos  -- Use the test position.
+        end
+      end
+    end
+  end
+
+  -- If no valid hop position was found still (or the hop position is meant to be targetPos)...
+  if not hopPos then
+    local success
+    -- Hop directly toward the target
+    hopPos = targetPos
+    -- Get the hopping velocity, accounting for gravity.
+    hopVelocity, success = util.aimVector(world.distance(hopPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
+
+    -- If not successful, then ACTUALLY hop directly. This is to make the AI more predictable.
+    if not success then
+      hopVelocity = vec2.mul(vec2.norm(world.distance(hopPos, ownPos)), args.hopSpeed)
+    end
+  end
+
+  util.run(args.preHopDelay, function() end)
+
+  -- Jump!
+  world.debugLine(ownPos, vec2.add(ownPos, hopVelocity), "green")
+  mcontroller.setVelocity(hopVelocity)
+
+  -- local testRect = rect.pad(mcontroller.boundBox(), 0.25)
+  -- local tolerance = 4
+
+  -- -- Wait until the entity has attached to something or has reached its destination (as a more reliable check).
+  -- while not world.rectCollision(rect.translate(testRect, mcontroller.position()))
+  -- and world.magnitude(hopPos, mcontroller.position()) > tolerance do
+  --   coroutine.yield()
+  -- end
+
+  -- mcontroller.setVelocity({0, 0})
+
+  return true
+end
+
+-- param entity
+-- param turnSpeed
+-- param angle
+-- output angle
+-- output direction
+function v_turnTowardTarget(args, _, _, dt)
+  local rq = vBehavior.requireArgsGen("v_turnTowardTarget", args)
+
+  if not rq{"entity", "turnSpeed", "angle"} then return false end
+
+  local targetPosition = world.entityPosition(args.entity)
+  while true do
+    local toTarget = world.distance(targetPosition, mcontroller.position())
+    local angle = args.angle
+
+    local targetAngle = vec2.angle(toTarget)
+    local diff = util.angleDiff(angle, targetAngle)
+    if diff ~= 0 then
+      angle = angle + (util.toDirection(diff) * args.turnSpeed) * dt
+      if util.angleDiff(angle, targetAngle) * diff < 0 then
+        angle = targetAngle
+      end
+    end
+
+    coroutine.yield(nil, {angle = angle, direction = diff})
+
+    targetPosition = world.entityPosition(args.entity)
+  end
 end
 
 function _correctAngle(angle, speed, step, dt)

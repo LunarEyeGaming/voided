@@ -1,0 +1,22 @@
+[
+  {
+    "op" : "add",
+    "path" : "/items/voided:ministarrenderconfig",
+    "value" : {
+      "label" : "Ministar Graphical Settings",
+      "icon" : "/interface/scripted/v-ministarrenderconfig/quickbaricon.png",
+      "weight" : 837,
+      "action" : [ "pane", "/interface/scripted/v-ministarrenderconfig/v-ministarrenderconfig.config" ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/items/voided:healingcooldownsettings",
+    "value" : {
+      "label" : "Healing Cooldown Settings",
+      "icon" : "/interface/scripted/v-healingcooldownsettings/quickbaricon.png",
+      "weight" : 837,
+      "action" : [ "pane", "/interface/scripted/v-healingcooldownsettings/v-healingcooldownsettings.config" ]
+    }
+  }
+]

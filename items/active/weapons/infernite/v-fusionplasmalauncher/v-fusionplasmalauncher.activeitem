@@ -1,0 +1,134 @@
+{
+  "itemName" : "v-fusionplasmalauncher",
+  "level" : 8,
+  "price" : 1200,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "A gun that exploits a deadly interaction between two energies.",
+  "shortdescription" : "^infernite;Fusion Plasma Cannon",
+  "extraInfo" : "Fusion Globes can combine with Fusion Shots to create a big explosion.",
+  "tooltipKind" : "v-biggun",
+  "category" : "rocketLauncher",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged","rocketlauncher"],
+
+  "inventoryIcon" : [
+    { "image" : "fusionplasmalaunchericon.png" }
+  ],
+
+  "animation" : "v-fusionplasmalauncher.animation",
+  "animationParts" : {
+    "gun" : "gun.png",
+    "gunfullbright" : "gunfullbright.png",
+    "muzzleFlash" : "muzzleflash.png"
+  },
+  "animationCustom" : {
+    "lights" : { "glow" : {
+      "active" : true,
+      "position" : [0.75, 0.5],
+      "color" : [150, 150, 150]
+    }},
+    "sounds" : {
+      "fire" : [ "/sfx/gun/v_fusionplasmalauncher_fire.ogg" ]
+    }
+  },
+  "baseOffset" : [0.75, -0.375],
+  "muzzleOffset" : [2.5625, 1.0],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+
+  "elementalType" : "fire",
+
+  "primaryAbility" : {
+    "scripts" : ["/items/active/weapons/ranged/gunfire.lua"],
+    "class" : "GunFire",
+
+    "fireTime" : 1.5,
+    "baseDps" : 11.5,
+    "energyUsage" : 75,
+    "inaccuracy" : 0.008,
+    "fireType" : "auto",
+
+    "projectileType" : "v-fusionshot",
+    "projectileParameters" : {
+      "knockback" : 40
+    },
+    "projectileCount" : 1,
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "animationStates" : {
+          "gun" : "fireblue",
+          "muzzle" : "on1"
+        }
+      },
+      "cooldown" : {
+        "duration" : 1.0,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  },
+
+  "altAbilityType" : "v-fusionglobe",
+  "altAbility" : {
+    // "elementalConfig" : {
+    //   "fire" : { "name" : "Fusion Globe", "projectileType" : "v-fusionglobe", "projectileParameters" : {}, "fireTime" : 1.0, "energyUsage" : 75}
+    // },
+
+    // "stances" : {
+    //   "idle" : {
+    //     "armRotation" : 0,
+    //     "weaponRotation" : 0,
+    //     "twoHanded" : true,
+
+    //     "allowRotate" : true,
+    //     "allowFlip" : true
+    //   },
+    //   "fire" : {
+    //     "duration" : 0,
+    //     "armRotation" : 5,
+    //     "weaponRotation" : 5,
+    //     "twoHanded" : true,
+
+    //     "allowRotate" : false,
+    //     "allowFlip" : false,
+    //     "animationStates" : {
+    //       "gun" : "fireorange",
+    //       "muzzle" : "on2"
+    //     }
+    //   },
+    //   "cooldown" : {
+    //     "duration" : 1.0,
+    //     "armRotation" : 5,
+    //     "weaponRotation" : 5,
+    //     "twoHanded" : true,
+
+    //     "allowRotate" : false,
+    //     "allowFlip" : false
+    //   }
+    // }
+  },
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

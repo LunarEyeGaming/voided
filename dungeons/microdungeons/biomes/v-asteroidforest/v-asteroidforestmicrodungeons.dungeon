@@ -1,0 +1,103 @@
+{
+  "metadata" : {
+    "name" : "v-asteroidforestmicrodungeons",
+    "species" : "avian",
+    "rules" : [
+    ],
+
+    "anchor" : [ "building1", "building2", "building3", "building4", "building5", "building6", "building7", "bridge1",
+      "bridge2", "bridge3", "bridge4", "bridge5" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "building1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "building1.json" ]
+    },
+    {
+      "name" : "building2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "building2.json" ]
+    },
+    {
+      "name" : "building3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "building3.json" ]
+    },
+    {
+      "name" : "building4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "building4.json" ]
+    },
+    {
+      "name" : "building5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "building5.json" ]
+    },
+    {
+      "name" : "building6",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "building6.json" ]
+    },
+    {
+      "name" : "building7",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "building7.json" ]
+    },
+    {
+      "name" : "bridge1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "bridge1.json" ]
+    },
+    {
+      "name" : "bridge2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "bridge2.json" ]
+    },
+    {
+      "name" : "bridge3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "bridge3.json" ]
+    },
+    {
+      "name" : "bridge4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "bridge4.json" ]
+    },
+    {
+      "name" : "bridge5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "bridge5.json" ]
+    }
+  ]
+}
