@@ -22,7 +22,7 @@ function update(dt, fireMode)
 end
 
 function openUi()
-  local uiConfig = root.assetJson("/interface/scripted/v-ministarrenderconfig/v-ministarrenderconfig.config")
+  local uiConfig = root.assetJson("/interface/scripted/v-missingdependency/v-tbworkaround.config")
   player.interact("ScriptPane", uiConfig, entity.id())
 end
 
