@@ -99,7 +99,7 @@ function update(dt)
   local isSleeping = v_titanHallucination_hasSleepStatus()
 
   -- If the player has started sleeping, then with a chance of fearLevel...
-  if isSleeping and not wasSleeping and math.random() <= fearLevel then
+  if isSleeping and not wasSleeping and math.random() < fearLevel then
     shouldHallucinate = true
     -- sb.logInfo("Test")
   end
