@@ -32,6 +32,7 @@ local worldTypeWhitelist  -- List of worlds on which the Titan of Darkness is al
 local spawnAttemptInterval  -- How often the script should attempt to spawn the Titan
 local spawnProbability  -- The chance of the spawn succeeding
 local titanMonsterType  -- The monster type of the Titan of Darkness
+local firstEncounterStagehand  -- Stagehand type for the first encounter
 local titanLevel  -- The level of the Titan of Darkness to use
 
 local spawnAttemptTimer  -- Amount of time elapsed since the last spawn attempt
@@ -62,6 +63,10 @@ function init()
 
   spawnAttemptTimer = 0
 
+  if storage.firstEncounter == nil then
+    storage.firstEncounter = true
+  end
+
   if not storage.lastTitanSpawnTime then
     storage.lastTitanSpawnTime = world.time()
   end
@@ -80,6 +85,7 @@ function init()
 
   message.setHandler("v-titanOfDarknessSpawned", function()
     storage.lastTitanSpawnTime = world.time()  -- Update lastTitanSpawnTime variable.
+    storage.firstEncounter = false
   end)
 
   script.setUpdateDelta(60)
@@ -94,7 +100,15 @@ function update(dt)
     and world.time() > storage.lastTitanSpawnTime + minSpawnCooldown  -- If the Titan spawning cooldown has ended...
     and worldTypeStayTime > minPlanetStayTime  -- The player has stayed for longer than minPlanetStayTime...
     and hasStrongEnoughEquipment() then  -- And the player has strong enough equipment...
-      world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
+      if storage.firstEncounter then
+        world.spawnStagehand(mcontroller.position(), firstEncounterStagehand, {
+          masterId = player.id(),
+          monsterType = titanMonsterType,
+          monsterParameters = {level = titanLevel}
+        })
+      else
+        world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
+      end
     end
 
     spawnAttemptTimer = 0  -- Reset timer

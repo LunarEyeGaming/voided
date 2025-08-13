@@ -724,17 +724,6 @@
   },
   {
     "op": "add",
-    "path": "/v-titanofdarkness",
-    "value": {
-      "type": "module",
-      "name": "v-titanofdarkness",
-      "title": "",
-      "properties": {},
-      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarkness.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-titanofdarkness-laser",
     "value": {
       "type": "module",
@@ -1156,6 +1145,20 @@
         "fireStateFallback": {"type": "json", "value": ""}
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-rocket.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness",
+      "title": "",
+      "properties": {
+        "firstEncounterAppearDelay": {"type": "json", "value": 21},
+        "firstEncounter": {"type": "json", "value": false}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarkness.behavior"
     }
   }
 ]

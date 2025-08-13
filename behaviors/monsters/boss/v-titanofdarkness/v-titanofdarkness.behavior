@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarkness",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/behavior.lua",
     "/scripts/actions/entity.lua",
@@ -8,15 +8,19 @@
     "/scripts/actions/status.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua",
     "/scripts/actions/world.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/query.lua",
+    "/scripts/actions/movement.lua",
     "/scripts/actions/math.lua",
     "/scripts/actions/position.lua",
     "/scripts/actions/v-sensor.lua",
-    "/scripts/actions/movement.lua",
     "/scripts/behavior/bdata.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "firstEncounterAppearDelay": 21,
+    "firstEncounter": false
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -109,6 +113,24 @@
             "parameters": {},
             "children": [
               {
+                "title": "setLightActive",
+                "type": "action",
+                "name": "setLightActive",
+                "parameters": {
+                  "active": {"value": false},
+                  "light": {"value": "lefteyelightforward"}
+                }
+              },
+              {
+                "title": "setLightActive",
+                "type": "action",
+                "name": "setLightActive",
+                "parameters": {
+                  "active": {"value": false},
+                  "light": {"value": "righteyelightforward"}
+                }
+              },
+              {
                 "title": "repeater",
                 "type": "decorator",
                 "name": "repeater",
@@ -147,6 +169,99 @@
                       }
                     }
                   ]
+                }
+              },
+              {
+                "title": "succeeder",
+                "type": "decorator",
+                "name": "succeeder",
+                "parameters": {},
+                "child": {
+                  "title": "optional",
+                  "type": "decorator",
+                  "name": "optional",
+                  "parameters": {
+                    "shouldRun": {"key": "<firstEncounter>"}
+                  },
+                  "child": {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "parallel",
+                        "type": "composite",
+                        "name": "parallel",
+                        "parameters": {
+                          "fail": {"value": -1},
+                          "success": {"value": 1}
+                        },
+                        "children": [
+                          {
+                            "title": "timer",
+                            "type": "action",
+                            "name": "timer",
+                            "parameters": {
+                              "time": {"key": "<firstEncounterAppearDelay>"}
+                            }
+                          },
+                          {
+                            "title": "failer",
+                            "type": "decorator",
+                            "name": "failer",
+                            "parameters": {},
+                            "child": {
+                              "title": "sequence",
+                              "type": "composite",
+                              "name": "sequence",
+                              "parameters": {},
+                              "children": [
+                                {
+                                  "title": "entityPosition",
+                                  "type": "action",
+                                  "name": "entityPosition",
+                                  "parameters": {
+                                    "entity": {"key": "target"}
+                                  },
+                                  "output": {
+                                    "position": "targetPos"
+                                  }
+                                },
+                                {
+                                  "title": "setPosition",
+                                  "type": "action",
+                                  "name": "setPosition",
+                                  "parameters": {
+                                    "footPosition": {"value": false},
+                                    "position": {"key": "targetPos"}
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "title": "setLightActive",
+                        "type": "action",
+                        "name": "setLightActive",
+                        "parameters": {
+                          "active": {"value": true},
+                          "light": {"value": "lefteyelightforward"}
+                        }
+                      },
+                      {
+                        "title": "setLightActive",
+                        "type": "action",
+                        "name": "setLightActive",
+                        "parameters": {
+                          "active": {"value": true},
+                          "light": {"value": "righteyelightforward"}
+                        }
+                      }
+                    ]
+                  }
                 }
               },
               {
