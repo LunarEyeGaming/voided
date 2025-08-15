@@ -32,8 +32,8 @@ local worldTypeWhitelist  -- List of worlds on which the Titan of Darkness is al
 local spawnAttemptInterval  -- How often the script should attempt to spawn the Titan
 local spawnProbability  -- The chance of the spawn succeeding
 local titanMonsterType  -- The monster type of the Titan of Darkness
-local firstEncounterStagehand  -- Stagehand type for the first encounter
 local titanLevel  -- The level of the Titan of Darkness to use
+local firstEncounterStagehand  -- Stagehand type for the first encounter
 
 local spawnAttemptTimer  -- Amount of time elapsed since the last spawn attempt
 local worldTypeStayTime  -- Amount of time that the player has spent on the current world so far
@@ -60,6 +60,7 @@ function init()
   spawnProbability = 0.05
   titanMonsterType = "v-titanofdarkness"
   titanLevel = 10
+  firstEncounterStagehand = "v-titanfirstencounter"
 
   spawnAttemptTimer = 0
 

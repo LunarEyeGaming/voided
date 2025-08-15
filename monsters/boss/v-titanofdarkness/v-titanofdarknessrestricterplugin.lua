@@ -35,8 +35,8 @@ function init()
     end
   end
 
-  -- If the Titan is not in a monster spawn zone...
-  if not isInMonsterSpawnZone() then
+  -- If the Titan is not in a monster spawn zone (and spawnAnywhere is false)...
+  if not config.getParameter("spawnAnywhere") and not isInMonsterSpawnZone() then
     -- Disappear.
     monster.setUniqueId()
     status.setResourcePercentage("health", 0.0)
