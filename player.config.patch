@@ -6,15 +6,17 @@
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancienthead"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientchestplate"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientpants"} },
+
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientbow"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientbroadsword"} },
+  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientchaingun"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientpistol"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientrifle"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientshotgun"} },
-  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-ancientchaingun"} },
-  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-multijump2techchip"} },
+
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-aimabledashtechchip"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-grapplespheretechchip"} },
+  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-multijump2techchip"} },
 
   // Ancient Furniture etc.
   //   decorative
@@ -80,14 +82,15 @@
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-microformervoltagespikesrusty"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-microformervoltagewastes"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-microformervoltagewastesoxidized"} },
+  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-terraformerministar"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-terraformertoxicwasteland"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-terraformervoltage"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-terraformervoltagerusty"} },
 
   // New EPPs
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-electricprotectionback"} },
-  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-poisonprotectionback"} },
   { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-fireprotectionback"} },
+  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": {"item": "v-poisonprotectionback"} },
 
   // Player scripts
   {"op": "add", "path": "/genericScriptContexts/v-versioningCore", "value": "/v-versioning/core.lua"},
