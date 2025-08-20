@@ -7,6 +7,7 @@ local fixedAngle
 local adjustTime
 local maxBeamLength
 local damageConfig
+local decorative
 
 local positionStart
 local adjustTimer
@@ -25,6 +26,7 @@ function init()
   maxBeamLength = config.getParameter("maxBeamLength", 100)
   damageConfig = config.getParameter("damageConfig", {damage = 0})
   otherLensPollInterval = config.getParameter("otherLensPollInterval", 0.1)
+  decorative = config.getParameter("decorative", false)
 
   otherLensPollTimer = otherLensPollInterval
   positionStart = vec2.add(object.position(), {0.001, 0.001})  -- Nudge it to avoid chunk boundary issues.
@@ -50,7 +52,12 @@ function init()
 
   setState(storage.active)
 
-  object.setInteractive(not storage.isFixed)
+  object.setInteractive(not storage.isFixed and not decorative)
+
+  if decorative then
+    updateAnimation(currentAngle, config.getParameter("decorativeBeamLength", 20))
+    script.setUpdateDelta(0)
+  end
 end
 
 function update(dt)
@@ -81,18 +88,13 @@ function update(dt)
     beamEnd = vec2.add(beamEndRelative, beamStart)
   end
 
-  world.debugPoint(beamEnd, "green")
+  -- world.debugPoint(beamEnd, "green")
 
   local beamMag = world.magnitude(beamEnd, beamStart)
 
-  world.debugText("%s", storage.active, object.position(), "green")
+  -- world.debugText("%s", storage.active, object.position(), "green")
 
-  animator.resetTransformationGroup("lens")
-  animator.rotateTransformationGroup("lens", currentAngle)
-
-  animator.resetTransformationGroup("beam")
-  animator.scaleTransformationGroup("beam", {beamMag, 1})
-  animator.translateTransformationGroup("beam", {beamMag / 2, 0})
+  updateAnimation(currentAngle, beamMag)
 
   if storage.active then
     updateDamageSource(beamEndRelative)
@@ -158,11 +160,17 @@ end
 
 function updateDamageSource(beamEndRelative)
   local damagePoly = { {0, 0}, beamEndRelative }
+  damageConfig.poly = damagePoly
+  object.setDamageSources({damageConfig})
+end
 
-  local damageSource = copy(damageConfig)  ---@type DamageSource
-  damageSource.poly = damagePoly
+function updateAnimation(currentAngle, beamMag)
+  animator.resetTransformationGroup("lens")
+  animator.rotateTransformationGroup("lens", currentAngle)
 
-  object.setDamageSources({damageSource})
+  animator.resetTransformationGroup("beam")
+  animator.scaleTransformationGroup("beam", {beamMag, 1})
+  animator.translateTransformationGroup("beam", {beamMag / 2, 0})
 end
 
 --[[
@@ -173,13 +181,17 @@ end
   returns: the projection of `vector` onto `ontoVector`.
 ]]
 function projectVector(vector, ontoVector)
-  return vec2.mul(
-    ontoVector,
-    vec2.dot(
-      vector,
-      ontoVector
-    ) / (vec2.mag(ontoVector) ^ 2)
-  )
+  local factor = (vector[1] * ontoVector[1] + vector[2] * ontoVector[2])
+  / (ontoVector[1] * ontoVector[1] + ontoVector[2] * ontoVector[2])
+
+  return {ontoVector[1] * factor, ontoVector[2] * factor}
+  -- return vec2.mul(
+  --   ontoVector,
+  --   vec2.dot(
+  --     vector,
+  --     ontoVector
+  --   ) / (vec2.mag(ontoVector) ^ 2)
+  -- )
 end
 
 function setState(state)
