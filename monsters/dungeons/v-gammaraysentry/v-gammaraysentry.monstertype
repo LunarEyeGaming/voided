@@ -1,0 +1,279 @@
+{
+  "type" : "v-gammaraysentry",
+  "shortdescription" : "<todo>",
+  "description" : "<todo>",
+
+  "categories" : [ "v-gammaraysentry" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-gammaraysentry.animation",
+
+  "dropPools" : [ ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/monster.lua"
+    ],
+
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 1,
+
+    "animationScripts" : [ "/items/active/effects/chain.lua" ],
+
+    "behavior" : "monster",
+    "deathBehavior" : "monster-death",
+
+    "facingMode" : "transformation",
+
+    "seeThroughLiquid" : false,
+    "behaviorConfig" : {
+      "damageOnTouch" : false,
+
+      "targetQueryRange" : 35,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 50,
+      "targetOutOfSightTime" : 10.0,
+
+      "hurtWaitForGround" : false,
+
+      "wanderActions" : [
+        {
+          "name" : "action-stop",
+          "parameters" : {
+            "stopForce" : 20
+          }
+        }
+      ],
+
+      "hostileActions" : [
+        {
+          "name" : "v-action-hitscanbeamfire",
+          "cooldown" : 3.0,
+
+          "parameters" : {
+            "onGround" : false,
+            "requireLineOfSight" : true,
+            "maximumRange" : 40,
+            "minimumRange" : 10,
+            "windupTime" : 1.0,
+            "windupState" : "",
+            "windupState2" : "windup",
+            "windupTime2" : 0.5,
+
+            "maxBeamLength" : 50,
+
+            "rotationCenter" : [0.0, 0.0],
+            "fireSound" : "fire",
+            "fireState" : "fire",
+            "fireDelay" : 0.0,
+            "fireTime" : 0.25,
+            "faceTarget" : true,
+            "rotateAim" : true,
+            "holdAim" : true,
+
+            "winddownState" : "fire",
+            "winddownTime" : 0.2
+          }
+        }
+      ],
+
+      "approachActions" : [
+        {
+          "name" : "v-approach-rangedfly",
+          "parameters" : {
+            "minRange" : 20,
+            "maxRange" : 50,
+            "speed" : 25,
+            "flyState" : "idle"
+          }
+        }
+      ],
+
+      "deathActions" : []
+    },
+
+    "beams" : {
+      "windup" : {
+        "startSegmentImage" : "/monsters/boss/guardianboss/beams/firebeamstart.png:1",
+        "segmentImage" : "/monsters/boss/guardianboss/beams/firebeam.png:1",
+        "endSegmentImage" : "/monsters/boss/guardianboss/beams/firebeamend.png:1",
+        "segmentSize" : 0.48,
+        "overdrawLength" : 0.2,
+        "taper" : 0,
+        "waveform" : {
+          "frequency" : 2.5,
+          "amplitude" : 0.125,
+          "movement" : 50.0
+        },
+        "fullbright" : true,
+        "frames" : 1,
+        "cycle" : 1
+      },
+      "windup2" : {
+        "startSegmentImage" : "/monsters/boss/guardianboss/beams/firebeamstart.png:2",
+        "segmentImage" : "/monsters/boss/guardianboss/beams/firebeam.png:2",
+        "endSegmentImage" : "/monsters/boss/guardianboss/beams/firebeamend.png:2",
+        "segmentSize" : 0.48,
+        "overdrawLength" : 0.2,
+        "taper" : 0,
+        "waveform" : {
+          "frequency" : 2.5,
+          "amplitude" : 0.125,
+          "movement" : 50.0
+        },
+        "fullbright" : true,
+        "frames" : 1,
+        "cycle" : 1
+      },
+      "fire" : {
+        "startSegmentImage" : "/monsters/boss/guardianboss/beams/firebeamstart.png:4",
+        "segmentImage" : "/monsters/boss/guardianboss/beams/firebeam.png:4",
+        "endSegmentImage" : "/monsters/boss/guardianboss/beams/firebeamend.png:4",
+        "segmentSize" : 0.48,
+        "overdrawLength" : 0.2,
+        "taper" : 0,
+        "waveform" : {
+          "frequency" : 2.5,
+          "amplitude" : 0.125,
+          "movement" : 50.0
+        },
+        "fullbright" : true,
+        "frames" : 1,
+        "cycle" : 1
+      }
+    },
+
+    "animationDamageParts" : {
+      "beam" : {
+        "anchorPart" : "beam",
+        "checkLineCollision" : true,
+        "bounces" : 0,
+        "damageSource" : {
+          "line" : [ [0.0, 0.0], [1.0, 0.0]],
+          "damage" : 20,
+          "damageRepeatTimeout" : 0.25,
+          "damageSourceKind" : "fireplasma",
+          "teamType" : "enemy",
+          "teamNumber" : 2
+        }
+      }
+    },
+
+    "touchDamage" : {
+      "poly" : [ [1.125, 2.9375], [1.625, 2.4375], [1.625, -2.4375], [1.125, -2.9375], [-1.125, -2.9375], [-1.625, -2.4375], [-1.625, 2.4375], [-1.125, 2.9375] ],
+      "damage" : 17,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "electric",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [ [1.125, 2.9375], [1.625, 2.4375], [1.625, -2.4375], [1.125, -2.9375], [-1.125, -2.9375], [-1.625, -2.4375], [-1.625, 2.4375], [-1.125, 2.9375] ],
+
+      "mass" : 2.0,
+      "walkSpeed" : 4,
+      "runSpeed" : 12,
+      "gravityEnabled" : false,
+
+      "bounceFactor" : 0.0,
+      "groundFriction" : 10,
+
+      "airFriction" : 0,
+      "airForce" : 50,
+      "flySpeed" : 20
+    },
+
+    "bodyMaterialKind" : "stone",
+
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "stunDamageSuppression" : 0.2,
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "stone"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 0.25
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0.3
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9
+        },
+        "maxHealth" : {
+          "baseValue" : 90
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "physicalResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "electricResistance" : {
+          "baseValue" : 0.5
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "poisonResistance" : {
+          "baseValue" : -0.25
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 0.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : false
+  }
+}

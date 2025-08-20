@@ -1,0 +1,42 @@
+{
+  "metadata" : {
+    "name" : "v-solarspire",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "roommiddle" ],
+    // "anchor" : [ "buildingbottom" ],
+
+    "gravity" : 70,
+    "maxRadius" : 1000000,
+    "maxParts" : 20,
+    "protected" : true
+  },
+
+  "parts" : [
+    {
+      "name" : "roommiddle",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "roommiddle.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "room1",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "room1.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "roombottom",
+      "rules" : [
+        [ "maxSpawnCount", [1] ], [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "roombottom.json" ],
+      "chance" : 0
+    }
+  ]
+}

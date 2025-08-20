@@ -29,6 +29,10 @@ function vBehavior.requireArgsGen(nodeName, args)
   end
 end
 
+function vBehavior.requireArgs(nodeName, args, names)
+  return vBehavior.requireArgsGen(nodeName, args)(names)
+end
+
 ---Coroutine function that waits until it receives `count` notifications of the specified type `type_` (default is 1).
 ---self.notifications must be defined and must work correctly.
 ---@param type_ string

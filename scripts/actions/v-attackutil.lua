@@ -6,7 +6,7 @@ require "/scripts/vec2.lua"
 function anglePrediction(sourcePosition, targetId, time, trackRange)
     local targetVelocity = world.entityVelocity(targetId)
     local toTarget = world.distance(world.entityPosition(targetId), sourcePosition)
-    
+
     local trackRange = trackRange or vec2.mag(toTarget)
     local perpendicular = vec2.rotate(vec2.norm(toTarget), math.pi / 2)
     local angularVel = vec2.dot(perpendicular, vec2.norm(targetVelocity)) * (vec2.mag(targetVelocity) / trackRange)
@@ -16,5 +16,12 @@ end
 -- anglePrediction from swansong script, but returns a vector
 function v_aimVectorPrediction(args, board)
   local angle = anglePrediction(args.sourcePosition, args.target, args.time, args.trackRange)
-  return true, {vector = vec2.withAngle(angle)}
+  return true, {vector = vec2.withAngle(angle), angle = angle}
+end
+
+function v_positionPrediction(args, board)
+  local targetVelocity = world.entityVelocity(args.target)
+  local targetPos = world.entityPosition(args.target)
+
+  return true, {vec2.add(targetPos, vec2.mul(targetVelocity, args.time))}
 end

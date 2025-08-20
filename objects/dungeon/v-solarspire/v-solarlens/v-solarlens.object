@@ -4,7 +4,7 @@
   "rarity" : "Common",
   "category" : "decorative",
   "price" : 250,
-  "objectType" : "physics",
+  // "objectType" : "physics",
 
   "description" : "<todo>",
   "shortdescription" : "Solar Lens",
@@ -26,6 +26,8 @@
       "direction" : "right",
       "imagePosition" : [-8, -8],
 
+      "metaBoundBox" : [-1, -1, 1, 1],
+
       "spaceScan" : 0.1,
       "anchors" : [ "background" ]
     }
@@ -39,13 +41,20 @@
   },
 
   "scripts" : [ "v-solarlens.lua" ],
-  "scriptDelta" : 1,
+  "scriptDelta" : 3,
 
   "damageConfig" : {
-    "damage" : 10,
+    "damage" : 40,
     "damageSourceKind" : "fireplasma",
+    "damageType" : "Environment",
     "teamType" : "enemy"
   },
+
+  "angle" : 90,
+  "adjustTime" : 0.5,
+  "maxBeamLength" : 100,
+
+  "otherLensPollInterval" : 0.3,
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

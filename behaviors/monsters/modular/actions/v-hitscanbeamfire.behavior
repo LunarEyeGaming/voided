@@ -1,0 +1,527 @@
+{
+  "name": "v-action-hitscanbeamfire",
+  "description": null,
+  "scripts": [
+    "/scripts/behavior.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/v-beam.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/monster.lua"
+  ],
+  "parameters": {
+    "aimDirection": [1, 0],
+    "fireSound": "fire",
+    "fireState": "fire",
+    "winddownState": "firewinddown",
+    "windupState": "firewindup",
+    "windupState2": "firewindup2",
+    "windupTime2": 0.25,
+    "fireDelay": 0,
+    "faceTarget": true,
+    "rotateAim": false,
+    "rotationCenter": [0, 0],
+    "fireStateType": "body",
+    "skillName": "",
+    "holdAim": false,
+    "damageRepeatGroup": "monsterfire",
+    "windupBeam": "windup",
+    "windupBeam2": "windup2",
+    "fireBeam": "fire",
+    "maxBeamLength": 100,
+    "fireTime": 1
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": 1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "parallel",
+            "type": "composite",
+            "name": "parallel",
+            "parameters": {
+              "fail": {"value": 1},
+              "success": {"value": -1}
+            },
+            "children": [
+              {
+                "title": "selector",
+                "type": "composite",
+                "name": "selector",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "optional",
+                    "type": "decorator",
+                    "name": "optional",
+                    "parameters": {
+                      "shouldRun": {"key": "<holdAim>"}
+                    },
+                    "child": {
+                      "title": "hasFlag",
+                      "type": "action",
+                      "name": "hasFlag",
+                      "parameters": {
+                        "name": {"key": "holdAim"}
+                      }
+                    }
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "vecMultiply",
+                        "type": "action",
+                        "name": "vecMultiply",
+                        "parameters": {
+                          "first": {"key": "<rotationCenter>"},
+                          "second": {"value": ["facingDirection", 1]}
+                        },
+                        "output": {
+                          "vector": "rotationCenter"
+                        }
+                      },
+                      {
+                        "title": "vecRotate",
+                        "type": "action",
+                        "name": "vecRotate",
+                        "parameters": {
+                          "angle": {"key": "heading"},
+                          "vector": {"key": "rotationCenter"}
+                        },
+                        "output": {
+                          "vector": "rotationCenter"
+                        }
+                      },
+                      {
+                        "title": "offsetPosition",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"key": "rotationCenter"},
+                          "position": {"key": "self"}
+                        },
+                        "output": {
+                          "position": "origin"
+                        }
+                      },
+                      {
+                        "title": "entityAngle",
+                        "type": "action",
+                        "name": "entityAngle",
+                        "parameters": {
+                          "entity": {"key": "target"},
+                          "heading": {"key": "heading"},
+                          "position": {"key": "origin"}
+                        },
+                        "output": {
+                          "angle": "entityAngle"
+                        }
+                      },
+                      {
+                        "title": "entityPosition",
+                        "type": "action",
+                        "name": "entityPosition",
+                        "parameters": {
+                          "entity": {"key": "target"}
+                        },
+                        "output": {
+                          "position": "targetPosition"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "parallel",
+                    "type": "composite",
+                    "name": "parallel",
+                    "parameters": {
+                      "fail": {"value": -1},
+                      "success": {"value": 1}
+                    },
+                    "children": [
+                      {
+                        "title": "action-windup",
+                        "type": "module",
+                        "name": "action-windup",
+                        "parameters": {
+                          "windupState": {"key": "<windupState>"},
+                          "faceTarget": {"key": "<faceTarget>"},
+                          "aimAtTarget": {"value": true},
+                          "skillName": {"key": "<skillName>"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "timer",
+                    "type": "action",
+                    "name": "timer",
+                    "parameters": {
+                      "time": {"value": 0.01}
+                    }
+                  },
+                  {
+                    "title": "distance",
+                    "type": "action",
+                    "name": "distance",
+                    "parameters": {
+                      "from": {"key": "origin"},
+                      "to": {"key": "targetPosition"}
+                    },
+                    "output": {
+                      "vector": "aimVector"
+                    }
+                  },
+                  {
+                    "title": "v_beamCollision",
+                    "type": "action",
+                    "name": "v_beamCollision",
+                    "parameters": {
+                      "direction": {"key": "aimVector"},
+                      "maxLength": {"key": "<maxBeamLength>"},
+                      "startPosition": {"key": "self"}
+                    },
+                    "output": {
+                      "beamEnd": "beamEnd",
+                      "beamLength": "beamLength"
+                    }
+                  },
+                  {
+                    "title": "vecAngle",
+                    "type": "action",
+                    "name": "vecAngle",
+                    "parameters": {
+                      "vector": {"key": "aimVector"}
+                    },
+                    "output": {
+                      "angle": "beamAngle"
+                    }
+                  },
+                  {
+                    "title": "resetTransformationGroup",
+                    "type": "action",
+                    "name": "resetTransformationGroup",
+                    "parameters": {
+                      "transformationGroup": {"value": "beam"}
+                    }
+                  },
+                  {
+                    "title": "scaleTransformationGroup",
+                    "type": "action",
+                    "name": "scaleTransformationGroup",
+                    "parameters": {
+                      "scale": {"value": ["beamLength", 1]},
+                      "transformationGroup": {"value": "beam"}
+                    }
+                  },
+                  {
+                    "title": "rotateTransformationGroup",
+                    "type": "action",
+                    "name": "rotateTransformationGroup",
+                    "parameters": {
+                      "angle": {"key": "beamAngle"},
+                      "rotationCenter": {"key": "<rotationCenter>"},
+                      "transformationGroup": {"value": "beam"}
+                    }
+                  },
+                  {
+                    "title": "parallel",
+                    "type": "composite",
+                    "name": "parallel",
+                    "parameters": {
+                      "fail": {"value": -1},
+                      "success": {"value": 1}
+                    },
+                    "children": [
+                      {
+                        "title": "action-windup",
+                        "type": "module",
+                        "name": "action-windup",
+                        "parameters": {
+                          "windupState": {"key": "<windupState2>"},
+                          "faceTarget": {"value": false},
+                          "windupTime": {"key": "<windupTime2>"},
+                          "aimAtTarget": {"value": false},
+                          "rotateToTarget": {"value": false},
+                          "skillName": {"key": "<skillName>"}
+                        }
+                      },
+                      {
+                        "title": "failer",
+                        "type": "decorator",
+                        "name": "failer",
+                        "parameters": {},
+                        "child": {
+                          "title": "v_beamCollision",
+                          "type": "action",
+                          "name": "v_beamCollision",
+                          "parameters": {
+                            "direction": {"key": "aimVector"},
+                            "maxLength": {"key": "<maxBeamLength>"},
+                            "startPosition": {"key": "self"}
+                          },
+                          "output": {
+                            "beamEnd": "beamEnd"
+                          }
+                        }
+                      },
+                      {
+                        "title": "failer",
+                        "type": "decorator",
+                        "name": "failer",
+                        "parameters": {},
+                        "child": {
+                          "title": "v_playBeamAnimation",
+                          "type": "action",
+                          "name": "v_playBeamAnimation",
+                          "parameters": {
+                            "beamType": {"key": "<windupBeam2>"},
+                            "endPosition": {"key": "beamEnd"},
+                            "startPosition": {"key": "self"}
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "succeeder",
+                    "type": "decorator",
+                    "name": "succeeder",
+                    "parameters": {},
+                    "child": {
+                      "title": "setAnimationState",
+                      "type": "action",
+                      "name": "setAnimationState",
+                      "parameters": {
+                        "state": {"value": "<fireState>"},
+                        "type": {"value": "<fireStateType>"}
+                      }
+                    }
+                  },
+                  {
+                    "title": "timer",
+                    "type": "action",
+                    "name": "timer",
+                    "parameters": {
+                      "time": {"value": "<fireDelay>"}
+                    }
+                  },
+                  {
+                    "title": "playSound",
+                    "type": "action",
+                    "name": "playSound",
+                    "parameters": {
+                      "loops": {"value": 0},
+                      "sound": {"key": "<fireSound>"}
+                    }
+                  },
+                  {
+                    "title": "parallel",
+                    "type": "composite",
+                    "name": "parallel",
+                    "parameters": {
+                      "fail": {"value": -1},
+                      "success": {"value": 1}
+                    },
+                    "children": [
+                      {
+                        "title": "failer",
+                        "type": "decorator",
+                        "name": "failer",
+                        "parameters": {},
+                        "child": {
+                          "title": "v_beamCollision",
+                          "type": "action",
+                          "name": "v_beamCollision",
+                          "parameters": {
+                            "direction": {"key": "aimVector"},
+                            "maxLength": {"key": "<maxBeamLength>"},
+                            "startPosition": {"key": "self"}
+                          },
+                          "output": {
+                            "beamEnd": "beamEnd",
+                            "beamLength": "beamLength"
+                          }
+                        }
+                      },
+                      {
+                        "title": "failer",
+                        "type": "decorator",
+                        "name": "failer",
+                        "parameters": {},
+                        "child": {
+                          "title": "v_playBeamAnimation",
+                          "type": "action",
+                          "name": "v_playBeamAnimation",
+                          "parameters": {
+                            "beamType": {"key": "<fireBeam>"},
+                            "endPosition": {"key": "beamEnd"},
+                            "startPosition": {"key": "self"}
+                          }
+                        }
+                      },
+                      {
+                        "title": "animate",
+                        "type": "action",
+                        "name": "animate",
+                        "parameters": {
+                          "fallback": {"value": "off"},
+                          "state": {"value": "on"},
+                          "type": {"value": "beam"}
+                        }
+                      },
+                      {
+                        "title": "failer",
+                        "type": "decorator",
+                        "name": "failer",
+                        "parameters": {},
+                        "child": {
+                          "title": "setDamagePartActive",
+                          "type": "action",
+                          "name": "setDamagePartActive",
+                          "parameters": {
+                            "name": {"value": "beam"}
+                          }
+                        }
+                      },
+                      {
+                        "title": "timer",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"key": "<fireTime>"}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "parallel",
+            "type": "composite",
+            "name": "parallel",
+            "parameters": {
+              "fail": {"value": -1},
+              "success": {"value": -1}
+            },
+            "children": [
+              {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "resetTransformationGroup",
+                    "type": "action",
+                    "name": "resetTransformationGroup",
+                    "parameters": {
+                      "transformationGroup": {"value": "aim"}
+                    }
+                  },
+                  {
+                    "title": "rotateTransformationGroup",
+                    "type": "action",
+                    "name": "rotateTransformationGroup",
+                    "parameters": {
+                      "angle": {"key": "entityAngle"},
+                      "rotationCenter": {"key": "<rotationCenter>"},
+                      "transformationGroup": {"value": "aim"}
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "v_beamCollision",
+                "type": "action",
+                "name": "v_beamCollision",
+                "parameters": {
+                  "direction": {"key": "aimVector"},
+                  "maxLength": {"key": "<maxBeamLength>"},
+                  "startPosition": {"key": "self"}
+                },
+                "output": {
+                  "beamEnd": "beamEnd"
+                }
+              },
+              {
+                "title": "v_playBeamAnimation",
+                "type": "action",
+                "name": "v_playBeamAnimation",
+                "parameters": {
+                  "beamType": {"key": "<windupBeam>"},
+                  "endPosition": {"key": "beamEnd"},
+                  "startPosition": {"key": "self"}
+                }
+              },
+              {
+                "title": "runner",
+                "type": "action",
+                "name": "runner",
+                "parameters": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "action-winddown",
+        "type": "module",
+        "name": "action-winddown",
+        "parameters": {
+          "winddownState": {"value": "<winddownState>"}
+        }
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "optional",
+          "type": "decorator",
+          "name": "optional",
+          "parameters": {
+            "shouldRun": {"key": "<rotateAim>"}
+          },
+          "child": {
+            "title": "resetTransformationGroup",
+            "type": "action",
+            "name": "resetTransformationGroup",
+            "parameters": {
+              "transformationGroup": {"value": "aim"}
+            }
+          }
+        }
+      }
+    ]
+  }
+}

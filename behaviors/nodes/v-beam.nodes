@@ -1,0 +1,35 @@
+{
+  "v_playBeamAnimation": {
+    "type": "action",
+    "name": "v_playBeamAnimation",
+    "title": "v_playBeamAnimation",
+    "properties": {
+      "beamType": {"type": "string"},
+      "duration": {"type": "number"},
+      "endPosition": {"type": "position"},
+      "frameCount": {"type": "number"},
+      "startPosition": {"type": "position", "key": "self"}
+    },
+    "category": "v-beam",
+    "script": "/scripts/actions/v-beam.lua",
+    "output": {}
+  },
+  "v_beamCollision": {
+    "type": "action",
+    "name": "v_beamCollision",
+    "title": "v_beamCollision",
+    "properties": {
+      "angle": {"type": "number"},
+      "collisionKinds": {"type": "list"},
+      "direction": {"type": "vec2"},
+      "maxLength": {"type": "number"},
+      "startPosition": {"type": "position", "key": "self"}
+    },
+    "category": "v-beam",
+    "script": "/scripts/actions/v-beam.lua",
+    "output": {
+      "beamEnd": {"type": "position", "key": null},
+      "beamLength": {"type": "number", "key": null}
+    }
+  }
+}

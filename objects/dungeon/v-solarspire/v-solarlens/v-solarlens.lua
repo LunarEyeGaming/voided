@@ -7,7 +7,6 @@ local fixedAngle
 local adjustTime
 local maxBeamLength
 local damageConfig
-local defaultState
 
 local positionStart
 local adjustTimer
@@ -15,26 +14,28 @@ local angleStart
 local angleEnd
 local currentAngle
 
+local otherLensPollTimer
+local otherLensPos
 local prevOtherLens
 
 function init()
   screwedUpAngle = config.getParameter("screwedUpAngle", 0) * math.pi / 180
-  fixedAngle = math.pi / 2
-  adjustTime = config.getParameter("adjustTime", 0.5)
+  fixedAngle = config.getParameter("angle", 0) * math.pi / 180
+  adjustTime = config.getParameter("adjustTime", 0.0)
   maxBeamLength = config.getParameter("maxBeamLength", 100)
   damageConfig = config.getParameter("damageConfig", {damage = 0})
-  damageConfig.damage = damageConfig.damage * root.evalFunction("monsterLevelPowerMultiplier", object.level())
-  defaultState = config.getParameter("defaultState", false)
+  otherLensPollInterval = config.getParameter("otherLensPollInterval", 0.1)
 
-  positionStart = object.position()
+  otherLensPollTimer = otherLensPollInterval
+  positionStart = vec2.add(object.position(), {0.001, 0.001})  -- Nudge it to avoid chunk boundary issues.
   adjustTimer = adjustTime
 
   if storage.active == nil then
-    setState(defaultState)
+    storage.active = config.getParameter("defaultState", false)
   end
 
   if storage.isFixed == nil then
-    storage.isFixed = true
+    storage.isFixed = config.getParameter("isFixed", true)
   end
 
   if not storage.isFixed then
@@ -46,6 +47,8 @@ function init()
     angleEnd = fixedAngle
     currentAngle = fixedAngle
   end
+
+  setState(storage.active)
 
   object.setInteractive(not storage.isFixed)
 end
@@ -63,7 +66,13 @@ function update(dt)
   local beamStart = positionStart
 
   local beamEndRelative = world.distance(beamEnd, beamStart)
-  local otherLensPos = setOtherLensState(beamEnd, storage.active)
+
+  otherLensPollTimer = otherLensPollTimer - dt
+  if otherLensPollTimer <= 0 then
+    otherLensPos = setOtherLensState(beamEnd, storage.active)
+
+    otherLensPollTimer = otherLensPollInterval
+  end
 
   if otherLensPos then
     local otherLensPosRelative = world.distance(otherLensPos, beamStart)
@@ -72,7 +81,11 @@ function update(dt)
     beamEnd = vec2.add(beamEndRelative, beamStart)
   end
 
+  world.debugPoint(beamEnd, "green")
+
   local beamMag = world.magnitude(beamEnd, beamStart)
+
+  world.debugText("%s", storage.active, object.position(), "green")
 
   animator.resetTransformationGroup("lens")
   animator.rotateTransformationGroup("lens", currentAngle)
@@ -106,7 +119,7 @@ function setOtherLensState(beamEnd, state)
   local queried = world.entityLineQuery(positionStart, beamEnd, {
     withoutEntityId = entity.id(),
     includedTypes = {"object"},
-    orderBy = "nearest",
+    order = "nearest",
     callScript = "v_isSolarLens"
   })
 
@@ -116,14 +129,14 @@ function setOtherLensState(beamEnd, state)
   if #queried > 0 then
     entityId = queried[1]
 
-    world.callScriptedEntity(entityId, "setState", state)
+    world.callScriptedEntity(entityId, "v_solarLens_setState", state)
 
     entityPos = world.entityPosition(entityId)
   end
 
   -- Deactivate prevOtherLens if disconnected.
   if prevOtherLens ~= entityId and prevOtherLens and world.entityExists(prevOtherLens) then
-    world.callScriptedEntity(prevOtherLens, "setState", false)
+    world.callScriptedEntity(prevOtherLens, "v_solarLens_setState", false)
   end
 
   prevOtherLens = queried[1]
@@ -135,7 +148,7 @@ function getBeamEnd(angle)
   local beamStart = positionStart
   local beamEnd = vec2.add(beamStart, vec2.withAngle(angle, maxBeamLength))
 
-  local collidePoint = world.lineCollision(beamStart, beamEnd)
+  local collidePoint = world.lineCollision(beamStart, beamEnd, {"Block", "Slippery"})
   if collidePoint then
     beamEnd = collidePoint
   end
@@ -170,8 +183,6 @@ function projectVector(vector, ontoVector)
 end
 
 function setState(state)
-  storage.active = state
-
   animator.setAnimationState("beam", state and "on" or "off")
 end
 
@@ -183,4 +194,10 @@ end
 
 function v_isSolarLens()
   return true
+end
+
+function v_solarLens_setState(state)
+  storage.active = state
+
+  setState(state)
 end

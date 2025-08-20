@@ -7,12 +7,13 @@
       "sourcePosition": {"type": "position", "key": "self"},
       "target": {"type": "entity", "key": "target"},
       "time": {"type": "number", "value": 1},
-      "trackRange": {"type": "number", "value": null}
+      "trackRange": {"type": "number"}
     },
     "category": "v-attackutil",
     "script": "/scripts/actions/v-attackutil.lua",
     "output": {
-      "vector": {"type": "vec2", "key": null}
+      "vector": {"type": "vec2", "key": null},
+      "angle": {"type": "number", "key": null}
     }
   }
 }
