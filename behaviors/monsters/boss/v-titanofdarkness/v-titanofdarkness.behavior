@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarkness",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/behavior.lua",
     "/scripts/actions/entity.lua",
@@ -720,7 +720,7 @@
                                         "name": "v-titanofdarkness-orbittarget",
                                         "parameters": {
                                           "orbitPeriod": {"value": 10},
-                                          "orbitVector": {"value": [30, 0]}
+                                          "orbitRadius": {"value": 30}
                                         }
                                       },
                                       {

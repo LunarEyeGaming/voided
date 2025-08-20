@@ -11,7 +11,7 @@
   ],
   "parameters": {
     "orbitPeriod": 1,
-    "orbitVector": [1, 0]
+    "orbitRadius": 1
   },
   "root": {
     "title": "parallel",
@@ -72,12 +72,24 @@
             }
           },
           {
+            "title": "vecMultiply",
+            "type": "action",
+            "name": "vecMultiply",
+            "parameters": {
+              "first": {"value": [1, 0]},
+              "number": {"key": "<orbitRadius>"}
+            },
+            "output": {
+              "vector": "orbitVector"
+            }
+          },
+          {
             "title": "vecRotate",
             "type": "action",
             "name": "vecRotate",
             "parameters": {
               "angle": {"key": "orbitAngle"},
-              "vector": {"key": "<orbitVector>"}
+              "vector": {"key": "orbitVector"}
             },
             "output": {
               "vector": "orbitOffset"

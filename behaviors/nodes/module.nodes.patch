@@ -785,20 +785,6 @@
   },
   {
     "op": "add",
-    "path": "/v-titanofdarkness-orbittarget",
-    "value": {
-      "type": "module",
-      "name": "v-titanofdarkness-orbittarget",
-      "title": "",
-      "properties": {
-        "orbitPeriod": {"type": "json", "value": 1},
-        "orbitVector": {"type": "json", "value": [1, 0]}
-      },
-      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-orbittarget.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-titanofdarkness-meteors",
     "value": {
       "type": "module",
@@ -1159,6 +1145,52 @@
         "firstEncounter": {"type": "json", "value": false}
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarkness.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-hitscanbeamfire",
+    "value": {
+      "type": "module",
+      "name": "v-action-hitscanbeamfire",
+      "title": "",
+      "properties": {
+        "aimDirection": {"type": "json", "value": [1, 0]},
+        "fireSound": {"type": "json", "value": "fire"},
+        "fireState": {"type": "json", "value": "fire"},
+        "winddownState": {"type": "json", "value": "firewinddown"},
+        "windupState": {"type": "json", "value": "firewindup"},
+        "windupState2": {"type": "json", "value": "firewindup2"},
+        "windupTime2": {"type": "json", "value": 0.25},
+        "fireDelay": {"type": "json", "value": 0},
+        "faceTarget": {"type": "json", "value": true},
+        "rotateAim": {"type": "json", "value": false},
+        "rotationCenter": {"type": "json", "value": [0, 0]},
+        "fireStateType": {"type": "json", "value": "body"},
+        "skillName": {"type": "json", "value": ""},
+        "holdAim": {"type": "json", "value": false},
+        "damageRepeatGroup": {"type": "json", "value": "monsterfire"},
+        "windupBeam": {"type": "json", "value": "windup"},
+        "windupBeam2": {"type": "json", "value": "windup2"},
+        "fireBeam": {"type": "json", "value": "fire"},
+        "maxBeamLength": {"type": "json", "value": 100},
+        "fireTime": {"type": "json", "value": 1}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-hitscanbeamfire.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-orbittarget",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-orbittarget",
+      "title": "",
+      "properties": {
+        "orbitPeriod": {"type": "json", "value": 1},
+        "orbitRadius": {"type": "json", "value": 1}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-orbittarget.behavior"
     }
   }
 ]
