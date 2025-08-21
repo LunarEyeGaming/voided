@@ -1,0 +1,39 @@
+{
+  "objectName" : "v-wirelessswitch",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "scannable" : false,
+  "rarity" : "Common",
+  "category" : "wire",
+  "price" : 0,
+  "health" : 0.1,
+  "description" : "...",
+  "shortdescription" : "Wireless Switch",
+  "race" : "generic",
+
+  "smashOnBreak" : true,
+
+  "inventoryIcon" : "wirelessswitch.png",
+  "orientations" : [
+    {
+      "image" : "wirelessswitch.png",
+      "imagePosition" : [-8, -8],
+      "spaceScan" : 0.1,
+      "direction" : "right",
+
+      "animationPosition" : [-8, -8],
+      "animationParts" : {
+        "hidden" : "wirelessswitchhidden.png"
+      }
+    }
+  ],
+
+  "scripts" : [ "v-wirelessswitch.lua" ],
+  "scriptDelta" : 5,
+
+  "animation" : "v-wirelessswitch.animation",
+
+  "outputNodes" : [ [0, -1] ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

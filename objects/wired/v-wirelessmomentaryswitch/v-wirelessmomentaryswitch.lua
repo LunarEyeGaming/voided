@@ -5,14 +5,14 @@ local oldInit = init or function() end
 
 function init()
   oldInit()
-  
+
   -- Suppress object.setInteractive(true) call
   object.setInteractive(false)
-  
-  message.setHandler("v-wirelessmomentaryswitch-trigger", v_wirelessMomentarySwitch_onTrigger)
+
+  message.setHandler("v-wirelessmomentaryswitch-trigger", v_wirelessSwitch_onTrigger)
 end
 
-function v_wirelessMomentarySwitch_onTrigger()
+function v_wirelessSwitch_onTrigger()
   if storage.state == false then
     output(true)
   end
