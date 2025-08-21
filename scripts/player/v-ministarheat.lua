@@ -15,6 +15,7 @@ local burnDepth  -- Depth at which the player starts burning
 local minBurnDamage
 local maxBurnDamage
 local tickTime
+local tickDelay
 local nonOceanMaxReach
 
 local tickDamage
@@ -45,9 +46,16 @@ function init()
   minBurnDamage = 1
   maxBurnDamage = 20
   tickTime = 0.5
+  tickDelay = 1.0
   nonOceanMaxReach = 100
 
-  tickDamage = VTickDamage:new{ kind = "fire", amount = minBurnDamage, damageType = "IgnoresDef", interval = tickTime, source = player.id() }
+  tickDamage = VTickDamage:new{
+    kind = "fire",
+    amount = minBurnDamage,
+    damageType = "IgnoresDef",
+    interval = tickTime,
+    firstTickDelay = tickDelay,
+    source = player.id() }
   isActive = true
   celestialParamsFetched = false
   stagehandSpawned = false
@@ -109,12 +117,14 @@ function update(dt)
 
     -- If the player should be burned...
     if burnRatio > 0.0 and multiplier > 0.0 then
-      -- Update damage amount. It is a linear interpolation between maxBurnDamage and minBurnDamage, where damage grows as
-      -- depth (aka y position) decreases.
+      -- Update damage amount. It is a linear interpolation between maxBurnDamage and minBurnDamage, where damage grows
+      -- as depth (aka y position) decreases.
       tickDamage.damageRequest.damage = interp.linear(burnRatio, minBurnDamage, maxBurnDamage) * multiplier
       tickDamage:update(dt)  -- Run the tickDamage object for one tick.
+      status.addEphemeralEffect("v-ministarheatdisplay")
     else
       tickDamage:reset()
+      status.removeEphemeralEffect("v-ministarheatdisplay")
     end
   else
     if not stagehandSpawned then

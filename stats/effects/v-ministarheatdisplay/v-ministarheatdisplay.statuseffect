@@ -1,0 +1,17 @@
+{
+  // Status effect responsible for making the player glow different colors depending on how long they've been exposed to
+  // heat.
+  "name" : "v-ministarheatdisplay",
+  "effectConfig" : {
+    "startColor" : [218, 83, 2, 0],
+    "endColor" : [253, 143, 77, 127],
+    "transitionTime" : 1.0
+  },
+  "defaultDuration" : 1,
+
+  "animationConfig" : "v-ministarheatdisplay.animation",
+
+  "scripts" : [
+    "v-ministarheatdisplay.lua"
+  ]
+}
