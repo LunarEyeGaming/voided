@@ -1,7 +1,7 @@
 {
   "type" : "v-oilspiller",
-  "shortdescription" : "Voltspitter",
-  "description" : "A robot that scouts through the depths of Voltage worlds.",
+  "shortdescription" : "<todo>",
+  "description" : "<todo>",
 
   "categories" : [ "v-oilspiller" ],
   "parts" : [ "body" ],
@@ -20,10 +20,10 @@
     "behaviorConfig" : {
       "damageOnTouch" : false,
 
-      "targetQueryRange" : 30,
+      "targetQueryRange" : 50,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
-      "keepTargetInRange" : 60,
+      "keepTargetInRange" : 100,
       "targetOutOfSightTime" : 10,
 
       "foundTargetActions" : [ { "name" : "action-aggrohop" } ],
@@ -36,7 +36,7 @@
           "cooldown" : 3.0,
           "parameters" : {
             "requireLineOfSight" : true,
-            "maximumRange" : 15,
+            "maximumRange" : 10,
             "minimumRange" : 2,
             "windupState" : "firewindup2",
             "windupTime" : 0.4,
@@ -101,7 +101,8 @@
             "jumpXControlForce" : 50,
             "minXRange" : 10,
             "run" : true,
-            "jumpDown" : false
+            "jumpDown" : false,
+            "fallThroughPlatforms" : false
           }
         }
       ],
@@ -113,14 +114,17 @@
           }
         },
         {
-          "name" : "approach-walk",
+          "name" : "v-approach-walk",
           "parameters" : {
-            "canJump" : true,
+            "canJump" : false,
             "maxJumps" : 6,
             "jumpXVelocity" : 12,
             "jumpYVelocity" : 30,
             "jumpXControlForce" : 50,
-            "minXRange" : 10
+            "minXRange" : 10,
+            "run" : true,
+            "jumpDown" : false,
+            "fallThroughPlatforms" : false
           }
         }
       ],
@@ -165,7 +169,7 @@
       }
     },
 
-    "bodyMaterialKind" : "robotic",
+    "bodyMaterialKind" : "stone",
 
     "knockoutTime" : 0.3,
     "knockoutAnimationStates" : {
@@ -176,7 +180,7 @@
 
     "statusSettings" : {
       "statusProperties" : {
-        "targetMaterialKind" : "robotic"
+        "targetMaterialKind" : "stone"
       },
 
       "appliesEnvironmentStatusEffects" : false,
@@ -214,25 +218,25 @@
           "baseValue" : 0.0
         },
         "fireResistance" : {
-          "baseValue" : 0.0
+          "baseValue" : 0.5
         },
         "fireStatusImmunity" : {
-          "baseValue" : 0.0
+          "baseValue" : 1.0
         },
         "iceResistance" : {
-          "baseValue" : 0.0
+          "baseValue" : -0.25
         },
         "iceStatusImmunity" : {
           "baseValue" : 0.0
         },
         "electricResistance" : {
-          "baseValue" : 0.5
+          "baseValue" : 0.0
         },
         "electricStatusImmunity" : {
-          "baseValue" : 1.0
+          "baseValue" : 0.0
         },
         "poisonResistance" : {
-          "baseValue" : -0.25
+          "baseValue" : 0.0
         },
         "poisonStatusImmunity" : {
           "baseValue" : 0.0
