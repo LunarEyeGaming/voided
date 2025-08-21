@@ -19,7 +19,8 @@
     "moveState": "walk",
     "run": false,
     "idleState": "idle",
-    "jumpDown": true
+    "jumpDown": true,
+    "fallThroughPlatforms": true
   },
   "root": {
     "title": "sequence",
@@ -110,10 +111,18 @@
                   }
                 },
                 {
-                  "title": "controlDown",
-                  "type": "action",
-                  "name": "controlDown",
-                  "parameters": {}
+                  "title": "optional",
+                  "type": "decorator",
+                  "name": "optional",
+                  "parameters": {
+                    "shouldRun": {"key": "<fallThroughPlatforms>"}
+                  },
+                  "child": {
+                    "title": "controlDown",
+                    "type": "action",
+                    "name": "controlDown",
+                    "parameters": {}
+                  }
                 }
               ]
             }
