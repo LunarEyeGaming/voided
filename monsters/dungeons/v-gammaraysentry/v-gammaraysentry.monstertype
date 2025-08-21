@@ -29,10 +29,10 @@
     "behaviorConfig" : {
       "damageOnTouch" : false,
 
-      "targetQueryRange" : 35,
+      "targetQueryRange" : 60,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
-      "keepTargetInRange" : 50,
+      "keepTargetInRange" : 100,
       "targetOutOfSightTime" : 10.0,
 
       "hurtWaitForGround" : false,
@@ -54,7 +54,7 @@
           "parameters" : {
             "onGround" : false,
             "requireLineOfSight" : true,
-            "maximumRange" : 50,
+            "maximumRange" : 100,
             "minimumRange" : 10,
             "windupTime" : 1.0,
             "windupStopForce" : 50,
