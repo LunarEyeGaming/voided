@@ -19,8 +19,8 @@ function init()
   projectileType = config.getParameter("projectileType")
   projectileDirection = config.getParameter("projectileDirection")
   projectileParameters = config.getParameter("projectileParameters")
-  lightningRodType = config.getParameter("lightningRodType")
-  lightningRodRedirectRadius = config.getParameter("lightningRodRedirectRadius")
+  lightningRodType = config.getParameter("lightningRodType", "v-lightningrod")
+  lightningRodRedirectRadius = config.getParameter("lightningRodRedirectRadius", 50)
 
   timer = util.randomInRange(lightningTimeRange)
 
