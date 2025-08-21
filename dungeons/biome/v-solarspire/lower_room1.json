@@ -310,7 +310,7 @@
                  "y":176
                 }, 
                 {
-                 "gid":7715,
+                 "gid":7716,
                  "height":16,
                  "id":745,
                  "name":"",
@@ -322,7 +322,7 @@
                  "y":192
                 }, 
                 {
-                 "gid":7715,
+                 "gid":7716,
                  "height":16,
                  "id":748,
                  "name":"",
@@ -334,7 +334,7 @@
                  "y":128
                 }, 
                 {
-                 "gid":7715,
+                 "gid":7716,
                  "height":16,
                  "id":746,
                  "name":"",
@@ -346,7 +346,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":7715,
+                 "gid":7716,
                  "height":16,
                  "id":747,
                  "name":"",
@@ -356,6 +356,30 @@
                  "width":8,
                  "x":272,
                  "y":320
+                }, 
+                {
+                 "gid":7716,
+                 "height":16,
+                 "id":753,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":120,
+                 "y":376
+                }, 
+                {
+                 "gid":7716,
+                 "height":16,
+                 "id":754,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":120,
+                 "y":304
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -454,7 +478,28 @@
                  "visible":true,
                  "width":8,
                  "x":400,
-                 "y":176
+                 "y":344
+                }, 
+                {
+                 "height":8,
+                 "id":755,
+                 "name":"lurkano (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-lurkano\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":128,
+                 "y":312
                 }, 
                 {
                  "height":8,
@@ -635,7 +680,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":753,
+ "nextobjectid":756,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -754,7 +799,7 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7714,
+         "firstgid":7715,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }],
  "tilewidth":8,

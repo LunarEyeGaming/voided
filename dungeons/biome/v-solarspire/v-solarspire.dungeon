@@ -24,46 +24,82 @@
       "chance" : 1
     },
     {
-      "name" : "room1",
+      "name" : "lower_room1",
       "rules" : [
       ],
-      "def" : [ "tmx", "room1.json" ],
+      "def" : [ "tmx", "lower_room1.json" ],
       "chance" : 1
     },
     {
-      "name" : "room2",
+      "name" : "lower_room2",
       "rules" : [
       ],
-      "def" : [ "tmx", "room2.json" ],
+      "def" : [ "tmx", "lower_room2.json" ],
       "chance" : 1
     },
     {
-      "name" : "room3",
+      "name" : "lower_room3",
       "rules" : [
       ],
-      "def" : [ "tmx", "room3.json" ],
+      "def" : [ "tmx", "lower_room3.json" ],
       "chance" : 1
     },
     {
-      "name" : "room4",
+      "name" : "lower_room4",
       "rules" : [
       ],
-      "def" : [ "tmx", "room4.json" ],
+      "def" : [ "tmx", "lower_room4.json" ],
       "chance" : 1
     },
     {
-      "name" : "room5",
+      "name" : "lower_room5",
       "rules" : [
       ],
-      "def" : [ "tmx", "room5.json" ],
+      "def" : [ "tmx", "lower_room5.json" ],
       "chance" : 1
     },
     {
-      "name" : "roombottom",
+      "name" : "lens_breakage_room",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "lens_breakage_room.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "lens_combat_room",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "lens_combat_room.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "lens_intro_room",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "lens_intro_room.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "upper_room1",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "upper_room1.json" ],
+      "chance" : 1
+    },
+    {
+      "name" : "enemy_intro1",
       "rules" : [
         [ "maxSpawnCount", [1] ], [ "ignorePartMaximumRule" ]
       ],
-      "def" : [ "tmx", "roombottom.json" ],
+      "def" : [ "tmx", "enemy_intro1.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "bottom_room",
+      "rules" : [
+        [ "maxSpawnCount", [1] ], [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "bottom_room.json" ],
       "chance" : 0
     }
   ]
