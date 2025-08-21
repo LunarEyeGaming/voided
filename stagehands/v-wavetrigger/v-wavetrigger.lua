@@ -13,7 +13,10 @@ function init()
       queryArea = config.getParameter("broadcastArea", {-8, -8, 8, 8}),
       queryOptions = config.getParameter("targetOptions"),
       resetOnSubsequentWaves = config.getParameter("resetOnSubsequentWaves"),
-      waveNumber = config.getParameter("waveNumber")
+      waveNumber = config.getParameter("waveNumber"),
+
+      delay = config.getParameter("delay"),
+      priority = config.getParameter("priority")
     }
   end)
 

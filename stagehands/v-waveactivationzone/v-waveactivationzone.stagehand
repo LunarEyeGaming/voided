@@ -1,0 +1,11 @@
+{
+  // This stagehand is used by the v-monsterwavespawner object to determine the region to detect for activation. This
+  // does not need to be included with a monster wave spawner.
+  "type" : "v-waveactivationzone",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-waveactivationzone/v-waveactivationzone.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-1, -1, 1, 1]
+}

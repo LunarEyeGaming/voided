@@ -4,13 +4,13 @@
   // spawn it with. Also, the position of the monster is at the center of the stagehand. By default, the level of the
   // monster to spawn is the current world's threat level.
   "type" : "v-wavemonsterspawnpoint",
-  "keepAlive" : true,
+  // "keepAlive" : true,
 
   "scripts" : ["/stagehands/v-wavemonsterspawnpoint/v-wavemonsterspawnpoint.lua"],
   "scriptDelta" : 10,
 
   "broadcastArea" : [-1, -1, 1, 1],
-  
+
   "monsterType" : null,  // The type of monster to spawn
   "monsterParameters" : {},  // The parameters of the monster to spawn
   "monsterOffset" : [0.5, 0.5],  // The offset of the monster. Use values between 0 and 1 to adjust the spawn position

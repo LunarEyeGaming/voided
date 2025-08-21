@@ -11,9 +11,6 @@ local exteriorRegions
 local gracePeriod
 local gracePeriodRadioMessages
 
-local waveEntityType
-local waveTriggerEntityType
-
 local interiorRegionDebug
 local exteriorRegionsDebug
 
@@ -26,8 +23,6 @@ function init()
   firstWaveDelay = config.getParameter("firstWaveDelay", 1.0)
   nextWaveDelay = config.getParameter("nextWaveDelay", 1.0)
   interiorRegion = vEntity.getRegionPoints(config.getParameter("interiorRegion"))
-  waveEntityType = config.getParameter("waveEntityType", "v-wavemonsterspawnpoint")
-  waveTriggerEntityType = config.getParameter("waveTriggerEntityType", "v-wavetrigger")
   gracePeriod = config.getParameter("gracePeriod")
   gracePeriodRadioMessages = config.getParameter("gracePeriodRadioMessages")
 
@@ -87,7 +82,17 @@ function states.postInit()
       coroutine.yield()
     end
 
-    storage.waves = getWaves()
+    local waves, activationZones = getWaves()
+    storage.waves = waves
+
+    if #activationZones == 0 then
+      storage.activationZones = {interiorRegion}
+    else
+      storage.activationZones = activationZones
+    end
+  -- If the waves were retrieved before but there are no activation zones, define them.
+  elseif not storage.activationZones then
+    storage.activationZones = {interiorRegion}
   end
 
   onLoad()
@@ -102,7 +107,7 @@ end
 function states.wait()
   -- While no "friendly" creatures are in the arena or at least one "friendly" creature is outside the arena, do
   -- nothing.
-  while not friendlyInsideRegion(interiorRegion) or friendlyInsideRegions(exteriorRegions) do
+  while not friendlyInsideRegions(storage.activationZones) or friendlyInsideRegions(exteriorRegions) do
     coroutine.yield()
   end
 
@@ -242,9 +247,22 @@ end
 --[[
   Returns a list of waves extracted from stagehands that designate monster types and where they spawn as well as their
   parameters.
+
+  It also returns a list of the activation zones to check as specified by stagehands of type `v-waveactivationzone`.
 ]]
 function getWaves()
+  local waveEntityType = config.getParameter("waveEntityType", "v-wavemonsterspawnpoint")
+  local waveTriggerEntityType = config.getParameter("waveTriggerEntityType", "v-wavetrigger")
+  local activationZoneEntityType = config.getParameter("activationZoneEntityType", "v-waveactivationzone")
+
   local waves = {}
+  local activationZones = {}
+
+  local killStagehands = function(stagehands)
+    for _, id in ipairs(stagehands) do
+      world.sendEntityMessage(id, "v-die")
+    end
+  end
 
   -- Helper function that defines the wave.
   local defineWave = function(waveNum)
@@ -297,30 +315,44 @@ function getWaves()
       messageArgs = triggerInfo.messageArgs,
       queryArea = rect.translate(triggerInfo.queryArea, triggerDistance),
       queryOptions = triggerInfo.queryOptions,
-      resetOnSubsequentWaves = triggerInfo.resetOnSubsequentWaves
+      resetOnSubsequentWaves = triggerInfo.resetOnSubsequentWaves,
+
+      delay = triggerInfo.delay or 0.0,
+      priority = triggerInfo.priority or 0
     })
+  end
+
+  -- Function that extracts activation zone information
+  local successHandlerActivationZones = function(promise, id)
+    local zone = promise:result()
+
+    table.insert(activationZones, zone)
   end
 
   local stagehands = world.entityQuery(interiorRegion[1], interiorRegion[2], {includedTypes = {"stagehand"}})
 
   local spawnpoints = util.filter(stagehands, function(id) return world.stagehandType(id) == waveEntityType end)
   local triggers = util.filter(stagehands, function(id) return world.stagehandType(id) == waveTriggerEntityType end)
+  local activationZoneStagehands = util.filter(stagehands, function(id) return world.stagehandType(id) == activationZoneEntityType end)
 
   -- Send out those messages!
   vWorldA.sendEntityMessageToTargets(successHandlerSpawnpoints, _errorHandler("Promise failed for v-getSpawnpointInfo"), spawnpoints, "v-getSpawnpointInfo")
   vWorldA.sendEntityMessageToTargets(successHandlerTriggers, _errorHandler("Promise failed for v-getTriggerInfo"), triggers, "v-getTriggerInfo")
+  vWorldA.sendEntityMessageToTargets(successHandlerActivationZones, _errorHandler("Promise failed for v-getActivationZone"), activationZoneStagehands, "v-getActivationZone")
 
-  -- Kill spawner stagehands
-  for _, spawnpoint in ipairs(spawnpoints) do
-    world.sendEntityMessage(spawnpoint, "v-die")
+  -- Kill stagehands that were used
+  killStagehands(spawnpoints)
+  killStagehands(triggers)
+  killStagehands(activationZoneStagehands)
+
+  -- Sort wave triggers by priority.
+  for _, wave in ipairs(waves) do
+    table.sort(wave.triggers, function(triggerA, triggerB)
+      return triggerA.priority < triggerB.priority
+    end)
   end
 
-  -- Kill trigger stagehands
-  for _, trigger in ipairs(triggers) do
-    world.sendEntityMessage(trigger, "v-die")
-  end
-
-  return waves
+  return waves, activationZones
 end
 
 --[[
@@ -427,9 +459,15 @@ function activateTriggers(waveTriggers)
     local points = vEntity.getRegionPoints(trigger.queryArea)
     local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
 
+    -- sb.logInfo("Activating trigger: %s", trigger)
+
     -- Make the trigger send the messages (no error handler this time).
     vWorldA.sendEntityMessageToTargets(triggerSuccessHandler, function() end, targets, trigger.messageType,
         table.unpack(trigger.messageArgs))
+
+    if trigger.delay > 0 then
+      util.wait(trigger.delay)
+    end
   end
 
   return monsterIds

@@ -8,10 +8,13 @@
   "scriptDelta" : 10,
 
   "broadcastArea" : [-1, -1, 1, 1],
-  
+
   "messageType" : null,  // The type of message to send
   "messageArgs" : [],  // The arguments to send in addition to the message
   "waveNumber" : 1,  // Which wave to activate the trigger
   "targetOptions" : { "includedTypes" : [ "object" ] },  // The options for querying the targets.
-  "resetOnSubsequentWaves" : false
+  "resetOnSubsequentWaves" : false,
+
+  "delay" : null,  // Amount by which to wait before activating. A delay of 0 (or null) is instant.
+  "priority" : null  // Priority. Lowest = activated first.
 }
