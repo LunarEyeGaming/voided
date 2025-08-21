@@ -1,0 +1,10 @@
+{
+  // This stagehand visualizes chunks
+  "type" : "v-chunkvisualizer",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-chunkvisualizer/v-chunkvisualizer.lua"],
+  "scriptDelta" : 6,
+
+  "broadcastArea" : [-1, -1, 1, 1]
+}
