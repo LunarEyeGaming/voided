@@ -49,12 +49,10 @@
             "windupTime" : 1.3,
             "windupStopForce" : 10,
 
-            "projectileType" : "molotovflamemonster",
+            "projectileType" : "v-pyrebushflame",
             "projectileParameters" : {
               "power" : 10,
-              "speed" : 50,
-              "damageRepeatGroup" : "v-pyrebush",
-              "statusEffects" : [ {"effect" : "burning", "duration" : 5} ]
+              "speed" : 50
             },
             "fireOffset" : [0.5, 0.75],
             "projectileCount" : 6,
@@ -118,27 +116,30 @@
 
       "deathActions" : [
         {
-          "name" : "action-spawnmonster",
+          "name" : "v-action-spawnmonsterdungeon",
           "parameters" : {
             "offset" : [0,0],
             "monsterType" : "v-pyremander",
-            "replacement" : true
+            "replacement" : true,
+            "messageBroadcastRange" : 256
           }
         },
         {
-          "name" : "action-spawnmonster",
+          "name" : "v-action-spawnmonsterdungeon",
           "parameters" : {
             "offset" : [0,0],
             "monsterType" : "v-pyremander",
-            "replacement" : true
+            "replacement" : true,
+            "messageBroadcastRange" : 256
           }
         },
         {
-          "name" : "action-spawnmonster",
+          "name" : "v-action-spawnmonsterdungeon",
           "parameters" : {
             "offset" : [0,0],
             "monsterType" : "v-pyremander",
-            "replacement" : true
+            "replacement" : true,
+            "messageBroadcastRange" : 256
           }
         }
       ],

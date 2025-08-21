@@ -1,0 +1,26 @@
+{
+  "projectileName" : "v-pyrebushflame",
+  "physics" : "stickygrenade",
+  "bounces" : -1,
+  "timeToLive" : 10,
+  "speed" : 50,
+  "image" : "/projectiles/throwable/molotovflame/molotovflame.png",
+  "animationCycle" : 0.8,
+  "lightColor" : [235, 126, 2],
+  "frameNumber" : 8,
+  "emitters" : [ "flames" ],
+  "piercing" : true,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/smoke/smoke.config"
+    }
+  ],
+  "damageKind" : "fire",
+  "damageKindImage" : "/interface/statuses/fire.png",
+  "damageRepeatGroup" : "v-pyrebush",
+  "statusEffects" : [
+    "burning"
+  ],
+  "hydrophobic" : true
+}

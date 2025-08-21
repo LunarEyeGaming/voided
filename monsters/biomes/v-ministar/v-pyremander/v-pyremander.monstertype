@@ -78,12 +78,10 @@
             "windupState" : "windup",
             "windupTime" : 1.0,
 
-            "projectileType" : "molotovflamemonster",
+            "projectileType" : "v-pyrebushflame",
             "projectileParameters" : {
               "power" : 5,
-              "speed" : 50,
-              "damageRepeatGroup" : "v-pyremander",
-              "statusEffects" : [ {"effect" : "burning", "duration" : 5} ]
+              "speed" : 50
             },
             "fireDelay" : 0.1,
             "fireOffset" : [0, 0],
