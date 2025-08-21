@@ -1192,5 +1192,28 @@
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-orbittarget.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-walk",
+    "value": {
+      "type": "module",
+      "name": "v-approach-walk",
+      "title": "",
+      "properties": {
+        "canJump": {"type": "json", "value": true},
+        "maxJumps": {"type": "json", "value": 3},
+        "jumpXVelocity": {"type": "json", "value": 15},
+        "jumpYVelocity": {"type": "json", "value": 35},
+        "jumpState": {"type": "json", "value": "jump"},
+        "fallState": {"type": "json", "value": "fall"},
+        "jumpXControlForce": {"type": "json", "value": 50},
+        "moveState": {"type": "json", "value": "walk"},
+        "run": {"type": "json", "value": false},
+        "idleState": {"type": "json", "value": "idle"},
+        "jumpDown": {"type": "json", "value": true}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-walkapproach.behavior"
+    }
   }
 ]
