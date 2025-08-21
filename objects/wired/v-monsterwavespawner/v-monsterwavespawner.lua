@@ -41,7 +41,7 @@ function init()
 
   reset()
 
-  self.debug = false
+  self.debug = true
   interiorRegionDebug = rect.translate(config.getParameter("interiorRegion"), object.position())
   exteriorRegionsDebug = {}
   for _, region in ipairs(config.getParameter("exteriorRegions")) do
@@ -52,7 +52,9 @@ function init()
 end
 
 function update(dt)
-  util.debugText("loaded: %s", loaded, object.position(), "green")
+  if not loaded then
+    util.debugText("loading...", object.position(), "green")
+  end
 
   util.debugRect(interiorRegionDebug, "green")
 
@@ -97,6 +99,8 @@ function states.postInit()
 
   onLoad()
 
+  loaded = true
+
   state:set(states.wait)
 end
 
@@ -110,8 +114,6 @@ function states.wait()
   while not friendlyInsideRegions(storage.activationZones) or friendlyInsideRegions(exteriorRegions) do
     coroutine.yield()
   end
-
-  loaded = true
 
   activate()
 
@@ -144,8 +146,12 @@ function states.waves()
 
     skippedGracePeriod = false  -- Reset skippedGracePeriod variable
 
+    local timer = 0
     util.wait(gracePeriod, function(dt)
       onGracePeriodTick(dt)
+
+      timer = timer + dt
+      util.debugText("grace period: %s", timer, object.position(), "green")
 
       -- If the grace period was skipped due to a player interaction...
       if skippedGracePeriod then
@@ -182,6 +188,12 @@ function states.waves()
 
     while #remainingMonsters > 0 do
       remainingMonsters = util.filter(remainingMonsters, function(id) return world.entityExists(id) end)
+
+      if self.debug then
+        for _, monsterId in ipairs(remainingMonsters) do
+          world.debugPoint(world.entityPosition(monsterId), "magenta")
+        end
+      end
 
       onWaveTick(waveNum, dt)
 
