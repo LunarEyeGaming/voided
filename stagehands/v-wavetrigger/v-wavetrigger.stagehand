@@ -2,7 +2,7 @@
   // This stagehand is used by the v-monsterwavespawner object to determine to which entities to send some messages, the
   // types of the messages to send, and the arguments to supply.
   "type" : "v-wavetrigger",
-  "keepAlive" : true,
+  // "keepAlive" : true,
 
   "scripts" : ["/stagehands/v-wavetrigger/v-wavetrigger.lua"],
   "scriptDelta" : 10,
