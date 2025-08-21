@@ -1,0 +1,21 @@
+{
+  "itemName" : "v-solarlensfixer",
+  "price" : 2500,
+  "rarity" : "Legendary",
+  "category" : "v-passiveItem",
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "inventoryIcon" : "gpsicon.png:on",
+  "baseIcon" : "/items/active/unsorted/v-gps/gpsicon.png",
+  "description" : "Fixes solar lenses.",
+  "shortdescription" : "solarlensfixer",
+
+  "animation" : "v-solarlensfixer.animation",
+  "animationParts" : {
+    "gps" : "gps.png",
+    "gpsfullbright" : "gpsfullbright.png"
+  },
+
+  "scripts" : ["v-solarlensfixer.lua"],
+
+  "fixRange" : 13
+}

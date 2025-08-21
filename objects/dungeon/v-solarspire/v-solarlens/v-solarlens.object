@@ -40,6 +40,8 @@
     "beam" : "beam.png"
   },
 
+  "outputNodes" : [[0, 0]],  // Note: Output is inverted to simplify logic.
+
   "scripts" : [ "v-solarlens.lua" ],
   "scriptDelta" : 3,
 
@@ -51,7 +53,8 @@
   },
 
   "angle" : 90,
-  "adjustTime" : 0.5,
+  "screwUpTime" : 2.0,
+  "fixTime" : 1.0,
   "maxBeamLength" : 100,
   "decorativeBeamLength" : 20,
 
