@@ -1,0 +1,11 @@
+{
+  // This stagehand kills chunk visualizers
+  "type" : "v-chunkvisualizerkiller",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-chunkvisualizer/v-chunkvisualizerkiller.lua"],
+  "scriptDelta" : 6,
+
+  "broadcastArea" : [-1, -1, 1, 1],
+  "killRadius" : 32
+}

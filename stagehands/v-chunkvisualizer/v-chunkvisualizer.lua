@@ -6,6 +6,8 @@ local chunkRange
 
 function init()
   chunkRange = config.getParameter("chunkRange", 3)
+
+  message.setHandler("v-chunkvisualizer-kill", stagehand.die)
 end
 
 function update(dt)
@@ -24,8 +26,17 @@ function update(dt)
       local testPos = vec2.add(ownPos, {x * CHUNK_SIZE, y * CHUNK_SIZE})
 
       local isLoaded = world.regionActive({testPos[1], testPos[2], testPos[1] + 1, testPos[2] + 1})
+      local isNotNull = not world.pointCollision(testPos, {"Null"})
 
-      world.debugPoint(displayPos, isLoaded and "green" or "red")
+      local color
+      if isLoaded then
+        color = "green"
+      elseif isNotNull then
+        color = "yellow"
+      else
+        color = "red"
+      end
+      world.debugPoint(displayPos, color)
     end
   end
 end
