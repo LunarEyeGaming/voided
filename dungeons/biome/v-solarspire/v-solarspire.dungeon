@@ -20,42 +20,54 @@
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
-      "def" : [ "tmx", "roommiddle.json" ],
-      "chance" : 1
+      "def" : [ "tmx", "roommiddle.json" ]
     },
     {
       "name" : "lower_room1",
       "rules" : [
+        [ "maxSpawnCount", [2] ]
       ],
       "def" : [ "tmx", "lower_room1.json" ],
-      "chance" : 1
+      "chance" : 2
     },
     {
       "name" : "lower_room2",
       "rules" : [
+        [ "maxSpawnCount", [2] ]
       ],
       "def" : [ "tmx", "lower_room2.json" ],
-      "chance" : 1
+      "chance" : 2
     },
     {
       "name" : "lower_room3",
       "rules" : [
+        [ "maxSpawnCount", [2] ]
       ],
       "def" : [ "tmx", "lower_room3.json" ],
-      "chance" : 1
+      "chance" : 2
     },
     {
       "name" : "lower_room4",
       "rules" : [
+        [ "maxSpawnCount", [2] ]
       ],
       "def" : [ "tmx", "lower_room4.json" ],
-      "chance" : 1
+      "chance" : 2
     },
     {
       "name" : "lower_room5",
       "rules" : [
+        [ "maxSpawnCount", [2] ]
       ],
       "def" : [ "tmx", "lower_room5.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "lower_room6",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "lower_room6.json" ],
       "chance" : 1
     },
     {
@@ -63,28 +75,28 @@
       "rules" : [
       ],
       "def" : [ "tmx", "lens_breakage_room.json" ],
-      "chance" : 1
+      "chance" : 2
     },
     {
       "name" : "lens_combat_room",
       "rules" : [
       ],
       "def" : [ "tmx", "lens_combat_room.json" ],
-      "chance" : 1
+      "chance" : 2
     },
     {
       "name" : "lens_intro_room",
       "rules" : [
       ],
       "def" : [ "tmx", "lens_intro_room.json" ],
-      "chance" : 1
+      "chance" : 2
     },
     {
       "name" : "upper_room1",
       "rules" : [
       ],
       "def" : [ "tmx", "upper_room1.json" ],
-      "chance" : 1
+      "chance" : 2
     },
     {
       "name" : "enemy_intro1",

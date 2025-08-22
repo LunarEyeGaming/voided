@@ -308,6 +308,18 @@
                  "width":16,
                  "x":440,
                  "y":176
+                }, 
+                {
+                 "gid":7718,
+                 "height":16,
+                 "id":735,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":128,
+                 "y":440
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -421,7 +433,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":735,
+ "nextobjectid":736,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -542,6 +554,10 @@
         {
          "firstgid":7715,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
+        }, 
+        {
+         "firstgid":7717,
+         "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }],
  "tilewidth":8,
  "type":"map",
