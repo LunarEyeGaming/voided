@@ -1,0 +1,152 @@
+{
+  "globalTagDefaults" : {
+    "opacity" : "00"
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "opening" : {
+        "default" : "closed",
+        "states" : {
+          "closed" : {},
+          "opening" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "open"
+          },
+          "open" : {},
+          "closing" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "closed"
+          }
+        }
+      },
+      "glass" : {
+        "default" : "normal",
+        "states" : {
+          "normal" : {},
+          "broken" : {}
+        }
+      },
+      "portal" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          }
+        }
+      },
+      "portalunstable" : {
+        "default" : "invisible",
+        "states" : {
+          "invisible" : {},
+          "visible" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/melee/astraltear1.ogg",
+              "persistentSound" : "/sfx/projectiles/astraltear_loop.ogg"
+            }
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "portalunstable" : {
+        "properties" : {
+          "centered" : true,
+          "transformationGroups" : [ "portalunstable" ],
+          "fullbright" : true,
+          "zLevel" : 3
+        },
+        "partStates" : {
+          "portalunstable" : {
+            "visible" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>?multiply=ffffff<opacity>"
+              }
+            }
+          }
+        }
+      },
+      "base" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 1,
+          "image" : "<partImage>"
+        }
+      },
+      "basefullbright" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 2,
+          "fullbright" : true,
+          "image" : "<partImage>"
+        }
+      },
+      "glass" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 0
+        },
+
+        "partStates" : {
+          "glass" : {
+            "normal" : {
+              "properties" : {
+                "image" : "<partImage>:normal.<frame>"
+              }
+            },
+            "broken" : {
+              "properties" : {
+                "image" : "<partImage>:broken.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "portal" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : -1,
+          "fullbright" : true
+        },
+
+        "partStates" : {
+          "portal" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "portalunstable" : { "interpolated" : true }
+  },
+
+  "particleEmitters" : {
+    "shatter" : {
+      "burstCount" : 5,
+      "offsetRegion" : [-1, -1, 1, 1],
+      "particles" : [
+        { "particle" : "glassshard" }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "spawn" : [ "/sfx/projectiles/plasma3.ogg" ],
+    "shatter" : [ "/sfx/objects/vase_break_medium1.ogg", "/sfx/objects/vase_break_medium2.ogg", "/sfx/objects/vase_break_medium3.ogg" ]
+  }
+}

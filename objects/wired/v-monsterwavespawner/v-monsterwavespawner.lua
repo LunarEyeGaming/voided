@@ -101,6 +101,8 @@ function states.postInit()
 
   loaded = true
 
+  coroutine.yield()
+
   state:set(states.wait)
 end
 
@@ -116,6 +118,7 @@ function states.wait()
   end
 
   activate()
+  onActivation()
 
   state:set(states.waves)
 end
@@ -167,7 +170,7 @@ function states.waves()
   local dt = script.updateDt()
 
   for waveNum, wave in ipairs(storage.waves) do
-    local remainingMonsters = spawnWave(wave.spawners)
+    local remainingMonsters = spawnWave(wave.spawners, waveNum)
     local temp = spawnWaveSilent(wave.silentSpawners)
     local temp2 = activateTriggers(wave.triggers)
 
@@ -232,6 +235,8 @@ end
   Marks this spawner as complete and then does nothing forever.
 ]]
 function states.inactive()
+  coroutine.yield()
+
   onDeactivation()
 
   while true do
@@ -379,7 +384,7 @@ end
     }
   returns: a list of the IDs of the monsters spawned
 ]]
-function spawnWave(waveSpawners)
+function spawnWave(waveSpawners, waveNum)
   local monsterIds = {}
 
   -- Spawn the monsters
@@ -592,6 +597,12 @@ end
 ]]
 function onLoad()
 
+end
+
+--[[
+  A function called immediately after activation.
+]]
+function onActivation()
 end
 
 --[[

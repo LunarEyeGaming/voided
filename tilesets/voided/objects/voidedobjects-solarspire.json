@@ -8,9 +8,9 @@
  "margin":0,
  "name":"voidedobjects-solarspire",
  "spacing":0,
- "tilecount":2,
- "tiledversion":"1.11.0",
- "tileheight":16,
+ "tilecount":10,
+ "tiledversion":"1.11.2",
+ "tileheight":256,
  "tileproperties":
     {
      "0":
@@ -26,6 +26,62 @@
          "imagePositionY":"-8",
          "object":"v-solarlens",
          "parameters":"{\"defaultState\" : true, \"decorative\" : true}",
+         "tilesetDirection":"right"
+        },
+     "2":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-16",
+         "object":"v-spirespawner",
+         "tilesetDirection":"right"
+        },
+     "3":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-spireportalconduit2",
+         "tilesetDirection":"right"
+        },
+     "4":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-spireportalconduit4",
+         "tilesetDirection":"right"
+        },
+     "5":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-spireportalconduit8",
+         "tilesetDirection":"right"
+        },
+     "6":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-spireportalconduit16",
+         "tilesetDirection":"right"
+        },
+     "7":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-spireportalconduit32",
+         "tilesetDirection":"right"
+        },
+     "8":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-spireportalconduit1b",
+         "tilesetDirection":"right"
+        },
+     "9":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-spireportalconduit1t",
          "tilesetDirection":"right"
         }
     },
@@ -45,6 +101,62 @@
          "object":"string",
          "parameters":"string",
          "tilesetDirection":"string"
+        },
+     "2":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "3":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "4":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "5":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "6":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "7":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "8":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "9":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
         }
     },
  "tiles":
@@ -60,9 +172,57 @@
          "image":"..\/images\/objects\/solarlens_decorative.png",
          "imageheight":16,
          "imagewidth":16
+        },
+     "2":
+        {
+         "image":"..\/images\/objects\/spirespawner.png",
+         "imageheight":40,
+         "imagewidth":40
+        },
+     "3":
+        {
+         "image":"..\/images\/objects\/spireportalconduit2.png",
+         "imageheight":16,
+         "imagewidth":8
+        },
+     "4":
+        {
+         "image":"..\/images\/objects\/spireportalconduit4.png",
+         "imageheight":32,
+         "imagewidth":8
+        },
+     "5":
+        {
+         "image":"..\/images\/objects\/spireportalconduit8.png",
+         "imageheight":64,
+         "imagewidth":8
+        },
+     "6":
+        {
+         "image":"..\/images\/objects\/spireportalconduit16.png",
+         "imageheight":128,
+         "imagewidth":8
+        },
+     "7":
+        {
+         "image":"..\/images\/objects\/spireportalconduit32.png",
+         "imageheight":256,
+         "imagewidth":8
+        },
+     "8":
+        {
+         "image":"..\/images\/objects\/spireportalconduit1b.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "9":
+        {
+         "image":"..\/images\/objects\/spireportalconduit1t.png",
+         "imageheight":8,
+         "imagewidth":8
         }
     },
- "tilewidth":16,
+ "tilewidth":40,
  "type":"tileset",
  "version":1.1
 }

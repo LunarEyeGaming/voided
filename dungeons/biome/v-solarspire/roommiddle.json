@@ -266,7 +266,7 @@
                  "y":176
                 }, 
                 {
-                 "gid":7705,
+                 "gid":7713,
                  "height":16,
                  "id":729,
                  "name":"",
@@ -278,7 +278,7 @@
                  "y":464
                 }, 
                 {
-                 "gid":7705,
+                 "gid":7713,
                  "height":16,
                  "id":730,
                  "name":"",
@@ -290,7 +290,7 @@
                  "y":464
                 }, 
                 {
-                 "gid":7705,
+                 "gid":7713,
                  "height":16,
                  "id":731,
                  "name":"",
@@ -302,7 +302,7 @@
                  "y":304
                 }, 
                 {
-                 "gid":7705,
+                 "gid":7713,
                  "height":16,
                  "id":732,
                  "name":"",
@@ -314,7 +314,7 @@
                  "y":304
                 }, 
                 {
-                 "gid":7705,
+                 "gid":7713,
                  "height":16,
                  "id":733,
                  "name":"",
@@ -326,7 +326,7 @@
                  "y":152
                 }, 
                 {
-                 "gid":7705,
+                 "gid":7713,
                  "height":16,
                  "id":734,
                  "name":"",
@@ -420,7 +420,28 @@
          "draworder":"topdown",
          "id":12,
          "name":"stagehands",
-         "objects":[],
+         "objects":[
+                {
+                 "height":8,
+                 "id":741,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"dungeonMusic\" : {\"2\" : {\"music\" : [\"\/music\/event-horizon.ogg\"], \"fadeTime\" : 2.0}}, \"dungeonMusicStopFadeTime\" : 2.0}",
+                     "stagehand":"v-dungeonmusicsetter"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":216,
+                 "y":448
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -521,7 +542,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":741,
+ "nextobjectid":742,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -636,7 +657,7 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-solarspire.json"
         }, 
         {
-         "firstgid":7704,
+         "firstgid":7712,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }],
  "tilewidth":8,

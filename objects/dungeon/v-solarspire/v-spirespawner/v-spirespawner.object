@@ -1,0 +1,85 @@
+{
+  "objectName" : "v-spirespawner",
+  "colonyTags" : [ ],
+  "printable" : false,
+  "rarity" : "Legendary",
+  "description" : "<todo>",
+  "shortdescription" : "spirespawner",
+  "race" : "generic",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "decorative",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "base.png",
+      "imagePosition" : [-16, -16],
+
+      "spaceScan" : 0.1
+    }
+  ],
+
+  "animation" : "v-spirespawner.animation",
+
+  "animationParts" : {
+    "portalunstable" : "portalunstable.png",
+    "base" : "base.png",
+    "basefullbright" : "basefullbright.png",
+    "glass" : "glass.png",
+    "portal" : "portal.png"
+  },
+  "animationPosition" : [4, 4],
+
+  "health" : 5,
+  "smashOnBreak" : true,
+
+  // Left output node is the entry door. Right output node is the doorway to the switch.
+  "outputNodes" : [ [0, 0], [1, 0] ],
+
+  "animationScripts" : [ "v-spirespawnerlightning.lua" ],
+
+  "scripts" : [ "v-spirespawner.lua" ],
+  "scriptDelta" : 1,
+
+  "firstWaveDelay" : 1.0,
+  "nextWaveDelay" : 1.0,
+
+  "portalMinSize" : 0.333333,
+  "portalSizeStep" : 0.333333,
+  "portalDownsizeSpeed" : 0.25,
+
+  "portalAppearTime" : 0.25,
+  "portalDisappearTime" : 0.25,
+
+  "spawnerProjectileType" : "v-spirespawnerorb",
+  "spawnerProjectileOffset" : [0.5, 0.5],
+
+  "portalLightningFadeTime" : 1.0,
+  "portalLightningStartColor" : [0, 0, 0, 255],
+  "portalLightningEndColor" : [0, 0, 0, 0],
+  "portalLightningStartOutlineColor" : [33, 33, 131, 255],
+  "portalLightningEndOutlineColor" : [33, 33, 131, 0],
+
+  "portalLightningConfig" : {
+    "displacement" : 6.0,
+    "minDisplacement" : 2.0,
+    "forks" : 1,
+    "forkAngleRange" : 0.45,
+    "width" : 2,
+    "outlineWidth" : 2
+  },
+
+  "gracePeriod" : 30.0,
+  "gracePeriodRadioMessages" : [ "v-labspawnertutorial", "v-labspawnertutorial2" ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

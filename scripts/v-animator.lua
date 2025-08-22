@@ -151,6 +151,11 @@ function vAnimator.frameNumber(frameTime, frameCycle, startFrame, numFrames)
   return math.floor(frameTime / frameCycle * numFrames) + startFrame
 end
 
+-- TODO: Maybe convert this to an instanced effect animator?
+-- * Has a `template` parameter, a `duration` parameter, and a `keyframes` parameter (for keyframed attributes)
+--   * Keyframes: `start: any`, `end: any`, `targetAttribute: string`
+-- * The `add` method then takes in a table of overrides and makes a new instance with those overrides.
+
 ---@class LightningInstance
 ---@field startPos Vec2F
 ---@field endPos Vec2F
@@ -160,6 +165,8 @@ end
 ---@field _lightningCfg table
 ---@field _startColor ColorTable
 ---@field _endColor ColorTable
+---@field _startOutlineColor ColorTable
+---@field _endOutlineColor ColorTable
 ---@field _duration number
 ---@field _animateManually boolean
 ---@field _instances LightningInstance[]
@@ -172,14 +179,18 @@ vAnimator.LightningController = {}
 ---@param endC ColorTable the end color of the lightning
 ---@param dur number how long the lightning lasts
 ---@param animateManually boolean? whether or not to animate the colors manually.
+---@param startOC ColorTable? the start outline color of the lightning
+---@param endOC ColorTable? the end outline color of the lightning
 ---@return LightningController
-function vAnimator.LightningController:new(cfg, startC, endC, dur, animateManually)
+function vAnimator.LightningController:new(cfg, startC, endC, dur, animateManually, startOC, endOC)
   if animateManually == nil then animateManually = true end
 
   local fields = {
     _lightningCfg = cfg,
     _startColor = startC,
     _endColor = endC,
+    _startOutlineColor = startOC,
+    _endOutlineColor = endOC,
     _duration = dur,
     _animateManually = animateManually,
     _instances = {},
@@ -211,6 +222,10 @@ function vAnimator.LightningController:update(dt)
     else
       local cfg = copy(self._lightningCfg)
       cfg.color = vAnimator.lerpColor(1 - instance.ttl / self._duration, self._startColor, self._endColor)
+      if self._startOutlineColor then
+        cfg.outlineColor = vAnimator.lerpColor(1 - instance.ttl / self._duration, self._startOutlineColor, self._endOutlineColor)
+      end
+
       cfg.worldStartPosition = instance.startPos
       cfg.worldEndPosition = instance.endPos
 
@@ -224,6 +239,7 @@ function vAnimator.LightningController:update(dt)
 end
 
 ---Sends the currently stored lightning instances to the local animator, clearing them from this LightningController.
+---Use in place of `update` if desired.
 function vAnimator.LightningController:flush()
   local lightning = {}
 
