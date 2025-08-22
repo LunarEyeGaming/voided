@@ -1211,7 +1211,8 @@
         "moveState": {"type": "json", "value": "walk"},
         "run": {"type": "json", "value": false},
         "idleState": {"type": "json", "value": "idle"},
-        "jumpDown": {"type": "json", "value": true}
+        "jumpDown": {"type": "json", "value": true},
+        "fallThroughPlatforms": {"type": "json", "value": true}
       },
       "pathToTree": "..\\monsters\\modular\\movement\\v-walkapproach.behavior"
     }
