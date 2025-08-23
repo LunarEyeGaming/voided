@@ -3,5 +3,16 @@
   "friendlyName" : "Ministar Mantle",
 
   "mainBlock" : "v-sunspotstone",
-  "subBlocks" : [ "v-sunspotstone" ]
+  "subBlocks" : [ "v-sunspotstone" ],
+
+  "parallax" : "/parallax/underground/v-undergroundministarempty.parallax",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/v_ministar_undergroundempty.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/v_ministar_undergroundempty.ogg" ]
+    }
+  }
 }
