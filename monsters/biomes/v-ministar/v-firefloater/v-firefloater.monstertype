@@ -33,6 +33,17 @@
 
       "hurtWaitForGround" : false,
 
+      "foundTargetActions" : [
+        {
+          "name" : "action-animate",
+          "parameters" : {
+            "stateType" : "body",
+            "state" : "idle",
+            "animationTimer" : 1.0
+          }
+        }
+      ],
+
       "wanderActions" : [
         {
           "name" : "wander-fly",
