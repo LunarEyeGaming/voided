@@ -7,7 +7,7 @@
   "frameNumber" : 4,
   "power" : 0,
   "speed" : 0,
-  "timeToLive" : 1.5,
+  "timeToLive" : 0.8,
   "bounces" : -1,
   "piercing" : true,
   "periodicActions" : [
@@ -63,5 +63,5 @@
 
   "scripts" : [ "v-spirespawnerorb.lua" ],
 
-  "releaseStatusEffect" : "blackmonsterrelease"
+  "releaseStatusEffect" : "v-blackmonsterreleasenogravity"
 }

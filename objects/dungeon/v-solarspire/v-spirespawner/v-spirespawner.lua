@@ -16,6 +16,8 @@ local portalAppearTime
 local portalDisappearTime
 local portalDownsizeSpeed
 
+local preSpawnSparkTime
+
 local portalLightningFadeTime
 local portalLightningStartColor
 local portalLightningEndColor
@@ -25,8 +27,9 @@ local portalLightningConfig
 
 local gracePeriod
 local gracePeriodTimer
+local gracePeriodSparkChanceMultiplier
 
-local spawnerProjectilePosition
+local portalLightningStartPosition
 
 local lightningController
 
@@ -48,6 +51,8 @@ function init()
   portalDisappearTime = config.getParameter("portalDisappearTime")
   portalDownsizeSpeed = config.getParameter("portalDownsizeSpeed")
 
+  preSpawnSparkTime = config.getParameter("preSpawnSparkTime")
+
   portalLightningFadeTime = config.getParameter("portalLightningFadeTime")
   portalLightningStartColor = config.getParameter("portalLightningStartColor")
   portalLightningEndColor = config.getParameter("portalLightningEndColor")
@@ -56,9 +61,10 @@ function init()
   portalLightningConfig = config.getParameter("portalLightningConfig")
 
   gracePeriod = config.getParameter("gracePeriod")
+  gracePeriodSparkChanceMultiplier = config.getParameter("gracePeriodSparkChanceMultiplier")
 
-  local spawnerProjectileOffset = config.getParameter("spawnerProjectileOffset", {0, 0})
-  spawnerProjectilePosition = vec2.add(object.position(), spawnerProjectileOffset)
+  local portalLightningStartOffset = config.getParameter("portalLightningStartOffset", {0, 0})
+  portalLightningStartPosition = vec2.add(object.position(), portalLightningStartOffset)
 
   lightningController = vAnimator.LightningController:new(
     portalLightningConfig,
@@ -79,50 +85,25 @@ end
 
 -- HOOK OVERRIDES. See v-monsterwavespawner.lua documentation for more details.
 function onLoad()
-  -- animator.setGlobalTag("numWaves", tostring(#storage.waves))
-  -- animator.setGlobalTag("numCompletedWaves", "0")
-  -- animator.setAnimationState("waveStatus", "inactive")
+  animator.setParticleEmitterActive("portalsparks", false)
+  animator.setAnimationState("portalunstable", "invisible")
+  animator.setPartTag("portalunstable", "opacity", "00")
+  animator.stopAllSounds("sparks")
 end
 
 function onGracePeriodStart()
-  -- gracePeriodTimer = 0
+  gracePeriodTimer = 0
 end
 
 function onGracePeriodTick(dt)
-  -- gracePeriodTimer = gracePeriodTimer + dt
+  gracePeriodTimer = gracePeriodTimer + dt
 
-  -- -- Spend gracePeriodPaletteSwapTime transitioning to the new colors
-  -- if gracePeriodTimer < gracePeriodPaletteSwapTime then
-  --   local newPaletteSwap = {}
+  local ratio = gracePeriodTimer / gracePeriod
 
-  --   for oldColor, newColorT in pairs(gracePeriodStartPaletteSwap) do
-  --     -- Calculate progress ratio
-  --     local progress = gracePeriodTimer / gracePeriodPaletteSwapTime
-
-  --     -- Get old color table
-  --     local oldColorT = gracePeriodEndPaletteSwap[oldColor]
-
-  --     -- Lerp to new color
-  --     newPaletteSwap[oldColor] = vAnimator.colorToString(vAnimator.lerpColorRGB(progress, oldColorT, newColorT))
-  --   end
-
-  --   applyPaletteSwap(newPaletteSwap)
-  -- else  -- Spend remaining time transitioning to the old colors.
-  --   local newPaletteSwap = {}
-
-  --   for oldColor, newColorT in pairs(gracePeriodStartPaletteSwap) do
-  --     -- Calculate progress ratio. Account for the delay in the calculations.
-  --     local progress = (gracePeriodTimer - gracePeriodPaletteSwapTime) / (gracePeriod - gracePeriodPaletteSwapTime)
-
-  --     -- Get old color table
-  --     local oldColorT = gracePeriodEndPaletteSwap[oldColor]
-
-  --     -- Lerp back to old color
-  --     newPaletteSwap[oldColor] = vAnimator.colorToString(vAnimator.lerpColorRGB(progress, newColorT, oldColorT))
-  --   end
-
-  --   applyPaletteSwap(newPaletteSwap)
-  -- end
+  if math.random() < ratio * gracePeriodSparkChanceMultiplier then
+    animator.burstParticleEmitter("portalsparks")
+    animator.playSound("sparkBurst")
+  end
 end
 
 function onActivation()
@@ -191,23 +172,19 @@ function spawnWave(waveSpawners, waveNum)
 
   -- If the list of spawners is not empty...
   if #waveSpawners > 0 then
+    animator.playSound("sparks", -1)
+    animator.setParticleEmitterActive("portalsparks", true)
+    util.wait(preSpawnSparkTime)
+    animator.setParticleEmitterActive("portalsparks", false)
+    animator.stopAllSounds("sparks")
+
     local wavesRemaining = #storage.waves - waveNum + 1
-    local targetPortalSize = portalMinSize + portalSizeStep * wavesRemaining
+    local targetPortalSizeRef = {v = portalMinSize + portalSizeStep * wavesRemaining}
 
     local baseThread = coroutine.create(function()
       local projectileIds = {}
 
-      animator.playSound("spawn")
-
-      -- local timer = 0
-      -- local dt = script.updateDt()
-      -- util.wait(portalScaleTime, function()
-      --   local progress = timer / portalScaleTime
-      --   local portalSize = util.lerp(progress, portalMinSize + portalSizeStep * waveNum, portalMinSize + portalSizeStep * (waveNum - 1))
-      --   animator.resetTransformationGroup("portalunstable")
-      --   animator.scaleTransformationGroup("portalunstable", {portalSize, portalSize})
-      --   timer = timer + dt
-      -- end)
+      animator.playSound("lightningStrike")
 
       -- NOTE: Very slim chance that this will result in a memory leak.
       message.setHandler("v-monsterSpawned", function(_, _, monsterId)
@@ -217,7 +194,7 @@ function spawnWave(waveSpawners, waveNum)
       -- For each monster in the current wave...
       local numWaveSpawners = #waveSpawners
       for i, monster in ipairs(waveSpawners) do
-        lightningController:add(spawnerProjectilePosition, monster.position)
+        lightningController:add(portalLightningStartPosition, monster.position)
 
         -- Spawn a projectile that will spawn the monster
         local projectileId = world.spawnProjectile(spawnerProjectileType, monster.position, entity.id(), {1, 0},
@@ -226,7 +203,7 @@ function spawnWave(waveSpawners, waveNum)
         table.insert(projectileIds, projectileId)
 
         local progress = i / numWaveSpawners
-        targetPortalSize = util.lerp(progress, portalMinSize + portalSizeStep * wavesRemaining, portalMinSize + portalSizeStep * (wavesRemaining - 1))
+        targetPortalSizeRef.v = util.lerp(progress, portalMinSize + portalSizeStep * wavesRemaining, portalMinSize + portalSizeStep * (wavesRemaining - 1))
       end
 
       -- While at least one of the spawned projectiles is still alive...
@@ -237,7 +214,66 @@ function spawnWave(waveSpawners, waveNum)
         coroutine.yield()
       end
     end)
-    local kinematicsThread = coroutine.create(function()
+    local kinematicsThread = coroutine.create(portalKinematicsGen(wavesRemaining, targetPortalSizeRef))
+
+    while util.parallel(baseThread, kinematicsThread) do
+      coroutine.yield()
+    end
+  end
+
+  return monsterIds
+end
+
+function activateTriggers(waveTriggers)
+  local monsterIds = {}
+
+  -- Function to add the returned monster ID to the list.
+  local triggerSuccessHandler = function(promise)
+    local returnedMonsterIds = promise:result()
+
+    -- If a list of monster IDs was returned...
+    if returnedMonsterIds then
+      -- Add each monster ID to the monsterIds table.
+      for _, id in ipairs(returnedMonsterIds) do
+        table.insert(monsterIds, id)
+      end
+    end
+  end
+
+  if #waveTriggers > 0 then
+    animator.playSound("sparks", -1)
+    animator.setParticleEmitterActive("portalsparks", true)
+    util.wait(preSpawnSparkTime)
+
+    -- For each trigger in the wave...
+    for _, trigger in ipairs(waveTriggers) do
+      animator.playSound("lightningStrike")
+
+      -- Query the targets
+      local points = vEntity.getRegionPoints(trigger.queryArea)
+      local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
+
+      local endPosition = vec2.add(object.position(), rect.center(trigger.queryArea))
+      lightningController:add(portalLightningStartPosition, endPosition)
+
+      -- sb.logInfo("Activating trigger: %s", trigger)
+
+      -- Make the trigger send the messages (no error handler this time).
+      vWorldA.sendEntityMessageToTargets(triggerSuccessHandler, function() end, targets, trigger.messageType,
+          table.unpack(trigger.messageArgs))
+
+      util.wait(math.max(0.05, trigger.delay))  -- This makes it wait at least one tick
+    end
+
+    animator.setParticleEmitterActive("portalsparks", false)
+    animator.stopAllSounds("sparks")
+  end
+
+  return monsterIds
+end
+
+function portalKinematicsGen(wavesRemaining, targetPortalSizeRef)
+  return function()
       local dt = script.updateDt()
       local portalSize = portalMinSize + portalSizeStep * wavesRemaining
 
@@ -246,7 +282,7 @@ function spawnWave(waveSpawners, waveNum)
         animator.scaleTransformationGroup("portalunstable", {portalSize, portalSize})
 
         -- Approach portal size.
-        if portalSize > targetPortalSize then
+        if portalSize > targetPortalSizeRef.v then
           portalSize = portalSize - portalDownsizeSpeed * dt
         else
           portalSize = portalSize + portalDownsizeSpeed * dt
@@ -254,12 +290,5 @@ function spawnWave(waveSpawners, waveNum)
 
         coroutine.yield()
       end
-    end)
-
-    while util.parallel(baseThread, kinematicsThread) do
-      coroutine.yield()
     end
-  end
-
-  return monsterIds
 end

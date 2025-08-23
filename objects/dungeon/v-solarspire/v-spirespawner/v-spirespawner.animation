@@ -142,11 +142,36 @@
       "particles" : [
         { "particle" : "glassshard" }
       ]
+    },
+    "portalsparks" : {
+      "burstCount" : 3,
+      "emissionRate" : 20,
+      "offsetRegion" : [-3, -3, 3, 3],
+      "transformationGroups" : [ "portalunstable" ],
+      "particles" : [
+        { "particle" : {
+          "type" : "animated",
+          "animation" : "/animations/v-portalspark/v-portalspark.animation",
+          "fade" : 0.3,
+          "destructionAction" : "shrink",
+          "destructionTime" : 0.2,
+          "size" : 1.0,
+          "timeToLive" : 0.2,
+          "fullbright" : true,
+          "layer" : "middle",
+          "collidesForeground" : false,
+          "variance" : {
+            "rotation" : 180
+          }
+        } }
+      ]
     }
   },
 
   "sounds" : {
-    "spawn" : [ "/sfx/projectiles/plasma3.ogg" ],
+    "sparks" : [ "/sfx/npc/boss/ufo_stunned.ogg" ],
+    "sparkBurst" : [ "/sfx/melee/tesla_shock1.ogg", "/sfx/melee/tesla_shock2.ogg" ],
+    "lightningStrike" : [ "/sfx/projectiles/plasma3.ogg" ],
     "shatter" : [ "/sfx/objects/vase_break_medium1.ogg", "/sfx/objects/vase_break_medium2.ogg", "/sfx/objects/vase_break_medium3.ogg" ]
   }
 }
