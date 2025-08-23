@@ -5,22 +5,22 @@
     "rules" : [
     ],
 
-    "anchor" : [ "roommiddle" ],
+    "anchor" : [ "middle_room1" ],
     // "anchor" : [ "buildingbottom" ],
 
     "gravity" : 70,
     "maxRadius" : 1000000,
-    "maxParts" : 20,
+    "maxParts" : 10,
     "protected" : true
   },
 
   "parts" : [
     {
-      "name" : "roommiddle",
+      "name" : "middle_room1",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
-      "def" : [ "tmx", "roommiddle.json" ]
+      "def" : [ "tmx", "middle_room1.json" ]
     },
     {
       "name" : "lower_room1",

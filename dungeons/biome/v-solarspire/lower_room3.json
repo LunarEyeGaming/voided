@@ -371,7 +371,67 @@
                  "visible":true,
                  "width":16,
                  "x":256,
-                 "y":368
+                 "y":416
+                }, 
+                {
+                 "gid":7722,
+                 "height":16,
+                 "id":802,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":296,
+                 "y":416
+                }, 
+                {
+                 "gid":7722,
+                 "height":16,
+                 "id":803,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":336,
+                 "y":416
+                }, 
+                {
+                 "gid":7722,
+                 "height":16,
+                 "id":804,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":376,
+                 "y":416
+                }, 
+                {
+                 "gid":7722,
+                 "height":16,
+                 "id":805,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":416,
+                 "y":416
+                }, 
+                {
+                 "gid":7722,
+                 "height":16,
+                 "id":806,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":456,
+                 "y":416
                 }, 
                 {
                  "gid":7724,
@@ -656,7 +716,7 @@
                  "name":"contains position-sensitive offsets",
                  "properties":
                     {
-                     "parameters":"{\"interiorRegion\" : [-11, -23, 27, 24], \"exteriorRegions\" : [[-11, -23, -4, -12]]}"
+                     "parameters":"{\"interiorRegion\" : [-11, -23, 27, 24], \"exteriorRegions\" : [[-18, -23, -11, -12]]}"
                     },
                  "propertytypes":
                     {
@@ -772,7 +832,112 @@
                  "visible":true,
                  "width":32,
                  "x":248,
-                 "y":344
+                 "y":392
+                }, 
+                {
+                 "height":32,
+                 "id":807,
+                 "name":"Door Trigger (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"messageType\" : \"v-wirelessswitch-trigger\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
+                     "stagehand":"v-wavetrigger"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":288,
+                 "y":392
+                }, 
+                {
+                 "height":32,
+                 "id":808,
+                 "name":"Door Trigger (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"messageType\" : \"v-wirelessswitch-trigger\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
+                     "stagehand":"v-wavetrigger"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":328,
+                 "y":392
+                }, 
+                {
+                 "height":32,
+                 "id":809,
+                 "name":"Door Trigger (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"messageType\" : \"v-wirelessswitch-trigger\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
+                     "stagehand":"v-wavetrigger"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":368,
+                 "y":392
+                }, 
+                {
+                 "height":32,
+                 "id":810,
+                 "name":"Door Trigger (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"messageType\" : \"v-wirelessswitch-trigger\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
+                     "stagehand":"v-wavetrigger"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":408,
+                 "y":392
+                }, 
+                {
+                 "height":32,
+                 "id":811,
+                 "name":"Door Trigger (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"messageType\" : \"v-wirelessswitch-trigger\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
+                     "stagehand":"v-wavetrigger"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":448,
+                 "y":392
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -793,7 +958,7 @@
                  "polyline":[
                         {
                          "x":0,
-                         "y":0
+                         "y":48
                         }, 
                         {
                          "x":-24,
@@ -812,8 +977,8 @@
                  "name":"",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":40,
+                         "y":48
                         }, 
                         {
                          "x":16,
@@ -832,8 +997,8 @@
                  "name":"",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":80,
+                         "y":48
                         }, 
                         {
                          "x":56,
@@ -852,8 +1017,8 @@
                  "name":"",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":120,
+                         "y":48
                         }, 
                         {
                          "x":96,
@@ -872,8 +1037,8 @@
                  "name":"",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":160,
+                         "y":48
                         }, 
                         {
                          "x":136,
@@ -892,8 +1057,8 @@
                  "name":"",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":200,
+                         "y":48
                         }, 
                         {
                          "x":176,
@@ -1223,7 +1388,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":802,
+ "nextobjectid":812,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

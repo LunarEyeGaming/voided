@@ -824,7 +824,26 @@
          "draworder":"topdown",
          "id":11,
          "name":"stagehands",
-         "objects":[],
+         "objects":[
+                {
+                 "height":48,
+                 "id":799,
+                 "name":"wave activation zone",
+                 "properties":
+                    {
+                     "stagehand":"v-waveactivationzone"
+                    },
+                 "propertytypes":
+                    {
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":304,
+                 "x":176,
+                 "y":448
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1082,7 +1101,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":798,
+ "nextobjectid":800,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
