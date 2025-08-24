@@ -2,31 +2,46 @@ require "/scripts/interp.lua"
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
+local preScrewUpSparkTime
+local preferredScrewUpDirection
 local screwedUpAngle
 local screwUpTime
+local preferredFixDirection
 local fixedAngle
 local fixTime
-local adjustTime
 local maxBeamLength
 local damageConfig
 local decorative
 
 local positionStart
-local adjustTimer
-local angleStart
-local angleEnd
 local currentAngle
 
 local otherLensPollTimer
 local otherLensPos
-local prevOtherLens
+local prevReceivers
 
 local materialConfigs
+local state
+local isFixed  -- Controlled by both message handlers and the state machine. Used as input into the state machine.
+-- storage.isFixed is used by the update function to determine whether or not to fire a damaging beam.
 
 function init()
-  screwedUpAngle = config.getParameter("screwedUpAngle", 0) * math.pi / 180
+  preScrewUpSparkTime = config.getParameter("preScrewUpSparkTime")
+  preferredScrewUpDirection = config.getParameter("preferredScrewUpDirection")
+  local screwedUpVector = config.getParameter("screwedUpVector")
+  if screwedUpVector then
+    screwedUpAngle = vec2.angle(screwedUpVector)
+  else
+    screwedUpAngle = config.getParameter("screwedUpAngle", 0) * math.pi / 180
+  end
   screwUpTime = config.getParameter("screwUpTime", 0.5)
-  fixedAngle = config.getParameter("angle", 0) * math.pi / 180
+  preferredFixDirection = config.getParameter("preferredFixDirection")
+  local fixedVector = config.getParameter("fixedVector")
+  if fixedVector then
+    fixedAngle = vec2.angle(fixedVector)
+  else
+    fixedAngle = config.getParameter("angle", 0) * math.pi / 180
+  end
   fixTime = config.getParameter("fixTime", 0.5)
 
   maxBeamLength = config.getParameter("maxBeamLength", 100)
@@ -36,8 +51,7 @@ function init()
 
   otherLensPollTimer = otherLensPollInterval
   positionStart = vec2.add(object.position(), {0.001, 0.001})  -- Nudge it to avoid chunk boundary issues.
-  adjustTimer = 0
-  adjustTime = 0.1
+  prevReceivers = {}
 
   if storage.active == nil then
     storage.active = config.getParameter("defaultState", false)
@@ -48,12 +62,8 @@ function init()
   end
 
   if not storage.isFixed then
-    angleStart = screwedUpAngle
-    angleEnd = screwedUpAngle
     currentAngle = screwedUpAngle
   else
-    angleStart = fixedAngle
-    angleEnd = fixedAngle
     currentAngle = fixedAngle
   end
 
@@ -67,60 +77,102 @@ function init()
   end
 
   message.setHandler("v-solarLens-fix", function()
-    storage.isFixed = true
+    isFixed = true
     object.setAllOutputNodes(false)
-
-    beginAdjust(fixedAngle, fixTime)
   end)
 
   message.setHandler("v-solarLens-screwUp", function()
-    storage.isFixed = false
+    isFixed = false
     object.setAllOutputNodes(true)
+  end)
 
-    -- sb.logInfo("Screwed up")
-
-    beginAdjust(screwedUpAngle, screwUpTime)
+  message.setHandler("v-monsterwavespawner-reset", function()
+    isFixed = config.getParameter("isFixed", true)
+    object.setAllOutputNodes(not isFixed)
   end)
 
   materialConfigs = {}
+  state = FSM:new()
+  state:set(storage.isFixed and states.fixed or states.screwedUp)
 end
 
 function update(dt)
+  state:update()
+
   updateBeam(dt)
 end
 
 function die()
   local beamEnd = getBeamEnd(currentAngle)
 
-  setOtherLensState(beamEnd, false)
+  setBeamReceiverState(beamEnd, false)
 end
 
----Sets the state of the first lens found within the beam.
-function setOtherLensState(beamEnd, state)
+---Sets the state of the first object that can receive beams found within the beam.
+function setBeamReceiverState(beamEnd, state)
   local queried = world.entityLineQuery(positionStart, beamEnd, {
     withoutEntityId = entity.id(),
     includedTypes = {"object"},
     order = "nearest",
-    callScript = "v_isSolarLens"
+    callScript = "v_canReceiveBeams"
   })
 
-  local entityId
   local entityPos
 
-  if #queried > 0 then
-    entityId = queried[1]
+  local receivers
 
-    world.callScriptedEntity(entityId, "v_solarLens_setState", state)
+  -- if #queried > 0 then
+  --   entityId = queried[1]
 
-    entityPos = world.entityPosition(entityId)
+  --   local isBeamEnd = world.callScriptedEntity(entityId, "receiveBeamState", state)
+
+  --   if isBeamEnd then
+  --     entityPos = world.entityPosition(entityId)
+  --   end
+  -- end
+
+  -- -- Deactivate prevOtherLens if disconnected.
+  -- if prevReceivers ~= entityId and prevReceivers and world.entityExists(prevReceivers) then
+  --   world.callScriptedEntity(prevReceivers, "receiveBeamState", false)
+  -- end
+
+  -- Go in order, finding the index of the first entity that is a beamEnd.
+  local beamEndIndex
+  for i = 1, #queried do
+    local entityId = queried[i]
+
+    local isBeamEnd = world.callScriptedEntity(entityId, "blocksBeams")
+    if isBeamEnd then
+      beamEndIndex = i
+      break
+    end
   end
 
-  -- Deactivate prevOtherLens if disconnected.
-  if prevOtherLens ~= entityId and prevOtherLens and world.entityExists(prevOtherLens) then
-    world.callScriptedEntity(prevOtherLens, "v_solarLens_setState", false)
+  -- If one is found...
+  if beamEndIndex then
+    entityPos = world.entityPosition(queried[beamEndIndex])  -- Set entity position.
+
+    -- Make receivers everything up to and including beamIndex.
+    receivers = table.move(queried, 1, beamEndIndex, 1, {})
+  else
+    receivers = queried
   end
 
-  prevOtherLens = queried[1]
+  -- world.debugText("receivers: %s", receivers, object.position(), "green")
+
+  -- Control current receivers.
+  for _, entityId in ipairs(receivers) do
+    world.callScriptedEntity(entityId, "receiveBeamState", state)
+  end
+
+  -- Turn off receivers that were disconnected.
+  for _, entityId in ipairs(prevReceivers) do
+    if not contains(receivers, entityId) and world.entityExists(entityId) then
+      world.callScriptedEntity(entityId, "receiveBeamState", false)
+    end
+  end
+
+  prevReceivers = receivers
 
   return entityPos
 end
@@ -146,13 +198,13 @@ function getBeamEnd(angle)
 end
 
 function updateBeam(dt)
-  if adjustTimer <= adjustTime then
-    adjustTimer = adjustTimer + dt
+  -- if adjustTimer <= adjustTime then
+  --   adjustTimer = adjustTimer + dt
 
-    -- Offset progress by 0.5.
-    local progress = (adjustTimer / adjustTime) * 0.5 + 0.5
-    currentAngle = interp.sin(progress, angleStart, angleEnd)
-  end
+  --   -- Offset progress by 0.5.
+  --   local progress = (adjustTimer / adjustTime) * 0.5 + 0.5
+  --   currentAngle = interp.sin(progress, angleStart, angleEnd)
+  -- end
 
   local beamEnd = getBeamEnd(currentAngle)
   local beamStart = positionStart
@@ -161,7 +213,7 @@ function updateBeam(dt)
 
   otherLensPollTimer = otherLensPollTimer - dt
   if otherLensPollTimer <= 0 then
-    otherLensPos = setOtherLensState(beamEnd, storage.active)
+    otherLensPos = setBeamReceiverState(beamEnd, storage.active)
 
     otherLensPollTimer = otherLensPollInterval
   end
@@ -215,24 +267,10 @@ function projectVector(vector, ontoVector)
   / (ontoVector[1] * ontoVector[1] + ontoVector[2] * ontoVector[2])
 
   return {ontoVector[1] * factor, ontoVector[2] * factor}
-  -- return vec2.mul(
-  --   ontoVector,
-  --   vec2.dot(
-  --     vector,
-  --     ontoVector
-  --   ) / (vec2.mag(ontoVector) ^ 2)
-  -- )
 end
 
 function setState(state)
   animator.setAnimationState("beam", state and "on" or "off")
-end
-
-function beginAdjust(angle, time)
-  angleStart = currentAngle
-  angleEnd = interp.angleDiff(angleStart, angle) + angleStart
-  adjustTime = time
-  adjustTimer = 0.0
 end
 
 ---Gets the material config, caching what is relevant if it is not already cached.
@@ -253,12 +291,90 @@ function getMaterialProperties(material)
   return materialConfigs[material]
 end
 
-function v_isSolarLens()
+function v_canReceiveBeams()
   return true
 end
 
-function v_solarLens_setState(state)
+function receiveBeamState(state)
   storage.active = state
-
   setState(state)
+end
+
+function blocksBeams()
+  return true
+end
+
+states = {}
+
+function states.fixed()
+  isFixed = true
+
+  while isFixed do
+    coroutine.yield()
+  end
+
+  state:set(states.screwUp)
+end
+
+function states.screwUp()
+  storage.isFixed = false
+
+  local beamEnd = getBeamEnd(screwedUpAngle)
+  local beamMag = world.magnitude(beamEnd, positionStart)
+  animator.resetTransformationGroup("telegraphSparks")
+  animator.scaleTransformationGroup("telegraphSparks", {beamMag, 1})
+  animator.translateTransformationGroup("telegraphSparks", {beamMag / 2, 0})
+  animator.rotateTransformationGroup("telegraphSparks", screwedUpAngle)
+  animator.setParticleEmitterActive("telegraphSparks", true)
+  animator.playSound("sparks", -1)
+  util.wait(preScrewUpSparkTime)
+
+  adjust(screwedUpAngle, screwUpTime, 0.0, preferredScrewUpDirection)
+
+  animator.setParticleEmitterActive("telegraphSparks", false)
+  animator.stopAllSounds("sparks")
+
+  state:set(states.screwedUp)
+end
+
+function states.screwedUp()
+  isFixed = false
+
+  while not isFixed do
+    coroutine.yield()
+  end
+
+  state:set(states.fix)
+end
+
+function states.fix()
+  storage.isFixed = true
+
+  adjust(fixedAngle, fixTime, 0.5, preferredFixDirection)
+
+  state:set(states.fixed)
+end
+
+function adjust(angle, time, progressOffset, preferredDirection)
+  local dt = script.updateDt()
+  local angleStart = currentAngle
+  local angleEnd = interp.angleDiff(angleStart, angle) + angleStart
+  if preferredDirection then
+    -- Prefer counterclockwise but direction is clockwise.
+    if preferredDirection == 1 and angleStart > angleEnd then
+      angleEnd = angleEnd + 2 * math.pi
+    -- Prefer clockwise but direction is counterclockwise.
+    elseif preferredDirection == -1 and angleStart < angleEnd then
+      angleEnd = angleEnd - 2 * math.pi
+    end
+  end
+  local timer = 0
+  util.wait(time, function()
+    -- Offset progress by 0.5.
+    local progress = (timer / time) * (1 - progressOffset) + progressOffset
+    currentAngle = interp.sin(progress, angleStart, angleEnd)
+    timer = timer + dt
+  end)
+
+  currentAngle = angleEnd
 end

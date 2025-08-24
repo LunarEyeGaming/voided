@@ -1,9 +1,11 @@
 require "/scripts/vec2.lua"
 
 local fixRange
+local broadcastRange
 
 function init()
   fixRange = config.getParameter("fixRange")
+  broadcastRange = config.getParameter("broadcastRange")
 end
 
 function update(dt, fireMode)
@@ -23,10 +25,10 @@ function canFixLens(aimPos)
 end
 
 function fixLens(aimPos)
-  local queried = world.entityQuery(aimPos, 1, {includedTypes = {"object"}, order = "nearest"})
+  local queried = world.entityQuery(aimPos, broadcastRange, {includedTypes = {"object"}, order = "nearest"})
 
-  if queried[1] then
-    world.sendEntityMessage(queried[1], "v-solarLens-fix")
+  for _, entityId in ipairs(queried) do
+    world.sendEntityMessage(entityId, "v-solarLens-fix")
   end
 end
 

@@ -36,8 +36,27 @@
       }
     }
   },
+
   "transformationGroups" : {
     "lens" : { "interpolated" : true },
-    "beam" : { "interpolated" : false }
+    "beam" : { "interpolated" : false },
+
+    "telegraphSparks" : { "interpolated" : false }
+  },
+
+  "particleEmitters" : {
+    "telegraphSparks" : {
+      "burstCount" : 3,
+      "emissionRate" : 20,
+      "offsetRegion" : [-0.5, -0.5, 0.5, 0.5],
+      "transformationGroups" : [ "telegraphSparks" ],
+      "particles" : [
+        { "particle" : "v-portalspark" }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "sparks" : [ "/sfx/npc/boss/ufo_stunned.ogg" ]
   }
 }

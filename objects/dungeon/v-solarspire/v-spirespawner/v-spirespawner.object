@@ -5,7 +5,7 @@
   "rarity" : "Legendary",
   "description" : "<todo>",
   "shortdescription" : "spirespawner",
-  "race" : "generic",
+  "race" : "avian",
 
   "apexDescription" : "<todo>",
   "avianDescription" : "<todo>",
@@ -83,6 +83,8 @@
   "gracePeriod" : 30.0,
   "gracePeriodSparkChanceMultiplier" : 0.4,
   "gracePeriodRadioMessages" : [ "v-labspawnertutorial", "v-labspawnertutorial2" ],
+
+  "minTriggerDelay" : 0.05,
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

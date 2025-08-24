@@ -19,6 +19,8 @@ function init()
   animator.setSoundVolume("burn", 0)
 
   timeElapsed = 0
+
+  script.setUpdateDelta(6)
 end
 
 function update(dt)

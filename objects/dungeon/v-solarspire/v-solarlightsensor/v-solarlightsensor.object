@@ -1,0 +1,53 @@
+{
+  "objectName" : "v-solarlightsensor",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "category" : "wire",
+  "price" : 250,
+  // "objectType" : "physics",
+
+  "description" : "<todo>",
+  "shortdescription" : "Solar Light Sensor",
+  "race" : "avian",
+  "printable" : false,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "solarlightsensor.png:default",
+      "direction" : "right",
+      "imagePosition" : [0, 0],
+
+      "metaBoundBox" : [0, -1, 2, 1],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ],
+
+      "renderLayer" : "Object+20"
+    }
+  ],
+
+  "animation" : "v-solarlightsensor.animation",
+  "animationPosition" : [0, 0],
+  "animationParts" : {
+    "sensor" : "solarlightsensor.png",
+    "sensorlit" : "solarlightsensorlit.png"
+  },
+
+  "outputNodes" : [ [0, 0] ],
+
+  "scripts" : [ "v-solarlightsensor.lua" ],
+  "scriptDelta" : 3,
+
+  "invertOutput" : true,  // This inverts the actual output.
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

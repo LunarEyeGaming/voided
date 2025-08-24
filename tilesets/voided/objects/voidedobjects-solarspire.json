@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-solarspire",
  "spacing":0,
- "tilecount":10,
+ "tilecount":12,
  "tiledversion":"1.11.2",
  "tileheight":256,
  "tileproperties":
@@ -26,6 +26,20 @@
          "imagePositionY":"-8",
          "object":"v-solarlens",
          "parameters":"{\"defaultState\" : true, \"decorative\" : true}",
+         "tilesetDirection":"right"
+        },
+     "10":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-solarlightsensor",
+         "tilesetDirection":"right"
+        },
+     "11":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-solarlightsensordecorative",
          "tilesetDirection":"right"
         },
      "2":
@@ -102,6 +116,20 @@
          "parameters":"string",
          "tilesetDirection":"string"
         },
+     "10":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "11":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "2":
         {
          "imagePositionX":"string",
@@ -171,6 +199,18 @@
         {
          "image":"..\/images\/objects\/solarlens_decorative.png",
          "imageheight":16,
+         "imagewidth":16
+        },
+     "10":
+        {
+         "image":"..\/images\/objects\/solarlightsensor.png",
+         "imageheight":8,
+         "imagewidth":16
+        },
+     "11":
+        {
+         "image":"..\/images\/objects\/solarlightsensordecorative.png",
+         "imageheight":8,
          "imagewidth":16
         },
      "2":

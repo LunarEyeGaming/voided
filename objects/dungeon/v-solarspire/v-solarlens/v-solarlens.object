@@ -8,7 +8,7 @@
 
   "description" : "<todo>",
   "shortdescription" : "Solar Lens",
-  "race" : "human",
+  "race" : "avian",
   "printable" : false,
 
   "apexDescription" : "<todo>",
@@ -42,8 +42,6 @@
     "beam" : "beam.png"
   },
 
-  "outputNodes" : [[0, 0]],  // Note: Output is inverted to simplify logic.
-
   "scripts" : [ "v-solarlens.lua" ],
   "scriptDelta" : 3,
 
@@ -54,8 +52,11 @@
     "teamType" : "enemy"
   },
 
+  "preScrewUpSparkTime" : 1.5,
+  "preferredScrewUpDirection" : null,  // -1 for clockwise, 1 for counterclockwise.
+  "preferredFixDirection" : null,  // -1 for clockwise, 1 for counterclockwise.
   "angle" : 90,
-  "screwUpTime" : 2.0,
+  "screwUpTime" : 3.0,
   "fixTime" : 1.0,
   "maxBeamLength" : 100,
   "decorativeBeamLength" : 20,

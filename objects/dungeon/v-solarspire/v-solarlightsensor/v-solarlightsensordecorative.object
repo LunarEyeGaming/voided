@@ -1,0 +1,37 @@
+{
+  "objectName" : "v-solarlightsensordecorative",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "category" : "decorative",
+  "price" : 250,
+  // "objectType" : "physics",
+
+  "description" : "<todo>",
+  "shortdescription" : "Solar Light Sensor (Decor)",
+  "race" : "avian",
+  "printable" : false,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "solarlightsensor.png:on.1", "fullbright" : true }, { "image" : "solarlightsensorlit.png:on.1" } ],
+      "direction" : "right",
+      "imagePosition" : [0, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ],
+
+      "renderLayer" : "Object+20"
+    }
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

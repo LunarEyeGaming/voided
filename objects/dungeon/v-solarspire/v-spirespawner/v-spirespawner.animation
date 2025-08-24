@@ -31,8 +31,13 @@
         }
       },
       "portal" : {
-        "default" : "idle",
+        "default" : "idleactive",
         "states" : {
+          "idleactive" : {
+            "frames" : 8,
+            "cycle" : 0.8,
+            "mode" : "loop"
+          },
           "idle" : {
             "frames" : 4,
             "cycle" : 0.4,
@@ -120,6 +125,11 @@
 
         "partStates" : {
           "portal" : {
+            "idleactive" : {
+              "properties" : {
+                "image" : "<partImage>:idleactive.<frame>"
+              }
+            },
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
@@ -149,28 +159,14 @@
       "offsetRegion" : [-3, -3, 3, 3],
       "transformationGroups" : [ "portalunstable" ],
       "particles" : [
-        { "particle" : {
-          "type" : "animated",
-          "animation" : "/animations/v-portalspark/v-portalspark.animation",
-          "fade" : 0.3,
-          "destructionAction" : "shrink",
-          "destructionTime" : 0.2,
-          "size" : 1.0,
-          "timeToLive" : 0.2,
-          "fullbright" : true,
-          "layer" : "middle",
-          "collidesForeground" : false,
-          "variance" : {
-            "rotation" : 180
-          }
-        } }
+        { "particle" : "v-portalspark" }
       ]
     }
   },
 
   "sounds" : {
     "sparks" : [ "/sfx/npc/boss/ufo_stunned.ogg" ],
-    "sparkBurst" : [ "/sfx/melee/tesla_shock1.ogg", "/sfx/melee/tesla_shock2.ogg" ],
+    "sparkBurst" : [ "/sfx/objects/v_spirespawner_spark1.ogg", "/sfx/objects/v_spirespawner_spark2.ogg" ],
     "lightningStrike" : [ "/sfx/projectiles/plasma3.ogg" ],
     "shatter" : [ "/sfx/objects/vase_break_medium1.ogg", "/sfx/objects/vase_break_medium2.ogg", "/sfx/objects/vase_break_medium3.ogg" ]
   }

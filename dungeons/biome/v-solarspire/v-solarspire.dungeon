@@ -10,7 +10,7 @@
 
     "gravity" : 70,
     "maxRadius" : 1000000,
-    "maxParts" : 10,
+    "maxParts" : 15,
     "protected" : true
   },
 
@@ -96,6 +96,13 @@
       "rules" : [
       ],
       "def" : [ "tmx", "upper_room1.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "upper_room2",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "upper_room2.json" ],
       "chance" : 2
     },
     {
