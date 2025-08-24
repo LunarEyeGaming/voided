@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmkEKwyAQRXODFrrP\/Y9ZukoJAR39ozP6HrgyTMwjBr\/mOADi8T6v1tJ\/v6a3fR6asn7tc1j7o3n0ro9HPOIRjyM9vs6rRaVmjHgsg0cNIz2W1m49Y5yN1aPVBe\/jBfO6DB417Obx6bukwNtjCd5HDXjUgEcNvR6f8q1qrJbaeKwb22yPI\/KMh0NrbfKMht3Wj17gUQMeNWTz6JHpWriPI5vHqOBRAx414FHDCucztXuKT9mkdO\/a2jvlmRaPtew2rz0c\/tjNoxd41MD5jIbs+7hRwKMGPGrAo4bs5zOea2tL7ex5JqtHa\/+I9aNXRrHUXsFjBPCoAY8a8KgBjxp285j1f9xoHr1Y4XwmAtnzTBSY1xrwqAGPGjif0cA+roYMHv+v6W3e9WufQw0eNeDR7qk1z6zocUaeWdFjqwuAmXwBruMO8w==",
+         "data":"eJztmtEKgzAMRf2DDfbu\/3\/m8GE4pNCmvbGJPQcCg0oWD3Y0ZtsGEI\/3fkbP+vWa0fgUQpm\/9T6s69E8eufHIx7xiMc7Pb72M6LSUiMe6+BRw50ea2e3kRpnY\/VodcHzeMK+roNHDat5\/P0WXT+P4u2xBs+jBjxqwKOGUY+l\/lZVqyU3Httqm+3xjn7Gw6E1N\/2MhtXOj17gUQMeNeBRAx414FEDHjXgUUO2+UwpRylqdbb0KAet37dSP9PjsZXV9rWHw4PVPHqBRw3MZzRkf48bBTxqwKMGPGrIPp\/xPFtbcmfvZ7J6tK7fcX706lEsuZ\/gMQJ41IBHDXjUgEcNq3nM+n\/caB69yDafiUr2fiYK7GsNeNSARw3MZzTwHldDBo\/\/14yGd\/7W+1CDRw14tHvq7Wee6HFGP\/NEj70uAGbyBVvoDvM=",
          "encoding":"base64",
          "height":64,
          "id":2,
@@ -582,9 +582,21 @@
                  "y":320
                 }, 
                 {
-                 "gid":7707,
-                 "height":64,
-                 "id":813,
+                 "gid":7708,
+                 "height":128,
+                 "id":823,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":320,
+                 "y":440
+                }, 
+                {
+                 "gid":7708,
+                 "height":128,
+                 "id":824,
                  "name":"",
                  "rotation":0,
                  "type":"",
@@ -596,43 +608,7 @@
                 {
                  "gid":7706,
                  "height":32,
-                 "id":814,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":176
-                }, 
-                {
-                 "gid":7705,
-                 "height":16,
-                 "id":816,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":144
-                }, 
-                {
-                 "gid":7710,
-                 "height":8,
-                 "id":817,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":128
-                }, 
-                {
-                 "gid":7706,
-                 "height":32,
-                 "id":818,
+                 "id":825,
                  "name":"",
                  "rotation":0,
                  "type":"",
@@ -644,7 +620,7 @@
                 {
                  "gid":7705,
                  "height":16,
-                 "id":819,
+                 "id":826,
                  "name":"",
                  "rotation":0,
                  "type":"",
@@ -654,33 +630,9 @@
                  "y":80
                 }, 
                 {
-                 "gid":7707,
-                 "height":64,
-                 "id":820,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":376
-                }, 
-                {
-                 "gid":7711,
-                 "height":8,
-                 "id":821,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":384
-                }, 
-                {
-                 "gid":7707,
-                 "height":64,
-                 "id":822,
+                 "gid":7705,
+                 "height":16,
+                 "id":827,
                  "name":"",
                  "rotation":0,
                  "type":"",
@@ -827,7 +779,7 @@
                  "name":"Lens Screw-up (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"messageArgs\" : [], \"delay\" : 3.0, \"priority\" : 2, \"waveNumber\" : 1}",
+                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"delay\" : 3.0, \"priority\" : 2, \"waveNumber\" : 1}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -848,7 +800,7 @@
                  "name":"Lens Screw-up (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"messageArgs\" : [], \"delay\" : 3.0, \"priority\" : 1, \"waveNumber\" : 1}",
+                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"delay\" : 3.0, \"priority\" : 1, \"waveNumber\" : 1}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -869,7 +821,7 @@
                  "name":"Lens Screw-up (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"messageArgs\" : [], \"delay\" : 3.0, \"priority\" : 3, \"waveNumber\" : 1}",
+                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"delay\" : 3.0, \"priority\" : 3, \"waveNumber\" : 1}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -890,7 +842,7 @@
                  "name":"Lens Screw-up (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"messageArgs\" : [], \"delay\" : 10.0, \"priority\" : 0, \"waveNumber\" : 1}",
+                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"delay\" : 10.0, \"priority\" : 0, \"waveNumber\" : 1}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -1314,7 +1266,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":823,
+ "nextobjectid":828,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

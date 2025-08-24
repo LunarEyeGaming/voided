@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmm2KwzAMRHuDLeR\/7n\/MpdAlIevWGntkS848MBRkZPmRDyv08RAiHs\/9GC3x65zesb3Hi7\/fzPzWfaDxaB6988ujPMqjPI70+LMfIyqWGuWxjjxyGOlxK4y7ekRd6Ho80H1dRx45yCMHb481UI\/IudeLUg0Mj6yaPsH22LufFT16rYnkyOhx1Joo8sjB22PPGR6psbUmFnfsZyJ4ROPyaF9XHtfxWDrTlZ5B1+eQZY7F+coeW\/eD5mupEY3Lo31deZRHRr6WGtF4RI8WInv07GeyeYzaz2TziMblsZwTjbM9IufmT3PPMPJtez6PlhpXvB6Relk1ZvXYgzxykEcO8siB5fE8h\/GtEs3n7bF2brirx6j9TDaPaFweDzJ4LL0XruPa09T6l9HvmSwevyGP\/\/PIY3uNs5FHDtk8Wr6FeXGH72azGekxyv\/NPFiln5mN7msO8shBHjl4e6whjxzkkYMl93lO7\/DOb90HG3nkII+4p9Z+ZkWPM\/qZFT22uhBiJr+X+TrG",
+         "data":"eJztmUGOwyAMRXuC6Ujd9\/7HnNUoFSJgzHcc6HuSV2ld8woSdh4PgPvx+z7C87z8zGy8KqHMb13H6PO7eYzOj0c84hGPV3p8vo+4K5Ya8dgHjxqu9Ni7u83UmM2ox1EX7McDznUfPGrAo4Zojz3wqAGPGvCoYdRj7d4VNUcso\/Xbq3m05oqIFtEee\/\/nt3q8cz+zksfR53jUuMj26AWPeJypscyFR1+NZS48+mosc+HRV2OZC4\/tGkf7Qi+1XNF9odVjRj\/jJXo\/rtbPeNn9XLfAo8ZjJnjUwPsZDTvNcTPBowY8asCjhp3ez2SyUz+TyWr3x5E5xXMiav3MXeYUCo8tVD1hLdc39YV4jPH4MxF4jIsWO3nMBI8a8KjhSo\/0M34X7McDznUfPGrAo4Zojz3wqAGPGiy5R3q3\/zibhZ3lt87OLDGzVi9RHs9mD2f5rbMKPK7t8fO73n7Gux7rGpX5revI6Gd29Oh1AZDJHyeON+Q=",
          "encoding":"base64",
          "height":64,
          "id":2,
@@ -236,7 +236,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"screwedUpAngle\" : 0, \"preferredScrewUpDirection\" : 1}"
+                     "parameters":"{\"screwedUpAngle\" : -80, \"preferredScrewUpDirection\" : 1}"
                     },
                  "propertytypes":
                     {
@@ -256,7 +256,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"screwedUpAngle\" : 180, \"preferredScrewUpDirection\" : -1}"
+                     "parameters":"{\"screwedUpAngle\" : -110, \"preferredScrewUpDirection\" : -1}"
                     },
                  "propertytypes":
                     {
@@ -276,7 +276,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"screwedUpAngle\" : 22.5, \"preferredScrewUpDirection\" : -1}"
+                     "parameters":"{\"isFixed\" : false}"
                     },
                  "propertytypes":
                     {
@@ -296,7 +296,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"screwedUpAngle\" : 157.5, \"preferredScrewUpDirection\" : 1}"
+                     "parameters":"{\"isFixed\" : false, \"screwedUpAngle\" : -180}"
                     },
                  "propertytypes":
                     {
@@ -582,136 +582,76 @@
                  "y":320
                 }, 
                 {
-                 "gid":7706,
-                 "height":32,
-                 "id":804,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":288
-                }, 
-                {
-                 "gid":7705,
+                 "gid":5965,
                  "height":16,
-                 "id":805,
+                 "id":790,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":256
+                 "width":40,
+                 "x":304,
+                 "y":360
                 }, 
                 {
-                 "gid":7710,
-                 "height":8,
-                 "id":806,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":240
-                }, 
-                {
-                 "gid":7710,
-                 "height":8,
-                 "id":808,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":64
-                }, 
-                {
-                 "gid":7708,
-                 "height":128,
-                 "id":809,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":440
-                }, 
-                {
-                 "gid":7705,
+                 "gid":5965,
                  "height":16,
-                 "id":810,
+                 "id":791,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":456
+                 "width":40,
+                 "x":344,
+                 "y":360
                 }, 
                 {
-                 "gid":7710,
-                 "height":8,
-                 "id":811,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":472
-                }, 
-                {
-                 "gid":7705,
+                 "gid":5965,
                  "height":16,
-                 "id":812,
+                 "id":792,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":488
+                 "width":40,
+                 "x":264,
+                 "y":360
                 }, 
                 {
-                 "gid":7711,
-                 "height":8,
-                 "id":813,
+                 "gid":7724,
+                 "height":16,
+                 "id":793,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":496
+                 "width":16,
+                 "x":264,
+                 "y":336
                 }, 
                 {
-                 "gid":7706,
-                 "height":32,
-                 "id":814,
+                 "gid":7724,
+                 "height":16,
+                 "id":794,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":48
+                 "width":16,
+                 "x":304,
+                 "y":336
                 }, 
                 {
-                 "gid":7707,
-                 "height":64,
-                 "id":823,
+                 "gid":7724,
+                 "height":16,
+                 "id":795,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":128
+                 "width":16,
+                 "x":344,
+                 "y":336
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -740,98 +680,50 @@
                 {
                  "gid":7726,
                  "height":16,
-                 "id":795,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":200,
-                 "y":360
-                }, 
-                {
-                 "gid":7726,
-                 "height":16,
-                 "id":797,
+                 "id":783,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":8,
                  "x":440,
-                 "y":360
+                 "y":440
                 }, 
                 {
                  "gid":7726,
                  "height":16,
-                 "id":798,
+                 "id":787,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":8,
                  "x":440,
-                 "y":216
-                }, 
-                {
-                 "gid":7726,
-                 "height":16,
-                 "id":796,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":200,
-                 "y":216
-                }, 
-                {
-                 "gid":7726,
-                 "height":16,
-                 "id":799,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":280,
                  "y":320
                 }, 
                 {
                  "gid":7726,
                  "height":16,
-                 "id":800,
+                 "id":818,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":360,
-                 "y":320
-                }, 
-                {
-                 "gid":7726,
-                 "height":16,
-                 "id":801,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":360,
+                 "x":320,
                  "y":232
                 }, 
                 {
                  "gid":7726,
                  "height":16,
-                 "id":815,
+                 "id":813,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":360,
-                 "y":136
+                 "x":440,
+                 "y":216
                 }, 
                 {
                  "gid":7726,
@@ -842,32 +734,56 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":280,
-                 "y":136
+                 "x":208,
+                 "y":216
                 }, 
                 {
                  "gid":7726,
                  "height":16,
-                 "id":802,
+                 "id":814,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":280,
-                 "y":232
+                 "x":440,
+                 "y":128
                 }, 
                 {
                  "gid":7726,
                  "height":16,
-                 "id":783,
+                 "id":815,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":272,
-                 "y":440
+                 "x":208,
+                 "y":128
+                }, 
+                {
+                 "gid":7726,
+                 "height":16,
+                 "id":817,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":320,
+                 "y":128
+                }, 
+                {
+                 "gid":7726,
+                 "height":16,
+                 "id":789,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":296,
+                 "y":320
                 }, 
                 {
                  "gid":7726,
@@ -878,8 +794,32 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":368,
+                 "x":344,
                  "y":440
+                }, 
+                {
+                 "gid":7726,
+                 "height":16,
+                 "id":786,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":344,
+                 "y":320
+                }, 
+                {
+                 "gid":7726,
+                 "height":16,
+                 "id":788,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":208,
+                 "y":320
                 }, 
                 {
                  "gid":7726,
@@ -890,16 +830,16 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":432,
+                 "x":296,
                  "y":440
                 }, 
                 {
                  "height":32,
-                 "id":786,
-                 "name":"Lens Screw-up (wave 1)",
+                 "id":796,
+                 "name":"Door Trigger (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 1}",
+                     "parameters":"{\"messageType\" : \"v-wirelessswitch-trigger\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -910,55 +850,55 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":16,
-                 "x":496,
-                 "y":152
-                }, 
-                {
-                 "height":32,
-                 "id":787,
-                 "name":"Lens Screw-up (wave 1)",
-                 "properties":
-                    {
-                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 1}",
-                     "stagehand":"v-wavetrigger"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string",
-                     "stagehand":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":144,
-                 "y":152
-                }, 
-                {
-                 "height":32,
-                 "id":788,
-                 "name":"Lens Screw-up (wave 2)",
-                 "properties":
-                    {
-                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 2}",
-                     "stagehand":"v-wavetrigger"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string",
-                     "stagehand":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":144,
+                 "width":32,
+                 "x":256,
                  "y":312
                 }, 
                 {
                  "height":32,
-                 "id":789,
+                 "id":797,
+                 "name":"Door Trigger (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"messageType\" : \"v-wirelessswitch-trigger\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
+                     "stagehand":"v-wavetrigger"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":296,
+                 "y":312
+                }, 
+                {
+                 "height":32,
+                 "id":798,
+                 "name":"Door Trigger (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"messageType\" : \"v-wirelessswitch-trigger\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
+                     "stagehand":"v-wavetrigger"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":336,
+                 "y":312
+                }, 
+                {
+                 "height":32,
+                 "id":811,
                  "name":"Lens Screw-up (wave 2)",
                  "properties":
                     {
@@ -975,6 +915,27 @@
                  "visible":true,
                  "width":16,
                  "x":496,
+                 "y":312
+                }, 
+                {
+                 "height":32,
+                 "id":812,
+                 "name":"Lens Screw-up (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 2}",
+                     "stagehand":"v-wavetrigger"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":144,
                  "y":312
                 }],
          "opacity":1,
@@ -988,7 +949,67 @@
          "draworder":"topdown",
          "id":5,
          "name":"wiring - lights & guns",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":799,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-8,
+                         "y":16
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":272,
+                 "y":328
+                }, 
+                {
+                 "height":0,
+                 "id":800,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-8,
+                         "y":16
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":312,
+                 "y":328
+                }, 
+                {
+                 "height":0,
+                 "id":801,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-8,
+                         "y":16
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":352,
+                 "y":328
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1004,10 +1025,10 @@
                 {
                  "height":8,
                  "id":735,
-                 "name":"novamonster (wave 1)",
+                 "name":"novamonster (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-novamonster\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "parameters":"{\"monsterType\" : \"v-novamonster\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -1019,16 +1040,16 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":448,
-                 "y":312
+                 "x":184,
+                 "y":96
                 }, 
                 {
                  "height":8,
-                 "id":791,
-                 "name":"oilspiller (wave 1)",
+                 "id":802,
+                 "name":"novamonster (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-oilspiller\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "parameters":"{\"monsterType\" : \"v-novamonster\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -1040,58 +1061,16 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":320,
-                 "y":336
+                 "x":216,
+                 "y":88
                 }, 
                 {
                  "height":8,
                  "id":803,
-                 "name":"oilspiller (wave 2)",
+                 "name":"novamonster (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-oilspiller\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
-                     "stagehand":"v-wavemonsterspawnpoint"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string",
-                     "stagehand":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":400,
-                 "y":184
-                }, 
-                {
-                 "height":8,
-                 "id":817,
-                 "name":"firefloater (wave 2)",
-                 "properties":
-                    {
-                     "parameters":"{\"monsterType\" : \"v-firefloater\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
-                     "stagehand":"v-wavemonsterspawnpoint"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string",
-                     "stagehand":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":456,
-                 "y":96
-                }, 
-                {
-                 "height":8,
-                 "id":826,
-                 "name":"firefloater (wave 2)",
-                 "properties":
-                    {
-                     "parameters":"{\"monsterType\" : \"v-firefloater\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
+                     "parameters":"{\"monsterType\" : \"v-novamonster\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -1104,15 +1083,15 @@
                  "visible":true,
                  "width":8,
                  "x":192,
-                 "y":96
+                 "y":128
                 }, 
                 {
                  "height":8,
-                 "id":792,
-                 "name":"oilspiller (wave 2)",
+                 "id":804,
+                 "name":"novamonster (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-oilspiller\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
+                     "parameters":"{\"monsterType\" : \"v-novamonster\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -1124,12 +1103,33 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":240,
-                 "y":184
+                 "x":224,
+                 "y":112
                 }, 
                 {
                  "height":8,
-                 "id":793,
+                 "id":805,
+                 "name":"gammaraysentry (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-gammaraysentry\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":440,
+                 "y":288
+                }, 
+                {
+                 "height":8,
+                 "id":809,
                  "name":"oilspiller (wave 1)",
                  "properties":
                     {
@@ -1146,15 +1146,15 @@
                  "visible":true,
                  "width":8,
                  "x":320,
-                 "y":448
+                 "y":328
                 }, 
                 {
                  "height":8,
-                 "id":790,
-                 "name":"novamonster (wave 1)",
+                 "id":806,
+                 "name":"gammaraysentry (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-novamonster\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "parameters":"{\"monsterType\" : \"v-gammaraysentry\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -1166,8 +1166,50 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":192,
-                 "y":320
+                 "x":208,
+                 "y":288
+                }, 
+                {
+                 "height":8,
+                 "id":807,
+                 "name":"gammaraysentry (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-gammaraysentry\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":208,
+                 "y":408
+                }, 
+                {
+                 "height":8,
+                 "id":808,
+                 "name":"gammaraysentry (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-gammaraysentry\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":440,
+                 "y":408
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1365,7 +1407,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":829,
+ "nextobjectid":819,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

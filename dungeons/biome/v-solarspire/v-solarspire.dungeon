@@ -10,7 +10,7 @@
 
     "gravity" : 70,
     "maxRadius" : 1000000,
-    "maxParts" : 15,
+    "maxParts" : 11,
     "protected" : true
   },
 
@@ -71,20 +71,6 @@
       "chance" : 1
     },
     {
-      "name" : "lens_breakage_room",
-      "rules" : [
-      ],
-      "def" : [ "tmx", "lens_breakage_room.json" ],
-      "chance" : 2
-    },
-    {
-      "name" : "lens_combat_room",
-      "rules" : [
-      ],
-      "def" : [ "tmx", "lens_combat_room.json" ],
-      "chance" : 2
-    },
-    {
       "name" : "lens_intro_room",
       "rules" : [
       ],
@@ -103,6 +89,20 @@
       "rules" : [
       ],
       "def" : [ "tmx", "upper_room2.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "upper_room3",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "upper_room3.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "upper_room4",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "upper_room4.json" ],
       "chance" : 2
     },
     {
