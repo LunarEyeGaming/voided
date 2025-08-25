@@ -89,6 +89,7 @@ function init()
   message.setHandler("v-monsterwavespawner-reset", function()
     isFixed = config.getParameter("isFixed", true)
     object.setAllOutputNodes(not isFixed)
+    state:set(isFixed and states.fix or states.screwUpNoTelegraph)
   end)
 
   materialConfigs = {}
@@ -292,7 +293,7 @@ function getMaterialProperties(material)
 end
 
 function v_canReceiveBeams()
-  return true
+  return not decorative
 end
 
 function receiveBeamState(state)
@@ -328,6 +329,17 @@ function states.screwUp()
   animator.setParticleEmitterActive("telegraphSparks", true)
   animator.playSound("sparks", -1)
   util.wait(preScrewUpSparkTime)
+
+  adjust(screwedUpAngle, screwUpTime, 0.0, preferredScrewUpDirection)
+
+  animator.setParticleEmitterActive("telegraphSparks", false)
+  animator.stopAllSounds("sparks")
+
+  state:set(states.screwedUp)
+end
+
+function states.screwUpNoTelegraph()
+  storage.isFixed = false
 
   adjust(screwedUpAngle, screwUpTime, 0.0, preferredScrewUpDirection)
 

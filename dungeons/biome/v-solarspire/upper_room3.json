@@ -276,7 +276,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"screwedUpAngle\" : 22.5, \"preferredScrewUpDirection\" : -1}"
+                     "parameters":"{\"screwedUpAngle\" : 12.5, \"preferredScrewUpDirection\" : -1}"
                     },
                  "propertytypes":
                     {
@@ -296,7 +296,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"screwedUpAngle\" : 157.5, \"preferredScrewUpDirection\" : 1}"
+                     "parameters":"{\"screwedUpAngle\" : 167.5, \"preferredScrewUpDirection\" : 1}"
                     },
                  "propertytypes":
                     {
@@ -712,19 +712,7 @@
                  "width":8,
                  "x":320,
                  "y":128
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "color":"#aaaaff",
-         "draworder":"topdown",
-         "id":11,
-         "name":"stagehands",
-         "objects":[
+                }, 
                 {
                  "gid":7726,
                  "height":16,
@@ -892,14 +880,26 @@
                  "width":8,
                  "x":432,
                  "y":440
-                }, 
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "color":"#aaaaff",
+         "draworder":"topdown",
+         "id":11,
+         "name":"stagehands",
+         "objects":[
                 {
                  "height":32,
                  "id":786,
                  "name":"Lens Screw-up (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 1}",
+                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 1, \"resetOnSubsequentWaves\" : true}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -920,7 +920,7 @@
                  "name":"Lens Screw-up (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 1}",
+                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 1, \"resetOnSubsequentWaves\" : true}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -941,7 +941,7 @@
                  "name":"Lens Screw-up (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 2}",
+                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -962,7 +962,7 @@
                  "name":"Lens Screw-up (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 2}",
+                     "parameters":"{\"messageType\" : \"v-solarLens-screwUp\", \"waveNumber\" : 2, \"resetOnSubsequentWaves\" : true}",
                      "stagehand":"v-wavetrigger"
                     },
                  "propertytypes":
@@ -1004,10 +1004,10 @@
                 {
                  "height":8,
                  "id":735,
-                 "name":"novamonster (wave 1)",
+                 "name":"novamonsterreturnable (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-novamonster\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "parameters":"{\"monsterType\" : \"v-novamonsterreturnable\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -1151,10 +1151,10 @@
                 {
                  "height":8,
                  "id":790,
-                 "name":"novamonster (wave 1)",
+                 "name":"novamonsterreturnable (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-novamonster\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "parameters":"{\"monsterType\" : \"v-novamonsterreturnable\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":

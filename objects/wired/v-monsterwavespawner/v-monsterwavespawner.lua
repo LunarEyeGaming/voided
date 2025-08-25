@@ -472,18 +472,19 @@ function activateTriggers(waveTriggers)
 
   -- For each trigger in the wave...
   for _, trigger in ipairs(waveTriggers) do
-    -- Query the targets
-    local points = vEntity.getRegionPoints(trigger.queryArea)
-    local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
+    if trigger.messageType and trigger.messageType ~= "" then
+      -- Query the targets
+      local points = vEntity.getRegionPoints(trigger.queryArea)
+      local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
+      -- sb.logInfo("Activating trigger: %s", trigger)
 
-    -- sb.logInfo("Activating trigger: %s", trigger)
+      -- Make the trigger send the messages (no error handler this time).
+      vWorldA.sendEntityMessageToTargets(triggerSuccessHandler, function() end, targets, trigger.messageType,
+          table.unpack(trigger.messageArgs))
 
-    -- Make the trigger send the messages (no error handler this time).
-    vWorldA.sendEntityMessageToTargets(triggerSuccessHandler, function() end, targets, trigger.messageType,
-        table.unpack(trigger.messageArgs))
-
-    if trigger.delay > 0 then
-      util.wait(trigger.delay)
+      if trigger.delay > 0 then
+        util.wait(trigger.delay)
+      end
     end
   end
 

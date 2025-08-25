@@ -257,22 +257,24 @@ function activateTriggers(waveTriggers)
 
     -- For each trigger in the wave...
     for _, trigger in ipairs(waveTriggers) do
-      util.wait(math.max(0.05, trigger.delay))  -- This makes it wait at least a certain amount of time
+      if trigger.messageType and trigger.messageType ~= "" then
+        util.wait(math.max(0.05, trigger.delay))  -- This makes it wait at least a certain amount of time
 
-      animator.playSound("lightningStrike")
+        animator.playSound("lightningStrike")
 
-      -- Query the targets
-      local points = vEntity.getRegionPoints(trigger.queryArea)
-      local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
+        -- Query the targets
+        local points = vEntity.getRegionPoints(trigger.queryArea)
+        local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
 
-      local endPosition = vec2.add(object.position(), rect.center(trigger.queryArea))
-      lightningController:add(portalLightningStartPosition, endPosition)
+        local endPosition = vec2.add(object.position(), rect.center(trigger.queryArea))
+        lightningController:add(portalLightningStartPosition, endPosition)
 
-      -- sb.logInfo("Activating trigger: %s", trigger)
+        -- sb.logInfo("Activating trigger: %s", trigger)
 
-      -- Make the trigger send the messages (no error handler this time).
-      vWorldA.sendEntityMessageToTargets(triggerSuccessHandler, function() end, targets, trigger.messageType,
-          table.unpack(trigger.messageArgs))
+        -- Make the trigger send the messages (no error handler this time).
+        vWorldA.sendEntityMessageToTargets(triggerSuccessHandler, function() end, targets, trigger.messageType,
+            table.unpack(trigger.messageArgs))
+      end
     end
 
     animator.setParticleEmitterActive("portalsparks", false)
