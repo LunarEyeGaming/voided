@@ -25,7 +25,7 @@
     {
       "name" : "lower_room1",
       "rules" : [
-        [ "maxSpawnCount", [2] ]
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "lower_room1.json" ],
       "chance" : 2
@@ -33,7 +33,7 @@
     {
       "name" : "lower_room2",
       "rules" : [
-        [ "maxSpawnCount", [2] ]
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "lower_room2.json" ],
       "chance" : 2
@@ -41,7 +41,7 @@
     {
       "name" : "lower_room3",
       "rules" : [
-        [ "maxSpawnCount", [2] ]
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "lower_room3.json" ],
       "chance" : 2
@@ -49,7 +49,7 @@
     {
       "name" : "lower_room4",
       "rules" : [
-        [ "maxSpawnCount", [2] ]
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "lower_room4.json" ],
       "chance" : 2
@@ -57,7 +57,7 @@
     {
       "name" : "lower_room5",
       "rules" : [
-        [ "maxSpawnCount", [2] ]
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "lower_room5.json" ],
       "chance" : 2
@@ -80,6 +80,7 @@
     {
       "name" : "upper_room1",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "upper_room1.json" ],
       "chance" : 2
@@ -87,6 +88,7 @@
     {
       "name" : "upper_room2",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "upper_room2.json" ],
       "chance" : 2
@@ -94,6 +96,7 @@
     {
       "name" : "upper_room3",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "upper_room3.json" ],
       "chance" : 2
@@ -101,8 +104,33 @@
     {
       "name" : "upper_room4",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "upper_room4.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "upper_room5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "upper_room5.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "upper_room6",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "upper_room6.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "miniboss_room",
+      "rules" : [
+        [ "maxSpawnCount", [1] ], [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "miniboss_room.json" ],
       "chance" : 2
     },
     {
