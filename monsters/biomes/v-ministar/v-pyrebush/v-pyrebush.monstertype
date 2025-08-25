@@ -52,7 +52,7 @@
             "projectileType" : "v-pyrebushflame",
             "projectileParameters" : {
               "power" : 10,
-              "speed" : 50
+              "speed" : 30
             },
             "fireOffset" : [0.5, 0.75],
             "projectileCount" : 6,
@@ -64,8 +64,7 @@
             "holdAim" : true,
 
             "fireArc": true,
-            "projectileSpeed": 50,
-            "gravityMultiplier": 0.6,
+            "projectileSpeed": 30,
 
             "winddownState" : "idle",
             "winddownTime" : 0.5

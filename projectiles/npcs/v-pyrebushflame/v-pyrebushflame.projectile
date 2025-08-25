@@ -1,6 +1,9 @@
 {
   "projectileName" : "v-pyrebushflame",
   "physics" : "stickygrenade",
+  "movementSettings" : {
+    "gravityMultiplier" : 0.4
+  },
   "bounces" : -1,
   "timeToLive" : 10,
   "speed" : 50,
