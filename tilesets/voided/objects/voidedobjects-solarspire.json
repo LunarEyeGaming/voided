@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-solarspire",
  "spacing":0,
- "tilecount":12,
+ "tilecount":14,
  "tiledversion":"1.11.2",
  "tileheight":256,
  "tileproperties":
@@ -40,6 +40,20 @@
          "imagePositionX":"0",
          "imagePositionY":"0",
          "object":"v-solarlightsensordecorative",
+         "tilesetDirection":"right"
+        },
+     "12":
+        {
+         "imagePositionX":"-40",
+         "imagePositionY":"-40",
+         "object":"v-spireportalcrystal",
+         "tilesetDirection":"right"
+        },
+     "13":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"0",
+         "object":"v-spireportal",
          "tilesetDirection":"right"
         },
      "2":
@@ -130,6 +144,20 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "12":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "13":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "2":
         {
          "imagePositionX":"string",
@@ -213,6 +241,18 @@
          "imageheight":8,
          "imagewidth":16
         },
+     "12":
+        {
+         "image":"..\/images\/objects\/spireportalcrystal.png",
+         "imageheight":72,
+         "imagewidth":96
+        },
+     "13":
+        {
+         "image":"..\/images\/objects\/spireportal.png",
+         "imageheight":200,
+         "imagewidth":160
+        },
      "2":
         {
          "image":"..\/images\/objects\/spirespawner.png",
@@ -262,7 +302,7 @@
          "imagewidth":8
         }
     },
- "tilewidth":40,
+ "tilewidth":160,
  "type":"tileset",
  "version":1.1
 }

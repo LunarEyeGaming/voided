@@ -1,0 +1,35 @@
+{
+  "objectName" : "v-spireportalcrystal",
+  "colonyTags" : [ ],
+  "printable" : false,
+  "rarity" : "Legendary",
+  "description" : "<todo>",
+  "shortdescription" : "Spire Portal Crystal",
+  "race" : "generic",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "decorative",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "spireportalcrystal.png" } ],
+      "imagePosition" : [-40, -40],
+
+      "spaceScan" : 0.1
+    }
+  ],
+
+  "health" : 5,
+  "smashOnBreak" : true,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

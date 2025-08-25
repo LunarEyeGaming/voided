@@ -1,0 +1,28 @@
+{
+  "frameGrid" : {
+    "size" : [130, 130],
+    "dimensions" : [7, 4],
+    "names" : [
+      [ "open.1", "open.2", "open.3", "open.4", "open.5", "open.6", "open.7" ],
+      [ "opened.1", "opened.2" ],
+      [ "unlink.1", "unlink.2", "unlink.3", "unlink.4", "unlink.5", "unlink.6", "unlink.7" ],
+      [ "unlinked.1" ]
+    ]
+  },
+  "aliases" : {
+    "close.1" : "open.7",
+    "close.2" : "open.6",
+    "close.3" : "open.5",
+    "close.4" : "open.4",
+    "close.5" : "open.3",
+    "close.6" : "open.2",
+    "close.7" : "open.1",
+    "relink.1" : "unlink.7",
+    "relink.2" : "unlink.6",
+    "relink.3" : "unlink.5",
+    "relink.4" : "unlink.4",
+    "relink.5" : "unlink.3",
+    "relink.6" : "unlink.2",
+    "relink.7" : "unlink.1"
+  }
+}

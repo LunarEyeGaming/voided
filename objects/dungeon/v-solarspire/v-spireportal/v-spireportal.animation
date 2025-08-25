@@ -1,0 +1,105 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "portal" : {
+        "default" : "closed",
+        "states" : {
+          "closed" : {},
+          "open" : {
+            "frames" : 7,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "opened"
+          },
+          "opened" : {
+            "frames" : 2,
+            "cycle" : 0.1,
+            "mode" : "loop"
+          },
+          "close" : {
+            "frames" : 7,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "closed"
+          },
+          "unlink" : {
+            "frames" : 7,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "unlinked"
+          },
+          "unlinked" : {},
+          "relink" : {
+            "frames" : 7,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "opened"
+          }
+        }
+      }
+    },
+    "parts" : {
+      "base" : {
+        "properties" : {
+          "image" : "<partImage>",
+          "centered" : false,
+          "fullbright" : true
+        }
+      },
+      "baselit" : {
+        "properties" : {
+          "image" : "<partImage>",
+          "centered" : false,
+          "zLevel" : 1
+        }
+      },
+      "portal" : {
+        "properties" : {
+          "fullbright" : true,
+          "centered" : false,
+          "zLevel" : -1
+        },
+        "partStates" : {
+          "portal" : {
+            "open" : {
+              "properties" : {
+                "image" : "<partImage>:open.<frame>"
+              }
+            },
+            "opened" : {
+              "properties" : {
+                "image" : "<partImage>:opened.<frame>"
+              }
+            },
+            "close" : {
+              "properties" : {
+                "image" : "<partImage>:close.<frame>"
+              }
+            },
+            "unlink" : {
+              "properties" : {
+                "image" : "<partImage>:unlink.<frame>"
+              }
+            },
+            "unlinked" : {
+              "properties" : {
+                "image" : "<partImage>:unlinked.<frame>"
+              }
+            },
+            "relink" : {
+              "properties" : {
+                "image" : "<partImage>:relink.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+  },
+
+  "sounds" : {
+  }
+}

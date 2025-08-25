@@ -1,0 +1,43 @@
+{
+  "objectName" : "v-spireportal",
+  "colonyTags" : [ ],
+  "printable" : false,
+  "rarity" : "Legendary",
+  "description" : "<todo>",
+  "shortdescription" : "Spire Portal",
+  "race" : "generic",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "decorative",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "base.png" } ],
+      "imagePosition" : [0, 0],
+
+      "renderLayer" : "Object-10"
+    }
+  ],
+
+  "animation" : "v-spireportal.animation",
+  "animationPosition" : [0, 0],
+  "animationParts" : {
+    "base" : "base.png",
+    "baselit" : "baselit.png",
+    "portal" : "portal.png"
+  },
+
+  "health" : 5,
+  "smashOnBreak" : true,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}
