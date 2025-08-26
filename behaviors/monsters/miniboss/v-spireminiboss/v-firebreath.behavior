@@ -1,10 +1,11 @@
 {
   "name": "v-spireminiboss-firebreath",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/movement.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/projectiles.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua"
   ],
   "parameters": {
@@ -23,18 +24,24 @@
     },
     "children": [
       {
-        "title": "v-approach-rangedfly",
-        "type": "module",
-        "name": "v-approach-rangedfly",
-        "parameters": {
-          "minRange": {"value": 10},
-          "maxRange": {"value": 20},
-          "speed": {"value": 50},
-          "controlForce": {"value": 75},
-          "flyState": {"value": "idle"},
-          "usePathfinding": {"value": true},
-          "idleState": {"value": "idle"},
-          "faceDirection": {"value": true}
+        "title": "failer",
+        "type": "decorator",
+        "name": "failer",
+        "parameters": {},
+        "child": {
+          "title": "v-approach-rangedfly",
+          "type": "module",
+          "name": "v-approach-rangedfly",
+          "parameters": {
+            "minRange": {"value": 10},
+            "maxRange": {"value": 20},
+            "speed": {"value": 25},
+            "controlForce": {"value": 75},
+            "flyState": {"value": "idle"},
+            "usePathfinding": {"value": true},
+            "idleState": {"value": "idle"},
+            "faceDirection": {"value": true}
+          }
         }
       },
       {
@@ -42,7 +49,7 @@
         "type": "decorator",
         "name": "repeater",
         "parameters": {
-          "maxLoops": {"value": 50},
+          "maxLoops": {"value": 75},
           "untilSuccess": {"value": false}
         },
         "child": {
@@ -145,6 +152,15 @@
                 "sourceEntity": {"key": "self"},
                 "trackSource": {"value": false},
                 "uniqueRepeatGroup": {"value": true}
+              }
+            },
+            {
+              "title": "playSound",
+              "type": "action",
+              "name": "playSound",
+              "parameters": {
+                "loops": {"value": 0},
+                "sound": {"value": "fire"}
               }
             },
             {

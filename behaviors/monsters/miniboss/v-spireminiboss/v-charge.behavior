@@ -2,136 +2,225 @@
   "name": "v-spireminiboss-charge",
   "description": "",
   "scripts": [
+    "/scripts/actions/entity.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/movement.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
-    "/scripts/actions/movement.lua",
-    "/scripts/actions/math.lua",
-    "/scripts/actions/entity.lua"
+    "/scripts/actions/math.lua"
   ],
   "parameters": {},
   "root": {
-    "title": "sequence",
-    "type": "composite",
-    "name": "sequence",
-    "parameters": {},
-    "children": [
-      {
-        "title": "v_stop",
-        "type": "action",
-        "name": "v_stop",
-        "parameters": {
-          "stopForce": {"value": 50}
-        }
-      },
-      {
-        "title": "setAnimationState",
-        "type": "action",
-        "name": "setAnimationState",
-        "parameters": {
-          "state": {"value": "chargewindup"},
-          "type": {"value": "body"}
-        }
-      },
-      {
-        "title": "timer",
-        "type": "action",
-        "name": "timer",
-        "parameters": {
-          "time": {"value": 1}
-        }
-      },
-      {
-        "title": "entityDirection",
-        "type": "action",
-        "name": "entityDirection",
-        "parameters": {
-          "entity": {"key": "self"},
-          "target": {"key": "target"}
-        },
-        "output": {
-          "vector": "aimDirection"
-        }
-      },
-      {
-        "title": "vecAngle",
-        "type": "action",
-        "name": "vecAngle",
-        "parameters": {
-          "vector": {"key": "aimDirection"}
-        },
-        "output": {
-          "angle": "aimAngle"
-        }
-      },
-      {
-        "title": "setAnimationState",
-        "type": "action",
-        "name": "setAnimationState",
-        "parameters": {
-          "state": {"value": "charge"},
-          "type": {"value": "body"}
-        }
-      },
-      {
-        "title": "setDamageOnTouch",
-        "type": "action",
-        "name": "setDamageOnTouch",
-        "parameters": {
-          "touchDamage": {"value": true}
-        }
-      },
-      {
-        "title": "parallel",
-        "type": "composite",
-        "name": "parallel",
-        "parameters": {
-          "fail": {"value": -1},
-          "success": {"value": 1}
-        },
-        "children": [
-          {
-            "title": "failer",
-            "type": "decorator",
-            "name": "failer",
-            "parameters": {},
-            "child": {
-              "title": "controlApproachVelocityAlongAngle",
+    "title": "repeater",
+    "type": "decorator",
+    "name": "repeater",
+    "parameters": {
+      "maxLoops": {"value": 3},
+      "untilSuccess": {"value": false}
+    },
+    "child": {
+      "title": "sequence",
+      "type": "composite",
+      "name": "sequence",
+      "parameters": {},
+      "children": [
+        {
+          "title": "dynamic",
+          "type": "composite",
+          "name": "dynamic",
+          "parameters": {},
+          "children": [
+            {
+              "title": "entityInSight",
               "type": "action",
-              "name": "controlApproachVelocityAlongAngle",
+              "name": "entityInSight",
               "parameters": {
-                "angle": {"key": "aimAngle"},
-                "force": {"value": 500},
-                "velocity": {"value": 50}
+                "entity": {"key": "target"}
+              }
+            },
+            {
+              "title": "parallel",
+              "type": "composite",
+              "name": "parallel",
+              "parameters": {
+                "fail": {"value": -1},
+                "success": {"value": 1}
+              },
+              "children": [
+                {
+                  "title": "failer",
+                  "type": "decorator",
+                  "name": "failer",
+                  "parameters": {},
+                  "child": {
+                    "title": "entityPosition",
+                    "type": "action",
+                    "name": "entityPosition",
+                    "parameters": {
+                      "entity": {"key": "target"}
+                    },
+                    "output": {
+                      "position": "targetPos"
+                    }
+                  }
+                },
+                {
+                  "title": "moveToPosition",
+                  "type": "action",
+                  "name": "moveToPosition",
+                  "parameters": {
+                    "avoidLiquid": {"value": false},
+                    "groundPosition": {"value": false},
+                    "maxGround": {"value": 5},
+                    "minGround": {"value": -5},
+                    "closeDoors": {"value": false},
+                    "position": {"key": "targetPos"},
+                    "run": {"value": false}
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "v_stop",
+          "type": "action",
+          "name": "v_stop",
+          "parameters": {
+            "stopForce": {"value": 50}
+          }
+        },
+        {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"value": "chargewindup"},
+            "type": {"value": "body"}
+          }
+        },
+        {
+          "title": "timer",
+          "type": "action",
+          "name": "timer",
+          "parameters": {
+            "time": {"value": 1}
+          }
+        },
+        {
+          "title": "entityDirection",
+          "type": "action",
+          "name": "entityDirection",
+          "parameters": {
+            "entity": {"key": "self"},
+            "target": {"key": "target"}
+          },
+          "output": {
+            "vector": "aimDirection"
+          }
+        },
+        {
+          "title": "vecAngle",
+          "type": "action",
+          "name": "vecAngle",
+          "parameters": {
+            "vector": {"key": "aimDirection"}
+          },
+          "output": {
+            "angle": "aimAngle"
+          }
+        },
+        {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"value": "charge"},
+            "type": {"value": "body"}
+          }
+        },
+        {
+          "title": "playSound",
+          "type": "action",
+          "name": "playSound",
+          "parameters": {
+            "loops": {"value": 0},
+            "sound": {"value": "charge"}
+          }
+        },
+        {
+          "title": "setDamageOnTouch",
+          "type": "action",
+          "name": "setDamageOnTouch",
+          "parameters": {
+            "touchDamage": {"value": true}
+          }
+        },
+        {
+          "title": "parallel",
+          "type": "composite",
+          "name": "parallel",
+          "parameters": {
+            "fail": {"value": -1},
+            "success": {"value": 1}
+          },
+          "children": [
+            {
+              "title": "failer",
+              "type": "decorator",
+              "name": "failer",
+              "parameters": {},
+              "child": {
+                "title": "controlDown",
+                "type": "action",
+                "name": "controlDown",
+                "parameters": {}
+              }
+            },
+            {
+              "title": "failer",
+              "type": "decorator",
+              "name": "failer",
+              "parameters": {},
+              "child": {
+                "title": "controlApproachVelocityAlongAngle",
+                "type": "action",
+                "name": "controlApproachVelocityAlongAngle",
+                "parameters": {
+                  "angle": {"key": "aimAngle"},
+                  "force": {"value": 500},
+                  "velocity": {"value": 50}
+                }
+              }
+            },
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"value": 0.75}
               }
             }
-          },
-          {
-            "title": "timer",
-            "type": "action",
-            "name": "timer",
-            "parameters": {
-              "time": {"value": 0.75}
-            }
+          ]
+        },
+        {
+          "title": "setDamageOnTouch",
+          "type": "action",
+          "name": "setDamageOnTouch",
+          "parameters": {
+            "touchDamage": {"value": false}
           }
-        ]
-      },
-      {
-        "title": "setDamageOnTouch",
-        "type": "action",
-        "name": "setDamageOnTouch",
-        "parameters": {
-          "touchDamage": {"value": false}
+        },
+        {
+          "title": "v_stop",
+          "type": "action",
+          "name": "v_stop",
+          "parameters": {
+            "stopForce": {"value": 500}
+          }
         }
-      },
-      {
-        "title": "v_stop",
-        "type": "action",
-        "name": "v_stop",
-        "parameters": {
-          "stopForce": {"value": 500}
-        }
-      }
-    ]
+      ]
+    }
   }
 }

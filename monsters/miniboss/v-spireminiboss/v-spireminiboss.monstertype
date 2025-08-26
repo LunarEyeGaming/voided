@@ -32,9 +32,11 @@
     "metaBoundBox" : [-4, -4, 4, 4],
     "scale" : 1.0,
 
+    "selfDamagePoly" : [ [4, 4], [-4, 4], [-4, -4], [4, -4] ],
+
     "movementSettings" : {
       "gravityEnabled" : false,
-      "collisionPoly" : [ [5, 5], [-5, 5], [-5, -5], [5, -5] ],
+      "collisionPoly" : [ [1, 1], [-1, 1], [-1, -1], [1, -1] ],
 
       "mass" : 4.0,
       "walkSpeed" : 5,

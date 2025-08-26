@@ -12,7 +12,11 @@
           "firewindup" : {
             "frames" : 1,
             "cycle" : 1,
-            "mode" : "loop"
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_spireminiboss_magmaglob_windup.ogg",
+              "immediateSoundRangeMultiplier" : 2
+            }
           },
           "fire" : {
             "frames" : 1,
@@ -113,6 +117,14 @@
 
   "sounds" : {
     "aggroHop" : [ ],
-    "deathPuff" : [ "/sfx/npc/miniboss/v_laboratoryminiboss_explode.ogg" ]
+    "deathPuff" : [ "/sfx/npc/miniboss/v_laboratoryminiboss_explode.ogg" ],
+    "fire" : {
+      "pool" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ],
+      "rangeMultiplier" : 2
+    },
+    "charge" : {
+      "pool" : [ "/sfx/npc/quadruped/tiger_pain1.ogg", "/sfx/npc/quadruped/tiger_pain2.ogg" ],
+      "rangeMultiplier" : 2
+    }
   }
 }

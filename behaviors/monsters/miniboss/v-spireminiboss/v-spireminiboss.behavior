@@ -5,7 +5,6 @@
     "/scripts/actions/entity.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/status.lua",
-    "/scripts/actions/movement.lua",
     "/scripts/actions/monster.lua",
     "/scripts/actions/miniboss/v-cityminiboss.lua",
     "/scripts/actions/time.lua"
@@ -82,12 +81,6 @@
                       "percentage": {"value": 0},
                       "resource": {"value": "health"}
                     }
-                  },
-                  {
-                    "title": "controlDown",
-                    "type": "action",
-                    "name": "controlDown",
-                    "parameters": {}
                   },
                   {
                     "title": "Reset",
@@ -178,26 +171,56 @@
                                           "parameters": {},
                                           "children": [
                                             {
-                                              "title": "v-spireminiboss-stickyglobs",
-                                              "type": "module",
-                                              "name": "v-spireminiboss-stickyglobs",
-                                              "parameters": {}
-                                            },
-                                            {
-                                              "title": "v-spireminiboss-charge",
-                                              "type": "module",
-                                              "name": "v-spireminiboss-charge",
-                                              "parameters": {}
-                                            },
-                                            {
-                                              "title": "v-spireminiboss-firebreath",
-                                              "type": "module",
-                                              "name": "v-spireminiboss-firebreath",
+                                              "title": "cooldown",
+                                              "type": "decorator",
+                                              "name": "cooldown",
                                               "parameters": {
-                                                "fireArc": {"value": true},
-                                                "highArc": {"value": false},
-                                                "projectileInterval": {"value": 1.5},
-                                                "projectileType": {"value": "flame"}
+                                                "cooldown": {"value": 10},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
+                                              },
+                                              "child": {
+                                                "title": "v-spireminiboss-stickyglobs",
+                                                "type": "module",
+                                                "name": "v-spireminiboss-stickyglobs",
+                                                "parameters": {}
+                                              }
+                                            },
+                                            {
+                                              "title": "cooldown",
+                                              "type": "decorator",
+                                              "name": "cooldown",
+                                              "parameters": {
+                                                "cooldown": {"value": 10},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
+                                              },
+                                              "child": {
+                                                "title": "v-spireminiboss-charge",
+                                                "type": "module",
+                                                "name": "v-spireminiboss-charge",
+                                                "parameters": {}
+                                              }
+                                            },
+                                            {
+                                              "title": "cooldown",
+                                              "type": "decorator",
+                                              "name": "cooldown",
+                                              "parameters": {
+                                                "cooldown": {"value": 10},
+                                                "onFail": {"value": false},
+                                                "onSuccess": {"value": true}
+                                              },
+                                              "child": {
+                                                "title": "v-spireminiboss-firebreath",
+                                                "type": "module",
+                                                "name": "v-spireminiboss-firebreath",
+                                                "parameters": {
+                                                  "fireArc": {"value": true},
+                                                  "highArc": {"value": false},
+                                                  "projectileInterval": {"value": 1.5},
+                                                  "projectileType": {"value": "flame"}
+                                                }
                                               }
                                             }
                                           ]

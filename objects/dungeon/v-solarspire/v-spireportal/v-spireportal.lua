@@ -61,7 +61,7 @@ function init()
       func = states.rotatingHazard,
       config = {
         startAngle = math.pi / 2,
-        endAngle = 2 * math.pi + math.pi / 2,
+        endAngle = math.pi / 2,
         damageSource = {  ---@type DamageSource
           damage = 40,
           damageSourceKind = "fire",
@@ -85,7 +85,7 @@ function init()
           { type = "v-pyrebush", count = 2, destination = "forest", onGround = true },
           { type = "v-rammingasteroid", count = 1, destination = "asteroids", onGround = false },
           { type = "v-lurkano", count = 2, destination = "caves", onGround = true },
-          { type = "v-firefloater", count = 2, destination = "sky", onGround = false }
+          { type = "v-firefloater", count = 4, destination = "sky", onGround = false }
         },
         startOffsetRegion = {-5, -5, 5, 5},
         airOffsetRegion = {-24, -24, 24, 24},
@@ -180,8 +180,8 @@ function states.rotatingHazard(cfg)
     beamEnd = vMinistar.lightLineTileCollision(center, beamEnd) or beamEnd
     local mag = world.magnitude(center, beamEnd)
     local damagePoly = poly.translate({
-      vec2.rotate({0, cfg.damagePolyThickness}, angle),
-      vec2.rotate({0, -cfg.damagePolyThickness}, angle),
+      vec2.rotate({-10, cfg.damagePolyThickness}, angle),
+      vec2.rotate({-10, -cfg.damagePolyThickness}, angle),
       vec2.rotate({mag, -cfg.damagePolyThickness}, angle),
       vec2.rotate({mag, cfg.damagePolyThickness}, angle),
     }, centerOffset)

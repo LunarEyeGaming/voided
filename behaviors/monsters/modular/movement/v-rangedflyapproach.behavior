@@ -1,6 +1,6 @@
 {
   "name": "v-approach-rangedfly",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/animator.lua",
     "/scripts/actions/world.lua",
@@ -117,6 +117,7 @@
                       "groundPosition": {"value": false},
                       "maxGround": {"value": 5},
                       "minGround": {"value": -5},
+                      "closeDoors": {"value": false},
                       "position": {"key": "targetPosition"},
                       "run": {"value": false}
                     }

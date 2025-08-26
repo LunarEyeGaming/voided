@@ -2,8 +2,8 @@
   "name": "v-spireminiboss-stickyglobs",
   "description": "",
   "scripts": [
-    "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/projectiles.lua"
@@ -46,6 +46,14 @@
           "name": "sequence",
           "parameters": {},
           "children": [
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"value": 1}
+              }
+            },
             {
               "title": "setAnimationState",
               "type": "action",
@@ -160,7 +168,7 @@
                 "aimVector": {"key": "aimVector"},
                 "offset": {"value": [0, 0]},
                 "position": {"key": "self"},
-                "projectileConfig": {"value": {"power": 15}},
+                "projectileConfig": {"value": {"power": 10}},
                 "projectileType": {"key": "<projectileType>"},
                 "scalePower": {"value": true},
                 "sourceEntity": {"key": "self"},
@@ -169,11 +177,12 @@
               }
             },
             {
-              "title": "timer",
+              "title": "playSound",
               "type": "action",
-              "name": "timer",
+              "name": "playSound",
               "parameters": {
-                "time": {"value": 1}
+                "loops": {"value": 0},
+                "sound": {"value": "fire"}
               }
             }
           ]
