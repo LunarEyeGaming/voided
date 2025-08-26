@@ -1,6 +1,7 @@
 {
   "globalTagDefaults" : {
-    "destination" : "none"
+    "destination" : "none",
+    "opacity" : "00"
   },
   "animatedParts" : {
     "stateTypes" : {
@@ -12,18 +13,27 @@
             "frames" : 7,
             "cycle" : 0.3,
             "mode" : "transition",
-            "transition" : "opened"
+            "transition" : "opened",
+            "properties" : {
+              "immediateSound" : "/sfx/projectiles/gravitymine_detonate.ogg"
+            }
           },
           "opened" : {
             "frames" : 2,
             "cycle" : 0.1,
-            "mode" : "loop"
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/npc/boss/tentacleboss_portal_loop.ogg"
+            }
           },
           "close" : {
             "frames" : 7,
             "cycle" : 0.3,
             "mode" : "transition",
-            "transition" : "closed"
+            "transition" : "closed",
+            "properties" : {
+              "immediateSound" : "/sfx/projectiles/astraltear_stop2.ogg"
+            }
           },
           "unlink" : {
             "frames" : 7,
@@ -45,6 +55,13 @@
         "states" : {
           "off" : {},
           "on" : {}
+        }
+      },
+      "portalshockwave" : {
+        "default" : "invisible",
+        "states" : {
+          "invisible" : {},
+          "visible" : {}
         }
       }
     },
@@ -104,6 +121,43 @@
           }
         }
       },
+      "portaldestination" : {
+        "properties" : {
+          "fullbright" : true,
+          "centered" : false,
+          "zLevel" : -1,
+          "offset" : [1.875, 1.75]
+        },
+        "partStates" : {
+          "portal" : {
+            "open" : {
+              "properties" : {
+                "image" : "destination/<destination>.png:open.<frame>"
+              }
+            },
+            "opened" : {
+              "properties" : {
+                "image" : "destination/<destination>.png:opened.<frame>"
+              }
+            },
+            "close" : {
+              "properties" : {
+                "image" : "destination/<destination>.png:close.<frame>"
+              }
+            },
+            "unlink" : {
+              "properties" : {
+                "image" : "destination/<destination>.png:close.<frame>"
+              }
+            },
+            "relink" : {
+              "properties" : {
+                "image" : "destination/<destination>.png:open.<frame>"
+              }
+            }
+          }
+        }
+      },
       "sunbeam" : {
         "properties" : {
           "offset" : [10, 10],
@@ -121,14 +175,50 @@
             }
           }
         }
+      },
+      "portalshockwave" : {
+        "properties" : {
+          "offset" : [10, 10],
+          "centered" : true,
+          "fullbright" : true,
+          "zLevel" : 3,
+          "transformationGroups" : [ "portalshockwave" ]
+        },
+        "partStates" : {
+          "portalshockwave" : {
+            "visible" : {
+              "properties" : {
+                "image" : "<partImage>?multiply=ffffff<opacity>"
+              }
+            }
+          }
+        }
       }
     }
   },
 
+  "particleEmitters" : {
+    "portalsparks" : {
+      "burstCount" : 20,
+      "emissionRate" : 30,
+      "offsetRegion" : [3, 3, 17, 17],
+      "particles" : [
+        { "particle" : "v-portalspark" }
+      ]
+    }
+  },
+
   "transformationGroups" : {
-    "sunbeam" : {"interpolated" : true}
+    "sunbeam" : {"interpolated" : true},
+    "portalshockwave" : {"interpolated" : true}
   },
 
   "sounds" : {
+    "explosion" : [ "/sfx/npc/boss/guardian_death_explosion.ogg" ],
+    "firstSpark" : [ "/sfx/melee/tesla_shock_kill.ogg" ],
+    "sparks" : [ "/sfx/npc/boss/ufo_stunned.ogg" ],
+    "error" : [ "/sfx/interface/clickon_error.ogg" ],
+    "lightningStrike" : [ "/sfx/projectiles/plasma3.ogg" ],
+    "lightningStrikeBig" : [ "/sfx/gun/rocket_electric1.ogg" ]
   }
 }

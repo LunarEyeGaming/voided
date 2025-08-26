@@ -1462,6 +1462,14 @@
                  "height":72,
                  "id":882,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"uniqueId\" : \"v-spirecrystal\"}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1479,6 +1487,18 @@
                  "visible":true,
                  "width":160,
                  "x":680,
+                 "y":800
+                }, 
+                {
+                 "gid":2147484527,
+                 "height":24,
+                 "id":892,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":656,
                  "y":800
                 }],
          "opacity":1,
@@ -1499,7 +1519,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"music\" : [\"\/music\/gravitational-collapse-loop.ogg\"], \"defaultMusic\" : [\"\/music\/arctic-battle1-loop.ogg\"], \"uniqueId\" : \"v-spireminibossmusic\"}",
+                     "parameters":"{\"music\" : [\"\/music\/arctic-battle2-loop.ogg\"], \"defaultMusic\" : [\"\/music\/arctic-battle1-loop.ogg\"], \"uniqueId\" : \"v-spireminibossmusic\"}",
                      "stagehand":"v-cityminibossmusic"
                     },
                  "propertytypes":
@@ -1516,7 +1536,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1525,7 +1545,27 @@
          "draworder":"topdown",
          "id":5,
          "name":"wiring - lights & guns",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":893,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":16,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":664,
+                 "y":792
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1537,28 +1577,7 @@
          "draworder":"topdown",
          "id":6,
          "name":"monsters & npcs",
-         "objects":[
-                {
-                 "height":8,
-                 "id":890,
-                 "name":"",
-                 "properties":
-                    {
-                     "monster":"v-spireminiboss",
-                     "parameters":"{\"musicStagehands\" : [\"v-spireminibossmusic\"], \"uniqueId\" : \"v-spireminiboss\"}"
-                    },
-                 "propertytypes":
-                    {
-                     "monster":"string",
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":760,
-                 "y":592
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1570,7 +1589,47 @@
          "draworder":"topdown",
          "id":7,
          "name":"wiring - locked door",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":894,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-112,
+                         "y":536
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":688,
+                 "y":792
+                }, 
+                {
+                 "height":0,
+                 "id":895,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":248,
+                         "y":536
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":688,
+                 "y":792
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1635,7 +1694,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":892,
+ "nextobjectid":896,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

@@ -1,0 +1,19 @@
+{
+  "name" : "v-spireportalheat",
+  "effectConfig" : {
+    "startColor" : [218, 83, 2, 0],
+    "endColor" : [253, 143, 77, 127],
+    "transitionTime" : 1.0,
+
+    "burnDamage" : 20,
+    "tickTime" : 0.5,
+    "tickDelay" : 1.0
+  },
+  "defaultDuration" : 0.1,
+
+  "animationConfig" : "v-spireportalheat.animation",
+
+  "scripts" : [
+    "v-spireportalheat.lua"
+  ]
+}

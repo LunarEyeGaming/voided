@@ -44,16 +44,35 @@
     "base" : "base.png",
     "baselit" : "baselit.png",
     "portal" : "portal.png",
-    "sunbeam" : "sunbeam.png"
+    "sunbeam" : "sunbeam.png",
+    "portalshockwave" : "portalshockwave.png"
   },
 
   "health" : 5,
   "smashOnBreak" : true,
 
+  "inputNodes" : [ [0, 0] ],
+  "outputNodes" : [ [1, 0] ],
+
   "animationScripts" : [ "/objects/dungeon/v-solarspire/v-spirespawner/v-spirespawnerlightning.lua" ],
 
   "scripts" : [ "v-spireportal.lua" ],
   "scriptDelta" : 1,
+
+  "dungeonMusic" : {
+    "preIntro" : {
+      "music" : ["/music/temple-of-kluex.ogg"],
+      "fadeTime" : 2.0
+    },
+    "postIntro" : {
+      "music" : ["/music/arctic-battle1-loop.ogg"],
+      "fadeTime" : 2.0
+    }
+  },
+
+  "playerTeleportQueryRegion" : [-20, -25, 40, 35],
+  "playerDetectQueryRegion" : [-20, 0, 40, 35],
+  "arenaRegion" : [-20, -25, 40, 35],
 
   "portalLightningStartOffset" : [0.5, 0.5],
   "portalLightningFadeTime" : 0.5,
@@ -69,6 +88,15 @@
     "forkAngleRange" : 0.45,
     "width" : 2,
     "outlineWidth" : 2
+  },
+
+  "portalLightningBigConfig" : {
+    "displacement" : 6.0,
+    "minDisplacement" : 2.0,
+    "forks" : 1,
+    "forkAngleRange" : 0.45,
+    "width" : 5,
+    "outlineWidth" : 5
   },
 
   "builder" : "/items/buildscripts/v-builditem.lua"

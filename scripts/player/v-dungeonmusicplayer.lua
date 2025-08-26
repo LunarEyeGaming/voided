@@ -19,6 +19,8 @@ local prevDungeonId
 local musicOverridden
 local playingDungeonMusic
 
+local manualMusicSwitchTrigger
+
 function init()
   musicOverridden = false
 
@@ -31,6 +33,12 @@ function init()
   message.setHandler("v-dungeonmusicplayer-unsetOverride", function()
     musicOverridden = false
   end)
+
+  message.setHandler("v-dungeonmusicplayer-forceSwitch", function()
+    manualMusicSwitchTrigger = true
+  end)
+
+  manualMusicSwitchTrigger = false
 end
 
 function update(dt)
@@ -52,7 +60,7 @@ function update(dt)
   local dungeonId = world.dungeonId(mcontroller.position())
 
   -- If the dungeon ID changed...
-  if prevDungeonId ~= dungeonId then
+  if prevDungeonId ~= dungeonId or manualMusicSwitchTrigger then
     -- The dungeonMusic object contains string keys, but dungeonId is a number, so it has to be converted to a string.
     local dungeonMusicEntry = dungeonMusic[tostring(dungeonId)]
     -- If the dungeon music for the current dungeon ID is defined...
@@ -71,4 +79,6 @@ function update(dt)
   end
 
   prevDungeonId = dungeonId
+
+  manualMusicSwitchTrigger = false
 end

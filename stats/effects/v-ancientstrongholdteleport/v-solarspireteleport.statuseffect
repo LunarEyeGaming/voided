@@ -1,0 +1,21 @@
+{
+  "name" : "v-solarspireteleport",
+
+  "effectConfig" : {
+    "targetUid" : "v-spire",
+    "cinematicTime" : 0.1,
+    "teleportTime" : 1.0,
+    "appearTime" : 6.5,
+    "teleportCinematic" : "/cinematics/v-teleportcut.cinematic",
+    "teleportOffset" : [0, 3.5],
+
+    "beamInStatusEffect" : "v-ancientstrongholdbeamin"
+  },
+  "defaultDuration" : 8.5,
+
+  "scripts" : [
+    "v-ancientstrongholdteleport.lua"
+  ],
+
+  "animationConfig" : "v-ancientstrongholdteleport.animation"
+}

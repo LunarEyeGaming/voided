@@ -1,11 +1,38 @@
+require "/scripts/interp.lua"
+require "/scripts/vec2.lua"
+require "/scripts/rect.lua"
+
 require "/scripts/v-animator.lua"
+require "/scripts/statuseffects/v-tickdamage.lua"
+
+local burnDamage
+local tickTime
+local tickDelay
+
+local tickDamage
 
 local startColor
 local endColor
 local transitionTime
 
 local timeElapsed
+
 function init()
+  script.setUpdateDelta(6)
+
+  burnDamage = config.getParameter("burnDamage")
+  tickTime = config.getParameter("tickTime")
+  tickDelay = config.getParameter("tickDelay")
+
+  tickDamage = VTickDamage:new{
+    kind = "fire",
+    amount = burnDamage,
+    damageType = "IgnoresDef",
+    interval = tickTime,
+    firstTickDelay = tickDelay,
+    source = entity.id() }
+
+
   -- startColor and endColor are RBGA color tables.
   startColor = config.getParameter("startColor")
   endColor = config.getParameter("endColor")
@@ -18,11 +45,19 @@ function init()
   animator.setSoundVolume("burn", 0)
 
   timeElapsed = 0
-
-  script.setUpdateDelta(6)
 end
 
 function update(dt)
+  if status.statPositive("v-ministarHeatTickMultiplier") then
+    tickDamage.interval = tickTime * status.stat("v-ministarHeatTickMultiplier")
+  end
+
+  local multiplier = 1 - status.stat("v-ministarHeatResistance")
+
+  -- Update damage amount.
+  tickDamage.damageRequest.damage = burnDamage * multiplier
+  tickDamage:update(dt)  -- Run the tickDamage object for one tick.
+
   timeElapsed = timeElapsed + dt
 
   local progress = math.min(1.0, timeElapsed / transitionTime)
