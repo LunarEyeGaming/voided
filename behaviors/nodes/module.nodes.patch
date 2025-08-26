@@ -1216,5 +1216,76 @@
       },
       "pathToTree": "..\\monsters\\modular\\movement\\v-walkapproach.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-spireminiboss",
+    "value": {
+      "type": "module",
+      "name": "v-spireminiboss",
+      "title": "",
+      "properties": {
+        "playerAwakenRange": {"type": "json", "value": 25},
+        "vehicleAwakenRange": {"type": "json", "value": 8}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-spireminiboss.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-spireminiboss-charge",
+    "value": {
+      "type": "module",
+      "name": "v-spireminiboss-charge",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-charge.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-spireminiboss-stickyglobs",
+    "value": {
+      "type": "module",
+      "name": "v-spireminiboss-stickyglobs",
+      "title": "",
+      "properties": {
+        "projectileType": {"type": "json", "value": "v-stickymagmaglob"},
+        "projectileInterval": {"type": "json", "value": 1.5},
+        "highArc": {"type": "json", "value": false},
+        "fireArc": {"type": "json", "value": true}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-stickyglobs.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-spireminiboss-firebreath",
+    "value": {
+      "type": "module",
+      "name": "v-spireminiboss-firebreath",
+      "title": "",
+      "properties": {
+        "fireArc": {"type": "json", "value": true},
+        "highArc": {"type": "json", "value": false},
+        "projectileInterval": {"type": "json", "value": 1.5},
+        "projectileType": {"type": "json", "value": "flame"}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-firebreath.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-spireminiboss-orbittarget",
+    "value": {
+      "type": "module",
+      "name": "v-spireminiboss-orbittarget",
+      "title": "",
+      "properties": {
+        "orbitPeriod": {"type": "json", "value": 1},
+        "orbitRadius": {"type": "json", "value": 1}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-orbittarget.behavior"
+    }
   }
 ]

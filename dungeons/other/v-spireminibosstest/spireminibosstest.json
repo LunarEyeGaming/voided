@@ -1,13 +1,5 @@
 { "backgroundcolor":"#000000",
  "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "format":"json1",
-         "target":"..\/..\/other\/v-spireminibosstest\/spireminibosstest.json"
-        }
-    },
  "height":178,
  "infinite":false,
  "layers":[
@@ -1545,7 +1537,28 @@
          "draworder":"topdown",
          "id":6,
          "name":"monsters & npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "height":8,
+                 "id":890,
+                 "name":"",
+                 "properties":
+                    {
+                     "monster":"v-spireminiboss",
+                     "parameters":"{\"musicStagehands\" : [\"v-spireminibossmusic\"], \"uniqueId\" : \"v-spireminiboss\"}"
+                    },
+                 "propertytypes":
+                    {
+                     "monster":"string",
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":760,
+                 "y":592
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1591,6 +1604,18 @@
                  "width":8,
                  "x":520,
                  "y":1416
+                }, 
+                {
+                 "gid":238,
+                 "height":8,
+                 "id":891,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":752,
+                 "y":1368
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1610,7 +1635,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":888,
+ "nextobjectid":892,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

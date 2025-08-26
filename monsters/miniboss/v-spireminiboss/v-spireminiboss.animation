@@ -1,0 +1,118 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "body" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 1,
+            "cycle" : 1,
+            "mode" : "loop"
+          },
+          "firewindup" : {
+            "frames" : 1,
+            "cycle" : 1,
+            "mode" : "loop"
+          },
+          "fire" : {
+            "frames" : 1,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "chargewindup" : {
+            "frames" : 1,
+            "cycle" : 1,
+            "mode" : "loop"
+          },
+          "charge" : {
+            "frames" : 1,
+            "cycle" : 2.5,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          "offset" : [0, 0],
+          "zLevel" : 0
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "firewindup" : {
+              "properties" : {
+                "image" : "<partImage>:firewindup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            },
+            "chargewindup" : {
+              "properties" : {
+                "image" : "<partImage>:chargewindup.<frame>"
+              }
+            },
+            "charge" : {
+              "properties" : {
+                "image" : "<partImage>:charge.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "body" : { "interpolated" : true }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "burstCount" : 15,
+      "transformationGroups" : [ "body" ],
+      "offsetRegion" : [-5, -2, 5, 7],
+      "particles" : [
+        { "particle" : "greenmonstersplosion" },
+        { "particle" : "greendeathember", "count" : 5 }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "aggroHop" : [ ],
+    "deathPuff" : [ "/sfx/npc/miniboss/v_laboratoryminiboss_explode.ogg" ]
+  }
+}

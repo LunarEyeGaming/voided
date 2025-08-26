@@ -1,0 +1,24 @@
+{
+  "projectileName" : "v-stickymagmaglob",
+  "physics" : "stickygrenade",
+  "movementSettings" : {
+    "gravityMultiplier" : 0.6
+  },
+  "bounces" : -1,
+  "timeToLive" : 10,
+  "speed" : 50,
+  "image" : "stickymagmaglob.png",
+  "animationCycle" : 0.4,
+  "frameNumber" : 4,
+  "damagePoly" : [[12.0, 0.0], [8.485, 8.485], [0.0, 12.0], [-8.485, 8.485], [-12.0, 0.0], [-8.485, -8.485], [-0.0, -12.0], [8.485, -8.485]],
+  "lightColor" : [235, 126, 2],
+  "emitters" : [ "flames" ],
+  "piercing" : true,
+  "damageKind" : "fire",
+  "damageKindImage" : "/interface/statuses/fire.png",
+  "damageRepeatGroup" : "v-magmaglob",
+  "statusEffects" : [
+    "burning"
+  ],
+  "hydrophobic" : true
+}

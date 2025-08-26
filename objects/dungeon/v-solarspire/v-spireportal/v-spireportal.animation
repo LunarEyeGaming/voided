@@ -1,4 +1,7 @@
 {
+  "globalTagDefaults" : {
+    "destination" : "none"
+  },
   "animatedParts" : {
     "stateTypes" : {
       "portal" : {
@@ -35,6 +38,13 @@
             "mode" : "transition",
             "transition" : "opened"
           }
+        }
+      },
+      "sunbeam" : {
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "on" : {}
         }
       }
     },
@@ -93,11 +103,30 @@
             }
           }
         }
+      },
+      "sunbeam" : {
+        "properties" : {
+          "offset" : [10, 10],
+          "centered" : true,
+          "fullbright" : true,
+          "zLevel" : 2,
+          "transformationGroups" : [ "sunbeam" ]
+        },
+        "partStates" : {
+          "sunbeam" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>?multiply=ffd86b7f"
+              }
+            }
+          }
+        }
       }
     }
   },
 
   "transformationGroups" : {
+    "sunbeam" : {"interpolated" : true}
   },
 
   "sounds" : {

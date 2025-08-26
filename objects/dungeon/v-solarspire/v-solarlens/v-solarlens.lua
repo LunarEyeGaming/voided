@@ -2,6 +2,8 @@ require "/scripts/interp.lua"
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
+require "/scripts/v-ministarutil.lua"
+
 local preScrewUpSparkTime
 local preferredScrewUpDirection
 local screwedUpAngle
@@ -182,17 +184,23 @@ function getBeamEnd(angle)
   local beamStart = positionStart
   local beamEnd = vec2.add(beamStart, vec2.withAngle(angle, maxBeamLength))
 
-  local collidePoints = world.collisionBlocksAlongLine(beamStart, beamEnd, {"Block", "Slippery", "Dynamic"})
+  -- local collidePoints = world.collisionBlocksAlongLine(beamStart, beamEnd, {"Block", "Slippery", "Dynamic"})
 
-  for _, collideTile in ipairs(collidePoints) do
-    local material = world.material(collideTile, "foreground")
-    if material then
-      local matCfg = getMaterialProperties(material)
-      if matCfg and matCfg.isSolidAndOpaque then
-        beamEnd = collideTile
-        break
-      end
-    end
+  -- for _, collideTile in ipairs(collidePoints) do
+  --   local material = world.material(collideTile, "foreground")
+  --   if material then
+  --     local matCfg = getMaterialProperties(material)
+  --     if matCfg and matCfg.isSolidAndOpaque then
+  --       beamEnd = collideTile
+  --       break
+  --     end
+  --   end
+  -- end
+
+  local collidePoint = vMinistar.lightLineTileCollision(beamStart, beamEnd, {"Block", "Slippery", "Dynamic"})
+
+  if collidePoint then
+    beamEnd = collidePoint
   end
 
   return beamEnd
@@ -272,24 +280,6 @@ end
 
 function setState(state)
   animator.setAnimationState("beam", state and "on" or "off")
-end
-
----Gets the material config, caching what is relevant if it is not already cached.
----@param material string
----@return Json?
-function getMaterialProperties(material)
-  -- Register material if it is valid and is not already registered.
-  if not materialConfigs[material] then
-    local matConfigAndPath = root.materialConfig(material)
-    if matConfigAndPath then
-      local matConfig = matConfigAndPath.config
-      materialConfigs[material] = {
-        isSolidAndOpaque = not matConfig.renderParameters.lightTransparent and (matConfig.collisionKind or "solid") == "solid"
-      }
-    end
-  end
-
-  return materialConfigs[material]
 end
 
 function v_canReceiveBeams()

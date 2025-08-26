@@ -413,3 +413,49 @@ function vMinistar.getHeightMap(startX, endX, default)
 
   return heightMap
 end
+
+do
+  local materialConfigs = {}
+  ---Gets the material config, caching what is relevant if it is not already cached.
+  ---@param material string
+  ---@return Json?
+  local getMaterialProperties = function(material)
+    -- Register material if it is valid and is not already registered.
+    if not materialConfigs[material] then
+      local matConfigAndPath = root.materialConfig(material)
+      if matConfigAndPath then
+        local matConfig = matConfigAndPath.config
+        materialConfigs[material] = {
+          isSolidAndOpaque = not matConfig.renderParameters.lightTransparent and (matConfig.collisionKind or "solid") == "solid"
+        }
+      end
+    end
+
+    return materialConfigs[material]
+  end
+
+  ---Like `world.lineCollision`, except it goes through blocks that are solid and opaque. This also means that it's more
+  ---expensive to call, so use sparingly.
+  ---@param startPoint Vec2F
+  ---@param endPoint Vec2F
+  ---@param collisionKinds? CollisionSet
+  ---@param maxPenetration? integer The maximum number of blocks to process.
+  ---@return Vec2I?
+  function vMinistar.lightLineTileCollision(startPoint, endPoint, collisionKinds, maxPenetration)
+    local collidePoints = world.collisionBlocksAlongLine(startPoint, endPoint, collisionKinds, maxPenetration)
+
+    local result
+    for _, collideTile in ipairs(collidePoints) do
+      local material = world.material(collideTile, "foreground")
+      if material then
+        local matCfg = getMaterialProperties(material)
+        if matCfg and matCfg.isSolidAndOpaque then
+          result = collideTile
+          break
+        end
+      end
+    end
+
+    return result
+  end
+end

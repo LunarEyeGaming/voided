@@ -1,0 +1,189 @@
+{
+  "name": "v-spireminiboss-orbittarget",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/world.lua",
+    "/scripts/actions/entity.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/movement.lua"
+  ],
+  "parameters": {
+    "orbitPeriod": 1,
+    "orbitRadius": 1
+  },
+  "root": {
+    "title": "parallel",
+    "type": "composite",
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": -1},
+      "success": {"value": -1}
+    },
+    "children": [
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "target"}
+        },
+        "output": {
+          "position": "targetPos"
+        }
+      },
+      {
+        "title": "dynamic",
+        "type": "composite",
+        "name": "dynamic",
+        "parameters": {},
+        "children": [
+          {
+            "title": "parallel",
+            "type": "composite",
+            "name": "parallel",
+            "parameters": {
+              "fail": {"value": 1},
+              "success": {"value": -1}
+            },
+            "children": [
+              {
+                "title": "entityInSight",
+                "type": "action",
+                "name": "entityInSight",
+                "parameters": {
+                  "entity": {"key": "target"}
+                }
+              },
+              {
+                "title": "parallel",
+                "type": "composite",
+                "name": "parallel",
+                "parameters": {
+                  "fail": {"value": -1},
+                  "success": {"value": -1}
+                },
+                "children": [
+                  {
+                    "title": "timer",
+                    "type": "action",
+                    "name": "timer",
+                    "parameters": {
+                      "time": {"key": "<orbitPeriod>"}
+                    },
+                    "output": {
+                      "ratio": "orbitProgress"
+                    }
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "lerp",
+                        "type": "action",
+                        "name": "lerp",
+                        "parameters": {
+                          "max": {"value": 6.29},
+                          "min": {"value": 0},
+                          "ratio": {"key": "orbitProgress"}
+                        },
+                        "output": {
+                          "number": "orbitAngle"
+                        }
+                      },
+                      {
+                        "title": "vecMultiply",
+                        "type": "action",
+                        "name": "vecMultiply",
+                        "parameters": {
+                          "first": {"value": [1, 0]},
+                          "number": {"key": "<orbitRadius>"}
+                        },
+                        "output": {
+                          "vector": "orbitVector"
+                        }
+                      },
+                      {
+                        "title": "vecRotate",
+                        "type": "action",
+                        "name": "vecRotate",
+                        "parameters": {
+                          "angle": {"key": "orbitAngle"},
+                          "vector": {"key": "orbitVector"}
+                        },
+                        "output": {
+                          "vector": "orbitOffset"
+                        }
+                      },
+                      {
+                        "title": "offsetPosition",
+                        "type": "action",
+                        "name": "offsetPosition",
+                        "parameters": {
+                          "offset": {"key": "orbitOffset"},
+                          "position": {"key": "targetPos"}
+                        },
+                        "output": {
+                          "position": "orbitPosition"
+                        }
+                      },
+                      {
+                        "title": "distance",
+                        "type": "action",
+                        "name": "distance",
+                        "parameters": {
+                          "to": {"key": "orbitPosition"}
+                        },
+                        "output": {
+                          "vector": "toOrbitPos"
+                        }
+                      },
+                      {
+                        "title": "controlFly",
+                        "type": "action",
+                        "name": "controlFly",
+                        "parameters": {
+                          "vector": {"key": "toOrbitPos"}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "inverter",
+            "type": "decorator",
+            "name": "inverter",
+            "parameters": {},
+            "child": {
+              "title": "moveToPosition",
+              "type": "action",
+              "name": "moveToPosition",
+              "parameters": {
+                "avoidLiquid": {"value": false},
+                "groundPosition": {"value": false},
+                "maxGround": {"value": 5},
+                "minGround": {"value": -5},
+                "closeDoors": {"value": false},
+                "position": {"key": "targetPos"},
+                "run": {"value": false}
+              }
+            }
+          },
+          {
+            "title": "runner",
+            "type": "action",
+            "name": "runner",
+            "parameters": {}
+          }
+        ]
+      }
+    ]
+  }
+}

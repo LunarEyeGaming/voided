@@ -176,7 +176,6 @@ end
 function spawnWave(waveSpawners, waveNum)
   local monsterIds = {}  -- Gets populated by the message handler
 
-  -- Set when finished spawning to avoid some weird updating jank.
   object.setAnimationParameter("lightningSeed", math.floor(os.clock()))
 
   -- If the list of spawners is not empty...
@@ -258,7 +257,7 @@ function activateTriggers(waveTriggers)
     -- For each trigger in the wave...
     for _, trigger in ipairs(waveTriggers) do
       if trigger.messageType and trigger.messageType ~= "" then
-        util.wait(math.max(0.05, trigger.delay))  -- This makes it wait at least a certain amount of time
+        util.wait(math.max(minTriggerDelay, trigger.delay))  -- This makes it wait at least a certain amount of time
 
         animator.playSound("lightningStrike")
 

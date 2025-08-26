@@ -59,3 +59,7 @@ function vVec2.fSetContains(set, vector)
 
   return set[strVec]
 end
+
+function vVec2.randomAngle(angle, fuzzAngle)
+  return angle + math.random() * 2 * fuzzAngle - fuzzAngle
+end

@@ -1,0 +1,196 @@
+{
+  "type" : "v-spireminiboss",
+  "shortdescription" : "another square",
+  "description" : "<todo>",
+
+  "categories" : [ "v-spireminiboss" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-spireminiboss.animation",
+  "dropPools" : [ ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/monster.lua"
+    ],
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 1,
+
+    "behavior" : "v-spireminiboss",
+
+    "behaviorConfig" : {
+    },
+
+    "renderLayer" : "Projectile-20",
+
+    "damageBar" : "None",
+
+    "knockoutTime" : 0,
+    "knockoutEffect" : "blink",
+    "deathParticles" : "deathPoof",
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "gravityEnabled" : false,
+      "collisionPoly" : [ [5, 5], [-5, 5], [-5, -5], [5, -5] ],
+
+      "mass" : 4.0,
+      "walkSpeed" : 5,
+      "runSpeed" : 13,
+      "flySpeed" : 50,
+      "airFriction" : 0.5,
+      "airForce" : 75.0,
+      "airJumpProfile" : {
+        "jumpControlForce" : 0,
+        "jumpInitialPercentage" : 0
+      },
+      "physicsEffectCategories" : ["boss"]
+    },
+
+    "touchDamage" : {
+      "poly" : [ [4, 4], [-4, 4], [-4, -4], [4, -4] ],
+      "damage" : 15,
+
+      "damageSourceKind" : "lash",
+
+      "teamType" : "enemy",
+      "statusEffects" : [ ]
+    },
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "displayTitle" : "Miniboss",  // Book of Spirits support
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : false,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "knockbackStunTime" : {
+          "baseValue" : 0.25
+        },
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "maxHealth" : {
+          "baseValue" : 1000
+        },
+        "protection" : {
+          "baseValue" : 0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "specialStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "healingStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "iceResistance" : {
+          "baseValue" : -0.25
+        },
+        "fireResistance" : {
+          "baseValue" : 0.5
+        },
+        "stunImmunity" : {
+          "baseValue" : 1.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+
+        // RPG Growth
+
+        "demonicStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "holyStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "bleedStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+
+        // Frackin' Universe (FU)
+
+        "captureImmunity" : {
+          "baseValue" : 1
+        },
+        "bleedingImmunity" : {
+          "baseValue" : 1
+        },
+        "sulphuricImmunity" : {
+          "baseValue" : 1
+        },
+        "shadowImmunity" : {
+          "baseValue" : 1
+        },
+        "protoImmunity" : {
+          "baseValue" : 1.0
+        },
+        "slagStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "bluoplasmaStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "bioozeImmunity" : {
+          "baseValue" : 1.0
+        },
+        "radiationburnImmunity" : {
+          "baseValue" : 1
+        },
+
+        // Extended Story (ES)
+
+        "acidicbacteriaImmunity" : {
+          "baseValue" : 1
+        },
+        "abysseffectImmunity" : {
+          "baseValue" : 1.0
+        },
+        "ionizedImmunity" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0,
+          "maxValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 1.0
+        }
+      }
+    },
+
+    "mouthOffset" : [1.0, -1.5],
+    "feetOffset" : [0, -21]
+  }
+}

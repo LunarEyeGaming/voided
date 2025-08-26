@@ -137,5 +137,20 @@
       "biome" : "v-electrotoxicfacility",
       "environmentStatusEffects" : ["dontstarve", "v-quickhealnerf"]
     }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-spireminibosstest",
+    "value" : {
+      "primaryDungeon" : "v-spireminibosstest",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [1000, 1000],
+      "dungeonBaseHeight" : 500,
+      "dungeonSurfaceHeight" : 100,
+      "ambientLightLevel" : [1200, 1200, 1200],
+      "musicTrack" : "/music/event-horizon.ogg",
+      "environmentStatusEffects" : ["dontstarve", "v-quickhealnerf"]
+    }
   }
 ]

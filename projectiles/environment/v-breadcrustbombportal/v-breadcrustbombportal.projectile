@@ -1,0 +1,69 @@
+{
+  "projectileName" : "v-breadcrustbombportal",
+
+  "image" : "/projectiles/weather/v-breadcrustbomb/breadcrustbomb.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+
+  "physics" : "rollingboulder",
+  "movementSettings" : {
+    "collisionPoly" : [ [-1.125, 0], [-0.75, -0.75], [0, -1.125], [0.75, -0.75], [1.125, 0], [0.75, 0.75], [0, 1.125], [-0.75, 0.75] ],
+    "bounceFactor" : 0.1,
+    "groundFriction" : 1.0
+  },
+  "bounces" : -1,
+  "speed" : 50,
+  "onlyHitTerrain" : true,
+  "orientationLocked" : true,
+
+  "timeToLive" : 10,
+
+  "actionOnCollide" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/gun/impact_stone1.ogg", "/sfx/gun/impact_stone2.ogg", "/sfx/gun/impact_stone3.ogg", "/sfx/gun/impact_stone4.ogg" ]
+    },
+    {
+      "action" : "loop",
+      "count" : 3,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "blackstoneshard"
+        }
+      ]
+    }
+  ],
+
+  "actionOnReap" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/melee/blunt_hit_stone1.ogg", "/sfx/melee/blunt_hit_stone2.ogg", "/sfx/melee/blunt_hit_stone3.ogg", "/sfx/melee/blunt_hit_stone4.ogg" ]
+    },
+    {
+      "action" : "loop",
+      "count" : 3,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "blackstoneshard"
+        }
+      ]
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-breadcrustbombpredetonateportal",
+      "inheritDamageFactor" : 1,
+      "fuzzAngle" : 180
+    }
+  ],
+  "power" : 10.0,
+  "damageKind" : "default",
+
+  "scripts" : [ "/scripts/projectiles/v-spinningprojectile.lua" ],
+  "scriptDelta" : 1,
+
+  "radius" : 1.5
+}
+
+
