@@ -9,6 +9,10 @@ require "/scripts/v-ministarutil.lua"
 require "/scripts/v-vec2.lua"
 require "/scripts/v-world.lua"
 
+-- Constants
+local NODE_OUTER_DOOR = 0
+local NODE_INNER_DOOR = 1
+
 -- Parameters
 local centerOffset
 local center
@@ -253,7 +257,7 @@ function states.awaitDeactivation()
 end
 
 function states.open()
-  storage.active = true
+  storage.status = "active"
 
   animator.setAnimationState("portal", "open")
 
@@ -270,7 +274,7 @@ function states.destabilize1()
 
   util.wait(1.5)
 
-  object.setAllOutputNodes(false)
+  object.setOutputNodeLevel(NODE_OUTER_DOOR, false)
 
   animator.setAnimationState("portalshockwave", "visible")
   animator.playSound("explosion")
@@ -315,10 +319,21 @@ function states.destabilize1()
 
   util.wait(2.0)
 
+  animator.setParticleEmitterActive("portalsparks", false)
+  animator.stopAllSounds("sparks")
+
   states.destabilize2()
 end
 
 function states.destabilize2()
+  object.setOutputNodeLevel(NODE_INNER_DOOR, true)
+
+  animator.setParticleEmitterActive("portalsparks", true)
+  animator.playSound("sparks", -1)
+
+  animator.setAnimationState("portal", "open")
+  animator.setGlobalTag("destination", "none")
+
   while not friendlyInsideRegion(playerDetectQueryRegion) do
     strikeLightning()
     util.wait(1.0)
@@ -330,17 +345,26 @@ end
 function states.hazardStart()
   coroutine.yield()  -- Defer to update
 
+  object.setOutputNodeLevel(NODE_INNER_DOOR, false)
+
   if not friendlyInsideRegion(arenaRegion) then
+    if minibossId and world.entityExists(minibossId) then
+      world.sendEntityMessage(minibossId, "despawn")
+    end
     return states.destabilize2()
   end
 
-  sb.logInfo("%s ?= %s: %s", hazardCounter, summonMinibossThreshold, hazardCounter == summonMinibossThreshold)
   if hazardCounter == summonMinibossThreshold then
     hazardCounter = hazardCounter + 1
     states.summonMiniboss(summonMinibossArgs)
   else
     -- Check for whether or not the miniboss has died. If so, open a portal to another world instead.
     if minibossId and not world.entityExists(minibossId) then
+      storage.status = "open"
+
+      animator.setParticleEmitterActive("portalsparks", false)
+      animator.stopAllSounds("sparks")
+
       return states.openToWorld()
     end
     invokeHazard(pickHazard(), hazardCounter < summonMinibossThreshold)
@@ -372,12 +396,13 @@ function states.floorHazard(cfg, fast)
 end
 
 function states.rotatingHazard(cfg, fast)
-  switchDestination("surface")
+  local startAngle = cfg.startAngle
+
+  switchDestination("surface", startAngle)
 
   animator.setAnimationState("sunbeam", "on")
 
   local dmgSource = copy(cfg.damageSource)
-  local startAngle = cfg.startAngle
   local angleDelta = cfg.endAngle - cfg.startAngle
   local duration = fast and cfg.fastDuration or cfg.duration
   local timer = 0
@@ -394,10 +419,11 @@ function states.rotatingHazard(cfg, fast)
     }, centerOffset)
     dmgSource.poly = damagePoly
 
+    animator.resetTransformationGroup("rotation")
+    animator.rotateTransformationGroup("rotation", angle, centerOffset)
     animator.resetTransformationGroup("sunbeam")
     animator.scaleTransformationGroup("sunbeam", {mag, 1}, centerOffset)
     animator.translateTransformationGroup("sunbeam", {mag / 2, 0})
-    animator.rotateTransformationGroup("sunbeam", angle, centerOffset)
 
     object.setDamageSources({dmgSource})
 
@@ -469,6 +495,17 @@ function states.enemyHazard(cfg, fast)
   while #monsterIds > 0 do
     monsterIds = util.filter(monsterIds, function(id) return world.entityExists(id) end)
 
+    -- If no friendlies are present in the arena...
+    if not friendlyInsideRegion(arenaRegion) then
+      -- Despawn all the remaining monsters
+      for _, monsterId in ipairs(monsterIds) do
+        world.sendEntityMessage(monsterId, "despawn")
+      end
+
+      -- Jump to the hazardStart state.
+      return states.hazardStart()
+    end
+
     coroutine.yield()
   end
 
@@ -494,7 +531,7 @@ function states.summonMiniboss(cfg)
   world.spawnProjectile(cfg.spawnerProjectileType, spawnPos, entity.id(), {1, 0}, false, {monsterType = cfg.monsterType,
       monsterParameters = cfg.monsterParameters})
 
-  message.setHandler("v-monsterwavespawner-monsterspawned", function(_, _, id)
+  message.setHandler("v-monsterSpawned", function(_, _, id)
     minibossId = id
   end)
 
@@ -504,8 +541,14 @@ function states.summonMiniboss(cfg)
 end
 
 function states.openToWorld()
+  animator.setParticleEmitterActive("portalsparks", true)
+  animator.playSound("sparks", -1)
+
+  object.setAllOutputNodes(true)
   switchDestination("cryoflame")
   object.setInteractive(true)
+
+  states.noop()
 end
 
 -- HELPER FUNCTIONS
@@ -535,7 +578,7 @@ function invokeHazard(hazardIdx, ...)
   hazard.func(hazard.config, ...)
 end
 
-function switchDestination(destination)
+function switchDestination(destination, newRotation)
   animator.setAnimationState("portal", "unlink")
 
   util.wait(portalCloseTime)
@@ -543,6 +586,13 @@ function switchDestination(destination)
   currentDestination = destination
   animator.setGlobalTag("destination", destination)
   animator.setAnimationState("portal", "relink")
+  if newRotation then
+    animator.resetTransformationGroup("rotation")
+    animator.rotateTransformationGroup("rotation", newRotation, centerOffset)
+  else
+    animator.resetTransformationGroup("rotation")
+    animator.rotateTransformationGroup("rotation", 0, centerOffset)
+  end
 
   util.wait(portalOpenTime)
 end

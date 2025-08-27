@@ -126,7 +126,8 @@
           "fullbright" : true,
           "centered" : false,
           "zLevel" : -1,
-          "offset" : [1.875, 1.75]
+          "offset" : [1.875, 1.75],
+          "transformationGroups" : [ "rotation" ]
         },
         "partStates" : {
           "portal" : {
@@ -164,7 +165,7 @@
           "centered" : true,
           "fullbright" : true,
           "zLevel" : 2,
-          "transformationGroups" : [ "sunbeam" ]
+          "transformationGroups" : [ "sunbeam", "rotation" ]
         },
         "partStates" : {
           "sunbeam" : {
@@ -209,7 +210,8 @@
   },
 
   "transformationGroups" : {
-    "sunbeam" : {"interpolated" : true},
+    "rotation" : {"interpolated" : true},
+    "sunbeam" : {"interpolated" : false},
     "portalshockwave" : {"interpolated" : true}
   },
 
