@@ -44,6 +44,7 @@ local state
 local lightningController
 local lightningControllerBig
 local minibossId
+local monsterIds
 
 local currentDestination
 
@@ -118,6 +119,16 @@ function init()
           { type = "v-lurkano", count = 2, destination = "caves", onGround = true },
           { type = "v-firefloater", count = 4, destination = "sky", onGround = false }
         },
+        monsterWeights = {
+          ["v-sunleaper"] = 1,
+          ["v-novamonster"] = 2,
+          ["v-rammingasteroid"] = 1,
+          ["v-pyrebush"] = 0.5,
+          ["v-pyremander"] = 0.166666,
+          ["v-lurkano"] = 0.5,
+          ["v-firefloater"] = 0.5,
+        },
+        monsterScoreLimit = 5,
         airOffsetRegion = {-24, -24, 24, 24},
         groundRaycastLength = 100,
         spawnerProjectileType = "v-spirespawnerorb"
@@ -164,6 +175,11 @@ function init()
 
   state = FSM:new()
   state:set(states.postInit)
+
+  monsterIds = {}  -- Gets populated by the message handler
+  message.setHandler("v-monsterSpawned", function(_, _, monsterId)
+    table.insert(monsterIds, monsterId)
+  end)
 end
 
 function update(dt)
@@ -171,6 +187,9 @@ function update(dt)
   for i, cooldown in ipairs(hazardCooldowns) do
     hazardCooldowns[i] = cooldown - dt
   end
+
+  -- Update monsterIds
+  monsterIds = util.filter(monsterIds, function(id) return world.entityExists(id) end)
 
   state:update()
 
@@ -204,22 +223,15 @@ end
 function states.postInit()
   coroutine.yield()
 
-  local musicStagehand = world.loadUniqueEntity("v-spireminibossmusic")
-  if musicStagehand == 0 then
-    sb.logWarn("Stagehand with ID 'v-spireminibossmusic' not found.")
-  else
-    world.sendEntityMessage(musicStagehand, "setMusicState", "partial")
-  end
-
-  local dungeonId = tostring(world.dungeonId(object.position()))
-  world.setProperty("v-dungeonMusic", {[dungeonId] = preIntroDungeonMusic})
-
   if storage.status == "active" then
     states.destabilize2()
   elseif storage.status == "open" then
     states.openToWorld()
   else
     states.awaitActivation()
+
+    local dungeonId = tostring(world.dungeonId(object.position()))
+    world.setProperty("v-dungeonMusic", {[dungeonId] = preIntroDungeonMusic})
   end
 end
 
@@ -437,82 +449,92 @@ function states.rotatingHazard(cfg, fast)
 end
 
 function states.enemyHazard(cfg, fast)
-  local monsterGroup = util.randomFromList(cfg.monsterGroups)
+  -- Compute the total weight that the monsters hold.
+  local monsterWeightSum = 0
+  for _, monsterId in ipairs(monsterIds) do
+    local monsterType = world.monsterType(monsterId)
+    if not monsterType then
+      error("Entity is not a monster: " .. monsterId)
+    end
 
-  object.setAnimationParameter("lightningSeed", math.floor(os.clock()))
+    monsterWeightSum = monsterWeightSum + (cfg.monsterWeights[monsterType] or 1.0)
+  end
 
-  switchDestination(monsterGroup.destination)
+  -- This hazard should trigger only when there aren't too many monsters in the arena. This depends on the weight of
+  -- each monster.
+  if monsterWeightSum <= cfg.monsterScoreLimit then
+    local monsterGroup = util.randomFromList(cfg.monsterGroups)
 
-  local monsterIds = {}  -- Gets populated by the message handler
-  message.setHandler("v-monsterSpawned", function(_, _, monsterId)
-    table.insert(monsterIds, monsterId)
-  end)
+    object.setAnimationParameter("lightningSeed", math.floor(os.clock()))
 
-  animator.playSound("lightningStrike")
+    switchDestination(monsterGroup.destination)
 
-  local projectileIds = {}
-  for _ = 1, monsterGroup.count do
-    local startPos = vec2.add(center, rect.randomPoint(portalOffsetRegion))
+    animator.playSound("lightningStrike")
 
-    -- Pick spawn position
-    local spawnPos
-    if monsterGroup.onGround then
-      local angle = math.random() * 2 * math.pi
-      spawnPos = world.lineCollision(startPos, vec2.add(startPos, vec2.withAngle(angle, cfg.groundRaycastLength)))
-      if not spawnPos then
-        error("Line collision returned nil.")
+    local projectileIds = {}
+    for _ = 1, monsterGroup.count do
+      local startPos = vec2.add(center, rect.randomPoint(portalOffsetRegion))
+
+      -- Pick spawn position
+      local spawnPos
+      if monsterGroup.onGround then
+        local angle = math.random() * 2 * math.pi
+        spawnPos = world.lineCollision(startPos, vec2.add(startPos, vec2.withAngle(angle, cfg.groundRaycastLength)))
+        if not spawnPos then
+          error("Line collision returned nil.")
+        end
+      else
+        spawnPos = vWorld.randomPositionInRegion(rect.translate(cfg.airOffsetRegion, center), function(pos)
+          return not world.pointCollision(pos)
+        end, 200)
       end
+
+      if spawnPos then
+        -- Strike lightning
+        lightningController:add(startPos, spawnPos)
+
+        -- Spawn a projectile that will spawn the monster
+        local projectileId = world.spawnProjectile(cfg.spawnerProjectileType, spawnPos, entity.id(), {1, 0}, false, {monsterType = monsterGroup.type,
+            monsterParameters = {level = object.level()}})
+
+        table.insert(projectileIds, projectileId)
+      end
+    end
+
+    -- While at least one of the spawned projectiles is still alive...
+    while #projectileIds > 0 do
+      -- Filter out projectiles that died
+      projectileIds = util.filter(projectileIds, function(id) return world.entityExists(id) end)
+
+      coroutine.yield()
+    end
+
+    message.setHandler("v-monsterwavespawner-monsterspawned", function(_, _, id)
+      table.insert(monsterIds, id)
+    end)
+
+    -- while #monsterIds > 0 do
+    --   monsterIds = util.filter(monsterIds, function(id) return world.entityExists(id) end)
+
+    --   -- If no friendlies are present in the arena...
+    --   if not friendlyInsideRegion(arenaRegion) then
+    --     -- Despawn all the remaining monsters
+    --     for _, monsterId in ipairs(monsterIds) do
+    --       world.sendEntityMessage(monsterId, "despawn")
+    --     end
+
+    --     -- Jump to the hazardStart state.
+    --     return states.hazardStart()
+    --   end
+
+    --   coroutine.yield()
+    -- end
+
+    if fast then
+      util.wait(1)
     else
-      spawnPos = vWorld.randomPositionInRegion(rect.translate(cfg.airOffsetRegion, center), function(pos)
-        return not world.pointCollision(pos)
-      end, 200)
+      util.wait(3)
     end
-
-    if spawnPos then
-      -- Strike lightning
-      lightningController:add(startPos, spawnPos)
-
-      -- Spawn a projectile that will spawn the monster
-      local projectileId = world.spawnProjectile(cfg.spawnerProjectileType, spawnPos, entity.id(), {1, 0}, false, {monsterType = monsterGroup.type,
-          monsterParameters = {level = object.level()}})
-
-      table.insert(projectileIds, projectileId)
-    end
-  end
-
-  -- While at least one of the spawned projectiles is still alive...
-  while #projectileIds > 0 do
-    -- Filter out projectiles that died
-    projectileIds = util.filter(projectileIds, function(id) return world.entityExists(id) end)
-
-    coroutine.yield()
-  end
-
-  message.setHandler("v-monsterwavespawner-monsterspawned", function(_, _, id)
-    table.insert(monsterIds, id)
-  end)
-
-  while #monsterIds > 0 do
-    monsterIds = util.filter(monsterIds, function(id) return world.entityExists(id) end)
-
-    -- If no friendlies are present in the arena...
-    if not friendlyInsideRegion(arenaRegion) then
-      -- Despawn all the remaining monsters
-      for _, monsterId in ipairs(monsterIds) do
-        world.sendEntityMessage(monsterId, "despawn")
-      end
-
-      -- Jump to the hazardStart state.
-      return states.hazardStart()
-    end
-
-    coroutine.yield()
-  end
-
-  if fast then
-    util.wait(1)
-  else
-    util.wait(3)
   end
 
   states.hazardStart()
@@ -520,6 +542,13 @@ end
 
 function states.summonMiniboss(cfg)
   switchDestination("minibosscave")
+
+  local musicStagehand = world.loadUniqueEntity("v-spireminibossmusic")
+  if musicStagehand == 0 then
+    sb.logWarn("Stagehand with ID 'v-spireminibossmusic' not found.")
+  else
+    world.sendEntityMessage(musicStagehand, "setMusicState", "partial")
+  end
 
   local startPos = vec2.add(center, rect.randomPoint(portalOffsetRegion))
   local spawnPos = vec2.add(center, cfg.spawnOffset)
