@@ -4,15 +4,14 @@
   "rarity" : "Essential",
   "category" : "v-passiveItem",
   "builder" : "/items/buildscripts/v-builditem.lua",
-  "inventoryIcon" : "gpsicon.png:on",
-  "baseIcon" : "/items/active/unsorted/v-gps/gpsicon.png",
+  "inventoryIcon" : "solarlensfixericon.png",
   "description" : "Fixes solar lenses.",
   "shortdescription" : "solarlensfixercheat",
 
   "animation" : "v-solarlensfixer.animation",
   "animationParts" : {
-    "gps" : "gps.png",
-    "gpsfullbright" : "gpsfullbright.png"
+    "item" : "solarlensfixer.png",
+    "itemfullbright" : "solarlensfixerfullbright.png"
   },
 
   "scripts" : ["v-solarlensfixer.lua"],

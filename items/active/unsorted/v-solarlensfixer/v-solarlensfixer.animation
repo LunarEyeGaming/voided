@@ -5,61 +5,40 @@
 
   "animatedParts" : {
     "stateTypes" : {
-      "gps" : {
-        "default" : "on",
+      "item" : {
+        "default" : "idle",
         "states" : {
-          "on" : {
-            "frames" : 8,
-            "cycle" : 1.5,
-            "mode" : "loop",
-            "properties" : {
-              "persistentSound" : "/sfx/objects/checkpoint_loop.ogg"
-            },
-            "frameProperties" : {
-              "immediateSound" : [ "/sfx/objects/screen2.ogg", "", "", "", "", "", "", "" ]
-            }
-          },
-          "off" : {}
+          "idle" : {}
         }
       }
     },
     "parts" : {
-      "gps" : {
+      "item" : {
         "properties" : {
           "centered" : true,
           "offset" : [0, 0.0]
         },
         "partStates" : {
-          "gps" : {
-            "on" : {
+          "item" : {
+            "idle" : {
               "properties" : {
-                "image" : "<partImage>:on.<frame>"
-              }
-            },
-            "off" : {
-              "properties" : {
-                "image" : "<partImage>:off.<frame>"
+                "image" : "<partImage>"
               }
             }
           }
         }
       },
-      "gpsfullbright" : {
+      "itemfullbright" : {
         "properties" : {
-          "anchorPart" : "gps",
+          "anchorPart" : "item",
           "fullbright" : true,
           "zLevel" : 1
         },
         "partStates" : {
-          "gps" : {
-            "on" : {
+          "item" : {
+            "idle" : {
               "properties" : {
-                "image" : "<partImage>:on.<frame>"
-              }
-            },
-            "off" : {
-              "properties" : {
-                "image" : "<partImage>:off.<frame>"
+                "image" : "<partImage>"
               }
             }
           }
@@ -67,9 +46,6 @@
       }
     }
   },
-  
-  "sounds" : {
-    "on" : [ "/sfx/objects/console_generic_switchon.ogg" ],
-    "off" : [ "/sfx/objects/console_generic_switchoff.ogg" ]
-  }
+
+  "sounds" : { }
 }
