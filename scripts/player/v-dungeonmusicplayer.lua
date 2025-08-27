@@ -32,6 +32,7 @@ function init()
 
   message.setHandler("v-dungeonmusicplayer-unsetOverride", function()
     musicOverridden = false
+    manualMusicSwitchTrigger = true  -- Force a switch in case the dungeon ID has not changed since the music was enabled
   end)
 
   message.setHandler("v-dungeonmusicplayer-forceSwitch", function()
