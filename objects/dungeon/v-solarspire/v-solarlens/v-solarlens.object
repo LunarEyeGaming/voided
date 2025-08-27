@@ -22,7 +22,7 @@
   "inventoryIcon" : "icon.png",
   "orientations" : [
     {
-      "image" : "lens.png",
+      "image" : "lens.png:idle.1",
       "direction" : "right",
       "imagePosition" : [-8, -8],
 
@@ -39,7 +39,9 @@
   "animationPosition" : [0, 0],
   "animationParts" : {
     "lens" : "lens.png",
-    "beam" : "beam.png"
+    "lenslit" : "lenslit.png",
+    "beam" : "beam.png",
+    "beamstart" : "beamstart.png"
   },
 
   "scripts" : [ "v-solarlens.lua" ],

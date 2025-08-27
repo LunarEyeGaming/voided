@@ -1,20 +1,102 @@
 {
   "animatedParts" : {
     "stateTypes" : {
+      "lens" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "zap" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "zapped"
+          },
+          "zapped" : {},
+          "unzap" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition": "idle"
+          }
+        }
+      },
       "beam" : {
         "default" : "on",
         "states" : {
-          "off" : {},
-          "on" : {}
+          "off" : {
+            "properties" : {
+              "lightsOff" : [ "beam1", "beam2", "beam3" ]
+            }
+          },
+          "on" : {
+            "properties" : {
+              "lightsOn" : [ "beam1", "beam2", "beam3" ]
+            }
+          }
         }
       }
     },
     "parts" : {
       "lens" : {
         "properties" : {
-          "image" : "<partImage>",
+          "centered" : true,
+          "fullbright" : true,
+          "transformationGroups" : [ "lens" ]
+        },
+        "partStates" : {
+          "lens" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "zap" : {
+              "properties" : {
+                "image" : "<partImage>:zap.<frame>"
+              }
+            },
+            "zapped" : {
+              "properties" : {
+                "image" : "<partImage>:zapped.<frame>"
+              }
+            },
+            "unzap" : {
+              "properties" : {
+                "image" : "<partImage>:unzap.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "lenslit" : {
+        "properties" : {
+          "zLevel" : 1,
           "centered" : true,
           "transformationGroups" : [ "lens" ]
+        },
+        "partStates" : {
+          "lens" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "zap" : {
+              "properties" : {
+                "image" : "<partImage>:zap.<frame>"
+              }
+            },
+            "zapped" : {
+              "properties" : {
+                "image" : "<partImage>:zapped.<frame>"
+              }
+            },
+            "unzap" : {
+              "properties" : {
+                "image" : "<partImage>:unzap.<frame>"
+              }
+            }
+          }
         }
       },
       "beam" : {
@@ -23,6 +105,23 @@
           "centered" : true,
           "zLevel" : -1,
           "transformationGroups" : [ "beam", "lens" ]
+        },
+        "partStates" : {
+          "beam" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+            }
+          }
+        }
+      },
+      "beamstart" : {
+        "properties" : {
+          "fullbright" : true,
+          "centered" : true,
+          "zLevel" : -1,
+          "transformationGroups" : [ "lens" ]
         },
         "partStates" : {
           "beam" : {
@@ -42,6 +141,27 @@
     "beam" : { "interpolated" : false },
 
     "telegraphSparks" : { "interpolated" : false }
+  },
+
+  "lights" : {
+    "beam1" : {
+      "color" : [191, 158, 57],
+      "active" : true,
+      "position" : [0, 0],
+      "transformationGroups" : [ "beam", "lens" ]
+    },
+    "beam2" : {
+      "color" : [191, 158, 57],
+      "active" : true,
+      "position" : [0.25, 0],
+      "transformationGroups" : [ "beam", "lens" ]
+    },
+    "beam3" : {
+      "color" : [191, 158, 57],
+      "active" : true,
+      "position" : [0.5, 0],
+      "transformationGroups" : [ "beam", "lens" ]
+    }
   },
 
   "particleEmitters" : {

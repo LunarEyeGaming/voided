@@ -312,6 +312,7 @@ function states.screwUp()
 
   local beamEnd = getBeamEnd(screwedUpAngle)
   local beamMag = world.magnitude(beamEnd, positionStart)
+  animator.setAnimationState("lens", "zap")
   animator.resetTransformationGroup("telegraphSparks")
   animator.scaleTransformationGroup("telegraphSparks", {beamMag, 1})
   animator.translateTransformationGroup("telegraphSparks", {beamMag / 2, 0})
@@ -324,6 +325,7 @@ function states.screwUp()
 
   animator.setParticleEmitterActive("telegraphSparks", false)
   animator.stopAllSounds("sparks")
+  animator.setAnimationState("lens", "unzap")
 
   state:set(states.screwedUp)
 end
