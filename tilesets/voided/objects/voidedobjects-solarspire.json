@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-solarspire",
  "spacing":0,
- "tilecount":14,
+ "tilecount":15,
  "tiledversion":"1.11.2",
  "tileheight":256,
  "tileproperties":
@@ -54,6 +54,13 @@
          "imagePositionX":"0",
          "imagePositionY":"0",
          "object":"v-spireportal",
+         "tilesetDirection":"right"
+        },
+     "14":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"-8",
+         "object":"v-solarlensinward",
          "tilesetDirection":"right"
         },
      "2":
@@ -158,6 +165,13 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "14":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "2":
         {
          "imagePositionX":"string",
@@ -252,6 +266,12 @@
          "image":"..\/images\/objects\/spireportal.png",
          "imageheight":200,
          "imagewidth":160
+        },
+     "14":
+        {
+         "image":"..\/images\/objects\/solarlensinward.png",
+         "imageheight":16,
+         "imagewidth":16
         },
      "2":
         {

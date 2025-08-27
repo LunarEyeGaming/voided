@@ -34,6 +34,13 @@
             }
           }
         }
+      },
+      "beamconnection" : {
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "on" : {}
+        }
       }
     },
     "parts" : {
@@ -132,6 +139,23 @@
             }
           }
         }
+      },
+      "beamconnection" : {
+        "properties" : {
+          "fullbright" : true,
+          "centered" : true,
+          "zLevel" : -1,
+          "transformationGroups" : [ "beamconnection" ]
+        },
+        "partStates" : {
+          "beamconnection" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -139,6 +163,8 @@
   "transformationGroups" : {
     "lens" : { "interpolated" : true },
     "beam" : { "interpolated" : false },
+
+    "beamconnection" : { "interpolated" : true },
 
     "telegraphSparks" : { "interpolated" : false }
   },

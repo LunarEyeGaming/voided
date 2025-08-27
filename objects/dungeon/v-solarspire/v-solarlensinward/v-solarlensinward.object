@@ -1,5 +1,5 @@
 {
-  "objectName" : "v-solarlens",
+  "objectName" : "v-solarlensinward",
   "colonyTags" : ["misc"],
   "rarity" : "Common",
   "category" : "decorative",
@@ -22,7 +22,7 @@
   "inventoryIcon" : "icon.png",
   "orientations" : [
     {
-      "image" : "lens.png:idle.1",
+      "image" : "solarlensinward.png",
       "direction" : "right",
       "imagePosition" : [-8, -8],
 
@@ -35,38 +35,17 @@
     }
   ],
 
-  "animation" : "v-solarlens.animation",
+  "animation" : "v-solarlensinward.animation",
   "animationPosition" : [0, 0],
   "animationParts" : {
-    "lens" : "lens.png",
-    "lenslit" : "lenslit.png",
-    "beam" : "beam.png",
-    "beamstart" : "beamstart.png",
+    "lens" : "solarlensinward.png",
     "beamconnection" : "beamconnection.png"
   },
 
-  "inputNodes" : [ [0, 0] ],
+  "outputNodes" : [ [0, 0] ],
 
-  "scripts" : [ "v-solarlens.lua" ],
+  "scripts" : [ "v-solarlensinward.lua" ],
   "scriptDelta" : 3,
-
-  "damageConfig" : {
-    "damage" : 60,
-    "damageSourceKind" : "fireplasma",
-    "damageType" : "Environment",
-    "teamType" : "enemy"
-  },
-
-  "preScrewUpSparkTime" : 1.5,
-  "preferredScrewUpDirection" : null,  // -1 for clockwise, 1 for counterclockwise.
-  "preferredFixDirection" : null,  // -1 for clockwise, 1 for counterclockwise.
-  "angle" : 90,
-  "screwUpTime" : 3.0,
-  "fixTime" : 1.0,
-  "maxBeamLength" : 100,
-  "decorativeBeamLength" : 20,
-
-  "otherLensPollInterval" : 0.3,
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

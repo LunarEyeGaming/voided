@@ -22,10 +22,15 @@ local otherLensPollTimer
 local otherLensPos
 local prevReceivers
 
-local materialConfigs
 local state
 local isFixed  -- Controlled by both message handlers and the state machine. Used as input into the state machine.
 -- storage.isFixed is used by the update function to determine whether or not to fire a damaging beam.
+
+-- #render_workaround: Lens beams sometimes render above other solar lenses, making them look weird. The workaround to
+-- this is to shorten the beam from the sending lens and add a beam connection sprite to the receiving lens at the same
+-- angle as the sending beam.
+
+-- HOOKS
 
 function init()
   preScrewUpSparkTime = config.getParameter("preScrewUpSparkTime")
@@ -55,8 +60,8 @@ function init()
   positionStart = vec2.add(object.position(), {0.001, 0.001})  -- Nudge it to avoid chunk boundary issues.
   prevReceivers = {}
 
-  if storage.active == nil then
-    storage.active = config.getParameter("defaultState", false)
+  if storage.powered == nil then
+    storage.powered = config.getParameter("defaultState", false)
   end
 
   if storage.isFixed == nil then
@@ -71,30 +76,40 @@ function init()
 
   object.setAllOutputNodes(not storage.isFixed)
 
-  setState(storage.active)
+  updateState()
 
   if decorative then
-    updateAnimation(currentAngle, config.getParameter("decorativeBeamLength", 20))
+    local beamLength = config.getParameter("decorativeBeamLength", 20)
+    if config.getParameter("decorativeIsConnecting", true) then
+      beamLength = beamLength - 1
+    end
+
+    local connectionAngle = config.getParameter("decorativeConnectionAngle", -90) * math.pi / 180
+    if connectionAngle then
+      animator.resetTransformationGroup("beamconnection")
+      animator.rotateTransformationGroup("beamconnection", connectionAngle)
+    end
+
+    updateAnimation(currentAngle, beamLength)
+    animator.setAnimationState("beamconnection", connectionAngle and "on" or "off")
     script.setUpdateDelta(0)
   end
 
   message.setHandler("v-solarLens-fix", function()
     isFixed = true
-    object.setAllOutputNodes(false)
   end)
 
   message.setHandler("v-solarLens-screwUp", function()
     isFixed = false
-    object.setAllOutputNodes(true)
   end)
 
   message.setHandler("v-monsterwavespawner-reset", function()
     isFixed = config.getParameter("isFixed", true)
     object.setAllOutputNodes(not isFixed)
+    resetZap()
     state:set(isFixed and states.fix or states.screwUpNoTelegraph)
   end)
 
-  materialConfigs = {}
   state = FSM:new()
   state:set(storage.isFixed and states.fixed or states.screwedUp)
 end
@@ -111,8 +126,27 @@ function die()
   setBeamReceiverState(beamEnd, false)
 end
 
+function onNodeConnectionChange()
+  if object.isInputNodeConnected(0) then
+    storage.powered = object.getInputNodeLevel(0)
+    updateState()
+  else
+    storage.powered = config.getParameter("defaultState", false)
+    updateState()
+  end
+end
+
+function onInputNodeChange(args)
+  if args.node == 0 then
+    storage.powered = args.level
+    updateState()
+  end
+end
+
+-- HELPER FUNCTIONS
+
 ---Sets the state of the first object that can receive beams found within the beam.
-function setBeamReceiverState(beamEnd, state)
+function setBeamReceiverState(beamEnd, state, angle)
   local queried = world.entityLineQuery(positionStart, beamEnd, {
     withoutEntityId = entity.id(),
     includedTypes = {"object"},
@@ -123,21 +157,6 @@ function setBeamReceiverState(beamEnd, state)
   local entityPos
 
   local receivers
-
-  -- if #queried > 0 then
-  --   entityId = queried[1]
-
-  --   local isBeamEnd = world.callScriptedEntity(entityId, "receiveBeamState", state)
-
-  --   if isBeamEnd then
-  --     entityPos = world.entityPosition(entityId)
-  --   end
-  -- end
-
-  -- -- Deactivate prevOtherLens if disconnected.
-  -- if prevReceivers ~= entityId and prevReceivers and world.entityExists(prevReceivers) then
-  --   world.callScriptedEntity(prevReceivers, "receiveBeamState", false)
-  -- end
 
   -- Go in order, finding the index of the first entity that is a beamEnd.
   local beamEndIndex
@@ -165,7 +184,7 @@ function setBeamReceiverState(beamEnd, state)
 
   -- Control current receivers.
   for _, entityId in ipairs(receivers) do
-    world.callScriptedEntity(entityId, "receiveBeamState", state)
+    world.callScriptedEntity(entityId, "receiveBeamState", state, angle)
   end
 
   -- Turn off receivers that were disconnected.
@@ -184,19 +203,6 @@ function getBeamEnd(angle)
   local beamStart = positionStart
   local beamEnd = vec2.add(beamStart, vec2.withAngle(angle, maxBeamLength))
 
-  -- local collidePoints = world.collisionBlocksAlongLine(beamStart, beamEnd, {"Block", "Slippery", "Dynamic"})
-
-  -- for _, collideTile in ipairs(collidePoints) do
-  --   local material = world.material(collideTile, "foreground")
-  --   if material then
-  --     local matCfg = getMaterialProperties(material)
-  --     if matCfg and matCfg.isSolidAndOpaque then
-  --       beamEnd = collideTile
-  --       break
-  --     end
-  --   end
-  -- end
-
   local collidePoint = vMinistar.lightLineTileCollision(beamStart, beamEnd, {"Block", "Slippery", "Dynamic"})
 
   if collidePoint then
@@ -207,14 +213,6 @@ function getBeamEnd(angle)
 end
 
 function updateBeam(dt)
-  -- if adjustTimer <= adjustTime then
-  --   adjustTimer = adjustTimer + dt
-
-  --   -- Offset progress by 0.5.
-  --   local progress = (adjustTimer / adjustTime) * 0.5 + 0.5
-  --   currentAngle = interp.sin(progress, angleStart, angleEnd)
-  -- end
-
   local beamEnd = getBeamEnd(currentAngle)
   local beamStart = positionStart
 
@@ -222,7 +220,7 @@ function updateBeam(dt)
 
   otherLensPollTimer = otherLensPollTimer - dt
   if otherLensPollTimer <= 0 then
-    otherLensPos = setBeamReceiverState(beamEnd, storage.active)
+    otherLensPos = setBeamReceiverState(beamEnd, isActive(), currentAngle)
 
     otherLensPollTimer = otherLensPollInterval
   end
@@ -237,12 +235,16 @@ function updateBeam(dt)
   -- world.debugPoint(beamEnd, "green")
 
   local beamMag = world.magnitude(beamEnd, beamStart)
+  -- See #render_workaround
+  if otherLensPos then
+    beamMag = beamMag - 1
+  end
 
   -- world.debugText("%s", storage.active, object.position(), "green")
 
   updateAnimation(currentAngle, beamMag)
 
-  if storage.active and not storage.isFixed then
+  if (storage.powered or storage.active) and not storage.isFixed then
     updateDamageSource(beamEndRelative)
   else
     object.setDamageSources({})
@@ -278,22 +280,38 @@ function projectVector(vector, ontoVector)
   return {ontoVector[1] * factor, ontoVector[2] * factor}
 end
 
-function setState(state)
-  animator.setAnimationState("beam", state and "on" or "off")
+function updateState()
+  animator.setAnimationState("beam", isActive() and "on" or "off")
 end
+
+function isActive()
+  return storage.active or storage.powered
+end
+
+-- CALLSCRIPT FUNCTIONS
 
 function v_canReceiveBeams()
   return not decorative
 end
 
-function receiveBeamState(state)
+function receiveBeamState(state, beamConnectionAngle)
   storage.active = state
-  setState(state)
+
+  -- See #render_workaround
+  if beamConnectionAngle then
+    animator.resetTransformationGroup("beamconnection")
+    animator.rotateTransformationGroup("beamconnection", beamConnectionAngle - math.pi)
+  end
+  animator.setAnimationState("beamconnection", (beamConnectionAngle and state) and "on" or "off")
+
+  updateState()
 end
 
 function blocksBeams()
   return true
 end
+
+-- STATE FUNCTIONS
 
 states = {}
 
@@ -381,4 +399,10 @@ function adjust(angle, time, progressOffset, preferredDirection)
   end)
 
   currentAngle = angleEnd
+end
+
+function resetZap()
+  animator.setParticleEmitterActive("telegraphSparks", false)
+  animator.stopAllSounds("sparks")
+  animator.setAnimationState("lens", "idle")
 end

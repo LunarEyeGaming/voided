@@ -1,0 +1,42 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "beamconnection" : {
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "on" : {}
+        }
+      }
+    },
+    "parts" : {
+      "lens" : {
+        "properties" : {
+          "centered" : true,
+          "image" : "<partImage>"
+        }
+      },
+      "beamconnection" : {
+        "properties" : {
+          "fullbright" : true,
+          "centered" : true,
+          "zLevel" : -1,
+          "transformationGroups" : [ "beamconnection" ]
+        },
+        "partStates" : {
+          "beamconnection" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "beamconnection" : { "interpolated" : true }
+  }
+}
