@@ -393,6 +393,9 @@ function v_ministarEffects_drawSunRays(predictedPos, rayColors, window)
   local rayColors_list = rayColors.list
   local rayLocationsMap_list = rayLocationsMap.list
 
+  local oceanCount = 0
+  local nonOceanCount = 0
+
   -- Draw all sun rays
   for x = startX, endX do
     local xWrapped = world_xwrap(x)
@@ -402,16 +405,20 @@ function v_ministarEffects_drawSunRays(predictedPos, rayColors, window)
       sunRayDrawable.color = rayColors_list[xWrapped]
       if topY ~= minHeight then
         sunRayDrawableFunc(x, minHeight, topY, predictedPos)
+        oceanCount = oceanCount + 1
       end
 
       local otherRays = rayLocationsMap_list[xWrapped]
       if otherRays then
         for _, ray in ipairs(otherRays) do
           nonOceanSunRayDrawableFunc(x, ray.s, ray.e, predictedPos)
+          nonOceanCount = nonOceanCount + 1
         end
       end
     end
   end
+
+  sb.setLogMap("v-ministareffects_raysDrawn", "%s (ocean), %s (non-ocean)", oceanCount, nonOceanCount)
 end
 
 ---
