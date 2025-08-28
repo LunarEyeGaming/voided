@@ -14,14 +14,14 @@ local lockSound
 function init()
   keyItems = config.getParameter("acceptedItems")
   deleteItem = config.getParameter("deleteItem")
-  
+
   unlockStateType = config.getParameter("unlockStateType", "unlockState")
 
   unlockingState = config.getParameter("unlockingState", "unlocking")
   lockingState = config.getParameter("lockingState", "locking")
   unlockedState = config.getParameter("unlockedState", "unlocked")
   lockedState = config.getParameter("lockedState", "locked")
-  
+
   unlockSound = config.getParameter("unlockSound", "unlock")
   lockSound = config.getParameter("lockSound", "lock")
 
@@ -30,7 +30,7 @@ function init()
   else
     output(storage.state)
   end
-  
+
   -- Retain state if unloaded
   animator.setAnimationState(unlockStateType, storage.state and unlockedState or lockedState)
 end
@@ -83,11 +83,15 @@ function output(state)
     -- Deactivating
     if storage.state then
       animator.setAnimationState(unlockStateType, lockingState)
-      animator.playSound(lockSound)
+      if lockSound and animator.hasSound(lockSound) then
+        animator.playSound(lockSound)
+      end
     else
       -- Activating
       animator.setAnimationState(unlockStateType, unlockingState)
-      animator.playSound(unlockSound)
+      if unlockSound and animator.hasSound(unlockSound) then
+        animator.playSound(unlockSound)
+      end
     end
   end
 
@@ -98,4 +102,8 @@ function output(state)
   else
     object.setAllOutputNodes(false)
   end
+end
+
+function v_isUnlocked()
+  return storage.state
 end

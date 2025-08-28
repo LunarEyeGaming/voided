@@ -1,5 +1,6 @@
 {
   "objectName" : "v-spireportalcrystal",
+  "objectType" : "container",
   "colonyTags" : [ ],
   "printable" : false,
   "rarity" : "Legendary",
@@ -15,13 +16,13 @@
   "hylotlDescription" : "<todo>",
   "novakidDescription" : "<todo>",
 
-  "category" : "decorative",
+  "category" : "artifact",
   "price" : 0,
 
   "inventoryIcon" : "icon.png",
   "orientations" : [
     {
-      "imageLayers" : [ { "image" : "spireportalcrystal.png" } ],
+      "imageLayers" : [ { "image" : "spireportalcrystal.png:default" } ],
       "imagePosition" : [-40, -40],
 
       "spaceScan" : 0.1,
@@ -30,10 +31,34 @@
     }
   ],
 
+  "openSounds" : [ "/sfx/other/v_silence.ogg" ],
+  "closeSounds" : [ "/sfx/other/v_silence.ogg" ],
+  "slotCount" : 1,
+  "frameCooldown" : 5,
+  "autoCloseCooldown" : 3600,
+  "uiConfig" : "/interface/scripted/v-spireportalcrystalgui/v-spireportalcrystalgui.config",
+
   "health" : 5,
   "smashOnBreak" : true,
 
-  "scripts" : ["v-spireportalcrystal.lua"],
+  "animation" : "v-spireportalcrystal.animation",
+  "animationParts" : {
+    "crystal" : "spireportalcrystal.png"
+  },
+  "animationPosition" : [-40, -40],
+
+  "scripts" : [ "/objects/wired/v-wiredlock.lua" ],
+  "acceptedItems" : [ "v-spireportalcrystalitem" ],
+  "deleteItem" : true,
+
+  "unlockStateType" : "crystal",
+
+  "unlockingState" : "fixed",
+  "lockingState" : "broken",
+  "unlockedState" : "fixed",
+  "lockedState" : "broken",
+
+  "unlockSound" : "repair",
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

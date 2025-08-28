@@ -1,0 +1,38 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "crystal" : {
+        "default" : "broken",
+        "states" : {
+          "broken" : {},
+          "fixed" : {}
+        }
+      }
+    },
+    "parts" : {
+      "crystal" : {
+        "properties" : {
+          "image" : "<partImage>",
+          "centered" : false
+        },
+        "partStates" : {
+          "crystal" : {
+            "broken" : {
+              "properties" : {
+                "image" : "<partImage>:broken.<frame>"
+              }
+            },
+            "fixed" : {
+              "properties" : {
+                "image" : "<partImage>:fixed.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "sounds" : {
+    "repair" : [ ]
+  }
+}
