@@ -35,6 +35,7 @@ local portalLightningConfig
 
 local summonMinibossArgs
 local summonMinibossThreshold
+local minibossUniqueId
 
 -- State variables / objects
 local hazards
@@ -137,12 +138,13 @@ function init()
     }
   }
 
+  minibossUniqueId = "v-spireminiboss"
   summonMinibossArgs = {
     spawnOffset = {0, 20},
     monsterType = "v-spireminiboss",
     monsterParameters = {
       musicStagehands = {"v-spireminibossmusic"},
-      uniqueId = "v-spireminiboss"
+      uniqueId = minibossUniqueId
     },
     spawnerProjectileType = "v-spireportalminibossspawn"
   }
@@ -194,7 +196,6 @@ function update(dt)
   state:update()
 
   lightningController:update(dt)
-  world.debugText("destination: %s", currentDestination, object.position(), "green")
 end
 
 function onInteraction()
@@ -222,6 +223,12 @@ end
 
 function states.postInit()
   coroutine.yield()
+
+  local minibossId_ = world.loadUniqueEntity(minibossUniqueId)
+  if minibossId_ ~= 0 then
+    minibossId = minibossId_
+    hazardCounter = summonMinibossThreshold + 1
+  end
 
   if storage.status == "active" then
     states.destabilize2()
@@ -252,7 +259,7 @@ function states.attemptActivation()
     error("Entity with uniqueId 'v-spirecrystal' not found")
   end
 
-  if world.callScriptedEntity(crystal, "isRepaired") then
+  if world.callScriptedEntity(crystal, "v_isUnlocked") then
     states.open()
   else
     animator.playSound("error")
@@ -315,7 +322,7 @@ function states.destabilize1()
   util.wait(2.0)
 
   for _ = 1, 7 do
-    strikeLightning()
+    strikeLightnings(3)
     util.wait(1.0)
   end
 
@@ -347,7 +354,7 @@ function states.destabilize2()
   animator.setGlobalTag("destination", "none")
 
   while not friendlyInsideRegion(playerDetectQueryRegion) do
-    strikeLightning()
+    strikeLightnings(3)
     util.wait(1.0)
   end
 
@@ -460,6 +467,8 @@ function states.enemyHazard(cfg, fast)
     monsterWeightSum = monsterWeightSum + (cfg.monsterWeights[monsterType] or 1.0)
   end
 
+  sb.logInfo("%s, %s", monsterWeightSum, cfg.monsterScoreLimit)
+
   -- This hazard should trigger only when there aren't too many monsters in the arena. This depends on the weight of
   -- each monster.
   if monsterWeightSum <= cfg.monsterScoreLimit then
@@ -531,9 +540,9 @@ function states.enemyHazard(cfg, fast)
     -- end
 
     if fast then
-      util.wait(1)
+      util.wait(7)
     else
-      util.wait(3)
+      util.wait(10)
     end
   end
 
@@ -560,7 +569,7 @@ function states.summonMiniboss(cfg)
   world.spawnProjectile(cfg.spawnerProjectileType, spawnPos, entity.id(), {1, 0}, false, {monsterType = cfg.monsterType,
       monsterParameters = cfg.monsterParameters})
 
-  message.setHandler("v-monsterSpawned", function(_, _, id)
+  message.setHandler("v-minibossSpawned", function(_, _, id)
     minibossId = id
   end)
 
@@ -651,5 +660,18 @@ function strikeLightning(endPos)
   endPos = endPos or vec2.add(center, rect.randomPoint(lightningEndOffsetRegion))
 
   lightningController:add(startPos, endPos)
+  animator.playSound("lightningStrike")
+end
+
+function strikeLightnings(count)
+  object.setAnimationParameter("lightningSeed", math.floor(os.clock()))
+
+  for _ = 1, count do
+    local startPos = vec2.add(center, rect.randomPoint(portalOffsetRegion))
+    endPos = vec2.add(center, rect.randomPoint(lightningEndOffsetRegion))
+
+    lightningController:add(startPos, endPos)
+  end
+
   animator.playSound("lightningStrike")
 end
