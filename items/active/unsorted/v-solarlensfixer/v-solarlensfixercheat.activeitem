@@ -2,7 +2,7 @@
   "itemName" : "v-solarlensfixercheat",
   "price" : 2500,
   "rarity" : "Essential",
-  "category" : "v-passiveItem",
+  "category" : "tool",
   "builder" : "/items/buildscripts/v-builditem.lua",
   "inventoryIcon" : "solarlensfixericon.png",
   "description" : "Fixes solar lenses.",
@@ -15,6 +15,10 @@
   },
 
   "scripts" : ["v-solarlensfixer.lua"],
+  "animationScripts" : ["v-cursor.lua"],
+
+  "cursorImage" : "/items/active/unsorted/v-solarlensfixer/solarlensfixer.png",
+  "lensHighlightImage" : "/items/active/unsorted/v-solarlensfixer/lenshighlight.png",
 
   "fixRange" : 999,
   "broadcastRange" : 50

@@ -110,6 +110,10 @@ function init()
     state:set(isFixed and states.fix or states.screwUpNoTelegraph)
   end)
 
+  message.setHandler("v-solarLens-isFixed", function()
+    return storage.isFixed
+  end)
+
   state = FSM:new()
   state:set(storage.isFixed and states.fixed or states.screwedUp)
 end
