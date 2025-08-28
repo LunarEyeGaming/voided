@@ -394,7 +394,7 @@
                  "y":1136
                 }, 
                 {
-                 "gid":7729,
+                 "gid":7730,
                  "height":16,
                  "id":737,
                  "name":"",
@@ -406,7 +406,7 @@
                  "y":1560
                 }, 
                 {
-                 "gid":7729,
+                 "gid":7730,
                  "height":16,
                  "id":795,
                  "name":"",
@@ -418,7 +418,7 @@
                  "y":1560
                 }, 
                 {
-                 "gid":7729,
+                 "gid":7730,
                  "height":16,
                  "id":738,
                  "name":"",
@@ -454,7 +454,7 @@
                  "y":1032
                 }, 
                 {
-                 "gid":2147491390,
+                 "gid":2147491391,
                  "height":16,
                  "id":769,
                  "name":"",
@@ -474,7 +474,7 @@
                  "y":1576
                 }, 
                 {
-                 "gid":7729,
+                 "gid":7730,
                  "height":16,
                  "id":771,
                  "name":"",
@@ -1997,6 +1997,42 @@
                  "width":8,
                  "x":320,
                  "y":272
+                }, 
+                {
+                 "gid":7744,
+                 "height":16,
+                 "id":981,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":280,
+                 "y":80
+                }, 
+                {
+                 "gid":7744,
+                 "height":16,
+                 "id":982,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":280,
+                 "y":560
+                }, 
+                {
+                 "gid":7744,
+                 "height":16,
+                 "id":983,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":280,
+                 "y":1040
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2269,7 +2305,67 @@
          "draworder":"topdown",
          "id":5,
          "name":"wiring - lights & guns",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":984,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":88,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":200,
+                 "y":64
+                }, 
+                {
+                 "height":0,
+                 "id":985,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":-16,
+                         "y":0
+                        }, 
+                        {
+                         "x":88,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":200,
+                 "y":544
+                }, 
+                {
+                 "height":0,
+                 "id":986,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":-16,
+                         "y":0
+                        }, 
+                        {
+                         "x":88,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":200,
+                 "y":1024
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -2857,7 +2953,7 @@
                  "y":1624
                 }, 
                 {
-                 "gid":7743,
+                 "gid":7745,
                  "height":8,
                  "id":975,
                  "name":"",
@@ -2886,7 +2982,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":981,
+ "nextobjectid":987,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -3001,15 +3097,15 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-solarspire.json"
         }, 
         {
-         "firstgid":7717,
+         "firstgid":7718,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7728,
+         "firstgid":7729,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }, 
         {
-         "firstgid":7743,
+         "firstgid":7745,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }],
  "tilewidth":8,

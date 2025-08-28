@@ -776,6 +776,30 @@
                  "width":8,
                  "x":320,
                  "y":656
+                }, 
+                {
+                 "gid":7744,
+                 "height":16,
+                 "id":851,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":440,
+                 "y":144
+                }, 
+                {
+                 "gid":7744,
+                 "height":16,
+                 "id":852,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":176,
+                 "y":144
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -945,7 +969,47 @@
          "draworder":"topdown",
          "id":5,
          "name":"wiring - lights & guns",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":853,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":-16,
+                         "y":0
+                        }, 
+                        {
+                         "x":-16,
+                         "y":64
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":200,
+                 "y":64
+                }, 
+                {
+                 "height":0,
+                 "id":854,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":-16,
+                         "y":0
+                        }, 
+                        {
+                         "x":248,
+                         "y":64
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":200,
+                 "y":64
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1300,7 +1364,7 @@
          "name":"anchors etc",
          "objects":[
                 {
-                 "gid":7743,
+                 "gid":7745,
                  "height":8,
                  "id":759,
                  "name":"",
@@ -1312,7 +1376,7 @@
                  "y":664
                 }, 
                 {
-                 "gid":7743,
+                 "gid":7745,
                  "height":8,
                  "id":760,
                  "name":"",
@@ -1341,7 +1405,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":850,
+ "nextobjectid":855,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -1456,15 +1520,15 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-solarspire.json"
         }, 
         {
-         "firstgid":7717,
+         "firstgid":7718,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7728,
+         "firstgid":7729,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }, 
         {
-         "firstgid":7743,
+         "firstgid":7745,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }],
  "tilewidth":8,

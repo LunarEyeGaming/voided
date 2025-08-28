@@ -1,0 +1,72 @@
+{
+  "objectName" : "v-phoenixstatuslight",
+  "colonyTags" : ["light"],
+  "rarity" : "Common",
+  "category" : "light",
+  "price" : 75,
+  "printable" : false,
+  "description" : "<todo>",
+  "shortdescription" : "Phoenix Status Light",
+  "race" : "generic",
+
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+
+  "lightColor" : [178, 64, 32],
+  "lightColorOff" : [32, 85, 178],
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "phoenixstatuslight.png:<color>.off",
+      "imagePosition" : [-8, -8],
+
+      "direction" : "left",
+      "flipImages" : true,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    },
+    {
+      "image" : "phoenixstatuslight.png:<color>.off",
+      "imagePosition" : [-8, -8],
+
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/light/light.lua" ],
+  "scriptDelta" : 60,
+
+  "interactive" : false,
+
+  "defaultLightState" : false,
+
+  "animation" : "/objects/wired/light/lighttoggle2bgfullbright.animation",
+
+  "animationParts" : {
+    "bg" : "phoenixstatuslight.png",
+    "fg" : "phoenixstatuslightlit.png"
+  },
+  "animationPosition" : [-8, -8],
+  "animationCustom" : {
+    "sounds" : {
+      "on" : [ "/sfx/objects/castleswitchon.ogg" ],
+      "off" : [ "/sfx/objects/castleswitchoff.ogg" ]
+    }
+  },
+
+  "inputNodes" : [ [0, 0] ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}
