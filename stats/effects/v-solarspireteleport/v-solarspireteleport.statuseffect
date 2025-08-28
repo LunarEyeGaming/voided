@@ -9,13 +9,15 @@
     "teleportCinematic" : "/cinematics/v-teleportcut.cinematic",
     "teleportOffset" : [0, 3.5],
 
-    "beamInStatusEffect" : "v-ancientstrongholdbeamin"
+    "burstParticleEmitter" : "teleport",
+
+    "beamInStatusEffect" : "v-solarspirebeamin"
   },
   "defaultDuration" : 8.5,
 
   "scripts" : [
-    "v-ancientstrongholdteleport.lua"
+    "/stats/effects/v-ancientstrongholdteleport/v-ancientstrongholdteleport.lua"
   ],
 
-  "animationConfig" : "v-ancientstrongholdteleport.animation"
+  "animationConfig" : "v-solarspireteleport.animation"
 }

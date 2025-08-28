@@ -8,6 +8,7 @@ local appearTime
 local teleportCinematic
 local teleportOffset
 local beamInStatusEffect
+local burstParticleEmitter
 
 local searchPromise
 local teleportState
@@ -20,6 +21,7 @@ function init()
   appearTime = config.getParameter("appearTime")
   teleportCinematic = config.getParameter("teleportCinematic")
   teleportOffset = config.getParameter("teleportOffset")
+  burstParticleEmitter = config.getParameter("burstParticleEmitter")
 
   beamInStatusEffect = config.getParameter("beamInStatusEffect")
 
@@ -30,13 +32,16 @@ function init()
 
   -- Begin animation
   animator.setAnimationState("teleport", "beamOut")
+  if burstParticleEmitter then
+    animator.burstParticleEmitter(burstParticleEmitter)
+  end
   mcontroller.setVelocity({0, 0})
 end
 
 function update(dt)
   teleportState:update()
   effect.setParentDirectives(string.format("?multiply=%s", animator.animationStateProperty("teleport", "multiply") or "ffffff00"))
-  
+
   -- Freeze player
   mcontroller.setVelocity({0, 0})
   mcontroller.controlModifiers({
@@ -49,30 +54,30 @@ function teleport()
   while not searchPromise:finished() do
     coroutine.yield()
   end
-  
+
   if not searchPromise:succeeded() then
     sb.logWarn("In-world teleport not successful: no such entity with unique ID '%s'", targetUid)
     teleportState:set(noop)
     coroutine.yield()
   end
-  
+
   targetPosition = searchPromise:result()
-  
+
   util.wait(cinematicTime)
-  
+
   world.sendEntityMessage(entity.id(), "playCinematic", teleportCinematic)
-  
+
   util.wait(teleportTime)
-  
+
   mcontroller.setPosition(vec2.add(targetPosition, teleportOffset))
   world.sendEntityMessage(targetUid, "preactivate")
-  
+
   util.wait(appearTime)
-  
+
   world.sendEntityMessage(targetUid, "activate", entity.id())
   status.addEphemeralEffect(beamInStatusEffect)
   effect.expire()
-  
+
   teleportState:set(noop)
 end
 
@@ -83,5 +88,5 @@ function noop()
 end
 
 function trigger()
-  
+
 end
