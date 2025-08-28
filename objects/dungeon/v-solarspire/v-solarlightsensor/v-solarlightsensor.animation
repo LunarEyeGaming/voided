@@ -5,10 +5,38 @@
         "default" : "off",
         "states" : {
           "off" : {
-            "frames" : 1
+            "frames" : 1,
+            "properties" : {
+              "lightsOff" : [ "transition" ],
+              "lightsOn" : [ "off" ]
+            }
+          },
+          "activating" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "on",
+            "properties" : {
+              "lightsOff" : [ "off" ],
+              "lightsOn" : [ "transition" ]
+            }
           },
           "on" : {
-            "frames" : 1
+            "frames" : 1,
+            "properties" : {
+              "lightsOff" : [ "transition" ],
+              "lightsOn" : [ "on" ]
+            }
+          },
+          "deactivating" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "off",
+            "properties" : {
+              "lightsOff" : [ "on" ],
+              "lightsOn" : [ "transition" ]
+            }
           }
         }
       }
@@ -28,10 +56,19 @@
                 "image" : "<partImage>:off.<frame>"
               }
             },
-
+            "activating" : {
+              "properties" : {
+                "image" : "<partImage>:activating.<frame>"
+              }
+            },
             "on" : {
               "properties" : {
                 "image" : "<partImage>:on.<frame>"
+              }
+            },
+            "deactivating" : {
+              "properties" : {
+                "image" : "<partImage>:deactivating.<frame>"
               }
             }
           }
@@ -50,10 +87,19 @@
                 "image" : "<partImage>:off.<frame>"
               }
             },
-
+            "activating" : {
+              "properties" : {
+                "image" : "<partImage>:activating.<frame>"
+              }
+            },
             "on" : {
               "properties" : {
                 "image" : "<partImage>:on.<frame>"
+              }
+            },
+            "deactivating" : {
+              "properties" : {
+                "image" : "<partImage>:deactivating.<frame>"
               }
             }
           }
@@ -62,8 +108,23 @@
     }
   },
 
+  "lights" : {
+    "off" : {
+      "color" : [32, 85, 178],
+      "active" : false
+    },
+    "on" : {
+      "color" : [178, 64, 32],
+      "active" : false
+    },
+    "transition" : {
+      "color" : [105, 105, 105],
+      "active" : false
+    }
+  },
+
   "sounds" : {
-    "on" : [],
-    "off" : []
+    "on" : [ "/sfx/objects/castleswitchon.ogg" ],
+    "off" : [ "/sfx/objects/castleswitchoff.ogg" ]
   }
 }
