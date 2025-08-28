@@ -1,16 +1,21 @@
 {
   "name": "v-spireminiboss-charge",
-  "description": "",
+  "description": null,
   "scripts": [
+    "/scripts/actions/math.lua",
     "/scripts/actions/entity.lua",
     "/scripts/actions/world.lua",
+    "/scripts/actions/miniboss/v-spireminiboss.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/animator.lua",
-    "/scripts/actions/time.lua",
-    "/scripts/actions/math.lua"
+    "/scripts/actions/time.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "chargeRadius": 20,
+    "flightSpeed": 50,
+    "flightTolerance": 4
+  },
   "root": {
     "title": "repeater",
     "type": "decorator",
@@ -26,18 +31,127 @@
       "parameters": {},
       "children": [
         {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"value": 6.283185307},
+                "min": {"value": 0}
+              },
+              "output": {
+                "number": "flightAngle"
+              }
+            },
+            {
+              "title": "vecMultiply",
+              "type": "action",
+              "name": "vecMultiply",
+              "parameters": {
+                "first": {"value": [1, 0]},
+                "number": {"key": "<chargeRadius>"}
+              },
+              "output": {
+                "vector": "flightVector"
+              }
+            },
+            {
+              "title": "vecRotate",
+              "type": "action",
+              "name": "vecRotate",
+              "parameters": {
+                "angle": {"key": "flightAngle"},
+                "vector": {"key": "flightVector"}
+              },
+              "output": {
+                "vector": "flightVector"
+              }
+            },
+            {
+              "title": "vecMultiply",
+              "type": "action",
+              "name": "vecMultiply",
+              "parameters": {
+                "first": {"key": "flightVector"},
+                "number": {"value": -1}
+              },
+              "output": {
+                "vector": "chargeVector"
+              }
+            }
+          ]
+        },
+        {
           "title": "dynamic",
           "type": "composite",
           "name": "dynamic",
           "parameters": {},
           "children": [
             {
-              "title": "entityInSight",
-              "type": "action",
-              "name": "entityInSight",
+              "title": "parallel",
+              "type": "composite",
+              "name": "parallel",
               "parameters": {
-                "entity": {"key": "target"}
-              }
+                "fail": {"value": 1},
+                "success": {"value": -1}
+              },
+              "children": [
+                {
+                  "title": "entityInSight",
+                  "type": "action",
+                  "name": "entityInSight",
+                  "parameters": {
+                    "entity": {"key": "target"}
+                  }
+                },
+                {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "entityPosition",
+                      "type": "action",
+                      "name": "entityPosition",
+                      "parameters": {
+                        "entity": {"key": "target"}
+                      },
+                      "output": {
+                        "position": "targetPos"
+                      }
+                    },
+                    {
+                      "title": "v_giveBestPosition",
+                      "type": "action",
+                      "name": "v_giveBestPosition",
+                      "parameters": {
+                        "entityPosition": {"key": "targetPos"},
+                        "flightOffset": {"key": "flightVector"},
+                        "maxPolyResolution": {"value": 5}
+                      },
+                      "output": {
+                        "result": "flightPosition"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "title": "flyToPosition",
+                  "type": "action",
+                  "name": "flyToPosition",
+                  "parameters": {
+                    "position": {"key": "flightPosition"},
+                    "speed": {"key": "<flightSpeed>"},
+                    "tolerance": {"key": "<flightTolerance>"}
+                  }
+                }
+              ]
             },
             {
               "title": "parallel",
@@ -88,7 +202,19 @@
           "type": "action",
           "name": "v_stop",
           "parameters": {
-            "stopForce": {"value": 50}
+            "stopForce": {"value": 500}
+          }
+        },
+        {
+          "title": "entityDirection",
+          "type": "action",
+          "name": "entityDirection",
+          "parameters": {
+            "entity": {"key": "self"},
+            "target": {"key": "target"}
+          },
+          "output": {
+            "vector": "aimDirection"
           }
         },
         {
@@ -105,19 +231,7 @@
           "type": "action",
           "name": "timer",
           "parameters": {
-            "time": {"value": 1}
-          }
-        },
-        {
-          "title": "entityDirection",
-          "type": "action",
-          "name": "entityDirection",
-          "parameters": {
-            "entity": {"key": "self"},
-            "target": {"key": "target"}
-          },
-          "output": {
-            "vector": "aimDirection"
+            "time": {"value": 0.5}
           }
         },
         {
@@ -190,7 +304,7 @@
                 "parameters": {
                   "angle": {"key": "aimAngle"},
                   "force": {"value": 500},
-                  "velocity": {"value": 50}
+                  "velocity": {"value": 65}
                 }
               }
             },
@@ -218,6 +332,15 @@
           "name": "v_stop",
           "parameters": {
             "stopForce": {"value": 500}
+          }
+        },
+        {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"value": "idle"},
+            "type": {"value": "body"}
           }
         }
       ]

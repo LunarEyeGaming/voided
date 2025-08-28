@@ -1233,17 +1233,6 @@
   },
   {
     "op": "add",
-    "path": "/v-spireminiboss-charge",
-    "value": {
-      "type": "module",
-      "name": "v-spireminiboss-charge",
-      "title": "",
-      "properties": {},
-      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-charge.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-spireminiboss-stickyglobs",
     "value": {
       "type": "module",
@@ -1286,6 +1275,21 @@
         "orbitRadius": {"type": "json", "value": 1}
       },
       "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-orbittarget.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-spireminiboss-charge",
+    "value": {
+      "type": "module",
+      "name": "v-spireminiboss-charge",
+      "title": "",
+      "properties": {
+        "chargeRadius": {"type": "json", "value": 20},
+        "flightSpeed": {"type": "json", "value": 50},
+        "flightTolerance": {"type": "json", "value": 1}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-charge.behavior"
     }
   }
 ]
