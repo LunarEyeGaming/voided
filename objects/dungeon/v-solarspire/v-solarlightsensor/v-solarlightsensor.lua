@@ -32,7 +32,7 @@ function v_canReceiveBeams()
   return true
 end
 
-function receiveBeamState(state)
+function receiveBeamState(_, state)
   setState(state)
 end
 

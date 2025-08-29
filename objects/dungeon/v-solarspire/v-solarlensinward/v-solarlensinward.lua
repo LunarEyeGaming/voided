@@ -18,7 +18,7 @@ function v_canReceiveBeams()
   return true
 end
 
-function receiveBeamState(state, beamConnectionAngle)
+function receiveBeamState(_, state, beamConnectionAngle)
   storage.active = state
 
   -- See /objects/dungeon/v-solarlens/v-solarlens.lua:#render_workaround

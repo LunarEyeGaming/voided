@@ -20,15 +20,17 @@ local destabilizeCheckInterval
 
 -- State variables
 local positionStart
+local currentBeamEnd
 local currentAngle
 
 local otherLensPollTimer
 local otherLensPos
 local prevReceivers
+local senderId
 
 local beamImpactSoundTimer
 
-local state
+local lensState
 local isFixed  -- Controlled by both message handlers and the state machine. Used as input into the state machine.
 -- storage.isFixed is used by the update function to determine whether or not to fire a damaging beam.
 
@@ -80,6 +82,7 @@ function init()
   end
 
   currentAngle = fixedAngle
+  currentBeamEnd = getBeamEnd(currentAngle)
 
   object.setAllOutputNodes(not storage.isFixed)
 
@@ -114,27 +117,49 @@ function init()
     isFixed = config.getParameter("isFixed", true)
     object.setAllOutputNodes(not isFixed)
     resetZap()
-    state:set(isFixed and states.fix or states.screwUpNoTelegraph)
+    lensState:set(isFixed and states.fix or states.screwUpNoTelegraph)
   end)
 
   message.setHandler("v-solarLens-isFixed", function()
     return storage.isFixed
   end)
 
-  state = FSM:new()
-  state:set(storage.isFixed and states.fixed or states.waitForPortalDestabilization)
+  lensState = FSM:new()
+  lensState:set(storage.isFixed and states.fixed or states.waitForPortalDestabilization)
 end
 
 function update(dt)
-  state:update()
+  lensState:update()
+
+  -- -- Zoomed out view
+  -- local playerId = world.players()[1]
+  -- if world.entityExists(playerId) then
+  --   local playerPos = world.entityPosition(playerId)
+
+  --   local zoomOut = function(anchor, pos, factor)
+  --     local posRelative = world.distance(pos, anchor)
+  --     return vec2.add(vec2.mul(posRelative, 1 / factor), anchor)
+  --   end
+
+  --   local zoomedOutStart = zoomOut(playerPos, positionStart, 16)
+  --   local zoomedOutEnd = zoomOut(playerPos, currentBeamEnd, 16)
+  --   world.debugPoint(zoomedOutStart, "magenta")
+  --   if isActive() then
+  --     world.debugLine(zoomedOutStart, zoomedOutEnd, "green")
+  --   else
+  --     world.debugLine(zoomedOutStart, zoomedOutEnd, "red")
+  --   end
+  -- end
 
   updateBeam(dt)
 end
 
 function die()
-  local beamEnd = getBeamEnd(currentAngle)
-
-  setBeamReceiverState(beamEnd, false)
+  if senderId and world.entityExists(senderId) then
+    world.callScriptedEntity(senderId, "updateBeamEndSoon")
+  else
+    setBeamReceiverState(currentBeamEnd, false)
+  end
 end
 
 function onNodeConnectionChange()
@@ -158,12 +183,7 @@ end
 
 ---Sets the state of the first object that can receive beams found within the beam.
 function setBeamReceiverState(beamEnd, state, angle)
-  local queried = world.entityLineQuery(positionStart, beamEnd, {
-    withoutEntityId = entity.id(),
-    includedTypes = {"object"},
-    order = "nearest",
-    callScript = "v_canReceiveBeams"
-  })
+  local queried = findBeamReceivers(beamEnd)
 
   local entityPos
 
@@ -193,21 +213,48 @@ function setBeamReceiverState(beamEnd, state, angle)
 
   -- world.debugText("receivers: %s", receivers, object.position(), "green")
 
+  local ownId = entity.id()
+
   -- Control current receivers.
+  local extraReceivers = {}  -- This set is for in case a lens appears in the middle of an existing beam.
   for _, entityId in ipairs(receivers) do
-    world.callScriptedEntity(entityId, "receiveBeamState", state, angle)
+    local returnedReceivers = world.callScriptedEntity(entityId, "receiveBeamState", ownId, state, angle)
+
+    -- Put receivers into set, if provided.
+    if returnedReceivers then
+      for _, receiverId in ipairs(returnedReceivers) do
+        extraReceivers[receiverId] = true
+      end
+    end
   end
 
   -- Turn off receivers that were disconnected.
   for _, entityId in ipairs(prevReceivers) do
-    if not contains(receivers, entityId) and world.entityExists(entityId) then
-      world.callScriptedEntity(entityId, "receiveBeamState", false)
+    if not contains(receivers, entityId) and world.entityExists(entityId) and not extraReceivers[entityId] then
+      world.callScriptedEntity(entityId, "receiveBeamState", ownId, false)
     end
   end
 
   prevReceivers = receivers
 
   return entityPos
+end
+
+function findBeamReceivers(beamEnd)
+  if type(positionStart) ~= "table" then
+    error("positionStart is not a table. Instead, it is of type " .. type(positionStart))
+  end
+  if type(beamEnd) ~= "table" then
+    error("beamEnd is not a table. Instead, it is of type " .. type(beamEnd) .. ". Position: " .. object.position())
+  end
+  local queried = world.entityLineQuery(positionStart, beamEnd, {
+    withoutEntityId = entity.id(),
+    includedTypes = {"object"},
+    order = "nearest",
+    callScript = "v_canReceiveBeams"
+  })
+
+  return queried
 end
 
 function getBeamEnd(angle)
@@ -225,14 +272,15 @@ function getBeamEnd(angle)
 end
 
 function updateBeam(dt)
-  local beamEnd, isCollision = getBeamEnd(currentAngle)
+  local isCollision
+  currentBeamEnd, isCollision = getBeamEnd(currentAngle)
   local beamStart = positionStart
 
-  local beamEndRelative = world.distance(beamEnd, beamStart)
+  local beamEndRelative = world.distance(currentBeamEnd, beamStart)
 
   otherLensPollTimer = otherLensPollTimer - dt
   if otherLensPollTimer <= 0 then
-    otherLensPos = setBeamReceiverState(beamEnd, isActive(), currentAngle)
+    otherLensPos = setBeamReceiverState(currentBeamEnd, isActive(), currentAngle)
 
     otherLensPollTimer = otherLensPollInterval
   end
@@ -241,14 +289,14 @@ function updateBeam(dt)
     local otherLensPosRelative = world.distance(otherLensPos, beamStart)
     beamEndRelative = projectVector(otherLensPosRelative, beamEndRelative)
 
-    beamEnd = vec2.add(beamEndRelative, beamStart)
+    currentBeamEnd = vec2.add(beamEndRelative, beamStart)
 
     isCollision = false
   end
 
   -- world.debugPoint(beamEnd, "green")
 
-  local beamMag = world.magnitude(beamEnd, beamStart)
+  local beamMag = world.magnitude(currentBeamEnd, beamStart)
   -- See #render_workaround
   if otherLensPos then
     beamMag = beamMag - 1
@@ -377,8 +425,12 @@ function v_canReceiveBeams()
   return not decorative
 end
 
-function receiveBeamState(state, beamConnectionAngle)
+function receiveBeamState(sourceId, state, beamConnectionAngle)
   storage.active = state
+  senderId = sourceId
+
+  local beamEnd = vec2.add(positionStart, vec2.withAngle(currentAngle, maxBeamLength))
+  local receivers = findBeamReceivers(beamEnd)
 
   -- See #render_workaround
   if beamConnectionAngle then
@@ -388,6 +440,12 @@ function receiveBeamState(state, beamConnectionAngle)
   animator.setAnimationState("beamconnection", (beamConnectionAngle and state) and "on" or "off")
 
   updateState()
+
+  return receivers
+end
+
+function updateBeamEndSoon()
+  otherLensPollTimer = 0  -- Defer polling to next update to avoid any potential weirdness.
 end
 
 function blocksBeams()
@@ -405,7 +463,7 @@ function states.fixed()
     coroutine.yield()
   end
 
-  state:set(states.screwUp)
+  lensState:set(states.screwUp)
 end
 
 function states.screwUp()
@@ -428,7 +486,7 @@ function states.screwUp()
   animator.stopAllSounds("sparks")
   animator.setAnimationState("lens", "unzap")
 
-  state:set(states.screwedUp)
+  lensState:set(states.screwedUp)
 end
 
 function states.screwUpNoTelegraph()
@@ -439,7 +497,7 @@ function states.screwUpNoTelegraph()
   animator.setParticleEmitterActive("telegraphSparks", false)
   animator.stopAllSounds("sparks")
 
-  state:set(states.screwedUp)
+  lensState:set(states.screwedUp)
 end
 
 function states.screwedUp()
@@ -449,7 +507,7 @@ function states.screwedUp()
     coroutine.yield()
   end
 
-  state:set(states.fix)
+  lensState:set(states.fix)
 end
 
 function states.fix()
@@ -457,7 +515,7 @@ function states.fix()
 
   adjust(fixedAngle, fixTime, 0.5, preferredFixDirection)
 
-  state:set(states.fixed)
+  lensState:set(states.fixed)
 end
 
 function states.waitForPortalDestabilization()
@@ -471,7 +529,7 @@ function states.waitForPortalDestabilization()
     end)
   until spirePortalId ~= 0 and world.entityExists(spirePortalId) and world.callScriptedEntity(spirePortalId, "isDestabilized")
 
-  state:set(states.screwUpNoTelegraph)
+  lensState:set(states.screwUpNoTelegraph)
 end
 
 function adjust(angle, time, progressOffset, preferredDirection)
