@@ -93,6 +93,8 @@ function output(state)
         animator.playSound(unlockSound)
       end
     end
+
+    onOutputChange(state)
   end
 
   storage.state = state
@@ -106,4 +108,11 @@ end
 
 function v_isUnlocked()
   return storage.state
+end
+
+-- EXTRA HOOKS
+
+-- Called whenever the output changes, passing in the new state. `storage.state` is not updated at the time of the
+-- function call.
+function onOutputChange(state)
 end
