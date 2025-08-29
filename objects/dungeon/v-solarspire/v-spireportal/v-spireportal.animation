@@ -39,14 +39,20 @@
             "frames" : 7,
             "cycle" : 0.3,
             "mode" : "transition",
-            "transition" : "unlinked"
+            "transition" : "unlinked",
+            "properties" : {
+              "immediateSound" : "/sfx/projectiles/astraltear_stop2.ogg"
+            }
           },
           "unlinked" : {},
           "relink" : {
             "frames" : 7,
             "cycle" : 0.3,
             "mode" : "transition",
-            "transition" : "opened"
+            "transition" : "opened",
+            "properties" : {
+              "immediateSound" : "/sfx/projectiles/gravitymine_detonate.ogg"
+            }
           }
         }
       },
