@@ -1,5 +1,5 @@
 {
-  "objectName" : "v-wirelessmomentaryswitch",
+  "objectName" : "v-spireportaldestabilizetrigger",
   "colonyTags" : ["wired"],
   "printable" : false,
   "scannable" : false,
@@ -8,34 +8,34 @@
   "price" : 0,
   "health" : 0.1,
   "description" : "...",
-  "shortdescription" : "Wireless Pulse Switch",
+  "shortdescription" : "Wireless Switch",
   "race" : "generic",
 
   "smashOnBreak" : true,
 
-  "inventoryIcon" : "wirelessmomentaryswitch.png",
+  "inventoryIcon" : "spireportaldestabilizetrigger.png",
   "orientations" : [
     {
-      "image" : "wirelessmomentaryswitch.png",
+      "image" : "spireportaldestabilizetrigger.png",
       "imagePosition" : [-8, -8],
       "spaceScan" : 0.1,
       "direction" : "right",
 
       "animationPosition" : [-8, -8],
       "animationParts" : {
-        "hidden" : "wirelessmomentaryswitchhidden.png"
+        "hidden" : "spireportaldestabilizetriggerhidden.png"
       }
     }
   ],
 
-  "scripts" : [ "v-wirelessmomentaryswitch.lua" ],
+  "scripts" : [ "v-spireportaldestabilizetrigger.lua" ],
   "scriptDelta" : 5,
+
+  "spirePortalUniqueId" : "v-spireportal",
 
   "animation" : "/objects/wired/v-hiddenswitch.animation",
 
   "outputNodes" : [ [0, -1] ],
-
-  "interval" : 15,
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

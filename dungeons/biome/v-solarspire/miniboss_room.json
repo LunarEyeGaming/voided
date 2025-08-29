@@ -424,7 +424,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 33, \"decorativeConnectionAngle\" : 180}"
+                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 33, \"decorativeConnectionAngle\" : 180, \"decorativeIsConnecting\" : false}"
                     },
                  "propertytypes":
                     {
@@ -444,7 +444,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 35, \"decorativeConnectionAngle\" : 180}"
+                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 35, \"decorativeConnectionAngle\" : 180, \"decorativeIsConnecting\" : false}"
                     },
                  "propertytypes":
                     {
@@ -464,7 +464,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 35, \"decorativeConnectionAngle\" : 0}"
+                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 35, \"decorativeConnectionAngle\" : 0, \"decorativeIsConnecting\" : false}"
                     },
                  "propertytypes":
                     {
@@ -484,7 +484,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 33, \"decorativeConnectionAngle\" : 0}"
+                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 33, \"decorativeConnectionAngle\" : 0, \"decorativeIsConnecting\" : false}"
                     },
                  "propertytypes":
                     {
@@ -708,7 +708,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"angle\" : -90, \"maxBeamLength\" : 35}"
+                     "parameters":"{\"angle\" : -90, \"maxBeamLength\" : 34}"
                     },
                  "propertytypes":
                     {
@@ -728,7 +728,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"angle\" : -90, \"maxBeamLength\" : 35}"
+                     "parameters":"{\"angle\" : -90, \"maxBeamLength\" : 34}"
                     },
                  "propertytypes":
                     {
@@ -1054,7 +1054,7 @@
                  "y":1016
                 }, 
                 {
-                 "gid":7729,
+                 "gid":7730,
                  "height":16,
                  "id":866,
                  "name":"",
@@ -1066,7 +1066,7 @@
                  "y":784
                 }, 
                 {
-                 "gid":7729,
+                 "gid":7730,
                  "height":16,
                  "id":867,
                  "name":"",
@@ -1078,7 +1078,7 @@
                  "y":784
                 }, 
                 {
-                 "gid":7729,
+                 "gid":7730,
                  "height":16,
                  "id":886,
                  "name":"",
@@ -1090,7 +1090,7 @@
                  "y":768
                 }, 
                 {
-                 "gid":7729,
+                 "gid":7730,
                  "height":16,
                  "id":887,
                  "name":"",
@@ -1126,6 +1126,14 @@
                  "height":200,
                  "id":883,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"uniqueId\" : \"v-spireportal\"}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1373,10 +1381,31 @@
                  "width":480,
                  "x":520,
                  "y":520
+                }, 
+                {
+                 "height":496,
+                 "id":918,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"radioMessages\" : [\"v-solarspire\"] }",
+                     "stagehand":"radiomessage"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":496,
+                 "x":504,
+                 "y":504
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1573,7 +1602,7 @@
          "name":"anchors etc",
          "objects":[
                 {
-                 "gid":7743,
+                 "gid":7745,
                  "height":8,
                  "id":759,
                  "name":"",
@@ -1602,7 +1631,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":917,
+ "nextobjectid":919,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -1717,15 +1746,15 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-solarspire.json"
         }, 
         {
-         "firstgid":7717,
+         "firstgid":7718,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7728,
+         "firstgid":7729,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }, 
         {
-         "firstgid":7743,
+         "firstgid":7745,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }],
  "tilewidth":8,

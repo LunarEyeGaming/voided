@@ -16,6 +16,7 @@ local maxBeamLength
 local damageConfig
 local decorative
 local beamImpactSoundInterval
+local destabilizeCheckInterval
 
 -- State variables
 local positionStart
@@ -62,6 +63,8 @@ function init()
   decorative = config.getParameter("decorative", false)
   beamImpactSoundInterval = config.getParameter("beamImpactSoundInterval", 0.2)
 
+  destabilizeCheckInterval = config.getParameter("destabilizeCheckInterval", 1.0)
+
   otherLensPollTimer = otherLensPollInterval
   positionStart = vec2.add(object.position(), {0.001, 0.001})  -- Nudge it to avoid chunk boundary issues.
   prevReceivers = {}
@@ -76,11 +79,7 @@ function init()
     storage.isFixed = config.getParameter("isFixed", true)
   end
 
-  if not storage.isFixed then
-    currentAngle = screwedUpAngle
-  else
-    currentAngle = fixedAngle
-  end
+  currentAngle = fixedAngle
 
   object.setAllOutputNodes(not storage.isFixed)
 
@@ -123,7 +122,7 @@ function init()
   end)
 
   state = FSM:new()
-  state:set(storage.isFixed and states.fixed or states.screwedUp)
+  state:set(storage.isFixed and states.fixed or states.waitForPortalDestabilization)
 end
 
 function update(dt)
@@ -459,6 +458,20 @@ function states.fix()
   adjust(fixedAngle, fixTime, 0.5, preferredFixDirection)
 
   state:set(states.fixed)
+end
+
+function states.waitForPortalDestabilization()
+  local spirePortalId
+
+  repeat
+    spirePortalId = world.loadUniqueEntity("v-spireportal")
+
+    util.wait(destabilizeCheckInterval, function()
+      world.debugText("waiting for portal destabilization...", object.position(), "green")
+    end)
+  until spirePortalId ~= 0 and world.entityExists(spirePortalId) and world.callScriptedEntity(spirePortalId, "isDestabilized")
+
+  state:set(states.screwUpNoTelegraph)
 end
 
 function adjust(angle, time, progressOffset, preferredDirection)

@@ -294,6 +294,7 @@ function states.destabilize1()
 
   animator.setAnimationState("portalshockwave", "visible")
   animator.playSound("explosion")
+  storage.isDestabilized = true  -- Separate flag for messaging purposes.
   local timer = 0
   local shockwaveTime = 1
   local minScale = 0
@@ -682,6 +683,8 @@ function generateBeamPoly(width, mag, angle, offset)
   return poly.translate(poly.rotate(damagePoly, angle), offset)
 end
 
+-- CALLSCRIPT FUNCTIONS
+
 function skipToHazardPhase()
   object.setOutputNodeLevel(NODE_OUTER_DOOR, false)
   object.setOutputNodeLevel(NODE_INNER_DOOR, true)
@@ -693,4 +696,8 @@ function skipToHazardPhase()
   end
 
   state:set(states.destabilize2)
+end
+
+function isDestabilized()
+  return storage.isDestabilized
 end
