@@ -12,6 +12,7 @@ function init()
   message.setHandler("v-wirelessswitch-trigger", v_wirelessSwitch_onTrigger)
 
   message.setHandler("v-monsterwavespawner-reset", v_wirelessSwitch_onReset)
+  message.setHandler("v-monsterwavespawner-deactivate", v_wirelessSwitch_onReset)
 end
 
 function v_wirelessSwitch_onTrigger()

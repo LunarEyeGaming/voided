@@ -226,6 +226,8 @@ function states.waves()
     util.wait(nextWaveDelay)
   end
 
+  deactivateTriggers()
+
   deactivate()
 
   state:set(states.inactive)
@@ -333,6 +335,7 @@ function getWaves()
       queryArea = rect.translate(triggerInfo.queryArea, triggerDistance),
       queryOptions = triggerInfo.queryOptions,
       resetOnSubsequentWaves = triggerInfo.resetOnSubsequentWaves,
+      deactivateOnCompletion = triggerInfo.deactivateOnCompletion,
 
       delay = triggerInfo.delay or 0.0,
       priority = triggerInfo.priority or 0
@@ -525,6 +528,28 @@ function resetTriggers(waveNum)
     -- Send the messages
     for _, target in ipairs(targets) do
       vWorld.sendEntityMessage(target, "v-monsterwavespawner-reset")
+    end
+  end
+end
+
+function deactivateTriggers()
+  -- For all waves...
+  for i = 1, #storage.waves do
+    local wave = storage.waves[i]
+
+    -- For each trigger in the wave...
+    for _, trigger in ipairs(wave.triggers) do
+      -- If the trigger deactivates on completion...
+      if trigger.deactivateOnCompletion then
+        -- Query the targets
+        local points = vEntity.getRegionPoints(trigger.queryArea)
+        local targets = world.entityQuery(points[1], points[2], trigger.queryOptions)
+
+        -- Send the messages
+        for _, target in ipairs(targets) do
+          vWorld.sendEntityMessage(target, "v-monsterwavespawner-deactivate")
+        end
+      end
     end
   end
 end
