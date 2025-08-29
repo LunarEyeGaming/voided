@@ -1,0 +1,72 @@
+{
+  "objectName" : "v-solarlens2",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "category" : "decorative",
+  "price" : 250,
+  // "objectType" : "physics",
+
+  "description" : "<todo>",
+  "shortdescription" : "Solar Lens",
+  "race" : "avian",
+  "printable" : false,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "lens.png:idle.1",
+      "direction" : "right",
+      "imagePosition" : [-8, -8],
+
+      "metaBoundBox" : [-1, -1, 1, 1],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ],
+
+      "renderLayer" : "Liquid+30"
+    }
+  ],
+
+  "animation" : "v-solarlens.animation",
+  "animationPosition" : [0, 0],
+  "animationParts" : {
+    "lens" : "lens.png",
+    "lenslit" : "lenslit.png",
+    "beam" : "beam.png",
+    "beamstart" : "beamstart.png",
+    "beamconnection" : "beamconnection.png"
+  },
+
+  "inputNodes" : [ [0, 0] ],
+
+  "scripts" : [ "v-solarlens.lua" ],
+  "scriptDelta" : 3,
+
+  "damageConfig" : {
+    "damage" : 60,
+    "damageSourceKind" : "fireplasma",
+    "damageType" : "Environment",
+    "teamType" : "enemy"
+  },
+
+  "preScrewUpSparkTime" : 1.5,
+  "preferredScrewUpDirection" : null,  // -1 for clockwise, 1 for counterclockwise.
+  "preferredFixDirection" : null,  // -1 for clockwise, 1 for counterclockwise.
+  "angle" : 90,
+  "screwUpTime" : 3.0,
+  "fixTime" : 1.0,
+  "maxBeamLength" : 100,
+  "decorativeBeamLength" : 20,
+
+  "otherLensPollInterval" : 0.3,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

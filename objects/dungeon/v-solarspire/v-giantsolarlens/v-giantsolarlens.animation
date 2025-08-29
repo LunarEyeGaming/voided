@@ -1,0 +1,60 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "lens" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {}
+        }
+      }
+    },
+    "parts" : {
+      "lens" : {
+        "properties" : {
+          "offset" : [1, 5.0],
+          "centered" : true,
+          "fullbright" : true,
+          "transformationGroups" : [ "lens" ]
+        },
+        "partStates" : {
+          "lens" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "lenslit" : {
+        "properties" : {
+          "zLevel" : 1,
+          "centered" : true,
+          "anchorPart" : "lens"
+        },
+        "partStates" : {
+          "lens" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "lens" : { "interpolated" : true }
+  },
+
+  "lights" : {
+    "beam" : {
+      "color" : [191, 158, 57],
+      "active" : true,
+      "position" : [0, 0],
+      "transformationGroups" : [ "lens" ]
+    }
+  }
+}

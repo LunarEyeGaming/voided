@@ -1,0 +1,42 @@
+{
+  "objectName" : "v-giantsolarlens",
+  "colonyTags" : [ ],
+  "printable" : false,
+  "scannable" : false,
+  "rarity" : "Legendary",
+  "description" : "A lens designed to focus light down into a beam.",
+  "shortdescription" : "Giant Solar Lens",
+  "race" : "avian",
+
+  "category" : "decorative",
+  "price" : 0,
+
+  "inventoryIcon" : "giantsolarlens.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "giantsolarlens.png", "fullbright" : true }, { "image" : "giantsolarlenslit.png" } ],
+      "imagePosition" : [-16, -8],
+
+      "renderLayer" : "Liquid+20"
+    }
+  ],
+
+  "animation" : "v-giantsolarlens.animation",
+  "animationParts" : {
+    "lens" : "giantsolarlens.png",
+    "lenslit" : "giantsolarlenslit.png"
+  },
+  "animationPosition" : [0, 0],
+
+  "scripts" : [ "v-giantsolarlens.lua" ],
+  "scriptDelta" : 0,
+
+  "angle" : 90,
+  "angleOffset" : -90,
+  "center" : [1, 0.5],
+
+  "health" : 5,
+  "smashOnBreak" : true,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

@@ -542,7 +542,7 @@ function nonOceanSurfaceQuery()
           end
 
           local matCfg = getMaterialProperties(material)
-          if matCfg and matCfg.isSolidAndOpaque then
+          if matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure" then
             -- world.debugLine({x, surfaceY}, {x, collideTile[2]}, "green")
             table_insert(rayLocations, {s = tileY, e = collideTileY})
             foundSolidTile = true
@@ -684,7 +684,7 @@ function oceanSurfaceQuery(startX, endX, yBottom, yTop, affectedTiles)
             affectedTiles[collideTileStr] = true
           end
           local matCfg = getMaterialProperties(material)
-          if matCfg and matCfg.isSolidAndOpaque then
+          if matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure" then
             -- Add to height map.
             heightMap_list[world_xwrap(x)] = collideTile[2]
             -- heightMap:set(x, collideTile[2])
