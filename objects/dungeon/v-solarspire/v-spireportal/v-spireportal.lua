@@ -47,21 +47,18 @@ local lightningControllerBig
 local minibossId
 local monsterIds
 
-local currentDestination
-
 -- HOOKS
 function init()
-  -- TODO: Parametrize all of these
-  centerOffset = {10, 10}
+  centerOffset = config.getParameter("centerOffset")
   center = vec2.add(object.position(), centerOffset)
-  portalOpenTime = 0.5
-  portalCloseTime = 0.5
-  portalOffsetRegion = {-5, -5, 5, 5}
+  portalOpenTime = config.getParameter("portalOpenTime")
+  portalCloseTime = config.getParameter("portalCloseTime")
+  portalOffsetRegion = config.getParameter("portalOffsetRegion")
   playerTeleportQueryRegion = vEntity.getRegionPoints(config.getParameter("playerTeleportQueryRegion"))
   playerDetectQueryRegion = vEntity.getRegionPoints(config.getParameter("playerDetectQueryRegion"))
   playerDetectQueryRegion = vEntity.getRegionPoints(config.getParameter("playerDetectQueryRegion"))
   arenaRegion = vEntity.getRegionPoints(config.getParameter("arenaRegion"))
-  lightningEndOffsetRegion = {-30, -30, 30, 30}
+  lightningEndOffsetRegion = config.getParameter("lightningEndOffsetRegion")
   preIntroDungeonMusic = config.getParameter("dungeonMusic.preIntro")
   postIntroDungeonMusic = config.getParameter("dungeonMusic.postIntro")
   world.setProperty("v-dungeonMusicStopFadeTime", config.getParameter("dungeonMusicStopFadeTime", 2.0))
@@ -430,12 +427,6 @@ function states.rotatingHazard(cfg, fast)
     local beamEnd = vec2.add(center, vec2.withAngle(angle, cfg.maxBeamLength))
     beamEnd = vMinistar.lightLineTileCollision(center, beamEnd) or beamEnd
     local mag = world.magnitude(center, beamEnd)
-    -- local damagePoly = poly.translate({
-    --   vec2.rotate({-10, cfg.damagePolyThickness}, angle),
-    --   vec2.rotate({-10, -cfg.damagePolyThickness}, angle),
-    --   vec2.rotate({mag, -cfg.damagePolyThickness}, angle),
-    --   vec2.rotate({mag, cfg.damagePolyThickness}, angle),
-    -- }, centerOffset)
     local damagePoly = generateBeamPoly(cfg.damagePolyThickness, mag, angle, centerOffset)
     dmgSource.poly = damagePoly
 
@@ -622,7 +613,6 @@ function switchDestination(destination, newRotation)
 
   util.wait(portalCloseTime)
 
-  currentDestination = destination
   animator.setGlobalTag("destination", destination)
   animator.setAnimationState("portal", "relink")
   if newRotation then
