@@ -290,7 +290,7 @@ function states.destabilize1()
   util.wait(1.5)
 
   object.setOutputNodeLevel(NODE_OUTER_DOOR, false)
-  object.setOutputNodeLevel(NODE_INNER_DOOR, true)
+  object.setOutputNodeLevel(NODE_INNER_DOOR, false)
 
   animator.setAnimationState("portalshockwave", "visible")
   animator.playSound("explosion")
