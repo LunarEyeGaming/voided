@@ -125,7 +125,7 @@
         "properties" : {
           "fullbright" : true,
           "centered" : false,
-          "zLevel" : -1,
+          "zLevel" : -3,
           "offset" : [1.875, 1.75],
           "transformationGroups" : [ "rotation" ]
         },
@@ -166,6 +166,42 @@
           "fullbright" : true,
           "zLevel" : 2,
           "transformationGroups" : [ "sunbeam", "rotation" ]
+        },
+        "partStates" : {
+          "sunbeam" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>?multiply=ffd86b7f"
+              }
+            }
+          }
+        }
+      },
+      "sunbeamstartfg" : {
+        "properties" : {
+          "offset" : [10, 10],
+          "centered" : true,
+          "fullbright" : true,
+          "zLevel" : 2,
+          "transformationGroups" : [ "rotation" ]
+        },
+        "partStates" : {
+          "sunbeam" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>?multiply=ffd86b7f"
+              }
+            }
+          }
+        }
+      },
+      "sunbeamstart" : {
+        "properties" : {
+          "offset" : [10, 10],
+          "centered" : true,
+          "fullbright" : true,
+          "zLevel" : -2,
+          "transformationGroups" : [ "rotation" ]
         },
         "partStates" : {
           "sunbeam" : {

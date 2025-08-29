@@ -102,7 +102,6 @@ function init()
           statusEffects = {"v-spireportalheat"}
         },
         damagePolyThickness = 8,
-        damageSourcePoly = {{0, 8}, {0, -8}, {100, -8}, {100, 8}},
         maxBeamLength = 100,
         duration = 15,
         fastDuration = 7.5
@@ -294,6 +293,7 @@ function states.destabilize1()
   util.wait(1.5)
 
   object.setOutputNodeLevel(NODE_OUTER_DOOR, false)
+  object.setOutputNodeLevel(NODE_INNER_DOOR, true)
 
   animator.setAnimationState("portalshockwave", "visible")
   animator.playSound("explosion")
@@ -430,12 +430,13 @@ function states.rotatingHazard(cfg, fast)
     local beamEnd = vec2.add(center, vec2.withAngle(angle, cfg.maxBeamLength))
     beamEnd = vMinistar.lightLineTileCollision(center, beamEnd) or beamEnd
     local mag = world.magnitude(center, beamEnd)
-    local damagePoly = poly.translate({
-      vec2.rotate({-10, cfg.damagePolyThickness}, angle),
-      vec2.rotate({-10, -cfg.damagePolyThickness}, angle),
-      vec2.rotate({mag, -cfg.damagePolyThickness}, angle),
-      vec2.rotate({mag, cfg.damagePolyThickness}, angle),
-    }, centerOffset)
+    -- local damagePoly = poly.translate({
+    --   vec2.rotate({-10, cfg.damagePolyThickness}, angle),
+    --   vec2.rotate({-10, -cfg.damagePolyThickness}, angle),
+    --   vec2.rotate({mag, -cfg.damagePolyThickness}, angle),
+    --   vec2.rotate({mag, cfg.damagePolyThickness}, angle),
+    -- }, centerOffset)
+    local damagePoly = generateBeamPoly(cfg.damagePolyThickness, mag, angle, centerOffset)
     dmgSource.poly = damagePoly
 
     animator.resetTransformationGroup("rotation")
@@ -674,4 +675,32 @@ function strikeLightnings(count)
   end
 
   animator.playSound("lightningStrike")
+end
+
+function generateBeamPoly(width, mag, angle, offset)
+  local semiCirclePointCount = 8
+  local damagePoly = {}
+  -- Generate semi-circle
+  for i = 0, semiCirclePointCount - 1 do
+    local semiCircleAngle = math.pi / 2 + i * math.pi / semiCirclePointCount
+    table.insert(damagePoly, vec2.withAngle(semiCircleAngle, width))
+  end
+
+  table.insert(damagePoly, {mag, -width})
+  table.insert(damagePoly, {mag, width})
+
+  return poly.translate(poly.rotate(damagePoly, angle), offset)
+end
+
+function skipToHazardPhase()
+  object.setOutputNodeLevel(NODE_OUTER_DOOR, false)
+  object.setOutputNodeLevel(NODE_INNER_DOOR, true)
+
+  local dungeonId = tostring(world.dungeonId(object.position()))
+  world.setProperty("v-dungeonMusic", {[dungeonId] = postIntroDungeonMusic})
+  for _, entityId in ipairs(world.players()) do
+    world.sendEntityMessage(entityId, "v-dungeonmusicplayer-forceSwitch")
+  end
+
+  state:set(states.destabilize2)
 end
