@@ -4,6 +4,7 @@ require "/scripts/vec2.lua"
 
 require "/scripts/v-ministarutil.lua"
 
+-- Parameters
 local preScrewUpSparkTime
 local preferredScrewUpDirection
 local screwedUpAngle
@@ -14,13 +15,17 @@ local fixTime
 local maxBeamLength
 local damageConfig
 local decorative
+local beamImpactSoundInterval
 
+-- State variables
 local positionStart
 local currentAngle
 
 local otherLensPollTimer
 local otherLensPos
 local prevReceivers
+
+local beamImpactSoundTimer
 
 local state
 local isFixed  -- Controlled by both message handlers and the state machine. Used as input into the state machine.
@@ -55,10 +60,13 @@ function init()
   damageConfig = config.getParameter("damageConfig", {damage = 0})
   otherLensPollInterval = config.getParameter("otherLensPollInterval", 0.1)
   decorative = config.getParameter("decorative", false)
+  beamImpactSoundInterval = config.getParameter("beamImpactSoundInterval", 0.2)
 
   otherLensPollTimer = otherLensPollInterval
   positionStart = vec2.add(object.position(), {0.001, 0.001})  -- Nudge it to avoid chunk boundary issues.
   prevReceivers = {}
+
+  beamImpactSoundTimer = 0
 
   if storage.powered == nil then
     storage.powered = config.getParameter("defaultState", false)
@@ -205,19 +213,20 @@ end
 
 function getBeamEnd(angle)
   local beamStart = positionStart
-  local beamEnd = vec2.add(beamStart, vec2.withAngle(angle, maxBeamLength))
+  local aimVector = vec2.withAngle(angle)
+  local beamEnd = vec2.add(beamStart, vec2.mul(aimVector, maxBeamLength))
 
   local collidePoint = vMinistar.lightLineTileCollision(beamStart, beamEnd, {"Block", "Slippery", "Dynamic"})
 
   if collidePoint then
-    beamEnd = collidePoint
+    beamEnd = fineTuneCollidePoint(positionStart, aimVector, collidePoint)
   end
 
-  return beamEnd
+  return beamEnd, collidePoint ~= nil
 end
 
 function updateBeam(dt)
-  local beamEnd = getBeamEnd(currentAngle)
+  local beamEnd, isCollision = getBeamEnd(currentAngle)
   local beamStart = positionStart
 
   local beamEndRelative = world.distance(beamEnd, beamStart)
@@ -234,6 +243,8 @@ function updateBeam(dt)
     beamEndRelative = projectVector(otherLensPosRelative, beamEndRelative)
 
     beamEnd = vec2.add(beamEndRelative, beamStart)
+
+    isCollision = false
   end
 
   -- world.debugPoint(beamEnd, "green")
@@ -246,9 +257,13 @@ function updateBeam(dt)
 
   -- world.debugText("%s", storage.active, object.position(), "green")
 
-  updateAnimation(currentAngle, beamMag)
+  if isCollision then
+    updateAnimation(currentAngle, beamMag, dt, beamEndRelative)
+  else
+    updateAnimation(currentAngle, beamMag, dt)
+  end
 
-  if (storage.powered or storage.active) and not storage.isFixed then
+  if isActive() and not storage.isFixed then
     updateDamageSource(beamEndRelative)
   else
     object.setDamageSources({})
@@ -261,13 +276,29 @@ function updateDamageSource(beamEndRelative)
   object.setDamageSources({damageConfig})
 end
 
-function updateAnimation(currentAngle, beamMag)
+function updateAnimation(currentAngle, beamMag, dt, beamImpactPos)
   animator.resetTransformationGroup("lens")
   animator.rotateTransformationGroup("lens", currentAngle)
 
   animator.resetTransformationGroup("beam")
   animator.scaleTransformationGroup("beam", {beamMag, 1})
   animator.translateTransformationGroup("beam", {beamMag / 2, 0})
+
+  if beamImpactPos and isActive() then
+    animator.setParticleEmitterActive("beamImpact", true)
+    animator.resetTransformationGroup("beamEnd")
+    animator.translateTransformationGroup("beamEnd", beamImpactPos)
+    animator.setSoundPosition("beamImpact", beamImpactPos)
+
+    beamImpactSoundTimer = beamImpactSoundTimer - dt
+
+    if beamImpactSoundTimer <= 0 then
+      animator.playSound("beamImpact")
+      beamImpactSoundTimer = beamImpactSoundInterval
+    end
+  else
+    animator.setParticleEmitterActive("beamImpact", false)
+  end
 end
 
 --[[
@@ -290,6 +321,55 @@ end
 
 function isActive()
   return storage.active or storage.powered
+end
+
+function fineTuneCollidePoint(startPosition, aimVector, endPosition)
+  -- Special cases for when the aimVector is perfectly horizontal or vertical
+  if aimVector[1] == 0 or aimVector[2] == 0 then
+    if aimVector[1] == 0 and aimVector[2] == 0 then
+      error("fineTuneCollidePoint: aimVector is {0, 0}")
+    end
+    -- Perfectly vertical
+    if aimVector[1] == 0 then
+      if aimVector[2] < 0 then
+        return {startPosition[1], endPosition[2] + 1}
+      else
+        return {startPosition[1], endPosition[2]}
+      end
+    else  -- aimVector[2] == 0
+      if aimVector[1] < 0 then
+        return {endPosition[1] + 1, startPosition[2]}
+      else
+        return {endPosition[1], startPosition[2]}
+      end
+    end
+  end
+
+  -- Taken from /items/active/effects/laserbeam.lua
+  --When approaching the block from the right or top, the intersecting edges will be the right or top ones
+  if aimVector[1] < 0 then endPosition[1] = endPosition[1] + 1 end
+  if aimVector[2] < 0 then endPosition[2] = endPosition[2] + 1 end
+
+  local blockDistance = world.distance(endPosition, startPosition)
+
+  -- If the block's edge is in a different direction than the aim direction
+  -- it is impossible to have hit that edge, make sure we draw the beam to the other edge
+  if aimVector[1] * (endPosition[1] - startPosition[1]) < 0 then blockDistance[1] = 0 end
+  if aimVector[2] * (endPosition[2] - startPosition[2]) < 0 then blockDistance[2] = 0 end
+
+  -- How long does the beam need to be to move 1 block in each axis
+  local deltaDistX = 1 / math.abs(aimVector[1])
+  local deltaDistY = 1 / math.abs(aimVector[2])
+
+  -- How long does the beam need to be to reach the collided block on each axis
+  local distX = math.abs(blockDistance[1]) * deltaDistX
+  local distY = math.abs(blockDistance[2]) * deltaDistY
+
+  -- The largest of the distances is the length of the beam when colliding with the block
+  local lineEnd = vec2.mul(aimVector, math.max(distX, distY))
+
+  -- return endPosition
+  return vec2.add(startPosition, lineEnd)
 end
 
 -- CALLSCRIPT FUNCTIONS
@@ -394,6 +474,9 @@ function adjust(angle, time, progressOffset, preferredDirection)
       angleEnd = angleEnd - 2 * math.pi
     end
   end
+
+  animator.playSound("move", -1)
+
   local timer = 0
   util.wait(time, function()
     -- Offset progress by 0.5.
@@ -401,6 +484,9 @@ function adjust(angle, time, progressOffset, preferredDirection)
     currentAngle = interp.sin(progress, angleStart, angleEnd)
     timer = timer + dt
   end)
+
+  animator.stopAllSounds("move")
+  animator.playSound("moveStop")
 
   currentAngle = angleEnd
 end
