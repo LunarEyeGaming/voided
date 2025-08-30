@@ -17,6 +17,19 @@
             "cycle" : 0.3,
             "mode" : "transition",
             "transition": "idle"
+          },
+          "zap2" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "zapped2"
+          },
+          "zapped2" : {},
+          "unzap2" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition": "idle"
           }
         }
       },
@@ -33,6 +46,13 @@
               "lightsOn" : [ "beam1", "beam2", "beam3" ]
             }
           }
+        }
+      },
+      "beamtelegraph" : {
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "on" : {}
         }
       },
       "beamconnection" : {
@@ -71,6 +91,21 @@
               "properties" : {
                 "image" : "<partImage>:unzap.<frame>"
               }
+            },
+            "zap2" : {
+              "properties" : {
+                "image" : "<partImage>:zap2.<frame>"
+              }
+            },
+            "zapped2" : {
+              "properties" : {
+                "image" : "<partImage>:zapped2.<frame>"
+              }
+            },
+            "unzap2" : {
+              "properties" : {
+                "image" : "<partImage>:unzap2.<frame>"
+              }
             }
           }
         }
@@ -101,6 +136,21 @@
             "unzap" : {
               "properties" : {
                 "image" : "<partImage>:unzap.<frame>"
+              }
+            },
+            "zap2" : {
+              "properties" : {
+                "image" : "<partImage>:zap2.<frame>"
+              }
+            },
+            "zapped2" : {
+              "properties" : {
+                "image" : "<partImage>:zapped2.<frame>"
+              }
+            },
+            "unzap2" : {
+              "properties" : {
+                "image" : "<partImage>:unzap2.<frame>"
               }
             }
           }
@@ -156,6 +206,23 @@
             }
           }
         }
+      },
+      "beamtelegraph" : {
+        "properties" : {
+          "fullbright" : true,
+          "centered" : true,
+          "zLevel" : -2,
+          "transformationGroups" : [ "telegraphSparks", "telegraphOffset" ]
+        },
+        "partStates" : {
+          "beamtelegraph" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -168,7 +235,8 @@
 
     "beamconnection" : { "interpolated" : true },
 
-    "telegraphSparks" : { "interpolated" : false }
+    "telegraphSparks" : { "interpolated" : false },
+    "telegraphOffset" : { "interpolated" : false }
   },
 
   "lights" : {

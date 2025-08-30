@@ -1,9 +1,15 @@
 {
   "frameGrid" : {
     "size" : [16, 16],
-    "dimensions" : [9, 1],
+    "dimensions" : [4, 7],
     "names" : [
-      [ "idle.1", "zap.1", "zap.2", "zap.3", "zap.4", "zapped.1", "unzap.1", "unzap.2", "unzap.3" ]
+      [ "idle.1" ],
+      [ "zap.1", "zap.2", "zap.3", "zap.4" ],
+      [ "zapped.1" ],
+      [ "unzap.1", "unzap.2", "unzap.3" ],
+      [ "zap2.1", "zap2.2" ],
+      [ "zapped2.1" ],
+      [ "unzap2.1", "unzap2.2", "unzap2.3" ]
     ]
   }
 }

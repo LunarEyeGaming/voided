@@ -1,4 +1,5 @@
 require "/scripts/interp.lua"
+require "/scripts/rect.lua"
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
@@ -315,6 +316,8 @@ function updateBeam(dt)
   else
     object.setDamageSources({})
   end
+
+  updateBeamTelegraphOffset()
 end
 
 function updateDamageSource(beamEndRelative)
@@ -346,6 +349,11 @@ function updateAnimation(currentAngle, beamMag, dt, beamImpactPos)
   else
     animator.setParticleEmitterActive("beamImpact", false)
   end
+end
+
+function updateBeamTelegraphOffset()
+  animator.resetTransformationGroup("telegraphOffset")
+  animator.translateTransformationGroup("telegraphOffset", rect.randomPoint({-0.25, -0.25, 0.25, 0.25}))
 end
 
 --[[
@@ -469,22 +477,37 @@ end
 function states.screwUp()
   storage.isFixed = false
 
-  local beamEnd = getBeamEnd(screwedUpAngle)
-  local beamMag = world.magnitude(beamEnd, positionStart)
   animator.setAnimationState("lens", "zap")
-  animator.resetTransformationGroup("telegraphSparks")
-  animator.scaleTransformationGroup("telegraphSparks", {beamMag, 1})
-  animator.translateTransformationGroup("telegraphSparks", {beamMag / 2, 0})
-  animator.rotateTransformationGroup("telegraphSparks", screwedUpAngle)
+  animator.setAnimationState("beamtelegraph", "on")
   animator.setParticleEmitterActive("telegraphSparks", true)
+
+  local angleStart = currentAngle
+  local angleEnd = getEndAngle(angleStart, screwedUpAngle, preferredScrewUpDirection)
+
+
   animator.playSound("sparks", -1)
-  util.wait(preScrewUpSparkTime)
+
+  local timer = 0
+  util.wait(preScrewUpSparkTime, function(dt)
+    local progress = timer / preScrewUpSparkTime
+    local telegraphAngle = interp.sin(progress, angleStart, angleEnd)
+
+    local beamEnd = getBeamEnd(telegraphAngle)
+    local beamMag = world.magnitude(beamEnd, positionStart)
+    animator.resetTransformationGroup("telegraphSparks")
+    animator.scaleTransformationGroup("telegraphSparks", {beamMag, 1})
+    animator.translateTransformationGroup("telegraphSparks", {beamMag / 2, 0})
+    animator.rotateTransformationGroup("telegraphSparks", telegraphAngle)
+
+    timer = timer + dt
+  end)
 
   adjust(screwedUpAngle, screwUpTime, 0.0, preferredScrewUpDirection)
 
   animator.setParticleEmitterActive("telegraphSparks", false)
   animator.stopAllSounds("sparks")
   animator.setAnimationState("lens", "unzap")
+  animator.setAnimationState("beamtelegraph", "off")
 
   lensState:set(states.screwedUp)
 end
@@ -513,7 +536,9 @@ end
 function states.fix()
   storage.isFixed = true
 
+  animator.setAnimationState("lens", "zap2")
   adjust(fixedAngle, fixTime, 0.5, preferredFixDirection)
+  animator.setAnimationState("lens", "unzap2")
 
   lensState:set(states.fixed)
 end
@@ -535,6 +560,25 @@ end
 function adjust(angle, time, progressOffset, preferredDirection)
   local dt = script.updateDt()
   local angleStart = currentAngle
+  local angleEnd = getEndAngle(angleStart, angle, preferredDirection)
+
+  animator.playSound("move", -1)
+
+  local timer = 0
+  util.wait(time, function()
+    -- Offset progress by progressOffset.
+    local progress = (timer / time) * (1 - progressOffset) + progressOffset
+    currentAngle = interp.sin(progress, angleStart, angleEnd)
+    timer = timer + dt
+  end)
+
+  animator.stopAllSounds("move")
+  animator.playSound("moveStop")
+
+  currentAngle = angleEnd
+end
+
+function getEndAngle(angleStart, angle, preferredDirection)
   local angleEnd = interp.angleDiff(angleStart, angle) + angleStart
   if preferredDirection then
     -- Prefer counterclockwise but direction is clockwise.
@@ -546,20 +590,7 @@ function adjust(angle, time, progressOffset, preferredDirection)
     end
   end
 
-  animator.playSound("move", -1)
-
-  local timer = 0
-  util.wait(time, function()
-    -- Offset progress by 0.5.
-    local progress = (timer / time) * (1 - progressOffset) + progressOffset
-    currentAngle = interp.sin(progress, angleStart, angleEnd)
-    timer = timer + dt
-  end)
-
-  animator.stopAllSounds("move")
-  animator.playSound("moveStop")
-
-  currentAngle = angleEnd
+  return angleEnd
 end
 
 function resetZap()
