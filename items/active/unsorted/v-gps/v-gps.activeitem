@@ -1,7 +1,8 @@
 {
-  // This does nothing on its own aside from activating / deactivating it. The script 
+  // This does nothing on its own aside from activating / deactivating it. The script
   // "/scripts/rendering/v-gpsdisplay.lua" does something with it though.
   "itemName" : "v-gps",
+  "maxStack" : 1,
   "price" : 2500,
   "rarity" : "Legendary",
   "category" : "v-passiveItem",
@@ -18,6 +19,6 @@
   },
 
   "scripts" : ["v-gps.lua"],
-  
+
   "v-gpsIsActive" : true  // Default value; set dynamically in script.
 }
