@@ -2,8 +2,8 @@ local CURSOR_INRANGE = 0
 local CURSOR_OUTOFRANGE = 1
 local CURSOR_CANFIX = 2
 
-local COLOR_GREEN = {150, 255, 150, 191}
-local COLOR_RED = {255, 150, 150, 128}
+local COLOR_ORANGE = {255, 194, 150, 191}
+local COLOR_BLUE = {150, 180, 255, 128}
 
 function update()
   localAnimator.clearDrawables()
@@ -15,24 +15,26 @@ function update()
   local lensPositions = animationConfig.animationParameter("lensPositions") or {}
   local position = activeItemAnimation.ownerAimPosition()
 
-  local highlightColor
+  local highlightColor, frameIndex
   if cursorState == CURSOR_CANFIX or cursorState == CURSOR_INRANGE then
-    highlightColor = COLOR_GREEN
+    highlightColor = COLOR_ORANGE
+    frameIndex = "valid.1"
   else
-    highlightColor = COLOR_RED
+    highlightColor = COLOR_BLUE
+    frameIndex = "invalid.1"
   end
 
   for _, pos in ipairs(lensPositions) do
     localAnimator.addDrawable({
       image = lensHighlightImage,
       position = pos,
-      color = COLOR_GREEN,
+      color = COLOR_ORANGE,
       fullbright = true
     })
   end
 
   localAnimator.addDrawable({
-    image = cursorImage,
+    image = string.format("%s:%s", cursorImage, frameIndex),
     position = position,
     color = highlightColor,
     fullbright = true

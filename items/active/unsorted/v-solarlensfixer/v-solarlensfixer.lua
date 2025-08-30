@@ -53,9 +53,17 @@ function update(dt, fireMode)
     activeItem.setScriptedAnimationParameter("lensPositions", {})
   end
 
-  if fireMode == "primary" and prevFireMode ~= fireMode and canFixAnyLens(aimPos) then
-    for _, entityId in ipairs(solarLenses) do
-      world.sendEntityMessage(entityId, "v-solarLens-fix")
+  if fireMode == "primary" and prevFireMode ~= fireMode then
+    if #solarLenses > 0 and canFixAnyLens(aimPos) then
+      animator.playSound("activate")
+      animator.setAnimationState("item", "activate", true)
+
+      for _, entityId in ipairs(solarLenses) do
+        world.sendEntityMessage(entityId, "v-solarLens-fix")
+      end
+    else
+      animator.playSound("activateFail")
+      animator.setAnimationState("item", "activatefail", true)
     end
   end
 

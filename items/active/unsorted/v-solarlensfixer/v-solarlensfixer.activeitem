@@ -1,12 +1,13 @@
 {
   "itemName" : "v-solarlensfixer",
+  "maxStack" : 1,
   "price" : 2500,
   "rarity" : "Legendary",
   "category" : "tool",
   "builder" : "/items/buildscripts/v-builditem.lua",
   "inventoryIcon" : "solarlensfixericon.png",
-  "description" : "Fixes solar lenses.",
-  "shortdescription" : "solarlensfixer",
+  "description" : "Taps into solar lens controllers and corrects them.",
+  "shortdescription" : "Lens Resonation Wand",
 
   "animation" : "v-solarlensfixer.animation",
   "animationParts" : {
@@ -17,7 +18,7 @@
   "scripts" : ["v-solarlensfixer.lua"],
   "animationScripts" : ["v-cursor.lua"],
 
-  "cursorImage" : "/items/active/unsorted/v-solarlensfixer/solarlensfixer.png",
+  "cursorImage" : "/items/active/unsorted/v-solarlensfixer/cursor.png",
   "lensHighlightImage" : "/items/active/unsorted/v-solarlensfixer/lenshighlight.png",
 
   "fixRange" : 13,
