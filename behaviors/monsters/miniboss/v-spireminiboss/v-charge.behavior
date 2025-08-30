@@ -1,6 +1,6 @@
 {
   "name": "v-spireminiboss-charge",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/math.lua",
     "/scripts/actions/entity.lua",
@@ -231,7 +231,7 @@
           "type": "action",
           "name": "timer",
           "parameters": {
-            "time": {"value": 0.5}
+            "time": {"value": 1}
           }
         },
         {
