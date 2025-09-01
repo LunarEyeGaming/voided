@@ -1,0 +1,35 @@
+{
+  "objectName" : "v-electrotoxicplaque",
+  "colonyTags" : ["human"],
+  "rarity" : "Common",
+  "description" : "<todo>",
+  "shortdescription" : "L&P Plaque",
+  "race" : "human",
+  "category" : "decorative",
+  "price" : 100,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "electrotoxicplaque.png",
+
+      "imagePosition" : [-16, 0],
+      "frames" : 1,
+      "animationCycle" : 1.0,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+
+    }
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}
