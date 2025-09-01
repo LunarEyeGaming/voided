@@ -1,0 +1,37 @@
+{
+  "objectName" : "v-strongholdmessage3",
+  "colonyTags" : ["ancient"],
+  "rarity" : "Common",
+  "description" : "<todo>",
+  "shortdescription" : "Stronghold Message 3",
+  "race" : "ancient",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "decorative",
+  "price" : 0,
+  "printable" : false,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "strongholdmessage3.png",
+      "imagePosition" : [0, 0],
+
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "interactive" : false,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}
