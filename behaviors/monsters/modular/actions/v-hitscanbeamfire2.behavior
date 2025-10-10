@@ -1,6 +1,6 @@
 {
-  "name": "v-action-hitscanbeamfire",
-  "description": "",
+  "name": "v-action-hitscanbeamfire2",
+  "description": null,
   "scripts": [
     "/scripts/behavior.lua",
     "/scripts/actions/math.lua",
@@ -10,7 +10,6 @@
     "/scripts/actions/v-beam.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/animator.lua",
-    "/scripts/behavior/bdata.lua",
     "/scripts/actions/monster.lua"
   ],
   "parameters": {
@@ -162,7 +161,7 @@
                     "type": "composite",
                     "name": "parallel",
                     "parameters": {
-                      "fail": {"value": 1},
+                      "fail": {"value": -1},
                       "success": {"value": 1}
                     },
                     "children": [
@@ -187,6 +186,18 @@
                         },
                         "children": [
                           {
+                            "title": "vecMultiply",
+                            "type": "action",
+                            "name": "vecMultiply",
+                            "parameters": {
+                              "first": {"key": "aimVector"},
+                              "number": {"value": -1}
+                            },
+                            "output": {
+                              "vector": "aimVector2"
+                            }
+                          },
+                          {
                             "title": "v_beamCollision",
                             "type": "action",
                             "name": "v_beamCollision",
@@ -200,12 +211,35 @@
                             }
                           },
                           {
+                            "title": "v_beamCollision",
+                            "type": "action",
+                            "name": "v_beamCollision",
+                            "parameters": {
+                              "direction": {"key": "aimVector2"},
+                              "maxLength": {"key": "<maxBeamLength>"},
+                              "startPosition": {"key": "self"}
+                            },
+                            "output": {
+                              "beamEnd": "beamEnd2"
+                            }
+                          },
+                          {
                             "title": "v_playBeamAnimation",
                             "type": "action",
                             "name": "v_playBeamAnimation",
                             "parameters": {
                               "beamType": {"key": "<windupBeam>"},
                               "endPosition": {"key": "beamEnd"},
+                              "startPosition": {"key": "self"}
+                            }
+                          },
+                          {
+                            "title": "v_playBeamAnimation",
+                            "type": "action",
+                            "name": "v_playBeamAnimation",
+                            "parameters": {
+                              "beamType": {"key": "<windupBeam>"},
+                              "endPosition": {"key": "beamEnd2"},
                               "startPosition": {"key": "self"}
                             }
                           }
@@ -259,6 +293,18 @@
                     }
                   },
                   {
+                    "title": "vecMultiply",
+                    "type": "action",
+                    "name": "vecMultiply",
+                    "parameters": {
+                      "first": {"key": "aimVector"},
+                      "number": {"value": -1}
+                    },
+                    "output": {
+                      "vector": "aimVector2"
+                    }
+                  },
+                  {
                     "title": "resetTransformationGroup",
                     "type": "action",
                     "name": "resetTransformationGroup",
@@ -283,14 +329,6 @@
                       "angle": {"key": "beamAngle"},
                       "rotationCenter": {"key": "<rotationCenter>"},
                       "transformationGroup": {"value": "beam"}
-                    }
-                  },
-                  {
-                    "title": "setFlag",
-                    "type": "action",
-                    "name": "setFlag",
-                    "parameters": {
-                      "name": {"value": "holdAim"}
                     }
                   },
                   {
@@ -338,12 +376,35 @@
                             }
                           },
                           {
+                            "title": "v_beamCollision",
+                            "type": "action",
+                            "name": "v_beamCollision",
+                            "parameters": {
+                              "direction": {"key": "aimVector2"},
+                              "maxLength": {"key": "<maxBeamLength>"},
+                              "startPosition": {"key": "self"}
+                            },
+                            "output": {
+                              "beamEnd": "beamEnd2"
+                            }
+                          },
+                          {
                             "title": "v_playBeamAnimation",
                             "type": "action",
                             "name": "v_playBeamAnimation",
                             "parameters": {
                               "beamType": {"key": "<windupBeam2>"},
                               "endPosition": {"key": "beamEnd"},
+                              "startPosition": {"key": "self"}
+                            }
+                          },
+                          {
+                            "title": "v_playBeamAnimation",
+                            "type": "action",
+                            "name": "v_playBeamAnimation",
+                            "parameters": {
+                              "beamType": {"key": "<windupBeam2>"},
+                              "endPosition": {"key": "beamEnd2"},
                               "startPosition": {"key": "self"}
                             }
                           }
@@ -418,12 +479,47 @@
                         "name": "failer",
                         "parameters": {},
                         "child": {
+                          "title": "v_beamCollision",
+                          "type": "action",
+                          "name": "v_beamCollision",
+                          "parameters": {
+                            "direction": {"key": "aimVector2"},
+                            "maxLength": {"key": "<maxBeamLength>"},
+                            "startPosition": {"key": "self"}
+                          },
+                          "output": {
+                            "beamEnd": "beamEnd2"
+                          }
+                        }
+                      },
+                      {
+                        "title": "failer",
+                        "type": "decorator",
+                        "name": "failer",
+                        "parameters": {},
+                        "child": {
                           "title": "v_playBeamAnimation",
                           "type": "action",
                           "name": "v_playBeamAnimation",
                           "parameters": {
                             "beamType": {"key": "<fireBeam>"},
                             "endPosition": {"key": "beamEnd"},
+                            "startPosition": {"key": "self"}
+                          }
+                        }
+                      },
+                      {
+                        "title": "failer",
+                        "type": "decorator",
+                        "name": "failer",
+                        "parameters": {},
+                        "child": {
+                          "title": "v_playBeamAnimation",
+                          "type": "action",
+                          "name": "v_playBeamAnimation",
+                          "parameters": {
+                            "beamType": {"key": "<fireBeam>"},
+                            "endPosition": {"key": "beamEnd2"},
                             "startPosition": {"key": "self"}
                           }
                         }
@@ -461,14 +557,6 @@
                         }
                       }
                     ]
-                  },
-                  {
-                    "title": "unsetFlag",
-                    "type": "action",
-                    "name": "unsetFlag",
-                    "parameters": {
-                      "name": {"value": "unsetFlag"}
-                    }
                   }
                 ]
               }

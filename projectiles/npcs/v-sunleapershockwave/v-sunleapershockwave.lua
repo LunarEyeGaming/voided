@@ -10,6 +10,7 @@ local DIRECTIONS = {{1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1}, {0, -1},
 local trailProjectileType  ---@type string
 local trailProjectileParameters  ---@type Json
 local trailVerticalOffset  ---@type number
+local collisionSet  ---@type CollisionSet
 
 local currentDirectionIdx  ---@type integer
 local preferredDirection  ---@type integer
@@ -22,6 +23,7 @@ function init()
     powerMultiplier = projectile.powerMultiplier()
   }
   trailVerticalOffset = 0.625
+  collisionSet = {"Block", "Dynamic", "Slippery"}
 
   local startRotation = util.wrapAngle(mcontroller.rotation())
 
@@ -59,13 +61,13 @@ function update(dt)
       end
       local nudgeTest, nudgedDirection = getDirection(currentDirectionIdx + nudgeTestDirection)
       -- Determine whether to nudge the direction of the projectile.
-      if not world.pointCollision(vec2.add(nextPos, nudgeTest)) then
+      if not world.pointCollision(vec2.add(nextPos, nudgeTest), collisionSet) then
         currentDirectionIdx = nudgedDirection
       end
     end
 
     local leftDirection = getDirection(currentDirectionIdx + 2)  -- 90 degrees CCW
-    local collidePointLeft = world.pointCollision(vec2.add(nextPos, vec2.mul(leftDirection, 1.5)))
+    local collidePointLeft = world.pointCollision(vec2.add(nextPos, vec2.mul(leftDirection, 1.5)), collisionSet)
 
     -- Determine shockwave direction as well as preferred direction
     local shockwaveDirection, shockwaveIdx
@@ -137,13 +139,13 @@ function getNextPos(pos)
       local testPos2 = vec2.add(pos, testDirection2)
       local testPos3 = vec2.add(pos, testDirection3)
 
-      if world.pointCollision(testPos2) and world.pointCollision(testPos3) then
+      if world.pointCollision(testPos2, collisionSet) and world.pointCollision(testPos3, collisionSet) then
         passedSpecialCase = false
       end
     end
 
     -- If the position is empty and is adjacent to some tiles...
-    if passedSpecialCase and not world.pointCollision(testPos) and vWorld.isGroundAdjacent(testPos) then
+    if passedSpecialCase and not world.pointCollision(testPos, collisionSet) and vWorld.isGroundAdjacent(testPos) then
       return testPos, testIdx
     end
   end

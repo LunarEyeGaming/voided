@@ -14,21 +14,26 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 6,
-            "cycle" : 0.6,
+            "frames" : 1,
+            "cycle" : 1,
             "mode" : "loop"
           },
           "windup" : {
             "frames" : 3,
             "cycle" : 0.3,
+            "mode" : "loop"
+          },
+          "windup2" : {
+            "frames" : 9,
+            "cycle" : 0.5,
             "mode" : "end",
             "properties" : {
               "immediateSound" : "/sfx/melee/charge_up15.ogg"
             }
           },
           "fire" : {
-            "frames" : 7,
-            "cycle" : 0.7,
+            "frames" : 3,
+            "cycle" : 0.5,
             "mode" : "transition",
             "transition" : "idle"
           }
@@ -53,8 +58,8 @@
     "parts" : {
       "body" : {
         "properties" : {
-          "transformationGroups" : [ "body" ],
-          "offset" : [0.0, -1.0]
+          "transformationGroups" : [ "body", "aim" ],
+          "offset" : [0.0, 0.0]
         },
         "partStates" : {
           "body" : {
@@ -68,9 +73,47 @@
                 "image" : "<partImage>:windup.<frame>"
               }
             },
-            "winduploop" : {
+            "windup2" : {
               "properties" : {
-                "image" : "<partImage>:winduploop.<frame>"
+                "image" : "<partImage>:windup2.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "anchorPart" : "body",
+          "zLevel" : 1,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "windup2" : {
+              "properties" : {
+                "image" : "<partImage>:windup2.<frame>"
               }
             },
             "fire" : {

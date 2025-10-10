@@ -1291,5 +1291,37 @@
       },
       "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-charge.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-hitscanbeamfire2",
+    "value": {
+      "type": "module",
+      "name": "v-action-hitscanbeamfire2",
+      "title": "",
+      "properties": {
+        "aimDirection": {"type": "json", "value": [1, 0]},
+        "damageRepeatGroup": {"type": "json", "value": "monsterfire"},
+        "faceTarget": {"type": "json", "value": true},
+        "fireBeam": {"type": "json", "value": "fire"},
+        "fireDelay": {"type": "json", "value": 0},
+        "fireSound": {"type": "json", "value": "fire"},
+        "fireState": {"type": "json", "value": "fire"},
+        "fireStateType": {"type": "json", "value": "body"},
+        "fireTime": {"type": "json", "value": 1},
+        "holdAim": {"type": "json", "value": false},
+        "maxBeamLength": {"type": "json", "value": 100},
+        "rotateAim": {"type": "json", "value": false},
+        "rotationCenter": {"type": "json", "value": [0, 0]},
+        "skillName": {"type": "json", "value": ""},
+        "winddownState": {"type": "json", "value": "firewinddown"},
+        "windupBeam": {"type": "json", "value": "windup"},
+        "windupBeam2": {"type": "json", "value": "windup2"},
+        "windupState": {"type": "json", "value": "firewindup"},
+        "windupState2": {"type": "json", "value": "firewindup2"},
+        "windupTime2": {"type": "json", "value": 0.25}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-hitscanbeamfire2.behavior"
+    }
   }
 ]
