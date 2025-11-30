@@ -256,6 +256,8 @@ end
 -- param maxSelectionAttempts - The maximum number of times to select any particular spawn position before failing.
 -- param target - The target entity to attack
 -- param armAnchorRadius (optional) - The range at which to place the anchor point relative to the spawning position.
+-- param projectileType (optional) - Projectile type override
+-- param projectileConfig (optional) - Rift projectile config overrides
 function v_titanBurrowingRiftAttack(args)
   local rq = vBehavior.requireArgsGen("v_titanBurrowingRiftAttack", args)
   if not rq{"spawnRange", "maxSelectionAttempts", "target"} then
@@ -276,7 +278,10 @@ function v_titanBurrowingRiftAttack(args)
   if spawnPos then
     local anchorPoint = vec2.add(spawnPos, vec2.withAngle(math.random() * 2 * math.pi, anchorRadius))
     -- Spawn an arm to follow the projectile.
-    spawnArm(spawnPos, anchorPoint, "burrowingRift", {target = args.target})
+    spawnArm(spawnPos, anchorPoint, "burrowingRift", {target = args.target}, {
+      projectileType = args.projectileType,
+      projectileConfig = args.projectileConfig
+    })
     return true
   end
 
@@ -307,6 +312,44 @@ function v_titanPunch(args)
   else
     vBehavior.awaitNotification("v-titanofdarkness-armFinished")
   end
+
+  return true
+end
+
+---@param startAngle number
+---@param endAngle number
+---@param angularVelocity number
+local eyeTurn = function(startAngle, endAngle, angularVelocity)
+  local timer = 0
+  local dt = script.updateDt()
+  local interpEndAngle = startAngle + util.angleDiff(startAngle, endAngle)
+  local turnTime = math.abs(startAngle - interpEndAngle) / angularVelocity
+
+  while timer < turnTime do
+    local curAngle = util.lerp(timer / turnTime, startAngle, interpEndAngle)
+    timer = timer + dt
+
+    coroutine.yield(nil, {angle = curAngle})
+  end
+
+  coroutine.yield(nil, {angle = interpEndAngle})
+end
+
+function v_titanTurnEyes(args, board)
+  local rq = vBehavior.requireArgsGen("v_titanTurnEyes", args)
+  if not rq{"startAngle", "endAngle", "angularVelocity", "direction"} then return false end
+
+  local startAngle, endAngle, angularVelocity
+  startAngle = util.toRadians(args.startAngle)
+  endAngle = util.toRadians(args.endAngle)
+  angularVelocity = util.toRadians(args.angularVelocity)
+
+  if args.direction < 0 then
+    startAngle = math.pi - startAngle
+    endAngle = math.pi - endAngle
+  end
+
+  eyeTurn(startAngle, endAngle, angularVelocity)
 
   return true
 end
@@ -349,22 +392,6 @@ function v_titanSearch(args)
   local flyControlForce = args.flyControlForce or mcontroller.baseParameters().airForce
   local stopControlForce = args.stopControlForce or flyControlForce
 
-  ---@param startAngle number
-  ---@param endAngle number
-  local turn = function(startAngle, endAngle)
-    local timer = 0
-    local dt = script.updateDt()
-    local interpEndAngle = startAngle + util.angleDiff(startAngle, endAngle)
-    local turnTime = math.abs(startAngle - interpEndAngle) / angularVelocity
-
-    while timer < turnTime do
-      local curAngle = util.lerp(timer / turnTime, startAngle, interpEndAngle)
-      timer = timer + dt
-
-      coroutine.yield(nil, {angle = curAngle})
-    end
-  end
-
   local currentAngle = args.startAngle or -math.pi / 2
   while true do
     local searchZones = processRaycastClusters(radialRaycast(mcontroller.position(), rayCount, maxRaycastLength))
@@ -375,16 +402,16 @@ function v_titanSearch(args)
     for _, zone in ipairs(searchZones) do
       -- A sweep turns to the start angle, then the end angle, then the start angle again.
       if zone.sweep then
-        turn(currentAngle, zone.startAngle)
-        turn(zone.startAngle, zone.endAngle)
+        eyeTurn(currentAngle, zone.startAngle, angularVelocity)
+        eyeTurn(zone.startAngle, zone.endAngle, angularVelocity)
         util.run(args.eyeTurnWaitTime, function() end)
-        turn(zone.endAngle, zone.startAngle)
+        eyeTurn(zone.endAngle, zone.startAngle, angularVelocity)
         util.run(args.eyeTurnWaitTime, function() end)
 
         currentAngle = zone.startAngle
       else
         -- A spot turns to the angle
-        turn(currentAngle, zone.angle)
+        eyeTurn(currentAngle, zone.angle, angularVelocity)
         util.run(args.eyeTurnWaitTime, function() end)
 
         currentAngle = zone.angle
@@ -402,7 +429,7 @@ function v_titanSearch(args)
       return false
     end
 
-    turn(currentAngle, vec2.angle(world.distance(nextPos, mcontroller.position())))
+    eyeTurn(currentAngle, vec2.angle(world.distance(nextPos, mcontroller.position())), angularVelocity)
 
     -- Fly to target position
     local distance
@@ -950,13 +977,15 @@ end
 ---@param anchorPoint Vec2F the initial position of the shoulder
 ---@param task string the name of the task to perform
 ---@param taskArgs table the arguments to provide to the task
+---@param overrides table? parameters to override
 ---@return EntityId
-function spawnArm(position, anchorPoint, task, taskArgs)
+function spawnArm(position, anchorPoint, task, taskArgs, overrides)
   local monsterId = world.spawnMonster("v-titanofdarknessarm", position, {
     level = monster.level(),
     master = entity.id(),
     task = task,
     taskArguments = taskArgs,
+    taskConfigOverrides = overrides,
     anchorPoint = anchorPoint
   })
 

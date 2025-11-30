@@ -752,17 +752,6 @@
   },
   {
     "op": "add",
-    "path": "/v-titanofdarkness-meteors",
-    "value": {
-      "type": "module",
-      "name": "v-titanofdarkness-meteors",
-      "title": "",
-      "properties": {},
-      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-meteors.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-titanofdarkness-disappear",
     "value": {
       "type": "module",
@@ -781,19 +770,6 @@
       "title": "",
       "properties": {},
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-teleport.behavior"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/v-titanofdarkness-burrowingrifts",
-    "value": {
-      "type": "module",
-      "name": "v-titanofdarkness-burrowingrifts",
-      "title": "",
-      "properties": {
-        "maxLoops": {"type": "json", "value": 10}
-      },
-      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-burrowingrifts.behavior"
     }
   },
   {
@@ -1366,9 +1342,57 @@
       "properties": {
         "flingInterval": {"type": "json", "value": 0.6},
         "flingCount": {"type": "json", "value": 10},
-        "relocateProjectiles": {"type": "json", "value": false}
+        "relocateProjectiles": {"type": "json", "value": false},
+        "flingDelay": {"type": "json", "value": 2.5},
+        "orbParameters": {"type": "json", "value": null}
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-bouncespread.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-meteors",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-meteors",
+      "title": "",
+      "properties": {
+        "projectileConfig": {"type": "json", "value": {"power": 15}},
+        "meteorInterval": {"type": "json", "value": 0.3}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-meteors.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-burrowingrifts",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-burrowingrifts",
+      "title": "",
+      "properties": {
+        "maxLoops": {"type": "json", "value": 10},
+        "projectileConfig": {"type": "json", "value": null},
+        "projectileType": {"type": "json", "value": null}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-burrowingrifts.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-searchsurface",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-searchsurface",
+      "title": "",
+      "properties": {
+        "maxSearchRange": {"type": "json", "value": 55},
+        "ceilingDistance": {"type": "json", "value": 8},
+        "groundDistance": {"type": "json", "value": 20},
+        "xVelocity": {"type": "json", "value": 10},
+        "yVelocity": {"type": "json", "value": 10}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-searchsurface.behavior"
     }
   }
 ]

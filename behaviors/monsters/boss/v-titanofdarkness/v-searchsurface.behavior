@@ -1,0 +1,395 @@
+{
+  "name": "v-titanofdarkness-searchsurface",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/v-sensor.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/v-movement.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {
+    "maxSearchRange": 55,
+    "ceilingDistance": 8,
+    "groundDistance": 20,
+    "xVelocity": 10,
+    "yVelocity": 10
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "cooldown",
+        "type": "decorator",
+        "name": "cooldown",
+        "parameters": {
+          "cooldown": {"value": 10},
+          "onFail": {"value": true},
+          "onSuccess": {"value": true}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "Mostly solid beneath",
+              "type": "action",
+              "name": "v_solidityTest",
+              "parameters": {
+                "position": {"key": "self"},
+                "sampleStep": {"value": 16},
+                "testRegion": {"value": [-40, -30, 40, 0]},
+                "threshold": {"value": 0.6}
+              }
+            },
+            {
+              "title": "Mostly air above",
+              "type": "decorator",
+              "name": "inverter",
+              "parameters": {},
+              "child": {
+                "title": "v_solidityTest",
+                "type": "action",
+                "name": "v_solidityTest",
+                "parameters": {
+                  "position": {"key": "self"},
+                  "sampleStep": {"value": 16},
+                  "testRegion": {"value": [-40, 0, 40, 30]},
+                  "threshold": {"value": 0.4}
+                }
+              }
+            },
+            {
+              "title": "entityPosition",
+              "type": "action",
+              "name": "entityPosition",
+              "parameters": {
+                "entity": {"key": "target"}
+              },
+              "output": {
+                "position": "targetPos"
+              }
+            },
+            {
+              "title": "Mostly air around target",
+              "type": "decorator",
+              "name": "inverter",
+              "parameters": {},
+              "child": {
+                "title": "v_solidityTest",
+                "type": "action",
+                "name": "v_solidityTest",
+                "parameters": {
+                  "position": {"key": "targetPos"},
+                  "sampleStep": {"value": 16},
+                  "testRegion": {"value": [-20, -20, 20, 20]},
+                  "threshold": {"value": 0.73}
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "multiply",
+        "type": "action",
+        "name": "multiply",
+        "parameters": {
+          "factor": {"key": "<maxSearchRange>"},
+          "number": {"value": -1}
+        },
+        "output": {
+          "result": "minTargetAheadness"
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": 1},
+          "success": {"value": -1}
+        },
+        "children": [
+          {
+            "title": "repeater",
+            "type": "decorator",
+            "name": "repeater",
+            "parameters": {
+              "maxLoops": {"value": 2},
+              "untilSuccess": {"value": false}
+            },
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "entityDirection",
+                  "type": "action",
+                  "name": "entityDirection",
+                  "parameters": {
+                    "entity": {"key": "self"},
+                    "offset": {"value": [0, 0]},
+                    "target": {"key": "target"}
+                  },
+                  "output": {
+                    "direction": "targetDirection"
+                  }
+                },
+                {
+                  "title": "parallel",
+                  "type": "composite",
+                  "name": "parallel",
+                  "parameters": {
+                    "fail": {"value": 1},
+                    "success": {"value": -1}
+                  },
+                  "children": [
+                    {
+                      "title": "dynamic",
+                      "type": "composite",
+                      "name": "dynamic",
+                      "parameters": {},
+                      "children": [
+                        {
+                          "title": "sequence",
+                          "type": "composite",
+                          "name": "sequence",
+                          "parameters": {},
+                          "children": [
+                            {
+                              "title": "multiply",
+                              "type": "action",
+                              "name": "multiply",
+                              "parameters": {
+                                "factor": {"value": -2},
+                                "number": {"key": "<groundDistance>"}
+                              },
+                              "output": {
+                                "result": "groundCheckDistance"
+                              }
+                            },
+                            {
+                              "title": "selector",
+                              "type": "composite",
+                              "name": "selector",
+                              "parameters": {},
+                              "children": [
+                                {
+                                  "title": "lineTileCollision",
+                                  "type": "action",
+                                  "name": "lineTileCollision",
+                                  "parameters": {
+                                    "collisionType": {"value": ["Null", "Block", "Dynamic"]},
+                                    "offset": {"value": [0, "groundCheckDistance"]},
+                                    "position": {"key": "self"}
+                                  }
+                                },
+                                {
+                                  "title": "sequence",
+                                  "type": "composite",
+                                  "name": "sequence",
+                                  "parameters": {},
+                                  "children": [
+                                    {
+                                      "title": "offsetPosition",
+                                      "type": "action",
+                                      "name": "offsetPosition",
+                                      "parameters": {
+                                        "offset": {"value": [0, "groundCheckDistance"]},
+                                        "position": {"key": "self"}
+                                      },
+                                      "output": {
+                                        "position": "groundPoint"
+                                      }
+                                    },
+                                    {
+                                      "title": "lineLiquidCollision",
+                                      "type": "action",
+                                      "name": "lineLiquidCollision",
+                                      "parameters": {
+                                        "endLine": {"key": "groundPoint"},
+                                        "startLine": {"key": "self"}
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "title": "v_flyAlongGround",
+                              "type": "action",
+                              "name": "v_flyAlongGround",
+                              "parameters": {
+                                "direction": {"key": "targetDirection"},
+                                "keepCeilingDistance": {"key": "<ceilingDistance>"},
+                                "keepGroundDistance": {"key": "<groundDistance>"},
+                                "lookaheadDistance": {"value": 6},
+                                "maxXVelocity": {"key": "<xVelocity>"},
+                                "maxYVelocity": {"key": "<yVelocity>"}
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "title": "parallel",
+                          "type": "composite",
+                          "name": "parallel",
+                          "parameters": {
+                            "fail": {"value": -1},
+                            "success": {"value": -1}
+                          },
+                          "children": [
+                            {
+                              "title": "controlFly",
+                              "type": "action",
+                              "name": "controlFly",
+                              "parameters": {
+                                "vector": {"value": ["targetDirection", -0.1]}
+                              }
+                            },
+                            {
+                              "title": "runner",
+                              "type": "action",
+                              "name": "runner",
+                              "parameters": {}
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "title": "check if too far past the target",
+                      "type": "composite",
+                      "name": "sequence",
+                      "parameters": {},
+                      "children": [
+                        {
+                          "title": "entityPosition",
+                          "type": "action",
+                          "name": "entityPosition",
+                          "parameters": {
+                            "entity": {"key": "target"}
+                          },
+                          "output": {
+                            "position": "targetPos"
+                          }
+                        },
+                        {
+                          "title": "distance",
+                          "type": "action",
+                          "name": "distance",
+                          "parameters": {
+                            "from": {"key": "self"},
+                            "to": {"key": "targetPos"}
+                          },
+                          "output": {
+                            "x": "xTargetDistance"
+                          }
+                        },
+                        {
+                          "title": "How far ahead is the target?",
+                          "type": "action",
+                          "name": "multiply",
+                          "parameters": {
+                            "factor": {"key": "targetDirection"},
+                            "number": {"key": "xTargetDistance"}
+                          },
+                          "output": {
+                            "result": "targetAheadness"
+                          }
+                        },
+                        {
+                          "title": "gte",
+                          "type": "action",
+                          "name": "gte",
+                          "parameters": {
+                            "first": {"key": "targetAheadness"},
+                            "second": {"key": "minTargetAheadness"}
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "title": "repeater",
+            "type": "decorator",
+            "name": "repeater",
+            "parameters": {
+              "maxLoops": {"value": -1},
+              "untilSuccess": {"value": false}
+            },
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "random",
+                  "type": "action",
+                  "name": "random",
+                  "parameters": {
+                    "max": {"value": 0},
+                    "min": {"value": -90}
+                  },
+                  "output": {
+                    "number": "endAngle"
+                  }
+                },
+                {
+                  "title": "setNumber",
+                  "type": "action",
+                  "name": "setNumber",
+                  "parameters": {
+                    "number": {"key": "targetAngle"}
+                  },
+                  "output": {
+                    "number": "startAngle"
+                  }
+                },
+                {
+                  "title": "v_titanTurnEyes",
+                  "type": "action",
+                  "name": "v_titanTurnEyes",
+                  "parameters": {
+                    "angularVelocity": {"value": 360},
+                    "direction": {"key": "targetDirection"},
+                    "endAngle": {"key": "endAngle"},
+                    "startAngle": {"key": "startAngle"}
+                  },
+                  "output": {
+                    "angle": "targetAngle"
+                  }
+                },
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"value": 1.3}
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

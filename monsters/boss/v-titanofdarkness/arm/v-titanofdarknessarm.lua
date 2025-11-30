@@ -42,6 +42,7 @@ function init()
   task = config.getParameter("task")
   cfg = config.getParameter("taskConfig")[task] or {}
   args = config.getParameter("taskArguments")
+  cfg = sb.jsonMerge(cfg, config.getParameter("taskConfigOverrides", {}))
 
   anchorPoint = config.getParameter("anchorPoint")
 

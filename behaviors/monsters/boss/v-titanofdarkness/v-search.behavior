@@ -122,18 +122,34 @@
                       "parameters": {},
                       "children": [
                         {
-                          "title": "v_titanSearch",
-                          "type": "action",
-                          "name": "v_titanSearch",
-                          "parameters": {
-                            "flyControlForce": {"value": 6},
-                            "flySpeed": {"value": 13},
-                            "startAngle": {"key": "targetAngle"},
-                            "stopControlForce": {"value": 12}
-                          },
-                          "output": {
-                            "angle": "targetAngle"
-                          }
+                          "title": "dynamic",
+                          "type": "composite",
+                          "name": "dynamic",
+                          "parameters": {},
+                          "children": [
+                            {
+                              "title": "v-titanofdarkness-searchsurface",
+                              "type": "module",
+                              "name": "v-titanofdarkness-searchsurface",
+                              "parameters": {
+                                "maxSearchRange": {"value": 55}
+                              }
+                            },
+                            {
+                              "title": "v_titanSearch",
+                              "type": "action",
+                              "name": "v_titanSearch",
+                              "parameters": {
+                                "flyControlForce": {"value": 6},
+                                "flySpeed": {"value": 13},
+                                "startAngle": {"key": "targetAngle"},
+                                "stopControlForce": {"value": 12}
+                              },
+                              "output": {
+                                "angle": "targetAngle"
+                              }
+                            }
+                          ]
                         },
                         {
                           "title": "failer",

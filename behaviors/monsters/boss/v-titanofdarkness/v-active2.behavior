@@ -106,7 +106,10 @@
                 "title": "v-titanofdarkness-burrowingrifts",
                 "type": "module",
                 "name": "v-titanofdarkness-burrowingrifts",
-                "parameters": {}
+                "parameters": {
+                  "projectileConfig": {"value": {"power": 10}},
+                  "projectileType": {"value": "v-titanburrowingrift2"}
+                }
               }
             },
             {

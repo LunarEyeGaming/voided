@@ -39,20 +39,6 @@
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   },
-  "v_titanBurrowingRiftAttack": {
-    "type": "action",
-    "name": "v_titanBurrowingRiftAttack",
-    "title": "v_titanBurrowingRiftAttack",
-    "properties": {
-      "maxSelectionAttempts": {"type": "number", "value": 200},
-      "spawnRange": {"type": "list", "value": [-20, -20, 20, 20]},
-      "target": {"type": "entity", "key": "target"},
-      "armAnchorRadius": {"type": "number", "value": 15}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {}
-  },
   "v_titanDetectTarget": {
     "type": "action",
     "name": "v_titanDetectTarget",
@@ -212,5 +198,36 @@
     "category": "v-titanofdarkness",
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
+  },
+  "v_titanBurrowingRiftAttack": {
+    "type": "action",
+    "name": "v_titanBurrowingRiftAttack",
+    "title": "v_titanBurrowingRiftAttack",
+    "properties": {
+      "armAnchorRadius": {"type": "number", "value": 15},
+      "maxSelectionAttempts": {"type": "number", "value": 200},
+      "projectileConfig": {"type": "json", "value": null},
+      "spawnRange": {"type": "list", "value": [-20, -20, 20, 20]},
+      "target": {"type": "entity", "key": "target"},
+      "projectileType": {"type": "string"}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
+  },
+  "v_titanTurnEyes": {
+    "type": "action",
+    "name": "v_titanTurnEyes",
+    "title": "v_titanTurnEyes",
+    "properties": {
+      "angularVelocity": {"type": "number", "value": 360},
+      "direction": {"type": "number"},
+      "endAngle": {"type": "number"},
+      "startAngle": {"type": "number"}
+    },
+    "category": "v-titanofdarkness",
+    "output": {
+      "angle": {"type": "number", "key": null}
+    }
   }
 }

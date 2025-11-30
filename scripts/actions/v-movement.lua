@@ -163,6 +163,54 @@ function v_crawl(args, board)
   return false, {headingDirection = {1, 0}, forwardAngle = 0}
 end
 
+-- Same as flyAlongGround (vanilla), but it takes in a direction parameter too.
+-- param keepGroundDistance
+-- param keepCeilingDistance
+-- param yVelocityVariance
+-- param maxXVelocity
+-- param maxYVelocity
+-- param direction
+-- param lookaheadDistance
+function v_flyAlongGround(args, board)
+  local baseParameters = mcontroller.baseParameters()
+  if not args.keepGroundDistance or not args.keepCeilingDistance or not args.maxXVelocity or not args.maxYVelocity or not args.direction then return false end
+
+  local lookaheadDistance = args.lookaheadDistance or 0
+  local lineXOffset = lookaheadDistance * args.direction
+
+  while true do
+    local groundLine = poly.translate({{lineXOffset, 0}, {lineXOffset, -args.keepGroundDistance * 2}}, mcontroller.position())
+    local ceilingLine = poly.translate({{lineXOffset, 0}, {lineXOffset, args.keepCeilingDistance}}, mcontroller.position())
+    local groundPoint = world.lineCollision(groundLine[1], groundLine[2]) or groundLine[2]
+    local ceilingPoint = world.lineCollision(ceilingLine[1], ceilingLine[2]) or ceilingLine[2]
+
+    -- Find liquid
+    local x = mcontroller.position()[1]
+    for y=groundLine[1][2], groundPoint[2], -1 do
+      y = math.floor(y)
+      local liquid = world.liquidAt({x, y})
+      if liquid then
+        groundPoint = {x, y + liquid[2]}
+        break
+      end
+    end
+
+    -- Move the ground point up by the height we want to keep,
+    -- gives us the y position we want to stay around
+    local groundApproachPoint = vec2.add(groundPoint, {0, args.keepGroundDistance})
+    local keepGroundDistanceFactor = world.distance(groundApproachPoint, mcontroller.position())[2] / args.keepGroundDistance
+
+    -- Keep away from the ceiling
+    local keepCeilingDistanceFactor = (-args.keepCeilingDistance + world.distance(ceilingPoint, mcontroller.position())[2]) / args.keepCeilingDistance
+
+    local yVelocityFactor = keepGroundDistanceFactor + keepCeilingDistanceFactor
+
+    mcontroller.controlApproachVelocity({args.direction * args.maxXVelocity, yVelocityFactor * args.maxYVelocity}, baseParameters.airForce)
+
+    coroutine.yield()
+  end
+end
+
 -- param stopForce
 function v_stop(args)
   local rq = vBehavior.requireArgsGen("v_stop", args)

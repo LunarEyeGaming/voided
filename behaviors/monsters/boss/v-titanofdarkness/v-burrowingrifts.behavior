@@ -2,13 +2,16 @@
   "name": "v-titanofdarkness-burrowingrifts",
   "description": null,
   "scripts": [
+    "/scripts/behavior/bdata.lua",
     "/scripts/behavior.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua",
     "/scripts/actions/math.lua"
   ],
   "parameters": {
-    "maxLoops": 10
+    "maxLoops": 10,
+    "projectileConfig": null,
+    "projectileType": null
   },
   "root": {
     "title": "sequence - structured to succeed on at least one successful repetition",
@@ -62,7 +65,9 @@
               "type": "action",
               "name": "v_titanBurrowingRiftAttack",
               "parameters": {
-                "target": {"key": "target"}
+                "projectileConfig": {"key": "<projectileConfig>"},
+                "target": {"key": "target"},
+                "projectileType": {"key": "<projectileType>"}
               }
             },
             {
@@ -112,7 +117,9 @@
                 "type": "action",
                 "name": "v_titanBurrowingRiftAttack",
                 "parameters": {
-                  "target": {"key": "target"}
+                  "projectileConfig": {"key": "<projectileConfig>"},
+                  "target": {"key": "target"},
+                  "projectileType": {"key": "<projectileType>"}
                 }
               }
             ]

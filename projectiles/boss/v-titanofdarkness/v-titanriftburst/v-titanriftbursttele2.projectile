@@ -1,0 +1,52 @@
+{
+  "projectileName" : "v-titanriftbursttele2",
+  "image" : "titanriftbursttele.png",
+  "animationCycle" : 0.2,
+  "lightColor" : [51, 41, 71],
+  "frameNumber" : 1,
+  "flippable" : false,
+  "fullbright" : true,
+  "damageKindImage" : "icon.png",
+  "renderLayer": "ForegroundEntity+10",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "emitters" : [ ],
+  "periodicActions" : [
+    {
+      "time" : 0.03,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-titanriftbursttele/v-titanriftbursttele.animation",
+        "fullbright" : true,
+        "collidesForeground" : true,
+        "size" : 1,
+        "layer" : "front",
+        "initialVelocity" : [100, 0],
+        "finalVelocity" : [0, 0],
+        "approach" : [50, 50],
+        "timeToLive" : 0.4,
+        "variance" : {
+          "initialVelocity" : [15.0, 15.0]
+        }
+      }
+    }
+  ],
+
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-titanriftburst",
+      "inheritDamageFactor" : 1,
+      "config" : {
+        "timeToLive" : 1.9
+      }
+    }
+  ],
+
+  "onlyHitTerrain" : true,
+
+  "speed" : 0,
+  "timeToLive" : 0.75
+}
