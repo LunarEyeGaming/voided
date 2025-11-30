@@ -50,3 +50,13 @@ function v_sendEntityMessage(args, board)
 
   return true
 end
+
+function v_entityVelocity(args, board)
+  local rq = vBehavior.requireArgsGen("v_entityVelocity", args)
+
+  if not rq{"entity"} then return false end
+
+  if not world.entityExists(args.entity) then return false end
+
+  return true, {velocity = world.entityVelocity(args.entity)}
+end

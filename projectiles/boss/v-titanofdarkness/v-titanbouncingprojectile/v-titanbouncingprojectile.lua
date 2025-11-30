@@ -25,12 +25,16 @@ function destroy()
     -- Get target direction.
     local targetDirection = world.distance(world.entityPosition(target), mcontroller.position())
     -- Spawn targeted projectile
-    local id = world.spawnProjectile("v-titantargetedprojectile", mcontroller.position(), projectile.sourceEntity(),
-    targetDirection, false, {
+    local params = {
       timeToLive = 0.75,
       power = projectile.power(),
       powerMultiplier = projectile.powerMultiplier()
-    })
+    }
+    if config.getParameter("homing") then
+      params.projectileType = "v-titanriftprojectilehoming"
+    end
+    local id = world.spawnProjectile("v-titantargetedprojectile", mcontroller.position(), projectile.sourceEntity(),
+    targetDirection, false, params)
     -- Mark target
     vWorld.sendEntityMessage(id, "setTarget", target)
   end

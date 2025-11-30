@@ -1,0 +1,221 @@
+{
+  "name": "v-titanofdarkness-teleport2",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/boss/v-titanofdarkness.lua",
+    "/scripts/actions/voidedutil.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/movement.lua"
+  ],
+  "parameters": {
+    "predictionDist": 80
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "inactive"},
+          "type": {"value": "lasers"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "inactive"},
+          "type": {"value": "beamcharge"}
+        }
+      },
+      {
+        "title": "v_stop",
+        "type": "action",
+        "name": "v_stop",
+        "parameters": {
+          "stopForce": {"value": 20}
+        }
+      },
+      {
+        "title": "v_titanSetLookActive",
+        "type": "action",
+        "name": "v_titanSetLookActive",
+        "parameters": {
+          "active": {"value": false}
+        }
+      },
+      {
+        "title": "v_titanAppear",
+        "type": "action",
+        "name": "v_titanAppear",
+        "parameters": {
+          "appearTime": {"value": 2},
+          "endAlpha": {"value": 0},
+          "startAlpha": {"value": 255},
+          "visionEndRadius": {"value": 10},
+          "visionEndRotationRate": {"value": 0},
+          "visionStartRadius": {"value": 1},
+          "visionStartRotationRate": {"value": 0.25}
+        }
+      },
+      {
+        "title": "v_logInfo",
+        "type": "action",
+        "name": "v_logInfo",
+        "parameters": {
+          "msg": {"value": "getting position"}
+        }
+      },
+      {
+        "title": "entityPosition",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "target"}
+        },
+        "output": {
+          "position": "targetPos"
+        }
+      },
+      {
+        "title": "distance",
+        "type": "action",
+        "name": "distance",
+        "parameters": {
+          "from": {"key": "self"},
+          "to": {"key": "targetPos"}
+        },
+        "output": {
+          "vector": "targetDirection"
+        }
+      },
+      {
+        "title": "Hacky way of getting a vector with constant magnitude",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "vecAngle",
+            "type": "action",
+            "name": "vecAngle",
+            "parameters": {
+              "vector": {"key": "targetDirection"}
+            },
+            "output": {
+              "angle": "targetAngle"
+            }
+          },
+          {
+            "title": "vecMultiply",
+            "type": "action",
+            "name": "vecMultiply",
+            "parameters": {
+              "first": {"value": [1, 0]},
+              "number": {"key": "<predictionDist>"}
+            },
+            "output": {
+              "vector": "targetDirection"
+            }
+          },
+          {
+            "title": "vecRotate",
+            "type": "action",
+            "name": "vecRotate",
+            "parameters": {
+              "angle": {"key": "targetAngle"},
+              "vector": {"key": "targetDirection"}
+            },
+            "output": {
+              "vector": "targetDirection"
+            }
+          }
+        ]
+      },
+      {
+        "title": "offsetPosition",
+        "type": "action",
+        "name": "offsetPosition",
+        "parameters": {
+          "offset": {"key": "targetDirection"},
+          "position": {"key": "targetPos"}
+        },
+        "output": {
+          "position": "offsetTargetPos"
+        }
+      },
+      {
+        "title": "v_logInfo",
+        "type": "action",
+        "name": "v_logInfo",
+        "parameters": {
+          "formatArgs": {"value": ["$position:targetPos", "$position:offsetTargetPos"]},
+          "msg": {"value": "targetPos: %s, offsetTargetPos: %s"}
+        }
+      },
+      {
+        "title": "v_logInfo",
+        "type": "action",
+        "name": "v_logInfo",
+        "parameters": {
+          "msg": {"value": "attempting teleport"}
+        }
+      },
+      {
+        "title": "setPosition",
+        "type": "action",
+        "name": "setPosition",
+        "parameters": {
+          "footPosition": {"value": false},
+          "position": {"key": "offsetTargetPos"}
+        }
+      },
+      {
+        "title": "v_logInfo",
+        "type": "action",
+        "name": "v_logInfo",
+        "parameters": {
+          "msg": {"value": "appearing"}
+        }
+      },
+      {
+        "title": "v_titanAppear",
+        "type": "action",
+        "name": "v_titanAppear",
+        "parameters": {
+          "appearTime": {"value": 2},
+          "visionEndRadius": {"value": 1},
+          "visionEndRotationRate": {"value": 0.25},
+          "visionStartRadius": {"value": 10},
+          "visionStartRotationRate": {"value": 0}
+        }
+      },
+      {
+        "title": "v_titanSetLookActive",
+        "type": "action",
+        "name": "v_titanSetLookActive",
+        "parameters": {
+          "active": {"value": true}
+        }
+      },
+      {
+        "title": "v_logInfo",
+        "type": "action",
+        "name": "v_logInfo",
+        "parameters": {
+          "msg": {"value": "teleport successful"}
+        }
+      }
+    ]
+  }
+}

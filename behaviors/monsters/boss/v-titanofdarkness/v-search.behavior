@@ -8,7 +8,7 @@
     "/scripts/actions/position.lua",
     "/scripts/actions/math.lua",
     "/scripts/actions/time.lua",
-    "/scripts/behavior.lua"
+    "/scripts/behavior/bdata.lua"
   ],
   "parameters": {},
   "root": {
@@ -26,6 +26,54 @@
         "name": "dynamic",
         "parameters": {},
         "children": [
+          {
+            "title": "cooldown",
+            "type": "decorator",
+            "name": "cooldown",
+            "parameters": {
+              "cooldown": {"value": 6},
+              "onFail": {"value": true},
+              "onSuccess": {"value": true}
+            },
+            "child": {
+              "title": "failer",
+              "type": "decorator",
+              "name": "failer",
+              "parameters": {},
+              "child": {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "inverter",
+                    "type": "decorator",
+                    "name": "inverter",
+                    "parameters": {},
+                    "child": {
+                      "title": "entityInRange",
+                      "type": "action",
+                      "name": "entityInRange",
+                      "parameters": {
+                        "entity": {"key": "target"},
+                        "position": {"key": "self"},
+                        "range": {"value": 80}
+                      }
+                    }
+                  },
+                  {
+                    "title": "v-titanofdarkness-teleport2",
+                    "type": "module",
+                    "name": "v-titanofdarkness-teleport2",
+                    "parameters": {
+                      "predictionDist": {"value": 80}
+                    }
+                  }
+                ]
+              }
+            }
+          },
           {
             "title": "parallel",
             "type": "composite",

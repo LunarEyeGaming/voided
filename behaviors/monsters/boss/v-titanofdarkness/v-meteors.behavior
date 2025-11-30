@@ -1,15 +1,18 @@
 {
   "name": "v-titanofdarkness-meteors",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/world.lua",
     "/scripts/actions/v-sensor.lua",
-    "/scripts/behavior.lua",
+    "/scripts/behavior/bdata.lua",
     "/scripts/actions/math.lua",
     "/scripts/actions/projectiles.lua",
     "/scripts/actions/time.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "projectileConfig": {"power": 15},
+    "meteorInterval": 0.3
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -33,12 +36,14 @@
         "name": "inverter",
         "parameters": {},
         "child": {
-          "title": "v_rectCollision",
+          "title": "v_solidityTest",
           "type": "action",
-          "name": "v_rectCollision",
+          "name": "v_solidityTest",
           "parameters": {
-            "position": {"key": "targetPos"},
-            "rect": {"value": [-15, 0, 15, 50]}
+            "position": {"key": "self"},
+            "sampleStep": {"value": 3},
+            "testRegion": {"value": [-15, 5, 15, 50]},
+            "threshold": {"value": 0.3}
           }
         }
       },
@@ -96,7 +101,7 @@
                 "angle": {"value": 0},
                 "offset": {"value": ["xOffset", 50]},
                 "position": {"key": "targetPos"},
-                "projectileConfig": {"value": {"power": 15}},
+                "projectileConfig": {"key": "<projectileConfig>"},
                 "projectileType": {"value": "v-titanmeteorspawner"},
                 "scalePower": {"value": true},
                 "sourceEntity": {"key": "self"},
@@ -109,7 +114,7 @@
               "type": "action",
               "name": "timer",
               "parameters": {
-                "time": {"value": 0.3}
+                "time": {"key": "<meteorInterval>"}
               }
             }
           ]

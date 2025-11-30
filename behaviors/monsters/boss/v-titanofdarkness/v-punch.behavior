@@ -2,10 +2,13 @@
   "name": "v-titanofdarkness-punch",
   "description": null,
   "scripts": [
-    "/scripts/behavior.lua",
+    "/scripts/behavior/bdata.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "waitTime": null,
+    "repetitions": 4
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -25,7 +28,7 @@
         "type": "decorator",
         "name": "repeater",
         "parameters": {
-          "maxLoops": {"value": 4},
+          "maxLoops": {"key": "<repetitions>"},
           "untilSuccess": {"value": false}
         },
         "child": {
@@ -33,7 +36,8 @@
           "type": "action",
           "name": "v_titanPunch",
           "parameters": {
-            "target": {"key": "target"}
+            "target": {"key": "target"},
+            "waitTime": {"key": "<waitTime>"}
           }
         }
       }

@@ -1,11 +1,13 @@
 {
   "name": "v-titanofdarkness-explosion",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/movement.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "repeats": 4
+  },
   "root": {
     "title": "parallel",
     "type": "composite",
@@ -35,11 +37,7 @@
         "type": "action",
         "name": "v_titanExplosionAttack",
         "parameters": {
-          "projectileParameters": {"value": {"power": 25}},
-          "projectileType": {"value": "v-titanbomb"},
-          "repeats": {"value": 4},
-          "requiredSafeArea": {"value": [-5, -5, 5, 5]},
-          "spawnRegion": {"value": [-25, -25, 25, 25]},
+          "repeats": {"key": "<repeats>"},
           "target": {"key": "target"}
         }
       }

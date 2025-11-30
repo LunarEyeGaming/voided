@@ -1,5 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
+require "/scripts/v-vec2.lua"
 require "/scripts/v-behavior.lua"
 require "/scripts/v-movement.lua"
 require "/scripts/actions/v-attackutil.lua"
@@ -309,8 +310,15 @@ function tasks.burrowingRift()
   if rq{"target"} then
     animator.setAnimationState("hand", "dig")
 
-    -- Get point angle (completely random)
-    local pointAngle = math.random() * 2 * math.pi
+    -- Get point angle (random)
+    local targetAngle
+    if world.entityExists(args.target) then
+      local initialAngle = vec2.angle(world.distance(world.entityPosition(args.target), mcontroller.position()))
+      targetAngle = vVec2.randomAngle(initialAngle, cfg.initialFuzzAngle * math.pi / 180)
+    else
+      targetAngle = math.random() * 2 * math.pi
+    end
+    local pointAngle = targetAngle + pointOffsetAngle
 
     -- Set position and direction. The position is offset to be opposite to the point angle. Also save current position
     -- for future reference
@@ -321,7 +329,7 @@ function tasks.burrowingRift()
     v_titanAppear(appearSpecs)
 
     -- Calculate aim vector.
-    local aimVector = vec2.withAngle(pointAngle - pointOffsetAngle)
+    local aimVector = vec2.withAngle(targetAngle)
     -- Spawn the projectile with the calculated aim vector.
     local projectileId = world.spawnProjectile(cfg.projectileType, spawnPos, config.getParameter("master"),
     aimVector, false, projectileConfig)
@@ -374,28 +382,19 @@ function tasks.punch()
   local rq = vBehavior.requireArgsGen("tasks.punch", args)
 
   if rq{"target"} then
-    local punchDelay = 1.0
-    local punchEndDistance = 10  -- The number of additional blocks to travel beyond the player when punching.
-    local extendSpeed = 75
-    local extendForce = 800
-    local retractSpeed = 50
-    local retractForce = 200
-    local stopForce = 200
-    local tolerance = 10
-
     local startPos = mcontroller.position()
 
     local predictedTargetDistance
 
     animator.setAnimationState("hand", "fist")
 
-    util.wait(punchDelay, function()
+    util.wait(cfg.punchDelay, function()
       -- Get target position
       local targetPos = world.entityPosition(args.target)
       -- Get magnitude to target
       local targetMagnitude = world.magnitude(targetPos, startPos)
       -- Predict target's movements. The last expression estimates the arrival time of the punch.
-      local targetAngle = anglePrediction(mcontroller.position(), args.target, targetMagnitude / extendSpeed)
+      local targetAngle = anglePrediction(mcontroller.position(), args.target, targetMagnitude / cfg.extendSpeed)
       -- Get predicted target distance.
       predictedTargetDistance = vec2.withAngle(targetAngle, targetMagnitude)
 
@@ -404,21 +403,21 @@ function tasks.punch()
 
     -- Get punch end position. To avoid weirdness, we derive the direction from currentHandAngle instead of
     -- predictedTargetDistance. Also, lock the handTargetAngle to currentHandAngle.
-    local punchEndPosition = vec2.add(startPos, vec2.withAngle(currentHandAngle, vec2.mag(predictedTargetDistance) + punchEndDistance))
+    local punchEndPosition = vec2.add(startPos, vec2.withAngle(currentHandAngle, vec2.mag(predictedTargetDistance) + cfg.punchEndDistance))
     handTargetAngle = currentHandAngle
 
     animator.playSound("punch")
 
     monster.setDamageOnTouch(true)
 
-    vMovementA.flyToPosition(punchEndPosition, extendSpeed, extendForce, tolerance)
-    vMovementA.stop(stopForce)
-
-    monster.setDamageOnTouch(false)
+    vMovementA.flyToPosition(punchEndPosition, cfg.extendSpeed, cfg.extendForce, cfg.tolerance)
+    vMovementA.stop(cfg.stopForce)
 
     -- Fly back to starting position.
-    vMovementA.flyToPosition(startPos, retractSpeed, retractForce, tolerance)
-    vMovementA.stop(stopForce)
+    vMovementA.flyToPosition(startPos, cfg.retractSpeed, cfg.retractForce, cfg.tolerance)
+    vMovementA.stop(cfg.stopForce)
+
+    monster.setDamageOnTouch(false)
   end
 
   finish()

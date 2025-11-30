@@ -1,0 +1,154 @@
+{
+  "name": "v-titanofdarkness-active",
+  "description": "",
+  "scripts": [
+    "/scripts/behavior/bdata.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "repeater",
+    "type": "decorator",
+    "name": "repeater",
+    "parameters": {
+      "maxLoops": {"value": -1},
+      "untilSuccess": {"value": false}
+    },
+    "child": {
+      "title": "sequence",
+      "type": "composite",
+      "name": "sequence",
+      "parameters": {},
+      "children": [
+        {
+          "title": "unsetFlag",
+          "type": "action",
+          "name": "unsetFlag",
+          "parameters": {
+            "name": {"value": "orbitTarget"}
+          }
+        },
+        {
+          "title": "randomize",
+          "type": "composite",
+          "name": "randomize",
+          "parameters": {},
+          "children": [
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 30},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-laser",
+                "type": "module",
+                "name": "v-titanofdarkness-laser",
+                "parameters": {}
+              }
+            },
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 30},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-explosion",
+                "type": "module",
+                "name": "v-titanofdarkness-explosion",
+                "parameters": {}
+              }
+            },
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 40},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-bouncespread",
+                "type": "module",
+                "name": "v-titanofdarkness-bouncespread",
+                "parameters": {}
+              }
+            },
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 30},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-burrowingrifts",
+                "type": "module",
+                "name": "v-titanofdarkness-burrowingrifts",
+                "parameters": {}
+              }
+            },
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 30},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-meteors",
+                "type": "module",
+                "name": "v-titanofdarkness-meteors",
+                "parameters": {}
+              }
+            },
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 30},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-punch",
+                "type": "module",
+                "name": "v-titanofdarkness-punch",
+                "parameters": {}
+              }
+            }
+          ]
+        },
+        {
+          "title": "setFlag",
+          "type": "action",
+          "name": "setFlag",
+          "parameters": {
+            "name": {"value": "orbitTarget"}
+          }
+        },
+        {
+          "title": "timer",
+          "type": "action",
+          "name": "timer",
+          "parameters": {
+            "time": {"value": 5}
+          }
+        }
+      ]
+    }
+  }
+}

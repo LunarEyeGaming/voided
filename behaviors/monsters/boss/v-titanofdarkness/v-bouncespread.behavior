@@ -1,15 +1,21 @@
 {
   "name": "v-titanofdarkness-bouncespread",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/world.lua",
     "/scripts/actions/v-movement.lua",
-    "/scripts/behavior.lua",
+    "/scripts/behavior/bdata.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua",
     "/scripts/actions/time.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "flingInterval": 0.6,
+    "flingCount": 10,
+    "relocateProjectiles": false,
+    "flingDelay": 2.5,
+    "orbParameters": null
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -33,7 +39,7 @@
         "name": "v_flyToPositionNoFlip",
         "parameters": {
           "position": {"key": "targetPosition"},
-          "speed": {"value": 10},
+          "speed": {"value": 18},
           "tolerance": {"value": 1}
         }
       },
@@ -124,9 +130,14 @@
         "type": "action",
         "name": "v_titanBouncingOrbAttack",
         "parameters": {
+          "flingCount": {"key": "<flingCount>"},
+          "flingDelay": {"key": "<flingDelay>"},
+          "flingInterval": {"key": "<flingInterval>"},
           "projectileCount": {"value": 8},
+          "projectileParameters": {"key": "<orbParameters>"},
           "projectileType": {"value": "v-titanbouncingprojectile"},
-          "target": {"key": "target"}
+          "target": {"key": "target"},
+          "relocateProjectiles": {"key": "<relocateProjectiles>"}
         }
       }
     ]

@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarkness-laser",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/world.lua",
     "/scripts/actions/math.lua",
@@ -10,10 +10,12 @@
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
-    "/scripts/behavior.lua",
+    "/scripts/behavior/bdata.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "switchTime": null
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -125,7 +127,7 @@
         "name": "v_flyToPositionNoFlip",
         "parameters": {
           "position": {"key": "flightPos"},
-          "speed": {"value": 10},
+          "speed": {"value": 18},
           "tolerance": {"value": 1}
         }
       },
@@ -230,7 +232,8 @@
                 "name": "v_titanLaserRotation",
                 "parameters": {
                   "attackTime": {"value": 5},
-                  "target": {"key": "target"}
+                  "target": {"key": "target"},
+                  "switchTime": {"key": "<switchTime>"}
                 }
               }
             ]

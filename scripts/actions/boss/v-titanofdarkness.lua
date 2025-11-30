@@ -12,6 +12,7 @@ local nextAnimKeyframeId = 0
 -- param attackTime - Amount of time to spend rotating the lasers
 -- param rotateDelay - Amount of time to wait before rotating the lasers after starting the laser's fire aenimation
 -- param postRotateDelay - Amount of time to wait after rotating the lasers
+-- param switchTime (optional) - Amount of time to wait before doing a recast.
 function v_titanLaserRotation(args, board)
   local rq = vBehavior.requireArgsGen("v_titanLaserRotation", args)
 
@@ -49,16 +50,70 @@ function v_titanLaserRotation(args, board)
 
   local timer = 0
 
-  -- Make lasers do one full revolution.
-  util.run(args.attackTime, function(dt)
-    local leftEyeAngle = util.lerp(timer / args.attackTime, leftEyeStartAngle, leftEyeEndAngle)
-    local rightEyeAngle = util.lerp(timer / args.attackTime, rightEyeStartAngle, rightEyeEndAngle)
+  if args.switchTime then
+    -- Make lasers rotate until switchTime.
+    util.run(args.switchTime, function(dt)
+      local leftEyeAngle = util.lerp(timer / args.attackTime, leftEyeStartAngle, leftEyeEndAngle)
+      local rightEyeAngle = util.lerp(timer / args.attackTime, rightEyeStartAngle, rightEyeEndAngle)
 
-    -- Rotate lasers
-    v_titanRotateEyes{ leftEyeAngle = leftEyeAngle, rightEyeAngle = rightEyeAngle }
+      -- Rotate lasers
+      v_titanRotateEyes{ leftEyeAngle = leftEyeAngle, rightEyeAngle = rightEyeAngle }
 
-    timer = timer + dt
-  end)
+      timer = timer + dt
+    end)
+
+    -- Then target the player again.
+    targetPos = world.entityPosition(args.target)  -- Get target position
+    -- Calculate starting eye angles
+    leftEyeStartAngle = vec2.angle(world.distance(targetPos, vec2.add(leftEyeCenter, mcontroller.position())))
+    rightEyeStartAngle = vec2.angle(world.distance(targetPos, vec2.add(rightEyeCenter, mcontroller.position())))
+
+    -- Show telegraph
+    animator.setAnimationState("lasers", "windup")
+
+    v_titanRotateEyes{ leftEyeAngle = leftEyeStartAngle, rightEyeAngle = rightEyeStartAngle }
+
+    util.run(args.windupTime, function() end)
+
+    animator.setAnimationState("lasers", "fire")
+
+    util.run(args.rotateDelay, function() end)
+
+    -- Get new angles to determine the direction of the lasers.
+    targetPos = world.entityPosition(args.target)
+    leftEyeTestAngle = vec2.angle(world.distance(targetPos, vec2.add(leftEyeCenter, mcontroller.position())))
+    rightEyeTestAngle = vec2.angle(world.distance(targetPos, vec2.add(rightEyeCenter, mcontroller.position())))
+
+    -- Determine direction.
+    direction = util.toDirection(util.angleDiff(leftEyeStartAngle, leftEyeTestAngle) + util.angleDiff(rightEyeStartAngle, rightEyeTestAngle))
+    -- Calculate ending eye angles
+    leftEyeEndAngle = leftEyeStartAngle + 2 * math.pi * direction
+    rightEyeEndAngle = rightEyeStartAngle + 2 * math.pi * direction
+
+    -- Make lasers rotate for the remainder of the time.
+    timer = 0
+    util.run(args.attackTime - args.switchTime, function(dt)
+      local leftEyeAngle = util.lerp(timer / args.attackTime, leftEyeStartAngle, leftEyeEndAngle)
+      local rightEyeAngle = util.lerp(timer / args.attackTime, rightEyeStartAngle, rightEyeEndAngle)
+
+      -- Rotate lasers
+      v_titanRotateEyes{ leftEyeAngle = leftEyeAngle, rightEyeAngle = rightEyeAngle }
+
+      timer = timer + dt
+    end)
+  else
+    -- Make lasers do one full revolution.
+    util.run(args.attackTime, function(dt)
+      local leftEyeAngle = util.lerp(timer / args.attackTime, leftEyeStartAngle, leftEyeEndAngle)
+      local rightEyeAngle = util.lerp(timer / args.attackTime, rightEyeStartAngle, rightEyeEndAngle)
+
+      -- Rotate lasers
+      v_titanRotateEyes{ leftEyeAngle = leftEyeAngle, rightEyeAngle = rightEyeAngle }
+
+      timer = timer + dt
+    end)
+  end
+
 
   animator.setAnimationState("lasers", "fireEnd")
 
@@ -96,6 +151,7 @@ end
 -- param flingInterval - The amount of time to wait between flings
 -- param flingCount - The number of flings to perform
 -- param target - The target entity to attack
+-- param relocateProjectiles
 -- param projectileType
 -- param projectileParameters (optional)
 function v_titanBouncingOrbAttack(args)
@@ -129,14 +185,14 @@ function v_titanBouncingOrbAttack(args)
 
   util.run(args.flingDelay, function() end)
 
-  local targetPos = world.entityPosition(args.target)
-
   for _, entityId in ipairs(projectiles) do
     vWorld.sendEntityMessage(entityId, "v-titanbouncingprojectile-freeze")
   end
 
   -- Flick random projectiles toward the player.
   for _ = 1, args.flingCount do
+    local targetPos = world.entityPosition(args.target)
+
     -- Attempt to select next projectile (must be in the line of sight of the player and must exist)
     local nextProjectile
     local nextIdx
@@ -157,6 +213,37 @@ function v_titanBouncingOrbAttack(args)
       vWorld.sendEntityMessage(nextProjectile, "v-titanbouncingprojectile-fling", args.target)
       -- Delete projectile from list
       table.remove(projectiles, nextIdx)
+    elseif args.relocateProjectiles then
+      -- Find first projectile that exists
+      for i, projectile in ipairs(projectiles) do
+        if world.entityExists(projectile) then
+          nextProjectile = projectile
+          nextIdx = i
+          break
+        end
+      end
+
+      -- Favor a position that is in line of sight
+      local setOffset
+      local numAttempts = 0
+      repeat
+        setOffset = vec2.withAngle(math.random() * 2 * math.pi, 40)
+        numAttempts = numAttempts + 1
+      until not world.lineCollision(targetPos, vec2.add(targetPos, setOffset)) or numAttempts >= 200
+
+      -- ...But select any position with no collision if necessary.
+      if numAttempts >= 200 then
+        numAttempts = 0
+        repeat
+          setOffset = vec2.withAngle(math.random() * 2 * math.pi, 40)
+          numAttempts = numAttempts + 1
+        until not world.pointCollision(vec2.add(targetPos, setOffset)) or numAttempts >= 200
+      end
+
+      if numAttempts < 200 then
+        world.callScriptedEntity(nextProjectile, "mcontroller.setPosition", vec2.add(targetPos, setOffset))
+        vWorld.sendEntityMessage(nextProjectile, "v-titanbouncingprojectile-fling", args.target)
+      end
     end
 
     util.run(args.flingInterval, function() end)
@@ -199,6 +286,7 @@ end
 -- param target - The target entity to attack
 -- param spawnRegion - The region in which to spawn the arms
 -- param armAnchorRadius (optional) - The range at which to place the anchor point relative to the spawning position.
+-- param waitTime (optional)
 function v_titanPunch(args)
   local rq = vBehavior.requireArgsGen("v_titanPunch", args)
 
@@ -213,8 +301,12 @@ function v_titanPunch(args)
   -- Spawn the arm
   spawnArm(spawnPos, anchorPoint, "punch", {target = args.target})
 
-  -- Wait for arm to finish.
-  vBehavior.awaitNotification("v-titanofdarkness-armFinished")
+  -- Wait for arm to finish (or a certain amount of time if given).
+  if args.waitTime then
+    util.run(args.waitTime, function() end)
+  else
+    vBehavior.awaitNotification("v-titanofdarkness-armFinished")
+  end
 
   return true
 end
@@ -425,8 +517,8 @@ function v_titanDetectTarget(args)
     if world.entityExists(target) then
       local targetPos = world.entityPosition(target)
       return not (world.lineTileCollision(eyePos, world.nearestTo(eyePos, targetPos))
-      or world.magnitude(eyePos, targetPos) > args.sightRange)
-      and entity.isValidTarget(target)
+        or world.magnitude(eyePos, targetPos) > args.sightRange)
+        and entity.isValidTarget(target)
     end
 
     return false
@@ -471,6 +563,8 @@ function v_titanDetectTarget(args)
 
     coroutine.yield()
   end
+
+  sb.logInfo("Titan: Target found: %s", target)
 
   return true, {target = target}
 end

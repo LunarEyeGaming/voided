@@ -60,6 +60,10 @@ function vVec2.fSetContains(set, vector)
   return set[strVec]
 end
 
+---Returns an angle offset by an angle between `-fuzzAngle` and `fuzzAngle`.
+---@param angle number
+---@param fuzzAngle number
+---@return number
 function vVec2.randomAngle(angle, fuzzAngle)
   return angle + math.random() * 2 * fuzzAngle - fuzzAngle
 end

@@ -1,0 +1,178 @@
+{
+  "name": "v-titanofdarkness-active2",
+  "description": "",
+  "scripts": [
+    "/scripts/behavior/bdata.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/voidedutil.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "repeater",
+    "type": "decorator",
+    "name": "repeater",
+    "parameters": {
+      "maxLoops": {"value": -1},
+      "untilSuccess": {"value": false}
+    },
+    "child": {
+      "title": "sequence",
+      "type": "composite",
+      "name": "sequence",
+      "parameters": {},
+      "children": [
+        {
+          "title": "unsetFlag",
+          "type": "action",
+          "name": "unsetFlag",
+          "parameters": {
+            "name": {"value": "orbitTarget"}
+          }
+        },
+        {
+          "title": "randomize",
+          "type": "composite",
+          "name": "randomize",
+          "parameters": {},
+          "children": [
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 30},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-laser",
+                "type": "module",
+                "name": "v-titanofdarkness-laser",
+                "parameters": {
+                  "switchTime": {"value": 2.3}
+                }
+              }
+            },
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 30},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-explosion",
+                "type": "module",
+                "name": "v-titanofdarkness-explosion",
+                "parameters": {
+                  "repeats": {"value": 5}
+                }
+              }
+            },
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 40},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-bouncespread",
+                "type": "module",
+                "name": "v-titanofdarkness-bouncespread",
+                "parameters": {
+                  "flingInterval": {"value": 0.4},
+                  "flingCount": {"value": 12},
+                  "relocateProjectiles": {"value": true},
+                  "flingDelay": {"value": 4},
+                  "orbParameters": {"value": {"homing": true}}
+                }
+              }
+            },
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 30},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-burrowingrifts",
+                "type": "module",
+                "name": "v-titanofdarkness-burrowingrifts",
+                "parameters": {}
+              }
+            },
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 30},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-meteors",
+                "type": "module",
+                "name": "v-titanofdarkness-meteors",
+                "parameters": {
+                  "projectileConfig": {"value": {"meteorProjectileSpeed": 65, "power": 15, "fuzzAngle": 25}}
+                }
+              }
+            },
+            {
+              "title": "cooldown",
+              "type": "decorator",
+              "name": "cooldown",
+              "parameters": {
+                "cooldown": {"value": 30},
+                "onFail": {"value": false},
+                "onSuccess": {"value": true}
+              },
+              "child": {
+                "title": "v-titanofdarkness-punch",
+                "type": "module",
+                "name": "v-titanofdarkness-punch",
+                "parameters": {
+                  "waitTime": {"value": 1.7},
+                  "repetitions": {"value": 6}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "title": "setFlag",
+          "type": "action",
+          "name": "setFlag",
+          "parameters": {
+            "name": {"value": "orbitTarget"}
+          }
+        },
+        {
+          "title": "timer",
+          "type": "action",
+          "name": "timer",
+          "parameters": {
+            "time": {"value": 2.5}
+          }
+        },
+        {
+          "title": "v_logInfo",
+          "type": "action",
+          "name": "v_logInfo",
+          "parameters": {
+            "msg": {"value": "Active2"}
+          }
+        }
+      ]
+    }
+  }
+}
