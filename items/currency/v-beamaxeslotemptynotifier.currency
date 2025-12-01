@@ -1,0 +1,17 @@
+{
+  // Thanks patman!
+  // Acts as a message notification.
+  "itemName" : "v-beamaxeslotemptynotifier",
+  "rarity" : "Common",
+  "inventoryIcon" : "/assetmissing.png",
+  "description" : "This item should be given directly to the player.",
+  "shortdescription" : "^#0000;1 - ^red;Equip item to upgrade in Matter Manipulator slot.^#0000;",
+  "currency" : "money",
+  "value" : 0,
+  "pickupSoundsSmall" : [ "/sfx/interface/ship_error1.ogg" ],
+  "pickupSoundsMedium" : [ "/sfx/interface/ship_error1.ogg" ],
+  "pickupSoundsLarge" : [ "/sfx/interface/ship_error1.ogg" ],
+  "smallStackLimit" : 999,
+  "mediumStackLimit" : 4999,
+  "maxStack" : 16777216
+}

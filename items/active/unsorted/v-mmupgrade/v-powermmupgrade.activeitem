@@ -1,0 +1,34 @@
+{
+  "itemName" : "v-powermmupgrade",
+  "price" : 0,
+  "level" : 1,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "category" : "v-mmUpgrade",
+  "description" : "Increases matter deconstruction rate by 100%.",
+  "shortdescription" : "^1;Power: +100%",
+  "twoHanded" : true,
+
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "customRarity" : "Mythical",
+
+  // "inventoryIcon" : "powermmupgrade.png",
+  "inventoryIcon" : "mmupgradebg.png",
+  "animation" : "v-mmupgrade.animation",
+  "animationCustom" : {},
+  "scripts" : ["v-mmupgrade.lua"],
+
+  "fireTime" : 2.0,
+  "fireOffset" : [1.0, 0.0],
+
+  "upgradeName" : "v-power",
+  "upgrade" : {
+    "essentialSlot" : "beamaxe",
+    "sumItemParameters" : {
+      "tileDamage" : 1.2,
+      "minBeamJitter" : 0.05,
+      "maxBeamJitter" : 0.05
+    }
+  },
+  "upgradedBeamaxeName" : "v-beamaxeupgradedpowernotifier"  // Hacky way of displaying a message at the bottom of the screen
+}
