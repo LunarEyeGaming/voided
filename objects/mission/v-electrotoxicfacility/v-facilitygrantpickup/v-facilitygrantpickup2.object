@@ -1,0 +1,30 @@
+{
+  "objectName" : "v-facilitygrantpickup2",
+  "colonyTags" : ["misc"],
+  "printable" : false,
+  "price" : 0,
+  "rarity" : "Common",
+  "description" : "<todo>",
+  "shortdescription" : "Facility Grant",
+  "race" : "human",
+
+  "category" : "decorative",
+
+  "inventoryIcon" : "facilitygrantpickup.png",
+  "orientations" : [
+    {
+      "dualImage" : "facilitygrantpickup.png",
+
+      "imagePosition" : [-8, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "scripts" : [ "v-facilitygrantpickup.lua" ],
+
+  "breakDropOptions" : [ [ [ "v-facilitygrant2-codex", 1, {} ] ] ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

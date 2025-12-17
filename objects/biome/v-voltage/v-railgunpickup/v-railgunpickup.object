@@ -29,10 +29,10 @@
       "anchors" : [ "bottom" ]
     }
   ],
-  
+
   "scripts" : [ "v-railgunpickup.lua" ],
-  
-  "breakDropPool" : "v-railgunpickup",
-  
+
+  "breakDropOptions" : [ [ [ "v-railgun", 1, {} ] ] ],
+
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

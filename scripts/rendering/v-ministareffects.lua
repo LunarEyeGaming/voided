@@ -48,6 +48,8 @@ local lightDrawBounds
 local sunProximityRatio
 local sunRayColors  ---@type VXMap
 local sunRayLightColors  ---@type VXMap
+local rayColorTableSize
+local rayColorTable
 
 local isActive
 
@@ -70,6 +72,10 @@ function init()
   endBurningColor = {255, 119, 0, 255}
   sunRayDimColor = {255, 0, 0, 0}
   sunRayBrightColor = {255, 216, 107, 128}
+
+  rayColorTableSize = 256  -- Roughly the max number of entries that each rayRatio maps to.
+  rayColorTable = {}
+  setmetatable(rayColorTable, {__mode = "kv"})
 
   isActive = true
 
@@ -524,9 +530,35 @@ function v_ministarEffects_computeRayColors(ratio, boosts)
   local sunRayColors_list = sunRayColors.list
   local sunRayLightColors_list = sunRayLightColors.list
 
+  local cacheMisses = 0
+
   for x, boost in boosts:xvalues() do
     local rayRatio = math_min(1.0, math_max(0.0, ratio + boost))
-    local tempColor = vAnimator_lerpColor(rayRatio, sunRayDimColor, sunRayBrightColor)
+    -- TODO: Maybe make a table cache based on rayRatio?
+    --[[
+      Idea: Define a table rayColorTable, where the key is rayRatio and the value is the corresponding color.
+      This table is a weak table (i.e., Lua can garbage-collect entries).
+
+      Risk: We need to be careful not to modify any results we get from the table.
+
+      local rayColorTable
+      rayColorTable = {}
+      setmetatable(rayColorTable, {__mode = "kv"})
+
+      local tempColor = rayColorTable[rayRatio]
+      if tempColor == nil then
+        tempColor = vAnimator_lerpColor(rayRatio, sunRayDimColor, sunRayBrightColor)
+        rayColorTable[rayRatio] = tempColor
+      end
+    ]]
+    -- local tempColor = vAnimator_lerpColor(rayRatio, sunRayDimColor, sunRayBrightColor)
+    local rayRatioKey = math_floor(rayRatio * rayColorTableSize)
+    local tempColor = rayColorTable[rayRatioKey]
+    if tempColor == nil then
+      tempColor = vAnimator_lerpColor(rayRatio, sunRayDimColor, sunRayBrightColor)
+      rayColorTable[rayRatioKey] = tempColor
+      cacheMisses = cacheMisses + 1
+    end
     local sunRayLightColor = {
       math_floor(tempColor[1] * rayRatio),
       math_floor(tempColor[2] * rayRatio),
@@ -535,6 +567,8 @@ function v_ministarEffects_computeRayColors(ratio, boosts)
     sunRayLightColors_list[x] = sunRayLightColor
     sunRayColors_list[x] = vAnimator_lerpColor(ratio + boost, sunRayDimColor, sunRayBrightColor)
   end
+
+  sb.setLogMap("v-ministareffects_cacheMisses", "%s", cacheMisses)
 end
 
 function v_ministarEffects_drawParticles(color)
