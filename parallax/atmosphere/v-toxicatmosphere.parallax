@@ -1,6 +1,6 @@
 {
   "verticalOrigin" : 0,
-  
+
   "layers" : [
     {
       "kind" : "v-toxicatmosphere/clouds",
@@ -76,6 +76,36 @@
       "repeatY" : true,
       "tileLimitTop" : 0,
       "parallax" : 7.5
+    },
+    {
+      "kind" : "v-toxicatmosphere/clouds",
+      "offset" : [0, 100],
+      "noRandomOffset" : true,
+      "parallax" : [10, 10],
+      "nohueshift" : true
+    },
+    {
+      "kind" : "v-toxicatmosphere/clouds",
+      "offset" : [0, 100],
+      "noRandomOffset" : true,
+      "parallax" : [20, 20],
+      "nohueshift" : true
+    },
+    {
+      "kind" : "v-toxicatmosphere/clouds",
+      "offset" : [0, 100],
+      "noRandomOffset" : true,
+      "parallax" : [40, 40],
+      "nohueshift" : true
+    },
+    {
+      "kind" : "v-toxicwasteland/sunshade",
+      "noRandomOffset" : true,
+      "parallax" : 50,
+      "minSpeed" : -5000,
+      "maxSpeed" : -2500,
+      "repeatY" : true,
+      "tileLimitTop" : 0
     }
     /* {
       "kind" : "volcanicclouds1",

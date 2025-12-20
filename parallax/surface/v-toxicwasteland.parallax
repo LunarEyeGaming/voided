@@ -1,6 +1,6 @@
 {
   "verticalOrigin" : 0,
-  
+
   "layers" : [
     {
       "kind" : "v-toxicwasteland/divider",
@@ -45,6 +45,15 @@
       "nohueshift" : true
     },
     {
+      "kind" : "v-toxicwasteland/groundclouds1",
+      "baseCount" : 2,
+      "offset" : [0, 200],
+      "noRandomOffset" : true,
+      "parallax" : 3.1,
+      "minSpeed" : -16000,
+      "maxSpeed" : -11000
+    },
+    {
       "kind" : "v-toxicwasteland/fog",
       "nohueshift" : true,
       "repeatY" : true,
@@ -59,6 +68,15 @@
       "fadePercent" : 0.02
     },
     {
+      "kind" : "v-toxicwasteland/groundclouds1",
+      "baseCount" : 2,
+      "offset" : [0, 125],
+      "noRandomOffset" : true,
+      "parallax" : 5.1,
+      "minSpeed" : -13000,
+      "maxSpeed" : -8000
+    },
+    {
       "kind" : "v-toxicwasteland/fog",
       "nohueshift" : true,
       "repeatY" : true,
@@ -69,6 +87,15 @@
       "offset" : [0, 140],
       "parallax" : [7, 7],
       "nohueshift" : true
+    },
+    {
+      "kind" : "v-toxicwasteland/groundclouds1",
+      "baseCount" : 2,
+      "offset" : [0, 140],
+      "noRandomOffset" : true,
+      "parallax" : 7.1,
+      "minSpeed" : -10000,
+      "maxSpeed" : -5000
     },
     {
       "kind" : "v-toxicwasteland/fog",
@@ -93,7 +120,69 @@
       "nohueshift" : true,
       "fadePercent" : 0.05
     },
-
+    {
+      "kind" : "v-toxicwasteland/clouds1",
+      "baseCount" : 2,
+      "offset" : [0, -150],
+      "noRandomOffset" : true,
+      "parallax" : 15,
+      "minSpeed" : -5000,
+      "maxSpeed" : -2500
+    },
+    {
+      "kind" : "v-toxicwasteland/clouds1",
+      "baseCount" : 2,
+      "offset" : [0, -150],
+      "noRandomOffset" : true,
+      "parallax" : 15,
+      "minSpeed" : -5000,
+      "maxSpeed" : -2500
+    },
+    {
+      "kind" : "v-toxicwasteland/clouds1",
+      "baseCount" : 2,
+      "offset" : [0, -100],
+      "noRandomOffset" : true,
+      "parallax" : 20,
+      "minSpeed" : -5000,
+      "maxSpeed" : -2500
+    },
+    {
+      "kind" : "v-toxicwasteland/clouds1",
+      "baseCount" : 2,
+      "offset" : [0, -100],
+      "noRandomOffset" : true,
+      "parallax" : 20,
+      "minSpeed" : -5000,
+      "maxSpeed" : -2500
+    },
+    {
+      "kind" : "v-toxicwasteland/clouds1",
+      "baseCount" : 2,
+      "offset" : [0, -50],
+      "noRandomOffset" : true,
+      "parallax" : 25,
+      "minSpeed" : -5000,
+      "maxSpeed" : -2500
+    },
+    {
+      "kind" : "v-toxicwasteland/clouds1",
+      "baseCount" : 2,
+      "offset" : [0, -50],
+      "noRandomOffset" : true,
+      "parallax" : 25,
+      "minSpeed" : -5000,
+      "maxSpeed" : -2500
+    },
+    {
+      "kind" : "v-toxicwasteland/sunshade",
+      "offset" : [0, -50],
+      "noRandomOffset" : true,
+      "parallax" : 50,
+      "minSpeed" : -5000,
+      "maxSpeed" : -2500,
+      "repeatY" : true
+    },
     {
       "kind" : "clouds3",
       "baseCount" : 2,
