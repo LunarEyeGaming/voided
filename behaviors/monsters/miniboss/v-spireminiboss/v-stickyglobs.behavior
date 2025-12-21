@@ -1,18 +1,21 @@
 {
   "name": "v-spireminiboss-stickyglobs",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/time.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/world.lua",
-    "/scripts/actions/projectiles.lua"
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/miniboss/v-spireminiboss.lua",
+    "/scripts/actions/voidedutil.lua"
   ],
   "parameters": {
-    "projectileType": "v-stickymagmaglob",
+    "projectileType": "v-spireminibossfireball",
     "projectileInterval": 1.5,
     "highArc": false,
-    "fireArc": true
+    "fireArc": false,
+    "projectileConfig": {"power": 10}
   },
   "root": {
     "title": "parallel",
@@ -152,6 +155,33 @@
               ]
             },
             {
+              "title": "v_getAirBurstTTL",
+              "type": "action",
+              "name": "v_getAirBurstTTL",
+              "parameters": {
+                "endPos": {"key": "targetPos"},
+                "speed": {"value": 50},
+                "startPos": {"key": "self"}
+              },
+              "output": {
+                "time": "timeToLive"
+              }
+            },
+            {
+              "title": "v_setJsonKey",
+              "type": "action",
+              "name": "v_setJsonKey",
+              "parameters": {
+                "object": {"key": "<projectileConfig>"},
+                "key": {"value": "timeToLive"},
+                "bool": {"value": false},
+                "number": {"key": "timeToLive"}
+              },
+              "output": {
+                "object": "projectileConfig"
+              }
+            },
+            {
               "title": "setAnimationState",
               "type": "action",
               "name": "setAnimationState",
@@ -168,7 +198,7 @@
                 "aimVector": {"key": "aimVector"},
                 "offset": {"value": [0, 0]},
                 "position": {"key": "self"},
-                "projectileConfig": {"value": {"power": 10}},
+                "projectileConfig": {"key": "projectileConfig"},
                 "projectileType": {"key": "<projectileType>"},
                 "scalePower": {"value": true},
                 "sourceEntity": {"key": "self"},

@@ -1067,38 +1067,6 @@
   },
   {
     "op": "add",
-    "path": "/v-action-hitscanbeamfire",
-    "value": {
-      "type": "module",
-      "name": "v-action-hitscanbeamfire",
-      "title": "",
-      "properties": {
-        "aimDirection": {"type": "json", "value": [1, 0]},
-        "fireSound": {"type": "json", "value": "fire"},
-        "fireState": {"type": "json", "value": "fire"},
-        "winddownState": {"type": "json", "value": "firewinddown"},
-        "windupState": {"type": "json", "value": "firewindup"},
-        "windupState2": {"type": "json", "value": "firewindup2"},
-        "windupTime2": {"type": "json", "value": 0.25},
-        "fireDelay": {"type": "json", "value": 0},
-        "faceTarget": {"type": "json", "value": true},
-        "rotateAim": {"type": "json", "value": false},
-        "rotationCenter": {"type": "json", "value": [0, 0]},
-        "fireStateType": {"type": "json", "value": "body"},
-        "skillName": {"type": "json", "value": ""},
-        "holdAim": {"type": "json", "value": false},
-        "damageRepeatGroup": {"type": "json", "value": "monsterfire"},
-        "windupBeam": {"type": "json", "value": "windup"},
-        "windupBeam2": {"type": "json", "value": "windup2"},
-        "fireBeam": {"type": "json", "value": "fire"},
-        "maxBeamLength": {"type": "json", "value": 100},
-        "fireTime": {"type": "json", "value": 1}
-      },
-      "pathToTree": "..\\monsters\\modular\\actions\\v-hitscanbeamfire.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-titanofdarkness-orbittarget",
     "value": {
       "type": "module",
@@ -1147,22 +1115,6 @@
         "vehicleAwakenRange": {"type": "json", "value": 8}
       },
       "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-spireminiboss.behavior"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/v-spireminiboss-stickyglobs",
-    "value": {
-      "type": "module",
-      "name": "v-spireminiboss-stickyglobs",
-      "title": "",
-      "properties": {
-        "projectileType": {"type": "json", "value": "v-stickymagmaglob"},
-        "projectileInterval": {"type": "json", "value": 1.5},
-        "highArc": {"type": "json", "value": false},
-        "fireArc": {"type": "json", "value": true}
-      },
-      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-stickyglobs.behavior"
     }
   },
   {
@@ -1393,6 +1345,56 @@
         "yVelocity": {"type": "json", "value": 10}
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-searchsurface.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-hitscanbeamfire",
+    "value": {
+      "type": "module",
+      "name": "v-action-hitscanbeamfire",
+      "title": "",
+      "properties": {
+        "aimDirection": {"type": "json", "value": [1, 0]},
+        "fireSound": {"type": "json", "value": "fire"},
+        "fireState": {"type": "json", "value": "fire"},
+        "winddownState": {"type": "json", "value": "firewinddown"},
+        "windupState": {"type": "json", "value": "firewindup"},
+        "windupState2": {"type": "json", "value": "firewindup2"},
+        "windupTime2": {"type": "json", "value": 0.25},
+        "fireDelay": {"type": "json", "value": 0},
+        "faceTarget": {"type": "json", "value": true},
+        "rotateAim": {"type": "json", "value": false},
+        "rotationCenter": {"type": "json", "value": [0, 0]},
+        "fireStateType": {"type": "json", "value": "body"},
+        "skillName": {"type": "json", "value": ""},
+        "holdAim": {"type": "json", "value": false},
+        "damageRepeatGroup": {"type": "json", "value": "monsterfire"},
+        "windupBeam": {"type": "json", "value": "windup"},
+        "windupBeam2": {"type": "json", "value": "windup2"},
+        "fireBeam": {"type": "json", "value": "fire"},
+        "maxBeamLength": {"type": "json", "value": 100},
+        "fireTime": {"type": "json", "value": 1},
+        "fireOffset": {"type": "json", "value": [0, 0]}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-hitscanbeamfire.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-spireminiboss-stickyglobs",
+    "value": {
+      "type": "module",
+      "name": "v-spireminiboss-stickyglobs",
+      "title": "",
+      "properties": {
+        "projectileType": {"type": "json", "value": "v-spireminibossfireball"},
+        "projectileInterval": {"type": "json", "value": 1.5},
+        "highArc": {"type": "json", "value": false},
+        "fireArc": {"type": "json", "value": false},
+        "projectileConfig": {"type": "json", "value": {"power": 10}}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-stickyglobs.behavior"
     }
   }
 ]

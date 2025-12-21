@@ -1,0 +1,30 @@
+{
+  "projectileName" : "v-spireminibossfireballstopped",
+  "physics" : "hover",
+  "movementSettings" : {
+    "airFriction" : 5.0
+  },
+  "image" : "spireminibossfireballstopped.png",
+  "animationCycle" : 0.25,
+  "frameNumber" : 1,
+  "timeToLive" : 0.5,
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "lightColor" : [235, 126, 2],
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-spireminibossfireballexplosion/v-spireminibossfireballexplosion.config"
+    }
+  ],
+  "power" : 42,
+  "knockback" : 40,
+  "speed" : 50,
+  "damageKind" : "fireplasma",
+  "damageKindImage" : "/interface/statuses/fire.png",
+  "statusEffects" : [
+    "burning"
+  ],
+  "hydrophobic" : true,
+  "persistentAudio" : "/sfx/projectiles/dragonprojectile_loop.ogg",
+  "emitters" : [ "fireplasma", "smoke", "flames" ]
+}

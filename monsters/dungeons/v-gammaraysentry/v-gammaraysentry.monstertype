@@ -65,6 +65,7 @@
             "maxBeamLength" : 100,
 
             "rotationCenter" : [0.0, 0.0],
+            "fireOffset" : [3.25, 0],
             "fireSound" : "fire",
             "fireState" : "fire",
             "fireDelay" : 0.0,
@@ -115,7 +116,12 @@
         "taper" : 0,
         "fullbright" : true,
         "frames" : 1,
-        "cycle" : 1
+        "cycle" : 1,
+        "waveform" : {
+          "frequency" : 5.0,
+          "amplitude" : 0.125,
+          "movement" : 20.0
+        }
       },
       "fire" : {
         "startSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamstart.png:3",
@@ -126,7 +132,12 @@
         "taper" : 0,
         "fullbright" : true,
         "frames" : 1,
-        "cycle" : 1
+        "cycle" : 1,
+        "waveform" : {
+          "frequency" : 5.0,
+          "amplitude" : 0.125,
+          "movement" : 100.0
+        }
       }
     },
 
@@ -179,7 +190,7 @@
 
     "knockoutTime" : 0.3,
     "knockoutAnimationStates" : {
-      "damage" : "stunned"
+      "damage" : "killed"
     },
     "deathParticles" : "deathPoof",
     "knockoutEffect" : "",

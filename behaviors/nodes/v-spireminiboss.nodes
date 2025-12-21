@@ -14,5 +14,20 @@
     "output": {
       "result": {"type": "position", "key": null}
     }
+  },
+  "v_getAirBurstTTL": {
+    "type": "action",
+    "name": "v_getAirBurstTTL",
+    "title": "v_getAirBurstTTL",
+    "properties": {
+      "endPos": {"type": "position"},
+      "speed": {"type": "number"},
+      "startPos": {"type": "position", "key": "self"}
+    },
+    "category": "v-spireminiboss",
+    "script": "/scripts/actions/miniboss/v-spireminiboss.lua",
+    "output": {
+      "time": {"type": "number", "key": null}
+    }
   }
 }

@@ -34,3 +34,14 @@ function v_giveBestPosition(args, board)
 
   return true, {result = newPosition}
 end
+
+function v_getAirBurstTTL(args, board)
+  if not vBehavior.requireArgs("v_getAirBurstTTL", args, {"startPos", "endPos", "speed"}) then
+    return false
+  end
+
+  local mag = world.magnitude(args.startPos, args.endPos)
+  local ttl = mag / args.speed
+
+  return true, {time = ttl}
+end

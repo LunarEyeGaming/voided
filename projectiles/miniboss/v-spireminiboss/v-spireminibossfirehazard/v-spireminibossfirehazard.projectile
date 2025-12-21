@@ -1,0 +1,37 @@
+{
+  "projectileName" : "v-spireminibossfirehazard",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "timeToLive" : 5,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "speed" : 0,
+  "piercing" : true,
+  "bounces" : -1,
+  "power" : 2,
+  "damageKind" : "fire",
+  "physics" : "illusion",
+
+  "damagePoly" : [ [-40, 0], [-28, -28], [0, -40], [28, -28], [40, 0], [28, 28], [0, 40], [-28, 28] ],
+
+  "periodicActions" : [
+    {
+      "time" : 0.02,
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/mediumflame/mediumflame.animation",
+        "position" : [0, 0],
+        "initialVelocity" : [0.0, 2.0],
+        "layer" : "front",
+        "timeToLive" : 0.8,
+        "light" : [218, 83, 2],
+        "fullbright" : true,
+        "variance" : {
+          "position" : [5, 5]
+        }
+      }
+    }
+  ],
+
+  "scripts" : ["/projectiles/killable.lua"]
+}

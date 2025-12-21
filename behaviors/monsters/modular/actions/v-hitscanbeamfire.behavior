@@ -1,6 +1,6 @@
 {
   "name": "v-action-hitscanbeamfire",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/behavior.lua",
     "/scripts/actions/math.lua",
@@ -8,7 +8,6 @@
     "/scripts/actions/movement.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/v-beam.lua",
-    "/scripts/actions/voidedutil.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/animator.lua",
     "/scripts/behavior/bdata.lua",
@@ -34,7 +33,8 @@
     "windupBeam2": "windup2",
     "fireBeam": "fire",
     "maxBeamLength": 100,
-    "fireTime": 1
+    "fireTime": 1,
+    "fireOffset": [0, 0]
   },
   "root": {
     "title": "selector",
@@ -194,13 +194,56 @@
                             },
                             "children": [
                               {
+                                "title": "sequence",
+                                "type": "composite",
+                                "name": "sequence",
+                                "parameters": {},
+                                "children": [
+                                  {
+                                    "title": "vecAngle",
+                                    "type": "action",
+                                    "name": "vecAngle",
+                                    "parameters": {
+                                      "vector": {"key": "aimVector"}
+                                    },
+                                    "output": {
+                                      "angle": "aimAngle"
+                                    }
+                                  },
+                                  {
+                                    "title": "vecRotate",
+                                    "type": "action",
+                                    "name": "vecRotate",
+                                    "parameters": {
+                                      "angle": {"key": "aimAngle"},
+                                      "vector": {"key": "<fireOffset>"}
+                                    },
+                                    "output": {
+                                      "vector": "beamOffset"
+                                    }
+                                  },
+                                  {
+                                    "title": "offsetPosition",
+                                    "type": "action",
+                                    "name": "offsetPosition",
+                                    "parameters": {
+                                      "offset": {"key": "beamOffset"},
+                                      "position": {"key": "self"}
+                                    },
+                                    "output": {
+                                      "position": "beamStart"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
                                 "title": "v_beamCollision",
                                 "type": "action",
                                 "name": "v_beamCollision",
                                 "parameters": {
                                   "direction": {"key": "aimVector"},
                                   "maxLength": {"key": "<maxBeamLength>"},
-                                  "startPosition": {"key": "origin"}
+                                  "startPosition": {"key": "beamStart"}
                                 },
                                 "output": {
                                   "beamEnd": "beamEnd"
@@ -213,16 +256,7 @@
                                 "parameters": {
                                   "beamType": {"key": "<windupBeam>"},
                                   "endPosition": {"key": "beamEnd"},
-                                  "startPosition": {"key": "self"}
-                                }
-                              },
-                              {
-                                "title": "v_logInfo",
-                                "type": "action",
-                                "name": "v_logInfo",
-                                "parameters": {
-                                  "formatArgs": {"value": ["$number:heading"]},
-                                  "msg": {"value": "heading: %s"}
+                                  "startPosition": {"key": "beamStart"}
                                 }
                               }
                             ]
@@ -341,13 +375,56 @@
                             },
                             "children": [
                               {
+                                "title": "sequence",
+                                "type": "composite",
+                                "name": "sequence",
+                                "parameters": {},
+                                "children": [
+                                  {
+                                    "title": "vecAngle",
+                                    "type": "action",
+                                    "name": "vecAngle",
+                                    "parameters": {
+                                      "vector": {"key": "aimVector"}
+                                    },
+                                    "output": {
+                                      "angle": "aimAngle"
+                                    }
+                                  },
+                                  {
+                                    "title": "vecRotate",
+                                    "type": "action",
+                                    "name": "vecRotate",
+                                    "parameters": {
+                                      "angle": {"key": "aimAngle"},
+                                      "vector": {"key": "<fireOffset>"}
+                                    },
+                                    "output": {
+                                      "vector": "beamOffset"
+                                    }
+                                  },
+                                  {
+                                    "title": "offsetPosition",
+                                    "type": "action",
+                                    "name": "offsetPosition",
+                                    "parameters": {
+                                      "offset": {"key": "beamOffset"},
+                                      "position": {"key": "self"}
+                                    },
+                                    "output": {
+                                      "position": "beamStart"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
                                 "title": "v_beamCollision",
                                 "type": "action",
                                 "name": "v_beamCollision",
                                 "parameters": {
                                   "direction": {"key": "aimVector"},
                                   "maxLength": {"key": "<maxBeamLength>"},
-                                  "startPosition": {"key": "self"}
+                                  "startPosition": {"key": "beamStart"}
                                 },
                                 "output": {
                                   "beamEnd": "beamEnd"
@@ -360,7 +437,7 @@
                                 "parameters": {
                                   "beamType": {"key": "<windupBeam2>"},
                                   "endPosition": {"key": "beamEnd"},
-                                  "startPosition": {"key": "self"}
+                                  "startPosition": {"key": "beamStart"}
                                 }
                               }
                             ]
@@ -414,13 +491,62 @@
                             "name": "failer",
                             "parameters": {},
                             "child": {
+                              "title": "sequence",
+                              "type": "composite",
+                              "name": "sequence",
+                              "parameters": {},
+                              "children": [
+                                {
+                                  "title": "vecAngle",
+                                  "type": "action",
+                                  "name": "vecAngle",
+                                  "parameters": {
+                                    "vector": {"key": "aimVector"}
+                                  },
+                                  "output": {
+                                    "angle": "aimAngle"
+                                  }
+                                },
+                                {
+                                  "title": "vecRotate",
+                                  "type": "action",
+                                  "name": "vecRotate",
+                                  "parameters": {
+                                    "angle": {"key": "aimAngle"},
+                                    "vector": {"key": "<fireOffset>"}
+                                  },
+                                  "output": {
+                                    "vector": "beamOffset"
+                                  }
+                                },
+                                {
+                                  "title": "offsetPosition",
+                                  "type": "action",
+                                  "name": "offsetPosition",
+                                  "parameters": {
+                                    "offset": {"key": "beamOffset"},
+                                    "position": {"key": "self"}
+                                  },
+                                  "output": {
+                                    "position": "beamStart"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "title": "failer",
+                            "type": "decorator",
+                            "name": "failer",
+                            "parameters": {},
+                            "child": {
                               "title": "v_beamCollision",
                               "type": "action",
                               "name": "v_beamCollision",
                               "parameters": {
                                 "direction": {"key": "aimVector"},
                                 "maxLength": {"key": "<maxBeamLength>"},
-                                "startPosition": {"key": "self"}
+                                "startPosition": {"key": "beamStart"}
                               },
                               "output": {
                                 "beamEnd": "beamEnd",
@@ -440,7 +566,7 @@
                               "parameters": {
                                 "beamType": {"key": "<fireBeam>"},
                                 "endPosition": {"key": "beamEnd"},
-                                "startPosition": {"key": "self"}
+                                "startPosition": {"key": "beamStart"}
                               }
                             }
                           },
@@ -579,26 +705,42 @@
         ]
       },
       {
-        "title": "succeeder",
-        "type": "decorator",
-        "name": "succeeder",
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
         "parameters": {},
-        "child": {
-          "title": "optional",
-          "type": "decorator",
-          "name": "optional",
-          "parameters": {
-            "shouldRun": {"key": "<rotateAim>"}
+        "children": [
+          {
+            "title": "succeeder",
+            "type": "decorator",
+            "name": "succeeder",
+            "parameters": {},
+            "child": {
+              "title": "optional",
+              "type": "decorator",
+              "name": "optional",
+              "parameters": {
+                "shouldRun": {"key": "<rotateAim>"}
+              },
+              "child": {
+                "title": "resetTransformationGroup",
+                "type": "action",
+                "name": "resetTransformationGroup",
+                "parameters": {
+                  "transformationGroup": {"value": "aim"}
+                }
+              }
+            }
           },
-          "child": {
-            "title": "resetTransformationGroup",
+          {
+            "title": "unsetFlag",
             "type": "action",
-            "name": "resetTransformationGroup",
+            "name": "unsetFlag",
             "parameters": {
-              "transformationGroup": {"value": "aim"}
+              "name": {"value": "holdAim"}
             }
           }
-        }
+        ]
       }
     ]
   }

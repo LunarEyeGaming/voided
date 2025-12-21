@@ -5,13 +5,13 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 4,
-            "cycle" : 0.4,
+            "frames" : 1,
+            "cycle" : 0.1,
             "mode" : "loop"
           },
           "fire" : {
-            "frames" : 2,
-            "cycle" : 0.2,
+            "frames" : 6,
+            "cycle" : 0.6,
             "mode" : "loop"
           }
         }
@@ -66,7 +66,7 @@
       }
     }
   },
-  
+
   "particleEmitters" : {
     "beamCollision" : {
       "active" : false,
