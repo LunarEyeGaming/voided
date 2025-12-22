@@ -97,26 +97,26 @@
 
     "beams" : {
       "windup" : {
-        "startSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamstart.png:1",
-        "segmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beam.png:1",
-        "endSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamend.png:1",
+        "startSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamstart.png:windup.<frame>",
+        "segmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beam.png:windup.<frame>",
+        "endSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamend.png:windup.<frame>",
         "segmentSize" : 0.98,
         "overdrawLength" : 0.2,
         "taper" : 0,
         "fullbright" : true,
-        "frames" : 1,
+        "frames" : 3,
         "cycle" : 1
       },
       "windup2" : {
-        "startSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamstart.png:2",
-        "segmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beam.png:2",
-        "endSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamend.png:2",
+        "startSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamstart.png:windup2.<frame>",
+        "segmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beam.png:windup2.<frame>",
+        "endSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamend.png:windup2.<frame>",
         "segmentSize" : 0.98,
         "overdrawLength" : 0.2,
         "taper" : 0,
         "fullbright" : true,
-        "frames" : 1,
-        "cycle" : 1,
+        "frames" : 5,
+        "cycle" : 0.5,
         "waveform" : {
           "frequency" : 5.0,
           "amplitude" : 0.125,
@@ -124,15 +124,15 @@
         }
       },
       "fire" : {
-        "startSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamstart.png:3",
-        "segmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beam.png:3",
-        "endSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamend.png:3",
+        "startSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamstart.png:fire.<frame>",
+        "segmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beam.png:fire.<frame>",
+        "endSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamend.png:fire.<frame>",
         "segmentSize" : 0.98,
         "overdrawLength" : 0.2,
         "taper" : 0,
         "fullbright" : true,
-        "frames" : 1,
-        "cycle" : 1,
+        "frames" : 5,
+        "cycle" : 0.5,
         "waveform" : {
           "frequency" : 5.0,
           "amplitude" : 0.125,
