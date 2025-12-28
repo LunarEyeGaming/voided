@@ -5,10 +5,12 @@
   "spawnProfile" : {
     "groups" : [
       {
-        "select" : 4,
+        "select" : 6,
         "pool" : [
           [ 1.0, "v-bigpuffer" ],
           [ 1.0, "v-mutanteel" ],
+          [ 1, "smallFishOcean1" ],
+          [ 1, "smallFishOcean2" ],
           [ 1, "passiveLargeFish" ],
           [ 1, "aggroLargeFish" ]
         ]
@@ -54,6 +56,20 @@
         "objectSets" : [
           {
             "pool" : [ [0.20, "v-ceilingglowplant1" ], [0.20, "v-ceilingglowplant2" ], [0.20, "v-ceilingglowplant3" ], [0.20, "v-ceilingglowplant4" ], [0.20, "v-ceilingglowplant5" ] ],
+            "parameters" : { "originBiome" : "underground_detached/v-poisonfloodedcaves" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 10.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-antidotesac1" ], [0.20, "v-antidotesac2" ], [0.20, "v-antidotesac3" ], [0.20, "v-antidotesac4" ], [0.20, "v-antidotesac5" ] ],
             "parameters" : { "originBiome" : "underground_detached/v-poisonfloodedcaves" }
           }
         ]

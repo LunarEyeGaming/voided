@@ -1,0 +1,51 @@
+{
+  "objectName" : "v-antidotesac3",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "description" : "A toxic glowing oshroom.",
+  "shortdescription" : "Toxic Glowing Oshroom",
+  "race" : "generic",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "light",
+  "printable" : false,
+
+  "lightColor" : [62, 209, 0],
+
+  "inventoryIcon" : "antidotesac.png:3",
+
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "antidotesac.png:3" } ],
+      "flipImages" : true,
+      "imagePosition" : [0, 0],
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+      "direction" : "left"
+    },
+    {
+      "imageLayers" : [ { "image" : "antidotesac.png:3" } ],
+      "imagePosition" : [0, 0],
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+      "direction" : "right"
+    }
+  ],
+
+  "smashable" : true,
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/meat_break1.ogg", "/sfx/objects/meat_break3.ogg" ],
+
+  "smashDropOptions" : [ [ [ "v-antidotesac", 1, {} ] ] ],
+
+  "biomePlaced" : true,
+
+  "scripts" : [ "v-antidotesac.lua" ]
+}

@@ -8,7 +8,8 @@
  "margin":0,
  "name":"voidedobjects-toxic",
  "spacing":0,
- "tilecount":23,
+ "tilecount":43,
+ "tiledversion":"1.11.2",
  "tileheight":264,
  "tileproperties":
     {
@@ -124,6 +125,55 @@
          "object":"v-labsign",
          "tilesetDirection":"right"
         },
+     "23":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"0",
+         "object":"v-toxicthornslarge1",
+         "tilesetDirection":"right"
+        },
+     "24":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"0",
+         "object":"v-toxicthornslarge2",
+         "tilesetDirection":"right"
+        },
+     "25":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"0",
+         "object":"v-toxicthornslarge3",
+         "tilesetDirection":"right"
+        },
+     "26":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"0",
+         "object":"v-toxicthornslarge4",
+         "tilesetDirection":"right"
+        },
+     "27":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"0",
+         "object":"v-toxicthornslarge5",
+         "tilesetDirection":"right"
+        },
+     "28":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-toxicthornslarge1",
+         "tilesetDirection":"right"
+        },
+     "29":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-toxicthornslarge2",
+         "tilesetDirection":"right"
+        },
      "3":
         {
          "imagePositionX":"0",
@@ -131,11 +181,102 @@
          "object":"v-liquidleveler",
          "tilesetDirection":"right"
         },
+     "30":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-toxicthornslarge3",
+         "tilesetDirection":"right"
+        },
+     "31":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-toxicthornslarge4",
+         "tilesetDirection":"right"
+        },
+     "32":
+        {
+         "imagePositionX":"0",
+         "imagePositionY":"-8",
+         "object":"v-toxicthornslarge5",
+         "tilesetDirection":"right"
+        },
+     "33":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-8",
+         "object":"v-toxicthornslarge1",
+         "tilesetDirection":"right"
+        },
+     "34":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-8",
+         "object":"v-toxicthornslarge2",
+         "tilesetDirection":"right"
+        },
+     "35":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-8",
+         "object":"v-toxicthornslarge3",
+         "tilesetDirection":"right"
+        },
+     "36":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-8",
+         "object":"v-toxicthornslarge4",
+         "tilesetDirection":"right"
+        },
+     "37":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-8",
+         "object":"v-toxicthornslarge5",
+         "tilesetDirection":"right"
+        },
+     "38":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-16",
+         "object":"v-toxicthornslarge1",
+         "tilesetDirection":"right"
+        },
+     "39":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-16",
+         "object":"v-toxicthornslarge2",
+         "tilesetDirection":"right"
+        },
      "4":
         {
          "imagePositionX":"-32",
          "imagePositionY":"0",
          "object":"v-liquidcrateteleporter",
+         "tilesetDirection":"right"
+        },
+     "40":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-16",
+         "object":"v-toxicthornslarge3",
+         "tilesetDirection":"right"
+        },
+     "41":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-16",
+         "object":"v-toxicthornslarge4",
+         "tilesetDirection":"right"
+        },
+     "42":
+        {
+         "imagePositionX":"-16",
+         "imagePositionY":"-16",
+         "object":"v-toxicthornslarge5",
          "tilesetDirection":"right"
         },
      "5":
@@ -288,6 +429,55 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "23":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "24":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "25":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "26":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "27":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "28":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "29":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "3":
         {
          "imagePositionX":"string",
@@ -295,7 +485,98 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "30":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "31":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "32":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "33":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "34":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "35":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "36":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "37":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "38":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "39":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "4":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "40":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "41":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "42":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -433,8 +714,50 @@
      "22":
         {
          "image":"..\/images\/objects\/labsign.png",
-         "imageheight":24,
+         "imageheight":32,
          "imagewidth":48
+        },
+     "23":
+        {
+         "image":"..\/images\/objects\/toxicthornslarge1.png",
+         "imageheight":24,
+         "imagewidth":32
+        },
+     "24":
+        {
+         "image":"..\/images\/objects\/toxicthornslarge2.png",
+         "imageheight":24,
+         "imagewidth":32
+        },
+     "25":
+        {
+         "image":"..\/images\/objects\/toxicthornslarge3.png",
+         "imageheight":24,
+         "imagewidth":32
+        },
+     "26":
+        {
+         "image":"..\/images\/objects\/toxicthornslarge4.png",
+         "imageheight":24,
+         "imagewidth":32
+        },
+     "27":
+        {
+         "image":"..\/images\/objects\/toxicthornslarge5.png",
+         "imageheight":24,
+         "imagewidth":32
+        },
+     "28":
+        {
+         "image":"..\/images\/objects\/toxicthornslargeleft1.png",
+         "imageheight":32,
+         "imagewidth":24
+        },
+     "29":
+        {
+         "image":"..\/images\/objects\/toxicthornslargeleft2.png",
+         "imageheight":32,
+         "imagewidth":24
         },
      "3":
         {
@@ -442,11 +765,89 @@
          "imageheight":16,
          "imagewidth":16
         },
+     "30":
+        {
+         "image":"..\/images\/objects\/toxicthornslargeleft3.png",
+         "imageheight":32,
+         "imagewidth":24
+        },
+     "31":
+        {
+         "image":"..\/images\/objects\/toxicthornslargeleft4.png",
+         "imageheight":32,
+         "imagewidth":24
+        },
+     "32":
+        {
+         "image":"..\/images\/objects\/toxicthornslargeleft5.png",
+         "imageheight":32,
+         "imagewidth":24
+        },
+     "33":
+        {
+         "image":"..\/images\/objects\/toxicthornslargeright1.png",
+         "imageheight":32,
+         "imagewidth":24
+        },
+     "34":
+        {
+         "image":"..\/images\/objects\/toxicthornslargeright2.png",
+         "imageheight":32,
+         "imagewidth":24
+        },
+     "35":
+        {
+         "image":"..\/images\/objects\/toxicthornslargeright3.png",
+         "imageheight":32,
+         "imagewidth":24
+        },
+     "36":
+        {
+         "image":"..\/images\/objects\/toxicthornslargeright4.png",
+         "imageheight":32,
+         "imagewidth":24
+        },
+     "37":
+        {
+         "image":"..\/images\/objects\/toxicthornslargeright5.png",
+         "imageheight":32,
+         "imagewidth":24
+        },
+     "38":
+        {
+         "image":"..\/images\/objects\/toxicthornslargetop1.png",
+         "imageheight":24,
+         "imagewidth":32
+        },
+     "39":
+        {
+         "image":"..\/images\/objects\/toxicthornslargetop2.png",
+         "imageheight":24,
+         "imagewidth":32
+        },
      "4":
         {
          "image":"..\/images\/objects\/liquidcrateteleporter.png",
          "imageheight":80,
          "imagewidth":64
+        },
+     "40":
+        {
+         "image":"..\/images\/objects\/toxicthornslargetop3.png",
+         "imageheight":24,
+         "imagewidth":32
+        },
+     "41":
+        {
+         "image":"..\/images\/objects\/toxicthornslargetop4.png",
+         "imageheight":24,
+         "imagewidth":32
+        },
+     "42":
+        {
+         "image":"..\/images\/objects\/toxicthornslargetop5.png",
+         "imageheight":24,
+         "imagewidth":32
         },
      "5":
         {
@@ -480,5 +881,6 @@
         }
     },
  "tilewidth":136,
- "type":"tileset"
+ "type":"tileset",
+ "version":1.1
 }

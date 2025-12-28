@@ -1,0 +1,17 @@
+{
+  "itemName" : "v-antidotesac",
+  "price" : 1000,
+  "rarity" : "Uncommon",
+  "category" : "food",
+  "inventoryIcon" : "v-antidotesac.png",
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "description" : "Some consider this a delicacy. Provides brief poison immunity.",
+  "shortdescription" : "Big Puffer Eggs",
+  "maxStack" : 30,
+  "effects" : [ [
+    {"effect" : "antidote", "duration" : 100}
+  ] ],
+  "blockingEffects" : [ ],
+  "emote" : "",
+  "emitters" : [ "drinking" ]
+}

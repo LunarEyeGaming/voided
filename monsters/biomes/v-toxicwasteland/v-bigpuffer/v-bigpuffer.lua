@@ -60,11 +60,11 @@ function init()
 
   monster.setDeathParticleBurst("deathPoof")
 
-  animator.setGlobalTag("inflateStatus", "normal")
-
   if animator.hasSound("deathPuff") then
     monster.setDeathSound("deathPuff")
   end
+
+  animator.setGlobalTag("inflateStatus", "normal")
 
   message.setHandler("despawn", despawn)
 
