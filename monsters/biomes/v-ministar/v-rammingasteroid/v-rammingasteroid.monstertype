@@ -65,10 +65,11 @@
 
       "approachActions" : [
         {
-          "name" : "approach-fall",
+          "name" : "approach-fly",
           "parameters" : {
             "flyState" : "fly",
             "idleState" : "idle",
+            "usePathfinding" : false,
             "friction" : 25,
             "dampenDistance" : 20,
             "dampenMultiplier" : 2

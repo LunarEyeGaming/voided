@@ -112,7 +112,7 @@ function init()
           { type = "v-sunleaper", count = 2, destination = "surface2", onGround = true },
           { type = "v-novamonster", count = 1, destination = "surface2", onGround = false },
           { type = "v-pyrebush", count = 2, destination = "forest", onGround = true },
-          { type = "v-rammingasteroid", count = 1, destination = "asteroids", onGround = false },
+          { type = "v-rammingasteroid", count = 2, destination = "asteroids", onGround = false },
           { type = "v-lurkano", count = 2, destination = "caves", onGround = true },
           { type = "v-firefloater", count = 4, destination = "sky", onGround = false }
         },

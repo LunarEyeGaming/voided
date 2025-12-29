@@ -1,13 +1,13 @@
 {
   "frameGrid" : {
     "size" : [8, 8],
-    "dimensions" : [3, 5],
+    "dimensions" : [4, 5],
     "names" : [
-      [ "windup.0", "windup2.0", "fire.0" ],
-      [ "windup.1", "windup2.1", "fire.1" ],
-      [ "windup.2", "windup2.2", "fire.2" ],
-      [ null,       "windup2.3", "fire.3" ],
-      [ null,       "windup2.4", "fire.4" ]
+      [ "windup.0", "windup2.0", "fire.0", "winddown.0" ],
+      [ "windup.1", "windup2.1", "fire.1", "winddown.1" ],
+      [ "windup.2", "windup2.2", null,     "winddown.2" ],
+      [ null,       "windup2.3", null,     null         ],
+      [ null,       "windup2.4", null,     null         ]
     ]
   }
 }

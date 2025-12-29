@@ -1349,6 +1349,23 @@
   },
   {
     "op": "add",
+    "path": "/v-spireminiboss-stickyglobs",
+    "value": {
+      "type": "module",
+      "name": "v-spireminiboss-stickyglobs",
+      "title": "",
+      "properties": {
+        "projectileType": {"type": "json", "value": "v-spireminibossfireball"},
+        "projectileInterval": {"type": "json", "value": 1.5},
+        "highArc": {"type": "json", "value": false},
+        "fireArc": {"type": "json", "value": false},
+        "projectileConfig": {"type": "json", "value": {"power": 10}}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-stickyglobs.behavior"
+    }
+  },
+  {
+    "op": "add",
     "path": "/v-action-hitscanbeamfire",
     "value": {
       "type": "module",
@@ -1375,26 +1392,10 @@
         "fireBeam": {"type": "json", "value": "fire"},
         "maxBeamLength": {"type": "json", "value": 100},
         "fireTime": {"type": "json", "value": 1},
-        "fireOffset": {"type": "json", "value": [0, 0]}
+        "fireOffset": {"type": "json", "value": [0, 0]},
+        "winddownBeam": {"type": "json", "value": "winddown"}
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-hitscanbeamfire.behavior"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/v-spireminiboss-stickyglobs",
-    "value": {
-      "type": "module",
-      "name": "v-spireminiboss-stickyglobs",
-      "title": "",
-      "properties": {
-        "projectileType": {"type": "json", "value": "v-spireminibossfireball"},
-        "projectileInterval": {"type": "json", "value": 1.5},
-        "highArc": {"type": "json", "value": false},
-        "fireArc": {"type": "json", "value": false},
-        "projectileConfig": {"type": "json", "value": {"power": 10}}
-      },
-      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-stickyglobs.behavior"
     }
   }
 ]

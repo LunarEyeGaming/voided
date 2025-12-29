@@ -34,7 +34,8 @@
     "fireBeam": "fire",
     "maxBeamLength": 100,
     "fireTime": 1,
-    "fireOffset": [0, 0]
+    "fireOffset": [0, 0],
+    "winddownBeam": "winddown"
   },
   "root": {
     "title": "selector",
@@ -357,6 +358,7 @@
                             "type": "module",
                             "name": "action-windup",
                             "parameters": {
+                              "minimumRange": {"value": 0},
                               "windupState": {"key": "<windupState2>"},
                               "faceTarget": {"value": false},
                               "windupTime": {"key": "<windupTime2>"},
@@ -673,12 +675,57 @@
             ]
           },
           {
-            "title": "action-winddown",
-            "type": "module",
-            "name": "action-winddown",
+            "title": "parallel",
+            "type": "composite",
+            "name": "parallel",
             "parameters": {
-              "winddownState": {"value": "<winddownState>"}
-            }
+              "fail": {"value": 1},
+              "success": {"value": 1}
+            },
+            "children": [
+              {
+                "title": "action-winddown",
+                "type": "module",
+                "name": "action-winddown",
+                "parameters": {
+                  "winddownState": {"value": "<winddownState>"}
+                }
+              },
+              {
+                "title": "parallel",
+                "type": "composite",
+                "name": "parallel",
+                "parameters": {
+                  "fail": {"value": -1},
+                  "success": {"value": -1}
+                },
+                "children": [
+                  {
+                    "title": "v_beamCollision",
+                    "type": "action",
+                    "name": "v_beamCollision",
+                    "parameters": {
+                      "direction": {"key": "aimVector"},
+                      "maxLength": {"key": "<maxBeamLength>"},
+                      "startPosition": {"key": "beamStart"}
+                    },
+                    "output": {
+                      "beamEnd": "beamEnd"
+                    }
+                  },
+                  {
+                    "title": "v_playBeamAnimation",
+                    "type": "action",
+                    "name": "v_playBeamAnimation",
+                    "parameters": {
+                      "beamType": {"key": "<winddownBeam>"},
+                      "endPosition": {"key": "beamEnd"},
+                      "startPosition": {"key": "beamStart"}
+                    }
+                  }
+                ]
+              }
+            ]
           },
           {
             "title": "succeeder",

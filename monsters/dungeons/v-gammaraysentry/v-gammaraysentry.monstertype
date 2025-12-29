@@ -69,12 +69,12 @@
             "fireSound" : "fire",
             "fireState" : "fire",
             "fireDelay" : 0.0,
-            "fireTime" : 0.25,
+            "fireTime" : 0.2,
             "faceTarget" : true,
             "rotateAim" : true,
             "holdAim" : true,
 
-            "winddownState" : "fire",
+            "winddownState" : "",
             "winddownTime" : 0.2
           }
         }
@@ -131,12 +131,28 @@
         "overdrawLength" : 0.2,
         "taper" : 0,
         "fullbright" : true,
-        "frames" : 5,
-        "cycle" : 0.5,
+        "frames" : 2,
+        "cycle" : 0.2,
         "waveform" : {
           "frequency" : 5.0,
           "amplitude" : 0.125,
           "movement" : 100.0
+        }
+      },
+      "winddown" : {
+        "startSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamstart.png:winddown.<frame>",
+        "segmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beam.png:winddown.<frame>",
+        "endSegmentImage" : "/monsters/dungeons/v-gammaraysentry/beam/beamend.png:winddown.<frame>",
+        "segmentSize" : 0.98,
+        "overdrawLength" : 0.2,
+        "taper" : 0,
+        "fullbright" : true,
+        "frames" : 3,
+        "cycle" : 0.3,
+        "waveform" : {
+          "frequency" : 5.0,
+          "amplitude" : 0.125,
+          "movement" : 20.0
         }
       }
     },
