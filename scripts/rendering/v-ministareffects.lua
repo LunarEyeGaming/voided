@@ -565,7 +565,18 @@ function v_ministarEffects_computeRayColors(ratio, boosts)
       math_floor(tempColor[3] * rayRatio)
     }
     sunRayLightColors_list[x] = sunRayLightColor
-    sunRayColors_list[x] = vAnimator_lerpColor(ratio + boost, sunRayDimColor, sunRayBrightColor)
+
+    rayRatio = ratio + boost
+    rayRatioKey = math_floor(rayRatio * rayColorTableSize)
+    tempColor = rayColorTable[rayRatioKey]
+    if tempColor == nil then
+      tempColor = vAnimator_lerpColor(rayRatio, sunRayDimColor, sunRayBrightColor)
+      rayColorTable[rayRatioKey] = tempColor
+      cacheMisses = cacheMisses + 1
+    end
+
+    sunRayColors_list[x] = tempColor
+    -- sunRayColors_list[x] = vAnimator_lerpColor(ratio + boost, sunRayDimColor, sunRayBrightColor)
   end
 
   sb.setLogMap("v-ministareffects_cacheMisses", "%s", cacheMisses)
