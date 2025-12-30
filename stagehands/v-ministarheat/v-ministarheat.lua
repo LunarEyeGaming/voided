@@ -263,6 +263,9 @@ function update(dt)
       -- Run liquid query on merged regions
       local boundaryTiles, particleSpawnPoints = liquidScanner:update(mergedRegions)
 
+      -- sb.logInfo("size of boundaryTiles: %s", #boundaryTiles)
+      sb.setLogMap("v-ministarheat(stagehand)_boundaryTilesSize", "%s", #boundaryTiles)
+
       -- Process particleSpawnPoints.
       for chunkStr, tiles in pairs(particleSpawnPoints) do
         if tiles == "clear" then
@@ -771,10 +774,14 @@ function syncHeightMapsToGlobal(heightMaps)
         globalHeightMap[x] = v
       else
         local globalV = globalHeightMap[x]
+        -- Case 1: Collision with null geometry - global value
+        -- Case 2: Collision with solid geometry (glass) - local value
+        -- Case 3: Collision with solid geometry (opaque) - global value
+        -- Case 4: No collision - local value
         -- If v < globalV or the region at globalV is loaded and that point is empty and either there is a liquid at
         -- minDepth - 1 or the position at minDepth - 1 is unloaded...
         if v < globalV or
-          ((not world_pointTileCollision({x, globalV}, blockOrNullCollisionSet) or not isSolidAndOpaque({x, globalV})) and
+          (not isSolidAndOpaque({x, globalV}) and
             (world_liquidAt({x, minDepth - 1}) or world_pointTileCollision({x, minDepth - 1}, nullCollisionSet))) then
           globalHeightMap[x] = v  -- Local value takes priority
           world.debugText("O", {x, stagehand.position()[2]}, "green")
@@ -812,6 +819,28 @@ function syncHeightMapsToGlobal(heightMaps)
       world_setProperty("v-globalHeightMap." .. xSectorWrapped, globalHeightMapSection)
     end
   end
+end
+
+function isSolidAndOpaque(pos)
+  local material = world.material(pos, "foreground")
+
+  if material == nil then
+    world.debugText("O", {pos[1], stagehand.position()[2] - 1}, "blue")
+    return true
+  end
+
+  if material == false then
+    world.debugText("X", {pos[1], stagehand.position()[2] - 1}, "yellow")
+    return false
+  end
+
+  local matCfg = getMaterialProperties(material)
+  if matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure" then
+    world.debugText("O", {pos[1], stagehand.position()[2] - 1}, "green")
+  else
+    world.debugText("X", {pos[1], stagehand.position()[2] - 1}, "magenta")
+  end
+  return matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure"
 end
 
 ---Applies received entity height maps to the given `heightMaps`.
@@ -872,7 +901,8 @@ function processHeatMap(affectedTiles, dt)
         table_remove(heatMap, i)
       end
 
-      liquidScanner:markRegionByTile(tilePos, 3)
+      -- liquidScanner:markRegionByTile(tilePos, 3)
+      liquidScanner:markRetrievalByTile(tilePos, 3)
 
       -- Remove entry from affectedTiles to avoid excess inserts.
       affectedTiles[tilePosHash] = nil
@@ -994,16 +1024,6 @@ function findLowestLoadedSectors(xStart, xEnd, yTop)
   return lowestSectors
 end
 
-function isSolidAndOpaque(pos)
-  local material = world.material(pos, "foreground")
-  if not material then
-    return false
-  end
-
-  local matCfg = getMaterialProperties(material)
-  return matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure"
-end
-
 ---Gets the material config, caching what is relevant if it is not already cached.
 ---@param material string
 ---@return Json?
@@ -1063,6 +1083,8 @@ end
 ---@field _CHUNK_SIZE integer
 ---@field _hotRegions table
 ---@field _prevLiquidChunks table
+---@field _boundaryTilesCache table Chunk by chunk cache
+---@field _regionsToRetrieve table The cached boundary tiles to retrieve
 LiquidScanner = {}
 
 ---Instantiates a new liquid scanner.
@@ -1074,7 +1096,9 @@ function LiquidScanner:new(args)
     _liquidThreshold = args.liquidThreshold or 0,
     _CHUNK_SIZE = 16,
     _hotRegions = {},
-    _prevLiquidChunks = {}
+    _prevLiquidChunks = {},
+    _boundaryTilesCache = {},
+    _regionsToRetrieve = {}
   }
 
   setmetatable(instance, self)
@@ -1099,6 +1123,8 @@ function LiquidScanner:update(regions)
   local liquidThreshold = self._liquidThreshold
   local prevLiquidChunks = self._prevLiquidChunks
   local hotRegions = self._hotRegions
+  local boundaryTilesCache = self._boundaryTilesCache
+  local regionsToRetrieve = self._regionsToRetrieve
 
   local boundaryTiles = {}
   local liquidChunks = {}  -- Map of chunks to corresponding liquid values retrieved from world.liquidAt
@@ -1128,6 +1154,14 @@ function LiquidScanner:update(regions)
         end
         local chunkPoints = particleSpawnPoints[chunkStr]
 
+        if not boundaryTilesCache[chunkStr] then
+          boundaryTilesCache[chunkStr] = {}
+        end
+        local chunkBoundaryTilesCache = boundaryTilesCache[chunkStr]
+
+        -- Problem: We need a way of keeping the data in a chunk without requerying.
+        -- Solution: Use a separate table for caching results.
+
         -- Process the region in more detail if it is not completely filled with sun liquid and it is a hot region,
         -- solar plasma became the most plentiful liquid in the region, or the change in the total quantity since the
         -- last call to update is at least 1.
@@ -1139,6 +1173,10 @@ function LiquidScanner:update(regions)
             local minYInChunk = chunkY * CHUNK_SIZE
             local maxXInChunk = (chunkX + 1) * CHUNK_SIZE - 1
             local maxYInChunk = (chunkY + 1) * CHUNK_SIZE
+
+            -- Clear cache
+            chunkBoundaryTilesCache = {}
+            boundaryTilesCache[chunkStr] = chunkBoundaryTilesCache
 
             world.debugPoly({
               {minXInChunk, minYInChunk},
@@ -1175,19 +1213,23 @@ function LiquidScanner:update(regions)
                 local isSunLiquid = row[x]
                 -- If the current space is sun liquid...
                 if isSunLiquid then
-                  -- Add all adjacent spaces that are not sun liquid.
+                  -- Add all adjacent spaces that are not sun liquid to the cache.
                   if not row[x + 1] then
-                    boundaryTiles[#boundaryTiles + 1] = {x + 1, y}
+                    -- boundaryTiles[#boundaryTiles + 1] = {x + 1, y}
+                    chunkBoundaryTilesCache[#chunkBoundaryTilesCache + 1] = {x + 1, y}
                   end
                   if not row[x - 1] then
-                    boundaryTiles[#boundaryTiles + 1] = {x - 1, y}
+                    -- boundaryTiles[#boundaryTiles + 1] = {x - 1, y}
+                    chunkBoundaryTilesCache[#chunkBoundaryTilesCache + 1] = {x - 1, y}
                   end
                   if not liqMat[y + 1][x] then
-                    boundaryTiles[#boundaryTiles + 1] = {x, y + 1}
+                    -- boundaryTiles[#boundaryTiles + 1] = {x, y + 1}
+                    chunkBoundaryTilesCache[#chunkBoundaryTilesCache + 1] = {x, y + 1}
                     chunkPoints[#chunkPoints + 1] = {x, y + 1}
                   end
                   if not liqMat[y - 1][x] then
-                    boundaryTiles[#boundaryTiles + 1] = {x, y - 1}
+                    -- boundaryTiles[#boundaryTiles + 1] = {x, y - 1}
+                    chunkBoundaryTilesCache[#chunkBoundaryTilesCache + 1] = {x, y - 1}
                   end
                 end
               end
@@ -1197,7 +1239,6 @@ function LiquidScanner:update(regions)
               hotRegions[chunkStr] = hotRegions[chunkStr] - 1
             end
           end
-
         else
           -- Mark this chunk to be cleared.
           particleSpawnPoints[chunkStr] = "clear"
@@ -1207,6 +1248,15 @@ function LiquidScanner:update(regions)
         --     {(chunkX + 1) * LIQUID_QUERY_CHUNK_SIZE, (chunkY + 1) * LIQUID_QUERY_CHUNK_SIZE},
         --     {(chunkX + 1) * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE}
         --   }, "red")
+        end
+
+        -- Copy cache results over to boundary tiles.
+        if regionsToRetrieve[chunkStr] and regionsToRetrieve[chunkStr] > 0 then
+          table.move(chunkBoundaryTilesCache, 1, #chunkBoundaryTilesCache, #boundaryTiles + 1, boundaryTiles)
+        end
+        -- Decrement cache retrieval duration
+        if regionsToRetrieve[chunkStr] then
+          regionsToRetrieve[chunkStr] = regionsToRetrieve[chunkStr] - 1
         end
       end
     end
@@ -1246,6 +1296,14 @@ end
 function LiquidScanner:markRegionByTile(tile, time)
   local tileChunkStr = vVec2.iToString({tile[1] // self._CHUNK_SIZE, tile[2] // self._CHUNK_SIZE})
   self._hotRegions[tileChunkStr] = time
+end
+
+---Marks a region to have its boundary tiles retrieved for the given number of ticks.
+---@param tile Vec2I
+---@param time integer
+function LiquidScanner:markRetrievalByTile(tile, time)
+  local tileChunkStr = vVec2.iToString({tile[1] // self._CHUNK_SIZE, tile[2] // self._CHUNK_SIZE})
+  self._regionsToRetrieve[tileChunkStr] = time
 end
 
 -- TODO: Rewrite to account for multiplayer.
