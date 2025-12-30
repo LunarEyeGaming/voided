@@ -113,6 +113,32 @@ function vWorld.debugQueryArea(position, positionOrRadius, color)
   end
 end
 
+---__Server-side__
+---
+---Attempts to place an object, temporarily disabling tile protection if necessary.
+---
+---@param objectName string
+---@param position Vec2I
+---@param direction? 1 | -1
+---@param parameters? Json
+function vWorld.forcePlaceObject(objectName, position, direction, parameters)
+  local isTileProtected = world.isTileProtected(position)
+  local dungeonId = world.dungeonId(position)
+
+  -- Temporarily disable tile protection so that it can place the object.
+  if isTileProtected then
+    world.setTileProtection(dungeonId, false)
+  end
+
+  -- Place the object
+  world.placeObject(objectName, position, direction, parameters)
+
+  -- Turn tile protection back on.
+  if isTileProtected then
+    world.setTileProtection(dungeonId, true)
+  end
+end
+
 --- Utility coroutine functions related to the world.
 vWorldA = {}
 
