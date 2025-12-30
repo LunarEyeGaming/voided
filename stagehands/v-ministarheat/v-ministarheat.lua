@@ -8,6 +8,8 @@ require "/scripts/v-time.lua"
 -- Invalidate global height map segments with:
 -- /entityeval for x = 0, world.size()[1] // 32 do world.setProperty("v-globalHeightMap." .. x, nil) end
 
+-- local testVar = {}
+
 local cfg
 local unmeltableMaterials
 
@@ -327,7 +329,6 @@ function update(dt)
         local boosts = combinedBoosts:slice(region[1], region[3])
         local rayLocationsMap = combinedRayLocationsMaps:slice(region[1], region[3])
         -- sb.logInfo("%s, %s", region[1], region[3])
-        -- TODO: Convert arguments into a table.
         world.sendEntityMessage(playerId, "v-ministareffects-updateBlocks", {
           heatMap = heatMap,
           heightMap = heightMap,
@@ -737,11 +738,26 @@ function syncHeightMapsToGlobal(heightMaps)
       -- Get global height map section corresponding to `xSector`.
       local globalHeightMapSection = world_getProperty("v-globalHeightMap." .. xSectorWrapped) or {}
 
+      -- if world_getProperty("v-globalHeightMap." .. xSectorWrapped) and not testVar[xSectorWrapped] then
+      --   testVar[xSectorWrapped] = globalHeightMapSection
+      -- end
+
       -- Copy the section over to globalHeightMap.
       for _, value in ipairs(globalHeightMapSection) do
         globalHeightMap[value.x] = value.value
       end
     end
+
+    -- -- Map from horizontal positions to `HeightMapItem`.
+    -- ---@type table<integer, HeightMapItem>
+    -- local testVar2 = {}
+    -- local stagehandPos = stagehand.position()
+    -- for _, section in pairs(testVar) do
+    --   for _, value in ipairs(section) do
+    --     world.debugText("%s", value.value, {value.x, stagehandPos[2] - 5 + value.x % 2}, "yellow")
+    --     testVar2[value.x] = value.value
+    --   end
+    -- end
 
     -- local stagehandPos = stagehand.position()
     -- for x, v in heightMap:xvalues() do
@@ -755,17 +771,30 @@ function syncHeightMapsToGlobal(heightMaps)
         globalHeightMap[x] = v
       else
         local globalV = globalHeightMap[x]
-        -- If v < globalV or the region at globalV is loaded and that point is empty and either there is a liquid at minDepth - 1 or the position at minDepth - 1 is unloaded...
+        -- If v < globalV or the region at globalV is loaded and that point is empty and either there is a liquid at
+        -- minDepth - 1 or the position at minDepth - 1 is unloaded...
         if v < globalV or
-          (not world_pointTileCollision({x, globalV}, blockOrNullCollisionSet) and
+          ((not world_pointTileCollision({x, globalV}, blockOrNullCollisionSet) or not isSolidAndOpaque({x, globalV})) and
             (world_liquidAt({x, minDepth - 1}) or world_pointTileCollision({x, minDepth - 1}, nullCollisionSet))) then
           globalHeightMap[x] = v  -- Local value takes priority
-          -- world.debugText("O", {x, stagehand.position()[2]}, "green")
+          world.debugText("O", {x, stagehand.position()[2]}, "green")
         else
           heightMap_list[x] = globalV  -- Global value takes priority
-          -- world.debugText("X", {x, stagehand.position()[2]}, "red")
+          world.debugText("X", {x, stagehand.position()[2]}, "red")
         end
       end
+
+      -- if testVar2[x] then
+      --   local globalV = testVar2[x]
+      --   -- If v < globalV or the region at globalV is loaded and that point is empty and either there is a liquid at minDepth - 1 or the position at minDepth - 1 is unloaded...
+      --   if v < globalV or
+      --     (not world_pointTileCollision({x, globalV}, blockOrNullCollisionSet) and
+      --       (world_liquidAt({x, minDepth - 1}) or world_pointTileCollision({x, minDepth - 1}, nullCollisionSet))) then
+      --     world.debugText("O", {x, stagehand.position()[2]}, "green")
+      --   else
+      --     world.debugText("X", {x, stagehand.position()[2]}, "red")
+      --   end
+      -- end
     end
 
     -- Store globalHeightMap sections.
@@ -963,6 +992,16 @@ function findLowestLoadedSectors(xStart, xEnd, yTop)
   end
 
   return lowestSectors
+end
+
+function isSolidAndOpaque(pos)
+  local material = world.material(pos, "foreground")
+  if not material then
+    return false
+  end
+
+  local matCfg = getMaterialProperties(material)
+  return matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure"
 end
 
 ---Gets the material config, caching what is relevant if it is not already cached.
