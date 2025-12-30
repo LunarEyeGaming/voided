@@ -1,0 +1,39 @@
+{
+  "projectileName" : "v-spireportalchestspawn",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "illusion",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 0,
+  "speed" : 0,
+  "timeToLive" : 0,
+  "bounces" : -1,
+  "piercing" : true,
+  "actionOnReap" : [
+    {
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "looping" : false,
+        "animation" : "/animations/spacemonsterspawn/spacemonsterspawn.animation",
+        "fullbright" : true,
+        "fade" : 5,
+        "size" : 1,
+        "timeToLive" : 0.2,
+        "destructionAction" : "fade",
+        "destructionTime" : 0.1,
+        "layer" : "front"
+      }
+    },
+    {
+      "action" : "sound",
+      "options" : [
+        "/sfx/npc/monsters/pod_release1.ogg"
+      ]
+    }
+  ],
+
+  "onlyHitTerrain" : true,
+
+  "renderLayer" : "ForegroundEntity+10"
+}

@@ -1054,7 +1054,7 @@
                  "y":1016
                 }, 
                 {
-                 "gid":7731,
+                 "gid":7732,
                  "height":16,
                  "id":866,
                  "name":"",
@@ -1066,7 +1066,7 @@
                  "y":784
                 }, 
                 {
-                 "gid":7731,
+                 "gid":7732,
                  "height":16,
                  "id":867,
                  "name":"",
@@ -1078,7 +1078,7 @@
                  "y":784
                 }, 
                 {
-                 "gid":7731,
+                 "gid":7732,
                  "height":16,
                  "id":886,
                  "name":"",
@@ -1090,7 +1090,7 @@
                  "y":768
                 }, 
                 {
-                 "gid":7731,
+                 "gid":7732,
                  "height":16,
                  "id":887,
                  "name":"",
@@ -1324,6 +1324,126 @@
                  "width":8,
                  "x":752,
                  "y":888
+                }, 
+                {
+                 "gid":7719,
+                 "height":8,
+                 "id":921,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"objectParameters\" : { \"treasurePools\" : [ \"v-solarspireReward\" ] }, \"objectDirection\" : -1 }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":904,
+                 "y":800
+                }, 
+                {
+                 "gid":7719,
+                 "height":8,
+                 "id":925,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"objectParameters\" : { \"treasurePools\" : [ \"v-solarspireReward\" ] }, \"objectDirection\" : -1 }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":904,
+                 "y":904
+                }, 
+                {
+                 "gid":7719,
+                 "height":8,
+                 "id":922,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"objectParameters\" : { \"treasurePools\" : [ \"v-solarspireReward\" ] }, \"objectDirection\" : -1 }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":904,
+                 "y":648
+                }, 
+                {
+                 "gid":7719,
+                 "height":8,
+                 "id":923,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"objectParameters\" : { \"treasurePools\" : [ \"v-solarspireReward\" ] }, \"objectDirection\" : 1 }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":576,
+                 "y":648
+                }, 
+                {
+                 "gid":7719,
+                 "height":8,
+                 "id":924,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"objectParameters\" : { \"treasurePools\" : [ \"v-solarspireReward\" ] }, \"objectDirection\" : 1 }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":576,
+                 "y":800
+                }, 
+                {
+                 "gid":7719,
+                 "height":8,
+                 "id":926,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"objectParameters\" : { \"treasurePools\" : [ \"v-solarspireReward\" ] }, \"objectDirection\" : 1 }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":576,
+                 "y":904
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1381,7 +1501,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1578,7 +1698,7 @@
          "name":"anchors etc",
          "objects":[
                 {
-                 "gid":7746,
+                 "gid":7747,
                  "height":8,
                  "id":759,
                  "name":"",
@@ -1607,7 +1727,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":921,
+ "nextobjectid":927,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -1722,15 +1842,15 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-solarspire.json"
         }, 
         {
-         "firstgid":7719,
+         "firstgid":7720,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7730,
+         "firstgid":7731,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }, 
         {
-         "firstgid":7746,
+         "firstgid":7747,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }],
  "tilewidth":8,

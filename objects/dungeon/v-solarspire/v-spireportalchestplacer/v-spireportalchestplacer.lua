@@ -9,14 +9,15 @@ function placeChest()
   local smashOnPlacement = config.getParameter("smashOnPlacement")
   local objectType = config.getParameter("placementObjectType")
   local objectOffset = config.getParameter("objectOffset", {0, 0})
+  local objectDirection = config.getParameter("objectDirection", 1)
   local objectParameters = config.getParameter("objectParameters", {})
   local projectileType = config.getParameter("projectileType")
   local projectileOffset = config.getParameter("projectileOffset", {0, 0})
 
   local pos = vec2.add(object.position(), objectOffset)  --[[@as Vec2I]]
   local projectilePos = vec2.add(object.position(), projectileOffset)
-  -- world.spawnProjectile(projectileType, projectilePos)
-  vWorld.forcePlaceObject(objectType, pos, 1, objectParameters)
+  world.spawnProjectile(projectileType, projectilePos)
+  vWorld.forcePlaceObject(objectType, pos, objectDirection, objectParameters)
   if smashOnPlacement then
     object.smash()
   end

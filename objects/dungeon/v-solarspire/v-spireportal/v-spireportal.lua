@@ -382,7 +382,7 @@ function states.hazardStart()
       animator.setParticleEmitterActive("portalsparks", false)
       animator.stopAllSounds("sparks")
 
-      return states.openToWorld()
+      return states.giveTreasure()
     end
     invokeHazard(pickHazard(), hazardCounter < summonMinibossThreshold)
   end
@@ -569,6 +569,29 @@ function states.summonMiniboss(cfg)
   util.wait(15)
 
   states.hazardStart()
+end
+
+function states.giveTreasure()
+  switchDestination("cryoflame")
+
+  object.setAnimationParameter("lightningSeed", math.floor(os.clock()))
+
+  animator.playSound("lightningStrike")
+
+  local queried = world.objectQuery(center, 60)
+  for _, entityId in ipairs(queried) do
+    if world.getObjectParameter(entityId, "objectName") == "v-spireportalchestplacer" then
+      -- Strike lightning
+      local startPos = vec2.add(center, rect.randomPoint(portalOffsetRegion))
+      lightningController:add(startPos, world.entityPosition(entityId))
+
+      world.sendEntityMessage(entityId, "v-spireportalchestplacer-trigger")
+    end
+  end
+
+  util.wait(1.0)
+
+  states.openToWorld()
 end
 
 function states.openToWorld()
