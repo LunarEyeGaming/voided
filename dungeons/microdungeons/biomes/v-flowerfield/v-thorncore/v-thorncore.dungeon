@@ -5,7 +5,7 @@
     "rules" : [
     ],
 
-    "anchor" : [ "thorncore" ],
+    "anchor" : [ "thorncoreMM1" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -15,11 +15,67 @@
 
   "parts" : [
     {
-      "name" : "thorncore",
+      "name" : "thorncoreUL1",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
-      "def" : [ "tmx", "thorncore.json" ]
+      "def" : [ "tmx", "thorncoreUL1.json" ]
+    },
+    {
+      "name" : "thorncoreUM1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreUM1.json" ]
+    },
+    {
+      "name" : "thorncoreUR1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreUR1.json" ]
+    },
+    {
+      "name" : "thorncoreML1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreML1.json" ]
+    },
+    {
+      "name" : "thorncoreMM1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreMM1.json" ]
+    },
+    {
+      "name" : "thorncoreMR1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreMR1.json" ]
+    },
+    {
+      "name" : "thorncoreLL1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreLL1.json" ]
+    },
+    {
+      "name" : "thorncoreLM1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreLM1.json" ]
+    },
+    {
+      "name" : "thorncoreLR1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreLR1.json" ]
     }
   ]
 }
