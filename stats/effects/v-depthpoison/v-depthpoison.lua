@@ -6,10 +6,12 @@ local deltaRemoverGroup
 
 function init()
   world.sendEntityMessage(entity.id(), "queueRadioMessage", "v-depthpoison", 0.0)
-  deltaRemoverGroup = effect.addStatModifierGroup({{stat = "v-depthPoisonDelta", baseMultiplier = 0.0}})
   worldHeight = world.size()[2]
   poisonDepthRate = config.getParameter("poisonDepthRate") -- Measured in units per block per second
   minPoisonDepth = config.getParameter("minPoisonDepth") -- The minimum depth that the player must be at in order for the poison to start
+
+  -- Keep for backwards compatibility.
+  deltaRemoverGroup = effect.addStatModifierGroup({{stat = "v-depthPoisonDelta", baseMultiplier = 0.0}})
 
   if not status.isResource("v-depthPoison") then
     script.setUpdateDelta(0)

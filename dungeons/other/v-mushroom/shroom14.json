@@ -1,12 +1,14 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":29,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzV1EEOgCAMBMAG3yH\/fxx\/0ItGU7fblvSAh40R2AkS4hCRoXLsT\/RcJO\/+jIP6GYf1o07EYE60X2Ug5x7fuh9moPXtCnLYtyCjOXtg59L6NzN3tspBVoUza1Q5KxiVe\/jzOax2N\/T\/INu1kulrS895BnpaY15fj1vvzGLrT8uPhPk=",
+         "data":"eJzV0kEOgCAMBEACf\/Am\/38cf8CLRlK320J6wMPGCOwECC2l1ET6+UbOeTL2VxzUn3FY3+t4DOZ4+1EGcp7xo9phBlqf7yCHnQUZ2dgDu5dcv1l5s1EOsiKcVSPK2cGI3MOf72G3t1EGo0w6peqZ6UtLzlkG+mpjVl+Oa\/\/MYusv2vqGmw==",
          "encoding":"base64",
          "height":29,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzdlFEKwCAMQ6U7x7z\/LbefjY2apq32YywQxGoeVcHWRh374xm98zMclM9wWD7KiTAYJ5qvYiDOXd+6b8ZA++Uy4rCzIIY4PbB7kT56RlUcxKrgrOgrvVS+0WoPq\/k\/MKo4+j\/IZi1n8pql1zwGGq2al9d1a85YbP8JlPRaOg==",
+         "data":"eJzd0UEOgCAMBEBS\/uBN\/v9LuWgksGyh7cHYpDFWdlI1pbGu821LtXmLg\/I7DsuvOisGc1bzUQZynvlR9GYGOi93I4e9CzJE2YF9FyljWyrKQVaE46mv7BL5j7w7ePN\/MKKc3Bh508ll3jv53uqfaQa6zmZavp\/P7pnFzlekX1vc",
          "encoding":"base64",
          "height":29,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[],
          "opacity":1,
@@ -53,6 +58,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":5,
          "name":"positions",
          "objects":[],
          "opacity":1,
@@ -64,6 +70,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":6,
          "name":"wiring - lights & guns",
          "objects":[],
          "opacity":1,
@@ -75,6 +82,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":7,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -86,6 +94,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":8,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -96,6 +105,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -106,6 +116,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"anchors etc",
          "objects":[
                 {
@@ -188,6 +199,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":11,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -196,10 +208,11 @@
          "x":0,
          "y":0
         }],
+ "nextlayerid":12,
  "nextobjectid":717,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -269,7 +282,8 @@
         {
          "firstgid":5990,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/farmable.json"
-        }, 
+        },
+    
         {
          "firstgid":6065,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/furniture.json"
@@ -307,11 +321,11 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7684,
+         "firstgid":7703,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":17
 }

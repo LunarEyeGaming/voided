@@ -1,12 +1,14 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":10,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJx7w8DA8F8Wgd8wQDCyGLIciGaWQ2BkPSA+E1QcJgbDTFjESBFHthPdfGQxdBpdDABZuioc",
+         "data":"eJx7w8DA8F8Wgd8wQDCyGLIciBaTQ2BkPSA+E1QcJgbDTFjESBFnlkPF2ORgbGQaXQwAmnIqew==",
          "encoding":"base64",
          "height":10,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYGBg+C+LwDCALIYsB6KZ5RAYWQ+IzwQVRwdMWMRIEUe2E918ZDF0Gl0MAADWDYg=",
+         "data":"eJxjYGBg+C+LwDCALIYsB6LF5BAYWQ+IzwQVRwdMWMRIEWeWQ8XY5GBsZBpdDABBjg3n",
          "encoding":"base64",
          "height":10,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[],
          "opacity":1,
@@ -53,6 +58,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":5,
          "name":"positions",
          "objects":[],
          "opacity":1,
@@ -64,6 +70,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":6,
          "name":"wiring - lights & guns",
          "objects":[],
          "opacity":1,
@@ -71,10 +78,12 @@
          "visible":true,
          "x":0,
          "y":0
-        }, 
+        },
+    
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":7,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -86,6 +95,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":8,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -96,6 +106,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -106,6 +117,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"anchors etc",
          "objects":[
                 {
@@ -164,6 +176,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":11,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -172,10 +185,11 @@
          "x":0,
          "y":0
         }],
+ "nextlayerid":12,
  "nextobjectid":714,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -201,7 +215,8 @@
         {
          "firstgid":450,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-race\/apex.json"
-        }, 
+        },
+    
         {
          "firstgid":821,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-race\/avian.json"
@@ -225,7 +240,8 @@
         {
          "firstgid":3815,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-race\/hylotl.json"
-        }, 
+        },
+    
         {
          "firstgid":4047,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-race\/novakid.json"
@@ -249,7 +265,8 @@
         {
          "firstgid":6065,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/furniture.json"
-        }, 
+        },
+    
         {
          "firstgid":6419,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/light.json"
@@ -273,7 +290,8 @@
         {
          "firstgid":7350,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-type\/container.json"
-        }, 
+        },
+    
         {
          "firstgid":7635,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-type\/teleporter.json"
@@ -283,11 +301,11 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7684,
+         "firstgid":7703,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":6
 }

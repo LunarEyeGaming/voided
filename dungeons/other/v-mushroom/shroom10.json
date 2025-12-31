@@ -1,12 +1,14 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":46,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt1ksOgzAMBNAIztHe\/3DcoYhFBbLiT2KPA20W3lCEn8bBdCulbEH1eckV1cfryDZ6PCjb8bz1fdZoF\/XcwcWZRrokk8eFNP2aC23qcf2LaXG6Ik0LqR6Td0ddXdTTm1WE6SiLJ9Nk9VhcCI\/nHUR4rLsBZap5tP0guVAZtbiyPRYX+h2T7udcIzKSXJF7sdf0dUXvaY8HWdPUbhpteUJG0\/Qs0\/W\/7XoDU+17NU2nQzJxNqSZ669Zsyy0l5RPtKuWAf3NYkXk1TIr5Ny0Z3O5oeZGM6nNhDtDyHOlnR1Ldtr1qMy4HpZMkbtBmxWir8WT3X8HtA9NQg==",
+         "data":"eJzt1EsOgzAMBNCI3KG7cv\/DcYdWLCqQG38SexJos\/AGEH4aJ95SSltQvZ5yRfXxOnobPR6Ubf\/fYz1qtIt6ruDiTCNdksnjQpp+zYU2tbj+xbQ4XZGmhVSLybujzi7qac0qwrSXxdPTZPVYXAiP5w4iPNbdgDKVPNp+kFyojGpcvT0WF\/qOSd9zrhEZSa7Ivdhq+rii97THg6xpqjeNttwho2m6lymfPPkCprx+1zQdDsnE2ZBmrr9m7WWhvaR8ol2lDOg7ixWRV82skHPT\/s3lhpobzaQ0E+4MIc+VdnYs2WnPozLjelgyRe4GbVaIvhZP7\/5vFuZXIQ==",
          "encoding":"base64",
          "height":46,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt1mEKgzAMBWDRc8z733LDH0UJSZoleWnZ+qA4prUfUaPblpf3Sx9V6TmqjREPynad7zjvMdpFPTO4JNNIl2aKuJCmX3OhTR7Xv5j2oCvTtJPhMWWkuajHW6usWDyVJqvH4kJ4Is8gwnMl0kMRnhaPKyOayeKq9lhc6GdMi+QaUSPNldkXvabmyu7TEQ8yy2TLzJ5lkrNMtjy\/bY8JTNz7anRmMT3X1b6DuHkos7R+z1ploWtp9cl2cTWg+yxWRL2+uVbI69Y7t1Q3y1yvh9tKHs6F8PXuHWlORT\/Q7qPecfRYZG\/gfmv\/IWPpS6h8AO10NNo=",
+         "data":"eJzt1N0KwyAMBeBS32F36\/u\/5UovZCUzMUtyomwekJb++RFtti0ur6c8stJzZBs9HpTt+t7jeI\/RLuqZwcWZRrokk8eFNP2aC22yuP7FtDtdkaadDIspItVFPdZaRUXjyTRpPRoXwuP5BxGeK54eivDUWFwRkUwaV7ZH40L\/Y1I414gaSa7Ivmg1VVd0n\/Z4kFkmXWb2LBOfZdKl3DxlAlM5PsfozGK6z9sycTakmZu\/Z82y0Lmk+kS7WjWg9zRWRL2+WSvkuvW+zdVN867V0zpynpYL4evtHe6djH4g7aPec\/RZZG9onUvXkNH0JVROUEs+uQ==",
          "encoding":"base64",
          "height":46,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[],
          "opacity":1,
@@ -53,6 +58,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":5,
          "name":"positions",
          "objects":[],
          "opacity":1,
@@ -64,6 +70,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":6,
          "name":"wiring - lights & guns",
          "objects":[],
          "opacity":1,
@@ -75,6 +82,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":7,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -86,6 +94,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":8,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -96,6 +105,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -106,6 +116,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"anchors etc",
          "objects":[
                 {
@@ -200,6 +211,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":11,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -208,10 +220,11 @@
          "x":0,
          "y":0
         }],
+ "nextlayerid":12,
  "nextobjectid":721,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -319,11 +332,11 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7684,
+         "firstgid":7703,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":37
 }

@@ -1,12 +1,14 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":29,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt1EEKgDAMBMDSvkP\/\/7j+QRERgiZt2uz25GHxIDpuaKwppRrIsX0TeZ\/XYLleC+HOWBHzeq7sd9imtGSYHS1zxEV5XjfaMYt4zMi5yUp65uxuaFZ2zJZlsT3P+UFZ8t+D9CyrtzMoS\/PeXdFz7O3NKms2vzUebU9X9LLMAvak0eqMslq2vKJ7at+g2QxDu4fuaM2RMUP2u5+cQEmD8Q==",
+         "data":"eJzt1EEOgCAMBECCf\/Am\/38cf9AYY9JIgUJ3OXnYeDAwbgPmEEJ25DzKePazGizXaiHcGctj3uv29IRtSkuG2bFmjrgoz+p6O0YRi+k5N1FJz5y9G5oVDbNlWWzPcn5Qlvz3IL2a1bszKEvzvl3Rc+zdm1XWbH5rPFsqs6JXzdzAnjRanVFWy5ZPdE\/tGzSbYWjv0B1rc2TMkL33mwtD6Ye6",
          "encoding":"base64",
          "height":29,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt09EKgDAIBdCxfUf9\/18WIwRZWs7d21MXpIeYJ2WVspZjuxc6lsFyoxbCzVgrZj\/X9qvYprZ0MWf0zBkX5UXd1RmrqoiZiZjVqDczG8uqgd2yLLYXuT8oq0d6Ij3P0vFMhGV5YoqL3uNTvrSy+a35WP\/pF3N5ZgN72vBslDn2GfvrJ3pO6xssm2FY79AzentkhdlbcgIleqKb",
+         "data":"eJzt0tEKgCAMBVDRf+gt\/\/8vC4nB0K3mvPOpC5ceoh0npbSW6xyLjmREuVYL4XqsFbN9d9Sn0Sa3eCN31MwZF+VZ3dUdM6vF9ITMLPTL9EaysuFuo6xoz\/L\/oKwWmon0NItHMxGW5JFJLvoe37LT8ua35lPq2B17aWYBe9zQbJTZz+nn8yd6T+kMkh1hSO\/QO2r3GJXI2ZQbKRqmZA==",
          "encoding":"base64",
          "height":29,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[],
          "opacity":1,
@@ -53,6 +58,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":5,
          "name":"positions",
          "objects":[],
          "opacity":1,
@@ -64,6 +70,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":6,
          "name":"wiring - lights & guns",
          "objects":[],
          "opacity":1,
@@ -75,6 +82,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":7,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -86,6 +94,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":8,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -96,6 +105,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -106,6 +116,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"anchors etc",
          "objects":[
                 {
@@ -188,6 +199,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":11,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -196,10 +208,11 @@
          "x":0,
          "y":0
         }],
+ "nextlayerid":12,
  "nextobjectid":707,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -307,11 +320,11 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7684,
+         "firstgid":7703,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":28
 }

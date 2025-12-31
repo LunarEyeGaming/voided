@@ -1,12 +1,14 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":37,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt1FEKgDAIBmBZ56j7H253qFcxf6dOaMQefkaRH85anYg6y33idPLHcqJuxPKYGQ+ZWQuZX3nH9Y5mRuqROfK81sjTnm+GY80PWU0xre\/P2p\/0Iudj5FWdX25GPJTt1ZnV3qp7Xt3b7+T\/Hv\/Pynsz1qwr6\/kqDY+p1Vimx5KrNoPMDNF1tEetv4zl6VPmAX0TSD8=",
+         "data":"eJzt08ENgCAMBdAGd\/Am+w\/HDniU1P7SFhKJ4fBDJPalVClEVJrUC6eQPZrjdT2WxYx4yIxayPzKO\/M7kumpR2bPs1o9T3o\/KY42P2QlwdT+P+183PPcj5436\/62psdD2d48c7a36plX9\/Y3+b935Cd8b8QadXl9u3LDYko1mmmx+CrNIDJD9OztUeovYln65LkBiltMZw==",
          "encoding":"base64",
          "height":37,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt1GEKgCAMBWCxc9T9b1l\/19p7bnOQUAMRpX1sorV2j3PHIxLMiboRy2NmPGRmLWS+5W3Hc1hmJB+ZI89rjTzr+04cdn7I6obJ7h\/rT3uR9zHyqt6vNCvi9+rMam\/Vnlf3pFntrdrz1zz5n9V7M9asq\/PlrA2PaeUw02PpWdedPUO0jtZo1ZexkM\/iApC9mZ0=",
+         "data":"eJzt09EKgDAIBdBY\/9Bb+\/+\/rMeWee\/UCQ1KkFHMg45tWe5x7Dg9wRyv67EsZsRDZtRC5lveVp+pmZ56ZPY8q9XztP2FOOz8kFUUk90\/Np\/0PO+j52W939bMiN\/LM7O9WWee3WvNbG\/Wmb\/mrfVK+W\/EGnVlfbtKw2JqNcy0WHKVfUfPEH17e9T6i1jIZ3ECngWdxQ==",
          "encoding":"base64",
          "height":37,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[],
          "opacity":1,
@@ -53,6 +58,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":5,
          "name":"positions",
          "objects":[],
          "opacity":1,
@@ -64,6 +70,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":6,
          "name":"wiring - lights & guns",
          "objects":[],
          "opacity":1,
@@ -75,6 +82,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":7,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -86,6 +94,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":8,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -96,6 +105,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -106,6 +116,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"anchors etc",
          "objects":[
                 {
@@ -164,6 +175,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":11,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -172,10 +184,11 @@
          "x":0,
          "y":0
         }],
+ "nextlayerid":12,
  "nextobjectid":713,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -257,7 +270,8 @@
         {
          "firstgid":6877,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/railpoint.json"
-        }, 
+        },
+    
         {
          "firstgid":6882,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/teleporter.json"
@@ -283,11 +297,11 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7684,
+         "firstgid":7703,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":20
 }

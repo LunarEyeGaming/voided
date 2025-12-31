@@ -1,12 +1,14 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":45,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt1ksKwzAMBFCTnqO5\/+Fyh3bTEGHGUtxEI6l0MWCIIY+x8tlaa5uS1\/OIto8RaUHJZGHbZj3erm89nq5spqseD9cvmR7rkSiTNKDc5brqYJpmLHef3VnL8gmyeM6S5ZEuxrvSOhtp8vye7KYz89J3FWFCc88yjZ49tI\/Z1UwquKItlbr6u+ZMWV3RnkpdZXBlNFVyRXsyuzKasrqqzHv\/Hxvt0v7z2SbLEmFDBnkNrRkeec\/+3kxXfx7aeY32eZi0mRp15O1B3Wi9MGdKWyMzw2NZGN1o\/VjX9rwBfT5dzQ==",
+         "data":"eJzt1UEKhDAMBdDi3MGdc\/\/DeQfdjBhCmtjR\/CTDLD4ULPTxG3Vtra1KtuWMtg8RapGSyYK2jXq8Xd96PF3ZTHc9Hq5fMs3vM1EmapDylOuuA2kasTx9d1ct0yeSxXOWLA91Ib6V1t1Qk+f\/5DBdmRfeVYRJmnuUqffuSfuQXY2kgivaUqmrv2vMlNUV7anUVQZXRlMlV7QnsyujKauryry\/WKJd3BNpsywRNslAn0lrhIeeyc9Guvh9aPfV2+dh0maq15G3R+pG6wU5U9paMiM8lgXRjdaP9ezIDhRjYzg=",
          "encoding":"base64",
          "height":45,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt1gEKgzAMBVDZzjHvf8sNYWIIaZqq+fkd+xAQFPpIWnVZ\/LxfR1VHWqxisqBto55s11lPpovNdNWT4fol03M9qsokDVbd5brqQJpGLHfPLmp5fMuyZO6lnke6EO\/K3mykKfN7spsi+0X3qsJk7XuUaXdF3snIXo1kBhdLZujV3+VHm1hdDJmlVwwuRtOWWVwsYXQxmrYwumbZ7\/o\/ttrl\/eej07NU2CyDvGddIzxyTb020qXn4c2r9VyGSa8TmWO2x+pNy5vpafla15YZ4elZUPHOU+SsfQCBKt8C",
+         "data":"eJzt1WEKgzAMBWDZ7rB\/2\/1vOREmhpC26TQvL2MPAoJCP5K2Lks\/7+dR2ZEWq5gsaNusJ9r1rSfSxWY664lw\/ZLp8ToqyyQNVl3lOutAmmYsV8\/Oa7l9yrJE7qWRR7oQd+VoNtIU+T\/ZTZ79onuVYbL2Pcq0uzx3MrJXM6ngYkmFXv1d\/WgTq4shVXrF4GI0baniYgmji9G0hdFVZb\/fVWW7tCfTNrJk2CyDfGc9IzxyTb020qXn0ZtX67sIk17HM8doj9WbljfS0\/K1ni0zwjOyoNI7T56ztgIYT+Rt",
          "encoding":"base64",
          "height":45,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[],
          "opacity":1,
@@ -53,6 +58,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":5,
          "name":"positions",
          "objects":[],
          "opacity":1,
@@ -64,6 +70,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":6,
          "name":"wiring - lights & guns",
          "objects":[],
          "opacity":1,
@@ -75,6 +82,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":7,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -86,6 +94,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":8,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -96,6 +105,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -106,6 +116,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"anchors etc",
          "objects":[
                 {
@@ -200,6 +211,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":11,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -208,10 +220,11 @@
          "x":0,
          "y":0
         }],
+ "nextlayerid":12,
  "nextobjectid":719,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -319,11 +332,11 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7684,
+         "firstgid":7703,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":37
 }
