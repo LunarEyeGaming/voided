@@ -13,13 +13,13 @@
   "category" : "materials",
   "damageTable" : "/tiles/flammableDamage.config",
 
-  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderTemplate" : "/tiles/pipetemplate.config",
   "renderParameters" : {
     "texture" : "v-toxicfungusstem.png",
-    "variants" : 14,
+    "variants" : 5,
     "lightTransparent" : false,
     "occludesBelow" : true,
     "multiColored" : true,
-    "zLevel" : 3400
+    "zLevel" : 3200
   }
 }
