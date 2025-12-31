@@ -22,15 +22,11 @@
     "selfDamagePoly" : [ [-4, -4], [-4, 4], [4, 4], [4, -4] ],
 
     "movementSettings" : {
-      "gravityEnabled" : true,
+      "gravityEnabled" : false,
       "collisionEnabled" : false,
       "collisionPoly" : [ [-1, -4], [-1, -2], [1, -2], [1, -4] ],
 
-      "mass" : 1.0,
-      "liquidBuoyancy" : 1.0,
-      "flySpeed" : 10,
-      "liquidFriction" : 2.0,
-      "liquidForce" : 50.0
+      "mass" : 1.0
     },
 
     "knockoutTime" : 0.3,
