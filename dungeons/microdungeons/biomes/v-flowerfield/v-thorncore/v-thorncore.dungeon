@@ -9,8 +9,9 @@
 
     "gravity" : 80,
     "maxRadius" : 1000000,
-    "maxParts" : 100,
-    "protected" : false
+    "maxParts" : 9,
+    "protected" : false,
+    "extendSurfaceFreeSpace" : -40
   },
 
   "parts" : [
@@ -22,11 +23,39 @@
       "def" : [ "tmx", "thorncoreUL1.json" ]
     },
     {
+      "name" : "thorncoreUL2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreUL2.json" ]
+    },
+    {
+      "name" : "thorncoreUL3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreUL3.json" ]
+    },
+    {
       "name" : "thorncoreUM1",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "thorncoreUM1.json" ]
+    },
+    {
+      "name" : "thorncoreUM2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreUM2.json" ]
+    },
+    {
+      "name" : "thorncoreUM3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreUM3.json" ]
     },
     {
       "name" : "thorncoreUR1",
@@ -36,11 +65,42 @@
       "def" : [ "tmx", "thorncoreUR1.json" ]
     },
     {
-      "name" : "thorncoreML1",
+      "name" : "thorncoreUR2",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
+      "def" : [ "tmx", "thorncoreUR2.json" ]
+    },
+    {
+      "name" : "thorncoreUR3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreUR3.json" ]
+    },
+    {
+      "name" : "thorncoreML1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "thorncoreML1", "thorncoreML2", "thorncoreML3" ] ]
+      ],
       "def" : [ "tmx", "thorncoreML1.json" ]
+    },
+    {
+      "name" : "thorncoreML2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "thorncoreML1", "thorncoreML2", "thorncoreML3" ] ]
+      ],
+      "def" : [ "tmx", "thorncoreML2.json" ]
+    },
+    {
+      "name" : "thorncoreML3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "thorncoreML1", "thorncoreML2", "thorncoreML3" ] ]
+      ],
+      "def" : [ "tmx", "thorncoreML3.json" ]
     },
     {
       "name" : "thorncoreMM1",
@@ -52,9 +112,26 @@
     {
       "name" : "thorncoreMR1",
       "rules" : [
-        [ "maxSpawnCount", [1] ]
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "thorncoreMR1", "thorncoreMR2", "thorncoreMR3" ] ]
       ],
       "def" : [ "tmx", "thorncoreMR1.json" ]
+    },
+    {
+      "name" : "thorncoreMR2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "thorncoreMR1", "thorncoreMR2", "thorncoreMR3" ] ]
+      ],
+      "def" : [ "tmx", "thorncoreMR2.json" ]
+    },
+    {
+      "name" : "thorncoreMR3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ],
+        [ "doNotCombineWith", [ "thorncoreMR1", "thorncoreMR2", "thorncoreMR3" ] ]
+      ],
+      "def" : [ "tmx", "thorncoreMR3.json" ]
     },
     {
       "name" : "thorncoreLL1",
@@ -64,6 +141,20 @@
       "def" : [ "tmx", "thorncoreLL1.json" ]
     },
     {
+      "name" : "thorncoreLL2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreLL2.json" ]
+    },
+    {
+      "name" : "thorncoreLL3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreLL3.json" ]
+    },
+    {
       "name" : "thorncoreLM1",
       "rules" : [
         [ "maxSpawnCount", [1] ]
@@ -71,11 +162,39 @@
       "def" : [ "tmx", "thorncoreLM1.json" ]
     },
     {
+      "name" : "thorncoreLM2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreLM2.json" ]
+    },
+    {
+      "name" : "thorncoreLM3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreLM3.json" ]
+    },
+    {
       "name" : "thorncoreLR1",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "thorncoreLR1.json" ]
+    },
+    {
+      "name" : "thorncoreLR2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreLR2.json" ]
+    },
+    {
+      "name" : "thorncoreLR3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "thorncoreLR3.json" ]
     }
   ]
 }
