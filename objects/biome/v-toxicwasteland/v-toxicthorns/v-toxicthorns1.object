@@ -1,12 +1,12 @@
 {
-  "objectName" : "v-toxicthornslarge1",
+  "objectName" : "v-toxicthorns1",
   "colonyTags" : [ ],
   "rarity" : "Common",
   "category" : "breakable",
   "printable" : false,
 
   "description" : "<todo>",
-  "shortdescription" : "Large Bramble",
+  "shortdescription" : "Bramble",
   "race" : "generic",
 
   "health" : 10,
@@ -53,8 +53,8 @@
   "inventoryIcon" : "capsulebigicon.png",
   "orientations" : [
     {
-      "image" : "toxicthornslarge.png:1",
-      "imagePosition" : [-16, 0],
+      "image" : "toxicthorns.png:1",
+      "imagePosition" : [0, 0],
       "frames" : 1,
       "animationCycle" : 0.5,
 
@@ -62,7 +62,7 @@
       "anchors" : [ "bottom" ],
 
       "touchDamage" : {
-        "poly" : [ [-1.5, 0], [-1, 2], [1, 2], [1.5, 0] ],
+        "poly" : [ [0.0, 0.0], [1.0, 0.0], [1.0, 1.0], [0.0, 1.0] ],
         "damage" : 40,
         "knockback" : 20,
 
@@ -72,8 +72,8 @@
       }
     },
     {
-      "image" : "toxicthornslargetop.png:1",
-      "imagePosition" : [-16, -16],
+      "image" : "toxicthornstop.png:1",
+      "imagePosition" : [0, -8],
       "frames" : 1,
       "animationCycle" : 0.5,
 
@@ -81,7 +81,7 @@
       "anchors" : [ "top" ],
 
       "touchDamage" : {
-        "poly" : [ [-1.5, 1], [-1, -1], [1, -1], [1.5, 1] ],
+        "poly" : [ [0.0, 0.0], [1.0, 0.0], [1.0, 1.0], [0.0, 1.0] ],
         "damage" : 40,
         "knockback" : 20,
 
@@ -91,8 +91,8 @@
       }
     },
     {
-      "image" : "toxicthornslargeleft.png:1",
-      "imagePosition" : [0, -8],
+      "image" : "toxicthornsleft.png:1",
+      "imagePosition" : [0, 0],
       "frames" : 1,
       "animationCycle" : 0.5,
 
@@ -100,8 +100,7 @@
       "anchors" : [ "left" ],
 
       "touchDamage" : {
-        // "poly" : [ [-1.5, 0], [-1, 2], [1, 2], [1.5, 0] ],
-        "poly" : [ [0, -0.5], [2, 0], [2, 2], [0, 2.5] ],
+        "poly" : [ [0.0, 0.0], [1.0, 0.0], [1.0, 1.0], [0.0, 1.0] ],
         "damage" : 40,
         "knockback" : 20,
 
@@ -111,8 +110,8 @@
       }
     },
     {
-      "image" : "toxicthornslargeright.png:1",
-      "imagePosition" : [-16, -8],
+      "image" : "toxicthornsright.png:1",
+      "imagePosition" : [-8, 0],
       "frames" : 1,
       "animationCycle" : 0.5,
 
@@ -120,8 +119,7 @@
       "anchors" : [ "right" ],
 
       "touchDamage" : {
-        // "poly" : [ [-1.5, 0], [-1, 2], [1, 2], [1.5, 0] ],
-        "poly" : [ [1, -0.5], [-1, 0], [-1, 2], [1, 2.5] ],
+        "poly" : [ [0.0, 0.0], [1.0, 0.0], [1.0, 1.0], [0.0, 1.0] ],
         "damage" : 40,
         "knockback" : 20,
 
