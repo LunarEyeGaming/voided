@@ -1,0 +1,23 @@
+{
+  "metadata" : {
+    "name" : "v-sunbox",
+    "species" : "generic",
+    "rules" : [
+    ],
+    "anchor" : [ "sunbox" ],
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "sunbox",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "sunbox.json" ]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":60,
  "infinite":false,
  "layers":[
@@ -7,6 +8,7 @@
          "data":"eJzt2TEOgDAMBEE\/nddBx5ugoaNIFMeX2FtsF9BNgwRcZsdFRERERESunWa2chWMXnb13ki3emOkWb0t2qzeFelVb4o2q\/fgnedVb4k2q3fgxYsXL168ePOGN3d4c4c3d5XegSt\/36jozWzm+3Nec6V\/SFX+E\/Y6d7R7GL\/u9367VMk6albvxjvPupP52+n5zFrZ7u1c2TzTupo7yqo2RztHzK3X\/Z1TOnv9refV+0fM6h1Urwe2ApYz",
          "encoding":"base64",
          "height":60,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -20,6 +22,7 @@
          "data":"eJzt0jEKgDAMQNFey\/vvnslFQdzSRmLwPSguFvJJxwAAAAAAAAAAAACAf9kbnT+1rjZXz633vdZOzeP2zVTdlbXTyL3qtoz3O3O3unPl\/W7nierWeZntHYEZn7PO\/PdF0Z1k765C59np7QAZyEBq",
          "encoding":"base64",
          "height":60,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[
                 {
@@ -77,6 +82,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":5,
          "name":"wiring - lights & guns",
          "objects":[],
          "opacity":1,
@@ -88,6 +94,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":6,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -99,6 +106,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":7,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -109,6 +117,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -119,6 +128,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"anchors etc",
          "objects":[
                 {
@@ -321,6 +331,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -329,10 +340,11 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":739,
+ "nextlayerid":11,
+ "nextobjectid":740,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -473,6 +485,6 @@
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":60
 }

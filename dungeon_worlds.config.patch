@@ -152,5 +152,20 @@
       "musicTrack" : "/music/event-horizon.ogg",
       "environmentStatusEffects" : ["dontstarve", "v-quickhealnerf"]
     }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-sunbox",
+    "value" : {
+      "primaryDungeon" : "v-sunbox",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [1000, 1000],
+      "dungeonBaseHeight" : 400,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "",
+      "biome" : "v-ministar",
+      "environmentStatusEffects" : ["v-quickhealnerf"]
+    }
   }
 ]

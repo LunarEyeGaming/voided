@@ -784,10 +784,10 @@ function syncHeightMapsToGlobal(heightMaps)
           (not isSolidAndOpaque({x, globalV}) and
             (world_liquidAt({x, minDepth - 1}) or world_pointTileCollision({x, minDepth - 1}, nullCollisionSet))) then
           globalHeightMap[x] = v  -- Local value takes priority
-          world.debugText("O", {x, stagehand.position()[2]}, "green")
+          -- world.debugText("O", {x, stagehand.position()[2]}, "green")
         else
           heightMap_list[x] = globalV  -- Global value takes priority
-          world.debugText("X", {x, stagehand.position()[2]}, "red")
+          -- world.debugText("X", {x, stagehand.position()[2]}, "red")
         end
       end
 
@@ -825,21 +825,21 @@ function isSolidAndOpaque(pos)
   local material = world.material(pos, "foreground")
 
   if material == nil then
-    world.debugText("O", {pos[1], stagehand.position()[2] - 1}, "blue")
+    -- world.debugText("O", {pos[1], stagehand.position()[2] - 1}, "blue")
     return true
   end
 
   if material == false then
-    world.debugText("X", {pos[1], stagehand.position()[2] - 1}, "yellow")
+    -- world.debugText("X", {pos[1], stagehand.position()[2] - 1}, "yellow")
     return false
   end
 
   local matCfg = getMaterialProperties(material)
-  if matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure" then
-    world.debugText("O", {pos[1], stagehand.position()[2] - 1}, "green")
-  else
-    world.debugText("X", {pos[1], stagehand.position()[2] - 1}, "magenta")
-  end
+  -- if matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure" then
+  --   world.debugText("O", {pos[1], stagehand.position()[2] - 1}, "green")
+  -- else
+  --   world.debugText("X", {pos[1], stagehand.position()[2] - 1}, "magenta")
+  -- end
   return matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure"
 end
 
@@ -1158,9 +1158,6 @@ function LiquidScanner:update(regions)
           boundaryTilesCache[chunkStr] = {}
         end
         local chunkBoundaryTilesCache = boundaryTilesCache[chunkStr]
-
-        -- Problem: We need a way of keeping the data in a chunk without requerying.
-        -- Solution: Use a separate table for caching results.
 
         -- Process the region in more detail if it is not completely filled with sun liquid and it is a hot region,
         -- solar plasma became the most plentiful liquid in the region, or the change in the total quantity since the
