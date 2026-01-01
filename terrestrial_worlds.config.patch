@@ -280,7 +280,10 @@
         "underground2" : {
           "primaryRegion" : ["v-undergroundtoxic"],
           "secondaryRegions" : ["v-flowerfield"],
-          "secondaryRegionCount" : [1, 1]
+          "secondaryRegionCount" : [1, 1],
+
+          "dungeons" : [[1.0, "v-thorncore"], [1.0, "v-thorncore"], [1.0, "v-thorncore"], [1.0, "v-thorncore"], [1.0, "v-thorncore"]],
+          "dungeonCountRange" : [5, 5]
         },
         "underground3" : {
           "primaryRegion" : ["v-deepundergroundtoxic"],
