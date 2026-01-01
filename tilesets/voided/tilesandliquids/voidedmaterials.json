@@ -8,8 +8,8 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":40,
- "tiledversion":"1.11.0",
+ "tilecount":41,
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tileproperties":
     {
@@ -156,6 +156,10 @@
      "4":
         {
          "material":"v-ironrock"
+        },
+     "40":
+        {
+         "material":"v-toxicfungusgills"
         },
      "5":
         {
@@ -321,6 +325,10 @@
          "material":"string"
         },
      "4":
+        {
+         "material":"string"
+        },
+     "40":
         {
          "material":"string"
         },
@@ -554,6 +562,12 @@
      "4":
         {
          "image":"..\/images\/tilesandliquids\/ironrock.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "40":
+        {
+         "image":"..\/images\/tilesandliquids\/toxicfungusgills.png",
          "imageheight":8,
          "imagewidth":8
         },
