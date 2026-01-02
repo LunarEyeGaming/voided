@@ -41,6 +41,7 @@ function blocksBeams()
 end
 
 function setState(state)
+  animator.setAnimationState("sensor", state and "on" or "off")
   if state ~= storage.active then
     animator.setAnimationState("sensor", state and "activating" or "deactivating")
     animator.playSound(state and "on" or "off")
