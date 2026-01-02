@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":41,
+ "tilecount":43,
  "tiledversion":"1.11.2",
  "tileheight":8,
  "tileproperties":
@@ -160,6 +160,14 @@
      "40":
         {
          "material":"v-toxicfungusgills"
+        },
+     "41":
+        {
+         "material":"v-toxicstonetough"
+        },
+     "42":
+        {
+         "material":"v-toxicplant"
         },
      "5":
         {
@@ -329,6 +337,14 @@
          "material":"string"
         },
      "40":
+        {
+         "material":"string"
+        },
+     "41":
+        {
+         "material":"string"
+        },
+     "42":
         {
          "material":"string"
         },
@@ -568,6 +584,18 @@
      "40":
         {
          "image":"..\/images\/tilesandliquids\/toxicfungusgills.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "41":
+        {
+         "image":"..\/images\/tilesandliquids\/toxicstonetough.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "42":
+        {
+         "image":"..\/images\/tilesandliquids\/toxicplant.png",
          "imageheight":8,
          "imagewidth":8
         },

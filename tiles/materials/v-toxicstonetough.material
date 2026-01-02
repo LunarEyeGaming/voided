@@ -1,0 +1,25 @@
+{
+  "materialId" : 1221,
+  "materialName" : "v-toxicstonetough",
+  "particleColor" : [30, 84, 40, 255],
+  "itemDrop" : "v-toxicstonetoughmaterial",
+  "description" : "Poisonous stone compressed into a small space.",
+  "shortdescription" : "Packed Toxic Stone",
+  "glitchDescription" : "Surprised. This stone has a higher density than its surroundings.",
+  "floranDescription" : "Hard poisonouss rocksss.",
+  "novakidDescription" : "That's some tough lookin' stone.",
+  "footstepSound" : "/sfx/blocks/footstep_stone3.ogg",
+  "health" : 24,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-toxicstonetough.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 20
+  }
+}

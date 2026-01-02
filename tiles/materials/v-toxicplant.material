@@ -1,0 +1,25 @@
+{
+  "materialId" : 1222,
+  "materialName" : "v-toxicplant",
+  "particleColor" : [13, 39, 7, 255],
+  "itemDrop" : "v-toxicplantmaterial",
+  "description" : "A chunk of twisting bramble.",
+  "shortdescription" : "Twisting Bramble",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_tallgrass.ogg",
+  "health" : 16,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-toxicplant.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 3960
+  }
+}
