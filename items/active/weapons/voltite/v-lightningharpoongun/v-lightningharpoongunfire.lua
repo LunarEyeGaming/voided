@@ -14,10 +14,10 @@ function HarpoonGunFire:init()
   self.weapon.onLeaveAbility = function()
     self.weapon:setStance(self.stances.idle)
   end
-  
+
   self.projectileId = nil
   self.anchored = false
-  
+
   self.frameTimer = 0
 end
 
@@ -40,9 +40,9 @@ function HarpoonGunFire:update(dt, fireMode, shiftHeld)
       self:cancel()
     end
   end
-  
+
   self.prevFireMode = self.fireMode
-  
+
   self:trackProjectile()
 end
 
@@ -75,12 +75,19 @@ function HarpoonGunFire:postFire()
 
     progress = math.min(1.0, progress + (self.dt / self.stances.cooldown.duration))
   end)
-  
+
   self:setState(self.preAnchor)
 end
 
 function HarpoonGunFire:preAnchor()
   while self.projectileId and world.entityExists(self.projectileId) do
+    if self.alwaysActive then
+      local chainLength = world.magnitude(self:firePosition(), world.entityPosition(self.projectileId))
+      self.weapon:setDamage(self.damageConfig, {self.weapon.muzzleOffset, {self.weapon.muzzleOffset[1] + chainLength, self.weapon.muzzleOffset[2]}}, self.fireTime)
+      if not status.overConsumeResource("energy", self.activeEnergyUsage * self.dt) then
+        break
+      end
+    end
     if not self.anchored then
       self.anchored = world.callScriptedEntity(self.projectileId, "anchored")
     else
@@ -94,7 +101,7 @@ end
 
 function HarpoonGunFire:active()
   animator.stopAllSounds("chainLoop")
-  
+
   animator.playSound("anchoredChainLoop", -1)
 
   while self.projectileId and world.entityExists(self.projectileId) do
@@ -105,7 +112,7 @@ function HarpoonGunFire:active()
     end
     coroutine.yield()
   end
-  
+
   animator.stopAllSounds("anchoredChainLoop")
 
   self.cooldownTimer = self.fireTime
@@ -169,7 +176,7 @@ function HarpoonGunFire:cancel()
     world.callScriptedEntity(self.projectileId, "kill")
   end
   self.projectileId = nil
-  
+
   self:reset()
 end
 
@@ -177,11 +184,11 @@ function HarpoonGunFire:trackProjectile()
   if not self.projectileId or not world.entityExists(self.projectileId) then
     return
   end
-  
+
   local projectilePosition = world.entityPosition(self.projectileId)
-  
+
   local aimVector = world.distance(projectilePosition, mcontroller.position())
-  
+
   if vec2.mag(aimVector) > self.maxChainLength then
     self:cancel()
     return
@@ -190,7 +197,7 @@ function HarpoonGunFire:trackProjectile()
   self.weapon.aimDirection = util.toDirection(aimVector[1])
   aimVector[1] = aimVector[1] * self.weapon.aimDirection
   self.weapon.aimAngle = vec2.angle(aimVector)
-  
+
   self:renderChain(projectilePosition)
 end
 
@@ -198,13 +205,13 @@ function HarpoonGunFire:renderChain(endPos)
   local newChain
   if self.anchored then
     newChain = copy(self.chainAnchored)
-    
+
     local frame = vAnimator.frameNumber(self.frameTimer, self.anchoredChainFrameCycle, 1, self.anchoredChainNumFrames)
 
     newChain.startSegmentImage = util.replaceTag(newChain.startSegmentImage, "frame", frame)
     newChain.segmentImage = util.replaceTag(newChain.segmentImage, "frame", frame)
     newChain.endSegmentImage = util.replaceTag(newChain.endSegmentImage, "frame", frame)
-    
+
     self.frameTimer = (self.frameTimer + script.updateDt()) % self.anchoredChainFrameCycle
   else
     newChain = copy(self.chain)
