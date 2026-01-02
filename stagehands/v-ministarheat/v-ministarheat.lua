@@ -36,7 +36,7 @@ local sunLiquidId
 local materialConfigs
 local heatConfigs
 
-local liquidScanner
+local liquidScanner  ---@type VLiquidScanner
 local lightScanner
 
 local isActive
@@ -979,7 +979,7 @@ function addToHeatMap(affectedTiles, heightMap, liquidTouchedTiles, nonOceanAffe
         })
         -- world.debugPoint({tile[1] + 0.5, tile[2] + 0.5}, "yellow")
 
-        liquidScanner:markRegionByTile(tile, 3)
+        liquidScanner:markRetrievalByTile(tile, 3)
       end
     end
   end
