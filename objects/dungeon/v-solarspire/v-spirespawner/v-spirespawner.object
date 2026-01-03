@@ -63,6 +63,7 @@
   "portalDisappearTime" : 0.25,
 
   "spawnerProjectileType" : "v-spirespawnerorb",
+  "despawnerProjectileType" : "v-spiredespawner",
 
   "preSpawnSparkTime" : 0.75,
 
@@ -85,6 +86,11 @@
   "gracePeriod" : 30.0,
   "gracePeriodSparkChanceMultiplier" : 0.4,
   "gracePeriodRadioMessages" : [ "v-labspawnertutorial", "v-labspawnertutorial2" ],
+
+  "monsterDisappearRange" : 250,
+  "equivalentMonsters" : {
+    "v-novamonster" : "v-novamonsterreturnable"
+  },
 
   "minTriggerDelay" : 0.05,
 

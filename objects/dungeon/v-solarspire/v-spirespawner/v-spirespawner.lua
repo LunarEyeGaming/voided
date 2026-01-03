@@ -33,6 +33,9 @@ local minTriggerDelay
 
 local portalLightningStartPosition
 
+local monsterDisappearRange
+local equivalentMonsters
+
 local lightningController
 
 local oldInit = init or function() end
@@ -45,6 +48,7 @@ function init()
   openingCloseDelay = config.getParameter("openingCloseDelay", 0.25)
 
   spawnerProjectileType = config.getParameter("spawnerProjectileType", "v-cityspawnerorb")
+  despawnerProjectileType = config.getParameter("despawnerProjectileType", "v-spiredespawner")
 
   portalMinSize = config.getParameter("portalMinSize")
   portalSizeStep = config.getParameter("portalSizeStep")
@@ -69,6 +73,9 @@ function init()
 
   local portalLightningStartOffset = config.getParameter("portalLightningStartOffset", {0, 0})
   portalLightningStartPosition = vec2.add(object.position(), portalLightningStartOffset)
+
+  monsterDisappearRange = config.getParameter("monsterDisappearRange", 75)
+  equivalentMonsters = config.getParameter("equivalentMonsters", {})
 
   lightningController = vAnimator.LightningController:new(
     portalLightningConfig,
@@ -199,6 +206,40 @@ function spawnWave(waveSpawners, waveNum)
       message.setHandler("v-monsterSpawned", function(_, _, monsterId)
         table.insert(monsterIds, monsterId)
       end)
+
+      -- Disappear nearby monsters. This works by tallying up all of the monster spawns, running a query, and
+      -- decrementing the tally of each monster (as well as despawning them) where applicable.
+      local monsterCounts = {}
+      for _, monster in ipairs(waveSpawners) do
+        if not monsterCounts[monster.type] then
+          monsterCounts[monster.type] = 0
+        end
+        monsterCounts[monster.type] = monsterCounts[monster.type] + 1
+      end
+
+      local queried = world.entityQuery(object.position(), monsterDisappearRange, {
+        includedTypes = {"monster"}
+      })
+
+      for _, entityId in ipairs(queried) do
+        local damageTeam = world.entityDamageTeam(entityId)
+        if damageTeam and damageTeam.type == "enemy" then  -- Make sure not to disappear pets.
+          local monsterType = world.monsterType(entityId)  --[[@as string]]
+          local equivalentMonsterType = equivalentMonsters[monsterType]
+          local count = monsterCounts[monsterType]
+          if not count and equivalentMonsterType then
+            count = monsterCounts[equivalentMonsterType]
+          end
+
+          -- sb.logInfo("%s: %s", monsterType, count)
+
+          if count and count > 0 then
+            world.spawnProjectile(despawnerProjectileType, world.entityPosition(entityId))
+            world.sendEntityMessage(entityId, "despawn")
+            monsterCounts[monsterType] = count - 1
+          end
+        end
+      end
 
       -- For each monster in the current wave...
       local numWaveSpawners = #waveSpawners
