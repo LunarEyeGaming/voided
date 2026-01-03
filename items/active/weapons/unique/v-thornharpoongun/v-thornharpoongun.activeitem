@@ -4,9 +4,9 @@
   "maxStack" : 1,
   "rarity" : "Legendary",
   "customRarity" : "Mythical",
-  "description" : "A strange, thorny plant growth formed in the shape of a gun.",
+  "description" : "A strange, thorny plant growth in the shape of a gun.",
   "shortdescription" : "The Stinger",
-  "extraInfo" : "Fires a damaging, thorny vine.",
+  "extraInfo" : "Fires a damaging, thorny vine that continuously consumes energy.",
   "tooltipKind" : "v-biggun",
   "category" : "uniqueWeapon",
   "twoHanded" : true,
@@ -36,7 +36,7 @@
   },
 
   "baseOffset" : [0.0, 0.0],
-  "muzzleOffset" : [2.5, 0.75],
+  "muzzleOffset" : [3.5, 0.75],
 
   "animationScripts" : ["/items/active/effects/chain.lua"],
 
@@ -61,9 +61,9 @@
 
     "chain" : {
       "startOffset" : [0, 0],
-      "startSegmentImage" : "/items/active/weapons/unique/v-thornharpoongun/thornsend.png",
-      "segmentImage" : "/items/active/weapons/unique/v-thornharpoongun/thorns.png",
-      "endSegmentImage" : "/items/active/weapons/unique/v-thornharpoongun/thorns.png",
+      "startSegmentImage" : "/items/active/weapons/unique/v-thornharpoongun/thornsretractedend.png",
+      "segmentImage" : "/items/active/weapons/unique/v-thornharpoongun/thornsretracted.png",
+      "endSegmentImage" : "/items/active/weapons/unique/v-thornharpoongun/thornsretracted.png",
       "segmentSize" : 1.0,
       "taper" : 0,
       "renderLayer" : "Projectile-10"
@@ -122,80 +122,7 @@
     }
   },
 
-  "altAbility" : {
-    "name" : "Bursting Chain",
-    "scripts" : ["/items/active/weapons/voltite/v-lightningharpoongun/v-lightningharpoongunfirealt.lua"],
-    "class" : "HarpoonGunFire",
-
-    "fireTime" : 3.0,
-    "baseDps" : 5,
-    "energyUsage" : 60,
-    "inaccuracy" : 0.0,
-
-    "maxChainLength" : 100,
-
-    "projectileType" : "v-lightningharpoongun",
-    "projectileParameters" : {},
-
-    "propagateStepDuration" : 0.05,
-    "propagateStepDistance" : 5,
-    "propagateDamageFactor" : 0.25,
-    "propagateProjectile" : "electricplasmaexplosion",
-    "propagateProjectileParameters" : {},
-
-    "chain" : {
-      "startOffset" : [0, 0],
-      "startSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chain.png",
-      "segmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chain.png",
-      "endSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chain.png",
-      "segmentSize" : 0.75,
-      "taper" : 0,
-      "renderLayer" : "Projectile-10"
-    },
-
-    "chainAnchored" : {
-      "startOffset" : [0, 0],
-      "startSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png:<frame>",
-      "segmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png:<frame>",
-      "endSegmentImage" : "/items/active/weapons/voltite/v-lightningharpoongun/chainanchored.png:<frame>",
-      "segmentSize" : 0.75,
-      "taper" : 0,
-      "fullbright" : true,
-      "renderLayer" : "Projectile-10"
-    },
-
-    "anchoredChainFrameCycle" : 0.4,
-    "anchoredChainNumFrames" : 4,
-
-    "stances" : {
-      "idle" : {
-        "armRotation" : 0,
-        "weaponRotation" : 0,
-        "twoHanded" : true,
-
-        "allowRotate" : true,
-        "allowFlip" : true
-      },
-      "fire" : {
-        "duration" : 0,
-        "armRotation" : 8,
-        "weaponRotation" : 8,
-        "twoHanded" : true,
-
-        "allowRotate" : false,
-        "allowFlip" : false
-      },
-      "cooldown" : {
-        "duration" : 0.2,
-        "armRotation" : 8,
-        "weaponRotation" : 8,
-        "twoHanded" : true,
-
-        "allowRotate" : false,
-        "allowFlip" : false
-      }
-    }
-  },
+  "altAbilityType" : "v-thornseed",
 
   "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
 }

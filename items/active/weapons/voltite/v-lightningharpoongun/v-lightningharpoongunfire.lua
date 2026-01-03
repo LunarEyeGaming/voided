@@ -16,7 +16,6 @@ function HarpoonGunFire:init()
   end
 
   self.projectileId = nil
-  self.anchored = false
 
   self.frameTimer = 0
 end
@@ -41,6 +40,23 @@ function HarpoonGunFire:update(dt, fireMode, shiftHeld)
     end
   end
 
+  if self.isActive then
+    local projectilePos = world.entityPosition(self.projectileId)
+    local chainLength = world.magnitude(self:firePosition(), projectilePos)
+    -- This doesn't completely fix the damage region not aligning with the visual, but it's close enough.
+    -- Angle of vector from fire position to projectile position, flipped if we're facing the opposite direction
+    local angle = vec2.angle(world.distance(projectilePos, self:firePosition()))
+    if self.weapon.aimDirection < 0 then
+      angle = math.pi - angle
+    end
+    local angleCorrectionAmount = util.angleDiff(self.weapon.aimAngle, angle)
+    local correctedDirection = vec2.rotate({chainLength, 0}, angleCorrectionAmount)
+    self.weapon:setDamage(self.damageConfig, {self.weapon.muzzleOffset, vec2.add(self.weapon.muzzleOffset, correctedDirection)}, self.fireTime)
+    if not status.overConsumeResource("energy", self.activeEnergyUsage * self.dt) then
+      self.isActive = false
+    end
+  end
+
   self.prevFireMode = self.fireMode
 
   self:trackProjectile()
@@ -52,6 +68,10 @@ function HarpoonGunFire:fire()
   self.projectileId = self:fireProjectile()
   self:muzzleFlash()
   animator.playSound("chainLoop", -1)
+
+  if self.alwaysActive then
+    self.isActive = true
+  end
 
   if self.stances.fire.duration then
     util.wait(self.stances.fire.duration)
@@ -81,16 +101,8 @@ end
 
 function HarpoonGunFire:preAnchor()
   while self.projectileId and world.entityExists(self.projectileId) do
-    if self.alwaysActive then
-      local chainLength = world.magnitude(self:firePosition(), world.entityPosition(self.projectileId))
-      self.weapon:setDamage(self.damageConfig, {self.weapon.muzzleOffset, {self.weapon.muzzleOffset[1] + chainLength, self.weapon.muzzleOffset[2]}}, self.fireTime)
-      if not status.overConsumeResource("energy", self.activeEnergyUsage * self.dt) then
-        break
-      end
-    end
-    if not self.anchored then
-      self.anchored = world.callScriptedEntity(self.projectileId, "anchored")
-    else
+    local anchored = world.callScriptedEntity(self.projectileId, "anchored")
+    if anchored then
       self:setState(self.active)
     end
     coroutine.yield()
@@ -100,16 +112,13 @@ function HarpoonGunFire:preAnchor()
 end
 
 function HarpoonGunFire:active()
+  self.isActive = true
+
   animator.stopAllSounds("chainLoop")
 
   animator.playSound("anchoredChainLoop", -1)
 
-  while self.projectileId and world.entityExists(self.projectileId) do
-    local chainLength = world.magnitude(self:firePosition(), world.entityPosition(self.projectileId))
-    self.weapon:setDamage(self.damageConfig, {self.weapon.muzzleOffset, {self.weapon.muzzleOffset[1] + chainLength, self.weapon.muzzleOffset[2]}}, self.fireTime)
-    if not status.overConsumeResource("energy", self.activeEnergyUsage * self.dt) then
-      break
-    end
+  while self.projectileId and world.entityExists(self.projectileId) and self.isActive do
     coroutine.yield()
   end
 
@@ -176,6 +185,7 @@ function HarpoonGunFire:cancel()
     world.callScriptedEntity(self.projectileId, "kill")
   end
   self.projectileId = nil
+  self.isActive = false
 
   self:reset()
 end
@@ -203,7 +213,7 @@ end
 
 function HarpoonGunFire:renderChain(endPos)
   local newChain
-  if self.anchored then
+  if self.isActive then
     newChain = copy(self.chainAnchored)
 
     local frame = vAnimator.frameNumber(self.frameTimer, self.anchoredChainFrameCycle, 1, self.anchoredChainNumFrames)
@@ -233,5 +243,5 @@ function HarpoonGunFire:reset()
 
   activeItem.setScriptedAnimationParameter("chains", {})
   animator.setAnimationState("firing", "idle")
-  self.anchored = false
+  self.isActive = false
 end

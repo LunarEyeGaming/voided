@@ -1,0 +1,38 @@
+{
+  "objectName" : "v-thornharpoongunpickup",
+  "colonyTags" : ["misc"],
+  "printable" : false,
+  "price" : 0,
+  "rarity" : "Common",
+  "description" : "<todo>",
+  "shortdescription" : "The Stinger (Object)",
+  "race" : "human",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "decorative",
+
+  "inventoryIcon" : "thornharpoongunpickup.png",
+  "orientations" : [
+    {
+      "dualImage" : "thornharpoongunpickup.png",
+
+      "imagePosition" : [-8, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "scripts" : [ "v-thornharpoongunpickup.lua" ],
+
+  "breakDropOptions" : [ [ [ "v-thornharpoongun", 1, {} ] ] ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

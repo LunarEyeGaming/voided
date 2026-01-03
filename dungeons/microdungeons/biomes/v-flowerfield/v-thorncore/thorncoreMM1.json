@@ -12,7 +12,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztl9ENgzAMRJmkU9H9F2CI\/qPEfndOEJX8YakSEL9c7gy9juO4urbX+Xl3Ne\/\/835BPcFL+hIehVnljfiIjtmzq3izs1PPeXQPYSa8Tm\/HUydYg\/IqvnA8T9fLeFdkWvWoy0uzpfhY8bbCS3V0ZwLJL+VVznvXTFB5VVbHx\/esEU84vNXcKcwub+TDCmu03ug+whvNSVffiEmdZyTHq5jVWRfx3nWd9ap6WMlHNM+yuRNlRdWW+iV7X8yeJfo72mal8GaeU+egUhkv8Vf0O2KseJ1+nxHmSBtFQ8cPCjPlUr3i8o7yVPFixefO\/7eoPz2HrEfFDzQLVM\/ZPomHV\/NW9rkqb24vck3do8Or9KnOrx1+eLKat3mbt3mb9x28XXvqBzRiAAE=",
+         "data":"eJztl9ENgzAMRJmkW9H9B2CI\/qPEfndOEJX8YakSEL9c7gy9juO4urbX+Xl3Ne\/\/835BPcFL+hIehVnljfiIjtmzq3izs1PPeXQPYSa8Tm\/HUydYg\/IqvnA8T9fLeFdkWvWoy0uzpfhY8bbCS3V0ZwLJL+VVznvXTFB5VVbHx\/esEU84vNXcKcwub+TDCmu03ug+whvNSVffiEmdZyTHq5jVWRfx3nWd9ap6WMlHNM+yuRNlRdWW+iV7X8yeJfo72mal8GaeU+egUhkv8Vf0O2KseJ1+nxHmSBtFQ8cPCjPlUr3i8o7yVPFixefO\/7eoPz2HrEfFDzQLVM\/ZPomHV\/NW9rkqb24vck3do8Or9KnOrx1+eLKat3mbt3mb9x28XXvqB85kBkE=",
          "encoding":"base64",
          "height":44,
          "id":1,
@@ -26,7 +26,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztl0EOgDAIBH2Jr9L\/f8WrMdDOoq00YRNOljIFUuy2lWbo2HNb8a7PewKbwUviEh6FWeVt8ZE89ny\/4u3VTq2ztYYwE95I7EhPHWAPyqv0RWt\/rwbR\/WidT+hvieQ8wuudeYRo\/3l+Xm1GiebY8vPON1JveWcwelJyloHX4iC8f8q7m7x1GXjV\/l1Bq\/JavZJR9\/tvBT3nW3aROZ5J3v\/ZKrwWc0ut\/89ZvL0Zrb7b7uyt\/ND5pu7xfIP1fEkMZb6pRvLZ46Lvv69535yT+ER5SSzyTT1jhFeJQ3tkJO+fVrzFW7zFW7w5eEtjdAGho\/Vi",
+         "data":"eJztl0EOgDAIBH2Jv9L\/P8WrMdDOoq00YRNOljIFUuy2lWbo2HNb8a7PewKbwUviEh6FWeVt8ZE89ny\/4u3VTq2ztYYwE95I7EhPHWAPyqv0RWt\/rwbR\/WidT+hvieQ8wuudeYRo\/3l+Xm1GiebY8vPON1JveWcwelJyloHX4iC8f8q7m7x1GXjV\/l1Bq\/JavZJR9\/tvBT3nW3aROZ5J3v\/ZKrwWc0ut\/89ZvL0Zrb7b7uyt\/ND5pu7xfIP1fEkMZb6pRvLZ46Lvv69535yT+ER5SSzyTT1jhFeJQ3tkJO+fVrzFW7zFW7w5eEtjdAE\/j\/nG",
          "encoding":"base64",
          "height":44,
          "id":2,
@@ -55,7 +55,19 @@
          "draworder":"topdown",
          "id":4,
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":7723,
+                 "height":42,
+                 "id":703,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":160,
+                 "y":208
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -180,7 +192,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":703,
+ "nextobjectid":704,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -295,7 +307,7 @@
          "source":"..\/..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }, 
         {
-         "firstgid":7723,
+         "firstgid":7724,
          "source":"..\/..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }],
  "tilewidth":8,

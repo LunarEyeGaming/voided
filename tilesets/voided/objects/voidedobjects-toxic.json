@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-toxic",
  "spacing":0,
- "tilecount":59,
+ "tilecount":60,
  "tiledversion":"1.11.2",
  "tileheight":264,
  "tileproperties":
@@ -396,6 +396,13 @@
          "imagePositionX":"0",
          "imagePositionY":"-8",
          "object":"v-toxicthorns4",
+         "tilesetDirection":"right"
+        },
+     "59":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-thornharpoongunpickup",
          "tilesetDirection":"right"
         },
      "6":
@@ -814,6 +821,13 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "59":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "6":
         {
          "imagePositionX":"string",
@@ -1174,6 +1188,12 @@
          "image":"..\/images\/objects\/toxicthornstop4.png",
          "imageheight":16,
          "imagewidth":16
+        },
+     "59":
+        {
+         "image":"..\/images\/objects\/thornharpoongunpickup.png",
+         "imageheight":42,
+         "imagewidth":24
         },
      "6":
         {

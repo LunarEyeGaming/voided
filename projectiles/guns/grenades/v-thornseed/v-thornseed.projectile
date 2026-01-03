@@ -1,0 +1,17 @@
+{
+  "projectileName" : "v-thornseed",
+  "image" : "thornseed.png",
+  "animationCycle" : 1.00,
+  "frameNumber" : 1,
+  "physics" : "grenade",
+  "bounces" : 0,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-thornburst/v-thornburst.config"
+    }
+  ],
+  "power" : 1,
+  "speed" : 45,
+  "damageType" : "nodamage"
+}

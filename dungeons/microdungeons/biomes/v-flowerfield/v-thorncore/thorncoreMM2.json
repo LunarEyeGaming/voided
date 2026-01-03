@@ -55,7 +55,19 @@
          "draworder":"topdown",
          "id":4,
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":7766,
+                 "height":42,
+                 "id":699,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":168,
+                 "y":208
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -180,7 +192,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":699,
+ "nextobjectid":700,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -293,6 +305,10 @@
         {
          "firstgid":7664,
          "source":"..\/..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
+        }, 
+        {
+         "firstgid":7707,
+         "source":"..\/..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }],
  "tilewidth":8,
  "type":"map",
