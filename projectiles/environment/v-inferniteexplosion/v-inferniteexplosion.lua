@@ -14,6 +14,7 @@ local flamePotency
 local suppressFlames
 -- local awaitingMerge
 -- local isAbsorber
+local merger
 
 function init()
   message.setHandler("v-inferniteMerge", function(_, _, sourceId)
@@ -45,7 +46,7 @@ end
 
 function destroy()
   -- If the projectile has not received a request to merge...
-  if not vMergeHandler.isMerged then
+  if not vMergeHandler.isMerged() then
     -- Load parameters
     local offset = config.getParameter("spawnOffset", {0, 0})
     local projectileType = config.getParameter("projectileType")

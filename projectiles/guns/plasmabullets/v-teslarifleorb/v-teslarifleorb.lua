@@ -23,7 +23,7 @@ function init()
 end
 
 function destroy()
-  if vMergeHandler.isMerged and detonationProjectileType then
+  if vMergeHandler.isMerged() and detonationProjectileType then
     world.spawnProjectile(detonationProjectileType, mcontroller.position(), projectile.sourceEntity(), {0, 0}, false, detonationParameters)
   end
 end

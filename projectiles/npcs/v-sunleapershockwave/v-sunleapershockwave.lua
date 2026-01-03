@@ -3,7 +3,7 @@ require "/scripts/util.lua"
 
 require "/scripts/v-world.lua"
 
--- TODO: Fix issue encountered due to world wrap.
+-- TODO: Fix issue encountered due to world wrap (this is an inherent problem with world.pointCollision).
 
 local DIRECTIONS = {{1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1}, {0, -1}, {1, -1}}
 

@@ -31,7 +31,7 @@ end
 
 function destroy()
   -- If the projectile has not received a request to merge...
-  if not vMergeHandler.isMerged then
+  if not vMergeHandler.isMerged() then
     -- Load parameters
     local offset = config.getParameter("spawnOffset", {0, 0})
     local damageFactor = config.getParameter("shockwaveDamageFactor", 1.0)

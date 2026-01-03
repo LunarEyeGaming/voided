@@ -13,33 +13,36 @@
   "damageType" : "NoDamage",
   "timeToLive" : 8,
   "speed" : 0,
-  
+
   "damagePoly" : [ [-13, 0], [-8, -8], [0, -13], [8, -8], [13, 0], [8, 8], [0, 13], [-8, 8] ],
-  
+
   "orientationLocked" : true,
-  
+
   "periodicActions" : [
     {
       "time" : 0,
       "repeat" : false,
       "action" : "sound",
-      "options" : [ "/sfx/projectiles/tar_hit_organic1.ogg", "/sfx/projectiles/tar_hit_organic2.ogg", 
+      "options" : [ "/sfx/projectiles/tar_hit_organic1.ogg", "/sfx/projectiles/tar_hit_organic2.ogg",
           "/sfx/projectiles/tar_hit_organic3.ogg", "/sfx/projectiles/tar_hit_organic4.ogg",
           "/sfx/projectiles/tar_hit_organic5.ogg" ]
     }
   ],
-  
-  "scripts" : [ "/scripts/projectiles/v-mergehandler.lua", "v-stucksludge.lua" ],
+
+  // "scripts" : [ "/scripts/projectiles/v-mergehandler.lua", "v-stucksludge.lua" ],
+  "scripts" : [ "v-stucksludge.lua" ],
   // "scripts" : [ "/scripts/projectiles/v-mergehandler.lua" ],
-  
-  "mergeHandlerType" : "v-stucksludge",
-  
-  "actionOnMerge" : {
-    "action" : "projectile",
-    "type" : "v-stucksludge3",
-    "inheritDamageFactor" : 1.0,
-    "inheritSpeedFactor" : 1.0
-  },
+
+  "mergeRadius" : 2,
+  "mergeHandlerType" : "v-sludge",
+  "selfMergeHandlerType" : "v-stucksludge",
+
+  // "actionOnMerge" : {
+  //   "action" : "projectile",
+  //   "type" : "v-stucksludge3",
+  //   "inheritDamageFactor" : 1.0,
+  //   "inheritSpeedFactor" : 1.0
+  // },
   "actionOnNonMerge" : {
     "action" : "actions",
     "list" : [

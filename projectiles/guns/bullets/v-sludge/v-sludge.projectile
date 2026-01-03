@@ -12,10 +12,10 @@
   "power" : 2.0,
   "damageKind" : "acid",
   "emitters" : [ "poisonplasma" ],
-  
+
   "scripts" : ["v-sludge.lua"],
   "scriptDelta" : 1,
-  
+
   "mergeRadius" : 2,
   "mergeDelay" : 0.0,
   "liveCollisionAction" : {
@@ -25,8 +25,8 @@
   },
   "deadCollisionAction" : {
     "action" : "projectile",
-    "type" : "v-stucksludge",
+    "type" : "v-stucksludge1",
     "inheritDamageFactor" : 1
   },
-  "targetType" : "v-stucksludge"
+  "targetType" : "v-sludge"
 }

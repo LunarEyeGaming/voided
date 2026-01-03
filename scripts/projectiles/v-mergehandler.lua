@@ -19,7 +19,7 @@ function update(dt)
 end
 
 function destroy()
-  if vMergeHandler.isMerged then
+  if vMergeHandler.isMerged() then
     projectile.processAction(actionOnMerge)
   else
     projectile.processAction(actionOnNonMerge)
