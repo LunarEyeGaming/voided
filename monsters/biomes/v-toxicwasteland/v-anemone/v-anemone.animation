@@ -9,8 +9,8 @@
 
         "states" : {
           "idle" : {
-            "frames" : 2,
-            "cycle" : 1.5,
+            "frames" : 12,
+            "cycle" : 2.4,
             "mode" : "loop"
           }
         }
@@ -86,7 +86,6 @@
   },
 
   "sounds" : {
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "inflate" : [ "/sfx/npc/monsters/v_bigpuffer_inflate.ogg" ]
+    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ]
   }
 }
