@@ -6,7 +6,7 @@
     ],
 
     "anchor" : [ "platforms1", "platforms2", "platforms3", "platforms4", "platforms5", "platforms6", "buildings1",
-      "buildings2", "buildings3", "buildings4", "buildings5" ],
+      "buildings2", "buildings3", "buildings4", "buildings5", "ship", "shipflipped" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -91,6 +91,20 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "buildings5.json" ]
+    },
+    {
+      "name" : "ship",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "ship.json" ]
+    },
+    {
+      "name" : "shipflipped",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "shipflipped.json" ]
     }
   ]
 }
