@@ -42,18 +42,20 @@ function HarpoonGunFire:update(dt, fireMode, shiftHeld)
 
   if self.isActive then
     local projectilePos = world.entityPosition(self.projectileId)
-    local chainLength = world.magnitude(self:firePosition(), projectilePos)
-    -- This doesn't completely fix the damage region not aligning with the visual, but it's close enough.
-    -- Angle of vector from fire position to projectile position, flipped if we're facing the opposite direction
-    local angle = vec2.angle(world.distance(projectilePos, self:firePosition()))
-    if self.weapon.aimDirection < 0 then
-      angle = math.pi - angle
-    end
-    local angleCorrectionAmount = util.angleDiff(self.weapon.aimAngle, angle)
-    local correctedDirection = vec2.rotate({chainLength, 0}, angleCorrectionAmount)
-    self.weapon:setDamage(self.damageConfig, {self.weapon.muzzleOffset, vec2.add(self.weapon.muzzleOffset, correctedDirection)}, self.fireTime)
-    if not status.overConsumeResource("energy", self.activeEnergyUsage * self.dt) then
-      self.isActive = false
+    if projectilePos then
+      local chainLength = world.magnitude(self:firePosition(), projectilePos)
+      -- This doesn't completely fix the damage region not aligning with the visual, but it's close enough.
+      -- Angle of vector from fire position to projectile position, flipped if we're facing the opposite direction
+      local angle = vec2.angle(world.distance(projectilePos, self:firePosition()))
+      if self.weapon.aimDirection < 0 then
+        angle = math.pi - angle
+      end
+      local angleCorrectionAmount = util.angleDiff(self.weapon.aimAngle, angle)
+      local correctedDirection = vec2.rotate({chainLength, 0}, angleCorrectionAmount)
+      self.weapon:setDamage(self.damageConfig, {self.weapon.muzzleOffset, vec2.add(self.weapon.muzzleOffset, correctedDirection)}, self.fireTime)
+      if not status.overConsumeResource("energy", self.activeEnergyUsage * self.dt) then
+        self.isActive = false
+      end
     end
   end
 
