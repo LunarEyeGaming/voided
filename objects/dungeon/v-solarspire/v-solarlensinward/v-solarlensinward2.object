@@ -1,0 +1,51 @@
+{
+  "objectName" : "v-solarlensinward2",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "category" : "decorative",
+  "price" : 250,
+  // "objectType" : "physics",
+
+  "description" : "<todo>",
+  "shortdescription" : "Solar Lens",
+  "race" : "avian",
+  "printable" : false,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "solarlensinward.png",
+      "direction" : "right",
+      "imagePosition" : [-8, -8],
+
+      "metaBoundBox" : [-1, -1, 1, 1],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ],
+
+      "renderLayer" : "Liquid+30"
+    }
+  ],
+
+  "animation" : "v-solarlensinward.animation",
+  "animationPosition" : [0, 0],
+  "animationParts" : {
+    "lens" : "solarlensinward.png",
+    "beamconnection" : "beamconnection.png"
+  },
+
+  "outputNodes" : [ [0, 0] ],
+
+  "scripts" : [ "v-solarlensinward.lua" ],
+  "scriptDelta" : 3,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

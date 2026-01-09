@@ -98,7 +98,7 @@ function init()
           damageType = "IgnoresDef",
           statusEffects = {"v-spireportalheat"}
         },
-        damagePolyThickness = 8,
+        damagePolyThickness = 7,
         maxBeamLength = 100,
         duration = 15,
         fastDuration = 7.5
