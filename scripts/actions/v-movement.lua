@@ -179,33 +179,37 @@ function v_flyAlongGround(args, board)
   local lineXOffset = lookaheadDistance * args.direction
 
   while true do
-    local groundLine = poly.translate({{lineXOffset, 0}, {lineXOffset, -args.keepGroundDistance * 2}}, mcontroller.position())
-    local ceilingLine = poly.translate({{lineXOffset, 0}, {lineXOffset, args.keepCeilingDistance}}, mcontroller.position())
-    local groundPoint = world.lineCollision(groundLine[1], groundLine[2]) or groundLine[2]
-    local ceilingPoint = world.lineCollision(ceilingLine[1], ceilingLine[2]) or ceilingLine[2]
+    if world.pointCollision(mcontroller.position()) then
+      mcontroller.controlApproachVelocity({args.direction * args.maxXVelocity, args.maxYVelocity}, baseParameters.airForce)
+    else
+      local groundLine = poly.translate({{lineXOffset, 0}, {lineXOffset, -args.keepGroundDistance * 2}}, mcontroller.position())
+      local ceilingLine = poly.translate({{lineXOffset, 0}, {lineXOffset, args.keepCeilingDistance}}, mcontroller.position())
+      local groundPoint = world.lineCollision(groundLine[1], groundLine[2]) or groundLine[2]
+      local ceilingPoint = world.lineCollision(ceilingLine[1], ceilingLine[2]) or ceilingLine[2]
 
-    -- Find liquid
-    local x = mcontroller.position()[1]
-    for y=groundLine[1][2], groundPoint[2], -1 do
-      y = math.floor(y)
-      local liquid = world.liquidAt({x, y})
-      if liquid then
-        groundPoint = {x, y + liquid[2]}
-        break
+      -- Find liquid
+      local x = mcontroller.position()[1]
+      for y=groundLine[1][2], groundPoint[2], -1 do
+        y = math.floor(y)
+        local liquid = world.liquidAt({x, y})
+        if liquid then
+          groundPoint = {x, y + liquid[2]}
+          break
+        end
       end
+
+      -- Move the ground point up by the height we want to keep,
+      -- gives us the y position we want to stay around
+      local groundApproachPoint = vec2.add(groundPoint, {0, args.keepGroundDistance})
+      local keepGroundDistanceFactor = world.distance(groundApproachPoint, mcontroller.position())[2] / args.keepGroundDistance
+
+      -- Keep away from the ceiling
+      local keepCeilingDistanceFactor = (-args.keepCeilingDistance + world.distance(ceilingPoint, mcontroller.position())[2]) / args.keepCeilingDistance
+
+      local yVelocityFactor = keepGroundDistanceFactor + keepCeilingDistanceFactor
+
+      mcontroller.controlApproachVelocity({args.direction * args.maxXVelocity, yVelocityFactor * args.maxYVelocity}, baseParameters.airForce)
     end
-
-    -- Move the ground point up by the height we want to keep,
-    -- gives us the y position we want to stay around
-    local groundApproachPoint = vec2.add(groundPoint, {0, args.keepGroundDistance})
-    local keepGroundDistanceFactor = world.distance(groundApproachPoint, mcontroller.position())[2] / args.keepGroundDistance
-
-    -- Keep away from the ceiling
-    local keepCeilingDistanceFactor = (-args.keepCeilingDistance + world.distance(ceilingPoint, mcontroller.position())[2]) / args.keepCeilingDistance
-
-    local yVelocityFactor = keepGroundDistanceFactor + keepCeilingDistanceFactor
-
-    mcontroller.controlApproachVelocity({args.direction * args.maxXVelocity, yVelocityFactor * args.maxYVelocity}, baseParameters.airForce)
 
     coroutine.yield()
   end
