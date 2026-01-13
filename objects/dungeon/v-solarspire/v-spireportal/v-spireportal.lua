@@ -328,6 +328,10 @@ function states.destabilize1()
     includedTypes = {"player"}
   })
 
+  if (#queried < 3) then
+    strikeLightnings(3 - #queried)
+  end
+
   for _, entityId in ipairs(queried) do
     strikeLightning(world.entityPosition(entityId))
     world.sendEntityMessage(entityId, "applyStatusEffect", "v-solarspireteleport")
@@ -460,7 +464,7 @@ function states.enemyHazard(cfg, fast)
     monsterWeightSum = monsterWeightSum + (cfg.monsterWeights[monsterType] or 1.0)
   end
 
-  sb.logInfo("%s, %s", monsterWeightSum, cfg.monsterScoreLimit)
+  -- sb.logInfo("%s, %s", monsterWeightSum, cfg.monsterScoreLimit)
 
   -- This hazard should trigger only when there aren't too many monsters in the arena. This depends on the weight of
   -- each monster.
