@@ -22,7 +22,7 @@ function v_giveBestPosition(args, board)
     local resolvedPoint = world.resolvePolyCollision(mcontroller.collisionPoly(), collidePoint, args.maxPolyResolution)
 
     if not resolvedPoint then
-      error("Failed to resolve collision. Original position: " .. collidePoint .. ", maxCorrection: " .. args.maxPolyResolution)
+      error(string.format("Failed to resolve collision. Original position: (%s, %s), maxCorrection: %s", collidePoint[1], collidePoint[2], args.maxPolyResolution))
     end
 
     newPosition = resolvedPoint

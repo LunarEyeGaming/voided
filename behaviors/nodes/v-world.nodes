@@ -53,5 +53,19 @@
     "output": {
       "velocity": {"type": "vec2", "key": null}
     }
+  },
+  "v_resolvePolyCollision": {
+    "type": "action",
+    "name": "v_resolvePolyCollision",
+    "title": "v_resolvePolyCollision",
+    "properties": {
+      "position": {"type": "position", "key": "self"},
+      "maxCorrection": {"type": "number"}
+    },
+    "category": "v-world",
+    "script": "/scripts/actions/v-world.lua",
+    "output": {
+      "result": {"type": "position", "key": null}
+    }
   }
 }

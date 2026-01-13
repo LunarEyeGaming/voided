@@ -60,3 +60,21 @@ function v_entityVelocity(args, board)
 
   return true, {velocity = world.entityVelocity(args.entity)}
 end
+
+-- param position
+-- param maxCorrection
+function v_resolvePolyCollision(args, board)
+  if not vBehavior.requireArgs("v_resolvePolyCollision", args, {"position", "maxCorrection"}) then
+    return false
+  end
+
+  local pos = world.resolvePolyCollision(mcontroller.collisionPoly(), args.position, args.maxCorrection)
+  if not pos then
+    world.debugPoint(args.position, "red")
+    return false
+  end
+
+  world.debugLine(args.position, pos, "green")
+
+  return true, {result = pos}
+end

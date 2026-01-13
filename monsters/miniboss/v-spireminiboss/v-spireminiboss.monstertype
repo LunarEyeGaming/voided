@@ -1,6 +1,6 @@
 {
   "type" : "v-spireminiboss",
-  "shortdescription" : "the humble square",
+  "shortdescription" : "Pyrebeast",
   "description" : "<todo>",
 
   "categories" : [ "v-spireminiboss" ],
@@ -36,7 +36,7 @@
 
     "movementSettings" : {
       "gravityEnabled" : false,
-      "collisionPoly" : [ [1, 1], [-1, 1], [-1, -1], [1, -1] ],
+      "collisionPoly" : [ [4, 3], [3, 4], [-3, 4], [-4, 3], [-4, -3], [-3, -4], [3, -4], [4, -3] ],
 
       "mass" : 4.0,
       "walkSpeed" : 5,

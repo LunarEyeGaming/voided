@@ -1,8 +1,9 @@
 {
   "name": "v-spireminiboss-orbittarget",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/world.lua",
+    "/scripts/actions/v-world.lua",
     "/scripts/actions/entity.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/math.lua",
@@ -11,7 +12,8 @@
   ],
   "parameters": {
     "orbitPeriod": 1,
-    "orbitRadius": 1
+    "orbitRadius": 1,
+    "maxPolyCorrection": 5
   },
   "root": {
     "title": "parallel",
@@ -23,15 +25,35 @@
     },
     "children": [
       {
-        "title": "entityPosition",
-        "type": "action",
-        "name": "entityPosition",
-        "parameters": {
-          "entity": {"key": "target"}
-        },
-        "output": {
-          "position": "targetPos"
-        }
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "entityPosition",
+            "type": "action",
+            "name": "entityPosition",
+            "parameters": {
+              "entity": {"key": "target"}
+            },
+            "output": {
+              "position": "targetPos"
+            }
+          },
+          {
+            "title": "v_resolvePolyCollision",
+            "type": "action",
+            "name": "v_resolvePolyCollision",
+            "parameters": {
+              "position": {"key": "targetPos"},
+              "maxCorrection": {"key": "<maxPolyCorrection>"}
+            },
+            "output": {
+              "result": "targetPos"
+            }
+          }
+        ]
       },
       {
         "title": "dynamic",

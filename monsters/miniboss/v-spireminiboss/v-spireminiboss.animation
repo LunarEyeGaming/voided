@@ -5,8 +5,8 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1,
-            "cycle" : 1,
+            "frames" : 8,
+            "cycle" : 0.8,
             "mode" : "loop"
           },
           "firewindup" : {
@@ -25,9 +25,9 @@
             "transition" : "idle"
           },
           "chargewindup" : {
-            "frames" : 1,
-            "cycle" : 1,
-            "mode" : "loop"
+            "frames" : 7,
+            "cycle" : 0.7,
+            "mode" : "end"
           },
           "charge" : {
             "frames" : 1,
@@ -55,7 +55,7 @@
       "body" : {
         "properties" : {
           "transformationGroups" : [ "body" ],
-          "offset" : [0, 0],
+          "offset" : [-1, 0],
           "zLevel" : 0
         },
         "partStates" : {
@@ -119,11 +119,19 @@
     "aggroHop" : [ ],
     "deathPuff" : [ "/sfx/npc/miniboss/v_laboratoryminiboss_explode.ogg" ],
     "fire" : {
+      "pool" : [ "/sfx/projectiles/fireball_poof.ogg" ],
+      "rangeMultiplier" : 2
+    },
+    "fire2" : {
       "pool" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ],
       "rangeMultiplier" : 2
     },
-    "charge" : {
+    "chargewindup" : {
       "pool" : [ "/sfx/npc/quadruped/tiger_pain1.ogg", "/sfx/npc/quadruped/tiger_pain2.ogg" ],
+      "rangeMultiplier" : 2
+    },
+    "charge" : {
+      "pool" : [ "/sfx/npc/monsters/v_novamonster_punch.ogg" ],
       "rangeMultiplier" : 2
     }
   }

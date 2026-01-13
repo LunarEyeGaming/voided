@@ -1,12 +1,13 @@
 {
   "name": "v-spireminiboss-charge",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/math.lua",
     "/scripts/actions/entity.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/miniboss/v-spireminiboss.lua",
     "/scripts/actions/movement.lua",
+    "/scripts/actions/v-world.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua"
@@ -14,7 +15,8 @@
   "parameters": {
     "chargeRadius": 20,
     "flightSpeed": 50,
-    "flightTolerance": 4
+    "flightTolerance": 5,
+    "maxPolyCorrection": 5
   },
   "root": {
     "title": "repeater",
@@ -133,7 +135,7 @@
                       "parameters": {
                         "entityPosition": {"key": "targetPos"},
                         "flightOffset": {"key": "flightVector"},
-                        "maxPolyResolution": {"value": 5}
+                        "maxPolyResolution": {"key": "<maxPolyCorrection>"}
                       },
                       "output": {
                         "result": "flightPosition"
@@ -168,15 +170,35 @@
                   "name": "failer",
                   "parameters": {},
                   "child": {
-                    "title": "entityPosition",
-                    "type": "action",
-                    "name": "entityPosition",
-                    "parameters": {
-                      "entity": {"key": "target"}
-                    },
-                    "output": {
-                      "position": "targetPos"
-                    }
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "entityPosition",
+                        "type": "action",
+                        "name": "entityPosition",
+                        "parameters": {
+                          "entity": {"key": "target"}
+                        },
+                        "output": {
+                          "position": "targetPos"
+                        }
+                      },
+                      {
+                        "title": "v_resolvePolyCollision",
+                        "type": "action",
+                        "name": "v_resolvePolyCollision",
+                        "parameters": {
+                          "position": {"key": "targetPos"},
+                          "maxCorrection": {"key": "<maxPolyCorrection>"}
+                        },
+                        "output": {
+                          "result": "targetPos"
+                        }
+                      }
+                    ]
                   }
                 },
                 {
@@ -214,7 +236,16 @@
             "target": {"key": "target"}
           },
           "output": {
+            "direction": "aimFacing",
             "vector": "aimDirection"
+          }
+        },
+        {
+          "title": "faceDirection",
+          "type": "action",
+          "name": "faceDirection",
+          "parameters": {
+            "direction": {"key": "aimFacing"}
           }
         },
         {
@@ -231,7 +262,24 @@
           "type": "action",
           "name": "timer",
           "parameters": {
-            "time": {"value": 1}
+            "time": {"value": 0.4}
+          }
+        },
+        {
+          "title": "playSound",
+          "type": "action",
+          "name": "playSound",
+          "parameters": {
+            "loops": {"value": 0},
+            "sound": {"value": "chargewindup"}
+          }
+        },
+        {
+          "title": "timer",
+          "type": "action",
+          "name": "timer",
+          "parameters": {
+            "time": {"value": 0.6}
           }
         },
         {

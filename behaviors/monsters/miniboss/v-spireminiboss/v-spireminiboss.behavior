@@ -1,6 +1,6 @@
 {
   "name": "v-spireminiboss",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/entity.lua",
     "/scripts/actions/world.lua",
@@ -10,8 +10,8 @@
     "/scripts/actions/time.lua"
   ],
   "parameters": {
-    "vehicleAwakenRange": 8,
-    "playerAwakenRange": 25
+    "maxPolyCorrection": 10,
+    "fireProjectileOffset": [4, -0.5]
   },
   "root": {
     "title": "Reset",
@@ -183,7 +183,10 @@
                                                 "title": "v-spireminiboss-stickyglobs",
                                                 "type": "module",
                                                 "name": "v-spireminiboss-stickyglobs",
-                                                "parameters": {}
+                                                "parameters": {
+                                                  "maxPolyCorrection": {"key": "<maxPolyCorrection>"},
+                                                  "projectileOffset": {"key": "<fireProjectileOffset>"}
+                                                }
                                               }
                                             },
                                             {
@@ -199,7 +202,9 @@
                                                 "title": "v-spireminiboss-charge",
                                                 "type": "module",
                                                 "name": "v-spireminiboss-charge",
-                                                "parameters": {}
+                                                "parameters": {
+                                                  "maxPolyCorrection": {"key": "<maxPolyCorrection>"}
+                                                }
                                               }
                                             },
                                             {
@@ -216,10 +221,12 @@
                                                 "type": "module",
                                                 "name": "v-spireminiboss-firebreath",
                                                 "parameters": {
-                                                  "fireArc": {"value": true},
-                                                  "highArc": {"value": false},
+                                                  "projectileType": {"value": "flame"},
                                                   "projectileInterval": {"value": 1.5},
-                                                  "projectileType": {"value": "flame"}
+                                                  "highArc": {"value": false},
+                                                  "fireArc": {"value": true},
+                                                  "maxPolyCorrection": {"key": "<maxPolyCorrection>"},
+                                                  "projectileOffset": {"key": "<fireProjectileOffset>"}
                                                 }
                                               }
                                             }

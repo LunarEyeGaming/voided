@@ -8,14 +8,17 @@
     "/scripts/actions/world.lua",
     "/scripts/actions/projectiles.lua",
     "/scripts/actions/miniboss/v-spireminiboss.lua",
-    "/scripts/actions/voidedutil.lua"
+    "/scripts/actions/voidedutil.lua",
+    "/scripts/actions/math.lua"
   ],
   "parameters": {
     "projectileType": "v-spireminibossfireball",
     "projectileInterval": 1.5,
     "highArc": false,
     "fireArc": false,
-    "projectileConfig": {"power": 10}
+    "projectileConfig": {"power": 10},
+    "maxPolyCorrection": 5,
+    "projectileOffset": [0, 0]
   },
   "root": {
     "title": "parallel",
@@ -32,7 +35,8 @@
         "name": "v-spireminiboss-orbittarget",
         "parameters": {
           "orbitPeriod": {"value": 7.5},
-          "orbitRadius": {"value": 20}
+          "orbitRadius": {"value": 20},
+          "maxPolyCorrection": {"key": "<maxPolyCorrection>"}
         }
       },
       {
@@ -191,12 +195,24 @@
               }
             },
             {
+              "title": "vecMultiply",
+              "type": "action",
+              "name": "vecMultiply",
+              "parameters": {
+                "first": {"key": "<projectileOffset>"},
+                "second": {"value": ["facingDirection", 1]}
+              },
+              "output": {
+                "vector": "projectileOffset"
+              }
+            },
+            {
               "title": "spawnProjectile",
               "type": "action",
               "name": "spawnProjectile",
               "parameters": {
                 "aimVector": {"key": "aimVector"},
-                "offset": {"value": [0, 0]},
+                "offset": {"key": "projectileOffset"},
                 "position": {"key": "self"},
                 "projectileConfig": {"key": "projectileConfig"},
                 "projectileType": {"key": "<projectileType>"},
