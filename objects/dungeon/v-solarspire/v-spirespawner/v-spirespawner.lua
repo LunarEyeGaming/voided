@@ -102,6 +102,7 @@ function onLoad()
   animator.setAnimationState("portalunstable", "invisible")
   animator.setPartTag("portalunstable", "opacity", "00")
   animator.stopAllSounds("sparks")
+  animator.setAnimationState("glass", storage.hasActiveInput and "cracked" or "normal")
 end
 
 function onGracePeriodStart()
@@ -119,34 +120,71 @@ function onGracePeriodTick(dt)
   end
 end
 
-function onActivation()
-  if not storage.hasGracePeriod then
-    animator.playSound("shatter")
-    animator.burstParticleEmitter("shatter")
-    animator.setAnimationState("glass", "broken")
+function onInputActivation()
+  animator.playSound("crack")
+  animator.burstParticleEmitter("crack")
+  animator.setAnimationState("glass", "cracked")
+
+  -- Build regions to check.
+  local regionsToCheck = {}
+  for _, region in ipairs(config.getParameter("exteriorRegions")) do
+    table.insert(regionsToCheck, vEntity.getRegionPoints(region))
+  end
+  local interiorRegion = vEntity.getRegionPoints(config.getParameter("interiorRegion"))
+  table.insert(regionsToCheck, interiorRegion)
+
+  -- Check for any friendlies inside of any regions
+  local friendlies = {}
+  for _, region in ipairs(regionsToCheck) do
+    local queried = world.entityQuery(region[1], region[2], {includedTypes = {"creature"}})
+
+    for _, entityId in ipairs(queried) do
+      local entityDamageTeam = world.entityDamageTeam(entityId)
+      if entityDamageTeam.type == "friendly" then
+        table.insert(friendlies, entityId)
+      end
+    end
   end
 
-  animator.setAnimationState("portalunstable", "visible")
-  animator.setPartTag("portalunstable", "opacity", "00")
+  -- If any were found...
+  if #friendlies > 0 then
+    -- Teleport them away.
+    openPortal()
 
-  animator.resetTransformationGroup("portalunstable")
-  animator.scaleTransformationGroup("portalunstable", {portalMinSize, portalMinSize})
+    util.wait(1.0)
 
-  local portalMaxSize = portalMinSize + portalSizeStep * #storage.waves
+    object.setAnimationParameter("lightningSeed", math.floor(os.clock()))
 
-  local timer = 0
-  local dt = script.updateDt()
-  util.wait(portalAppearTime, function()
-    local progress = timer / portalAppearTime
-    local portalSize = util.lerp(progress, portalMinSize, portalMaxSize)
-    animator.resetTransformationGroup("portalunstable")
-    animator.scaleTransformationGroup("portalunstable", {portalSize, portalSize})
-    animator.setPartTag("portalunstable", "opacity", string.format("%02x", math.floor(255 * progress)))
+    animator.playSound("sparks", -1)
+    animator.setParticleEmitterActive("portalsparks", true)
+    util.wait(preSpawnSparkTime)
+    animator.setParticleEmitterActive("portalsparks", false)
+    animator.stopAllSounds("sparks")
 
-    timer = timer + dt
-  end)
+    for _, entityId in ipairs(friendlies) do
+      animator.playSound("lightningStrike")
+      lightningController:add(portalLightningStartPosition, world.entityPosition(entityId))
+      world.sendEntityMessage(entityId, "applyStatusEffect", "v-solarspireteleport")
+      util.wait(0.15)
+    end
 
-  animator.setPartTag("portalunstable", "opacity", "ff")
+    -- Animate the portal closing.
+    util.wait(1.5)
+
+    local timer = 0
+    local dt = script.updateDt()
+    util.wait(portalDisappearTime, function()
+      local progress = 1 - timer / portalDisappearTime
+      animator.setPartTag("portalunstable", "opacity", string.format("%02x", math.floor(255 * progress)))
+
+      timer = timer + dt
+    end)
+    animator.setAnimationState("portalunstable", "invisible")
+  end
+end
+
+function onActivation()
+  openPortal()
 end
 
 function onWaveEnd(waveNum)
@@ -164,6 +202,7 @@ function onDeactivation()
 
   animator.setAnimationState("portal", "idle")
   animator.setAnimationState("portalunstable", "invisible")
+  animator.setAnimationState("glass", "broken")
 end
 
 --[[
@@ -322,6 +361,36 @@ function activateTriggers(waveTriggers)
   end
 
   return monsterIds
+end
+
+function openPortal()
+  if not storage.hasGracePeriod then
+    animator.playSound("shatter")
+    animator.burstParticleEmitter("shatter")
+    animator.setAnimationState("glass", "broken")
+  end
+
+  animator.setAnimationState("portalunstable", "visible")
+  animator.setPartTag("portalunstable", "opacity", "00")
+
+  animator.resetTransformationGroup("portalunstable")
+  animator.scaleTransformationGroup("portalunstable", {portalMinSize, portalMinSize})
+
+  local portalMaxSize = portalMinSize + portalSizeStep * #storage.waves
+
+  local timer = 0
+  local dt = script.updateDt()
+  util.wait(portalAppearTime, function()
+    local progress = timer / portalAppearTime
+    local portalSize = util.lerp(progress, portalMinSize, portalMaxSize)
+    animator.resetTransformationGroup("portalunstable")
+    animator.scaleTransformationGroup("portalunstable", {portalSize, portalSize})
+    animator.setPartTag("portalunstable", "opacity", string.format("%02x", math.floor(255 * progress)))
+
+    timer = timer + dt
+  end)
+
+  animator.setPartTag("portalunstable", "opacity", "ff")
 end
 
 function portalKinematicsGen(initialPortalSize, targetPortalSizeRef)

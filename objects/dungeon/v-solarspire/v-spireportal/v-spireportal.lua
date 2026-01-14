@@ -383,9 +383,6 @@ function states.hazardStart()
     if minibossId and not world.entityExists(minibossId) then
       storage.status = "open"
 
-      animator.setParticleEmitterActive("portalsparks", false)
-      animator.stopAllSounds("sparks")
-
       return states.giveTreasure()
     end
     invokeHazard(pickHazard(), hazardCounter < summonMinibossThreshold)
@@ -594,6 +591,9 @@ function states.giveTreasure()
   end
 
   util.wait(1.0)
+
+  animator.setParticleEmitterActive("portalsparks", false)
+  animator.stopAllSounds("sparks")
 
   states.openToWorld()
 end

@@ -69,6 +69,16 @@ function onInteraction(args)
   skippedGracePeriod = true
 end
 
+function onNodeConnectionChange(args)
+  storage.hasActiveInput = not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
+    object.setOutputNodeLevel(1, not storage.hasActiveInput)
+end
+
+function onInputNodeChange(args)
+  storage.hasActiveInput = not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
+    object.setOutputNodeLevel(1, not storage.hasActiveInput)
+end
+
 -- STATE FUNCTIONS
 states = {}
 
@@ -111,6 +121,12 @@ end
   team to be outside of it.
 ]]
 function states.wait()
+  while not storage.hasActiveInput do
+    coroutine.yield()
+  end
+
+  onInputActivation()
+
   -- While no "friendly" creatures are in the arena or at least one "friendly" creature is outside the arena, do
   -- nothing.
   while not friendlyInsideRegions(storage.activationZones) or friendlyInsideRegions(exteriorRegions) do
@@ -591,12 +607,14 @@ end
 --[[
   If the room was not cleared, opens one door, leaves the other closed, and waits for friendlies to enter. Otherwise,
   opens all doors and never activates again.
+
+  If an input node is connected and it is not active, it leaves all doors open instead.
 ]]
 function reset()
   object.setOutputNodeLevel(0, true)
 
   if storage.active then
-    object.setOutputNodeLevel(1, false)
+    object.setOutputNodeLevel(1, not storage.hasActiveInput)
     state:set(states.postInit)
   else
     object.setOutputNodeLevel(1, true)
@@ -618,11 +636,18 @@ function _errorHandler(msg)
 end
 
 -- HOOKS (may use stubs by default)
+
 --[[
   A function called once the object finishes loading the waves or on a reset.
 ]]
 function onLoad()
 
+end
+
+--[[
+  A function called once the object starts receiving input.
+]]
+function onInputActivation()
 end
 
 --[[

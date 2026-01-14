@@ -44,6 +44,7 @@
   "health" : 5,
   "smashOnBreak" : true,
 
+  "inputNodes" : [ [0, 1] ],
   // Left output node is the entry door. Right output node is the doorway to the switch.
   "outputNodes" : [ [0, 0], [1, 0] ],
 
