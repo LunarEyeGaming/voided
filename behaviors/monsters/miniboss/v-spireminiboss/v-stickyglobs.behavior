@@ -1,10 +1,10 @@
 {
   "name": "v-spireminiboss-stickyglobs",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/time.lua",
-    "/scripts/actions/animator.lua",
     "/scripts/actions/movement.lua",
+    "/scripts/actions/animator.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/projectiles.lua",
     "/scripts/actions/miniboss/v-spireminiboss.lua",
@@ -44,7 +44,7 @@
         "type": "decorator",
         "name": "repeater",
         "parameters": {
-          "maxLoops": {"value": 7},
+          "maxLoops": {"value": 5},
           "untilSuccess": {"value": false}
         },
         "child": {
@@ -58,178 +58,239 @@
               "type": "action",
               "name": "timer",
               "parameters": {
-                "time": {"value": 1}
+                "time": {"value": 0.7}
               }
             },
             {
-              "title": "setAnimationState",
-              "type": "action",
-              "name": "setAnimationState",
-              "parameters": {
-                "state": {"value": "firewindup"},
-                "type": {"value": "body"}
-              }
-            },
-            {
-              "title": "timer",
-              "type": "action",
-              "name": "timer",
-              "parameters": {
-                "time": {"value": 0.5}
-              }
-            },
-            {
-              "title": "sequence",
+              "title": "parallel",
               "type": "composite",
-              "name": "sequence",
-              "parameters": {},
+              "name": "parallel",
+              "parameters": {
+                "fail": {"value": -1},
+                "success": {"value": 1}
+              },
               "children": [
                 {
-                  "title": "entityDirection",
-                  "type": "action",
-                  "name": "entityDirection",
-                  "parameters": {
-                    "entity": {"key": "self"},
-                    "target": {"key": "target"}
-                  },
-                  "output": {
-                    "vector": "aimVector"
+                  "title": "failer",
+                  "type": "decorator",
+                  "name": "failer",
+                  "parameters": {},
+                  "child": {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "entityDirection",
+                        "type": "action",
+                        "name": "entityDirection",
+                        "parameters": {
+                          "entity": {"key": "self"},
+                          "target": {"key": "target"}
+                        },
+                        "output": {
+                          "direction": "toTargetDirection"
+                        }
+                      },
+                      {
+                        "title": "faceDirection",
+                        "type": "action",
+                        "name": "faceDirection",
+                        "parameters": {
+                          "direction": {"key": "toTargetDirection"}
+                        }
+                      }
+                    ]
                   }
                 },
                 {
-                  "title": "succeeder",
-                  "type": "decorator",
-                  "name": "succeeder",
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
                   "parameters": {},
-                  "child": {
-                    "title": "optional",
-                    "type": "decorator",
-                    "name": "optional",
-                    "parameters": {
-                      "shouldRun": {"key": "<fireArc>"}
+                  "children": [
+                    {
+                      "title": "setAnimationState",
+                      "type": "action",
+                      "name": "setAnimationState",
+                      "parameters": {
+                        "state": {"value": "firewindup"},
+                        "type": {"value": "body"}
+                      }
                     },
-                    "child": {
+                    {
+                      "title": "timer",
+                      "type": "action",
+                      "name": "timer",
+                      "parameters": {
+                        "time": {"value": 0.5}
+                      }
+                    },
+                    {
                       "title": "sequence",
                       "type": "composite",
                       "name": "sequence",
                       "parameters": {},
                       "children": [
                         {
-                          "title": "entityPosition",
+                          "title": "entityDirection",
                           "type": "action",
-                          "name": "entityPosition",
+                          "name": "entityDirection",
                           "parameters": {
-                            "entity": {"key": "target"}
+                            "entity": {"key": "self"},
+                            "target": {"key": "target"}
                           },
                           "output": {
-                            "position": "targetPos"
+                            "vector": "aimVector"
                           }
                         },
                         {
-                          "title": "projectileGravityMultiplier",
-                          "type": "action",
-                          "name": "projectileGravityMultiplier",
-                          "parameters": {
-                            "projectileName": {"value": "<projectileType>"}
-                          },
-                          "output": {
-                            "gravityMultiplier": "gravityMultiplier"
-                          }
-                        },
-                        {
-                          "title": "projectileAimVector",
-                          "type": "action",
-                          "name": "projectileAimVector",
-                          "parameters": {
-                            "collisionCheck": {"value": false},
-                            "fromPosition": {"key": "self"},
-                            "gravityMultiplier": {"key": "gravityMultiplier"},
-                            "speed": {"value": 50},
-                            "toPosition": {"key": "targetPos"},
-                            "useHighArc": {"key": "<highArc>"}
-                          },
-                          "output": {
-                            "aimVector": "aimVector"
+                          "title": "succeeder",
+                          "type": "decorator",
+                          "name": "succeeder",
+                          "parameters": {},
+                          "child": {
+                            "title": "optional",
+                            "type": "decorator",
+                            "name": "optional",
+                            "parameters": {
+                              "shouldRun": {"key": "<fireArc>"}
+                            },
+                            "child": {
+                              "title": "sequence",
+                              "type": "composite",
+                              "name": "sequence",
+                              "parameters": {},
+                              "children": [
+                                {
+                                  "title": "entityPosition",
+                                  "type": "action",
+                                  "name": "entityPosition",
+                                  "parameters": {
+                                    "entity": {"key": "target"}
+                                  },
+                                  "output": {
+                                    "position": "targetPos"
+                                  }
+                                },
+                                {
+                                  "title": "projectileGravityMultiplier",
+                                  "type": "action",
+                                  "name": "projectileGravityMultiplier",
+                                  "parameters": {
+                                    "projectileName": {"value": "<projectileType>"}
+                                  },
+                                  "output": {
+                                    "gravityMultiplier": "gravityMultiplier"
+                                  }
+                                },
+                                {
+                                  "title": "projectileAimVector",
+                                  "type": "action",
+                                  "name": "projectileAimVector",
+                                  "parameters": {
+                                    "collisionCheck": {"value": false},
+                                    "fromPosition": {"key": "self"},
+                                    "gravityMultiplier": {"key": "gravityMultiplier"},
+                                    "speed": {"value": 50},
+                                    "toPosition": {"key": "targetPos"},
+                                    "useHighArc": {"key": "<highArc>"}
+                                  },
+                                  "output": {
+                                    "aimVector": "aimVector"
+                                  }
+                                }
+                              ]
+                            }
                           }
                         }
                       ]
+                    },
+                    {
+                      "title": "v_getAirBurstTTL",
+                      "type": "action",
+                      "name": "v_getAirBurstTTL",
+                      "parameters": {
+                        "endPos": {"key": "targetPos"},
+                        "speed": {"value": 50},
+                        "startPos": {"key": "self"}
+                      },
+                      "output": {
+                        "time": "timeToLive"
+                      }
+                    },
+                    {
+                      "title": "v_setJsonKey",
+                      "type": "action",
+                      "name": "v_setJsonKey",
+                      "parameters": {
+                        "object": {"key": "<projectileConfig>"},
+                        "key": {"value": "timeToLive"},
+                        "bool": {"value": false},
+                        "number": {"key": "timeToLive"}
+                      },
+                      "output": {
+                        "object": "projectileConfig"
+                      }
+                    },
+                    {
+                      "title": "setAnimationState",
+                      "type": "action",
+                      "name": "setAnimationState",
+                      "parameters": {
+                        "state": {"value": "fire"},
+                        "type": {"value": "body"}
+                      }
+                    },
+                    {
+                      "title": "vecMultiply",
+                      "type": "action",
+                      "name": "vecMultiply",
+                      "parameters": {
+                        "first": {"key": "<projectileOffset>"},
+                        "second": {"value": ["facingDirection", 1]}
+                      },
+                      "output": {
+                        "vector": "projectileOffset"
+                      }
+                    },
+                    {
+                      "title": "spawnProjectile",
+                      "type": "action",
+                      "name": "spawnProjectile",
+                      "parameters": {
+                        "aimVector": {"key": "aimVector"},
+                        "offset": {"key": "projectileOffset"},
+                        "position": {"key": "self"},
+                        "projectileConfig": {"key": "projectileConfig"},
+                        "projectileType": {"key": "<projectileType>"},
+                        "scalePower": {"value": true},
+                        "sourceEntity": {"key": "self"},
+                        "trackSource": {"value": false},
+                        "uniqueRepeatGroup": {"value": true}
+                      }
+                    },
+                    {
+                      "title": "playSound",
+                      "type": "action",
+                      "name": "playSound",
+                      "parameters": {
+                        "loops": {"value": 0},
+                        "sound": {"value": "fire"}
+                      }
+                    },
+                    {
+                      "title": "timer",
+                      "type": "action",
+                      "name": "timer",
+                      "parameters": {
+                        "time": {"value": 1.3}
+                      }
                     }
-                  }
+                  ]
                 }
               ]
-            },
-            {
-              "title": "v_getAirBurstTTL",
-              "type": "action",
-              "name": "v_getAirBurstTTL",
-              "parameters": {
-                "endPos": {"key": "targetPos"},
-                "speed": {"value": 50},
-                "startPos": {"key": "self"}
-              },
-              "output": {
-                "time": "timeToLive"
-              }
-            },
-            {
-              "title": "v_setJsonKey",
-              "type": "action",
-              "name": "v_setJsonKey",
-              "parameters": {
-                "object": {"key": "<projectileConfig>"},
-                "key": {"value": "timeToLive"},
-                "bool": {"value": false},
-                "number": {"key": "timeToLive"}
-              },
-              "output": {
-                "object": "projectileConfig"
-              }
-            },
-            {
-              "title": "setAnimationState",
-              "type": "action",
-              "name": "setAnimationState",
-              "parameters": {
-                "state": {"value": "fire"},
-                "type": {"value": "body"}
-              }
-            },
-            {
-              "title": "vecMultiply",
-              "type": "action",
-              "name": "vecMultiply",
-              "parameters": {
-                "first": {"key": "<projectileOffset>"},
-                "second": {"value": ["facingDirection", 1]}
-              },
-              "output": {
-                "vector": "projectileOffset"
-              }
-            },
-            {
-              "title": "spawnProjectile",
-              "type": "action",
-              "name": "spawnProjectile",
-              "parameters": {
-                "aimVector": {"key": "aimVector"},
-                "offset": {"key": "projectileOffset"},
-                "position": {"key": "self"},
-                "projectileConfig": {"key": "projectileConfig"},
-                "projectileType": {"key": "<projectileType>"},
-                "scalePower": {"value": true},
-                "sourceEntity": {"key": "self"},
-                "trackSource": {"value": false},
-                "uniqueRepeatGroup": {"value": true}
-              }
-            },
-            {
-              "title": "playSound",
-              "type": "action",
-              "name": "playSound",
-              "parameters": {
-                "loops": {"value": 0},
-                "sound": {"value": "fire"}
-              }
             }
           ]
         }

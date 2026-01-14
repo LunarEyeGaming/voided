@@ -19,16 +19,19 @@ function v_giveBestPosition(args, board)
 
   local newPosition
   if collidePoint then
-    local resolvedPoint = world.resolvePolyCollision(mcontroller.collisionPoly(), collidePoint, args.maxPolyResolution)
-
-    if not resolvedPoint then
-      error(string.format("Failed to resolve collision. Original position: (%s, %s), maxCorrection: %s", collidePoint[1], collidePoint[2], args.maxPolyResolution))
-    end
-
-    newPosition = resolvedPoint
-  else
-    newPosition = flightPosition
+    world.debugLine(args.entityPosition, flightPosition, "magenta")
+    world.debugPoint(collidePoint, "magenta")
+    local direction = vec2.norm(args.flightOffset)
+    flightPosition = vec2.sub(collidePoint, vec2.mul(direction, 2))
   end
+
+  local resolvedPoint = world.resolvePolyCollision(mcontroller.collisionPoly(), flightPosition, args.maxPolyResolution)
+
+  if not resolvedPoint then
+    error(string.format("Failed to resolve collision. Original position: (%s, %s), maxCorrection: %s", flightPosition[1], flightPosition[2], args.maxPolyResolution))
+  end
+
+  newPosition = resolvedPoint
 
   world.debugPoint(newPosition, "green")
 

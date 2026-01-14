@@ -10,28 +10,53 @@
             "mode" : "loop"
           },
           "firewindup" : {
-            "frames" : 1,
-            "cycle" : 1,
-            "mode" : "loop",
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "end",
             "properties" : {
               "immediateSound" : "/sfx/npc/monsters/v_spireminiboss_magmaglob_windup.ogg",
               "immediateSoundRangeMultiplier" : 2
             }
           },
+          "firewinduplong" : {
+            "frames" : 8,
+            "cycle" : 0.8,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_dragon_windup.ogg",
+              "immediateSoundRangeMultiplier" : 2
+            }
+          },
           "fire" : {
-            "frames" : 1,
-            "cycle" : 0.25,
+            "frames" : 4,
+            "cycle" : 0.4,
             "mode" : "transition",
             "transition" : "idle"
           },
           "chargewindup" : {
-            "frames" : 7,
-            "cycle" : 0.7,
+            "frames" : 8,
+            "cycle" : 0.8,
             "mode" : "end"
           },
           "charge" : {
-            "frames" : 1,
-            "cycle" : 2.5,
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          },
+          "firestart" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "fireloop"
+          },
+          "fireloop" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          },
+          "fireend" : {
+            "frames" : 2,
+            "cycle" : 0.2,
             "mode" : "transition",
             "transition" : "idle"
           }
@@ -73,6 +98,26 @@
             "fire" : {
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
+              }
+            },
+            "firewinduplong" : {
+              "properties" : {
+                "image" : "<partImage>:firewinduplong.<frame>"
+              }
+            },
+            "firestart" : {
+              "properties" : {
+                "image" : "<partImage>:firestart.<frame>"
+              }
+            },
+            "fireloop" : {
+              "properties" : {
+                "image" : "<partImage>:fireloop.<frame>"
+              }
+            },
+            "fireend" : {
+              "properties" : {
+                "image" : "<partImage>:fireend.<frame>"
               }
             },
             "chargewindup" : {

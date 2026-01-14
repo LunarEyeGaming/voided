@@ -1,13 +1,14 @@
 {
   "name": "v-spireminiboss",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/entity.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/status.lua",
     "/scripts/actions/monster.lua",
     "/scripts/actions/miniboss/v-cityminiboss.lua",
-    "/scripts/actions/time.lua"
+    "/scripts/actions/time.lua",
+    "/scripts/actions/v-movement.lua"
   ],
   "parameters": {
     "maxPolyCorrection": 10,
@@ -233,12 +234,31 @@
                                           ]
                                         },
                                         {
-                                          "title": "timer",
-                                          "type": "action",
-                                          "name": "timer",
+                                          "title": "parallel",
+                                          "type": "composite",
+                                          "name": "parallel",
                                           "parameters": {
-                                            "time": {"value": 1.75}
-                                          }
+                                            "fail": {"value": -1},
+                                            "success": {"value": 2}
+                                          },
+                                          "children": [
+                                            {
+                                              "title": "v_stop",
+                                              "type": "action",
+                                              "name": "v_stop",
+                                              "parameters": {
+                                                "stopForce": {"value": 75}
+                                              }
+                                            },
+                                            {
+                                              "title": "timer",
+                                              "type": "action",
+                                              "name": "timer",
+                                              "parameters": {
+                                                "time": {"value": 1.75}
+                                              }
+                                            }
+                                          ]
                                         }
                                       ]
                                     }

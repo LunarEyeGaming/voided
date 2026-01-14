@@ -1,16 +1,16 @@
 {
   "name": "v-spireminiboss-charge",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/math.lua",
-    "/scripts/actions/entity.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/miniboss/v-spireminiboss.lua",
+    "/scripts/actions/sensor.lua",
     "/scripts/actions/movement.lua",
-    "/scripts/actions/v-world.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/animator.lua",
-    "/scripts/actions/time.lua"
+    "/scripts/actions/time.lua",
+    "/scripts/actions/entity.lua"
   ],
   "parameters": {
     "chargeRadius": 20,
@@ -89,117 +89,88 @@
           ]
         },
         {
-          "title": "dynamic",
+          "title": "parallel",
           "type": "composite",
-          "name": "dynamic",
-          "parameters": {},
+          "name": "parallel",
+          "parameters": {
+            "fail": {"value": -1},
+            "success": {"value": 1}
+          },
           "children": [
             {
-              "title": "parallel",
+              "title": "failer",
+              "type": "decorator",
+              "name": "failer",
+              "parameters": {},
+              "child": {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "entityPosition",
+                    "type": "action",
+                    "name": "entityPosition",
+                    "parameters": {
+                      "entity": {"key": "target"}
+                    },
+                    "output": {
+                      "position": "targetPos"
+                    }
+                  },
+                  {
+                    "title": "v_giveBestPosition",
+                    "type": "action",
+                    "name": "v_giveBestPosition",
+                    "parameters": {
+                      "entityPosition": {"key": "targetPos"},
+                      "flightOffset": {"key": "flightVector"},
+                      "maxPolyResolution": {"key": "<maxPolyCorrection>"}
+                    },
+                    "output": {
+                      "result": "flightPosition"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "title": "dynamic",
               "type": "composite",
-              "name": "parallel",
-              "parameters": {
-                "fail": {"value": 1},
-                "success": {"value": -1}
-              },
+              "name": "dynamic",
+              "parameters": {},
               "children": [
                 {
-                  "title": "entityInSight",
-                  "type": "action",
-                  "name": "entityInSight",
-                  "parameters": {
-                    "entity": {"key": "target"}
-                  }
-                },
-                {
-                  "title": "sequence",
+                  "title": "parallel",
                   "type": "composite",
-                  "name": "sequence",
-                  "parameters": {},
+                  "name": "parallel",
+                  "parameters": {
+                    "fail": {"value": 1},
+                    "success": {"value": -1}
+                  },
                   "children": [
                     {
-                      "title": "entityPosition",
+                      "title": "lineTileCollision",
                       "type": "action",
-                      "name": "entityPosition",
+                      "name": "lineTileCollision",
                       "parameters": {
-                        "entity": {"key": "target"}
-                      },
-                      "output": {
-                        "position": "targetPos"
+                        "collisionType": {"value": ["Null", "Block", "Dynamic", "Slippery"]},
+                        "offset": {"key": "flightVector"},
+                        "position": {"key": "targetPos"}
                       }
                     },
                     {
-                      "title": "v_giveBestPosition",
+                      "title": "flyToPosition",
                       "type": "action",
-                      "name": "v_giveBestPosition",
+                      "name": "flyToPosition",
                       "parameters": {
-                        "entityPosition": {"key": "targetPos"},
-                        "flightOffset": {"key": "flightVector"},
-                        "maxPolyResolution": {"key": "<maxPolyCorrection>"}
-                      },
-                      "output": {
-                        "result": "flightPosition"
+                        "position": {"key": "flightPosition"},
+                        "speed": {"key": "<flightSpeed>"},
+                        "tolerance": {"key": "<flightTolerance>"}
                       }
                     }
                   ]
-                },
-                {
-                  "title": "flyToPosition",
-                  "type": "action",
-                  "name": "flyToPosition",
-                  "parameters": {
-                    "position": {"key": "flightPosition"},
-                    "speed": {"key": "<flightSpeed>"},
-                    "tolerance": {"key": "<flightTolerance>"}
-                  }
-                }
-              ]
-            },
-            {
-              "title": "parallel",
-              "type": "composite",
-              "name": "parallel",
-              "parameters": {
-                "fail": {"value": -1},
-                "success": {"value": 1}
-              },
-              "children": [
-                {
-                  "title": "failer",
-                  "type": "decorator",
-                  "name": "failer",
-                  "parameters": {},
-                  "child": {
-                    "title": "sequence",
-                    "type": "composite",
-                    "name": "sequence",
-                    "parameters": {},
-                    "children": [
-                      {
-                        "title": "entityPosition",
-                        "type": "action",
-                        "name": "entityPosition",
-                        "parameters": {
-                          "entity": {"key": "target"}
-                        },
-                        "output": {
-                          "position": "targetPos"
-                        }
-                      },
-                      {
-                        "title": "v_resolvePolyCollision",
-                        "type": "action",
-                        "name": "v_resolvePolyCollision",
-                        "parameters": {
-                          "position": {"key": "targetPos"},
-                          "maxCorrection": {"key": "<maxPolyCorrection>"}
-                        },
-                        "output": {
-                          "result": "targetPos"
-                        }
-                      }
-                    ]
-                  }
                 },
                 {
                   "title": "moveToPosition",
@@ -211,7 +182,7 @@
                     "maxGround": {"value": 5},
                     "minGround": {"value": -5},
                     "closeDoors": {"value": false},
-                    "position": {"key": "targetPos"},
+                    "position": {"key": "flightPosition"},
                     "run": {"value": false}
                   }
                 }
@@ -334,6 +305,69 @@
               "name": "failer",
               "parameters": {},
               "child": {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "velocity",
+                    "type": "action",
+                    "name": "velocity",
+                    "parameters": {},
+                    "output": {
+                      "velocity": "ownVelocity"
+                    }
+                  },
+                  {
+                    "title": "vecMultiply",
+                    "type": "action",
+                    "name": "vecMultiply",
+                    "parameters": {
+                      "first": {"key": "ownVelocity"},
+                      "second": {"value": ["facingDirection", 1]}
+                    },
+                    "output": {
+                      "vector": "ownVelocityFlipped"
+                    }
+                  },
+                  {
+                    "title": "vecAngle",
+                    "type": "action",
+                    "name": "vecAngle",
+                    "parameters": {
+                      "vector": {"key": "ownVelocityFlipped"}
+                    },
+                    "output": {
+                      "angle": "ownVelocityAngle"
+                    }
+                  },
+                  {
+                    "title": "resetTransformationGroup",
+                    "type": "action",
+                    "name": "resetTransformationGroup",
+                    "parameters": {
+                      "transformationGroup": {"value": "body"}
+                    }
+                  },
+                  {
+                    "title": "rotateTransformationGroup",
+                    "type": "action",
+                    "name": "rotateTransformationGroup",
+                    "parameters": {
+                      "angle": {"key": "ownVelocityAngle"},
+                      "transformationGroup": {"value": "body"}
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "title": "failer",
+              "type": "decorator",
+              "name": "failer",
+              "parameters": {},
+              "child": {
                 "title": "controlDown",
                 "type": "action",
                 "name": "controlDown",
@@ -380,6 +414,14 @@
           "name": "v_stop",
           "parameters": {
             "stopForce": {"value": 500}
+          }
+        },
+        {
+          "title": "resetTransformationGroup",
+          "type": "action",
+          "name": "resetTransformationGroup",
+          "parameters": {
+            "transformationGroup": {"value": "body"}
           }
         },
         {
