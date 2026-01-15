@@ -56,7 +56,7 @@
   "inputNodes" : [ [0, 0] ],
   "outputNodes" : [ [1, 0], [2, 0] ],
 
-  "animationScripts" : [ "/objects/dungeon/v-solarspire/v-spirespawner/v-spirespawnerlightning.lua" ],
+  "animationScripts" : [ "/objects/dungeon/v-solarspire/v-spirespawner/v-spirespawnerlightning.lua", "v-spireportalbeamrender.lua" ],
 
   "scripts" : [ "v-spireportal.lua" ],
   "scriptDelta" : 1,

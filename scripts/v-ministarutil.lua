@@ -434,8 +434,8 @@ do
     return materialConfigs[material]
   end
 
-  ---Like `world.lineCollision`, except it goes through blocks that are solid and opaque. This also means that it's more
-  ---expensive to call, so use sparingly.
+  ---Like `world.lineCollision`, except it goes through blocks that are not solid or are transparent. This also means
+  ---that it's more expensive to call, so use sparingly.
   ---@param startPoint Vec2F
   ---@param endPoint Vec2F
   ---@param collisionKinds? CollisionSet

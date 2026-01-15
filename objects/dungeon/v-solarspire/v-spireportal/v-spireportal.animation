@@ -165,24 +165,24 @@
           }
         }
       },
-      "sunbeam" : {
-        "properties" : {
-          "offset" : [10, 10],
-          "centered" : true,
-          "fullbright" : true,
-          "zLevel" : 2,
-          "transformationGroups" : [ "sunbeam", "rotation" ]
-        },
-        "partStates" : {
-          "sunbeam" : {
-            "on" : {
-              "properties" : {
-                "image" : "<partImage>?multiply=ffd86b7f"
-              }
-            }
-          }
-        }
-      },
+      // "sunbeam" : {
+      //   "properties" : {
+      //     "offset" : [10, 10],
+      //     "centered" : true,
+      //     "fullbright" : true,
+      //     "zLevel" : 2,
+      //     "transformationGroups" : [ "sunbeam", "rotation" ]
+      //   },
+      //   "partStates" : {
+      //     "sunbeam" : {
+      //       "on" : {
+      //         "properties" : {
+      //           "image" : "<partImage>?multiply=ffd86b7f"
+      //         }
+      //       }
+      //     }
+      //   }
+      // },
       "sunbeamstartfg" : {
         "properties" : {
           "offset" : [10, 10],

@@ -46,6 +46,7 @@ local lightningController
 local lightningControllerBig
 local minibossId
 local monsterIds
+local sunBeam
 
 -- HOOKS
 function init()
@@ -98,7 +99,8 @@ function init()
           damageType = "IgnoresDef",
           statusEffects = {"v-spireportalheat"}
         },
-        damagePolyThickness = 7,
+        beamDamagePadding = 1,
+        beamThickness = 14,
         maxBeamLength = 100,
         duration = 15,
         fastDuration = 7.5
@@ -178,6 +180,18 @@ function init()
   message.setHandler("v-monsterSpawned", function(_, _, monsterId)
     table.insert(monsterIds, monsterId)
   end)
+
+  sunBeam = {
+    startPositions = {},
+    mags = {},
+    angle = 0,
+    startPos = {0, 0},
+    color = {255, 216, 107, 128},
+    topImage = "/objects/dungeon/v-solarspire/v-spireportal/sunbeamtop.png",
+    bottomImage = "/objects/dungeon/v-solarspire/v-spireportal/sunbeambottom.png",
+    middleImage = "/objects/dungeon/v-solarspire/v-spireportal/sunbeammid.png"
+  }
+  object.setAnimationParameter("sunBeam", sunBeam)
 end
 
 function update(dt)
@@ -415,36 +429,72 @@ end
 
 function states.rotatingHazard(cfg, fast)
   local startAngle = cfg.startAngle
+  local beamThickness = cfg.beamThickness
 
   switchDestination("surface", startAngle)
 
   animator.setAnimationState("sunbeam", "on")
 
+  local dmgSources = {}
   local dmgSource = copy(cfg.damageSource)
   local angleDelta = cfg.endAngle - cfg.startAngle
   local duration = fast and cfg.fastDuration or cfg.duration
   local timer = 0
   util.wait(duration, function(dt)
+    dmgSources = {}
+
     local angle = util.easeInOutSin(timer / duration, startAngle, angleDelta)
-    local beamEnd = vec2.add(center, vec2.withAngle(angle, cfg.maxBeamLength))
-    beamEnd = vMinistar.lightLineTileCollision(center, beamEnd) or beamEnd
-    local mag = world.magnitude(center, beamEnd)
-    local damagePoly = generateBeamPoly(cfg.damagePolyThickness, mag, angle, centerOffset)
+    local damagePoly = generateSemicirclePoly((cfg.beamThickness - cfg.beamDamagePadding) / 2, angle, centerOffset)
     dmgSource.poly = damagePoly
+    table.insert(dmgSources, dmgSource)
 
     animator.resetTransformationGroup("rotation")
     animator.rotateTransformationGroup("rotation", angle, centerOffset)
-    animator.resetTransformationGroup("sunbeam")
-    animator.scaleTransformationGroup("sunbeam", {mag, 1}, centerOffset)
-    animator.translateTransformationGroup("sunbeam", {mag / 2, 0})
 
-    object.setDamageSources({dmgSource})
+    local polies = {}
+    sunBeam.angle = angle
+    sunBeam.mags = {}
+    sunBeam.startPositions = {}
+    for i = 0, beamThickness - 1 do
+      local perpOffset = -beamThickness / 2 + i + 0.5
+      local startOffset = vec2.rotate({0, perpOffset}, angle)
+      local endOffset = vec2.rotate({cfg.maxBeamLength, perpOffset}, angle)
+      local beamStart = vec2.add(center, startOffset)
+      local beamEnd = vec2.add(center, endOffset)
+      beamEnd = vMinistar.lightLineTileCollision(beamStart, beamEnd) or beamEnd
+      world.debugLine(beamStart, beamEnd, "green")
+      local mag = world.magnitude(beamStart, beamEnd)
+      table.insert(sunBeam.mags, mag)
+      table.insert(sunBeam.startPositions, beamStart)
+      local beamStartRelative = vec2.add(startOffset, centerOffset)
+      local beamEndRelative = vec2.add(beamStartRelative, world.distance(beamEnd, beamStart))
+      table.insert(polies, {beamStartRelative, beamEndRelative})
+    end
+
+    object.setAnimationParameter("sunBeam", sunBeam)
+
+    for i = cfg.beamDamagePadding, beamThickness - cfg.beamDamagePadding - 1 do
+      dmgSource = copy(cfg.damageSource)
+      dmgSource.poly = polies[i + 1]
+      table.insert(dmgSources, dmgSource)
+    end
+    -- animator.resetTransformationGroup("sunbeam")
+    -- animator.scaleTransformationGroup("sunbeam", {mag, 1}, centerOffset)
+    -- animator.translateTransformationGroup("sunbeam", {mag / 2, 0})
+
+    object.setDamageSources(dmgSources)
 
     timer = timer + dt
   end)
 
   animator.setAnimationState("sunbeam", "off")
   object.setDamageSources({})
+
+  sunBeam.angle = 0
+  sunBeam.mags = {}
+  sunBeam.startPositions = {}
+
+  object.setAnimationParameter("sunBeam", sunBeam)
 
   states.hazardStart()
 end
@@ -695,17 +745,18 @@ function strikeLightnings(count)
   animator.playSound("lightningStrike")
 end
 
-function generateBeamPoly(width, mag, angle, offset)
+-- function generateSemicirclePoly(width, mag, angle, offset)
+function generateSemicirclePoly(width, angle, offset)
   local semiCirclePointCount = 8
   local damagePoly = {}
   -- Generate semi-circle
-  for i = 0, semiCirclePointCount - 1 do
+  for i = 0, semiCirclePointCount do
     local semiCircleAngle = math.pi / 2 + i * math.pi / semiCirclePointCount
     table.insert(damagePoly, vec2.withAngle(semiCircleAngle, width))
   end
 
-  table.insert(damagePoly, {mag, -width})
-  table.insert(damagePoly, {mag, width})
+  -- table.insert(damagePoly, {mag, -width})
+  -- table.insert(damagePoly, {mag, width})
 
   return poly.translate(poly.rotate(damagePoly, angle), offset)
 end
