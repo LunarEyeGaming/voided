@@ -5,8 +5,8 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 8,
-            "cycle" : 0.8,
+            "frames" : 12,
+            "cycle" : 1.2,
             "mode" : "loop"
           },
           "firewindup" : {
@@ -50,8 +50,8 @@
             "transition" : "fireloop"
           },
           "fireloop" : {
-            "frames" : 4,
-            "cycle" : 0.4,
+            "frames" : 12,
+            "cycle" : 1.2,
             "mode" : "loop"
           },
           "fireend" : {
