@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarknesspassive",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/entity.lua",
     "/scripts/actions/monster.lua",
@@ -8,11 +8,8 @@
     "/scripts/actions/boss/v-titanofdarkness.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/animator.lua",
-    "/scripts/actions/time.lua",
-    "/scripts/actions/query.lua",
     "/scripts/behavior.lua",
-    "/scripts/actions/position.lua",
-    "/scripts/actions/movement.lua"
+    "/scripts/actions/time.lua"
   ],
   "parameters": {
     "firstEncounterAppearDelay": 21,
@@ -121,44 +118,12 @@
                 }
               },
               {
-                "title": "repeater",
-                "type": "decorator",
-                "name": "repeater",
-                "parameters": {
-                  "maxLoops": {"value": -1},
-                  "untilSuccess": {"value": true}
-                },
-                "child": {
-                  "title": "sequence",
-                  "type": "composite",
-                  "name": "sequence",
-                  "parameters": {},
-                  "children": [
-                    {
-                      "title": "timer",
-                      "type": "action",
-                      "name": "timer",
-                      "parameters": {
-                        "time": {"value": 1}
-                      }
-                    },
-                    {
-                      "title": "queryEntity",
-                      "type": "action",
-                      "name": "queryEntity",
-                      "parameters": {
-                        "entityTypes": {"value": ["player"]},
-                        "orderBy": {"value": "nearest"},
-                        "position": {"key": "self"},
-                        "range": {"value": 80},
-                        "withoutEntity": {"key": "self"}
-                      },
-                      "output": {
-                        "entity": "target",
-                        "list": "foundPlayers"
-                      }
-                    }
-                  ]
+                "title": "playersInWorld",
+                "type": "action",
+                "name": "playersInWorld",
+                "parameters": {},
+                "output": {
+                  "list": "foundPlayers"
                 }
               },
               {
@@ -189,47 +154,6 @@
                 },
                 "output": {
                   "number": "targetAngle"
-                }
-              },
-              {
-                "title": "selector",
-                "type": "composite",
-                "name": "selector",
-                "parameters": {},
-                "children": [
-                  {
-                    "title": "v_titanPassiveSpawnLocation",
-                    "type": "action",
-                    "name": "v_titanPassiveSpawnLocation",
-                    "parameters": {
-                      "minPlayerDistance": {"value": 1000},
-                      "maxAttempts": {"value": 500}
-                    },
-                    "output": {
-                      "position": "startingPos"
-                    }
-                  },
-                  {
-                    "title": "offsetPosition",
-                    "type": "action",
-                    "name": "offsetPosition",
-                    "parameters": {
-                      "offset": {"value": [0, 0]},
-                      "position": {"value": [0, 10]}
-                    },
-                    "output": {
-                      "position": "startingPos"
-                    }
-                  }
-                ]
-              },
-              {
-                "title": "setPosition",
-                "type": "action",
-                "name": "setPosition",
-                "parameters": {
-                  "footPosition": {"value": false},
-                  "position": {"key": "startingPos"}
                 }
               },
               {
@@ -282,7 +206,7 @@
                     "name": "v_titanSearch",
                     "parameters": {
                       "flyControlForce": {"value": 6},
-                      "flySelectionArea": {"value": [-250, -250, 250, 250]},
+                      "flySelectionArea": {"value": [-75, -75, 75, 75]},
                       "flySpeed": {"value": 13},
                       "startAngle": {"key": "targetAngle"},
                       "target": {"key": "self"},

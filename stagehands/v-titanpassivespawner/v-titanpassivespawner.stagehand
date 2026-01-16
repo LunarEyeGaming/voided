@@ -1,0 +1,13 @@
+{
+  "type" : "v-titanpassivespawner",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-titanpassivespawner/v-titanpassivespawner.lua"],
+  "scriptDelta" : 10,
+
+  "broadcastArea" : [-5, -5, 5, 5],
+
+  "minPlayerDistance" : 1000,
+  "maxAttempts" : 500,
+  "spawnRegion" : [-1000, -500, 1000, 500]
+}

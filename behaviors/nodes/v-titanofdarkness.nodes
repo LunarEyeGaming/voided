@@ -229,19 +229,5 @@
     "output": {
       "angle": {"type": "number", "key": null}
     }
-  },
-  "v_titanPassiveSpawnLocation": {
-    "type": "action",
-    "name": "v_titanPassiveSpawnLocation",
-    "title": "v_titanPassiveSpawnLocation",
-    "properties": {
-      "minPlayerDistance": {"type": "number", "value": 1000},
-      "maxAttempts": {"type": "number", "value": 500}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {
-      "position": {"type": "position", "key": null}
-    }
   }
 }

@@ -111,7 +111,12 @@ function update(dt)
           world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
         end
       else
-        world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel, behavior = "v-titanofdarknesspassive"})
+        world.spawnStagehand(mcontroller.position(), "v-titanpassivespawner", {
+          masterId = player.id(),
+          monsterType = titanMonsterType,
+          monsterParameters = {level = titanLevel}
+        })
+        -- world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel, behavior = "v-titanofdarknesspassive"})
       end
     end
 
