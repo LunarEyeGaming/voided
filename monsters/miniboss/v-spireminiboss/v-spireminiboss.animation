@@ -132,6 +132,62 @@
             }
           }
         }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "anchorPart" : "body",
+          "fullbright" : true,
+          "zLevel" : 1
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "firewindup" : {
+              "properties" : {
+                "image" : "<partImage>:firewindup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
+            },
+            "firewinduplong" : {
+              "properties" : {
+                "image" : "<partImage>:firewinduplong.<frame>"
+              }
+            },
+            "firestart" : {
+              "properties" : {
+                "image" : "<partImage>:firestart.<frame>"
+              }
+            },
+            "fireloop" : {
+              "properties" : {
+                "image" : "<partImage>:fireloop.<frame>"
+              }
+            },
+            "fireend" : {
+              "properties" : {
+                "image" : "<partImage>:fireend.<frame>"
+              }
+            },
+            "chargewindup" : {
+              "properties" : {
+                "image" : "<partImage>:chargewindup.<frame>"
+              }
+            },
+            "charge" : {
+              "properties" : {
+                "image" : "<partImage>:charge.<frame>"
+              }
+            }
+          }
+        }
       }
     }
   },
