@@ -2,14 +2,14 @@
   "name": "v-spireminiboss-charge",
   "description": "",
   "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
     "/scripts/actions/math.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/miniboss/v-spireminiboss.lua",
     "/scripts/actions/sensor.lua",
     "/scripts/actions/movement.lua",
     "/scripts/actions/v-movement.lua",
-    "/scripts/actions/animator.lua",
-    "/scripts/actions/time.lua",
     "/scripts/actions/entity.lua"
   ],
   "parameters": {
@@ -19,375 +19,253 @@
     "maxPolyCorrection": 5
   },
   "root": {
-    "title": "repeater",
-    "type": "decorator",
-    "name": "repeater",
-    "parameters": {
-      "maxLoops": {"value": 3},
-      "untilSuccess": {"value": false}
-    },
-    "child": {
-      "title": "sequence",
-      "type": "composite",
-      "name": "sequence",
-      "parameters": {},
-      "children": [
-        {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "roar"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.4}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": 0},
+          "sound": {"value": "roar"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 0.4}
+        }
+      },
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": 3},
+          "untilSuccess": {"value": false}
+        },
+        "child": {
           "title": "sequence",
           "type": "composite",
           "name": "sequence",
           "parameters": {},
           "children": [
             {
-              "title": "random",
-              "type": "action",
-              "name": "random",
-              "parameters": {
-                "max": {"value": 6.283185307},
-                "min": {"value": 0}
-              },
-              "output": {
-                "number": "flightAngle"
-              }
-            },
-            {
-              "title": "vecMultiply",
-              "type": "action",
-              "name": "vecMultiply",
-              "parameters": {
-                "first": {"value": [1, 0]},
-                "number": {"key": "<chargeRadius>"}
-              },
-              "output": {
-                "vector": "flightVector"
-              }
-            },
-            {
-              "title": "vecRotate",
-              "type": "action",
-              "name": "vecRotate",
-              "parameters": {
-                "angle": {"key": "flightAngle"},
-                "vector": {"key": "flightVector"}
-              },
-              "output": {
-                "vector": "flightVector"
-              }
-            },
-            {
-              "title": "vecMultiply",
-              "type": "action",
-              "name": "vecMultiply",
-              "parameters": {
-                "first": {"key": "flightVector"},
-                "number": {"value": -1}
-              },
-              "output": {
-                "vector": "chargeVector"
-              }
-            }
-          ]
-        },
-        {
-          "title": "parallel",
-          "type": "composite",
-          "name": "parallel",
-          "parameters": {
-            "fail": {"value": -1},
-            "success": {"value": 1}
-          },
-          "children": [
-            {
-              "title": "failer",
-              "type": "decorator",
-              "name": "failer",
-              "parameters": {},
-              "child": {
-                "title": "sequence",
-                "type": "composite",
-                "name": "sequence",
-                "parameters": {},
-                "children": [
-                  {
-                    "title": "entityPosition",
-                    "type": "action",
-                    "name": "entityPosition",
-                    "parameters": {
-                      "entity": {"key": "target"}
-                    },
-                    "output": {
-                      "position": "targetPos"
-                    }
-                  },
-                  {
-                    "title": "v_giveBestPosition",
-                    "type": "action",
-                    "name": "v_giveBestPosition",
-                    "parameters": {
-                      "entityPosition": {"key": "targetPos"},
-                      "flightOffset": {"key": "flightVector"},
-                      "maxPolyResolution": {"key": "<maxPolyCorrection>"}
-                    },
-                    "output": {
-                      "result": "flightPosition"
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "title": "dynamic",
+              "title": "sequence",
               "type": "composite",
-              "name": "dynamic",
+              "name": "sequence",
               "parameters": {},
               "children": [
                 {
-                  "title": "parallel",
-                  "type": "composite",
-                  "name": "parallel",
+                  "title": "random",
+                  "type": "action",
+                  "name": "random",
                   "parameters": {
-                    "fail": {"value": 1},
-                    "success": {"value": -1}
+                    "max": {"value": 6.283185307},
+                    "min": {"value": 0}
                   },
-                  "children": [
-                    {
-                      "title": "lineTileCollision",
-                      "type": "action",
-                      "name": "lineTileCollision",
-                      "parameters": {
-                        "collisionType": {"value": ["Null", "Block", "Dynamic", "Slippery"]},
-                        "offset": {"key": "flightVector"},
-                        "position": {"key": "targetPos"}
-                      }
-                    },
-                    {
-                      "title": "flyToPosition",
-                      "type": "action",
-                      "name": "flyToPosition",
-                      "parameters": {
-                        "position": {"key": "flightPosition"},
-                        "speed": {"key": "<flightSpeed>"},
-                        "tolerance": {"key": "<flightTolerance>"}
-                      }
-                    }
-                  ]
+                  "output": {
+                    "number": "flightAngle"
+                  }
                 },
                 {
-                  "title": "moveToPosition",
+                  "title": "vecMultiply",
                   "type": "action",
-                  "name": "moveToPosition",
+                  "name": "vecMultiply",
                   "parameters": {
-                    "avoidLiquid": {"value": false},
-                    "groundPosition": {"value": false},
-                    "maxGround": {"value": 5},
-                    "minGround": {"value": -5},
-                    "closeDoors": {"value": false},
-                    "position": {"key": "flightPosition"},
-                    "run": {"value": false}
+                    "first": {"value": [1, 0]},
+                    "number": {"key": "<chargeRadius>"}
+                  },
+                  "output": {
+                    "vector": "flightVector"
+                  }
+                },
+                {
+                  "title": "vecRotate",
+                  "type": "action",
+                  "name": "vecRotate",
+                  "parameters": {
+                    "angle": {"key": "flightAngle"},
+                    "vector": {"key": "flightVector"}
+                  },
+                  "output": {
+                    "vector": "flightVector"
+                  }
+                },
+                {
+                  "title": "vecMultiply",
+                  "type": "action",
+                  "name": "vecMultiply",
+                  "parameters": {
+                    "first": {"key": "flightVector"},
+                    "number": {"value": -1}
+                  },
+                  "output": {
+                    "vector": "chargeVector"
                   }
                 }
               ]
-            }
-          ]
-        },
-        {
-          "title": "v_stop",
-          "type": "action",
-          "name": "v_stop",
-          "parameters": {
-            "stopForce": {"value": 500}
-          }
-        },
-        {
-          "title": "entityDirection",
-          "type": "action",
-          "name": "entityDirection",
-          "parameters": {
-            "entity": {"key": "self"},
-            "target": {"key": "target"}
-          },
-          "output": {
-            "direction": "aimFacing",
-            "vector": "aimDirection"
-          }
-        },
-        {
-          "title": "faceDirection",
-          "type": "action",
-          "name": "faceDirection",
-          "parameters": {
-            "direction": {"key": "aimFacing"}
-          }
-        },
-        {
-          "title": "setAnimationState",
-          "type": "action",
-          "name": "setAnimationState",
-          "parameters": {
-            "state": {"value": "chargewindup"},
-            "type": {"value": "body"}
-          }
-        },
-        {
-          "title": "timer",
-          "type": "action",
-          "name": "timer",
-          "parameters": {
-            "time": {"value": 0.4}
-          }
-        },
-        {
-          "title": "playSound",
-          "type": "action",
-          "name": "playSound",
-          "parameters": {
-            "loops": {"value": 0},
-            "sound": {"value": "chargewindup"}
-          }
-        },
-        {
-          "title": "timer",
-          "type": "action",
-          "name": "timer",
-          "parameters": {
-            "time": {"value": 0.6}
-          }
-        },
-        {
-          "title": "vecAngle",
-          "type": "action",
-          "name": "vecAngle",
-          "parameters": {
-            "vector": {"key": "aimDirection"}
-          },
-          "output": {
-            "angle": "aimAngle"
-          }
-        },
-        {
-          "title": "setAnimationState",
-          "type": "action",
-          "name": "setAnimationState",
-          "parameters": {
-            "state": {"value": "charge"},
-            "type": {"value": "body"}
-          }
-        },
-        {
-          "title": "playSound",
-          "type": "action",
-          "name": "playSound",
-          "parameters": {
-            "loops": {"value": 0},
-            "sound": {"value": "charge"}
-          }
-        },
-        {
-          "title": "setDamageOnTouch",
-          "type": "action",
-          "name": "setDamageOnTouch",
-          "parameters": {
-            "touchDamage": {"value": true}
-          }
-        },
-        {
-          "title": "parallel",
-          "type": "composite",
-          "name": "parallel",
-          "parameters": {
-            "fail": {"value": -1},
-            "success": {"value": 1}
-          },
-          "children": [
+            },
             {
-              "title": "failer",
-              "type": "decorator",
-              "name": "failer",
-              "parameters": {},
-              "child": {
-                "title": "sequence",
-                "type": "composite",
-                "name": "sequence",
-                "parameters": {},
-                "children": [
-                  {
-                    "title": "velocity",
-                    "type": "action",
-                    "name": "velocity",
+              "title": "parallel",
+              "type": "composite",
+              "name": "parallel",
+              "parameters": {
+                "fail": {"value": -1},
+                "success": {"value": 1}
+              },
+              "children": [
+                {
+                  "title": "failer",
+                  "type": "decorator",
+                  "name": "failer",
+                  "parameters": {},
+                  "child": {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
                     "parameters": {},
-                    "output": {
-                      "velocity": "ownVelocity"
-                    }
-                  },
-                  {
-                    "title": "vecMultiply",
-                    "type": "action",
-                    "name": "vecMultiply",
-                    "parameters": {
-                      "first": {"key": "ownVelocity"},
-                      "second": {"value": ["facingDirection", 1]}
-                    },
-                    "output": {
-                      "vector": "ownVelocityFlipped"
-                    }
-                  },
-                  {
-                    "title": "vecAngle",
-                    "type": "action",
-                    "name": "vecAngle",
-                    "parameters": {
-                      "vector": {"key": "ownVelocityFlipped"}
-                    },
-                    "output": {
-                      "angle": "ownVelocityAngle"
-                    }
-                  },
-                  {
-                    "title": "resetTransformationGroup",
-                    "type": "action",
-                    "name": "resetTransformationGroup",
-                    "parameters": {
-                      "transformationGroup": {"value": "body"}
-                    }
-                  },
-                  {
-                    "title": "rotateTransformationGroup",
-                    "type": "action",
-                    "name": "rotateTransformationGroup",
-                    "parameters": {
-                      "angle": {"key": "ownVelocityAngle"},
-                      "transformationGroup": {"value": "body"}
-                    }
+                    "children": [
+                      {
+                        "title": "entityPosition",
+                        "type": "action",
+                        "name": "entityPosition",
+                        "parameters": {
+                          "entity": {"key": "target"}
+                        },
+                        "output": {
+                          "position": "targetPos"
+                        }
+                      },
+                      {
+                        "title": "v_giveBestPosition",
+                        "type": "action",
+                        "name": "v_giveBestPosition",
+                        "parameters": {
+                          "entityPosition": {"key": "targetPos"},
+                          "flightOffset": {"key": "flightVector"},
+                          "maxPolyResolution": {"key": "<maxPolyCorrection>"}
+                        },
+                        "output": {
+                          "result": "flightPosition"
+                        }
+                      }
+                    ]
                   }
-                ]
-              }
-            },
-            {
-              "title": "failer",
-              "type": "decorator",
-              "name": "failer",
-              "parameters": {},
-              "child": {
-                "title": "controlDown",
-                "type": "action",
-                "name": "controlDown",
-                "parameters": {}
-              }
-            },
-            {
-              "title": "failer",
-              "type": "decorator",
-              "name": "failer",
-              "parameters": {},
-              "child": {
-                "title": "controlApproachVelocityAlongAngle",
-                "type": "action",
-                "name": "controlApproachVelocityAlongAngle",
-                "parameters": {
-                  "angle": {"key": "aimAngle"},
-                  "force": {"value": 500},
-                  "velocity": {"value": 65}
+                },
+                {
+                  "title": "dynamic",
+                  "type": "composite",
+                  "name": "dynamic",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "parallel",
+                      "type": "composite",
+                      "name": "parallel",
+                      "parameters": {
+                        "fail": {"value": 1},
+                        "success": {"value": -1}
+                      },
+                      "children": [
+                        {
+                          "title": "lineTileCollision",
+                          "type": "action",
+                          "name": "lineTileCollision",
+                          "parameters": {
+                            "collisionType": {"value": ["Null", "Block", "Dynamic", "Slippery"]},
+                            "offset": {"key": "flightVector"},
+                            "position": {"key": "targetPos"}
+                          }
+                        },
+                        {
+                          "title": "flyToPosition",
+                          "type": "action",
+                          "name": "flyToPosition",
+                          "parameters": {
+                            "position": {"key": "flightPosition"},
+                            "speed": {"key": "<flightSpeed>"},
+                            "tolerance": {"key": "<flightTolerance>"}
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "title": "moveToPosition",
+                      "type": "action",
+                      "name": "moveToPosition",
+                      "parameters": {
+                        "avoidLiquid": {"value": false},
+                        "groundPosition": {"value": false},
+                        "maxGround": {"value": 5},
+                        "minGround": {"value": -5},
+                        "closeDoors": {"value": false},
+                        "position": {"key": "flightPosition"},
+                        "run": {"value": false}
+                      }
+                    }
+                  ]
                 }
+              ]
+            },
+            {
+              "title": "v_stop",
+              "type": "action",
+              "name": "v_stop",
+              "parameters": {
+                "stopForce": {"value": 500}
+              }
+            },
+            {
+              "title": "entityDirection",
+              "type": "action",
+              "name": "entityDirection",
+              "parameters": {
+                "entity": {"key": "self"},
+                "target": {"key": "target"}
+              },
+              "output": {
+                "direction": "aimFacing",
+                "vector": "aimDirection"
+              }
+            },
+            {
+              "title": "faceDirection",
+              "type": "action",
+              "name": "faceDirection",
+              "parameters": {
+                "direction": {"key": "aimFacing"}
+              }
+            },
+            {
+              "title": "setAnimationState",
+              "type": "action",
+              "name": "setAnimationState",
+              "parameters": {
+                "state": {"value": "chargewindup"},
+                "type": {"value": "body"}
               }
             },
             {
@@ -395,45 +273,192 @@
               "type": "action",
               "name": "timer",
               "parameters": {
-                "time": {"value": 0.75}
+                "time": {"value": 0.8}
+              }
+            },
+            {
+              "title": "vecAngle",
+              "type": "action",
+              "name": "vecAngle",
+              "parameters": {
+                "vector": {"key": "aimDirection"}
+              },
+              "output": {
+                "angle": "aimAngle"
+              }
+            },
+            {
+              "title": "setAnimationState",
+              "type": "action",
+              "name": "setAnimationState",
+              "parameters": {
+                "state": {"value": "charge"},
+                "type": {"value": "body"}
+              }
+            },
+            {
+              "title": "playSound",
+              "type": "action",
+              "name": "playSound",
+              "parameters": {
+                "loops": {"value": 0},
+                "sound": {"value": "charge"}
+              }
+            },
+            {
+              "title": "setDamageOnTouch",
+              "type": "action",
+              "name": "setDamageOnTouch",
+              "parameters": {
+                "touchDamage": {"value": true}
+              }
+            },
+            {
+              "title": "parallel",
+              "type": "composite",
+              "name": "parallel",
+              "parameters": {
+                "fail": {"value": -1},
+                "success": {"value": 1}
+              },
+              "children": [
+                {
+                  "title": "failer",
+                  "type": "decorator",
+                  "name": "failer",
+                  "parameters": {},
+                  "child": {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "velocity",
+                        "type": "action",
+                        "name": "velocity",
+                        "parameters": {},
+                        "output": {
+                          "velocity": "ownVelocity"
+                        }
+                      },
+                      {
+                        "title": "vecMultiply",
+                        "type": "action",
+                        "name": "vecMultiply",
+                        "parameters": {
+                          "first": {"key": "ownVelocity"},
+                          "second": {"value": ["facingDirection", 1]}
+                        },
+                        "output": {
+                          "vector": "ownVelocityFlipped"
+                        }
+                      },
+                      {
+                        "title": "vecAngle",
+                        "type": "action",
+                        "name": "vecAngle",
+                        "parameters": {
+                          "vector": {"key": "ownVelocityFlipped"}
+                        },
+                        "output": {
+                          "angle": "ownVelocityAngle"
+                        }
+                      },
+                      {
+                        "title": "resetTransformationGroup",
+                        "type": "action",
+                        "name": "resetTransformationGroup",
+                        "parameters": {
+                          "transformationGroup": {"value": "body"}
+                        }
+                      },
+                      {
+                        "title": "rotateTransformationGroup",
+                        "type": "action",
+                        "name": "rotateTransformationGroup",
+                        "parameters": {
+                          "angle": {"key": "ownVelocityAngle"},
+                          "transformationGroup": {"value": "body"}
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "title": "failer",
+                  "type": "decorator",
+                  "name": "failer",
+                  "parameters": {},
+                  "child": {
+                    "title": "controlDown",
+                    "type": "action",
+                    "name": "controlDown",
+                    "parameters": {}
+                  }
+                },
+                {
+                  "title": "failer",
+                  "type": "decorator",
+                  "name": "failer",
+                  "parameters": {},
+                  "child": {
+                    "title": "controlApproachVelocityAlongAngle",
+                    "type": "action",
+                    "name": "controlApproachVelocityAlongAngle",
+                    "parameters": {
+                      "angle": {"key": "aimAngle"},
+                      "force": {"value": 500},
+                      "velocity": {"value": 65}
+                    }
+                  }
+                },
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"value": 0.75}
+                  }
+                }
+              ]
+            },
+            {
+              "title": "setDamageOnTouch",
+              "type": "action",
+              "name": "setDamageOnTouch",
+              "parameters": {
+                "touchDamage": {"value": false}
+              }
+            },
+            {
+              "title": "v_stop",
+              "type": "action",
+              "name": "v_stop",
+              "parameters": {
+                "stopForce": {"value": 500}
+              }
+            },
+            {
+              "title": "resetTransformationGroup",
+              "type": "action",
+              "name": "resetTransformationGroup",
+              "parameters": {
+                "transformationGroup": {"value": "body"}
+              }
+            },
+            {
+              "title": "setAnimationState",
+              "type": "action",
+              "name": "setAnimationState",
+              "parameters": {
+                "state": {"value": "idle"},
+                "type": {"value": "body"}
               }
             }
           ]
-        },
-        {
-          "title": "setDamageOnTouch",
-          "type": "action",
-          "name": "setDamageOnTouch",
-          "parameters": {
-            "touchDamage": {"value": false}
-          }
-        },
-        {
-          "title": "v_stop",
-          "type": "action",
-          "name": "v_stop",
-          "parameters": {
-            "stopForce": {"value": 500}
-          }
-        },
-        {
-          "title": "resetTransformationGroup",
-          "type": "action",
-          "name": "resetTransformationGroup",
-          "parameters": {
-            "transformationGroup": {"value": "body"}
-          }
-        },
-        {
-          "title": "setAnimationState",
-          "type": "action",
-          "name": "setAnimationState",
-          "parameters": {
-            "state": {"value": "idle"},
-            "type": {"value": "body"}
-          }
         }
-      ]
-    }
+      }
+    ]
   }
 }

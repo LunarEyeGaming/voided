@@ -59,6 +59,12 @@
             "cycle" : 0.2,
             "mode" : "transition",
             "transition" : "idle"
+          },
+          "roar" : {
+            "frames" : 8,
+            "cycle" : 0.8,
+            "mode" : "transition",
+            "transition" : "idle"
           }
         }
       },
@@ -129,6 +135,11 @@
               "properties" : {
                 "image" : "<partImage>:charge.<frame>"
               }
+            },
+            "roar" : {
+              "properties" : {
+                "image" : "<partImage>:roar.<frame>"
+              }
             }
           }
         }
@@ -185,6 +196,11 @@
               "properties" : {
                 "image" : "<partImage>:charge.<frame>"
               }
+            },
+            "roar" : {
+              "properties" : {
+                "image" : "<partImage>:roar.<frame>"
+              }
             }
           }
         }
@@ -227,7 +243,7 @@
       "pool" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ],
       "rangeMultiplier" : 2
     },
-    "chargewindup" : {
+    "roar" : {
       "pool" : [ "/sfx/npc/quadruped/tiger_pain1.ogg", "/sfx/npc/quadruped/tiger_pain2.ogg" ],
       "rangeMultiplier" : 2
     },
