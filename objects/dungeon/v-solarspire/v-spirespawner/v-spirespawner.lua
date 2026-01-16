@@ -27,6 +27,7 @@ local portalLightningConfig
 
 local gracePeriod
 local gracePeriodTimer
+local gracePeriodSparkTimer
 local gracePeriodSparkChanceMultiplier
 
 local minTriggerDelay
@@ -68,6 +69,7 @@ function init()
 
   gracePeriod = config.getParameter("gracePeriod")
   gracePeriodSparkChanceMultiplier = config.getParameter("gracePeriodSparkChanceMultiplier")
+  gracePeriodSparkTimer = 1
 
   minTriggerDelay = config.getParameter("minTriggerDelay")
 
@@ -102,7 +104,13 @@ function onLoad()
   animator.setAnimationState("portalunstable", "invisible")
   animator.setPartTag("portalunstable", "opacity", "00")
   animator.stopAllSounds("sparks")
-  animator.setAnimationState("glass", storage.hasActiveInput and "cracked" or "normal")
+  if storage.hasGracePeriod then
+    animator.setAnimationState("glass", "broken")
+  elseif storage.hasActiveInput then
+    animator.setAnimationState("glass", "cracked")
+  else
+    animator.setAnimationState("glass", "normal")
+  end
 end
 
 function onGracePeriodStart()
@@ -112,12 +120,28 @@ end
 function onGracePeriodTick(dt)
   gracePeriodTimer = gracePeriodTimer + dt
 
-  local ratio = gracePeriodTimer / gracePeriod
+  gracePeriodSparkTimer = gracePeriodSparkTimer - dt
+  if gracePeriodSparkTimer <= 0 then
+    local ratio = gracePeriodTimer / gracePeriod
+    if gracePeriod - gracePeriodTimer <= 1 then
+      gracePeriodSparkTimer = 0.125
+    elseif gracePeriod - gracePeriodTimer <= 5 then
+      gracePeriodSparkTimer = 0.25
+    elseif ratio >= 0.5 then
+      gracePeriodSparkTimer = 0.5
+    else
+      gracePeriodSparkTimer = 1.0
+    end
 
-  if math.random() < ratio * gracePeriodSparkChanceMultiplier then
     animator.burstParticleEmitter("portalsparks")
     animator.playSound("sparkBurst")
   end
+  -- local ratio = gracePeriodTimer / gracePeriod
+
+  -- if math.random() < ratio * gracePeriodSparkChanceMultiplier then
+  --   animator.burstParticleEmitter("portalsparks")
+  --   animator.playSound("sparkBurst")
+  -- end
 end
 
 function onInputActivation()

@@ -71,12 +71,10 @@ end
 
 function onNodeConnectionChange(args)
   storage.hasActiveInput = not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
-    object.setOutputNodeLevel(1, not storage.hasActiveInput)
 end
 
 function onInputNodeChange(args)
   storage.hasActiveInput = not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
-    object.setOutputNodeLevel(1, not storage.hasActiveInput)
 end
 
 -- STATE FUNCTIONS
@@ -121,11 +119,14 @@ end
   team to be outside of it.
 ]]
 function states.wait()
-  while not storage.hasActiveInput do
-    coroutine.yield()
-  end
+  if not storage.wasActivated then
+    while not storage.hasActiveInput do
+      coroutine.yield()
+    end
 
-  onInputActivation()
+    storage.wasActivated = true
+    onInputActivation()
+  end
 
   -- While no "friendly" creatures are in the arena or at least one "friendly" creature is outside the arena, do
   -- nothing.
