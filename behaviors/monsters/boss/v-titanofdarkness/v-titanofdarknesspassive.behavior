@@ -1,0 +1,332 @@
+{
+  "name": "v-titanofdarknesspassive",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/entity.lua",
+    "/scripts/actions/monster.lua",
+    "/scripts/actions/status.lua",
+    "/scripts/actions/boss/v-titanofdarkness.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/query.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/movement.lua"
+  ],
+  "parameters": {
+    "firstEncounterAppearDelay": 21,
+    "firstEncounter": false,
+    "encounterLevel": 1
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setAggressive",
+        "type": "action",
+        "name": "setAggressive",
+        "parameters": {
+          "aggressive": {"value": false}
+        }
+      },
+      {
+        "title": "setDying",
+        "type": "action",
+        "name": "setDying",
+        "parameters": {
+          "shouldDie": {"value": false}
+        }
+      },
+      {
+        "title": "setDamageBar",
+        "type": "action",
+        "name": "setDamageBar",
+        "parameters": {
+          "type": {"value": "None"}
+        }
+      },
+      {
+        "title": "addEphemeralEffect",
+        "type": "action",
+        "name": "addEphemeralEffect",
+        "parameters": {
+          "duration": {"value": 2147483647},
+          "name": {"value": "invulnerable"}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": -1}
+        },
+        "children": [
+          {
+            "title": "v_titanStun",
+            "type": "action",
+            "name": "v_titanStun",
+            "parameters": {
+              "stunRange": {"value": 200}
+            }
+          },
+          {
+            "title": "v_titanMusic",
+            "type": "action",
+            "name": "v_titanMusic",
+            "parameters": {
+              "musicState": {"value": 0},
+              "stealthMusic": {"value": []},
+              "musicFadeInTime": {"value": 60},
+              "musicFadeOutTime": {"value": 60},
+              "musicRange": {"value": 160}
+            }
+          },
+          {
+            "title": "keepEntityLoaded",
+            "type": "action",
+            "name": "keepEntityLoaded",
+            "parameters": {
+              "entity": {"key": "self"},
+              "region": {"value": [-32, -32, 32, 32]}
+            }
+          },
+          {
+            "title": "Reset",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "setLightActive",
+                "type": "action",
+                "name": "setLightActive",
+                "parameters": {
+                  "active": {"value": false},
+                  "light": {"value": "lefteyelightforward"}
+                }
+              },
+              {
+                "title": "setLightActive",
+                "type": "action",
+                "name": "setLightActive",
+                "parameters": {
+                  "active": {"value": false},
+                  "light": {"value": "righteyelightforward"}
+                }
+              },
+              {
+                "title": "repeater",
+                "type": "decorator",
+                "name": "repeater",
+                "parameters": {
+                  "maxLoops": {"value": -1},
+                  "untilSuccess": {"value": true}
+                },
+                "child": {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "timer",
+                      "type": "action",
+                      "name": "timer",
+                      "parameters": {
+                        "time": {"value": 1}
+                      }
+                    },
+                    {
+                      "title": "queryEntity",
+                      "type": "action",
+                      "name": "queryEntity",
+                      "parameters": {
+                        "entityTypes": {"value": ["player"]},
+                        "orderBy": {"value": "nearest"},
+                        "position": {"key": "self"},
+                        "range": {"value": 80},
+                        "withoutEntity": {"key": "self"}
+                      },
+                      "output": {
+                        "entity": "target",
+                        "list": "foundPlayers"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "each",
+                "type": "decorator",
+                "name": "each",
+                "parameters": {
+                  "list": {"key": "foundPlayers"},
+                  "type": {"value": "entity"}
+                },
+                "child": {
+                  "title": "sendEntityMessage",
+                  "type": "action",
+                  "name": "sendEntityMessage",
+                  "parameters": {
+                    "arguments": {"value": []},
+                    "entity": {"key": "eachItem"},
+                    "message": {"value": "v-titanOfDarknessSpawned"}
+                  }
+                }
+              },
+              {
+                "title": "setNumber",
+                "type": "action",
+                "name": "setNumber",
+                "parameters": {
+                  "number": {"value": -1.5707963267948966}
+                },
+                "output": {
+                  "number": "targetAngle"
+                }
+              },
+              {
+                "title": "selector",
+                "type": "composite",
+                "name": "selector",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "v_titanPassiveSpawnLocation",
+                    "type": "action",
+                    "name": "v_titanPassiveSpawnLocation",
+                    "parameters": {
+                      "minPlayerDistance": {"value": 1000},
+                      "maxAttempts": {"value": 500}
+                    },
+                    "output": {
+                      "position": "startingPos"
+                    }
+                  },
+                  {
+                    "title": "offsetPosition",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"value": [0, 0]},
+                      "position": {"value": [0, 10]}
+                    },
+                    "output": {
+                      "position": "startingPos"
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "setPosition",
+                "type": "action",
+                "name": "setPosition",
+                "parameters": {
+                  "footPosition": {"value": false},
+                  "position": {"key": "startingPos"}
+                }
+              },
+              {
+                "title": "v_titanAppear",
+                "type": "action",
+                "name": "v_titanAppear",
+                "parameters": {
+                  "appearTime": {"value": 5},
+                  "visionEndRadius": {"value": 1},
+                  "visionEndRotationRate": {"value": 0.25},
+                  "visionStartRadius": {"value": 10},
+                  "visionStartRotationRate": {"value": 0}
+                }
+              },
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 1.5}
+                }
+              },
+              {
+                "title": "parallel",
+                "type": "composite",
+                "name": "parallel",
+                "parameters": {
+                  "fail": {"value": -1},
+                  "success": {"value": 1}
+                },
+                "children": [
+                  {
+                    "title": "failer",
+                    "type": "decorator",
+                    "name": "failer",
+                    "parameters": {},
+                    "child": {
+                      "title": "v_titanRotateEyes",
+                      "type": "action",
+                      "name": "v_titanRotateEyes",
+                      "parameters": {
+                        "leftEyeAngle": {"key": "targetAngle"},
+                        "rightEyeAngle": {"key": "targetAngle"}
+                      }
+                    }
+                  },
+                  {
+                    "title": "v_titanSearch",
+                    "type": "action",
+                    "name": "v_titanSearch",
+                    "parameters": {
+                      "flyControlForce": {"value": 6},
+                      "flySelectionArea": {"value": [-250, -250, 250, 250]},
+                      "flySpeed": {"value": 13},
+                      "startAngle": {"key": "targetAngle"},
+                      "target": {"key": "self"},
+                      "stopControlForce": {"value": 12}
+                    },
+                    "output": {
+                      "angle": "targetAngle"
+                    }
+                  },
+                  {
+                    "title": "timer",
+                    "type": "action",
+                    "name": "timer",
+                    "parameters": {
+                      "time": {"value": 300}
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "setResourcePercentage",
+                "type": "action",
+                "name": "setResourcePercentage",
+                "parameters": {
+                  "percentage": {"value": 0},
+                  "resource": {"value": "health"}
+                }
+              },
+              {
+                "title": "v-titanofdarkness-disappear",
+                "type": "module",
+                "name": "v-titanofdarkness-disappear",
+                "parameters": {}
+              },
+              {
+                "title": "runner",
+                "type": "action",
+                "name": "runner",
+                "parameters": {}
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -804,6 +804,40 @@ function v_titanSetLookActive(args)
   return true
 end
 
+-- param minPlayerDistance
+-- param maxAttempts
+function v_titanPassiveSpawnLocation(args)
+  local rq = vBehavior.requireArgsGen("v_titanSetLookActive", args)
+  if not rq{"minPlayerDistance", "maxAttempts"} then return false end
+
+  local players = world.players()
+  local positions = {}
+  for _, playerId in ipairs(players) do
+    local pos = world.entityPosition(playerId)
+    if pos then
+      table.insert(positions, pos)
+    end
+  end
+
+  local region = rect.translate({-1000, -500, 1000, 500}, mcontroller.position())
+  region[2] = math.max(100, region[2])
+  -- local region = {0, 100, world.size()[1], world.size()[2]}
+  local spawnPos = vWorld.randomPositionInRegion(region, function(pos)
+    for _, pos2 in ipairs(positions) do
+      if world.magnitude(pos2, pos) < args.minPlayerDistance then
+        return false
+      end
+    end
+    return true
+  end, args.maxAttempts)
+
+  if spawnPos then
+    return true, {position = spawnPos}
+  end
+
+  return false
+end
+
 ---Returns the average of the positions resulting from a radial raycast of `rayCount` rays at position `position`, with
 ---rays that are more parallel to the given angle having less weight than those that are perpendicular to it.
 ---@param position Vec2F

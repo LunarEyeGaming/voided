@@ -1404,5 +1404,20 @@
       },
       "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-spireminiboss.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarknesspassive",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarknesspassive",
+      "title": "",
+      "properties": {
+        "encounterLevel": {"type": "json", "value": 1},
+        "firstEncounter": {"type": "json", "value": false},
+        "firstEncounterAppearDelay": {"type": "json", "value": 21}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarknesspassive.behavior"
+    }
   }
 ]

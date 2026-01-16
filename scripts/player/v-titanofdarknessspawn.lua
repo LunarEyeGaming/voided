@@ -99,16 +99,19 @@ function update(dt)
     -- With a probability of spawnProbability...
     if math.random() <= spawnProbability
     and world.time() > storage.lastTitanSpawnTime + minSpawnCooldown  -- If the Titan spawning cooldown has ended...
-    and worldTypeStayTime > minPlanetStayTime  -- The player has stayed for longer than minPlanetStayTime...
-    and hasStrongEnoughEquipment() then  -- And the player has strong enough equipment...
-      if storage.firstEncounter then
-        world.spawnStagehand(mcontroller.position(), firstEncounterStagehand, {
-          masterId = player.id(),
-          monsterType = titanMonsterType,
-          monsterParameters = {level = titanLevel}
-        })
+    and worldTypeStayTime > minPlanetStayTime then  -- And the player has stayed for longer than minPlanetStayTime...
+      if hasStrongEnoughEquipment() then  -- If the player has strong enough equipment...
+        if storage.firstEncounter then
+          world.spawnStagehand(mcontroller.position(), firstEncounterStagehand, {
+            masterId = player.id(),
+            monsterType = titanMonsterType,
+            monsterParameters = {level = titanLevel}
+          })
+        else
+          world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
+        end
       else
-        world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
+        world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel, behavior = "v-titanofdarknesspassive"})
       end
     end
 

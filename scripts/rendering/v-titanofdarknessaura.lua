@@ -59,8 +59,8 @@ function init()
   bgRenderLayer = "BackgroundOverlay-10"
   fgRenderLayer = "ForegroundOverlay+10"
 
-  minFallOffDistance = 1000
-  maxFallOffDistance = 1500
+  minFallOffDistance = 250
+  maxFallOffDistance = 1000
 
   titanPositionTimeout = 2
   titanPositionTimeoutTimer = titanPositionTimeout
