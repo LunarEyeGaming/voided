@@ -260,6 +260,46 @@
               }
             },
             {
+              "title": "vecMultiply",
+              "type": "action",
+              "name": "vecMultiply",
+              "parameters": {
+                "first": {"key": "aimDirection"},
+                "second": {"value": ["aimFacing", 1]}
+              },
+              "output": {
+                "vector": "aimDirectionFlipped"
+              }
+            },
+            {
+              "title": "vecAngle",
+              "type": "action",
+              "name": "vecAngle",
+              "parameters": {
+                "vector": {"key": "aimDirectionFlipped"}
+              },
+              "output": {
+                "angle": "aimAngleFlipped"
+              }
+            },
+            {
+              "title": "resetTransformationGroup",
+              "type": "action",
+              "name": "resetTransformationGroup",
+              "parameters": {
+                "transformationGroup": {"value": "body"}
+              }
+            },
+            {
+              "title": "rotateTransformationGroup",
+              "type": "action",
+              "name": "rotateTransformationGroup",
+              "parameters": {
+                "angle": {"key": "aimAngleFlipped"},
+                "transformationGroup": {"value": "body"}
+              }
+            },
+            {
               "title": "setAnimationState",
               "type": "action",
               "name": "setAnimationState",
@@ -274,17 +314,6 @@
               "name": "timer",
               "parameters": {
                 "time": {"value": 0.8}
-              }
-            },
-            {
-              "title": "vecAngle",
-              "type": "action",
-              "name": "vecAngle",
-              "parameters": {
-                "vector": {"key": "aimDirection"}
-              },
-              "output": {
-                "angle": "aimAngle"
               }
             },
             {
@@ -311,6 +340,17 @@
               "name": "setDamageOnTouch",
               "parameters": {
                 "touchDamage": {"value": true}
+              }
+            },
+            {
+              "title": "vecAngle",
+              "type": "action",
+              "name": "vecAngle",
+              "parameters": {
+                "vector": {"key": "aimDirection"}
+              },
+              "output": {
+                "angle": "aimAngle"
               }
             },
             {
