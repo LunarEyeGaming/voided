@@ -2,19 +2,17 @@
   "name": "v-titanofdarknesspassive",
   "description": "",
   "scripts": [
+    "/scripts/behavior.lua",
     "/scripts/actions/entity.lua",
     "/scripts/actions/monster.lua",
     "/scripts/actions/status.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/animator.lua",
-    "/scripts/behavior.lua",
     "/scripts/actions/time.lua"
   ],
   "parameters": {
-    "firstEncounterAppearDelay": 21,
-    "firstEncounter": false,
-    "encounterLevel": 1
+    "activeTime": [300, 600]
   },
   "root": {
     "title": "sequence",
@@ -22,6 +20,17 @@
     "name": "sequence",
     "parameters": {},
     "children": [
+      {
+        "title": "Set music state to \"stealth\"",
+        "type": "action",
+        "name": "setNumber",
+        "parameters": {
+          "number": {"value": 0}
+        },
+        "output": {
+          "number": "musicState"
+        }
+      },
       {
         "title": "setAggressive",
         "type": "action",
@@ -77,11 +86,11 @@
             "type": "action",
             "name": "v_titanMusic",
             "parameters": {
-              "musicState": {"value": 0},
-              "stealthMusic": {"value": []},
+              "musicState": {"key": "musicState"},
+              "stealthMusic": {"value": ["/music/v-symmetry-slow.ogg"]},
               "musicFadeInTime": {"value": 60},
               "musicFadeOutTime": {"value": 60},
-              "musicRange": {"value": 160}
+              "musicRange": {"value": 250}
             }
           },
           {
@@ -162,6 +171,7 @@
                 "name": "v_titanAppear",
                 "parameters": {
                   "appearTime": {"value": 5},
+                  "endAlpha": {"value": 25},
                   "visionEndRadius": {"value": 1},
                   "visionEndRotationRate": {"value": 0.25},
                   "visionStartRadius": {"value": 10},
@@ -221,7 +231,7 @@
                     "type": "action",
                     "name": "timer",
                     "parameters": {
-                      "time": {"value": 300}
+                      "time": {"key": "<activeTime>"}
                     }
                   }
                 ]
@@ -239,7 +249,9 @@
                 "title": "v-titanofdarkness-disappear",
                 "type": "module",
                 "name": "v-titanofdarkness-disappear",
-                "parameters": {}
+                "parameters": {
+                  "startAlpha": {"value": 25}
+                }
               },
               {
                 "title": "runner",

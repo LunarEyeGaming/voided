@@ -161,61 +161,11 @@ function v_titanOfDarknessAura_drawParticles(dt)
   local fallOffAmount = 1 - math.max(0, distance - minFallOffDistance) / (maxFallOffDistance - minFallOffDistance)
   local color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, bgStartColor, bgEndColor)
 
-  mistParticle.color = color
-  vLocalAnimator.spawnOffscreenParticles(mistParticle, {
-    density = particleDensity,
-    exposedOnly = false
-  })
-
-    -- local windowRegion = world.clientWindow()
-
-    -- local leftPosition = {windowRegion[1], math.random() * (windowRegion[4] - windowRegion[2]) + windowRegion[2]}
-    -- local rightPosition = {windowRegion[3], math.random() * (windowRegion[4] - windowRegion[2]) + windowRegion[2]}
-
-    -- -- Note: windLevel is zero if there is a background block.
-    -- local leftHorizontalSpeed = world.windLevel(leftPosition)
-    -- if leftHorizontalSpeed == 0 then
-    --   leftHorizontalSpeed = 10
-    -- end
-
-    -- localAnimator.spawnParticle({
-    --   type = "textured",
-    --   image = "/particles/images/v-titanparticles.png",
-    --   initialVelocity = {leftHorizontalSpeed, 0},
-    --   approach = {2, 2},
-    --   timeToLive = 10,
-    --   destructionAction = "fade",
-    --   destructionTime = 5,
-    --   angularVelocity = 0,
-    --   layer = "front",
-    --   color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, bgStartColor, bgEndColor),
-    --   variance = {
-    --     angularVelocity = 12,
-    --     initialVelocity = {0, 10},
-    --     finalVelocity = {0, 10}
-    --   }
-    -- }, leftPosition)
-
-    -- local rightHorizontalSpeed = world.windLevel(rightPosition)
-    -- if rightHorizontalSpeed == 0 then
-    --   rightHorizontalSpeed = 10
-    -- end
-
-    -- localAnimator.spawnParticle({
-    --   type = "textured",
-    --   image = "/particles/images/v-titanparticles.png",
-    --   initialVelocity = {rightHorizontalSpeed, 0},
-    --   approach = {2, 2},
-    --   timeToLive = 10,
-    --   destructionAction = "fade",
-    --   destructionTime = 5,
-    --   angularVelocity = 0,
-    --   layer = "front",
-    --   color = vAnimator.lerpColor(fadeTimer / fadeTime * fallOffAmount, bgStartColor, bgEndColor),
-    --   variance = {
-    --     angularVelocity = 12,
-    --     initialVelocity = {0, 10},
-    --     finalVelocity = {0, 10}
-    --   }
-    -- }, rightPosition)
+  if color[4] ~= 0 then
+    mistParticle.color = color
+    vLocalAnimator.spawnOffscreenParticles(mistParticle, {
+      density = particleDensity,
+      exposedOnly = false
+    })
+  end
 end

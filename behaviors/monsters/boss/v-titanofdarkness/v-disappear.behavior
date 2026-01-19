@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarkness-disappear",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/entity.lua",
     "/scripts/actions/v-movement.lua",
@@ -9,7 +9,9 @@
     "/scripts/behavior.lua",
     "/scripts/actions/time.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "startAlpha": 255
+  },
   "root": {
     "title": "sequence",
     "type": "composite",
@@ -65,7 +67,7 @@
         "parameters": {
           "appearTime": {"value": 5},
           "endAlpha": {"value": 0},
-          "startAlpha": {"value": 255},
+          "startAlpha": {"key": "<startAlpha>"},
           "visionEndRadius": {"value": 10},
           "visionEndRotationRate": {"value": 0},
           "visionStartRadius": {"value": 1},

@@ -752,17 +752,6 @@
   },
   {
     "op": "add",
-    "path": "/v-titanofdarkness-disappear",
-    "value": {
-      "type": "module",
-      "name": "v-titanofdarkness-disappear",
-      "title": "",
-      "properties": {},
-      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-disappear.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-titanofdarkness-teleport",
     "value": {
       "type": "module",
@@ -1407,15 +1396,26 @@
   },
   {
     "op": "add",
+    "path": "/v-titanofdarkness-disappear",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-disappear",
+      "title": "",
+      "properties": {
+        "startAlpha": {"type": "json", "value": 255}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-disappear.behavior"
+    }
+  },
+  {
+    "op": "add",
     "path": "/v-titanofdarknesspassive",
     "value": {
       "type": "module",
       "name": "v-titanofdarknesspassive",
       "title": "",
       "properties": {
-        "encounterLevel": {"type": "json", "value": 1},
-        "firstEncounter": {"type": "json", "value": false},
-        "firstEncounterAppearDelay": {"type": "json", "value": 21}
+        "activeTime": {"type": "json", "value": [300, 600]}
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarknesspassive.behavior"
     }
