@@ -99,17 +99,19 @@ end
 -- HOOK OVERRIDES. See v-monsterwavespawner.lua documentation for more details.
 
 function onLoad()
-  animator.setAnimationState("portal", "idleactive")
   animator.setParticleEmitterActive("portalsparks", false)
   animator.setAnimationState("portalunstable", "invisible")
   animator.setPartTag("portalunstable", "opacity", "00")
   animator.stopAllSounds("sparks")
   if storage.hasGracePeriod then
     animator.setAnimationState("glass", "broken")
+    animator.setAnimationState("portal", "idleactive")
   elseif storage.hasActiveInput then
     animator.setAnimationState("glass", "cracked")
+  animator.setAnimationState("portal", "idleactive")
   else
     animator.setAnimationState("glass", "normal")
+    animator.setAnimationState("portal", "idle")
   end
 end
 

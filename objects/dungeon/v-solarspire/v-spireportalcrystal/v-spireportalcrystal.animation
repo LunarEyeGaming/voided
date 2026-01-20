@@ -4,15 +4,35 @@
       "crystal" : {
         "default" : "broken",
         "states" : {
-          "broken" : {},
-          "fixed" : {}
+          "broken" : {
+            "properties" : {
+              "particleEmittersOn" : [ "beamImpact" ],
+              "persistentSound" : "/sfx/projectiles/burning_loop.ogg"
+            }
+          },
+          "activating" : {
+            "frames" : 4,
+            "cycle" : 2.0,
+            "mode" : "transition",
+            "transition" : "active",
+            "properties" : {
+              "particleEmittersOff" : [ "beamImpact" ]
+            }
+          },
+          "active" : {
+            "frames" : 8,
+            "cycle" : 4.0,
+            "mode" : "loop",
+            "properties" : {
+              "particleEmittersOff" : [ "beamImpact" ]
+            }
+          }
         }
       }
     },
     "parts" : {
       "crystal" : {
         "properties" : {
-          "image" : "<partImage>",
           "centered" : false
         },
         "partStates" : {
@@ -22,14 +42,99 @@
                 "image" : "<partImage>:broken.<frame>"
               }
             },
-            "fixed" : {
+            "activating" : {
               "properties" : {
-                "image" : "<partImage>:fixed.<frame>"
+                "image" : "<partImage>:activating.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
+              }
+            }
+          }
+        }
+      },
+
+      "crystalfullbright" : {
+        "properties" : {
+          "fullbright" : true,
+          "zLevel" : 10,
+          "centered" : false
+        },
+        "partStates" : {
+          "crystal" : {
+            "broken" : {
+              "properties" : {
+                "image" : "<partImage>:broken.<frame>"
+              }
+            },
+            "activating" : {
+              "properties" : {
+                "image" : "<partImage>:activating.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:active.<frame>"
               }
             }
           }
         }
       }
+    }
+  },
+  "particleEmitters" : {
+    "beamImpact" : {
+      "active" : false,
+      "offsetRegion" : [6, 5, 6, 5],
+      "emissionRate" : 10,
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "ember",
+            "color" : [253, 209, 77, 255],
+            "position" : [0, 0],
+            "initialVelocity" : [0, 2.0],
+            "finalVelocity" : [0, -4.0],
+            "approach" : [0, 10],
+            "fade" : 0.3,
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.3,
+            "size" : 1.8,
+            "timeToLive" : 0.5,
+            "fullbright" : true,
+            "layer" : "back",
+            "collidesForeground" : false,
+            "variance" : {
+              "position" : [0.5, 0.5],
+              "initialVelocity" : [2, 2]
+            }
+          }
+        },
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/dust2/dust2.animation",
+            "position" : [0, 0],
+            "initialVelocity" : [0, 2.0],
+            "finalVelocity" : [0, -2.0],
+            "approach" : [0, 10],
+            "fade" : 0.3,
+            "destructionAction" : "shrink",
+            "destructionTime" : 0.3,
+            "size" : 1,
+            "timeToLive" : 0.5,
+            "fullbright" : true,
+            "layer" : "back",
+            "collidesForeground" : false,
+            "variance" : {
+              "position" : [0.5, 0.5],
+              "initialVelocity" : [2, 2]
+            }
+          }
+        }
+      ]
     }
   },
   "sounds" : {

@@ -366,7 +366,7 @@ function states.destabilize2()
   animator.setParticleEmitterActive("portalsparks", true)
   animator.playSound("sparks", -1)
 
-  animator.setAnimationState("portal", "open")
+  animator.setAnimationState("portal", "opened")
   animator.setGlobalTag("destination", "none")
 
   while not friendlyInsideRegion(playerDetectQueryRegion) do
@@ -386,6 +386,11 @@ function states.hazardStart()
     if minibossId and world.entityExists(minibossId) then
       world.sendEntityMessage(minibossId, "despawn")
     end
+    -- Despawn all the remaining monsters
+    for _, monsterId in ipairs(monsterIds) do
+      world.sendEntityMessage(monsterId, "despawn")
+    end
+    hazardCounter = 0
     return states.destabilize2()
   end
 
@@ -649,12 +654,19 @@ function states.giveTreasure()
 end
 
 function states.openToWorld()
-  animator.setParticleEmitterActive("portalsparks", true)
-  animator.playSound("sparks", -1)
+  -- animator.setParticleEmitterActive("portalsparks", true)
+  -- animator.playSound("sparks", -1)
 
   object.setAllOutputNodes(true)
-  switchDestination("cryoflame")
-  object.setInteractive(true)
+  -- switchDestination("cryoflame")
+  -- object.setInteractive(true)
+  animator.setAnimationState("portal", "close")
+
+  local dungeonId = tostring(world.dungeonId(object.position()))
+  world.setProperty("v-dungeonMusic", {[dungeonId] = preIntroDungeonMusic})
+  for _, entityId in ipairs(world.players()) do
+    world.sendEntityMessage(entityId, "v-dungeonmusicplayer-forceSwitch")
+  end
 
   states.noop()
 end

@@ -43,7 +43,8 @@
 
   "animation" : "v-spireportalcrystal.animation",
   "animationParts" : {
-    "crystal" : "spireportalcrystal.png"
+    "crystal" : "spireportalcrystal.png",
+    "crystalfullbright" : "spireportalcrystalfullbright.png"
   },
   "animationPosition" : [-40, -40],
 
@@ -53,9 +54,9 @@
 
   "unlockStateType" : "crystal",
 
-  "unlockingState" : "fixed",
+  "unlockingState" : "activating",
   "lockingState" : "broken",
-  "unlockedState" : "fixed",
+  "unlockedState" : "active",
   "lockedState" : "broken",
 
   "unlockSound" : "repair",

@@ -424,7 +424,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 38, \"decorativeConnectionAngle\" : 180, \"decorativeIsConnecting\" : false}"
+                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -85, \"decorativeBeamLength\" : 40, \"decorativeConnectionAngle\" : 180, \"decorativeIsConnecting\" : false}"
                     },
                  "propertytypes":
                     {
@@ -444,7 +444,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 40, \"decorativeConnectionAngle\" : 180, \"decorativeIsConnecting\" : false}"
+                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -88, \"decorativeBeamLength\" : 40, \"decorativeConnectionAngle\" : 180, \"decorativeIsConnecting\" : false}"
                     },
                  "propertytypes":
                     {
@@ -464,7 +464,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 40, \"decorativeConnectionAngle\" : 0, \"decorativeIsConnecting\" : false}"
+                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -92, \"decorativeBeamLength\" : 40, \"decorativeConnectionAngle\" : 0, \"decorativeIsConnecting\" : false}"
                     },
                  "propertytypes":
                     {
@@ -484,7 +484,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -90, \"decorativeBeamLength\" : 38, \"decorativeConnectionAngle\" : 0, \"decorativeIsConnecting\" : false}"
+                     "parameters":"{\"defaultState\" : true, \"decorative\" : true, \"angle\" : -95, \"decorativeBeamLength\" : 40, \"decorativeConnectionAngle\" : 0, \"decorativeIsConnecting\" : false}"
                     },
                  "propertytypes":
                     {
@@ -708,7 +708,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"angle\" : -90, \"maxBeamLength\" : 34}"
+                     "parameters":"{\"angle\" : -98, \"maxBeamLength\" : 40}"
                     },
                  "propertytypes":
                     {
@@ -728,7 +728,7 @@
                  "name":"",
                  "properties":
                     {
-                     "parameters":"{\"angle\" : -90, \"maxBeamLength\" : 34}"
+                     "parameters":"{\"angle\" : -82, \"maxBeamLength\" : 40}"
                     },
                  "propertytypes":
                     {
@@ -1142,18 +1142,6 @@
                  "y":800
                 }, 
                 {
-                 "gid":2147484527,
-                 "height":24,
-                 "id":888,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":656,
-                 "y":800
-                }, 
-                {
                  "gid":7646,
                  "height":32,
                  "id":892,
@@ -1444,6 +1432,18 @@
                  "width":8,
                  "x":576,
                  "y":904
+                }, 
+                {
+                 "gid":2147491399,
+                 "height":24,
+                 "id":944,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":656,
+                 "y":800
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1501,7 +1501,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1698,7 +1698,7 @@
          "name":"anchors etc",
          "objects":[
                 {
-                 "gid":7751,
+                 "gid":7752,
                  "height":8,
                  "id":759,
                  "name":"",
@@ -1727,7 +1727,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":944,
+ "nextobjectid":945,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -1850,7 +1850,7 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }, 
         {
-         "firstgid":7751,
+         "firstgid":7752,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }],
  "tilewidth":8,

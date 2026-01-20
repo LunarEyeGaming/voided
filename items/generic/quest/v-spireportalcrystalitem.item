@@ -5,9 +5,11 @@
   "rarity" : "Legendary",
   "category" : "quest",
   "builder" : "/items/buildscripts/v-builditem.lua",
-  "tooltipKind" : "tool",
+  "tooltipKind" : "base",
   "inventoryIcon" : "v-spireportalcrystalitem.png",
-  "largeImage" : "/objects/dungeon/v-solarspire/v-spireportalcrystal/spireportalcrystal.png:fixed.1",
+  "tooltipFields" : {
+    "objectImage" : "/objects/dungeon/v-solarspire/v-spireportalcrystal/spireportalcrystal.png:activating.1"
+  },
   "description" : "A crystal built to resonate under exposure to powerful rays of light.",
   "shortdescription" : "Large Portal Crystal"
 }
