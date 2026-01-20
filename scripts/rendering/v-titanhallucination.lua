@@ -1,3 +1,4 @@
+require "/scripts/rect.lua"
 require "/scripts/vec2.lua"
 require "/scripts/v-time.lua"
 
@@ -140,7 +141,8 @@ function v_titanHallucination_updateTitanPosition()
 end
 
 function v_titanHallucination_nearTitan()
-  return world.magnitude(entity.position(), titanPosition) < maxFearDistance
+  return titanPosition and rect.contains(world.clientWindow(), titanPosition)
+  -- return world.magnitude(entity.position(), titanPosition) < maxFearDistance
 end
 
 function v_titanHallucination_hasSleepStatus()
