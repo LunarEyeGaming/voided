@@ -39,6 +39,10 @@ function init()
 
   loaded = false  -- Debug variable
 
+  if not storage.hasActiveInput then
+    storage.hasActiveInput = object.inputNodeCount() == 0 or not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
+  end
+
   reset()
 
   self.debug = true
@@ -70,11 +74,11 @@ function onInteraction(args)
 end
 
 function onNodeConnectionChange(args)
-  storage.hasActiveInput = not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
+  storage.hasActiveInput = object.inputNodeCount() == 0 or not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
 end
 
 function onInputNodeChange(args)
-  storage.hasActiveInput = not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
+  storage.hasActiveInput = object.inputNodeCount() == 0 or not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
 end
 
 -- STATE FUNCTIONS
