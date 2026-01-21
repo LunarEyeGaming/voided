@@ -6,13 +6,13 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 6,
-            "cycle" : 0.5,
+            "frames" : 2,
+            "cycle" : 0.8,
             "mode" : "loop"
           },
           "walk" : {
-            "frames" : 6,
-            "cycle" : 0.5,
+            "frames" : 4,
+            "cycle" : 0.4,
             "mode" : "loop"
           },
           "jump" : {
@@ -24,13 +24,13 @@
             "cycle" : 0.3
           },
           "fire" : {
-            "frames" : 4,
-            "cycle" : 0.4,
+            "frames" : 2,
+            "cycle" : 0.8,
             "mode" : "loop"
           },
           "firewindup" : {
-            "frames" : 2,
-            "cycle" : 0.2,
+            "frames" : 1,
+            "cycle" : 0.1,
             "mode" : "transition",
             "transition" : "fire",
             "properties" : {
@@ -38,8 +38,8 @@
             }
           },
           "firewinddown" : {
-            "frames" : 2,
-            "cycle" : 0.2,
+            "frames" : 1,
+            "cycle" : 0.1,
             "mode" : "transition",
             "transition" : "idle",
             "properties" : {
@@ -47,13 +47,13 @@
             }
           },
           "fire2" : {
-            "frames" : 4,
-            "cycle" : 0.4,
+            "frames" : 8,
+            "cycle" : 0.8,
             "mode" : "loop"
           },
           "firewindup2" : {
-            "frames" : 2,
-            "cycle" : 0.2,
+            "frames" : 1,
+            "cycle" : 0.1,
             "mode" : "transition",
             "transition" : "fire2",
             "properties" : {
@@ -61,8 +61,8 @@
             }
           },
           "firewinddown2" : {
-            "frames" : 2,
-            "cycle" : 0.2,
+            "frames" : 1,
+            "cycle" : 0.1,
             "mode" : "transition",
             "transition" : "idle",
             "properties" : {
@@ -109,7 +109,7 @@
       "body" : {
         "properties" : {
           "transformationGroups" : [ "body" ],
-          "offset" : [-0.0625, 0.6875]
+          "offset" : [-0.0625, 0.875]
         },
         "partStates" : {
           "body" : {
