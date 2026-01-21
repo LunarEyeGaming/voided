@@ -69,21 +69,78 @@
           "invisible" : {},
           "visible" : {}
         }
+      },
+      "base" : {
+        "default" : "brokenidle",
+        "states" : {
+          "brokenidle" : {
+            "frames" : 16,
+            "cycle" : 1.6,
+            "mode" : "loop"
+          },
+          "fill" : {
+            "frames" : 8,
+            "cycle" : 0.8,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "idle" : {
+            "frames" : 1,
+            "cycle" : 1.0,
+            "mode" : "loop"
+          }
+        }
       }
     },
     "parts" : {
       "base" : {
         "properties" : {
-          "image" : "<partImage>",
           "centered" : false,
           "fullbright" : true
+        },
+        "partStates" : {
+          "base" : {
+            "brokenidle" : {
+              "properties" : {
+                "image" : "<partImage>:brokenidle.<frame>"
+              }
+            },
+            "fill" : {
+              "properties" : {
+                "image" : "<partImage>:fill.<frame>"
+              }
+            },
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
         }
       },
       "baselit" : {
         "properties" : {
-          "image" : "<partImage>",
           "centered" : false,
           "zLevel" : 1
+        },
+        "partStates" : {
+          "base" : {
+            "brokenidle" : {
+              "properties" : {
+                "image" : "<partImage>:brokenidle.<frame>"
+              }
+            },
+            "fill" : {
+              "properties" : {
+                "image" : "<partImage>:fill.<frame>"
+              }
+            },
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
         }
       },
       "portal" : {

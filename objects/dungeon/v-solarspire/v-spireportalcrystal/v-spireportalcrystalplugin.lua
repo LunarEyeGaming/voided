@@ -9,5 +9,7 @@ function onOutputChange(state)
         world.sendEntityMessage(playerId, "queueRadioMessage", msg)
       end
     end
+
+    world.sendEntityMessage("v-spireportal", "v-crystalRepaired")
   end
 end

@@ -8,6 +8,7 @@ require "/scripts/v-entity.lua"
 require "/scripts/v-ministarutil.lua"
 require "/scripts/v-vec2.lua"
 require "/scripts/v-world.lua"
+require "/scripts/v-time.lua"
 
 -- Constants
 local NODE_OUTER_DOOR = 0
@@ -25,6 +26,8 @@ local arenaRegion
 local lightningEndOffsetRegion
 local preIntroDungeonMusic
 local postIntroDungeonMusic
+local portalActivationTime
+local portalActivationTimer
 
 local portalLightningFadeTime
 local portalLightningStartColor
@@ -62,6 +65,7 @@ function init()
   lightningEndOffsetRegion = config.getParameter("lightningEndOffsetRegion")
   preIntroDungeonMusic = config.getParameter("dungeonMusic.preIntro")
   postIntroDungeonMusic = config.getParameter("dungeonMusic.postIntro")
+  portalActivationTime = config.getParameter("portalActivationTime", 1.5)
   world.setProperty("v-dungeonMusicStopFadeTime", config.getParameter("dungeonMusicStopFadeTime", 2.0))
 
   portalLightningFadeTime = config.getParameter("portalLightningFadeTime")
@@ -192,9 +196,26 @@ function init()
     middleImage = "/objects/dungeon/v-solarspire/v-spireportal/sunbeammid.png"
   }
   object.setAnimationParameter("sunBeam", sunBeam)
+
+  message.setHandler("v-crystalRepaired", function()
+    storage.crystalRepaired = true
+    portalActivationTimer = portalActivationTime
+  end)
+
+  if storage.crystalRepaired then
+    animator.setAnimationState("base", "idle")
+  end
 end
 
 function update(dt)
+  -- Portal activation timing
+  if portalActivationTimer then
+    portalActivationTimer = portalActivationTimer - dt
+    if portalActivationTimer <= 0 then
+      animator.setAnimationState("base", "fill")
+      portalActivationTimer = nil
+    end
+  end
   -- Update cooldowns
   for i, cooldown in ipairs(hazardCooldowns) do
     hazardCooldowns[i] = cooldown - dt

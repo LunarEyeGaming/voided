@@ -5,9 +5,12 @@
         "default" : "broken",
         "states" : {
           "broken" : {
+            "frames" : 16,
+            "cycle" : 8,
+            "mode" : "loop",
             "properties" : {
               "particleEmittersOn" : [ "beamImpact" ],
-              "persistentSound" : "/sfx/projectiles/burning_loop.ogg"
+              "persistentSound" : "/sfx/objects/v_spirecrystal_brokenloop.ogg"
             }
           },
           "activating" : {
@@ -16,7 +19,9 @@
             "mode" : "transition",
             "transition" : "active",
             "properties" : {
-              "particleEmittersOff" : [ "beamImpact" ]
+              "particleEmittersOff" : [ "beamImpact" ],
+              "immediateSound" : "/sfx/melee/charge_up5.ogg",
+              "persistentSound" : "/sfx/objects/v_spirecrystal_hum.ogg"
             }
           },
           "active" : {
@@ -24,7 +29,8 @@
             "cycle" : 4.0,
             "mode" : "loop",
             "properties" : {
-              "particleEmittersOff" : [ "beamImpact" ]
+              "particleEmittersOff" : [ "beamImpact" ],
+              "persistentSound" : "/sfx/objects/v_spirecrystal_hum.ogg"
             }
           }
         }
