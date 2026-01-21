@@ -3,9 +3,11 @@ local oldUpdate = update or function() end
 function update(dt)
   oldUpdate(dt)
 
-  mcontroller.controlModifiers({
-    gravityEnabled = false
-  })
+  if self.elapsed < self.invisibilityDuration then
+    mcontroller.controlModifiers({
+      gravityEnabled = false
+    })
 
-  mcontroller.setVelocity({0, 0})
+    mcontroller.setVelocity({0, 0})
+  end
 end
