@@ -39,10 +39,6 @@ function init()
 
   loaded = false  -- Debug variable
 
-  if not storage.hasActiveInput then
-    storage.hasActiveInput = object.inputNodeCount() == 0 or not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
-  end
-
   reset()
 
   self.debug = true
@@ -71,14 +67,6 @@ end
 
 function onInteraction(args)
   skippedGracePeriod = true
-end
-
-function onNodeConnectionChange(args)
-  storage.hasActiveInput = object.inputNodeCount() == 0 or not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
-end
-
-function onInputNodeChange(args)
-  storage.hasActiveInput = object.inputNodeCount() == 0 or not object.isInputNodeConnected(0) or object.getInputNodeLevel(0)
 end
 
 -- STATE FUNCTIONS
@@ -123,14 +111,7 @@ end
   team to be outside of it.
 ]]
 function states.wait()
-  if not storage.wasActivated then
-    while not storage.hasActiveInput do
-      coroutine.yield()
-    end
-
-    storage.wasActivated = true
-    onInputActivation()
-  end
+  onWait()
 
   -- While no "friendly" creatures are in the arena or at least one "friendly" creature is outside the arena, do
   -- nothing.
@@ -612,14 +593,12 @@ end
 --[[
   If the room was not cleared, opens one door, leaves the other closed, and waits for friendlies to enter. Otherwise,
   opens all doors and never activates again.
-
-  If an input node is connected and it is not active, it leaves all doors open instead.
 ]]
 function reset()
   object.setOutputNodeLevel(0, true)
 
   if storage.active then
-    object.setOutputNodeLevel(1, not storage.hasActiveInput)
+    object.setOutputNodeLevel(1, false)
     state:set(states.postInit)
   else
     object.setOutputNodeLevel(1, true)
@@ -650,9 +629,9 @@ function onLoad()
 end
 
 --[[
-  A function called once the object starts receiving input.
+  A function called at the beginning of the wait state.
 ]]
-function onInputActivation()
+function onWait()
 end
 
 --[[

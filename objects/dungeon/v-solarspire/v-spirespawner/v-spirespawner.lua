@@ -37,6 +37,8 @@ local portalLightningStartPosition
 local monsterDisappearRange
 local equivalentMonsters
 
+local destabilizeCheckInterval
+
 local lightningController
 
 local oldInit = init or function() end
@@ -79,6 +81,8 @@ function init()
   monsterDisappearRange = config.getParameter("monsterDisappearRange", 75)
   equivalentMonsters = config.getParameter("equivalentMonsters", {})
 
+  destabilizeCheckInterval = config.getParameter("destabilizeCheckInterval", 1.0)
+
   lightningController = vAnimator.LightningController:new(
     portalLightningConfig,
     portalLightningStartColor,
@@ -106,9 +110,9 @@ function onLoad()
   if storage.hasGracePeriod then
     animator.setAnimationState("glass", "broken")
     animator.setAnimationState("portal", "idleactive")
-  elseif storage.hasActiveInput then
+  elseif storage.portalDestabilized then
     animator.setAnimationState("glass", "cracked")
-  animator.setAnimationState("portal", "idleactive")
+    animator.setAnimationState("portal", "idleactive")
   else
     animator.setAnimationState("glass", "normal")
     animator.setAnimationState("portal", "idle")
@@ -146,7 +150,31 @@ function onGracePeriodTick(dt)
   -- end
 end
 
-function onInputActivation()
+function onWait()
+  if storage.portalDestabilized then
+    return
+  end
+
+  object.setOutputNodeLevel(1, true)
+
+  local spirePortalId
+
+  repeat
+    spirePortalId = world.loadUniqueEntity("v-spireportal")
+
+    util.wait(destabilizeCheckInterval, function()
+      world.debugText("waiting for portal destabilization...", object.position(), "green")
+    end)
+  until spirePortalId ~= 0 and world.entityExists(spirePortalId) and world.callScriptedEntity(spirePortalId, "isDestabilized")
+
+  storage.portalDestabilized = true
+
+  object.setOutputNodeLevel(1, false)
+
+  onPortalDestabilization()
+end
+
+function onPortalDestabilization()
   animator.playSound("crack")
   animator.burstParticleEmitter("crack")
   animator.setAnimationState("glass", "cracked")
