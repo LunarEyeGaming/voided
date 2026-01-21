@@ -136,7 +136,16 @@
         }
       ],
 
-      "concurrentActions" : [ ],
+      "concurrentActions" : [
+        {
+          "name" : "action-animate",
+          "parameters" : {
+            "stateType" : "body",
+            "state" : "idle",
+            "animationTimer" : 1.0
+          }
+        }
+      ],
 
       "concurrentHostileActions" : [ ]
     },
