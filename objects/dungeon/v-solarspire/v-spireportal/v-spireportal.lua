@@ -649,7 +649,7 @@ function states.summonMiniboss(cfg)
 end
 
 function states.giveTreasure()
-  switchDestination("cryoflame")
+  switchDestination("treasure")
 
   object.setAnimationParameter("lightningSeed", math.floor(os.clock()))
 
