@@ -1,0 +1,26 @@
+{
+  "metadata" : {
+    "name" : "v-solarspire-upper_room4-reset2",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "upper_room4-reset2" ],
+    // "anchor" : [ "buildingbottom" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 1,
+    "protected" : true
+  },
+
+  "parts" : [
+    {
+      "name" : "upper_room4-reset2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "upper_room4-reset2.json" ]
+    }
+  ]
+}

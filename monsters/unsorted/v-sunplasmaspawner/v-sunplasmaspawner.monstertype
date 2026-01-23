@@ -1,5 +1,5 @@
 {
-  "type" : "v-lingeringpoison",
+  "type" : "v-sunplasmaspawner",
 
   "categories" : [ "v-blank" ],
   "parts" : [ "body" ],
@@ -11,31 +11,11 @@
 
   "baseParameters" : {
     "scripts" : [
-      "/monsters/unsorted/v-lingeringpoison/v-lingeringpoison.lua"
+      "/monsters/unsorted/v-sunplasmaspawner/v-sunplasmaspawner.lua"
     ],
 
-    "animationScripts" : [
-      "/monsters/unsorted/v-lingeringpoison/v-lingeringpoisonanim.lua"
-    ],
-
-    "projectileType" : "v-lingeringpoisondamage",
-    "projectileParameters" : {
-      "timeToLive" : 50
-    },
-    "damage" : 20,
-    "maxArea" : 500,
-
-    "damageTimeLingerTimeFactor" : 0.5,
-    "minLingerTime" : 1.0,
-    "maxLingerTime" : 5.0,
-    "radius" : 10,
-
-    "dissipationTime" : 0.15,
-    "animationConfig" : {
-      "startColor" : [206, 147, 230, 255],
-      "endColor" : [73, 45, 84, 0],
-      "fullbright" : false
-    },
+    "liquidId" : 218,
+    "quantity" : 50,
 
     "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
     "scale" : 1.0,
@@ -71,7 +51,15 @@
 
       "appliesEnvironmentStatusEffects" : false,
       "appliesWeatherStatusEffects" : false,
-      "minimumLiquidStatusEffectPercentage" : 1.0
+      "minimumLiquidStatusEffectPercentage" : 1.0,
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0,
+          "maxValue" : 0.0
+        }
+      }
     },
 
     "mouthOffset" : [0, 0],

@@ -1,0 +1,26 @@
+{
+  "metadata" : {
+    "name" : "v-solarspire-lower_room2-reset",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "lower_room2-reset" ],
+    // "anchor" : [ "buildingbottom" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 1,
+    "protected" : true
+  },
+
+  "parts" : [
+    {
+      "name" : "lower_room2-reset",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "lower_room2-reset.json" ]
+    }
+  ]
+}

@@ -1,5 +1,13 @@
 { "backgroundcolor":"#000000",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json1",
+         "target":"lower_room2-reset.json"
+        }
+    },
  "height":84,
  "infinite":false,
  "layers":[
@@ -19,7 +27,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztnEFuwzAMBPOCNG1y1v+f2QI92Aksk7JWlmTOAESBKojtCSNqD+3tBjAej7TUFt9\/v3+l\/5851q95btR6vWeVPEepK7VHax2P+ev\/pKWs9RFqVI\/rz9xaH6FG9Ug\/ajx+paVGxXOPeLRp6fGz360zS8099qbU45aL3P7g2X+jesytb\/ny7L94XNjzxf640HvO1J5DtvaiXF353NPqXNziWrOcw4\/0YgmKnszR2yP7Ix7XXMGjZ8bUQJ7RQJ7RQJ7RQJ7REGXOtCaKx5nntbXmeW\/vPfYGjxrwqAGPGsgzGqLkmRnmNXmGPKOCOaOhtUcLPGrAowbmtQb6UQMebcgz71whz7SGPKMhSp6ZYV6TZ\/CoAo8a8KgBjxqieJx5XpNn3iHP2JBnNETJM62JMmdaE8XjzPPaWvO8t\/cee4NHDXjUgEcN5BkNUfLMDPOaPHPtPOP9e97S1x69x1nnzPo7Yn1vn8neg\/a4ssfS\/orUj\/eCsubj3tmh5Dr3FMejBzzi0fOstf9348j+2OJavfPM5\/n0SHlQXMd6jp55prY\/PDMm9yxn9mPvPGPtHWdw5TxzJjPMGTza4FEDHjXgUUPpuafVWUVZo3r0nEFHqppn3UKVZ6zPunf\/HenHHnnGkwNeSdNLNaV4jpZ5JopHb18D9OIXz9aZsw==",
+         "data":"eJztnEtuwzAMBXuDfpK17n\/MFujCTiCFlPUY\/WYAoUBl2PKEEfUW7ccHwHh8pWPk+P77\/T39\/yxxvuaWGef5nqPmPWpdqT1a83gsP\/8nHcOaH2GM6vH8mVvzI4xRPVKPGo+f6Rij4lkjHm0iPT7Xu3VmaVljb2o95lyU9gfP\/rurx9J8zpdn\/8XjwStf7I8HvftM6zkktxeVxsrnnqhzccSzZjmHX6nFGhQ1WaK3R\/ZHPJ5ZwaOnx7RAntFAntFAntFAntGwS5+JZhePM\/dra85zb+8ae4NHDXjUgEcN5BkNu+SZGfo1eYY8o4I+oyHaowUeNeBRA\/1aA\/WoAY825JlHVsgz0ZBnNOySZ2bo1+QZPKrAowY8asCjhl08ztyvyTOPkGdsyDMadskz0ezSZ6LZxePM\/dqa89zbu8be4FEDHjXgUQN5RsMueWaGfk2eWTvPeP+et\/baq2uctc+cvyPW9\/aW7D3oFSt7rK0v6tG+t6fPeNbSssYVPEZcX7tGPNrM4LH1\/25c2R8jntU7zzyfT68MD4rnWO\/RM8+01oenx5Te5Z312DvPtJz7VKycZ97JDH0GjzZ41IBHDXjUUHvuiTqrKMeoHj1n0JFGy7vmUOUZ67PuXX9X6rFHnvHkgHvS1FLLULxHZJ7ZxaO3rgF68QsH\/Y3a",
          "encoding":"base64",
          "height":84,
          "id":2,
@@ -776,6 +784,26 @@
                  "width":16,
                  "x":40,
                  "y":40
+                }, 
+                {
+                 "gid":7724,
+                 "height":8,
+                 "id":821,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"dungeonOffset\" : [0, -1], \"dungeonType\" : \"v-solarspire-lower_room2-reset\"}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":176,
+                 "y":376
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -807,6 +835,27 @@
                  "width":304,
                  "x":176,
                  "y":448
+                }, 
+                {
+                 "height":24,
+                 "id":822,
+                 "name":"reset trigger (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"messageType\" : \"\", \"waveNumber\" : 1, \"resetOnSubsequentWaves\" : true}",
+                     "stagehand":"v-wavetrigger"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":168,
+                 "y":360
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1128,6 +1177,48 @@
                  "width":8,
                  "x":192,
                  "y":600
+                }, 
+                {
+                 "height":8,
+                 "id":818,
+                 "name":"sunplasmaspawner (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-sunplasmaspawner\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":408,
+                 "y":528
+                }, 
+                {
+                 "height":8,
+                 "id":820,
+                 "name":"sunplasmaspawner (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-sunplasmaspawner\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":208,
+                 "y":528
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1245,7 +1336,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":817,
+ "nextobjectid":823,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
