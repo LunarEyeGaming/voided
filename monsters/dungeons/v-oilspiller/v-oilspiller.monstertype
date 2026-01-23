@@ -1,7 +1,7 @@
 {
   "type" : "v-oilspiller",
-  "shortdescription" : "<todo>",
-  "description" : "<todo>",
+  "shortdescription" : "Oil Spiller",
+  "description" : "An automaton that fends off intruders with oil and flames.",
 
   "categories" : [ "v-oilspiller" ],
   "parts" : [ "body" ],
@@ -200,7 +200,7 @@
           "baseValue" : 9
         },
         "maxHealth" : {
-          "baseValue" : 50
+          "baseValue" : 100
         },
         "protection" : {
           "baseValue" : 0.0

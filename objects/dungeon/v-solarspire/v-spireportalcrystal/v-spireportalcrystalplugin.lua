@@ -11,5 +11,11 @@ function onOutputChange(state)
     end
 
     world.sendEntityMessage("v-spireportal", "v-crystalRepaired")
+
+    for k, v in pairs(config.getParameter("parametersOnRepair", {})) do
+      object.setConfigParameter(k, v)
+    end
+
+    object.setInteractive(false)
   end
 end

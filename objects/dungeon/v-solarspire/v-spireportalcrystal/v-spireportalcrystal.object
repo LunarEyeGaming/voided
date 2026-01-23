@@ -4,17 +4,17 @@
   "colonyTags" : [ ],
   "printable" : false,
   "rarity" : "Legendary",
-  "description" : "<todo>",
+  "description" : "A broken crystal that needs replacement.",
   "shortdescription" : "Need Replacement Crystal",
-  "race" : "generic",
+  "race" : "avian",
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "A destroyed crystal, incapable of delivering sufficient energy to power the gate. Replacement is necessary.",
+  "avianDescription" : "I'll need to replace this crystal.",
+  "floranDescription" : "Floran mussst replace crystal.",
+  "glitchDescription" : "Excited. It is probable that replacing this crystal will be sufficient to power the gate.",
+  "humanDescription" : "Looks like this crystal can't power the gate anymore.",
+  "hylotlDescription" : "It seems like I need to replace that crystal.",
+  "novakidDescription" : "An ol' crystal that needs some replacin'.",
 
   "category" : "artifact",
   "price" : 0,
@@ -63,6 +63,18 @@
 
   "radioMessagesOnRepair" : [ "v-solarspire2" ],
   "radioMessageRange" : 64,
+
+  "parametersOnRepair" : {
+    "description" : "A newly-inserted crystal capable of powering the gate.",
+
+    "apexDescription" : "This new crystal can power the gate.",
+    "avianDescription" : "The crystal is glowing brighter than before.",
+    "floranDescription" : "New cryssstal works!",
+    "glitchDescription" : "Accomplished. The gateway has sufficient power to function.",
+    "humanDescription" : "That should do the trick. Now to turn it on and pray nothing goes wrong.",
+    "hylotlDescription" : "The crystal now can power this gateway.",
+    "novakidDescription" : "Crystal replaced!"
+  },
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }
