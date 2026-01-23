@@ -1,5 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
+require "/scripts/rect.lua"
 
 -- TODO: Maybe add an option for using the current dungeon ID?
 --[[
@@ -7,9 +8,27 @@ require "/scripts/vec2.lua"
   /scripts/player/v-dungeonmusicplayer.lua.
 ]]
 
-function init()
-  world.setProperty("v-dungeonMusic", config.getParameter("dungeonMusic", {}))
-  world.setProperty("v-dungeonMusicStopFadeTime", config.getParameter("dungeonMusicStopFadeTime", 2.0))
+local regionToCheck
 
-  stagehand.die()
+function init()
+  regionToCheck = rect.translate(config.getParameter("broadcastArea"), stagehand.position())
+end
+
+function update(dt)
+  if world.loadRegion(regionToCheck) then
+    local dungeonMusic = config.getParameter("dungeonMusic", {})
+    local dungeonMusicStopFadeTime = config.getParameter("dungeonMusicStopFadeTime", 2.0)
+
+    if dungeonMusic.atOwnPosition then
+      local dungeonId = world.dungeonId(stagehand.position())
+
+      dungeonMusic[tostring(dungeonId)] = dungeonMusic.atOwnPosition
+      dungeonMusic.atOwnPosition = nil
+    end
+
+    world.setProperty("v-dungeonMusic", dungeonMusic)
+    world.setProperty("v-dungeonMusicStopFadeTime", dungeonMusicStopFadeTime)
+
+    stagehand.die()
+  end
 end

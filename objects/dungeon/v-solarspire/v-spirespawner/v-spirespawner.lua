@@ -3,6 +3,7 @@ require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
 require "/objects/wired/v-monsterwavespawner/v-monsterwavespawner.lua"
 require "/scripts/v-animator.lua"
+require "/scripts/v-time.lua"
 
 local openAnimationDuration
 local openingCloseDelay
@@ -70,7 +71,6 @@ function init()
   portalLightningConfig = config.getParameter("portalLightningConfig")
 
   gracePeriod = config.getParameter("gracePeriod")
-  gracePeriodSparkChanceMultiplier = config.getParameter("gracePeriodSparkChanceMultiplier")
   gracePeriodSparkTimer = 1
 
   minTriggerDelay = config.getParameter("minTriggerDelay")
@@ -92,11 +92,19 @@ function init()
     portalLightningStartOutlineColor,
     portalLightningEndOutlineColor
   )
+
+  vTime.addInterval(1.0, function()
+    if not storage.portalDestabilized then
+      local spirePortalId = world.loadUniqueEntity("v-spireportal")
+      storage.portalDestabilized = spirePortalId ~= 0 and world.entityExists(spirePortalId) and world.callScriptedEntity(spirePortalId, "isDestabilized")
+    end
+  end)
 end
 
 function update(dt)
   oldUpdate(dt)
 
+  vTime.update(dt)
   lightningController:update(dt)
 end
 
@@ -157,17 +165,10 @@ function onWait()
 
   object.setOutputNodeLevel(1, true)
 
-  local spirePortalId
-
-  repeat
-    spirePortalId = world.loadUniqueEntity("v-spireportal")
-
-    util.wait(destabilizeCheckInterval, function()
-      world.debugText("waiting for portal destabilization...", object.position(), "green")
-    end)
-  until spirePortalId ~= 0 and world.entityExists(spirePortalId) and world.callScriptedEntity(spirePortalId, "isDestabilized")
-
-  storage.portalDestabilized = true
+  while not storage.portalDestabilized do
+    world.debugText("waiting for portal destabilization...", object.position(), "green")
+    coroutine.yield()
+  end
 
   object.setOutputNodeLevel(1, false)
 
