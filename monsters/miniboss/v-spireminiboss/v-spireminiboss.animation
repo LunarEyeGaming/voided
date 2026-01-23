@@ -65,6 +65,11 @@
             "cycle" : 0.8,
             "mode" : "transition",
             "transition" : "idle"
+          },
+          "dying" : {
+            "frames" : 12,
+            "cycle" : 1.2,
+            "mode" : "loop"
           }
         }
       },
@@ -140,6 +145,11 @@
               "properties" : {
                 "image" : "<partImage>:roar.<frame>"
               }
+            },
+            "dying" : {
+              "properties" : {
+                "image" : "<partImage>:dying.<frame>"
+              }
             }
           }
         }
@@ -201,6 +211,11 @@
               "properties" : {
                 "image" : "<partImage>:roar.<frame>"
               }
+            },
+            "dying" : {
+              "properties" : {
+                "image" : "<partImage>:dying.<frame>"
+              }
             }
           }
         }
@@ -221,13 +236,22 @@
   },
 
   "particleEmitters" : {
+    "dying" : {
+      "burstCount" : 2,
+      "offsetRegion" : [-5, -2, 5, 7],
+      "transformationGroups" : [ "body" ],
+      "particles" : [
+        { "particle" : "monstersplosion" },
+        { "particle" : "deathember", "count" : 2 }
+      ]
+    },
     "deathPoof" : {
       "burstCount" : 15,
       "transformationGroups" : [ "body" ],
       "offsetRegion" : [-5, -2, 5, 7],
       "particles" : [
-        { "particle" : "greenmonstersplosion" },
-        { "particle" : "greendeathember", "count" : 5 }
+        { "particle" : "monstersplosion" },
+        { "particle" : "deathember", "count" : 5 }
       ]
     }
   },
@@ -235,6 +259,10 @@
   "sounds" : {
     "aggroHop" : [ ],
     "deathPuff" : [ "/sfx/npc/miniboss/v_laboratoryminiboss_explode.ogg" ],
+    "dying" : {
+      "pool" : [ "/sfx/melee/blunt_kill_organic1.ogg" ],
+      "rangeMultiplier" : 2
+    },
     "fire" : {
       "pool" : [ "/sfx/projectiles/fireball_poof.ogg" ],
       "rangeMultiplier" : 2

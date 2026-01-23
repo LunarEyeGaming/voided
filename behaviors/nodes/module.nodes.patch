@@ -1419,5 +1419,20 @@
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarknesspassive.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-spireminiboss-dying",
+    "value": {
+      "type": "module",
+      "name": "v-spireminiboss-dying",
+      "title": "",
+      "properties": {
+        "crashVelocity": {"type": "json", "value": [50, -25]},
+        "explosionDuration": {"type": "json", "value": 3},
+        "explosionInterval": {"type": "json", "value": [0.01, 0.3]}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-dying.behavior"
+    }
   }
 ]

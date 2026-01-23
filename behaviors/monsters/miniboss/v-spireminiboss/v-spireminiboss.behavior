@@ -98,11 +98,17 @@
                         }
                       },
                       {
-                        "title": "v_setBattleMusicState",
-                        "type": "action",
-                        "name": "v_setBattleMusicState",
-                        "parameters": {
-                          "state": {"value": "active"}
+                        "title": "succeeder",
+                        "type": "decorator",
+                        "name": "succeeder",
+                        "parameters": {},
+                        "child": {
+                          "title": "v_setBattleMusicState",
+                          "type": "action",
+                          "name": "v_setBattleMusicState",
+                          "parameters": {
+                            "state": {"value": "active"}
+                          }
                         }
                       },
                       {
@@ -295,11 +301,41 @@
                     }
                   },
                   {
-                    "title": "v_setBattleMusicState",
-                    "type": "action",
-                    "name": "v_setBattleMusicState",
+                    "title": "succeeder",
+                    "type": "decorator",
+                    "name": "succeeder",
+                    "parameters": {},
+                    "child": {
+                      "title": "v_setBattleMusicState",
+                      "type": "action",
+                      "name": "v_setBattleMusicState",
+                      "parameters": {
+                        "state": {"value": "partial"}
+                      }
+                    }
+                  },
+                  {
+                    "title": "v-spireminiboss-dying",
+                    "type": "module",
+                    "name": "v-spireminiboss-dying",
                     "parameters": {
-                      "state": {"value": "inactive"}
+                      "explosionInterval": {"value": [0.01, 0.3]},
+                      "explosionDuration": {"value": 3},
+                      "crashVelocity": {"value": [50, -25]}
+                    }
+                  },
+                  {
+                    "title": "succeeder",
+                    "type": "decorator",
+                    "name": "succeeder",
+                    "parameters": {},
+                    "child": {
+                      "title": "v_setBattleMusicState",
+                      "type": "action",
+                      "name": "v_setBattleMusicState",
+                      "parameters": {
+                        "state": {"value": "inactive"}
+                      }
                     }
                   },
                   {
