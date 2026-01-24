@@ -215,15 +215,33 @@
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   },
-  "v_titanTurnEyes": {
+  "v_titanSurfaceScan": {
     "type": "action",
-    "name": "v_titanTurnEyes",
-    "title": "v_titanTurnEyes",
+    "name": "v_titanSurfaceScan",
+    "title": "v_titanSurfaceScan",
+    "properties": {
+      "checkDistanceX": {"type": "number", "value": 20},
+      "checkDistanceY": {"type": "number", "value": 20},
+      "targetPos": {"type": "position", "key": "self"},
+      "checkOffsetY": {"type": "number"}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {
+      "score": {"type": "number", "key": null}
+    }
+  },
+  "v_titanLookSurface": {
+    "type": "action",
+    "name": "v_titanLookSurface",
+    "title": "v_titanLookSurface",
     "properties": {
       "angularVelocity": {"type": "number", "value": 360},
       "direction": {"type": "number"},
-      "endAngle": {"type": "number"},
-      "startAngle": {"type": "number"}
+      "endAngleMaxDeg": {"type": "number"},
+      "endAngleMinDeg": {"type": "number"},
+      "startAngle": {"type": "number"},
+      "waitTime": {"type": "number"}
     },
     "category": "v-titanofdarkness",
     "output": {

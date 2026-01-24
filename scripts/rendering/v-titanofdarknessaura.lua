@@ -102,10 +102,10 @@ function v_titanOfDarknessAura_updateTitanPosition(dt)
     titanPositionPromise = world.findUniqueEntity("v-titanofdarkness")
   end
 
-  sb.setLogMap("titanPositionPromise", "%s", titanPositionPromise)
-  sb.setLogMap("titanPosition", "%s", titanPosition)
-  sb.setLogMap("titanPositionPromise:finished()", "%s", titanPositionPromise:finished())
-  sb.setLogMap("titanPositionPromise:succeeded()", "%s", titanPositionPromise:succeeded())
+  -- sb.setLogMap("titanPositionPromise", "%s", titanPositionPromise)
+  -- sb.setLogMap("titanPosition", "%s", titanPosition)
+  -- sb.setLogMap("titanPositionPromise:finished()", "%s", titanPositionPromise:finished())
+  -- sb.setLogMap("titanPositionPromise:succeeded()", "%s", titanPositionPromise:succeeded())
 
   -- If the promise has finished...
   if titanPositionPromise:finished() then

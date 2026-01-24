@@ -158,7 +158,7 @@ end
 
 function v_titanHallucination_hallucinate(dt)
   if not hStopMusicTriggered then
-    world.sendEntityMessage(player.id(), "playAltMusic", {"/sfx/npc/boss/v_titanofdarkness_ambience.ogg"}, hMaxTime)
+    world.sendEntityMessage(player.id(), "playAltMusic", {"/sfx/other/v_titanofdarkness_nightmare.ogg"}, hMaxTime)
     hStopMusicTriggered = true
   end
 

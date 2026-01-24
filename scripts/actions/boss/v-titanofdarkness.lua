@@ -335,23 +335,24 @@ local eyeTurn = function(startAngle, endAngle, angularVelocity)
   coroutine.yield(nil, {angle = interpEndAngle})
 end
 
-function v_titanTurnEyes(args, board)
-  local rq = vBehavior.requireArgsGen("v_titanTurnEyes", args)
-  if not rq{"startAngle", "endAngle", "angularVelocity", "direction"} then return false end
+function v_titanLookSurface(args, board)
+  local rq = vBehavior.requireArgsGen("v_titanLookSurface", args)
+  if not rq{"startAngle", "endAngleMinDeg", "endAngleMaxDeg", "angularVelocity", "direction", "waitTime"} then return false end
 
-  local startAngle, endAngle, angularVelocity
-  startAngle = util.toRadians(args.startAngle)
-  endAngle = util.toRadians(args.endAngle)
-  angularVelocity = util.toRadians(args.angularVelocity)
+  local startAngle = args.startAngle
 
-  if args.direction < 0 then
-    startAngle = math.pi - startAngle
-    endAngle = math.pi - endAngle
+  while true do
+    local endAngle = util.randomInRange({util.toRadians(args.endAngleMinDeg), util.toRadians(args.endAngleMaxDeg)})
+    if args.direction < 0 then
+      endAngle = math.pi - endAngle
+    end
+    local angularVelocity = util.toRadians(args.angularVelocity)
+    eyeTurn(startAngle, endAngle, angularVelocity)
+
+    startAngle = endAngle
+
+    util.run(args.waitTime, function() end)
   end
-
-  eyeTurn(startAngle, endAngle, angularVelocity)
-
-  return true
 end
 
 -- Consists of two phases. The first one performs a radial raycast to determine which places to look at before looking
@@ -476,6 +477,45 @@ function v_titanSearch(args)
       end
     end
   end
+end
+
+-- Returns a score, which is a number where a ceiling farther from the position contributes to a higher score and a
+-- floor farther from the position contributes to a lower score.
+-- param targetPos
+-- param checkDistanceX
+-- param checkDistanceY
+-- param checkOffsetY
+function v_titanSurfaceScan(args, board)
+  if not vBehavior.requireArgs("v_titanSurfaceScan", args, {"targetPos", "checkDistanceX", "checkDistanceY"}) then
+    return false
+  end
+  local score = 0
+
+  local checkOffsetY = args.checkOffsetY or 0
+  local pos = vec2.add(args.targetPos, {0, checkOffsetY})
+  for x = -args.checkDistanceX, args.checkDistanceX do
+    local posTop = vec2.add(pos, {x, args.checkDistanceY})
+    local posMiddle = vec2.add(pos, {x, 0})
+    local posBottom = vec2.add(pos, {x, -args.checkDistanceY})
+    local collidePosTop = world.lineCollision(posMiddle, posTop)
+    if collidePosTop then
+      score = score + (collidePosTop[2] - posMiddle[2])
+    else
+      score = score + (posTop[2] - posMiddle[2])
+    end
+    local collidePosBottom = world.lineCollision(posMiddle, posBottom)
+    if collidePosBottom then
+      score = score + (collidePosBottom[2] - posMiddle[2])
+    else
+      score = score + (posBottom[2] - posMiddle[2])
+    end
+  end
+
+  score = score / (args.checkDistanceX * 2)
+
+  -- sb.logInfo("score for position %s: %s", pos, score)
+
+  return true, {score = score}
 end
 
 -- param leftEyeAngle - The looking angle of the left eye.

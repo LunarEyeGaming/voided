@@ -1,11 +1,10 @@
 {
   "name": "v-titanofdarkness-teleport2",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/animator.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua",
-    "/scripts/actions/voidedutil.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/position.lua",
     "/scripts/actions/math.lua",
@@ -66,14 +65,6 @@
           "visionEndRotationRate": {"value": 0},
           "visionStartRadius": {"value": 1},
           "visionStartRotationRate": {"value": 0.25}
-        }
-      },
-      {
-        "title": "v_logInfo",
-        "type": "action",
-        "name": "v_logInfo",
-        "parameters": {
-          "msg": {"value": "getting position"}
         }
       },
       {
@@ -155,37 +146,12 @@
         }
       },
       {
-        "title": "v_logInfo",
-        "type": "action",
-        "name": "v_logInfo",
-        "parameters": {
-          "formatArgs": {"value": ["$position:targetPos", "$position:offsetTargetPos"]},
-          "msg": {"value": "targetPos: %s, offsetTargetPos: %s"}
-        }
-      },
-      {
-        "title": "v_logInfo",
-        "type": "action",
-        "name": "v_logInfo",
-        "parameters": {
-          "msg": {"value": "attempting teleport"}
-        }
-      },
-      {
         "title": "setPosition",
         "type": "action",
         "name": "setPosition",
         "parameters": {
           "footPosition": {"value": false},
           "position": {"key": "offsetTargetPos"}
-        }
-      },
-      {
-        "title": "v_logInfo",
-        "type": "action",
-        "name": "v_logInfo",
-        "parameters": {
-          "msg": {"value": "appearing"}
         }
       },
       {
@@ -206,14 +172,6 @@
         "name": "v_titanSetLookActive",
         "parameters": {
           "active": {"value": true}
-        }
-      },
-      {
-        "title": "v_logInfo",
-        "type": "action",
-        "name": "v_logInfo",
-        "parameters": {
-          "msg": {"value": "teleport successful"}
         }
       }
     ]
