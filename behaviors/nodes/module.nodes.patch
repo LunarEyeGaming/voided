@@ -1428,9 +1428,9 @@
       "name": "v-spireminiboss-dying",
       "title": "",
       "properties": {
-        "crashVelocity": {"type": "json", "value": [50, -25]},
+        "explosionInterval": {"type": "json", "value": [0.01, 0.3]},
         "explosionDuration": {"type": "json", "value": 3},
-        "explosionInterval": {"type": "json", "value": [0.01, 0.3]}
+        "crashVelocity": {"type": "json", "value": [50, 0]}
       },
       "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-dying.behavior"
     }

@@ -4,7 +4,7 @@
   "categories" : [ "v-blank" ],
   "parts" : [ "body" ],
 
-  "animation" : "/monsters/unsorted/v-blank.animation",
+  "animation" : "v-sunplasmaspawner.animation",
   "reversed" : true,
 
   "dropPools" : [ "empty" ],
@@ -16,6 +16,7 @@
 
     "liquidId" : 218,
     "quantity" : 50,
+    "spawnDelay" : 0.8,
 
     "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
     "scale" : 1.0,

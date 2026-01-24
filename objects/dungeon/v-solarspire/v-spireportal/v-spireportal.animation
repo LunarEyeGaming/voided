@@ -82,7 +82,10 @@
             "frames" : 8,
             "cycle" : 0.8,
             "mode" : "transition",
-            "transition" : "idle"
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/melee/charge_combo3.ogg"
+            }
           },
           "idle" : {
             "frames" : 1,

@@ -1,0 +1,47 @@
+{
+  "animatedParts" : {},
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [
+      ]
+    },
+    "warning" : {
+      "emissionRate" : 10,
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/v-solarplasma/v-solarplasma.animation",
+            "initialVelocity" : [0, 6],
+            "approach" : [0, 2],
+            "position" : [0, 0],
+            "light" : [143, 99, 17],
+            "timeToLive" : 2,
+            "destructionAction" : "fade",
+            "destructionTime" : 1,
+            "angularVelocity" : 0,
+            "layer" : "middle",
+            "collidesForeground" : true,
+            "variance" : {
+              "initialVelocity" : [4, 4]
+            }
+          }
+        }
+      ]
+    }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0.25,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "sounds" : {
+    "deathPuff" : [ ],
+    "warning" : [ "/sfx/npc/boss/kluexboss_lavaplume.ogg" ]
+  }
+}

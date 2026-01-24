@@ -127,6 +127,11 @@ function init()
 
   lensState = FSM:new()
   lensState:set(storage.isFixed and states.fixed or states.waitForPortalDestabilization)
+
+  -- if not storage.recordingList then
+  --   storage.recordingList = {}
+  -- end
+  -- self.debug = true
 end
 
 function update(dt)
@@ -134,7 +139,7 @@ function update(dt)
 
   -- -- Zoomed out view
   -- local playerId = world.players()[1]
-  -- if world.entityExists(playerId) then
+  -- if playerId and world.entityExists(playerId) then
   --   local playerPos = world.entityPosition(playerId)
 
   --   local zoomOut = function(anchor, pos, factor)
@@ -149,6 +154,22 @@ function update(dt)
   --     world.debugLine(zoomedOutStart, zoomedOutEnd, "green")
   --   else
   --     world.debugLine(zoomedOutStart, zoomedOutEnd, "red")
+  --   end
+
+  --   if replayIdx then
+  --     if replayIdx > #storage.recordingList then
+  --       replayIdx = nil
+  --     else
+  --       local recTick = storage.recordingList[replayIdx]
+  --       for _, pos in ipairs(recTick.prevReceiverPositions) do
+  --         util.debugCircle(zoomOut(playerPos, pos, 16), 0.5, "blue", 8)
+  --       end
+  --       world.debugText("%s", recTick.numMissingPrevReceivers, zoomOut(playerPos, positionStart, 16), "blue")
+  --       for _, pos in ipairs(recTick.receiverPositions) do
+  --         util.debugCircle(zoomOut(playerPos, pos, 16), 0.5, "magenta", 8)
+  --       end
+  --       replayIdx = replayIdx + 1
+  --     end
   --   end
   -- end
 
@@ -236,10 +257,32 @@ function setBeamReceiverState(beamEnd, state, angle)
     end
   end
 
+  -- if world.getProperty("v-solarLensRecord") then
+  --   sb.setLogMap("RECORDING! UNSET v-solarLensRecord SOON OR YOUR GAME WILL CRASH", "")
+  --   receiverPositions = {}
+  --   prevReceiverPositions = {}
+  --   numMissingPrevReceivers = 0
+  --   for _, entityId in ipairs(receivers) do
+  --     table.insert(receiverPositions, world.entityPosition(entityId))
+  --   end
+  --   for _, entityId in ipairs(prevReceivers) do
+  --     if world.entityExists(entityId) then
+  --       table.insert(prevReceiverPositions, world.entityPosition(entityId))
+  --     else
+  --       numMissingPrevReceivers = numMissingPrevReceivers + 1
+  --     end
+  --   end
+  --   table.insert(storage.recordingList, {receiverPositions = receiverPositions, prevReceiverPositions = prevReceiverPositions, numMissingPrevReceivers = numMissingPrevReceivers})
+  -- end
+
   prevReceivers = receivers
 
   return entityPos
 end
+
+-- function replay()
+--   replayIdx = 1
+-- end
 
 function findBeamReceivers(beamEnd)
   if type(positionStart) ~= "table" then
@@ -544,6 +587,12 @@ function states.fix()
 end
 
 function states.waitForPortalDestabilization()
+  -- if storage.portalDestabilized then
+  --   currentAngle = screwedUpAngle
+  --   lensState:set(states.screwedUp)
+  --   return
+  -- end
+
   local spirePortalId
 
   repeat
@@ -553,6 +602,8 @@ function states.waitForPortalDestabilization()
       world.debugText("waiting for portal destabilization...", object.position(), "green")
     end)
   until spirePortalId ~= 0 and world.entityExists(spirePortalId) and world.callScriptedEntity(spirePortalId, "isDestabilized")
+
+  -- storage.portalDestabilized = true
 
   lensState:set(states.screwUpNoTelegraph)
 end
