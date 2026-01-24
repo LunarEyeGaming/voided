@@ -12,6 +12,8 @@ vWorld.ADJACENT_TILES = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}
 ---The size of each sector.
 vWorld.SECTOR_SIZE = 32
 
+vWorld.SOLID_COLLISION_SET = {"Block", "Dynamic", "Slippery"}
+
 -- Certain scripts may not work under specific script contexts due to some built-in tables being
 -- unavailable. The legend below is intended to help in knowing when using each function is appropriate.
 -- * = works under any script context
@@ -59,7 +61,7 @@ end
 function vWorld.isGroundAdjacent(position)
   -- Go through all the spaces adjacent to the position and return true if any of them are occupied by a tile.
   for _, offset in ipairs(vWorld.ADJACENT_TILES) do
-    if world.material({position[1] + offset[1], position[2] + offset[2]}, "foreground") then
+    if world.pointCollision({position[1] + offset[1], position[2] + offset[2]}, vWorld.SOLID_COLLISION_SET) then
       return true
     end
   end
