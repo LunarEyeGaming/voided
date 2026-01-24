@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-phoenix",
  "spacing":0,
- "tilecount":18,
+ "tilecount":22,
  "tiledversion":"1.11.2",
  "tileheight":130,
  "tileproperties":
@@ -83,11 +83,39 @@
          "object":"v-phoenixconsole",
          "tilesetDirection":"right"
         },
+     "18":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"-8",
+         "object":"v-phoenixiceemblem",
+         "tilesetDirection":"right"
+        },
+     "19":
+        {
+         "imagePositionX":"-24",
+         "imagePositionY":"-24",
+         "object":"v-phoenixtitanemblem",
+         "tilesetDirection":"right"
+        },
      "2":
         {
          "imagePositionX":"-8",
          "imagePositionY":"0",
          "object":"v-phoenixpressureplate",
+         "tilesetDirection":"right"
+        },
+     "20":
+        {
+         "imagePositionX":"-24",
+         "imagePositionY":"-24",
+         "object":"v-phoenixtitanemblem2",
+         "tilesetDirection":"right"
+        },
+     "21":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"-8",
+         "object":"v-phoenixarrowemblem",
          "tilesetDirection":"right"
         },
      "3":
@@ -212,7 +240,35 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "18":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "19":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "2":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "20":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "21":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -331,10 +387,34 @@
          "imageheight":24,
          "imagewidth":16
         },
+     "18":
+        {
+         "image":"..\/images\/objects\/phoenixiceemblem.png",
+         "imageheight":24,
+         "imagewidth":24
+        },
+     "19":
+        {
+         "image":"..\/images\/objects\/phoenixtitanemblem.png",
+         "imageheight":64,
+         "imagewidth":64
+        },
      "2":
         {
          "image":"..\/images\/objects\/phoenixpressureplate.png",
          "imageheight":8,
+         "imagewidth":24
+        },
+     "20":
+        {
+         "image":"..\/images\/objects\/phoenixtitanemblem2.png",
+         "imageheight":64,
+         "imagewidth":64
+        },
+     "21":
+        {
+         "image":"..\/images\/objects\/phoenixarrowemblem.png",
+         "imageheight":24,
          "imagewidth":24
         },
      "3":

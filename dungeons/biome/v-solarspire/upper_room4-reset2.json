@@ -48,7 +48,55 @@
          "draworder":"topdown",
          "id":4,
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":826,
+                 "height":14,
+                 "id":862,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":96,
+                 "y":24
+                }, 
+                {
+                 "gid":825,
+                 "height":14,
+                 "id":863,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":80,
+                 "y":24
+                }, 
+                {
+                 "gid":829,
+                 "height":16,
+                 "id":864,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":40,
+                 "y":24
+                }, 
+                {
+                 "gid":886,
+                 "height":23,
+                 "id":865,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":16,
+                 "y":24
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -137,7 +185,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":862,
+ "nextobjectid":866,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -253,15 +301,15 @@
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-solarspire.json"
         }, 
         {
-         "firstgid":7723,
+         "firstgid":7724,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7734,
+         "firstgid":7735,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }, 
         {
-         "firstgid":7752,
+         "firstgid":7757,
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }],
  "tilewidth":8,

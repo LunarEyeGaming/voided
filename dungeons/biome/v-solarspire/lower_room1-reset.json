@@ -50,7 +50,7 @@
          "name":"objects",
          "objects":[
                 {
-                 "gid":7735,
+                 "gid":7736,
                  "height":16,
                  "id":747,
                  "name":"",
@@ -156,7 +156,103 @@
          "draworder":"topdown",
          "id":5,
          "name":"wiring - lights & guns",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":7736,
+                 "height":16,
+                 "id":795,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":8,
+                 "y":160
+                }, 
+                {
+                 "gid":7736,
+                 "height":16,
+                 "id":796,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":80,
+                 "y":160
+                }, 
+                {
+                 "gid":7736,
+                 "height":16,
+                 "id":797,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":128,
+                 "y":160
+                }, 
+                {
+                 "gid":7736,
+                 "height":16,
+                 "id":798,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":200,
+                 "y":160
+                }, 
+                {
+                 "gid":853,
+                 "height":40,
+                 "id":799,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":160,
+                 "y":176
+                }, 
+                {
+                 "gid":853,
+                 "height":40,
+                 "id":800,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":16,
+                 "y":176
+                }, 
+                {
+                 "gid":936,
+                 "height":16,
+                 "id":801,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":112,
+                 "y":176
+                }, 
+                {
+                 "gid":936,
+                 "height":16,
+                 "id":802,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":64,
+                 "y":176
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -221,7 +317,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":795,
+ "nextobjectid":803,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -337,11 +433,11 @@
         },
     
         {
-         "firstgid":7723,
+         "firstgid":7724,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7734,
+         "firstgid":7735,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }],
  "tilewidth":8,
