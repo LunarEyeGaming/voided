@@ -9,10 +9,16 @@
   "spawnProfile" : {
     "groups" : [
       {
-        "select" : 2,
+        "select" : 1,
         "pool" : [
-          [ 1.0, "v-pyrebush" ],
-          [ 1.0, "v-dracucumber" ]
+          [ 1.0, "v-pyrebush" ]
+        ]
+      },
+      {
+        "select" : 1,
+        "pool" : [
+          [ 1.0, "v-dracucumber" ],
+          [ 1.0, "v-rammingasteroid" ]
         ]
       }
     ],
