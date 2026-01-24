@@ -18,7 +18,8 @@
             "cycle" : 0.1,
             "mode" : "loop",
             "properties" : {
-              "immediateSound" : "/sfx/npc/quadruped/angstyhead_turnhostile.ogg"
+              "immediateSound" : "/sfx/npc/quadruped/angstyhead_turnhostile.ogg",
+              "immediateSoundRangeMultiplier" : 2.0
             }
           }
         }
@@ -38,7 +39,9 @@
             "properties" : {
               "particleEmittersOn" : ["firetrail"],
               "immediateSound" : "/sfx/objects/flametrap_off.ogg",
-              "persistentSound" : "/sfx/npc/monsters/v_rammingasteroid_warning_loop.ogg"
+              "immediateSoundRangeMultiplier" : 2.0,
+              "persistentSound" : "/sfx/npc/monsters/v_rammingasteroid_warning_loop.ogg",
+              "persistentSoundRangeMultiplier" : 2.0
             }
           },
           "on" : {
@@ -47,7 +50,9 @@
             "mode" : "loop",
             "properties" : {
               "immediateSound" : "/sfx/npc/boss/dragonboss_fireball1.ogg",
-              "persistentSound" : "/sfx/npc/monsters/v_rammingasteroid_active_loop.ogg"
+              "immediateSoundRangeMultiplier" : 2.0,
+              "persistentSound" : "/sfx/npc/monsters/v_rammingasteroid_active_loop.ogg",
+              "persistentSoundRangeMultiplier" : 2.0
             }
           }
         }

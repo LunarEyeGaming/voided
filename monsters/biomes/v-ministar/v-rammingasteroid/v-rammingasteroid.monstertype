@@ -24,7 +24,7 @@
 
     "seeThroughLiquid" : false,
     "behaviorConfig" : {
-      "damageOnTouch" : false,
+      "damageOnTouch" : true,
 
       "targetQueryRange" : 30,
       "targetOnDamage" : true,
@@ -109,7 +109,7 @@
           "parameters" : {
             "useSticky" : false,
             "explosionProjectile" : "spacemineexplosion",
-            "explosionConfig" : {"power" : 20},
+            "explosionConfig" : {"power" : 30},
             "explosionDistance" : 3,
             "speedThreshold" : 30,
             "warningSpeedThreshold" : 15,
@@ -134,7 +134,7 @@
       "statusEffects" : [ ]
     },
 
-    "selfDamagePoly" : [ [1.75, 5.25], [5.25, 1.75], [5.25, -1.75], [1.75, -5.25], [-1.75, -5.25], [-5.25, -1.75], [-5.25, 1.75], [-1.75, 5.25] ],
+    // "selfDamagePoly" : [ [1.75, 5.25], [5.25, 1.75], [5.25, -1.75], [1.75, -5.25], [-1.75, -5.25], [-5.25, -1.75], [-5.25, 1.75], [-1.75, 5.25] ],
 
     "metaBoundBox" : [-4, -4, 4, 4],
     "scale" : 1.0,
@@ -147,7 +147,7 @@
       "runSpeed" : 12,
       "gravityEnabled" : false,
 
-      "bounceFactor" : 0.5,
+      "bounceFactor" : 1.0,
       "groundFriction" : 10,
 
       "airFriction" : 0,
