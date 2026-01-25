@@ -1364,24 +1364,6 @@
   },
   {
     "op": "add",
-    "path": "/v-spireminiboss-firebreath",
-    "value": {
-      "type": "module",
-      "name": "v-spireminiboss-firebreath",
-      "title": "",
-      "properties": {
-        "projectileType": {"type": "json", "value": "flame"},
-        "projectileInterval": {"type": "json", "value": 1.5},
-        "highArc": {"type": "json", "value": false},
-        "fireArc": {"type": "json", "value": true},
-        "maxPolyCorrection": {"type": "json", "value": 5},
-        "projectileOffset": {"type": "json", "value": [0, 0]}
-      },
-      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-firebreath.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-spireminiboss",
     "value": {
       "type": "module",
@@ -1433,6 +1415,25 @@
         "crashVelocity": {"type": "json", "value": [50, 0]}
       },
       "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-dying.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-spireminiboss-firebreath",
+    "value": {
+      "type": "module",
+      "name": "v-spireminiboss-firebreath",
+      "title": "",
+      "properties": {
+        "projectileType": {"type": "json", "value": "v-dracucumberflame"},
+        "projectileInterval": {"type": "json", "value": 0.1},
+        "highArc": {"type": "json", "value": false},
+        "fireArc": {"type": "json", "value": true},
+        "maxPolyCorrection": {"type": "json", "value": 5},
+        "projectileOffset": {"type": "json", "value": [0, 0]},
+        "projectileConfig": {"type": "json", "value": {"power": 10, "speed": 40, "damageRepeatGroup": "v-spireminiboss-firebreath"}}
+      },
+      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-firebreath.behavior"
     }
   }
 ]
