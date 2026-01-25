@@ -15,12 +15,6 @@
       {
         "select" : 1,
         "pool" : [
-          [ 1.0, "v-dracucumber" ]
-        ]
-      },
-      {
-        "select" : 1,
-        "pool" : [
           [ 1.0, "v-ministarcloudspawner" ]
         ]
       },
@@ -142,7 +136,7 @@
         "objectSets" : [
           {
             "pool" : [ [1, "v-statuspodministar" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "atmosphere/v-ministaratmosphere" }
           }
         ]
       },
@@ -156,7 +150,7 @@
         "objectSets" : [
           {
             "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
-            "parameters" : { "breakDropPool" : "v-capsuleMinistar", "smashDropPool" : "v-capsuleMinistar" }
+            "parameters" : { "breakDropPool" : "v-capsuleMinistar", "smashDropPool" : "v-capsuleMinistar", "originBiome" : "atmosphere/v-ministaratmosphere" }
           }
         ]
       },
@@ -208,22 +202,9 @@
           {
             "pool" : [ [1, "wildchiliseed" ] ],
             "parameters" : {
-              "startingStage" : 4
+              "startingStage" : 4,
+              "originBiome" : "atmosphere/v-ministaratmosphere"
             }
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : -1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:everywhere",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1, "v-biomeinvisible" ] ],
-            "parameters" : { "originBiome" : "atmosphere/v-ministaratmosphere" }
           }
         ]
       },

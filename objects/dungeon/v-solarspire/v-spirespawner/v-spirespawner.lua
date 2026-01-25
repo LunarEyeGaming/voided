@@ -97,6 +97,10 @@ function init()
     if not storage.portalDestabilized then
       local spirePortalId = world.loadUniqueEntity("v-spireportal")
       storage.portalDestabilized = spirePortalId ~= 0 and world.entityExists(spirePortalId) and world.callScriptedEntity(spirePortalId, "isDestabilized")
+
+      for k, v in pairs(config.getParameter("parametersOnDestabilization", {})) do
+        object.setConfigParameter(k, v)
+      end
     end
   end)
 end

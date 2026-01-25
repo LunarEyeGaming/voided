@@ -41,12 +41,13 @@
             "windupState" : "firewindup2",
             "windupTime" : 0.4,
 
-            "projectileType" : "flame",
+            "projectileType" : "v-dracucumberflame",
             "projectileCount" : 6,
             "projectileInterval" : 0.01,
             "projectileParameters" : {
               "speed" : 30,
-              "power" : 10
+              "power" : 10,
+              "damageRepeatGroup" : "v-oilspillerflame"
             },
             "fireOffset" : [1, 0.125],
             "aimAtTarget" : true,

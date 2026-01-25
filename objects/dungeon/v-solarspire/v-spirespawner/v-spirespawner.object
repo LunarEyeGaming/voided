@@ -3,17 +3,17 @@
   "colonyTags" : [ ],
   "printable" : false,
   "rarity" : "Legendary",
-  "description" : "A portal node that teleports groups of monsters.",
+  "description" : "A device that holds a pool of portal energy.",
   "shortdescription" : "spirespawner",
   "race" : "avian",
 
-  "apexDescription" : "A malfunctioning portal node. Killing what it teleports opens the doors.",
-  "avianDescription" : "An unstable portal node. Killing all of the monsters it teleports opens the doors.",
-  "floranDescription" : "Floran musst ssstab monsters to open doorss.",
-  "glitchDescription" : "Invigorated. When this node stabilizes, the doors will open.",
-  "humanDescription" : "Better slay all the monsters it teleports if I don't want to die.",
-  "hylotlDescription" : "A node that requires bloodshed to open the doors to which it is connected.",
-  "novakidDescription" : "I better kill all the monsters that come outta this thing.",
+  "apexDescription" : "It appears the architects of this portal constructed these to store excess energy.",
+  "avianDescription" : "The orb in the center emits a cold and dark light.",
+  "floranDescription" : "Blue orb makess Floran dizzy.",
+  "glitchDescription" : "A node designed to store excess portal energy.",
+  "humanDescription" : "It's like a mini version of that portal above.",
+  "hylotlDescription" : "This device glows a beautiful dark blue.",
+  "novakidDescription" : "A pulsatin' blue orb.",
 
   "category" : "decorative",
   "price" : 0,
@@ -94,6 +94,17 @@
   },
 
   "minTriggerDelay" : 0.05,
+
+  "parametersOnDestabilization" : {
+    "description" : "A broken portal node that teleports groups of monsters.",
+    "apexDescription" : "This node seems to have been overloaded. Maybe I should kill everything first.",
+    "avianDescription" : "This device appears to have imprisoned me until I kill everything.",
+    "floranDescription" : "Floran musst ssstab monsters to open doorss.",
+    "glitchDescription" : "Invigorated. When this node stabilizes, the doors will open.",
+    "humanDescription" : "Better slay all the monsters it teleports if I don't want to die.",
+    "hylotlDescription" : "A node that requires bloodshed to open the doors to which it is connected.",
+    "novakidDescription" : "I better kill all the monsters that come outta this thing."
+  },
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

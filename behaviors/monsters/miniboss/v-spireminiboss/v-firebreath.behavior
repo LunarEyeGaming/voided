@@ -1,6 +1,6 @@
 {
   "name": "v-spireminiboss-firebreath",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
@@ -11,12 +11,13 @@
     "/scripts/actions/math.lua"
   ],
   "parameters": {
-    "projectileType": "flame",
-    "projectileInterval": 1.5,
+    "projectileType": "v-dracucumberflame",
+    "projectileInterval": 0.1,
     "highArc": false,
     "fireArc": true,
     "maxPolyCorrection": 5,
-    "projectileOffset": [0, 0]
+    "projectileOffset": [0, 0],
+    "projectileConfig": {"power": 10, "speed": 40, "damageRepeatGroup": "v-spireminiboss-firebreath"}
   },
   "root": {
     "title": "sequence",
@@ -239,7 +240,7 @@
                     "aimVector": {"key": "toTarget"},
                     "offset": {"key": "projectileOffset"},
                     "position": {"key": "self"},
-                    "projectileConfig": {"value": {"power": 10, "speed": 40}},
+                    "projectileConfig": {"key": "<projectileConfig>"},
                     "projectileType": {"key": "<projectileType>"},
                     "scalePower": {"value": true},
                     "sourceEntity": {"key": "self"},
@@ -261,7 +262,7 @@
                   "type": "action",
                   "name": "timer",
                   "parameters": {
-                    "time": {"value": 0.1}
+                    "time": {"key": "<projectileInterval>"}
                   }
                 }
               ]
