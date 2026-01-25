@@ -1310,26 +1310,6 @@
                  "y":800
                 }, 
                 {
-                 "gid":7646,
-                 "height":32,
-                 "id":892,
-                 "name":"",
-                 "properties":
-                    {
-                     "parameters":"{\"uniqueId\" : \"v-spiretop\"}"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":38,
-                 "x":528,
-                 "y":1384
-                }, 
-                {
                  "gid":7712,
                  "height":256,
                  "id":900,
@@ -1824,6 +1804,26 @@
                  "width":16,
                  "x":640,
                  "y":1368
+                }, 
+                {
+                 "gid":7646,
+                 "height":32,
+                 "id":998,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"uniqueId\" : \"v-spiretop\"}"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":38,
+                 "x":544,
+                 "y":1384
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1881,7 +1881,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2107,7 +2107,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":993,
+ "nextobjectid":1016,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

@@ -401,6 +401,7 @@ end
 function states.hazardStart()
   coroutine.yield()  -- Defer to update
 
+  object.setOutputNodeLevel(NODE_OUTER_DOOR, true)
   object.setOutputNodeLevel(NODE_INNER_DOOR, false)
 
   if not friendlyInsideRegion(arenaRegion) then
