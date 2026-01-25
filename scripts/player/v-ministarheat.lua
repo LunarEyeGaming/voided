@@ -33,7 +33,7 @@ function init()
 
   -- Do not run this script on planets that are not of type "v-ministar," except for the liquid scanner - that will keep
   -- running.
-  if world.type() ~= "v-ministar" then
+  if world.type() ~= "v-ministar" and world.type() ~= "v-ministarblue" then
     isActive = false
     return
   end

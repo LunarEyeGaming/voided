@@ -62,7 +62,7 @@ function init()
   v_ministarEffects_initLiquidParticles()
 
   -- Do not run the remainder of this script on planets that are not of type "v-ministar."
-  if world.type() ~= "v-ministar" then
+  if world.type() ~= "v-ministar" and world.type() ~= "v-ministarblue" then
     isActive = false
     return
   end
@@ -70,8 +70,13 @@ function init()
   particleDensity = 0.02
   startBurningColor = {255, 0, 0, 0}
   endBurningColor = {255, 119, 0, 255}
-  sunRayDimColor = {255, 0, 0, 0}
-  sunRayBrightColor = {255, 216, 107, 128}
+  if world.type() == "v-ministar" then
+    sunRayDimColor = {255, 0, 0, 0}
+    sunRayBrightColor = {255, 216, 107, 128}
+  else
+    sunRayDimColor = {0, 0, 255, 0}
+    sunRayBrightColor = {107, 255, 255, 128}
+  end
 
   rayColorTableSize = 256  -- Roughly the max number of entries that each rayRatio maps to.
   rayColorTable = {}

@@ -1,0 +1,144 @@
+{
+  "verticalOrigin" : 0,
+
+  "layers" : [
+    {
+      "kind" : "divider/blackrock",
+      "offset" : [0, 350],
+      "nohueshift" : true,
+      "lightMapped" : true,
+      "parallax" : 1.199
+    },
+    {
+      "kind" : "tile/magmarock",
+      "nohueshift" : true,
+      "lightMapped" : true,
+      "repeatY" : true,
+      "tileLimitTop" : 275,
+      "parallax" : 1.2
+    },
+    {
+      "kind" : "v-ministarblue/glowfade",
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "parallax" : 2.9
+    },
+    {
+      "kind" : "v-ministarblue/clouds1",
+      "offset" : [0, 350],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 3,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministarblue/glowfade",
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "parallax" : 3.1
+    },
+    {
+      "kind" : "v-ministarblue/clouds2",
+      "offset" : [0, 400],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 7.9,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministarblue/clouds1",
+      "offset" : [0, 400],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 8,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministarblue/glowfade",
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "parallax" : 8.1
+    },
+    {
+      "kind" : "v-ministarblue/clouds3",
+      "offset" : [0, 400],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 12.9,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministarblue/solarflare",
+      "offset" : [0, 275],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 13,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministarblue/clouds2",
+      "offset" : [0, 400],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 13.01,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministarblue/glowfade",
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "parallax" : 13.1
+    },
+    {
+      "kind" : "v-ministarblue/clouds3",
+      "offset" : [0, 400],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 18,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministarblue/solarflare",
+      "offset" : [0, 275],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 18.1,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministarblue/glowfade",
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "parallax" : 18.2
+    },
+    {
+      "kind" : "v-ministarblue/glow",
+      "offset" : [0, 90],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 24
+    },
+    {
+      "kind" : "v-ministarblue/glowloop",
+      "offset" : [0, 0],
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "tileLimitTop" : 90,
+      "parallax" : 24
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "layers" : [
+    {
+      "kind" : "v-burningasteroids/front",
+      "nohueshift" : true,
+      "repeatY" : true,
+      "parallax" : 5
+    },
+    {
+      "kind" : "v-burningasteroids/back",
+      "baseCount" : 4,
+      "nohueshift" : true,
+      "repeatY" : true,
+      "parallax" : 8
+    },
+    {
+      "kind" : "v-burningasteroids/back",
+      "baseCount" : 4,
+      "nohueshift" : true,
+      "repeatY" : true,
+      "parallax" : 10,
+      "directives" : "fade=000000=0.3"
+    },
+    {
+      "kind" : "v-ministarblue/glow",
+      "offset" : [0, 637],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 24
+    }
+  ]
+}
