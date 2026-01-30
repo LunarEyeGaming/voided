@@ -49,6 +49,24 @@
     }
   },
 
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/space_loop1.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/space_loop1.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/lava-exploration2.ogg", "/music/desert-exploration2.ogg", "/music/procyon.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/lava-exploration2.ogg", "/music/desert-exploration2.ogg", "/music/procyon.ogg" ]
+    }
+  },
+
   "statusEffects" : [ "biomeairless" ],
 
   "hueShiftOptions" : [0],
@@ -193,7 +211,7 @@
       },
       {
         "mode" : "ceiling",
-        "priority" : 1.0,
+        "priority" : 2.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:denseMedium",
 

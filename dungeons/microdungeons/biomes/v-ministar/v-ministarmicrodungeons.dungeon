@@ -1,0 +1,82 @@
+{
+  "metadata" : {
+    "name" : "v-ministarmicrodungeons",
+    "species" : "avian",
+    "rules" : [
+    ],
+
+    "anchor" : [ "ministar1", "ministar2", "ministar3", "ministar4", "ministar5", "ministar6", "ministar7", "ministar8", "ministar9" ],
+    // "anchor" : [ "floating1" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "ministar1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "ministar1.json" ]
+    },
+    {
+      "name" : "ministar2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "ministar2.json" ]
+    },
+    {
+      "name" : "ministar3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "ministar3.json" ]
+    },
+    {
+      "name" : "ministar4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "ministar4.json" ]
+    },
+    {
+      "name" : "ministar5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "ministar5.json" ]
+    },
+    {
+      "name" : "ministar6",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "ministar6.json" ]
+    },
+    {
+      "name" : "ministar7",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "ministar7.json" ]
+    },
+    {
+      "name" : "ministar8",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "ministar8.json" ]
+    },
+    {
+      "name" : "ministar9",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "ministar9.json" ]
+    }
+  ]
+}

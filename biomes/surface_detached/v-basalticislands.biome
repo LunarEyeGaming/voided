@@ -39,7 +39,7 @@
       }
     ],
     "monsterParameters" : {
-      "colors" : "magma",
+      "colors" : "v-basalticislands",
       "statusSettings" : {
         "stats" : {
           "fireResistance" : {
@@ -72,6 +72,33 @@
       "/weather.config:magma"
     ]]
   ],
+
+  "parallax" : "/parallax/surface/v-ministar.parallax",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/v_ministar_surface.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/v_ministar_surface.ogg" ]
+    }
+  },
+
+  // Duplicates are listed for weighted music selection.
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/i-was-the-sun.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/i-was-the-sun.ogg" ]
+    }
+  },
 
   "skyOptions" : [
     {
@@ -180,6 +207,15 @@
 
         "type" : "microdungeon",
         "microdungeons" : [ "aridplatforming" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-ministarMicrodungeon",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-ministarmicrodungeons" ]
       },
       {
         "mode" : "floor",
