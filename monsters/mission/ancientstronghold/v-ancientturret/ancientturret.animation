@@ -10,6 +10,14 @@
             "cycle" : 0.5,
             "mode" : "loop"
           },
+          "windup" : {
+            "frames" : 12,
+            "cycle" : 1.2,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_ancientturret_windup.ogg"
+            }
+          },
           "fire" : {
             "frames" : 4,
             "cycle" : 0.1,
@@ -79,6 +87,11 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
             "fire" : {
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
@@ -105,6 +118,11 @@
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
               }
             },
             "fire" : {

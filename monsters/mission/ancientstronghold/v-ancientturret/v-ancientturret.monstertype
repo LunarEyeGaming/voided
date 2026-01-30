@@ -8,7 +8,7 @@
 
   "animation" : "ancientturret.animation",
 
-  "dropPools" : [  ],
+  "dropPools" : [ "v-strongholdMonsterTreasure" ],
 
   "baseParameters" : {
     "scripts" : [
@@ -43,7 +43,7 @@
             "maximumRange" : 70,
             "minimumRange" : 2,
             "windupTime" : 1.5,
-            "windupState" : "",
+            "windupState" : "windup",
 
             "projectileCount" : 5,
             "projectileType" : "v-ancientturretshot",
