@@ -1,0 +1,14 @@
+{
+  "name" : "v-nofalldamagecloud",  // Identical to nofalldamage. Used solely by Ministar clouds to avoid deleting other instances of it.
+  "effectConfig" : {},
+  "defaultDuration" : 1.0,
+
+  "scripts" : [
+    "nofalldamage.lua"
+  ],
+
+  "animationConfig" : "nofalldamage.animation",
+
+  "label" : "Safe Fall",
+  "icon" : "/interface/statuses/nofalldamage.png"
+}
