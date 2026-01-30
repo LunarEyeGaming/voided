@@ -1,0 +1,33 @@
+{
+  "itemName" : "v-dotefruitblend",
+  "rarity" : "Uncommon",
+  "price" : 80,
+  "category" : "drink",
+  "inventoryIcon" : "v-dotefruitblend.png",
+  "description" : "A mixed drink containing 'Dotefruit and Jacob's Loquat.",
+  "shortdescription" : "'Dotefruit Blend",
+  "foodValue" : 15,
+  "effects" : [ [
+    {
+      "effect" : "v-depthpoisonantidote",
+      "duration" : 0.1
+    },
+    {
+      "effect" : "runboostfood",
+      "duration" : 180
+    },
+    {
+      "effect" : "electrified",
+      "duration" : 110
+    }
+  ] ],
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/v-buildfood.lua",
+  "maxStack" : 1,
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 1.0,
+  "blockingEffects" : [
+    "wellfed"
+  ],
+  "emitters" : [ "drinking" ]
+}

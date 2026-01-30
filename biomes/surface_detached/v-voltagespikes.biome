@@ -209,7 +209,38 @@
     "grassMod" : [ "v-copperpowder" ],
     "grassModDensity" : 0.6,
 
+    "ceilingGrassMod" : [ "roots" ],
+    "ceilingGrassModDensity" : 0.4,
+
     "items" : [
+      {
+        "mode" : "ceiling",
+        "priority" : 2.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseMedium",
+
+        "type" : "tree",
+        "treeFoliageHueShiftMax" : 180,
+        "treeStemHueShiftMax" : 10,
+        "treeStemList" : [ "desertvine"],
+        "treeFoliageList" : [ "" ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 1,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCrops",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-wildloquatseed" ] ],
+            "parameters" : {
+              "startingStage" : 4
+            }
+          }
+        ]
+      },
       {
         "mode" : "floor",
         "priority" : 0.0,

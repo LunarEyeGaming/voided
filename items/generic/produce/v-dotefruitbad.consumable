@@ -1,0 +1,24 @@
+{
+  "itemName" : "v-dotefruitbad",
+  "rarity" : "Common",
+  "price" : 5,
+  "category" : "food",
+  "inventoryIcon" : "v-dotefruitbad.png",
+  "description" : "A 'Dotefruit that appears to have been infected by fungi.",
+  "shortdescription" : "Spoiled 'Dotefruit",
+  "foodValue" : 3,
+  "effects" : [ [
+    {
+      "effect" : "v-depthpoisonincrease",
+      "duration" : 0.1
+    }
+  ] ],
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/v-buildfood.lua",
+  "maxStack" : 1,
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 1.0,
+  "blockingEffects" : [
+    "wellfed"
+  ]
+}

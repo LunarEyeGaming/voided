@@ -30,7 +30,8 @@ Disclaimer: the authors of these sound samples and music do not endorse Voided.
 All graphical assets, code, etc. were made by me, were based on vanilla assets, or were provided by others.
 
 I would like to thank the following for their help:
-* Portal Mech, newt546, and mister gadfly: playtesting and providing feedback for the mod
+* Portal Mech, newt546: playtesting and providing feedback for the mod
+* mister gadfly: food items; playtesting and providing feedback for the mod
 * Numerous members of the Starbound Discord server: feedback, modding help, and ideas
 * patman and/or Silver Sokolova: providing a way to display custom messages at the bottom of the screen
 

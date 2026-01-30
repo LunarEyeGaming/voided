@@ -1,0 +1,18 @@
+{
+  "itemName" : "v-mushmallow",
+  "rarity" : "Common",
+  "price" : 20,
+  "category" : "preparedFood",
+  "inventoryIcon" : "v-mushmallow.png",
+  "description" : "Dead fungal matter combined with sugar. Delicious.",
+  "shortdescription" : "MushMallow",
+  "foodValue" : 3,
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/v-buildfood.lua",
+  "maxStack" : 5,
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 1.0,
+  "blockingEffects" : [
+    "wellfed"
+  ]
+}

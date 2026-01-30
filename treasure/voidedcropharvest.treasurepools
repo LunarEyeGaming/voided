@@ -2,7 +2,8 @@
   "v-dotefruitHarvest" : [
     [0, {
       "pool" : [
-        {"weight" : 0.89, "item" : "v-dotefruit"},
+        {"weight" : 0.88, "item" : "v-dotefruit"},
+        {"weight" : 0.01, "item" : "v-dotefruitbad"},
         {"weight" : 0.01, "item" : "v-dotefruitseed"},
         {"weight" : 0.1, "item" : "plantfibre"}
       ],
@@ -17,6 +18,18 @@
       "pool" : [
         {"weight" : 0.89, "item" : "v-missilebloom"},
         {"weight" : 0.01, "item" : "v-missilebloomseed"},
+        {"weight" : 0.1, "item" : "plantfibre"}
+      ],
+      "poolRounds" : [
+        [1.0, 1]
+      ]
+    } ]
+  ],
+  "v-loquatHarvest" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.89, "item" : "v-jacobsloquat"},
+        {"weight" : 0.01, "item" : "v-loquatseed"},
         {"weight" : 0.1, "item" : "plantfibre"}
       ],
       "poolRounds" : [

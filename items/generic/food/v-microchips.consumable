@@ -1,0 +1,19 @@
+{
+  "itemName" : "v-microchips",
+  "rarity" : "Uncommon",
+  "price" : 70,
+  "category" : "preparedFood",
+  "inventoryIcon" : "v-microchips.png",
+  "description" : "A chopped metal loquat. It now lacks electricity.",
+  "shortdescription" : "Micro-Chips",
+  "foodValue" : 10,
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/buildfood.lua",
+  "maxStack" : 1,
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 1.0,
+  "blockingEffects" : [
+    "wellfed"
+  ],
+  "learnBlueprintsOnPickup" : [ "v-fishnmicrochips" ]
+}

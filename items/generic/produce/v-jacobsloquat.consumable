@@ -1,0 +1,25 @@
+{
+  "itemName" : "v-jacobsloquat",
+  "rarity" : "Uncommon",
+  "price" : 20,
+  "category" : "food",
+  "inventoryIcon" : "v-jacobsloquat.png",
+  "description" : "A metallic fruit, electrically charged by the atmosphere.",
+  "shortdescription" : "Jacob's Loquat",
+  "foodValue" : 6,
+  "effects" : [ [
+    {
+      "effect" : "v-loquathurt",
+      "duration" : 0.1
+    }
+  ] ],
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/v-buildfood.lua",
+  "maxStack" : 1,
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 1.0,
+  "blockingEffects" : [
+    "wellfed"
+  ],
+  "learnBlueprintsOnPickup" : ["v-microchips", "v-dotefruitblend"]
+}

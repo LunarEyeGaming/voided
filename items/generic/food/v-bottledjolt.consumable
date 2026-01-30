@@ -1,0 +1,29 @@
+{
+  "itemName" : "v-bottledjolt",
+  "price" : 40,
+  "rarity" : "Uncommon",
+  "category" : "drink",
+  "inventoryIcon" : "v-bottledjolt.png",
+  "description" : "Drinking this will hurt alot; but it will boost energy for a long time.",
+  "shortdescription" : "Bottled Jolt",
+  "maxStack" : 1,
+  "effects" : [ [
+    {
+      "effect" : "electrified",
+      "duration" : 80
+    },
+    {
+      "effect" : "v-liquidjolthurt",
+      "duration" : 0.1
+    },
+    {
+      "effect" : "maxenergyscalingboost",
+      "duration" : 500
+    }
+  ] ],
+  "blockingEffects" : [
+    "electrified"
+  ],
+  "emote" : "",
+  "emitters" : [ "drinking" ]
+}

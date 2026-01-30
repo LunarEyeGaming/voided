@@ -1,0 +1,25 @@
+{
+  "itemName" : "v-fishnmicrochips",
+  "rarity" : "Uncommon",
+  "price" : 180,
+  "category" : "preparedFood",
+  "inventoryIcon" : "v-fishnmicrochips.png",
+  "description" : "An odd combination of metal and fish. Surprisingly pleasant.",
+  "shortdescription" : "Fish and Micro-Chips",
+  "handPosition" : [0, -2],
+  "effects" : [ [
+    {
+        "effect" : "maxhealthscalingboostfood",
+        "duration" : 550
+    }
+  ] ],
+  "foodValue" : 50,
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/buildfood.lua",
+  "maxStack" : 1,
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 1.0,
+  "blockingEffects" : [
+    "wellfed"
+  ]
+}

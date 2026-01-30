@@ -1,0 +1,37 @@
+{
+  "itemName" : "v-lnpslushie",
+  "rarity" : "Rare",
+  "price" : 150,
+  "category" : "drink",
+  "inventoryIcon" : "v-lnpslushie.png",
+  "description" : "A sugary blend of toxic and metallic produce. Recalled exactly 4 seconds after it hit shelves.",
+  "shortdescription" : "L&P Slushie",
+  "foodValue" : 80,
+  "effects" : [ [
+    {
+      "effect" : "weakpoison",
+      "duration" : 60
+    },
+    {
+      "effect" : "runboostfood",
+      "duration" : 180
+    },
+    {
+      "effect" : "jumpboostfood",
+      "duration" : 180
+    },
+    {
+      "effect" : "electrified",
+      "duration" : 60
+    }
+  ] ],
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/v-buildfood.lua",
+  "maxStack" : 1,
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 1.0,
+  "blockingEffects" : [
+    "wellfed"
+  ],
+  "emitters" : [ "drinking" ]
+}

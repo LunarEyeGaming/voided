@@ -1,0 +1,64 @@
+{
+  "objectName" : "v-loquatseed",
+  "colonyTags" : ["nature"],
+  "rarity" : "Common",
+  "category" : "seed",
+  "description" : "Seeds for a copper plant that produces metallic, charged fruit.",
+  "shortdescription" : "Jacob's Loquat Seed",
+  "objectType" : "farmable",
+  "printable" : false,
+  "price" : 15,
+
+  "apexDescription" : "The fruit produced by this crop is metallic, like glitch cuisine. It is electrically charged by the atmosphere.",
+  "avianDescription" : "An electrically charged fruit. The seeds have a thin copper membrane surrounding them.",
+  "floranDescription" : "Nyeah! Metal fruit tassste like hurt!",
+  "glitchDescription" : "Gleeful. A useful little charge is found within the layers.",
+  "humanDescription" : "Who's Jacob, and why does he get the cool loquat?",
+  "hylotlDescription" : "Jacob's loquat. Of all the fruits to grow here, why that one?",
+  "novakidDescription" : "Gives a mighty nasty zap when ya chew, but chop 'em up and ya get some nice crunchy chips.",
+
+  "inventoryIcon" : "loquatseedicon.png",
+
+  "tooltipKind" : "seed",
+  "largeImage" : "loquatseed.png:default.3.0",
+
+
+  "orientations" : [
+    {
+      "dualImage" : "loquatseed.png:<color>.<stage>.<alt>",
+      "imagePosition" : [0, -40],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaces" : [ [0, 0], [1, 0], [0, -1], [1, -1], [0, -2], [1, -2], [0, -3], [1, -3], [0, -4], [1, -4], [0, -5], [1, -5] ],
+      "requireTilledAnchors" : false,
+      "anchors" : [ "top" ]
+
+    }
+  ],
+
+  "radioMessagesOnPickup" : [ "pickupseed" ],
+
+  "stages" : [
+    {
+      "duration" : [280, 320]
+    },
+    {
+      "duration" : [280, 320]
+    },
+    {
+      "alts" : 5,
+      "duration" : [1170, 1230]
+    },
+    {
+      "alts" : 5,
+      "harvestPool" : "v-loquatHarvest",
+      "resetToStage" : 2
+    }
+  ],
+
+  "maxImmersion" : 0.125,
+  "consumeSoilMoisture" : false,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

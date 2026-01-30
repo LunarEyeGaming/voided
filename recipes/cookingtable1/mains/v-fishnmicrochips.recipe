@@ -1,0 +1,10 @@
+{
+  "input" : [
+    { "item" : "rawfish", "count" : 1 },
+    { "item" : "v-microchips", "count" : 1 },
+    { "item" : "bread", "count" : 1 }
+  ],
+  "output" : { "item" : "v-fishnmicrochips", "count" : 1 },
+  "groups" : [ "craftingfood", "mains" ],
+  "collectables" : { "cooking" : "v-fishnmicrochips" }
+}
