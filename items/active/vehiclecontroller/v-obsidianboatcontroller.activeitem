@@ -1,0 +1,34 @@
+{
+  "itemName" : "v-obsidianboatcontroller",
+  "level" : 1,
+  "price" : 25000,
+  "rarity" : "Rare",
+  "category" : "vehicleController",
+  "description" : "Create a sunblocking obsidian boat from stored nanites.",
+  "shortdescription" : "Obsidian Boat Controller",
+  "twoHanded" : true,
+  "maxStack" : 1,
+  "itemTags" : ["vehiclecontroller"],
+
+  "animation" : "vehiclecontroller.animation",
+  "scripts" : ["vehiclecontroller.lua"],
+  "animationScripts" : ["vehiclecursor.lua"],
+  "filled" : true,
+  "tooltipKind" : "vehicle",
+  "largeImage" : "v-obsidianboat.png",
+
+  "respawnTime" : 1.0,
+
+  //=============Item specifc bits.
+  "vehicleType" : "v-obsidianboat",
+  "vehicleBoundingBox" : [-5, -3, 5, 5],
+  "vehicleImage" : "/vehicles/boat/boatwarp.png:warp.7",
+
+  "animationParts" : {
+    "casing" : "v-obsidianboatcontroller.png"
+  },
+
+  "inventoryIcon" : "v-obsidianboatcontroller.png:full",
+  "emptyInventoryIcon" : "/items/active/vehiclecontroller/v-obsidianboatcontroller.png:empty",
+  "filledInventoryIcon" : "/items/active/vehiclecontroller/v-obsidianboatcontroller.png:full"
+}
