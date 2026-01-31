@@ -6,14 +6,14 @@
   "subBlocks" : [ "v-chargedstone" ],
   "ores" : "v-deepundergroundvoltage",
 
-  "parallax" : "/parallax/core/v-voltagecore.parallax",
+  "parallax" : "/parallax/underground/v-pairingcaves.parallax",
 
   "ambientNoises" : {
     "day" : {
-      "tracks" : [ "/sfx/environmental/desert_underground.ogg", "/sfx/environmental/arid_underground.ogg" ]
+      "tracks" : [ "/sfx/environmental/v_pairingcaves.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/sfx/environmental/desert_underground.ogg", "/sfx/environmental/arid_underground.ogg" ]
+      "tracks" : [ "/sfx/environmental/v_pairingcaves.ogg" ]
     }
   },
 
