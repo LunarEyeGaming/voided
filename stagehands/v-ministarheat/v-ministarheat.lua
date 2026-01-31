@@ -266,11 +266,21 @@ function update(dt)
       -- sb.logInfo("size of boundaryTiles: %s", #boundaryTiles)
       sb.setLogMap("v-ministarheat(stagehand)_boundaryTilesSize", "%s", #boundaryTiles)
 
+      -- local points = {}
       -- Process particleSpawnPoints.
       for chunkStr, tiles in pairs(particleSpawnPoints) do
         if tiles == "clear" then
           liquidSurfacePoints[chunkStr] = nil
         elseif #tiles > 0 then
+          -- for _, tile in ipairs(tiles) do
+          --   local tileStr = vVec2.iToString(tile)
+          --   if not points[tileStr] then
+          --     points[tileStr] = 1
+          --   else
+          --     points[tileStr] = points[tileStr] + 1
+          --   end
+          --   world.debugText("%s", points[tileStr], tile, "green")
+          -- end
           liquidSurfacePoints[chunkStr] = tiles
         end
       end
@@ -284,6 +294,7 @@ function update(dt)
         if not affectedTiles[tileStr] and world_pointTileCollision(tile) then
           affectedTiles[tileStr] = true
           liquidTouchedTiles[tileStr] = true
+          -- world.debugPoint(tile, "yellow")
         end
       end
 
@@ -1169,7 +1180,7 @@ function LiquidScanner:update(regions)
             local minXInChunk = chunkX * CHUNK_SIZE
             local minYInChunk = chunkY * CHUNK_SIZE
             local maxXInChunk = (chunkX + 1) * CHUNK_SIZE - 1
-            local maxYInChunk = (chunkY + 1) * CHUNK_SIZE
+            local maxYInChunk = (chunkY + 1) * CHUNK_SIZE - 1
 
             -- Clear cache
             chunkBoundaryTilesCache = {}
@@ -1177,9 +1188,9 @@ function LiquidScanner:update(regions)
 
             world.debugPoly({
               {minXInChunk, minYInChunk},
-              {minXInChunk, maxYInChunk},
-              {maxXInChunk, maxYInChunk},
-              {maxXInChunk, minYInChunk}
+              {minXInChunk, maxYInChunk + 1},
+              {maxXInChunk + 1, maxYInChunk + 1},
+              {maxXInChunk + 1, minYInChunk}
             }, "green")
 
             -- Build matrix of matches and non-matches (row-major order). The matrix is padded for boundary cases.
@@ -1212,20 +1223,16 @@ function LiquidScanner:update(regions)
                 if isSunLiquid then
                   -- Add all adjacent spaces that are not sun liquid to the cache.
                   if not row[x + 1] then
-                    -- boundaryTiles[#boundaryTiles + 1] = {x + 1, y}
                     chunkBoundaryTilesCache[#chunkBoundaryTilesCache + 1] = {x + 1, y}
                   end
                   if not row[x - 1] then
-                    -- boundaryTiles[#boundaryTiles + 1] = {x - 1, y}
                     chunkBoundaryTilesCache[#chunkBoundaryTilesCache + 1] = {x - 1, y}
                   end
                   if not liqMat[y + 1][x] then
-                    -- boundaryTiles[#boundaryTiles + 1] = {x, y + 1}
                     chunkBoundaryTilesCache[#chunkBoundaryTilesCache + 1] = {x, y + 1}
                     chunkPoints[#chunkPoints + 1] = {x, y + 1}
                   end
                   if not liqMat[y - 1][x] then
-                    -- boundaryTiles[#boundaryTiles + 1] = {x, y - 1}
                     chunkBoundaryTilesCache[#chunkBoundaryTilesCache + 1] = {x, y - 1}
                   end
                 end
@@ -1235,10 +1242,13 @@ function LiquidScanner:update(regions)
             if hotRegions[chunkStr] then
               hotRegions[chunkStr] = hotRegions[chunkStr] - 1
             end
+            -- Automatically retrieve boundary tiles
+            table.move(chunkBoundaryTilesCache, 1, #chunkBoundaryTilesCache, #boundaryTiles + 1, boundaryTiles)
           end
         else
           -- Mark this chunk to be cleared.
           particleSpawnPoints[chunkStr] = "clear"
+          regionsToRetrieve[chunkStr] = 0
         --   world.debugPoly({
         --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, chunkY * LIQUID_QUERY_CHUNK_SIZE},
         --     {chunkX * LIQUID_QUERY_CHUNK_SIZE, (chunkY + 1) * LIQUID_QUERY_CHUNK_SIZE},
@@ -1299,6 +1309,7 @@ end
 ---@param tile Vec2I
 ---@param time integer
 function LiquidScanner:markRetrievalByTile(tile, time)
+  -- world.debugPoint(tile, "magenta")
   local tileChunkStr = vVec2.iToString({tile[1] // self._CHUNK_SIZE, tile[2] // self._CHUNK_SIZE})
   self._regionsToRetrieve[tileChunkStr] = time
 end
