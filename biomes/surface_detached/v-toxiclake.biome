@@ -56,6 +56,26 @@
 
   "hueShiftOptions" : [ 40, 30, 20, 10, 0, -10, -20 ],
 
+  "parallax" : "/parallax/surface/v-toxiclake.parallax",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/ocean_surface_calm.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/ocean_surface_calm.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/forsaken-grotto.ogg", "/music/lava-exploration2.ogg", "/music/procyon.ogg", "/music/Nomads.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/jupiter.ogg", "/music/arctic-constellation1.ogg", "/music/arctic-constellation2.ogg", "/music/crystal-exploration2.ogg", "/music/accretion-disc.ogg", "/music/mercury.ogg" ]
+    }
+  },
+
   "surfacePlaceables" : {
 
     "items" : [

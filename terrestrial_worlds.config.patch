@@ -22,8 +22,8 @@
         },
         "surface" : {
           "primaryRegion" : [ "v-voltage" ],
-          "secondaryRegions" : [ "v-voltagespikes", "v-voltagewastes" ],
-          // "primaryRegion" : [ "v-voltagespikes" ],
+          "secondaryRegions" : [ "v-voltagespikes", "v-voltagewastes", "v-voltagedesert" ],
+          // "primaryRegion" : [ "v-voltagewastes" ],
           "secondaryRegionCount" : [0, 2],
           // "secondaryRegions" : [ "v-voltagewastes" ],
           // "secondaryRegionCount" : [1, 1],
@@ -81,7 +81,7 @@
         [0, [ "v-voltage", "v-voltagerusty" ]]
         // [0, [ "v-voltage" ]]
       ],
-      "subRegion" : ["v-voltagedesert", "v-voltageforest"]
+      "subRegion" : ["v-voltageforest"]
       //"subRegion" : ["v-voltageforest"]
     }
   },
@@ -432,7 +432,6 @@
       "layers" : {
         "space" : {
           "primaryRegion" : [ "v-burningasteroids" ],
-          "secondaryRegions" : [ "v-asteroidforest" ],
 
           "dungeons" : [[1.0, "v-ministarspawn"]]
         },
@@ -475,7 +474,8 @@
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
         [0, [ "v-burningasteroids" ]]
-      ]
+      ],
+      "subRegion" : [ "v-asteroidforest" ]
     }
   },
   {

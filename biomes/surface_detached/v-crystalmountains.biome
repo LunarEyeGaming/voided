@@ -50,6 +50,26 @@
     }
   },
 
+  "parallax" : "/parallax/surface/v-toxicwasteland.parallax",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/jungle_underground.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/jungle_underground.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/forsaken-grotto.ogg", "/music/lava-exploration2.ogg", "/music/procyon.ogg", "/music/Nomads.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/jupiter.ogg", "/music/arctic-constellation1.ogg", "/music/arctic-constellation2.ogg", "/music/crystal-exploration2.ogg", "/music/accretion-disc.ogg", "/music/mercury.ogg" ]
+    }
+  },
+
   "mainBlock" : "purplecrystal",
   "subBlocks" : [ "v-toxicstone", "rock02" ],
   "ores" : "v-toxicwasteland",

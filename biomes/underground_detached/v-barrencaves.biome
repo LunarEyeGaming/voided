@@ -5,6 +5,26 @@
   "mainBlock" : "v-ironrock",
   "subBlocks" : [ "v-copperrock" ],
 
+  "parallax" : "/parallax/underground/v-shallowundergroundvoltage.parallax",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/desert_underground.ogg", "/sfx/environmental/arid_underground.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/desert_underground.ogg", "/sfx/environmental/arid_underground.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/desert-exploration2.ogg", "/music/ultramarine.ogg", "/music/forsaken-grotto.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/desert-exploration2.ogg", "/music/ultramarine.ogg", "/music/forsaken-grotto.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg" ]
+    }
+  },
+
   "undergroundPlaceables" : {
     "items" : [
       {

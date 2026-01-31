@@ -42,7 +42,26 @@
   "ores" : "v-undergroundtoxic",
 
   "hueShiftOptions" : [ 30, 20, 10, 0, -10, -20, -30, -40, -50 ],
-  "parallax" : "/parallax/underground/dirtunderground.parallax",
+
+  "parallax" : "/parallax/underground/v-shallowundergroundtoxic.parallax",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/desert_underground.ogg", "/sfx/environmental/arid_underground.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/desert_underground.ogg", "/sfx/environmental/arid_underground.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/M54.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg", "/music/eridanus-supervoid.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/M54.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg", "/music/eridanus-supervoid.ogg" ]
+    }
+  },
 
   "undergroundPlaceables" : {
     "items" : [

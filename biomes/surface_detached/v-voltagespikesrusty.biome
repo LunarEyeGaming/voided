@@ -82,6 +82,26 @@
   "subBlocks" : [ "v-oxidizedcopperrock", "rustyblock" ],
   "ores" : "v-voltage",
 
+  "parallax" : "/parallax/surface/v-voltagerusty.parallax",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/arid_day.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/arid_night.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/body-electric-loop.ogg", "/music/desert-exploration1.ogg", "/music/inviolate-loop.ogg", "/music/lava-exploration1.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/mira.ogg", "/music/horsehead-nebula.ogg", "/music/mercury.ogg", "/music/Nomads.ogg", "/music/jupiter.ogg" ]
+    }
+  },
+
   "surfacePlaceables" : {
     "grassMod" : [ "v-copperpowder", "v-copperpowder2" ],
     "grassModDensity" : 0.9,

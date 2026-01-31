@@ -41,6 +41,26 @@
   "subBlocks" : [ "v-oxidizeddeepcopperrock" ],
   "ores" : "v-voltage",
 
+  "parallax" : "/parallax/surface/v-voltagewastesoxidized.parallax",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/arid_day.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/arid_night.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/body-electric-loop.ogg", "/music/desert-exploration1.ogg", "/music/inviolate-loop.ogg", "/music/lava-exploration1.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/mira.ogg", "/music/horsehead-nebula.ogg", "/music/mercury.ogg", "/music/Nomads.ogg", "/music/jupiter.ogg" ]
+    }
+  },
+
   "hueShiftOptions" : [-15, -10, -5, 0, 5, 10, 15],
 
   "surfacePlaceables" : {
