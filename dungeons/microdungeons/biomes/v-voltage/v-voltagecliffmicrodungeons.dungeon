@@ -7,7 +7,11 @@
 
     "anchor" : [
       "voltage_cliffleft1", "voltage_cliffleft2", "voltage_cliffleft3",
-      "voltage_cliffright1", "voltage_cliffright2", "voltage_cliffright3"
+      "voltage_cliffleft1", "voltage_cliffleft2b", "voltage_cliffleft3",
+      "voltage_cliffleft1", "voltage_cliffleft2c", "voltage_cliffleft3",
+      "voltage_cliffright1", "voltage_cliffright2", "voltage_cliffright3",
+      "voltage_cliffright1", "voltage_cliffright2b", "voltage_cliffright3",
+      "voltage_cliffright1", "voltage_cliffright2c", "voltage_cliffright3"
     ],
 
     "gravity" : 80,
@@ -32,6 +36,20 @@
       "def" : [ "tmx", "voltage_cliffleft2.json" ]
     },
     {
+      "name" : "voltage_cliffleft2b",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_cliffleft2b.json" ]
+    },
+    {
+      "name" : "voltage_cliffleft2c",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_cliffleft2c.json" ]
+    },
+    {
       "name" : "voltage_cliffleft3",
       "rules" : [
         [ "maxSpawnCount", [1] ]
@@ -51,6 +69,20 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "voltage_cliffright2.json" ]
+    },
+    {
+      "name" : "voltage_cliffright2b",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_cliffright2b.json" ]
+    },
+    {
+      "name" : "voltage_cliffright2c",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "voltage_cliffright2c.json" ]
     },
     {
       "name" : "voltage_cliffright3",
