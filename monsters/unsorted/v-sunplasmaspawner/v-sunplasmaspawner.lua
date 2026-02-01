@@ -17,6 +17,10 @@ function init()
   numTicks = 2
 
   monster.setDamageBar("None")
+
+  message.setHandler("despawn", function()
+    shouldDieVar = true
+  end)
 end
 
 function update(dt)
