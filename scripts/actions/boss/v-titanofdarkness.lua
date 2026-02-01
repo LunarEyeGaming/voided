@@ -1030,8 +1030,8 @@ function findRandomAirPosition(maxAttempts, center, initialSelectionArea, requir
       ---@diagnostic disable: need-check-nil
       nextPos = results.position
 
-      -- Discard result if there is a liquid at that position.
-      if world.liquidAt(nextPos) then
+      -- Discard result if there is a liquid at that position or the position is tile-protected.
+      if world.liquidAt(nextPos) or world.isTileProtected(nextPos) then
         nextPos = nil
       end
     end
