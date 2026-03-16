@@ -1,0 +1,34 @@
+{
+  "projectileName" : "v-icebreak",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "movementSettings" : {
+    "collisionEnabled" : false
+  },
+  "timeToLive" : 0.0,
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 3,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "iceshard"
+        }
+      ]
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/environmental/v_brittleice_break1.ogg", "/sfx/environmental/v_brittleice_break2.ogg",
+      "/sfx/environmental/v_brittleice_break3.ogg", "/sfx/environmental/v_brittleice_break4.ogg", "/sfx/environmental/v_brittleice_break5.ogg",
+      "/sfx/environmental/v_brittleice_break6.ogg", "/sfx/environmental/v_brittleice_break7.ogg", "/sfx/environmental/v_brittleice_break8.ogg",
+      "/sfx/environmental/v_brittleice_break9.ogg", "/sfx/environmental/v_brittleice_break10.ogg" ]
+    }
+  ]
+}

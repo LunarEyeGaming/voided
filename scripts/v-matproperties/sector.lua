@@ -129,43 +129,6 @@ function getSectorsInRegion(region)
   return sectors
 end
 
--- --[[
---   Helper function. Searches a single tile in both layers for mat mods. Returns a list of MatMods. At most two can be
---   returned as a mat mod can occupy at most two layers.
-
---   param pos: the position to search through
---   param matModsToQuery: (optional) a list containing the mat mods to find
---   returns: a list of MatMods, with at most two entries
--- ]]
--- function _searchTile(pos, matModsToQuery)
---   local results = {}
---   -- If searchTileInLayer() returns nil in either call, the respective line will have no effect.
---   table.insert(results, _searchTileInLayer(pos, "foreground", matModsToQuery))
---   table.insert(results, _searchTileInLayer(pos, "background", matModsToQuery))
-
---   return results
--- end
-
--- --[[
---   Helper function. Searches a single tile in one layer for a matmod. Returns a single MatMod, or nil if no matmod within
---   the matModsToQuery is present. If matModsToQuery is not specified, then a MatMod is returned if one exists.
-
---   param pos: the position to search through
---   param layer: the layer to search in. It is up to the programmer to make sure this value is valid
---   param matModsToQuery: (optional) a list containing the mat mods to find
---   returns: a MatMod, or nil if no matmod is present.
--- ]]
--- function _searchTileInLayer(pos, layer, matModsToQuery)
---   local matMod = world.mod(pos, layer)
---   -- local matMod = nil
---   -- If matMod is not nil and matMod is in the matModsToQuery list (if specified), stop and return a MatMod object.
---   if matMod and (not matModsToQuery or contains(matModsToQuery, matMod)) then
---     return {name = matMod, pos = pos, layer = layer}
---   end
-
---   return nil
--- end
-
 --[[
   Helper function. Searches a single tile in one layer for a matmod. Returns a single MatMod, or nil if no matmod within
   the matModsToQuery is present. If matModsToQuery is not specified, then a MatMod is returned if one exists.

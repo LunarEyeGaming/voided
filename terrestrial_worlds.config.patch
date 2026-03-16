@@ -576,6 +576,109 @@
       "subRegion" : ["v-undergroundministarempty"]
     }
   },
+  // -------------------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------ENTROPIC-----------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+  {
+    "op" : "add",
+    "path" : "/planetTypes/v-entropic",
+    "value" : {
+      "threatRange" : [8, 8],
+      "gravityRange" : [70, 90],
+      "layers" : {
+        "atmosphere" : {
+          "primaryRegion" : [ "atmosphere" ]
+        },
+        "surface" : {
+          "primaryRegion" : [ "v-entropic" ],
+          "secondaryRegions" : []
+        },
+        "subsurface" : {
+          "primaryRegion" : ["v-shallowundergroundentropic"],
+          "secondaryRegions" : []
+        },
+        "underground1" : {
+          "primaryRegion" : ["v-undergroundentropic"],
+          "secondaryRegions" : []
+        },
+        "underground2" : {
+          "primaryRegion" : ["v-undergroundentropic"],
+          "secondaryRegions" : []
+        },
+        "underground3" : {
+          "primaryRegion" : ["v-deepundergroundentropic"],
+          "secondaryRegions" : []
+        },
+        "core" : {
+          "primaryRegion" : ["v-entropiccorelayer"],
+          "secondaryRegions" : []
+        }
+      }
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-entropic",
+    "value" : {
+      "blockSelector" : [ "remixedMildSurface" ],
+      "fgCaveSelector" : [ "empty" ],
+      "subBlockSelector" : [ "v-crystalMountainsCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-entropic" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-shallowundergroundentropic",
+    "value" : {
+      "fgCaveSelector" : [ "normalCaves" ],
+      "biome": [
+        [1,["v-shallowundergroundentropic"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-undergroundentropic",
+    "value" : {
+      "fgCaveSelector" : [ "normalCaves" ],
+      "caveLiquid" : ["poison"],
+      "biome": [
+        [1,["v-undergroundentropic"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-deepundergroundentropic",
+    "value" : {
+      "fgCaveSelector" : [ "normalCaves" ],
+      "caveLiquid" : ["poison"],
+      "biome": [
+        [1,["v-deepundergroundentropic"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-entropiccorelayer",
+    "value" : {
+      "caveLiquid" : ["v-superpoison"],
+      "oceanLiquid" : ["v-endlesssuperpoison"],
+      "subBlockSelector" : ["v-fungalCoreSubBlocks"],
+      "fgCaveSelector" : [ "v-fungalCoreCaves" ],
+      "bgCaveSelector" : [ "v-fungalCoreCavesBackground" ],
+      "caveLiquidSeedDensityRange" : [4.0, 4.0],
+      "biome": [
+        [1,["v-entropiccorelayer"]]
+      ]
+    }
+  },
+  // -------------------------------------------------------------------------------------------------------------------
+  // ----------------------------------------------------TERRAIN TEST---------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
   {
     "op" : "add",
     "path" : "/planetTypes/v-terraintest",

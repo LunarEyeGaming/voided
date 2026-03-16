@@ -1,0 +1,25 @@
+{
+  "materialId" : 1223,
+  "materialName" : "v-brittleice",
+  "particleColor" : [145, 186, 233, 255],
+  "shortdescription" : "Ice",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_ice.ogg",
+  // "cascading" : true,
+  "health" : 0.01,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+
+  "renderTemplate" : "/tiles/pipetemplate.config",
+  "renderParameters" : {
+    "texture" : "v-brittleice.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1880
+  }
+}
