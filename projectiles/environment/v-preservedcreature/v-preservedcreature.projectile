@@ -1,0 +1,33 @@
+{
+  "projectileName" : "v-preservedcreature",
+  "physics" : "grenade",
+  "bounces" : -1,
+  "image" : "preservedcreature.png",
+  "fullbright" : false,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "speed" : 10,
+  "onlyHitTerrain" : true,
+  "timeToLive" : 3.0,
+  "lightColor" : [4, 3, 28],
+  "actionOnCollide" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/blocks/footstep_mud.ogg" ]
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "spawnmonster",
+      "type" : "v-icegnat",
+      "level" : 8
+    },
+    {
+      "action" : "sound",
+      "options" : [
+        "/sfx/objects/egg_hatch1.ogg",
+        "/sfx/objects/egg_hatch2.ogg"
+      ]
+    }
+  ]
+}

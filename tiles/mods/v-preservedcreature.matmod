@@ -1,0 +1,20 @@
+{
+  "modId" : 367,
+  "modName" : "v-preservedcreature",
+  "description" : "Preserved Creature.",
+  "health" : 1,
+  "harvestLevel" : 4,
+  "breaksWithTile" : true,
+
+  "miningSounds" : [ "/sfx/tools/pickaxe_ore.ogg", "/sfx/tools/pickaxe_ore2.ogg" ],
+  "miningParticle" : "orespark",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-preservedcreature.png",
+    "variants" : 8,
+    "multiColored" : false,
+    "zLevel" : 0,
+    "radiantLight" : [4, 3, 28]
+  }
+}

@@ -598,7 +598,7 @@
           "secondaryRegions" : []
         },
         "underground1" : {
-          "primaryRegion" : ["v-undergroundentropic"],
+          "primaryRegion" : ["v-entropicocean"],
           "secondaryRegions" : []
         },
         "underground2" : {
@@ -621,7 +621,7 @@
     "path" : "/regionTypes/v-entropic",
     "value" : {
       "blockSelector" : [ "remixedMildSurface" ],
-      "fgCaveSelector" : [ "empty" ],
+      "fgCaveSelector" : [ "sparseCaves" ],
       "subBlockSelector" : [ "v-crystalMountainsCaves" ],
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
@@ -634,8 +634,25 @@
     "path" : "/regionTypes/v-shallowundergroundentropic",
     "value" : {
       "fgCaveSelector" : [ "normalCaves" ],
+      "subBlockSelector" : [ "normalCaves" ],
+      "oceanLiquid" : [ "water" ],
+      "oceanLevelOffset" : 500,
       "biome": [
         [1,["v-shallowundergroundentropic"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-entropicocean",
+    "value" : {
+      "fgCaveSelector" : [ "acidPoolCaves" ],
+      "bgCaveSelector" : [ "acidPoolCaves" ],
+      "subBlockSelector" : [ "normalCaves" ],
+      "oceanLiquid" : [ "water" ],
+      "oceanLevelOffset" : 500,
+      "biome": [
+        [1,["v-undergroundentropic"]]
       ]
     }
   },
@@ -644,7 +661,8 @@
     "path" : "/regionTypes/v-undergroundentropic",
     "value" : {
       "fgCaveSelector" : [ "normalCaves" ],
-      "caveLiquid" : ["poison"],
+      "subBlockSelector" : [ "normalCaves" ],
+      "caveLiquid" : ["v-liquidnitrogen"],
       "biome": [
         [1,["v-undergroundentropic"]]
       ]
@@ -655,7 +673,7 @@
     "path" : "/regionTypes/v-deepundergroundentropic",
     "value" : {
       "fgCaveSelector" : [ "normalCaves" ],
-      "caveLiquid" : ["poison"],
+      "caveLiquid" : ["v-liquidnitrogen"],
       "biome": [
         [1,["v-deepundergroundentropic"]]
       ]
@@ -665,8 +683,8 @@
     "op" : "add",
     "path" : "/regionTypes/v-entropiccorelayer",
     "value" : {
-      "caveLiquid" : ["v-superpoison"],
-      "oceanLiquid" : ["v-endlesssuperpoison"],
+      "caveLiquid" : ["v-liquidnitrogen"],
+      "oceanLiquid" : ["v-liquidnitrogen"],
       "subBlockSelector" : ["v-fungalCoreSubBlocks"],
       "fgCaveSelector" : [ "v-fungalCoreCaves" ],
       "bgCaveSelector" : [ "v-fungalCoreCavesBackground" ],

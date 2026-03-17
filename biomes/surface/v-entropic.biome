@@ -122,7 +122,7 @@
 
   "mainBlock" : "v-permafrost",
   "subBlocks" : [ "v-brittleice", "v-brittleice" ],
-  "ores" : "v-toxicwasteland",
+  "ores" : "v-entropic",
 
   "surfacePlaceables" : {
     "items" : [
@@ -167,24 +167,24 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1.0, "v-toxicrock1" ], [1.0, "v-toxicrock2" ], [1.0, "v-toxicrock3" ], [1.0, "v-toxicrock4" ], [1.0, "v-toxicrock5" ] ],
+            "pool" : [ [1.0, "v-iceboulder" ] ],
             "parameters" : { }
           }
         ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 0.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSmall",
+      // },
+      // {
+      //   "mode" : "floor",
+      //   "priority" : 0.0,
+      //   "variants" : 1,
+      //   "distribution" : "/biomes/distributions.config:denseSmall",
 
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "lightsensor" ] ],
-            "parameters" : { }
-          }
-        ]
+      //   "type" : "object",
+      //   "objectSets" : [
+      //     {
+      //       "pool" : [ [1.0, "lightsensor" ] ],
+      //       "parameters" : { }
+      //     }
+      //   ]
       }
     ]
   },
@@ -237,20 +237,6 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:v-poisonGasPrimer",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-poisongasprimerlite" ] ],
-            "parameters" : { "originBiome" : "surface/v-entropic" }
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
         "distribution" : "/biomes/distributions.config:undergroundCapsules",
 
         "type" : "object",
@@ -270,47 +256,38 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1.0, "v-toxicrock1" ], [1.0, "v-toxicrock2" ], [1.0, "v-toxicrock3" ], [1.0, "v-toxicrock4" ], [1.0, "v-toxicrock5" ] ],
+            "pool" : [ [1.0, "v-iceboulder" ] ],
             "parameters" : { }
           }
         ]
       },
       {
-        "mode" : "floor",
+        "mode" : "ceiling",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredLarge",
+        "distribution" : "/biomes/distributions.config:denseSmall",
 
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1.0, "v-fungalblob1" ], [1.0, "v-fungalblob2" ], [1.0, "v-fungalblob3" ], [1.0, "v-fungalblob4" ], [1.0, "v-fungalblob5" ] ],
+            "pool" : [ [1.0, "v-iceboulder" ] ],
             "parameters" : { }
           }
         ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 1,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
+      // },
+      // {
+      //   "mode" : "floor",
+      //   "priority" : 2.0,
+      //   "variants" : 1,
+      //   "distribution" : "/biomes/distributions.config:scatteredLarge",
 
-        "type" : "microdungeon",
-        "microdungeons" : [ "v-rottingfunguspatch" ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 0.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredLarge",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "lightsensor" ] ],
-            "parameters" : { }
-          }
-        ]
+      //   "type" : "object",
+      //   "objectSets" : [
+      //     {
+      //       "pool" : [ [1.0, "lightsensor" ] ],
+      //       "parameters" : { }
+      //     }
+      //   ]
       }
     ]
   }

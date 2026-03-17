@@ -1,0 +1,24 @@
+{
+  "name" : "v-nitrogenfreezing",
+
+  "effectConfig" : {
+    "directives" : "fade=4ebdb9=0.3",
+    "movementModifiers" : {
+      "speedModifier" : 0.6,
+      "airJumpModifier" : 0.6
+    },
+    "tickRate" : 40,
+    "energyCost" : 2.5,
+    "healthDamage" : 20
+  },
+  "defaultDuration" : 0.2,
+
+  "scripts" : [
+    "v-nitrogenfreezing.lua"
+  ],
+
+  "animationConfig" : "v-nitrogenfreezing.animation",
+
+  "label" : "Extreme Frostbite - You are dying from extremely low temperatures",
+  "icon" : "/interface/statuses/v-nitrogenfreezing.png"
+}

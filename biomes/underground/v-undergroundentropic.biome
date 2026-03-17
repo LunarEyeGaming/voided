@@ -232,24 +232,38 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1.0, "v-toxicrock1" ], [1.0, "v-toxicrock2" ], [1.0, "v-toxicrock3" ], [1.0, "v-toxicrock4" ], [1.0, "v-toxicrock5" ] ],
+            "pool" : [ [1.0, "v-iceboulder" ] ],
             "parameters" : { }
           }
         ]
       },
       {
-        "mode" : "floor",
-        "priority" : 0.0,
+        "mode" : "ceiling",
+        "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredLarge",
+        "distribution" : "/biomes/distributions.config:denseSmall",
 
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1.0, "lightsensor" ] ],
+            "pool" : [ [1.0, "v-iceboulder" ] ],
             "parameters" : { }
           }
         ]
+      // },
+      // {
+      //   "mode" : "floor",
+      //   "priority" : 2.0,
+      //   "variants" : 1,
+      //   "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+      //   "type" : "object",
+      //   "objectSets" : [
+      //     {
+      //       "pool" : [ [1.0, "lightsensor" ] ],
+      //       "parameters" : { }
+      //     }
+      //   ]
       }
     ]
   },
