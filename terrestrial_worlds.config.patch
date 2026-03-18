@@ -591,7 +591,8 @@
         },
         "surface" : {
           "primaryRegion" : [ "v-entropic" ],
-          "secondaryRegions" : []
+          "secondaryRegions" : [ "v-cryovolcanic" ],
+          "secondaryRegionCount" : [1, 1]
         },
         "subsurface" : {
           "primaryRegion" : ["v-shallowundergroundentropic"],
@@ -633,7 +634,8 @@
     "op" : "add",
     "path" : "/regionTypes/v-shallowundergroundentropic",
     "value" : {
-      "fgCaveSelector" : [ "normalCaves" ],
+      "fgCaveSelector" : [ "coreCaves" ],
+      "bgCaveSelector" : [ "coreBackgroundCaves" ],
       "subBlockSelector" : [ "normalCaves" ],
       "oceanLiquid" : [ "water" ],
       "oceanLevelOffset" : 500,
@@ -652,7 +654,7 @@
       "oceanLiquid" : [ "water" ],
       "oceanLevelOffset" : 500,
       "biome": [
-        [1,["v-undergroundentropic"]]
+        [1,["v-entropicocean"]]
       ]
     }
   },
@@ -660,9 +662,10 @@
     "op" : "add",
     "path" : "/regionTypes/v-undergroundentropic",
     "value" : {
-      "fgCaveSelector" : [ "normalCaves" ],
+      "fgCaveSelector" : [ "sparseCaves" ],
       "subBlockSelector" : [ "normalCaves" ],
       "caveLiquid" : ["v-liquidnitrogen"],
+      "caveLiquidSeedDensityRange" : [4.0, 4.0],
       "biome": [
         [1,["v-undergroundentropic"]]
       ]
@@ -672,8 +675,10 @@
     "op" : "add",
     "path" : "/regionTypes/v-deepundergroundentropic",
     "value" : {
-      "fgCaveSelector" : [ "normalCaves" ],
+      "fgCaveSelector" : [ "sparseCaves" ],
+      "subBlockSelector" : [ "normalCaves" ],
       "caveLiquid" : ["v-liquidnitrogen"],
+      "caveLiquidSeedDensityRange" : [4.0, 4.0],
       "biome": [
         [1,["v-deepundergroundentropic"]]
       ]
@@ -684,14 +689,28 @@
     "path" : "/regionTypes/v-entropiccorelayer",
     "value" : {
       "caveLiquid" : ["v-liquidnitrogen"],
+      "caveLiquidSeedDensityRange" : [4.0, 4.0],
       "oceanLiquid" : ["v-liquidnitrogen"],
       "subBlockSelector" : ["v-fungalCoreSubBlocks"],
       "fgCaveSelector" : [ "v-fungalCoreCaves" ],
       "bgCaveSelector" : [ "v-fungalCoreCavesBackground" ],
-      "caveLiquidSeedDensityRange" : [4.0, 4.0],
       "biome": [
         [1,["v-entropiccorelayer"]]
       ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-cryovolcanic",
+    "value" : {
+      "blockSelector" : [ "v-crystalMountains" ],
+      "fgCaveSelector" : [ "surfaceCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "subBlockSelector" : ["v-crystalMountainsSubBlocks"],
+      "biome" : [
+        [0, [ "v-cryovolcanic" ]]
+      ],
+      "subRegion" : []
     }
   },
   // -------------------------------------------------------------------------------------------------------------------

@@ -142,5 +142,39 @@
     "value": [
       [1.0, "v-breadcrustbombs"]
     ]
+  },
+  // ENTROPIC
+  {
+    "op": "add",
+    "path": "/v-entropic",
+    "value": [
+      [0.6, "clear"],
+      [0.1, "fog"],
+      [0.1, "snow"],
+      [0.1, "groundmist"],
+      [0.03, "v-entropichail"],
+      [0.03, "icestorm"],
+      [0.03, "snowstorm"]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-entropicCalm",
+    "value": [
+      [0.7, "clear"],
+      [0.1, "fog"],
+      [0.1, "groundmist"],
+      [0.1, "snow"]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-entropicStormy",
+    "value": [
+      [0.4, "clear"],
+      [0.2, "v-entropichail"],
+      [0.2, "icestorm"],
+      [0.2, "snowstorm"]
+    ]
   }
 ]

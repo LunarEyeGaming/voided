@@ -1,19 +1,19 @@
 {
-  "objectName" : "v-poisongasemitter",
+  "objectName" : "v-cryovolcanohole",
   "colonyTags" : ["evil"],
   "printable" : false,
   "rarity" : "Legendary",
-  "description" : "A large hole that occasionally sprays out mycotoxins.",
-  "shortdescription" : "poisongasemitter",
+  "description" : "<todo>",
+  "shortdescription" : "cryovolcanohole",
   "race" : "generic",
 
-  "apexDescription" : "This hole periodically emits dangerous mycotoxins.",
-  "avianDescription" : "A hole in the ground that ferociously spews out lethal gases.",
-  "floranDescription" : "Hole sspitss out gases.",
-  "glitchDescription" : "Cautious. Inhaling the fumes from this hole can prove fatal.",
-  "humanDescription" : "Whoa. Better not step over this while it's going off.",
-  "hylotlDescription" : "A chasm that periodically erupts with concentrated gases. Extremely dangerous.",
-  "novakidDescription" : "Better not breathe whatever's comin' out of this hole.",
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
 
   "category" : "trap",
   "price" : 0,
@@ -42,9 +42,9 @@
     }
   ],
 
-  "animation" : "v-poisongasemitter.animation",
+  "animation" : "/objects/biome/v-toxicwasteland/v-poisongasemitter/v-poisongasemitter.animation",
 
-  "scripts" : [ "v-poisongasemitter.lua" ],
+  "scripts" : [ "/objects/biome/v-toxicwasteland/v-poisongasemitter/v-poisongasemitter.lua" ],
   "scriptDelta" : 2,
 
   "health" : 5,
@@ -53,7 +53,7 @@
   "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
   "smashParticles" : [ { "count" : 10, "particle" : "v-toxicrockshard" } ],
 
-  "gasProjectileType" : "v-poisoncloud",
+  "gasProjectileType" : "v-cryovolcanowater",
   "gasProjectileConfig" : {},
 
   "gasDirection" : [0, 1],
@@ -61,7 +61,7 @@
 
   "gasEmissionInterval" : 0.2,
   "onDuration" : 5.0,
-  "offDuration" : 5.0,
+  "offDuration" : 10.0,
 
   "requiredEmptySpace" : [-3, 0, 3, 50],
 

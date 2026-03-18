@@ -1,4 +1,4 @@
-require "/tech/distortionsphere/spikesphere.lua"
+require "/scripts/rect.lua"
 require "/scripts/vec2.lua"
 
 local oldInit = init or function() end
@@ -13,6 +13,7 @@ local reelSpeed
 local reelForce
 local finishTolerance
 local hookLaunchCost
+local grappleOnActivate
 
 local state
 local hookId
@@ -31,6 +32,7 @@ function init()
   reelForce = config.getParameter("reelForce")
   finishTolerance = config.getParameter("finishTolerance")
   hookLaunchCost = config.getParameter("hookLaunchCost")
+  grappleOnActivate = config.getParameter("grappleOnActivate")
 
   state = nil
 end
@@ -104,7 +106,9 @@ end
 function activate()
   oldActivate()
 
-  state = "launch"
+  if grappleOnActivate then
+    state = "launch"
+  end
 end
 
 function deactivate()

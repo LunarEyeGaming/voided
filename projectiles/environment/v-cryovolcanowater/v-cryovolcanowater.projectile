@@ -1,0 +1,75 @@
+{
+  "projectileName" : "v-cryovolcanowater",
+  "image" : "cryovolcanowater.png",
+  "physics" : "grenade",
+  "animationCycle" : 3,
+  "animationLoops" : true,
+  "damageKindImage" : "/interface/statuses/fire.png",
+  "frameNumber" : 1,
+  "power" : 0,
+  "speed" : 175,
+  "timeToLive" : 2,
+  "bounces" : -1,
+  "onlyHitTerrain" : true,
+  "hydrophobic" : false,
+  "orientationLocked" : true,
+
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "option",
+          "options" : [
+            {
+              "action" : "projectile",
+              "type" : "v-cryovolcanohail1",
+              "angle" : 90,
+              "fuzzAngle" : 45
+            },
+            {
+              "action" : "projectile",
+              "type" : "v-cryovolcanohail2",
+              "angle" : 90,
+              "fuzzAngle" : 45
+            },
+            {
+              "action" : "projectile",
+              "type" : "v-cryovolcanohail3",
+              "angle" : 90,
+              "fuzzAngle" : 45
+            },
+            {
+              "action" : "projectile",
+              "type" : "v-cryovolcanohail4",
+              "angle" : 90,
+              "fuzzAngle" : 45
+            }
+          ]
+        },
+        {
+          "action" : "projectile",
+          "type" : "water",
+          "angle" : 90,
+          "fuzzAngle" : 45,
+          "config" : {
+            "timeToLive" : 50
+          }
+        }
+      ]
+    }
+  ],
+
+  "persistentAudio" : "/sfx/projectiles/v_poisongas_loop.ogg",
+
+  "boundBox" : [-4, -4, 4, 4],
+  "physicsForces" : {
+    "jet" : {
+      "type" : "DirectionalForceRegion",
+      "yTargetVelocity" : 50,
+      "controlForce" : 500,
+      "rectRegion" : [-4, -4, 4, 4]
+    }
+  }
+}

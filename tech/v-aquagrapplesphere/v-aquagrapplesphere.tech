@@ -1,0 +1,65 @@
+{
+  "name" : "v-aquagrapplesphere",
+  "type" : "head",
+
+  "scripts" : ["/tech/distortionsphere/aquasphere.lua", "/tech/v-grapplesphere/v-grapplesphere.lua"],
+  "animator" : "/tech/v-grapplesphere/v-grapplesphere.animation",
+
+  "description" : "Grapples onto surfaces. ^green;[F]^reset; Transform, ^green;[Shift]^reset; Grapple",
+  "shortDescription" : "Aqua Grapple Sphere",
+  "rarity" : "Legendary",
+  "icon" : "/tech/v-aquagrapplesphere.png",
+
+  "chipCost" : 8,
+
+  "animationParts" : {
+    "ballGlow" : "/tech/v-aquagrapplesphere/aquagrapplesphereglow.png",
+    "ball" : "/tech/v-aquagrapplesphere/aquagrapplesphere.png",
+    "beam" : "/tech/v-aquagrapplesphere/aquagrapplespherebeam.png",
+    "hookbase" : "/tech/v-aquagrapplesphere/aquagrapplespherehookbase.png",
+    "hookbaseglow" : "/tech/v-aquagrapplesphere/aquagrapplespherehookbaseglow.png"
+  },
+
+  "transformedMovementParameters" : {
+    "collisionPoly" : [ [-0.85, -0.45], [-0.45, -0.85], [0.45, -0.85], [0.85, -0.45], [0.85, 0.45], [0.45, 0.85], [-0.45, 0.85], [-0.85, 0.45] ],
+
+    "liquidForce" : 350,
+    "liquidFriction" : 5,
+    "minimumLiquidPercentage" : 0.1,
+    "liquidImpedance" : 0.5,
+    "liquidBuoyancy" : 0.0,
+
+    "groundForce" : 450.0,
+    "normalGroundFriction" : 1.5,
+    "ambulatingGroundFriction" : 0.2,
+    "slopeSlidingFactor" : 3.0,
+
+    "airJumpProfile" : {
+      "jumpSpeed" : 16.0,
+      "jumpControlForce" : 800.0,
+      "jumpInitialPercentage" : 1.0,
+      "jumpHoldTime" : 0.1
+    },
+
+    "liquidJumpProfile" : {
+      "jumpSpeed" : 25.0,
+      "jumpControlForce" : 800.0
+    }
+  },
+
+  "ballSpeed" : 14,
+  "ballLiquidSpeed" : 18,
+
+  "energyCost" : 50,
+
+  "ballRadius" : 1,
+  "ballFrames" : 4,
+
+  "hookProjectileType" : "v-aquagrapplespherehook",
+  "launchSpeed" : 100,
+  "launchDistance" : 35,
+  "reelSpeed" : 100,
+  "reelForce" : 2000,
+  "finishTolerance" : 1,  // Maximum distance at which to stop reeling.
+  "hookLaunchCost" : 25  // Cost for subsequent hook launches.
+}

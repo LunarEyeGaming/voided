@@ -1,6 +1,6 @@
 {
-  "name" : "v-entropic",
-  "friendlyName" : "Entropic",
+  "name" : "v-cryovolcanic",
+  "friendlyName" : "Cryovolcanic",
 
   "statusEffects" : [ "v-quickhealnerf", "v-monsterresistance" ],
 
@@ -122,14 +122,11 @@
     }
   },
 
-  "mainBlock" : "v-permafrost",
-  "subBlocks" : [ "v-brittleice" ],
+  "mainBlock" : "ice",
+  "subBlocks" : [ "v-permafrost", "v-brittleice" ],
   "ores" : "v-entropic",
 
   "surfacePlaceables" : {
-    "grassMod" : [ "snow" ],
-    "grassModDensity" : 0.9,
-
     "items" : [
       {
         "mode" : "floor",
@@ -165,39 +162,17 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1.0,
+        "priority" : 1,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSmall",
+        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
 
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { }
-          }
-        ]
-      // },
-      // {
-      //   "mode" : "floor",
-      //   "priority" : 0.0,
-      //   "variants" : 1,
-      //   "distribution" : "/biomes/distributions.config:denseSmall",
-
-      //   "type" : "object",
-      //   "objectSets" : [
-      //     {
-      //       "pool" : [ [1.0, "lightsensor" ] ],
-      //       "parameters" : { }
-      //     }
-      //   ]
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-cryovolcanicmicrodungeons" ]
       }
     ]
   },
 
   "undergroundPlaceables" : {
-    "grassMod" : [ "snow" ],
-    "grassModDensity" : 0.5,
-
     "items" : [
       {
         "mode" : "floor",
@@ -282,20 +257,6 @@
             "parameters" : { }
           }
         ]
-      // },
-      // {
-      //   "mode" : "floor",
-      //   "priority" : 2.0,
-      //   "variants" : 1,
-      //   "distribution" : "/biomes/distributions.config:scatteredLarge",
-
-      //   "type" : "object",
-      //   "objectSets" : [
-      //     {
-      //       "pool" : [ [1.0, "lightsensor" ] ],
-      //       "parameters" : { }
-      //     }
-      //   ]
       }
     ]
   }

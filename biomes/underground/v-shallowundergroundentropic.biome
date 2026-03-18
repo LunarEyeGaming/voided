@@ -38,7 +38,7 @@
   },
 
   "mainBlock" : "v-permafrost",
-  "subBlocks" : [ "v-brittleice", "v-brittleice" ],
+  "subBlocks" : [ "v-brittleice" ],
   "ores" : "v-shallowundergroundtoxic",
 
   "parallax" : "/parallax/underground/v-shallowundergroundtoxic.parallax",
@@ -62,34 +62,10 @@
   },
 
   "undergroundPlaceables" : {
-    "grassMod" : [ "toxicgrass" ],
-    "grassModDensity" : 0.2,
-
-    "ceilingGrassMod" : [ "roots" ],
-    "ceilingGrassModDensity" : 0.2,
+    "grassMod" : [ "snow" ],
+    "grassModDensity" : 0.9,
 
     "items" : [
-      {
-        "mode" : "floor",
-        "priority" : 3.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredSmall",
-
-        "type" : "grass",
-        "grasses" : [ "toxicplains" ]
-      },
-      {
-        "mode" : "ceiling",
-        "priority" : 2.0,
-        "variants" : 3,
-        "distribution" : "/biomes/distributions.config:denseMedium",
-
-        "type" : "tree",
-        "treeFoliageHueShiftMax" : 60,
-        "treeStemHueShiftMax" : 40,
-        "treeStemList" : [ "purplevine" ],
-        "treeFoliageList" : [ "dreamy" ]
-      },
       {
         "mode" : "floor",
         "priority" : 1.0,
@@ -148,7 +124,7 @@
         "distribution" : "/biomes/distributions.config:undergroundweaponChests",
 
         "type" : "treasureBox",
-        "treasureBoxSets" : [ "v-poisonWeaponChest" ]
+        "treasureBoxSets" : [ "v-iceWeaponChest" ]
       },
       {
         "mode" : "floor",
@@ -224,20 +200,6 @@
             "parameters" : { }
           }
         ]
-      // },
-      // {
-      //   "mode" : "floor",
-      //   "priority" : 2.0,
-      //   "variants" : 1,
-      //   "distribution" : "/biomes/distributions.config:scatteredLarge",
-
-      //   "type" : "object",
-      //   "objectSets" : [
-      //     {
-      //       "pool" : [ [1.0, "lightsensor" ] ],
-      //       "parameters" : { }
-      //     }
-      //   ]
       }
     ]
   },

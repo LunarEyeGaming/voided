@@ -1,6 +1,6 @@
 {
-  "name" : "v-undergroundentropic",
-  "friendlyName" : "Entropic Caves",
+  "name" : "v-entropicocean",
+  "friendlyName" : "Entropic Ocean",
 
   "spawnProfile" : {
     "groups" : [
@@ -77,6 +77,18 @@
         "grasses" : [ "toxicplains" ]
       },
       {
+        "mode" : "ceiling",
+        "priority" : 2.0,
+        "variants" : 3,
+        "distribution" : "/biomes/distributions.config:denseMedium",
+
+        "type" : "tree",
+        "treeFoliageHueShiftMax" : 60,
+        "treeStemHueShiftMax" : 40,
+        "treeStemList" : [ "purplevine" ],
+        "treeFoliageList" : [ "dreamy" ]
+      },
+      {
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
@@ -87,6 +99,32 @@
           {
             "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
             "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-toxicoshroom1" ], [0.20, "v-toxicoshroom2" ], [0.20, "v-toxicoshroom3" ], [0.20, "v-toxicoshroom4" ], [0.20, "v-toxicoshroom5" ]]
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-poisonglowtree1" ], [0.20, "v-poisonglowtree2" ], [0.20, "v-poisonglowtree3" ], [0.20, "v-poisonglowtree4" ], [0.20, "v-poisonglowtree5" ]]
           }
         ]
       },
@@ -209,6 +247,20 @@
             "parameters" : { }
           }
         ]
+      // },
+      // {
+      //   "mode" : "floor",
+      //   "priority" : 2.0,
+      //   "variants" : 1,
+      //   "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+      //   "type" : "object",
+      //   "objectSets" : [
+      //     {
+      //       "pool" : [ [1.0, "lightsensor" ] ],
+      //       "parameters" : { }
+      //     }
+      //   ]
       }
     ]
   },

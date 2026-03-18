@@ -2,7 +2,7 @@
   "name" : "v-grapplesphere",
   "type" : "head",
 
-  "scripts" : ["v-grapplesphere.lua"],
+  "scripts" : ["/tech/distortionsphere/spikesphere.lua", "v-grapplesphere.lua"],
   "animator" : "v-grapplesphere.animation",
 
   "description" : "Grapples onto surfaces. ^green;[F]^reset; Transform, ^green;[Shift]^reset; Re-Grapple",
@@ -55,6 +55,7 @@
   "reelForce" : 2000,
   "finishTolerance" : 1,  // Maximum distance at which to stop reeling.
   "hookLaunchCost" : 25,  // Cost for subsequent hook launches.
+  "grappleOnActivate" : true,  // Whether or not to grapple when the sphere is activated.
 
   "damageDisableTime" : 0.2
 }

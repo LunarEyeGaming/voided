@@ -290,6 +290,103 @@
     }]
   ],
 
+  "v-iceWeaponChestTreasure" : [
+    [0, {
+      "fill" : [
+        {"pool" : "v-iceWeapon"}
+      ],
+      "poolRounds" : [
+        [0.5, 2],
+        [0.3, 3],
+        [0.2, 4]
+      ],
+      "pool" : [
+        {"weight" : 1.0, "pool" : "basicTreasure"}
+      ]
+    }]
+  ],
+
+  "v-iceWeapon" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 3, "pool" : "v-uncommonIceGun"},
+        {"weight" : 4.5, "pool" : "v-uncommonIceMelee"},
+        {"weight" : 1, "pool" : "v-rareIceGun"},
+        {"weight" : 1.5, "pool" : "v-rareIceMelee"},
+
+        {"weight" : 0.3, "item" : {"name" : "rarestaff", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.3, "item" : {"name" : "rarewand", "parameters" : {"elementalType" : "ice"}}}
+      ]
+    }]
+  ],
+
+  "v-uncommonIceMelee" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.007, "item" : {"name" : "uncommonbroadsword", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonaxe", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonspear", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonhammer", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommondagger", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonshortsword", "parameters" : {"elementalType" : "ice"}}}
+      ]
+    }]
+  ],
+
+  "v-rareIceMelee" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.007, "item" : {"name" : "rarebroadsword", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.007, "item" : {"name" : "rareaxe", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.007, "item" : {"name" : "rarespear", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.007, "item" : {"name" : "rarehammer", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.007, "item" : {"name" : "raredagger", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.007, "item" : {"name" : "rareshortsword", "parameters" : {"elementalType" : "ice"}}}
+      ]
+    }]
+  ],
+
+  "v-uncommonIceGun" : [
+    [0, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "uncommonpistol", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonmachinepistol", "parameters" : {"elementalType" : "ice"}}}
+      ]
+    }],
+    [1.9, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "uncommongrenadelauncher", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonassaultrifle", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonshotgun", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonsniperrifle", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonpistol", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonmachinepistol", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.7, "item" : {"name" : "uncommonrocketlauncher", "parameters" : {"elementalType" : "ice"}}}
+      ]
+    }]
+  ],
+
+  "v-rareIceGun" : [
+    [0, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "rarepistol", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "raremachinepistol", "parameters" : {"elementalType" : "ice"}}}
+      ]
+    }],
+    [1.9, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "rareassaultrifle", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "rareshotgun", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "raresniperrifle", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "rarepistol", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "raremachinepistol", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 1.0, "item" : {"name" : "raregrenadelauncher", "parameters" : {"elementalType" : "ice"}}},
+        {"weight" : 0.7, "item" : {"name" : "rarerocketlauncher", "parameters" : {"elementalType" : "ice"}}}
+      ]
+    }]
+  ],
+
   "v-dischargetrapTreasure" : [
     [0, {
       "fill" : [],
