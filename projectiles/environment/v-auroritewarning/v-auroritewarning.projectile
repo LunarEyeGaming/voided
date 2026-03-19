@@ -1,0 +1,20 @@
+{
+  "projectileName" : "v-auroritewarning",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 100,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "timeToLive" : 0,
+  "actionOnReap" : [
+    {
+      "action" : "particle",
+      "specification" : "v-auroritewarning",
+      "rotate" : true
+    }
+  ]
+}

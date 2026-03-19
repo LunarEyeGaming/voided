@@ -1,0 +1,28 @@
+{
+  "name" : "v-auroriteeffect",
+
+  "effectConfig" : {
+    "directives" : "fade=4ebdb9=0.3",
+    "preFreezeMovementModifiers" : {
+      "speedModifier" : 0.9,
+      "airJumpModifier" : 0.9
+    },
+    "freezeMovementModifiers" : {
+      "movementSuppressed" : true,
+      "jumpingSuppressed" : true
+    },
+    "freezeThreshold" : 35.0,
+    "freezeDuration" : 2.0,
+    "freezeDamage" : 50
+  },
+  "defaultDuration" : 0.5,
+
+  "scripts" : [
+    "v-auroriteeffect.lua"
+  ],
+
+  "animationConfig" : "v-auroriteeffect.animation",
+
+  "label" : "Aurora Chill - Gradually freezing from the aurora",
+  "icon" : "/interface/statuses/v-nitrogenfreezing.png"
+}

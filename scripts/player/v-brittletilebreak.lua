@@ -152,9 +152,9 @@ function markTile(pos, fgMatsToDestroy, chance)
 end
 
 function breakTiles(fgTilesToDestroy, bgTilesToDestroy)
-  world.damageTiles(fgTilesToDestroy, "foreground", mcontroller.position(), "blockish", 2 ^ 32, 0, player.id())
+  world.damageTiles(fgTilesToDestroy, "foreground", mcontroller.position(), "blockish", 5, 99, player.id())
 
-  world.damageTiles(bgTilesToDestroy, "background", mcontroller.position(), "blockish", 2 ^ 32, 0, player.id())
+  world.damageTiles(bgTilesToDestroy, "background", mcontroller.position(), "blockish", 5, 99, player.id())
 
   for _, pos in ipairs(fgTilesToDestroy) do
     world.spawnProjectile("v-icebreak", pos)

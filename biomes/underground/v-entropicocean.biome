@@ -38,11 +38,11 @@
     }
   },
 
-  "parallax" : "/parallax/underground/v-undergroundtoxic.parallax",
+  "parallax" : "/parallax/surface/arcticoceanfloor.parallax",
 
   "mainBlock" : "v-permafrost",
   "subBlocks" : [ "v-brittleice" ],
-  "ores" : "v-undergroundtoxic",
+  "ores" : "v-undergroundentropic",
 
   "ambientNoises" : {
     "day" : {
@@ -265,5 +265,5 @@
     ]
   },
 
-  "hueShiftOptions" : [ 30, 20, 10, 0, -10, -20, -30, -40, -50 ]
+  "hueShiftOptions" : [ 60, 50, 40, 30, 20, 10, 0 ]
 }

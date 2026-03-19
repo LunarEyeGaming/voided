@@ -1,0 +1,19 @@
+{
+  "kind" : "v-auroritewarning",
+  "definition" : {
+    "type" : "animated",
+    "animation" : "/animations/icecloudpuff/icecloudpuff.animation",
+    "light" : [69, 176, 86],
+    "position" : [0, 0],
+    "initialVelocity" : [10, 0],
+    "fullbright" : false,
+    "size" : 1,
+    "layer" : "front",
+    "timeToLive" : 2.0,
+    "fade" : 1,
+    "collidesLiquid" : false,
+    "variance" : {
+      "position" : [1, 1]
+    }
+  }
+}

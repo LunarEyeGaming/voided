@@ -2,7 +2,7 @@
   "name" : "v-aquagrapplesphere",
   "type" : "head",
 
-  "scripts" : ["/tech/distortionsphere/aquasphere.lua", "/tech/v-grapplesphere/v-grapplesphere.lua"],
+  "scripts" : ["/tech/distortionsphere/aquasphere.lua", "/tech/v-grapplesphere/v-grapplesphere.lua", "v-aquagrapplesphereplugin.lua"],
   "animator" : "/tech/v-grapplesphere/v-grapplesphere.animation",
 
   "description" : "Grapples onto surfaces. ^green;[F]^reset; Transform, ^green;[Shift]^reset; Grapple",
@@ -26,8 +26,8 @@
     "liquidForce" : 350,
     "liquidFriction" : 5,
     "minimumLiquidPercentage" : 0.1,
-    "liquidImpedance" : 0.5,
-    "liquidBuoyancy" : 0.0,
+    "liquidImpedance" : 0.2,
+    "liquidBuoyancy" : 1.0,
 
     "groundForce" : 450.0,
     "normalGroundFriction" : 1.5,

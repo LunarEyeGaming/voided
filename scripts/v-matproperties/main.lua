@@ -192,7 +192,7 @@ function runUpdateHooks(dt)
       -- error and yet some mat mods are queried.
       if modFuncs[matMod.name] then
         -- Attempt to call the update hook.
-        local status, result = pcall(modFuncs[matMod.name].update, matMod.pos, matMod.layer)
+        local status, result = pcall(modFuncs[matMod.name].update, matMod.pos, matMod.layer, dt)
 
         -- If an error occurred...
         if not status then
@@ -280,7 +280,7 @@ function invalidateSector(sector)
       -- Prototype for sector locking mechanism. If it hasn't already been locked, lock it so that it will not be
       -- queried by the system for a little bit.
       if not isLocked(sector) then
-        lockSector(sector, 8)
+        lockSector(sector, 3)
       end
       --local entry = table.remove(queriedModSectors, i)
       --sb.logInfo("%s", entry)

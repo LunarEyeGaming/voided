@@ -6,7 +6,7 @@ function die(smash)
       config.getParameter("projectile", "v-iceboulder"),
       vec2.add(object.position(), config.getParameter("projectileOffset", {0,0})),
       entity.id(),
-      {0, 0},
+      vec2.withAngle(math.random() * 2 * math.pi),
       false,
       config.getParameter("projectileParameters", {})
     )
