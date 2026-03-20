@@ -152,20 +152,6 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:v-poisonGasPrimer",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-poisongasprimerlite2" ] ],
-            "parameters" : { "originBiome" : "underground/v-deepundergroundtoxic" }
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
         "priority" : 99.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
@@ -202,7 +188,7 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSmall",
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "object",
         "objectSets" : [
@@ -216,7 +202,7 @@
         "mode" : "ceiling",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSmall",
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "object",
         "objectSets" : [

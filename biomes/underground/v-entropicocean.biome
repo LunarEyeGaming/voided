@@ -199,20 +199,6 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:v-poisonGasPrimer",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-poisongasprimerlite" ] ],
-            "parameters" : { "originBiome" : "underground/v-undergroundtoxic" }
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
         "priority" : 1,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:undergroundBiomeEncounterDungeon",
@@ -224,7 +210,7 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSmall",
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "object",
         "objectSets" : [
@@ -238,7 +224,7 @@
         "mode" : "ceiling",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:denseSmall",
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "object",
         "objectSets" : [

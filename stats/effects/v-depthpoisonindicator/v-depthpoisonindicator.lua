@@ -52,7 +52,7 @@ function init()
 end
 
 function postInit()
-  world.sendEntityMessage(entity.id(), "v-depthPoison-showMeter")
+  world.sendEntityMessage(entity.id(), "v-drawableMeter-show", "v-depthpoison")
 
   postInitCalled = true
 end
@@ -66,7 +66,7 @@ function update(dt)
 
   local ratio = math.min(1.0, poisonAmount / endPoisonAmount)
   local color = vAnimator.lerpColor(ratio, startColor, endColor)
-  world.sendEntityMessage(entity.id(), "v-depthPoison-setRatio", ratio)
+  world.sendEntityMessage(entity.id(), "v-drawableMeter-setFillRatio", "v-depthpoison", ratio)
 
   setShimmerTime(poisonAmount, dt)
 
@@ -98,7 +98,7 @@ function setShimmerTime(poisonAmount, dt)
   end
 
   -- Use shimmer time for entry to use, or nil if no such entry is found.
-  world.sendEntityMessage(entity.id(), "v-depthPoison-setShimmerTime", entryToUse and (entryToUse.shimmerTime) or nil)
+  world.sendEntityMessage(entity.id(), "v-drawableMeter-invoke", "v-depthpoison", "setShimmerTime", entryToUse and (entryToUse.shimmerTime) or nil)
 
   oldPoisonAmount = poisonAmount
 end
@@ -124,5 +124,5 @@ function updateWarningSound(ratio, dt)
 end
 
 function onExpire()
-  world.sendEntityMessage(entity.id(), "v-depthPoison-hideMeter")
+  world.sendEntityMessage(entity.id(), "v-drawableMeter-hide", "v-depthpoison")
 end

@@ -650,7 +650,7 @@
     "value" : {
       "fgCaveSelector" : [ "acidPoolCaves" ],
       "bgCaveSelector" : [ "acidPoolCaves" ],
-      "subBlockSelector" : [ "normalCaves" ],
+      "subBlockSelector" : [ "sparseCaves" ],
       "oceanLiquid" : [ "water" ],
       "oceanLevelOffset" : 500,
       "biome": [
@@ -662,8 +662,8 @@
     "op" : "add",
     "path" : "/regionTypes/v-undergroundentropic",
     "value" : {
-      "fgCaveSelector" : [ "sparseCaves" ],
-      "subBlockSelector" : [ "normalCaves" ],
+      "fgCaveSelector" : [ "normalCaves" ],
+      "subBlockSelector" : [ "sparseCaves" ],
       "caveLiquid" : ["v-liquidnitrogen"],
       "caveLiquidSeedDensityRange" : [4.0, 4.0],
       "biome": [
@@ -675,8 +675,8 @@
     "op" : "add",
     "path" : "/regionTypes/v-deepundergroundentropic",
     "value" : {
-      "fgCaveSelector" : [ "sparseCaves" ],
-      "subBlockSelector" : [ "normalCaves" ],
+      "fgCaveSelector" : [ "normalCaves" ],
+      "subBlockSelector" : [ "sparseCaves" ],
       "caveLiquid" : ["v-liquidnitrogen"],
       "caveLiquidSeedDensityRange" : [4.0, 4.0],
       "biome": [

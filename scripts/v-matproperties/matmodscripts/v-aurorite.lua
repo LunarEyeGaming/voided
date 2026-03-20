@@ -5,6 +5,7 @@ local sparkChance = 0.05
 local radioMessageRange = 35  -- How close the player has to be to trigger the warning message.
 local chillRange = 20  -- How close the player has to be to become chilled.
 local chillWarningChance = 0.05
+local chillAmount = 3
 
 function ModProperty.update(position, layer, dt)
   -- If the radio message was not sent and the player is close enough...
@@ -16,7 +17,7 @@ function ModProperty.update(position, layer, dt)
 
   if world.magnitude(position, mcontroller.position()) < chillRange then
     status.addEphemeralEffect("v-auroriteeffect")
-    world.sendEntityMessage(player.id(), "v-auroriteeffect-freeze", dt)
+    status.overConsumeResource("v-warmth", chillAmount * dt)
     if math.random() < chillWarningChance then
       world.spawnProjectile("v-auroritewarning", mcontroller.position(), nil, world.distance(position, mcontroller.position()))
     end

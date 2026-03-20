@@ -21,10 +21,10 @@ function update(dt)
       damageSourceKind = "poison",
       sourceEntityId = player.id()
     })
-    world.sendEntityMessage(player.id(), "v-depthPoison-flash")
+    world.sendEntityMessage(player.id(), "v-drawableMeter-invoke", "v-depthpoison", "flash")
     damageTimer = damageTime
   end
-  
+
   -- Display poison amount (if poisonAmount is positive)
   if poisonAmount > 0 then
     status.addEphemeralEffect("v-depthpoisonindicator")

@@ -108,11 +108,13 @@
   {"op": "add", "path": "/genericScriptContexts/v-dependencyCheck", "value": "/scripts/player/v-dependencycheck.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-healingCooldown", "value": "/scripts/player/v-healingcooldown.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-brittleTileBreak", "value": "/scripts/player/v-brittletilebreak.lua"},
+
+  {"op": "add", "path": "/statusControllerSettings/primaryScriptSources/-", "value": "/stats/v-freezing.lua"},
   // CPU Hog. Uncomment to activate.
   // {"op": "add", "path": "/genericScriptContexts/v-hog", "value": "/scripts/player/v-hog.lua"},
 
   // Client-side rendering scripts
-  {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-depthpoisonmeter.lua"},
+  {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-drawablemeters.lua"},
   {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-gpsdisplay.lua"},
   {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-specialeffects.lua"},
   {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-titanofdarknessaura.lua"},
@@ -133,6 +135,38 @@
     "value": {
       "initialValue": 0,
       "deltaStat": "v-depthPoisonDelta"
+    }
+  },
+  // Freezing mechanic
+  {
+    "op": "add",
+    "path": "/statusControllerSettings/stats/v-maxWarmth",
+    "value": {
+      "baseValue": 100.0
+    }
+  },
+  {
+    "op": "add",
+    "path": "/statusControllerSettings/stats/v-warmthIncreaseBlockTime",
+    "value": {
+      "baseValue": 2.0
+    }
+  },
+  {
+    "op": "add",
+    "path": "/statusControllerSettings/resources/v-warmth",
+    "value": {
+      "maxStat" : "v-maxWarmth",
+      "initialValue": 0
+    }
+  },
+  {
+    "op": "add",
+    "path": "/statusControllerSettings/resources/v-warmthIncreaseBlock",
+    "value": {
+      "initialValue": 0,
+      "deltaValue": -1.0,
+      "maxStat": "v-warmthIncreaseBlockTime"
     }
   },
 
