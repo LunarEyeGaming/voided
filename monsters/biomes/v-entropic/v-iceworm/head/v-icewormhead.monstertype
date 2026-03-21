@@ -1,0 +1,263 @@
+{
+  "type" : "v-icewormhead",
+  "shortdescription" : "Mutant Eel",
+  "description" : "A freakishly large eel with way too many orifices.",
+
+  "categories" : [ "v-icewormhead" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-icewormhead.animation",
+
+  "dropPools" : ["v-mutanteelTreasure"],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/scripts/terra_wormheadcustom.lua",
+      "/scripts/bookofspirits/v-bookofspirits_wormplugin.lua",
+      "/monsters/biomes/v-entropic/v-iceworm/v-icewormdigplugin.lua"
+    ],
+    "initialScriptDelta" : 3,
+    "behaviorUpdateDelta" : 1,
+
+    "behavior" : "v-monsterseethrough",
+    "deathBehavior" : "monster-death",
+
+    "size" : 20,
+    "bodySegment" : "v-icewormbody",
+
+    "renderLayer" : "Monster+20",
+
+    "facingMode" : "transformation",
+    "capturedLevel" : 8,
+
+    "digMode" : "ground",
+
+    "seeThroughLiquid" : true,
+    "behaviorConfig" : {
+      "damageOnTouch" : true,
+
+      "targetQueryRange" : 30,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 150,
+      "targetOutOfSightTime" : 10.0,
+      "speedSenseThreshold" : 25.0,
+      "targetQueryCooldown" : 1,
+
+      "hurtWaitForGround" : false,
+
+      "spawnActions" : [
+        {
+          "name" : "action-nudge",
+          "parameters" : {
+            "minX" : 0,
+            "minY" : -20,
+            "maxX" : 0,
+            "maxY" : -10
+          }
+        },
+        {
+          "name" : "v-action-wormsettledown",
+          "parameters" : {
+            "turnSpeed" : 3.0,
+            "wavePeriod" : 2.0,
+            "waveAmplitude" : 2,
+            "digMode" : "ground",
+            "settleDuration" : 2.5,
+            "speed" : 15
+          }
+        }
+      ],
+
+      "foundTargetActions" : [
+      ],
+
+      "hostileActions" : [
+        {
+          "name" : "action-fire",
+          "cooldown" : 5,
+          "parameters" : {
+            "requireLineOfSight" : true,
+            "maximumRange" : 100,
+            "minimumRange" : 20,
+            "onGround" : false,
+            "faceTarget" : false,
+            "rotateToTarget" : true,
+
+            "windupStopForce" : 100,
+            "windupState" : "",
+            "windupStateType" : "body",
+            "windupTime" : 0.75,
+
+            "projectileType" : "iceshot",
+            "projectileParameters" : {"speed" : 50, "statusEffects" : ["frostslow"]},
+            "projectileCount" : 1,
+            "projectileInterval" : 1,
+            "fireOffset" : [0.5, 0],
+            "fireState" : "",
+            "fireSound" : "",
+            "fireDelay" : 0.1,
+
+            "winddownStopForce" : 0,
+            "winddownState" : "",
+            "winddownStateType" : "body",
+            "winddownTime" : 0.2
+          }
+        }
+      ],
+
+      "wanderActions" : [
+        {
+          "name" : "v-action-retreatunderground",
+          "parameters" : {
+            "stopForce" : 150
+          }
+        }
+      ],
+
+      "approachActions" : [
+        {
+          "name" : "v-approach-turnworm",
+          "parameters" : {
+            "turnSpeed" : 8.0,
+            "waveAmplitude" : 0,
+            "digMode" : "ground"
+          }
+        }
+      ],
+
+      "followActions" : [
+        {
+          "name" : "approach-teleport",
+          "parameters" : {
+          }
+        },
+        {
+          "name" : "v-approach-turnworm",
+          "parameters" : {
+            "turnSpeed" : 8.0,
+            "waveAmplitude" : 0,
+            "digMode" : "ground"
+          }
+        }
+      ]
+    },
+
+    "touchDamage" : {
+      "poly" : [ [0.625, 0.9375], [1.125, 0.4375], [1.125, -0.4375], [0.625, -0.9375], [-0.625, -0.9375], [-1.125, -0.4375], [-1.125, 0.4375], [-0.625, 0.9375] ],
+      "damage" : 15,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "spear",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [ [0.625, 0.9375], [1.125, 0.4375], [1.125, -0.4375], [0.625, -0.9375], [-0.625, -0.9375], [-1.125, -0.4375], [-1.125, 0.4375], [-0.625, 0.9375] ],
+      "collisionEnabled" : false,
+
+      "gravityMultiplier" : 0.5,
+
+      "mass" : 2.0,
+      "walkSpeed" : 4,
+      "runSpeed" : 12,
+      "gravityEnabled" : false,
+
+      "bounceFactor" : 0.5,
+      "groundFriction" : 10,
+
+      "airFriction" : 0,
+      "liquidFriction" : 1.25,
+      "airForce" : 150,
+      "flySpeed" : 35
+    },
+
+    "bodyMaterialKind" : "organic",
+
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "stunDamageSuppression" : 0.2,
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0.3
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9999999
+        },
+        "maxHealth" : {
+          "baseValue" : 400
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "v-strongpoisonStatusImmunity" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-mutanteel" }
+  }
+}

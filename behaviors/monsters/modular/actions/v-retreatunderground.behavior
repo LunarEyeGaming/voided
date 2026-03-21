@@ -1,0 +1,66 @@
+{
+  "name": "v-action-retreatunderground",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/movement.lua"
+  ],
+  "parameters": {
+    "stopForce": 50
+  },
+  "root": {
+    "title": "selector",
+    "type": "composite",
+    "name": "selector",
+    "parameters": {},
+    "children": [
+      {
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "selector",
+            "type": "composite",
+            "name": "selector",
+            "parameters": {},
+            "children": [
+              {
+                "title": "boundsCollision",
+                "type": "action",
+                "name": "boundsCollision",
+                "parameters": {}
+              },
+              {
+                "title": "inLiquid",
+                "type": "action",
+                "name": "inLiquid",
+                "parameters": {
+                  "percentage": {"value": 0.1}
+                }
+              }
+            ]
+          },
+          {
+            "title": "controlApproachVelocity",
+            "type": "action",
+            "name": "controlApproachVelocity",
+            "parameters": {
+              "force": {"key": "<stopForce>"},
+              "velocity": {"value": [0, 0]}
+            }
+          }
+        ]
+      },
+      {
+        "title": "controlParameters",
+        "type": "action",
+        "name": "controlParameters",
+        "parameters": {
+          "parameters": {"value": {"gravityEnabled": true}}
+        }
+      }
+    ]
+  }
+}

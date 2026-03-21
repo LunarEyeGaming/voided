@@ -1,21 +1,4 @@
 {
-  "v_approachTurnWorm": {
-    "type": "action",
-    "name": "v_approachTurnWorm",
-    "title": "v_approachTurnWorm",
-    "properties": {
-      "entity": {"type": "entity", "value": null},
-      "turnSpeed": {"type": "number", "value": 1},
-      "wavePeriod": {"type": "number", "value": 2},
-      "waveAmplitude": {"type": "number", "value": 2}
-    },
-    "category": "v-worm",
-    "script": "/scripts/actions/v-worm.lua",
-    "output": {
-      "angle": {"type": "number", "key": null},
-      "direction": {"type": "number", "key": null}
-    }
-  },
   "v_wormFire": {
     "type": "action",
     "name": "v_wormFire",
@@ -57,5 +40,37 @@
     "category": "v-worm",
     "script": "/scripts/actions/v-worm.lua",
     "output": {}
+  },
+  "v_wormFigure8Instant": {
+    "type": "action",
+    "name": "v_wormFigure8Instant",
+    "title": "v_wormFigure8Instant",
+    "properties": {
+      "center": {"type": "position", "key": "spawn"},
+      "numPoints": {"type": "number", "value": 60},
+      "size": {"type": "number", "value": 10}
+    },
+    "category": "v-worm",
+    "script": "/scripts/actions/v-worm.lua",
+    "output": {}
+  },
+  "v_approachTurnWorm": {
+    "type": "action",
+    "name": "v_approachTurnWorm",
+    "title": "v_approachTurnWorm",
+    "properties": {
+      "digMode": {"type": "string"},
+      "entity": {"type": "entity"},
+      "turnSpeed": {"type": "number", "value": 1},
+      "waveAmplitude": {"type": "number", "value": 2},
+      "wavePeriod": {"type": "number", "value": 2},
+      "speed": {"type": "number"}
+    },
+    "category": "v-worm",
+    "script": "/scripts/actions/v-worm.lua",
+    "output": {
+      "angle": {"type": "number", "key": null},
+      "direction": {"type": "number", "key": null}
+    }
   }
 }

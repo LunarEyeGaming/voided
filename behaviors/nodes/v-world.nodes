@@ -41,19 +41,6 @@
     "script": "/scripts/actions/v-world.lua",
     "output": {}
   },
-  "v_entityVelocity": {
-    "type": "action",
-    "name": "v_entityVelocity",
-    "title": "v_entityVelocity",
-    "properties": {
-      "entity": {"type": "entity", "key": "self"}
-    },
-    "category": "v-world",
-    "script": "/scripts/actions/v-world.lua",
-    "output": {
-      "velocity": {"type": "vec2", "key": null}
-    }
-  },
   "v_resolvePolyCollision": {
     "type": "action",
     "name": "v_resolvePolyCollision",
@@ -66,6 +53,20 @@
     "script": "/scripts/actions/v-world.lua",
     "output": {
       "result": {"type": "position", "key": null}
+    }
+  },
+  "v_entityVelocity": {
+    "type": "action",
+    "name": "v_entityVelocity",
+    "title": "v_entityVelocity",
+    "properties": {
+      "entity": {"type": "entity", "key": "self"}
+    },
+    "category": "v-world",
+    "script": "/scripts/actions/v-world.lua",
+    "output": {
+      "velocity": {"type": "vec2", "key": null},
+      "magnitude": {"type": "number", "key": null}
     }
   }
 }

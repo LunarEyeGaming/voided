@@ -1,0 +1,140 @@
+{
+  "name": "v-action-wormsettledown",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/math.lua",
+    "/scripts/actions/monster.lua",
+    "/scripts/actions/query.lua",
+    "/scripts/actions/v-worm.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {
+    "turnSpeed": 1,
+    "waveAmplitude": 2,
+    "wavePeriod": 2,
+    "digMode": null,
+    "settleDuration": 1,
+    "speed": null
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "random",
+        "type": "action",
+        "name": "random",
+        "parameters": {
+          "max": {"value": 6.28},
+          "min": {"value": 0}
+        },
+        "output": {
+          "number": "randomAngle"
+        }
+      },
+      {
+        "title": "rotate",
+        "type": "action",
+        "name": "rotate",
+        "parameters": {
+          "angle": {"key": "randomAngle"},
+          "rate": {"value": 0}
+        }
+      },
+      {
+        "title": "queryEntity",
+        "type": "action",
+        "name": "queryEntity",
+        "parameters": {
+          "entityTypes": {"value": ["player"]},
+          "orderBy": {"value": "nearest"},
+          "position": {"key": "self"},
+          "range": {"value": 1000},
+          "withoutEntity": {"key": "self"}
+        },
+        "output": {
+          "entity": "nearestPlayer"
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "v_approachTurnWorm",
+            "type": "action",
+            "name": "v_approachTurnWorm",
+            "parameters": {
+              "digMode": {"key": "<digMode>"},
+              "entity": {"key": "nearestPlayer"},
+              "turnSpeed": {"key": "<turnSpeed>"},
+              "waveAmplitude": {"key": "<waveAmplitude>"},
+              "wavePeriod": {"key": "<wavePeriod>"},
+              "speed": {"key": "<speed>"}
+            },
+            "output": {
+              "angle": "heading",
+              "direction": "turnDirection"
+            }
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "resetTransformationGroup",
+                  "type": "action",
+                  "name": "resetTransformationGroup",
+                  "parameters": {
+                    "transformationGroup": {"value": "body"}
+                  }
+                },
+                {
+                  "title": "rotateTransformationGroup",
+                  "type": "action",
+                  "name": "rotateTransformationGroup",
+                  "parameters": {
+                    "angle": {"key": "heading"},
+                    "transformationGroup": {"value": "body"}
+                  }
+                },
+                {
+                  "title": "faceDirection",
+                  "type": "action",
+                  "name": "faceDirection",
+                  "parameters": {
+                    "direction": {"value": 1}
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"key": "<settleDuration>"}
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

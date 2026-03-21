@@ -58,7 +58,9 @@ function v_entityVelocity(args, board)
 
   if not world.entityExists(args.entity) then return false end
 
-  return true, {velocity = world.entityVelocity(args.entity)}
+  local velocity = world.entityVelocity(args.entity)
+
+  return true, {velocity = velocity, magnitude = vec2.mag(velocity)}
 end
 
 -- param position

@@ -38,6 +38,10 @@ local rightLegMoveTimer  -- The amount of time remaining for the right leg's mov
 local prevLeftLegOffset  -- Position of the left leg tip relative to the left hip
 local prevRightLegOffset  -- Position of the right leg tip relative to the right hip
 
+local prevPosition
+local prevPosition2
+local prevPosition3
+
 function init()
   oldInit()
 

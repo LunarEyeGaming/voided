@@ -6,6 +6,37 @@
 
   "spawnProfile" : {
     "groups" : [
+      {
+        "select" : 1,
+        "pool" : [
+          [ 1.0, "v-iceworm" ]
+        ]
+      },
+      {
+        "select" : 1,
+        "pool" : [
+          [ 0.4, "flameroach" ],
+          [ 0.3, "lavahopper" ],
+          [ 0.3, "fireygiant" ]
+        ]
+      },
+      {
+        "select" : 3,
+        "pool" : "nightTerrors"
+      },
+      {
+        "select" : 2,
+        "pool" : "generatedFlying"
+      },
+      {
+        "select" : 3,
+        "pool" : [
+          [ 1, "firerockcritter" ],
+          [ 1, "loopacritter" ],
+          [ 1, "orenibblercritter" ],
+          [ 1, "magmawormcritter" ]
+        ]
+      }
     ],
     "monsterParameters" : {
       "colors" : "v-toxicwasteland",

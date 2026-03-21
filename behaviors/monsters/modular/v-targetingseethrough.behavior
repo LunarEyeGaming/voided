@@ -1,0 +1,762 @@
+{
+  "name": "v-monster-targetingseethrough",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/entity.lua",
+    "/scripts/actions/v-world.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/behavior/bdata.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/query.lua",
+    "/scripts/actions/notification.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/pets.lua"
+  ],
+  "parameters": {
+    "targetQueryRange": 50,
+    "keepTargetInRange": 50,
+    "targetEntityTypes": ["player", "monster", "npc"],
+    "keepTargetInSight": true,
+    "queryTargets": true,
+    "targetOnDamage": true,
+    "targetOutOfSightTime": 5,
+    "targetQueryCooldown": 1,
+    "targetOnNotification": true,
+    "targetNotificationRange": 15,
+    "speedSenseThreshold": 5
+  },
+  "root": {
+    "title": "parallel",
+    "type": "composite",
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": 1},
+      "success": {"value": -1}
+    },
+    "children": [
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "parallel",
+          "type": "composite",
+          "name": "parallel",
+          "parameters": {
+            "fail": {"value": 1},
+            "success": {"value": -1}
+          },
+          "children": [
+            {
+              "title": "filter",
+              "type": "decorator",
+              "name": "filter",
+              "parameters": {
+                "list": {"key": "outOfSightTargets"},
+                "type": {"value": "entity"}
+              },
+              "child": {
+                "title": "selector",
+                "type": "composite",
+                "name": "selector",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "inverter",
+                    "type": "decorator",
+                    "name": "inverter",
+                    "parameters": {},
+                    "child": {
+                      "title": "selector",
+                      "type": "composite",
+                      "name": "selector",
+                      "parameters": {},
+                      "children": [
+                        {
+                          "title": "entityInSight",
+                          "type": "action",
+                          "name": "entityInSight",
+                          "parameters": {
+                            "entity": {"key": "filterItem"}
+                          }
+                        },
+                        {
+                          "title": "sequence",
+                          "type": "composite",
+                          "name": "sequence",
+                          "parameters": {},
+                          "children": [
+                            {
+                              "title": "v_entityVelocity",
+                              "type": "action",
+                              "name": "v_entityVelocity",
+                              "parameters": {
+                                "entity": {"key": "filterItem"}
+                              },
+                              "output": {
+                                "magnitude": "filterItemSpeed"
+                              }
+                            },
+                            {
+                              "title": "greaterThan",
+                              "type": "action",
+                              "name": "greaterThan",
+                              "parameters": {
+                                "first": {"key": "filterItemSpeed"},
+                                "second": {"key": "<speedSenseThreshold>"}
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "title": "failer",
+                    "type": "decorator",
+                    "name": "failer",
+                    "parameters": {},
+                    "child": {
+                      "title": "listPushBack",
+                      "type": "action",
+                      "name": "listPushBack",
+                      "parameters": {
+                        "entity": {"key": "filterItem"},
+                        "list": {"key": "targets"}
+                      },
+                      "output": {
+                        "list": "targets"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "title": "",
+              "type": "action",
+              "name": "listGet",
+              "parameters": {
+                "list": {"key": "outOfSightTargets"}
+              }
+            },
+            {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"value": "<targetOutOfSightTime>"}
+                  }
+                },
+                {
+                  "title": "listClear",
+                  "type": "action",
+                  "name": "listClear",
+                  "parameters": {},
+                  "output": {
+                    "list": "outOfSightTargets"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "listClear",
+                "type": "action",
+                "name": "listClear",
+                "parameters": {},
+                "output": {
+                  "list": "newTargets"
+                }
+              },
+              {
+                "title": "succeeder",
+                "type": "decorator",
+                "name": "succeeder",
+                "parameters": {},
+                "child": {
+                  "title": "parallel",
+                  "type": "composite",
+                  "name": "parallel",
+                  "parameters": {
+                    "fail": {"value": -1},
+                    "success": {"value": 1}
+                  },
+                  "children": [
+                    {
+                      "title": "optional",
+                      "type": "decorator",
+                      "name": "optional",
+                      "parameters": {
+                        "shouldRun": {"key": "<queryTargets>"}
+                      },
+                      "child": {
+                        "title": "sequence",
+                        "type": "composite",
+                        "name": "sequence",
+                        "parameters": {},
+                        "children": [
+                          {
+                            "title": "cooldown",
+                            "type": "decorator",
+                            "name": "cooldown",
+                            "parameters": {
+                              "cooldown": {"key": "<targetQueryCooldown>"},
+                              "onFail": {"value": true},
+                              "onSuccess": {"value": true}
+                            },
+                            "child": {
+                              "title": "queryEntity",
+                              "type": "action",
+                              "name": "queryEntity",
+                              "parameters": {
+                                "entityTypes": {"key": "<targetEntityTypes>"},
+                                "orderBy": {"value": "nearest"},
+                                "range": {"key": "<targetQueryRange>"},
+                                "withoutEntity": {"key": "self"}
+                              },
+                              "output": {
+                                "list": "queriedTargets"
+                              }
+                            }
+                          },
+                          {
+                            "title": "filter",
+                            "type": "decorator",
+                            "name": "filter",
+                            "parameters": {
+                              "list": {"key": "queriedTargets"},
+                              "type": {"value": "entity"}
+                            },
+                            "child": {
+                              "title": "sequence",
+                              "type": "composite",
+                              "name": "sequence",
+                              "parameters": {},
+                              "children": [
+                                {
+                                  "title": "isValidTarget",
+                                  "type": "action",
+                                  "name": "isValidTarget",
+                                  "parameters": {
+                                    "entity": {"key": "filterItem"}
+                                  }
+                                },
+                                {
+                                  "title": "selector",
+                                  "type": "composite",
+                                  "name": "selector",
+                                  "parameters": {},
+                                  "children": [
+                                    {
+                                      "title": "entityInSight",
+                                      "type": "action",
+                                      "name": "entityInSight",
+                                      "parameters": {
+                                        "entity": {"key": "filterItem"}
+                                      }
+                                    },
+                                    {
+                                      "title": "sequence",
+                                      "type": "composite",
+                                      "name": "sequence",
+                                      "parameters": {},
+                                      "children": [
+                                        {
+                                          "title": "v_entityVelocity",
+                                          "type": "action",
+                                          "name": "v_entityVelocity",
+                                          "parameters": {
+                                            "entity": {"key": "filterItem"}
+                                          },
+                                          "output": {
+                                            "magnitude": "filterItemSpeed"
+                                          }
+                                        },
+                                        {
+                                          "title": "greaterThan",
+                                          "type": "action",
+                                          "name": "greaterThan",
+                                          "parameters": {
+                                            "first": {"key": "filterItemSpeed"},
+                                            "second": {"key": "<speedSenseThreshold>"}
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "title": "broadcastNotification",
+                                  "type": "action",
+                                  "name": "broadcastNotification",
+                                  "parameters": {
+                                    "entityTypes": {"value": ["monster"]},
+                                    "position": {"key": "self"},
+                                    "range": {"key": "<targetNotificationRange>"},
+                                    "target": {"key": "filterItem"},
+                                    "type": {"value": "notifyFindTarget"}
+                                  }
+                                },
+                                {
+                                  "title": "failer",
+                                  "type": "decorator",
+                                  "name": "failer",
+                                  "parameters": {},
+                                  "child": {
+                                    "title": "listPush",
+                                    "type": "action",
+                                    "name": "listPush",
+                                    "parameters": {
+                                      "entity": {"key": "filterItem"},
+                                      "list": {"key": "newTargets"}
+                                    },
+                                    "output": {
+                                      "list": "newTargets"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "title": "optional",
+                      "type": "decorator",
+                      "name": "optional",
+                      "parameters": {
+                        "shouldRun": {"key": "<targetOnDamage>"}
+                      },
+                      "child": {
+                        "title": "sequence",
+                        "type": "composite",
+                        "name": "sequence",
+                        "parameters": {},
+                        "children": [
+                          {
+                            "title": "wasDamaged",
+                            "type": "action",
+                            "name": "wasDamaged",
+                            "parameters": {},
+                            "output": {
+                              "damageSource": "damageSource"
+                            }
+                          },
+                          {
+                            "title": "broadcastNotification",
+                            "type": "action",
+                            "name": "broadcastNotification",
+                            "parameters": {
+                              "entityTypes": {"value": ["monster"]},
+                              "position": {"key": "self"},
+                              "range": {"key": "<targetNotificationRange>"},
+                              "target": {"key": "damageSource"},
+                              "type": {"value": "notifyFindTarget"}
+                            }
+                          },
+                          {
+                            "title": "listPush",
+                            "type": "action",
+                            "name": "listPush",
+                            "parameters": {
+                              "entity": {"key": "damageSource"},
+                              "list": {"key": "newTargets"}
+                            },
+                            "output": {
+                              "list": "newTargets"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "title": "optional",
+                      "type": "decorator",
+                      "name": "optional",
+                      "parameters": {
+                        "shouldRun": {"key": "<targetOnNotification>"}
+                      },
+                      "child": {
+                        "title": "sequence",
+                        "type": "composite",
+                        "name": "sequence",
+                        "parameters": {},
+                        "children": [
+                          {
+                            "title": "receivedNotification",
+                            "type": "action",
+                            "name": "receivedNotification",
+                            "parameters": {
+                              "type": {"value": "notifyFindTarget"}
+                            },
+                            "output": {
+                              "source": "notificationSource",
+                              "target": "notificationTarget"
+                            }
+                          },
+                          {
+                            "title": "hasFlag",
+                            "type": "action",
+                            "name": "hasFlag",
+                            "parameters": {
+                              "name": {"key": "<queryTargets>"}
+                            }
+                          },
+                          {
+                            "title": "entityInSight",
+                            "type": "action",
+                            "name": "entityInSight",
+                            "parameters": {
+                              "entity": {"key": "notificationSource"}
+                            }
+                          },
+                          {
+                            "title": "listPush",
+                            "type": "action",
+                            "name": "listPush",
+                            "parameters": {
+                              "entity": {"key": "notificationTarget"},
+                              "list": {"key": "newTargets"}
+                            },
+                            "output": {
+                              "list": "newTargets"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "filter",
+                "type": "decorator",
+                "name": "filter",
+                "parameters": {
+                  "list": {"key": "newTargets"},
+                  "type": {"value": "entity"}
+                },
+                "child": {
+                  "title": "inverter",
+                  "type": "decorator",
+                  "name": "inverter",
+                  "parameters": {},
+                  "child": {
+                    "title": "selector",
+                    "type": "composite",
+                    "name": "selector",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "listContains",
+                        "type": "action",
+                        "name": "listContains",
+                        "parameters": {
+                          "entity": {"key": "filterItem"},
+                          "list": {"key": "targets"}
+                        }
+                      },
+                      {
+                        "title": "listContains",
+                        "type": "action",
+                        "name": "listContains",
+                        "parameters": {
+                          "entity": {"key": "filterItem"},
+                          "list": {"key": "outOfSightTargets"}
+                        }
+                      },
+                      {
+                        "title": "sequence",
+                        "type": "composite",
+                        "name": "sequence",
+                        "parameters": {},
+                        "children": [
+                          {
+                            "title": "isValidTarget",
+                            "type": "action",
+                            "name": "isValidTarget",
+                            "parameters": {
+                              "entity": {"key": "filterItem"}
+                            }
+                          },
+                          {
+                            "title": "selector",
+                            "type": "composite",
+                            "name": "selector",
+                            "parameters": {},
+                            "children": [
+                              {
+                                "title": "",
+                                "type": "action",
+                                "name": "listGet",
+                                "parameters": {
+                                  "list": {"key": "targets"}
+                                }
+                              },
+                              {
+                                "title": "setFlag",
+                                "type": "action",
+                                "name": "setFlag",
+                                "parameters": {
+                                  "name": {"value": "foundTarget"}
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "title": "listPushBack",
+                            "type": "action",
+                            "name": "listPushBack",
+                            "parameters": {
+                              "entity": {"key": "filterItem"},
+                              "list": {"key": "targets"}
+                            },
+                            "output": {
+                              "list": "targets"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "title": "filter",
+            "type": "decorator",
+            "name": "filter",
+            "parameters": {
+              "list": {"key": "targets"},
+              "type": {"value": "entity"}
+            },
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "isValidTarget",
+                  "type": "action",
+                  "name": "isValidTarget",
+                  "parameters": {
+                    "entity": {"key": "filterItem"}
+                  }
+                },
+                {
+                  "title": "entityExists",
+                  "type": "action",
+                  "name": "entityExists",
+                  "parameters": {
+                    "entity": {"key": "filterItem"}
+                  }
+                },
+                {
+                  "title": "selector",
+                  "type": "composite",
+                  "name": "selector",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "inverter",
+                      "type": "decorator",
+                      "name": "inverter",
+                      "parameters": {},
+                      "child": {
+                        "title": "hasOwner",
+                        "type": "action",
+                        "name": "hasOwner",
+                        "parameters": {
+                          "owner": {"key": ""}
+                        }
+                      }
+                    },
+                    {
+                      "title": "entityInTypes",
+                      "type": "action",
+                      "name": "entityInTypes",
+                      "parameters": {
+                        "entity": {"key": "filterItem"},
+                        "types": {"value": ["player", "monster"]}
+                      }
+                    },
+                    {
+                      "title": "entityAggressive",
+                      "type": "action",
+                      "name": "entityAggressive",
+                      "parameters": {
+                        "entity": {"key": "filterItem"}
+                      }
+                    }
+                  ]
+                },
+                {
+                  "title": "entityInRange",
+                  "type": "action",
+                  "name": "entityInRange",
+                  "parameters": {
+                    "entity": {"key": "filterItem"},
+                    "range": {"key": "<keepTargetInRange>"}
+                  }
+                },
+                {
+                  "title": "inverter",
+                  "type": "decorator",
+                  "name": "inverter",
+                  "parameters": {},
+                  "child": {
+                    "title": "optional",
+                    "type": "decorator",
+                    "name": "optional",
+                    "parameters": {
+                      "shouldRun": {"key": "<keepTargetInSight>"}
+                    },
+                    "child": {
+                      "title": "inverter",
+                      "type": "decorator",
+                      "name": "inverter",
+                      "parameters": {},
+                      "child": {
+                        "title": "selector",
+                        "type": "composite",
+                        "name": "selector",
+                        "parameters": {},
+                        "children": [
+                          {
+                            "title": "entityInSight",
+                            "type": "action",
+                            "name": "entityInSight",
+                            "parameters": {
+                              "entity": {"key": "filterItem"}
+                            }
+                          },
+                          {
+                            "title": "sequence",
+                            "type": "composite",
+                            "name": "sequence",
+                            "parameters": {},
+                            "children": [
+                              {
+                                "title": "v_entityVelocity",
+                                "type": "action",
+                                "name": "v_entityVelocity",
+                                "parameters": {
+                                  "entity": {"key": "filterItem"}
+                                },
+                                "output": {
+                                  "magnitude": "filterItemSpeed"
+                                }
+                              },
+                              {
+                                "title": "greaterThan",
+                                "type": "action",
+                                "name": "greaterThan",
+                                "parameters": {
+                                  "first": {"key": "filterItemSpeed"},
+                                  "second": {"key": "<speedSenseThreshold>"}
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "title": "failer",
+                            "type": "decorator",
+                            "name": "failer",
+                            "parameters": {},
+                            "child": {
+                              "title": "listPush",
+                              "type": "action",
+                              "name": "listPush",
+                              "parameters": {
+                                "entity": {"key": "filterItem"},
+                                "list": {"key": "outOfSightTargets"}
+                              },
+                              "output": {
+                                "list": "outOfSightTargets"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "selector",
+            "type": "composite",
+            "name": "selector",
+            "parameters": {},
+            "children": [
+              {
+                "title": "",
+                "type": "action",
+                "name": "listGet",
+                "parameters": {
+                  "list": {"key": "targets"}
+                },
+                "output": {
+                  "entity": "target"
+                }
+              },
+              {
+                "title": "",
+                "type": "action",
+                "name": "listGet",
+                "parameters": {
+                  "list": {"key": "outOfSightTargets"}
+                },
+                "output": {
+                  "entity": "target"
+                }
+              },
+              {
+                "title": "failer",
+                "type": "decorator",
+                "name": "failer",
+                "parameters": {},
+                "child": {
+                  "title": "unset",
+                  "type": "action",
+                  "name": "unset",
+                  "parameters": {
+                    "key": {"value": "target"},
+                    "type": {"value": "entity"}
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

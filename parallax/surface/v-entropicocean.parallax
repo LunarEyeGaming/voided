@@ -1,0 +1,106 @@
+{
+  "layers" : [
+    {
+      "kind" : "divider/ice",
+      "offset" : [0, 300],
+      "nohueshift" : true,
+      "lightMapped" : true,
+      "parallax" : 1.199
+    },
+    {
+      "kind" : "tile/ice",
+      "nohueshift" : true,
+      "lightMapped" : true,
+      "repeatY" : true,
+      "tileLimitTop" : 225,
+      "parallax" : 1.2
+    },
+
+    {
+      "kind" : "tile/ocean",
+      "parallax" : [8, 1],
+      "repeatY" : true,
+      "nohueshift" : true,
+      "lightMapped" : true
+    },
+
+    {
+      "kind" : "arcticoceanfloorbelow1",
+      "offset" : [0, 190],
+      "parallax" : [1.8, 2.1],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloorbelow2",
+      "offset" : [0, 190],
+      "parallax" : [1.8001, 2.1],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloorbelow3",
+      "offset" : [0, 190],
+      "parallax" : [1.8002, 2.1],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloorbelow3",
+      "offset" : [0, 330],
+      "parallax" : [1.8, 2.1],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloor1",
+      "offset" : [0, 50],
+      "parallax" : [1.8, 2.1],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloor2",
+      "offset" : [0, 50],
+      "parallax" : [2, 2.1],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloor3",
+      "offset" : [0, 50],
+      "parallax" : [3, 2.15],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloor4",
+      "offset" : [0, 50],
+      "parallax" : [4, 2.2],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloor5",
+      "offset" : [0, 50],
+      "parallax" : [5, 2.25],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloor6",
+      "offset" : [0, 50],
+      "parallax" : [5.5, 2.3],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloor7",
+      "offset" : [0, 50],
+      "parallax" : [6, 2.35],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloor8",
+      "offset" : [0, 50],
+      "parallax" : [6.5, 2.4],
+      "lightMapped" : true
+    },
+    {
+      "kind" : "arcticoceanfloor9",
+      "offset" : [0, 50],
+      "parallax" : [8, 2.4],
+      "lightMapped" : true
+    }
+  ]
+}

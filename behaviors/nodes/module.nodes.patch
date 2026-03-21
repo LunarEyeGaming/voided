@@ -466,25 +466,6 @@
   },
   {
     "op": "add",
-    "path": "/v-approach-turnworm",
-    "value": {
-      "type": "module",
-      "name": "v-approach-turnworm",
-      "title": "",
-      "properties": {
-        "flyState": {"type": "json", "value": ""},
-        "idleState": {"type": "json", "value": ""},
-        "leftState": {"type": "json", "value": ""},
-        "rightState": {"type": "json", "value": ""},
-        "turnSpeed": {"type": "json", "value": 1},
-        "waveAmplitude": {"type": "json", "value": 1},
-        "wavePeriod": {"type": "json", "value": 1}
-      },
-      "pathToTree": "..\\monsters\\modular\\movement\\v-turnapproachworm.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-centipedeboss-followattack",
     "value": {
       "type": "module",
@@ -1434,6 +1415,139 @@
         "projectileConfig": {"type": "json", "value": {"power": 10, "speed": 40, "damageRepeatGroup": "v-spireminiboss-firebreath"}}
       },
       "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-firebreath.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-monsterseethrough",
+    "value": {
+      "type": "module",
+      "name": "v-monsterseethrough",
+      "title": "",
+      "properties": {
+        "approachActions": {"type": "json", "value": []},
+        "attackKnockbackThreshold": {"type": "json", "value": 15},
+        "concurrentActions": {"type": "json", "value": []},
+        "concurrentHostileActions": {"type": "json", "value": []},
+        "damageOnTouch": {"type": "json", "value": false},
+        "damageTakenActions": {"type": "json", "value": []},
+        "fleeActions": {"type": "json", "value": []},
+        "followActions": {"type": "json", "value": []},
+        "followDistance": {"type": "json", "value": 5},
+        "foundTargetActions": {"type": "json", "value": []},
+        "hostileActions": {"type": "json", "value": []},
+        "periodicActions": {"type": "json", "value": []},
+        "spawnActions": {"type": "json", "value": []},
+        "wanderActions": {"type": "json", "value": []}
+      },
+      "pathToTree": "..\\monsters\\modular\\v-basemonsterseethrough.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-turnworm",
+    "value": {
+      "type": "module",
+      "name": "v-approach-turnworm",
+      "title": "",
+      "properties": {
+        "turnSpeed": {"type": "json", "value": 1},
+        "leftState": {"type": "json", "value": ""},
+        "rightState": {"type": "json", "value": ""},
+        "flyState": {"type": "json", "value": ""},
+        "idleState": {"type": "json", "value": ""},
+        "wavePeriod": {"type": "json", "value": 1},
+        "waveAmplitude": {"type": "json", "value": 1},
+        "digMode": {"type": "json", "value": null}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-turnapproachworm.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-retreatunderground",
+    "value": {
+      "type": "module",
+      "name": "v-action-retreatunderground",
+      "title": "",
+      "properties": {
+        "stopForce": {"type": "json", "value": 50}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-retreatunderground.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-monster-targetingseethrough",
+    "value": {
+      "type": "module",
+      "name": "v-monster-targetingseethrough",
+      "title": "",
+      "properties": {
+        "keepTargetInRange": {"type": "json", "value": 50},
+        "keepTargetInSight": {"type": "json", "value": true},
+        "queryTargets": {"type": "json", "value": true},
+        "speedSenseThreshold": {"type": "json", "value": 5},
+        "targetEntityTypes": {"type": "json", "value": ["player", "monster", "npc"]},
+        "targetNotificationRange": {"type": "json", "value": 15},
+        "targetOnDamage": {"type": "json", "value": true},
+        "targetOnNotification": {"type": "json", "value": true},
+        "targetOutOfSightTime": {"type": "json", "value": 5},
+        "targetQueryCooldown": {"type": "json", "value": 1},
+        "targetQueryRange": {"type": "json", "value": 50}
+      },
+      "pathToTree": "..\\monsters\\modular\\v-targetingseethrough.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-wander-wormfigure8",
+    "value": {
+      "type": "module",
+      "name": "v-wander-wormfigure8",
+      "title": "",
+      "properties": {
+        "numPoints": {"type": "json", "value": 60},
+        "size": {"type": "json", "value": 100},
+        "speed": {"type": "json", "value": 10},
+        "tolerance": {"type": "json", "value": 1}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-wormfigure8wander.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-wormfigure8instant",
+    "value": {
+      "type": "module",
+      "name": "v-action-wormfigure8instant",
+      "title": "",
+      "properties": {
+        "size": {"type": "json", "value": 100},
+        "numPoints": {"type": "json", "value": 60},
+        "speed": {"type": "json", "value": 10},
+        "offset": {"type": "json", "value": [0, 0]},
+        "delay": {"type": "json", "value": 0}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-wormfigure8instant.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-wormsettledown",
+    "value": {
+      "type": "module",
+      "name": "v-action-wormsettledown",
+      "title": "",
+      "properties": {
+        "digMode": {"type": "json", "value": null},
+        "settleDuration": {"type": "json", "value": 1},
+        "speed": {"type": "json", "value": null},
+        "turnSpeed": {"type": "json", "value": 1},
+        "waveAmplitude": {"type": "json", "value": 2},
+        "wavePeriod": {"type": "json", "value": 2}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-wormsettledown.behavior"
     }
   }
 ]

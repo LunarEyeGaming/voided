@@ -1,6 +1,6 @@
 {
   "name": "v-approach-turnworm",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/v-worm.lua",
     "/scripts/actions/animator.lua",
@@ -14,7 +14,8 @@
     "flyState": "",
     "idleState": "",
     "wavePeriod": 1,
-    "waveAmplitude": 1
+    "waveAmplitude": 1,
+    "digMode": null
   },
   "root": {
     "title": "sequence",
@@ -38,8 +39,9 @@
             "parameters": {
               "entity": {"key": "target"},
               "turnSpeed": {"key": "<turnSpeed>"},
+              "waveAmplitude": {"key": "<waveAmplitude>"},
               "wavePeriod": {"key": "<wavePeriod>"},
-              "waveAmplitude": {"key": "<waveAmplitude>"}
+              "digMode": {"key": "<digMode>"}
             },
             "output": {
               "angle": "heading",
