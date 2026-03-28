@@ -175,7 +175,7 @@
 
   "maxImmersion" : 0.1,
 
-  "scripts" : [ "v-missilebloomseed.lua" ],
+  "scripts" : [ "/objects/farmables/v-scriptedfarmable.lua", "v-missilebloomseed.lua" ],
   "scriptDelta" : 3,
 
   "detectRegion" : [0, 0, 1, 4],
