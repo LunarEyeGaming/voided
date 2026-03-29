@@ -1,0 +1,21 @@
+{
+  "name" : "v-upgradednanowrapheal",
+  "effectConfig" : {
+    "healAmount" : 200,
+    "emissionRate" : 20,
+    "v-detectStatusEffect" : "v-quickhealnerf",
+    "v-cooldownStatusEffect" : "v-quickhealblock",
+    "v-cooldownPath" : "fastCooldown"
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "heal.lua",
+    "v-nerfedhealplugin.lua"
+  ],
+
+  "animationConfig" : "heal.animation",
+
+  "label" : "Healing",
+  "icon" : "/interface/statuses/heal.png"
+}

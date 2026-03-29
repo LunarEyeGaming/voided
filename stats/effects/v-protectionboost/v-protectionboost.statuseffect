@@ -1,0 +1,17 @@
+{
+  "name" : "v-protectionboost",
+  "blockingStat" : "v-protectionboostStatusImmunity",
+  "effectConfig" : {
+    "boostAmount" : 1
+  },
+  "defaultDuration" : 5,
+
+  "scripts" : [
+    "v-protectionboost.lua"
+  ],
+
+  "animationConfig" : "v-protectionboost.animation",
+
+  "label" : "Defense Boost - Slightly increased defense",
+  "icon" : "/interface/statuses/defense.png"
+}

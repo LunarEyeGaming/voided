@@ -285,6 +285,22 @@
 
         "type" : "microdungeon",
         "microdungeons" : [ "v-rottingfunguspatch" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-undergroundCropsUncommon",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-wildvitalisseed" ] ],
+            "parameters" : {
+              "startingStage" : 4
+            }
+          }
+        ]
       }
     ]
   }

@@ -204,7 +204,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
       // },
@@ -313,20 +313,22 @@
             "parameters" : { }
           }
         ]
-      // },
-      // {
-      //   "mode" : "floor",
-      //   "priority" : 2.0,
-      //   "variants" : 1,
-      //   "distribution" : "/biomes/distributions.config:scatteredLarge",
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-undergroundCropsUncommon",
 
-      //   "type" : "object",
-      //   "objectSets" : [
-      //     {
-      //       "pool" : [ [1.0, "lightsensor" ] ],
-      //       "parameters" : { }
-      //     }
-      //   ]
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-wildvitalisseed" ] ],
+            "parameters" : {
+              "startingStage" : 4
+            }
+          }
+        ]
       }
     ]
   }

@@ -22,8 +22,9 @@
   "v-electricelementalTreasure" : [
     [1, {
       "pool" : [
-        {"weight" : 0.750, "pool" : "noMeatMonsterTreasure"},
-        {"weight" : 0.250, "item" : "staticcell"}
+        {"weight" : 0.700, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.250, "item" : "staticcell"},
+        {"weight" : 0.050, "item" : "livingroot"}
       ],
       "poolRounds" : [
         [0.20, 0],
@@ -316,6 +317,19 @@
       "poolRounds" : [
         [0.20, 0],
         [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-pyrebushTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 1.000, "item" : "livingroot"}
+      ],
+      "poolRounds" : [
+        [0.90, 0],
+        [0.10, 1]
       ],
       "allowDuplication" : false
     }]

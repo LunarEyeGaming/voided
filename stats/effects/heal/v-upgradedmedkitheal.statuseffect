@@ -1,0 +1,21 @@
+{
+  "name" : "v-upgradedmedkitheal",
+  "effectConfig" : {
+    "healAmount" : 200,
+    "emissionRate" : 8,
+    "v-detectStatusEffect" : "v-quickhealnerf",
+    "v-cooldownStatusEffect" : "v-slowhealblock",
+    "v-cooldownPath" : "slowCooldown"
+  },
+  "defaultDuration" : 10,
+
+  "scripts" : [
+    "heal.lua",
+    "v-nerfedhealplugin.lua"
+  ],
+
+  "animationConfig" : "heal.animation",
+
+  "label" : "Healing",
+  "icon" : "/interface/statuses/heal.png"
+}

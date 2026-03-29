@@ -1,0 +1,25 @@
+{
+  "itemName" : "v-vitalisfruit",
+  "rarity" : "Rare",
+  "price" : 20,
+  "category" : "food",
+  "inventoryIcon" : "v-vitalisfruit.png",
+  "description" : "Fruit from a Vitalis plant. Has significant regenerative properties.",
+  "shortdescription" : "Vitalis Fruit",
+  "foodValue" : 5,
+  "effects" : [ [
+      {
+        "effect" : "regeneration1",
+        "duration" : 60
+      }
+    ] ],
+  "tooltipKind" : "food",
+  "builder" : "/items/buildscripts/v-buildfood.lua",
+  "maxStack" : 5,
+  "itemAgingScripts" : ["/scripts/items/rotting.lua"],
+  "rottingMultiplier" : 1.0,
+  "blockingEffects" : [
+    "wellfed"
+  ],
+  "learnBlueprintsOnPickup" : [ "v-vitaline" ]
+}

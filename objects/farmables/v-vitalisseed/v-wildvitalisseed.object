@@ -1,0 +1,73 @@
+{
+  "objectName" : "v-wildvitalisseed",
+  "colonyTags" : ["nature"],
+  "rarity" : "Common",
+  "category" : "seed",
+  "description" : "<todo>",
+  "shortdescription" : "Vitalis Seed",
+  "objectType" : "farmable",
+  "printable" : false,
+  "price" : 15,
+  "hasObjectItem" : false,
+
+  "biomePlaced" : true,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "vitalisseedicon.png",
+  "orientations" : [
+    {
+      "dualImage" : "vitalisseed.png:<color>.<stage>.<alt>",
+      "imagePosition" : [-8, 0],
+      "frames" : 1,
+      "animationCycle" : 0.5,
+
+      "spaces" : [ [-1, 5], [0, 5], [1, 5],
+                   [-1, 4], [0, 4], [1, 4],
+                   [-1, 3], [0, 3], [1, 3],
+                   [-1, 2], [0, 2], [1, 2],
+                   [-1, 1], [0, 1], [1, 1],
+                   [-1, 0], [0, 0], [1, 0] ],
+      "requireTilledAnchors" : false,
+      "anchors" : [ "bottom" ]
+
+    }
+  ],
+      "lightColor" : [0, 128, 0],
+
+  "radioMessagesOnPickup" : [ "pickupseed" ],
+
+  "stages" : [
+    {
+      "duration" : [280, 320]
+    },
+    {
+      "duration" : [280, 320]
+    },
+    {
+      "duration" : [280, 320]
+    },
+    {
+      "alts" : 1,
+      "duration" : [1462, 1537]
+    },
+    {
+      "alts" : 1,
+      "harvestPool" : "v-vitalisHarvest",
+      "resetToStage" : 3
+    }
+  ],
+
+  "breakDropOptions" : [
+    [ [ "v-loquatseed", 1, { } ] ]
+  ],
+
+  "maxImmersion" : 0.125,
+  "consumeSoilMoisture" : false
+}

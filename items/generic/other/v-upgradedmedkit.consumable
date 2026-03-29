@@ -1,0 +1,46 @@
+{
+  "itemName" : "v-upgradedmedkit",
+  "rarity" : "Uncommon",
+  "price" : 150,
+  "category" : "medicine",
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "inventoryIcon" : "v-upgradedmedkit.png",
+  "description" : "Restores 200 health over 10 seconds, cures status effects, and gives a small defense boost.",
+  "shortdescription" : "Tough Medkit",
+  "effects" : [ [
+      {
+        "effect" : "v-upgradedmedkitheal"
+      },
+      {
+        "effect" : "fireblock",
+        "duration" : 2
+      },
+      {
+        "effect" : "iceblock",
+        "duration" : 2
+      },
+      {
+        "effect" : "electricblock",
+        "duration" : 2
+      },
+      {
+        "effect" : "poisonblock",
+        "duration" : 2
+      },
+      {
+        "effect" : "v-protectionboost",
+        "duration" : 15
+      }
+    ] ],
+  "emote" : "",
+  "emitters" : [ "bandageuse" ],
+  "blockingEffects" : [
+    "salveheal",
+    "bandageheal",
+    "medkitheal",
+    "nanowrapheal",
+    "v-quickhealblock",
+    "v-upgradednanowrapheal",
+    "v-upgradedmedkitheal"
+  ]
+}

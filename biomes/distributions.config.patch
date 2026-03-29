@@ -202,6 +202,44 @@
   },
   {
     "op" : "add",
+    "path" : "/v-surfaceCropsUncommon",
+    "value" : {
+      "type" : "periodic",
+
+      "octaves" : 2,
+      "alpha" : 2.0,
+      "beta" : 2.0,
+
+      "modulus" : 8,
+      "modulusVariance" : 4,
+
+      "densityPeriod" : 11,
+      "densityOffset" : -0.45,
+
+      "typePeriod" : 10
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/v-undergroundCropsUncommon",
+    "value" : {
+      "type" : "periodic",
+
+      "octaves" : 2,
+      "alpha" : 2.0,
+      "beta" : 2.0,
+
+      "modulus" : 8,
+      "modulusVariance" : 4,
+
+      "densityPeriod" : 9,
+      "densityOffset" : -0.35,
+
+      "typePeriod" : 10
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/v-testDistribution",
     "value" : {
       "type" : "periodic",
