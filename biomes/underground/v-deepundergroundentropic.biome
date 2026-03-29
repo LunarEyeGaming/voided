@@ -46,10 +46,10 @@
 
   "ambientNoises" : {
     "day" : {
-      "tracks" : [ "/sfx/environmental/crystal_underground.ogg", "/sfx/environmental/snow_underground.ogg" ]
+      "tracks" : [ "/sfx/environmental/tundra_underground.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/sfx/environmental/crystal_underground.ogg", "/sfx/environmental/snow_underground.ogg" ]
+      "tracks" : [ "/sfx/environmental/tundra_underground.ogg" ]
     }
   },
 
@@ -194,7 +194,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
       },
@@ -208,7 +208,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
       }

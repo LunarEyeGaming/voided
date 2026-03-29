@@ -5,10 +5,9 @@
   "spawnProfile" : {
     "groups" : [
       {
-        "select" : 2,
+        "select" : 1,
         "pool" : [
-          [ 1.0, "v-gasmonsterunderground" ],
-          [ 1.0, "v-downspitterunderground" ]
+          [ 1.0, "v-iceworm" ]
         ]
       },
       {
@@ -45,10 +44,10 @@
 
   "ambientNoises" : {
     "day" : {
-      "tracks" : [ "/sfx/environmental/desert_underground.ogg", "/sfx/environmental/arid_underground.ogg" ]
+      "tracks" : [ "/sfx/environmental/tundra_underground.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/sfx/environmental/desert_underground.ogg", "/sfx/environmental/arid_underground.ogg" ]
+      "tracks" : [ "/sfx/environmental/tundra_underground.ogg" ]
     }
   },
 
@@ -169,7 +168,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
       },
@@ -183,7 +182,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
       }
