@@ -11,6 +11,7 @@ All custom sounds in Voided were made in Audacity using Starbound's assets and/o
 * "Glass Smash.wav" by chewiesmissus on Freesound.org (URL: https://freesound.org/people/chewiesmissus/sounds/244238/).
 * "Glass.ogg" by egomassive on Freesound.org (URL: https://freesound.org/people/egomassive/sounds/536763/).
 * SKR-03-324.wav by Bill Kurth / University of Iowa / NASA. URL: https://space.physics.uiowa.edu/space-audio/cassini/SKR1/. License: Attribution 3.0
+* "De-Iceing-Small-Freezer_Stereo_192000.wav" by Sonicquinn on Freesound.org (URL: https://freesound.org/people/Sonicquinn/sounds/439224/).
 
 Electrochem Facility: Desert Battle 2 by Curtis Schweitzer. Edited to loop properly
 
