@@ -1,7 +1,7 @@
 {
   "type" : "v-icewormhead",
-  "shortdescription" : "Mutant Eel",
-  "description" : "A freakishly large eel with way too many orifices.",
+  "shortdescription" : "Icedigger",
+  "description" : "It can sense vibrations in the ground to detect prey.",
 
   "categories" : [ "v-icewormhead" ],
   "parts" : [ "body" ],
@@ -22,7 +22,7 @@
     "behavior" : "v-monsterseethrough",
     "deathBehavior" : "monster-death",
 
-    "size" : 20,
+    "size" : 10,
     "bodySegment" : "v-icewormbody",
 
     "renderLayer" : "Monster+20",
