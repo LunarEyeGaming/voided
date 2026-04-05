@@ -79,6 +79,21 @@
 
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]
+    },
+
+    {
+      "image" : "dimredlightback.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+
+      "animationParts" : {
+        "bg" : "dimredlightback.png",
+        "fg" : "dimredlightbacklit.png"
+      },
+      "animationPosition" : [0, 0],
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
     }
   ],
 
