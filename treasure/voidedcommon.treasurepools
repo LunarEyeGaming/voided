@@ -1,4 +1,30 @@
 {
+  // =======================================
+  //       Voided Basic Treasure Pool
+  // =======================================
+  // This is for common loot you'd find in Voided biomes.
+
+  "v-basicTreasure" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.32, "pool" : "chestMoney"},
+        {"weight" : 0.16, "pool" : "v-healingItem"},
+        {"weight" : 0.16, "pool" : "ore"},
+        {"weight" : 0.12, "pool" : "thrownWeapon"},
+        {"weight" : 0.05, "pool" : "weapon"},
+        {"weight" : 0.05, "pool" : "tool"},
+        {"weight" : 0.08, "item" : "manipulatormodule"},
+        {"weight" : 0.03, "item" : "techcard"},
+        {"weight" : 0.01, "item" : "upgrademodule"},
+        {"weight" : 0.01, "pool" : "instrument"},
+        {"weight" : 0.01, "pool" : "costume"}
+      ]
+    }]
+  ],
+
+  // =======================================
+  //            Electric Weapons
+  // =======================================
   "v-electricWeaponChestTreasure" : [
     [0, {
       "fill" : [
@@ -10,7 +36,7 @@
         [0.2, 4]
       ],
       "pool" : [
-        {"weight" : 1.0, "pool" : "basicTreasure"}
+        {"weight" : 1.0, "pool" : "v-basicTreasure"}
       ]
     }]
   ],
@@ -107,10 +133,14 @@
         [0.2, 4]
       ],
       "pool" : [
-        {"weight" : 1.0, "pool" : "basicTreasure"}
+        {"weight" : 1.0, "pool" : "v-basicTreasure"}
       ]
     }]
   ],
+
+  // =======================================
+  //              Poison Weapons
+  // =======================================
 
   "v-poisonWeapon" : [
     [1, {
@@ -193,6 +223,10 @@
     }]
   ],
 
+  // =======================================
+  //               Fire Weapons
+  // =======================================
+
   "v-fireWeaponChestTreasure" : [
     [0, {
       "fill" : [
@@ -204,7 +238,7 @@
         [0.2, 4]
       ],
       "pool" : [
-        {"weight" : 1.0, "pool" : "basicTreasure"}
+        {"weight" : 1.0, "pool" : "v-basicTreasure"}
       ]
     }]
   ],
@@ -290,6 +324,10 @@
     }]
   ],
 
+  // =======================================
+  //               Ice Weapons
+  // =======================================
+
   "v-iceWeaponChestTreasure" : [
     [0, {
       "fill" : [
@@ -301,7 +339,7 @@
         [0.2, 4]
       ],
       "pool" : [
-        {"weight" : 1.0, "pool" : "basicTreasure"}
+        {"weight" : 1.0, "pool" : "v-basicTreasure"}
       ]
     }]
   ],
@@ -386,6 +424,10 @@
       ]
     }]
   ],
+
+  // =======================================
+  //              Miscellaneous
+  // =======================================
 
   "v-dischargetrapTreasure" : [
     [0, {
@@ -498,11 +540,22 @@
     }]
   ],
 
+  "v-healingItem" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.40, "item" : [ "v-upgradedmedkit", 1]},
+        {"weight" : 0.35, "item" : [ "v-upgradedmedkit", 2]},
+        {"weight" : 0.15, "item" : [ "v-upgradednanowrap", 1]},
+        {"weight" : 0.10, "item" : [ "v-upgradednanowrap", 2]}
+      ]
+    }]
+  ],
+
   "v-healingItemXL" : [
     [0, {
       "fill" : [],
       "pool" : [
-        {"weight" : 1.0, "pool" : "healingItem"}
+        {"weight" : 1.0, "pool" : "v-healingItem"}
       ],
       "poolRounds" : [
         [0.5, 2],

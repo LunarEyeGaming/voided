@@ -1,10 +1,23 @@
 {
+  "v-capsule" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.4, "item" : ["money", 9]},
+        {"weight" : 0.4, "item" : ["money", 10]},
+        {"weight" : 0.03, "item" : "v-upgradedmedkit" },
+        {"weight" : 0.02, "item" : "v-upgradednanowrap" },
+        {"weight" : 0.05, "item" : "climbingrope" },
+        {"weight" : 0.05, "item" : "flare" },
+        {"weight" : 0.05, "item" : "torch" }
+      ]
+    }]
+  ],
   "v-capsuleMinistar" : [
     [0, {
       "pool" : [
         {"weight" : 0.3, "item" : "v-solarflare"},
         {"weight" : 0.1, "item" : "miningdrone"},
-        {"weight" : 0.6, "pool" : "capsule"}
+        {"weight" : 0.6, "pool" : "v-capsule"}
       ]
     }]
   ]

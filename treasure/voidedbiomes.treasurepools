@@ -15,7 +15,7 @@
   "v-voltageTreasure" : [
     [1, {
       "pool" : [
-        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.5, "pool" : "v-basicTreasure"},
         {"weight" : 0.25, "item" : "v-insulatingsap"},
         {"weight" : 0.125, "pool" : "v-electricWeapon"},
         {"weight" : 0.125, "item" : "v-voltiteore"},
@@ -32,7 +32,7 @@
   "v-undergroundvoltageTreasure" : [
     [1, {
       "pool" : [
-        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.5, "pool" : "v-basicTreasure"},
         {"weight" : 0.125, "pool" : "v-electricWeapon"},
         {"weight" : 0.25, "item" : "v-voltiteore"},
         {"weight" : 0.05, "item" : ["v-teslagrenade", 3]}
@@ -48,7 +48,7 @@
   "v-voltagewastesTreasure" : [
     [1, {
       "pool" : [
-        {"weight" : 1.0, "pool" : "basicTreasure"},
+        {"weight" : 1.0, "pool" : "v-basicTreasure"},
         {"weight" : 0.1, "pool" : "v-electricWeapon"},
         {"weight" : 0.1, "item" : "v-dischargetrappiece"}
       ],
@@ -66,7 +66,7 @@
         {"pool" : "valuableTreasure"}
       ],
       "pool" : [
-        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.5, "pool" : "v-basicTreasure"},
         {"weight" : 0.5, "pool" : "v-voltagedesertTreasure"}
       ],
       "poolRounds" : [
@@ -85,8 +85,8 @@
       "pool" : [
         {"weight" : 1.0, "item" : ["v-coppersandmaterial", 25]},
         {"weight" : 1.0, "item" : ["v-copperrockmaterial", 10]},
-        {"weight" : 0.5, "item" : ["medkit", 3]},
-        {"weight" : 0.5, "item" : ["nanowrap", 2]},
+        {"weight" : 0.5, "item" : ["v-upgradedmedkit", 3]},
+        {"weight" : 0.5, "item" : ["v-upgradednanowrap", 2]},
         {"weight" : 0.25, "item" : "automato"},
         {"weight" : 0.1, "pool" : "v-electricWeapon"}
       ]
@@ -98,7 +98,7 @@
         {"pool" : "valuableTreasure"}
       ],
       "pool" : [
-        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.5, "pool" : "v-basicTreasure"},
         {"weight" : 0.5, "pool" : "v-burningasteroidsTreasure"}
       ],
       "poolRounds" : [
@@ -115,12 +115,12 @@
   "v-burningasteroidsTreasure" : [
     [1, {
       "pool" : [
-        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.5, "pool" : "v-basicTreasure"},
         {"weight" : 0.25, "item" : ["v-ice19bomb", 3]},
         {"weight" : 0.05, "pool" : "v-fireWeapon"},
         {"weight" : 0.05, "item" : "v-inferniteore"},
-        {"weight" : 0.25, "item" : ["medkit", 3]},
-        {"weight" : 0.25, "item" : ["nanowrap", 2]},
+        {"weight" : 0.25, "item" : ["v-upgradedmedkit", 3]},
+        {"weight" : 0.25, "item" : ["v-upgradednanowrap", 2]},
         {"weight" : 0.1875, "item" : ["v-solarflare", 3]},
         {"weight" : 0.0625, "item" : ["miningdrone", 3]}
       ]
@@ -133,7 +133,7 @@
         {"pool" : "valuableTreasure"}
       ],
       "pool" : [
-        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.5, "pool" : "v-basicTreasure"},
         {"weight" : 0.5, "pool" : "v-ministarTreasure"}
       ],
       "poolRounds" : [
@@ -150,12 +150,12 @@
   "v-ministarTreasure" : [
     [1, {
       "pool" : [
-        {"weight" : 0.5, "pool" : "basicTreasure"},
+        {"weight" : 0.5, "pool" : "v-basicTreasure"},
         {"weight" : 0.25, "item" : "v-sunscreen"},
         {"weight" : 0.05, "pool" : "v-fireWeapon"},
         {"weight" : 0.05, "item" : ["v-inferniteore", 3]},
-        {"weight" : 0.25, "item" : ["medkit", 6]},
-        {"weight" : 0.25, "item" : ["nanowrap", 4]},
+        {"weight" : 0.25, "item" : ["v-upgradedmedkit", 6]},
+        {"weight" : 0.25, "item" : ["v-upgradednanowrap", 4]},
         {"weight" : 0.1875, "item" : ["v-solarflare", 3]},
         {"weight" : 0.0625, "item" : ["miningdrone", 3]}
       ]
