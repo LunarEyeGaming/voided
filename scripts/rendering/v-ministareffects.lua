@@ -1,3 +1,4 @@
+require "/v-versioning/core.lua"
 require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
 
@@ -55,6 +56,19 @@ local isActive
 
 function init()
   oldInit()
+
+  local versionProperties = {}
+
+  versionProperties.MinistarRenderConfig = {
+    get = function()
+      return player.getProperty("v-ministareffects-renderConfig")
+    end,
+    set = function(v)
+      player.setProperty("v-ministareffects-renderConfig", v)
+    end
+  }
+
+  vVersioning.run(versionProperties)
 
   ticker = VTicker:new()
 

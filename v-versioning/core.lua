@@ -1,4 +1,6 @@
-function init()
+vVersioning = {}
+
+function vVersioning.run(versionProperties)
   if not storage.versions then
     storage.versions = {}
   end
@@ -13,7 +15,7 @@ function init()
     -- Otherwise, if it is defined and it is less than the one in cfg, run the associated patch module(s) to update from
     -- the previous version to the current version.
     elseif versions[name] < version then
-      local get, set = getVersionProperty(name)
+      local get, set = _getVersionProperty(versionProperties, name)
 
       local data = get()
 
@@ -23,7 +25,7 @@ function init()
         require(string.format("/v-versioning/%s_%d_%d.lua", name, iterVersion, iterVersion + 1))
 
         -- Run it.
-        data = update_(data)
+        data = run(data)
 
         iterVersion = iterVersion + 1
       until iterVersion >= version
@@ -37,19 +39,8 @@ end
 ---@param name string
 ---@return fun(): any
 ---@return fun(v: any)
-function getVersionProperty(name)
+function _getVersionProperty(versionProperties, name)
   local versionProp = versionProperties[name]
 
   return versionProp.get, versionProp.set
 end
-
-versionProperties = {}
-
-versionProperties.MinistarRenderConfig = {
-  get = function()
-    return player.getProperty("v-ministareffects-renderConfig")
-  end,
-  set = function(v)
-    player.setProperty("v-ministareffects-renderConfig", v)
-  end
-}
