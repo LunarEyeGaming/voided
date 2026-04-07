@@ -155,6 +155,51 @@
                 }
               },
               {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 5}
+                }
+              },
+              {
+                "title": "each",
+                "type": "decorator",
+                "name": "each",
+                "parameters": {
+                  "list": {"key": "foundPlayers"},
+                  "type": {"value": "entity"}
+                },
+                "child": {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "sendEntityMessage",
+                      "type": "action",
+                      "name": "sendEntityMessage",
+                      "parameters": {
+                        "arguments": {"value": ["v-titanpassive1"]},
+                        "entity": {"key": "eachItem"},
+                        "message": {"value": "queueRadioMessage"}
+                      }
+                    },
+                    {
+                      "title": "sendEntityMessage",
+                      "type": "action",
+                      "name": "sendEntityMessage",
+                      "parameters": {
+                        "arguments": {"value": ["v-titanpassive2"]},
+                        "entity": {"key": "eachItem"},
+                        "message": {"value": "queueRadioMessage"}
+                      }
+                    }
+                  ]
+                }
+              },
+              {
                 "title": "setNumber",
                 "type": "action",
                 "name": "setNumber",

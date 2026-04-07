@@ -1122,21 +1122,6 @@
   },
   {
     "op": "add",
-    "path": "/v-titanofdarkness",
-    "value": {
-      "type": "module",
-      "name": "v-titanofdarkness",
-      "title": "",
-      "properties": {
-        "firstEncounterAppearDelay": {"type": "json", "value": 21},
-        "firstEncounter": {"type": "json", "value": false},
-        "encounterLevel": {"type": "json", "value": 1}
-      },
-      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarkness.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-titanofdarkness-punch",
     "value": {
       "type": "module",
@@ -1548,6 +1533,22 @@
         "wavePeriod": {"type": "json", "value": 2}
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-wormsettledown.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness",
+      "title": "",
+      "properties": {
+        "firstEncounterAppearDelay": {"type": "json", "value": 21},
+        "firstEncounter": {"type": "json", "value": false},
+        "encounterLevel": {"type": "json", "value": 1},
+        "firstEncounterPostRadioDelay": {"type": "json", "value": 5}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarkness.behavior"
     }
   }
 ]
