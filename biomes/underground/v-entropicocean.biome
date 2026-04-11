@@ -111,7 +111,7 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [0.20, "v-toxicoshroom1" ], [0.20, "v-toxicoshroom2" ], [0.20, "v-toxicoshroom3" ], [0.20, "v-toxicoshroom4" ], [0.20, "v-toxicoshroom5" ]]
+            "pool" : [ [0.20, "embercoral1" ], [0.20, "embercoral2" ], [0.20, "embercoral3" ], [0.20, "embercoral4" ], [0.20, "embercoral5" ]]
           }
         ]
       },
@@ -124,7 +124,21 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [0.20, "v-poisonglowtree1" ], [0.20, "v-poisonglowtree2" ], [0.20, "v-poisonglowtree3" ], [0.20, "v-poisonglowtree4" ], [0.20, "v-poisonglowtree5" ]]
+            "pool" : [ [0.20, "oshroom1" ], [0.20, "oshroom2" ], [0.20, "oshroom3" ], [0.20, "oshroom4" ], [0.20, "oshroom5" ]]
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:rareClumpyLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-hydrothermalvent" ] ],
+            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
       },
@@ -196,15 +210,6 @@
             "parameters" : { }
           }
         ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 1,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundBiomeEncounterDungeon",
-
-        "type" : "microdungeon",
-        "microdungeons" : [ "v-campsite" ]
       },
       {
         "mode" : "floor",

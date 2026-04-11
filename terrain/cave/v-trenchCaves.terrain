@@ -1,0 +1,36 @@
+{
+  "name" : "v-trenchCaves",
+
+  "type" : "max",
+  "sources" : [
+    {
+      "type" : "perlin",
+      "function" : "perlin",
+      "octaves" : 2,
+      "freq" : 0.1,
+      "amp" : 1,
+      "bias" : -0.36,
+      "xInfluence" : 0.8,
+      "yInfluence" : 1.0
+    },
+    {
+      "type" : "displacement",
+      "xType" : "perlin",
+      "xOctaves" : 1,
+      "xFreq" : 0.09,
+      "xAmp" : 0,
+      "yType" : "perlin",
+      "yOctaves" : 3,
+      "yFreq" : 0.02,
+      "yAmp" : 60,
+      "yYInfluence" : 0.1,
+      "yBias" : -5,
+
+      "source" : {
+        "type" : "flatSurface",
+        "adjustment" : -20,
+        "flip" : true
+      }
+    }
+  ]
+}

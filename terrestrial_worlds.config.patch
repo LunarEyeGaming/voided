@@ -600,7 +600,8 @@
         },
         "underground1" : {
           "primaryRegion" : ["v-entropicocean"],
-          "secondaryRegions" : []
+          "secondaryRegions" : [ "v-entropictrenches" ],
+          "secondaryRegionCount" : [1, 1]
         },
         "underground2" : {
           "primaryRegion" : ["v-undergroundentropic"],
@@ -655,6 +656,22 @@
       "oceanLevelOffset" : 500,
       "biome": [
         [1,["v-entropicocean"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-entropictrenches",
+    "value" : {
+      "fgCaveSelector" : [ "v-trenchCaves" ],
+      "bgCaveSelector" : [ "v-trenchCaves" ],
+      "oceanLiquid" : [ "water" ],
+      "oceanLevelOffset" : 500,
+      "encloseLiquids" : true,
+      "caveLiquid" : [ "lava" ],
+      "caveLiquidSeedDensityRange" : [1, 3],
+      "biome": [
+        [1,["v-entropictrenches"]]
       ]
     }
   },

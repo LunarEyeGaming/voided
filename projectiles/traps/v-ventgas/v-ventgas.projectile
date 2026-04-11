@@ -1,0 +1,18 @@
+{
+  "projectileName" : "v-ventgas",
+  "image" : "ventgas.png",
+  "physics" : "laser",
+  "frameNumber" : 13,
+  "animationCycle" : 2,
+  "power" : 1,
+  "speed" : 20,
+  "timeToLive" : 2,
+  "animationLoops" : false,
+  "bounces" : -1,
+  "damagePoly" : [ [-16, 0], [-12, -12], [0, -16], [12, -12], [16, 0], [12, 12], [0, 16], [-12, 12] ],
+  "piercing" : true,
+  "lightColor" : [237, 110, 36],
+  // "emitters" : [ "largefirecloud" ],
+  "damageKind" : "fire",
+  "statusEffects" : [ "burning" ]
+}

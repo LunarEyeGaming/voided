@@ -1,0 +1,83 @@
+{
+  "name" : "v-entropictrenches",
+  "friendlyName" : "Entropic Trenches",
+
+  "hueShiftOptions" : [ 0 ],
+
+  "parallax" : "/parallax/surface/v-entropicocean.parallax",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/ocean_underwater.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/ocean_underwater.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/ocean-exploration2.ogg", "/music/M54.ogg", "/music/europa.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/ocean-exploration2.ogg", "/music/M54.ogg", "/music/europa.ogg" ]
+    }
+  },
+
+  "mainBlock" : "obsidian",
+  "subBlocks" : [ "v-permafrost", "rock14" ],
+  "ores" : "surface",
+
+  "undergroundPlaceables" : {
+    "grassMod" : [ "ash" ],
+    "grassModDensity" : 0.0,
+
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:overgroundChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "basicChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredSmall",
+
+        "type" : "grass",
+        "grasses" : [ "pebbles" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-hydrothermalvent" ] ],
+            "parameters" : { "originBiome" : "surface/v-entropic" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "embercoral1" ], [0.20, "embercoral2" ], [0.20, "embercoral3" ], [0.20, "embercoral4" ], [0.20, "embercoral5" ]]
+          }
+        ]
+      }
+    ]
+  }
+}
