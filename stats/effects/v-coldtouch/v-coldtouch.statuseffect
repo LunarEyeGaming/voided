@@ -1,0 +1,15 @@
+{
+  "name" : "v-coldtouch",
+  "blockingStat" : "v-coldtouchImmunity",
+  "effectConfig" : {
+    "heatLossRate" : 30
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "v-coldtouch.lua"
+  ],
+
+  "label" : "Cold Touch - Rapidly losing heat",
+  "icon" : "/interface/statuses/v-crystaldepthpoison.png"
+}

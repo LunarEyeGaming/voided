@@ -32,9 +32,28 @@
     },
 
     "groupSize" : [1, 1],
-    "spawnChance" : 0.05,
+    "spawnChance" : 0.02,
     "monsterType" : [
       [1.0, "v-archerfish"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-urchin",
+
+    "spawnParameters" : {
+      "area" : "liquid",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.02,
+    "monsterType" : [
+      [1.0, "v-urchin"]
     ],
     "monsterParameters" : {
       "aggressive" : true

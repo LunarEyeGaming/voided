@@ -57,7 +57,7 @@
     }
   ],
 
-  "scripts" : [ "/objects/wired/projectiletrap/projectiletrap.lua" ],
+  "scripts" : [ "/objects/wired/projectiletrap/projectiletrap.lua", "/objects/scripts/v-statuseffectobject.lua" ],
   "scriptDelta" : 2,
 
   "animation" : "/objects/wired/projectiletrap/projectiletrap.animation",
@@ -84,6 +84,9 @@
     "power" : 20,
     "speed" : 10
   },
+
+  "effectRadius" : 20,
+  "effectType" : "v-warm",
 
   "health" : 5,
 

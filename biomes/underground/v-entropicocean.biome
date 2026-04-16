@@ -8,7 +8,7 @@
         "select" : 2,
         "pool" : [
           [ 1.0, "v-archerfish" ],
-          [ 1.0, "v-fumeballoon" ]
+          [ 1.0, "v-urchin" ]
         ]
       },
       {
@@ -29,13 +29,13 @@
       "colors" : "v-toxicwasteland",
       "statusSettings" : {
         "stats" : {
-          "electricResistance" : {
+          "fireResistance" : {
             "baseValue" : -0.25
           },
-          "poisonResistance" : {
+          "iceResistance" : {
             "baseValue" : 0.5
           },
-          "poisonStatusImmunity" : {
+          "iceStatusImmunity" : {
             "baseValue" : 1.0
           },
           "protection" : {
@@ -140,7 +140,7 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:rareClumpyLarge",
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "object",
         "objectSets" : [

@@ -59,11 +59,11 @@
       "position" : [30, 30]
     }
   },
-  
-  "scripts" : ["v-poisongasprimer.lua"],
-  
-  "poisonRadius" : 30,
-  "poisonEffectType" : "v-crystaldepthpoison",
+
+  "scripts" : ["/objects/scripts/v-statuseffectobject.lua"],
+
+  "effectRadius" : 30,
+  "effectType" : "v-crystaldepthpoison",
 
   "smashOnBreak" : true,
 

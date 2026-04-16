@@ -1,9 +1,9 @@
 {
-  "projectileName" : "v-archerfishspit",
-  "image" : "archerfishspit.png",
+  "projectileName" : "v-urchinspike",
+  "image" : "urchinspike.png",
   "physics" : "laser",
-  "animationCycle" : 0.25,
-  "frameNumber" : 2,
+  "animationCycle" : 0.1,
+  "frameNumber" : 1,
   "damageKindImage" : "icon.png",
   "pointLight" : false,
   "lightColor" : [34, 116, 161],
@@ -15,8 +15,8 @@
     }
   ],
   "power" : 5.0,
-  "speed" : 50,
-  "damageKind" : "ice",
+  "speed" : 20,
+  "damageKind" : "icespear",
   "emitters" : [ "iceplasmarocket", "iceplasma", "v-bubbles" ],
   "statusEffects" : ["frostslow", "v-coldtouch"]
 }

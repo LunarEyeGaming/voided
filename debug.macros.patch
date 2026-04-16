@@ -34,5 +34,54 @@
       "/enabletech airdash",
       "/enabletech blinkdash"
     ]
+  },
+  {
+    "op" : "add",
+    "path" : "/v_voltagetest",
+    "value" : [
+      "/warp instanceworld:v-voltagetest"
+    ]
+  },
+  {
+    "op" : "add",
+    "path" : "/v_toxicwastelandtest",
+    "value" : [
+      "/warp instanceworld:v-toxicwastelandtest"
+    ]
+  },
+  {
+    "op" : "add",
+    "path" : "/v_ministartest",
+    "value" : [
+      "/warp instanceworld:v-ministartest"
+    ]
+  },
+  {
+    "op" : "add",
+    "path" : "/v_entropictest",
+    "value" : [
+      "/warp instanceworld:v-entropictest"
+    ]
+  },
+  {
+    "op" : "add",
+    "path" : "/v_citytest",
+    "value" : [
+      "/warp instanceworld:v-voltagetest=v-city"
+    ]
+  },
+  {
+    "op" : "add",
+    "path" : "/v_labtest",
+    "value" : [
+      "/warp instanceworld:v-toxicwastelandtest=v-lab"
+    ]
+  },
+  {
+    "op" : "add",
+    "path" : "/v_spiretest",
+    "value" : [
+      "/warp instanceworld:v-ministartest=v-spiretop"
+    ]
   }
 ]

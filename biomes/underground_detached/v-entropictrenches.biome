@@ -2,6 +2,49 @@
   "name" : "v-entropictrenches",
   "friendlyName" : "Entropic Trenches",
 
+  "spawnProfile" : {
+    "groups" : [
+      {
+        "select" : 1,
+        "pool" : [
+          [ 1.0, "v-archerfish" ]
+        ]
+      },
+      {
+        "select" : 4,
+        "pool" : [
+          [ 1, "smallFishOcean1" ],
+          [ 1, "smallFishOcean2" ],
+          [ 1, "passiveLargeFish" ],
+          [ 1, "aggroLargeFish" ]
+        ]
+      },
+      {
+        "select" : 1,
+        "pool" : "generatedGroundAggroDay"
+      }
+    ],
+    "monsterParameters" : {
+      "colors" : "v-toxicwasteland",
+      "statusSettings" : {
+        "stats" : {
+          "fireResistance" : {
+            "baseValue" : -0.25
+          },
+          "iceResistance" : {
+            "baseValue" : 0.5
+          },
+          "iceStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 25.0
+          }
+        }
+      }
+    }
+  },
+
   "hueShiftOptions" : [ 0 ],
 
   "parallax" : "/parallax/surface/v-entropicocean.parallax",
