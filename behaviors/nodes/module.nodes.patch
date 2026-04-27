@@ -1550,5 +1550,34 @@
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarkness.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-tether",
+    "value": {
+      "type": "module",
+      "name": "v-action-tether",
+      "title": "",
+      "properties": {
+        "tetherOffset": {"type": "json", "value": [0, 0]},
+        "maxTetherLength": {"type": "json", "value": 50},
+        "tetherDirection": {"type": "json", "value": [0, -1]}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-tethertospawn.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-gettetherposition",
+    "value": {
+      "type": "module",
+      "name": "v-action-gettetherposition",
+      "title": "",
+      "properties": {
+        "maxTetherLength": {"type": "json", "value": 50},
+        "tetherDirection": {"type": "json", "value": [0, -1]}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-gettetherposition.behavior"
+    }
   }
 ]

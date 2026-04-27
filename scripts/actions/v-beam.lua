@@ -11,7 +11,9 @@ local chains = {}
 function update(dt)
   oldUpdate(dt)
 
-  monster.setAnimationParameter("chains", chains)
+  if config.getParameter("overrideChains", true) then
+    monster.setAnimationParameter("chains", chains)
+  end
 
   chains = {}
 end
@@ -61,6 +63,7 @@ end
 -- param angle
 -- param startPosition
 -- param collisionKinds
+-- param failOnNoCollision
 -- output beamEnd
 -- output beamLength
 function v_beamCollision(args, board)
@@ -79,6 +82,8 @@ function v_beamCollision(args, board)
 
   if collidePoint then
     beamEnd = collidePoint
+  elseif args.failOnNoCollision then
+    return false
   end
 
   local beamLength = world.magnitude(beamEnd, args.startPosition)

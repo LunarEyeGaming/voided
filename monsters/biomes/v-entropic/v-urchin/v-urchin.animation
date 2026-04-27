@@ -17,6 +17,20 @@
             "properties" : {
               "immediateSound" : "/sfx/melee/sword_guard.ogg"
             }
+          },
+          "windup" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/melee/sword_guard.ogg"
+            }
+          },
+          "fire" : {
+            "frames" : 1,
+            "cycle" : 5.0,
+            "mode" : "transition",
+            "transition" : "aggro"
           }
         }
       },
@@ -77,6 +91,16 @@
               "properties" : {
                 "image" : "<partImage>:aggro.<frame>"
               }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
             }
           },
           "damage" : {
@@ -110,6 +134,16 @@
               "properties" : {
                 "image" : "<partImage>:aggro.<frame>"
               }
+            },
+            "windup" : {
+              "properties" : {
+                "image" : "<partImage>:windup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
             }
           },
           "damage" : {
@@ -125,6 +159,15 @@
             }
           }
         }
+      },
+      "tether" : {
+        "properties" : {
+          "transformationGroups" : [ "tether" ],
+          "offset" : [0.0, 0.0],
+          "beamSource" : [0.0, 0.0],
+          "beamEnd" : [1.0, 0.0],
+          "centered" : false
+        }
       }
     }
   },
@@ -133,7 +176,8 @@
 
   "transformationGroups" : {
     "body" : { "interpolated" : true },
-    "facing" : { "interpolated" : false }
+    "facing" : { "interpolated" : false },
+    "tether" : { "interpolated" : true }
   },
 
   "effects" : {

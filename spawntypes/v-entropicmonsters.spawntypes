@@ -7,13 +7,13 @@
     "name" : "v-iceworm",
 
     "spawnParameters" : {
-      "area" : "surface",
+      "area" : "solid",
       "region" : "all",
       "time" : "all"
     },
 
     "groupSize" : [1, 1],
-    "spawnChance" : 0.04,
+    "spawnChance" : 0.02,
     "monsterType" : [
       [1.0, "v-icewormhead"]
     ],
@@ -51,7 +51,7 @@
     },
 
     "groupSize" : [1, 1],
-    "spawnChance" : 0.02,
+    "spawnChance" : 0.04,
     "monsterType" : [
       [1.0, "v-urchin"]
     ],

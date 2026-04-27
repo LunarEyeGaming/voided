@@ -13,7 +13,46 @@
   "baseParameters" : {
     "scripts" : [
       "/monsters/monster.lua",
-      "/monsters/v-unjankmonsterplugin.lua"
+      "/monsters/v-unjankmonsterplugin.lua",
+      "/monsters/biomes/v-entropic/v-urchin/v-urchinplugin.lua"
+    ],
+
+    "animationScripts" : [
+      "/items/active/effects/chain.lua"
+    ],
+
+    "overrideChains" : false,
+
+    "facingMode" : "transformation",
+
+    "tetherConfig" : {
+      "direction" : [0, -1],
+      "maxInitialLength" : 60,
+      "offset" : [0, 0],
+      "preferredMinLength" : 10,
+      "preferredMaxLength" : 40,
+      "adjustSpringForce" : 10
+    },
+
+    "driftConfig" : {
+      "period" : 10,
+      "amplitude" : 2,
+      "controlForce" : 100
+    },
+
+    "chains" : [
+      {
+        "segmentImage" : "/monsters/biomes/v-entropic/v-urchin/tether.png",
+        "segmentSize" : 1,
+        "sourcePart" : "tether",
+        "endPart" : "tether",
+        "waveform" : {
+          "movement" : 5.0,
+          "amplitude" : 0.125,
+          "frequency" : 2.0
+        },
+        "renderLayer" : "Monster-10"
+      }
     ],
 
     "initialScriptDelta" : 1,
@@ -22,17 +61,32 @@
     "behavior" : "monster",
     "deathBehavior" : "monster-death",
 
-    "seeThroughLiquid" : false,
+    "seeThroughLiquid" : true,
     "behaviorConfig" : {
       "damageOnTouch" : true,
 
-      "targetQueryRange" : 30,
+      "targetQueryRange" : 20,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
-      "keepTargetInRange" : 60,
+      "keepTargetInRange" : 30,
       "targetOutOfSightTime" : 5.0,
 
       "hurtWaitForGround" : false,
+
+      "spawnActions" : [
+        // {
+        //   "name" : "v-action-gettetherposition"
+        // },
+        // {
+        //   "name" : "action-nudge",
+        //   "parameters" : {
+        //     "minX" : 0,
+        //     "minY" : 30,
+        //     "maxX" : 0,
+        //     "maxY" : 50
+        //   }
+        // }
+      ],
 
       "foundTargetActions" : [
         {
@@ -52,12 +106,64 @@
       ],
 
       "concurrentActions" : [
+        // {
+        //   "name" : "v-action-tether",
+        //   "parameters" : {
+        //     "tetherOffset" : [0, 0]
+        //   }
+        // }
       ],
 
       "concurrentHostileActions" : [
+        // {
+        //   "name" : "v-action-tether",
+        //   "parameters" : {
+        //     "tetherOffset" : [0, 0]
+        //   }
+        // }
       ],
 
-      "hostileActions" : [ ],
+      "hostileActions" : [
+        {
+          "name" : "action-fire",
+          "cooldown" : 5.0,
+          "parameters" : {
+            "onGround" : false,
+            "requireLineOfSight" : true,
+            "aimAtTarget" : false,
+            "maximumRange" : 10,
+            "minimumRange" : 2,
+            "windupTime" : 0.75,
+            "windupState" : "windup",
+
+            "projectileCount" : 1,
+            "projectileType" : "v-proxyprojectile",
+            "projectileParameters" : {
+              "speed" : 40,
+              "power" : 20,
+              "actionOnReap" : [
+                {
+                  "action" : "config",
+                  "file" : "/projectiles/explosions/v-urchinexplosion/v-urchinspikelaunch.config"
+                }
+              ]
+            },
+            "projectileInterval" : 0.1,
+
+            "fireOffset" : [0.0, 0.0],
+            "rotationCenter" : [0.0, 0.0],
+            "fireSound" : "",
+            "fireState" : "fire",
+            "fireDelay" : 0.0,
+            "faceTarget" : false,
+            "rotateAim" : false,
+            "holdAim" : false,
+
+            "winddownState" : "fire",
+            "winddownTime" : 1.0
+          }
+        }
+      ],
 
       "deathActions" : [
         {
@@ -107,7 +213,7 @@
       "bounceFactor" : 0.5,
       "groundFriction" : 10,
 
-      "airFriction" : 0,
+      "airFriction" : 1,
       "airForce" : 15,
       "flySpeed" : 15
     },

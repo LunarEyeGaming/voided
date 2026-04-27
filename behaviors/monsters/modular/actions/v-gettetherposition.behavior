@@ -1,0 +1,24 @@
+{
+  "name": "v-action-gettetherposition",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/v-beam.lua"
+  ],
+  "parameters": {
+    "maxTetherLength": 50,
+    "tetherDirection": [0, -1]
+  },
+  "root": {
+    "title": "The most evil behavior module ever",
+    "type": "action",
+    "name": "v_beamCollision",
+    "parameters": {
+      "direction": {"key": "<tetherDirection>"},
+      "maxLength": {"key": "<maxTetherLength>"},
+      "startPosition": {"key": "self"}
+    },
+    "output": {
+      "beamEnd": "__tetherEndPosition"
+    }
+  }
+}
