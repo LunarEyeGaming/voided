@@ -1,15 +1,23 @@
 {
-  "name" : "v-deepundergroundentropic",
-  "friendlyName" : "Entropic Caves Deep",
+  "name" : "v-shallowentropicocean",
+  "friendlyName" : "Flooded Entropic Caves",
 
   "spawnProfile" : {
     "groups" : [
       {
         "select" : 2,
         "pool" : [
-          [ 1.0, "v-gasmonsterunderground" ],
-          [ 1.0, "v-downspitter2underground" ],
-          [ 1.0, "v-fumeballoon" ]
+          [ 1.0, "v-archerfish" ],
+          [ 1.0, "v-urchin" ]
+        ]
+      },
+      {
+        "select" : 4,
+        "pool" : [
+          [ 1, "smallFishOcean1" ],
+          [ 1, "smallFishOcean2" ],
+          [ 1, "passiveLargeFish" ],
+          [ 1, "aggroLargeFish" ]
         ]
       },
       {
@@ -21,44 +29,44 @@
       "colors" : "v-toxicwasteland",
       "statusSettings" : {
         "stats" : {
-          "electricResistance" : {
+          "fireResistance" : {
             "baseValue" : -0.25
           },
-          "poisonResistance" : {
+          "iceResistance" : {
             "baseValue" : 0.5
           },
-          "poisonStatusImmunity" : {
+          "iceStatusImmunity" : {
             "baseValue" : 1.0
           },
           "protection" : {
-            "baseValue" : 35.0
+            "baseValue" : 25.0
           }
         }
       }
     }
   },
 
-  "parallax" : "/parallax/underground/v-deepundergroundtoxic.parallax",
+  "parallax" : "/parallax/underground/v-shallowentropicocean.parallax",
 
   "mainBlock" : "v-permafrost",
   "subBlocks" : [ "v-brittleice" ],
-  "ores" : "v-deepundergroundentropic",
+  "ores" : "v-shallowundergroundentropic",
 
   "ambientNoises" : {
     "day" : {
-      "tracks" : [ "/sfx/environmental/tundra_underground.ogg" ]
+      "tracks" : [ "/sfx/environmental/ocean_underwater.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/sfx/environmental/tundra_underground.ogg" ]
+      "tracks" : [ "/sfx/environmental/ocean_underwater.ogg" ]
     }
   },
 
   "musicTrack" : {
     "day" : {
-      "tracks" : [ "/music/M54.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg", "/music/eridanus-supervoid.ogg" ]
+      "tracks" : [ "/music/ocean-exploration2.ogg", "/music/M54.ogg", "/music/europa.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/music/M54.ogg", "/music/drosera.ogg", "/music/error-0xbfaf000.ogg", "/music/eridanus-supervoid.ogg" ]
+      "tracks" : [ "/music/ocean-exploration2.ogg", "/music/M54.ogg", "/music/europa.ogg" ]
     }
   },
 
@@ -67,6 +75,27 @@
     "grassModDensity" : 0.9,
 
     "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredSmall",
+
+        "type" : "grass",
+        "grasses" : [ "toxicplains" ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 2.0,
+        "variants" : 3,
+        "distribution" : "/biomes/distributions.config:denseMedium",
+
+        "type" : "tree",
+        "treeFoliageHueShiftMax" : 60,
+        "treeStemHueShiftMax" : 40,
+        "treeStemList" : [ "purplevine" ],
+        "treeFoliageList" : [ "dreamy" ]
+      },
       {
         "mode" : "floor",
         "priority" : 1.0,
@@ -81,6 +110,46 @@
           }
         ]
       },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "embercoral1" ], [0.20, "embercoral2" ], [0.20, "embercoral3" ], [0.20, "embercoral4" ], [0.20, "embercoral5" ]]
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "oshroom1" ], [0.20, "oshroom2" ], [0.20, "oshroom3" ], [0.20, "oshroom4" ], [0.20, "oshroom5" ]]
+          }
+        ]
+      },
+      // {
+      //   "mode" : "floor",
+      //   "priority" : 1.0,
+      //   "variants" : 1,
+      //   "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+      //   "type" : "object",
+      //   "objectSets" : [
+      //     {
+      //       "pool" : [ [1.0, "v-hydrothermalvent" ] ],
+      //       "parameters" : { "originBiome" : "surface/v-entropic" }
+      //     }
+      //   ]
+      // },
       {
         "mode" : "floor",
         "priority" : 1.0,
@@ -152,40 +221,6 @@
       },
       {
         "mode" : "floor",
-        "priority" : 99.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
-
-        "type" : "microdungeon",
-        "microdungeons" : [ "v-toxiclaboratorypointer" ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 1,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:undergroundBiomeEncounterDungeon",
-
-        "type" : "microdungeon",
-        "microdungeons" : [ "v-campsite" ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:surfaceCrops",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1, "v-wilddotefruitseed" ] ],
-            "parameters" : {
-              "startingStage" : 4
-            }
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:scatteredLarge",
@@ -194,7 +229,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { "originBiome" : "surface/v-entropic" }
+            "parameters" : { }
           }
         ]
       },
@@ -208,7 +243,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { "originBiome" : "surface/v-entropic" }
+            "parameters" : { }
           }
         ]
       },

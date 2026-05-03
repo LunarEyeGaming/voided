@@ -1,15 +1,23 @@
 {
-  "name" : "v-undergroundentropic",
-  "friendlyName" : "Entropic Caves",
+  "name" : "v-deepentropicocean",
+  "friendlyName" : "Entropic Ocean Deep",
 
   "spawnProfile" : {
     "groups" : [
       {
         "select" : 2,
         "pool" : [
-          [ 1.0, "v-gasmonsterunderground" ],
-          [ 1.0, "v-downspitterunderground" ],
-          [ 1.0, "v-fumeballoon" ]
+          [ 1.0, "v-archerfish" ],
+          [ 1.0, "v-urchin" ]
+        ]
+      },
+      {
+        "select" : 4,
+        "pool" : [
+          [ 1, "smallFishOcean1" ],
+          [ 1, "smallFishOcean2" ],
+          [ 1, "passiveLargeFish" ],
+          [ 1, "aggroLargeFish" ]
         ]
       },
       {
@@ -38,11 +46,11 @@
     }
   },
 
-  "parallax" : "/parallax/underground/v-undergroundtoxic.parallax",
+  "parallax" : "/parallax/underground/v-deepentropicocean.parallax",
 
   "mainBlock" : "v-permafrost",
   "subBlocks" : [ "v-brittleice" ],
-  "ores" : "v-undergroundentropic",
+  "ores" : "v-deepundergroundentropic",
 
   "ambientNoises" : {
     "day" : {
@@ -179,6 +187,32 @@
           {
             "pool" : [ [1.0, "v-iceboulder" ] ],
             "parameters" : { "originBiome" : "surface/v-entropic" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "embercoral1" ], [0.20, "embercoral2" ], [0.20, "embercoral3" ], [0.20, "embercoral4" ], [0.20, "embercoral5" ]]
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "oshroom1" ], [0.20, "oshroom2" ], [0.20, "oshroom3" ], [0.20, "oshroom4" ], [0.20, "oshroom5" ]]
           }
         ]
       },

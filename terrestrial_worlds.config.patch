@@ -595,20 +595,18 @@
           "secondaryRegionCount" : [1, 1]
         },
         "subsurface" : {
-          "primaryRegion" : ["v-shallowundergroundentropic"],
+          "primaryRegion" : ["v-entropicsubsurface"],
           "secondaryRegions" : []
         },
         "underground1" : {
-          "primaryRegion" : ["v-entropicocean"],
-          "secondaryRegions" : [ "v-entropictrenches" ],
-          "secondaryRegionCount" : [1, 1]
+          "primaryRegion" : ["v-shallowentropicocean"]
         },
         "underground2" : {
-          "primaryRegion" : ["v-undergroundentropic"],
+          "primaryRegion" : ["v-entropicocean"],
           "secondaryRegions" : []
         },
         "underground3" : {
-          "primaryRegion" : ["v-deepundergroundentropic"],
+          "primaryRegion" : ["v-deepentropicocean"],
           "secondaryRegions" : []
         },
         "core" : {
@@ -633,13 +631,11 @@
   },
   {
     "op" : "add",
-    "path" : "/regionTypes/v-shallowundergroundentropic",
+    "path" : "/regionTypes/v-entropicsubsurface",
     "value" : {
-      "fgCaveSelector" : [ "coreCaves" ],
-      "bgCaveSelector" : [ "coreBackgroundCaves" ],
-      "subBlockSelector" : [ "normalCaves" ],
-      "oceanLiquid" : [ "water" ],
-      "oceanLevelOffset" : 500,
+      "fgCaveSelector" : [ "normalCaves" ],
+      "bgCaveSelector" : [ "normalCaves" ],
+      "subBlockSelector" : [ "sparseCaves" ],
       "biome": [
         [1,["v-shallowundergroundentropic"]]
       ]
@@ -647,15 +643,49 @@
   },
   {
     "op" : "add",
-    "path" : "/regionTypes/v-entropicocean",
+    "path" : "/regionTypes/v-shallowentropicocean",
     "value" : {
-      "fgCaveSelector" : [ "acidPoolCaves" ],
-      "bgCaveSelector" : [ "acidPoolCaves" ],
+      "blockSelector" : [ "v-pocketSolid" ],
+      "fgCaveSelector" : [ "denseCaves" ],
+      "bgCaveSelector" : [ "denseCaves" ],
       "subBlockSelector" : [ "sparseCaves" ],
       "oceanLiquid" : [ "water" ],
       "oceanLevelOffset" : 500,
       "biome": [
+        [1,["v-shallowentropicocean"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-entropicocean",
+    "value" : {
+      "blockSelector" : [ "v-asteroidsDenseLarge" ],
+      "fgCaveSelector" : [ "normalCaves" ],
+      "bgCaveSelector" : [ "normalCaves" ],
+      "subBlockSelector" : [ "normalCaves" ],
+      "oceanLiquid" : [ "water" ],
+      "oceanLevelOffset" : 500,
+      "caveLiquid" : ["v-liquidnitrogen"],
+      "caveLiquidSeedDensityRange" : [4.0, 4.0],
+      "biome": [
         [1,["v-entropicocean"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-deepentropicocean",
+    "value" : {
+      "blockSelector" : [ "v-asteroids2" ],
+      "fgCaveSelector" : [ "normalCaves" ],
+      "subBlockSelector" : [ "sparseCaves" ],
+      "oceanLiquid" : [ "water" ],
+      "oceanLevelOffset" : 500,
+      "caveLiquid" : ["v-liquidnitrogen"],
+      "caveLiquidSeedDensityRange" : [4.0, 4.0],
+      "biome": [
+        [1,["v-deepentropicocean"]]
       ]
     }
   },
@@ -677,40 +707,16 @@
   },
   {
     "op" : "add",
-    "path" : "/regionTypes/v-undergroundentropic",
-    "value" : {
-      "fgCaveSelector" : [ "normalCaves" ],
-      "subBlockSelector" : [ "sparseCaves" ],
-      "caveLiquid" : ["v-liquidnitrogen"],
-      "caveLiquidSeedDensityRange" : [4.0, 4.0],
-      "biome": [
-        [1,["v-undergroundentropic"]]
-      ]
-    }
-  },
-  {
-    "op" : "add",
-    "path" : "/regionTypes/v-deepundergroundentropic",
-    "value" : {
-      "fgCaveSelector" : [ "normalCaves" ],
-      "subBlockSelector" : [ "sparseCaves" ],
-      "caveLiquid" : ["v-liquidnitrogen"],
-      "caveLiquidSeedDensityRange" : [4.0, 4.0],
-      "biome": [
-        [1,["v-deepundergroundentropic"]]
-      ]
-    }
-  },
-  {
-    "op" : "add",
     "path" : "/regionTypes/v-entropiccorelayer",
     "value" : {
-      "caveLiquid" : ["v-liquidnitrogen"],
+      "blockSelector" : [ "v-entropicCoreSurface" ],
+      "caveLiquid" : ["lava"],
       "caveLiquidSeedDensityRange" : [4.0, 4.0],
-      "oceanLiquid" : ["v-liquidnitrogen"],
-      "subBlockSelector" : ["v-fungalCoreSubBlocks"],
-      "fgCaveSelector" : [ "v-fungalCoreCaves" ],
-      "bgCaveSelector" : [ "v-fungalCoreCavesBackground" ],
+      "oceanLiquid" : ["corelava"],
+      "oceanLevelOffset" : -20,
+      // "subBlockSelector" : ["v-fungalCoreSubBlocks"],
+      "fgCaveSelector" : [ "coreCaves" ],
+      "bgCaveSelector" : [ "coreBackgroundCaves" ],
       "biome": [
         [1,["v-entropiccorelayer"]]
       ]

@@ -1,5 +1,5 @@
 {
-  "name" : "v-asteroidsSparse",
+  "name" : "v-asteroidsDenseLarge",
 
   "type" : "displacement",
   "xType" : "perlin",
@@ -21,10 +21,10 @@
         "type" : "perlin",
         "seedBias" : 1,
         "function" : "perlin",
-        "octaves" : 1,
-        "freq" : 0.007,
+        "octaves" : 2,
+        "freq" : 0.02,
         "amp" : 1,
-        "bias" : -0.47,
+        "bias" : -0.20,
         "xInfluence" : 0.66,
         "yInfluence" : 1.0
       },
@@ -32,10 +32,10 @@
         "type" : "perlin",
         "seedBias" : 2,
         "function" : "perlin",
-        "octaves" : 1,
-        "freq" : 0.01,
+        "octaves" : 2,
+        "freq" : 0.04,
         "amp" : 1,
-        "bias" : -0.47,
+        "bias" : -0.20,
         "xInfluence" : 0.66,
         "yInfluence" : 1.0
       },
@@ -43,10 +43,10 @@
         "type" : "perlin",
         "seedBias" : 3,
         "function" : "perlin",
-        "octaves" : 1,
-        "freq" : 0.0177,
+        "octaves" : 2,
+        "freq" : 0.06,
         "amp" : 1,
-        "bias" : -0.47,
+        "bias" : -0.20,
         "xInfluence" : 0.66,
         "yInfluence" : 1.0
       }

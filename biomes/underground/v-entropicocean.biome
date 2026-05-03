@@ -46,7 +46,7 @@
     }
   },
 
-  "parallax" : "/parallax/surface/v-entropicocean.parallax",
+  "parallax" : "/parallax/underground/v-entropicocean.parallax",
 
   "mainBlock" : "v-permafrost",
   "subBlocks" : [ "v-brittleice" ],
@@ -136,20 +136,20 @@
           }
         ]
       },
-      {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredLarge",
+      // {
+      //   "mode" : "floor",
+      //   "priority" : 1.0,
+      //   "variants" : 1,
+      //   "distribution" : "/biomes/distributions.config:scatteredLarge",
 
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-hydrothermalvent" ] ],
-            "parameters" : { "originBiome" : "surface/v-entropic" }
-          }
-        ]
-      },
+      //   "type" : "object",
+      //   "objectSets" : [
+      //     {
+      //       "pool" : [ [1.0, "v-hydrothermalvent" ] ],
+      //       "parameters" : { "originBiome" : "surface/v-entropic" }
+      //     }
+      //   ]
+      // },
       {
         "mode" : "floor",
         "priority" : 1.0,
