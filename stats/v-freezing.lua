@@ -94,4 +94,5 @@ function onFreezeDamage()
 end
 
 function onFreeze()
+  status.addEphemeralEffect("v-frozen")
 end

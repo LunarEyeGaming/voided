@@ -1,0 +1,60 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "freezeState" : {
+        "default" : "invisible",
+        "states" : {
+          "visible" : {},
+          "invisible" : {}
+        }
+      }
+    },
+    "parts" : {
+      "frozenBody" : {
+        "properties" : {
+          "centered" : true
+        },
+        "partStates" : {
+          "freezeState" : {
+            "visible" : {
+              "properties" : {
+                "image" : "/animations/v-frozenbody/frozenbody.png"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "particleEmitters" : {
+    "freeze" : {
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/statuseffects/frozen/frozen.animation",
+            "approach" : [0.5, 0.5],
+            "timeToLive" : 0.5,
+            "variance" : {
+              "timeToLive" : 0.15,
+              "position" : [2, 2],
+              "initialVelocity" : [1, 1],
+              "rotation" : 180
+            }
+          },
+          "count" : 20
+        }
+      ]
+    },
+    "shatter" : {
+      "particles" : [
+        { "count" : 10, "particle" : "mediumprismshard" },
+        { "count" : 20, "particle" : "mediumprismfineshard" }
+      ]
+    }
+  },
+  "sounds" : {
+    "freeze" : [ "/sfx/npc/boss/kluexboss_iceeruption1.ogg", "/sfx/npc/boss/kluexboss_iceeruption2.ogg" ],
+    "shatter" : [ "/sfx/objects/prism_break_large1.ogg", "/sfx/objects/prism_break_large2.ogg" ]
+  }
+}
