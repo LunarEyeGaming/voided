@@ -302,3 +302,57 @@ function VDepthPoisonMeter:_drawShimmer(dt)
     }, self.renderLayer)
   end
 end
+
+---@class VFreezingMeter: VDrawableMeter
+---@field warningLayerImage string
+---@field warningPulseTime number
+---@field warningThreshold number
+---
+---@field shouldShimmer boolean
+---@field shimmerTime number?
+---@field warningPulseTimer number
+VFreezingMeter = VDrawableMeter:new()
+
+function VFreezingMeter:init()
+  VDrawableMeter.init(self)
+
+  self.shouldShimmer = false
+  self.shimmerTime = nil
+  self.flashTimer = 0
+  self.shimmerTimer = 0
+  self.warningPulseTimer = self.warningPulseTime
+end
+
+function VFreezingMeter:update(dt)
+  VDrawableMeter.update(self, dt)
+
+  if self.active then
+    self:_updateTimers(dt)
+  end
+end
+
+function VFreezingMeter:_updateAnim(dt)
+  VDrawableMeter._updateAnim(self, dt)
+
+  local warningOpacity = math.floor(util.lerp(vUtil.pingPong(self.warningPulseTimer / self.warningPulseTime), 0, 255))
+
+  localAnimator.addDrawable({
+    image = self.warningLayerImage .. string.format("?multiply=ffffff%02x", warningOpacity),
+    position = self.offset,
+    fullbright = true,
+    centered = false
+  }, self.renderLayer)
+end
+
+function VFreezingMeter:_updateTimers(dt)
+  self.flashTimer = math.max(0, self.flashTimer - dt)
+
+  if self.fillRatio >= self.warningThreshold then
+    self.warningPulseTimer = self.warningPulseTimer - dt
+    if self.warningPulseTimer <= 0 then
+      self.warningPulseTimer = self.warningPulseTime
+    end
+  else
+    self.warningPulseTimer = self.warningPulseTime
+  end
+end
