@@ -603,7 +603,8 @@
         },
         "underground2" : {
           "primaryRegion" : ["v-entropicocean"],
-          "secondaryRegions" : []
+          "secondaryRegions" : [ "v-briniclefield" ],
+          "secondaryRegionCount" : [1, 1]
         },
         "underground3" : {
           "primaryRegion" : ["v-deepentropicocean"],
@@ -745,6 +746,21 @@
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
         [0, [ "v-entropic" ]]
+      ],
+      "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-briniclefield",
+    "value" : {
+      "blockSelector" : [ "v-pocketSolid" ],
+      "fgCaveSelector" : [ "v-brinicleCaves" ],
+      "bgCaveSelector" : [ "v-asteroidsDense" ],
+      "oceanLiquid" : [ "water" ],
+      "oceanLevelOffset" : 500,
+      "biome" : [
+        [0, [ "v-briniclefield" ]]
       ],
       "subRegion" : []
     }
