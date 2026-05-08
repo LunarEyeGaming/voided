@@ -17,9 +17,12 @@ function ModProperty.update(position, layer, dt)
 
   if world.magnitude(position, mcontroller.position()) < chillRange then
     status.addEphemeralEffect("v-auroriteeffect")
-    status.overConsumeResource("v-warmth", chillAmount * dt)
-    if math.random() < chillWarningChance then
-      world.spawnProjectile("v-auroritewarning", mcontroller.position(), nil, world.distance(position, mcontroller.position()))
+    -- Consuming warmth directly so that the server isn't unnecessarily flooded with entity messages.
+    if not status.statPositive("v-auroriteeffectImmunity") then
+      status.overConsumeResource("v-warmth", chillAmount * dt)
+      if math.random() < chillWarningChance then
+        world.spawnProjectile("v-auroritewarning", mcontroller.position(), nil, world.distance(position, mcontroller.position()))
+      end
     end
   end
 

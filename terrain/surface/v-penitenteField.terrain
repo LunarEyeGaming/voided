@@ -1,0 +1,52 @@
+{
+  "name" : "v-penitenteField",
+
+  //jaggy spikes
+  "type" : "displacement",
+  "xType" : "perlin",
+  "xOctaves" : 1,
+  "xFreq" : 0.01,
+  "xAmp" : 0,
+  "yType" : "perlin",
+  "yOctaves" : 3,
+  "yFreq" : 0.2,
+  "yAmp" : 30,
+  "yBias" : 5,
+  "yClamp" : [-60, 15],
+  "yClampSmoothing" : 5,
+  "yYInfluence" : 0,
+
+  "source" : {
+    //slightly shakey hills
+    "type" : "displacement",
+    "xType" : "perlin",
+    "xOctaves" : 1,
+    "xFreq" : 0.02,
+    "xAmp" : 10,
+    "yType" : "perlin",
+    "yOctaves" : 2,
+    "yFreq" : 0.015,
+    "yAmp" : 30,
+    "yYInfluence" : 0.2,
+
+    "source" : {
+      //base terrain height variation
+      "type" : "displacement",
+      "xType" : "perlin",
+      "xOctaves" : 1,
+      "xFreq" : 0.02,
+      "xAmp" : 0,
+      "yType" : "perlin",
+      "yOctaves" : 1,
+      "yFreq" : 0.001,
+      "yAmp" : 70,
+      "yYInfluence" : 0,
+
+      "source" : {
+        "type" : "flatSurface",
+
+        "adjustment" : 0
+      }
+    }
+  }
+}

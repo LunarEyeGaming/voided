@@ -18,12 +18,16 @@
   "damageType" : "NoDamage",
   "damageKind" : "default",
 
-  "scripts" : [ "v-solarflarethrowable.lua" ],
+  "scripts" : [ "v-solarflarethrowable.lua", "/scripts/projectiles/v-statuseffect.lua" ],
   "scriptDelta" : 4,
 
   "flashbangAction" : {
     "action" : "config",
     "file" : "/projectiles/explosions/v-solarflareflashbang/v-lua-solarflareflashbang.config"
   },
-  "flashbangAirTime" : 1.0
+  "flashbangAirTime" : 1.0,
+
+  "effectRadius" : 5,
+  "effectType" : "v-warm",
+  "effectDuration" : 0.5
 }

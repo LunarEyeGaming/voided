@@ -1,5 +1,5 @@
 function init()
-  effect.addStatModifierGroup({{stat = "v-coldwaterImmunity", amount = 1}})
+  effect.addStatModifierGroup(config.getParameter("statModifiers"))
 
   script.setUpdateDelta(0)
 end

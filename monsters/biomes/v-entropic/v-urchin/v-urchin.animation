@@ -8,14 +8,18 @@
           "idle" : {
             "frames" : 1,
             "cycle" : 0.1,
-            "mode" : "loop"
+            "mode" : "loop",
+            "properties" : {
+              "lightsOn" : [ "glow" ]
+            }
           },
           "aggro" : {
             "frames" : 1,
             "cycle" : 0.1,
             "mode" : "loop",
             "properties" : {
-              "immediateSound" : "/sfx/melee/sword_guard.ogg"
+              "immediateSound" : "/sfx/melee/sword_guard.ogg",
+              "lightsOn" : [ "glow" ]
             }
           },
           "windup" : {
@@ -30,7 +34,10 @@
             "frames" : 1,
             "cycle" : 5.0,
             "mode" : "transition",
-            "transition" : "aggro"
+            "transition" : "aggro",
+            "properties" : {
+              "lightsOff" : [ "glow" ]
+            }
           }
         }
       },
@@ -172,6 +179,13 @@
     }
   },
   "globalTagDefaults" : {
+  },
+
+  "lights" : {
+    "glow" : {
+      "active" : false,
+      "color" : [7, 46, 66]
+    }
   },
 
   "transformationGroups" : {

@@ -1,14 +1,17 @@
 {
   "name" : "v-warm",
-  "effectConfig" : { },
-  "defaultDuration" : 5,
+  "effectConfig" : {
+    "statModifiers" : [
+      {"stat" : "v-coldwaterImmunity", "amount" : 1},
+      {"stat" : "v-auroriteeffectImmunity", "amount" : 1}
+    ]
+  },
+  "defaultDuration" : 3,
 
   "scripts" : [
     "v-warm.lua"
   ],
 
-  // "animationConfig" : "starving.animation",
-
-  "label" : "Warm - Immune to freezing temperatures",
+  "label" : "Warm - Immune to Frostbite",
   "icon" : "/interface/statuses/v-depthpoisonblock.png"
 }

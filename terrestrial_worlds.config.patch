@@ -591,7 +591,7 @@
         },
         "surface" : {
           "primaryRegion" : [ "v-entropic" ],
-          "secondaryRegions" : [ "v-cryovolcanic" ],
+          "secondaryRegions" : [ "v-cryovolcanic", "v-penitentes" ],
           "secondaryRegionCount" : [1, 1]
         },
         "subsurface" : {
@@ -624,6 +624,8 @@
       "fgCaveSelector" : [ "sparseCaves" ],
       "subBlockSelector" : [ "v-crystalMountainsCaves" ],
       "bgCaveSelector" : [ "empty" ],
+      "caveLiquid" : ["v-liquidnitrogen"],
+      "caveLiquidSeedDensityRange" : [4.0, 4.0],
       "biome" : [
         [0, [ "v-entropic" ]]
       ]
@@ -636,6 +638,8 @@
       "fgCaveSelector" : [ "normalCaves" ],
       "bgCaveSelector" : [ "normalCaves" ],
       "subBlockSelector" : [ "sparseCaves" ],
+      "caveLiquid" : ["v-liquidnitrogen"],
+      "caveLiquidSeedDensityRange" : [4.0, 4.0],
       "biome": [
         [1,["v-shallowundergroundentropic"]]
       ]
@@ -666,8 +670,6 @@
       "subBlockSelector" : [ "normalCaves" ],
       "oceanLiquid" : [ "water" ],
       "oceanLevelOffset" : 500,
-      "caveLiquid" : ["v-liquidnitrogen"],
-      "caveLiquidSeedDensityRange" : [4.0, 4.0],
       "biome": [
         [1,["v-entropicocean"]]
       ]
@@ -682,8 +684,6 @@
       "subBlockSelector" : [ "sparseCaves" ],
       "oceanLiquid" : [ "water" ],
       "oceanLevelOffset" : 500,
-      "caveLiquid" : ["v-liquidnitrogen"],
-      "caveLiquidSeedDensityRange" : [4.0, 4.0],
       "biome": [
         [1,["v-deepentropicocean"]]
       ]
@@ -732,6 +732,19 @@
       "subBlockSelector" : ["v-crystalMountainsSubBlocks"],
       "biome" : [
         [0, [ "v-cryovolcanic" ]]
+      ],
+      "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-penitentes",
+    "value" : {
+      "blockSelector" : [ "v-penitenteField" ],
+      "fgCaveSelector" : [ "surfaceCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "biome" : [
+        [0, [ "v-entropic" ]]
       ],
       "subRegion" : []
     }

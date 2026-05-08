@@ -32,9 +32,28 @@
     },
 
     "groupSize" : [1, 1],
-    "spawnChance" : 0.02,
+    "spawnChance" : 0.01,
     "monsterType" : [
       [1.0, "v-archerfish"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : true
+    }
+  },
+
+  {
+    "name" : "v-bigbellyshark",
+
+    "spawnParameters" : {
+      "area" : "liquid",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.005,
+    "monsterType" : [
+      [1.0, "v-bigbellyshark"]
     ],
     "monsterParameters" : {
       "aggressive" : true

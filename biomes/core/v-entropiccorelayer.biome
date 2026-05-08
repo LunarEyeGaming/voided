@@ -21,16 +21,13 @@
       "colors" : "v-toxicwasteland",
       "statusSettings" : {
         "stats" : {
-          "electricResistance" : {
+          "fireResistance" : {
             "baseValue" : -0.25
           },
-          "poisonResistance" : {
+          "iceResistance" : {
             "baseValue" : 0.5
           },
-          "poisonStatusImmunity" : {
-            "baseValue" : 1.0
-          },
-          "v-strongpoisonStatusImmunity" : {
+          "iceStatusImmunity" : {
             "baseValue" : 1.0
           },
           "protection" : {
@@ -49,10 +46,10 @@
 
   "ambientNoises" : {
     "day" : {
-      "tracks" : [ "/sfx/environmental/v_fungal_core.ogg" ]
+      "tracks" : [ "/sfx/environmental/magma_underground.ogg" ]
     },
     "night" : {
-      "tracks" : [ "/sfx/environmental/v_fungal_core.ogg" ]
+      "tracks" : [ "/sfx/environmental/magma_underground.ogg" ]
     }
   },
 
@@ -108,36 +105,15 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:v-poisonGasPrimer",
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [1.0, "v-poisongasprimer" ] ],
-            "parameters" : { "originBiome" : "core/v-toxicwastelandcorelayer" }
+            "pool" : [ [1.0, "v-hydrothermalvent" ] ],
+            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 99.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:v-mushroom",
-
-        "type" : "microdungeon",
-        "microdungeons" : [ "v-mushroom" ]
-      },
-      {
-        "mode" : "ceiling",
-        "priority" : 2.0,
-        "variants" : 3,
-        "distribution" : "/biomes/distributions.config:denseMedium",
-
-        "type" : "tree",
-        "treeFoliageHueShiftMax" : 60,
-        "treeStemHueShiftMax" : 40,
-        "treeStemList" : [ "v-toxicshroomstalk" ],
-        "treeFoliageList" : [ "v-toxicshrooms" ]
       },
       /* {
         "mode" : "floor",
@@ -156,20 +132,6 @@
 
         "type" : "treasureBox",
         "treasureBoxSets" : [ "v-iceWeaponChest" ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 0.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredLarge",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "lightsensor" ] ],
-            "parameters" : { }
-          }
-        ]
       }
     ]
   },

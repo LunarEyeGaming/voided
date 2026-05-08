@@ -2,7 +2,7 @@ local freezeRate
 local waterId
 
 function init()
-  freezeRate = 0.5
+  freezeRate = config.getParameter("heatLossRate")
   waterId = 1
 end
 

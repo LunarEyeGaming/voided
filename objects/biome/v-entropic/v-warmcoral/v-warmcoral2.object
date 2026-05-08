@@ -1,0 +1,49 @@
+{
+  "objectName" : "v-warmcoral2",
+  "colonyTags" : ["evil"],
+  "printable" : false,
+  "rarity" : "Legendary",
+  "description" : "<todo>",
+  "shortdescription" : "warmcoral2",
+  "race" : "generic",
+
+  "fullbright" : true,
+  "lightColor" : [240, 120, 0],
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "decorative",
+  "price" : 0,
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "dualImage" : "warmcoral2.png",
+      "imagePosition" : [-8, 0],
+
+      "anchors" : ["bottom"],
+
+      "spaceScan" : 0.1
+    }
+  ],
+
+  "scripts" : [ "/objects/scripts/v-statuseffectobject.lua" ],
+  "scriptDelta" : 2,
+
+  "health" : 5,
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
+  "smashParticles" : [ { "count" : 10, "particle" : "v-toxicrockshard" } ],
+
+  "effectRadius" : 5,
+  "effectType" : "v-warm",
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

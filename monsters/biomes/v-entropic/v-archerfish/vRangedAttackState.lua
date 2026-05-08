@@ -33,7 +33,6 @@ function vRangedAttackState.update(dt, stateData)
     elseif distance > maxDistance then
       move(toTarget, true)
     else
-      -- sb.logInfo("winding up...")
       stateData.stage = "windup"
       stateData.timer = config.getParameter("rangedWindupTime")
     end
@@ -43,7 +42,6 @@ function vRangedAttackState.update(dt, stateData)
     mcontroller.controlFace(toTarget[1])
     setBodyDirection(toTarget)
     if stateData.timer <= 0 then
-      -- sb.logInfo("charging...")
       stateData.stage = "shoot"
       animator.setAnimationState("attack", "shooting")
       stateData.shootDirection = toTarget

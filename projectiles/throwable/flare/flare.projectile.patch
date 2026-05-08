@@ -1,0 +1,36 @@
+[
+  [
+    {
+      "op" : "test",
+      "path" : "/scripts",
+      "inverse" : true
+    },
+    {
+      "op" : "add",
+      "path" : "/scripts",
+      "value" : []
+    }
+  ],
+  [
+    {
+      "op" : "add",
+      "path" : "/scripts/-",
+      "value" : "/scripts/projectiles/v-statuseffect.lua"
+    },
+    {
+      "op" : "add",
+      "path" : "/effectRadius",
+      "value" : 5
+    },
+    {
+      "op" : "add",
+      "path" : "/effectType",
+      "value" : "v-warm"
+    },
+    {
+      "op" : "add",
+      "path" : "/effectDuration",
+      "value" : 0.5
+    }
+  ]
+]

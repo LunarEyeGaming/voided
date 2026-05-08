@@ -23,7 +23,7 @@ function init()
     jumpingSuppressed = true
   }
   freezeDuration = 2.0
-  freezeDamage = 50
+  freezeDamage = 60
   warmthIncreaseRate = 75
 
   state = "inactive"
@@ -55,6 +55,8 @@ function update(dt)
   elseif state == "preFreeze" then
     mcontroller.controlModifiers(preFreezeMovementModifiers)
     if warmthPercentage <= 0 then
+      onFreeze()
+
       freezeTimer = freezeDuration
       state = "freeze"
     elseif warmthPercentage == 1.0 then
@@ -66,15 +68,7 @@ function update(dt)
     mcontroller.controlModifiers(freezeMovementModifiers)
 
     if freezeTimer <= 0 then
-      status.applySelfDamageRequest({
-        damageType = "IgnoresDef",
-        damage = freezeDamage,
-        damageSourceKind = "ice",
-        sourceEntityId = entity.id()
-      })
-
-      world.sendEntityMessage(entity.id(), "v-drawableMeter-hide", "v-freezing")
-      status.setResourcePercentage("v-warmth", 1.0)  -- Reset warmth.
+      onFreezeDamage()
       state = "inactive"
     end
   else
@@ -85,4 +79,19 @@ function update(dt)
   if not status.resourcePositive("v-warmthIncreaseBlock") then
     status.modifyResource("v-warmth", warmthIncreaseRate * dt)
   end
+end
+
+function onFreezeDamage()
+  status.applySelfDamageRequest({
+    damageType = "IgnoresDef",
+    damage = freezeDamage,
+    damageSourceKind = "ice",
+    sourceEntityId = entity.id()
+  })
+
+  world.sendEntityMessage(entity.id(), "v-drawableMeter-hide", "v-freezing")
+  status.setResourcePercentage("v-warmth", 1.0)  -- Reset warmth.
+end
+
+function onFreeze()
 end
