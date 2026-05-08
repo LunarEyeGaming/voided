@@ -58,6 +58,7 @@ function vMeleeAttackState.update(dt, stateData)
     end
   elseif stateData.stage == "windup" then
     animator.setAnimationState("movement", "swimSlow")
+    animator.setAnimationState("attack", "meleewindup")
     setBodyDirection(toTarget)
     if stateData.timer <= 0 then
       -- sb.logInfo("charging...")
