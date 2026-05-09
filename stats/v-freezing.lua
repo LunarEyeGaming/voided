@@ -24,7 +24,7 @@ function init()
   }
   freezeDuration = 2.0
   freezeDamage = 60
-  warmthIncreaseRate = 75
+  warmthIncreaseRate = 50
 
   state = "inactive"
   freezeTimer = 0

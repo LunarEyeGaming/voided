@@ -5,10 +5,11 @@
   "spawnProfile" : {
     "groups" : [
       {
-        "select" : 2,
+        "select" : 3,
         "pool" : [
           [ 1.0, "v-urchin" ],
-          [ 1.0, "v-bigbellyshark" ]
+          [ 1.0, "v-bigbellyshark" ],
+          [ 1.0, "v-spinilus" ]
         ]
       },
       {
@@ -19,10 +20,6 @@
           [ 1, "passiveLargeFish" ],
           [ 1, "aggroLargeFish" ]
         ]
-      },
-      {
-        "select" : 1,
-        "pool" : "generatedGroundAggroDay"
       }
     ],
     "monsterParameters" : {
@@ -75,15 +72,6 @@
     "grassModDensity" : 0.9,
 
     "items" : [
-      {
-        "mode" : "floor",
-        "priority" : 3.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredSmall",
-
-        "type" : "grass",
-        "grasses" : [ "toxicplains" ]
-      },
       {
         "mode" : "floor",
         "priority" : 1.0,
@@ -180,7 +168,7 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredLarge",
+        "distribution" : "/biomes/distributions.config:rareClumpySmall",
 
         "type" : "object",
         "objectSets" : [
@@ -220,7 +208,7 @@
         "mode" : "ceiling",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:scatteredLarge",
+        "distribution" : "/biomes/distributions.config:rareClumpySmall",
 
         "type" : "object",
         "objectSets" : [

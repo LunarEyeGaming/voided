@@ -1,31 +1,23 @@
 {
-  "type" : "v-bigbellyshark",
-  "shortdescription" : "Big-Belly Shark",
+  "type" : "v-spinilus",
+  "shortdescription" : "Spinilus",
   "description" : "",
 
-  "categories" : [ "v-bigbellyshark" ],
+  "categories" : [ "v-spinilus" ],
   "parts" : [ "body" ],
 
-  "animation" : "v-bigbellyshark.animation",
+  "animation" : "v-spinilus.animation",
 
   "baseParameters" : {
     "scripts" : [
-      "/monsters/generated/swimming/swimmingMonster.lua",
-      "/scripts/util.lua",
-      "/scripts/vec2.lua",
-      "/scripts/stateMachine.lua",
-      "/monsters/generated/swimming/wanderState.lua",
-      "/monsters/biomes/v-entropic/v-bigbellyshark/vRangedAttackState.lua",
-      "/monsters/biomes/v-entropic/v-bigbellyshark/vMeleeAttackState.lua",
-      "/monsters/generated/swimming/fleeState.lua",
-      "/monsters/generated/swimming/flopState.lua"
+      "/monsters/biomes/v-entropic/v-spinilus/v-spinilus.lua"
     ],
 
     "metaBoundBox" : [-2.0, -2.0, 2.0, 2.0],
     "scale" : 1.0,
 
     "movementSettings" : {
-      "collisionPoly" : [ [-3.5, -1.0], [-2, -3.0], [1, -3.0], [2.5, -1.0], [2.5, 1.0], [1, 3.0], [-2, 3.0], [-3.5, 1.0] ],
+      "collisionPoly" : [ [-2.5, -1.0], [2.5, -1.0], [2.5, 0.5], [-2.5, 0.5] ],
 
       "mass" : 1.5,
       "liquidBuoyancy" : 1.0,
@@ -49,59 +41,9 @@
     "moveRatioLimit" : 0.6,
     "directionChangeCooldown" : 1.0,
 
-    "targetSearchRadius" : 15,
-    "targetHoldRadius" : 50,
+    "targetSearchRadius" : 0,
+    "targetHoldRadius" : 0,
     "targetChangeCooldown" : 5.0,
-
-    "attackMinXDistance" : 0,
-    "attackMaxXDistance" : 6,
-    "attackMinYDistance" : 20,
-    "attackMaxYDistance" : 30,
-    "attackApproachTime" : 3.0,
-    "attackWindupTime" : 1.0,
-    "attackChargeTime" : 1.2,
-    "attackChargeSpeed" : 90,
-
-    "rangedMaxXDistance" : 30,
-    "rangedMinXDistance" : 20,
-    "rangedMaxYDistance" : 10,
-    "rangedMinYDistance" : 0,
-    "rangedApproachTime" : 3.0,
-    "rangedWindupTime" : 1.0,
-    "rangedAttackDelay" : 0.01,
-    "rangedProjectileType" : "v-proxyprojectile",
-    "rangedProjectileParameters" : {
-      "power" : 7,
-      "actionOnReap" : [
-        {
-          "action" : "loop",
-          "count" : 5,
-          "body" : [
-            {
-              "action" : "projectile",
-              "type" : "v-archerfishspit",
-              "inheritDamageFactor" : 1,
-              "angle" : 0,
-              "offsetRange" : [4, -4, 4, 4],
-              "fuzzAngle" : 15
-            },
-            {
-              "action" : "projectile",
-              "type" : "v-archerfishspit",
-              "inheritDamageFactor" : 1,
-              "angle" : 180,
-              "offsetRange" : [-4, -4, -4, 4],
-              "fuzzAngle" : 15
-            }
-          ]
-        }
-      ]
-    },
-    "rangedProjectileOffset" : [0, 0],
-    "rangedScalePower" : true,
-    "rangedCooldown" : 1.0,
-    "rangedShootSound" : "spit",
-    "rangedWinddownTime" : 0.5,
 
     "wanderTime" : [4.0, 8.0],
 
@@ -120,13 +62,13 @@
     "downSensors" : [ [-1.25, 0.75], [1.0, 0.75], [2.75, 0.75] ],
 
     "touchDamage" : {
-      "poly" : [ [-3.5, -2.0], [-2, -4.0], [1, -4.0], [2.5, -2.0], [2.5, 1.5], [1, 3.5], [-2, 3.5], [-3.5, 1.5] ],
-      "damage" : 15,
+      "poly" : [ [-2.5, -1.0], [2.5, -1.0], [2.5, 2.5], [-2.5, 2.5] ],
+      "damage" : 20,
 
       "teamType" : "enemy",
-      "damageSourceKind" : "slash",
+      "damageSourceKind" : "icespear",
       "knockback" : 20,
-      "statusEffects" : [ ]
+      "statusEffects" : [ { "effect" : "v-coldtouch", "duration" : 2.0 } ]
     },
 
     "statusSettings" : {

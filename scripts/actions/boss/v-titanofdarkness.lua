@@ -395,6 +395,7 @@ function v_titanSearch(args)
 
   local currentAngle = args.startAngle or -math.pi / 2
   while true do
+    sb.logInfo("Running loop")
     local searchZones = processRaycastClusters(radialRaycast(mcontroller.position(), rayCount, maxRaycastLength))
 
     -- debugSearchZones = searchZones

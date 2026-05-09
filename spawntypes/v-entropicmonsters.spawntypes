@@ -77,5 +77,24 @@
     "monsterParameters" : {
       "aggressive" : true
     }
+  },
+
+  {
+    "name" : "v-spinilus",
+
+    "spawnParameters" : {
+      "area" : "liquid",
+      "region" : "all",
+      "time" : "all"
+    },
+
+    "groupSize" : [1, 1],
+    "spawnChance" : 0.04,
+    "monsterType" : [
+      [1.0, "v-spinilus"]
+    ],
+    "monsterParameters" : {
+      "aggressive" : false
+    }
   }
 ]

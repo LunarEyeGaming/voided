@@ -94,6 +94,9 @@ function vRangedAttackState.update(dt, stateData)
       if soundName and animator.hasSound(soundName) then
         animator.playSound(soundName)
       end
+
+      stateData.stage = "winddown"
+      stateData.timer = config.getParameter("rangedWinddownTime")
     end
   end
 

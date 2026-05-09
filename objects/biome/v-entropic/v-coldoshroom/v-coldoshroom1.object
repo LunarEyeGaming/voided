@@ -18,7 +18,7 @@
   "printable" : false,
   "hasObjectItem" : false,
 
-  "minimumLiquidLevel" : 1.0,
+  // "minimumLiquidLevel" : 1.0,
 
   "lightColor" : [19, 138, 116],
 
@@ -44,9 +44,20 @@
     }
   ],
 
-  "smashable" : true,
+  "smashOnBreak" : true,
   "smashSounds" : [ "/sfx/objects/plant_break1.ogg", "/sfx/objects/plant_break2.ogg", "/sfx/objects/plant_break3.ogg", "/sfx/objects/plant_break4.ogg", "/sfx/objects/plant_break5.ogg", "/sfx/objects/plant_break6.ogg" ],
   "smashParticles" : [ { "count" : 8, "particle" : "redvineshard" } ],
 
-  "biomePlaced" : true
+  "biomePlaced" : true,
+
+  "scripts" : [ "/objects/scripts/v-softliquidimmersion.lua" ],
+  "scriptDelta" : 5,
+
+  "softImmersion" : {
+    "checkInterval" : 1,
+    "destroyDelay" : 5,
+    "destroyInterval" : 1,
+    "destroyChance" : 0.25,
+    "minimumLevel" : 1.0
+  }
 }

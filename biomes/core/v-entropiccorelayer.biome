@@ -4,18 +4,18 @@
 
   "spawnProfile" : {
     "groups" : [
-      {
-        "select" : 3,
-        "pool" : [
-          [ 1.0, "v-downspitter2underground" ],
-          [ 1.0, "v-fumeballoon" ],
-          [ 1.0, "v-mushroomspider" ]
-        ]
-      },
-      {
-        "select" : 1,
-        "pool" : "generatedGroundAggroDay"
-      }
+      // {
+      //   "select" : 3,
+      //   "pool" : [
+      //     [ 1.0, "v-downspitter2underground" ],
+      //     [ 1.0, "v-urchin" ],
+      //     [ 1.0, "v-bigbellyshark" ]
+      //   ]
+      // },
+      // {
+      //   "select" : 1,
+      //   "pool" : "generatedGroundAggroDay"
+      // }
     ],
     "monsterParameters" : {
       "colors" : "v-toxicwasteland",

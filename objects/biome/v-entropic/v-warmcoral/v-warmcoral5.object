@@ -33,7 +33,7 @@
     }
   ],
 
-  "scripts" : [ "/objects/scripts/v-statuseffectobject.lua" ],
+  "scripts" : [ "/objects/scripts/v-statuseffectobject.lua", "/objects/scripts/v-softliquidimmersion.lua" ],
   "scriptDelta" : 2,
 
   "health" : 5,
@@ -44,6 +44,15 @@
 
   "effectRadius" : 5,
   "effectType" : "v-warm",
+  "effectDuration" : 0.5,
+
+  "softImmersion" : {
+    "checkInterval" : 1,
+    "destroyDelay" : 5,
+    "destroyInterval" : 1,
+    "destroyChance" : 0.25,
+    "minimumLevel" : 1.0
+  },
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }
