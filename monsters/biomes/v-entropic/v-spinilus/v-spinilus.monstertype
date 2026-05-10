@@ -10,14 +10,17 @@
 
   "baseParameters" : {
     "scripts" : [
-      "/monsters/biomes/v-entropic/v-spinilus/v-spinilus.lua"
+      "/monsters/biomes/v-entropic/v-spinilus/v-spinilus.lua",
+      "/monsters/v-displayselfdamagepoly.lua"
     ],
 
     "metaBoundBox" : [-2.0, -2.0, 2.0, 2.0],
     "scale" : 1.0,
 
+    "selfDamagePoly" : [ [-2.5, -1.625], [2.5, -1.625], [2.5, 1.5], [-2.5, 1.5] ],
+
     "movementSettings" : {
-      "collisionPoly" : [ [-2.5, -1.0], [2.5, -1.0], [2.5, 0.5], [-2.5, 0.5] ],
+      "collisionPoly" : [ [-2.5, -1.625], [2.5, -1.625], [2.5, 0.5], [-2.5, 0.5] ],
 
       "mass" : 1.5,
       "liquidBuoyancy" : 1.0,
@@ -62,7 +65,7 @@
     "downSensors" : [ [-1.25, 0.75], [1.0, 0.75], [2.75, 0.75] ],
 
     "touchDamage" : {
-      "poly" : [ [-2.5, -1.0], [2.5, -1.0], [2.5, 2.5], [-2.5, 2.5] ],
+      "poly" : [ [-2.5, -1.0], [2.5, -1.0], [1.5, 1.5], [-1.5, 1.5] ],
       "damage" : 20,
 
       "teamType" : "enemy",
