@@ -207,6 +207,20 @@
             "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredSmall",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-coldshrub1" ], [1.0, "v-coldshrub2" ], [1.0, "v-coldshrub3" ], [1.0, "v-coldshrub4" ], [1.0, "v-coldshrub5" ] ],
+            "parameters" : { }
+          }
+        ]
       }
     ]
   },
@@ -296,6 +310,20 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-iceboulder" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredSmall",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-coldshrub1" ], [1.0, "v-coldshrub2" ], [1.0, "v-coldshrub3" ], [1.0, "v-coldshrub4" ], [1.0, "v-coldshrub5" ] ],
             "parameters" : { }
           }
         ]
