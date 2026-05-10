@@ -25,5 +25,5 @@ function update(dt)
 end
 
 function onExpire()
-  status.addEphemeralEffect("frostsnare")
+  -- status.addEphemeralEffect("frostsnare")
 end
