@@ -3,6 +3,7 @@ require "/scripts/util.lua"
 require "/scripts/rect.lua"
 require "/scripts/v-attack.lua"
 require "/scripts/v-world.lua"
+require "/scripts/v-vec2.lua"
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
@@ -440,25 +441,30 @@ end
 function approachAngle(center, currentAngle, targetAngle, rate)
   local dt = script.updateDt()
 
-  -- Get difference between the current angle and the target angle.
-  local diff = util.angleDiff(currentAngle, targetAngle)
+  -- -- Get difference between the current angle and the target angle.
+  -- local diff = util.angleDiff(currentAngle, targetAngle)
 
-  -- If this difference is not zero...
+  -- -- If this difference is not zero...
+  -- if diff ~= 0 then
+  --   -- Calculate new angle after one step based on the direction of the diff
+  --   local newAngle = currentAngle + util.toDirection(diff) * rate * dt
+
+  --   -- If the new angle overshoots the target angle...
+  --   if util.angleDiff(newAngle, targetAngle) * diff < 0 then
+  --     newAngle = targetAngle  -- Move it back to the target angle
+  --   end
+
+  --   -- world.debugText("direction: %s", util.toDirection(diff), mcontroller.position(), "green")
+  --   -- world.debugLine(center, vec2.add(center, vec2.withAngle(currentAngle, self.segmentSize)), "blue")
+  --   -- world.debugLine(center, vec2.add(center, vec2.withAngle(targetAngle, self.segmentSize)), "red")
+
+  --   -- Set position to have a new angle from `center` (segmentSize distance away)
+  --   mcontroller.setPosition(vec2.add(center, vec2.withAngle(newAngle, self.segmentSize)))
+  -- end
+  local angle, diff = vVec2.rotateTowardTargetAngle(currentAngle, targetAngle, rate, dt)
+
   if diff ~= 0 then
-    -- Calculate new angle after one step based on the direction of the diff
-    local newAngle = currentAngle + util.toDirection(diff) * rate * dt
-
-    -- If the new angle overshoots the target angle...
-    if util.angleDiff(newAngle, targetAngle) * diff < 0 then
-      newAngle = targetAngle  -- Move it back to the target angle
-    end
-
-    -- world.debugText("direction: %s", util.toDirection(diff), mcontroller.position(), "green")
-    -- world.debugLine(center, vec2.add(center, vec2.withAngle(currentAngle, self.segmentSize)), "blue")
-    -- world.debugLine(center, vec2.add(center, vec2.withAngle(targetAngle, self.segmentSize)), "red")
-
-    -- Set position to have a new angle from `center` (segmentSize distance away)
-    mcontroller.setPosition(vec2.add(center, vec2.withAngle(newAngle, self.segmentSize)))
+    mcontroller.setPosition(vec2.add(center, vec2.withAngle(angle, self.segmentSize)))
   end
 end
 

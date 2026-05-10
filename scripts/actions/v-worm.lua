@@ -2,6 +2,7 @@ require "/scripts/v-behavior.lua"
 require "/scripts/v-movement.lua"
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
+require "/scripts/v-vec2.lua"
 
 -- Returns Cartesian coordinates for a point in the figure 8 given a period and time.
 -- Errors if time > period or time < 0
@@ -76,16 +77,17 @@ function v_approachTurnWorm(args, output, _, dt)
       local velocity = mcontroller.velocity()
 
       local toTarget = world.distance(targetPosition, mcontroller.position())
-      local angle = mcontroller.rotation()
+      -- local angle = mcontroller.rotation()
 
-      local targetAngle = vec2.angle(toTarget)
-      local diff = util.angleDiff(angle, targetAngle)
-      if diff ~= 0 then
-        angle = angle + (util.toDirection(diff) * args.turnSpeed) * dt
-        if util.angleDiff(angle, targetAngle) * diff < 0 then
-          angle = targetAngle
-        end
-      end
+      -- local targetAngle = vec2.angle(toTarget)
+      -- local diff = util.angleDiff(angle, targetAngle)
+      -- if diff ~= 0 then
+      --   angle = angle + (util.toDirection(diff) * args.turnSpeed) * dt
+      --   if util.angleDiff(angle, targetAngle) * diff < 0 then
+      --     angle = targetAngle
+      --   end
+      -- end
+      local angle, diff = vVec2.rotateTowardTargetAngle(mcontroller.rotation(), vec2.angle(toTarget), args.turnSpeed, dt)
 
       -- Move in the current direction instead of trying to turn if current velocity is too low.
       if vec2.mag(velocity) < MIN_SPEED then

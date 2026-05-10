@@ -1,5 +1,6 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
+require "/scripts/v-vec2.lua"
 require "/scripts/poly.lua"
 require "/scripts/actions/crawling.lua"
 require "/scripts/actions/projectiles.lua"
@@ -381,18 +382,9 @@ function v_turnTowardTarget(args, _, _, dt)
   local targetPosition = world.entityPosition(args.entity)
   while true do
     local toTarget = world.distance(targetPosition, mcontroller.position())
-    local angle = args.angle
+    local angle = vVec2.rotateTowardTargetAngle(args.angle, vec2.angle(toTarget), args.turnSpeed, dt)
 
-    local targetAngle = vec2.angle(toTarget)
-    local diff = util.angleDiff(angle, targetAngle)
-    if diff ~= 0 then
-      angle = angle + (util.toDirection(diff) * args.turnSpeed) * dt
-      if util.angleDiff(angle, targetAngle) * diff < 0 then
-        angle = targetAngle
-      end
-    end
-
-    coroutine.yield(nil, {angle = angle, direction = diff})
+    coroutine.yield(nil, {angle = angle})
 
     targetPosition = world.entityPosition(args.entity)
   end

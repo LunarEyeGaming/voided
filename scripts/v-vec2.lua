@@ -67,3 +67,39 @@ end
 function vVec2.randomAngle(angle, fuzzAngle)
   return angle + math.random() * 2 * fuzzAngle - fuzzAngle
 end
+
+---Rotates an angle toward a target angle.
+---
+---Based on code from the turnApproach function.
+---@param input number
+---@param target number
+---@param rate number
+---@param dt number
+---@return number
+---@return number
+function vVec2.rotateTowardTargetAngle(input, target, rate, dt)
+  local angle = input
+
+  local targetAngle = target
+  local diff = util.angleDiff(angle, targetAngle)
+  if diff ~= 0 then
+    angle = angle + (util.toDirection(diff) * rate) * dt
+    if util.angleDiff(angle, targetAngle) * diff < 0 then
+      angle = targetAngle
+    end
+  end
+
+  return angle, diff
+end
+
+---Rotates a vector towards a target vector.
+---@param input Vec2F
+---@param target Vec2F
+---@param rate number
+---@param dt number
+---@return Vec2F
+---@return number
+function vVec2.rotateTowardTarget(input, target, rate, dt)
+  local angle, diff = vVec2.rotateTowardTargetAngle(vec2.angle(input), vec2.angle(target), rate, dt)
+  return vec2.withAngle(angle), diff
+end
