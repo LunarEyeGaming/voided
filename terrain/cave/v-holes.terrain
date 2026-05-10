@@ -1,0 +1,55 @@
+{
+  "name" : "v-holes",
+
+  "type" : "displacement",
+  "xType" : "perlin",
+  "xOctaves" : 2,
+  "xFreq" : 0.2,
+  "xAmp" : 1,
+  "xXInfluence" : 0,
+  "yType" : "perlin",
+  "yOctaves" : 2,
+  "yFreq" : 0.2,
+  "yAmp" : 1,
+  "yYInfluence" : 0,
+
+  "source" : {
+    "type" : "minmax",
+
+    "sources" : [
+      {
+        "type" : "perlin",
+        "seedBias" : 1,
+        "function" : "perlin",
+        "octaves" : 1,
+        "freq" : 0.12,
+        "amp" : 15,
+        "bias" : -4.0,
+        "xInfluence" : 0.66,
+        "yInfluence" : 1.0
+      },
+      {
+        "type" : "perlin",
+        "seedBias" : 2,
+        "function" : "perlin",
+        "octaves" : 1,
+        "freq" : 0.24,
+        "amp" : 15,
+        "bias" : -4.0,
+        "xInfluence" : 0.66,
+        "yInfluence" : 1.0
+      },
+      {
+        "type" : "perlin",
+        "seedBias" : 3,
+        "function" : "perlin",
+        "octaves" : 1,
+        "freq" : 0.36,
+        "amp" : 15,
+        "bias" : -4.0,
+        "xInfluence" : 0.66,
+        "yInfluence" : 1.0
+      }
+    ]
+  }
+}
