@@ -43,13 +43,19 @@
             "frames" : 1,
             "cycle" : 0.75,
             "mode" : "transition",
-            "transition" : "meleesnap"
+            "transition" : "meleesnap",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/oogler_charge.ogg"
+            }
           },
           "meleesnap" : {
             "frames" : 1,
             "cycle" : 0.4,
             "mode" : "transition",
-            "transition" : "idle"
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/monster_bite2.ogg"
+            }
           },
           "shootwindup" : {
             "frames" : 1
