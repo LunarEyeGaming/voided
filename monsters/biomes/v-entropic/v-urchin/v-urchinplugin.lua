@@ -11,6 +11,7 @@ local tetherPreferredMaxLength
 local tetherAdjustSpringForce
 
 local tetherPosition
+local testPosition
 
 local driftPeriod
 local driftAmplitude
@@ -52,9 +53,16 @@ function initTether()
     script.setUpdateDelta(0)
     return
   end
+
+  testPosition = vec2.add(tetherPosition, {0, -1})
 end
 
 function updateTether(dt)
+  if not world.pointCollision(testPosition) then
+    monster.setDropPool(nil)
+    status.setResourcePercentage("health", 0.0)
+    self.deathBehavior = nil
+  end
   local tetherStart = vec2.add(mcontroller.position(), tetherOffset)
   local tetherDistance = world.distance(tetherPosition, tetherStart)
   local tetherLength = vec2.mag(tetherDistance)
