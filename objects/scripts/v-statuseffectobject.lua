@@ -1,5 +1,6 @@
 local effectRadius
 local effectType
+local effectDuration
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
@@ -9,6 +10,7 @@ function init()
 
   effectRadius = config.getParameter("effectRadius")
   effectType = config.getParameter("effectType")
+  effectDuration = config.getParameter("effectDuration")
 end
 
 function update(dt)
@@ -17,6 +19,6 @@ function update(dt)
   local queried = world.entityQuery(object.position(), effectRadius, {includedTypes = {"player"}})
 
   for _, playerId in ipairs(queried) do
-    world.sendEntityMessage(playerId, "applyStatusEffect", effectType)
+    world.sendEntityMessage(playerId, "applyStatusEffect", effectType, effectDuration)
   end
 end
