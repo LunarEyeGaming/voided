@@ -193,14 +193,16 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1.0,
+        "priority" : 2.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [0.20, "v-coldoshroom1" ], [0.20, "v-coldoshroom2" ], [0.20, "v-coldoshroom3" ], [0.20, "v-coldoshroom4" ], [0.20, "v-coldoshroom5" ]]
+            "pool" : [ [0.20, "v-coldgrass1" ], [0.20, "v-coldgrass2" ], [0.20, "v-coldgrass3" ],
+            [0.20, "v-coldgrass4" ], [0.20, "v-coldgrass5" ], [0.20, "v-coldgrass6" ], [0.20, "v-coldgrass7" ],
+            [0.20, "v-coldgrass8" ]]
           }
         ]
       },
