@@ -343,6 +343,32 @@
             }
           }
         ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:hazardUndergroundMid",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ]
+          }
+        ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:hazardUndergroundMid",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ]
+          }
+        ]
       }
     ]
   }
