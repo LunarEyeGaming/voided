@@ -10,7 +10,7 @@
             "frames" : 1
           },
           "flopping" : {
-            "frames" : 2,
+            "frames" : 1,
             "cycle" : 0.25,
             "mode" : "loop"
           },
@@ -20,6 +20,16 @@
             "mode" : "loop"
           },
           "swimSlow" : {
+            "frames" : 1,
+            "cycle" : 0.9,
+            "mode" : "loop"
+          },
+          "boostwindup" : {
+            "frames" : 1,
+            "cycle" : 0.6,
+            "mode" : "loop"
+          },
+          "boost" : {
             "frames" : 1,
             "cycle" : 0.9,
             "mode" : "loop"
@@ -93,14 +103,19 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
-            "swimFast" : {
+            "boostwindup" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:boostwindup.<frame>"
               }
             },
             "swimSlow" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:boost.<frame>"
+              }
+            },
+            "swimFast" : {
+              "properties" : {
+                "image" : "<partImage>:boost.<frame>"
               }
             },
             "flopping" : {
@@ -155,14 +170,19 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
-            "swimFast" : {
+            "boostwindup" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:boostwindup.<frame>"
               }
             },
             "swimSlow" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:boost.<frame>"
+              }
+            },
+            "swimFast" : {
+              "properties" : {
+                "image" : "<partImage>:boost.<frame>"
               }
             },
             "flopping" : {

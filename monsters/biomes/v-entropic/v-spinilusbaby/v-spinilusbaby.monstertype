@@ -15,11 +15,11 @@
       "/scripts/util.lua",
       "/scripts/vec2.lua",
       "/scripts/stateMachine.lua",
-      "/monsters/generated/swimming/wanderState.lua",
+      "/monsters/biomes/v-entropic/v-spinilusbaby/vWanderState.lua",
       "/monsters/biomes/v-entropic/v-spinilusbaby/vMeleeAttackState.lua",
       "/monsters/biomes/v-entropic/v-spinilusbaby/vPursueState.lua",
       "/monsters/generated/swimming/fleeState.lua",
-      "/monsters/generated/swimming/flopState.lua"
+      "/monsters/biomes/v-entropic/v-spinilusbaby/vFlopState.lua"
     ],
 
     "metaBoundBox" : [-2.0, -2.0, 2.0, 2.0],
@@ -53,6 +53,11 @@
     "targetSearchRadius" : 40,
     "targetHoldRadius" : 80,
     "targetChangeCooldown" : 5.0,
+
+    "wanderBoostDelay" : 1.5,
+    "wanderBoostDuration" : 0.4,
+    "wanderBoostSpeed" : 15,
+    "wanderWaitTime" : 5.0,
 
     "pursueBoostDelay" : 1.0,
     "pursueBoostDuration" : 0.4,

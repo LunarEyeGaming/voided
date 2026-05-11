@@ -7,8 +7,6 @@ function vPursueState.enter()
     return nil
   end
 
-  sb.logInfo("Entering pursue state")
-
   return { timer = config.getParameter("pursueTime") }
 end
 
@@ -36,7 +34,4 @@ function vPursueState.update(dt, stateData)
 end
 
 function vPursueState.leavingState(stateData)
-end
-
-function vPursueState.turnTowardTarget()
 end

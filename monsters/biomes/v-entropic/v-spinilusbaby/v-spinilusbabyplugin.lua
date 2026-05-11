@@ -5,9 +5,12 @@ require "/scripts/util.lua"
 -- how tf do you do custom pathfinding???
 --
 
-function turnAndBoost(direction, boostDelay, boostDuration, boostSpeed)
+function turnAndBoost(direction, boostDelay, boostDuration, boostSpeed, waitTime)
   return function()
+    mcontroller.controlFace(direction[1])
     setBodyDirection(direction)
+
+    animator.setAnimationState("movement", "boostwindup")
 
     util.wait(boostDelay)
 
@@ -17,5 +20,9 @@ function turnAndBoost(direction, boostDelay, boostDuration, boostSpeed)
         end
         move(direction, true, true)
     end)
+
+    animator.setAnimationState("movement", "idle")
+
+    util.wait(waitTime or 0)
   end
 end
