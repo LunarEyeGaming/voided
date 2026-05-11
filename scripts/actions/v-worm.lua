@@ -57,7 +57,7 @@ function v_approachTurnWorm(args, output, _, dt)
   local timer = 0
   local lastSineAngle = 0
 
-  local digMode = args.digMode or "all"
+  local digMode = args.digMode or config.getParameter("digMode") or "all"
   local check
   if digMode == "ground" then
     check = function()
