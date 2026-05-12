@@ -1,8 +1,37 @@
 {
   "layers" : [
     {
+      "kind" : "v-entropicocean/front",
+      "parallax" : 3,
+      "repeatY" : true,
+      "lightMapped" : true,
+      "noRandomOffset" : true,
+      "directives" : "fade=023975=0.3"
+    },
+    {
+      "kind" : "v-entropicocean/frontunlit",
+      "parallax" : 3,
+      "repeatY" : true,
+      "unlit" : true,
+      "noRandomOffset" : true
+    },
+    {
+      "kind" : "v-entropicocean/middle",
+      "parallax" : 6,
+      "repeatY" : true,
+      "lightMapped" : true,
+      "directives" : "fade=023975=0.6"
+    },
+    {
+      "kind" : "v-deepentropicocean/back",
+      "parallax" : 8,
+      "repeatY" : true,
+      "lightMapped" : true,
+      "directives" : "fade=023975=0.9"
+    },
+    {
       "kind" : "tile/ocean",
-      "parallax" : [8, 1],
+      "parallax" : 12,
       "repeatY" : true,
       "nohueshift" : true,
       "lightMapped" : true
