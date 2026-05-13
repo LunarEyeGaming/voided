@@ -42,6 +42,8 @@
     "scripts" : ["/items/active/weapons/unique/v-liquidgun/v-liquidgunability.lua"],
     "class" : "LiquidGunAbility",
 
+    "liquidDamageKinds" : "/items/active/weapons/unique/v-liquidgun/v-liquidgundamagekinds.config",
+
     "fireTime" : 0.065,
     "baseDps" : 8.5,
     "inaccuracy" : 0.008,

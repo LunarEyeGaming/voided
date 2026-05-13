@@ -7,6 +7,7 @@ LiquidGunAbility = GunFire:new()
 function LiquidGunAbility:init()
   GunFire.init(self)
 
+  self.liquidDamageKinds = root.assetJson(self.liquidDamageKinds)
   self.currentLiquid = self:getLiquid()
   self.active = false
 end
@@ -83,6 +84,7 @@ function LiquidGunAbility:fireProjectile(projectileType, projectileParams, inacc
     placeOnDestroy = true
   }
 
+  params.damageKind = self.liquidDamageKinds[liquidName] or "default"
 
   local liquidAttributes = self:getLiquidAttributes(liquidName)
 
