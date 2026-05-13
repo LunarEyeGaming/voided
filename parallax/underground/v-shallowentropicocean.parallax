@@ -1,10 +1,84 @@
 {
   "layers" : [
     {
-      "kind" : "tile/ocean",
-      "parallax" : [8, 1],
+      "kind" : "divider/ice",
+      "offset" : [0, 325],
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.199
+    },
+    {
+      "kind" : "divider/ice",
+      "offset" : [0, 325],
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.499
+    },
+    {
+      "kind" : "divider/ice",
+      "offset" : [0, 325],
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.799
+    },
+    {
+      "kind" : "v-shallowundergroundentropic/front",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.2,
+      "tileLimitBottom" : 225,
+      "repeatY" : true
+    },
+    {
+      "kind" : "v-shallowundergroundentropic/middle",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.5,
+      "tileLimitBottom" : 225,
+      "repeatY" : true
+    },
+    {
+      "kind" : "v-shallowundergroundentropic/back",
+      "nohueshift" : false,
+      "lightMapped" : true,
+      "parallax" : 1.8,
+      "tileLimitBottom" : 225,
+      "repeatY" : true
+    },
+    {
+      "kind" : "v-entropicocean/front",
+      "parallax" : 3,
       "repeatY" : true,
-      "nohueshift" : true,
+      "lightMapped" : true,
+      "noRandomOffset" : true,
+      "directives" : "fade=023975=0.3"
+    },
+    {
+      "kind" : "v-entropicocean/frontunlit",
+      "parallax" : 3,
+      "repeatY" : true,
+      "unlit" : true,
+      "noRandomOffset" : true
+    },
+    {
+      "kind" : "v-entropicocean/middle",
+      "parallax" : 6,
+      "repeatY" : true,
+      "lightMapped" : true,
+      "directives" : "fade=023975=0.6"
+    },
+    {
+      "kind" : "v-deepentropicocean/back",
+      "parallax" : 8,
+      "repeatY" : true,
+      "lightMapped" : true,
+      "directives" : "fade=023975=0.9"
+    },
+    {
+      "kind" : "tile/ocean",
+      "parallax" : 12,
+      "repeatY" : true,
+      "nohueshift" : false,
       "lightMapped" : true
     }
   ]
