@@ -1,0 +1,15 @@
+{
+  "projectileName" : "v-liquiddrop",
+  "image" : "liquiddrop.png",
+  "physics" : "grenade",
+  "movementSettings" : {
+    "bounceFactor" : 0.0
+  },
+  "animationCycle" : 0.25,
+  "frameNumber" : 1,
+  "damageKindImage" : "icon.png",
+  "pointLight" : false,
+  "power" : 2.0,
+
+  "scripts" : [ "/scripts/projectiles/v-liquidplacer.lua" ]
+}

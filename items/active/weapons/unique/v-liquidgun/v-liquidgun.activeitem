@@ -1,0 +1,118 @@
+{
+  "itemName" : "v-liquidgun",
+  "level" : 8,
+  "price" : 1050,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "A gun that fires blobs of acidic sludge.",
+  "shortdescription" : "liquidgun",
+  "extraInfo" : "Blobs stick to surfaces and merge with each other.",
+  "tooltipKind" : "v-biggun",
+  "category" : "assaultRifle",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged","assaultRifle"],
+
+  "inventoryIcon" : [
+    { "image" : "liquidgun.png:idle.1" }
+  ],
+
+  "animation" : "v-liquidgun.animation",
+  "animationParts" : {
+    "gun" : "liquidgun.png",
+    "muzzleFlash" : ""
+  },
+  "animationCustom" : {
+    "sounds" : {
+      // "fire" : [ "/sfx/gun/v_sludgelauncher_fire1.ogg", "/sfx/gun/v_sludgelauncher_fire2.ogg" ]
+      "fireStart" : [ "/sfx/gun/v_liquidgun_fire.ogg" ],
+      "fireLoop" : [ "/sfx/gun/v_liquidgun_fireloop.ogg" ],
+      "fireEnd" : [ "/sfx/gun/flamethrower_stop.ogg" ]
+    }
+  },
+  "baseOffset" : [0.75, -0.375],
+  "muzzleOffset" : [1.0, 0.75],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+
+  "elementalType" : "physical",
+
+  "primaryAbility" : {
+    "scripts" : ["/items/active/weapons/unique/v-liquidgun/v-liquidgunability.lua"],
+    "class" : "LiquidGunAbility",
+
+    "fireTime" : 0.065,
+    "baseDps" : 8.5,
+    "inaccuracy" : 0.008,
+    "energyUsage" : 60,
+    "fireType" : "auto",
+
+    "projectileType" : "v-liquiddrop",
+    "projectileParameters" : {
+      "knockback" : 0
+    },
+    "projectileCount" : 1,
+    "projectileParticleInterval" : 0.03,
+    "projectileParticle" : {
+      "type" : "textured",
+      "image" : "/projectiles/guns/unsorted/v-liquiddrop/liquiddrop.png",
+      "timeToLive" : 0.05,
+      "destructionAction" : "shrink",
+      "destructionTime" : 0.2,
+      "variance" : {
+        "position" : [0.1, 0.1]
+      }
+    },
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true,
+        "animationStates" : {
+          "gun" : "idle"
+        },
+        "frontArmFrame" : "swimIdle.1"
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "animationStates" : {
+          "gun" : "fire"
+        },
+        "frontArmFrame" : "swimIdle.1"
+      },
+      "cooldown" : {
+        "duration" : 0.05,
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+        "frontArmFrame" : "swimIdle.1"
+      }
+    }
+  },
+
+  "altAbility" : {
+    "scripts" : ["/items/active/weapons/unique/v-liquidgun/v-liquidgunaltability.lua"],
+    "class" : "LiquidGunAltAbility",
+
+    "collectInterval" : 0.1,
+    "maxCollectRange" : 25,
+    "collectRadius" : 1,
+
+    "collectThreshold" : 0.95
+  },
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}
