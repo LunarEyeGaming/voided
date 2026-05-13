@@ -4,6 +4,8 @@ local state
 local timer
 
 function init()
+  animator.setParticleEmitterOffsetRegion("freeze", mcontroller.boundBox())
+  animator.setParticleEmitterOffsetRegion("shatter", mcontroller.boundBox())
   freezeDelay = 0
   shatterDelay = 2.0
 
@@ -19,7 +21,15 @@ function update(dt)
       animator.setAnimationRate(0)
       animator.playSound("freeze")
       animator.burstParticleEmitter("freeze")
-      animator.setAnimationState("freezeState", "visible")
+      if world.entityType(entity.id()) == "player" then
+        animator.setAnimationState("freezeState", "visible")
+      else
+        effect.setParentDirectives("?saturation=-50?border=1;999999?multiply=87dece")
+      end
+
+      if status.isResource("stunned") then
+        status.setResource("stunned", shatterDelay)
+      end
 
       state = "thawing"
       timer = shatterDelay
@@ -28,7 +38,11 @@ function update(dt)
     if timer <= 0 then
       animator.playSound("shatter")
       animator.burstParticleEmitter("shatter")
-      animator.setAnimationState("freezeState", "invisible")
+      if world.entityType(entity.id()) == "player" then
+        animator.setAnimationState("freezeState", "invisible")
+      else
+        effect.setParentDirectives("")
+      end
 
       state = nil
     end
