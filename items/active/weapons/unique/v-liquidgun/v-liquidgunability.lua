@@ -7,11 +7,6 @@ LiquidGunAbility = GunFire:new()
 function LiquidGunAbility:init()
   GunFire.init(self)
 
-  if not world.isTileProtected(mcontroller.position()) then
-    self.energyUsage = 0
-  else
-    self.inProtectedArea = true
-  end
   self.currentLiquid = self:getLiquid()
   self.active = false
 end
@@ -19,8 +14,9 @@ end
 function LiquidGunAbility:update(dt, fireMode, shiftHeld)
   WeaponAbility.update(self, dt, fireMode, shiftHeld)
 
+  self.inProtectedArea = world.isTileProtected(mcontroller.position())
   self.currentLiquid = self:getLiquid()
-
+  activeItem.setScriptedAnimationParameter("currentLiquid", self.currentLiquid)
 
   if self.currentLiquid then
     if not self.prevLiquid or self.currentLiquid.name ~= self.prevLiquid.name then

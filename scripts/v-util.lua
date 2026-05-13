@@ -54,7 +54,14 @@ function vUtil.strStartsWith(str, start)
   return str:sub(1, #start) == start
 end
 
+-- Requires: None
+function vUtil.strEndsWith(str, end_)
+  return str:sub(#str - #end_ + 1, #str) == end_
+end
+
 --[[
+  Requires: None
+
   Takes in a ratio (a value between 0 and 1) and maps it to the following piecewise function: f(x) = {
     2(1 - x) if x < 0.5
     2x if x >= 0.5
@@ -71,6 +78,8 @@ function vUtil.pingPong(ratio)
 end
 
 --[[
+  Requires: None
+
   Obfuscates some pre-selected characters in a string `str` using list `obfuscatedChars`, where each entry in the table
   is true if the corresponding character should be replaced with the `obfuscationCharacter`. Otherwise, it is left
   alone. Whitespace characters are not affected
@@ -101,6 +110,8 @@ function vUtil.obfuscateString(str, obfuscatedChars, obfuscationCharacter)
 end
 
 --[[
+  Requires: None
+
   Obfuscates between `min_` and `max_` non-whitespace characters in `str` by replacing them with `obfuscationCharacter`
   and returns the result.
 
@@ -147,6 +158,8 @@ function vUtil.obfuscateStringMinMax(str, min_, max_, obfuscationCharacter)
   return newString
 end
 
+---Requires: None
+---
 ---Returns whether or not two arguments a and b are equal, even if they are tables. Recursive tables are not supported
 ---and can result in infinite recursion.
 ---@param a any
