@@ -35,6 +35,8 @@ do
   ---Returns the linear interpolation between two RGBA colors with a given ratio. The resulting channels are in
   ---integer form and are capped between 0 and 255.
   ---
+  ---__Note: This function DOES NOT work with RGB colors. Use vAnimator.lerpColorRGB instead.__
+  ---
   ---Requires: None
   ---@param ratio number The amount of progress in the interpolation
   ---@param colorA ColorTable Starting color
