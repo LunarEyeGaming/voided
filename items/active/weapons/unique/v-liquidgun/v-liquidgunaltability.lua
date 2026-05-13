@@ -84,20 +84,23 @@ end
 function LiquidGunAltAbility:partitionLiquids(tiles)
   local partition = {}
   for _, tile in ipairs(tiles) do
-    local liquidLevel = world.liquidAt(tile)
+    -- Skip over positions that have tile protection (to prevent infinitely collecting liquids).
+    if not world.isTileProtected(tile) then
+      local liquidLevel = world.liquidAt(tile)
 
-    -- Skip over positions that don't have any liquid.
-    if liquidLevel then
-      -- Get config.
-      local liquidConfig = root.liquidConfig(liquidLevel[1])
-      -- Skip if there is no valid config or the liquid doesn't drop anything when collected.
-      if liquidConfig and liquidConfig.config.itemDrop then
-        local itemName = liquidConfig.config.itemDrop
-        -- Add to partition.
-        if not partition[itemName] then
-          partition[itemName] = {}
+      -- Skip over positions that don't have any liquid.
+      if liquidLevel then
+        -- Get config.
+        local liquidConfig = root.liquidConfig(liquidLevel[1])
+        -- Skip if there is no valid config or the liquid doesn't drop anything when collected.
+        if liquidConfig and liquidConfig.config.itemDrop then
+          local itemName = liquidConfig.config.itemDrop
+          -- Add to partition.
+          if not partition[itemName] then
+            partition[itemName] = {}
+          end
+          table.insert(partition[itemName], {position = tile, quantity = liquidLevel[2]})
         end
-        table.insert(partition[itemName], {position = tile, quantity = liquidLevel[2]})
       end
     end
   end
