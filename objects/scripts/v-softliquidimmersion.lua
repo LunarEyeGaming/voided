@@ -77,9 +77,26 @@ function calculateBoundBox(spaces)
 end
 
 function checkImmersion()
-  local avgLiquid = world.liquidAt(objectBounds)
+  -- Total amount of the object's space occupied by liquids; total amount of the object's space occupied by the object
+  -- itself.
+  local liquidArea = 0
+  local objectArea = 0
+  local spaces = object.spaces()
+  local ownPos = object.position()
+  for _, space in ipairs(spaces) do
+    local pos = vec2.add(ownPos, space)
 
-  if avgLiquid and avgLiquid[2] >= minimumImmersionLevel then
+    local liquidLevel = world.liquidAt(pos)
+    if liquidLevel then
+      liquidArea = liquidArea + liquidLevel[2]
+    end
+    objectArea = objectArea + 1
+  end
+
+  -- Average liquid
+  local liquidImmersion = liquidArea / objectArea
+
+  if liquidImmersion >= minimumImmersionLevel then
     destroyTimer = destroyDelay  -- Refresh timer
   end
 end
