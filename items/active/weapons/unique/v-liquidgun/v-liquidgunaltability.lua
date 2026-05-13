@@ -37,7 +37,7 @@ function LiquidGunAltAbility:collectingState()
 end
 
 function LiquidGunAltAbility:collectLiquid(position, radius)
-  if world.lineCollision(mcontroller.position(), position) then return end
+  -- if world.lineCollision(mcontroller.position(), position) then return end
 
   if world.magnitude(mcontroller.position(), position) > self.maxCollectRange then return end
 

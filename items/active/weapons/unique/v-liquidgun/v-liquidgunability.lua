@@ -21,6 +21,20 @@ function LiquidGunAbility:update(dt, fireMode, shiftHeld)
 
   self.currentLiquid = self:getLiquid()
 
+
+  if self.currentLiquid then
+    if not self.prevLiquid or self.currentLiquid.name ~= self.prevLiquid.name then
+      local liquidName = self:getLiquidName(self.currentLiquid)
+      local liquidAttributes = self:getLiquidAttributes(liquidName)
+
+      animator.setGlobalTag("liquidColor", vAnimator.colorToString(liquidAttributes.color))
+      animator.setLightColor("glow", liquidAttributes.glowColor or {0, 0, 0})
+    end
+  else
+    animator.setGlobalTag("liquidColor", "00000000")
+    animator.setLightColor("glow", {0, 0, 0})
+  end
+
   self.cooldownTimer = math.max(0, self.cooldownTimer - self.dt)
 
   if animator.animationState("firing") ~= "fire" then
@@ -44,6 +58,8 @@ function LiquidGunAbility:update(dt, fireMode, shiftHeld)
   elseif self.active then
     self:deactivate()
   end
+
+  self.prevLiquid = self.currentLiquid
 end
 
 function LiquidGunAbility:fireProjectile(projectileType, projectileParams, inaccuracy, firePosition, projectileCount)
@@ -60,22 +76,19 @@ function LiquidGunAbility:fireProjectile(projectileType, projectileParams, inacc
     params.periodicActions = {}
   end
 
-  local itemConfig = root.itemConfig(self.currentLiquid)
-  if not itemConfig.config.liquid then
-    error("Item config for " .. self.currentLiquid .. " does not contain 'liquid'")
-  end
+  local liquidName = self:getLiquidName(self.currentLiquid)
   -- table.insert(params.actionOnReap, {
   --   action = "liquid",
   --   quantity = self.projectileLiquidQuantity,
-  --   liquid = itemConfig.config.liquid
+  --   liquid = liquidName
   -- })
   params.liquidPlacer = {
-    name = itemConfig.config.liquid,
+    name = liquidName,
     placeOnDestroy = true
   }
 
 
-  local liquidAttributes = self:getLiquidAttributes(itemConfig.config.liquid)
+  local liquidAttributes = self:getLiquidAttributes(liquidName)
 
   if type(self.projectileParticle) ~= "table" then
     error("projectileParticle is not an object (must define the particle in the activeitem file directly)")
@@ -140,6 +153,7 @@ function LiquidGunAbility:consumeLiquid()
     return (self.energyUsage <= 0 or not status.resourceLocked("energy"))
     and status.overConsumeResource("energy", self:energyPerShot())
   end
+
   local liquid = self:getLiquid()
 
   if liquid then
@@ -148,6 +162,15 @@ function LiquidGunAbility:consumeLiquid()
   end
 
   return liquid
+end
+
+function LiquidGunAbility:getLiquidName(descriptor)
+  local itemConfig = root.itemConfig(descriptor)
+  if not itemConfig.config.liquid then
+    error("Item config for " .. descriptor .. " does not contain 'liquid'")
+  end
+
+  return itemConfig.config.liquid
 end
 
 ---Returns a liquid from the player's inventory.

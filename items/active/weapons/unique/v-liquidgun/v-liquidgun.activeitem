@@ -5,10 +5,9 @@
   "maxStack" : 1,
   "rarity" : "Legendary",
   "customRarity" : "Mythical",
-  "description" : "A gun that fires blobs of acidic sludge.",
-  "shortdescription" : "liquidgun",
-  "extraInfo" : "Blobs stick to surfaces and merge with each other.",
-  "tooltipKind" : "v-biggun",
+  "description" : "A gun that uses liquid as ammo.",
+  "shortdescription" : "Liquid Shooter",
+  "tooltipKind" : "base",
   "category" : "assaultRifle",
   "twoHanded" : true,
   "itemTags" : ["weapon","ranged","assaultRifle"],
@@ -20,6 +19,7 @@
   "animation" : "v-liquidgun.animation",
   "animationParts" : {
     "gun" : "liquidgun.png",
+    "liquid" : "liquidgunliquid.png",
     "muzzleFlash" : ""
   },
   "animationCustom" : {
@@ -106,6 +106,7 @@
   "altAbility" : {
     "scripts" : ["/items/active/weapons/unique/v-liquidgun/v-liquidgunaltability.lua"],
     "class" : "LiquidGunAltAbility",
+    "name" : "Collect Liquid",
 
     "collectInterval" : 0.1,
     "maxCollectRange" : 25,

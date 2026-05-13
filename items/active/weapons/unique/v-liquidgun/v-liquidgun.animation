@@ -1,6 +1,7 @@
 {
   "globalTagDefaults" : {
-    "paletteSwaps" : ""
+    "paletteSwaps" : "",
+    "liquidColor" : "00000000"
   },
 
   "animatedParts" : {
@@ -57,151 +58,32 @@
           }
         }
       },
-      /* "gunfullbright" : {
+      "liquid" : {
         "properties" : {
           "centered" : true,
           "anchorPart" : "gun",
-          "zLevel" : 1,
-          "fullbright" : true
+          "zLevel" : 1
         },
         "partStates" : {
           "gun" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame><paletteSwaps>"
+                "image" : "<partImage>:idle.<frame><paletteSwaps>?multiply=<liquidColor>"
               }
             },
             "fire" : {
               "properties" : {
-                "image" : "<partImage>:fire.<frame><paletteSwaps>"
+                "image" : "<partImage>:fire.<frame><paletteSwaps>?multiply=<liquidColor>"
               }
             },
             "fire2" : {
               "properties" : {
-                "image" : "<partImage>:fire2.<frame><paletteSwaps>"
+                "image" : "<partImage>:fire2.<frame><paletteSwaps>?multiply=<liquidColor>"
               }
             }
           }
         }
       },
-      "lamp" : {
-        "properties" : {
-          "centered" : true,
-          "offset" : [-0.0625, 0.625],
-          "anchorPart" : "gun",
-          "zLevel" : 2
-        },
-        "partStates" : {
-          "lamp" : {
-            "idle" : {
-              "properties" : {
-                "image" : "<partImage>:idle.<frame><paletteSwaps>"
-              }
-            },
-            "idle2" : {
-              "properties" : {
-                "image" : "<partImage>:idle2.<frame><paletteSwaps>"
-              }
-            },
-            "switch" : {
-              "properties" : {
-                "image" : "<partImage>:switch.<frame><paletteSwaps>"
-              }
-            },
-            "switch2" : {
-              "properties" : {
-                "image" : "<partImage>:switch2.<frame><paletteSwaps>"
-              }
-            }
-          }
-        }
-      },
-      "lampfullbright" : {
-        "properties" : {
-          "centered" : true,
-          "anchorPart" : "lamp",
-          "zLevel" : 3,
-          "fullbright" : true
-        },
-        "partStates" : {
-          "lamp" : {
-            "idle" : {
-              "properties" : {
-                "image" : "<partImage>:idle.<frame><paletteSwaps>"
-              }
-            },
-            "idle2" : {
-              "properties" : {
-                "image" : "<partImage>:idle2.<frame><paletteSwaps>"
-              }
-            },
-            "switch" : {
-              "properties" : {
-                "image" : "<partImage>:switch.<frame><paletteSwaps>"
-              }
-            },
-            "switch2" : {
-              "properties" : {
-                "image" : "<partImage>:switch2.<frame><paletteSwaps>"
-              }
-            }
-          }
-        }
-      },
-      "cells" : {
-        "properties" : {
-          "centered" : true,
-          "offset" : [-1.9375, -0.0625],
-          "anchorPart" : "gun",
-          "zLevel" : -2
-        },
-        "partStates" : {
-          "cells" : {
-            "idle" : {
-              "properties" : {
-                "image" : "<partImage>:idle.<frame><paletteSwaps>"
-              }
-            },
-            "fire" : {
-              "properties" : {
-                "image" : "<partImage>:fire.<frame><paletteSwaps>"
-              }
-            },
-            "fire2" : {
-              "properties" : {
-                "image" : "<partImage>:fire2.<frame><paletteSwaps>"
-              }
-            }
-          }
-        }
-      },
-      "cellsfullbright" : {
-        "properties" : {
-          "centered" : true,
-          "anchorPart" : "cells",
-          "zLevel" : -1,
-          "fullbright" : true
-        },
-        "partStates" : {
-          "cells" : {
-            "idle" : {
-              "properties" : {
-                "image" : "<partImage>:idle.<frame><paletteSwaps>"
-              }
-            },
-            "fire" : {
-              "properties" : {
-                "image" : "<partImage>:fire.<frame><paletteSwaps>"
-              }
-            },
-            "fire2" : {
-              "properties" : {
-                "image" : "<partImage>:fire2.<frame><paletteSwaps>"
-              }
-            }
-          }
-        }
-      }, */
       "muzzleFlash" : {
         "properties" : {
           "zLevel" : -1,
@@ -248,6 +130,10 @@
       "active" : false,
       "position" : [0, 0],
       "color" : [90, 0, 90]
+    },
+    "glow" : {
+      "active" : true,
+      "color" : [0, 0, 0]
     }
   },
 
