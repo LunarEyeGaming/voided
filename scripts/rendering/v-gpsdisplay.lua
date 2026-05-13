@@ -9,6 +9,7 @@ local oldInit = init or function() end
 local oldUpdate = update or function() end
 
 local glyphHSpacing
+local glyphVSpacing
 local digitPath
 local xDisplayPath
 local yDisplayPath
