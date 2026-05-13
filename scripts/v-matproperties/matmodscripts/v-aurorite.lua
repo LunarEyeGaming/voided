@@ -5,7 +5,7 @@ local sparkChance = 0.05
 local radioMessageRange = 35  -- How close the player has to be to trigger the warning message.
 local chillRange = 20  -- How close the player has to be to become chilled.
 local chillWarningChance = 0.05
-local chillAmount = 3
+local chillAmount = 1.5
 
 function ModProperty.update(position, layer, dt)
   -- If the radio message was not sent and the player is close enough...
