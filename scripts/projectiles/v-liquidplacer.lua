@@ -9,9 +9,8 @@ local liquidId
 local liquidQuantity
 local liquidDestroyRadius
 local liquidPlaceRadius
-local destroyLiquids
-local destroyAllLiquids
 local liquidPlacementInterval
+local placeOnDestroy
 
 local timer
 
@@ -19,9 +18,10 @@ function init()
   oldInit()
 
   liquidId = root.liquidId(config.getParameter("liquidPlacer.name"))
-  liquidQuantity = config.getParameter("liquidPlacer.quantity")
+  liquidQuantity = config.getParameter("liquidPlacer.quantity", 1)
   liquidDestroyRadius = config.getParameter("liquidPlacer.destroyRadius", 0)
   liquidPlaceRadius = config.getParameter("liquidPlacer.placeRadius", 0)
+  placeOnDestroy = config.getParameter("liquidPlacer.placeOnDestroy")
   -- local destroyLiquidsParam = config.getParameter("destroyLiquids", "all")
   -- if destroyLiquidsParam == "all" then
   --   destroyAllLiquids = true
@@ -40,36 +40,49 @@ end
 function update(dt)
   oldUpdate(dt)
 
-  timer = timer - dt
+  if timer then
+    timer = timer - dt
 
-  if timer <= 0 then
-    local ownPos = mcontroller.position()
-    for x = -liquidDestroyRadius, liquidDestroyRadius do
-      for y = -liquidDestroyRadius, liquidDestroyRadius do
+    if timer <= 0 then
+      local ownPos = mcontroller.position()
+
+      placeLiquid(ownPos)
+
+      timer = liquidPlacementInterval
+    end
+  end
+end
+
+function placeLiquid(position)
+  for x = -liquidDestroyRadius, liquidDestroyRadius do
+    for y = -liquidDestroyRadius, liquidDestroyRadius do
+      local offset = {x, y}
+      if vec2.mag(offset) <= liquidDestroyRadius then
+        local pos = vec2.add(position, offset)
+        if shouldDestroyLiquid(pos) then
+          world.destroyLiquid(pos)
+        end
+      end
+    end
+  end
+  if liquidPlaceRadius > 0 then
+    for x = -liquidPlaceRadius, liquidPlaceRadius do
+      for y = -liquidPlaceRadius, liquidPlaceRadius do
         local offset = {x, y}
-        if vec2.mag(offset) <= liquidDestroyRadius then
-          local pos = vec2.add(ownPos, offset)
-          if shouldDestroyLiquid(pos) then
-            world.destroyLiquid(pos)
-          end
+        if vec2.mag(offset) <= liquidPlaceRadius then
+          local pos = vec2.add(position, offset)
+          world.spawnLiquid(pos, liquidId, liquidQuantity)
         end
       end
     end
-    if liquidPlaceRadius > 0 then
-      for x = -liquidPlaceRadius, liquidPlaceRadius do
-        for y = -liquidPlaceRadius, liquidPlaceRadius do
-          local offset = {x, y}
-          if vec2.mag(offset) <= liquidPlaceRadius then
-            local pos = vec2.add(ownPos, offset)
-            world.spawnLiquid(pos, liquidId, liquidQuantity)
-          end
-        end
-      end
-    else
-      world.spawnLiquid(ownPos, liquidId, liquidQuantity)
-    end
+  else
+    world.spawnLiquid(position, liquidId, liquidQuantity)
+  end
+end
 
-    timer = liquidPlacementInterval
+function destroy()
+  if placeOnDestroy then
+    placeLiquid(mcontroller.position())
   end
 end
 
