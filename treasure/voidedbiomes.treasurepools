@@ -92,6 +92,7 @@
       ]
     }]
   ],
+
   "v-burningasteroidsChestTreasure" : [
     [1, {
       "fill" : [
@@ -158,6 +159,27 @@
         {"weight" : 0.25, "item" : ["v-upgradednanowrap", 4]},
         {"weight" : 0.1875, "item" : ["v-solarflare", 3]},
         {"weight" : 0.0625, "item" : ["miningdrone", 3]}
+      ]
+    }]
+  ],
+
+  "v-briniclefieldTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 1.0, "item" : "v-liquidgun"},
+        {"weight" : 1.0, "item" : "v-aquagrapplespheretechchip"},
+        {"weight" : 0.5, "item" : ["v-upgradedmedkit", 3]},
+        {"weight" : 0.5, "item" : ["v-upgradednanowrap", 2]},
+        {"weight" : 0.1, "pool" : "v-iceWeapon"}
+      ]
+    }]
+  ],
+
+  "v-liquidgun" : [
+    [1, {
+      "fill" : [
+        {"item" : "v-liquidgun"},
+        {"item" : ["v-liquidnitrogen", 200]}
       ]
     }]
   ]
