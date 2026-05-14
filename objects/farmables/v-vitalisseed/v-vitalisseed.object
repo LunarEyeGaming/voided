@@ -1,11 +1,11 @@
 {
   "objectName" : "v-vitalisseed",
   "colonyTags" : ["nature"],
-  "rarity" : "Common",
+  "rarity" : "Uncommon",
   "category" : "seed",
   "description" : "<todo>",
   "shortdescription" : "Vitalis Seed",
-  "objectType" : "farmable",
+  // "objectType" : "farmable",
   "printable" : false,
   "price" : 15,
 
@@ -21,7 +21,6 @@
 
   "tooltipKind" : "seed",
   "largeImage" : "vitalisseed.png:default.4.0",
-
 
   "orientations" : [
     {
@@ -41,7 +40,14 @@
 
     }
   ],
-      "lightColor" : [0, 128, 0],
+
+  "animation" : "/objects/farmables/v-scriptedfarmable.animation",
+
+  "animationParts" : {
+    "crop" : "vitalisseed.png"
+  },
+
+  "lightColor" : [0, 128, 0],
 
   "radioMessagesOnPickup" : [ "pickupseed" ],
 
@@ -57,7 +63,15 @@
     },
     {
       "alts" : 1,
-      "duration" : [1462, 1537]
+      "duration" : [487, 512]
+    },
+    {
+      "alts" : 1,
+      "duration" : [487, 512]
+    },
+    {
+      "alts" : 1,
+      "duration" : [487, 512]
     },
     {
       "alts" : 1,
@@ -68,6 +82,47 @@
 
   "maxImmersion" : 0.125,
   "consumeSoilMoisture" : true,
+
+  "scripts" : [ "/objects/farmables/v-scriptedfarmable.lua", "v-vitalisseed.lua" ],
+
+  "elementalPaletteSwaps" : [
+    {
+      "worldTypes" : ["v-voltage"],
+      "swaps" : {
+        "0c440d" : "323232",
+        "2c7e22" : "565656",
+        "5eaa43" : "7a7a7a",
+        "8ccd64" : "9f9f9f"
+      }
+    },
+    {
+      "worldTypes" : ["v-ministar"],
+      "swaps" : {
+        "0c440d" : "40130c",
+        "2c7e22" : "842f22",
+        "5eaa43" : "c45f51",
+        "8ccd64" : "e58476"
+      }
+    },
+    {
+      "worldTypes" : ["v-entropic"],
+      "swaps" : {
+        "0c440d" : "21103b",
+        "2c7e22" : "3c276b",
+        "5eaa43" : "5e529c",
+        "8ccd64" : "808abf"
+      }
+    },
+    {
+      "worldTypes" : ["v-toxicwasteland"],
+      "swaps" : {
+        "0c440d" : "492d54",
+        "2c7e22" : "744c85",
+        "5eaa43" : "a270b5",
+        "8ccd64" : "c38bda"
+      }
+    }
+  ],
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

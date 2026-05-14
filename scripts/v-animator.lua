@@ -153,6 +153,18 @@ function vAnimator.frameNumber(frameTime, frameCycle, startFrame, numFrames)
   return math.floor(frameTime / frameCycle * numFrames) + startFrame
 end
 
+---Converts a palette swap (a mapping from one set of hex colors to another) into a `?replace` directive.
+---@param paletteSwap table<Color, Color>
+function vAnimator.paletteSwapToString(paletteSwap)
+  local directive = "?replace"
+
+  for oldColor, newColor in pairs(paletteSwap) do
+    directive = string.format("%s;%s=%s", directive, oldColor, newColor)
+  end
+
+  return directive
+end
+
 -- TODO: Maybe convert this to an instanced effect animator?
 -- * Has a `template` parameter, a `duration` parameter, and a `keyframes` parameter (for keyframed attributes)
 --   * Keyframes: `start: any`, `end: any`, `targetAttribute: string`

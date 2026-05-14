@@ -174,11 +174,7 @@ end
   Applies a palette swap `paletteSwap` (a `?replace` directive) to the part "base".
 ]]
 function applyPaletteSwap(paletteSwap)
-  local directive = "?replace"
-
-  for oldColor, newColor in pairs(paletteSwap) do
-    directive = string.format("%s;%s=%s", directive, oldColor, newColor)
-  end
+  local directive = vAnimator.paletteSwapToString(paletteSwap)
 
   animator.setPartTag("base", "paletteSwap", directive)
 end

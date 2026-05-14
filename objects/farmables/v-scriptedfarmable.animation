@@ -1,7 +1,8 @@
 {
   "globalTagDefaults" : {
     "stage" : "default",
-    "alt" : "default"
+    "alt" : "default",
+    "directives" : ""
   },
 
   "animatedParts" : {
@@ -9,7 +10,7 @@
       "crop" : {
         "properties" : {
           "centered" : false,
-          "image" : "<partImage>:<color>.<stage>.<alt>"
+          "image" : "<partImage>:<color>.<stage>.<alt><directives>"
         }
       }
     }
