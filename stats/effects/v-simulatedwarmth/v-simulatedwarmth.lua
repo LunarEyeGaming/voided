@@ -34,11 +34,11 @@ function init()
     jumpingSuppressed = true
   }
   freezeDuration = 2.0
-  freezeDamage = 60
-  warmthIncreaseRate = 50
-  warmthIncreaseBlockTime = 1.2
+  freezeDamage = 150
+  warmthIncreaseRate = 30
+  warmthIncreaseBlockTime = 3.0
   warmthIncreaseBlock = 0
-  maxWarmth = 100
+  maxWarmth = 60
   warmth = maxWarmth
 
   startFadeColor = vAnimator.stringToColor(config.getParameter("startFadeColor"))
