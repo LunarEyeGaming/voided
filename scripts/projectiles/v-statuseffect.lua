@@ -11,9 +11,9 @@ local oldUpdate = update or function() end
 function init()
   oldInit()
 
-  effectRadius = config.getParameter("effectRadius")
-  effectType = config.getParameter("effectType")
-  effectDuration = config.getParameter("effectDuration")
+  effectRadius = config.getParameter("statusEffectConfig.effectRadius")
+  effectType = config.getParameter("statusEffectConfig.effectType")
+  effectDuration = config.getParameter("statusEffectConfig.effectDuration")
 end
 
 function update(dt)

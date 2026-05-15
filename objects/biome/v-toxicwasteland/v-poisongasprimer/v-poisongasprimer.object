@@ -62,8 +62,10 @@
 
   "scripts" : ["/objects/scripts/v-statuseffectobject.lua"],
 
-  "effectRadius" : 30,
-  "effectType" : "v-crystaldepthpoison",
+  "statusEffectConfig" : {
+    "effectRadius" : 30,
+    "effectType" : "v-crystaldepthpoison"
+  },
 
   "smashOnBreak" : true,
 

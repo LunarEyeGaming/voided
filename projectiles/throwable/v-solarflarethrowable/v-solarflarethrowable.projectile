@@ -27,7 +27,9 @@
   },
   "flashbangAirTime" : 1.0,
 
-  "effectRadius" : 5,
-  "effectType" : "v-warm",
-  "effectDuration" : 0.5
+  "statusEffectConfig" : {
+    "effectRadius" : 5,
+    "effectType" : "v-warm",
+    "effectDuration" : 0.5
+  }
 }

@@ -19,18 +19,12 @@
     },
     {
       "op" : "add",
-      "path" : "/effectRadius",
-      "value" : 5
-    },
-    {
-      "op" : "add",
-      "path" : "/effectType",
-      "value" : "v-warm"
-    },
-    {
-      "op" : "add",
-      "path" : "/effectDuration",
-      "value" : 0.5
+      "path" : "/statusEffectConfig",
+      "value" : {
+        "effectRadius" : 5,
+        "effectType" : "v-warm",
+        "effectDuration" : 0.5
+      }
     }
   ]
 ]

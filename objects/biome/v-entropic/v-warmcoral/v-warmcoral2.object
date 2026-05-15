@@ -42,9 +42,11 @@
   "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
   "smashParticles" : [ { "count" : 10, "particle" : "v-toxicrockshard" } ],
 
-  "effectRadius" : 5,
-  "effectType" : "v-warm",
-  "effectDuration" : 0.5,
+  "statusEffectConfig" : {
+    "effectRadius" : 5,
+    "effectType" : "v-warm",
+    "effectDuration" : 0.5
+  },
 
   "softImmersion" : {
     "checkInterval" : 1,
