@@ -6,6 +6,7 @@ require "/scripts/v-time.lua"
 local stages
 local consumeSoilMoisture
 local startingStage
+local harvestOnDestroy
 
 -- State variables
 local stageConfig  -- Config for the current stage
@@ -14,6 +15,7 @@ function init()
   stages = config.getParameter("stages")
   consumeSoilMoisture = config.getParameter("consumeSoilMoisture", true)
   startingStage = config.getParameter("startingStage", 1)
+  harvestOnDestroy = config.getParameter("harvestOnDestroy", true)
 
   if not storage.stage then
     setStage(startingStage)
@@ -55,6 +57,22 @@ function onInteraction()
     harvest(stageConfig.harvestPool)
 
     setStage(stageConfig.resetToStage + 1)
+  end
+end
+
+function die()
+  if harvestOnDestroy then
+    if stageConfig.cascadeHarvest then
+      while stageConfig.cascadeHarvest do
+        harvest(stageConfig.harvestPool)
+
+        setStage(stageConfig.resetToStage + 1)
+      end
+    elseif stageConfig.harvestPool then
+      harvest(stageConfig.harvestPool)
+
+      setStage(stageConfig.resetToStage + 1)
+    end
   end
 end
 

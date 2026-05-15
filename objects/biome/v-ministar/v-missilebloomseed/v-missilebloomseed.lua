@@ -49,10 +49,9 @@ function update(dt)
 end
 
 function die()
-  oldDie()
-
-  local stages = getStages()
   if fireOnDeath then
+    local stages = getStages()
+
     local currentStageNum = storage.stage
     local currentStage = stages[currentStageNum]
 
@@ -63,15 +62,7 @@ function die()
       currentStage = stages[currentStageNum]
     end
   else
-    local currentStageNum = storage.stage
-    local currentStage = stages[currentStageNum]
-
-    while currentStage.cascadeHarvest do
-      harvest(currentStage.harvestPool)
-
-      currentStageNum = currentStageNum - 1
-      currentStage = stages[currentStageNum]
-    end
+    oldDie()
   end
 end
 
