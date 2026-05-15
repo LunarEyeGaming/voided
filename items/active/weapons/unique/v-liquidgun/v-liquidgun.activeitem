@@ -31,11 +31,12 @@
 
       "suckStart" : [ "/sfx/gun/v_liquidgun_fire.ogg" ],
       "suckLoop" : [ "/sfx/gun/v_liquidgun_suckloop.ogg" ],
-      "suckEnd" : [ "/sfx/gun/v_liquidgun_suckstop.ogg" ]
+      "suckEnd" : [ "/sfx/gun/v_liquidgun_suckstop.ogg" ],
+      "collect" : [ "/sfx/blocks/water_splash_small.ogg" ]
     }
   },
   "baseOffset" : [0.75, -0.375],
-  "muzzleOffset" : [1.0, 0.75],
+  "muzzleOffset" : [0.75, 0.75],
 
   "scripts" : ["/items/active/weapons/ranged/gun.lua"],
   "animationScripts" : [ "v-liquidguncursordisplay.lua", "v-liquidgunsuctioneffect.lua" ],
@@ -46,10 +47,10 @@
     "scripts" : ["/items/active/weapons/unique/v-liquidgun/v-liquidgunability.lua"],
     "class" : "LiquidGunAbility",
 
-    "liquidDamageKinds" : "/items/active/weapons/unique/v-liquidgun/v-liquidgundamagekinds.config",
+    "liquidDamageProperties" : "/items/active/weapons/unique/v-liquidgun/v-liquidgundamageproperties.config",
 
     "fireTime" : 0.065,
-    "baseDps" : 8.5,
+    "baseDps" : 7,
     "inaccuracy" : 0.008,
     "energyUsage" : 60,
     "fireType" : "auto",

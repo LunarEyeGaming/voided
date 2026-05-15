@@ -78,13 +78,18 @@ function LiquidGunAltAbility:collectLiquid(position, radius)
 
     local partition = self:partitionLiquids(tiles)
 
-    local i = 1
+    local liquidWasCollected = false
     for name, positionsAndQuantities in pairs(partition) do
       local amountCollected = self:collectLiquidsAtTiles(positionsAndQuantities)
+      if amountCollected > 0 then
+        liquidWasCollected = true
+      end
 
       player.giveItem({name = name, count = amountCollected})
+    end
 
-      i = i + 1
+    if liquidWasCollected then
+      animator.playSound("collect")
     end
   else
     self:collectOneLiquid(position)

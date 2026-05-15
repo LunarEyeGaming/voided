@@ -7,7 +7,7 @@ LiquidGunAbility = GunFire:new()
 function LiquidGunAbility:init()
   GunFire.init(self)
 
-  self.liquidDamageKinds = root.assetJson(self.liquidDamageKinds)
+  self.liquidDamageProperties = root.assetJson(self.liquidDamageProperties)
   self.currentLiquid = self:getLiquid()
   self.active = false
 end
@@ -84,9 +84,26 @@ function LiquidGunAbility:fireProjectile(projectileType, projectileParams, inacc
     placeOnDestroy = true
   }
 
-  params.damageKind = self.liquidDamageKinds[liquidName] or "default"
-
   local liquidAttributes = self:getLiquidAttributes(liquidName)
+
+  local liquidDamageProperty = self.liquidDamageProperties[liquidName]
+  local damageKind
+  local statusEffects
+
+  if liquidDamageProperty then
+    damageKind = liquidDamageProperty.damageKind
+    -- useLiquidStatusEffects takes precedent over defined status effects.
+    if liquidDamageProperty.useLiquidStatusEffects then
+      statusEffects = liquidAttributes.statusEffects
+    elseif liquidDamageProperty.statusEffects then
+      statusEffects = liquidDamageProperty.statusEffects
+    end
+  end
+
+  damageKind = damageKind or "default"
+
+  params.damageKind = damageKind
+  params.statusEffects = statusEffects
 
   if type(self.projectileParticle) ~= "table" then
     error("projectileParticle is not an object (must define the particle in the activeitem file directly)")
