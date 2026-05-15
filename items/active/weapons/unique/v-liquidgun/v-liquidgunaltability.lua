@@ -3,7 +3,15 @@ require "/scripts/v-animator.lua"
 LiquidGunAltAbility = WeaponAbility:new()
 
 function LiquidGunAltAbility:init()
+  -- sb.logInfo("Initializing alt ability")
   self.active = false
+
+  activeItem.setScriptedAnimationParameter("emissionInterval", self.suctionEmissionInterval)
+  activeItem.setScriptedAnimationParameter("emissionFuzzAngle", self.suctionEmissionFuzzAngle)
+  activeItem.setScriptedAnimationParameter("emissionDistance", self.suctionEmissionDistance)
+  activeItem.setScriptedAnimationParameter("suctionParticle", self.suctionParticle)
+
+  -- sb.logInfo("Finished initializing alt ability")
 end
 
 function LiquidGunAltAbility:update(dt, fireMode, shiftHeld)
@@ -14,6 +22,13 @@ function LiquidGunAltAbility:update(dt, fireMode, shiftHeld)
 
     self:setState(self.collectingState)
   end
+
+  activeItem.setScriptedAnimationParameter("firePosition", self:firePosition())
+  local angle = self.weapon.aimAngle
+  if self.weapon.aimDirection < 0 then
+    angle = math.pi - angle
+  end
+  activeItem.setScriptedAnimationParameter("fireAngle", angle)
 end
 
 function LiquidGunAltAbility:collectingState()
@@ -25,7 +40,23 @@ function LiquidGunAltAbility:collectingState()
     -- Periodically collect liquid.
     collectTimer = collectTimer - self.dt
     if collectTimer <= 0 then
-      self:collectLiquid(activeItem.ownerAimPosition(), self.collectRadius)
+      -- Perform a raycast for tile collision or liquid. If both fail, use the aim position directly.
+      local collidePoint
+
+      collidePoint = world.lineCollision(self:firePosition(), activeItem.ownerAimPosition())
+
+      if not collidePoint then
+        local collideLiquidPoints = world.liquidAlongLine(self:firePosition(), activeItem.ownerAimPosition())
+
+        if #collideLiquidPoints > 0 then
+          collidePoint = collideLiquidPoints[1][1]
+        else
+          collidePoint = activeItem.ownerAimPosition()
+        end
+      end
+
+      world.debugPoint(collidePoint, "magenta")
+      self:collectLiquid(collidePoint, self.collectRadius)
 
       collectTimer = self.collectInterval
     end
@@ -84,25 +115,33 @@ end
 function LiquidGunAltAbility:partitionLiquids(tiles)
   local partition = {}
   for _, tile in ipairs(tiles) do
-    -- Skip over positions that have tile protection (to prevent infinitely collecting liquids).
-    if not world.isTileProtected(tile) then
-      local liquidLevel = world.liquidAt(tile)
+    -- Lots of checks that result in skipping tiles.
 
-      -- Skip over positions that don't have any liquid.
-      if liquidLevel then
-        -- Get config.
-        local liquidConfig = root.liquidConfig(liquidLevel[1])
-        -- Skip if there is no valid config or the liquid doesn't drop anything when collected.
-        if liquidConfig and liquidConfig.config.itemDrop then
-          local itemName = liquidConfig.config.itemDrop
-          -- Add to partition.
-          if not partition[itemName] then
-            partition[itemName] = {}
-          end
-          table.insert(partition[itemName], {position = tile, quantity = liquidLevel[2]})
-        end
-      end
+    -- Skip over positions that have tiles over them because liquids that have tiles over them are immortal for some
+    -- reason.
+    if world.pointCollision(tile) then goto continue1 end
+
+    -- Skip over positions that have tile protection (to prevent infinitely collecting liquids).
+    if world.isTileProtected(tile) then goto continue1 end
+
+    local liquidLevel = world.liquidAt(tile)
+
+    if not liquidLevel then goto continue1 end
+
+    -- Get config.
+    local liquidConfig = root.liquidConfig(liquidLevel[1])
+
+    -- Skip over liquids that do not have a config or drop an item when collected.
+    if not liquidConfig or not liquidConfig.config.itemDrop then goto continue1 end
+
+    local itemName = liquidConfig.config.itemDrop
+    -- Add to partition.
+    if not partition[itemName] then
+      partition[itemName] = {}
     end
+    table.insert(partition[itemName], {position = tile, quantity = liquidLevel[2]})
+
+    ::continue1::
   end
 
   return partition
@@ -206,15 +245,21 @@ end
 
 function LiquidGunAltAbility:activate()
   self.active = true
-  animator.playSound("fireStart")
-  animator.playSound("fireLoop", -1)
+  animator.playSound("suckStart")
+  animator.playSound("suckLoop", -1)
+  activeItem.setScriptedAnimationParameter("shouldEmitSuction", true)
 end
 
 function LiquidGunAltAbility:deactivate()
   self.active = false
-  animator.stopAllSounds("fireStart")
-  animator.stopAllSounds("fireLoop")
-  animator.playSound("fireEnd")
+  animator.stopAllSounds("suckStart")
+  animator.stopAllSounds("suckLoop")
+  animator.playSound("suckEnd")
+  activeItem.setScriptedAnimationParameter("shouldEmitSuction", false)
+end
+
+function LiquidGunAltAbility:firePosition()
+  return vec2.add(mcontroller.position(), activeItem.handPosition(self.weapon.muzzleOffset))
 end
 
 function LiquidGunAltAbility:uninit()

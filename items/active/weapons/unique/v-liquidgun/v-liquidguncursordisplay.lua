@@ -19,7 +19,7 @@ function init()
   liquidCountOffset = {0.5, -1.25}
 end
 
-function update(dt)
+function update()
   localAnimator.clearDrawables()
 
   local currentLiquid = animationConfig.animationParameter("currentLiquid")

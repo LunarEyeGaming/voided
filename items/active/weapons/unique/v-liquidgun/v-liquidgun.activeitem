@@ -8,7 +8,7 @@
   "description" : "A gun that uses liquid as ammo.",
   "shortdescription" : "Liquid Shooter",
   "tooltipKind" : "base",
-  "category" : "assaultRifle",
+  "category" : "uniqueWeapon",
   "twoHanded" : true,
   "itemTags" : ["weapon","ranged","assaultRifle"],
 
@@ -27,14 +27,18 @@
       // "fire" : [ "/sfx/gun/v_sludgelauncher_fire1.ogg", "/sfx/gun/v_sludgelauncher_fire2.ogg" ]
       "fireStart" : [ "/sfx/gun/v_liquidgun_fire.ogg" ],
       "fireLoop" : [ "/sfx/gun/v_liquidgun_fireloop.ogg" ],
-      "fireEnd" : [ "/sfx/gun/flamethrower_stop.ogg" ]
+      "fireEnd" : [ "/sfx/gun/v_liquidgun_firestop.ogg" ],
+
+      "suckStart" : [ "/sfx/gun/v_liquidgun_fire.ogg" ],
+      "suckLoop" : [ "/sfx/gun/v_liquidgun_suckloop.ogg" ],
+      "suckEnd" : [ "/sfx/gun/v_liquidgun_suckstop.ogg" ]
     }
   },
   "baseOffset" : [0.75, -0.375],
   "muzzleOffset" : [1.0, 0.75],
 
   "scripts" : ["/items/active/weapons/ranged/gun.lua"],
-  "animationScripts" : [ "/items/active/weapons/unique/v-liquidgun/v-liquidguncursordisplay.lua" ],
+  "animationScripts" : [ "v-liquidguncursordisplay.lua", "v-liquidgunsuctioneffect.lua" ],
 
   "elementalType" : "physical",
 
@@ -86,8 +90,8 @@
         "weaponRotation" : 0,
         "twoHanded" : true,
 
-        "allowRotate" : false,
-        "allowFlip" : false,
+        "allowRotate" : true,
+        "allowFlip" : true,
         "frontArmFrame" : "swimIdle.1"
       },
       "cooldown" : {
@@ -96,8 +100,8 @@
         "weaponRotation" : 0,
         "twoHanded" : true,
 
-        "allowRotate" : false,
-        "allowFlip" : false,
+        "allowRotate" : true,
+        "allowFlip" : true,
         "frontArmFrame" : "swimIdle.1"
       }
     }
@@ -112,7 +116,25 @@
     "maxCollectRange" : 8,
     "collectRadius" : 2,
 
-    "collectThreshold" : 0.95
+    "collectThreshold" : 0.95,
+
+    "suctionEmissionInterval" : 0.05,
+    "suctionEmissionFuzzAngle" : 25,
+    "suctionParticle" : {
+      "type" : "streak",
+      "size" : 1.0,
+      "color" : [220, 220, 220, 200],
+      "fade" : 0.9,
+      "position" : [5.0, 0.0],
+      "initialVelocity" : [-100.0, 0.0],
+      "finalVelocity" : [-100.0, 0.0],
+      "approach" : [0, 0],
+      "destructionTime" : 0.0,
+      "timeToLive" : 0.06,
+      "length" : 10.0,
+      "collidesForeground" : true,
+      "collidesLiquid" : false
+    }
   },
 
   "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
