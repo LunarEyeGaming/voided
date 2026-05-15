@@ -47,7 +47,7 @@ function update()
       particle.approach = rotate(particle.approach, angle)
       particle.position = rotate(particle.position, angle)
 
-      sb.logInfo("%s, %s", particle, position)
+      -- sb.logInfo("%s, %s", particle, position)
 
       localAnimator.spawnParticle(particle, position)
 
