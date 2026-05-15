@@ -40,23 +40,24 @@ function LiquidGunAltAbility:collectingState()
     -- Periodically collect liquid.
     collectTimer = collectTimer - self.dt
     if collectTimer <= 0 then
-      -- Perform a raycast for tile collision or liquid. If both fail, use the aim position directly.
-      local collidePoint
+      -- -- Perform a raycast for tile collision or liquid. If both fail, use the aim position directly.
+      -- local collidePoint
 
-      collidePoint = world.lineCollision(self:firePosition(), activeItem.ownerAimPosition())
+      -- collidePoint = world.lineCollision(self:firePosition(), activeItem.ownerAimPosition())
 
-      if not collidePoint then
-        local collideLiquidPoints = world.liquidAlongLine(self:firePosition(), activeItem.ownerAimPosition())
+      -- if not collidePoint then
+      --   local collideLiquidPoints = world.liquidAlongLine(self:firePosition(), activeItem.ownerAimPosition())
 
-        if #collideLiquidPoints > 0 then
-          collidePoint = collideLiquidPoints[1][1]
-        else
-          collidePoint = activeItem.ownerAimPosition()
-        end
-      end
+      --   if #collideLiquidPoints > 0 then
+      --     collidePoint = collideLiquidPoints[1][1]
+      --   else
+      --     collidePoint = activeItem.ownerAimPosition()
+      --   end
+      -- end
 
-      world.debugPoint(collidePoint, "magenta")
-      self:collectLiquid(collidePoint, self.collectRadius)
+      -- world.debugPoint(collidePoint, "magenta")
+      -- self:collectLiquid(collidePoint, self.collectRadius)
+      self:collectLiquid(activeItem.ownerAimPosition(), self.collectRadius)
 
       collectTimer = self.collectInterval
     end
