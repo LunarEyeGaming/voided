@@ -41,10 +41,8 @@ end
 function update(dt)
   oldUpdate(dt)
 
-  -- Freezing stuff.
   local warmthPercentage = status.resourcePercentage("v-warmth")
   world.sendEntityMessage(entity.id(), "v-drawableMeter-setFillRatio", "v-freezing", 1 - warmthPercentage)
-  world.debugText("state: %s, timer: %s, warmthPercentage: %s", state, freezeTimer, warmthPercentage, mcontroller.position(), "green")
   freezeTimer = freezeTimer - dt
   if state == "inactive" then
     if warmthPercentage < 1.0 then

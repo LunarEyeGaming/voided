@@ -103,16 +103,12 @@ function processCollisions()
   end
 end
 
-function handleBrokenTile(_, _, pos, layer, test)
+function handleBrokenTile(_, _, pos, layer)
   if tilesDestroyed >= maxTilesDestroyed then
     return
   end
   local fgMatsToDestroy = {}
   local bgMatsToDestroy = {}
-
-  if test ~= true then
-    world.debugPoint(pos, "green")
-  end
 
   for x = -2, 2 do
     for y = -2, 2 do
@@ -153,8 +149,6 @@ end
 
 function breakTiles(fgTilesToDestroy, bgTilesToDestroy)
   world.damageTiles(fgTilesToDestroy, "foreground", mcontroller.position(), "blockish", 5, 99, player.id())
-
-  world.damageTiles(bgTilesToDestroy, "background", mcontroller.position(), "blockish", 5, 99, player.id())
 
   for _, pos in ipairs(fgTilesToDestroy) do
     world.spawnProjectile("v-icebreak", pos)
