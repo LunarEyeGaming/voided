@@ -1,0 +1,25 @@
+{
+  "materialId" : 1226,
+  "materialName" : "v-permafrostpillar",
+  "particleColor" : [91, 189, 158, 255],
+  "itemDrop" : "v-permafrostpillarmaterial",
+  "shortdescription" : "Permafrost Pillar",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_ice.ogg",
+  "health" : 8,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+
+  "renderTemplate" : "/tiles/pipetemplate.config",
+  "renderParameters" : {
+    "texture" : "v-permafrostpillar.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : false,
+    "multiColored" : true,
+    "zLevel" : 3100
+  }
+}
