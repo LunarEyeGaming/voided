@@ -1,0 +1,39 @@
+{
+  "metadata" : {
+    "name" : "v-basalticislandsmicrodungeons",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "basalticislands1", "basalticislands2", "basalticislands3" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "basalticislands1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "basalticislands1.json" ]
+    },
+    {
+      "name" : "basalticislands2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "basalticislands2.json" ]
+    },
+    {
+      "name" : "basalticislands3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "basalticislands3.json" ]
+    }
+  ]
+}
