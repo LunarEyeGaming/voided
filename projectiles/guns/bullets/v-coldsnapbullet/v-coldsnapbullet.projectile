@@ -1,0 +1,80 @@
+{
+  "projectileName" : "v-coldsnapbullet",
+  "image" : "coldsnapbullet.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "animationCycle" : 0.5,
+  "frameNumber" : 1,
+  "power" : 50,
+  "speed" : 150,
+  "fullbright" : true,
+  "periodicActions" : [
+    {
+      "time" : 0.01,
+      "action" : "loop",
+      "count" : 1,
+      "body" : [
+        {
+          "action" : "particle",
+          "rotate" : true,
+          "specification" : {
+            "type" : "animated",
+            "animation" : "/animations/icecloudpuff/icecloudpuff.animation",
+            "light" : [69, 176, 86],
+            "position" : [0, 0],
+            "initialVelocity" : [2, 0],
+            "fullbright" : false,
+            "size" : 0.75,
+            "layer" : "middle",
+            "timeToLive" : 2.0,
+            "fade" : 1,
+            "collidesLiquid" : false,
+            "variance" : {
+              "size" : 0.25,
+              "initialVelocity" : [1, 1],
+              "position" : [0, 0]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/plasmabulletexplosion/plasmabulletexplosion.config"
+    },
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "particle",
+          "rotate" : true,
+          "specification" : {
+            "type" : "animated",
+            "animation" : "/animations/icecloudpuff/icecloudpuff.animation",
+            "light" : [69, 176, 86],
+            "position" : [0, 0],
+            "initialVelocity" : [0, 0],
+            "fullbright" : false,
+            "size" : 1,
+            "layer" : "middle",
+            "timeToLive" : 2.0,
+            "fade" : 1,
+            "collidesLiquid" : false,
+            "variance" : {
+              "size" : 0.25,
+              "initialVelocity" : [5, 5],
+              "position" : [0, 0]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "lightColor" : [83, 28, 97],
+  "damageKind" : "iceplasma",
+  "piercing" : true,
+  "statusEffects" : [ { "effect" : "v-coldtouch", "duration" : 1 } ]
+}

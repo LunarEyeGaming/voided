@@ -1,0 +1,49 @@
+{
+  "animationParts" : { },
+  "animationCustom" : {
+    "sounds" : {
+      "altFire" : ["/sfx/gun/needler1.ogg"]
+    }
+  },
+
+  "ability" : {
+    "name" : "Cold Draft",
+    "type" : "v-coldsnapdart",
+    "scripts" : ["/items/active/weapons/ranged/abilities/altfire.lua"],
+    "class" : "AltFireAttack",
+
+    "projectileType" : "v-coldsnapdart",
+    "projectileParameters" : {},
+
+    // use baseDps and fireTime from primary fire
+
+    "baseDamageMultiplier" : 1.75,
+    "energyUsage" : 90,
+    "fireTime" : 2.0,
+    "projectileCount" : 1,
+    "inaccuracy" : 0.03,
+    "baseDamage" : 4,
+    "useParticleEmitter" : false,
+
+    "stances" : {
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "cooldown" : {
+        "duration" : 0.11,
+        "armRotation" : 5,
+        "weaponRotation" : 5,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  }
+}

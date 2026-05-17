@@ -1,0 +1,85 @@
+{
+  "projectileName" : "v-coldsnapdart",
+  "image" : "coldsnapdart.png",
+  "frameNumber" : 2,
+  "animationCycle" : 0.2,
+  "flippable" : true,
+
+  "piercing" : true,
+  "damageKind" : "icespear",
+  "damagePoly" : [ [4, 0] ],
+
+  "physics" : "stickybullet",
+  "speed" : 75,
+
+  "timeToLive" : 3,
+
+  "periodicActions" : [
+    {
+      "time" : 0.25,
+      "action" : "projectile",
+      "type" : "v-coldsnapcloud",
+      "inheritDamageFactor" : 0.3,
+      "fuzzAngle" : 180
+    },
+    {
+      "time" : 0.05,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-coldsnapdarttrail/v-coldsnapdarttrail.animation",
+        "timeToLive" : 0.8,
+        "initialVelocity" : [-20, 0],
+        "approach" : [10, 10],
+        "finalVelocity" : [0, 10],
+        "size" : 1.0,
+        "layer" : "middle",
+        "variance" : {
+          "initialVelocity" : [3, 3]
+        }
+      }
+    }
+  ],
+
+  "actionOnTimeout" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_clouddart_off.ogg" ]
+    }
+  ],
+
+  "actionOnCollide" : [
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {"action" : "spark"}
+      ]
+    },
+    {
+      "action" : "sound",
+      "options" : [
+        "/sfx/projectiles/ropehook_impact1.ogg",
+        "/sfx/projectiles/ropehook_impact2.ogg",
+        "/sfx/projectiles/ropehook_impact3.ogg",
+        "/sfx/projectiles/ropehook_impact4.ogg",
+        "/sfx/projectiles/ropehook_impact5.ogg",
+        "/sfx/projectiles/ropehook_impact6.ogg",
+        "/sfx/projectiles/ropehook_impact7.ogg",
+        "/sfx/projectiles/ropehook_impact8.ogg",
+        "/sfx/projectiles/ropehook_impact9.ogg",
+        "/sfx/projectiles/ropehook_impact10.ogg",
+        "/sfx/projectiles/ropehook_impact11.ogg",
+        "/sfx/projectiles/ropehook_impact12.ogg"
+      ]
+    }
+  ],
+
+  "persistentAudio" : "/sfx/projectiles/v_clouddart_loop.ogg",
+
+  "scripts" : [ "/projectiles/guns/bullets/v-clouddart/v-clouddart.lua" ],
+  "scriptDelta" : 1,
+
+  "stuckProjectile" : "v-coldsnapdartstuck"
+}

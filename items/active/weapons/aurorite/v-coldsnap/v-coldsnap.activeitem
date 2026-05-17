@@ -1,0 +1,90 @@
+{
+  "itemName" : "v-coldsnap",
+  "price" : 1080,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "A sniper rifle that shoots icy bullets.",
+  "shortdescription" : "Cold Snap",
+  "tooltipKind" : "gun",
+  "category" : "sniperRifle",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged","sniperrifle"],
+  "level" : 8,
+
+  "inventoryIcon" : [
+    { "image" : "coldsnap.png:idle.1" }
+  ],
+
+  "animation" : "v-coldsnap.animation",
+  "animationParts" : {
+    "butt" : "",
+    "middle" : "coldsnap.png",
+    "middleFullbright" : "coldsnapfullbright.png",
+    "barrel" : "",
+    "muzzleFlash" : "/items/active/weapons/ranged/v-muzzleflashes/purplemuzzleflash.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : ["/sfx/gun/v_coldsnap_fire.ogg"]
+    }
+  },
+
+  "baseOffset" : [0.8, 0.225],
+  "muzzleOffset" : [2.625, 0.125],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+
+  "elementalType" : "ice",
+
+  "primaryAbility" : {
+    "scripts" : ["/items/active/weapons/ranged/gunfire.lua"],
+    "class" : "GunFire",
+
+    "fireTime" : 1.5,
+    "baseDps" : 6,
+    "energyUsage" : 60,
+    "projectileCount" : 1,
+    "inaccuracy" : 0.0,
+    "fireType" : "auto",
+
+    "projectileType" : "v-coldsnapbullet",
+    "projectileParameters" : {
+      "knockback" : 5
+    },
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 6,
+        "weaponRotation" : 6,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "cooldown" : {
+        "duration" : 0.2,
+        "armRotation" : 6,
+        "weaponRotation" : 6,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  },
+
+  "altAbilityType" : "v-coldsnapdart",
+  "altAbility" : { },
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}
