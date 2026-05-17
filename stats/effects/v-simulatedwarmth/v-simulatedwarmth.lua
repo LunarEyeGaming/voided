@@ -5,6 +5,11 @@ local preFreezeMovementModifiers
 local freezeMovementModifiers
 local freezeDuration
 local freezeDamage
+
+-- maxWarmth and warmthIncreaseRate scale with knockbackThreshold if defined.
+local maxWarmthFactor
+local warmthIncreaseRateFactor
+
 local warmthIncreaseRate
 local warmthIncreaseBlockTime
 local warmthIncreaseBlock
@@ -35,10 +40,20 @@ function init()
   }
   freezeDuration = 2.0
   freezeDamage = 150
-  warmthIncreaseRate = 30
+
+  maxWarmthFactor = 20
+  warmthIncreaseRateFactor = 10
+
+  local knockbackThreshold = status.stat("knockbackThreshold")
+  if knockbackThreshold and knockbackThreshold > 0 then
+    warmthIncreaseRate = warmthIncreaseRateFactor * math.sqrt(knockbackThreshold)
+    maxWarmth = maxWarmthFactor * math.sqrt(knockbackThreshold)
+  else
+    warmthIncreaseRate = 30
+    maxWarmth = 60
+  end
   warmthIncreaseBlockTime = 3.0
   warmthIncreaseBlock = 0
-  maxWarmth = 60
   warmth = maxWarmth
 
   startFadeColor = vAnimator.stringToColor(config.getParameter("startFadeColor"))
@@ -65,11 +80,6 @@ function update(dt)
   local warmthPercentage = warmth / maxWarmth
   world.debugText("%s", warmthPercentage, mcontroller.position(), "green")
 
-  -- Update display of warmth
-  local fadeColor = vAnimator.lerpColorRGB(1 - warmthPercentage, startFadeColor, endFadeColor)
-  local fadeAmount = util.lerp(1 - warmthPercentage, startFadeAmount, endFadeAmount)
-  effect.setParentDirectives(string.format("?fade=%s=%s", vAnimator.colorToString(fadeColor), fadeAmount))
-
   -- Update state
   freezeTimer = freezeTimer - dt
   if state == "inactive" then
@@ -77,6 +87,11 @@ function update(dt)
       state = "preFreeze"
     end
   elseif state == "preFreeze" then
+    -- Update display of warmth
+    local fadeColor = vAnimator.lerpColorRGB(1 - warmthPercentage, startFadeColor, endFadeColor)
+    local fadeAmount = util.lerp(1 - warmthPercentage, startFadeAmount, endFadeAmount)
+    effect.setParentDirectives(string.format("?fade=%s=%s", vAnimator.colorToString(fadeColor), fadeAmount))
+
     mcontroller.controlModifiers(preFreezeMovementModifiers)
     if warmthPercentage <= 0 then
       onFreeze()
@@ -117,5 +132,6 @@ function onFreezeDamage()
 end
 
 function onFreeze()
+  effect.setParentDirectives("")
   status.addEphemeralEffect("v-frozen")
 end

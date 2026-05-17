@@ -1,0 +1,18 @@
+{
+  "name" : "v-nogravthruplatforms",
+  "effectConfig" : {
+    "gravityModifier" : 0.0
+  },
+  "defaultDuration" : 15,
+
+  "scripts" : [
+    "lowgrav.lua",
+    "v-haltonnullcollision.lua",
+    "v-thruplatforms.lua"
+  ],
+
+  "animationConfig" : "lowgrav.animation",
+
+  "label" : "No Gravity - Gravity no longer applies to you",
+  "icon" : "/interface/statuses/lowgrav.png"
+}
