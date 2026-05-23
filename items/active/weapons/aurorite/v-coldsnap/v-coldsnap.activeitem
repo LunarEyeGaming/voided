@@ -22,7 +22,7 @@
     "middle" : "coldsnap.png",
     "middleFullbright" : "coldsnapfullbright.png",
     "barrel" : "",
-    "muzzleFlash" : "/items/active/weapons/ranged/v-muzzleflashes/purplemuzzleflash.png"
+    "muzzleFlash" : "/items/active/weapons/aurorite/v-coldsnap/muzzleflash.png"
   },
   "animationCustom" : {
     "sounds" : {
@@ -30,7 +30,7 @@
     }
   },
 
-  "baseOffset" : [0.8, 0.225],
+  "baseOffset" : [1.125, 0.0625],
   "muzzleOffset" : [2.625, 0.125],
 
   "scripts" : ["/items/active/weapons/ranged/gun.lua"],
@@ -47,6 +47,7 @@
     "projectileCount" : 1,
     "inaccuracy" : 0.0,
     "fireType" : "auto",
+    "muzzleFlashVariants" : 1,
 
     "projectileType" : "v-coldsnapbullet",
     "projectileParameters" : {

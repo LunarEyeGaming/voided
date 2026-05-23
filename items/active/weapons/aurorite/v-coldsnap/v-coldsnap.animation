@@ -10,8 +10,8 @@
         "states" : {
           "off" : {},
           "fire" : {
-            "frames" : 2,
-            "cycle" : 0.07,
+            "frames" : 4,
+            "cycle" : 0.14,
             "mode" : "transition",
             "transition" : "off"
           }
@@ -21,8 +21,8 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1,
-            "cycle" : 0.1,
+            "frames" : 4,
+            "cycle" : 0.4,
             "mode" : "loop"
           }
         }
@@ -59,8 +59,7 @@
           "centered" : true,
           "fullbright" : true,
           "zLevel" : 5,
-          "offset" : [0.8, 0.225],
-          "transformationGroups" : ["weapon"]
+          "anchorPart" : "middle"
         },
         "partStates" : {
           "middle" : {

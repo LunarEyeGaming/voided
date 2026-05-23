@@ -6,6 +6,7 @@
   "flippable" : true,
 
   "piercing" : true,
+  "onlyHitTerrain" : true,
   "damageKind" : "icespear",
   "damagePoly" : [ [4, 0] ],
 
@@ -20,7 +21,10 @@
       "action" : "projectile",
       "type" : "v-coldsnapcloud",
       "inheritDamageFactor" : 0.3,
-      "fuzzAngle" : 180
+      "fuzzAngle" : 180,
+      "config" : {
+        "speed" : 7
+      }
     },
     {
       "time" : 0.05,
@@ -78,8 +82,8 @@
 
   "persistentAudio" : "/sfx/projectiles/v_clouddart_loop.ogg",
 
-  "scripts" : [ "/projectiles/guns/bullets/v-clouddart/v-clouddart.lua" ],
-  "scriptDelta" : 1,
+  // "scripts" : [ "/projectiles/guns/bullets/v-clouddart/v-clouddart.lua" ],
+  // "scriptDelta" : 1,
 
   "stuckProjectile" : "v-coldsnapdartstuck"
 }
