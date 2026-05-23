@@ -16,7 +16,7 @@
       "/monsters/biomes/v-voltage/v-balllightning/v-balllightning.lua"
     ],
     "updateDelta" : 1,
-    
+
     "maxSpeed" : 15,
     "controlForce" : 30,
     "velocityChangeTimeRange" : [2, 3],
@@ -26,7 +26,7 @@
     "projectileType" : "v-balllightningprojectile",
     "projectileParameters" : {"power" : 24},
     "projectileFireTime" : 0.3,
-    
+
     "renderLayer" : "ForegroundEntity+10",
 
     "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
@@ -84,7 +84,7 @@
           "baseValue" : 0.0
         },
         "knockbackThreshold" : {
-          "baseValue" : 9999
+          "baseValue" : 0
         },
         "maxHealth" : {
           "baseValue" : 200

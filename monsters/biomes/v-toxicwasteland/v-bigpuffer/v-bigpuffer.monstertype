@@ -15,7 +15,7 @@
       "/monsters/biomes/v-toxicwasteland/v-bigpuffer/v-bigpuffer.lua"
     ],
     "updateDelta" : 3,
-    
+
     "swimSpeed" : 10,
     "swimForce" : 50,
     "preInflateStopTime" : 0.2,
@@ -23,12 +23,12 @@
 
     "inflateTime" : 0.7,
     "inflateSize" : 2,
-    
+
     // Collision poly to use for inflation
     "inflationCollisionPoly" : [ [-0.5, -1.5], [-1.5, -0.5], [-1.5, 0.5], [-0.5, 1.5], [0.5, 1.5], [1.5, 0.5], [1.5, -0.5], [0.5, -1.5] ],
-    
+
     "selfDamagePoly" : [ [2, 2], [2, -2], [-2, -2], [-2, 2] ],
-    
+
     "postInflateTime" : 0.2,
 
     "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
@@ -96,7 +96,7 @@
           "baseValue" : 0.0
         },
         "knockbackThreshold" : {
-          "baseValue" : 9999
+          "baseValue" : 0
         },
         "maxHealth" : {
           "baseValue" : 100
