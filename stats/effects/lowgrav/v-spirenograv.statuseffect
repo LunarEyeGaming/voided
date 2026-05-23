@@ -1,17 +1,16 @@
 {
-  "name" : "v-nogravthruplatforms",
+  "name" : "v-spirenograv",
   "effectConfig" : {
-    "gravityModifier" : 0.0
+    "gravityModifier" : 0.0,
+    "trailMinYVelocity" : 50
   },
   "defaultDuration" : 15,
 
   "scripts" : [
-    "lowgrav.lua",
-    "v-haltonnullcollision.lua",
-    "v-thruplatforms.lua"
+    "v-spirenograv.lua"
   ],
 
-  "animationConfig" : "lowgrav.animation",
+  "animationConfig" : "v-spirenograv.animation",
 
   "label" : "No Gravity - Gravity no longer applies to you",
   "icon" : "/interface/statuses/lowgrav.png"

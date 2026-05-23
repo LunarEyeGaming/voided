@@ -1,0 +1,15 @@
+{
+  "kind" : "v-spireforcefieldhold",
+  "definition" : {
+    "type" : "textured",
+    "image" : "/particles/v-spireforcefield/spireforcefield.png",
+    "position" : [0, 0],
+    "initialVelocity" : [0, 10],
+    "fade" : 1,
+    "destructionAction" : "fade",
+    "destructionTime" : 2.0,
+    "timeToLive" : 0.0,
+    "fullbright" : true,
+    "layer" : "middle"
+  }
+}

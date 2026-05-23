@@ -1,11 +1,11 @@
 {
-  "objectName" : "v-spirecatcher",
+  "objectName" : "v-spirejumppad",
   "objectType" : "physics",
   "colonyTags" : ["wired"],
   "printable" : false,
   "rarity" : "Common",
-  "description" : "Halts objects",
-  "shortdescription" : "Catcher",
+  "description" : "Repels objects with a strong elastic force",
+  "shortdescription" : "Jump Pad",
   "race" : "generic",
 
   "category" : "wire",
@@ -17,11 +17,12 @@
   "inventoryIcon" : "/objects/wired/forcepad/jumppadicon.png",
   "orientations" : [
     {
-      "image" : "spirecatcher.png:<color>.off",
-      "imagePosition" : [-16, 0],
+      "image" : "spireforcepad.png:<color>.off",
+      "imagePosition" : [-8, 0],
 
       "spaceScan" : 0.1,
-      "anchors" : [ "background" ]
+      "anchors" : [ "background" ],
+      "metaBoundBox" : [-8, -8, 8, 8]
     }
   ],
 
@@ -80,26 +81,25 @@
     },
     "particleEmitters" : {
       "forcefield" : {
-        "offsetRegion" : [2.5, 0, 2.5, 0],
+        "offsetRegion" : [1.5, 0, 1.5, 0],
         "emissionRate" : 5,
         "particles" : [
-          { "particle" : "v-spireforcefieldhold" },
-          { "particle" : "v-spireforcefieldholddown" }
+          { "particle" : "v-spireforcefieldup" }
         ]
       }
     }
   },
 
   "animationParts" : {
-    "forcepad" : "spirecatcher.png",
-    "forcepadlit" : "spirecatcherlit.png"
+    "forcepad" : "spireforcepad.png",
+    "forcepadlit" : "spireforcepadlit.png"
   },
-  "animationPosition" : [-16, 0],
+  "animationPosition" : [-8, 0],
 
   "statusEffectConfig" : {
-    "effectRegion" : [-2, -8, 2, 20],
-    "effectType" : "nofalldamage",
-    "effectDuration" : 1,
+    "effectRegion" : [-2, 0, 3, 4],
+    "effectType" : "v-spirenograv",
+    "effectDuration" : 6,
     "requireInput" : true
   },
 
@@ -107,9 +107,9 @@
   "physicsForces" : {
     "jumpForce" : {
       "type" : "DirectionalForceRegion",
-      "rectRegion" : [-2, -8, 2, 20],
-      "yTargetVelocity" : 0,
-      "controlForce" : 20000
+      "rectRegion" : [-2, 0, 3, 4],
+      "yTargetVelocity" : 200,
+      "controlForce" : 200000
     }
   }
 }

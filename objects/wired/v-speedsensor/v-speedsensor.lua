@@ -116,7 +116,7 @@ function onInteraction(args)
 end
 
 function update(dt)
-  world.debugText(debugString, object.position(), "green")
+  -- world.debugText(debugString, object.position(), "green")
   if triggerTimer > 0 then
     triggerTimer = triggerTimer - dt
   elseif triggerTimer <= 0 then
@@ -162,7 +162,7 @@ end
 function makeComparisonFunction(compName)
   local comp = config.getParameter(compName)  ---@type VSpeedSensor.XYThreshold | VSpeedSensor.MagThreshold
 
-  sb.logInfo("%s", comp)
+  -- sb.logInfo("%s", comp)
 
   if type(comp) ~= "table" then
     error(string.format("Parameter '%s' must be an object. Actual Lua type: %s", compName, type(comp)))
@@ -176,8 +176,8 @@ function makeComparisonFunction(compName)
 
     local func = comparisonFunctions[comp.mode or "gte"]
 
-    local vString = comparisonStrings[comp.mode or "gte"]("vec2.mag(velocity)", value)
-    debugString = string.format("%s", vString)
+    -- local vString = comparisonStrings[comp.mode or "gte"]("vec2.mag(velocity)", value)
+    -- debugString = string.format("%s", vString)
 
     return function(velocity)
       return func(vec2.mag(velocity), value)
@@ -190,9 +190,9 @@ function makeComparisonFunction(compName)
       local yValue = comp.yValue
       local yFunc = comparisonFunctions[comp.yMode or "gte"]
 
-      local xString = comparisonStrings[comp.xMode or "gte"]("velocity[1]", xValue)
-      local yString = comparisonStrings[comp.yMode or "gte"]("velocity[2]", yValue)
-      debugString = string.format("%s or %s", xString, yString)
+      -- local xString = comparisonStrings[comp.xMode or "gte"]("velocity[1]", xValue)
+      -- local yString = comparisonStrings[comp.yMode or "gte"]("velocity[2]", yValue)
+      -- debugString = string.format("%s or %s", xString, yString)
 
       return function(velocity)
         return xFunc(velocity[1], xValue) or yFunc(velocity[2], yValue)
@@ -201,8 +201,8 @@ function makeComparisonFunction(compName)
       local xValue = comp.xValue
       local xFunc = comparisonFunctions[comp.xMode or "gte"]
 
-      local xString = comparisonStrings[comp.xMode or "gte"]("velocity[1]", xValue)
-      debugString = string.format("%s", xString)
+      -- local xString = comparisonStrings[comp.xMode or "gte"]("velocity[1]", xValue)
+      -- debugString = string.format("%s", xString)
 
       return function(velocity)
         return xFunc(velocity[1], xValue)
@@ -211,8 +211,8 @@ function makeComparisonFunction(compName)
       local yValue = comp.yValue
       local yFunc = comparisonFunctions[comp.yMode or "gte"]
 
-      local yString = comparisonStrings[comp.yMode or "gte"]("velocity[2]", yValue)
-      debugString = string.format("%s", yString)
+      -- local yString = comparisonStrings[comp.yMode or "gte"]("velocity[2]", yValue)
+      -- debugString = string.format("%s", yString)
 
       return function(velocity)
         return yFunc(velocity[2], yValue)
