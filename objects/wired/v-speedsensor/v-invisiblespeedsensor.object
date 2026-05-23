@@ -1,0 +1,44 @@
+{
+  "objectName" : "v-invisiblespeedsensor",
+  "colonyTags" : ["wired"],
+  "printable" : false,
+  "rarity" : "Common",
+  "category" : "wire",
+  "price" : 0,
+  "health" : 0.1,
+  "description" : "...",
+  "shortdescription" : "Invisible Speed Sensor",
+  "race" : "generic",
+
+  "smashOnBreak" : true,
+
+  "inventoryIcon" : "/objects/wired/proximitysensor/proximitysensoricon.png",
+  "orientations" : [
+    {
+      "image" : "/objects/wired/proximitysensor/invisibleproximitysensor.png:<color>.off",
+      "imagePosition" : [-8, 0],
+      "direction" : "right"
+    }
+  ],
+
+  "scripts" : [ "/objects/wired/v-speedsensor/v-speedsensor.lua" ],
+  "scriptDelta" : 5,
+
+  "animation" : "/objects/wired/switch/switchtoggle.animation",
+  "animationParts" : {
+    "switch" : "/objects/wired/proximitysensor/invisibleproximitysensorhidden.png"
+  },
+  "animationPosition" : [-8, 0],
+
+  "outputNodes" : [ [0, 0] ],
+
+  "interactive" : false,
+
+  "detectDuration" : 0.5,
+  "detectEntityTypes" : [ "creature" ],
+  "detectArea" : [ [-1, 0], [1, 1] ],
+  "detectVelocityComparison" : {
+    "valueToCompare" : "mag",
+    "value" : 10
+  }
+}

@@ -944,6 +944,46 @@
                 {
                  "gid":7265,
                  "height":8,
+                 "id":886,
+                 "name":"",
+                 "properties":
+                    {
+                     "object":"v-spirecatcher"
+                    },
+                 "propertytypes":
+                    {
+                     "object":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1688,
+                 "y":504
+                }, 
+                {
+                 "gid":7265,
+                 "height":8,
+                 "id":887,
+                 "name":"",
+                 "properties":
+                    {
+                     "object":"v-spirecatcher"
+                    },
+                 "propertytypes":
+                    {
+                     "object":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2216,
+                 "y":504
+                }, 
+                {
+                 "gid":7265,
+                 "height":8,
                  "id":876,
                  "name":"",
                  "properties":
@@ -1200,6 +1240,50 @@
                  "width":8,
                  "x":2248,
                  "y":552
+                }, 
+                {
+                 "gid":7232,
+                 "height":8,
+                 "id":888,
+                 "name":"",
+                 "properties":
+                    {
+                     "object":"v-invisiblespeedsensor",
+                     "parameters":"{ \"detectArea\" : [ [-1, -1], [4, 20] ], \"detectDuration\" : 2, \"detectVelocityComparison\" : { \"valueToCompare\" : \"xy\", \"yMode\" : \"lte\", \"yValue\" : -100 } }"
+                    },
+                 "propertytypes":
+                    {
+                     "object":"string",
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1672,
+                 "y":480
+                }, 
+                {
+                 "gid":7232,
+                 "height":8,
+                 "id":890,
+                 "name":"",
+                 "properties":
+                    {
+                     "object":"v-invisiblespeedsensor",
+                     "parameters":"{ \"detectArea\" : [ [-1, -1], [4, 20] ], \"detectDuration\" : 2, \"detectVelocityComparison\" : { \"valueToCompare\" : \"xy\", \"yMode\" : \"lte\", \"yValue\" : -100 } }"
+                    },
+                 "propertytypes":
+                    {
+                     "object":"string",
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2208,
+                 "y":480
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1583,6 +1667,46 @@
                  "width":0,
                  "x":2216,
                  "y":528
+                }, 
+                {
+                 "height":0,
+                 "id":891,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":8,
+                         "y":24
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1680,
+                 "y":472
+                }, 
+                {
+                 "height":0,
+                 "id":892,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":0,
+                         "y":24
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2216,
+                 "y":472
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1660,7 +1784,7 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":886,
+ "nextobjectid":893,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

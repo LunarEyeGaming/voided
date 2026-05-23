@@ -1,11 +1,11 @@
 {
-  "objectName" : "v-superjumppad",
+  "objectName" : "v-spirecatcher",
   "objectType" : "physics",
   "colonyTags" : ["wired"],
   "printable" : false,
   "rarity" : "Common",
-  "description" : "Repels objects with a strong elastic force",
-  "shortdescription" : "Jump Pad",
+  "description" : "Halts objects",
+  "shortdescription" : "Catcher",
   "race" : "generic",
 
   "category" : "wire",
@@ -36,9 +36,9 @@
   "animationPosition" : [-8, 0],
 
   "statusEffectConfig" : {
-    "effectRegion" : [-2, 0, 2, 4],
-    "effectType" : "v-nograv",
-    "effectDuration" : 6,
+    "effectRegion" : [-2, -8, 2, 20],
+    "effectType" : "nofalldamage",
+    "effectDuration" : 1,
     "requireInput" : true
   },
 
@@ -46,9 +46,9 @@
   "physicsForces" : {
     "jumpForce" : {
       "type" : "DirectionalForceRegion",
-      "rectRegion" : [-2, 0, 2, 4],
-      "yTargetVelocity" : 5000,
-      "controlForce" : 200000
+      "rectRegion" : [-2, -8, 2, 20],
+      "yTargetVelocity" : 0,
+      "controlForce" : 20000
     }
   }
 }
