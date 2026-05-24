@@ -1,7 +1,7 @@
 {
   "animationCustom" : {
     "sounds" : {
-      "altFire" : [ "/sfx/gun/grenade1.ogg" ]
+      "altFire" : [ "/sfx/projectiles/bonerain1.ogg", "/sfx/projectiles/bonerain2.ogg", "/sfx/projectiles/bonerain3.ogg" ]
     },
     "particleEmitters" : {
       "altMuzzleFlash" : {
@@ -10,9 +10,9 @@
         "transformationGroups" : ["muzzle"],
         "offsetRegion" : [-0.25, -0.5, -0.25, -0.5],
         "particles" : [
-          { "particle" : "rocketbarrelpuff", "offset" : [0.0, 0.0] },
-          { "particle" : "rocketbarrelpuff", "offset" : [0.0, 0.0] },
-          { "particle" : "rocketbarrelpuff", "offset" : [0.0, 0.0] }
+          // { "particle" : "rocketbarrelpuff", "offset" : [0.0, 0.0] },
+          // { "particle" : "rocketbarrelpuff", "offset" : [0.0, 0.0] },
+          // { "particle" : "rocketbarrelpuff", "offset" : [0.0, 0.0] }
         ]
       }
     }
