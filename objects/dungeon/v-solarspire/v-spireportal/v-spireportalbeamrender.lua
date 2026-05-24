@@ -13,44 +13,83 @@ function update()
   oldUpdate()
 
   local beam = animationConfig.animationParameter("sunBeam")
-  local mags = beam.mags or {}
-  local angle = beam.angle
-  local startPositions = beam.startPositions
+  -- local mags = beam.mags or {}
+  -- local angles = beam.angles
+  -- local startPositions = beam.startPositions
+  local polies = beam.polies or {}
+  local startPosition = beam.startPosition
   local color = beam.color
-  local perpOffset = -#mags / 2  -- Starting offset perpendicular to the direction of the beam.
 
-  for i, mag in ipairs(mags) do
-    local image
-    if i == 1 then
-      image = beam.bottomImage
-    elseif i == #mags then
-      image = beam.topImage
-    else
-      image = beam.middleImage
-    end
-    local pos = startPositions[i]
-
+  for i, poly in ipairs(polies) do
     localAnimator.addDrawable({
-      image = image,
-      position = pos,
+      poly = poly,
+      position = startPosition,
       color = color,
-      fullbright = true,
-      centered = false,
-      transformation = matMultiply(matMultiply({
-        {math.cos(angle), -math.sin(angle), 0},
-        {math.sin(angle), math.cos(angle), 0},
-        {0, 0, 1}
-      }, {
-        {mag + 0.5, 0, 0},
-        {0, 1, 0},
-        {0, 0, 1}
-      }), {
-        {1, 0, 0},
-        {0, 1, -0.5},
-        {0, 0, 1}
-      })
+      fullbright = true
     })
   end
+
+  if #polies > 0 then
+    drawBeam(beam.bottomImage, color, beam.bottomPos, beam.bottomMag, beam.bottomAngle)
+    drawBeam(beam.topImage, color, beam.topPos, beam.topMag, beam.topAngle)
+  end
+
+  -- for i, mag in ipairs(mags) do
+  --   local image
+  --   if i == 1 then
+  --     image = beam.bottomImage
+  --   elseif i == #mags then
+  --     image = beam.topImage
+  --   else
+  --     image = beam.middleImage
+  --   end
+  --   local pos = startPositions[i]
+  --   local angle = angles[i]
+
+  --   localAnimator.addDrawable({
+  --     image = image,
+  --     position = pos,
+  --     color = color,
+  --     fullbright = true,
+  --     centered = false,
+  --     transformation = matMultiply(matMultiply({
+  --       {math.cos(angle), -math.sin(angle), 0},
+  --       {math.sin(angle), math.cos(angle), 0},
+  --       {0, 0, 1}
+  --     }, {
+  --       {mag + 0.5, 0, 0},
+  --       {0, 1, 0},
+  --       {0, 0, 1}
+  --     }), {
+  --       {1, 0, 0},
+  --       {0, 1, -0.5},
+  --       {0, 0, 1}
+  --     })
+  --   })
+  -- end
+end
+
+function drawBeam(image, color, pos, mag, angle)
+  localAnimator.addDrawable({
+    image = image,
+    position = pos,
+    color = color,
+    fullbright = true,
+    centered = false,
+    transformation = matMultiply(matMultiply({
+      {math.cos(angle), -math.sin(angle), 0},
+      {math.sin(angle), math.cos(angle), 0},
+      {0, 0, 1}
+    }, {
+      {mag + 0.5, 0, 0},
+      {0, 1, 0},
+      {0, 0, 1}
+    }), {
+      {1, 0, 0},
+      {0, 1, -0.5},
+      {0, 0, 1}
+    })
+  })
 end
 
 function matMultiply(m1, m2)

@@ -1,6 +1,7 @@
 require "/scripts/poly.lua"
 require "/scripts/rect.lua"
 require "/scripts/util.lua"
+require "/scripts/interp.lua"
 require "/scripts/vec2.lua"
 
 require "/scripts/v-animator.lua"
@@ -105,6 +106,9 @@ function init()
         },
         beamDamagePadding = 1,
         beamThickness = 14,
+        segmentCount = 28,
+        maxTaper = 45 * math.pi / 180,
+        fanOutDuration = 0.75,
         maxBeamLength = 100,
         duration = 15,
         fastDuration = 7.5
@@ -456,60 +460,36 @@ end
 
 function states.rotatingHazard(cfg, fast)
   local startAngle = cfg.startAngle
-  local beamThickness = cfg.beamThickness
 
   switchDestination("surface", startAngle)
 
   animator.setAnimationState("sunbeam", "on")
 
-  local dmgSources = {}
-  local dmgSource = copy(cfg.damageSource)
   local angleDelta = cfg.endAngle - cfg.startAngle
   local duration = fast and cfg.fastDuration or cfg.duration
+  local spreadDuration = cfg.fanOutDuration
+  local maxTaper = cfg.maxTaper
+
   local timer = 0
+  util.wait(spreadDuration, function(dt)
+    local angleSpread = interp.sin(timer / spreadDuration, 0, maxTaper)
+    doSunBeam(cfg, startAngle, angleSpread)
+
+    timer = timer + dt
+  end)
+
+  timer = 0
   util.wait(duration, function(dt)
-    dmgSources = {}
+    local beamAngle = util.easeInOutSin(timer / duration, startAngle, angleDelta)
+    doSunBeam(cfg, beamAngle, maxTaper)
 
-    local angle = util.easeInOutSin(timer / duration, startAngle, angleDelta)
-    local damagePoly = generateSemicirclePoly((cfg.beamThickness - cfg.beamDamagePadding) / 2, angle, centerOffset)
-    dmgSource.poly = damagePoly
-    table.insert(dmgSources, dmgSource)
+    timer = timer + dt
+  end)
 
-    animator.resetTransformationGroup("rotation")
-    animator.rotateTransformationGroup("rotation", angle, centerOffset)
-
-    local polies = {}
-    sunBeam.angle = angle
-    sunBeam.mags = {}
-    sunBeam.startPositions = {}
-    for i = 0, beamThickness - 1 do
-      local perpOffset = -beamThickness / 2 + i + 0.5
-      local startOffset = vec2.rotate({0, perpOffset}, angle)
-      local endOffset = vec2.rotate({cfg.maxBeamLength, perpOffset}, angle)
-      local beamStart = vec2.add(center, startOffset)
-      local beamEnd = vec2.add(center, endOffset)
-      beamEnd = vMinistar.lightLineTileCollision(beamStart, beamEnd) or beamEnd
-      world.debugLine(beamStart, beamEnd, "green")
-      local mag = world.magnitude(beamStart, beamEnd)
-      table.insert(sunBeam.mags, mag)
-      table.insert(sunBeam.startPositions, beamStart)
-      local beamStartRelative = vec2.add(startOffset, centerOffset)
-      local beamEndRelative = vec2.add(beamStartRelative, world.distance(beamEnd, beamStart))
-      table.insert(polies, {beamStartRelative, beamEndRelative})
-    end
-
-    object.setAnimationParameter("sunBeam", sunBeam)
-
-    for i = cfg.beamDamagePadding, beamThickness - cfg.beamDamagePadding - 1 do
-      dmgSource = copy(cfg.damageSource)
-      dmgSource.poly = polies[i + 1]
-      table.insert(dmgSources, dmgSource)
-    end
-    -- animator.resetTransformationGroup("sunbeam")
-    -- animator.scaleTransformationGroup("sunbeam", {mag, 1}, centerOffset)
-    -- animator.translateTransformationGroup("sunbeam", {mag / 2, 0})
-
-    object.setDamageSources(dmgSources)
+  timer = 0
+  util.wait(spreadDuration, function(dt)
+    local angleSpread = interp.sin(1 - timer / spreadDuration, 0, maxTaper)
+    doSunBeam(cfg, cfg.endAngle, angleSpread)
 
     timer = timer + dt
   end)
@@ -518,12 +498,90 @@ function states.rotatingHazard(cfg, fast)
   object.setDamageSources({})
 
   sunBeam.angle = 0
-  sunBeam.mags = {}
-  sunBeam.startPositions = {}
+  sunBeam.polies = {}
 
   object.setAnimationParameter("sunBeam", sunBeam)
 
   states.hazardStart()
+end
+
+function doSunBeam(cfg, beamAngle, beamTaper)
+  local beamThickness = cfg.beamThickness
+  local segmentCount = cfg.segmentCount
+  local dmgSources = {}
+  local damagePoly = generateSemicirclePoly((cfg.beamThickness - cfg.beamDamagePadding) / 2, beamAngle, centerOffset)
+
+  local dmgSource = copy(cfg.damageSource)
+  dmgSource.poly = damagePoly
+
+  table.insert(dmgSources, dmgSource)
+
+  animator.resetTransformationGroup("rotation")
+  animator.rotateTransformationGroup("rotation", beamAngle, centerOffset)
+
+  local collideLines = {}
+  local stepSize = beamThickness / segmentCount
+  sunBeam.angles = {}
+  sunBeam.mags = {}
+  -- sunBeam.startPositions = {}
+  sunBeam.startPosition = object.position()
+  for i = 0, segmentCount - 1 do
+    local angle = beamAngle - beamTaper / 2 + i * beamTaper / (segmentCount - 1)
+    table.insert(sunBeam.angles, angle)
+
+    local perpOffset = -beamThickness / 2 + (i + 0.5) * stepSize
+    -- local startOffset = vec2.rotate({0, perpOffset}, angle)
+    local startOffset = vec2.rotate({0, perpOffset}, beamAngle)
+    local endOffset = vec2.rotate({cfg.maxBeamLength, perpOffset}, angle)
+
+    local beamStart = vec2.add(center, startOffset)
+    local beamEnd = vec2.add(center, endOffset)
+    beamEnd = vMinistar.lightLineTileCollision(beamStart, beamEnd) or beamEnd
+
+    world.debugLine(beamStart, beamEnd, "green")
+
+    -- table.insert(sunBeam.mags, mag)
+    -- table.insert(sunBeam.startPositions, beamStart)
+    local beamStartRelative = vec2.add(startOffset, centerOffset)
+    local beamEndCenterRelative = world.distance(beamEnd, beamStart)
+    local beamEndProjected = vVec2.projection(beamEndCenterRelative, vec2.sub(endOffset, startOffset))
+    local beamEndRelative = vec2.add(beamStartRelative, beamEndProjected)
+    -- local beamStartRelative = vec2.add(startOffset, centerOffset)
+    -- local beamEndRelative = vec2.add(beamStartRelative, world.distance(beamEnd, beamStart))
+    table.insert(collideLines, {beamStartRelative, beamEndRelative})
+
+    if i == 0 then
+      sunBeam.bottomPos = beamStart
+      sunBeam.bottomAngle = vec2.angle(vec2.sub(endOffset, startOffset))
+      sunBeam.bottomMag = vec2.mag(vec2.sub(beamEndRelative, beamStartRelative))
+    elseif i == segmentCount - 1 then
+      sunBeam.topPos = beamStart
+      sunBeam.topAngle = vec2.angle(vec2.sub(endOffset, startOffset))
+      sunBeam.topMag = vec2.mag(vec2.sub(beamEndRelative, beamStartRelative))
+    end
+  end
+
+  local polies = {}
+  for i = 1, segmentCount - 1 do
+    local leftCollideLine = collideLines[i]
+    local rightCollideLine = collideLines[i + 1]
+    table.insert(polies, {leftCollideLine[1], leftCollideLine[2], rightCollideLine[2], rightCollideLine[1]})
+  end
+
+  sunBeam.polies = polies
+
+  object.setAnimationParameter("sunBeam", sunBeam)
+
+  for i = cfg.beamDamagePadding, segmentCount - cfg.beamDamagePadding - 1 do
+    dmgSource = copy(cfg.damageSource)
+    dmgSource.poly = polies[i + 1]
+    table.insert(dmgSources, dmgSource)
+  end
+  -- animator.resetTransformationGroup("sunbeam")
+  -- animator.scaleTransformationGroup("sunbeam", {mag, 1}, centerOffset)
+  -- animator.translateTransformationGroup("sunbeam", {mag / 2, 0})
+
+  object.setDamageSources(dmgSources)
 end
 
 function states.enemyHazard(cfg, fast)

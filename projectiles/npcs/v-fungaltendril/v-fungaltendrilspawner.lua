@@ -1,5 +1,5 @@
 --[[
-  Script for the projectile that spawns a wave of projectiles. The direction of the wave is determined by the 
+  Script for the projectile that spawns a wave of projectiles. The direction of the wave is determined by the
   groundNormalAngle variable, which is an angle whose corresponding vector points perpendicular (or normal) to the
   ground, and it equals the projectile's current rotation. Thus, the "horizontal" direction is parallel to the ground,
   and the "vertical" direction is parallel to the groundNormal vector. This relationship applies to related terms like
@@ -14,7 +14,7 @@
   first projectile is spawned, minHeight and maxHeight will now be relative to the heights at which the previous
   projectiles spawned (which, in turn, have values relative to the current projectile's vertical position and are
   vectors).
-  
+
   The update function ensures that the projectile does not ever die until the script tells it to by repeatedly setting
   the time to live to 1.0 if it exceeds 0.5. These values are almost entirely arbitrary. All that matters is that the
   former must be greater than the latter, which in turn must be greater than zero. This ensures that the projectile will
@@ -25,6 +25,8 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
+require "/scripts/v-vec2.lua"
+
 local groundNormalAngle  -- An angle whose corresponding vector points perpendicular to the ground
 local groundNormal  -- The aforementioned vector
 local gapSize  -- The horizontal distance between each projectile
@@ -34,7 +36,7 @@ local projectileParameters  -- The parameter overrides of the projectile to spaw
 local projectileType  -- The type of projectile to spawn
 local spawnInterval  -- Amount of time (in seconds) between each projectile spawn
 local waveSize  -- The overall size of the wave in blocks.
-local inheritDamageFactor  -- If defined, the multiplier of the spawned projectile's power to use relative to the 
+local inheritDamageFactor  -- If defined, the multiplier of the spawned projectile's power to use relative to the
                            -- current projectile's power
 local waveFuzzAngle  -- A value representing the range of angles at which the projectile can spawn relative to its
                      -- initial angle. Defaults to 0.
@@ -62,27 +64,27 @@ function init()
   waveSize = config.getParameter("waveSize")
   inheritDamageFactor = config.getParameter("inheritDamageFactor")
   waveFuzzAngle = util.toRadians(config.getParameter("waveFuzzAngle", 0))
-  
+
   -- If inheritDamageFactor is defined...
   if inheritDamageFactor then
     -- Adjust the power of the spawned projectile.
     projectileParameters.power = projectile.power() * inheritDamageFactor
   end
-  
+
   spawnTimer = spawnInterval
   prevHOffset = 0
   hOffset = gapSize
 
   leftStopped = false
   rightStopped = false
-  
+
   prevHeightLeft = {0, 0}
   prevHeightRight = {0, 0}
   prevCollisionPointLeft = mcontroller.position()
   prevCollisionPointRight = mcontroller.position()
-  
+
   mcontroller.setVelocity({0, 0})
-  
+
   -- currentRotation = 0
 end
 
@@ -95,7 +97,7 @@ function update(dt)
   end
 
   spawnTimer = spawnTimer - dt
-  
+
   -- If the spawn timer has reached zero...
   if spawnTimer <= 0 then
     spawnWaveProjectile(true)  -- Spawn projectile on left side
@@ -105,36 +107,36 @@ function update(dt)
 
     prevHOffset = hOffset  -- Record previous horizontal offset
     hOffset = hOffset + gapSize  -- Nudge horizontal offset
-    
+
     -- If the horizontal offset exceeds waveSize or both leftStopped and rightStopped are true...
     if hOffset > waveSize or (leftStopped and rightStopped) then
       projectile.die()  -- Kill the current projectile
     end
   end
-  
+
   -- currentRotation = currentRotation + math.pi / 4 * dt
   -- mcontroller.setRotation(currentRotation)
   -- groundNormalAngle = mcontroller.rotation()
   -- groundNormal = vec2.rotate({1, 0}, groundNormalAngle)
-  
+
   -- ranIntoBarrier(mcontroller.position(), vec2.add(mcontroller.position(), vec2.rotate({5, 2}, mcontroller.rotation()), 0.25))
   -- ranIntoBarrier(mcontroller.position(), vec2.add(mcontroller.position(), vec2.rotate({5, -2}, mcontroller.rotation()), 0.25))
   -- ranIntoBarrier(mcontroller.position(), vec2.add(mcontroller.position(), vec2.rotate({-5, -2}, mcontroller.rotation()), 0.25))
   -- ranIntoBarrier(mcontroller.position(), vec2.add(mcontroller.position(), vec2.rotate({-5, 2}, mcontroller.rotation()), 0.25))
-  
+
   -- world.debugLine(mcontroller.position(), vec2.add(mcontroller.position(), vec2.withAngle(mcontroller.rotation())), "blue")
 end
 
 --[[
-  Spawns the projectile for the left / right side, which is specified by a boolean `isLeft`. The position of the 
-  projectile is based on `minHeight`, `maxHeight`, and `hOffset` and adjusts according to the terrain via geometry 
+  Spawns the projectile for the left / right side, which is specified by a boolean `isLeft`. The position of the
+  projectile is based on `minHeight`, `maxHeight`, and `hOffset` and adjusts according to the terrain via geometry
   collision tests. If the collision test fails (i.e., no terrain is found within the line from maxHeight to minHeight),
-  then the corresponding variable for whether or not the side has stopped is set to true (`leftStopped` for left, 
+  then the corresponding variable for whether or not the side has stopped is set to true (`leftStopped` for left,
   `rightStopped` for right). If `isLeft` is set to true, then `hOffset` is negated prior to doing any calculations.
   `projectileType` and `projectileParameters` are specified in `init()`. The projectile's direction is the ground
   normal and is randomly nudged by a value from `-waveFuzzAngle / 2` to `waveFuzzAngle / 2`, if `waveFuzzAngle` is
   defined.
-  
+
   param (boolean) isLeft: whether or not the projectile spawns on the left side
 ]]
 function spawnWaveProjectile(isLeft)
@@ -146,23 +148,23 @@ function spawnWaveProjectile(isLeft)
       local prevCollisionPoint = isLeft and prevCollisionPointLeft or prevCollisionPointRight
       -- The midpoint of the collision test points.
       local center = vec2.add(mcontroller.position(), isLeft and prevHeightLeft or prevHeightRight)
-      
+
       -- Get upper collision test point by forming a vector that acts as if the ground normal is {1, 0} (so x and y are
       -- swapped), rotating it by groundNormalAngle, and adding the center to it to get the absolute position.
       local collisionPointTop = vec2.add(vec2.rotate({maxHeight, direction * i}, groundNormalAngle), center)
-      -- Get the other collision tests point by repeating the previous instructions like so (but for 0 and minHeight 
+      -- Get the other collision tests point by repeating the previous instructions like so (but for 0 and minHeight
       -- respectively).
       local collisionPointMid = vec2.add(vec2.rotate({0, direction * i}, groundNormalAngle), center)
       local collisionPointBottom = vec2.add(vec2.rotate({minHeight, direction * i}, groundNormalAngle), center)
-      
-      -- Run two collision tests. One from middle to bottom and another from top to middle. This favors downward-moving 
+
+      -- Run two collision tests. One from middle to bottom and another from top to middle. This favors downward-moving
       -- terrain.
       local collisionPoint = world.lineCollision(collisionPointMid, collisionPointBottom)
       -- If a collision point is not defined or the wave runs into a barrier while going downward...
       if not collisionPoint or ranIntoBarrier(collisionPoint, prevCollisionPoint, 0.25) then
         collisionPoint = world.lineCollision(collisionPointTop, collisionPointMid)
       end
-      
+
       -- If the collision point is defined and the wave has not run into a barrier...
       if collisionPoint and not ranIntoBarrier(collisionPoint, prevCollisionPoint, 0.25) then
         -- If this is the last point in the offset...
@@ -173,10 +175,10 @@ function spawnWaveProjectile(isLeft)
           world.spawnProjectile(projectileType, collisionPoint, projectile.sourceEntity(), aimVector, false,
               projectileParameters)
         end
-        
+
         -- The prev height vector is the projection of the distance from the current projectile's position to the
         -- collision point onto the ground normal.
-        local prevHeight = projectVector(world.distance(collisionPoint, mcontroller.position()), groundNormal)
+        local prevHeight = vVec2.projection(world.distance(collisionPoint, mcontroller.position()), groundNormal)
 
         -- Set prevHeightLeft or prevHeightRight, depending on direction.
         if isLeft then
@@ -218,10 +220,10 @@ end
       | / \ |
       |/   \|
   III *     * IV
-  
+
   Lastly, the function performs a simple point collision test at `point1` (nudged). If this test returns true, then the
   whole function returns true.
-  
+
   param (Vec2F) point1: the first point in the line collision test
   param (Vec2F) point2: the second point in the line collision test
   param (number) nudgeAmount: the amount by which to nudge the vectors along the `groundNormal` vector, in blocks
@@ -230,21 +232,21 @@ function ranIntoBarrier(point1, point2, nudgeAmount)
   local nudgeVector = vec2.withAngle(groundNormalAngle, nudgeAmount)
   local point1Nudged = vec2.add(point1, nudgeVector)
   local point2Nudged = vec2.add(point2, nudgeVector)
-  
+
   -- Get the change in height (as a vector). This is not relative to the coordinate system rotated to `groundNormal` and
   -- is instead relative to the standard coordinate system.
   local heightChange = projectVector(world.distance(point2Nudged, point1Nudged), groundNormal)
   -- This is a number representing the change in height within the coordinate system that is rotated to `groundNormal`.
   local heightChangeAbsolute = vec2.rotate(heightChange, -groundNormalAngle)[1]
-  
+
   -- world.debugLine(vec2.add(nudgeVector, mcontroller.position()), vec2.add(nudgeVector, vec2.add(mcontroller.position(), {heightChangeAbsolute, 0})), "red")
   -- world.debugPoint(vec2.add(nudgeVector, vec2.add(mcontroller.position(), {heightChangeAbsolute, 0})), "red")
-  
+
   local point3Nudged
 
   -- If the change in height is positive...
   if heightChangeAbsolute > 0 then
-    -- This expression derives a third point to form a right triangle with the vertically-oriented line being parallel 
+    -- This expression derives a third point to form a right triangle with the vertically-oriented line being parallel
     -- to the `groundNormal` vector.
     point3Nudged = vec2.add(heightChange, point1Nudged)
   else
@@ -256,14 +258,14 @@ function ranIntoBarrier(point1, point2, nudgeAmount)
 
   world.debugLine(point1Nudged, point3Nudged, "green")
   world.debugLine(point2Nudged, point3Nudged, "green")
-  
+
   return world.lineCollision(point1Nudged, point2Nudged) and world.lineCollision(point1Nudged, point3Nudged)
       and world.lineCollision(point2Nudged, point3Nudged) or world.pointCollision(point1Nudged)
 end
 
 -- --[[
   -- Returns true if either horizontalLineCollision or lineCollisionNudged succeeded, false otherwise.
-  
+
   -- param (Vec2F) point1: the first point in the line collision test. Used in horizontalLineCollision and
     -- lineCollisionNudged
   -- param (Vec2F) point2: the second point in the line collision test. Used in lineCollisionNudged
@@ -275,20 +277,3 @@ end
 -- function ranIntoBarrier(point1, point2, hNudgeAmount, vNudgeAmount)
   -- return lineCollisionNudged(point1, point2, vNudgeAmount) or horizontalLineCollision(point1, hNudgeAmount, vNudgeAmount)
 -- end
-
---[[
-  Returns the projection of vector `vector` onto vector `ontoVector`.
-  
-  param vector: the vector to project
-  param ontoVector: the vector onto which to project
-  returns: the projection of `vector` onto `ontoVector`.
-]]
-function projectVector(vector, ontoVector)
-  return vec2.mul(
-    ontoVector,
-    vec2.dot(
-      vector,
-      ontoVector
-    ) / (vec2.mag(ontoVector) ^ 2)
-  )
-end

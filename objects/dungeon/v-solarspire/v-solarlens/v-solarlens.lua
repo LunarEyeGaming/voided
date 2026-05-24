@@ -3,6 +3,7 @@ require "/scripts/rect.lua"
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
+require "/scripts/v-vec2.lua"
 require "/scripts/v-ministarutil.lua"
 
 -- Parameters
@@ -331,7 +332,7 @@ function updateBeam(dt)
 
   if otherLensPos then
     local otherLensPosRelative = world.distance(otherLensPos, beamStart)
-    beamEndRelative = projectVector(otherLensPosRelative, beamEndRelative)
+    beamEndRelative = vVec2.projection(otherLensPosRelative, beamEndRelative)
 
     currentBeamEnd = vec2.add(beamEndRelative, beamStart)
 

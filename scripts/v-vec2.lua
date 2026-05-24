@@ -1,3 +1,4 @@
+---Extra utility functions related to the manipulation of vectors.
 vVec2 = {}
 
 ---Returns a string representation of a `Vec2F` `vector` to be used for hash lookups.
@@ -102,4 +103,16 @@ end
 function vVec2.rotateTowardTarget(input, target, rate, dt)
   local angle, diff = vVec2.rotateTowardTargetAngle(vec2.angle(input), vec2.angle(target), rate, dt)
   return vec2.withAngle(angle), diff
+end
+
+---Returns the projection of vector `vector` onto vector `ontoVector`.
+---
+---@param vector Vec2F the vector to project
+---@param ontoVector Vec2F the vector onto which to project
+---@return Vec2F the projection of `vector` onto `ontoVector`.
+function vVec2.projection(vector, ontoVector)
+  local factor = (vector[1] * ontoVector[1] + vector[2] * ontoVector[2])
+  / (ontoVector[1] * ontoVector[1] + ontoVector[2] * ontoVector[2])
+
+  return {ontoVector[1] * factor, ontoVector[2] * factor}
 end
