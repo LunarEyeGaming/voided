@@ -1,14 +1,15 @@
 {
   "name": "v-spireminiboss-firebreath",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/movement.lua",
+    "/scripts/actions/math.lua",
     "/scripts/actions/world.lua",
-    "/scripts/actions/projectiles.lua",
-    "/scripts/actions/math.lua"
+    "/scripts/actions/position.lua",
+    "/scripts/actions/projectiles.lua"
   ],
   "parameters": {
     "projectileType": "v-dracucumberflame",
@@ -141,18 +142,53 @@
               "parameters": {},
               "children": [
                 {
+                  "title": "vecMultiply",
+                  "type": "action",
+                  "name": "vecMultiply",
+                  "parameters": {
+                    "first": {"key": "<projectileOffset>"},
+                    "second": {"value": ["facingDirection", 1]}
+                  },
+                  "output": {
+                    "vector": "projectileOffset"
+                  }
+                },
+                {
                   "title": "sequence",
                   "type": "composite",
                   "name": "sequence",
                   "parameters": {},
                   "children": [
                     {
-                      "title": "entityDirection",
+                      "title": "entityPosition",
                       "type": "action",
-                      "name": "entityDirection",
+                      "name": "entityPosition",
                       "parameters": {
-                        "entity": {"key": "self"},
-                        "target": {"key": "target"}
+                        "entity": {"key": "target"}
+                      },
+                      "output": {
+                        "position": "targetPos"
+                      }
+                    },
+                    {
+                      "title": "offsetPosition",
+                      "type": "action",
+                      "name": "offsetPosition",
+                      "parameters": {
+                        "offset": {"key": "projectileOffset"},
+                        "position": {"key": "self"}
+                      },
+                      "output": {
+                        "position": "aimPos"
+                      }
+                    },
+                    {
+                      "title": "distance",
+                      "type": "action",
+                      "name": "distance",
+                      "parameters": {
+                        "from": {"key": "aimPos"},
+                        "to": {"key": "targetPos"}
                       },
                       "output": {
                         "vector": "toTarget"
@@ -219,18 +255,6 @@
                       }
                     }
                   ]
-                },
-                {
-                  "title": "vecMultiply",
-                  "type": "action",
-                  "name": "vecMultiply",
-                  "parameters": {
-                    "first": {"key": "<projectileOffset>"},
-                    "second": {"value": ["facingDirection", 1]}
-                  },
-                  "output": {
-                    "vector": "projectileOffset"
-                  }
                 },
                 {
                   "title": "spawnProjectile",
