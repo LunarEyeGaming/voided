@@ -66,6 +66,10 @@
   "maxBeamLength" : 100,
   "decorativeBeamLength" : 20,
 
+  "beamOscillatePeriod" : 0.2,
+  "beamOscillateMinAmplitude" : 0.9,
+  "beamOscillateMaxAmplitude" : 1.0,
+
   "otherLensPollInterval" : 0.3,
 
   "builder" : "/items/buildscripts/v-builditem.lua"

@@ -17,13 +17,17 @@ local fixTime
 local maxBeamLength
 local damageConfig
 local decorative
+local decorativeBeamLength
 local beamImpactSoundInterval
+local beamOscillateAmplitude
+local beamOscillatePeriod
 local destabilizeCheckInterval
 
 -- State variables
 local positionStart
 local currentBeamEnd
 local currentAngle
+local beamOscillateTimer
 
 local otherLensPollTimer
 local otherLensPos
@@ -66,6 +70,11 @@ function init()
   otherLensPollInterval = config.getParameter("otherLensPollInterval", 0.1)
   decorative = config.getParameter("decorative", false)
   beamImpactSoundInterval = config.getParameter("beamImpactSoundInterval", 0.2)
+  beamOscillateMinAmplitude = config.getParameter("beamOscillateMinAmplitude", 0.5)
+  beamOscillateMaxAmplitude = config.getParameter("beamOscillateMaxAmplitude", 1)
+  beamOscillatePeriod = config.getParameter("beamOscillatePeriod", 1)
+
+  beamOscillateTimer = 0
 
   destabilizeCheckInterval = config.getParameter("destabilizeCheckInterval", 1.0)
 
@@ -91,9 +100,9 @@ function init()
   updateState()
 
   if decorative then
-    local beamLength = config.getParameter("decorativeBeamLength", 20)
+    decorativeBeamLength = config.getParameter("decorativeBeamLength", 20)
     if config.getParameter("decorativeIsConnecting", true) then
-      beamLength = beamLength - 1
+      decorativeBeamLength = decorativeBeamLength - 1
     end
 
     local connectionAngle = config.getParameter("decorativeConnectionAngle", -90) * math.pi / 180
@@ -102,9 +111,9 @@ function init()
       animator.rotateTransformationGroup("beamconnection", connectionAngle)
     end
 
-    updateAnimation(currentAngle, beamLength)
+    updateAnimation(currentAngle, decorativeBeamLength, script.updateDt())
     animator.setAnimationState("beamconnection", connectionAngle and "on" or "off")
-    script.setUpdateDelta(0)
+    -- script.setUpdateDelta(0)
   end
 
   message.setHandler("v-solarLens-fix", function()
@@ -136,6 +145,11 @@ function init()
 end
 
 function update(dt)
+  if decorative then
+    updateAnimation(currentAngle, decorativeBeamLength, dt)
+    return
+  end
+
   lensState:update()
 
   -- -- Zoomed out view
@@ -371,11 +385,14 @@ function updateDamageSource(beamEndRelative)
 end
 
 function updateAnimation(currentAngle, beamMag, dt, beamImpactPos)
+  beamOscillateTimer = (beamOscillateTimer + dt) % beamOscillatePeriod
+
   animator.resetTransformationGroup("lens")
   animator.rotateTransformationGroup("lens", currentAngle)
 
   animator.resetTransformationGroup("beam")
-  animator.scaleTransformationGroup("beam", {beamMag, 1})
+  local yScale = beamOscillateMinAmplitude + (beamOscillateMaxAmplitude - beamOscillateMinAmplitude) * (math.cos(2 * math.pi * beamOscillateTimer / beamOscillatePeriod) / 2 + 0.5)
+  animator.scaleTransformationGroup("beam", {beamMag, yScale})
   animator.translateTransformationGroup("beam", {beamMag / 2, 0})
 
   if beamImpactPos and isActive() then
