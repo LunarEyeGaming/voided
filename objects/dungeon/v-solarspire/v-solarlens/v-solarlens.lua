@@ -106,8 +106,9 @@ function init()
       decorativeBeamLength = decorativeBeamLength - 1
     end
 
-    local connectionAngle = config.getParameter("decorativeConnectionAngle", -90) * math.pi / 180
+    local connectionAngle = config.getParameter("decorativeConnectionAngle")
     if connectionAngle then
+      connectionAngle = connectionAngle * math.pi / 180
       animator.resetTransformationGroup("beamconnection")
       animator.rotateTransformationGroup("beamconnection", connectionAngle)
     end

@@ -660,28 +660,6 @@
                 {
                  "gid":7719,
                  "height":16,
-                 "id":804,
-                 "name":"",
-                 "properties":
-                    {
-                     "object":"v-solarlensinward2",
-                     "parameters":"{\"defaultState\" : true}"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string",
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":1768,
-                 "y":600
-                }, 
-                {
-                 "gid":7719,
-                 "height":16,
                  "id":805,
                  "name":"",
                  "properties":
@@ -765,28 +743,6 @@
                  "visible":true,
                  "width":16,
                  "x":2152,
-                 "y":600
-                }, 
-                {
-                 "gid":7719,
-                 "height":16,
-                 "id":810,
-                 "name":"",
-                 "properties":
-                    {
-                     "object":"v-solarlensinward2",
-                     "parameters":"{\"defaultState\" : true}"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string",
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":2136,
                  "y":600
                 }, 
                 {
@@ -1252,6 +1208,50 @@
                  "width":40,
                  "x":2208,
                  "y":504
+                }, 
+                {
+                 "gid":7719,
+                 "height":16,
+                 "id":897,
+                 "name":"",
+                 "properties":
+                    {
+                     "object":"v-solarlensinward2",
+                     "parameters":"{\"decorative\" : true}"
+                    },
+                 "propertytypes":
+                    {
+                     "object":"string",
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1768,
+                 "y":600
+                }, 
+                {
+                 "gid":7719,
+                 "height":16,
+                 "id":898,
+                 "name":"",
+                 "properties":
+                    {
+                     "object":"v-solarlensinward2",
+                     "parameters":"{\"decorative\" : true}"
+                    },
+                 "propertytypes":
+                    {
+                     "object":"string",
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2136,
+                 "y":600
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1752,7 +1752,7 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":897,
+ "nextobjectid":899,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
