@@ -19,7 +19,8 @@ local damageConfig
 local decorative
 local decorativeBeamLength
 local beamImpactSoundInterval
-local beamOscillateAmplitude
+local beamOscillateMinAmplitude
+local beamOscillateMaxAmplitude
 local beamOscillatePeriod
 local destabilizeCheckInterval
 
