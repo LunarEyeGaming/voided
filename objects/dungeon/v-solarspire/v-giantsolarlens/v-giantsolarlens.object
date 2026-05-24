@@ -24,16 +24,21 @@
   "animation" : "v-giantsolarlens.animation",
   "animationParts" : {
     "lens" : "giantsolarlens.png",
-    "lenslit" : "giantsolarlenslit.png"
+    "lenslit" : "giantsolarlenslit.png",
+    "beam" : "beam.png"
   },
   "animationPosition" : [0, 0],
 
   "scripts" : [ "v-giantsolarlens.lua" ],
-  "scriptDelta" : 0,
+  "scriptDelta" : 3,
 
   "angle" : 90,
   "angleOffset" : -90,
   "center" : [1, 0.5],
+
+  "beamOscillatePeriod" : 0.2,
+  "beamOscillateMinAmplitude" : 0.95,
+  "beamOscillateMaxAmplitude" : 1.0,
 
   "health" : 5,
   "smashOnBreak" : true,

@@ -41,12 +41,31 @@
             }
           }
         }
+      },
+      "beam" : {
+        "properties" : {
+          "zLevel" : -1,
+          "fullbright" : true,
+          "centered" : true,
+          "anchorPart" : "lens",
+          "transformationGroups" : [ "beam" ]
+        },
+        "partStates" : {
+          "lens" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
+        }
       }
     }
   },
 
   "transformationGroups" : {
-    "lens" : { "interpolated" : true }
+    "lens" : { "interpolated" : true },
+    "beam" : { "interpolated" : true }
   },
 
   "lights" : {
