@@ -1,0 +1,306 @@
+{
+  "verticalOrigin" : 10,
+
+  "layers" : [
+    {
+      "kind" : "divider/blackrock",
+      "offset" : [0, 350],
+      "nohueshift" : true,
+      "lightMapped" : true,
+      "parallax" : 1.199
+    },
+    {
+      "kind" : "tile/magmarock",
+      "nohueshift" : true,
+      "lightMapped" : true,
+      "repeatY" : true,
+      "tileLimitTop" : 275,
+      "parallax" : 1.2
+    },
+
+    {
+      "kind" : "v-basalticislands/grassbelow1",
+      "offset" : [0, 190],
+      "parallax" : [1.8, 2]
+    },
+    {
+      "kind" : "v-basalticislands/grassbelow2",
+      "offset" : [0, 190],
+      "parallax" : [1.8001, 2]
+    },
+    {
+      "kind" : "v-basalticislands/grassbelow3",
+      "offset" : [0, 190],
+      "parallax" : [1.8002, 2]
+    },
+    {
+      "kind" : "v-basalticislands/grassbelow3",
+      "offset" : [0, 330],
+      "parallax" : [1.8, 2]
+    },
+    {
+      "kind" : "v-basalticislands/grass1",
+      "offset" : [0, 50],
+      "parallax" : [1.8, 2]
+    },
+    {
+      "kind" : "v-basalticislands/missileblooms1",
+      "offset" : [0, 50],
+      "parallax" : [1.801, 2.001],
+      "baseCount" : 3,
+      "nohueshift" : true
+    },
+
+    {
+      "kind" : "v-basalticislands/grass2",
+      "offset" : [0, 50],
+      "parallax" : [2, 2.2]
+    },
+    {
+      "kind" : "v-basalticislands/grassbelow1",
+      "offset" : [0, 190],
+      "parallax" : [2, 2.2]
+    },
+    {
+      "kind" : "v-basalticislands/missileblooms1",
+      "offset" : [0, 42],
+      "parallax" : [2.001, 2.201],
+      "baseCount" : 3,
+      "nohueshift" : true
+    },
+
+    {
+      "kind" : "v-basalticislands/grass3",
+      "offset" : [0, 50],
+      "parallax" : [3, 2.4]
+    },
+    {
+      "kind" : "v-basalticislands/grassbelow1",
+      "offset" : [0, 190],
+      "parallax" : [3, 2.4]
+    },
+    {
+      "kind" : "v-basalticislands/missileblooms1",
+      "offset" : [0, 34],
+      "parallax" : [3.001, 2.401],
+      "baseCount" : 3,
+      "nohueshift" : true
+    },
+
+    {
+      "kind" : "v-basalticislands/grass4",
+      "offset" : [0, 50],
+      "parallax" : [4, 2.8]
+    },
+    {
+      "kind" : "v-basalticislands/missileblooms2",
+      "offset" : [0, 26],
+      "parallax" : [4.001, 2.801],
+      "baseCount" : 3,
+      "nohueshift" : true
+    },
+
+    {
+      "kind" : "v-basalticislands/grass5",
+      "offset" : [0, 50],
+      "parallax" : [5, 3.4]
+    },
+    {
+      "kind" : "v-basalticislands/missileblooms2",
+      "offset" : [0, 20],
+      "parallax" : [5.001, 3.401],
+      "baseCount" : 3,
+      "nohueshift" : true
+    },
+
+    {
+      "kind" : "v-basalticislands/grass6",
+      "offset" : [0, 50],
+      "parallax" : [6, 3.6]
+    },
+    {
+      "kind" : "v-basalticislands/missileblooms3",
+      "offset" : [0, 12],
+      "parallax" : [6.001, 3.601],
+      "baseCount" : 3,
+      "nohueshift" : true
+    },
+
+    {
+      "kind" : "v-basalticislands/grass7",
+      "offset" : [0, 50],
+      "parallax" : [7, 3.8],
+      "fadePercent" : 0.1
+    },
+    {
+      "kind" : "v-basalticislands/missileblooms4",
+      "offset" : [0, -4],
+      "parallax" : [7, 3.801],
+      "baseCount" : 3,
+      "fadePercent" : 0.1,
+      "nohueshift" : true
+    },
+
+    {
+      "kind" : "v-basalticislands/grass8",
+      "offset" : [0, 50],
+      "parallax" : [8, 4],
+      "fadePercent" : 0.12
+    },
+    {
+      "kind" : "v-basalticislands/missileblooms5",
+      "offset" : [0, -16],
+      "parallax" : [8.001, 4.001],
+      "baseCount" : 3,
+      "fadePercent" : 0.12,
+      "nohueshift" : true
+    },
+
+    {
+      "kind" : "v-basalticislands/grass9",
+      "baseCount" : 2,
+      "offset" : [0, 41],
+      "parallax" : [8, 4.2],
+      "fadePercent" : 0.1
+    },
+    {
+      "kind" : "v-basalticislands/missileblooms6",
+      "offset" : [0, -16],
+      "parallax" : [8.001, 4.201],
+      "baseCount" : 3,
+      "fadePercent" : 0.13,
+      "nohueshift" : true
+    },
+
+    // {
+    //   "kind" : "v-basalticislands/grassgreen",
+    //   "baseCount" : 1,
+    //   "offset" : [0, 450],
+    //   "parallax" : [8.1, 4.2]
+    // },
+    {
+      "kind" : "v-ministar/glowfade",
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "parallax" : 2.9
+    },
+    {
+      "kind" : "v-ministar/clouds1",
+      "offset" : [0, 350],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 3,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministar/glowfade",
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "parallax" : 3.1
+    },
+    {
+      "kind" : "v-ministar/clouds2",
+      "offset" : [0, 400],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 7.9,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministar/clouds1",
+      "offset" : [0, 400],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 8,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministar/glowfade",
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "parallax" : 8.1
+    },
+    {
+      "kind" : "v-ministar/clouds3",
+      "offset" : [0, 400],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 12.9,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministar/solarflare",
+      "offset" : [0, 275],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 13,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministar/clouds2",
+      "offset" : [0, 400],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 13.01,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministar/glowfade",
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "parallax" : 13.1
+    },
+    {
+      "kind" : "v-ministar/clouds3",
+      "offset" : [0, 400],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 18,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministar/solarflare",
+      "offset" : [0, 275],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 18.1,
+      "minSpeed" : 10000,
+      "maxSpeed" : 20000
+    },
+    {
+      "kind" : "v-ministar/glowfade",
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "parallax" : 18.2
+    },
+    {
+      "kind" : "v-ministar/glow",
+      "offset" : [0, 90],
+      "nohueshift" : true,
+      "unlit" : true,
+      "parallax" : 24
+    },
+    {
+      "kind" : "v-ministar/glowloop",
+      "offset" : [0, 0],
+      "nohueshift" : true,
+      "unlit" : true,
+      "repeatY" : true,
+      "tileLimitTop" : 90,
+      "parallax" : 24
+    }
+
+  ]
+}

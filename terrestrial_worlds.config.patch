@@ -440,6 +440,8 @@
         },
         "surface" : {
           "primaryRegion" : [ "v-ministar" ],
+          "secondaryRegions" : [ "v-basalticislands" ],
+          "secondaryRegionCount" : [1, 1],
 
           "dungeons" : [[1.0, "v-multidashpyramid"], [1.0, "v-solarspire"]],
           "dungeonCountRange" : [2, 2]
@@ -513,8 +515,7 @@
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
         [0, [ "v-ministar" ]]
-      ],
-      "subRegion" : [ "v-basalticislands" ]
+      ]
     }
   },
   {

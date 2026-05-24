@@ -115,6 +115,9 @@
               "power" : 15,
               "speed" : 50,
               "timeToLive" : 0.01,
+              "movementSettings" : {
+                "collisionEnabled" : false
+              },
               "actionOnReap" : [
                 {
                   "action" : "projectile",
@@ -130,7 +133,7 @@
                 },
                 {
                   "action" : "config",
-                  "file" : "/projectiles/explosions/regularexplosion2/fireexplosionknockback.config"
+                  "file" : "/projectiles/explosions/v-sunleaperexplosion/v-sunleaperexplosion.config"
                 }
               ]
             },
