@@ -13,7 +13,8 @@ function init()
   mergeDelay = config.getParameter("mergeDelay", 0)
   mergeTimer = mergeDelay
 
-  merger = VMerger:new(config.getParameter("targetType"), config.getParameter("mergeRadius"), false, true)
+  merger = VMerger:new(config.getParameter("targetType"), config.getParameter("mergeRadius"), false,
+    config.getParameter("dieOnMerge", true))
 end
 
 function update(dt)
@@ -24,7 +25,7 @@ function update(dt)
 end
 
 function destroy()
-  if not merger:isMerged() then
+  if not merger:isMerged() and nonMergeAction then
     projectile.processAction(nonMergeAction)
   end
 end

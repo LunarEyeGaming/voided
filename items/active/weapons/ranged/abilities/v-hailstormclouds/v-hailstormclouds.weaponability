@@ -1,0 +1,52 @@
+{
+  "animationParts" : { },
+  "animationCustom" : {
+    "sounds" : {
+      "fireStart" : [ ],
+      "fireLoop" : [ "/sfx/gun/v_hailstorm_alt_loop.ogg" ],
+      "fireEnd" : [ "/sfx/gun/v_hailstorm_alt_off.ogg" ]
+    }
+  },
+
+  "ability" : {
+    "name" : "Cold Wind",
+    "type" : "v-hailstormclouds",
+    "scripts" : ["/items/active/weapons/ranged/abilities/v-hailstormclouds/v-hailstormclouds.lua"],
+    "class" : "VHailstormClouds",
+
+    "projectileType" : "v-hailcloud",
+    "projectileParameters" : {},
+
+    "energyUsage" : 30,
+    "fireTime" : 0.065,
+    "projectileCount" : 1,
+    "inaccuracy" : 0.03,
+    "baseDps" : 4,
+    "useParticleEmitter" : false,
+
+    "stances" : {
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true,
+
+        "frontArmFrame" : "swimIdle.2"
+      },
+      "cooldown" : {
+        "duration" : 0.05,
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true,
+
+        "frontArmFrame" : "swimIdle.2"
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "itemName" : "v-hailstorm",
+  "price" : 1080,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "A shotgun that rains down pellets of hail.",
+  "extraInfo" : "The Cold Wind ability causes hail pellets to grow.",
+  "shortdescription" : "Hailstorm",
+  "tooltipKind" : "v-biggun",
+  "category" : "shotgun",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","ranged","sniperrifle"],
+  "level" : 8,
+
+  "inventoryIcon" : [
+    { "image" : "hailstorm.png:idle.1" }
+  ],
+
+  "animation" : "v-hailstorm.animation",
+  "animationParts" : {
+    "butt" : "",
+    "middle" : "hailstorm.png",
+    "middleFullbright" : "hailstormfullbright.png",
+    "barrel" : "",
+    "muzzleFlash" : "/items/active/weapons/aurorite/v-coldsnap/muzzleflash.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : ["/sfx/gun/v_hailstorm_fire1.ogg", "/sfx/gun/v_hailstorm_fire2.ogg"]
+    }
+  },
+
+  "baseOffset" : [0.75, -1.125],
+  "muzzleOffset" : [2.625, 0.125],
+
+  "scripts" : ["/items/active/weapons/ranged/gun.lua"],
+
+  "elementalType" : "ice",
+
+  "primaryAbility" : {
+    "scripts" : ["/items/active/weapons/ranged/gunfire.lua"],
+    "class" : "GunFire",
+
+    "fireTime" : 0.75,
+    "baseDps" : 9,
+    "energyUsage" : 45,
+    "projectileCount" : 5,
+    "inaccuracy" : 0.07,
+    "fireType" : "auto",
+    "muzzleFlashVariants" : 1,
+
+    "projectileType" : "v-hailpelletspawner",
+
+    "stances" : {
+      "idle" : {
+        "armRotation" : 0,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true,
+        "frontArmFrame" : "swimIdle.2"
+      },
+      "fire" : {
+        "duration" : 0,
+        "armRotation" : -6,
+        "weaponRotation" : -6,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+
+        "frontArmFrame" : "swimIdle.2"
+      },
+      "cooldown" : {
+        "duration" : 0.2,
+        "armRotation" : -6,
+        "weaponRotation" : -6,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+
+        "frontArmFrame" : "swimIdle.2"
+      }
+    }
+  },
+
+  "altAbilityType" : "v-hailstormclouds",
+  "altAbility" : { },
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

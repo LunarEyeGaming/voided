@@ -1,0 +1,23 @@
+{
+  "projectileName" : "v-hailpelletspawner",  // Embedding the parameters affects the alt ability because the alt inherits parameters from the primary.
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "timeToLive" : 0,
+  "animationCycle" : 1,
+  "speed" : 0,
+  "frameNumber" : 1,
+  "power" : 0,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  "piercing" : true,
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-hailpellet1",
+      "inheritDamageFactor" : 1.0,
+      "angleAdjust" : 0,
+      "autoFlipAdjust" : true
+    }
+  ]
+}

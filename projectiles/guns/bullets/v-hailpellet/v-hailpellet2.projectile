@@ -1,0 +1,57 @@
+{
+  "projectileName" : "v-hailpellet2",
+  "image" : "hailpellet2.png",
+  // "physics" : "stickygrenade",
+  "physics" : "grenade",
+  "animationCycle" : 0.5,
+  "bounces" : 0,
+  "frameNumber" : 1,
+  "damageKindImage" : "icon.png",
+  "pointLight" : false,
+  "flippable" : true,
+  "power" : 100.0,
+  "damageKind" : "ice",
+  "timeToLive" : 10,
+  "speed" : 25,
+
+  "damagePoly" : [ [-3, 0], [-2, -2], [0, -3], [2, -2], [3, 0], [2, 2], [0, 3], [-2, 2] ],
+
+  "scripts" : [ "/scripts/projectiles/v-mergehandler.lua" ],
+
+  "mergeRadius" : 2,
+  "mergeHandlerType" : "v-hailcloud",
+  "mergeDelay" : 0.3,
+
+  "actionOnMerge" : {
+    "action" : "projectile",
+    "type" : "v-hailpellet3",
+    "inheritDamageFactor" : 1.35,
+    "inheritSpeedFactor" : 0.75,
+    "angle" : 90
+  },
+  "actionOnNonMerge" : {
+    "action" : "projectile",
+    "type" : "v-proxyprojectile",
+    "config" : {
+      "actionOnReap" : [
+        {
+          "action" : "loop",
+          "count" : 5,
+          "body" : [
+            {
+              "action" : "particle",
+              "specification" : "v-permafrostshard"
+            }
+          ]
+        },
+        {
+          "action" : "sound",
+          "options" : [ "/sfx/projectiles/ice_break1.ogg", "/sfx/projectiles/ice_break2.ogg",
+          "/sfx/projectiles/ice_break3.ogg", "/sfx/projectiles/ice_break4.ogg", "/sfx/projectiles/ice_break5.ogg",
+          "/sfx/projectiles/ice_break6.ogg", "/sfx/projectiles/ice_break7.ogg", "/sfx/projectiles/ice_break8.ogg",
+          "/sfx/projectiles/ice_break9.ogg", "/sfx/projectiles/ice_break10.ogg" ]
+        }
+      ]
+    }
+  }
+}

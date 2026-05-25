@@ -1,0 +1,22 @@
+{
+  "projectileName" : "v-hailcloud",
+  "image" : "hailcloud.png",
+  "physics" : "gas",
+  "frameNumber" : 13,
+  "animationCycle" : 0.5,
+  "power" : 1,
+  "speed" : 50,
+  "timeToLive" : 0.5,
+  "bounces" : -1,
+  "damagePoly" : [ [-16, 0], [-12, -12], [0, -16], [12, -12], [16, 0], [12, 12], [0, 16], [-12, 12] ],
+  "piercing" : true,
+  "emitters" : [ "v-coldsnapcloud" ],
+  "damageKind" : "ice",
+  "statusEffects" : [ "frostslow" ],
+
+  "scripts" : [ "/scripts/projectiles/v-merger.lua" ],
+
+  "mergeRadius" : 2,
+  "targetType" : "v-hailcloud",
+  "dieOnMerge" : false
+}
