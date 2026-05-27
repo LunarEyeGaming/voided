@@ -1,0 +1,15 @@
+{
+  "projectileName" : "v-auroritecloud",
+  "image" : "auroritecloud.png",
+  "physics" : "laser",
+  "frameNumber" : 1,
+  "animationCycle" : 2,
+  "power" : 1,
+  "speed" : 0,
+  "timeToLive" : 2,
+  "bounces" : -1,
+  "damagePoly" : [ [-40, 0], [-25, -25], [0, -40], [25, -25], [40, 0], [25, 25], [0, 40], [-25, 25] ],
+  "piercing" : true,
+  "damageKind" : "ice",
+  "statusEffects" : [ "v-coldtouch" ]
+}

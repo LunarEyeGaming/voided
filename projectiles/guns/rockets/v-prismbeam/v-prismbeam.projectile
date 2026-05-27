@@ -1,0 +1,66 @@
+{
+  "projectileName" : "v-prismbeam",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "fullbright" : true,
+  "damageType" : "NoDamage",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 5,
+  "speed" : 1,
+  "acceleration" : 50,
+  "timeToLive" : 5,
+  "periodicActions" : [
+    {
+      "time" : 0.01,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-prismbeam/v-prismbeam.animation",
+        "position" : [0, 0],
+        "initialVelocity" : [0, 0.0],
+        "finalVelocity" : [0, 0.0],
+        "approach" : [0, 10],
+        "fade" : 0.3,
+        "destructionAction" : "shrink",
+        "destructionTime" : 0.0,
+        "size" : 1.0,
+        "timeToLive" : 0.5,
+        "fullbright" : true,
+        "layer" : "middle",
+        "collidesForeground" : false,
+        "variance" : {
+          "position" : [0.0, 0.0],
+          "initialVelocity" : [0, 0]
+        }
+      }
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-prismaticexplosion/v-prismaticexplosionsmall.config"
+    },
+    {
+      "action" : "projectile",
+      "type" : "v-proxyprojectile",
+      "inheritDamageFactor" : 1,
+      "config" : {
+        "movementSettings" : {
+          "collisionEnabled" : false
+        },
+        "timeToLive" : 1.5,
+        "actionOnReap" : [
+          {
+            "action" : "config",
+            "file" : "/projectiles/explosions/v-prismaticexplosion/v-prismaticexplosionlarge.config"
+          }
+        ]
+      }
+    }
+  ],
+  "lightColor" : [235, 161, 253],
+  "damageKind" : "plasmabullet"
+}
