@@ -136,6 +136,10 @@ end
 -- param fireInterval
 -- param target
 function v_wormFire(args, board)
+  if not vBehavior.requireArgs("v_wormFire", args, {"fireCount", "fireInterval", "count"}) then
+    return false
+  end
+
   -- Create a list of segment numbers, shuffle, then use the first <fireCount>. Send a message to the child segment to
   -- fire the given segment, which will be propagated to the appropriate segment.
   local numSegments = config.getParameter("size")
@@ -151,6 +155,18 @@ function v_wormFire(args, board)
     world.sendEntityMessage(self.childId, "v-wormFire", segmentOrder[i], args.target)
     util.run(args.fireInterval, function() end)
   end
+
+  return true
+end
+
+-- param stateType
+-- param state
+function v_wormAnimate(args, board)
+  if not vBehavior.requireArgs("v_wormAnimate", args, {"stateType", "state"}) then
+    return false
+  end
+
+  world.sendEntityMessage(self.childId, "v-wormAnimate", args.stateType, args.state)
 
   return true
 end
