@@ -9,6 +9,8 @@ local projectileType
 local projectileParameters
 local projectileOffset
 
+local state
+
 function init()
   oldInit()
 

@@ -27,6 +27,8 @@ local invulnerable
 
 local spawnedMines
 
+local state
+
 function init()
   oldInit()
 
