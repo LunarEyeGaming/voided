@@ -116,3 +116,15 @@ function vVec2.projection(vector, ontoVector)
 
   return {ontoVector[1] * factor, ontoVector[2] * factor}
 end
+
+
+---Returns the linear interpolation of two vectors `from` and `to`.
+---@param ratio number between 0 and 1
+---@param from any
+---@param to any
+function vVec2.lerp(ratio, from, to)
+  return {
+    from[1] + (to[1] - from[1]) * ratio,
+    from[2] + (to[2] - from[2]) * ratio
+  }
+end
