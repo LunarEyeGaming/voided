@@ -8,7 +8,7 @@
   "race" : "generic",
 
   "fullbright" : true,
-  "lightColor" : [240, 120, 0],
+  "lightColor" : [135, 35, 1],
 
   "apexDescription" : "<todo>",
   "avianDescription" : "<todo>",
@@ -21,13 +21,40 @@
   "category" : "decorative",
   "price" : 0,
 
+  "particleEmitter" : {
+    "emissionRate" : 5,
+    "emissionVariance" : 0,
+    "pixelOrigin" : [0, 0],
+    "placeInSpaces" : true,
+    "particle" : {
+      "type" : "ember",
+      "color" : [181, 41, 2],
+      "initialVelocity" : [0, 3],
+      "finalVelocity" : [0, 3],
+      "approach" : [1, 0],
+      "fullbright" : true,
+      "light" : [87, 22, 1],
+      "timeToLive" : 3,
+      "destructionAction" : "shrink",
+      "destructionTime" : 1,
+      "layer" : "back",
+      "collidesLiquid" : false
+    },
+    "particleVariance" : {
+      "position" : [0.5, 0.5],
+      "initialVelocity" : [2, 2],
+      "size" : 1
+    }
+  },
+
   "inventoryIcon" : "icon.png",
   "orientations" : [
     {
-      "dualImage" : "warmcoral4.png",
+      "imageLayers" : [ { "image" : "warmcoral4.png" }, { "image" : "warmcoral4unlit.png", "fullbright" : true } ],
       "imagePosition" : [-24, 0],
+      "lightPosition" : [0, 3],
 
-      "anchors" : ["bottom"],
+      "fgAnchors" : [ [-1, -1], [0, -1] ],
 
       "spaceScan" : 0.1
     }
