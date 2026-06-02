@@ -16,14 +16,14 @@ local laserActivateDistance
 
 local projectileUpdateInterval
 
-local currentEllipseAngle
-local distanceToClamped
-
 local currentStateReset
 
 local turretIsActive  -- If true, then the turret will not be rotated with the body.
 
+local currentEllipseAngle
+local distanceToClamped
 local invulnerable
+local projectileUpdateTimer
 
 local spawnedMines
 
