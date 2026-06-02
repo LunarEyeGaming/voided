@@ -7,6 +7,7 @@ local oldUninit = uninit or function() end
 local digMode
 local digCheck
 
+local isDigging
 local wasDigging
 local prevSpeed
 
@@ -47,7 +48,7 @@ function update(dt)
   oldUpdate(dt)
 
   local speed = deriveSpeed(dt)
-  local isDigging = digCheck()
+  isDigging = digCheck()
 
   if speed > 0 and prevSpeed > 0 then
     if isDigging and not wasDigging then
@@ -79,8 +80,6 @@ function update(dt)
 
   wasDigging = isDigging
   prevSpeed = speed
-
-  world.debugText("%s", speed, mcontroller.position(), speed == 0 and "red" or "green")
 
   -- Zoomed out view
   local playerId = world.players()[1]

@@ -1,0 +1,20 @@
+{
+  "name": "v-action-wormanimate",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/v-worm.lua"
+  ],
+  "parameters": {
+    "stateType": "",
+    "state": ""
+  },
+  "root": {
+    "title": "v_wormAnimate",
+    "type": "action",
+    "name": "v_wormAnimate",
+    "parameters": {
+      "stateType": {"key": "<stateType>"},
+      "state": {"key": "<state>"}
+    }
+  }
+}

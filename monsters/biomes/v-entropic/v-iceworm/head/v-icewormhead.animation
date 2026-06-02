@@ -6,12 +6,18 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1
+            "frames" : 1,
+            "properties" : {
+              "lightsOff" : [ "glow" ]
+            }
           },
           "fly" : {
-            "frames" : 4,
+            "frames" : 1,
             "cycle" : 0.3,
-            "mode" : "loop"
+            "mode" : "loop",
+            "properties" : {
+              "lightsOn" : [ "glow" ]
+            }
           }
         }
       },
@@ -60,19 +66,19 @@
           "body" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>"
+                "image" : "<partImage>:idle.<frame>"
               }
             },
             "fly" : {
               "properties" : {
-                "image" : "<partImage>"
+                "image" : "<partImage>:fly.<frame>"
               }
             }
           },
           "damage" : {
             "stunned" : {
               "properties" : {
-                "image" : "<partImage>"
+                "image" : "<partImage>:hurt.<frame>"
               }
             }
           }
@@ -125,12 +131,12 @@
     }
   },
 
-  // "lights" : {
-  //   "glow" : {
-  //     "active" : true,
-  //     "color": [13, 13, 64]
-  //   }
-  // },
+  "lights" : {
+    "glow" : {
+      "active" : false,
+      "color" : [25, 15, 48]
+    }
+  },
 
   "particleEmitters" : {
     "deathPoof" : {

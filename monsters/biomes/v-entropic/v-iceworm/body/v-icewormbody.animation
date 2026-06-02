@@ -6,22 +6,18 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1
+            "frames" : 1,
+            "properties" : {
+              "lightsOff" : [ "glow" ]
+            }
           },
           "fly" : {
-            "frames" : 4,
+            "frames" : 1,
             "cycle" : 0.3,
-            "mode" : "loop"
-          },
-          "turnleft" : {
-            "frames" : 4,
-            "cycle" : 0.3,
-            "mode" : "loop"
-          },
-          "turnright" : {
-            "frames" : 4,
-            "cycle" : 0.3,
-            "mode" : "loop"
+            "mode" : "loop",
+            "properties" : {
+              "lightsOn" : [ "glow" ]
+            }
           }
         }
       },
@@ -44,9 +40,8 @@
         "properties" : {
           "zLevel" : 10,
           "transformationGroups" : [ "facing", "body" ],
-          "offset" : [0.0, 0.0],
-          "image" : "<partImage>"
-        }/* ,
+          "offset" : [0.0, 0.0]
+        },
         "partStates" : {
           "body" : {
             "idle" : {
@@ -58,15 +53,33 @@
               "properties" : {
                 "image" : "<partImage>:fly.<frame>"
               }
-            },
-            "turnleft" : {
+            }
+          },
+          "damage" : {
+            "stunned" : {
               "properties" : {
-                "image" : "<partImage>:turnleft.<frame>"
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "anchorPart" : "body",
+          "zLevel" : 20,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
               }
             },
-            "turnright" : {
+            "fly" : {
               "properties" : {
-                "image" : "<partImage>:turnright.<frame>"
+                "image" : "<partImage>:fly.<frame>"
               }
             }
           },
@@ -77,7 +90,7 @@
               }
             }
           }
-        } */
+        }
       }
     }
   },
@@ -139,12 +152,12 @@
     }
   },
 
-  // "lights" : {
-  //   "glow" : {
-  //     "active" : true,
-  //     "color": [13, 13, 64]
-  //   }
-  // },
+  "lights" : {
+    "glow" : {
+      "active" : false,
+      "color" : [25, 15, 48]
+    }
+  },
 
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],

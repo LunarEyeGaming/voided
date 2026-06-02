@@ -69,6 +69,24 @@
       ],
 
       "foundTargetActions" : [
+        {
+          "name" : "v-action-wormanimate",
+          "parameters" : {
+            "state" : "fly",
+            "stateType" : "body"
+          }
+        }
+      ],
+
+      "concurrentActions" : [
+        {
+          "name" : "v-action-wormanimate",
+          "cooldown" : 3,
+          "parameters" : {
+            "state" : "idle",
+            "stateType" : "body"
+          }
+        }
       ],
 
       "hostileActions" : [
@@ -119,7 +137,10 @@
           "name" : "v-approach-turnworm",
           "parameters" : {
             "turnSpeed" : 8.0,
-            "waveAmplitude" : 0
+            "waveAmplitude" : 0,
+            "flyState" : "fly",
+            "leftState" : "fly",
+            "rightState" : "fly"
           }
         }
       ],
@@ -134,7 +155,10 @@
           "name" : "v-approach-turnworm",
           "parameters" : {
             "turnSpeed" : 8.0,
-            "waveAmplitude" : 0
+            "waveAmplitude" : 0,
+            "flyState" : "fly",
+            "leftState" : "fly",
+            "rightState" : "fly"
           }
         }
       ]

@@ -1579,5 +1579,19 @@
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-gettetherposition.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-wormanimate",
+    "value": {
+      "type": "module",
+      "name": "v-action-wormanimate",
+      "title": "",
+      "properties": {
+        "stateType": {"type": "json", "value": ""},
+        "state": {"type": "json", "value": ""}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-wormanimate.behavior"
+    }
   }
 ]

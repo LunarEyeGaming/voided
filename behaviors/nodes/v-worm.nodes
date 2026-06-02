@@ -72,5 +72,17 @@
       "angle": {"type": "number", "key": null},
       "direction": {"type": "number", "key": null}
     }
+  },
+  "v_wormAnimate": {
+    "type": "action",
+    "name": "v_wormAnimate",
+    "title": "v_wormAnimate",
+    "properties": {
+      "stateType": {"type": "string"},
+      "state": {"type": "string"}
+    },
+    "category": "v-worm",
+    "script": "/scripts/actions/v-worm.lua",
+    "output": {}
   }
 }
