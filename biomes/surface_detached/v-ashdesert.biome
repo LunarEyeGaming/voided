@@ -1,0 +1,155 @@
+{
+  "name" : "v-ashdesert",
+  "friendlyName" : "Ashen Desert",
+
+  "spawnProfile" : {
+    "groups" : [
+      {
+        "select" : 1,
+        "pool" : [
+          [ 1.0, "v-sunleaperground" ],
+          [ 1.0, "v-firefloater" ]
+        ]
+      },
+      {
+        "select" : 1,
+        "pool" : "generatedGroundAggroDay"
+      },
+      {
+        "select" : 3,
+        "pool" : "nightTerrors"
+      },
+      {
+        "select" : 2,
+        "pool" : "generatedGround"
+      },
+      {
+        "select" : 2,
+        "pool" : "generatedFlying"
+      }
+    ],
+    "monsterParameters" : {
+      "colors" : "v-voltagecopper",
+      "statusSettings" : {
+        "stats" : {
+          "fireResistance" : {
+            "baseValue" : 0.5
+          },
+          "iceResistance" : {
+            "baseValue" : -0.25
+          },
+          "lavaImmunity" : {
+            "baseValue" : 1.0
+          },
+          "v-evaporatingImmunity" : {
+            "baseValue" : 1.0
+          },
+          "fireStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 25.0
+          }
+        }
+      }
+    }
+  },
+
+  "mainBlock" : "ash",
+  "subBlocks" : [ "v-sunspotstone" ],
+  "ores" : "v-undergroundministar",
+
+  "parallax" : "/parallax/surface/v-ashdesert.parallax",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/v_ministar_surface.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/v_ministar_surface.ogg" ]
+    }
+  },
+
+  // Duplicates are listed for weighted music selection.
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/i-was-the-sun.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/lava-exploration1.ogg", "/music/drosera.ogg", "/music/casiopeia.ogg", "/music/Nomads.ogg",
+                   "/music/i-was-the-sun.ogg" ]
+    }
+  },
+
+  "surfacePlaceables" : {
+    "grassMod" : [ "ash" ],
+    "grassModDensity" : 0.75,
+
+    "ceilingGrassMod" : [ "roots" ],
+    "ceilingGrassModDensity" : 0.6,
+
+    "baseHueShiftMax" : 120,
+    "modHueShiftMax" : 180,
+
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:surfaceCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { "breakDropPool" : "v-capsuleMinistar", "smashDropPool" : "v-capsuleMinistar" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 3.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseMedium",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-ashdesertemitter" ] ],
+            "parameters" : { }
+          }
+        ]
+      }
+    ]
+  },
+
+  "undergroundPlaceables" : {
+    "grassMod" : [ "ash" ],
+    "grassModDensity" : 0.8,
+
+    "ceilingGrassMod" : [ "roots" ],
+    "ceilingGrassModDensity" : 0.6,
+
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { "breakDropPool" : "v-capsuleMinistar", "smashDropPool" : "v-capsuleMinistar" }
+          }
+        ]
+      }
+    ]
+  }
+}

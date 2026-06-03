@@ -440,7 +440,8 @@
         },
         "surface" : {
           "primaryRegion" : [ "v-ministar" ],
-          "secondaryRegions" : [ "v-basalticislands" ],
+          "secondaryRegions" : [ "v-basalticislands", "v-ashdesert" ],
+          // "secondaryRegions" : [ "v-ashdesert" ],
           "secondaryRegionCount" : [1, 1],
 
           "dungeons" : [[1.0, "v-multidashpyramid"], [1.0, "v-solarspire"]],
@@ -528,6 +529,20 @@
       "bgCaveSelector" : [ "empty" ],
       "biome" : [
         [0, [ "v-basalticislands" ]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-ashdesert",
+    "value" : {
+      "oceanLiquid" : [ "v-sun" ],
+      "blockSelector" : [ "v-ashDesertIslands" ],
+      "fgCaveSelector" : [ "surfaceCaves" ],
+      "bgCaveSelector" : [ "empty" ],
+      "subBlockSelector" : ["v-copperDesertSubBlocks"],
+      "biome" : [
+        [0, [ "v-ashdesert" ]]
       ]
     }
   },
