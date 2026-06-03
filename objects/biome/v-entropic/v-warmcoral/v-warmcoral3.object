@@ -22,8 +22,8 @@
   "price" : 0,
 
   "particleEmitter" : {
-    "emissionRate" : 5,
-    "emissionVariance" : 0,
+    "emissionRate" : 3,
+    "emissionVariance" : 0.5,
     "pixelOrigin" : [0, 0],
     "placeInSpaces" : true,
     "particle" : {
@@ -70,7 +70,7 @@
   "smashParticles" : [ { "count" : 10, "particle" : "v-toxicrockshard" } ],
 
   "statusEffectConfig" : {
-    "effectRadius" : 5,
+    "effectRadius" : 4,
     "effectType" : "v-warm",
     "effectDuration" : 0.5
   },
