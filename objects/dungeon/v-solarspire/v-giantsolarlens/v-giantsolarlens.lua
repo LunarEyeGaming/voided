@@ -1,4 +1,5 @@
 require "/scripts/vec2.lua"
+require "/scripts/poly.lua"
 
 local beamOscillateMinAmplitude
 local beamOscillateMaxAmplitude
@@ -7,6 +8,7 @@ local beamOscillatePeriod
 local beamOscillateTimer
 
 function init()
+  local center = config.getParameter("center", {0, 0})
   local direction = config.getParameter("direction")
   local angle
   if direction then
@@ -16,7 +18,12 @@ function init()
   end
   angle = angle + config.getParameter("angleOffset", 0) * math.pi / 180
   animator.resetTransformationGroup("lens")
-  animator.rotateTransformationGroup("lens", angle, config.getParameter("center"))
+  animator.rotateTransformationGroup("lens", angle, center)
+  local damageConfig = config.getParameter("damageConfig")
+  if damageConfig then
+    damageConfig.poly = poly.translate(poly.rotate(poly.translate(damageConfig.poly, vec2.mul(center, -1)), angle), center)
+    object.setDamageSources({damageConfig})
+  end
 
   beamOscillateMinAmplitude = config.getParameter("beamOscillateMinAmplitude", 0.5)
   beamOscillateMaxAmplitude = config.getParameter("beamOscillateMaxAmplitude", 1)

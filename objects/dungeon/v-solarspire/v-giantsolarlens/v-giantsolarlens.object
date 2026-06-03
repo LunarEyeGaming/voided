@@ -36,6 +36,15 @@
   "angleOffset" : -90,
   "center" : [1, 0.5],
 
+  "damageConfig" : {
+    "poly" : [[-1, 1], [1, 12], [3, 1]],
+    "damageSourceKind" : "fireplasma",
+    "damage" : 40,
+    "damageType" : "Environment",
+    "teamType" : "enemy",
+    "rayCheck" : false
+  },
+
   "beamOscillatePeriod" : 0.2,
   "beamOscillateMinAmplitude" : 0.95,
   "beamOscillateMaxAmplitude" : 1.0,
