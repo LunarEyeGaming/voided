@@ -2,13 +2,16 @@
   "name" : "v-crystaldepthpoison2",
   "blockingStat" : "v-crystaldepthpoisonImmunity",
   "effectConfig" : {
-    "poisonRate" : 50
+    "poisonRate" : 50,
+    "playWarningSound" : true
   },
   "defaultDuration" : 1,
 
   "scripts" : [
     "v-crystaldepthpoison.lua"
   ],
+
+  "animationConfig" : "v-crystaldepthpoison.animation",
 
   "label" : "Severe Mycotoxin Exposure - Mycotoxin meter rapidly increases",
   "icon" : "/interface/statuses/v-crystaldepthpoison2.png"

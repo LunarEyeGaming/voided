@@ -7,6 +7,10 @@ function init()
 
   deltaGroup = effect.addStatModifierGroup({{stat = "v-depthPoisonDelta", amount = poisonRate}})
 
+  if config.getParameter("playWarningSound") then
+    animator.playSound("warning", -1)
+  end
+
   script.setUpdateDelta(0)
 end
 
