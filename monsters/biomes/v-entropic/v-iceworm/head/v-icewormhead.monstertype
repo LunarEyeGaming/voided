@@ -91,6 +91,19 @@
 
       "hostileActions" : [
         {
+          "name" : "v-action-stalkworm",
+          "cooldown" : 10,
+          "parameters" : {
+            "minStalkAngle" : 3.141592653589,
+            "tolerance" : 5,
+            "turnSpeed" : 8.0,
+            "waveAmplitude" : 0,
+            "flyState" : "fly",
+            "leftState" : "fly",
+            "rightState" : "fly"
+          }
+        },
+        {
           "name" : "action-fire",
           "cooldown" : 5,
           "parameters" : {

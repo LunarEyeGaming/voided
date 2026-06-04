@@ -1593,5 +1593,30 @@
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-wormanimate.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-stalkworm",
+    "value": {
+      "type": "module",
+      "name": "v-action-stalkworm",
+      "title": "",
+      "properties": {
+        "duration": {"type": "json", "value": 10},
+        "tolerance": {"type": "json", "value": 1},
+        "stalkRange": {"type": "json", "value": 20},
+        "turnSpeed": {"type": "json", "value": 1},
+        "leftState": {"type": "json", "value": ""},
+        "rightState": {"type": "json", "value": ""},
+        "flyState": {"type": "json", "value": ""},
+        "idleState": {"type": "json", "value": ""},
+        "wavePeriod": {"type": "json", "value": 1},
+        "waveAmplitude": {"type": "json", "value": 1},
+        "digMode": {"type": "json", "value": null},
+        "maxStalkAngle": {"type": "json", "value": 6.28318530717},
+        "minStalkAngle": {"type": "json", "value": 0}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-stalkworm.behavior"
+    }
   }
 ]

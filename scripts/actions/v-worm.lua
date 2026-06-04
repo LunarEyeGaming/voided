@@ -41,6 +41,7 @@ end
 
 -- This is a modified version of approachTurn in vanilla Starbound.
 -- param entity
+-- param position
 -- param turnSpeed
 -- param wavePeriod
 -- param waveAmplitude
@@ -52,7 +53,7 @@ function v_approachTurnWorm(args, output, _, dt)
   local MIN_SPEED = 2
 
   local speed = args.speed or mcontroller.baseParameters().flySpeed
-  local targetPosition = world.entityPosition(args.entity)
+  local targetPosition = args.position or world.entityPosition(args.entity)
   local distance = world.magnitude(targetPosition, mcontroller.position())
   local timer = 0
   local lastSineAngle = 0
@@ -119,7 +120,7 @@ function v_approachTurnWorm(args, output, _, dt)
 
       coroutine.yield(nil, {angle = angle, direction = diff})
 
-      targetPosition = world.entityPosition(args.entity)
+      targetPosition = args.position or world.entityPosition(args.entity)
       distance = world.magnitude(targetPosition, mcontroller.position())
     else
       local direction = mcontroller.velocity()

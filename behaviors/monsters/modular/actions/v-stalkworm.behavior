@@ -1,0 +1,376 @@
+{
+  "name": "v-action-stalkworm",
+  "description": null,
+  "scripts": [
+    "/scripts/behavior.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/voidedutil.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/v-worm.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/movement.lua"
+  ],
+  "parameters": {
+    "duration": 10,
+    "tolerance": 1,
+    "stalkRange": 20,
+    "turnSpeed": 1,
+    "leftState": "",
+    "rightState": "",
+    "flyState": "",
+    "idleState": "",
+    "wavePeriod": 1,
+    "waveAmplitude": 1,
+    "digMode": null,
+    "maxStalkAngle": 6.28318530717,
+    "minStalkAngle": 0
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "setNumber",
+        "type": "action",
+        "name": "setNumber",
+        "parameters": {
+          "number": {"key": "<stalkRange>"}
+        },
+        "output": {
+          "number": "stalkRange"
+        }
+      },
+      {
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "random",
+            "type": "action",
+            "name": "random",
+            "parameters": {
+              "max": {"key": "<maxStalkAngle>"},
+              "min": {"key": "<minStalkAngle>"}
+            },
+            "output": {
+              "number": "stalkAngle"
+            }
+          },
+          {
+            "title": "vecRotate",
+            "type": "action",
+            "name": "vecRotate",
+            "parameters": {
+              "angle": {"key": "stalkAngle"},
+              "vector": {"value": ["stalkRange", 0]}
+            },
+            "output": {
+              "vector": "stalkVector"
+            }
+          }
+        ]
+      },
+      {
+        "title": "v_logInfo",
+        "type": "action",
+        "name": "v_logInfo",
+        "parameters": {
+          "msg": {"value": "Stalking"}
+        }
+      },
+      {
+        "title": "v_logInfo",
+        "type": "action",
+        "name": "v_logInfo",
+        "parameters": {
+          "formatArgs": {"value": ["$vec2:stalkVector"]},
+          "msg": {"value": "offset: %s"}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"key": "<duration>"}
+            }
+          },
+          {
+            "title": "parallel",
+            "type": "composite",
+            "name": "parallel",
+            "parameters": {
+              "fail": {"value": -1},
+              "success": {"value": -1}
+            },
+            "children": [
+              {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "distance",
+                    "type": "action",
+                    "name": "distance",
+                    "parameters": {
+                      "from": {"key": "self"},
+                      "to": {"key": "stalkPos"}
+                    },
+                    "output": {
+                      "magnitude": "stalkDistance"
+                    }
+                  },
+                  {
+                    "title": "greaterThan",
+                    "type": "action",
+                    "name": "greaterThan",
+                    "parameters": {
+                      "first": {"key": "<tolerance>"},
+                      "second": {"key": "stalkDistance"}
+                    }
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "random",
+                        "type": "action",
+                        "name": "random",
+                        "parameters": {
+                          "max": {"value": 6.28318530717},
+                          "min": {"value": 0}
+                        },
+                        "output": {
+                          "number": "stalkAngle"
+                        }
+                      },
+                      {
+                        "title": "vecRotate",
+                        "type": "action",
+                        "name": "vecRotate",
+                        "parameters": {
+                          "angle": {"key": "stalkAngle"},
+                          "vector": {"value": ["stalkRange", 0]}
+                        },
+                        "output": {
+                          "vector": "stalkVector"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "v_logInfo",
+                    "type": "action",
+                    "name": "v_logInfo",
+                    "parameters": {
+                      "formatArgs": {"value": ["$vec2:stalkVector"]},
+                      "msg": {"value": "offset: %s"}
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "entityPosition",
+                    "type": "action",
+                    "name": "entityPosition",
+                    "parameters": {
+                      "entity": {"key": "target"}
+                    },
+                    "output": {
+                      "position": "targetPos"
+                    }
+                  },
+                  {
+                    "title": "offsetPosition",
+                    "type": "action",
+                    "name": "offsetPosition",
+                    "parameters": {
+                      "offset": {"key": "stalkVector"},
+                      "position": {"key": "targetPos"}
+                    },
+                    "output": {
+                      "position": "stalkPos"
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "v_approachTurnWorm",
+                "type": "action",
+                "name": "v_approachTurnWorm",
+                "parameters": {
+                  "digMode": {"key": "<digMode>"},
+                  "turnSpeed": {"key": "<turnSpeed>"},
+                  "waveAmplitude": {"key": "<waveAmplitude>"},
+                  "wavePeriod": {"key": "<wavePeriod>"},
+                  "position": {"key": "stalkPos"}
+                },
+                "output": {
+                  "angle": "heading",
+                  "direction": "turnDirection"
+                }
+              },
+              {
+                "title": "succeeder",
+                "type": "decorator",
+                "name": "succeeder",
+                "parameters": {},
+                "child": {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "resetTransformationGroup",
+                      "type": "action",
+                      "name": "resetTransformationGroup",
+                      "parameters": {
+                        "transformationGroup": {"value": "body"}
+                      }
+                    },
+                    {
+                      "title": "rotateTransformationGroup",
+                      "type": "action",
+                      "name": "rotateTransformationGroup",
+                      "parameters": {
+                        "angle": {"key": "heading"},
+                        "transformationGroup": {"value": "body"}
+                      }
+                    },
+                    {
+                      "title": "faceDirection",
+                      "type": "action",
+                      "name": "faceDirection",
+                      "parameters": {
+                        "direction": {"value": 1}
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "dynamic",
+                "type": "composite",
+                "name": "dynamic",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "parallel",
+                    "type": "composite",
+                    "name": "parallel",
+                    "parameters": {
+                      "fail": {"value": 1},
+                      "success": {"value": -1}
+                    },
+                    "children": [
+                      {
+                        "title": "greaterThan",
+                        "type": "action",
+                        "name": "greaterThan",
+                        "parameters": {
+                          "first": {"key": "turnDirection"},
+                          "second": {"value": 0.1}
+                        }
+                      },
+                      {
+                        "title": "animate",
+                        "type": "action",
+                        "name": "animate",
+                        "parameters": {
+                          "fallback": {"value": "<idleState>"},
+                          "state": {"value": "<leftState>"},
+                          "type": {"value": "body"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "parallel",
+                    "type": "composite",
+                    "name": "parallel",
+                    "parameters": {
+                      "fail": {"value": 1},
+                      "success": {"value": -1}
+                    },
+                    "children": [
+                      {
+                        "title": "inverter",
+                        "type": "decorator",
+                        "name": "inverter",
+                        "parameters": {},
+                        "child": {
+                          "title": "greaterThan",
+                          "type": "action",
+                          "name": "greaterThan",
+                          "parameters": {
+                            "first": {"key": "turnDirection"},
+                            "second": {"value": -0.1}
+                          }
+                        }
+                      },
+                      {
+                        "title": "animate",
+                        "type": "action",
+                        "name": "animate",
+                        "parameters": {
+                          "fallback": {"value": "<idleState>"},
+                          "state": {"value": "<rightState>"},
+                          "type": {"value": "body"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "animate",
+                    "type": "action",
+                    "name": "animate",
+                    "parameters": {
+                      "fallback": {"value": "<idleState>"},
+                      "state": {"value": "<flyState>"},
+                      "type": {"value": "body"}
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "v_logInfo",
+        "type": "action",
+        "name": "v_logInfo",
+        "parameters": {
+          "msg": {"value": "Finished stalking"}
+        }
+      }
+    ]
+  }
+}
