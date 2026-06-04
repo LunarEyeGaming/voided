@@ -1,6 +1,4 @@
 require "/scripts/projectiles/v-mergergeneric.lua"
-require "/scripts/vec2.lua"
-require "/scripts/poly.lua"
 
 local actionOnMerge
 local actionOnNonMerge

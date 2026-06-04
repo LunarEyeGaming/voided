@@ -1,3 +1,6 @@
+require "/scripts/vec2.lua"
+require "/scripts/poly.lua"
+
 local oldInit = init or function() end
 local oldUpdate = update or function() end
 
