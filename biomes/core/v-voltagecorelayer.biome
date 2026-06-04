@@ -137,6 +137,15 @@
         "microdungeons" : [ "v-voltagecitypointer" ]
       },
       {
+        "mode" : "ceiling",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-lightningRod",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-voltagelightningrod" ]
+      },
+      {
         "mode" : "floor",
         "priority" : 0.0,
         "variants" : 1,

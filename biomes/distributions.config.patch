@@ -260,6 +260,25 @@
   },
   {
     "op" : "add",
+    "path" : "/v-lightningRod",
+    "value" : {
+      "type" : "periodic",
+
+      "octaves" : 2,
+      "alpha" : 2.0,
+      "beta" : 2.0,
+
+      "modulus" : 180,
+      "modulusVariance" : 0,
+
+      "densityPeriod" : 45,
+      "densityOffset" : 0.1,
+
+      "typePeriod" : 40
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/v-testDistribution",
     "value" : {
       "type" : "periodic",
