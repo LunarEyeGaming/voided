@@ -31,8 +31,13 @@
   ],
 
   "scripts" : [ "/objects/scripts/v-pickupobject.lua" ],
+  "smashOnPickup" : true,
 
-  "breakDropOptions" : [ [ [ "v-thornharpoongun", 1, {} ] ] ],
+  "smashDropOptions" : [ [ [ "v-thornharpoongun", 1, {} ] ] ],
+  "smashParticles" : [ { "particle" : "v-toxicbrambleshard", "count" : 10 } ],
+  "smashSounds" : [ "/sfx/projectiles/v_thorns_break1.ogg", "/sfx/projectiles/v_thorns_break2.ogg",
+  "/sfx/projectiles/v_thorns_break3.ogg", "/sfx/projectiles/v_thorns_break4.ogg",
+  "/sfx/projectiles/v_thorns_break5.ogg", "/sfx/projectiles/v_thorns_break6.ogg" ],
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }

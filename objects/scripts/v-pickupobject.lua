@@ -6,5 +6,5 @@ function init()
 end
 
 function onInteraction(args)
-  object.smash()
+  object.smash(config.getParameter("smashOnPickup"))
 end
