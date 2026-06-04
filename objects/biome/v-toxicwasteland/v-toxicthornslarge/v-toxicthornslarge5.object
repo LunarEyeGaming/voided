@@ -132,5 +132,9 @@
     }
   ],
 
-  "biomePlaced" : true
+  "biomePlaced" : true,
+
+  "smashOnBreak" : true,
+  "smashSounds" : [ "/sfx/objects/plant_break1.ogg", "/sfx/objects/plant_break2.ogg", "/sfx/objects/plant_break3.ogg", "/sfx/objects/plant_break4.ogg", "/sfx/objects/plant_break5.ogg", "/sfx/objects/plant_break6.ogg" ],
+  "smashParticles" : [ { "particle" : "v-toxicbrambleshard", "count" : 10 } ]
 }
