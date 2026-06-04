@@ -39,7 +39,29 @@
       }
     ],
     "monsterParameters" : {
-      "colors" : "v-toxicwasteland"
+      "colors" : "v-toxicwasteland",
+      "statusSettings" : {
+        "stats" : {
+          "fireResistance" : {
+            "baseValue" : -0.25
+          },
+          "iceResistance" : {
+            "baseValue" : 0.5
+          },
+          "lavaImmunity" : {
+            "baseValue" : 1.0
+          },
+          "v-evaporatingImmunity" : {
+            "baseValue" : 1.0
+          },
+          "fireStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 25.0
+          }
+        }
+      }
     }
   },
 
@@ -200,6 +222,16 @@
             "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 2.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseLarge",
+
+        "type" : "tree",
+        "treeStemList" : [ "v-icicletree" ],
+        "treeFoliageList" : [ "v-electricfoliage" ]
       },
       {
         "mode" : "floor",
