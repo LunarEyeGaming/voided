@@ -35,8 +35,9 @@
   ],
   "actionOnReap" : [
     {
-      "action" : "config",
-      "file" : "/projectiles/explosions/v-ancientlaserexplosion/ancientlaserexplosion.config"
+      "action" : "projectile",
+      "type" : "v-ancientlaserburstdelay",
+      "inheritDamageFactor" : 1
     }
   ],
   "emitters" : [ ],
