@@ -1,11 +1,13 @@
 {
   "name" : "v-riftdestabilization",
+  "blockingStat" : "v-riftdestabilizationImmunity",
 
   "effectConfig" : {
     "nonPlayerMovementModifiers" : {
       "speedModifier" : 0.6,
       "airJumpModifier" : 0.6
-    }
+    },
+    "gravityModifier" : 0.5
   },
   "defaultDuration" : 0.5,
 
@@ -13,6 +15,6 @@
     "v-riftdestabilization.lua"
   ],
 
-  "label" : "Paralyzed",
-  "icon" : "/interface/statuses/stop.png"
+  "label" : "In the Rift - Within a different universe",
+  "icon" : "/interface/statuses/v-riftdestabilization.png"
 }
