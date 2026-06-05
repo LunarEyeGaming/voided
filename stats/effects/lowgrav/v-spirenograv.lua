@@ -3,6 +3,7 @@ local movementParams
 local goThroughPlatforms
 local trailMinYVelocity
 local trailMaxYVelocity
+local newGravityMultiplier
 
 function init()
   gravityModifier = config.getParameter("gravityModifier")
