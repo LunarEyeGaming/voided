@@ -1,25 +1,27 @@
 {
-  "type" : "v-ministarcloudspawner",
+  "type" : "v-riftzone",
 
   "categories" : [ "v-blank" ],
   "parts" : [ "body" ],
 
-  "animation" : "/monsters/unsorted/v-blank.animation",
+  "animation" : "v-riftzone.animation",
   "reversed" : true,
 
   "dropPools" : [ "empty" ],
 
   "baseParameters" : {
     "scripts" : [
-      "/monsters/unsorted/v-ministarcloudspawner/v-ministarcloudspawner.lua"
+      "/monsters/unsorted/v-riftzone/v-riftzone.lua",
+      "/monsters/unsorted/v-riftzone/v-restricterplugin.lua"
     ],
 
-    "spawnRegion" : [-50, -50, 50, 50],
-    "timeRange" : [10.0, 15.0],
-    "projectileType" : "v-ministarcloud",
-    "projectileDirection" : [0, 0],
-    "projectileParameters" : {},
-    "projectileCheckRegion" : [-10, -2, 10, 2],
+    "animationScripts" : [
+      "/monsters/unsorted/v-riftzone/v-riftzoneanim.lua"
+    ],
+
+    "spawnAnywhere" : false,
+
+    "movementVelocity" : [-5, 0],
 
     "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
     "scale" : 1.0,

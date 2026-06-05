@@ -1,0 +1,40 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "zone" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "properties" : {
+              "persistentSound" : "/sfx/other/v_riftzone.ogg",
+              "persistentSoundRangeMultiplier" : 1.5
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [
+      ]
+    }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0.25,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "sounds" : {
+    "deathPuff" : [ ],
+    "open" : {
+      "pool" : [ "/sfx/other/v_riftzone_open.ogg" ],
+      "rangeMultiplier" : 1.5
+    }
+  }
+}

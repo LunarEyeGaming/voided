@@ -103,6 +103,7 @@
   {"op": "add", "path": "/genericScriptContexts/v-playermessages", "value": "/scripts/player/v-teleporthandler.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-dungeonMusicPlayer", "value": "/scripts/player/v-dungeonmusicplayer.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-titanOfDarknessSpawn", "value": "/scripts/player/v-titanofdarknessspawn.lua"},
+  {"op": "add", "path": "/genericScriptContexts/v-riftZoneSpawn", "value": "/scripts/player/v-riftzonespawn.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-ministarHeat", "value": "/scripts/player/v-ministarheat.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-dependencyCheck", "value": "/scripts/player/v-dependencycheck.lua"},
   {"op": "add", "path": "/genericScriptContexts/v-healingCooldown", "value": "/scripts/player/v-healingcooldown.lua"},
@@ -119,6 +120,7 @@
   {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-titanofdarknessaura.lua"},
   {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-ministareffects.lua"},
   {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-titanhallucination.lua"},
+  {"op": "add", "path": "/deploymentConfig/scripts/-", "value": "/scripts/rendering/v-inriftzone.lua"},
 
   // Depth poison mechanic
   {

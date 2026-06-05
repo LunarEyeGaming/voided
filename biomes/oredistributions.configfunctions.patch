@@ -6,35 +6,35 @@
     "op": "add",
     "path": "/v-voltage",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.5 ], [ "copper", 0.25 ], [ "silver", 0.125 ], [ "gold", 0.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.5 ], [ "copper", 0.25 ], [ "silver", 0.125 ], [ "gold", 0.0 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-shallowundergroundvoltage",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "iron", 1.0 ], [ "copper", 0.5 ], [ "silver", 0.375 ], [ "gold", 0.25 ], [ "v-voltite", 0.25 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "iron", 1.0 ], [ "copper", 0.5 ], [ "silver", 0.375 ], [ "gold", 0.25 ], [ "v-voltite", 0.25 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-undergroundvoltage",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.75 ], [ "copper", 0.75 ], [ "silver", 0.625 ], [ "gold", 0.5 ], [ "v-voltite", 0.5 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.75 ], [ "copper", 0.75 ], [ "silver", 0.625 ], [ "gold", 0.5 ], [ "v-voltite", 0.5 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-deepundergroundvoltage",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.5 ], [ "copper", 1.0 ], [ "silver", 0.875 ], [ "gold", 0.75 ], [ "v-voltite", 1.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.5 ], [ "copper", 1.0 ], [ "silver", 0.875 ], [ "gold", 0.75 ], [ "v-voltite", 1.0 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-voltagecore",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.25 ], [ "copper", 1.0 ], [ "silver", 0.875 ], [ "gold", 0.75 ], [ "v-voltite", 1.0 ], ["corefragment", 1.0] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "iron", 0.25 ], [ "copper", 1.0 ], [ "silver", 0.875 ], [ "gold", 0.75 ], [ "v-voltite", 1.0 ], ["corefragment", 1.0], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   // -------------------------------------------------------------------------------------------------------------------
@@ -44,42 +44,42 @@
     "op": "add",
     "path": "/v-toxicwasteland",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.5 ], [ "aegisalt", 0.0 ], ["violium", 0.0] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.5 ], [ "aegisalt", 0.0 ], ["violium", 0.0], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-shallowundergroundtoxic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 1.0 ], [ "aegisalt", 0.25 ], ["violium", 0.25], [ "v-toxikite", 0.25 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 1.0 ], [ "aegisalt", 0.25 ], ["violium", 0.25], [ "v-toxikite", 0.25 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-undergroundtoxic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.75 ], [ "aegisalt", 0.5 ], ["violium", 0.5], [ "v-toxikite", 0.5 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.75 ], [ "aegisalt", 0.5 ], ["violium", 0.5], [ "v-toxikite", 0.5 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-deepundergroundtoxic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.5 ], [ "aegisalt", 0.75 ], ["violium", 0.75], [ "v-toxikite", 1.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.5 ], [ "aegisalt", 0.75 ], ["violium", 0.75], [ "v-toxikite", 1.0 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-toxiccore",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.25 ], [ "aegisalt", 0.75 ], ["violium", 0.75], [ "v-toxikite", 1.0 ], ["corefragment", 1.0] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "durasteel", 0.25 ], [ "aegisalt", 0.75 ], ["violium", 0.75], [ "v-toxikite", 1.0 ], ["corefragment", 1.0], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-flowerfield",
     "value": [
-      [4.5, [ [ "coal", 0.90 ], [ "durasteel", 0.25 ], [ "aegisalt", 0.5 ], ["violium", 0.5], [ "v-toxikite", 0.5 ] ] ]
+      [4.5, [ [ "coal", 0.90 ], [ "durasteel", 0.25 ], [ "aegisalt", 0.5 ], ["violium", 0.5], [ "v-toxikite", 0.5 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   // -------------------------------------------------------------------------------------------------------------------
@@ -89,35 +89,35 @@
     "op": "add",
     "path": "/v-ministar",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "solarium", 1.0 ], [ "tungsten", 0.5 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "solarium", 1.0 ], [ "tungsten", 0.5 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-shallowundergroundministar",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "solarium", 1.0 ], [ "tungsten", 0.5 ], [ "v-infernite", 0.25 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "solarium", 1.0 ], [ "tungsten", 0.5 ], [ "v-infernite", 0.25 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-undergroundministar",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "solarium", 0.75 ], [ "tungsten", 0.75 ], [ "v-infernite", 0.5 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "solarium", 0.75 ], [ "tungsten", 0.75 ], [ "v-infernite", 0.5 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-deepundergroundministar",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "solarium", 0.5 ], [ "tungsten", 1.0 ], [ "v-infernite", 1.0 ], ["corefragment", 0.5] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "solarium", 0.5 ], [ "tungsten", 1.0 ], [ "v-infernite", 1.0 ], ["corefragment", 0.5], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-ministarcore",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "solarium", 0.25 ], [ "tungsten", 1.0 ], [ "v-infernite", 1.0 ], ["corefragment", 1.5] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "solarium", 0.25 ], [ "tungsten", 1.0 ], [ "v-infernite", 1.0 ], ["corefragment", 1.5], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   // -------------------------------------------------------------------------------------------------------------------
@@ -127,35 +127,35 @@
     "op": "add",
     "path": "/v-entropic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.5 ], [ "ferozium", 0.25 ], [ "v-preservedcreature", 0.75 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.5 ], [ "ferozium", 0.25 ], [ "v-preservedcreature", 0.75 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-shallowundergroundentropic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 1.0 ], [ "ferozium", 0.25 ], [ "v-aurorite", 0.25 ], [ "v-preservedcreature", 1.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 1.0 ], [ "ferozium", 0.25 ], [ "v-aurorite", 0.25 ], [ "v-preservedcreature", 1.0 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-undergroundentropic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.75 ], [ "ferozium", 0.5 ], [ "v-aurorite", 0.5 ], [ "v-preservedcreature", 0.5 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.75 ], [ "ferozium", 0.5 ], [ "v-aurorite", 0.5 ], [ "v-preservedcreature", 0.5 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-deepundergroundentropic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.5 ], [ "ferozium", 0.75 ], [ "v-aurorite", 1.0 ], [ "v-preservedcreature", 0.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.5 ], [ "ferozium", 0.75 ], [ "v-aurorite", 1.0 ], [ "v-preservedcreature", 0.0 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-entropiccore",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.25 ], [ "ferozium", 0.75 ], [ "v-aurorite", 1.0 ], ["corefragment", 1.0], [ "v-preservedcreature", 0.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.25 ], [ "ferozium", 0.75 ], [ "v-aurorite", 1.0 ], ["corefragment", 1.0], [ "v-preservedcreature", 0.0 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   }
 ]

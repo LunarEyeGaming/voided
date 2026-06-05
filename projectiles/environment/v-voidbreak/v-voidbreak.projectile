@@ -1,0 +1,31 @@
+{
+  "projectileName" : "v-voidbreak",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "movementSettings" : {
+    "collisionEnabled" : false
+  },
+  "timeToLive" : 0.0,
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 1,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "v-darksmoke"
+        }
+      ]
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/bonecrumble1.ogg", "/sfx/projectiles/bonecrumble2.ogg", "/sfx/projectiles/bonecrumble3.ogg" ]
+    }
+  ]
+}

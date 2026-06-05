@@ -1,0 +1,18 @@
+{
+  "name" : "v-riftdestabilization",
+
+  "effectConfig" : {
+    "nonPlayerMovementModifiers" : {
+      "speedModifier" : 0.6,
+      "airJumpModifier" : 0.6
+    }
+  },
+  "defaultDuration" : 0.5,
+
+  "scripts" : [
+    "v-riftdestabilization.lua"
+  ],
+
+  "label" : "Paralyzed",
+  "icon" : "/interface/statuses/stop.png"
+}

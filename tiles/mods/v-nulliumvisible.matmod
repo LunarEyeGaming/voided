@@ -1,0 +1,21 @@
+{
+  "modId" : 369,
+  "modName" : "v-nulliumvisible",
+  "itemDrop" : "v-nulliumore",
+  "description" : "Transient nullium ore.",
+  "health" : 5,
+  "harvestLevel" : 6,
+  "breaksWithTile" : true,
+
+  "miningSounds" : [ "/sfx/tools/v_infernite_mine1.ogg", "/sfx/tools/v_infernite_mine2.ogg", "/sfx/tools/v_infernite_mine3.ogg" ],
+  "miningParticle" : "orespark",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-nulliumvisible.png",
+    "variants" : 8,
+    "multiColored" : false,
+    "zLevel" : 0,
+    "radiantLight" : [72, 39, 87]
+  }
+}
