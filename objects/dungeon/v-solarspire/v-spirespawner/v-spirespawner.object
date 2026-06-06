@@ -48,7 +48,7 @@
   // Left output node is the entry door. Right output node is the doorway to the switch.
   "outputNodes" : [ [0, 0], [1, 0] ],
 
-  "animationScripts" : [ "v-spirespawnerlightning.lua" ],
+  "animationScripts" : [ "/items/active/effects/v-outlinedlightning.lua" ],
 
   "scripts" : [ "v-spirespawner.lua" ],
   "scriptDelta" : 1,

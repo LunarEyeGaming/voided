@@ -174,6 +174,7 @@ end
 ---@field startPos Vec2F
 ---@field endPos Vec2F
 ---@field ttl number
+---@field seed number?
 
 ---@class LightningController
 ---@field _lightningCfg table
@@ -185,33 +186,40 @@ end
 ---@field _animateManually boolean
 ---@field _instances LightningInstance[]
 ---@field _setAnimParam fun(key: string, value: any)
+---@field _updateAnimParam boolean
 vAnimator.LightningController = {}
 
+---@class LightningController.New.Args
+---@field cfg table the lightning config to use
+---@field startC ColorTable the start color of the lightning
+---@field endC ColorTable the end color of the lightning
+---@field dur number how long the lightning lasts
+---@field animateManually boolean? whether or not to animate the colors manually.
+---@field startOC ColorTable? the start outline color of the lightning
+---@field endOC ColorTable? the end outline color of the lightning
+---@field updateAnimParam boolean? whether or not to update the `lightning` animation parameter in `update()`
+
 ---Instantiates a LightningController
----@param cfg table the lightning config to use
----@param startC ColorTable the start color of the lightning
----@param endC ColorTable the end color of the lightning
----@param dur number how long the lightning lasts
----@param animateManually boolean? whether or not to animate the colors manually.
----@param startOC ColorTable? the start outline color of the lightning
----@param endOC ColorTable? the end outline color of the lightning
+---@param args LightningController.New.Args
 ---@return LightningController
-function vAnimator.LightningController:new(cfg, startC, endC, dur, animateManually, startOC, endOC)
-  if animateManually == nil then animateManually = true end
+function vAnimator.LightningController:new(args)
+  if args.animateManually == nil then args.animateManually = true end
+  if args.updateAnimParam == nil then args.updateAnimParam = true end
 
   local fields = {
-    _lightningCfg = cfg,
-    _startColor = startC,
-    _endColor = endC,
-    _startOutlineColor = startOC,
-    _endOutlineColor = endOC,
-    _duration = dur,
-    _animateManually = animateManually,
+    _lightningCfg = args.cfg,
+    _startColor = args.startC,
+    _endColor = args.endC,
+    _startOutlineColor = args.startOC,
+    _endOutlineColor = args.endOC,
+    _duration = args.dur,
+    _animateManually = args.animateManually,
     _instances = {},
     -- Choose the right function to use depending on the context
     _setAnimParam = (activeItem and activeItem.setScriptedAnimationParameter)
       or (monster and monster.setAnimationParameter)
-      or (object and object.setAnimationParameter)
+      or (object and object.setAnimationParameter),
+    _updateAnimParam = args.updateAnimParam
   }
   setmetatable(fields, self)
   self.__index = self
@@ -220,10 +228,17 @@ function vAnimator.LightningController:new(cfg, startC, endC, dur, animateManual
 end
 
 ---Add an instance of lightning.
-function vAnimator.LightningController:add(startPos, endPos)
-  table.insert(self._instances, {startPos = startPos, endPos = endPos, ttl = self._duration})
+function vAnimator.LightningController:add(startPos, endPos, seed)
+  table.insert(self._instances, {startPos = startPos, endPos = endPos, ttl = self._duration, seed = seed})
 end
 
+function vAnimator.LightningController:addRandomSeed(startPos, endPos)
+  self:add(startPos, endPos, math.floor((os.time() + (os.clock() % 1)) * 1000))
+end
+
+---Updates lightning for one tick
+---@param dt number
+---@return table
 function vAnimator.LightningController:update(dt)
   local lightning = {}
 
@@ -242,6 +257,7 @@ function vAnimator.LightningController:update(dt)
 
       cfg.worldStartPosition = instance.startPos
       cfg.worldEndPosition = instance.endPos
+      cfg.seed = instance.seed
 
       table.insert(lightning, cfg)
     end
@@ -249,7 +265,11 @@ function vAnimator.LightningController:update(dt)
     instance.ttl = instance.ttl - dt
   end
 
-  self._setAnimParam("lightning", lightning)
+  if self._updateAnimParam then
+    self._setAnimParam("lightning", lightning)
+  end
+
+  return lightning
 end
 
 ---Sends the currently stored lightning instances to the local animator, clearing them from this LightningController.

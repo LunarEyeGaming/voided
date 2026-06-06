@@ -162,24 +162,24 @@ function init()
     hazardCooldowns[i] = 0
   end
   hazardCounter = 0
-  lightningController = vAnimator.LightningController:new(
-    portalLightningConfig,
-    portalLightningStartColor,
-    portalLightningEndColor,
-    portalLightningFadeTime,
-    false,
-    portalLightningStartOutlineColor,
-    portalLightningEndOutlineColor
-  )
-  lightningControllerBig = vAnimator.LightningController:new(
-    portalLightningBigConfig,
-    portalLightningStartColor,
-    portalLightningEndColor,
-    portalLightningFadeTime,
-    false,
-    portalLightningStartOutlineColor,
-    portalLightningEndOutlineColor
-  )
+  lightningController = vAnimator.LightningController:new{
+    cfg = portalLightningConfig,
+    startC = portalLightningStartColor,
+    endC = portalLightningEndColor,
+    dur = portalLightningFadeTime,
+    animateManually = false,
+    startOC = portalLightningStartOutlineColor,
+    endOC = portalLightningEndOutlineColor
+  }
+  lightningControllerBig = vAnimator.LightningController:new{
+    cfg = portalLightningBigConfig,
+    startC = portalLightningStartColor,
+    endC = portalLightningEndColor,
+    dur = portalLightningFadeTime,
+    animateManually = false,
+    startOC = portalLightningStartOutlineColor,
+    endOC = portalLightningEndOutlineColor
+  }
 
   state = FSM:new()
   state:set(states.postInit)

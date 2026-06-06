@@ -50,8 +50,12 @@ function init()
   attackState = FSM:new()
   attackState:set(states.initialCooldown)
 
-  lightning = vAnimator.LightningController:new(lightningConfig, lightningConfig.startColor, lightningConfig.endColor,
-    dischargeTime)
+  lightning = vAnimator.LightningController:new{
+    cfg = lightningConfig,
+    startC = lightningConfig.startColor,
+    endC = lightningConfig.endColor,
+    dur = dischargeTime
+  }
 
   -- If initialVelocity is defined, use it.
   if initialVelocity then

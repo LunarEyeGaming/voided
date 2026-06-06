@@ -83,15 +83,15 @@ function init()
 
   destabilizeCheckInterval = config.getParameter("destabilizeCheckInterval", 1.0)
 
-  lightningController = vAnimator.LightningController:new(
-    portalLightningConfig,
-    portalLightningStartColor,
-    portalLightningEndColor,
-    portalLightningFadeTime,
-    false,
-    portalLightningStartOutlineColor,
-    portalLightningEndOutlineColor
-  )
+  lightningController = vAnimator.LightningController:new{
+    cfg = portalLightningConfig,
+    startC = portalLightningStartColor,
+    endC = portalLightningEndColor,
+    dur = portalLightningFadeTime,
+    animateManually = false,
+    startOC = portalLightningStartOutlineColor,
+    endOC = portalLightningEndOutlineColor
+  }
 
   vTime.addInterval(1.0, function()
     if not storage.portalDestabilized then

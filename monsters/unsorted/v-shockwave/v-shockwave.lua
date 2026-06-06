@@ -110,12 +110,12 @@ function init()
 
   local lightningConfig = config.getParameter("lightningConfig")
 
-  lightning = vAnimator.LightningController:new(
-    lightningConfig,
-    lightningConfig.startColor,
-    lightningConfig.endColor,
-    disappearDelay
-  )
+  lightning = vAnimator.LightningController:new{
+    cfg = lightningConfig,
+    startC = lightningConfig.startColor,
+    endC = lightningConfig.endColor,
+    dur = disappearDelay
+  }
 
   monster.setDamageBar("None")
 end
