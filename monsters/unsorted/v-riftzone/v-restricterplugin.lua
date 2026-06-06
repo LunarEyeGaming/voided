@@ -18,7 +18,6 @@ function init()
   if not config.getParameter("spawnAnywhere") and not isInMonsterSpawnZone() then
     -- Disappear.
     monster.setUniqueId()
-    status.setResourcePercentage("health", 0.0)
     monster.setDropPool(nil)
     self.shouldDie = true
     script.setUpdateDelta(0)  -- Suppress calls to update

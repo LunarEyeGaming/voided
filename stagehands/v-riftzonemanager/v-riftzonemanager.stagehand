@@ -1,0 +1,10 @@
+{
+  // This stagehand manages the positions and states of rift zones that become unloaded.
+  "type" : "v-riftzonemanager",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-riftzonemanager/v-riftzonemanager.lua"],
+  "scriptDelta" : 6,
+
+  "broadcastArea" : [-1, -1, 1, 1]
+}

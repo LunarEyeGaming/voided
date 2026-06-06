@@ -22,17 +22,18 @@
 
 require "/scripts/util.lua"
 
-local minSpawnCooldown  -- The amount of time to wait before spawning the Titan of Darkness again
+local minSpawnCooldown  -- The amount of time to wait before spawning the rift zone again
 local minPlanetStayTime  -- The player must have been on the current planet type for this amount of time
-local worldTypeWhitelist  -- List of worlds on which the Titan of Darkness is allowed to spawn
-local spawnAttemptInterval  -- How often the script should attempt to spawn the Titan
+local worldTypeWhitelist  -- List of worlds on which the rift zone is allowed to spawn
+local spawnAttemptInterval  -- How often the script should attempt to spawn the rift zone
 local spawnProbability  -- The chance of the spawn succeeding
-local titanMonsterType  -- The monster type of the Titan of Darkness
+local riftZoneCount  -- The number of rift zones to spawn in each attempt
 
 local spawnAttemptTimer  -- Amount of time elapsed since the last spawn attempt
 local worldTypeStayTime  -- Amount of time that the player has spent on the current world so far
 
 local scriptIsEnabled
+local stagehandSpawned
 
 function init()
   scriptIsEnabled = true
@@ -50,8 +51,9 @@ function init()
   minSpawnCooldown = 60 * 60
   minPlanetStayTime = 60 * 30
   spawnAttemptInterval = 30
-  spawnProbability = 0.05
-  titanMonsterType = "v-riftzone"
+  spawnProbability = 1.0
+
+  riftZoneCount = 100
 
   spawnAttemptTimer = 0
 
@@ -59,8 +61,8 @@ function init()
     storage.firstEncounter = true
   end
 
-  if not storage.lastTitanSpawnTime then
-    storage.lastTitanSpawnTime = world.time()
+  if not storage.lastRiftZoneSpawnTime then
+    storage.lastRiftZoneSpawnTime = world.time()
   end
 
   if not storage.worldTypeStayTimes then
@@ -75,23 +77,32 @@ function init()
   -- Cache world type stay time for current world.
   worldTypeStayTime = storage.worldTypeStayTimes[worldType]
 
-  message.setHandler("v-riftZoneSpawned", function()
-    storage.lastTitanSpawnTime = world.time()  -- Update lastTitanSpawnTime variable.
-    storage.firstEncounter = false
-  end)
-
   script.setUpdateDelta(60)
 end
 
 function update(dt)
+  -- Spawn stagehand after fetching celestial parameters.
+  if not stagehandSpawned then
+    world.spawnStagehand(mcontroller.position(), "v-riftzonemanager")
+    stagehandSpawned = true
+    return
+  end
   spawnAttemptTimer = spawnAttemptTimer + dt
   -- Every spawnAttemptInterval seconds...
   if spawnAttemptTimer > spawnAttemptInterval then
     -- With a probability of spawnProbability...
     if math.random() <= spawnProbability
-    and world.time() > storage.lastTitanSpawnTime + minSpawnCooldown  -- If the Titan spawning cooldown has ended...
+    and world.time() > storage.lastRiftZoneSpawnTime + minSpawnCooldown  -- If the rift zone spawning cooldown has ended...
     and worldTypeStayTime > minPlanetStayTime then  -- And the player has stayed for longer than minPlanetStayTime...
-      world.spawnMonster(titanMonsterType, mcontroller.position())
+      local riftZones = world.getProperty("v-riftZones") or jarray()
+      local deathTime = world.time() + 1200
+      for _ = 1, riftZoneCount do
+        local size = world.size()
+        local pos = {math.random() * size[1], math.random() * size[2]}
+        table.insert(riftZones, {position = pos, velocity = {-5, 0}, stateData = {deathTime = deathTime}})
+      end
+      world.setProperty("v-riftZones", riftZones)
+      storage.lastRiftZoneSpawnTime = world.time()  -- Update lastRiftZoneSpawnTime variable.
     end
 
     spawnAttemptTimer = 0  -- Reset timer

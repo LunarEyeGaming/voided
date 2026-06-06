@@ -12,7 +12,7 @@ function update()
   local riftPoly = {}
   -- Generate a poly that forms an ellipse.
   for i = 1, numPoints do
-    table.insert(riftPoly, vEllipse.point({0, 0}, riftSize + util.randomInRange({-0.25, 0.25}), i, numPoints))
+    table.insert(riftPoly, vEllipse.point({0, 0}, riftSize + util.randomInRange({-0.5, 0.5}), i, numPoints))
   end
 
   if riftPoly then
