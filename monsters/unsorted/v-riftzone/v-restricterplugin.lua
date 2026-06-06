@@ -19,7 +19,7 @@ function init()
     -- Disappear.
     monster.setUniqueId()
     monster.setDropPool(nil)
-    self.shouldDie = true
+    g_shouldDieVar = true
     script.setUpdateDelta(0)  -- Suppress calls to update
 
     return  -- Don't initialize
