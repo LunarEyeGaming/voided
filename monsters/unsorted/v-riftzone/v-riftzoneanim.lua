@@ -3,8 +3,12 @@ require "/scripts/vec2.lua"
 require "/scripts/util.lua"
 require "/scripts/v-ellipse.lua"
 
+local oldUpdate = update or function() end
+
 function update()
   localAnimator.clearDrawables()
+
+  oldUpdate(dt)
 
   local riftSize = animationConfig.animationParameter("riftSize")
 

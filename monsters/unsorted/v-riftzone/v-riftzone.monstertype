@@ -16,12 +16,29 @@
     ],
 
     "animationScripts" : [
-      "/monsters/unsorted/v-riftzone/v-riftzoneanim.lua"
+      "/monsters/unsorted/v-riftzone/v-riftzoneanim.lua",
+      "/items/active/effects/v-outlinedlightning.lua"
     ],
 
     "spawnAnywhere" : false,
 
     "velocity" : [-5, 0],
+
+    "lightningConfig" : {
+      "baseConfig" : {
+        "displacement" : 6.0,
+        "minDisplacement" : 2.0,
+        "forks" : 1,
+        "forkAngleRange" : 0.45,
+        "width" : 2,
+        "outlineWidth" : 2
+      },
+      "startColor" : [0, 0, 0, 255],
+      "endColor" : [0, 0, 0, 0],
+      "startOutlineColor" : [51, 41, 71, 255],
+      "endOutlineColor" : [51, 41, 71, 0],
+      "duration" : 0.5
+    },
 
     "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
     "scale" : 1.0,

@@ -1,6 +1,7 @@
 require "/scripts/vec2.lua"
 require "/scripts/interp.lua"
 require "/scripts/util.lua"
+require "/scripts/v-animator.lua"
 
 local scanRadius
 local tileSofteningRadius
@@ -17,7 +18,8 @@ local prevRadius
 local currentScanRadius
 local currentTileSofteningRadius
 local existenceTimer
-local shouldDieVar
+
+local lightningController
 
 local state
 
@@ -45,7 +47,19 @@ function init()
   currentScanRadius = 0
   currentTileSofteningRadius = 0
   existenceTimer = timeToLive
-  shouldDieVar = false
+  g_shouldDieVar = false
+
+  local cfg = config.getParameter("lightningConfig", {})
+
+  lightningController = vAnimator.LightningController:new{
+    cfg = cfg.baseConfig,
+    startC = cfg.startColor,
+    endC = cfg.endColor,
+    dur = cfg.duration,
+    animateManually = false,
+    startOC = cfg.startOutlineColor,
+    endOC = cfg.endOutlineColor,
+  }
 
   monster.setDamageBar("None")
   state = FSM:new()
@@ -55,10 +69,14 @@ end
 function update(dt)
   state:update(dt)
 
+  lightningController:update(dt)
+
   updateMatMods(currentScanRadius)
 
   applyRiftDestabilization(currentScanRadius)
   applySoftenedTiles(currentTileSofteningRadius)
+
+  crackleLightning(currentTileSofteningRadius)
 
   monster.setAnimationParameter("riftSize", currentScanRadius)
 
@@ -142,12 +160,23 @@ function states.disappear()
 end
 
 function states.die()
-  shouldDieVar = true
+  g_shouldDieVar = true
 
   -- The script should stop running within the next tick or two. This just ensures the coroutine doesn't die prematurely
   -- and cause an error.
   while true do
     coroutine.yield()
+  end
+end
+
+function crackleLightning(radius)
+  if math.random() < 0.1 then
+    local randomPosStart = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, math.random() * radius))
+    local randomPosEnd = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, math.random() * radius))
+
+    lightningController:addRandomSeed(randomPosStart, randomPosEnd)
+
+    animator.playSound("crackle")
   end
 end
 
@@ -210,7 +239,7 @@ function updateMatMods(radius)
 
   for x = -radius, radius do
     for y = -radius, radius do
-      local backScanPos = vec2.add(ownPos, {x, y})
+      local backScanPos = vec2.add(prevPos, {x, y})
 
       local backScanDist = world.magnitude(ownPos, backScanPos)
       local backScanDist2 = world.magnitude(prevPos, backScanPos)
@@ -242,6 +271,7 @@ function fillMatMods(radius)
 end
 
 function clearMatMods(radius)
+  if not radius then return end
   radius = math.floor(radius)
   local ownPos = vec2.floor(mcontroller.position())
 
@@ -270,13 +300,13 @@ function attemptRemoveMatMod(pos)
 end
 
 function shouldDie()
-  return shouldDieVar
+  return g_shouldDieVar
 end
 
 function uninit()
   clearMatMods(scanRadius)
 
-  if shouldDieVar then
+  if g_shouldDieVar then
     return
   end
 
