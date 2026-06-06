@@ -5,6 +5,7 @@ require "/scripts/statuseffects/v-tickdamage.lua"
 local destabilizeTime
 local destabilizeTickDamage
 local nonPlayerMovementModifiers
+local newGravityMultiplier
 
 local timer
 
@@ -21,9 +22,23 @@ function init()
   nonPlayerMovementModifiers = config.getParameter("nonPlayerMovementModifiers", {})
 
   timer = 0
+
+  setGravityMultiplier()
+end
+
+function setGravityMultiplier()
+  local gravityModifier = config.getParameter("gravityModifier")
+  local movementParams = mcontroller.baseParameters()
+  local oldGravityMultiplier = movementParams.gravityMultiplier or 1
+
+  newGravityMultiplier = gravityModifier * oldGravityMultiplier
 end
 
 function update(dt)
+  mcontroller.controlParameters({
+     gravityMultiplier = newGravityMultiplier
+  })
+
   if entity.entityType() ~= "player" then
     mcontroller.controlModifiers(nonPlayerMovementModifiers)
   end
