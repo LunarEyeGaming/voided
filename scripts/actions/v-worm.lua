@@ -137,7 +137,7 @@ end
 -- param fireInterval
 -- param target
 function v_wormFire(args, board)
-  if not vBehavior.requireArgs("v_wormFire", args, {"fireCount", "fireInterval", "count"}) then
+  if not vBehavior.requireArgs("v_wormFire", args, {"fireCount", "fireInterval", "target"}) then
     return false
   end
 
