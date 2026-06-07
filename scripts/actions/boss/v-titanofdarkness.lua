@@ -377,6 +377,8 @@ end
 -- to 1.
 -- param searchRayCount (optional) - The number of raycasts to perform when generating places to search. Defaults to 40
 -- param maxSearchRaycastLength (optional) - The maximum length of each raycast. Defaults to 100
+-- param liquidBlacklist (optional) - Liquids that the entity should not enter
+-- param liquidWhitelist (optional) - Liquids that the entity should be allowed to enter if present
 function v_titanSearch(args)
   local rq = vBehavior.requireArgsGen("v_titanSearch", args)
 
@@ -395,7 +397,6 @@ function v_titanSearch(args)
 
   local currentAngle = args.startAngle or -math.pi / 2
   while true do
-    sb.logInfo("Running loop")
     local searchZones = processRaycastClusters(radialRaycast(mcontroller.position(), rayCount, maxRaycastLength))
 
     -- debugSearchZones = searchZones
@@ -425,7 +426,7 @@ function v_titanSearch(args)
     local maxDistance = args.flySelectionMaxDistance or 20
     local targetPos = world.entityPosition(args.target)
     local nextPos = findRandomAirPosition(maxAttempts, targetPos, args.flySelectionArea, args.flyRequiredAirRegion,
-    lerpStep, maxDistance)
+    lerpStep, maxDistance, args.liquidBlacklist, args.liquidWhitelist)
 
     if not nextPos then
       return false
@@ -1014,10 +1015,39 @@ end
 ---@param requiredSafeArea RectF
 ---@param lerpStep integer
 ---@param maxDistance number
+---@param liquidBlacklist string[]?
+---@param liquidWhitelist string[]?
 ---@return Vec2F?
-function findRandomAirPosition(maxAttempts, center, initialSelectionArea, requiredSafeArea, lerpStep, maxDistance)
+function findRandomAirPosition(maxAttempts, center, initialSelectionArea, requiredSafeArea, lerpStep, maxDistance, liquidBlacklist, liquidWhitelist)
   local nextPos
   local attempts = 0
+
+  local liquidNameAt = function(position)
+    local liquidLevel = world.liquidAt(position)
+    if liquidLevel then
+      local liquidId = liquidLevel[1]
+      local liquidName = root.liquidName(liquidId)
+      return liquidName
+    end
+
+    return nil
+  end
+
+  local matchBlackWhitelist = function(input)
+    if not input then
+      return true
+    end
+
+    if liquidBlacklist and contains(liquidBlacklist, input) then
+      return false
+    end
+
+    if liquidWhitelist and not contains(liquidWhitelist, input) then
+      return false
+    end
+
+    return true
+  end
 
   -- While a position has not been found yet and less than maxAttempts have been made...
   while not nextPos and attempts < maxAttempts do
@@ -1031,8 +1061,9 @@ function findRandomAirPosition(maxAttempts, center, initialSelectionArea, requir
       ---@diagnostic disable: need-check-nil
       nextPos = results.position
 
-      -- Discard result if there is a liquid at that position or the position is tile-protected.
-      if world.liquidAt(nextPos) or world.isTileProtected(nextPos) then
+      -- Discard result if there is a liquid at that position that is in the blacklist or is not in the whitelist or
+      -- if the position is tile-protected.
+      if not matchBlackWhitelist(liquidNameAt(nextPos)) or world.isTileProtected(nextPos) then
         nextPos = nil
       end
     end

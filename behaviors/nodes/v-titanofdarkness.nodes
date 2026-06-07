@@ -99,33 +99,6 @@
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   },
-  "v_titanSearch": {
-    "type": "action",
-    "name": "v_titanSearch",
-    "title": "v_titanSearch",
-    "properties": {
-      "eyeAngularVelocity": {"type": "number", "value": 360},
-      "eyeTurnWaitTime": {"type": "number", "value": 0.5},
-      "flyControlForce": {"type": "number", "value": 6},
-      "flyMaxSelectionAttempts": {"type": "number", "value": 10},
-      "flyRequiredAirRegion": {"type": "list", "value": [-2, -2, 2, 2]},
-      "flySelectionArea": {"type": "list", "value": [-30, -30, 30, 30]},
-      "flySelectionLerpStep": {"type": "number", "value": 1},
-      "flySelectionMaxDistance": {"type": "number", "value": 20},
-      "flySpeed": {"type": "number", "value": 10},
-      "flyTolerance": {"type": "number", "value": 8},
-      "maxSearchRaycastLength": {"type": "number", "value": 100},
-      "searchRayCount": {"type": "number", "value": 40},
-      "startAngle": {"type": "number"},
-      "target": {"type": "entity", "key": "target"},
-      "stopControlForce": {"type": "number"}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {
-      "angle": {"type": "number", "key": null}
-    }
-  },
   "v_titanSetLookActive": {
     "type": "action",
     "name": "v_titanSetLookActive",
@@ -244,6 +217,35 @@
       "waitTime": {"type": "number"}
     },
     "category": "v-titanofdarkness",
+    "output": {
+      "angle": {"type": "number", "key": null}
+    }
+  },
+  "v_titanSearch": {
+    "type": "action",
+    "name": "v_titanSearch",
+    "title": "v_titanSearch",
+    "properties": {
+      "eyeAngularVelocity": {"type": "number", "value": 360},
+      "eyeTurnWaitTime": {"type": "number", "value": 0.5},
+      "flyControlForce": {"type": "number", "value": 6},
+      "flyMaxSelectionAttempts": {"type": "number", "value": 10},
+      "flyRequiredAirRegion": {"type": "list", "value": [-2, -2, 2, 2]},
+      "flySelectionArea": {"type": "list", "value": [-30, -30, 30, 30]},
+      "flySelectionLerpStep": {"type": "number", "value": 1},
+      "flySelectionMaxDistance": {"type": "number", "value": 20},
+      "flySpeed": {"type": "number", "value": 10},
+      "flyTolerance": {"type": "number", "value": 8},
+      "maxSearchRaycastLength": {"type": "number", "value": 100},
+      "searchRayCount": {"type": "number", "value": 40},
+      "startAngle": {"type": "number"},
+      "stopControlForce": {"type": "number"},
+      "target": {"type": "entity", "key": "target"},
+      "liquidBlacklist": {"type": "list"},
+      "liquidWhitelist": {"type": "list"}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {
       "angle": {"type": "number", "key": null}
     }
