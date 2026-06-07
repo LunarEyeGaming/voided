@@ -29,7 +29,7 @@ function init()
   -- maps special effect names to special effect constructor calls
   local validSpecialEffects = {
     screenFlash = function(args, _)
-      return v_ScreenFlash:new(args.startColor, args.endColor, args.fullbright, args.duration, args.renderLayer)
+      return v_ScreenFlash:new(args.startColor, args.endColor, args.fullbright, args.duration, args.renderLayer, args.delay)
     end,
     distantDrawable = function(args, position)
       return v_DistantDrawable:new(args, position)
@@ -96,13 +96,17 @@ v_ScreenFlash = {}
 ---@param endColor ColorTable
 ---@param fullbright? boolean
 ---@param duration number
+---@param renderLayer? string
+---@param delay? number
 ---@return ScreenFlash
-function v_ScreenFlash:new(startColor, endColor, fullbright, duration, renderLayer)
+function v_ScreenFlash:new(startColor, endColor, fullbright, duration, renderLayer, delay)
   local effectConfig = {
     startColor = startColor,
     endColor = endColor,
     fullbright = fullbright,
     duration = duration,
+    delay = delay,
+    delayTimer = delay,
     timer = duration,
     renderLayer = renderLayer or "ForegroundOverlay+10"
   }
@@ -113,6 +117,14 @@ function v_ScreenFlash:new(startColor, endColor, fullbright, duration, renderLay
 end
 
 function v_ScreenFlash:process(dt)
+  if self.delayTimer then
+    self.delayTimer = self.delayTimer - dt
+    if self.delayTimer <= 0 then
+      self.delayTimer = nil
+    end
+    return
+  end
+
   self.timer = self.timer - dt
 
   -- This uses a thick line to create a colored rectangle that covers the entire screen.

@@ -21,6 +21,7 @@
 ]]
 
 require "/scripts/util.lua"
+require "/scripts/vec2.lua"
 
 local minSpawnCooldown  -- The amount of time to wait before spawning the rift zone again
 local minPlanetStayTime  -- The player must have been on the current planet type for this amount of time
@@ -28,12 +29,16 @@ local worldTypeWhitelist  -- List of worlds on which the rift zone is allowed to
 local spawnAttemptInterval  -- How often the script should attempt to spawn the rift zone
 local spawnProbability  -- The chance of the spawn succeeding
 local riftZoneCount  -- The number of rift zones to spawn in each attempt
+local duration  -- How long the rift zone event lasts
+local numEventsPerOrbit  -- Number of events that can occur for each orbit
 
 local spawnAttemptTimer  -- Amount of time elapsed since the last spawn attempt
 local worldTypeStayTime  -- Amount of time that the player has spent on the current world so far
 
 local scriptIsEnabled
 local stagehandSpawned
+local currentCoordinates
+local prevRiftEventSegment
 
 function init()
   scriptIsEnabled = true
@@ -54,6 +59,8 @@ function init()
   spawnProbability = 1.0
 
   riftZoneCount = 100
+  duration = 300
+  numEventsPerOrbit = 6
 
   spawnAttemptTimer = 0
 
@@ -77,35 +84,30 @@ function init()
   -- Cache world type stay time for current world.
   worldTypeStayTime = storage.worldTypeStayTimes[worldType]
 
+  -- Store current celestial coordinates for easy access.
+  currentCoordinates = getCelestialCoordinates()
+  prevRiftEventSegment = world.getProperty("v-riftZone-prevOrbitAngle")
+
   script.setUpdateDelta(60)
 end
 
 function update(dt)
-  -- Spawn stagehand after fetching celestial parameters.
+  -- Spawn stagehand.
   if not stagehandSpawned then
     world.spawnStagehand(mcontroller.position(), "v-riftzonemanager")
     stagehandSpawned = true
     return
   end
-  spawnAttemptTimer = spawnAttemptTimer + dt
-  -- Every spawnAttemptInterval seconds...
-  if spawnAttemptTimer > spawnAttemptInterval then
-    -- With a probability of spawnProbability...
-    if math.random() <= spawnProbability
-    and world.time() > storage.lastRiftZoneSpawnTime + minSpawnCooldown  -- If the rift zone spawning cooldown has ended...
-    and worldTypeStayTime > minPlanetStayTime then  -- And the player has stayed for longer than minPlanetStayTime...
-      local riftZones = world.getProperty("v-riftZones") or jarray()
-      local deathTime = world.time() + 1200
-      for _ = 1, riftZoneCount do
-        local size = world.size()
-        local pos = {math.random() * size[1], math.random() * size[2]}
-        table.insert(riftZones, {position = pos, velocity = {-5, 0}, stateData = {deathTime = deathTime}})
-      end
-      world.setProperty("v-riftZones", riftZones)
-      storage.lastRiftZoneSpawnTime = world.time()  -- Update lastRiftZoneSpawnTime variable.
-    end
 
-    spawnAttemptTimer = 0  -- Reset timer
+  if not currentCoordinates then
+    currentCoordinates = getCelestialCoordinates()
+  end
+  if worldTypeStayTime > minPlanetStayTime then
+    if currentCoordinates then
+      coordsMode()
+    else
+      noCoordsMode()
+    end
   end
 
   worldTypeStayTime = worldTypeStayTime + dt
@@ -115,5 +117,69 @@ function uninit()
   if scriptIsEnabled then
     -- Save world type stay time
     storage.worldTypeStayTimes[world.type()] = worldTypeStayTime
+    world.setProperty("v-riftZone-prevOrbitAngle", prevRiftEventSegment)
   end
+end
+
+---Returns celestial coordinates for the current world, if it is a celestial world. Returns `nil` otherwise.
+---@return CelestialCoordinate?
+function getCelestialCoordinates()
+  local worldId = player.worldId()
+  local first, last, x, y, z, planet = worldId:find("CelestialWorld:(%-?%d+):(%-?%d+):(%-?%d+):(%-?%d+)")
+  if first then  -- Check if the string pattern matching succeeded.
+    local satellite = worldId:match(":(%-?%d+)", last)  -- tonumber returns nil if satellite is nil.
+    return {
+      location = {tonumber(x), tonumber(y), tonumber(z)},
+      planet = tonumber(planet),
+      satellite = tonumber(satellite)
+    }
+  end
+end
+
+-- Call this function repeatedly in update if coordinates are found.
+function coordsMode()
+  local position = celestial.planetPosition(currentCoordinates)
+  local angle = vec2.angle(position)
+
+  local riftEventSegment = math.floor(angle * numEventsPerOrbit / (2 * math.pi))
+
+  world.debugText("angle: %s, segment: %s", angle, riftEventSegment, mcontroller.position(), "green")
+
+  -- Crossed a fissure; spawn rifts
+  if prevRiftEventSegment and prevRiftEventSegment ~= riftEventSegment
+  and world.time() > storage.lastRiftZoneSpawnTime + minSpawnCooldown then
+    spawnRiftZones()
+    storage.lastRiftZoneSpawnTime = world.time()  -- Update lastRiftZoneSpawnTime variable.
+  end
+
+  prevRiftEventSegment = riftEventSegment
+end
+
+-- Call this function repeatedly in update if no coordinates are found.
+function noCoordsMode()
+  spawnAttemptTimer = spawnAttemptTimer + dt
+  -- Every spawnAttemptInterval seconds...
+  if spawnAttemptTimer > spawnAttemptInterval then
+    -- With a probability of spawnProbability...
+    if math.random() <= spawnProbability
+    and world.time() > storage.lastRiftZoneSpawnTime + minSpawnCooldown then  -- If the rift zone spawning cooldown has ended...
+      spawnRiftZones()
+      storage.lastRiftZoneSpawnTime = world.time()  -- Update lastRiftZoneSpawnTime variable.
+    end
+
+    spawnAttemptTimer = 0  -- Reset timer
+  end
+end
+
+function spawnRiftZones()
+  local riftZones = world.getProperty("v-riftZones") or jarray()
+  local deathTime = world.time() + duration
+  for _ = 1, riftZoneCount do
+    local size = world.size()
+    local pos = {math.random() * size[1], math.random() * size[2]}
+    table.insert(riftZones, {position = pos, velocity = {-5, 0}, stateData = {deathTime = deathTime}})
+  end
+  world.setProperty("v-riftZones", riftZones)
+
+  world.spawnMonster("v-riftzonecutscene", mcontroller.position(), {masterId = player.id()})
 end
