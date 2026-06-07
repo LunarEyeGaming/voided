@@ -10,7 +10,11 @@ local newGravityMultiplier
 local timer
 
 function init()
-  destabilizeTime = 20
+  if entity.entityType() == "player" then
+    destabilizeTime = 20
+  else
+    destabilizeTime = 10
+  end
 
   destabilizeTickDamage = VTickDamage:new{
     kind = "v-void",
