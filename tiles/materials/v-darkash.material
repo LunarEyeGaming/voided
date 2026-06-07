@@ -1,0 +1,25 @@
+{
+  "materialId" : 1229,
+  "materialName" : "v-darkash",
+  "particleColor" : [74, 72, 68, 255],
+  "itemDrop" : "v-darkashmaterial",
+  "shortdescription" : "Dark Ash",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_ash.ogg",
+  "cascading" : true,
+  "health" : 1,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-darkash.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1880
+  }
+}
