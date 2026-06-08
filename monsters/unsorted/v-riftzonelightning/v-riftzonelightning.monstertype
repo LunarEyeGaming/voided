@@ -1,29 +1,26 @@
 {
-  "type" : "v-riftzone",
+  "type" : "v-riftzonelightning",
 
   "categories" : [ "v-blank" ],
   "parts" : [ "body" ],
 
-  "animation" : "v-riftzone.animation",
+  "animation" : "v-riftzonelightning.animation",
   "reversed" : true,
 
   "dropPools" : [ "empty" ],
 
   "baseParameters" : {
     "scripts" : [
-      "/monsters/unsorted/v-riftzone/v-riftzone.lua",
-      "/monsters/unsorted/v-riftzone/v-restricterplugin.lua"
+      "/monsters/unsorted/v-riftzonelightning/v-riftzonelightning.lua"
     ],
 
     "animationScripts" : [
-      "/monsters/unsorted/v-riftzone/v-riftzoneanim.lua",
       "/items/active/effects/v-outlinedlightning.lua"
     ],
 
     "spawnAnywhere" : false,
 
-    "timeToLive" : 300,
-    "velocity" : [-5, 0],
+    "endpointOffsetRegion" : [-25, -25, 25, 25],
 
     "lightningConfig" : {
       "baseConfig" : {

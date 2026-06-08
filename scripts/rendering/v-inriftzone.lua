@@ -32,7 +32,7 @@ function init()
 
   fadeTime = 1
 
-  fgStartColor = {94, 113, 128, 0}
+  fgStartColor = {18, 5, 20, 0}
   fgEndColor = {18, 5, 20, 255}
   fgRenderLayer = "ForegroundOverlay+10"
 

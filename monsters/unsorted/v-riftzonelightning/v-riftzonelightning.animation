@@ -1,0 +1,24 @@
+{
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [
+      ]
+    }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0.25,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "sounds" : {
+    "deathPuff" : [ ],
+    "crackle" : {
+      "pool" : [ "/sfx/other/v_riftzone_crackle1.ogg", "/sfx/other/v_riftzone_crackle2.ogg", "/sfx/other/v_riftzone_crackle3.ogg" ],
+      "rangeMultiplier" : 1.5
+    }
+  }
+}
