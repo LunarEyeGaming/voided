@@ -41,7 +41,8 @@
     {
       "projectile" : "v-copperstorm2",
       "parameters" : {
-        "power" : 400
+        "power" : 400,
+        "damageTeam" : {"type" : "indiscriminate"}
       },
       "velocity" : [0, -25],
       "ratePerX" : 0.001,

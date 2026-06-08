@@ -5,7 +5,8 @@
     {
       "projectile" : "v-breadcrustbomb",
       "parameters" : {
-        "power" : 250
+        "power" : 250,
+        "damageTeam" : {"type" : "indiscriminate"}
       },
       "velocity" : [0, -100],
       "ratePerX" : 0.005,
