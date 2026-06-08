@@ -53,13 +53,13 @@ function init()
     return
   end
 
-  minSpawnCooldown = 60 * 60
+  minSpawnCooldown = 60 * 30
   minPlanetStayTime = 60 * 30
   spawnAttemptInterval = 30
   spawnProbability = 1.0
 
   riftZoneCount = 100
-  duration = 300
+  duration = 600
   numEventsPerOrbit = 6
 
   spawnAttemptTimer = 0
@@ -88,6 +88,10 @@ function init()
   currentCoordinates = getCelestialCoordinates()
   prevRiftEventSegment = world.getProperty("v-riftZone-prevOrbitAngle")
 
+  message.setHandler("v-riftzonespawn-actLikeIStayedLongEnough", function(_, _, worldType)
+    actLikeIStayedLongEnough(worldType)
+  end)
+
   script.setUpdateDelta(60)
 end
 
@@ -102,11 +106,12 @@ function update(dt)
   if not currentCoordinates then
     currentCoordinates = getCelestialCoordinates()
   end
+
   if worldTypeStayTime > minPlanetStayTime then
     if currentCoordinates then
       coordsMode()
     else
-      noCoordsMode()
+      noCoordsMode(dt)
     end
   end
 
@@ -156,7 +161,9 @@ function coordsMode()
 end
 
 -- Call this function repeatedly in update if no coordinates are found.
-function noCoordsMode()
+function noCoordsMode(dt)
+  world.debugText("timer: %s", spawnAttemptTimer, mcontroller.position(), "green")
+
   spawnAttemptTimer = spawnAttemptTimer + dt
   -- Every spawnAttemptInterval seconds...
   if spawnAttemptTimer > spawnAttemptInterval then
@@ -182,4 +189,11 @@ function spawnRiftZones()
   world.setProperty("v-riftZones", riftZones)
 
   world.spawnMonster("v-riftzonecutscene", mcontroller.position(), {masterId = player.id()})
+end
+
+function actLikeIStayedLongEnough(worldType)
+  if worldType == world.type() then
+    worldTypeStayTime = minPlanetStayTime
+  end
+  storage.worldTypeStayTimes[worldType] = minPlanetStayTime
 end
