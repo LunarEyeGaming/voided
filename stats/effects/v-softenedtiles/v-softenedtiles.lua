@@ -6,6 +6,7 @@ require "/scripts/v-vec2.lua"
 
 -- local destroyedMats  -- Tiles destroyed by brittleness. These must be tracked since world.damageTiles doesn't send tileBroken messages.
 
+local excludedMats
 local maxTilesDestroyed  -- Maximum number of tiles that are allowed to be processed in one tick.
 local destroyChance
 local groundlessDestroyChance
@@ -18,6 +19,7 @@ local tilesDestroyed  -- Number of tiles destroyed in one tick
 function init()
   message.setHandler("v-softenedtiles-tileBroken", handleBrokenTile)
 
+  excludedMats = {"v-voidstone", "v-voidstone2"}
   destroyChance = 1 / 5
   -- destroyChance = 1 / 20
   groundlessDestroyChance = 1 / 5
@@ -60,7 +62,8 @@ function handleBrokenTile(_, _, pos, layer)
 end
 
 function markTile(pos, fgMatsToDestroy, chance)
-  if world.material(pos, "foreground") then
+  local mat = world.material(pos, "foreground")
+  if mat and not contains(excludedMats, mat) then
     -- local shouldDestroy
     -- if world.material(vec2.add(pos, {0, -1}), "foreground") == false then
     --   shouldDestroy = math.random() <= groundlessDestroyChance
