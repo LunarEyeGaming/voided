@@ -78,7 +78,8 @@ function update(dt)
   for _, riftZone in ipairs(riftZonesToSpawn) do
     world.spawnMonster("v-riftzone", riftZone.position, {
       velocity = riftZone.velocity or defaultRiftZoneVelocity,
-      stateData = riftZone.stateData
+      stateData = riftZone.stateData,
+      level = riftZone.level
     })
   end
 

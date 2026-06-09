@@ -1,0 +1,20 @@
+{
+  "projectileName" : "v-riftzonemeteorsound",
+  "physics" : "laser",
+  "movementSettings" : {
+    "collisionEnabled" : false
+  },
+  "bounces" : -1,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "flippable" : false,
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 60,
+  "speed" : 50,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  "persistentAudio" : "/sfx/projectiles/v_titanmeteor_loop.ogg",
+
+  "scripts" : [ "v-riftzonemeteorsound.lua" ]
+}

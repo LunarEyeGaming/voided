@@ -58,6 +58,8 @@
     "knockoutEffect" : "",
     "deathParticles" : "deathPoof",
 
+    "damageTeamType" : "indiscriminate",
+
     "touchDamage" : {
       "poly" : [ [-1.0, -1.0], [1.0, -1.0], [1.0, 1.0], [-1.0, 1.0] ],
       "damage" : 15,
@@ -71,6 +73,12 @@
     "statusSettings" : {
       "statusProperties" : {
         "targetMaterialKind" : "robotic"
+      },
+
+      "stats" : {
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        }
       },
 
       "appliesEnvironmentStatusEffects" : false,

@@ -25,7 +25,7 @@ function update()
 end
 
 function drawRiftPoly(poly_, center)
-  local outlineThickness = 0.125
+  local outlineThickness = 1
   local outlineColor = {255, 255, 255, 26}
   local bgColor = {0, 0, 0}
   local darknessColor = {18, 5, 20, 127}
@@ -57,7 +57,7 @@ function drawRiftPoly(poly_, center)
   for i = 1, #poly_ - 1 do
     localAnimator.addDrawable({
       line = {poly_[i], poly_[i + 1]},
-      width = 1,
+      width = outlineThickness,
       position = center,
       color = outlineColor,
       fullbright = true
@@ -67,7 +67,7 @@ function drawRiftPoly(poly_, center)
   -- Add last point after loop to complete the outline
   localAnimator.addDrawable({
     line = {poly_[#poly_], poly_[1]},
-    width = 1,
+    width = outlineThickness,
     position = center,
     color = outlineColor,
     fullbright = true

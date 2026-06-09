@@ -1,0 +1,31 @@
+{
+  "projectileName" : "v-gravisphere",
+  "physics" : "laser",
+  "bounces" : -1,
+  "image" : "gravisphere.png",
+  "flippable" : false,
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "lightColor" : [94, 113, 128],
+  "frameNumber" : 1,
+  "power" : 60,
+  "speed" : 0,
+  "piercing" : true,
+  "damageKind" : "v-void",
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+
+  "boundBox" : [-20, -20, 20, 20],
+  "physicsForces" : {
+    "succ" : {
+      "type" : "RadialForceRegion",
+      "outerRadius" : 20,
+      "innerRadius" : 0,
+      "controlForce" : 100,
+      "targetRadialVelocity" : -10,
+      "categoryWhitelist" : [ "player", "monster", "npc", "itemdrop", "projectile" ]
+    }
+  },
+
+  "scripts" : [ "v-gravisphere.lua" ],
+  "maxDistance" : 42
+}

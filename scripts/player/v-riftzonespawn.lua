@@ -31,6 +31,7 @@ local spawnProbability  -- The chance of the spawn succeeding
 local riftZoneCount  -- The number of rift zones to spawn in each attempt
 local duration  -- How long the rift zone event lasts
 local numEventsPerOrbit  -- Number of events that can occur for each orbit
+local weatherTypes  -- The potential weather events that could occur in a rift zone.
 
 local spawnAttemptTimer  -- Amount of time elapsed since the last spawn attempt
 local worldTypeStayTime  -- Amount of time that the player has spent on the current world so far
@@ -61,6 +62,8 @@ function init()
   riftZoneCount = 100
   duration = 600
   numEventsPerOrbit = 6
+
+  weatherTypes = {"meteors", "gravispheres", "destabilization"}
 
   spawnAttemptTimer = 0
 
@@ -184,11 +187,14 @@ function spawnRiftZones()
   for _ = 1, riftZoneCount do
     local size = world.size()
     local pos = {math.random() * size[1], math.random() * size[2]}
-    table.insert(riftZones, {position = pos, velocity = {-5, 0}, stateData = {deathTime = deathTime}})
+    table.insert(riftZones, {position = pos, velocity = {-5, 0}, stateData = {deathTime = deathTime}, level = world.threatLevel()})
   end
   world.setProperty("v-riftZones", riftZones)
 
   world.spawnMonster("v-riftzonecutscene", mcontroller.position(), {masterId = player.id()})
+
+  -- Set weather
+  world.setProperty("v-riftZoneWeather", weatherTypes[math.random(1, #weatherTypes)])
 end
 
 function actLikeIStayedLongEnough(worldType)

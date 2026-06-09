@@ -2,6 +2,7 @@ require "/scripts/vec2.lua"
 require "/scripts/interp.lua"
 require "/scripts/util.lua"
 
+require "/scripts/v-attack.lua"
 require "/scripts/v-animator.lua"
 require "/scripts/v-vec2.lua"
 
@@ -15,6 +16,7 @@ local disappearDelay
 local timeToLive
 local velocity
 local playerProximityRegion
+local meteorPower
 
 local prevPos
 local prevRadius
@@ -32,17 +34,15 @@ local placedAssists
 local blocksToPlace
 local oresToPlace
 local bgOresToPlace
+local frontScanPositions
+local backScanPositions
+
+local weatherFunction
 
 local state
 
---[[
-  Possible ways of making it persist across unloaded regions:
-  * Persistent + storage - nope. Then it won't move until the player loads it.
-  * Store state data in world.setProperty, then have the client retrieve it.
-    *
-]]
-
 function init()
+  sb.logInfo("%s: init called", entity.id())
   scanRadius = 35
   tileSofteningRadius = 80
   monster.setAnimationParameter("riftSize", 0)
@@ -77,7 +77,7 @@ function init()
     seed = 0,
     octaves = 3,
     type = "perlin",
-    frequency = 0.05
+    frequency = 0.025
   })
   orePerlinSource = sb.makePerlinSource({
     seed = 1,
@@ -94,6 +94,24 @@ function init()
   placedBlocks = {}
   placedBlocksBG = {}
   placedAssists = {}
+  meteorPower = 10
+
+  local weatherName = world.getProperty("v-riftZoneWeather") or "destabilization"
+  if weatherName == "meteors" then
+    weatherFunction = function()
+      spawnMeteors(currentScanRadius)
+    end
+  elseif weatherName == "gravispheres" then
+    weatherFunction = function()
+      spawnGravispheres()
+    end
+  elseif weatherName == "destabilization" then
+    weatherFunction = function()
+      applyRiftDestabilization(currentScanRadius)
+    end
+  else
+    error(string.format("Unknown rift zone weather: %s", weatherName))
+  end
 
   monster.setDamageBar("None")
   state = FSM:new()
@@ -108,10 +126,11 @@ function update(dt)
   -- Suppress updates to tiles if too far away from any players to prevent loading chunks, causing a chain reaction of
   -- rift zones loading into existence.
   if closeToAPlayer(mcontroller.position()) then
-    updateMatMods(currentScanRadius)
+    updateDeltaScans(currentScanRadius)
+    updateMaterials(currentScanRadius)
+    updateWeather(dt)
   end
 
-  applyRiftDestabilization(currentScanRadius)
   applySoftenedTiles(currentTileSofteningRadius)
 
   crackleLightning(currentTileSofteningRadius)
@@ -156,7 +175,8 @@ function uninit()
     velocity = velocity,
     stateData = {
       deathTime = world.time() + existenceTimer
-    }
+    },
+    level = monster.level()
   })
   world.setProperty("v-riftZones", riftZones)
 end
@@ -275,6 +295,13 @@ function setExistenceTimer()
   end
 end
 
+function updateWeather(dt)
+  -- applyRiftDestabilization(currentScanRadius)
+  -- spawnMeteors(currentScanRadius)
+  -- spawnGravispheres()
+  weatherFunction()
+end
+
 function applyRiftDestabilization(radius)
   local queried = world.entityQuery(mcontroller.position(), radius, {
     includedTypes = {"creature"},
@@ -283,6 +310,34 @@ function applyRiftDestabilization(radius)
 
   for _, entityId in ipairs(queried) do
     world.sendEntityMessage(entityId, "applyStatusEffect", "v-riftdestabilization")
+  end
+end
+
+function spawnMeteors(spawnRadius)
+  if math.random() < 0.1 then
+    local appearDelay = 0.75
+    local speed = 30
+    local spawnAngle = vVec2.randomAngle(math.pi / 2, math.pi / 4)
+
+    local appearPoint = vec2.withAngle(spawnAngle, spawnRadius)
+    local spawnDirection = vec2.withAngle(vVec2.randomAngle(-math.pi / 2, math.pi / 8))
+    local spawnPoint = vec2.add(appearPoint, vec2.mul(spawnDirection, -speed * appearDelay))
+    local spawnPointWorld = vec2.add(mcontroller.position(), spawnPoint)
+    world.spawnProjectile("v-riftzonemeteorsound", spawnPointWorld, entity.id(), spawnDirection, false, {
+      power = vAttack.scaledPower(meteorPower or 10),
+      speed = speed,
+      appearDelay = appearDelay
+    })
+  end
+end
+
+function spawnGravispheres()
+  for _, frontScanPos in ipairs(frontScanPositions) do
+    if math.random() < 0.001 then
+      world.spawnProjectile("v-gravispherewindup", frontScanPos, entity.id(), {1, 0}, false, {
+        power = vAttack.scaledPower(meteorPower or 10)
+      })
+    end
   end
 end
 
@@ -297,14 +352,13 @@ function applySoftenedTiles(radius)
   end
 end
 
-function updateMatMods(radius)
+function updateDeltaScans(radius)
   radius = math.floor(radius)
   local ownPos = vec2.floor(mcontroller.position())
   world.debugPoint(ownPos, "green")
 
-  placeOres()
-
-  placeBlocks()
+  frontScanPositions = {}
+  backScanPositions = {}
 
   for x = -radius, radius do
     for y = -radius, radius do
@@ -313,21 +367,10 @@ function updateMatMods(radius)
       local frontScanDist = world.magnitude(ownPos, frontScanPos)
       local frontScanDist2 = world.magnitude(prevPos, frontScanPos)
       if frontScanDist <= radius and frontScanDist2 > prevRadius then
-        world.debugPoint(frontScanPos, "green")
-        attemptPlaceMatMod(frontScanPos)
-        if not world.material(frontScanPos, "foreground") and shouldPlaceBlock(frontScanPos) then
-          table.insert(blocksToPlace, frontScanPos)
-          placedBlocks[vVec2.iToString(frontScanPos)] = true
-          placedBlocksBG[vVec2.iToString(frontScanPos)] = true
-        end
+        table.insert(frontScanPositions, frontScanPos)
       end
     end
   end
-
-  placeAssists()
-
-  local blocksToRemove = {}
-  local blocksToRemoveBG = {}
 
   for x = -radius, radius do
     for y = -radius, radius do
@@ -336,17 +379,49 @@ function updateMatMods(radius)
       local backScanDist = world.magnitude(ownPos, backScanPos)
       local backScanDist2 = world.magnitude(prevPos, backScanPos)
       if backScanDist > radius and backScanDist2 <= prevRadius then
-        world.debugPoint(backScanPos, "green")
-        attemptRemoveMatMod(backScanPos)
-        if placedBlocks[vVec2.iToString(backScanPos)] then
-          table.insert(blocksToRemove, backScanPos)
-          placedBlocks[vVec2.iToString(backScanPos)] = nil
-        end
-        if placedBlocksBG[vVec2.iToString(backScanPos)] then
-          table.insert(blocksToRemoveBG, backScanPos)
-          placedBlocksBG[vVec2.iToString(backScanPos)] = nil
-        end
+        table.insert(backScanPositions, backScanPos)
       end
+    end
+  end
+
+  prevPos = ownPos
+  prevRadius = radius
+end
+
+function updateMaterials(radius)
+  radius = math.floor(radius)
+  local ownPos = vec2.floor(mcontroller.position())
+  world.debugPoint(ownPos, "green")
+
+  placeOres()
+
+  placeBlocks()
+
+  for _, frontScanPos in ipairs(frontScanPositions) do
+    world.debugPoint(frontScanPos, "green")
+    attemptPlaceMatMod(frontScanPos)
+    if not world.material(frontScanPos, "foreground") and shouldPlaceBlock(frontScanPos) then
+      table.insert(blocksToPlace, frontScanPos)
+      placedBlocks[vVec2.iToString(frontScanPos)] = true
+      placedBlocksBG[vVec2.iToString(frontScanPos)] = true
+    end
+  end
+
+  placeAssists()
+
+  local blocksToRemove = {}
+  local blocksToRemoveBG = {}
+
+  for _, backScanPos in ipairs(backScanPositions) do
+    world.debugPoint(backScanPos, "green")
+    attemptRemoveMatMod(backScanPos)
+    if placedBlocks[vVec2.iToString(backScanPos)] and world.material(backScanPos, "foreground") then
+      table.insert(blocksToRemove, backScanPos)
+      placedBlocks[vVec2.iToString(backScanPos)] = nil
+    end
+    if placedBlocksBG[vVec2.iToString(backScanPos)] then
+      table.insert(blocksToRemoveBG, backScanPos)
+      placedBlocksBG[vVec2.iToString(backScanPos)] = nil
     end
   end
 
@@ -510,6 +585,7 @@ function clearPlacedBlocks(blocks, layer)
   local blocksToClear = {}
   if not blocks then
     sb.logError("v-riftzone.lua: clearPlacedBlocks called with no blocks defined")
+    return
   end
   for posString, _ in pairs(blocks) do
     local pos = vVec2.iFromString(posString)
