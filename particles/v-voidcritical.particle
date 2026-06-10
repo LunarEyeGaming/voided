@@ -1,0 +1,20 @@
+{
+  "kind" : "v-voidcritical",
+  "definition" : {
+    "type" : "animated",
+    "animation" : "/animations/v-voidcritical/v-voidcritical.animation",
+    "size" : 1,
+    "angularVelocity" : 0,
+    "position" : [0, 0],
+    "initialVelocity" : [0, 0],
+    "finalVelocity" : [0, 5],
+    "approach" : [15, 15],
+    "timeToLive" : 0.6,
+    "layer" : "front",
+    "destructionTime" : 0.5,
+    "destructionAction" : "fade",
+    "variance" : {
+      "initialVelocity" : [10, 5]
+    }
+  }
+}
