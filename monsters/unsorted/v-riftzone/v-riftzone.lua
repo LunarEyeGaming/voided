@@ -14,7 +14,9 @@ local appearTime
 local disappearTime
 local disappearDelay
 local timeToLive
+local initialVelocity
 local velocity
+local rotationPeriod
 local playerProximityRegion
 local meteorPower
 
@@ -36,6 +38,7 @@ local oresToPlace
 local bgOresToPlace
 local frontScanPositions
 local backScanPositions
+local rotationTimer
 
 local weatherFunction
 
@@ -52,7 +55,9 @@ function init()
   disappearTime = 7
   disappearDelay = 3
   timeToLive = config.getParameter("timeToLive", 300)
-  velocity = config.getParameter("velocity", {0, 0})
+  initialVelocity = config.getParameter("velocity", {0, 0})
+  velocity = initialVelocity
+  rotationPeriod = 120
   playerProximityRegion = {-100, -100, 100, 100}
 
   prevPos = vec2.floor(mcontroller.position())
@@ -95,6 +100,7 @@ function init()
   placedBlocksBG = {}
   placedAssists = {}
   meteorPower = 10
+  rotationTimer = 0
 
   local weatherName = world.getProperty("v-riftZoneWeather") or "destabilization"
   if weatherName == "meteors" then
@@ -107,7 +113,7 @@ function init()
     end
   elseif weatherName == "destabilization" then
     weatherFunction = function()
-      applyRiftDestabilization(currentScanRadius)
+      applyEffect("v-riftdestabilization", currentScanRadius)
     end
   else
     error(string.format("Unknown rift zone weather: %s", weatherName))
@@ -131,7 +137,8 @@ function update(dt)
     updateWeather(dt)
   end
 
-  applySoftenedTiles(currentTileSofteningRadius)
+  applyEffect("v-softenedtiles", currentTileSofteningRadius)
+  applyEffect("v-rifteffects", currentScanRadius)
 
   crackleLightning(currentTileSofteningRadius)
 
@@ -165,20 +172,19 @@ function uninit()
   clearPlacedBlocks(placedBlocks, "foreground")
   clearPlacedBlocks(placedBlocksBG, "background")
 
-  if g_shouldDieVar then
-    return
+  if not g_shouldDieVar then
+    local riftZones = world.getProperty("v-riftZones") or jarray()
+    table.insert(riftZones, {
+      position = mcontroller.position(),
+      velocity = velocity,
+      stateData = {
+        deathTime = world.time() + existenceTimer
+      },
+      level = monster.level(),
+      timeToLive = timeToLive
+    })
+    world.setProperty("v-riftZones", riftZones)
   end
-
-  local riftZones = world.getProperty("v-riftZones") or jarray()
-  table.insert(riftZones, {
-    position = mcontroller.position(),
-    velocity = velocity,
-    stateData = {
-      deathTime = world.time() + existenceTimer
-    },
-    level = monster.level()
-  })
-  world.setProperty("v-riftZones", riftZones)
 end
 
 states = {}
@@ -225,7 +231,11 @@ function states.move()
   currentScanRadius = scanRadius
   currentTileSofteningRadius = tileSofteningRadius
 
+  -- rotationTimer = 0
+
   while existenceTimer > 0 do
+    -- rotationTimer = (rotationTimer + script.updateDt()) % rotationPeriod
+    -- velocity = vec2.rotate(initialVelocity, rotationTimer * 2 * math.pi / rotationPeriod)
     mcontroller.setVelocity(velocity)
 
     existenceTimer = existenceTimer - script.updateDt()
@@ -240,6 +250,8 @@ function states.disappear()
   animator.playSound("close")
 
   util.wait(disappearDelay)
+
+  mcontroller.setVelocity({0, 0})
 
   local timer = disappearTime
   while timer > 0 do
@@ -260,11 +272,30 @@ end
 function states.die()
   g_shouldDieVar = true
 
+  if math.random() < 0.70 then
+    local riftZones = world.getProperty("v-riftZones") or jarray()
+    createRiftZone(riftZones)
+    world.setProperty("v-riftZones", riftZones)
+  end
+
   -- The script should stop running within the next tick or two. This just ensures the coroutine doesn't die prematurely
   -- and cause an error.
   while true do
     coroutine.yield()
   end
+end
+
+function createRiftZone(riftZones)
+  local size = world.size()
+  local pos = {math.random() * size[1], math.random() * size[2]}
+  local deathTime = world.time() + timeToLive
+  table.insert(riftZones, {
+    position = pos,
+    velocity = initialVelocity,
+    stateData = {deathTime = deathTime},
+    level = monster.level(),
+    timeToLive = timeToLive
+  })
 end
 
 function crackleLightning(radius)
@@ -302,17 +333,6 @@ function updateWeather(dt)
   weatherFunction()
 end
 
-function applyRiftDestabilization(radius)
-  local queried = world.entityQuery(mcontroller.position(), radius, {
-    includedTypes = {"creature"},
-    withoutEntityId = entity.id()
-  })
-
-  for _, entityId in ipairs(queried) do
-    world.sendEntityMessage(entityId, "applyStatusEffect", "v-riftdestabilization")
-  end
-end
-
 function spawnMeteors(spawnRadius)
   if math.random() < 0.1 then
     local appearDelay = 0.75
@@ -341,14 +361,14 @@ function spawnGravispheres()
   end
 end
 
-function applySoftenedTiles(radius)
+function applyEffect(effectName, radius)
   local queried = world.entityQuery(mcontroller.position(), radius, {
     includedTypes = {"player"},
     withoutEntityId = entity.id()
   })
 
   for _, entityId in ipairs(queried) do
-    world.sendEntityMessage(entityId, "applyStatusEffect", "v-softenedtiles")
+    world.sendEntityMessage(entityId, "applyStatusEffect", effectName)
   end
 end
 

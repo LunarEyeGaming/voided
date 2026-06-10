@@ -1,0 +1,20 @@
+{
+  "name" : "v-rifteffects",
+  "blockingStat" : "v-rifteffectsImmunity",
+
+  "effectConfig" : {
+    "nonPlayerMovementModifiers" : {
+      "speedModifier" : 0.6,
+      "airJumpModifier" : 0.6
+    },
+    "gravityModifier" : 0.5
+  },
+  "defaultDuration" : 0.5,
+
+  "scripts" : [
+    "v-rifteffects.lua"
+  ],
+
+  "label" : "In the Rift - Within a different universe",
+  "icon" : "/interface/statuses/v-riftdestabilization.png"
+}

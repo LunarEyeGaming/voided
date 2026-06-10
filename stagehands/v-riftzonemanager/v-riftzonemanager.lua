@@ -6,6 +6,7 @@ local SMALL_RECT = {-1, -1, 1, 1}
 local defaultRiftZoneVelocity
 local playerProximityRegion
 local lightningOffsetRegion
+local riftZoneDuration
 
 local postInitCalled
 
@@ -14,6 +15,7 @@ function init()
   defaultRiftZoneVelocity = {-5, 0}
   playerProximityRegion = {-100, -100, 100, 100}
   lightningOffsetRegion = {-100, -100, 100, 100}
+  riftZoneDuration = 600
 
   postInitCalled = false
 end
@@ -51,7 +53,8 @@ function update(dt)
 
     if playerPos then
       local zoomedOutPos = zoomOut(playerPos, riftZone.position, 120)
-      world.debugPoint(zoomedOutPos, "magenta")
+      world.debugText("%s", riftZone.stateData.deathTime - world.time(), zoomedOutPos, "magenta")
+      -- world.debugPoint(zoomedOutPos, "magenta")
     end
 
     -- Update position
@@ -61,16 +64,19 @@ function update(dt)
     if canSpawn(riftZone.position) then
       table.insert(riftZonesToSpawn, riftZone)
       table.remove(riftZones, i)
-    -- Clean up data
+    -- Kill / relocate rift zones
     elseif world.time() > riftZone.stateData.deathTime then
       table.remove(riftZones, i)
+      if math.random() < 0.90 then
+        createRiftZone(riftZones, riftZone)
+      end
     end
 
     -- countRiftZones()
   end
 
   if #riftZones > 0 then
-    summonLightning()
+    spawnLightning()
   end
 
   world.setProperty("v-riftZones", riftZones)
@@ -79,14 +85,28 @@ function update(dt)
     world.spawnMonster("v-riftzone", riftZone.position, {
       velocity = riftZone.velocity or defaultRiftZoneVelocity,
       stateData = riftZone.stateData,
-      level = riftZone.level
+      level = riftZone.level,
+      timeToLive = riftZone.timeToLive
     })
   end
 
   sb.setLogMap("v-riftzonemanager-spawnedRiftZones", "%s", #riftZonesToSpawn)
 end
 
-function summonLightning()
+function createRiftZone(riftZones, oldRiftZone)
+  local size = world.size()
+  local pos = {math.random() * size[1], math.random() * size[2]}
+  local deathTime = world.time() + oldRiftZone.timeToLive
+  table.insert(riftZones, {
+    position = pos,
+    velocity = oldRiftZone.velocity,
+    stateData = {deathTime = deathTime},
+    level = oldRiftZone.level,
+    timeToLive = oldRiftZone.timeToLive
+  })
+end
+
+function spawnLightning()
   for _, playerId in ipairs(world.players()) do
     local playerPos = world.entityPosition(playerId)
     if playerPos then

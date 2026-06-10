@@ -1,12 +1,13 @@
 {
-  "kind" : "v-void",
+  "kind" : "v-voidplasma",
   "elementalType" : "v-void",
   "effects" : {
     "organic" : {
       "hit" : {
-        "sounds" : [ "/sfx/damage/v_void_hit.ogg" ],
+        "sounds" : [ "/sfx/gun/impact_plasma.ogg" ],
         "particles" : [
           [
+
             {
               "type" : "animated",
               "animation" : "/animations/defaulthitspark/defaulthitspark.animation",
@@ -21,7 +22,6 @@
               "timeToLive" : 0.3,
               "layer" : "middle"
             },
-
 
             {
               "type" : "ember",
@@ -56,12 +56,11 @@
                 "size" : 1.3
               }
             }
-
           ]
         ]
       },
       "stronghit" : {
-        "sounds" : [ [ "/sfx/damage/v_void_hit.ogg", "/sfx/melee/critical_hit.ogg" ] ],
+        "sounds" : [ [ "/sfx/gun/impact_plasma.ogg", "/sfx/melee/critical_hit.ogg" ] ],
         "particles" : [
           [
             // CRITICAL VOID PARTICLES
@@ -83,12 +82,45 @@
               "approach" : [1, 0],
               "timeToLive" : 0.3,
               "layer" : "middle"
+            },
+            {
+              "type" : "ember",
+              "size" : 1.0,
+              "color" : [255, 0, 0, 255],
+              "fade" : 0.9,
+              "initialVelocity" : [12, 6.0],
+              "finalVelocity" : [17, -19.0],
+              "approach" : [20, 30],
+              "timeToLive" : 0.8,
+              "layer" : "front",
+              "variance" : {
+                "initialVelocity" : [13, 3],
+                "timeToLive" : 1,
+                "size" : 1.3
+              }
+            },
+
+            {
+              "type" : "ember",
+              "size" : 1.3,
+              "color" : [210, 0, 0, 255],
+              "fade" : 0.9,
+              "initialVelocity" : [13, 8.0],
+              "finalVelocity" : [16, -19.0],
+              "approach" : [20, 30],
+              "timeToLive" : 0.9,
+              "layer" : "front",
+              "variance" : {
+                "initialVelocity" : [13, 3],
+                "timeToLive" : 1,
+                "size" : 1.3
+              }
             }
           ]
         ]
       },
       "kill" : {
-        "sounds" : [ "/sfx/damage/v_void_kill.ogg" ],
+        "sounds" : [ "/sfx/gun/impact_plasma.ogg" ],
         "particles" : [
           [
 
@@ -106,8 +138,6 @@
               "timeToLive" : 0.3,
               "layer" : "middle"
             },
-
-
             {
               "type" : "ember",
               "size" : 1.0,
@@ -147,7 +177,7 @@
     },
     "robotic" : {
       "hit" : {
-        "sounds" : [ "/sfx/damage/v_void_hit.ogg" ],
+        "sounds" : [ "/sfx/gun/impact_plasma.ogg" ],
         "particles" : [
           [
 
@@ -164,46 +194,12 @@
               "approach" : [1, 0],
               "timeToLive" : 0.3,
               "layer" : "middle"
-            },
-
-            {
-              "type" : "ember",
-              "size" : 1.0,
-              "color" : [255, 200, 0, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [12, 6.0],
-              "finalVelocity" : [17, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.8,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
-            },
-
-            {
-              "type" : "ember",
-              "size" : 1.3,
-              "color" : [255, 200, 0, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [13, 8.0],
-              "finalVelocity" : [16, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.9,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
             }
           ]
         ]
       },
       "stronghit" : {
-        "sounds" : [ [ "/sfx/damage/v_void_hit.ogg", "/sfx/melee/critical_hit.ogg" ] ],
+        "sounds" : [ [ "/sfx/gun/impact_plasma.ogg", "/sfx/melee/critical_hit.ogg" ] ],
         "particles" : [
           [
             // CRITICAL VOID PARTICLES
@@ -247,40 +243,6 @@
               "approach" : [1, 0],
               "timeToLive" : 0.3,
               "layer" : "middle"
-            },
-
-            {
-              "type" : "ember",
-              "size" : 1.0,
-              "color" : [255, 200, 0, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [12, 6.0],
-              "finalVelocity" : [17, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.8,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
-            },
-
-            {
-              "type" : "ember",
-              "size" : 1.3,
-              "color" : [255, 200, 0, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [13, 8.0],
-              "finalVelocity" : [16, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.9,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
             }
           ]
         ]
@@ -288,7 +250,7 @@
     },
     "wooden" : {
       "hit" : {
-        "sounds" : [ "/sfx/damage/v_void_hit.ogg" ],
+        "sounds" : [ "/sfx/gun/impact_plasma.ogg" ],
         "particles" : [
           [
 
@@ -305,46 +267,12 @@
               "approach" : [1, 0],
               "timeToLive" : 0.3,
               "layer" : "middle"
-            },
-
-            {
-              "type" : "ember",
-              "size" : 1.0,
-              "color" : [164, 120, 68, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [12, 6.0],
-              "finalVelocity" : [17, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.8,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
-            },
-
-            {
-              "type" : "ember",
-              "size" : 1.3,
-              "color" : [117, 76, 35, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [13, 8.0],
-              "finalVelocity" : [16, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.9,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
             }
           ]
         ]
       },
       "stronghit" : {
-        "sounds" : [ [ "/sfx/damage/v_void_hit.ogg", "/sfx/melee/critical_hit.ogg" ] ],
+        "sounds" : [ [ "/sfx/gun/impact_plasma.ogg", "/sfx/melee/critical_hit.ogg" ] ],
         "particles" : [
           [
             // CRITICAL VOID PARTICLES
@@ -371,7 +299,7 @@
         ]
       },
       "kill" : {
-        "sounds" : [ "/sfx/melee/kill_wood1.ogg", "/sfx/melee/kill_wood2.ogg" ],
+        "sounds" : [ "/sfx/gun/plasmabullet_kill_wood1.ogg", "/sfx/gun/plasmabullet_kill_wood2.ogg" ],
         "particles" : [
           [
 
@@ -388,41 +316,6 @@
               "approach" : [1, 0],
               "timeToLive" : 0.3,
               "layer" : "middle"
-            },
-
-
-            {
-              "type" : "ember",
-              "size" : 1.0,
-              "color" : [164, 120, 68, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [12, 6.0],
-              "finalVelocity" : [17, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.8,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
-            },
-
-            {
-              "type" : "ember",
-              "size" : 1.3,
-              "color" : [117, 76, 35, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [13, 8.0],
-              "finalVelocity" : [16, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.9,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
             }
           ]
         ]
@@ -430,7 +323,7 @@
     },
     "stone" : {
       "hit" : {
-        "sounds" : [ "/sfx/damage/v_void_hit.ogg" ],
+        "sounds" : [ "/sfx/gun/impact_plasma.ogg" ],
         "particles" : [
           [
 
@@ -447,46 +340,12 @@
               "approach" : [1, 0],
               "timeToLive" : 0.3,
               "layer" : "middle"
-            },
-
-            {
-              "type" : "ember",
-              "size" : 1.0,
-              "color" : [255, 200, 0, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [12, 6.0],
-              "finalVelocity" : [17, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.8,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
-            },
-
-            {
-              "type" : "ember",
-              "size" : 1.3,
-              "color" : [255, 200, 0, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [13, 8.0],
-              "finalVelocity" : [16, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.9,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
             }
           ]
         ]
       },
       "stronghit" : {
-        "sounds" : [ [ "/sfx/damage/v_void_hit.ogg", "/sfx/melee/critical_hit.ogg" ] ],
+        "sounds" : [ [ "/sfx/gun/impact_plasma.ogg", "/sfx/melee/critical_hit.ogg" ] ],
         "particles" : [
           [
             // CRITICAL VOID PARTICLES
@@ -513,7 +372,7 @@
         ]
       },
       "kill" : {
-        "sounds" : [ "/sfx/melee/kill_stone1.ogg", "/sfx/melee/kill_stone2.ogg", "/sfx/melee/kill_stone3.ogg", "/sfx/melee/kill_stone4.ogg", "/sfx/melee/kill_stone5.ogg" ],
+        "sounds" : [ "/sfx/gun/plasmabullet_kill_stone1.ogg", "/sfx/gun/plasmabullet_kill_stone2.ogg", "/sfx/gun/plasmabullet_kill_stone3.ogg", "/sfx/gun/plasmabullet_kill_stone4.ogg", "/sfx/gun/plasmabullet_kill_stone5.ogg" ],
         "particles" : [
           [
 
@@ -530,40 +389,6 @@
               "approach" : [1, 0],
               "timeToLive" : 0.3,
               "layer" : "middle"
-            },
-
-            {
-              "type" : "ember",
-              "size" : 1.0,
-              "color" : [255, 200, 0, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [12, 6.0],
-              "finalVelocity" : [17, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.8,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
-            },
-
-            {
-              "type" : "ember",
-              "size" : 1.3,
-              "color" : [255, 200, 0, 255],
-              "fade" : 0.9,
-              "initialVelocity" : [13, 8.0],
-              "finalVelocity" : [16, -19.0],
-              "approach" : [20, 30],
-              "timeToLive" : 0.9,
-              "layer" : "front",
-              "variance" : {
-                "initialVelocity" : [13, 3],
-                "timeToLive" : 1,
-                "size" : 1.3
-              }
             }
           ]
         ]

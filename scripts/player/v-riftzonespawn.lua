@@ -60,7 +60,7 @@ function init()
   spawnProbability = 1.0
 
   riftZoneCount = 100
-  duration = 600
+  duration = 120
   numEventsPerOrbit = 6
 
   weatherTypes = {"meteors", "gravispheres", "destabilization"}
@@ -183,11 +183,17 @@ end
 
 function spawnRiftZones()
   local riftZones = world.getProperty("v-riftZones") or jarray()
-  local deathTime = world.time() + duration
+  local deathTime = world.time() + math.random() * duration
   for _ = 1, riftZoneCount do
     local size = world.size()
     local pos = {math.random() * size[1], math.random() * size[2]}
-    table.insert(riftZones, {position = pos, velocity = {-5, 0}, stateData = {deathTime = deathTime}, level = world.threatLevel()})
+    table.insert(riftZones, {
+      position = pos,
+      velocity = {-5, 0},
+      stateData = {deathTime = deathTime},
+      level = world.threatLevel(),
+      timeToLive = duration
+    })
   end
   world.setProperty("v-riftZones", riftZones)
 

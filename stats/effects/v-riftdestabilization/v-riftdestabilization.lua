@@ -4,8 +4,6 @@ require "/scripts/statuseffects/v-tickdamage.lua"
 
 local destabilizeTime
 local destabilizeTickDamage
-local nonPlayerMovementModifiers
-local newGravityMultiplier
 
 local timer
 
@@ -23,29 +21,10 @@ function init()
     damageType = "IgnoresDef"
   }
 
-  nonPlayerMovementModifiers = config.getParameter("nonPlayerMovementModifiers", {})
-
   timer = 0
-
-  setGravityMultiplier()
-end
-
-function setGravityMultiplier()
-  local gravityModifier = config.getParameter("gravityModifier")
-  local movementParams = mcontroller.baseParameters()
-  local oldGravityMultiplier = movementParams.gravityMultiplier or 1
-
-  newGravityMultiplier = gravityModifier * oldGravityMultiplier
 end
 
 function update(dt)
-  mcontroller.controlParameters({
-     gravityMultiplier = newGravityMultiplier
-  })
-
-  if entity.entityType() ~= "player" then
-    mcontroller.controlModifiers(nonPlayerMovementModifiers)
-  end
   timer = math.min(destabilizeTime, timer + dt)
 
   if timer == destabilizeTime then
@@ -53,11 +32,6 @@ function update(dt)
   else
     destabilizeTickDamage:reset()
   end
-
-  -- local pos = mcontroller.position()
-  -- local newOffset = rect.randomPoint(destabilizeOffsetRegion)
-  -- mcontroller.setPosition(vec2.add(vec2.sub(pos, prevOffset), newOffset))
-  -- prevOffset = newOffset
 end
 
 function uninit()
