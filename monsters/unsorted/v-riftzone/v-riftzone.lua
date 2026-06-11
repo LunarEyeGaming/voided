@@ -28,13 +28,14 @@ local existenceTimer
 
 local lightningController
 local perlinSource
-local orePerlinSource
+local oreFGPerlinSource
 local oreBGPerlinSource
-local placedBlocks
+local placedBlocksFG
 local placedBlocksBG
 local placedAssists
-local blocksToPlace
-local oresToPlace
+local fgBlocksToPlace
+local bgBlocksToPlace
+local fgOresToPlace
 local bgOresToPlace
 local frontScanPositions
 local backScanPositions
@@ -43,6 +44,8 @@ local rotationTimer
 local weatherFunction
 
 local state
+
+local deferredTasks
 
 function init()
   sb.logInfo("%s: init called", entity.id())
@@ -84,7 +87,7 @@ function init()
     type = "perlin",
     frequency = 0.025
   })
-  orePerlinSource = sb.makePerlinSource({
+  oreFGPerlinSource = sb.makePerlinSource({
     seed = 1,
     type = "perlin",
     frequency = 0.1,
@@ -96,7 +99,7 @@ function init()
     frequency = 0.1,
     bias = -0.4
   })
-  placedBlocks = {}
+  placedBlocksFG = {}
   placedBlocksBG = {}
   placedAssists = {}
   meteorPower = 10
@@ -122,9 +125,13 @@ function init()
   monster.setDamageBar("None")
   state = FSM:new()
   state:set(states.postInit)
+
+  deferredTasks = {}
 end
 
 function update(dt)
+  callDeferredTasks()
+
   state:update(dt)
 
   lightningController:update(dt)
@@ -142,14 +149,12 @@ function update(dt)
 
   crackleLightning(currentTileSofteningRadius)
 
-  perlinNoiseTest(currentScanRadius)
-
   monster.setAnimationParameter("riftSize", currentScanRadius + 1)
 
   local placedBlocksCount = 0
   local placedBlocksBGCount = 0
   local placedAssistsCount = 0
-  for _, _ in pairs(placedBlocks) do
+  for _, _ in pairs(placedBlocksFG) do
     placedBlocksCount = placedBlocksCount + 1
   end
   for _, _ in pairs(placedBlocksBG) do
@@ -169,7 +174,7 @@ end
 
 function uninit()
   clearMatMods(scanRadius)
-  clearPlacedBlocks(placedBlocks, "foreground")
+  clearPlacedBlocks(placedBlocksFG, "foreground")
   clearPlacedBlocks(placedBlocksBG, "background")
 
   if not g_shouldDieVar then
@@ -282,6 +287,22 @@ function states.die()
   -- and cause an error.
   while true do
     coroutine.yield()
+  end
+end
+
+function callDeferredTasks()
+  for i = #deferredTasks, 1, -1 do
+    local task = deferredTasks[i]
+    if type(task) == "table" then
+      task.ticks = task.ticks - 1
+      if task.ticks <= 0 then
+        task.func()
+        table.remove(deferredTasks, i)
+      end
+    else
+      task()
+      table.remove(deferredTasks, i)
+    end
   end
 end
 
@@ -413,21 +434,55 @@ function updateMaterials(radius)
   local ownPos = vec2.floor(mcontroller.position())
   world.debugPoint(ownPos, "green")
 
-  placeOres()
+  -- placeOres()
 
-  placeBlocks()
+  -- placeBlocks()
+
+  -- for _, frontScanPos in ipairs(frontScanPositions) do
+  --   world.debugPoint(frontScanPos, "green")
+  --   attemptPlaceMatMod(frontScanPos)
+  --   if not world.material(frontScanPos, "foreground") and shouldPlaceBlock(frontScanPos) then
+  --     table.insert(fgBlocksToPlace, frontScanPos)
+  --     placedBlocksFG[vVec2.iToString(frontScanPos)] = true
+  --     placedBlocksBG[vVec2.iToString(frontScanPos)] = true
+  --   end
+  -- end
+
+  -- placeAssists()
+
+  local blocksToPlaceFG = {}
+  local blocksToPlaceBG = {}
+  local oresToPlaceFG = {}
+  local oresToPlaceBG = {}
 
   for _, frontScanPos in ipairs(frontScanPositions) do
     world.debugPoint(frontScanPos, "green")
-    attemptPlaceMatMod(frontScanPos)
-    if not world.material(frontScanPos, "foreground") and shouldPlaceBlock(frontScanPos) then
-      table.insert(blocksToPlace, frontScanPos)
-      placedBlocks[vVec2.iToString(frontScanPos)] = true
-      placedBlocksBG[vVec2.iToString(frontScanPos)] = true
+    -- if shouldPlaceBlock(frontScanPos) then
+    --   table.insert(blocksToPlaceFG, )
+    -- end
+    if shouldPlaceBlock(frontScanPos) then
+      table.insert(blocksToPlaceFG, {pos = frontScanPos, material = "v-voidstone2"})
+      table.insert(blocksToPlaceBG, {pos = frontScanPos, material = "v-voidstone2"})
+      if oreFGPerlinSource:get(frontScanPos[1], frontScanPos[2]) > 0 then
+        table.insert(oresToPlaceFG, frontScanPos)
+      end
+      if oreBGPerlinSource:get(frontScanPos[1], frontScanPos[2]) > 0 then
+        table.insert(oresToPlaceBG, frontScanPos)
+      end
+    else
+      table.insert(blocksToPlaceBG, {pos = frontScanPos, material = "lightblocker"})
     end
   end
 
-  placeAssists()
+  placeBlocks(blocksToPlaceFG, placedBlocksFG, true)
+  -- Defer to next update to avoid interference
+  table.insert(deferredTasks, function()
+    placeBlocks(blocksToPlaceBG, placedBlocksBG, false)
+  end)
+
+  table.insert(deferredTasks, {ticks = 2, func = function()
+    placeOres(oresToPlaceFG, oresToPlaceBG)
+  end})
 
   local blocksToRemove = {}
   local blocksToRemoveBG = {}
@@ -435,9 +490,9 @@ function updateMaterials(radius)
   for _, backScanPos in ipairs(backScanPositions) do
     world.debugPoint(backScanPos, "green")
     attemptRemoveMatMod(backScanPos)
-    if placedBlocks[vVec2.iToString(backScanPos)] and world.material(backScanPos, "foreground") then
+    if placedBlocksFG[vVec2.iToString(backScanPos)] then
       table.insert(blocksToRemove, backScanPos)
-      placedBlocks[vVec2.iToString(backScanPos)] = nil
+      placedBlocksFG[vVec2.iToString(backScanPos)] = nil
     end
     if placedBlocksBG[vVec2.iToString(backScanPos)] then
       table.insert(blocksToRemoveBG, backScanPos)
@@ -452,75 +507,71 @@ function updateMaterials(radius)
   prevRadius = radius
 end
 
-function placeOres()
-  if oresToPlace then
-    for _, block in ipairs(oresToPlace) do
+function placeOres(fg, bg)
+  if fg then
+    for _, block in ipairs(fg) do
       world.placeMod(block, "foreground", visibleOre)
     end
   end
 
-  oresToPlace = {}
-
-  if bgOresToPlace then
-    for _, block in ipairs(bgOresToPlace) do
+  if bg then
+    for _, block in ipairs(bg) do
       world.placeMod(block, "background", visibleOre)
     end
   end
-
-  bgOresToPlace = {}
 end
 
-function placeBlocks()
-  -- Block placement is deferred to the next tick to wait for place assists to spawn.
-  if blocksToPlace then
-    -- Sort in descending order by y value
-    table.sort(blocksToPlace, function(a, b) return a[2] > b[2] end)
+-- function placeBlocks()
+--   -- Block placement is deferred to the next tick to wait for place assists to spawn.
+--   if fgBlocksToPlace then
+--     -- Sort in descending order by y value
+--     table.sort(fgBlocksToPlace, function(a, b) return a[2] > b[2] end)
 
-    for _, block in ipairs(blocksToPlace) do
-      local blockString = vVec2.iToString(block)
-      if not world.placeMaterial(block, "foreground", "v-voidstone2") and not placedAssists[blockString] then
-        placedBlocks[blockString] = nil
-      end
-      if not world.placeMaterial(block, "background", "v-voidstone2") then
-        placedBlocksBG[blockString] = nil
-      end
-      if orePerlinSource:get(block[1], block[2]) > 0 then
-        table.insert(oresToPlace, block)
-      end
-      if oreBGPerlinSource:get(block[1], block[2]) > 0 then
-        table.insert(bgOresToPlace, block)
-      end
-    end
-  end
+--     for _, block in ipairs(fgBlocksToPlace) do
+--       local blockString = vVec2.iToString(block)
+--       if not world.placeMaterial(block, "foreground", "v-voidstone2") and not placedAssists[blockString] then
+--         placedBlocksFG[blockString] = nil
+--       end
+--       if not world.placeMaterial(block, "background", "v-voidstone2") then
+--         placedBlocksBG[blockString] = nil
+--       end
+--       if oreFGPerlinSource:get(block[1], block[2]) > 0 then
+--         table.insert(fgOresToPlace, block)
+--       end
+--       if oreBGPerlinSource:get(block[1], block[2]) > 0 then
+--         table.insert(bgOresToPlace, block)
+--       end
+--     end
+--   end
 
-  blocksToPlace = {}
-end
+--   fgBlocksToPlace = {}
+-- end
 
-function placeAssists()
-  local maxYPositions = {}
+-- function placeAssists()
+--   local maxYPositions = {}
 
-  placedAssists = {}
+--   placedAssists = {}
 
-  for _, block in ipairs(blocksToPlace) do
-    if not maxYPositions[block[1]] then
-      maxYPositions[block[1]] = -math.huge
-    end
+--   for _, block in ipairs(fgBlocksToPlace) do
+--     if not maxYPositions[block[1]] then
+--       maxYPositions[block[1]] = -math.huge
+--     end
 
-    maxYPositions[block[1]] = math.max(maxYPositions[block[1]], block[2])
-  end
+--     maxYPositions[block[1]] = math.max(maxYPositions[block[1]], block[2])
+--   end
 
-  for x, y in pairs(maxYPositions) do
-    local placedObject = world.placeObject("terra_placeassist", {x, y + 1} --[[@as Vec2I]], nil, {
-      material = "v-voidstone2",
-      overlap = true,
-      layer = "foreground"
-    })
-    if placedObject then
-      placedAssists[vVec2.iToString({x, y})] = true
-      -- placedBlocks[vVec2.iToString({x, y})] = true
-    end
-  end
-end
+--   for x, y in pairs(maxYPositions) do
+--     local placedObject = world.placeObject("terra_placeassist", {x, y + 1} --[[@as Vec2I]], nil, {
+--       material = "v-voidstone2",
+--       overlap = true,
+--       layer = "foreground"
+--     })
+--     if placedObject then
+--       placedAssists[vVec2.iToString({x, y})] = true
+--       -- placedBlocks[vVec2.iToString({x, y})] = true
+--     end
+--   end
+-- end
 
 function shouldPlaceBlock(pos)
   local z = perlinSource:get(pos[1], pos[2])
@@ -533,21 +584,72 @@ function shouldPlaceBlock(pos)
   -- world.debugPoint(pos, "#" .. vAnimator.colorToString(color))
 
   return z > 0
+  -- return pos[2] % 2 == 0
 end
 
-function removeBlock(pos)
-
-end
-
-function perlinNoiseTest(radius)
-  local ownPos = vec2.floor(mcontroller.position())
-
-  for x = -radius, radius do
-    for y = -radius, radius do
-      local pos = vec2.add(ownPos, {x, y})
-
+function placeBlocks(blocksToPlace, placedBlocks, foreground)
+  local currentLayer = foreground and "foreground" or "background"
+  local oppositeLayer = foreground and "background" or "foreground"
+  -- Filter out tiles that are occupied
+  blocksToPlace = util.filter(blocksToPlace, function(block)
+    return not world.tileIsOccupied(block.pos, foreground)
+  end)
+  -- Sort blocksToPlace by y-level (descending order)
+  table.sort(blocksToPlace, function(a, b) return a.pos[2] > b.pos[2] end)
+  local blocksToPlaceSet = {}
+  for _, block in ipairs(blocksToPlace) do
+    blocksToPlaceSet[vVec2.iToString(block.pos)] = true
+  end
+  -- Find blocks that require placement assists (by simply checking if the block above will be placed or is solid, or if
+  -- there is a block in the opposite layer at that position)
+  local needAssists = {}
+  for _, block in ipairs(blocksToPlace) do
+    local pos = block.pos
+    local abovePos = {pos[1], pos[2] + 1}
+    if not world.material(abovePos, currentLayer) and not world.material(pos, oppositeLayer) and not blocksToPlaceSet[vVec2.iToString(abovePos)] then
+      table.insert(needAssists, block)
     end
   end
+
+  -- Place assists where necessary. Mark as placed in placedBlocks
+  for _, block in ipairs(needAssists) do
+    local placedObject
+    if foreground then
+      -- TODO: Fix place assists interfering with each other
+      world.debugPoint(block.pos, "yellow")
+      placedObject = world.placeObject("terra_placeassist", {block.pos[1], block.pos[2] + 1} --[[@as Vec2I]], nil, {
+        material = block.material,
+        overlap = true,
+        placeBehind = false,
+        layer = "foreground"
+      })
+    else
+      placedObject = world.placeObject("terra_placeassist", block.pos --[[@as Vec2I]], nil, {
+        material = block.material,
+        overlap = true,
+        placeBehind = true
+      })
+    end
+    if not placedObject then
+      world.debugText("BLOCKED", block.pos, "red")
+    else
+      placedBlocks[vVec2.iToString(block.pos)] = true
+    end
+  end
+
+  -- Defer to next update
+  table.insert(deferredTasks, function()
+    for _, block in ipairs(blocksToPlace) do
+      if not placedBlocks[vVec2.iToString(block.pos)] then
+        local success = world.placeMaterial(block.pos, currentLayer, block.material)
+        if success then
+          placedBlocks[vVec2.iToString(block.pos)] = true
+        else
+          world.debugText("FAILED", block.pos, "red")
+        end
+      end
+    end
+  end)
 end
 
 function fillMatMods(radius)
