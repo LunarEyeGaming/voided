@@ -5,15 +5,13 @@
   "rarity" : "Legendary",
   "customRarity" : "Mythical",
   "description" : "Nothing can stop you from warping gravity itself!",
+  "extraInfo" : "Primary shots leave singularities on ground impact.",
   "shortdescription" : "Gravity Warper",
-  "tooltipKind" : "base",
-  "category" : "uniqueWeapon",
+  "tooltipKind" : "v-biggun",
+  "category" : "sniperRifle",
   "twoHanded" : true,
-  "itemTags" : ["weapon","ranged","rocketLauncher"],
+  "itemTags" : ["weapon","ranged","sniperRifle"],
   "level" : 8,
-
-  "critChance" : 2,
-  "critBonus" : 5,
 
   "inventoryIcon" : [
     { "image" : "gun.png:idle.1" }
@@ -33,13 +31,13 @@
     },
     "lights" : {
       "muzzleFlash" : {
-        "color" : [172, 237, 43]
+        "color" : [94, 113, 128]
       }
     }
   },
 
   "baseOffset" : [0.75, -0.3125],
-  "muzzleOffset" : [1.5, 0.2],
+  "muzzleOffset" : [0.75, 0.2],
 
   "handGrip" : "wrap",
 
@@ -97,6 +95,8 @@
   "altAbility" : {
     "scripts" : ["/items/active/weapons/ranged/abilities/altfire.lua"],
     "class" : "AltFireAttack",
+
+    "name" : "Singularity Mine",
 
     "fireTime" : 1.5,
     "baseDps" : 4,

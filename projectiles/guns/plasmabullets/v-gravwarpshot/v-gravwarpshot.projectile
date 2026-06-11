@@ -28,15 +28,24 @@
   ],
 
   "deadCollisionAction" : {
-    "action" : "projectile",
-    "type" : "v-gravwarpsingularity",
-    "inheritDamageFactor" : 1
+    "action" : "actions",
+    "list" : [
+      {
+        "action" : "projectile",
+        "type" : "v-gravwarpsingularity",
+        "inheritDamageFactor" : 0.5
+      },
+      {
+        "action" : "config",
+        "file" : "/projectiles/explosions/v-gravwarpsingularityexplosion/v-gravwarpsingularityexplosion.config"
+      }
+    ]
   },
 
-  "actionOnReap" : [
+  "actionOnHit" : [
     {
       "action" : "config",
-      "file" : "/projectiles/explosions/v-gravwarpexplosion/v-gravwarpexplosion.config"
+      "file" : "/projectiles/explosions/v-titanriftprojectiledisintegrate/v-titanriftprojectiledisintegrate.config"
     }
   ],
 

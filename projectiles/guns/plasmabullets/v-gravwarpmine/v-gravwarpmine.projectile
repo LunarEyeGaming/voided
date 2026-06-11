@@ -10,24 +10,24 @@
   "frameNumber" : 8,
   "power" : 1,
   "speed" : 50,
-  "timeToLive" : 15,
+  "timeToLive" : 6,
 
   "actionOnCollide" : [
     {
       "action" : "config",
-      "file" : "/projectiles/explosions/globeexplosions/greenglobeexplosion/greenglobeexplosion.config"
+      "file" : "/projectiles/explosions/v-titanriftprojectiledisintegrate/v-titanriftprojectiledisintegrate.config"
     }
   ],
 
   "actionOnReap" : [
     {
       "action" : "config",
-      "file" : "/projectiles/explosions/globeexplosions/greenglobeexplosion/greenglobeexplosion.config"
+      "file" : "/projectiles/explosions/v-gravwarpsingularityexplosion/v-gravwarpsingularityexplosion.config"
     },
     {
       "action" : "projectile",
       "type" : "v-gravwarpsingularity",
-      "inheritDamageFactor" : 1
+      "inheritDamageFactor" : 0.5
     }
   ],
   "supportsProcessing" : true,
