@@ -1,0 +1,40 @@
+{
+  "projectileName" : "v-gravwarpsingularity",
+  "physics" : "laser",
+  "bounces" : -1,
+  "image" : "gravwarpsingularity.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 5,
+  "speed" : 0,
+  "timeToLive" : 3,
+
+  "boundBox" : [-10, -10, 10, 10],
+  "physicsForces" : {
+    "vacuum" : {
+      "type" : "RadialForceRegion",
+      "outerRadius" : 7,
+      "innerRadius" : 0,
+      "targetRadialVelocity" : -25,
+      "controlForce" : 250,
+      "categoryWhitelist" : ["monster", "npc", "vehicle"]
+    }
+  },
+
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-gravwarpexplosion/v-gravwarpexplosion.config"
+    }
+  ],
+
+  "supportsProcessing" : true,
+  "piercing" : true,
+  "lightColor" : [51, 41, 71],
+  "fullbright" : true,
+  "damageKind" : "v-void",
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+
+  "scripts" : [ "/scripts/projectiles/v-rotatingprojectile.lua" ],
+  "rotateRate" : -0.5
+}

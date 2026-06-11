@@ -1,0 +1,49 @@
+{
+  "projectileName" : "v-gravwarpshot",
+  "physics" : "bullet",
+  "bounces" : 0,
+  "image" : "gravwarpshot.png",
+  "animationCycle" : 0.5,
+  "frameNumber" : 4,
+  "power" : 5,
+  "speed" : 150,
+  "timeToLive" : 5,
+  "periodicActions" : [
+    {
+      "time" : 0.01,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-gravwarptrail/v-gravwarptrail.animation",
+        "position" : [0, 0],
+        "fullbright" : true,
+        "layer" : "back",
+        "destructionAction" : "fade",
+        "timeToLive" : 1,
+        "destructionTime" : 0,
+        "initialVelocity" : [4, 0]
+      }
+    }
+  ],
+
+  "deadCollisionAction" : {
+    "action" : "projectile",
+    "type" : "v-gravwarpsingularity",
+    "inheritDamageFactor" : 1
+  },
+
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-gravwarpexplosion/v-gravwarpexplosion.config"
+    }
+  ],
+
+  "scripts" : [ "/scripts/projectiles/v-deadcollider.lua" ],
+
+  "supportsProcessing" : true,
+  "lightColor" : [51, 41, 71],
+  "fullbright" : true,
+  "damageKind" : "v-voidplasma"
+}
