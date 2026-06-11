@@ -60,7 +60,7 @@ function init()
   spawnProbability = 1.0
 
   riftZoneCount = 100
-  duration = 120
+  duration = 90
   numEventsPerOrbit = 6
 
   weatherTypes = {"meteors", "gravispheres", "destabilization"}
