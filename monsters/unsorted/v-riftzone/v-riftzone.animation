@@ -19,7 +19,18 @@
     "deathPoof" : {
       "particles" : [
       ]
+    },
+    "emptyWind" : {
+      "emissionRate" : 20,
+      "offsetRegion" : [-40, -40, -40, 40],
+      "particles" : [
+        { "particle" : "v-emptywind" }
+      ]
     }
+  },
+
+  "transformationGroups" : {
+    "riftzone" : { "interpolated" : true }
   },
 
   "effects" : {

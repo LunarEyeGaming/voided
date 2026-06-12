@@ -117,6 +117,7 @@ function init()
     end
   elseif weatherName == "destabilization" then
     weatherFunction = function()
+      animator.setParticleEmitterActive("emptyWind", true)
       applyEffect("v-riftdestabilization", currentScanRadius)
     end
   else

@@ -1,0 +1,14 @@
+{
+  "kind" : "v-emptywind",
+  "definition" : {
+    "type" : "textured",
+    "image" : "/particles/v-emptywind/emptywind.png",
+    "velocity" : [20, 0],
+    "timeToLive" : 2,
+    "collidesForeground" : true,
+    "collidesLiquid" : true,
+    "destructionAction" : "shrink",
+    "destructionTime" : 2,
+    "ignoreWind" : false
+  }
+}
