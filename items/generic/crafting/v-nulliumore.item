@@ -5,7 +5,8 @@
   "category" : "craftingMaterial",
   "builder" : "/items/buildscripts/v-builditem.lua",
   "inventoryIcon" : "v-nulliumore.png",
-  "description" : "A shard of nullium. It crackles with elemental energy.",
+  "description" : "A shard of nullium. Light seems to warp around it.",
   "shortdescription" : "Nullium Shard",
-  "itemTags" : [ "reagent" ]
+  "itemTags" : [ "reagent" ],
+  "learnBlueprintsOnPickup" : [ "v-nulliumbar" ]
 }
