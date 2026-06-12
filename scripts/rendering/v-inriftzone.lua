@@ -43,7 +43,7 @@ end
 function update(dt)
   oldUpdate(dt)
 
-  local isInRift = status.uniqueStatusEffectActive("v-rifteffects")
+  local isInRift = status.uniqueStatusEffectActive("v-riftdestabilization")
 
   -- Update timers
   if isInRift then
