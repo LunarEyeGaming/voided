@@ -35,9 +35,9 @@ function setVoidedIcon(config)
 end
 
 --[[
-  Adds a hidden prefix to the short description of an item.
+  Adds extra info to the tooltip.
   config: The config table passed in from the build() function
-  prefix: The prefix to add
+  info: The extra info to add
 ]]
 function addExtraInfo(config, info)
   if info then
