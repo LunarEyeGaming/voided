@@ -426,6 +426,91 @@
   ],
 
   // =======================================
+  //              Void Weapons
+  // =======================================
+
+  "v-voidWeapon" : [
+    [1, {
+      "fill" : [],
+      "pool" : [
+        {"weight" : 3, "pool" : "v-uncommonVoidGun"},
+        {"weight" : 4.5, "pool" : "v-uncommonVoidMelee"},
+        {"weight" : 1, "pool" : "v-rareVoidGun"},
+        {"weight" : 1.5, "pool" : "v-rareVoidMelee"},
+
+        {"weight" : 0.3, "item" : {"name" : "rarestaff", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.3, "item" : {"name" : "rarewand", "parameters" : {"elementalType" : "v-void"}}}
+      ]
+    }]
+  ],
+
+  "v-uncommonVoidMelee" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.007, "item" : {"name" : "uncommonbroadsword", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonaxe", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonspear", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonhammer", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommondagger", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.007, "item" : {"name" : "uncommonshortsword", "parameters" : {"elementalType" : "v-void"}}}
+      ]
+    }]
+  ],
+
+  "v-rareVoidMelee" : [
+    [0, {
+      "pool" : [
+        {"weight" : 0.007, "item" : {"name" : "rarebroadsword", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.007, "item" : {"name" : "rareaxe", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.007, "item" : {"name" : "rarespear", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.007, "item" : {"name" : "rarehammer", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.007, "item" : {"name" : "raredagger", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.007, "item" : {"name" : "rareshortsword", "parameters" : {"elementalType" : "v-void"}}}
+      ]
+    }]
+  ],
+
+  "v-uncommonVoidGun" : [
+    [0, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "uncommonpistol", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonmachinepistol", "parameters" : {"elementalType" : "v-void"}}}
+      ]
+    }],
+    [1.9, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "uncommongrenadelauncher", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonassaultrifle", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonshotgun", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonsniperrifle", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonpistol", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "uncommonmachinepistol", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.7, "item" : {"name" : "uncommonrocketlauncher", "parameters" : {"elementalType" : "v-void"}}}
+      ]
+    }]
+  ],
+
+  "v-rareVoidGun" : [
+    [0, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "rarepistol", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "raremachinepistol", "parameters" : {"elementalType" : "v-void"}}}
+      ]
+    }],
+    [1.9, {
+      "pool" : [
+        {"weight" : 1.0, "item" : {"name" : "rareassaultrifle", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "rareshotgun", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "raresniperrifle", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "rarepistol", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "raremachinepistol", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 1.0, "item" : {"name" : "raregrenadelauncher", "parameters" : {"elementalType" : "v-void"}}},
+        {"weight" : 0.7, "item" : {"name" : "rarerocketlauncher", "parameters" : {"elementalType" : "v-void"}}}
+      ]
+    }]
+  ],
+
+  // =======================================
   //              Miscellaneous
   // =======================================
 
