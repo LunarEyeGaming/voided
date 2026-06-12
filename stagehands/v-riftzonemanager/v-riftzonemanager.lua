@@ -13,7 +13,7 @@ local postInitCalled
 
 function init()
   defaultRiftZoneVelocity = {-5, 0}
-  playerProximityRegion = {-100, -100, 100, 100}
+  playerProximityRegion = {-300, -300, 300, 300}
   lightningOffsetRegion = {-100, -100, 100, 100}
   riftZoneDuration = 600
 
@@ -75,8 +75,16 @@ function update(dt)
     -- countRiftZones()
   end
 
-  if #riftZones > 0 then
-    spawnLightning()
+  local players = world.players()
+  for _, playerId in ipairs(players) do
+    local playerPos = world.entityPosition(playerId)
+
+    if playerPos and closeToARiftZone(playerPos, riftZones) then
+      if math.random() < 0.1 then
+        local pos = vec2.add(rect.randomPoint(lightningOffsetRegion), playerPos)
+        world.spawnMonster("v-riftzonelightning", pos)
+      end
+    end
   end
 
   world.setProperty("v-riftZones", riftZones)
@@ -106,18 +114,6 @@ function createRiftZone(riftZones, oldRiftZone)
   })
 end
 
-function spawnLightning()
-  for _, playerId in ipairs(world.players()) do
-    local playerPos = world.entityPosition(playerId)
-    if playerPos then
-      if math.random() < 0.1 then
-        local pos = vec2.add(rect.randomPoint(lightningOffsetRegion), playerPos)
-        world.spawnMonster("v-riftzonelightning", pos)
-      end
-    end
-  end
-end
-
 function countRiftZones()
   local queried = world.entityQuery(stagehand.position(), 6000, {
     includedTypes = {"monster"}
@@ -138,16 +134,12 @@ function canSpawn(position)
   world.regionActive(rect.translate(SMALL_RECT, position))
 end
 
-function closeToAPlayer(position)
-  local players = world.players()
-  for _, playerId in ipairs(players) do
-    local playerPos = world.entityPosition(playerId)
-    if playerPos then
-      local region = rect.translate(playerProximityRegion, playerPos)
-      if region[1] <= position[1] and position[1] <= region[3]
-        and region[2] <= position[2] and position[2] <= region[4] then
-        return true
-      end
+function closeToARiftZone(position, riftZones)
+  for _, riftZone in ipairs(riftZones) do
+    local region = rect.translate(playerProximityRegion, riftZone.position)
+    if region[1] <= position[1] and position[1] <= region[3]
+      and region[2] <= position[2] and position[2] <= region[4] then
+      return true
     end
   end
 
