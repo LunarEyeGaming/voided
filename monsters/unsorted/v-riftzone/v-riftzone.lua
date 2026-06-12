@@ -1,6 +1,7 @@
 require "/scripts/vec2.lua"
 require "/scripts/interp.lua"
 require "/scripts/util.lua"
+require "/scripts/rect.lua"
 
 require "/scripts/v-attack.lua"
 require "/scripts/v-animator.lua"
