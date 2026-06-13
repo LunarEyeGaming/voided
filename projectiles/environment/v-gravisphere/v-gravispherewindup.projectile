@@ -6,15 +6,57 @@
   "flippable" : false,
   "fullbright" : true,
   "animationLoops" : false,
-  "animationCycle" : 1,
+  "animationCycle" : 1.5,
   "lightColor" : [94, 113, 128],
-  "frameNumber" : 1,
+  "frameNumber" : 15,
   "power" : 60,
   "speed" : 0,
   "piercing" : true,
   "damageType" : "NoDamage",
   "damageKind" : "default",
   "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "renderLayer" : "BackParticle+1",
+
+  "periodicActions" : [
+    {
+      "time" : 0.1,
+      "action" : "projectile",
+      "type" : "v-proxyprojectile",
+      "fuzzAngle" : 180,
+      "config" : {
+        "actionOnReap" : [
+          {
+            "action" : "particle",
+            "rotate" : true,
+            "specification" : {
+              "type" : "textured",
+              "image" : "/projectiles/environment/v-gravisphere/gravityorbfront.png",
+              "position" : [5, 0],
+              "velocity" : [-10, 0],
+              "fullbright" : true,
+              "timeToLive" : 0.5,
+              "layer" : "middle",
+              "collidesForeground" : false
+            }
+          },
+          {
+            "action" : "particle",
+            "rotate" : true,
+            "specification" : {
+              "type" : "textured",
+              "image" : "/projectiles/environment/v-gravisphere/gravityorbback.png",
+              "position" : [5, 0],
+              "velocity" : [-10, 0],
+              "fullbright" : true,
+              "timeToLive" : 0.5,
+              "layer" : "back",
+              "collidesForeground" : false
+            }
+          }
+        ]
+      }
+    }
+  ],
 
   "actionOnReap" : [
     {
