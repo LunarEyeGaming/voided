@@ -5,7 +5,6 @@
     "value" : {
       "baseImages" : "/celestial/system/terrestrial/horizon/textures/v-voltage_<selector>.png",
       "maskTextures" : "/celestial/system/terrestrial/horizon/masks/temperate/<mask>_<selector>.png",
-      "liquidTextures" : "/celestial/system/terrestrial/horizon/textures/v-voltage2_<selector>.png",
       "maskRange" : [1, 25],
       "maskPerPlanetRange" : [3, 3]
     }
@@ -63,6 +62,26 @@
       "shadowNumber" : [1, 1],
       "shadowImages" : "/celestial/system/terrestrial/glow/v-ministar.png",
       "dynamicsRange" : [1, 20]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/terrestrialHorizonGraphics/v-entropic",
+    "value" : {
+      "baseImages" : "/celestial/system/terrestrial/horizon/textures/v-entropic_<selector>.png",
+      "maskTextures" : "/celestial/system/terrestrial/horizon/masks/temperate/<mask>_<selector>.png",
+      "maskRange" : [1, 25],
+      "maskPerPlanetRange" : [3, 3]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/terrestrialGraphics/v-entropic",
+    "value" : {
+      "baseImages" : "/celestial/system/terrestrial/biomes/v-entropic/maskie<num>.png",
+      "dynamicsImages" : "/celestial/system/terrestrial/dynamics/arid/<num>.png",
+      "dynamicsRange" : [1, 30],
+      "baseCount" : 4
     }
   },
   {
@@ -177,7 +196,7 @@
         "description" : "Elemental (Voided)",
         "smallImage" : "/celestial/system/planet_small.png",
 
-        "terrestrialType" : [ "v-voltage", "v-toxicwasteland", "v-ministar" ]
+        "terrestrialType" : [ "v-voltage", "v-toxicwasteland", "v-ministar", "v-entropic" ]
       },
 
       "variationParameters" : [
@@ -228,7 +247,7 @@
         "description" : "Elemental Moon (Voided)",
         "smallImage" : "/celestial/system/planet_small.png",
 
-        "terrestrialType" : [ "v-voltage", "v-toxicwasteland", "v-ministar" ]
+        "terrestrialType" : [ "v-voltage", "v-toxicwasteland", "v-ministar", "v-entropic" ]
       },
 
       "variationParameters" : [
