@@ -20,6 +20,7 @@ local velocity
 local rotationPeriod
 local playerProximityRegion
 local meteorPower
+local gravispherePower
 
 local prevPos
 local prevRadius
@@ -104,6 +105,7 @@ function init()
   placedBlocksBG = {}
   placedAssists = {}
   meteorPower = 10
+  gravispherePower = 10
   rotationTimer = 0
 
   local weatherName = world.getProperty("v-riftZoneWeather") or "destabilization"
@@ -113,7 +115,7 @@ function init()
     end
   elseif weatherName == "gravispheres" then
     weatherFunction = function()
-      spawnGravispheres()
+      spawnGravispheres(currentScanRadius)
     end
   elseif weatherName == "destabilization" then
     weatherFunction = function()
@@ -374,11 +376,21 @@ function spawnMeteors(spawnRadius)
   end
 end
 
-function spawnGravispheres()
-  for _, frontScanPos in ipairs(frontScanPositions) do
-    if math.random() < 0.001 then
-      world.spawnProjectile("v-gravispherewindup", frontScanPos, entity.id(), {1, 0}, false, {
-        power = vAttack.scaledPower(meteorPower or 10)
+function spawnGravispheres(spawnRadius)
+  if math.random() < 0.02 then
+    local ownPos = mcontroller.position()
+    local requiredRegion = {-3, -3, 3, 3}
+    local maxAttempts = 200
+    local attempts = 0
+    local randomPos
+    repeat
+      randomPos = vec2.add(ownPos, vec2.withAngle(math.random() * 2 * math.pi, math.random() * spawnRadius))
+      attempts = attempts + 1
+    until attempts > maxAttempts or not world.rectCollision(rect.translate(requiredRegion, randomPos))
+
+    if attempts <= maxAttempts then
+      world.spawnProjectile("v-gravispherewindup", randomPos, entity.id(), {1, 0}, false, {
+        power = vAttack.scaledPower(gravispherePower or 10)
       })
     end
   end
