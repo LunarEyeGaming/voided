@@ -29,34 +29,6 @@ function init()
       return
     end
   end
-  -- If the rift zone is not in a monster spawn zone (and spawnAnywhere is false)...
-  if not config.getParameter("spawnAnywhere") and not isInMonsterSpawnZone() then
-    -- Disappear.
-    monster.setUniqueId()
-    monster.setDropPool(nil)
-    g_shouldDieVar = true
-    script.setUpdateDelta(0)  -- Suppress calls to update
-
-    return  -- Don't initialize
-  end
 
   oldInit()
-end
-
----Returns `true` if all spaces that the Titan's bounding box occupies have a dungeon ID of REQUIRED_DUNGEON_ID or
----REQUIRED_DUNGEON_ID2, `false` otherwise.
----@return boolean
-function isInMonsterSpawnZone()
-  local boundBox = rect.translate(mcontroller.boundBox(), mcontroller.position())
-
-  for x = boundBox[1], boundBox[3] do
-    for y = boundBox[2], boundBox[4] do
-      local dungeonId = world.dungeonId({x, y})
-      if dungeonId ~= REQUIRED_DUNGEON_ID and dungeonId ~= REQUIRED_DUNGEON_ID2 then
-        return false
-      end
-    end
-  end
-
-  return true
 end
