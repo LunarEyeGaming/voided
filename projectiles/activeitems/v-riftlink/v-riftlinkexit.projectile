@@ -1,0 +1,25 @@
+{
+  "projectileName" : "v-riftlinkexit",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "speed" : 0,
+  "timeToLive" : 5,
+  "lightColor" : [83, 28, 97],
+  "image" : "riftlink.png",
+  "animationCycle" : 0.04,
+  "frameNumber" : 1,
+  "windupFrames" : 5,
+  "winddownFrames" : 5,
+  "fullbright" : true,
+  "flippable" : true,
+  "onlyHitTerrain" : true,
+  "supportsProcessing" : true,
+
+  "scripts" : [ "v-riftlinkexit.lua" ],
+  "scriptDelta" : 3,
+
+  "teleportOffset" : [0, 0],
+  "teleportTolerance" : 2.0,
+
+  "mergeHandlerKind" : "v-riftlinkexit"
+}

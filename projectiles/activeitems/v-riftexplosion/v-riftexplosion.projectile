@@ -1,0 +1,20 @@
+{
+  "projectileName" : "v-riftexplosion",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "timeToLive" : 0,
+  "animationCycle" : 1,
+  "speed" : 0,
+  "frameNumber" : 1,
+  "power" : 0,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  "piercing" : true,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-darkexplosionlarge/v-darkexplosionlarge.config"
+    }
+  ]
+}

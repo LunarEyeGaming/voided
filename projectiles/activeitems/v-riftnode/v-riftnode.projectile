@@ -1,0 +1,20 @@
+{
+  "projectileName" : "v-riftnode",
+  "physics" : "hover",
+  "bounces" : -1,
+  "speed" : 50,
+  "timeToLive" : 20,
+  "lightColor" : [83, 28, 97],
+  "image" : "riftnode.png",
+  "animationCycle" : 1.0,
+  "frameNumber" : 2,
+  "fullbright" : true,
+  "flippable" : true,
+  "onlyHitTerrain" : true,
+  "supportsProcessing" : true,
+
+  "scripts" : [ "v-riftnode.lua" ],
+  "scriptDelta" : 3,
+
+  "activeProjectileType" : "v-riftlinkexit"
+}

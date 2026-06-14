@@ -1,0 +1,98 @@
+{
+  "projectileName" : "v-tunnelersedgesingularity",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "image" : "gravwarpsingularity.png",
+  "animationCycle" : 0.1,
+  "frameNumber" : 1,
+  "winddownFrames" : 3,
+  "power" : 5,
+  "speed" : 0,
+  "timeToLive" : 1.5,
+
+  "periodicActions" : [
+    {
+      "time" : 0.0,
+      "repeat" : false,
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-gravwarpsingularityswirls/v-gravwarpsingularityswirls.animation",
+        "position" : [0, 0],
+        "layer" : "back",
+        "angularVelocity" : -360,
+        "timeToLive" : 0.0,
+        "size" : 1.5,
+        "destructionTime" : 1.5,
+        "destructionAction" : "shrink",
+        "variance" : {
+          "rotation" : 180
+        }
+      }
+    },
+    // {
+    //   "time" : 0.5,
+    //   "action" : "particle",
+    //   "specification" : {
+    //     "type" : "animated",
+    //     "animation" : "/animations/v-gravwarpsingularityswirls/v-gravwarpsingularityswirls.animation",
+    //     "position" : [0, 0],
+    //     "layer" : "back",
+    //     "angularVelocity" : -90,
+    //     "timeToLive" : 3.0,
+    //     "size" : 0.75,
+    //     "destructionTime" : 1.5,
+    //     "destructionAction" : "fade",
+    //     "variance" : {
+    //       "rotation" : 180
+    //     }
+    //   }
+    // },
+    {
+      "time" : 0.3,
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-gravwarpsingularityswirls/v-gravwarpsingularityswirls.animation",
+        "position" : [0, 0],
+        "layer" : "back",
+        "angularVelocity" : -360,
+        "timeToLive" : 0.0,
+        "size" : 1.5,
+        "destructionTime" : 1.5,
+        "destructionAction" : "shrink",
+        "variance" : {
+          "rotation" : 180
+        }
+      }
+    }
+  ],
+
+  "actionOnReap" : [
+  ],
+
+  "boundBox" : [-10, -10, 10, 10],
+  "physicsForces" : {
+    "vacuum" : {
+      "type" : "RadialForceRegion",
+      "outerRadius" : 14,
+      "innerRadius" : 0,
+      "targetRadialVelocity" : -15,
+      "controlForce" : 350,
+      "categoryWhitelist" : ["monster", "npc", "vehicle"]
+    }
+  },
+
+  "supportsProcessing" : true,
+  "piercing" : true,
+  "lightColor" : [51, 41, 71],
+  "fullbright" : true,
+  "damageKind" : "v-void",
+  "damagePoly" : [ [-9, 0], [-6, -6], [0, -9], [6, -6], [9, 0], [6, 6], [0, 9], [-6, 6] ],
+  "damageRepeatTimeout" : 0.5,
+
+  "persistentAudio" : "/sfx/projectiles/v_gravwarpsingularity_loop.ogg",
+
+  "scripts" : [ "/scripts/projectiles/v-rotatingprojectile.lua" ],
+  "rotateRate" : -1.0
+}

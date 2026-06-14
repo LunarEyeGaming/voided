@@ -1,0 +1,98 @@
+{
+  "animationParts" : { },
+  "animationCustom" : {
+    "sounds" : {
+      "riftNode" : [ "/sfx/melee/astraltear1.ogg" ],
+      "riftLink" : [ "/sfx/melee/astraltear1.ogg" ],
+      "riftCancelNode" : [ "/sfx/melee/astraltear1.ogg" ]
+    }
+  },
+
+  "ability" : {
+    "name" : "Wormhole",
+    "type" : "v-riftwormhole",
+    "scripts" : ["/items/active/weapons/melee/abilities/broadsword/v-riftwormhole/v-riftwormhole.lua"],
+    "class" : "VRiftWormhole",
+
+    "nodeProjectileOffset" : [2, 0],
+    "nodeProjectileType" : "v-riftnode",
+    "linkProjectileOffset" : [2, 0],
+    "linkProjectileType" : "v-riftlinkentrance",
+    "followUpProjectileOffset" : [2, 0],
+    "followUpProjectileType" : "v-riftexplosion",
+    "teleportStatusEffect" : "v-wormholeteleport",
+
+    "energyUsage" : 200,
+    "followUpEnergyUsage" : 100,
+    "followUpGracePeriod" : 0.25,
+    "cooldownTime" : 0.5,
+
+    "baseDamage" : 10,
+
+    "stances" : {
+      "windupNode" : {
+        "duration" : 0.25,
+        "armRotation" : 45,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "fireNode" : {
+        "duration" : 0.4,
+        "armRotation" : -45,
+        "weaponRotation" : -90,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "windupLink" : {
+        "duration" : 0.25,
+        "armRotation" : 45,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "fireLink" : {
+        "duration" : 0.4,
+        "armRotation" : -45,
+        "weaponRotation" : -90,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "windupCancelNode" : {
+        "duration" : 0.25,
+        "armRotation" : 45,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "fireCancelNode" : {
+        "duration" : 0.4,
+        "armRotation" : -45,
+        "weaponRotation" : -90,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "followUp" : {
+        "duration" : 0.4,
+        "armRotation" : -45,
+        "weaponRotation" : -90,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  }
+}
