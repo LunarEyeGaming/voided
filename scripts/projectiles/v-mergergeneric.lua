@@ -137,11 +137,15 @@ vMergeHandler = {}
 ---Sets the handler of kind `kind` for merging the current projectile.
 ---@param kind string the merge kind to match. Should be the same as the one specified in a VMerger instance.
 ---@param resolveMergeConflicts? boolean whether or not to resolve merge conflicts via comparison of entity IDs. Set to `true` if your projectiles can send merge requests to each other.
----@param onMerge fun(...: any): boolean, any a function that receives the source entity followed by the arguments forwarded from the merge request.
+---@param onMerge? fun(...: any): boolean, any a function that receives the source entity followed by the arguments forwarded from the merge request.
 function vMergeHandler.set(kind, resolveMergeConflicts, onMerge)
   -- Initialize
   if not vMergeHandler._hasHandler then
     vMergeHandler._init()
+  end
+
+  onMerge = onMerge or function()
+    return true
   end
 
   message.setHandler("v-handleMerge-" .. kind, function(_, _, sourceId, ...)
