@@ -14,6 +14,13 @@ All custom sounds in Voided were made in Audacity using Starbound's assets and/o
 * "De-Iceing-Small-Freezer_Stereo_192000.wav" by Sonicquinn on Freesound.org (URL: https://freesound.org/people/Sonicquinn/sounds/439224/).
 * "Circuit Breaker handling noise mechanical rattle.wav" by clgood on Freesound.org (URL: https://freesound.org/people/clgood/sounds/454590/).
 
+Fungal Laboratory:
+"Ossuary 3 - Words" Kevin MacLeod (incompetech.com)
+
+Licensed under Creative Commons: By Attribution 4.0 License
+
+http://creativecommons.org/licenses/by/4.0/
+
 Electrochem Facility: Desert Battle 2 by Curtis Schweitzer. Edited to loop properly
 
 Titan of Darkness:
