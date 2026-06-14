@@ -235,7 +235,7 @@ function ranIntoBarrier(point1, point2, nudgeAmount)
 
   -- Get the change in height (as a vector). This is not relative to the coordinate system rotated to `groundNormal` and
   -- is instead relative to the standard coordinate system.
-  local heightChange = projectVector(world.distance(point2Nudged, point1Nudged), groundNormal)
+  local heightChange = vVec2.projection(world.distance(point2Nudged, point1Nudged), groundNormal)
   -- This is a number representing the change in height within the coordinate system that is rotated to `groundNormal`.
   local heightChangeAbsolute = vec2.rotate(heightChange, -groundNormalAngle)[1]
 
