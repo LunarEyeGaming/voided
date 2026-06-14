@@ -419,20 +419,6 @@ function updateBeamTelegraphOffset()
   animator.translateTransformationGroup("telegraphOffset", rect.randomPoint({-0.25, -0.25, 0.25, 0.25}))
 end
 
---[[
-  Returns the projection of vector `vector` onto vector `ontoVector`.
-
-  param vector: the vector to project
-  param ontoVector: the vector onto which to project
-  returns: the projection of `vector` onto `ontoVector`.
-]]
-function projectVector(vector, ontoVector)
-  local factor = (vector[1] * ontoVector[1] + vector[2] * ontoVector[2])
-  / (ontoVector[1] * ontoVector[1] + ontoVector[2] * ontoVector[2])
-
-  return {ontoVector[1] * factor, ontoVector[2] * factor}
-end
-
 function updateState()
   animator.setAnimationState("beam", isActive() and "on" or "off")
 end

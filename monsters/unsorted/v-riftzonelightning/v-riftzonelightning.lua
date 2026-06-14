@@ -10,13 +10,6 @@ local thread
 
 local shouldDieVar
 
---[[
-  Possible ways of making it persist across unloaded regions:
-  * Persistent + storage - nope. Then it won't move until the player loads it.
-  * Store state data in world.setProperty, then have the client retrieve it.
-    *
-]]
-
 function init()
   shouldDieVar = false
 
