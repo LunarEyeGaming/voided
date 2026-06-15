@@ -151,6 +151,25 @@
     "position" : [135, 99],
     "file" : "/interface/tooltips/statlistback.png"
   },
+  "v-voidResistanceLabel" : {
+    "type" : "label",
+    "position" : [171, 83],
+    "hAnchor" : "left",
+    "value" : "0%"
+  },
+  "v-voidResistanceImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [136, 79],
+    "file" : "/interface/elements/v-void.png",
+    "zlevel" : 8
+  },
+  "v-voidResistanceBackgroundImage" : {
+    "scissoring" : false,
+    "type" : "image",
+    "position" : [135, 81],
+    "file" : "/interface/tooltips/statlistback.png"
+  },
   "voidedIconImage" : {  // Don't ask me why it has to end in "Image". It just does.
     "type" : "image",
     "position" : [198, 180],
