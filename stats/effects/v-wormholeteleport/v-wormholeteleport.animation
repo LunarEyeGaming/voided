@@ -36,12 +36,12 @@
             },
             "blinkout" : {
               "properties" : {
-                "image" : "blinkout.png:<frame>"
+                "image" : ""
               }
             },
             "blinkin" : {
               "properties" : {
-                "image" : "blinkin.png:<frame>"
+                "image" : ""
               }
             }
           }
@@ -50,66 +50,7 @@
     }
   },
 
-  "particleEmitters" : {
-    "translocate" : {
-      "particles" : [
-        {
-          "count" : 10,
-          "particle" : {
-            "type" : "ember",
-            "size" : 1,
-            "position" : [0, -1.25],
-            "color" : [49, 166, 255, 255],
-            "light" : [14, 47, 72],
-            "fade" : 0.9,
-            "destructionAction" : "shrink",
-            "destructionTime" : 1,
-            "initialVelocity" : [0, 1],
-            "finalVelocity" : [0, 1],
-            "approach" : [2, 3],
-            "timeToLive" : 0.6,
-            "layer" : "middle",
-            "collidesLiquid" : false,
-            "variance" : {
-              "position" : [0.5, 1.5],
-              "initialVelocity" : [3, 3],
-              "finalVelocity" : [2, 0],
-              "size" : 0.5,
-              "timeToLive" : 0.2
-            }
-          }
-        },
-        {
-          "count" : 10,
-          "particle" : {
-            "type" : "ember",
-            "size" : 1,
-            "position" : [0, -1.25],
-            "color" : [255, 255, 255, 255],
-            "light" : [30, 60, 70],
-            "fade" : 0.9,
-            "destructionAction" : "shrink",
-            "destructionTime" : 1,
-            "initialVelocity" : [0, 1],
-            "finalVelocity" : [0, 1],
-            "approach" : [2, 3],
-            "timeToLive" : 0.6,
-            "layer" : "middle",
-            "collidesLiquid" : false,
-            "variance" : {
-              "position" : [0.5, 1.5],
-              "initialVelocity" : [2, 2],
-              "finalVelocity" : [2, 0],
-              "size" : 0.5,
-              "timeToLive" : 0.2
-            }
-          }
-        }
-      ]
-    }
-  },
-
   "sounds" : {
-    "activate" : [ "/sfx/tech/tech_blink1.ogg" ]
+    "activate" : [ ]
   }
 }

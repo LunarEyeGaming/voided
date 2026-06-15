@@ -68,7 +68,7 @@
             "frames" : 1,
             "cycle" : 1.6,
             "mode" : "transition",
-            "transition" : "close"
+            "transition" : "close2"
           },
           "preclose" : {
             "frames" : 1,
@@ -283,7 +283,7 @@
             // fire5 has no swoosh
             "fire6" : {
               "properties" : {
-                "image" : "/items/active/weapons/melee/broadsword/swoosh3/v-voidswoosh.png:<frame>",
+                "image" : "snapswoosh.png:<frame>",
                 "offset" : [3.5, 0],
                 "damageArea" : [[-4.75, 1.5], [3, 3], [3, -3], [-4.75, -1.5]]
               }
