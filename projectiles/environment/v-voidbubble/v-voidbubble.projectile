@@ -1,0 +1,36 @@
+{
+  "projectileName" : "v-voidbubble",
+  "physics" : "laser",
+
+  "bounces" : -1,
+  "image" : "voidbubble.png",
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 50,
+  "speed" : 0,
+  "timeToLive" : 5,
+  "orientationLocked" : true,
+
+  "actionOnReap" : [
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/acid_hit.ogg" ]
+    },
+    {
+      "action" : "particle",
+      "specification" : "v-darksmoke"
+    }
+  ],
+
+  "damageKind" : "v-void",
+  "statusEffects" : [ "v-voideffect" ],
+
+  "scripts" : [ "v-voidbubble.lua" ],
+  "scriptDelta" : 3,
+
+  "detectRange" : 25,
+  "detectTypes" : ["creature"],
+  "approachSpeed" : 50,
+  "approachForce" : 40
+}

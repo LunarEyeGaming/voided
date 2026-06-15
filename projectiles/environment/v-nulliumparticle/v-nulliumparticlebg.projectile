@@ -1,0 +1,39 @@
+{
+  "projectileName" : "v-nulliumparticlebg",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 100,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "timeToLive" : 0,
+  "actionOnReap" : [
+    {
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "looping" : true,
+        "animation" : "/animations/v-voidspark/v-voidspark.animation",
+        "position" : [0, 0],
+        "initialVelocity" : [0, 0],
+        "finalVelocity" : [0, 0],
+        "approach" : [50, 50],
+        "fade" : 1,
+        "light" : [52, 21, 59],
+        "size" : 1.0,
+        "layer" : "back",
+        "timeToLive" : 1.5,
+        "destructionAction" : "shrink",
+        "destructionTime" : 0.5,
+        "variance" : {
+          "initialVelocity" : [3, 3],
+          "finalVelocity" : [3, 3],
+          "rotation" : 180
+        }
+      }
+    }
+  ]
+}
