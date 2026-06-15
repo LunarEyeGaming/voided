@@ -7,6 +7,9 @@ require "/scripts/v-attack.lua"
 require "/scripts/v-animator.lua"
 require "/scripts/v-vec2.lua"
 
+local INSTANT_BREAK_DAMAGE = 2 ^ 32
+local MAX_TILES_TO_DESTROY = 2000
+
 local scanRadius
 local tileSofteningRadius
 local invisibleOre
@@ -34,14 +37,13 @@ local oreFGPerlinSource
 local oreBGPerlinSource
 local placedBlocksFG
 local placedBlocksBG
+local placedOresFG
+local placedOresBG
 local placedAssists
-local fgBlocksToPlace
-local bgBlocksToPlace
-local fgOresToPlace
-local bgOresToPlace
 local frontScanPositions
 local backScanPositions
 local rotationTimer
+local cleanedUp
 
 local weatherFunction
 
@@ -103,6 +105,8 @@ function init()
   })
   placedBlocksFG = {}
   placedBlocksBG = {}
+  placedOresFG = {}
+  placedOresBG = {}
   placedAssists = {}
   meteorPower = 10
   gravispherePower = 10
@@ -177,9 +181,7 @@ function shouldDie()
 end
 
 function uninit()
-  clearMatMods(scanRadius)
-  clearPlacedBlocks(placedBlocksFG, "foreground")
-  clearPlacedBlocks(placedBlocksBG, "background")
+  cleanUp()
 
   if not g_shouldDieVar then
     local riftZones = world.getProperty("v-riftZones") or jarray()
@@ -514,8 +516,8 @@ function updateMaterials(radius)
     end
   end
 
-  world.damageTiles(blocksToRemove, "foreground", mcontroller.position(), "blockish", 2 ^ 32, 0)
-  world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", 2 ^ 32, 0)
+  world.damageTiles(blocksToRemove, "foreground", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
+  world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
 
   prevPos = ownPos
   prevRadius = radius
@@ -524,68 +526,24 @@ end
 function placeOres(fg, bg)
   if fg then
     for _, block in ipairs(fg) do
-      world.placeMod(block, "foreground", visibleOre)
+      local blockString = vVec2.iToString(block)
+      if placedBlocksFG[blockString] then
+        world.placeMod(block, "foreground", visibleOre)
+        placedOresFG[vVec2.iToString(block)] = true
+      end
     end
   end
 
   if bg then
     for _, block in ipairs(bg) do
-      world.placeMod(block, "background", visibleOre)
+      local blockString = vVec2.iToString(block)
+      if placedBlocksBG[blockString] then
+        world.placeMod(block, "background", visibleOre)
+        placedOresBG[vVec2.iToString(block)] = true
+      end
     end
   end
 end
-
--- function placeBlocks()
---   -- Block placement is deferred to the next tick to wait for place assists to spawn.
---   if fgBlocksToPlace then
---     -- Sort in descending order by y value
---     table.sort(fgBlocksToPlace, function(a, b) return a[2] > b[2] end)
-
---     for _, block in ipairs(fgBlocksToPlace) do
---       local blockString = vVec2.iToString(block)
---       if not world.placeMaterial(block, "foreground", "v-voidstone2") and not placedAssists[blockString] then
---         placedBlocksFG[blockString] = nil
---       end
---       if not world.placeMaterial(block, "background", "v-voidstone2") then
---         placedBlocksBG[blockString] = nil
---       end
---       if oreFGPerlinSource:get(block[1], block[2]) > 0 then
---         table.insert(fgOresToPlace, block)
---       end
---       if oreBGPerlinSource:get(block[1], block[2]) > 0 then
---         table.insert(bgOresToPlace, block)
---       end
---     end
---   end
-
---   fgBlocksToPlace = {}
--- end
-
--- function placeAssists()
---   local maxYPositions = {}
-
---   placedAssists = {}
-
---   for _, block in ipairs(fgBlocksToPlace) do
---     if not maxYPositions[block[1]] then
---       maxYPositions[block[1]] = -math.huge
---     end
-
---     maxYPositions[block[1]] = math.max(maxYPositions[block[1]], block[2])
---   end
-
---   for x, y in pairs(maxYPositions) do
---     local placedObject = world.placeObject("terra_placeassist", {x, y + 1} --[[@as Vec2I]], nil, {
---       material = "v-voidstone2",
---       overlap = true,
---       layer = "foreground"
---     })
---     if placedObject then
---       placedAssists[vVec2.iToString({x, y})] = true
---       -- placedBlocks[vVec2.iToString({x, y})] = true
---     end
---   end
--- end
 
 function shouldPlaceBlock(pos)
   local z = perlinSource:get(pos[1], pos[2])
@@ -594,11 +552,8 @@ function shouldPlaceBlock(pos)
   else
     z = 0
   end
-  -- local color = vAnimator.lerpColorRGB(z, {0, 0, 0}, {255, 255, 255})
-  -- world.debugPoint(pos, "#" .. vAnimator.colorToString(color))
 
   return z > 0
-  -- return pos[2] % 2 == 0
 end
 
 function placeBlocks(blocksToPlace, placedBlocks, foreground)
@@ -682,6 +637,14 @@ function fillMatMods(radius)
   end
 end
 
+function cleanUp()
+  if not cleanedUp then
+    clearMatMods(scanRadius)
+    clearPlacedBlocks(placedBlocksFG, "foreground")
+    clearPlacedBlocks(placedBlocksBG, "background")
+  end
+end
+
 function clearMatMods(radius)
   if not radius then return end
   radius = math.floor(radius)
@@ -711,9 +674,11 @@ end
 function attemptRemoveMatMod(pos)
   if world.mod(pos, "foreground") == visibleOre then
     world.placeMod(pos, "foreground", invisibleOre)
+    placedOresFG[vVec2.iToString(pos)] = nil
   end
   if world.mod(pos, "background") == visibleOre then
     world.placeMod(pos, "background", invisibleOre)
+    placedOresBG[vVec2.iToString(pos)] = nil
   end
 end
 
@@ -728,11 +693,31 @@ function clearPlacedBlocks(blocks, layer)
     table.insert(blocksToClear, pos)
   end
 
-  if #blocksToClear > 1000 then
-    blocksToClear[1001] = nil
+  if #blocksToClear > MAX_TILES_TO_DESTROY then
+    blocksToClear[MAX_TILES_TO_DESTROY + 1] = nil
   end
 
-  world.damageTiles(blocksToClear, layer, mcontroller.position(), "blockish", 2 ^ 32, 0)
+  world.damageTiles(blocksToClear, layer, mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
+end
+
+function clearPlacedOres(ores, layer)
+  local oresToClear = {}
+  if not ores then
+    sb.logError("v-riftzone.lua: clearPlacedOres called with no ores defined")
+    return
+  end
+  for posString, _ in pairs(ores) do
+    local pos = vVec2.iFromString(posString)
+    table.insert(oresToClear, pos)
+  end
+
+  if #oresToClear > MAX_TILES_TO_DESTROY then
+    oresToClear[MAX_TILES_TO_DESTROY + 1] = nil
+  end
+
+  for _, tile in ipairs(oresToClear) do
+    world.placeMod(tile, layer, invisibleOre)
+  end
 end
 
 function closeToAPlayer(position)
