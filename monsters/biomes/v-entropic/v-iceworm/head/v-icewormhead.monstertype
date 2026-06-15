@@ -115,7 +115,7 @@
             "rotateToTarget" : true,
 
             "windupStopForce" : 100,
-            "windupState" : "",
+            "windupState" : "firewindup",
             "windupStateType" : "body",
             "windupTime" : 0.75,
 
@@ -124,8 +124,8 @@
             "projectileCount" : 1,
             "projectileInterval" : 1,
             "fireOffset" : [0.5, 0],
-            "fireState" : "",
-            "fireSound" : "",
+            "fireState" : "fire",
+            "fireSound" : "fire",
             "fireDelay" : 0.1,
 
             "winddownStopForce" : 0,

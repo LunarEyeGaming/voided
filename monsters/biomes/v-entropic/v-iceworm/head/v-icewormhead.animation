@@ -18,6 +18,23 @@
             "properties" : {
               "lightsOn" : [ "glow" ]
             }
+          },
+          "firewindup" : {
+            "frames" : 1,
+            "cycle" : 0.3,
+            "mode" : "loop",
+            "properties" : {
+              "lightsOn" : [ "glow" ]
+            }
+          },
+          "fire" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "lightsOn" : [ "glow" ]
+            }
           }
         }
       },
@@ -73,6 +90,16 @@
               "properties" : {
                 "image" : "<partImage>:fly.<frame>"
               }
+            },
+            "firewindup" : {
+              "properties" : {
+                "image" : "<partImage>:firewindup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
+              }
             }
           },
           "damage" : {
@@ -100,6 +127,16 @@
             "fly" : {
               "properties" : {
                 "image" : "<partImage>:fly.<frame>"
+              }
+            },
+            "firewindup" : {
+              "properties" : {
+                "image" : "<partImage>:firewindup.<frame>"
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "<partImage>:fire.<frame>"
               }
             }
           },
@@ -208,7 +245,6 @@
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
     "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "roar" : [ "/sfx/npc/quadruped/angstyhead_turnhostile.ogg" ],
     "digBegin" : {
       "pool" : [ "/sfx/gun/tank_shot.ogg" ],
       "volume" : 1.0,
@@ -219,6 +255,7 @@
       "pool" : [ "/sfx/gun/tank_shot.ogg" ],
       "volume" : 1.0,
       "rangeMultiplier" : 1.5
-    }
+    },
+    "fire" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ]
   }
 }
