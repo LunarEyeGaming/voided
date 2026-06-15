@@ -3,6 +3,8 @@ require "/scripts/vec2.lua"
 require "/scripts/util.lua"
 require "/scripts/v-ellipse.lua"
 
+local particleEmitters
+
 local oldUpdate = update or function() end
 
 function update()
@@ -10,6 +12,61 @@ function update()
 
   oldUpdate(dt)
 
+  -- if not particleEmitters then
+  --   fetchParticleEmitters()
+  -- else
+  --   updateParticles()
+  -- end
+  updateRift()
+end
+
+function fetchParticleEmitters()
+  particleEmitters = animationConfig.animationParameter("riftParticleEmitters")
+
+  -- for name, emitter in pairs(particleEmitters) do
+  --   local particle = emitter.particle
+  --   if particle.approach[1] ~= 0 or particle.approach[2] ~= 0 then
+  --     sb.logWarn("%s: Emitters with changing velocities are not supported", name)
+  --     particleEmitters[name] = nil
+  --     goto continue
+  --   end
+
+  --   ::continue::
+  -- end
+end
+
+function updateParticles()
+  local activeParticleEmitters = animationConfig.animationParameter("riftActiveParticleEmitters")
+  local velocity = world.entityVelocity(entity.id())
+
+  for name, emitter in pairs(particleEmitters) do
+    if activeParticleEmitters[name] then
+      -- Get velocity
+
+    end
+  end
+end
+
+function simulate(particlePosition, particleVelocity, zonePosition, zoneVelocity, zoneSize, stepSize, maxTime)
+  local time = 0
+  -- Copy vectors
+  local pp = {particlePosition[1], particlePosition[2]}
+  local zp = {zonePosition[1], zonePosition[2]}
+
+  while time <= maxTime do
+    -- Update positions
+    pp[1] = pp[1] + particleVelocity[1] * stepSize
+    pp[2] = pp[2] + particleVelocity[2] * stepSize
+    zp[1] = zp[1] + zoneVelocity[1] * stepSize
+    zp[2] = zp[2] + zoneVelocity[2] * stepSize
+
+    -- Check if
+
+    time = time + stepSize
+  end
+end
+
+function updateRift()
   local riftSize = animationConfig.animationParameter("riftSize")
 
   local numPoints = 50
