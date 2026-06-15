@@ -32,8 +32,8 @@ function init()
 
   fadeTime = 1
 
-  fgStartColor = {18, 5, 20, 0}
-  fgEndColor = {18, 5, 20, 255}
+  fgStartColor = {94, 113, 128, 0}
+  fgEndColor = {94, 113, 128, 255}
   fgRenderLayer = "ForegroundOverlay+10"
 
   pulsateTimer = 0
