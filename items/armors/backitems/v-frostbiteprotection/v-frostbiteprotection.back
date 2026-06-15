@@ -1,14 +1,14 @@
 {
-  "itemName" : "v-fireprotectionback",
+  "itemName" : "v-frostbiteprotectionback",
   "price" : 1250,
-  "inventoryIcon" : "fireprotectionicon.png",
+  "inventoryIcon" : "frostbiteprotectionicon.png",
   "tooltipKind" : "baseaugment",
   "rarity" : "Legendary",
   "customRarity" : "Mythical",
   "pickupQuestTemplates" : [ ],
   "category" : "enviroProtectionPack",
-  "description" : "This EPP mitigates ultraviolet ray exposure. Helpful on planets with ^red;solar radiation^reset;.",
-  "shortdescription" : "Sunblocking EPP",
+  "description" : "This EPP dampens drops in body temperature. Helpful on ^red;ludicrously cold^reset; planets.",
+  "shortdescription" : "Thermoregulator EPP",
 
   "maleFrames" : "back.png",
   "femaleFrames" : "back.png",
@@ -16,7 +16,7 @@
 
   "statusEffects" : [
     {
-      "stat" : "v-biomesunImmunity",
+      "stat" : "v-biomefrostbiteImmunity",
       "amount" : 1.0
     },
     {

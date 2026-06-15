@@ -1,0 +1,17 @@
+{
+  "name" : "v-biomefrostbite",
+  "blockingStat" : "v-biomefrostbiteImmunity",
+  "effectConfig" : {
+    "heatLossRate" : 1
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "v-biomefrostbite.lua"
+  ],
+
+  // "animationConfig" : "starving.animation",
+
+  "label" : "Extreme Cold - Losing heat",
+  "icon" : "/interface/statuses/v-biomefrostbite.png"
+}

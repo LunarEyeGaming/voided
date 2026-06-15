@@ -110,6 +110,8 @@
         "displayName" : "Mycotoxin", "icon" : "/interface/cockpit/hazards/v-biomepoison.png"}},
     {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomesun", "value" : {
         "displayName" : "Solar Radiation", "icon" : "/interface/cockpit/hazards/v-biomesun.png"}},
+    {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomefrostbite", "value" : {
+        "displayName" : "Ludicrously Cold", "icon" : "/interface/cockpit/hazards/v-biomefrostbite.png"}},
 
     // Threat level support for weather. Weather types not included have a threat level of 0.
     {"op" : "add", "path" : "/weatherThreatValues/v-copperstorm", "value": 1.5},
