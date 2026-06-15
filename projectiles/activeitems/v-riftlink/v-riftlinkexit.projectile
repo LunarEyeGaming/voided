@@ -3,7 +3,7 @@
   "physics" : "illusion",
   "bounces" : -1,
   "speed" : 0,
-  "timeToLive" : 5,
+  "timeToLive" : 1.5,
   "lightColor" : [94, 113, 128],
   "image" : "riftlink.png",
   "animationCycle" : 0.04,
@@ -22,7 +22,7 @@
       "options" : [ "/sfx/projectiles/gravitymine_detonate.ogg" ]
     },
     {
-      "time" : 4.8,
+      "time" : 1.3,
       "repeat" : false,
       "action" : "sound",
       "options" : [ "/sfx/projectiles/astraltear_stop2.ogg" ]
