@@ -1,0 +1,19 @@
+{
+  "kind" : "v-voidorb",
+  "definition" : {
+    "type" : "animated",
+    "animation" : "/animations/v-voidorb/v-voidorb.animation",
+    "fullbright" : true,
+    "collidesForeground" : true,
+    "size" : 1,
+    "layer" : "back",
+    "initialVelocity" : [0, 0],
+    "finalVelocity" : [0, 0],
+    "approach" : [25, 25],
+    "timeToLive" : 0.8,
+    "variance" : {
+      "initialVelocity" : [10.0, 10.0],
+      "finalVelocity" : [10.0, 10.0]
+    }
+  }
+}

@@ -48,10 +48,8 @@ end
 function VRiftWormhole:fireNode()
   self.weapon:setStance(self.stances.fireNode)
 
-  local aimVector = self:aimVector()
-  local position = vec2.add(self:projectileCenter(), vec2.rotate(self.nodeProjectileOffset, vec2.angle(aimVector)))
   local params = {}
-  storage.projectileId = world.spawnProjectile(self.nodeProjectileType, position, activeItem.ownerEntityId(), aimVector, false, params)
+  storage.projectileId = self:spawnProjectile(self.nodeProjectileType, self.nodeProjectileOffset, params)
 
   animator.playSound("riftNode")
 
@@ -88,13 +86,12 @@ end
 function VRiftWormhole:fireLink()
   self.weapon:setStance(self.stances.fireLink)
 
-  local aimVector = self:aimVector()
-  local position = vec2.add(self:projectileCenter(), vec2.rotate(self.linkProjectileOffset, vec2.angle(aimVector)))
   local exitId = world.callScriptedEntity(storage.projectileId, "linkRift")
   local params = {
     linkingNode = exitId
   }
-  self.linkProjectileId = world.spawnProjectile(self.linkProjectileType, position, activeItem.ownerEntityId(), aimVector, false, params)
+
+  self.linkProjectileId = self:spawnProjectile(self.linkProjectileType, self.linkProjectileOffset, params)
 
   status.addEphemeralEffect(self.teleportStatusEffect)
   world.sendEntityMessage(activeItem.ownerEntityId(), "v-riftlinkentrance-setExitId", exitId)
@@ -122,14 +119,18 @@ function VRiftWormhole:followUp()
   end)
 
   if firedPrimary and status.overConsumeResource("energy", self.energyUsage) then
-    local aimVector = self:aimVector()
-    local position = vec2.add(self:projectileCenter(), vec2.rotate(self.linkProjectileOffset, vec2.angle(aimVector)))
     local params = {
       powerMultiplier = activeItem.ownerPowerMultiplier(),
       power = self:damageAmount()
     }
-    world.spawnProjectile(self.followUpProjectileType, position, activeItem.ownerEntityId(), aimVector, false, params)
+    self:spawnProjectile(self.followUpProjectileType, self.followUpProjectileOffset, params)
   end
+end
+
+function VRiftWormhole:spawnProjectile(projectile, offset, params)
+  local aimVector = self:aimVector()
+  local position = vec2.add(self:projectileCenter(), vec2.mul(offset, {mcontroller.facingDirection(), 1}))
+  return world.spawnProjectile(projectile, position, activeItem.ownerEntityId(), aimVector, false, params)
 end
 
 function VRiftWormhole:aimVector()

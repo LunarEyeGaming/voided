@@ -2,9 +2,9 @@
   "animationParts" : { },
   "animationCustom" : {
     "sounds" : {
-      "riftNode" : [ "/sfx/melee/astraltear1.ogg" ],
-      "riftLink" : [ "/sfx/melee/astraltear1.ogg" ],
-      "riftCancelNode" : [ "/sfx/melee/astraltear1.ogg" ]
+      "riftNode" : [ "/sfx/melee/v_riftnode_create.ogg" ],
+      "riftLink" : [ "/sfx/melee/v_riftnode_create.ogg" ],
+      "riftCancelNode" : [ "/sfx/melee/v_riftnode_destroy.ogg" ]
     }
   },
 
@@ -14,9 +14,9 @@
     "scripts" : ["/items/active/weapons/melee/abilities/broadsword/v-riftwormhole/v-riftwormhole.lua"],
     "class" : "VRiftWormhole",
 
-    "nodeProjectileOffset" : [2, 0],
+    "nodeProjectileOffset" : [3.5, 0],
     "nodeProjectileType" : "v-riftnode",
-    "linkProjectileOffset" : [2, 0],
+    "linkProjectileOffset" : [0, 3.5],
     "linkProjectileType" : "v-riftlinkentrance",
     "followUpProjectileOffset" : [2, 0],
     "followUpProjectileType" : "v-riftexplosion",
@@ -32,39 +32,43 @@
     "stances" : {
       "windupNode" : {
         "duration" : 0.25,
-        "armRotation" : 45,
-        "weaponRotation" : 0,
+        "armRotation" : -150,
+        "weaponRotation" : 55,
         "twoHanded" : true,
 
         "allowRotate" : false,
-        "allowFlip" : false
+        "allowFlip" : false,
+        "animationStates" : {"blade" : "open2"}
       },
       "fireNode" : {
         "duration" : 0.4,
-        "armRotation" : -45,
-        "weaponRotation" : -90,
+        "armRotation" : -10,
+        "weaponRotation" : -80,
         "twoHanded" : true,
 
         "allowRotate" : false,
-        "allowFlip" : false
+        "allowFlip" : false,
+        "animationStates" : {"blade" : "close2"}
       },
       "windupLink" : {
         "duration" : 0.25,
-        "armRotation" : 45,
-        "weaponRotation" : 0,
+        "armRotation" : -20,
+        "weaponRotation" : -45,
         "twoHanded" : true,
 
         "allowRotate" : false,
-        "allowFlip" : false
+        "allowFlip" : false,
+        "animationStates" : {"blade" : "open2"}
       },
       "fireLink" : {
         "duration" : 0.4,
-        "armRotation" : -45,
-        "weaponRotation" : -90,
+        "armRotation" : 45,
+        "weaponRotation" : -45,
         "twoHanded" : true,
 
         "allowRotate" : false,
-        "allowFlip" : false
+        "allowFlip" : false,
+        "animationStates" : {"blade" : "close2"}
       },
       "windupCancelNode" : {
         "duration" : 0.25,
@@ -79,6 +83,15 @@
         "duration" : 0.4,
         "armRotation" : -45,
         "weaponRotation" : -90,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "windupFollowUp" : {
+        "duration" : 0.25,
+        "armRotation" : 45,
+        "weaponRotation" : 0,
         "twoHanded" : true,
 
         "allowRotate" : false,

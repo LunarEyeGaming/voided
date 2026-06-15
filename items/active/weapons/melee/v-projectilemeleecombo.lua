@@ -90,6 +90,13 @@ function ProjectileMeleeCombo:wait()
   util.wait(stance.duration, function()
     if self:shouldActivate() then
       self:setState(self.windup)
+      if self.killProjectile then
+        self.killProjectile = false
+        if self.projectileId and world.entityExists(self.projectileId) then
+          world.callScriptedEntity(self.projectileId, "projectile.die")
+          self.projectileId = nil
+        end
+      end
       return
     end
   end)
@@ -135,7 +142,8 @@ function ProjectileMeleeCombo:fire()
       -- Make a copy of the parameters so that we do not end up increasing the power each time the attack occurs
       local params = copy(stance.projectile.parameters or {})
       params.power = self:leveledDamage((params.power or 10))
-      world.spawnProjectile(
+      self.killProjectile = stance.projectile.shouldKillOnExit
+      self.projectileId = world.spawnProjectile(
         stance.projectile.type,
         projectilePos,
         entity.id(),
@@ -217,4 +225,11 @@ end
 
 function ProjectileMeleeCombo:uninit()
   self.weapon:setDamage()
+  if self.killProjectile then
+    self.killProjectile = false
+    if self.projectileId and world.entityExists(self.projectileId) then
+      world.callScriptedEntity(self.projectileId, "projectile.die")
+      self.projectileId = nil
+    end
+  end
 end

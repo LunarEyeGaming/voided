@@ -51,6 +51,9 @@
         "default" : "idle",
         "states" : {
           "idle" : {
+            "frames" : 4,
+            "cycle" : 1.0,
+            "mode" : "loop"
           },
           "open" : {
             "frames" : 1,
@@ -63,8 +66,15 @@
           },
           "opened" : {
             "frames" : 1,
-            "cycle" : 0.1,
-            "mode" : "loop"
+            "cycle" : 1.6,
+            "mode" : "transition",
+            "transition" : "close"
+          },
+          "preclose" : {
+            "frames" : 1,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "close"
           },
           "close" : {
             "frames" : 1,
@@ -74,6 +84,35 @@
             "properties" : {
               "immediateSound" : "/sfx/melee/v_tunnelersedge_close.ogg"
             }
+          },
+          "open2" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/anglure_windup.ogg"
+            }
+          },
+          "close2" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "empty",
+            "frameProperties" : {
+              "immediateSound" : ["", "/sfx/melee/v_tunnelersedge_close.ogg"]
+            }
+          },
+          "empty" : {
+            "frames" : 1,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "refill"
+          },
+          "refill" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "idle"
           }
         }
       }
@@ -106,9 +145,34 @@
                 "image" : "<partImage>:opened.<frame>?<directives>?<bladeDirectives>"
               }
             },
+            "preclose" : {
+              "properties" : {
+                "image" : "<partImage>:preclose.<frame>?<directives>?<bladeDirectives>"
+              }
+            },
             "close" : {
               "properties" : {
                 "image" : "<partImage>:close.<frame>?<directives>?<bladeDirectives>"
+              }
+            },
+            "open2" : {
+              "properties" : {
+                "image" : "<partImage>:open2.<frame>?<directives>?<bladeDirectives>"
+              }
+            },
+            "close2" : {
+              "properties" : {
+                "image" : "<partImage>:close2.<frame>?<directives>?<bladeDirectives>"
+              }
+            },
+            "empty" : {
+              "properties" : {
+                "image" : "<partImage>:empty.<frame>?<directives>?<bladeDirectives>"
+              }
+            },
+            "refill" : {
+              "properties" : {
+                "image" : "<partImage>:refill.<frame>?<directives>?<bladeDirectives>"
               }
             }
           }
@@ -139,9 +203,34 @@
                 "image" : "<partImage>:opened.<frame>?<directives>?<bladeDirectives>"
               }
             },
+            "preclose" : {
+              "properties" : {
+                "image" : "<partImage>:preclose.<frame>?<directives>?<bladeDirectives>"
+              }
+            },
             "close" : {
               "properties" : {
                 "image" : "<partImage>:close.<frame>?<directives>?<bladeDirectives>"
+              }
+            },
+            "open2" : {
+              "properties" : {
+                "image" : "<partImage>:open2.<frame>?<directives>?<bladeDirectives>"
+              }
+            },
+            "close2" : {
+              "properties" : {
+                "image" : "<partImage>:close2.<frame>?<directives>?<bladeDirectives>"
+              }
+            },
+            "empty" : {
+              "properties" : {
+                "image" : "<partImage>:empty.<frame>?<directives>?<bladeDirectives>"
+              }
+            },
+            "refill" : {
+              "properties" : {
+                "image" : "<partImage>:refill.<frame>?<directives>?<bladeDirectives>"
               }
             }
           }
@@ -165,28 +254,28 @@
             },
             "fire" : {
               "properties" : {
-                "image" : "/items/active/weapons/melee/broadsword/swoosh/tearswoosh.png:<frame>",
+                "image" : "/items/active/weapons/melee/broadsword/swoosh/v-voidswoosh.png:<frame>",
                 "offset" : [0, 2.5],
                 "damageArea" : [[-5, 2], [-2.5, 3], [1, 3], [4, 1.75], [5.25, -0.25], [5.25, -2.25], [3.75, -3.25], [0.25, -2.75]]
               }
             },
             "fire2" : {
               "properties" : {
-                "image" : "/items/active/weapons/melee/broadsword/swoosh2/tearswoosh.png:<frame>",
+                "image" : "/items/active/weapons/melee/broadsword/swoosh2/v-voidswoosh.png:<frame>",
                 "offset" : [5.0, 1.0],
                 "damageArea" : [[-4, 1], [2.5, 1], [2.5, -2], [-4, -2]]
               }
             },
             "fire3" : {
               "properties" : {
-                "image" : "/items/active/weapons/melee/broadsword/swoosh/tearswoosh.png:<frame>?flipy",
+                "image" : "/items/active/weapons/melee/broadsword/swoosh/v-voidswoosh.png:<frame>?flipy",
                 "offset" : [0, -2.5],
                 "damageArea" : [[-5, -2], [-2.5, -3], [1, -3], [4, -1.75], [5, 0.25], [5, 2.25], [4, 3.25], [0, 2.5]]
               }
             },
             "fire4" : {
               "properties" : {
-                "image" : "/items/active/weapons/melee/broadsword/swoosh/tearswoosh.png:<frame>",
+                "image" : "/items/active/weapons/melee/broadsword/swoosh/v-voidswoosh.png:<frame>",
                 "offset" : [0, 2.5],
                 "damageArea" : [[-5, 2], [-2.5, 3], [1, 3], [4, 1.75], [5.25, -0.25], [5.25, -2.25], [3.75, -3.25], [0.25, -2.75]]
               }
@@ -194,7 +283,7 @@
             // fire5 has no swoosh
             "fire6" : {
               "properties" : {
-                "image" : "/items/active/weapons/melee/broadsword/swoosh3/tearswoosh.png:<frame>",
+                "image" : "/items/active/weapons/melee/broadsword/swoosh3/v-voidswoosh.png:<frame>",
                 "offset" : [3.5, 0],
                 "damageArea" : [[-4.75, 1.5], [3, 3], [3, -3], [-4.75, -1.5]]
               }
@@ -216,28 +305,16 @@
       "transformationGroups" : ["swoosh"],
       "burstCount" : 4,
       "particles" : [
-        { "particle" : "astraltearsparkle1"},
-        { "particle" : "astraltearsparkle2"},
-        { "particle" : "astraltearsparkle3"}
-      ]
-    },
-    "blade" : {
-      "active" : false,
-      "transformationGroups" : ["weapon"],
-      "offsetRegion" : [-0.5, 1.5, 0.5, 4.0],
-      "emissionRate" : 5,
-      "particles" : [
-        { "particle" : "astraltearsparkle1"},
-        { "particle" : "astraltearsparkle2"},
-        { "particle" : "astraltearsparkle3"}
+        { "particle" : "v-voidorb"},
+        { "particle" : "v-voidember"}
       ]
     }
   },
 
   "lights" : {
     "glow" : {
-      "position" : [0, 2.0],
-      "color" : [128, 72, 40],
+      "position" : [0, 3.5],
+      "color" : [51, 41, 71],
       "transformationGroups" : ["weapon"]
     }
   },
