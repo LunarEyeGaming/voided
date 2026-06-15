@@ -1,11 +1,11 @@
 {
   "particleEmitters" : {
-    "flames" : {
+    "smoke" : {
       "enabled" : true,
       "emissionRate" : 7.0,
       "particles" : [
         {
-          "particle" : "burningdust"
+          "particle" : "v-darksmoke"
         }
       ]
     }
@@ -14,10 +14,10 @@
     "glow" : {
       "active" : true,
       "position" : [0, 0],
-      "color" : [191, 103, 2]
+      "color" : [70, 77, 102]
     }
   },
   "sounds" : {
-    "burn" : [ "/sfx/projectiles/flame_burning.ogg" ]
+    "burn" : [ "/sfx/statuseffects/v_voideffect_loop.ogg" ]
   }
 }

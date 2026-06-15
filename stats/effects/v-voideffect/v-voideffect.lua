@@ -5,9 +5,9 @@ local damageTaken
 local listener
 
 function init()
-  animator.setParticleEmitterOffsetRegion("flames", mcontroller.boundBox())
-  animator.setParticleEmitterActive("flames", true)
-  effect.setParentDirectives("fade=BF3300=0.25")
+  animator.setParticleEmitterOffsetRegion("smoke", mcontroller.boundBox())
+  animator.setParticleEmitterActive("smoke", true)
+  effect.setParentDirectives("fade=332947=0.75")
   animator.playSound("burn", -1)
 
   damageBonusFactor = 0.5
