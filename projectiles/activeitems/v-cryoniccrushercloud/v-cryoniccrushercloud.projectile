@@ -12,5 +12,5 @@
   "piercing" : true,
   "emitters" : [ "v-coldsnapcloud" ],
   "damageKind" : "ice",
-  "statusEffects" : [ "v-coldtouch" ]
+  "statusEffects" : [ {"effect" : "v-coldtouch", "duration" : 0.5} ]
 }
