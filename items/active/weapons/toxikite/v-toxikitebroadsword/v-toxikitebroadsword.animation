@@ -19,7 +19,7 @@
             "frames" : 1,
             "cycle" : 0.5,
             "mode" : "transition",
-            "transition" : "idle", 
+            "transition" : "idle",
             "properties" : {
               "persistentSound" : "/sfx/melee/spear_twirl_loop.ogg"
             }
@@ -54,7 +54,7 @@
           "offset" : [0, 1.875],
           "transformationGroups" : ["weapon"],
           "rotationCenter" : [0, 0],
-          "image" : "<partImage>"
+          "image" : "<partImage>?<bladeDirectives>"
         }
       },
       "swoosh" : {
