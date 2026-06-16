@@ -46,10 +46,10 @@
       "fire1" : {"duration" : 0.3},
       "wait1" : {"duration" : 0.3},
 
-      "windup2" : {"duration" : 0.1, "armRotation" : -120, "weaponRotation" : -60, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true}, 
-      "fire2" : {"duration" : 0.5, "armRotation" : -135, "weaponRotation" : 0, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true, "weaponAngularVelocity" : 1800}, 
+      "windup2" : {"duration" : 0.1, "armRotation" : -120, "weaponRotation" : -60, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true},
+      "fire2" : {"duration" : 0.5, "armRotation" : -135, "weaponRotation" : 0, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true, "weaponAngularVelocity" : 1800},
       "wait2" : {"duration" : 0.1, "armRotation" : -135, "weaponRotation" : -135, "weaponOffset" : [0, 0], "allowRotate" : false, "allowFlip" : true, "twoHanded" : true},
-      
+
       "windup3" : {"duration" : 0.1, "armRotation" : -120, "weaponRotation" : -150, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true},
       "preslash3" : {"duration" : 0.025, "armRotation" : -45, "weaponRotation" : -180, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
       "fire3" : {"duration" : 0.3, "armRotation" : 120, "weaponRotation" : -180, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
@@ -61,7 +61,7 @@
       "fire4" : {"duration" : 0.5, "armRotation" : -22.5, "weaponRotation" : -77.5, "weaponOffset" : [-3.53124699, 17.14731159], "twoHanded" : true, "allowRotate" : false, "allowFlip" : true, "projectile" : {"type" : "v-poisoncloudspawner", "offset" : [18.5, 8.0], "parameters" : {"power" : 10}, "requireLineOfSight" : true}}
     }
   },
-  
+
   "altAbilityType" : "v-toxicparry",
 
   "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
