@@ -28,11 +28,13 @@ local minPlanetStayTime  -- The player must have been on the current planet type
 local worldTypeWhitelist  -- List of worlds on which the rift zone is allowed to spawn
 local spawnAttemptInterval  -- How often the script should attempt to spawn the rift zone
 local spawnProbability  -- The chance of the spawn succeeding
-local riftZoneCount  -- The number of rift zones to spawn in each attempt
+local referenceRiftZoneCount  -- The number of rift zones to spawn in each attempt for the given referenceWorldSize
+local referenceWorldSize  -- The world size to use as a reference
 local duration  -- How long the rift zone event lasts
 local numEventsPerOrbit  -- Number of events that can occur for each orbit
 local weatherTypes  -- The potential weather events that could occur in a rift zone.
 
+local riftZoneCount
 local spawnAttemptTimer  -- Amount of time elapsed since the last spawn attempt
 local worldTypeStayTime  -- Amount of time that the player has spent on the current world so far
 
@@ -54,12 +56,20 @@ function init()
     return
   end
 
-  minSpawnCooldown = 60 * 30
+  minSpawnCooldown = 60 * 60
   minPlanetStayTime = 60 * 30
   spawnAttemptInterval = 30
   spawnProbability = 1.0
 
-  riftZoneCount = 100
+  referenceRiftZoneCount = 100
+  referenceWorldSize = {6000, 4000}
+
+  local referenceWorldArea = referenceWorldSize[1] * referenceWorldSize[2]
+  local worldSize = world.size()
+  local worldArea = worldSize[1] * worldSize[2]
+  local riftZoneDensity = referenceRiftZoneCount / referenceWorldArea
+  riftZoneCount = riftZoneDensity * worldArea
+
   duration = 90
   numEventsPerOrbit = 6
 
