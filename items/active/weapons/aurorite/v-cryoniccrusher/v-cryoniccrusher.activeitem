@@ -1,0 +1,159 @@
+{
+  "itemName" : "v-cryoniccrusher",
+  "price" : 1100,
+  "level" : 8,
+  "maxStack" : 1,
+  "rarity" : "Legendary",
+  "customRarity" : "Mythical",
+  "description" : "<todo>",
+  "shortdescription" : "^aurorite;Cryonic Crusher",
+  "tooltipKind" : "sword",
+  "category" : "hammer",
+  "twoHanded" : true,
+  "itemTags" : ["weapon", "melee", "hammer"],
+
+  "inventoryIcon" : "cryoniccrusher.png:idle.1",
+
+  "animation" : "v-cryoniccrusher.animation",
+  "animationParts" : {
+    "hammer" : "cryoniccrusher.png",
+    "hammerfullbright" : "cryoniccrusherfullbright.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "fire" : ["/sfx/melee/swing_hammer_ice1.ogg", "/sfx/melee/swing_hammer_ice2.ogg", "/sfx/melee/swing_hammer_ice3.ogg"],
+      "fire2" : ["/sfx/melee/swing_hammer_ice1.ogg", "/sfx/melee/swing_hammer_ice1.ogg", "/sfx/melee/swing_hammer_ice1.ogg"],
+      "fire3" : ["/sfx/melee/swing_spear_ice1.ogg", "/sfx/melee/swing_spear_ice2.ogg", "/sfx/melee/swing_spear_ice3.ogg"],
+      "fire4" : ["/sfx/melee/swing_spear_ice1.ogg", "/sfx/melee/swing_spear_ice2.ogg", "/sfx/melee/swing_spear_ice3.ogg"]
+    }
+  },
+
+  "scripts" : ["/items/active/weapons/melee/meleeweapon.lua"],
+
+  "elementalType" : "ice",
+
+  "primaryAbilityType" : "v-projectilebroadswordcombo",
+  "primaryAbility" : {
+    "damageConfig" : {"damageSourceKind" : "icehammer", "statusEffects" : [ {"effect" : "v-coldtouch", "duration" : 0.5} ], "knockbackMode" : "facing", "timeout" : 0.5},
+    "fireTime" : 1.5,
+    "baseDps" : 7,
+    "comboSteps" : 4,
+    "swooshOffsetRegions" : [[0.75, 0.0, 4.25, 5.0], [0.75, 0.0, 4.25, -5.0], [1.5, -1.0, 5.5, 1.0], [1.5, -1.0, 5.5, 1.0]],
+    "stepDamageConfig" : [
+      {"baseDamageFactor" : 1.0, "knockback" : 40},
+      {"baseDamageFactor" : 1.0, "knockback" : 40},
+      {"baseDamageFactor" : 1.0, "knockback" : 50},
+      {"baseDamageFactor" : 1.5, "knockback" : 40}
+    ],
+
+    "stances" : {
+      "idle" : {"animationStates" : {"hammer" : "idle"}},
+      // Down slash
+      "windup1" : {"duration" : 0.5, "armRotation" : 50, "weaponRotation" : -10, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true,
+        "weaponAngularVelocity" : 0, "armAngularVelocity" : 80},
+      "preslash1" : {"duration" : 0.025, "armRotation" : 55, "weaponRotation" : -45, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
+      "fire1" : {"duration" : 0.4, "armRotation" : -45, "weaponRotation" : -55, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
+      "wait1" : {"duration" : 0.8, "armRotation" : -45, "weaponRotation" : -55, "allowRotate" : false, "allowFlip" : true, "twoHanded" : true},
+
+      // Up slash
+      "windup2" : {"duration" : 0.5, "armRotation" : -80, "weaponRotation" : -110, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true,
+        "animationStates" : {"hammer" : "flipped"}, "weaponAngularVelocity" : -80, "armAngularVelocity" : -80},
+      "preslash2" : {"duration" : 0.025, "armRotation" : -45, "weaponRotation" : -180, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
+      "fire2" : {"duration" : 0.4, "armRotation" : 120, "weaponRotation" : -180, "twoHanded" : true, "allowRotate" : false, "allowFlip" : false},
+      "wait2" : {"duration" : 0.8, "armRotation" : 120, "weaponRotation" : -180, "allowRotate" : false, "allowFlip" : true, "twoHanded" : true},
+
+      "windup3" : {"duration" : 0.5, "armRotation" : -120, "weaponRotation" : 25, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true,
+        "weaponAngularVelocity" : 40, "armAngularVelocity" : -40, "animationStates" : {"hammer" : "idle"}},
+      "fire3" : {"duration" : 0.4, "armRotation" : 0, "weaponRotation" : -90, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true},
+      "wait3" : {"duration" : 0.8, "armRotation" : 0, "weaponRotation" : -90, "allowRotate" : false, "allowFlip" : true, "twoHanded" : true},
+
+      "windup4" : {"duration" : 0.15, "armRotation" : 0, "weaponRotation" : -90, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true},
+      "fire4" : {"duration" : 0.5, "armRotation" : -120, "weaponRotation" : 40, "twoHanded" : true, "allowRotate" : false, "allowFlip" : true, "projectile" : {
+        "type" : "iceplasmaexplosion",
+        "offset" : [-1.5, 3.5],
+        "requireLineOfSight" : true
+      }}
+    }
+  },
+
+  "altAbilityType" : "groundslam",
+  "altAbility" : {
+    "damageConfig" : {
+      "damageSourceKind" : "icehammer",
+      "baseDamage" : 4,
+      "knockback" : 0,
+      "timeout" : 0.6,
+      "timeoutGroup" : "alt"
+    },
+
+    "projectileType" : "iceplasmaexplosion",
+    "projectileParameters" : {
+      "power" : 8,
+      "periodicActions" : [
+        {
+          "time" : 0,
+          "repeat" : false,
+          "action" : "actions",
+          "list" : [
+            {
+              "action" : "projectile",
+              "type" : "v-cryoniccrushercloud",
+              "inheritDamageFactor" : 0.05,
+              "angle" : 0
+            },
+            {
+              "action" : "projectile",
+              "type" : "v-cryoniccrushercloud",
+              "inheritDamageFactor" : 0.05,
+              "angle" : 22.5
+            },
+            {
+              "action" : "projectile",
+              "type" : "v-cryoniccrushercloud",
+              "inheritDamageFactor" : 0.05,
+              "angle" : 45
+            },
+            {
+              "action" : "projectile",
+              "type" : "v-cryoniccrushercloud",
+              "inheritDamageFactor" : 0.05,
+              "angle" : 67.5
+            },
+            {
+              "action" : "projectile",
+              "type" : "v-cryoniccrushercloud",
+              "inheritDamageFactor" : 0.05,
+              "angle" : 90
+            },
+            {
+              "action" : "projectile",
+              "type" : "v-cryoniccrushercloud",
+              "inheritDamageFactor" : 0.05,
+              "angle" : 112.5
+            },
+            {
+              "action" : "projectile",
+              "type" : "v-cryoniccrushercloud",
+              "inheritDamageFactor" : 0.05,
+              "angle" : 135
+            },
+            {
+              "action" : "projectile",
+              "type" : "v-cryoniccrushercloud",
+              "inheritDamageFactor" : 0.05,
+              "angle" : 157.5
+            },
+            {
+              "action" : "projectile",
+              "type" : "v-cryoniccrushercloud",
+              "inheritDamageFactor" : 0.05,
+              "angle" : 180
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  "builder" : "/items/buildscripts/v-buildunrandweapon.lua"
+}

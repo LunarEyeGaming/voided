@@ -1,0 +1,185 @@
+{
+  "globalTagDefaults" : {
+    "paletteSwaps" : ""
+  },
+
+  "animatedParts" : {
+    "stateTypes" : {
+      "hammer" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          },
+          "flipped" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop"
+          }
+        }
+      },
+      "swoosh" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {},
+          "fire" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "fire2" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "fire3" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "fire4" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "hammer" : {
+        "properties" : {
+          "zLevel" : 2,
+          "centered" : true,
+          "offset" : [0, 1.875],
+          "transformationGroups" : ["weapon"],
+          "rotationCenter" : [0, 0]
+        },
+        "partStates" : {
+          "hammer" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>?<bladeDirectives>"
+              }
+            },
+            "flipped" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>?flipx?<bladeDirectives>"
+              }
+            }
+          }
+        }
+      },
+      "hammerfullbright" : {
+        "properties" : {
+          "zLevel" : 3,
+          "centered" : true,
+          "fullbright" : true,
+          "anchorPart" : "hammer"
+        },
+        "partStates" : {
+          "hammer" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>?<bladeDirectives>"
+              }
+            },
+            "flipped" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>?flipx?<bladeDirectives>"
+              }
+            }
+          }
+        }
+      },
+      "blade" : {
+        "properties" : {
+          "centered" : true,
+          "transformationGroups" : ["weapon"],
+          "rotationCenter" : [0, 0],
+          "damageArea" : [[-1, 0.25], [-1, 1.5], [1.5, 1.75], [1.5, 0.0]],
+          "groundImpactPoly" : [ [1, 1.75],  [1, 0.0],  [2, 0.0],  [2, 1.75] ]
+        }
+      },
+      "swoosh" : {
+        "properties" : {
+          "zLevel" : -1,
+          "centered" : true,
+          "transformationGroups" : ["swoosh"],
+          "rotationCenter" : [0, 0]
+        },
+
+        "partStates" : {
+          "swoosh" : {
+            "idle" : {
+              "properties" : {
+                "image" : ""
+              }
+            },
+            "fire" : {
+              "properties" : {
+                "image" : "/items/active/weapons/melee/hammer/swoosh/iceswoosh.png:<frame>",
+                "offset" : [0, 2.5],
+                "damageArea" : [[-3.5, 2], [-2.5, 3], [1, 3], [3, 1.75], [4, -0.25], [4, -2.25], [3, -3.25], [0, -2.5]]
+              }
+            },
+            "fire2" : {
+              "properties" : {
+                "image" : "/items/active/weapons/melee/hammer/swoosh/iceswoosh.png:<frame>?flipy",
+                "offset" : [0, -2.5],
+                "damageArea" : [[-3.5, -2], [-2.5, -3], [1, -3], [3, -1.75], [4, 0.25], [4, 2.25], [3, 3.25], [0, 2.5]]
+              }
+            },
+            "fire3" : {
+              "properties" : {
+                "image" : "/items/active/weapons/melee/broadsword/swoosh3/iceswoosh.png:<frame>",
+                "offset" : [3.5, 0],
+                "damageArea" : [[-4.75, 1.5], [3, 1], [3, -1], [-4.75, -1.5]]
+              }
+            },
+            "fire4" : {
+              "properties" : {
+                "image" : "/items/active/weapons/melee/broadsword/swoosh3/iceswoosh.png:<frame>",
+                "offset" : [3.5, 0],
+                "damageArea" : [[-4.75, 1.5], [3, 1], [3, -1], [-4.75, -1.5]]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "weapon" : {},
+    "swoosh" : {}
+  },
+
+  "particleEmitters" : {
+    "iceswoosh" : {
+      "active" : false,
+      "transformationGroups" : ["swoosh"],
+      "burstCount" : 10,
+      "particles" : [
+        { "particle" : "iceswoosh1"},
+        { "particle" : "iceswoosh2"},
+        { "particle" : "iceswoosh3"},
+        { "particle" : "iceswoosh1"},
+        { "particle" : "iceswoosh2"},
+        { "particle" : "iceswoosh3"}
+      ]
+    }
+  },
+
+  "sounds" : {
+    "fire" : [],
+    "fire2" : [],
+    "fire3" : []
+  }
+}

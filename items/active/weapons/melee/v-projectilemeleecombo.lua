@@ -141,7 +141,8 @@ function ProjectileMeleeCombo:fire()
     if not stance.projectile.requireLineOfSight or not world.lineCollision(mcontroller.position(), projectilePos) then
       -- Make a copy of the parameters so that we do not end up increasing the power each time the attack occurs
       local params = copy(stance.projectile.parameters or {})
-      params.power = self:leveledDamage((params.power or 10))
+      local defaultDamage = self.stepDamageConfig[self.comboStep].baseDamage
+      params.power = self:leveledDamage(params.power or defaultDamage)
       self.killProjectile = stance.projectile.shouldKillOnExit
       self.projectileId = world.spawnProjectile(
         stance.projectile.type,
