@@ -20,7 +20,6 @@ local disappearDelay
 local timeToLive
 local initialVelocity
 local velocity
-local rotationPeriod
 local playerProximityRegion
 local meteorPower
 local gravispherePower
@@ -42,7 +41,6 @@ local placedOresBG
 local placedAssists
 local frontScanPositions
 local backScanPositions
-local rotationTimer
 local cleanedUp
 
 local weatherFunction
@@ -51,8 +49,9 @@ local state
 
 local deferredTasks
 
+local wasForceKilled
+
 function init()
-  sb.logInfo("%s: init called", entity.id())
   scanRadius = 35
   tileSofteningRadius = 80
   monster.setAnimationParameter("riftSize", 0)
@@ -64,7 +63,6 @@ function init()
   timeToLive = config.getParameter("timeToLive", 300)
   initialVelocity = config.getParameter("velocity", {0, 0})
   velocity = initialVelocity
-  rotationPeriod = 120
   playerProximityRegion = {-100, -100, 100, 100}
 
   prevPos = vec2.floor(mcontroller.position())
@@ -110,7 +108,6 @@ function init()
   placedAssists = {}
   meteorPower = 10
   gravispherePower = 10
-  rotationTimer = 0
 
   local weatherName = world.getProperty("v-riftZoneWeather") or "destabilization"
   if weatherName == "meteors" then
@@ -129,6 +126,8 @@ function init()
   else
     error(string.format("Unknown rift zone weather: %s", weatherName))
   end
+
+  message.setHandler("v-riftzone-kill", v_killRiftZone)
 
   monster.setDamageBar("None")
   state = FSM:new()
@@ -208,8 +207,9 @@ function states.postInit()
   notifyRiftZoneSpawned()
 
   setExistenceTimer()
-
-  if existenceTimer <= -disappearTime then
+  if wasForceKilled then
+    state:set(states.die)
+  elseif existenceTimer <= -disappearTime then
     state:set(states.die)
   elseif existenceTimer <= 0 then
     fillMatMods(scanRadius)
@@ -259,6 +259,10 @@ end
 
 function states.disappear()
   animator.playSound("close")
+
+  if wasForceKilled then
+    mcontroller.setVelocity({0, 0})
+  end
 
   util.wait(disappearDelay)
 
@@ -345,6 +349,10 @@ function notifyRiftZoneSpawned()
 end
 
 function setExistenceTimer()
+  if wasForceKilled then
+    return
+  end
+
   local deathTime = config.getParameter("stateData.deathTime")
   if not deathTime then
     existenceTimer = timeToLive
@@ -734,4 +742,13 @@ function closeToAPlayer(position)
   end
 
   return false
+end
+
+function v_isRiftZone()
+  return true
+end
+
+function v_killRiftZone()
+  wasForceKilled = true
+  existenceTimer = 0
 end
