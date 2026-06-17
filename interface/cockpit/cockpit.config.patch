@@ -103,6 +103,23 @@
     {"op" : "add", "path" : "/wordsList/v-basalticislands", "value" : {"word" : "v%-basalticislands",
         "friendlyWord" : "Basaltic Islands"}},
 
+    // These are here as a last resort.
+    {"op" : "add", "path" : "/wordsList/v-", "value" : {"word" : "v%-",
+        "friendlyWord" : ""}},
+
+    {"op" : "add", "path" : "/wordsList/v-voltage", "value" : {"word" : "voltage",
+        "friendlyWord" : "Voltage"}},
+    {"op" : "add", "path" : "/wordsList/v-mountains", "value" : {"word" : "mountains",
+        "friendlyWord" : " Mountains"}},
+    {"op" : "add", "path" : "/wordsList/v-spikes", "value" : {"word" : "spikes",
+        "friendlyWord" : " Spikes"}},
+    {"op" : "add", "path" : "/wordsList/v-oxidized", "value" : {"word" : "oxidized",
+        "friendlyWord" : " Oxidized"}},
+    {"op" : "add", "path" : "/wordsList/v-rusty", "value" : {"word" : "rusty",
+        "friendlyWord" : " Rusted"}},
+    {"op" : "add", "path" : "/wordsList/v-ash", "value" : {"word" : "ash",
+        "friendlyWord" : "Ash"}},
+
     // Environmental hazard icons.
     {"op" : "add", "path" : "/displayEnvironmentStatusEffects/v-biomeelectric", "value" : {
         "displayName" : "Dangerously Conductive", "icon" : "/interface/cockpit/hazards/v-biomeelectric.png"}},
