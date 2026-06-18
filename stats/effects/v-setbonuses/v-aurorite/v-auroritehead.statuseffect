@@ -1,0 +1,14 @@
+{
+  "name" : "v-auroritehead",
+
+  "effectConfig" : {
+    "chestEffect" : "v-auroritechestplate",
+    "pantsEffect" : "v-auroritepants",
+    "setBonuses" : [{"effect" : "v-auroritesetbonus", "duration" : 1}]
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "/stats/effects/v-setbonuses/v-setbonuscheck.lua"
+  ]
+}
