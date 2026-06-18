@@ -168,13 +168,13 @@ function states.inactive()
 
   local heldUpLastTick = false
   -- Wait until the right conditions are met for dashing.
-  while not (args.moves["up"]  -- The player has tapped...
-  and not heldUpLastTick  -- ...but not held, the "up" movement key
+  while not (args.moves["special2"]  -- The player has tapped...
+  and not heldUpLastTick  -- ...but not held, the "special2" movement key
   and dashCooldownTimer == 0  -- The dash is not in cooldown
   and groundValid()  -- The player is on the ground or can dash in the air
   and not mcontroller.crouching()  -- The player is not crouching
   and not status.statPositive("activeMovementAbilities")) do  -- No current movement abilities are active.
-    heldUpLastTick = args.moves["up"]
+    heldUpLastTick = args.moves["special2"]
 
     args = coroutine.yield()  -- Get args for next tick.
   end

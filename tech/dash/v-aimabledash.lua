@@ -6,7 +6,7 @@ local dashDirection
 local dashTimer
 local dashCooldownTimer
 local rechargeEffectTimer
-local heldUpLastTick
+local heldSpecial2LastTick
 
 -- Parameters
 local dashControlForce
@@ -49,8 +49,7 @@ function update(args)
     end
   end
 
-  if args.moves["up"]
-      and not heldUpLastTick
+  if pressedDashThisTick(args)
       and dashTimer == 0
       and canDash()
       and groundValid()
@@ -77,8 +76,17 @@ function update(args)
       endDash()
     end
   end
+end
 
-  heldUpLastTick = args.moves["up"]
+function pressedDashThisTick(args)
+  local result
+  if input and input.bindDown then
+    result = input.bindDown("voided", "dash")
+  else
+    result = args.moves["special2"] and not heldSpecial2LastTick
+    heldSpecial2LastTick = args.moves["special2"]
+  end
+  return result
 end
 
 function canDash()
