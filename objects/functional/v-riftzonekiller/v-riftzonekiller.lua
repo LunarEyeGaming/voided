@@ -1,16 +1,24 @@
 require "/scripts/vec2.lua"
 
+local displayQueryRange
 local queryRange
 local lowerLeftPos
 local upperRightPos
 
 function init()
-  queryRange = 160
+  displayQueryRange = config.getParameter("killRange")
+  queryRange = displayQueryRange + config.getParameter("riftZoneSize")
   lowerLeftPos = vec2.add(object.position(), {-queryRange, -queryRange})
   upperRightPos = vec2.add(object.position(), {queryRange, queryRange})
 end
 
 function update(dt)
+  world.debugPoly({
+    vec2.add(object.position(), {-queryRange, -queryRange}),
+    vec2.add(object.position(), {-queryRange, queryRange}),
+    vec2.add(object.position(), {queryRange, queryRange}),
+    vec2.add(object.position(), {queryRange, -queryRange})
+  }, "green")
   local queried = world.entityQuery(lowerLeftPos, upperRightPos, {
     includedTypes = {"monster"},
     callScript = "v_isRiftZone"

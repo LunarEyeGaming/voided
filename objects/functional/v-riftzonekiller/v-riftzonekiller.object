@@ -8,35 +8,49 @@
   "shortdescription" : "Spacetime Stabilizer",
   "race" : "generic",
 
+  "v-isRiftZoneKiller" : true,
+
   "category" : "v-functional",
   "price" : 0,
 
   "inventoryIcon" : "icon.png",
   "orientations" : [
     {
-      "imageLayers" : [ {"image" : "upright/top.png:<frame>"}, {"image" : "upright/topunlit.png:<frame>", "fullbright" : true} ],
-      "imagePosition" : [0, 0],
-
-      "spaceScan" : 0.1,
-      "anchors" : [ "top" ]
-    },
-    {
       "imageLayers" : [ {"image" : "upright/bottom.png:<frame>"}, {"image" : "upright/bottomunlit.png:<frame>", "fullbright" : true} ],
-      "imagePosition" : [0, 0],
+      "imagePosition" : [-8, 0],
+
+      "frames" : 4,
+      "animationCycle" : 1.0,
 
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]
     },
     {
+      "imageLayers" : [ {"image" : "upright/top.png:<frame>"}, {"image" : "upright/topunlit.png:<frame>", "fullbright" : true} ],
+      "imagePosition" : [-8, -24],
+
+      "frames" : 4,
+      "animationCycle" : 1.0,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "top" ]
+    },
+    {
       "imageLayers" : [ {"image" : "sideways/left.png:<frame>"}, {"image" : "sideways/leftunlit.png:<frame>", "fullbright" : true} ],
-      "imagePosition" : [0, 0],
+      "imagePosition" : [0, -8],
+
+      "frames" : 4,
+      "animationCycle" : 1.0,
 
       "spaceScan" : 0.1,
       "anchors" : [ "left" ]
     },
     {
       "imageLayers" : [ {"image" : "sideways/right.png:<frame>"}, {"image" : "sideways/rightunlit.png:<frame>", "fullbright" : true} ],
-      "imagePosition" : [0, 0],
+      "imagePosition" : [-24, -8],
+
+      "frames" : 4,
+      "animationCycle" : 1.0,
 
       "spaceScan" : 0.1,
       "anchors" : [ "right" ]
@@ -45,6 +59,9 @@
 
   "scripts" : [ "v-riftzonekiller.lua" ],
   "scriptDelta" : 3,
+
+  "killRange" : 32,
+  "riftZoneSize" : 35,
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }
