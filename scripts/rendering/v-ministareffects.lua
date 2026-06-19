@@ -3,6 +3,7 @@ require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
 
 require "/scripts/v-animator.lua"
+require "/scripts/v-entity.lua"
 require "/scripts/v-ministarutil.lua"
 require "/scripts/v-vec2.lua"
 
@@ -345,11 +346,12 @@ function update(dt)
     return
   end
 
-  -- Get position relative to player.
-  local ownPos = entity.position()
-  local ownVelocity = world.entityVelocity(entity.id())  --[[@as Vec2F]]
-  -- Compute predicted position.
-  local predictedPos = vec2.add(ownPos, vec2.mul(ownVelocity, dt))
+  -- -- Get position relative to player.
+  -- local ownPos = entity.position()
+  -- local ownVelocity = world.entityVelocity(entity.id())  --[[@as Vec2F]]
+  -- -- Compute predicted position.
+  -- local predictedPos = vec2.add(ownPos, vec2.mul(ownVelocity, dt))
+  local predictedPos = vEntity.predictPosition(dt)
 
   v_ministarEffects_drawBurningBlocks(predictedPos, dt, window)
 

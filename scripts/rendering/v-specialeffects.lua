@@ -4,6 +4,7 @@ require "/scripts/util.lua"
 require "/scripts/v-vec2.lua"
 
 require "/scripts/v-animator.lua"
+require "/scripts/v-entity.lua"
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
@@ -220,9 +221,7 @@ function v_DistantDrawable:new(args, position)
 end
 
 function v_DistantDrawable:process(dt)
-  -- Compute predicted position.
-  local ownVelocity = world.entityVelocity(entity.id())  --[[@as Vec2F]]
-  self._predictedPos = vec2.add(entity.position(), vec2.mul(ownVelocity, dt))
+  self._predictedPos = vEntity.predictPosition(dt)
   self:calculateSmoothClientWindow()
 
   self._timer = self._timer + dt
