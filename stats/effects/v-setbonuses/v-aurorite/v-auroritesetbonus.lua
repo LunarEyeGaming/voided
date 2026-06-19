@@ -45,6 +45,8 @@ function update(dt)
 
   hasTakenDamage = currentAbsorption < prevAbsorption
 
+  animator.setGlobalTag("numHits", hitCounter)
+
   state:update(dt)
 
   prevAbsorption = status.resource("damageAbsorption")
@@ -63,6 +65,8 @@ end
 states = {}
 
 function states.inactive()
+  animator.setAnimationState("shield", "inactive")
+
   killProjectile()
   status.setResource("damageAbsorption", 0)
 
@@ -70,6 +74,8 @@ function states.inactive()
     world.debugText("Inactive", mcontroller.position(), "green")
     coroutine.yield()
   end
+
+  animator.setAnimationState("shield", "active")
 
   state:set(states.activeIntangible)
 end
@@ -117,6 +123,8 @@ function states.active()
 end
 
 function states.broken()
+  animator.setAnimationState("shield", "broken")
+
   status.setResource("damageAbsorption", 0)
 
   util.wait(shieldRechargeTime, function()

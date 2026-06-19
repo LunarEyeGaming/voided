@@ -1,0 +1,38 @@
+{
+  "globalTagDefaults" : {
+    "numHits" : "0"
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "shield" : {
+        "default" : "inactive",
+        "states" : {
+          "broken" : {},
+          "inactive" : {},
+          "active" : {}
+        }
+      }
+    },
+    "parts" : {
+      "shield" : {
+        "properties" : {
+          "centered" : true
+        },
+        "partStates" : {
+          "shield" : {
+            "inactive" : {
+              "properties" : {
+                "image" : "auroritesetbonus.png:inactive.<numHits>.<frame>"
+              }
+            },
+            "active" : {
+              "properties" : {
+                "image" : "auroritesetbonus.png:active.<numHits>.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
