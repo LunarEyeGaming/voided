@@ -1,12 +1,12 @@
-require "/tech/doubletap.lua"
 require "/scripts/vec2.lua"
+require "/scripts/util.lua"
+require "/tech/dash/v-dashcheck.lua"
 
 -- State variables
 local dashDirection
 local dashTimer
 local dashCooldownTimer
 local rechargeEffectTimer
-local heldSpecial2LastTick
 
 -- Parameters
 local dashControlForce
@@ -18,7 +18,13 @@ local stopAfterDash
 local rechargeDirectives
 local rechargeEffectTime
 
+local oldInit = init or function() end
+local oldUpdate = update or function() end
+local oldUninit = uninit or function() end
+
 function init()
+  oldInit()
+
   dashDirection = 0
   dashTimer = 0
   dashCooldownTimer = 0
@@ -40,6 +46,8 @@ function uninit()
 end
 
 function update(args)
+  oldUpdate(args)
+
   updateRecharge(args.dt)
 
   if rechargeEffectTimer > 0 then
@@ -76,17 +84,6 @@ function update(args)
       endDash()
     end
   end
-end
-
-function pressedDashThisTick(args)
-  local result
-  if input and input.bindDown then
-    result = input.bindDown("voided", "dash")
-  else
-    result = args.moves["special2"] and not heldSpecial2LastTick
-    heldSpecial2LastTick = args.moves["special2"]
-  end
-  return result
 end
 
 function canDash()

@@ -1,14 +1,16 @@
 {
-  "name" : "v-aimableblink",
+  "name" : "v-aimableblink-special2",  // Variant for using Special 2 instead.
   "type" : "body",
 
   "scripts" : ["v-aimableblink.lua"],
   "animator" : "v-aimableblink.animation",
 
-  "description" : "Tap ^green;[W] ^white;to blink toward your cursor! Cooldown: 0.8s / 2.4s",
+  "description" : "Tap ^blue;[Special 2] ^white;to blink toward your cursor! Cooldown: 0.8s / 2.4s",
   "shortDescription" : "Aimable Blink",
   "rarity" : "Rare",
   "icon" : "/tech/v-aimableblink.png",
+
+  "useSpecial2" : true,
 
   "chipCost" : 2,
 

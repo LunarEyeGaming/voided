@@ -72,12 +72,9 @@ function init()
 
   ticker = VTicker:new()
 
-  local renderConfig = player.getProperty("v-ministareffects-renderConfig", {
-    lightIntervalIdx = 2,
-    useLights = true,
-    useImagesForRays = true,
-    useLiquidParticles = true
-  })
+  local defaults = root.assetJson("/v-defaultsettings.config:ministarRendering")
+  local renderConfig = player.getProperty("v-ministareffects-renderConfig", {})
+  renderConfig = sb.jsonMerge(defaults, renderConfig)
   v_ministarEffects_applyRenderConfig(renderConfig)
 
   -- Initialization code to take care of liquid particles.

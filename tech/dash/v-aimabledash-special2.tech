@@ -1,14 +1,16 @@
 {
-  "name" : "v-aimabledash",
+  "name" : "v-aimabledash-special2",
   "type" : "body",
 
   "scripts" : ["v-aimabledash.lua"],
   "animator" : "v-aimabledash.animation",
 
-  "description" : "Tap ^green;[W] ^white;to dash at your cursor! Cooldown: 0.8s",
+  "description" : "Tap ^blue;[Special 2] ^white;to dash at your cursor! Cooldown: 0.8s",
   "shortDescription" : "Aimable Dash",
   "rarity" : "Uncommon",
   "icon" : "/tech/v-aimabledash.png",
+
+  "useSpecial2" : true,
 
   "chipCost" : 2,
 

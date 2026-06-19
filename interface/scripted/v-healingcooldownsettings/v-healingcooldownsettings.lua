@@ -48,7 +48,8 @@ end
 -- HELPER FUNCTIONS
 function getSettings()
   local defaults = root.assetJson("/v-healingcooldowndefaults.config")
-  local cfg = player.getProperty("v-healingCooldownSettings", defaults)
+  local cfg = player.getProperty("v-healingCooldownSettings", {})
+  cfg = sb.jsonMerge(defaults, cfg)
   populateSettings(cfg)
 end
 

@@ -1,5 +1,6 @@
 require "/scripts/vec2.lua"
 require "/scripts/util.lua"
+require "/tech/dash/v-dashcheck.lua"
 
 local dashCooldownTimer
 local blinkDashCooldownTimer
@@ -23,7 +24,13 @@ local traceParticle
 
 local dashState
 
+local oldInit = init or function() end
+local oldUpdate = update or function() end
+local oldUninit = uninit or function() end
+
 function init()
+  oldInit()
+
   dashCooldownTimer = 0
   rechargeEffectTimer = 0
   blinkDashCooldownTimer = 0
@@ -52,11 +59,15 @@ function init()
 end
 
 function uninit()
+  oldUninit()
+
   status.clearPersistentEffects("movementAbility")
   tech.setParentDirectives()
 end
 
 function update(args)
+  oldUpdate(args)
+
   if blinkDashCooldownTimer > 0 then
     blinkDashCooldownTimer = math.max(0, blinkDashCooldownTimer - args.dt)
     -- if blinkDashCooldownTimer == 0 then
@@ -166,16 +177,12 @@ states = {}
 function states.inactive()
   local args = coroutine.yield()  -- Get args for current tick
 
-  local heldUpLastTick = false
   -- Wait until the right conditions are met for dashing.
-  while not (args.moves["special2"]  -- The player has tapped...
-  and not heldUpLastTick  -- ...but not held, the "special2" movement key
+  while not (pressedDashThisTick(args)  -- The player pressed dash this tick
   and dashCooldownTimer == 0  -- The dash is not in cooldown
   and groundValid()  -- The player is on the ground or can dash in the air
   and not mcontroller.crouching()  -- The player is not crouching
   and not status.statPositive("activeMovementAbilities")) do  -- No current movement abilities are active.
-    heldUpLastTick = args.moves["special2"]
-
     args = coroutine.yield()  -- Get args for next tick.
   end
   local direction = vec2.norm(world.distance(tech.aimPosition(), mcontroller.position()))
