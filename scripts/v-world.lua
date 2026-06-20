@@ -72,7 +72,7 @@ end
 ---Performs `raycastCount` equally spaced raycasts in a radial formation around a `center`, each having a
 ---`minRaycastLength` and a `maxRaycastLength`. The result is a list of items each containing an `angle` at which the
 ---raycast was performed and the resulting `position`. Raycasts without a collision are not included.
----@param args {raycastCount: integer, center: Vec2F, minRaycastLength: number, maxRaycastLength: number,
+---@param args {raycastCount: integer, center: Vec2F, minRaycastLength: number?, maxRaycastLength: number,
 ---collisionSet: CollisionSet?}
 ---@return {angle: number, position: Vec2F, magnitude: number}[]
 function vWorld.radialRaycast(args)
@@ -83,12 +83,12 @@ function vWorld.radialRaycast(args)
     local angle = 2 * math.pi * i / args.raycastCount
 
     -- Attempt raycast
-    local raycast = world.lineCollision(args.center, vec2.add(args.center, vec2.withAngle(angle, args.maxRaycastLength)))
+    local raycast = world.lineCollision(args.center, vec2.add(args.center, vec2.withAngle(angle, args.maxRaycastLength)), args.collisionSet)
     -- If successful...
     if raycast then
       -- If the distance from the target to the raycast exceeds args.minRaycastLength...
       local magnitude = world.magnitude(args.center, raycast)
-      if magnitude >= args.minRaycastLength then
+      if magnitude >= (args.minRaycastLength or 0) then
 
         table.insert(results, {angle = angle, position = raycast, magnitude = magnitude})
       end

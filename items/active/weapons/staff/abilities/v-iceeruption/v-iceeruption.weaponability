@@ -1,0 +1,59 @@
+{
+  "ability" : {
+    "type" : "v-iceeruption",
+    "name" : "Icicle Eruption",
+    "scripts" : ["/items/active/weapons/staff/abilities/v-iceeruption/v-iceeruption.lua"],
+    "class" : "VIceEruption",
+
+    "maxCastRange" : 50,
+
+    "energyPerShot" : 300,
+
+    "chargeAnimationState" : "chargeslow",
+
+    "projectileType" : "v-gianticiclespawner",
+    "projectileParameters" : {
+      "baseDamage" : 4
+    },
+    "projectileCount" : 20,
+    "eruptionSize" : 20,
+
+    "stances" : {
+      "charge" : {
+        "duration" : 2.0,
+        "armRotation" : 20,
+        "weaponRotation" : -20,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : true
+      },
+      "charged" : {
+        "armRotation" : 20,
+        "weaponRotation" : -20,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "discharge" : {
+        "duration" : 0.5,
+        "armRotation" : 20,
+        "weaponRotation" : -20,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      },
+      "cooldown" : {
+        "duration" : 0.5,
+        "armRotation" : -45,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false
+      }
+    }
+  }
+}

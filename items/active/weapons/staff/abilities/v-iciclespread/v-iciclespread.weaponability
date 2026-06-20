@@ -1,0 +1,61 @@
+{
+  "ability" : {
+    "type" : "v-iciclespread",
+    "name" : "Icicle Spread",
+    "scripts" : ["/items/active/weapons/staff/abilities/v-iciclespread/v-iciclespread.lua"],
+    "class" : "VIcicleSpread",
+
+    "maxCastRange" : 50,
+
+    "energyPerShot" : 50,
+
+    "chargeAnimationState" : "charge",
+
+    "projectileType" : "v-icicle",
+    "projectileParameters" : {
+      "baseDamage" : 5
+    },
+    "projectileCount" : 6,
+    "angleSpread" : 5,
+
+    "stances" : {
+      "charge" : {
+        "duration" : 1.0,
+        "armRotation" : -20,
+        "weaponRotation" : -70,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "charged" : {
+        "armRotation" : -20,
+        "weaponRotation" : -70,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "discharge" : {
+        "duration" : 0.5,
+        "armRotation" : -60,
+        "weaponRotation" : -60,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : true
+      },
+      "cooldown" : {
+        "duration" : 0.5,
+        "armRotation" : -45,
+        "weaponRotation" : 0,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : true,
+
+        "aimAngle" : 0
+      }
+    }
+  }
+}

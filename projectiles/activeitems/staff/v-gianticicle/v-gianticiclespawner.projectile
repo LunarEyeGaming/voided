@@ -1,0 +1,30 @@
+{
+  "projectileName" : "v-gianticiclespawner",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "illusion",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 50,
+  "speed" : 0,
+  "timeToLive" : 1.0,
+  "timeToLiveRange" : [0.0, 1.0],
+  "bounces" : -1,
+  "onlyHitTerrain" : true,
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-gianticicle",
+      "inheritDamageFactor" : 1
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/gun/tank_shot.ogg" ]
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/npc/boss/kluexboss_iceeruption1.ogg", "/sfx/npc/boss/kluexboss_iceeruption2.ogg" ]
+    }
+  ],
+
+  "scripts" : [ "/scripts/projectiles/v-variedtimetolive.lua" ]
+}
