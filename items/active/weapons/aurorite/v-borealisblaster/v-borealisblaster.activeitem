@@ -1,26 +1,26 @@
 {
-  "itemName" : "v-prismaticcataclysm",
+  "itemName" : "v-borealisblaster",
   "level" : 8,
   "price" : 1500,
   "maxStack" : 1,
   "rarity" : "Legendary",
   "customRarity" : "Mythical",
   "description" : "An amazingly powerful gun fueled by prisilite stars.",
-  "shortdescription" : "^aurorite;Prismatic Cataclysm",
+  "shortdescription" : "^aurorite;Borealis Blaster",
   "tooltipKind" : "gun",
   "category" : "rocketLauncher",
   "twoHanded" : true,
   "itemTags" : ["weapon","ranged","rocketlauncher"],
 
   "inventoryIcon" : [
-    { "image" : "prismaticcataclysm.png:idle.1" }
+    { "image" : "borealisblaster.png:idle.1" }
   ],
 
-  "animation" : "v-prismaticcataclysm.animation",
+  "animation" : "v-borealisblaster.animation",
   "animationParts" : {
     "butt" : "",
-    "middle" : "prismaticcataclysm.png",
-    "middleFullbright" : "prismaticcataclysmunlit.png",
+    "middle" : "borealisblaster.png",
+    "middleFullbright" : "borealisblasterunlit.png",
     "barrel" : "",
     "muzzleFlash" : ""
   },
