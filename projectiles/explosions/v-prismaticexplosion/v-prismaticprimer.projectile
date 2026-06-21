@@ -1,0 +1,25 @@
+{
+  "projectileName" : "v-prismaticprimer",
+  "image" : "prismaticprimer.png",
+  "physics" : "laser",
+  "movementSettings" : {
+    "collisionEnabled" : false
+  },
+  "lightColor" : [56, 75, 161],
+  "bounces" : 0,
+  "timeToLive" : 1.5,
+  "animationCycle" : 1.5,
+  "fullbright" : true,
+  "speed" : 0,
+  "frameNumber" : 15,
+  "power" : 0,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-prismaticexplosion/v-prismaticexplosionlarge.config"
+    }
+  ],
+  "piercing" : true
+}

@@ -21,7 +21,7 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1,
+            "frames" : 6,
             "cycle" : 2.0,
             "mode" : "loop"
           }
@@ -57,9 +57,8 @@
       "middleFullbright" : {
         "properties" : {
           "centered" : true,
-          "offset" : [0.5, 0.375],
+          "anchorPart" : "middle",
           "zLevel" : 1,
-          "transformationGroups" : ["weapon"],
           "fullbright" : true
         },
         "partStates" : {

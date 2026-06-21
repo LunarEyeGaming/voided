@@ -3,7 +3,7 @@
   "image" : "auroriterocket.png",
   "animationCycle" : 0.1,
   "frameNumber" : 1,
-  "lightColor" : [77, 134, 253],
+  "lightColor" : [56, 75, 161],
   "pointLight" : true,
   "fullbright" : true,
 
@@ -52,6 +52,28 @@
     //     }
     //   }
     // }
+    {
+      "time" : 0.05,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/icecloudpuff/icecloudpuff.animation",
+        "position" : [0, 0],
+        "initialVelocity" : [2, 0],
+        "fullbright" : false,
+        "size" : 0.75,
+        "layer" : "middle",
+        "timeToLive" : 2.0,
+        "fade" : 1,
+        "collidesLiquid" : false,
+        "variance" : {
+          "size" : 0.25,
+          "initialVelocity" : [1, 1],
+          "position" : [0, 0]
+        }
+      }
+    }
   ],
 
   "actionOnReap" : [

@@ -2,7 +2,7 @@
   "projectileName" : "v-prismbeam",
   "physics" : "laser",
   "bounces" : 0,
-  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "image" : "prismbeam.png",
   "fullbright" : true,
   "damageType" : "NoDamage",
   "animationCycle" : 1,
@@ -29,7 +29,7 @@
         "size" : 1.0,
         "timeToLive" : 0.5,
         "fullbright" : true,
-        "layer" : "middle",
+        "layer" : "back",
         "collidesForeground" : false,
         "variance" : {
           "position" : [0.0, 0.0],
@@ -45,22 +45,10 @@
     },
     {
       "action" : "projectile",
-      "type" : "v-proxyprojectile",
-      "inheritDamageFactor" : 1,
-      "config" : {
-        "movementSettings" : {
-          "collisionEnabled" : false
-        },
-        "timeToLive" : 1.5,
-        "actionOnReap" : [
-          {
-            "action" : "config",
-            "file" : "/projectiles/explosions/v-prismaticexplosion/v-prismaticexplosionlarge.config"
-          }
-        ]
-      }
+      "type" : "v-prismaticprimer",
+      "inheritDamageFactor" : 1
     }
   ],
-  "lightColor" : [235, 161, 253],
+  "lightColor" : [56, 75, 161],
   "damageKind" : "plasmabullet"
 }
