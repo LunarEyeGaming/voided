@@ -448,6 +448,38 @@
     }]
   ],
 
+  "v-gammaraysentryTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.650, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.200, "item" : ["inferniteore", 2]},
+        {"weight" : 0.150, "item" : "scorchedcore"},
+        {"weight" : 0.050, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
+  "v-oilspillerTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.650, "pool" : "noMeatMonsterTreasure"},
+        {"weight" : 0.200, "item" : ["liquidoil", 2]},
+        {"weight" : 0.150, "item" : "scorchedcore"},
+        {"weight" : 0.050, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+
   // -------------------------------------------------------------------------------------------------------------------
   // ------------------------------------------------------ENTROPIC-----------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
