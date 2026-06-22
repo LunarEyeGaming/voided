@@ -98,18 +98,10 @@
                  "y":424
                 }, 
                 {
-                 "gid":8882,
+                 "gid":8949,
                  "height":8,
-                 "id":873,
+                 "id":874,
                  "name":"",
-                 "properties":
-                    {
-                     "object":"v-cryovolcanohole"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string"
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -313,7 +305,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":874,
+ "nextobjectid":875,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -460,12 +452,16 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":8836,
+         "firstgid":8841,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }, 
         {
-         "firstgid":8882,
+         "firstgid":8889,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
+        }, 
+        {
+         "firstgid":8949,
+         "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-entropic.json"
         }],
  "tilewidth":8,
  "type":"map",
