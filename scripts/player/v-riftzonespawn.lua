@@ -56,6 +56,7 @@ function init()
     return
   end
 
+  -- minSpawnCooldown = 0
   minSpawnCooldown = 60 * 60
   minPlanetStayTime = 60 * 30
   spawnAttemptInterval = 30
@@ -193,12 +194,13 @@ end
 
 function spawnRiftZones()
   local riftZones = world.getProperty("v-riftZones") or jarray()
-  local deathTime = world.time() + math.random() * duration
   for _ = 1, riftZoneCount do
     local size = world.size()
     -- TODO: use a better randomizer that prevents rifts from intersecting.
     -- Possible solution: Break up the world into cells. Then, shuffle the cells and spawn a rift at a random location
     -- in each cell.
+    local timeToLive = math.random() * duration
+    local deathTime = world.time() + timeToLive
     local pos = {math.random() * size[1], math.random() * size[2]}
     table.insert(riftZones, {
       position = pos,
