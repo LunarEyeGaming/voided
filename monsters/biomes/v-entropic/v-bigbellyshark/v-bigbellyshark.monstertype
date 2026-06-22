@@ -6,6 +6,8 @@
   "categories" : [ "v-bigbellyshark" ],
   "parts" : [ "body" ],
 
+  "dropPools" : [ { "default" : "v-bigbellysharkTreasure", "bow" : "v-bigbellysharkHunting" } ],
+
   "animation" : "v-bigbellyshark.animation",
 
   "baseParameters" : {
@@ -182,12 +184,5 @@
     "capturable" : true,
     "captureHealthFraction" : 0.5,
     "nametagColor" : [64, 200, 255]
-  },
-
-  "dropPools" : [
-    {
-      "default" : "largefishtreasure",
-      "bow" : "largefishtreasure"
-    }
-  ]
+  }
 }

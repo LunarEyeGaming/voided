@@ -237,9 +237,101 @@
       ],
       "allowDuplication" : false
     } ]
-  ]
+  ],
 
   // -------------------------------------------------------------------------------------------------------------------
   // ------------------------------------------------------ENTROPIC-----------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
+
+  "v-archerfishHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "rawfish"},
+        {"weight" : 0.5, "item" : "cryonicextract"},
+        {"weight" : 0.25, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-bigbellysharkHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "rawfish"},
+        {"weight" : 0.5, "item" : "cryonicextract"},
+        {"weight" : 0.25, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-icewormHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "alienmeat"},
+        {"weight" : 0.5, "item" : "cryonicextract"},
+        {"weight" : 0.25, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-spinilusHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "rawfish"},
+        {"weight" : 0.25, "item" : "cryonicextract"},
+        {"weight" : 0.25, "item" : "hardenedcarapace"},
+        {"weight" : 0.25, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-spinilusbabyHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "rawfish"},
+        {"weight" : 0.25, "item" : "cryonicextract"},
+        {"weight" : 0.25, "item" : "hardenedcarapace"},
+        {"weight" : 0.25, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ],
+
+  "v-urchinHunting" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.5, "item" : "rawfish"},
+        {"weight" : 0.5, "item" : "cryonicextract"},
+        {"weight" : 0.25, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.6, 0],
+        [0.4, 1]
+      ],
+      "allowDuplication" : false
+    } ]
+  ]
 }

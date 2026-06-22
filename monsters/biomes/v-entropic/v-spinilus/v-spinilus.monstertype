@@ -6,6 +6,8 @@
   "categories" : [ "v-spinilus" ],
   "parts" : [ "body" ],
 
+  "dropPools" : [ { "default" : "v-spinilusTreasure", "bow" : "v-spinilusHunting" } ],
+
   "animation" : "v-spinilus.animation",
 
   "baseParameters" : {
@@ -127,12 +129,5 @@
     "capturable" : true,
     "captureHealthFraction" : 0.5,
     "nametagColor" : [64, 200, 255]
-  },
-
-  "dropPools" : [
-    {
-      "default" : "largefishtreasure",
-      "bow" : "largefishtreasure"
-    }
-  ]
+  }
 }

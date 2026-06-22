@@ -8,7 +8,7 @@
 
   "animation" : "v-urchin.animation",
 
-  "dropPools" : [ "v-firefloaterTreasure" ],
+  "dropPools" : [ { "default" : "v-urchinTreasure", "bow" : "v-urchinHunting" } ],
 
   "baseParameters" : {
     "scripts" : [

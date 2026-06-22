@@ -496,6 +496,92 @@
       ],
       "allowDuplication" : false
     }]
+  ],
+  "v-icewormTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.900, "pool" : "basicMonsterTreasure"},
+        {"weight" : 0.100, "item" : "cryonicextract"},
+        {"weight" : 0.050, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-archerfishTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.900, "pool" : "largefishtreasure"},
+        {"weight" : 0.100, "item" : "cryonicextract"},
+        {"weight" : 0.050, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-bigbellysharkTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.900, "pool" : "largefishtreasure"},
+        {"weight" : 0.100, "item" : "cryonicextract"},
+        {"weight" : 0.050, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-spinilusTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "largefishtreasure"},
+        {"weight" : 0.100, "item" : "cryonicextract"},
+        {"weight" : 0.100, "item" : "hardenedcarapace"},
+        {"weight" : 0.050, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-spinilusbabyTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.800, "pool" : "largefishtreasure"},
+        {"weight" : 0.100, "item" : "cryonicextract"},
+        {"weight" : 0.100, "item" : "hardenedcarapace"},
+        {"weight" : 0.050, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
+  ],
+  "v-urchinTreasure" : [
+    [1, {
+      "pool" : [
+        {"weight" : 0.900, "pool" : "largefishtreasure"},
+        {"weight" : 0.100, "item" : "cryonicextract"},
+        {"weight" : 0.050, "item" : "v-manifoldstructure"}
+      ],
+      "poolRounds" : [
+        [0.20, 0],
+        [0.80, 1]
+      ],
+      "allowDuplication" : false
+    }]
   ]
 
 }

@@ -6,6 +6,8 @@
   "categories" : [ "v-archerfish" ],
   "parts" : [ "head", "tail", "fin" ],
 
+  "dropPools" : [ { "default" : "v-archerfishTreasure", "bow" : "v-archerfishHunting" } ],
+
   "animation" : "v-archerfish.animation",
 
   "baseParameters" : {
@@ -150,12 +152,5 @@
     "capturable" : true,
     "captureHealthFraction" : 0.5,
     "nametagColor" : [64, 200, 255]
-  },
-
-  "dropPools" : [
-    {
-      "default" : "largefishtreasure",
-      "bow" : "largefishtreasure"
-    }
-  ]
+  }
 }

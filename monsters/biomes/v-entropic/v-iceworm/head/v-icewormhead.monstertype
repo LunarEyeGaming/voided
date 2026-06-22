@@ -8,7 +8,7 @@
 
   "animation" : "v-icewormhead.animation",
 
-  "dropPools" : ["v-mutanteelTreasure"],
+  "dropPools" : [ { "default" : "v-icewormTreasure", "bow" : "v-icewormHunting" } ],
 
   "baseParameters" : {
     "scripts" : [
