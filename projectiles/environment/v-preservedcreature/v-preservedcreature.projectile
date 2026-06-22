@@ -1,6 +1,9 @@
 {
   "projectileName" : "v-preservedcreature",
   "physics" : "grenade",
+  "movementSettings" : {
+    "liquidBuoyancy" : 1.25
+  },
   "bounces" : -1,
   "image" : "preservedcreature.png",
   "fullbright" : false,
