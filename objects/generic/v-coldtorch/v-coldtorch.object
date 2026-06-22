@@ -1,0 +1,109 @@
+{
+  "objectName" : "v-coldtorch",
+  "colonyTags" : ["light"],
+  "printable" : false,
+  "rarity" : "Common",
+  "category" : "light",
+  "price" : 5,
+
+  "description" : "This torch flickers softly with a cold, water-resistant flame.",
+  "shortdescription" : "Cold Torch",
+  "race" : "generic",
+
+  "apexDescription" : "An excellent survival tool.",
+  "avianDescription" : "Torches are essential.",
+  "floranDescription" : "Torch ssscare Floran, but Floran musst masster torch.",
+  "glitchDescription" : "Sentimental. Water-resistant torches are indispensable.",
+  "humanDescription" : "A torch to light the way.",
+  "hylotlDescription" : "A torch that survives underwater. Great for diving deep underground.",
+  "novakidDescription" : "A torch. Can't live without 'em!",
+
+  "inventoryIcon" : "coldtorchicon.png",
+  "orientations" : [
+    {
+      "image" : "coldtorch.png:<color>.<frame>",
+      "imagePosition" : [1, 0],
+
+      "animationParts" : {
+        "bg" : "coldtorch.png",
+        "fg" : "coldtorchlit.png"
+      },
+      "animationPosition" : [1, 0],
+
+      "spaces" : [ [0, 0], [0, 1] ],
+      "fgAnchors" : [ [0, -1] ],
+
+      "direction" : "right"
+    },
+
+    {
+      "image" : "coldtorchleft.png:<color>.<frame>",
+      "imagePosition" : [0, 0],
+
+      "animationParts" : {
+        "bg" : "coldtorchleft.png",
+        "fg" : "coldtorchleftlit.png"
+      },
+      "animationPosition" : [0, 0],
+
+      "spaces" : [ [0, 0], [0, 1] ],
+      "fgAnchors" : [ [-1, 0] ],
+
+      "direction" : "right"
+    },
+
+    {
+      "image" : "coldtorchright.png:<color>.<frame>",
+      "imagePosition" : [2, 0],
+
+      "animationParts" : {
+        "bg" : "coldtorchright.png",
+        "fg" : "coldtorchrightlit.png"
+      },
+      "animationPosition" : [2, 0],
+
+      "spaces" : [ [0, 0], [0, 1] ],
+      "fgAnchors" : [ [1, 0] ],
+
+      "direction" : "right"
+    },
+
+    {
+      "image" : "coldtorch.png:<color>.<frame>",
+      "imagePosition" : [1, 0],
+
+      "animationParts" : {
+        "bg" : "coldtorch.png",
+        "fg" : "coldtorchlit.png"
+      },
+      "animationPosition" : [1, 0],
+
+      "spaces" : [ [0, 0], [0, 1] ],
+      "bgAnchors" : [ [0, 0] ],
+
+      "direction" : "right"
+    }
+  ],
+
+  "soundEffect" : "/sfx/objects/torch.ogg",
+  "soundEffectRangeMultiplier" : 0.5,
+
+  "animation" : "v-coldtorch.animation",
+  "animationParts" : {
+    "bg" : "coldtorch.png",
+    "fg" : "coldtorchlit.png"
+  },
+  "animationCustom" : {
+    "sounds" : {
+      "on" : [ "/sfx/objects/torch_on1.ogg", "/sfx/objects/torch_on2.ogg" ],
+      "off" : [ "/sfx/objects/torch_off1.ogg", "/sfx/objects/torch_off2.ogg", "/sfx/objects/torch_off3.ogg" ]
+    }
+  },
+
+  "scripts" : [ "/objects/wired/light/light.lua" ],
+  "scriptDelta" : 60,
+
+  // "interactive" : false,
+
+  "inputNodes" : [ [0, 0] ]
+}

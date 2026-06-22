@@ -1,0 +1,143 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "light" : {
+        "default" : "off",
+        "states" : {
+          "off" : {
+            "properties" : {
+              "particleEmittersOff" : [ "torch" ]
+            }
+          },
+          "on" : {
+            "frames" : 4,
+            "cycle" : 0.5,
+            "mode" : "loop",
+            "properties" : {
+              "particleEmittersOn" : [ "torch" ]
+            }
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "bg" : {
+        "properties" : {
+          "centered" : false
+        },
+
+        "partStates" : {
+          "light" : {
+            "off" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.off"
+              }
+            },
+
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.<frame>",
+                "fullbright" : true
+              }
+            }
+          }
+        }
+      },
+      "fg" : {
+        "properties" : {
+          "centered" : false,
+          "zLevel" : 1
+        },
+
+        "partStates" : {
+          "light" : {
+            "off" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.off"
+              }
+            },
+
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>:<color>.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "lights" : {
+    "glow1" : {
+      "active" : true,
+      "color" : [135, 222, 206],
+
+      "flickerPeriod" : 0.3,
+      "flickerMinIntensity" : 0.95,
+      "flickerMaxIntensity" : 1,
+      "flickerPeriodVariance" : 0.075,
+      "flickerIntensityVariance" : 0.025
+    },
+    "glow2" : {
+      "active" : true,
+      "color" : [183, 135, 222],
+
+      "flickerPeriod" : 0.3,
+      "flickerMinIntensity" : 0.95,
+      "flickerMaxIntensity" : 1,
+      "flickerPeriodVariance" : 0.075,
+      "flickerIntensityVariance" : 0.025
+    }
+  },
+
+  "particleEmitters" : {
+    "torch" : {
+      "emissionRate" : 1.0,
+      "emissionRateVariance" : 0.5,
+      "active" : true,
+
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "ember",
+            "position" : [0.4, 1.125],
+            "size" : 1.0,
+            "color" : [135, 222, 206, 255],
+            "light" : [34, 116, 161],
+            "fade" : 0.9,
+            "initialVelocity" : [0.0, 5.0],
+            "finalVelocity" : [0.0, -50.0],
+            "approach" : [0, 20],
+            "timeToLive" : 0.6,
+            "layer" : "middle",
+            "variance" : {
+              "initialVelocity" : [1.5, 2.0]
+            }
+          }
+        },
+        {
+          "particle" : {
+            "type" : "ember",
+            "position" : [0.4, 1.125],
+            "size" : 1.0,
+            "color" : [183, 135, 222, 255],
+            "light" : [77, 34, 161],
+            "fade" : 0.9,
+            "initialVelocity" : [0.0, 5.0],
+            "finalVelocity" : [0.0, -50.0],
+            "approach" : [0, 20],
+            "timeToLive" : 0.6,
+            "layer" : "middle",
+            "variance" : {
+              "initialVelocity" : [1.5, 2.0]
+            }
+          }
+        }
+      ],
+
+      "randomSelectCount" : 1
+    }
+  }
+}
