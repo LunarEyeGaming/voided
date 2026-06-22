@@ -1,0 +1,21 @@
+{
+  "projectileName" : "v-nulliumbullet",
+  "physics" : "laser",
+  "bounces" : 0,
+  "image" : "nulliumbullet.png",
+  "animationCycle" : 0.5,
+  "frameNumber" : 2,
+  "power" : 50,
+  "speed" : 75,
+  "fullbright" : true,
+  "supportsProcessing" : true,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-nulliumbulletexplosion/v-nulliumbulletexplosion.config"
+    }
+  ],
+  "lightColor" : [83, 28, 97],
+  "damageKind" : "v-voidplasmabullet",
+  "statusEffects" : [ "v-voideffect" ]
+}

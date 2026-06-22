@@ -1,0 +1,20 @@
+{
+  "projectileName" : "v-spacetimeredirect",
+  "physics" : "hover",
+  "bounces" : -1,
+  "speed" : 50,
+  "timeToLive" : 20,
+  "lightColor" : [51, 41, 71],
+  "image" : "spacetimeredirect.png",
+  "animationCycle" : 0.4,
+  "frameNumber" : 1,
+  "fullbright" : true,
+  "flippable" : true,
+  "onlyHitTerrain" : true,
+  "supportsProcessing" : true,
+
+  "scripts" : [ "v-spacetimeredirect.lua" ],
+  "scriptDelta" : 3,
+
+  "persistentAudio" : "/sfx/projectiles/astraltear_loop.ogg"
+}
