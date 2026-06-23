@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":52,
+ "tilecount":55,
  "tiledversion":"1.11.2",
  "tileheight":8,
  "tileproperties":
@@ -208,6 +208,19 @@
      "51":
         {
          "material":"v-frozenwood"
+        },
+     "52":
+        {
+         "liquid":"v-liquidnitrogen"
+        },
+     "53":
+        {
+         "liquid":"v-liquidnitrogen",
+         "source":"true"
+        },
+     "54":
+        {
+         "material":"v-brittleice"
         },
      "6":
         {
@@ -421,6 +434,19 @@
          "material":"string"
         },
      "51":
+        {
+         "material":"string"
+        },
+     "52":
+        {
+         "liquid":"string"
+        },
+     "53":
+        {
+         "liquid":"string",
+         "source":"string"
+        },
+     "54":
         {
          "material":"string"
         },
@@ -728,6 +754,24 @@
      "51":
         {
          "image":"..\/images\/tilesandliquids\/frozenwood.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "52":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidnitrogen.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "53":
+        {
+         "image":"..\/images\/tilesandliquids\/liquidnitrogensource.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "54":
+        {
+         "image":"..\/images\/tilesandliquids\/brittleice.png",
          "imageheight":8,
          "imagewidth":8
         },

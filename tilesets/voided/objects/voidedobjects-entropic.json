@@ -22,9 +22,9 @@
      "tilesetDirection":"string"
     },
  "spacing":0,
- "tilecount":2,
+ "tilecount":4,
  "tiledversion":"1.11.2",
- "tileheight":16,
+ "tileheight":24,
  "tileproperties":
     {
      "0":
@@ -40,6 +40,20 @@
          "imagePositionY":"-8",
          "object":"v-cryowalllight",
          "tilesetDirection":"right"
+        },
+     "2":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-iceboulder",
+         "tilesetDirection":"right"
+        },
+     "3":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"-16",
+         "object":"v-iceboulder",
+         "tilesetDirection":"right"
         }
     },
  "tilepropertytypes":
@@ -52,6 +66,20 @@
          "tilesetDirection":"string"
         },
      "1":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "2":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "3":
         {
          "imagePositionX":"string",
          "imagePositionY":"string",
@@ -72,6 +100,18 @@
          "image":"..\/images\/objects\/cryowalllight.png",
          "imageheight":16,
          "imagewidth":16
+        },
+     "2":
+        {
+         "image":"..\/images\/objects\/iceboulder.png",
+         "imageheight":24,
+         "imagewidth":24
+        },
+     "3":
+        {
+         "image":"..\/images\/objects\/icebouldertop.png",
+         "imageheight":24,
+         "imagewidth":24
         }
     },
  "tilewidth":64,
