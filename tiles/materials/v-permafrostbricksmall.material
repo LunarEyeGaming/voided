@@ -1,0 +1,25 @@
+{
+  "materialId" : 1231,
+  "materialName" : "v-permafrostbricksmall",
+  "particleColor" : [91, 189, 158, 255],
+  "itemDrop" : "v-permafrostbricksmallmaterial",
+  "description" : "<todo>",
+  "shortdescription" : "Permafrost Brick",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_ice.ogg",
+  "health" : 8,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-permafrostbricksmall.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 3200
+  }
+}

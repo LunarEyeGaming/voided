@@ -1,0 +1,23 @@
+{
+  "materialId" : 1230,
+  "materialName" : "v-permafrostplatform",
+  "collisionKind" : "platform",
+  "itemDrop" : "v-permafrostplatform",
+  "shortdescription" : "Permafrost Platform",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_ice.ogg",
+  "category" : "Supports",
+
+  "renderTemplate" : "/tiles/platformtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-permafrostplatform.png",
+    "variants" : 1,
+    "lightTransparent" : true,
+    "occludesBelow" : false,
+    "multiColored" : true,
+    "zLevel" : 0
+  }
+}

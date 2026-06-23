@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":48,
+ "tilecount":52,
  "tiledversion":"1.11.2",
  "tileheight":8,
  "tileproperties":
@@ -189,9 +189,25 @@
         {
          "material":"v-voidstone2"
         },
+     "48":
+        {
+         "material":"v-permafrostplatform"
+        },
+     "49":
+        {
+         "material":"v-permafrostbricksmall"
+        },
      "5":
         {
          "material":"v-rubberblock"
+        },
+     "50":
+        {
+         "material":"v-frozenlog"
+        },
+     "51":
+        {
+         "material":"v-frozenwood"
         },
      "6":
         {
@@ -388,7 +404,23 @@
         {
          "material":"string"
         },
+     "48":
+        {
+         "material":"string"
+        },
+     "49":
+        {
+         "material":"string"
+        },
      "5":
+        {
+         "material":"string"
+        },
+     "50":
+        {
+         "material":"string"
+        },
+     "51":
         {
          "material":"string"
         },
@@ -669,9 +701,33 @@
          "imageheight":8,
          "imagewidth":8
         },
+     "48":
+        {
+         "image":"..\/images\/tilesandliquids\/permafrostplatform.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "49":
+        {
+         "image":"..\/images\/tilesandliquids\/permafrostbricksmall.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
      "5":
         {
          "image":"..\/images\/tilesandliquids\/rubberblock.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "50":
+        {
+         "image":"..\/images\/tilesandliquids\/frozenlog.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "51":
+        {
+         "image":"..\/images\/tilesandliquids\/frozenwood.png",
          "imageheight":8,
          "imagewidth":8
         },
