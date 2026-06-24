@@ -50,6 +50,7 @@ local state
 local deferredTasks
 
 local wasForceKilled
+local initialized
 
 function init()
   scanRadius = 35
@@ -134,6 +135,8 @@ function init()
   state:set(states.postInit)
 
   deferredTasks = {}
+
+  initialized = true
 end
 
 function update(dt)
@@ -142,6 +145,11 @@ function update(dt)
   state:update(dt)
 
   lightningController:update(dt)
+
+  -- if world.players()[1] and not world.entityExists(world.players()[1]) then
+  --   sb.logInfo("Spawning monster")
+  --   world.spawnMonster("v-riftzonecleanup", mcontroller.position(), {persistent = true})
+  -- end
 
   -- Suppress updates to tiles if too far away from any players to prevent loading chunks, causing a chain reaction of
   -- rift zones loading into existence.
@@ -647,9 +655,21 @@ end
 
 function cleanUp()
   if not cleanedUp then
+    if not initialized then return end
+
     clearMatMods(scanRadius)
-    clearPlacedBlocks(placedBlocksFG, "foreground")
-    clearPlacedBlocks(placedBlocksBG, "background")
+    local blocksToClearFG = getBlocksToClear(placedBlocksFG, "foreground")
+    local blocksToClearBG = getBlocksToClear(placedBlocksBG, "background")
+    clearOres(placedOresFG, "foreground")
+    clearOres(placedOresBG, "background")
+
+    world.spawnMonster("v-riftzonecleanup", mcontroller.position(), {
+      persistent = true,
+      blocksToClearFG = blocksToClearFG,
+      blocksToClearBG = blocksToClearBG,
+      -- oresToClearFG = oresToClearFG,
+      -- oresToClearBG = oresToClearBG
+    })
   end
 end
 
@@ -690,38 +710,46 @@ function attemptRemoveMatMod(pos)
   end
 end
 
-function clearPlacedBlocks(blocks, layer)
+function getBlocksToClear(blocks, layer)
   local blocksToClear = {}
   if not blocks then
     sb.logError("v-riftzone.lua: clearPlacedBlocks called with no blocks defined")
     return
   end
+  local i = 0
   for posString, _ in pairs(blocks) do
     local pos = vVec2.iFromString(posString)
     table.insert(blocksToClear, pos)
+    i = i + 1
+
+    if i >= MAX_TILES_TO_DESTROY then
+      break
+    end
   end
 
-  if #blocksToClear > MAX_TILES_TO_DESTROY then
-    blocksToClear[MAX_TILES_TO_DESTROY + 1] = nil
-  end
+  return blocksToClear
 
-  world.damageTiles(blocksToClear, layer, mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
+  -- world.damageTiles(blocksToClear, layer, mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
 end
 
-function clearPlacedOres(ores, layer)
+function clearOres(ores, layer)
   local oresToClear = {}
   if not ores then
     sb.logError("v-riftzone.lua: clearPlacedOres called with no ores defined")
     return
   end
+  local i = 0
   for posString, _ in pairs(ores) do
     local pos = vVec2.iFromString(posString)
     table.insert(oresToClear, pos)
+    i = i + 1
+
+    if i >= MAX_TILES_TO_DESTROY then
+      break
+    end
   end
 
-  if #oresToClear > MAX_TILES_TO_DESTROY then
-    oresToClear[MAX_TILES_TO_DESTROY + 1] = nil
-  end
+  -- return oresToClear
 
   for _, tile in ipairs(oresToClear) do
     world.placeMod(tile, layer, invisibleOre)
