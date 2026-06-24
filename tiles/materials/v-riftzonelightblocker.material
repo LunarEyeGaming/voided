@@ -1,0 +1,22 @@
+{
+  "materialId" : 1234,
+  "materialName" : "v-riftzonelightblocker",
+  "particleColor" : [51, 41, 71, 255],
+  "description" : "It feels like there's a much bigger space here.",
+  "shortdescription" : "",
+  "glitchDescription" : "Shocked. I am detecting emptiness for light years in this region.",
+  "floranDescription" : "Big empty ssspace.",
+  "footstepSound" : "/assetmissing.wav",
+  "health" : 2147483648,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "lightblocker.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 470
+  }
+}

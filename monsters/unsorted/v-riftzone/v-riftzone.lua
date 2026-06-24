@@ -502,7 +502,7 @@ function updateMaterials(radius)
         table.insert(oresToPlaceBG, frontScanPos)
       end
     else
-      table.insert(blocksToPlaceBG, {pos = frontScanPos, material = "lightblocker"})
+      table.insert(blocksToPlaceBG, {pos = frontScanPos, material = "v-riftzonelightblocker"})
     end
   end
 
