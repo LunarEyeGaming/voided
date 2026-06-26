@@ -20,6 +20,12 @@
             "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "idle"
+          },
+          "reject" : {
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "transition",
+            "transition" : "idle"
           }
         }
       }
@@ -28,7 +34,8 @@
       "item" : {
         "properties" : {
           "centered" : true,
-          "offset" : [0, 0.0]
+          "offset" : [0, 0.0],
+          "focalPoint" : [0, 1.5]
         },
         "partStates" : {
           "item" : {
@@ -45,6 +52,11 @@
             "activatefail" : {
               "properties" : {
                 "image" : "<partImage>:activatefail.<frame>"
+              }
+            },
+            "reject" : {
+              "properties" : {
+                "image" : "<partImage>:reject.<frame>"
               }
             }
           }
@@ -72,6 +84,11 @@
               "properties" : {
                 "image" : "<partImage>:activatefail.<frame>"
               }
+            },
+            "reject" : {
+              "properties" : {
+                "image" : "<partImage>:reject.<frame>"
+              }
             }
           }
         }
@@ -81,6 +98,7 @@
 
   "sounds" : {
     "activate" : [ "/sfx/melee/elemental_aura_activate.ogg" ],
-    "activateFail" : [ "/sfx/melee/elemental_aura_deactivate1.ogg" ]
+    "activateFail" : [ "/sfx/melee/elemental_aura_deactivate1.ogg" ],
+    "reject" : [ "/sfx/melee/tesla_shock_kill.ogg" ]
   }
 }

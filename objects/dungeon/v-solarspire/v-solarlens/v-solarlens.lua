@@ -40,6 +40,7 @@ local beamImpactSoundTimer
 local lensState
 local isFixed  -- Controlled by both message handlers and the state machine. Used as input into the state machine.
 -- storage.isFixed is used by the update function to determine whether or not to fire a damaging beam.
+local isScrewingUp
 
 -- #render_workaround: Lens beams sometimes render above other solar lenses, making them look weird. The workaround to
 -- this is to shorten the beam from the sending lens and add a beam connection sprite to the receiving lens at the same
@@ -120,6 +121,7 @@ function init()
 
   message.setHandler("v-solarLens-fix", function()
     isFixed = true
+    return not isScrewingUp
   end)
 
   message.setHandler("v-solarLens-screwUp", function()
@@ -526,6 +528,8 @@ end
 function states.screwUp()
   storage.isFixed = false
 
+  isScrewingUp = true
+
   animator.setAnimationState("lens", "zap")
   animator.setAnimationState("beamtelegraph", "on")
   animator.setParticleEmitterActive("telegraphSparks", true)
@@ -558,16 +562,22 @@ function states.screwUp()
   animator.setAnimationState("lens", "unzap")
   animator.setAnimationState("beamtelegraph", "off")
 
+  isScrewingUp = false
+
   lensState:set(states.screwedUp)
 end
 
 function states.screwUpNoTelegraph()
   storage.isFixed = false
 
+  isScrewingUp = true
+
   adjust(screwedUpAngle, screwUpTime, 0.0, preferredScrewUpDirection)
 
   animator.setParticleEmitterActive("telegraphSparks", false)
   animator.stopAllSounds("sparks")
+
+  isScrewingUp = false
 
   lensState:set(states.screwedUp)
 end

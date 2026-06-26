@@ -16,11 +16,26 @@
   },
 
   "scripts" : ["v-solarlensfixer.lua"],
-  "animationScripts" : ["v-cursor.lua"],
+  "animationScripts" : ["v-cursor.lua", "/items/active/effects/v-outlinedlightning.lua"],
 
   "cursorImage" : "/items/active/unsorted/v-solarlensfixer/cursor.png",
   "lensHighlightImage" : "/items/active/unsorted/v-solarlensfixer/lenshighlight.png",
 
   "fixRange" : 13,
-  "broadcastRange" : 1
+  "broadcastRange" : 1,
+
+  "rejectLightningFadeTime" : 0.5,
+  "rejectLightningStartColor" : [0, 0, 0, 255],
+  "rejectLightningEndColor" : [0, 0, 0, 0],
+  "rejectLightningStartOutlineColor" : [33, 33, 131, 255],
+  "rejectLightningEndOutlineColor" : [33, 33, 131, 0],
+
+  "rejectLightningConfig" : {
+    "displacement" : 6.0,
+    "minDisplacement" : 2.0,
+    "forks" : 1,
+    "forkAngleRange" : 0.45,
+    "width" : 1,
+    "outlineWidth" : 1
+  }
 }

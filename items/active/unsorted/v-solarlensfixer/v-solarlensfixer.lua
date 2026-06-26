@@ -1,6 +1,8 @@
 require "/scripts/messageutil.lua"
 require "/scripts/vec2.lua"
 
+require "/scripts/v-animator.lua"
+
 local CURSOR_INRANGE = 0
 local CURSOR_OUTOFRANGE = 1
 local CURSOR_CANFIX = 2
@@ -9,6 +11,8 @@ local fixRange
 local broadcastRange
 local lensStatusUpdater
 local lensFixedStatuses
+
+local lightningController  ---@type LightningController
 
 function init()
   fixRange = config.getParameter("fixRange")
@@ -19,9 +23,20 @@ function init()
   activeItem.setScriptedAnimationParameter("cursorImage", config.getParameter("cursorImage"))
   activeItem.setScriptedAnimationParameter("lensHighlightImage", config.getParameter("lensHighlightImage"))
   activeItem.setScriptedAnimationParameter("cursorState", CURSOR_INRANGE)
+
+  lightningController = vAnimator.LightningController:new{
+    cfg = config.getParameter("rejectLightningConfig"),
+    startC = config.getParameter("rejectLightningStartColor"),
+    endC = config.getParameter("rejectLightningEndColor"),
+    startOC = config.getParameter("rejectLightningStartOutlineColor"),
+    endOC = config.getParameter("rejectLightningEndOutlineColor"),
+    dur = config.getParameter("rejectLightningFadeTime")
+  }
 end
 
 function update(dt, fireMode)
+  lightningController:update(dt)
+
   lensStatusUpdater:update()
 
   local aimPos = activeItem.ownerAimPosition()
@@ -59,7 +74,17 @@ function update(dt, fireMode)
       animator.setAnimationState("item", "activate", true)
 
       for _, entityId in ipairs(solarLenses) do
-        world.sendEntityMessage(entityId, "v-solarLens-fix")
+        local promise = world.sendEntityMessage(entityId, "v-solarLens-fix")
+        local entityPos = world.entityPosition(entityId)
+        lensStatusUpdater:add(promise, function(result)
+          if not result then
+            local focalPos = vec2.add(mcontroller.position(), activeItem.handPosition(animator.partPoint("item", "focalPoint")))
+            lightningController:addRandomSeed(entityPos, focalPos)
+            animator.playSound("reject")
+            animator.playSound("activateFail")
+            animator.setAnimationState("item", "reject", true)
+          end
+        end)
       end
     else
       animator.playSound("activateFail")

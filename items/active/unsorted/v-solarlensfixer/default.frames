@@ -1,9 +1,12 @@
 {
   "frameGrid" : {
     "size" : [16, 43],
-    "dimensions" : [10, 1],
+    "dimensions" : [6, 4],
     "names" : [
-      [ "idle.1", "activate.1", "activate.2", "activate.3", "activate.4", "activate.5", "activate.6", "activatefail.1", "activatefail.2", "activatefail.3" ]
+      [ "idle.1" ],
+      [ "activate.1", "activate.2", "activate.3", "activate.4", "activate.5", "activate.6" ],
+      [ "activatefail.1", "activatefail.2", "activatefail.3" ],
+      [ "reject.1", "reject.2", "reject.3", "reject.4", "reject.5", "reject.6" ]
     ]
   }
 }
