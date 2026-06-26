@@ -9,6 +9,8 @@ local openAnimationDuration
 local openingCloseDelay
 
 local spawnerProjectileType
+local despawnerProjectileType
+local sunLiquidSpawnerProjectileType
 
 local portalMinSize
 local portalSizeStep
@@ -53,6 +55,7 @@ function init()
 
   spawnerProjectileType = config.getParameter("spawnerProjectileType", "v-cityspawnerorb")
   despawnerProjectileType = config.getParameter("despawnerProjectileType", "v-spiredespawner")
+  sunLiquidSpawnerProjectileType = config.getParameter("sunLiquidSpawnerProjectileType", "v-spirespawnerorbsunliquid")
 
   portalMinSize = config.getParameter("portalMinSize")
   portalSizeStep = config.getParameter("portalSizeStep")
@@ -345,8 +348,12 @@ function spawnWave(waveSpawners, waveNum)
       for i, monster in ipairs(waveSpawners) do
         lightningController:add(portalLightningStartPosition, monster.position)
 
+        local projType = spawnerProjectileType
+        if monster.type == "v-sunplasmaspawner" then
+          projType = sunLiquidSpawnerProjectileType
+        end
         -- Spawn a projectile that will spawn the monster
-        local projectileId = world.spawnProjectile(spawnerProjectileType, monster.position, entity.id(), {1, 0},
+        local projectileId = world.spawnProjectile(projType, monster.position, entity.id(), {1, 0},
             false, {monsterType = monster.type, monsterParameters = monster.parameters})
 
         table.insert(projectileIds, projectileId)
