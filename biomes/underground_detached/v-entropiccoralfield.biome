@@ -1,0 +1,245 @@
+{
+  "name" : "v-entropiccoralfield",
+  "friendlyName" : "Entropic Coral Field",
+
+  "spawnProfile" : {
+    "groups" : [
+      {
+        "select" : 3,
+        "pool" : [
+          [ 1.0, "v-archerfish" ],
+          [ 1.0, "v-urchin" ],
+          [ 1.0, "v-spinilus" ]
+        ]
+      },
+      {
+        "select" : 4,
+        "pool" : [
+          [ 1, "smallFishOcean1" ],
+          [ 1, "smallFishOcean2" ],
+          [ 1, "passiveLargeFish" ],
+          [ 1, "aggroLargeFish" ]
+        ]
+      }
+    ],
+    "monsterParameters" : {
+      "colors" : "v-toxicwasteland",
+      "statusSettings" : {
+        "stats" : {
+          "fireResistance" : {
+            "baseValue" : -0.25
+          },
+          "iceResistance" : {
+            "baseValue" : 0.5
+          },
+          "iceStatusImmunity" : {
+            "baseValue" : 1.0
+          },
+          "protection" : {
+            "baseValue" : 30.0
+          }
+        }
+      }
+    }
+  },
+
+  "parallax" : "/parallax/underground/v-entropicocean.parallax",
+
+  "mainBlock" : "v-permafrost",
+  "subBlocks" : [ "v-brittleice" ],
+  "ores" : "v-undergroundentropic",
+
+  "ambientNoises" : {
+    "day" : {
+      "tracks" : [ "/sfx/environmental/ocean_underwater.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/sfx/environmental/ocean_underwater.ogg" ]
+    }
+  },
+
+  "musicTrack" : {
+    "day" : {
+      "tracks" : [ "/music/ocean-exploration2.ogg", "/music/M54.ogg", "/music/europa.ogg" ]
+    },
+    "night" : {
+      "tracks" : [ "/music/ocean-exploration2.ogg", "/music/M54.ogg", "/music/europa.ogg" ]
+    }
+  },
+
+  "undergroundPlaceables" : {
+    "grassMod" : [ "snow" ],
+    "grassModDensity" : 0.9,
+
+    "items" : [
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundCapsules",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
+            "parameters" : { "breakDropPool" : "v-capsule", "smashDropPool" : "v-capsule" }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:denseSmall",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-warmcoral1" ], [0.20, "v-warmcoral2" ], [0.20, "v-warmcoral3" ], [0.20, "v-warmcoral4" ], [0.20, "v-warmcoral5" ]]
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundOreRocks",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.18, "copperrocksmall" ], [0.06, "copperrock" ], [0.48, "silverrocksmall" ], [0.16, "silverrock" ], [0.09, "goldrocksmall" ], [0.03, "goldrock" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:hazardUndergroundMid",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ]
+          }
+        ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:hazardUndergroundMid",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ]
+          }
+        ]
+      },
+      {
+        "mode" : "background",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundFossils",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [0.15, "dirtyfossil1" ], [0.15, "dirtyfossil2" ], [0.15, "dirtyfossil3" ], [0.15, "dirtyfossil4" ], [0.1, "dirtyfossil5" ], [0.1, "dirtyfossil6" ], [0.1, "dirtyfossil7" ], [0.1, "dirtyfossil8" ] ],
+            "parameters" : {  "materials" : ["gravel", "rock17", "bonematerial"]}
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:layer2Chests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "basicChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundweaponChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "v-iceWeaponChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundtechChests",
+
+        "type" : "treasureBox",
+        "treasureBoxSets" : [ "techChest" ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:undergroundChests",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-statuspodtoxic" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-iceboulder" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "ceiling",
+        "priority" : 1.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:scatteredLarge",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1.0, "v-iceboulder" ] ],
+            "parameters" : { }
+          }
+        ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:v-surfaceCropsUncommon",
+
+        "type" : "object",
+        "objectSets" : [
+          {
+            "pool" : [ [1, "v-wildvitalisseed" ] ],
+            "parameters" : {
+              "startingStage" : 7
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  "hueShiftOptions" : [ 60, 50, 40, 30, 20, 10, 0 ]
+}

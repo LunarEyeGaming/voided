@@ -615,11 +615,13 @@
           "secondaryRegions" : []
         },
         "underground1" : {
-          "primaryRegion" : ["v-shallowentropicocean"]
+          "primaryRegion" : ["v-shallowentropicocean"],
+          "secondaryRegions" : [ "v-shallowentropiccoralfield" ],
+          "secondaryRegionCount" : [1, 1]
         },
         "underground2" : {
           "primaryRegion" : ["v-entropicocean"],
-          "secondaryRegions" : [ "v-briniclefield" ],
+          "secondaryRegions" : [ "v-briniclefield", "v-entropicgrassfield" ],
           "secondaryRegionCount" : [1, 1]
         },
         "underground3" : {
@@ -764,6 +766,36 @@
         [0, [ "v-entropic" ]]
       ],
       "subRegion" : []
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-shallowentropiccoralfield",
+    "value" : {
+      "blockSelector" : [ "v-pocketSolid" ],
+      "fgCaveSelector" : [ "denseCaves" ],
+      "bgCaveSelector" : [ "denseCaves" ],
+      "subBlockSelector" : [ "sparseCaves" ],
+      "oceanLiquid" : [ "water" ],
+      "oceanLevelOffset" : 500,
+      "biome": [
+        [1,["v-shallowentropiccoralfield"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-entropicgrassfield",
+    "value" : {
+      "blockSelector" : [ "v-asteroidsDenseLarge" ],
+      "fgCaveSelector" : [ "normalCaves" ],
+      "bgCaveSelector" : [ "normalCaves" ],
+      "subBlockSelector" : [ "normalCaves" ],
+      "oceanLiquid" : [ "water" ],
+      "oceanLevelOffset" : 500,
+      "biome": [
+        [1,["v-entropicgrassfield"]]
+      ]
     }
   },
   {
