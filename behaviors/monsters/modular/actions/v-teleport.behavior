@@ -1,0 +1,200 @@
+{
+  "name": "v-action-teleport",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/movement.lua"
+  ],
+  "parameters": {
+    "minAngle": 0,
+    "maxAngle": 6.3,
+    "teleportDistance": 1,
+    "stopForce": 50,
+    "teleportDelay": 0.5,
+    "disappearState": "",
+    "appearState": "",
+    "stateType": ""
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "v_stop",
+        "type": "action",
+        "name": "v_stop",
+        "parameters": {
+          "stopForce": {"key": "<stopForce>"}
+        }
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"key": "<disappearState>"},
+            "type": {"key": "<stateType>"}
+          }
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"key": "<teleportDelay>"}
+        }
+      },
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": -1},
+          "untilSuccess": {"value": true}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"value": 0.01}
+              }
+            },
+            {
+              "title": "random",
+              "type": "action",
+              "name": "random",
+              "parameters": {
+                "max": {"key": "<maxAngle>"},
+                "min": {"key": "<minAngle>"}
+              },
+              "output": {
+                "number": "angle"
+              }
+            },
+            {
+              "title": "vecMultiply",
+              "type": "action",
+              "name": "vecMultiply",
+              "parameters": {
+                "first": {"value": [1, 0]},
+                "number": {"key": "<teleportDistance>"}
+              },
+              "output": {
+                "vector": "toTeleport"
+              }
+            },
+            {
+              "title": "vecRotate",
+              "type": "action",
+              "name": "vecRotate",
+              "parameters": {
+                "angle": {"key": "angle"},
+                "vector": {"key": "toTeleport"}
+              },
+              "output": {
+                "vector": "teleportOffset"
+              }
+            },
+            {
+              "title": "entityPosition",
+              "type": "action",
+              "name": "entityPosition",
+              "parameters": {
+                "entity": {"key": "target"}
+              },
+              "output": {
+                "position": "targetPos"
+              }
+            },
+            {
+              "title": "offsetPosition",
+              "type": "action",
+              "name": "offsetPosition",
+              "parameters": {
+                "offset": {"key": "teleportOffset"},
+                "position": {"key": "targetPos"}
+              },
+              "output": {
+                "position": "teleportPos"
+              }
+            },
+            {
+              "title": "inverter",
+              "type": "decorator",
+              "name": "inverter",
+              "parameters": {},
+              "child": {
+                "title": "pointTileCollision",
+                "type": "action",
+                "name": "pointTileCollision",
+                "parameters": {
+                  "position": {"key": "teleportPos"}
+                }
+              }
+            },
+            {
+              "title": "inverter",
+              "type": "decorator",
+              "name": "inverter",
+              "parameters": {},
+              "child": {
+                "title": "lineTileCollision",
+                "type": "action",
+                "name": "lineTileCollision",
+                "parameters": {
+                  "collisionType": {"value": ["Null", "Block", "Dynamic"]},
+                  "offset": {"key": "teleportOffset"},
+                  "position": {"key": "targetPos"}
+                }
+              }
+            },
+            {
+              "title": "setPosition",
+              "type": "action",
+              "name": "setPosition",
+              "parameters": {
+                "position": {"key": "teleportPos"}
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"key": "<appearState>"},
+            "type": {"key": "<stateType>"}
+          }
+        }
+      }
+    ]
+  }
+}

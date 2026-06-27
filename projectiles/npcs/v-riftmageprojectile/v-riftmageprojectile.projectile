@@ -1,0 +1,49 @@
+{
+  "projectileName" : "v-riftmageprojectile",
+  "image" : "riftmageprojectile.png",
+  "physics" : "illusion",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "lightColor" : [51, 41, 71],
+  "fullbright" : true,
+  "renderLayer" : "ForegroundEntity-10",
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_titanrift_fire.ogg" ]
+    },
+    {
+      "time" : 0.02,
+      "repeat" : true,
+      "action" : "particle",
+      "rotate" : true,
+      "specification" : {
+        "type" : "textured",
+        "image" : "/projectiles/npcs/v-riftmageprojectile/trail.png",
+        "position" : [0, 0],
+        "layer" : "front",
+        "timeToLive" : 0.0,
+        "destructionTime" : 0.15,
+        "destructionAction" : "fade",
+        "fullbright" : true
+      }
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-titanriftprojectiledisintegrate/v-titanriftprojectiledisintegrate.config"
+    }
+  ],
+  "power" : 0,
+  "speed" : 1,
+  "acceleration" : 50,
+  "damageKind" : "v-voidplasma",
+  "damagePoly" : [ [6.5, 0], [0.5, 2], [-6.5, 0], [0.5, -2] ] /*,
+  "scripts" : [ "/scripts/projectiles/homingprojectile.lua" ],
+  "homingDistance" : 100,
+  "rotationRate" : 0.785398163397,  // 45 degrees per sec
+  "trackingLimit" : 3.141592653 */
+}

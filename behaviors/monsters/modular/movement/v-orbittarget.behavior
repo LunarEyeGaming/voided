@@ -2,6 +2,7 @@
   "name": "v-movement-orbittarget",
   "description": null,
   "scripts": [
+    "/scripts/actions/animator.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/v-world.lua",
     "/scripts/actions/entity.lua",
@@ -14,7 +15,10 @@
     "orbitPeriod": 1,
     "orbitRadius": 1,
     "maxPolyCorrection": 5,
-    "usePathfinding": true
+    "usePathfinding": true,
+    "moveState": "",
+    "idleState": "",
+    "stateType": ""
   },
   "root": {
     "title": "parallel",
@@ -25,6 +29,16 @@
       "success": {"value": -1}
     },
     "children": [
+      {
+        "title": "animate",
+        "type": "action",
+        "name": "animate",
+        "parameters": {
+          "fallback": {"key": "<idleState>"},
+          "state": {"key": "<moveState>"},
+          "type": {"key": "<stateType>"}
+        }
+      },
       {
         "title": "sequence",
         "type": "composite",

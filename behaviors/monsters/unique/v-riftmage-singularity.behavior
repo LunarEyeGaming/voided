@@ -1,0 +1,147 @@
+{
+  "name": "v-riftmage-singularity",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/monster.lua"
+  ],
+  "parameters": {
+    "windupState": "",
+    "windupStateType": "",
+    "windupTime": 1,
+    "activeState": "",
+    "activeStateType": "",
+    "activeTime": 2,
+    "winddownState": "",
+    "winddownStateType": "",
+    "winddownTime": 0.5,
+    "activeEmitter": null,
+    "activeForceRegion": null
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "v-action-teleport",
+        "type": "module",
+        "name": "v-action-teleport",
+        "parameters": {
+          "appearState": {"value": ""},
+          "disappearState": {"value": ""},
+          "maxAngle": {"value": 6.3},
+          "minAngle": {"value": 0},
+          "stateType": {"value": ""},
+          "stopForce": {"value": 50},
+          "teleportDelay": {"value": 0.5},
+          "teleportDistance": {"value": 0}
+        }
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"key": "<windupState>"},
+            "type": {"key": "<windupStateType>"}
+          }
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"key": "<windupTime>"}
+        }
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"key": "<activeState>"},
+            "type": {"key": "<activeStateType>"}
+          }
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "setForceRegionActive",
+              "type": "action",
+              "name": "setForceRegionActive",
+              "parameters": {
+                "name": {"key": "<activeForceRegion>"}
+              }
+            }
+          },
+          {
+            "title": "emitParticles",
+            "type": "action",
+            "name": "emitParticles",
+            "parameters": {
+              "emitter": {"key": "<activeEmitter>"}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"key": "<activeTime>"}
+            }
+          }
+        ]
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"key": "<winddownState>"},
+            "type": {"key": "<winddownStateType>"}
+          }
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"key": "<winddownTime>"}
+        }
+      }
+    ]
+  }
+}

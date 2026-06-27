@@ -1612,12 +1612,89 @@
       "name": "v-movement-orbittarget",
       "title": "",
       "properties": {
-        "maxPolyCorrection": {"type": "json", "value": 5},
         "orbitPeriod": {"type": "json", "value": 1},
         "orbitRadius": {"type": "json", "value": 1},
-        "usePathfinding": {"type": "json", "value": true}
+        "maxPolyCorrection": {"type": "json", "value": 5},
+        "usePathfinding": {"type": "json", "value": true},
+        "moveState": {"type": "json", "value": ""},
+        "idleState": {"type": "json", "value": ""},
+        "stateType": {"type": "json", "value": ""}
       },
       "pathToTree": "..\\monsters\\modular\\movement\\v-orbittarget.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-orbitfire",
+    "value": {
+      "type": "module",
+      "name": "v-action-orbitfire",
+      "title": "",
+      "properties": {
+        "projectileType": {"type": "json", "value": "v-spireminibossfireball"},
+        "projectileInterval": {"type": "json", "value": 1.5},
+        "highArc": {"type": "json", "value": false},
+        "fireArc": {"type": "json", "value": false},
+        "projectileConfig": {"type": "json", "value": {"power": 10}},
+        "maxPolyCorrection": {"type": "json", "value": 5},
+        "projectileOffset": {"type": "json", "value": [0, 0]},
+        "usePathfinding": {"type": "json", "value": true},
+        "duration": {"type": "json", "value": 7.5},
+        "orbitPeriod": {"type": "json", "value": 7.5},
+        "orbitRadius": {"type": "json", "value": 20},
+        "windupState": {"type": "json", "value": ""},
+        "windupStateType": {"type": "json", "value": ""},
+        "fireState": {"type": "json", "value": ""},
+        "fireStateType": {"type": "json", "value": ""},
+        "fireSound": {"type": "json", "value": ""},
+        "windupTime": {"type": "json", "value": 0.5},
+        "preFireTime": {"type": "json", "value": 0.7},
+        "postFireTime": {"type": "json", "value": 0.8}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-orbitfire.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-teleport",
+    "value": {
+      "type": "module",
+      "name": "v-action-teleport",
+      "title": "",
+      "properties": {
+        "appearState": {"type": "json", "value": ""},
+        "disappearState": {"type": "json", "value": ""},
+        "maxAngle": {"type": "json", "value": 6.3},
+        "minAngle": {"type": "json", "value": 0},
+        "stateType": {"type": "json", "value": ""},
+        "stopForce": {"type": "json", "value": 50},
+        "teleportDelay": {"type": "json", "value": 0.5},
+        "teleportDistance": {"type": "json", "value": 1}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-teleport.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-riftmage-singularity",
+    "value": {
+      "type": "module",
+      "name": "v-riftmage-singularity",
+      "title": "",
+      "properties": {
+        "windupState": {"type": "json", "value": ""},
+        "windupStateType": {"type": "json", "value": ""},
+        "windupTime": {"type": "json", "value": 1},
+        "activeState": {"type": "json", "value": ""},
+        "activeStateType": {"type": "json", "value": ""},
+        "activeTime": {"type": "json", "value": 2},
+        "winddownState": {"type": "json", "value": ""},
+        "winddownStateType": {"type": "json", "value": ""},
+        "winddownTime": {"type": "json", "value": 0.5},
+        "activeEmitter": {"type": "json", "value": null},
+        "activeForceRegion": {"type": "json", "value": null}
+      },
+      "pathToTree": "..\\monsters\\unique\\v-riftmage-singularity.behavior"
     }
   }
 ]

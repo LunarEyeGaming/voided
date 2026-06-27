@@ -1,0 +1,323 @@
+{
+  "name": "v-action-orbitfire",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/time.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/position.lua"
+  ],
+  "parameters": {
+    "projectileType": "v-spireminibossfireball",
+    "projectileInterval": 1.5,
+    "highArc": false,
+    "fireArc": false,
+    "projectileConfig": {"power": 10},
+    "maxPolyCorrection": 5,
+    "projectileOffset": [0, 0],
+    "usePathfinding": true,
+    "duration": 7.5,
+    "orbitPeriod": 7.5,
+    "orbitRadius": 20,
+    "windupState": "",
+    "windupStateType": "",
+    "fireState": "",
+    "fireStateType": "",
+    "fireSound": "",
+    "windupTime": 0.5,
+    "preFireTime": 0.7,
+    "postFireTime": 0.8
+  },
+  "root": {
+    "title": "parallel",
+    "type": "composite",
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": -1},
+      "success": {"value": 1}
+    },
+    "children": [
+      {
+        "title": "v-movement-orbittarget",
+        "type": "module",
+        "name": "v-movement-orbittarget",
+        "parameters": {
+          "maxPolyCorrection": {"key": "<maxPolyCorrection>"},
+          "orbitPeriod": {"key": "<orbitPeriod>"},
+          "orbitRadius": {"key": "<orbitRadius>"},
+          "usePathfinding": {"key": "<usePathfinding>"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"key": "<duration>"}
+        }
+      },
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": -1},
+          "untilSuccess": {"value": false}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "timer",
+              "type": "action",
+              "name": "timer",
+              "parameters": {
+                "time": {"key": "<preFireTime>"}
+              }
+            },
+            {
+              "title": "parallel",
+              "type": "composite",
+              "name": "parallel",
+              "parameters": {
+                "fail": {"value": -1},
+                "success": {"value": 1}
+              },
+              "children": [
+                {
+                  "title": "failer",
+                  "type": "decorator",
+                  "name": "failer",
+                  "parameters": {},
+                  "child": {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "entityDirection",
+                        "type": "action",
+                        "name": "entityDirection",
+                        "parameters": {
+                          "entity": {"key": "self"},
+                          "target": {"key": "target"}
+                        },
+                        "output": {
+                          "direction": "toTargetDirection"
+                        }
+                      },
+                      {
+                        "title": "faceDirection",
+                        "type": "action",
+                        "name": "faceDirection",
+                        "parameters": {
+                          "direction": {"key": "toTargetDirection"}
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "title": "sequence",
+                  "type": "composite",
+                  "name": "sequence",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "succeeder",
+                      "type": "decorator",
+                      "name": "succeeder",
+                      "parameters": {},
+                      "child": {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"key": "<windupState>"},
+                          "type": {"key": "<windupStateType>"}
+                        }
+                      }
+                    },
+                    {
+                      "title": "timer",
+                      "type": "action",
+                      "name": "timer",
+                      "parameters": {
+                        "time": {"key": "<windupTime>"}
+                      }
+                    },
+                    {
+                      "title": "vecMultiply",
+                      "type": "action",
+                      "name": "vecMultiply",
+                      "parameters": {
+                        "first": {"key": "<projectileOffset>"},
+                        "second": {"value": ["facingDirection", 1]}
+                      },
+                      "output": {
+                        "vector": "projectileOffset"
+                      }
+                    },
+                    {
+                      "title": "sequence",
+                      "type": "composite",
+                      "name": "sequence",
+                      "parameters": {},
+                      "children": [
+                        {
+                          "title": "entityDirection",
+                          "type": "action",
+                          "name": "entityDirection",
+                          "parameters": {
+                            "entity": {"key": "self"},
+                            "target": {"key": "target"}
+                          },
+                          "output": {
+                            "vector": "aimVector"
+                          }
+                        },
+                        {
+                          "title": "succeeder",
+                          "type": "decorator",
+                          "name": "succeeder",
+                          "parameters": {},
+                          "child": {
+                            "title": "optional",
+                            "type": "decorator",
+                            "name": "optional",
+                            "parameters": {
+                              "shouldRun": {"key": "<fireArc>"}
+                            },
+                            "child": {
+                              "title": "sequence",
+                              "type": "composite",
+                              "name": "sequence",
+                              "parameters": {},
+                              "children": [
+                                {
+                                  "title": "entityPosition",
+                                  "type": "action",
+                                  "name": "entityPosition",
+                                  "parameters": {
+                                    "entity": {"key": "target"}
+                                  },
+                                  "output": {
+                                    "position": "targetPos"
+                                  }
+                                },
+                                {
+                                  "title": "projectileGravityMultiplier",
+                                  "type": "action",
+                                  "name": "projectileGravityMultiplier",
+                                  "parameters": {
+                                    "projectileName": {"value": "<projectileType>"}
+                                  },
+                                  "output": {
+                                    "gravityMultiplier": "gravityMultiplier"
+                                  }
+                                },
+                                {
+                                  "title": "offsetPosition",
+                                  "type": "action",
+                                  "name": "offsetPosition",
+                                  "parameters": {
+                                    "offset": {"key": "projectileOffset"},
+                                    "position": {"key": "self"}
+                                  },
+                                  "output": {
+                                    "position": "aimPos"
+                                  }
+                                },
+                                {
+                                  "title": "projectileAimVector",
+                                  "type": "action",
+                                  "name": "projectileAimVector",
+                                  "parameters": {
+                                    "collisionCheck": {"value": false},
+                                    "fromPosition": {"key": "aimPos"},
+                                    "gravityMultiplier": {"key": "gravityMultiplier"},
+                                    "speed": {"value": 50},
+                                    "toPosition": {"key": "targetPos"},
+                                    "useHighArc": {"key": "<highArc>"}
+                                  },
+                                  "output": {
+                                    "aimVector": "aimVector"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "title": "succeeder",
+                      "type": "decorator",
+                      "name": "succeeder",
+                      "parameters": {},
+                      "child": {
+                        "title": "setAnimationState",
+                        "type": "action",
+                        "name": "setAnimationState",
+                        "parameters": {
+                          "state": {"key": "<fireState>"},
+                          "type": {"key": "<fireStateType>"}
+                        }
+                      }
+                    },
+                    {
+                      "title": "spawnProjectile",
+                      "type": "action",
+                      "name": "spawnProjectile",
+                      "parameters": {
+                        "aimVector": {"key": "aimVector"},
+                        "offset": {"key": "projectileOffset"},
+                        "position": {"key": "self"},
+                        "projectileConfig": {"key": "<projectileConfig>"},
+                        "projectileType": {"key": "<projectileType>"},
+                        "scalePower": {"value": true},
+                        "sourceEntity": {"key": "self"},
+                        "trackSource": {"value": false},
+                        "uniqueRepeatGroup": {"value": true}
+                      }
+                    },
+                    {
+                      "title": "succeeder",
+                      "type": "decorator",
+                      "name": "succeeder",
+                      "parameters": {},
+                      "child": {
+                        "title": "playSound",
+                        "type": "action",
+                        "name": "playSound",
+                        "parameters": {
+                          "loops": {"value": 0},
+                          "sound": {"key": "<fireSound>"}
+                        }
+                      }
+                    },
+                    {
+                      "title": "timer",
+                      "type": "action",
+                      "name": "timer",
+                      "parameters": {
+                        "time": {"key": "<postFireTime>"}
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
