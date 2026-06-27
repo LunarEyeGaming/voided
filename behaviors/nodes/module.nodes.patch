@@ -1296,21 +1296,6 @@
   },
   {
     "op": "add",
-    "path": "/v-spireminiboss-orbittarget",
-    "value": {
-      "type": "module",
-      "name": "v-spireminiboss-orbittarget",
-      "title": "",
-      "properties": {
-        "orbitPeriod": {"type": "json", "value": 1},
-        "orbitRadius": {"type": "json", "value": 1},
-        "maxPolyCorrection": {"type": "json", "value": 5}
-      },
-      "pathToTree": "..\\monsters\\miniboss\\v-spireminiboss\\v-orbittarget.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-spireminiboss-stickyglobs",
     "value": {
       "type": "module",
@@ -1617,6 +1602,22 @@
         "minStalkAngle": {"type": "json", "value": 0}
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-stalkworm.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-movement-orbittarget",
+    "value": {
+      "type": "module",
+      "name": "v-movement-orbittarget",
+      "title": "",
+      "properties": {
+        "maxPolyCorrection": {"type": "json", "value": 5},
+        "orbitPeriod": {"type": "json", "value": 1},
+        "orbitRadius": {"type": "json", "value": 1},
+        "usePathfinding": {"type": "json", "value": true}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-orbittarget.behavior"
     }
   }
 ]

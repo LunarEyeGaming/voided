@@ -31,13 +31,14 @@
     },
     "children": [
       {
-        "title": "v-spireminiboss-orbittarget",
+        "title": "v-movement-orbittarget",
         "type": "module",
-        "name": "v-spireminiboss-orbittarget",
+        "name": "v-movement-orbittarget",
         "parameters": {
+          "maxPolyCorrection": {"key": "<maxPolyCorrection>"},
           "orbitPeriod": {"value": 7.5},
           "orbitRadius": {"value": 20},
-          "maxPolyCorrection": {"key": "<maxPolyCorrection>"}
+          "usePathfinding": {"value": true}
         }
       },
       {

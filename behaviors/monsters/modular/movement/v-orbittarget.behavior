@@ -1,5 +1,5 @@
 {
-  "name": "v-spireminiboss-orbittarget",
+  "name": "v-movement-orbittarget",
   "description": null,
   "scripts": [
     "/scripts/actions/world.lua",
@@ -13,7 +13,8 @@
   "parameters": {
     "orbitPeriod": 1,
     "orbitRadius": 1,
-    "maxPolyCorrection": 5
+    "maxPolyCorrection": 5,
+    "usePathfinding": true
   },
   "root": {
     "title": "parallel",
@@ -71,11 +72,31 @@
             },
             "children": [
               {
-                "title": "entityInSight",
-                "type": "action",
-                "name": "entityInSight",
-                "parameters": {
-                  "entity": {"key": "target"}
+                "title": "inverter",
+                "type": "decorator",
+                "name": "inverter",
+                "parameters": {},
+                "child": {
+                  "title": "optional",
+                  "type": "decorator",
+                  "name": "optional",
+                  "parameters": {
+                    "shouldRun": {"key": "<usePathfinding>"}
+                  },
+                  "child": {
+                    "title": "inverter",
+                    "type": "decorator",
+                    "name": "inverter",
+                    "parameters": {},
+                    "child": {
+                      "title": "entityInSight",
+                      "type": "action",
+                      "name": "entityInSight",
+                      "parameters": {
+                        "entity": {"key": "target"}
+                      }
+                    }
+                  }
                 }
               },
               {
