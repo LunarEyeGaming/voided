@@ -4,6 +4,9 @@ require "/scripts/util.lua"
 require "/scripts/v-animator.lua"
 
 local followPlayer
+local fissureCrossingProjectileType
+local fissureCrossingProjectileParameters
+local lightningStrikeSpecs
 
 local shouldDieVar
 local lightningController
@@ -11,6 +14,9 @@ local state
 
 function init()
   followPlayer = config.getParameter("masterId")
+  fissureCrossingProjectileType = config.getParameter("fissureCrossingProjectileType")
+  fissureCrossingProjectileParameters = config.getParameter("fissureCrossingProjectileParameters")
+  lightningStrikeSpecs = config.getParameter("lightningStrikeSpecs")
 
   shouldDieVar = false
 
@@ -55,20 +61,13 @@ function states.postInit()
 end
 
 function states.main()
-  world.spawnProjectile("v-proxyprojectile", mcontroller.position(), nil, nil, nil, {
-    actionOnReap = {
-      {
-        action = "config",
-        file = "/projectiles/unsorted/v-fissurecrossing/v-fissurecrossing.config"
-      }
-    }
-  })
+  world.spawnProjectile(fissureCrossingProjectileType, mcontroller.position(), nil, nil, nil, fissureCrossingProjectileParameters)
 
-  util.wait(5.0)
+  util.wait(lightningStrikeSpecs.startDelay)
 
-  for _ = 1, 20 do
-    crackleLightning(100)
-    util.wait(0.2)
+  for _ = 1, lightningStrikeSpecs.count do
+    crackleLightning(lightningStrikeSpecs.radiusStart, lightningStrikeSpecs.radiusEnd)
+    util.wait(lightningStrikeSpecs.interval)
   end
 
   state:set(states.die)
@@ -84,9 +83,10 @@ function states.die()
   end
 end
 
-function crackleLightning(radius)
-  local randomPosStart = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, math.random() * radius))
-  local randomPosEnd = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, math.random() * radius))
+function crackleLightning(radiusStart, radiusEnd)
+  local randomPosStart = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, math.random() * radiusStart))
+  -- Base end position on start position.
+  local randomPosEnd = vec2.add(randomPosStart, vec2.withAngle(math.random() * 2 * math.pi, math.random() * radiusEnd))
 
   lightningController:addRandomSeed(randomPosStart, randomPosEnd)
 

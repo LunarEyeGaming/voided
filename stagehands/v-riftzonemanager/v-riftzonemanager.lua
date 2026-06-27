@@ -6,16 +6,19 @@ local SMALL_RECT = {-1, -1, 1, 1}
 local defaultRiftZoneVelocity
 local playerProximityRegion
 local lightningOffsetRegion
-local riftZoneDuration
+local lightningStrikeProbability
+local relocationProbability
 
 local postInitCalled
 
-
 function init()
-  defaultRiftZoneVelocity = {-5, 0}
-  playerProximityRegion = {-300, -300, 300, 300}
-  lightningOffsetRegion = {-100, -100, 100, 100}
-  riftZoneDuration = 600
+  local cfg = root.assetJson("/v-riftzones.config")
+  defaultRiftZoneVelocity = cfg.defaultZoneVelocity
+  local lightningTriggerRange = cfg.lightningTriggerRange
+  playerProximityRegion = {-lightningTriggerRange, -lightningTriggerRange, lightningTriggerRange, lightningTriggerRange}
+  lightningOffsetRegion = cfg.lightningOffsetRegion
+  lightningStrikeProbability = cfg.lightningStrikeProbability
+  relocationProbability = cfg.relocationProbability
 
   postInitCalled = false
 end
@@ -67,7 +70,7 @@ function update(dt)
     -- Kill / relocate rift zones
     elseif world.time() > riftZone.stateData.deathTime then
       table.remove(riftZones, i)
-      if math.random() < 0.90 then
+      if math.random() < relocationProbability then
         createRiftZone(riftZones, riftZone)
       end
     end
@@ -80,7 +83,7 @@ function update(dt)
     local playerPos = world.entityPosition(playerId)
 
     if playerPos and closeToARiftZone(playerPos, riftZones) then
-      if math.random() < 0.1 then
+      if math.random() < lightningStrikeProbability then
         local pos = vec2.add(rect.randomPoint(lightningOffsetRegion), playerPos)
         world.spawnMonster("v-riftzonelightning", pos)
       end
@@ -130,8 +133,7 @@ function countRiftZones()
 end
 
 function canSpawn(position)
-  return
-  world.regionActive(rect.translate(SMALL_RECT, position))
+  return world.regionActive(rect.translate(SMALL_RECT, position))
 end
 
 function closeToARiftZone(position, riftZones)

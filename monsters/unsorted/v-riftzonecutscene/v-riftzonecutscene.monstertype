@@ -18,9 +18,22 @@
       "/items/active/effects/v-outlinedlightning.lua"
     ],
 
-    "spawnAnywhere" : false,
-
-    "velocity" : [-5, 0],
+    "fissureCrossingProjectileType" : "v-proxyprojectile",
+    "fissureCrossingProjectileParameters" : {
+      "actionOnReap" : [
+        {
+          "action" : "config",
+          "file" : "/projectiles/unsorted/v-fissurecrossing/v-fissurecrossing.config"
+        }
+      ]
+    },
+    "lightningStrikeSpecs" : {
+      "radiusStart" : 50,
+      "radiusEnd" : 20,
+      "startDelay" : 5.0,
+      "interval" : 0.2,
+      "count" : 20
+    },
 
     "lightningConfig" : {
       "baseConfig" : {

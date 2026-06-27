@@ -21,8 +21,9 @@ local timeToLive
 local initialVelocity
 local velocity
 local playerProximityRegion
-local meteorPower
-local gravispherePower
+local terrainZRange
+local relocationProbability
+local lightningStrikeProbability
 
 local prevPos
 local prevRadius
@@ -31,7 +32,7 @@ local currentTileSofteningRadius
 local existenceTimer
 
 local lightningController
-local perlinSource
+local terrainPerlinSource
 local oreFGPerlinSource
 local oreBGPerlinSource
 local placedBlocksFG
@@ -43,7 +44,11 @@ local frontScanPositions
 local backScanPositions
 local cleanedUp
 
+local weatherFunctions
+local weatherConfigs
+
 local weatherFunction
+local weatherConfig
 
 local state
 
@@ -53,18 +58,22 @@ local wasForceKilled
 local initialized
 
 function init()
-  scanRadius = 35
-  tileSofteningRadius = 80
+  local cfg = root.assetJson("/v-riftzones.config")
+  scanRadius = cfg.defaultZoneRadius
+  tileSofteningRadius = config.getParameter("tileSofteningRadius")
   monster.setAnimationParameter("riftSize", 0)
-  invisibleOre = "v-nulliuminvisible"
-  visibleOre = "v-nulliumvisible"
-  appearTime = 7
-  disappearTime = 7
-  disappearDelay = 3
+  invisibleOre = config.getParameter("invisibleOre")
+  visibleOre = config.getParameter("visibleOre")
+  appearTime = config.getParameter("appearTime")
+  disappearTime = config.getParameter("disappearTime")
+  disappearDelay = config.getParameter("disappearDelay")
   timeToLive = config.getParameter("timeToLive", 300)
   initialVelocity = config.getParameter("velocity", {0, 0})
   velocity = initialVelocity
-  playerProximityRegion = {-100, -100, 100, 100}
+  playerProximityRegion = config.getParameter("playerProximityRegion")
+  terrainZRange = config.getParameter("terrainZRange")
+  relocationProbability = cfg.relocationProbability
+  lightningStrikeProbability = config.getParameter("lightningStrikeProbability")
 
   prevPos = vec2.floor(mcontroller.position())
   prevRadius = 0
@@ -73,59 +82,49 @@ function init()
   existenceTimer = timeToLive
   g_shouldDieVar = false
 
-  local cfg = config.getParameter("lightningConfig", {})
+  local lgCfg = config.getParameter("lightningConfig", {})
 
   lightningController = vAnimator.LightningController:new{
-    cfg = cfg.baseConfig,
-    startC = cfg.startColor,
-    endC = cfg.endColor,
-    dur = cfg.duration,
+    cfg = lgCfg.baseConfig,
+    startC = lgCfg.startColor,
+    endC = lgCfg.endColor,
+    dur = lgCfg.duration,
     animateManually = false,
-    startOC = cfg.startOutlineColor,
-    endOC = cfg.endOutlineColor,
+    startOC = lgCfg.startOutlineColor,
+    endOC = lgCfg.endOutlineColor,
   }
-  perlinSource = sb.makePerlinSource({
-    seed = 0,
-    octaves = 3,
-    type = "perlin",
-    frequency = 0.025
-  })
-  oreFGPerlinSource = sb.makePerlinSource({
-    seed = 1,
-    type = "perlin",
-    frequency = 0.1,
-    bias = -0.35
-  })
-  oreBGPerlinSource = sb.makePerlinSource({
-    seed = 2,
-    type = "perlin",
-    frequency = 0.1,
-    bias = -0.4
-  })
+  terrainPerlinSource = makePerlinSource("terrainPerlinSource")
+  oreFGPerlinSource = makePerlinSource("oreFGPerlinSource")
+  oreBGPerlinSource = makePerlinSource("oreBGPerlinSource")
   placedBlocksFG = {}
   placedBlocksBG = {}
   placedOresFG = {}
   placedOresBG = {}
   placedAssists = {}
-  meteorPower = 10
-  gravispherePower = 10
+
+  weatherFunctions = {
+    meteors = function()
+      spawnMeteors(weatherConfig, currentScanRadius)
+    end,
+    gravispheres = function()
+      spawnGravispheres(weatherConfig, currentScanRadius)
+    end,
+    destabilization = function()
+      animator.setParticleEmitterActive("emptyWind", true)
+      applyEffect(weatherConfig.statusEffect, currentScanRadius, {"creature"})
+    end
+  }
+  weatherConfigs = config.getParameter("weatherConfigs")
 
   local weatherName = world.getProperty("v-riftZoneWeather") or "destabilization"
-  if weatherName == "meteors" then
-    weatherFunction = function()
-      spawnMeteors(currentScanRadius)
-    end
-  elseif weatherName == "gravispheres" then
-    weatherFunction = function()
-      spawnGravispheres(currentScanRadius)
-    end
-  elseif weatherName == "destabilization" then
-    weatherFunction = function()
-      animator.setParticleEmitterActive("emptyWind", true)
-      applyEffect("v-riftdestabilization", currentScanRadius)
-    end
-  else
-    error(string.format("Unknown rift zone weather: %s", weatherName))
+
+  weatherFunction = weatherFunctions[weatherName]
+  if not weatherFunction then
+    error(string.format("Function not found for rift zone weather: %s", weatherName))
+  end
+  weatherConfig = weatherConfigs[weatherName]
+  if not weatherConfig then
+    error(string.format("Config not found for rift zone weather: %s", weatherName))
   end
 
   message.setHandler("v-riftzone-kill", v_killRiftZone)
@@ -159,8 +158,8 @@ function update(dt)
     updateWeather(dt)
   end
 
-  applyEffect("v-softenedtiles", currentTileSofteningRadius)
-  applyEffect("v-rifteffects", currentScanRadius)
+  applyEffect("v-softenedtiles", currentTileSofteningRadius, {"player"})
+  applyEffect("v-rifteffects", currentScanRadius, {"player"})
 
   crackleLightning(currentTileSofteningRadius)
 
@@ -295,7 +294,7 @@ end
 function states.die()
   g_shouldDieVar = true
 
-  if math.random() < 0.70 then
+  if math.random() < relocationProbability then
     local riftZones = world.getProperty("v-riftZones") or jarray()
     createRiftZone(riftZones)
     world.setProperty("v-riftZones", riftZones)
@@ -338,7 +337,7 @@ function createRiftZone(riftZones)
 end
 
 function crackleLightning(radius)
-  if math.random() < 0.1 then
+  if math.random() < lightningStrikeProbability then
     local randomPosStart = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, math.random() * radius))
     local randomPosEnd = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, math.random() * radius))
 
@@ -376,29 +375,33 @@ function updateWeather(dt)
   weatherFunction()
 end
 
-function spawnMeteors(spawnRadius)
-  if math.random() < 0.1 then
-    local appearDelay = 0.75
-    local speed = 30
-    local spawnAngle = vVec2.randomAngle(math.pi / 2, math.pi / 4)
+function spawnMeteors(cfg, spawnRadius)
+  if math.random() < cfg.spawnProbability then
+    local appearDelay = cfg.appearDelay
+    local speed = cfg.projectileSpeed
+    local spawnBaseAngle = util.toRadians(cfg.spawnLocationAngle)
+    local spawnFuzzAngle = util.toRadians(cfg.spawnLocationFuzzAngle)
+    local spawnDirectionAngle = util.toRadians(cfg.spawnDirectionAngle)
+    local spawnDirectionFuzzAngle = util.toRadians(cfg.spawnDirectionFuzzAngle)
+    local spawnAngle = vVec2.randomAngle(spawnBaseAngle, spawnFuzzAngle)
 
     local appearPoint = vec2.withAngle(spawnAngle, spawnRadius)
-    local spawnDirection = vec2.withAngle(vVec2.randomAngle(-math.pi / 2, math.pi / 8))
+    local spawnDirection = vec2.withAngle(vVec2.randomAngle(spawnDirectionAngle, spawnDirectionFuzzAngle))
     local spawnPoint = vec2.add(appearPoint, vec2.mul(spawnDirection, -speed * appearDelay))
     local spawnPointWorld = vec2.add(mcontroller.position(), spawnPoint)
-    world.spawnProjectile("v-riftzonemeteorsound", spawnPointWorld, entity.id(), spawnDirection, false, {
-      power = vAttack.scaledPower(meteorPower or 10),
+    world.spawnProjectile(cfg.projectileType, spawnPointWorld, entity.id(), spawnDirection, false, {
+      power = vAttack.scaledPower(cfg.projectilePower or 10),
       speed = speed,
       appearDelay = appearDelay
     })
   end
 end
 
-function spawnGravispheres(spawnRadius)
-  if math.random() < 0.02 then
+function spawnGravispheres(cfg, spawnRadius)
+  if math.random() < cfg.spawnProbability then
     local ownPos = mcontroller.position()
-    local requiredRegion = {-3, -3, 3, 3}
-    local maxAttempts = 200
+    local requiredRegion = cfg.requiredSpawnRegion
+    local maxAttempts = cfg.maxPositionSelectionAttempts
     local attempts = 0
     local randomPos
     repeat
@@ -407,16 +410,16 @@ function spawnGravispheres(spawnRadius)
     until attempts > maxAttempts or not world.rectCollision(rect.translate(requiredRegion, randomPos))
 
     if attempts <= maxAttempts then
-      world.spawnProjectile("v-gravispherewindup", randomPos, entity.id(), {1, 0}, false, {
-        power = vAttack.scaledPower(gravispherePower or 10)
+      world.spawnProjectile(cfg.projectileType, randomPos, entity.id(), {1, 0}, false, {
+        power = vAttack.scaledPower(cfg.projectilePower or 10)
       })
     end
   end
 end
 
-function applyEffect(effectName, radius)
+function applyEffect(effectName, radius, onTypes)
   local queried = world.entityQuery(mcontroller.position(), radius, {
-    includedTypes = {"player"},
+    includedTypes = onTypes,
     withoutEntityId = entity.id()
   })
 
@@ -562,8 +565,8 @@ function placeOres(fg, bg)
 end
 
 function shouldPlaceBlock(pos)
-  local z = perlinSource:get(pos[1], pos[2])
-  if 0.1 <= z and z <= 0.2 then
+  local z = terrainPerlinSource:get(pos[1], pos[2])
+  if terrainZRange[1] <= z and z <= terrainZRange[2] then
     z = 1
   else
     z = 0
@@ -770,6 +773,12 @@ function closeToAPlayer(position)
   end
 
   return false
+end
+
+function makePerlinSource(paramName)
+  local params = config.getParameter(paramName)
+  params.seed = 0 + params.seedAdjust
+  return sb.makePerlinSource(params)
 end
 
 function v_isRiftZone()

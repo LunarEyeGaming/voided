@@ -23,6 +23,7 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 
+-- Parameters
 local minSpawnCooldown  -- The amount of time to wait before spawning the rift zone again
 local minPlanetStayTime  -- The player must have been on the current planet type for this amount of time
 local worldTypeWhitelist  -- List of worlds on which the rift zone is allowed to spawn
@@ -33,19 +34,22 @@ local referenceWorldSize  -- The world size to use as a reference
 local duration  -- How long the rift zone event lasts
 local numEventsPerOrbit  -- Number of events that can occur for each orbit
 local weatherTypes  -- The potential weather events that could occur in a rift zone.
+local defaultRiftZoneVelocity
 
 local riftZoneCount
 local spawnAttemptTimer  -- Amount of time elapsed since the last spawn attempt
 local worldTypeStayTime  -- Amount of time that the player has spent on the current world so far
 
+-- State variables
 local scriptIsEnabled
 local stagehandSpawned
 local currentCoordinates
 local prevRiftEventSegment
 
 function init()
+  local cfg = root.assetJson("/v-riftzones.config")
   scriptIsEnabled = true
-  worldTypeWhitelist = {"v-voltage", "v-toxicwasteland", "v-ministar", "v-entropic"}
+  worldTypeWhitelist = cfg.allowedWorldTypes
 
   local worldType = world.type()
   -- If the current world type is not in the worldTypeWhitelist...
@@ -57,13 +61,13 @@ function init()
   end
 
   -- minSpawnCooldown = 0
-  minSpawnCooldown = 60 * 60
-  minPlanetStayTime = 60 * 30
-  spawnAttemptInterval = 30
-  spawnProbability = 1.0
+  minSpawnCooldown = cfg.spawnCooldown
+  minPlanetStayTime = cfg.minPlanetStayTime
+  spawnAttemptInterval = cfg.noCoordsModeParameters.spawnAttemptInterval
+  spawnProbability = cfg.noCoordsModeParameters.spawnProbability
 
-  referenceRiftZoneCount = 100
-  referenceWorldSize = {6000, 4000}
+  referenceRiftZoneCount = cfg.referenceRiftZoneCount
+  referenceWorldSize = cfg.referenceWorldSize
 
   local referenceWorldArea = referenceWorldSize[1] * referenceWorldSize[2]
   local worldSize = world.size()
@@ -71,8 +75,9 @@ function init()
   local riftZoneDensity = referenceRiftZoneCount / referenceWorldArea
   riftZoneCount = riftZoneDensity * worldArea
 
-  duration = 90
-  numEventsPerOrbit = 6
+  duration = cfg.defaultTimeToLive
+  numEventsPerOrbit = cfg.coordsModeParameters.numEventsPerOrbit
+  defaultRiftZoneVelocity = cfg.defaultZoneVelocity
 
   weatherTypes = {"meteors", "gravispheres", "destabilization"}
 
@@ -204,7 +209,7 @@ function spawnRiftZones()
     local pos = {math.random() * size[1], math.random() * size[2]}
     table.insert(riftZones, {
       position = pos,
-      velocity = {-5, 0},
+      velocity = defaultRiftZoneVelocity,
       stateData = {deathTime = deathTime},
       level = world.threatLevel(),
       timeToLive = duration

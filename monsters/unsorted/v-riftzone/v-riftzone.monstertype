@@ -24,7 +24,60 @@
 
     "timeToLive" : 300,
     "velocity" : [-5, 0],
+    "tileSofteningRadius" : 80,
+    "invisibleOre" : "v-nulliuminvisible",
+    "visibleOre" : "v-nulliumvisible",
+    "appearTime" : 7,
+    "disappearTime" : 7,
+    "disappearDelay" : 3,
+    "playerProximityRegion" : [-100, -100, 100, 100],
 
+    "terrainPerlinSource" : {
+      "type" : "perlin",
+      "seedAdjust" : 0,
+      "octaves" : 3,
+      "frequency" : 0.025
+    },
+    "terrainZRange" : [0.1, 0.2],
+
+    "oreFGPerlinSource" : {
+      "type" : "perlin",
+      "seedAdjust" : 1,
+      "frequency" : 0.1,
+      "bias" : -0.35
+    },
+    "oreBGPerlinSource" : {
+      "type" : "perlin",
+      "seedAdjust" : 2,
+      "frequency" : 0.1,
+      "bias" : -0.4
+    },
+
+    "weatherConfigs" : {
+      "meteors" : {
+        "spawnProbability" : 0.1,
+        "spawnLocationAngle" : 90,
+        "spawnLocationFuzzAngle" : 45,
+        "spawnDirectionAngle" : -90,
+        "spawnDirectionFuzzAngle" : 22.5,
+        "appearDelay" : 0.75,
+        "projectileSpeed" : 30,
+        "projectilePower" : 15,
+        "projectileType" : "v-riftzonemeteorsound"
+      },
+      "gravispheres" : {
+        "spawnProbability" : 0.02,
+        "requiredSpawnRegion" : [-3, -3, 3, 3],
+        "maxPositionSelectionAttempts" : 200,
+        "projectileType" : "v-gravispherewindup",
+        "projectilePower" : 20
+      },
+      "destabilization" : {
+        "statusEffect" : "v-riftdestabilization"
+      }
+    },
+
+    "lightningStrikeProbability" : 0.1,
     "lightningConfig" : {
       "baseConfig" : {
         "displacement" : 6.0,

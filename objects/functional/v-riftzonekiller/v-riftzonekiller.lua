@@ -6,8 +6,9 @@ local lowerLeftPos
 local upperRightPos
 
 function init()
+  local cfg = root.assetJson("/v-riftzones.config")
   displayQueryRange = config.getParameter("killRange")
-  queryRange = displayQueryRange + config.getParameter("riftZoneSize")
+  queryRange = displayQueryRange + cfg.defaultZoneRadius
   lowerLeftPos = vec2.add(object.position(), {-queryRange, -queryRange})
   upperRightPos = vec2.add(object.position(), {queryRange, queryRange})
 end
