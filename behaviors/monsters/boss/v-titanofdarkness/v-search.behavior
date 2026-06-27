@@ -1,16 +1,31 @@
 {
   "name": "v-titanofdarkness-search",
-  "description": "",
+  "description": null,
   "scripts": [
+    "/scripts/actions/time.lua",
+    "/scripts/behavior/bdata.lua",
+    "/scripts/actions/math.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua",
-    "/scripts/actions/position.lua",
-    "/scripts/actions/math.lua",
-    "/scripts/actions/time.lua",
-    "/scripts/behavior/bdata.lua"
+    "/scripts/actions/position.lua"
   ],
-  "parameters": {},
+  "parameters": {
+    "startSearchFlySpeed": 13,
+    "startSearchFlyControlForce": 6,
+    "startSearchStopForce": 12,
+    "startMaxSearchRange": 55,
+    "endSearchFlySpeed": 26,
+    "endSearchFlyControlForce": 12,
+    "endSearchStopForce": 24,
+    "endMaxSearchRange": 55,
+    "startEyeTurnWaitTime": 0.5,
+    "endEyeTurnWaitTime": 0.5,
+    "startGrabDelay": 2.5,
+    "endGrabDelay": 1.5,
+    "startXVelocity": 10,
+    "endXVelocity": 20
+  },
   "root": {
     "title": "parallel",
     "type": "composite",
@@ -20,6 +35,138 @@
       "success": {"value": 1}
     },
     "children": [
+      {
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "Give up after some seconds",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": 120}
+            },
+            "output": {
+              "ratio": "impatience"
+            }
+          },
+          {
+            "title": "setFlag",
+            "type": "action",
+            "name": "setFlag",
+            "parameters": {
+              "name": {"value": "failedToFindTarget"}
+            }
+          }
+        ]
+      },
+      {
+        "title": "failer",
+        "type": "decorator",
+        "name": "failer",
+        "parameters": {},
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "lerp_searchFlySpeed",
+              "type": "action",
+              "name": "lerp",
+              "parameters": {
+                "max": {"key": "<endSearchFlySpeed>"},
+                "min": {"key": "<startSearchFlySpeed>"},
+                "ratio": {"key": "impatience"}
+              },
+              "output": {
+                "number": "searchFlySpeed"
+              }
+            },
+            {
+              "title": "lerp_searchFlyControlForce",
+              "type": "action",
+              "name": "lerp",
+              "parameters": {
+                "max": {"key": "<endSearchFlyControlForce>"},
+                "min": {"key": "<startSearchFlyControlForce>"},
+                "ratio": {"key": "impatience"}
+              },
+              "output": {
+                "number": "searchFlyControlForce"
+              }
+            },
+            {
+              "title": "lerp_searchStopForce",
+              "type": "action",
+              "name": "lerp",
+              "parameters": {
+                "max": {"key": "<endSearchStopForce>"},
+                "min": {"key": "<startSearchStopForce>"},
+                "ratio": {"key": "impatience"}
+              },
+              "output": {
+                "number": "searchStopForce"
+              }
+            },
+            {
+              "title": "lerp_maxSearchRange",
+              "type": "action",
+              "name": "lerp",
+              "parameters": {
+                "max": {"key": "<endMaxSearchRange>"},
+                "min": {"key": "<startMaxSearchRange>"},
+                "ratio": {"key": "impatience"}
+              },
+              "output": {
+                "number": "maxSearchRange"
+              }
+            },
+            {
+              "title": "lerp_eyeTurnWaitTime",
+              "type": "action",
+              "name": "lerp",
+              "parameters": {
+                "max": {"key": "<endEyeTurnWaitTime>"},
+                "min": {"key": "<startEyeTurnWaitTime>"},
+                "ratio": {"key": "impatience"}
+              },
+              "output": {
+                "number": "eyeTurnWaitTime"
+              }
+            },
+            {
+              "title": "lerp_grabDelay",
+              "type": "action",
+              "name": "lerp",
+              "parameters": {
+                "max": {"key": "<endGrabDelay>"},
+                "min": {"key": "<startGrabDelay>"},
+                "ratio": {"key": "impatience"}
+              },
+              "output": {
+                "number": "grabDelay"
+              }
+            },
+            {
+              "title": "lerp_xVelocity",
+              "type": "action",
+              "name": "lerp",
+              "parameters": {
+                "max": {"key": "<endXVelocity>"},
+                "min": {"key": "<startXVelocity>"},
+                "ratio": {"key": "impatience"}
+              },
+              "output": {
+                "number": "xVelocity"
+              }
+            }
+          ]
+        }
+      },
       {
         "title": "dynamic",
         "type": "composite",
@@ -128,11 +275,22 @@
                           "parameters": {},
                           "children": [
                             {
-                              "title": "v-titanofdarkness-searchsurface",
-                              "type": "module",
-                              "name": "v-titanofdarkness-searchsurface",
+                              "title": "cooldown",
+                              "type": "decorator",
+                              "name": "cooldown",
                               "parameters": {
-                                "maxSearchRange": {"value": 55}
+                                "cooldown": {"value": 30},
+                                "onFail": {"value": true},
+                                "onSuccess": {"value": true}
+                              },
+                              "child": {
+                                "title": "v-titanofdarkness-searchsurface",
+                                "type": "module",
+                                "name": "v-titanofdarkness-searchsurface",
+                                "parameters": {
+                                  "maxSearchRange": {"value": 55},
+                                  "xVelocity": {"key": "xVelocity"}
+                                }
                               }
                             },
                             {
@@ -140,10 +298,10 @@
                               "type": "action",
                               "name": "v_titanSearch",
                               "parameters": {
-                                "flyControlForce": {"value": 6},
-                                "flySpeed": {"value": 13},
+                                "flyControlForce": {"key": "searchFlyControlForce"},
+                                "flySpeed": {"key": "searchFlySpeed"},
                                 "startAngle": {"key": "targetAngle"},
-                                "stopControlForce": {"value": 12},
+                                "stopControlForce": {"key": "searchStopForce"},
                                 "liquidWhitelist": {"value": ["water", "fuel", "healingliquid", "milk", "swampwater"]}
                               },
                               "output": {
@@ -162,7 +320,8 @@
                             "type": "action",
                             "name": "v_titanGrab",
                             "parameters": {
-                              "target": {"key": "target"}
+                              "target": {"key": "target"},
+                              "grabDelay": {"key": "grabDelay"}
                             },
                             "output": {
                               "angle": "targetAngle"
@@ -278,30 +437,6 @@
         "output": {
           "target": "target"
         }
-      },
-      {
-        "title": "sequence",
-        "type": "composite",
-        "name": "sequence",
-        "parameters": {},
-        "children": [
-          {
-            "title": "Give up after some seconds",
-            "type": "action",
-            "name": "timer",
-            "parameters": {
-              "time": {"value": 120}
-            }
-          },
-          {
-            "title": "setFlag",
-            "type": "action",
-            "name": "setFlag",
-            "parameters": {
-              "name": {"value": "failedToFindTarget"}
-            }
-          }
-        ]
       }
     ]
   }

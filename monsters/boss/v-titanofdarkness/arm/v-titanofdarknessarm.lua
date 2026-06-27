@@ -253,6 +253,8 @@ function tasks.grab()
 
     util.wait(cfg.grabDelay)
 
+    animator.playSound("grab")
+
     local threads = {
       coroutine.create(function()
         vMovementA.flyToPosition(grabEndPosition, cfg.extendSpeed, cfg.extendForce, cfg.tolerance)

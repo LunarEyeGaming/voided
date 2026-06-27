@@ -44,9 +44,9 @@
               "type": "action",
               "name": "v_titanSurfaceScan",
               "parameters": {
-                "targetPos": {"key": "self"},
                 "checkDistanceX": {"value": 30},
-                "checkDistanceY": {"value": 100}
+                "checkDistanceY": {"value": 100},
+                "targetPos": {"key": "self"}
               },
               "output": {
                 "score": "selfScore"

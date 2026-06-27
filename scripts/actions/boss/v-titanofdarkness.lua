@@ -642,6 +642,7 @@ end
 -- param spawnRegion - The region in which to spawn the arm, relative to the current position
 -- param requiredAirRegion - The region of air required for a spawn position to be valid.
 -- param maxSelectionAttempts (optional) - The maximum number of attempts allowed for a selection. Defaults to 200
+-- param grabDelay (optional) - The amount of time to wait before grabbing.
 -- output angle - The angle to which to look.
 function v_titanGrab(args)
   local rq = vBehavior.requireArgsGen("v_titanGrab", args)
@@ -662,7 +663,7 @@ function v_titanGrab(args)
 
   local anchorPoint = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, 10))
   -- Spawn the arm
-  spawnArm(spawnPos, anchorPoint, "grab", {target = args.target})
+  spawnArm(spawnPos, anchorPoint, "grab", {target = args.target}, {grabDelay = args.grabDelay})
 
   -- Look at arm position.
   coroutine.yield(nil, {angle = vec2.angle(world.distance(spawnPos, mcontroller.position()))})

@@ -55,22 +55,6 @@
       "target": {"type": "entity", "key": null}
     }
   },
-  "v_titanGrab": {
-    "type": "action",
-    "name": "v_titanGrab",
-    "title": "v_titanGrab",
-    "properties": {
-      "target": {"type": "entity", "key": "target"},
-      "spawnRegion": {"type": "list", "value": [-10, -10, 10, 10]},
-      "requiredAirRegion": {"type": "list", "value": [-2, -2, 2, 2]},
-      "maxSelectionAttempts": {"type": "number", "value": 200}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {
-      "angle": {"type": "number", "key": null}
-    }
-  },
   "v_titanMusic": {
     "type": "action",
     "name": "v_titanMusic",
@@ -243,6 +227,23 @@
       "target": {"type": "entity", "key": "target"},
       "liquidBlacklist": {"type": "list"},
       "liquidWhitelist": {"type": "list"}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {
+      "angle": {"type": "number", "key": null}
+    }
+  },
+  "v_titanGrab": {
+    "type": "action",
+    "name": "v_titanGrab",
+    "title": "v_titanGrab",
+    "properties": {
+      "maxSelectionAttempts": {"type": "number", "value": 200},
+      "requiredAirRegion": {"type": "list", "value": [-2, -2, 2, 2]},
+      "spawnRegion": {"type": "list", "value": [-10, -10, 10, 10]},
+      "target": {"type": "entity", "key": "target"},
+      "grabDelay": {"type": "number"}
     },
     "category": "v-titanofdarkness",
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",

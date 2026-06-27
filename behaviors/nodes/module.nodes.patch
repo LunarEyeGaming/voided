@@ -722,17 +722,6 @@
   },
   {
     "op": "add",
-    "path": "/v-titanofdarkness-search",
-    "value": {
-      "type": "module",
-      "name": "v-titanofdarkness-search",
-      "title": "",
-      "properties": {},
-      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-search.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-titanofdarkness-teleport",
     "value": {
       "type": "module",
@@ -1695,6 +1684,30 @@
         "activeForceRegion": {"type": "json", "value": null}
       },
       "pathToTree": "..\\monsters\\unique\\v-riftmage-singularity.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-search",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-search",
+      "title": "",
+      "properties": {
+        "startSearchFlySpeed": {"type": "json", "value": 13},
+        "startSearchFlyControlForce": {"type": "json", "value": 6},
+        "startSearchStopForce": {"type": "json", "value": 12},
+        "startMaxSearchRange": {"type": "json", "value": 55},
+        "endSearchFlySpeed": {"type": "json", "value": 26},
+        "endSearchFlyControlForce": {"type": "json", "value": 6},
+        "endSearchStopForce": {"type": "json", "value": 12},
+        "endMaxSearchRange": {"type": "json", "value": 55},
+        "startEyeTurnWaitTime": {"type": "json", "value": 0.5},
+        "endEyeTurnWaitTime": {"type": "json", "value": 0.5},
+        "startGrabDelay": {"type": "json", "value": 2.5},
+        "endGrabDelay": {"type": "json", "value": 1.5}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-search.behavior"
     }
   }
 ]
