@@ -436,21 +436,26 @@ function updateDeltaScans(radius)
   frontScanPositions = {}
   backScanPositions = {}
 
-  for x = -radius, radius do
-    for y = -radius, radius do
-      local frontScanPos = vec2.add(ownPos, {x, y})
+  -- local t = os.clock()
+  local world_magnitude = world.magnitude
+  local table_insert = table.insert
+  for x = ownPos[1] - radius, ownPos[1] + radius do
+    for y = ownPos[2] - radius, ownPos[2] + radius do
+      local frontScanPos = {x, y}
 
-      local frontScanDist = world.magnitude(ownPos, frontScanPos)
-      local frontScanDist2 = world.magnitude(prevPos, frontScanPos)
+      local frontScanDist = world_magnitude(ownPos, frontScanPos)
+      local frontScanDist2 = world_magnitude(prevPos, frontScanPos)
       if frontScanDist <= radius and frontScanDist2 > prevRadius then
-        table.insert(frontScanPositions, frontScanPos)
+        table_insert(frontScanPositions, frontScanPos)
       end
     end
   end
+  -- local deltaT = os.clock() - t
+  -- sb.logInfo(string.format("Time taken: %.3f", deltaT))
 
   for x = -radius, radius do
     for y = -radius, radius do
-      local backScanPos = vec2.add(prevPos, {x, y})
+      local backScanPos = {prevPos[1] + x, prevPos[2] + y}
 
       local backScanDist = world.magnitude(ownPos, backScanPos)
       local backScanDist2 = world.magnitude(prevPos, backScanPos)
