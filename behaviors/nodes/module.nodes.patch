@@ -1699,13 +1699,15 @@
         "startSearchStopForce": {"type": "json", "value": 12},
         "startMaxSearchRange": {"type": "json", "value": 55},
         "endSearchFlySpeed": {"type": "json", "value": 26},
-        "endSearchFlyControlForce": {"type": "json", "value": 6},
-        "endSearchStopForce": {"type": "json", "value": 12},
+        "endSearchFlyControlForce": {"type": "json", "value": 12},
+        "endSearchStopForce": {"type": "json", "value": 24},
         "endMaxSearchRange": {"type": "json", "value": 55},
         "startEyeTurnWaitTime": {"type": "json", "value": 0.5},
         "endEyeTurnWaitTime": {"type": "json", "value": 0.5},
         "startGrabDelay": {"type": "json", "value": 2.5},
-        "endGrabDelay": {"type": "json", "value": 1.5}
+        "endGrabDelay": {"type": "json", "value": 1.5},
+        "startXVelocity": {"type": "json", "value": 10},
+        "endXVelocity": {"type": "json", "value": 20}
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-search.behavior"
     }
