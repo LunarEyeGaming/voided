@@ -240,24 +240,28 @@ function v_DistantDrawable:process(dt)
     end
   end
   local worldPos = self:lerpPosition(ratio, keyFrameStart, keyFrameEnd)
-  local scale
-  if keyFrameStart.scale or keyFrameEnd.scale then
-    scale = vVec2.lerp(ratio, keyFrameStart.scale or keyFrameEnd.scale, keyFrameEnd.scale or keyFrameStart.scale)
-  else
-    scale = {1, 1}
-  end
-  local rotation
-  if keyFrameStart.rotation or keyFrameEnd.rotation then
-    rotation = util.lerp(ratio, keyFrameStart.rotation or keyFrameEnd.rotation, keyFrameEnd.rotation or keyFrameStart.rotation)
-  else
-    rotation = 0
-  end
+  -- local scale
+  -- if keyFrameStart.scale or keyFrameEnd.scale then
+  --   scale = vVec2.lerp(ratio, keyFrameStart.scale or keyFrameEnd.scale, keyFrameEnd.scale or keyFrameStart.scale)
+  -- else
+  --   scale = {1, 1}
+  -- end
+  -- local rotation
+  -- if keyFrameStart.rotation or keyFrameEnd.rotation then
+  --   rotation = util.lerp(ratio, keyFrameStart.rotation or keyFrameEnd.rotation, keyFrameEnd.rotation or keyFrameStart.rotation)
+  -- else
+  --   rotation = 0
+  -- end
+  local scale = self:lerpKeyframeAttr("scale", vVec2.lerp, ratio, keyFrameStart, keyFrameEnd, {1, 1})
+  local rotation = self:lerpKeyframeAttr("rotation", util.lerp, ratio, keyFrameStart, keyFrameEnd, 0)
+  local color = self:lerpKeyframeAttr("color", vAnimator.lerpColor, ratio, keyFrameStart, keyFrameEnd)
 
   localAnimator.addDrawable({
     image = self.image,
     position = worldToLocalPosition(worldPos),
     transformation = rotateMat(rotation, scaleMat(scale)),
-    fullbright = self.fullbright
+    fullbright = self.fullbright,
+    color = color
   }, "BackgroundOverlay-20")
 
   if self._timer >= keyFrameEnd.time then
@@ -356,6 +360,24 @@ function v_DistantDrawable.addKeyFrame(keyFrames, keyFrame, position)
     keyFrameCopy.worldPosition = vec2.add(position, keyFrameCopy.localPosition)
   end
   table.insert(keyFrames, keyFrameCopy)
+end
+
+---Interpolates an attribute between two keyframes using function `func`.
+---@param attr string
+---@param func function
+---@param ratio number
+---@param frameStart table
+---@param frameEnd table
+---@param default any
+---@return any
+function v_DistantDrawable:lerpKeyframeAttr(attr, func, ratio, frameStart, frameEnd, default)
+  local result
+  if frameStart[attr] or frameEnd[attr] then
+    result = func(ratio, frameStart[attr] or frameEnd[attr], frameEnd[attr] or frameStart[attr])
+  else
+    result = default
+  end
+  return result
 end
 
 ---Converts a screen position to world position.
