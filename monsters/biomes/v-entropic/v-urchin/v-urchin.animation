@@ -14,23 +14,32 @@
             }
           },
           "aggro" : {
-            "frames" : 1,
-            "cycle" : 0.1,
-            "mode" : "loop",
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "end",
             "properties" : {
               "immediateSound" : "/sfx/melee/sword_guard.ogg",
               "lightsOn" : [ "glow" ]
             }
           },
           "windup" : {
-            "frames" : 1,
-            "cycle" : 0.1,
+            "frames" : 5,
+            "cycle" : 0.75,
             "mode" : "loop",
             "properties" : {
               "immediateSound" : "/sfx/melee/sword_guard.ogg"
             }
           },
           "fire" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "cooldown",
+            "properties" : {
+              "lightsOff" : [ "glow" ]
+            }
+          },
+          "cooldown" : {
             "frames" : 1,
             "cycle" : 5.0,
             "mode" : "transition",
@@ -52,8 +61,8 @@
             "frames" : 1
           },
           "killed" : {
-            "frames" : 1,
-            "cycle" : 0.1,
+            "frames" : 5,
+            "cycle" : 0.75,
             "mode" : "end"
           }
         }
@@ -108,17 +117,17 @@
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
               }
+            },
+            "cooldown" : {
+              "properties" : {
+                "image" : "<partImage>:cooldown.<frame>"
+              }
             }
           },
           "damage" : {
-            "stunned" : {
-              "properties" : {
-                "image" : "<partImage>:hurt.<frame>"
-              }
-            },
             "killed" : {
               "properties" : {
-                "image" : "<partImage>:hurt.<frame>"
+                "image" : "<partImage>:killed.<frame>"
               }
             }
           }
@@ -151,17 +160,17 @@
               "properties" : {
                 "image" : "<partImage>:fire.<frame>"
               }
+            },
+            "cooldown" : {
+              "properties" : {
+                "image" : "<partImage>:cooldown.<frame>"
+              }
             }
           },
           "damage" : {
-            "stunned" : {
-              "properties" : {
-                "image" : "<partImage>:hurt.<frame>"
-              }
-            },
             "killed" : {
               "properties" : {
-                "image" : "<partImage>:hurt.<frame>"
+                "image" : "<partImage>:killed.<frame>"
               }
             }
           }

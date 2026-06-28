@@ -1,13 +1,14 @@
 {
   "frameGrid" : {
     "size" : [64, 64],
-    "dimensions" : [1, 5],
+    "dimensions" : [5, 6],
     "names" : [
       [ "idle.1" ],
-      [ "aggro.1" ],
-      [ "windup.1" ],
-      [ "fire.1" ],
-      [ "hurt.1" ]
+      [ "aggro.1", "aggro.2", "aggro.3" ],
+      [ "windup.1", "windup.2", "windup.3", "windup.4", "windup.5" ],
+      [ "fire.1", "fire.2" ],
+      [ "cooldown.1" ],
+      [ "killed.1", "killed.2", "killed.3", "killed.4", "killed.5" ]
     ]
   }
 }
