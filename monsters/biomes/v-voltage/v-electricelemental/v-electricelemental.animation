@@ -56,7 +56,27 @@
         "properties" : {
           "zLevel" : 10,
           "transformationGroups" : [ "body" ],
-          "offset" : [0.0, 0.0],
+          "offset" : [0.0, 0.0]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "fly" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "bodyfullbright" : {
+        "properties" : {
+          "zLevel" : 20,
+          "anchorPart" : "body",
           "fullbright" : true
         },
         "partStates" : {

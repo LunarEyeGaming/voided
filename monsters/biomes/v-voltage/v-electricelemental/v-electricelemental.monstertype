@@ -1,7 +1,7 @@
 {
   "type" : "v-electricelemental",
   "shortdescription" : "Electric Elemental",
-  "description" : "A coalesced ball of electricity, it is attracted to any life form it comes across.",
+  "description" : "A plant holding a coalesced ball of electricity. It is attracted to anything that moves.",
 
   "categories" : [ "v-electricelemental" ],
   "parts" : [ "body" ],
@@ -109,7 +109,7 @@
       "flySpeed" : 20
     },
 
-    "bodyMaterialKind" : "stone",
+    "bodyMaterialKind" : "organic",
 
     "knockoutTime" : 0.3,
     "knockoutAnimationStates" : {
@@ -120,7 +120,7 @@
 
     "statusSettings" : {
       "statusProperties" : {
-        "targetMaterialKind" : "stone"
+        "targetMaterialKind" : "organic"
       },
 
       "appliesEnvironmentStatusEffects" : false,
