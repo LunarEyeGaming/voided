@@ -5,8 +5,6 @@
   "category" : "decorative",
   "price" : 180,
 
-  "printable" : false,
-
   "apexDescription" : "It appears to symbolize some kind of creature wrapped in darkness.",
   "avianDescription" : "This emblem makes my feathers puff up.",
   "floranDescription" : "Big eye with sswirlss.",
@@ -31,5 +29,7 @@
       "anchors" : [ "background" ]
 
     }
-  ]
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

@@ -5,8 +5,6 @@
   "category" : "decorative",
   "price" : 180,
 
-  "printable" : false,
-
   "apexDescription" : "An emblem depicting ice.",
   "avianDescription" : "An emblem representing the cold.",
   "floranDescription" : "Big sstone sssnowflake.",
@@ -31,5 +29,7 @@
       "anchors" : [ "background" ]
 
     }
-  ]
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }
