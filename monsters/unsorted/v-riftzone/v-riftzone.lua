@@ -10,6 +10,7 @@ require "/scripts/v-vec2.lua"
 local INSTANT_BREAK_DAMAGE = 2 ^ 32
 local MAX_TILES_TO_DESTROY = 2000
 
+-- Parameters
 local scanRadius
 local tileSofteningRadius
 local invisibleOre
@@ -25,6 +26,7 @@ local terrainZRange
 local relocationProbability
 local lightningStrikeProbability
 
+-- State variables
 local prevPos
 local prevRadius
 local currentScanRadius
@@ -42,7 +44,10 @@ local placedOresBG
 local placedAssists
 local frontScanPositions
 local backScanPositions
+local cachedFrontScanPositions
+local cachedBackScanPositions
 local cleanedUp
+local dungeonIdsToRevert
 
 local weatherFunctions
 local weatherConfigs
@@ -75,6 +80,9 @@ function init()
   relocationProbability = cfg.relocationProbability
   lightningStrikeProbability = config.getParameter("lightningStrikeProbability")
 
+  cachedFrontScanPositions = {}
+  cachedBackScanPositions = {}
+
   prevPos = vec2.floor(mcontroller.position())
   prevRadius = 0
   currentScanRadius = 0
@@ -101,6 +109,7 @@ function init()
   placedOresFG = {}
   placedOresBG = {}
   placedAssists = {}
+  dungeonIdsToRevert = {}
 
   weatherFunctions = {
     meteors = function()
@@ -139,6 +148,7 @@ function init()
 end
 
 function update(dt)
+  revertDungeonIds()
   callDeferredTasks()
 
   state:update(dt)
@@ -232,12 +242,18 @@ end
 function states.appear()
   animator.playSound("open")
 
+  local prevScanRadius = 0
   local timer = 0
   while timer < appearTime do
     currentScanRadius = interp.sin(timer / appearTime, 0, scanRadius)
     currentTileSofteningRadius = interp.sin(timer / appearTime, 0, tileSofteningRadius)
 
+    local ownPos = vec2.floor(mcontroller.position())
+    computeDeltaScans(prevScanRadius, currentScanRadius, ownPos, ownPos)
+
     timer = timer + script.updateDt()
+
+    prevScanRadius = currentScanRadius
 
     coroutine.yield()
   end
@@ -248,6 +264,13 @@ end
 function states.move()
   currentScanRadius = scanRadius
   currentTileSofteningRadius = tileSofteningRadius
+
+  local ownPos = vec2.floor(mcontroller.position())
+  -- local normVel = vec2.norm(velocity)
+  -- sb.logInfo(string.format("%.7f, %.7f", normVel[1], normVel[2]))
+  -- local nextPos = vec2.add(ownPos, {-1, 0})
+  local nextPos = vec2.floor(vec2.add(vec2.add(ownPos, vec2.norm(velocity)), {0.5, 0.5}))
+  computeDeltaScans(currentScanRadius, currentScanRadius, ownPos, nextPos)
 
   -- rotationTimer = 0
 
@@ -275,12 +298,18 @@ function states.disappear()
 
   mcontroller.setVelocity({0, 0})
 
+  local prevScanRadius = 0
   local timer = disappearTime
   while timer > 0 do
     currentScanRadius = interp.sin(timer / disappearTime, 0, scanRadius)
     currentTileSofteningRadius = interp.sin(timer / disappearTime, 0, tileSofteningRadius)
 
+    local ownPos = vec2.floor(mcontroller.position())
+    computeDeltaScans(prevScanRadius, currentScanRadius, ownPos, ownPos)
+
     timer = timer - script.updateDt()
+
+    prevScanRadius = currentScanRadius
 
     coroutine.yield()
   end
@@ -433,40 +462,70 @@ function updateDeltaScans(radius)
   local ownPos = vec2.floor(mcontroller.position())
   world.debugPoint(ownPos, "green")
 
+  -- for x = ownPos[1] - radius, ownPos[1] + radius do
+  --   for y = ownPos[2] - radius, ownPos[2] + radius do
+  --     local frontScanPos = {x, y}
+
+  --     local dungeonId = world.dungeonId(frontScanPos)
+  --     world.debugPoint(frontScanPos, dungeonId == 65535 and "green" or "red")
+  --   end
+  -- end
+
   frontScanPositions = {}
   backScanPositions = {}
+  -- if radius ~= radiusSinceLastCache or not vec2.eq(velocitySinceLastCache or {}, mcontroller.velocity()) then
+  --   local nextPos = vec2.floor(vec2.add(vec2.add(ownPos, vec2.norm(mcontroller.velocity())), {0.5, 0.5}))
+  --   computeDeltaScans(prevRadius, radius, ownPos, nextPos)
+  --   radiusSinceLastCache = radius
+  --   velocitySinceLastCache = mcontroller.velocity()
+  --   sb.logInfo("%s, %s", #cachedFrontScanPositions, #cachedBackScanPositions)
+  -- end
 
-  -- local t = os.clock()
-  local world_magnitude = world.magnitude
-  local table_insert = table.insert
-  for x = ownPos[1] - radius, ownPos[1] + radius do
-    for y = ownPos[2] - radius, ownPos[2] + radius do
-      local frontScanPos = {x, y}
-
-      local frontScanDist = world_magnitude(ownPos, frontScanPos)
-      local frontScanDist2 = world_magnitude(prevPos, frontScanPos)
-      if frontScanDist <= radius and frontScanDist2 > prevRadius then
-        table_insert(frontScanPositions, frontScanPos)
-      end
+  if ownPos[1] ~= prevPos[1] or ownPos[2] ~= prevPos[2] or radius ~= prevRadius then
+    for _, pos in ipairs(cachedFrontScanPositions) do
+      table.insert(frontScanPositions, vec2.add(pos, ownPos))
     end
-  end
-  -- local deltaT = os.clock() - t
-  -- sb.logInfo(string.format("Time taken: %.3f", deltaT))
-
-  for x = -radius, radius do
-    for y = -radius, radius do
-      local backScanPos = {prevPos[1] + x, prevPos[2] + y}
-
-      local backScanDist = world.magnitude(ownPos, backScanPos)
-      local backScanDist2 = world.magnitude(prevPos, backScanPos)
-      if backScanDist > radius and backScanDist2 <= prevRadius then
-        table.insert(backScanPositions, backScanPos)
-      end
+    for _, pos in ipairs(cachedBackScanPositions) do
+      table.insert(backScanPositions, vec2.add(pos, prevPos))
     end
   end
 
   prevPos = ownPos
   prevRadius = radius
+end
+
+function computeDeltaScans(radius0, radius, center0, center)
+  radius0 = math.floor(radius0)
+  radius = math.floor(radius)
+  center0 = vec2.floor(center0)
+  center = vec2.floor(center)
+
+  cachedFrontScanPositions = {}
+  cachedBackScanPositions = {}
+
+  for x = -radius, radius do
+    for y = -radius, radius do
+      local frontScanPos = {center[1] + x, center[2] + y}
+
+      local frontScanDist = world.magnitude(center, frontScanPos)
+      local frontScanDist2 = world.magnitude(center0, frontScanPos)
+      if frontScanDist <= radius and frontScanDist2 > radius0 then
+        table.insert(cachedFrontScanPositions, {x, y})
+      end
+    end
+  end
+
+  for x = -radius, radius do
+    for y = -radius, radius do
+      local backScanPos = {center0[1] + x, center0[2] + y}
+
+      local backScanDist = world.magnitude(center, backScanPos)
+      local backScanDist2 = world.magnitude(center0, backScanPos)
+      if backScanDist > radius and backScanDist2 <= radius0 then
+        table.insert(cachedBackScanPositions, {x, y})
+      end
+    end
+  end
 end
 
 function updateMaterials(radius)
@@ -543,8 +602,35 @@ function updateMaterials(radius)
   world.damageTiles(blocksToRemove, "foreground", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
   world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
 
+  -- table.insert(deferredTasks, {ticks = 1, func = function()
+  --   recordDungeonIdsToRevert(blocksToRemove)
+  --   recordDungeonIdsToRevert(blocksToRemoveBG)
+  -- end})
+  recordDungeonIdsToRevert(blocksToRemove)
+  recordDungeonIdsToRevert(blocksToRemoveBG)
+
+  -- world.setDungeonId(rect.translate({-radius, -radius, radius, radius}, prevPos), 65535)
+
   prevPos = ownPos
   prevRadius = radius
+end
+
+function recordDungeonIdsToRevert(blocks)
+  for _, block in ipairs(blocks) do
+    local blockStr = vVec2.iToString(block)
+    dungeonIdsToRevert[blockStr] = world.dungeonId(block)
+  end
+end
+
+function revertDungeonIds()
+  -- Revert dungeon ID
+  for blockStr, dungeonId in pairs(dungeonIdsToRevert) do
+    local block = vVec2.iFromString(blockStr)
+    -- world.debugText("%s", dungeonId, block, "green")
+    world.setDungeonId({block[1], block[2], block[1] + 1, block[2] + 1}, dungeonId)
+  end
+
+  dungeonIdsToRevert = {}
 end
 
 function placeOres(fg, bg)
@@ -606,6 +692,7 @@ function placeBlocks(blocksToPlace, placedBlocks, foreground)
 
   -- Place assists where necessary. Mark as placed in placedBlocks
   for _, block in ipairs(needAssists) do
+    local dungeonId = world.dungeonId(block.pos)  -- Record dungeonId BEFORE placing the material.
     local placedObject
     if foreground then
       -- TODO: Fix place assists interfering with each other
@@ -626,7 +713,11 @@ function placeBlocks(blocksToPlace, placedBlocks, foreground)
     if not placedObject then
       world.debugText("BLOCKED", block.pos, "red")
     else
-      placedBlocks[vVec2.iToString(block.pos)] = true
+      local blockStr = vVec2.iToString(block.pos)
+      placedBlocks[blockStr] = true
+      if not dungeonIdsToRevert[blockStr] then
+        dungeonIdsToRevert[blockStr] = dungeonId
+      end
     end
   end
 
@@ -634,9 +725,14 @@ function placeBlocks(blocksToPlace, placedBlocks, foreground)
   table.insert(deferredTasks, function()
     for _, block in ipairs(blocksToPlace) do
       if not placedBlocks[vVec2.iToString(block.pos)] then
+        local dungeonId = world.dungeonId(block.pos)  -- Record dungeonId BEFORE placing the material.
         local success = world.placeMaterial(block.pos, currentLayer, block.material)
         if success then
-          placedBlocks[vVec2.iToString(block.pos)] = true
+          local blockStr = vVec2.iToString(block.pos)
+          placedBlocks[blockStr] = true
+          if not dungeonIdsToRevert[blockStr] then
+            dungeonIdsToRevert[blockStr] = dungeonId
+          end
         else
           world.debugText("FAILED", block.pos, "red")
         end
