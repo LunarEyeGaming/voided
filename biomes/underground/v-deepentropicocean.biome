@@ -169,20 +169,6 @@
         "mode" : "floor",
         "priority" : 1.0,
         "variants" : 1,
-        "distribution" : "/biomes/distributions.config:rareClumpySmall",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { "originBiome" : "surface/v-entropic" }
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
         "distribution" : "/biomes/distributions.config:scatteredLarge",
 
         "type" : "object",
@@ -204,20 +190,6 @@
             "pool" : [ [0.20, "v-coldgrass1" ], [0.20, "v-coldgrass2" ], [0.20, "v-coldgrass3" ],
             [0.20, "v-coldgrass4" ], [0.20, "v-coldgrass5" ], [0.20, "v-coldgrass6" ], [0.20, "v-coldgrass7" ],
             [0.20, "v-coldgrass8" ]]
-          }
-        ]
-      },
-      {
-        "mode" : "ceiling",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:rareClumpySmall",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
       },

@@ -127,21 +127,21 @@
     "op": "add",
     "path": "/v-entropic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.5 ], [ "ferozium", 0.25 ], [ "v-preservedcreature", 0.75 ], [ "v-nulliuminvisible", 1.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.5 ], [ "ferozium", 0.25 ], [ "v-preservedcreature", 0.5 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-shallowundergroundentropic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 1.0 ], [ "ferozium", 0.25 ], [ "v-aurorite", 0.25 ], [ "v-preservedcreature", 1.0 ], [ "v-nulliuminvisible", 1.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 1.0 ], [ "ferozium", 0.25 ], [ "v-aurorite", 0.25 ], [ "v-preservedcreature", 0.75 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
     "op": "add",
     "path": "/v-undergroundentropic",
     "value": [
-      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.75 ], [ "ferozium", 0.5 ], [ "v-aurorite", 0.5 ], [ "v-preservedcreature", 0.5 ], [ "v-nulliuminvisible", 1.0 ] ] ]
+      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.75 ], [ "ferozium", 0.5 ], [ "v-aurorite", 0.5 ], [ "v-preservedcreature", 0.25 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   },
   {
@@ -156,6 +156,13 @@
     "path": "/v-entropiccore",
     "value": [
       [4.5, [ [ "coal", 0.2 ], [ "prisilite", 0.25 ], [ "ferozium", 0.75 ], [ "v-aurorite", 0.0 ], ["corefragment", 1.0], [ "v-preservedcreature", 0.0 ], [ "v-nulliuminvisible", 1.0 ] ] ]
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/v-icegnatnest",
+    "value": [
+      [4.5, [ [ "coal", 0.2 ], [ "prisilite", 1.0 ], [ "ferozium", 0.25 ], [ "v-aurorite", 0.25 ], [ "v-preservedcreature", 1.0 ], [ "v-nulliuminvisible", 1.0 ] ] ]
     ]
   }
 ]

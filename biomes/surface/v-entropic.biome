@@ -211,20 +211,6 @@
       },
       {
         "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:rareClumpySmall",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { "originBiome" : "surface/v-entropic" }
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
         "priority" : 2.0,
         "variants" : 1,
         "distribution" : "/biomes/distributions.config:denseLarge",
@@ -308,34 +294,6 @@
           {
             "pool" : [ [0.35, "capsulesmall" ], [0.35, "capsulemed" ], [0.35, "capsulebig" ] ],
             "parameters" : { "breakDropPool" : "v-capsule", "smashDropPool" : "v-capsule" }
-          }
-        ]
-      },
-      {
-        "mode" : "floor",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:rareClumpySmall",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { }
-          }
-        ]
-      },
-      {
-        "mode" : "ceiling",
-        "priority" : 1.0,
-        "variants" : 1,
-        "distribution" : "/biomes/distributions.config:rareClumpySmall",
-
-        "type" : "object",
-        "objectSets" : [
-          {
-            "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { }
           }
         ]
       },

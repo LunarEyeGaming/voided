@@ -616,7 +616,7 @@
         },
         "underground1" : {
           "primaryRegion" : ["v-shallowentropicocean"],
-          "secondaryRegions" : [ "v-shallowentropiccoralfield" ],
+          "secondaryRegions" : [ "v-shallowentropiccoralfield", "v-icegnatnest" ],
           "secondaryRegionCount" : [1, 1]
         },
         "underground2" : {
@@ -780,6 +780,21 @@
       "oceanLevelOffset" : 500,
       "biome": [
         [1,["v-shallowentropiccoralfield"]]
+      ]
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/regionTypes/v-icegnatnest",
+    "value" : {
+      "blockSelector" : [ "v-pocketSolid" ],
+      "fgCaveSelector" : [ "normalCaves" ],
+      "bgCaveSelector" : [ "normalCaves" ],
+      "subBlockSelector" : [ "denseCaves" ],
+      "oceanLiquid" : [ "water" ],
+      "oceanLevelOffset" : 500,
+      "biome": [
+        [1,["v-icegnatnest"]]
       ]
     }
   },
