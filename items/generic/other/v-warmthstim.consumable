@@ -1,0 +1,17 @@
+{
+  "itemName" : "v-warmthstim",
+  "rarity" : "Common",
+  "price" : 100,
+  "category" : "medicine",
+  "inventoryIcon" : "v-warmthstim.png",
+  "description" : "A stim full of liquid that increases frostbite capacity by 25%.",
+  "shortdescription" : "Warmth Stim Pack",
+  "effects" : [ [
+      {
+        "effect" : "v-warmthstim",
+        "duration" : 300
+      }
+    ] ],
+  "emote" : "",
+  "emitters" : [ "stimuse" ]
+}
