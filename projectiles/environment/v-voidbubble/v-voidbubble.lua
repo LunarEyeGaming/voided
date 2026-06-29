@@ -4,14 +4,16 @@ local detectTypes
 local detectRange
 local approachSpeed
 local approachForce
+local initialSpeed
 
 function init()
   detectTypes = config.getParameter("detectTypes")
   detectRange = config.getParameter("detectRange")
   approachSpeed = config.getParameter("approachSpeed")
   approachForce = config.getParameter("approachForce")
+  initialSpeed = config.getParameter("speed")
 
-  mcontroller.setVelocity(vec2.withAngle(math.random() * 2 * math.pi, 25))
+  mcontroller.setVelocity(vec2.withAngle(math.random() * 2 * math.pi, initialSpeed))
 end
 
 function update(dt)
