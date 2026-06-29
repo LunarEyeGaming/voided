@@ -13,7 +13,7 @@
   },
   "bounces" : 50,
   "speed" : 10,
-  "onlyHitTerrain" : true,
+  "damagePoly" : [ [-1.125, 0], [-0.75, -0.75], [0, -1.125], [0.75, -0.75], [1.125, 0], [0.75, 0.75], [0, 1.125], [-0.75, 0.75] ],
   "orientationLocked" : true,
 
   "timeToLive" : 10,
