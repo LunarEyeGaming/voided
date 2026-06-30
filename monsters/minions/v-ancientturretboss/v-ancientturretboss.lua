@@ -2,10 +2,11 @@ require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/poly.lua"
 
+require "/scripts/v-world.lua"
+
 local angleOffset
 local angles
 
-local halfFov
 local sightRadius
 local outOfSightRadius
 local waitTime
@@ -28,7 +29,9 @@ local rotationCenter
 local queriedTimings
 local isAttacking
 local target
+local currentAngle
 
+local fovSearcher
 local moveState
 local attackState
 
@@ -41,7 +44,6 @@ function init()
   end
   setAngle(angles[1])
 
-  halfFov = util.toRadians(config.getParameter("fov", 45)) / 2
   sightRadius = config.getParameter("sightRadius", 20)
   outOfSightRadius = config.getParameter("outOfSightRadius", 40)
   waitTime = config.getParameter("waitTime", 0.5)
@@ -74,6 +76,13 @@ function init()
 
   script.setUpdateDelta(config.getParameter("scriptDelta", 15))
 
+  fovSearcher = vWorld.FovSearcher:new{
+    fov = config.getParameter("fov", 45),
+    exposureTime = exposureTime,
+    sightRange = sightRadius,
+    queryArguments = {withoutEntityId = entity.id(), includedTypes = {"creature"}}
+  }
+  fovSearcher:init()
   moveState = FSM:new()
   attackState = FSM:new()
 
@@ -102,7 +111,8 @@ function states.target()
   util.wait(activationTime)
 
   while true do
-    target = getTarget()
+    local targets = fovSearcher:update(script.updateDt(), cameraPos, currentAngle)
+    target = targets[1]
     if target then
       attackState:set(states.attack)
     end
@@ -188,25 +198,6 @@ function setAngle(angle)
   currentAngle = angle
   animator.resetTransformationGroup("gun")
   animator.rotateTransformationGroup("gun", angle)
-end
-
-function getTarget()
-  local queried = world.entityQuery(cameraPos, sightRadius, {withoutEntityId = entity.id(), includedTypes = {"creature"}})
-  -- Iterate through each queried entity. Find the first one that is within its field of view (ordered from nearest to farthest)
-  for _, qItem in pairs(queried) do
-    local sightCloseness = math.abs(
-      util.angleDiff(
-        currentAngle,
-        vec2.angle(world.distance(world.entityPosition(qItem), cameraPos))
-      )
-    )
-    if isValidTarget(qItem) and sightCloseness <= halfFov then
-      updateQueried(qItem)
-      if queriedTimings[qItem] < 0 then
-        return qItem
-      end
-    end
-  end
 end
 
 function fire(aimVec)

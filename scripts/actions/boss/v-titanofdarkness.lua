@@ -387,8 +387,6 @@ function v_titanSearch(args)
   end
 
   local angularVelocity = args.eyeAngularVelocity * math.pi / 180
-  local rayCount = args.searchRayCount or 40
-  local maxRaycastLength = args.maxRaycastLength or 100
 
   local flyTolerance = args.flyTolerance or 1
   local flySpeed = args.flySpeed or mcontroller.baseParameters().flySpeed
@@ -397,29 +395,40 @@ function v_titanSearch(args)
 
   local currentAngle = args.startAngle or -math.pi / 2
   while true do
-    local searchZones = processRaycastClusters(radialRaycast(mcontroller.position(), rayCount, maxRaycastLength))
+    -- local searchZones = processRaycastClusters(radialRaycast(mcontroller.position(), rayCount, maxRaycastLength))
 
-    -- debugSearchZones = searchZones
+    -- -- debugSearchZones = searchZones
 
-    -- Go through each search zone.
-    for _, zone in ipairs(searchZones) do
-      -- A sweep turns to the start angle, then the end angle, then the start angle again.
-      if zone.sweep then
-        eyeTurn(currentAngle, zone.startAngle, angularVelocity)
-        eyeTurn(zone.startAngle, zone.endAngle, angularVelocity)
-        util.run(args.eyeTurnWaitTime, function() end)
-        eyeTurn(zone.endAngle, zone.startAngle, angularVelocity)
-        util.run(args.eyeTurnWaitTime, function() end)
+    -- -- Go through each search zone.
+    -- for _, zone in ipairs(searchZones) do
+    --   -- A sweep turns to the start angle, then the end angle, then the start angle again.
+    --   if zone.sweep then
+    --     eyeTurn(currentAngle, zone.startAngle, angularVelocity)
+    --     eyeTurn(zone.startAngle, zone.endAngle, angularVelocity)
+    --     util.run(args.eyeTurnWaitTime, function() end)
+    --     eyeTurn(zone.endAngle, zone.startAngle, angularVelocity)
+    --     util.run(args.eyeTurnWaitTime, function() end)
 
-        currentAngle = zone.startAngle
-      else
-        -- A spot turns to the angle
-        eyeTurn(currentAngle, zone.angle, angularVelocity)
-        util.run(args.eyeTurnWaitTime, function() end)
+    --     currentAngle = zone.startAngle
+    --   else
+    --     -- A spot turns to the angle
+    --     eyeTurn(currentAngle, zone.angle, angularVelocity)
+    --     util.run(args.eyeTurnWaitTime, function() end)
 
-        currentAngle = zone.angle
-      end
-    end
+    --     currentAngle = zone.angle
+    --   end
+    -- end
+    local status, result
+    status, result = v_titanLookAround({
+      currentAngle = currentAngle,
+      eyeAngularVelocity = args.eyeAngularVelocity,
+      eyeTurnWaitTime = args.eyeTurnWaitTime,
+      searchRayCount = args.searchRayCount,
+      maxSearchRaycastLength = args.maxSearchRaycastLength
+    })
+    if not status then return false end
+    ---@diagnostic disable-next-line: need-check-nil
+    currentAngle = result.angle
 
     local maxAttempts = args.flyMaxSelectionAttempts or 10
     local lerpStep = args.flySelectionLerpStep or 1
@@ -479,6 +488,47 @@ function v_titanSearch(args)
       end
     end
   end
+end
+
+-- param currentAngle
+-- param eyeAngularVelocity - The angular velocity of the eyes to use in degrees per second.
+-- param eyeTurnWaitTime - The amount of time to wait between each turn.
+-- param searchRayCount (optional) - The number of raycasts to perform when generating places to search. Defaults to 40
+-- param maxSearchRaycastLength (optional) - The maximum length of each raycast. Defaults to 100
+function v_titanLookAround(args)
+  if not vBehavior.requireArgs("v_titanLookAround", args, {"currentAngle", "eyeAngularVelocity", "eyeTurnWaitTime"}) then
+    return false
+  end
+
+  local currentAngle = args.currentAngle
+  local angularVelocity = args.eyeAngularVelocity * math.pi / 180
+  local rayCount = args.searchRayCount or 40
+  local maxRaycastLength = args.maxSearchRaycastLength or 100
+  local searchZones = processRaycastClusters(radialRaycast(mcontroller.position(), rayCount, maxRaycastLength))
+
+  -- debugSearchZones = searchZones
+
+  -- Go through each search zone.
+  for _, zone in ipairs(searchZones) do
+    -- A sweep turns to the start angle, then the end angle, then the start angle again.
+    if zone.sweep then
+      eyeTurn(currentAngle, zone.startAngle, angularVelocity)
+      eyeTurn(zone.startAngle, zone.endAngle, angularVelocity)
+      util.run(args.eyeTurnWaitTime, function() end)
+      eyeTurn(zone.endAngle, zone.startAngle, angularVelocity)
+      util.run(args.eyeTurnWaitTime, function() end)
+
+      currentAngle = zone.startAngle
+    else
+      -- A spot turns to the angle
+      eyeTurn(currentAngle, zone.angle, angularVelocity)
+      util.run(args.eyeTurnWaitTime, function() end)
+
+      currentAngle = zone.angle
+    end
+  end
+
+  return true, {angle = currentAngle}
 end
 
 -- Returns a score, which is a number where a ceiling farther from the position contributes to a higher score and a
@@ -578,57 +628,85 @@ function v_titanDetectTarget(args)
 
   if not rq{"currentAngle", "sightRange", "fov", "exposureTime"} then return false end
 
-  local halfFov = args.fov * math.pi / 360  -- Convert to radians, then divide by 2.
-  local queriedTimingsLeft = {}
-  local queriedTimingsRight = {}
+  -- local halfFov = args.fov * math.pi / 360  -- Convert to radians, then divide by 2.
+  -- local queriedTimingsLeft = {}
+  -- local queriedTimingsRight = {}
 
-  local isValidTarget = function(target, eyePos)
-    if world.entityExists(target) then
-      local targetPos = world.entityPosition(target)
-      return not (world.lineTileCollision(eyePos, world.nearestTo(eyePos, targetPos))
-        or world.magnitude(eyePos, targetPos) > args.sightRange)
-        and entity.isValidTarget(target)
-    end
+  -- local isValidTarget = function(target, eyePos)
+  --   if world.entityExists(target) then
+  --     local targetPos = world.entityPosition(target)
+  --     return not (world.lineTileCollision(eyePos, world.nearestTo(eyePos, targetPos))
+  --       or world.magnitude(eyePos, targetPos) > args.sightRange)
+  --       and entity.isValidTarget(target)
+  --   end
 
-    return false
-  end
+  --   return false
+  -- end
 
-  local getTarget = function(queriedTimings, eyePos)
-    local queried = world.entityQuery(eyePos, args.sightRange, {withoutEntityId = entity.id(), includedTypes = {"player"}})
-    -- Iterate through each queried entity. Find the first one that is within its field of view (ordered from nearest to
-    -- farthest)
-    for _, qItem in pairs(queried) do
-      -- Calculate absolute difference between current angle and the angle of the vector from eyePos to qItem's
-      -- position.
-      local sightCloseness = math.abs(
-        util.angleDiff(
-          args.currentAngle,
-          vec2.angle(world.distance(world.entityPosition(qItem), eyePos))
-        )
-      )
-      if isValidTarget(qItem, eyePos) and sightCloseness <= halfFov then
-        -- Update exposure time for the queried item.
-        if queriedTimings[qItem] then
-          queriedTimings[qItem] = queriedTimings[qItem] - script.updateDt()
-        else
-          queriedTimings[qItem] = args.exposureTime
-        end
+  -- local getTarget = function(queriedTimings, eyePos)
+  --   local queried = world.entityQuery(eyePos, args.sightRange, {withoutEntityId = entity.id(), includedTypes = {"player"}})
+  --   -- Iterate through each queried entity. Find the first one that is within its field of view (ordered from nearest to
+  --   -- farthest)
+  --   for _, qItem in pairs(queried) do
+  --     -- Calculate absolute difference between current angle and the angle of the vector from eyePos to qItem's
+  --     -- position.
+  --     local sightCloseness = math.abs(
+  --       util.angleDiff(
+  --         args.currentAngle,
+  --         vec2.angle(world.distance(world.entityPosition(qItem), eyePos))
+  --       )
+  --     )
+  --     if isValidTarget(qItem, eyePos) and sightCloseness <= halfFov then
+  --       -- Update exposure time for the queried item.
+  --       if queriedTimings[qItem] then
+  --         queriedTimings[qItem] = queriedTimings[qItem] - script.updateDt()
+  --       else
+  --         queriedTimings[qItem] = args.exposureTime
+  --       end
 
-        -- If the queried item has been exposed for long enough...
-        if queriedTimings[qItem] < 0 then
-          -- Return it.
-          return qItem
-        end
-      else
-        queriedTimings[qItem] = nil
-      end
-    end
-  end
+  --       -- If the queried item has been exposed for long enough...
+  --       if queriedTimings[qItem] < 0 then
+  --         -- Return it.
+  --         return qItem
+  --       end
+  --     else
+  --       queriedTimings[qItem] = nil
+  --     end
+  --   end
+  -- end
+
+  -- local target
+  -- while not target do
+  --   target = getTarget(queriedTimingsLeft, vec2.add(mcontroller.position(), animator.partPoint("body", "leftEyeCenter")))
+  --   or getTarget(queriedTimingsRight, vec2.add(mcontroller.position(), animator.partPoint("body", "rightEyeCenter")))
+
+  --   coroutine.yield()
+  -- end
+
+  -- sb.logInfo("Titan: Target found: %s", target)
+
+  -- return true, {target = target}
+  local leftSearcher = vWorld.FovSearcher:new{
+    fov = args.fov,
+    exposureTime = args.exposureTime,
+    sightRange = args.sightRange,
+    queryArguments = {withoutEntityId = entity.id(), includedTypes = {"player"}}
+  }
+  leftSearcher:init()
+  local rightSearcher = vWorld.FovSearcher:new{
+    fov = args.fov,
+    exposureTime = args.exposureTime,
+    sightRange = args.sightRange,
+    queryArguments = {withoutEntityId = entity.id(), includedTypes = {"player"}}
+  }
+  rightSearcher:init()
 
   local target
   while not target do
-    target = getTarget(queriedTimingsLeft, vec2.add(mcontroller.position(), animator.partPoint("body", "leftEyeCenter")))
-    or getTarget(queriedTimingsRight, vec2.add(mcontroller.position(), animator.partPoint("body", "rightEyeCenter")))
+    local targets = leftSearcher:update(script.updateDt(), vec2.add(mcontroller.position(), animator.partPoint("body", "leftEyeCenter")), args.currentAngle)
+    or rightSearcher:update(script.updateDt(), vec2.add(mcontroller.position(), animator.partPoint("body", "rightEyeCenter")), args.currentAngle)
+    target = targets[1]
+    world.debugText("Running", mcontroller.position(), "green")
 
     coroutine.yield()
   end

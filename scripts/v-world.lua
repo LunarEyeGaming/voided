@@ -141,6 +141,84 @@ function vWorld.forcePlaceObject(objectName, position, direction, parameters)
   end
 end
 
+---@class FovSearcher
+---@field fov number Field of vision with which to search targets
+---@field exposureTime number The amount of time that a target must spend being seen
+---@field sightRange number The maximum distance at which the entity can see a target.
+---@field queryArguments Json Arguments for the corresponding entity query.
+---@field useLineCollision boolean?
+---@field _queriedTimings table<EntityId, number>
+---@field _halfFov number
+local FovSearcher = {}
+
+function FovSearcher:new(obj)
+  obj = obj or {}
+
+  setmetatable(obj, self)
+  self.__index = self
+  return obj
+end
+
+function FovSearcher:init()
+  self._queriedTimings = {}
+  self._halfFov = self.fov * math.pi / 360  -- Convert to radians, then divide by 2.
+  self.targetPredicate = self.targetPredicate or entity.isValidTarget
+  self._lineCollision = self.useLineCollision and world.lineCollision or world.lineTileCollision
+end
+
+function FovSearcher:update(dt, position, angle)
+  local queried = world.entityQuery(position, self.sightRange, self.queryArguments)
+  local foundTargets = {}
+  -- Iterate through each queried entity. Find the first one that is within its field of view (ordered from nearest to
+  -- farthest)
+  for _, qItem in pairs(queried) do
+    -- Calculate absolute difference between current angle and the angle of the vector from position to qItem's
+    -- position.
+    local sightCloseness = math.abs(
+      util.angleDiff(
+        angle,
+        vec2.angle(world.distance(world.entityPosition(qItem), position))
+      )
+    )
+    if self:_isValidTarget(qItem, position) and sightCloseness <= self._halfFov then
+      -- Update exposure time for the queried item.
+      if self._queriedTimings[qItem] then
+        self._queriedTimings[qItem] = self._queriedTimings[qItem] - dt
+      else
+        self._queriedTimings[qItem] = self.exposureTime
+      end
+
+      -- If the queried item has been exposed for long enough...
+      if self._queriedTimings[qItem] <= 0 then
+        table.insert(foundTargets, qItem)
+      end
+    else
+      self._queriedTimings[qItem] = nil
+    end
+  end
+
+  return foundTargets
+end
+
+function FovSearcher:_isValidTarget(target, pos)
+  if world.entityExists(target) then
+      local targetPos = world.entityPosition(target)
+      return not (self._lineCollision(pos, world.nearestTo(pos, targetPos))
+        or world.magnitude(pos, targetPos) > self.sightRange)
+        and self.targetPredicate(target)
+    end
+
+    return false
+end
+
+-- ---Returns a searcher that queries entities in a field of view.
+-- ---@param args table
+-- ---@return FovSearcher
+-- function vWorld.makeFovSearcher(args)
+--   return FovSearcher:new(args)
+-- end
+vWorld.FovSearcher = FovSearcher
+
 --- Utility coroutine functions related to the world.
 vWorldA = {}
 

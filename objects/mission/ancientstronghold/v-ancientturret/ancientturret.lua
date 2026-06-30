@@ -2,10 +2,11 @@ require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/poly.lua"
 
+require "/scripts/v-world.lua"
+
 local angleOffset
 local angles
 local currentAngle
-local halfFov
 local sightRadius
 local notFovSightRadius
 local notFovOutOfSightRadius
@@ -17,7 +18,6 @@ local windupTime
 local beamLength
 local beamCenter
 local beamOffset
-local beamDimensions
 local damageConfig
 
 local cameraPos
@@ -26,6 +26,7 @@ local beamCenterPos
 local queriedTimings
 local currentTarget
 
+local fovSearcher
 local moveState
 local attackState
 
@@ -37,7 +38,6 @@ function init()
     angles[i] = util.toRadians(angle + angleOffset)
   end
   currentAngle = angles[1]
-  halfFov = util.toRadians(config.getParameter("fov")) / 2
   sightRadius = config.getParameter("sightRadius")
   notFovSightRadius = config.getParameter("notFovSightRadius") -- sightRadius for when storage.useFov is false
   outOfSightRadius = config.getParameter("outOfSightRadius")
@@ -50,16 +50,26 @@ function init()
   beamLength = config.getParameter("beamLength", 50)
   beamCenter = config.getParameter("beamCenter", {2, 2})
   beamOffset = config.getParameter("beamOffset", {0, 0})
-  beamDimensions = config.getParameter("beamDimensions")
   damageConfig = config.getParameter("damageConfig")
   damageConfig.damage = damageConfig.damage * root.evalFunction("monsterLevelPowerMultiplier", object.level())
-  
+
   cameraPos = vec2.add(object.position(), animator.partPoint("base", "cameraPos"))
   beamCenterPos = vec2.add(object.position(), beamCenter)
 
   -- Initialize variables
   queriedTimings = {}
   currentTarget = nil
+
+  fovSearcher = vWorld.FovSearcher:new{
+    fov = config.getParameter("fov"),
+    exposureTime = exposureTime,
+    sightRange = sightRadius,
+    queryArguments = {
+      withoutEntityId = entity.id(),
+      includedTypes = {"creature"}
+    }
+  }
+  fovSearcher:init()
 
   moveState = FSM:new()
   attackState = FSM:new()
@@ -74,7 +84,7 @@ function init()
     animator.setLightActive("flashlight", false)
     animator.setAnimationState("flashlight", "off")
   end
-  
+
   if storage.useFov == nil then
     updateActive()
   end
@@ -114,6 +124,7 @@ function updateActive()
   local useFov = (not object.isInputNodeConnected(1) or object.getInputNodeLevel(1))
   if useFov ~= storage.useFov then
     storage.useFov = useFov
+    fovSearcher.sightRange = storage.useFov and sightRadius or notFovSightRadius
   end
 end
 
@@ -128,7 +139,8 @@ end
 
 function states.target()
   while true do
-    currentTarget = getTarget()
+    local targets = fovSearcher:update(script.updateDt(), cameraPos, currentAngle)
+    currentTarget = targets[1]
     if currentTarget then
       attackState:set(states.windup)
     end
@@ -158,7 +170,7 @@ function states.windup()
     timer = timer - dt
     coroutine.yield()
   end
-  
+
   attackState:set(states.attack)
 end
 
@@ -231,34 +243,6 @@ function setAngle(angle)
   animator.rotateTransformationGroup("gun", angle)
 end
 
-function getTarget()
-  local queried = world.entityQuery(cameraPos, storage.useFov and sightRadius or notFovSightRadius, {withoutEntityId = entity.id(), includedTypes = {"creature"}})
-  -- Iterate through each queried entity. Find the first one that is within its field of view (ordered from nearest to farthest)
-  for _, qItem in pairs(queried) do
-    if not storage.useFov and isValidTarget(qItem) then
-      updateQueried(qItem)
-      if queriedTimings[qItem] < 0 then
-        return qItem
-      end
-    else
-      local sightCloseness = math.abs(
-        util.angleDiff(
-          currentAngle,
-          vec2.angle(world.distance(world.entityPosition(qItem), cameraPos))
-        )
-      )
-      -- world.debugText("sightCloseness: %s", sightCloseness, vec2.add(cameraPos, {0, -3.75}), "green")
-      -- world.debugText("targetAngle: %s", vec2.angle(world.distance(world.entityPosition(qItem), cameraPos)), vec2.add(cameraPos, {0, -2.5}), "green")
-      if isValidTarget(qItem) and sightCloseness <= halfFov then
-        updateQueried(qItem)
-        if queriedTimings[qItem] < 0 then
-          return qItem
-        end
-      end
-    end
-  end
-end
-
 function updateQueried(qItem)
   if queriedTimings[qItem] then
     queriedTimings[qItem] = queriedTimings[qItem] - script.updateDt()
@@ -287,7 +271,7 @@ function updateLaser()
   -- if collidePoint then
     -- endPoint = collidePoint
   -- end
-  
+
   -- local beamLength = world.magnitude(startPoint, endPoint)
   -- animator.setGlobalTag("beamDirectives", string.format("?crop=0;0;%s;%s", math.floor(beamDimensions[1] * beamLength / beamLength), beamDimensions[2]))
   -- animator.translateTransformationGroup("laserLength", vec2.rotate({(beamLength - beamLength) / 2, 0}, currentAngle))

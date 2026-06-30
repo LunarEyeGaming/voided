@@ -2,6 +2,8 @@ require "/scripts/util.lua"
 require "/scripts/interp.lua"
 require "/scripts/vec2.lua"
 
+require "/scripts/v-world.lua"
+
 TeslaStream = WeaponAbility:new()
 
 function TeslaStream:init()
@@ -18,8 +20,19 @@ function TeslaStream:init()
   end
   self.arcCooldownTimer = self.fireTime
   self.groundLightningTimer = self.groundLightningInterval
-  
+
   self.groundLightning = {}
+  self.fovSearcher = vWorld.FovSearcher:new{
+    fov = self.fov,
+    exposureTime = 0,
+    sightRange = self.connectRadius,
+    queryArguments = {includedTypes = {"monster", "npc"}},
+    targetPredicate = function(entityId)
+      return world.entityCanDamage(entity.id(), entityId)
+    end,
+    useLineCollision = true
+  }
+  self.fovSearcher:init()
 end
 
 function TeslaStream:update(dt, fireMode, shiftHeld)
@@ -29,7 +42,7 @@ function TeslaStream:update(dt, fireMode, shiftHeld)
     and not self.weapon.currentAbility
     and not world.lineTileCollision(mcontroller.position(), self:firePosition())
     and not status.resourceLocked("energy") then
-    
+
     self:setState(self.fire)
   end
   self.arcCooldownTimer = math.max(0, self.arcCooldownTimer - dt)
@@ -44,37 +57,51 @@ function TeslaStream:fire()
 
   while self.fireMode == (self.activatingFireMode or self.abilitySlot) and status.overConsumeResource("energy", (self.energyUsage or 0) * self.dt) do
     local beamStart = self:firePosition()
-    
-    local entities = world.entityQuery(beamStart, self.connectRadius, {includedTypes = {"monster", "npc"}})
-    local targeted = {}
-  
+
+    -- local entities = world.entityQuery(beamStart, self.connectRadius, {includedTypes = {"monster", "npc"}})
+    -- local targeted = {}
+
+    -- local power = self:damagePerShot()
+
+    -- entities = util.filter(entities, function(x)
+    --   local entityPos = world.nearestTo(beamStart, world.entityPosition(x))
+    --   local entCollidePoint = world.lineCollision(beamStart, entityPos)
+
+    --   -- The angle, in radians, between the gun's aim vector and the target vector.
+    --   local sightCloseness = math.abs(util.angleDiff(vec2.angle(self:aimVector(0)), vec2.angle(world.distance(entityPos, beamStart))))
+    --   return world.entityCanDamage(entity.id(), x) and not entCollidePoint and sightCloseness <= self.halfFov
+    -- end)
+
+    -- for i, monster in ipairs(entities) do
+    --   if i <= self.maxConnections then
+    --     local entityPos = world.entityPosition(monster)
+    --     table.insert(targeted, monster)
+    --     if self.arcCooldownTimer == 0 then
+    --       world.spawnProjectile("v-lightningguncurrent", entityPos, entity.id(), {0, 0}, false, {power = power, timeToLive = 0, powerMultiplier = activeItem.ownerPowerMultiplier()})
+    --     end
+    --   end
+    -- end
+
     local power = self:damagePerShot()
 
-    entities = util.filter(entities, function(x)
-      local entityPos = world.nearestTo(beamStart, world.entityPosition(x))
-      local entCollidePoint = world.lineCollision(beamStart, entityPos)
-      
-      -- The angle, in radians, between the gun's aim vector and the target vector.
-      local sightCloseness = math.abs(util.angleDiff(vec2.angle(self:aimVector(0)), vec2.angle(world.distance(entityPos, beamStart))))
-      return world.entityCanDamage(entity.id(), x) and not entCollidePoint and sightCloseness <= self.halfFov
-    end)
-
-    for i, monster in ipairs(entities) do
+    local targeted = self.fovSearcher:update(self.dt, beamStart, vec2.angle(self:aimVector(0)))
+    local targetedNew = {}
+    for i, entityId in ipairs(targeted) do
       if i <= self.maxConnections then
-        local entityPos = world.entityPosition(monster)
-        table.insert(targeted, monster)
+        local entityPos = world.entityPosition(entityId)
+        table.insert(targetedNew, entityId)
         if self.arcCooldownTimer == 0 then
-          world.spawnProjectile("v-lightningguncurrent", entityPos, entity.id(), {0, 0}, false, {power = power, timeToLive = 0, powerMultiplier = activeItem.ownerPowerMultiplier()})
+         world.spawnProjectile("v-lightningguncurrent", entityPos, entity.id(), {0, 0}, false, {power = power, timeToLive = 0, powerMultiplier = activeItem.ownerPowerMultiplier()})
         end
       end
     end
-    
+
     if self.arcCooldownTimer == 0 then
       self.arcCooldownTimer = self.fireTime
     end
 
     self:updateLightning()
-    self:drawLightning(beamStart, targeted)
+    self:drawLightning(beamStart, targetedNew)
 
     coroutine.yield()
   end
