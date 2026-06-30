@@ -168,6 +168,11 @@ end
 
 function FovSearcher:update(dt, position, angle)
   local queried = world.entityQuery(position, self.sightRange, self.queryArguments)
+  world.debugPoly({
+    position,
+    vec2.add(position, vec2.rotate(vec2.withAngle(angle, self.sightRange), self._halfFov)),
+    vec2.add(position, vec2.rotate(vec2.withAngle(angle, self.sightRange), -self._halfFov))
+  }, "green")
   local foundTargets = {}
   -- Iterate through each queried entity. Find the first one that is within its field of view (ordered from nearest to
   -- farthest)

@@ -1,0 +1,145 @@
+{
+  "globalTagDefaults" : {
+    "opacity" : "00"
+  },
+  "animatedParts" : {
+    "stateTypes" : {
+      "body" : {
+        "default" : "idle",
+        "priority" : 0,
+        "states" : {
+          "invisible" : {},
+          "idle" : {}
+        }
+      },
+      "alert" : {
+        "default" : "inactive",
+        "priority" : 0,
+        "states" : {
+          "inactive" : {},
+          "active" : {
+            "frames" : 15,
+            "cycle" : 1.0,
+            "mode" : "transition",
+            "transition" : "inactive",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/v_titanofdarkness_alert.ogg",
+              "immediateSoundRangeMultiplier" : 5
+            }
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      }
+    },
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "zLevel" : 1,
+          "fullbright" : true,
+          "centered" : true,
+          "offset" : [0, 0],
+          "eyeCenter" : [0, 0]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>?multiply=ffffff<opacity>"
+              }
+            }
+          }
+        }
+      },
+      "pupil" : {
+        "properties" : {
+          "zLevel" : 0,
+          "centered" : true,
+          "offset" : [0, 0],
+          "lookRadius" : 1,
+          "fullbright" : true,
+          "transformationGroups" : ["pupil"]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>?multiply=ffffff<opacity>"
+              }
+            }
+          }
+        }
+      },
+      "alert" : {
+        "properties" : {
+          "zLevel" : 2,
+          "centered" : true,
+          "offset" : [0, 0],
+          "fullbright" : true,
+          "transformationGroups" : ["pupil"]
+        },
+        "partStates" : {
+          "alert" : {
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "eye" : { "interpolated" : true },
+    "pupil" : { "interpolated" : true }
+  },
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [
+      ]
+    }
+  },
+
+  "lights" : {
+    "eyelight" : {
+      "transformationGroups" : ["eye"],
+      "position" : [0, 0],
+      "color" : [209, 235, 255],
+      "pointLight" : true,
+      "pointBeam" : 5,
+      "pointAngle" : 0,
+      "beamAmbience" : 0.35,
+      "active" : false
+    },
+    "eyelightforward" : {
+      "transformationGroups" : ["eye"],
+      "position" : [0, 0],
+      "color" : [94, 113, 128]
+    }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0.25,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  "sounds" : {
+    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ]
+  }
+}

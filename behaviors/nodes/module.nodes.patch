@@ -1688,6 +1688,20 @@
   },
   {
     "op": "add",
+    "path": "/v-titanofdarkness-teleport3",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-teleport3",
+      "title": "",
+      "properties": {
+        "target": {"type": "json", "value": null},
+        "teleportOffset": {"type": "json", "value": [0, 20]}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-teleport3.behavior"
+    }
+  },
+  {
+    "op": "add",
     "path": "/v-titanofdarkness-search",
     "value": {
       "type": "module",
@@ -1707,7 +1721,8 @@
         "startGrabDelay": {"type": "json", "value": 2.5},
         "endGrabDelay": {"type": "json", "value": 1.5},
         "startXVelocity": {"type": "json", "value": 10},
-        "endXVelocity": {"type": "json", "value": 20}
+        "endXVelocity": {"type": "json", "value": 20},
+        "encounterLevel": {"type": "json", "value": 0}
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-search.behavior"
     }

@@ -1,0 +1,150 @@
+{
+  "type" : "v-titanofdarknesseye",
+
+  "categories" : [ "v-titanofdarknesseye" ],
+  "parts" : [ "eye" ],
+
+  "animation" : "v-titanofdarknesseye.animation",
+  "reversed" : true,
+
+  "dropPools" : [ "empty" ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/boss/v-titanofdarkness/eye/v-titanofdarknesseye.lua"
+    ],
+
+    "animationScripts" : [
+      "/monsters/boss/v-titanofdarkness/v-titanofdarknessanim.lua"
+    ],
+
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 1,
+
+    "renderLayer" : "ForegroundEntity",
+
+    "metaBoundBox" : [-5, -7.5, 5, 7.5],
+    "scale" : 1.0,
+
+    "appearSpecs" : {
+      "appearTime" : 2.0,
+      "visionStartRotationRate" : 0,
+      "visionEndRotationRate" : 0.25,
+      "visionStartRadius" : 10,
+      "visionEndRadius" : 1
+    },
+
+    "lookAroundSpecs" : {
+      "eyeAngularVelocity" : 180,
+      "eyeTurnWaitTime" : 0.5,
+      "searchRayCount" : 40,
+      "maxSearchRaycastLength" : 100
+    },
+
+    "fov" : 45,
+    "exposureTime" : 0.125,
+    "sightRange" : 25,
+
+    "foundTargetWaitTime" : 1,
+
+    "selfDamagePoly" : [ ],
+
+    "movementSettings" : {
+      "gravityEnabled" : false,
+      "collisionEnabled" : false,
+      "collisionPoly" : [ [2, 2], [2, -2], [-2, -2], [-2, 2] ],
+
+      "flySpeed" : 10,
+      "airForce" : 6,
+
+      "physicsEffectCategories" : ["boss"]
+    },
+
+    "knockoutTime" : 0.0,
+    "knockoutEffect" : "",
+    "deathParticles" : "deathPoof",
+
+    "touchDamage" : {
+      "poly" : [ [2, 2], [2, -2], [-2, -2], [-2, 2] ],
+      "damage" : 15,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "v-voidhammer",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "robotic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : false,
+      "minimumLiquidStatusEffectPercentage" : 1.0,
+
+      // "primaryScriptSources" : [
+      //   "/stats/monster_primary.lua"
+      // ],
+      // "primaryScriptDelta" : 5,
+
+      "stats" : {
+        // "knockbackStunTime" : {
+        //   "baseValue" : 0.25
+        // },
+        // "grit" : {
+        //   "baseValue" : 1.0
+        // },
+        // "maxHealth" : {
+        //   "baseValue" : 1000
+        // },
+        // "protection" : {
+        //   "baseValue" : 0
+        // },
+        // "healthRegen" : {
+        //   "baseValue" : 0.0
+        // },
+        // "fireStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "iceStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "electricStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "poisonStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "specialStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "healingStatusImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        // "stunImmunity" : {
+        //   "baseValue" : 1.0
+        // },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        }
+      }
+
+      // "resources" : {
+      //   "stunned" : {
+      //     "deltaValue" : -1.0,
+      //     "initialValue" : 0.0,
+      //     "maxValue" : 0.0
+      //   },
+      //   "health" : {
+      //     "maxStat" : "maxHealth",
+      //     "deltaStat" : "healthRegen",
+      //     "defaultPercentage" : 1.0
+      //   }
+      // }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8]
+  }
+}
