@@ -39,22 +39,6 @@
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {}
   },
-  "v_titanDetectTarget": {
-    "type": "action",
-    "name": "v_titanDetectTarget",
-    "title": "v_titanDetectTarget",
-    "properties": {
-      "currentAngle": {"type": "number"},
-      "fov": {"type": "number", "value": 45},
-      "sightRange": {"type": "number", "value": 25},
-      "exposureTime": {"type": "number", "value": 0.25}
-    },
-    "category": "v-titanofdarkness",
-    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
-    "output": {
-      "target": {"type": "entity", "key": null}
-    }
-  },
   "v_titanMusic": {
     "type": "action",
     "name": "v_titanMusic",
@@ -249,6 +233,37 @@
     "script": "/scripts/actions/boss/v-titanofdarkness.lua",
     "output": {
       "angle": {"type": "number", "key": null}
+    }
+  },
+  "v_titanSpawnEye": {
+    "type": "action",
+    "name": "v_titanSpawnEye",
+    "title": "v_titanSpawnEye",
+    "properties": {
+      "target": {"type": "entity"},
+      "maxSelectionAttempts": {"type": "number", "value": 200},
+      "requiredAirRegion": {"type": "list", "value": [-3, -3, 3, 3]},
+      "spawnRegion": {"type": "list", "value": [-40, -40, 40, 40]}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {}
+  },
+  "v_titanDetectTarget": {
+    "type": "action",
+    "name": "v_titanDetectTarget",
+    "title": "v_titanDetectTarget",
+    "properties": {
+      "currentAngle": {"type": "number"},
+      "exposureTime": {"type": "number", "value": 0.25},
+      "fov": {"type": "number", "value": 45},
+      "shouldSpotTarget": {"type": "bool", "value": true},
+      "sightRange": {"type": "number", "value": 25}
+    },
+    "category": "v-titanofdarkness",
+    "script": "/scripts/actions/boss/v-titanofdarkness.lua",
+    "output": {
+      "target": {"type": "entity", "key": null}
     }
   }
 }

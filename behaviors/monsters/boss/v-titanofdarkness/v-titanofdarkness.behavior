@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarkness",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/behavior.lua",
     "/scripts/actions/entity.lua",
@@ -463,7 +463,9 @@
                 "title": "v-titanofdarkness-search",
                 "type": "module",
                 "name": "v-titanofdarkness-search",
-                "parameters": {}
+                "parameters": {
+                  "encounterLevel": {"key": "<encounterLevel>"}
+                }
               },
               {
                 "title": "selector",

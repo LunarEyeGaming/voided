@@ -2,12 +2,13 @@
   "name": "v-titanofdarkness-search",
   "description": null,
   "scripts": [
-    "/scripts/actions/time.lua",
     "/scripts/behavior/bdata.lua",
     "/scripts/actions/math.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/boss/v-titanofdarkness.lua",
+    "/scripts/actions/notification.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/v-movement.lua",
-    "/scripts/actions/boss/v-titanofdarkness.lua",
     "/scripts/actions/position.lua"
   ],
   "parameters": {
@@ -24,325 +25,247 @@
     "startGrabDelay": 2.5,
     "endGrabDelay": 1.5,
     "startXVelocity": 10,
-    "endXVelocity": 20
+    "endXVelocity": 20,
+    "encounterLevel": 0
   },
   "root": {
-    "title": "parallel",
+    "title": "sequence",
     "type": "composite",
-    "name": "parallel",
-    "parameters": {
-      "fail": {"value": -1},
-      "success": {"value": 1}
-    },
+    "name": "sequence",
+    "parameters": {},
     "children": [
       {
-        "title": "sequence",
-        "type": "composite",
-        "name": "sequence",
-        "parameters": {},
-        "children": [
-          {
-            "title": "Give up after some seconds",
-            "type": "action",
-            "name": "timer",
-            "parameters": {
-              "time": {"value": 120}
-            },
-            "output": {
-              "ratio": "impatience"
-            }
-          },
-          {
-            "title": "setFlag",
-            "type": "action",
-            "name": "setFlag",
-            "parameters": {
-              "name": {"value": "failedToFindTarget"}
-            }
-          }
-        ]
-      },
-      {
-        "title": "failer",
-        "type": "decorator",
-        "name": "failer",
-        "parameters": {},
-        "child": {
-          "title": "sequence",
-          "type": "composite",
-          "name": "sequence",
-          "parameters": {},
-          "children": [
-            {
-              "title": "lerp_searchFlySpeed",
-              "type": "action",
-              "name": "lerp",
-              "parameters": {
-                "max": {"key": "<endSearchFlySpeed>"},
-                "min": {"key": "<startSearchFlySpeed>"},
-                "ratio": {"key": "impatience"}
-              },
-              "output": {
-                "number": "searchFlySpeed"
-              }
-            },
-            {
-              "title": "lerp_searchFlyControlForce",
-              "type": "action",
-              "name": "lerp",
-              "parameters": {
-                "max": {"key": "<endSearchFlyControlForce>"},
-                "min": {"key": "<startSearchFlyControlForce>"},
-                "ratio": {"key": "impatience"}
-              },
-              "output": {
-                "number": "searchFlyControlForce"
-              }
-            },
-            {
-              "title": "lerp_searchStopForce",
-              "type": "action",
-              "name": "lerp",
-              "parameters": {
-                "max": {"key": "<endSearchStopForce>"},
-                "min": {"key": "<startSearchStopForce>"},
-                "ratio": {"key": "impatience"}
-              },
-              "output": {
-                "number": "searchStopForce"
-              }
-            },
-            {
-              "title": "lerp_maxSearchRange",
-              "type": "action",
-              "name": "lerp",
-              "parameters": {
-                "max": {"key": "<endMaxSearchRange>"},
-                "min": {"key": "<startMaxSearchRange>"},
-                "ratio": {"key": "impatience"}
-              },
-              "output": {
-                "number": "maxSearchRange"
-              }
-            },
-            {
-              "title": "lerp_eyeTurnWaitTime",
-              "type": "action",
-              "name": "lerp",
-              "parameters": {
-                "max": {"key": "<endEyeTurnWaitTime>"},
-                "min": {"key": "<startEyeTurnWaitTime>"},
-                "ratio": {"key": "impatience"}
-              },
-              "output": {
-                "number": "eyeTurnWaitTime"
-              }
-            },
-            {
-              "title": "lerp_grabDelay",
-              "type": "action",
-              "name": "lerp",
-              "parameters": {
-                "max": {"key": "<endGrabDelay>"},
-                "min": {"key": "<startGrabDelay>"},
-                "ratio": {"key": "impatience"}
-              },
-              "output": {
-                "number": "grabDelay"
-              }
-            },
-            {
-              "title": "lerp_xVelocity",
-              "type": "action",
-              "name": "lerp",
-              "parameters": {
-                "max": {"key": "<endXVelocity>"},
-                "min": {"key": "<startXVelocity>"},
-                "ratio": {"key": "impatience"}
-              },
-              "output": {
-                "number": "xVelocity"
-              }
-            }
-          ]
+        "title": "setFlag",
+        "type": "action",
+        "name": "setFlag",
+        "parameters": {
+          "name": {"value": "shouldSpotTarget"}
         }
       },
       {
-        "title": "dynamic",
+        "title": "parallel",
         "type": "composite",
-        "name": "dynamic",
-        "parameters": {},
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
         "children": [
           {
-            "title": "cooldown",
-            "type": "decorator",
-            "name": "cooldown",
-            "parameters": {
-              "cooldown": {"value": 6},
-              "onFail": {"value": true},
-              "onSuccess": {"value": true}
-            },
-            "child": {
-              "title": "failer",
-              "type": "decorator",
-              "name": "failer",
-              "parameters": {},
-              "child": {
-                "title": "sequence",
-                "type": "composite",
-                "name": "sequence",
-                "parameters": {},
-                "children": [
-                  {
-                    "title": "inverter",
-                    "type": "decorator",
-                    "name": "inverter",
-                    "parameters": {},
-                    "child": {
-                      "title": "entityInRange",
-                      "type": "action",
-                      "name": "entityInRange",
-                      "parameters": {
-                        "entity": {"key": "target"},
-                        "position": {"key": "self"},
-                        "range": {"value": 80}
-                      }
-                    }
-                  },
-                  {
-                    "title": "v-titanofdarkness-teleport2",
-                    "type": "module",
-                    "name": "v-titanofdarkness-teleport2",
-                    "parameters": {
-                      "predictionDist": {"value": 80}
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "title": "parallel",
+            "title": "sequence",
             "type": "composite",
-            "name": "parallel",
-            "parameters": {
-              "fail": {"value": 1},
-              "success": {"value": -1}
-            },
+            "name": "sequence",
+            "parameters": {},
             "children": [
               {
-                "title": "entityInRange",
-                "type": "action",
-                "name": "entityInRange",
-                "parameters": {
-                  "entity": {"key": "target"},
-                  "position": {"key": "self"},
-                  "range": {"value": 80}
-                }
-              },
-              {
-                "title": "sequence",
+                "title": "selector",
                 "type": "composite",
-                "name": "sequence",
+                "name": "selector",
                 "parameters": {},
                 "children": [
                   {
-                    "title": "v_stop",
-                    "type": "action",
-                    "name": "v_stop",
-                    "parameters": {
-                      "stopForce": {"value": 20}
-                    }
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "greaterThan",
+                        "type": "action",
+                        "name": "greaterThan",
+                        "parameters": {
+                          "first": {"key": "<encounterLevel>"},
+                          "second": {"value": 1}
+                        }
+                      },
+                      {
+                        "title": "Give up after some seconds",
+                        "type": "action",
+                        "name": "timer",
+                        "parameters": {
+                          "time": {"value": 150}
+                        },
+                        "output": {
+                          "ratio": "impatience"
+                        }
+                      }
+                    ]
                   },
                   {
-                    "title": "repeater",
-                    "type": "decorator",
-                    "name": "repeater",
+                    "title": "Give up after some seconds",
+                    "type": "action",
+                    "name": "timer",
                     "parameters": {
-                      "maxLoops": {"value": -1},
-                      "untilSuccess": {"value": false}
+                      "time": {"value": 120}
                     },
-                    "child": {
-                      "title": "selector",
-                      "type": "composite",
-                      "name": "selector",
-                      "parameters": {},
-                      "children": [
-                        {
-                          "title": "dynamic",
-                          "type": "composite",
-                          "name": "dynamic",
-                          "parameters": {},
-                          "children": [
-                            {
-                              "title": "cooldown",
-                              "type": "decorator",
-                              "name": "cooldown",
-                              "parameters": {
-                                "cooldown": {"value": 30},
-                                "onFail": {"value": true},
-                                "onSuccess": {"value": true}
-                              },
-                              "child": {
-                                "title": "v-titanofdarkness-searchsurface",
-                                "type": "module",
-                                "name": "v-titanofdarkness-searchsurface",
-                                "parameters": {
-                                  "maxSearchRange": {"value": 55},
-                                  "xVelocity": {"key": "xVelocity"}
-                                }
-                              }
-                            },
-                            {
-                              "title": "v_titanSearch",
-                              "type": "action",
-                              "name": "v_titanSearch",
-                              "parameters": {
-                                "flyControlForce": {"key": "searchFlyControlForce"},
-                                "flySpeed": {"key": "searchFlySpeed"},
-                                "startAngle": {"key": "targetAngle"},
-                                "stopControlForce": {"key": "searchStopForce"},
-                                "liquidWhitelist": {"value": ["water", "fuel", "healingliquid", "milk", "swampwater"]}
-                              },
-                              "output": {
-                                "angle": "targetAngle"
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "title": "failer",
-                          "type": "decorator",
-                          "name": "failer",
-                          "parameters": {},
-                          "child": {
-                            "title": "v_titanGrab",
-                            "type": "action",
-                            "name": "v_titanGrab",
-                            "parameters": {
-                              "target": {"key": "target"},
-                              "grabDelay": {"key": "grabDelay"}
-                            },
-                            "output": {
-                              "angle": "targetAngle"
-                            }
-                          }
-                        }
-                      ]
+                    "output": {
+                      "ratio": "impatience"
                     }
                   }
                 ]
+              },
+              {
+                "title": "setFlag",
+                "type": "action",
+                "name": "setFlag",
+                "parameters": {
+                  "name": {"value": "failedToFindTarget"}
+                }
               }
             ]
           },
           {
-            "title": "parallel",
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "greaterThan",
+                  "type": "action",
+                  "name": "greaterThan",
+                  "parameters": {
+                    "first": {"key": "<encounterLevel>"},
+                    "second": {"value": 1}
+                  }
+                },
+                {
+                  "title": "timer",
+                  "type": "action",
+                  "name": "timer",
+                  "parameters": {
+                    "time": {"value": 5}
+                  }
+                },
+                {
+                  "title": "v_titanSpawnEye",
+                  "type": "action",
+                  "name": "v_titanSpawnEye",
+                  "parameters": {
+                    "target": {"key": "target"},
+                    "maxSelectionAttempts": {"value": 200},
+                    "requiredAirRegion": {"value": [-3, -3, 3, 3]},
+                    "spawnRegion": {"value": [-40, -40, 40, 40]}
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "lerp_searchFlySpeed",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "<endSearchFlySpeed>"},
+                    "min": {"key": "<startSearchFlySpeed>"},
+                    "ratio": {"key": "impatience"}
+                  },
+                  "output": {
+                    "number": "searchFlySpeed"
+                  }
+                },
+                {
+                  "title": "lerp_searchFlyControlForce",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "<endSearchFlyControlForce>"},
+                    "min": {"key": "<startSearchFlyControlForce>"},
+                    "ratio": {"key": "impatience"}
+                  },
+                  "output": {
+                    "number": "searchFlyControlForce"
+                  }
+                },
+                {
+                  "title": "lerp_searchStopForce",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "<endSearchStopForce>"},
+                    "min": {"key": "<startSearchStopForce>"},
+                    "ratio": {"key": "impatience"}
+                  },
+                  "output": {
+                    "number": "searchStopForce"
+                  }
+                },
+                {
+                  "title": "lerp_maxSearchRange",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "<endMaxSearchRange>"},
+                    "min": {"key": "<startMaxSearchRange>"},
+                    "ratio": {"key": "impatience"}
+                  },
+                  "output": {
+                    "number": "maxSearchRange"
+                  }
+                },
+                {
+                  "title": "lerp_eyeTurnWaitTime",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "<endEyeTurnWaitTime>"},
+                    "min": {"key": "<startEyeTurnWaitTime>"},
+                    "ratio": {"key": "impatience"}
+                  },
+                  "output": {
+                    "number": "eyeTurnWaitTime"
+                  }
+                },
+                {
+                  "title": "lerp_grabDelay",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "<endGrabDelay>"},
+                    "min": {"key": "<startGrabDelay>"},
+                    "ratio": {"key": "impatience"}
+                  },
+                  "output": {
+                    "number": "grabDelay"
+                  }
+                },
+                {
+                  "title": "lerp_xVelocity",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "<endXVelocity>"},
+                    "min": {"key": "<startXVelocity>"},
+                    "ratio": {"key": "impatience"}
+                  },
+                  "output": {
+                    "number": "xVelocity"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "dynamic",
             "type": "composite",
-            "name": "parallel",
-            "parameters": {
-              "fail": {"value": -1},
-              "success": {"value": 1}
-            },
+            "name": "dynamic",
+            "parameters": {},
             "children": [
               {
                 "title": "failer",
@@ -356,87 +279,295 @@
                   "parameters": {},
                   "children": [
                     {
-                      "title": "entityPosition",
+                      "title": "receivedNotification",
                       "type": "action",
-                      "name": "entityPosition",
+                      "name": "receivedNotification",
                       "parameters": {
-                        "entity": {"key": "target"}
+                        "type": {"value": "v-titanofdarkness-foundTarget"}
                       },
                       "output": {
-                        "position": "targetPosition"
+                        "target": "teleportTarget",
+                        "targetPosition": "teleportToPos"
                       }
                     },
                     {
-                      "title": "distance",
-                      "type": "action",
-                      "name": "distance",
+                      "title": "v-titanofdarkness-teleport3",
+                      "type": "module",
+                      "name": "v-titanofdarkness-teleport3",
                       "parameters": {
-                        "from": {"key": "self"},
-                        "to": {"key": "targetPosition"}
-                      },
-                      "output": {
-                        "vector": "targetDistance"
-                      }
-                    },
-                    {
-                      "title": "vecAngle",
-                      "type": "action",
-                      "name": "vecAngle",
-                      "parameters": {
-                        "vector": {"key": "targetDistance"}
-                      },
-                      "output": {
-                        "angle": "targetAngle"
+                        "target": {"key": "teleportTarget"}
                       }
                     }
                   ]
                 }
               },
               {
-                "title": "v_flyToPositionNoFlip",
-                "type": "action",
-                "name": "v_flyToPositionNoFlip",
+                "title": "cooldown",
+                "type": "decorator",
+                "name": "cooldown",
                 "parameters": {
-                  "position": {"key": "targetPosition"},
-                  "speed": {"value": 40},
-                  "tolerance": {"value": 1}
+                  "cooldown": {"value": 6},
+                  "onFail": {"value": true},
+                  "onSuccess": {"value": true}
+                },
+                "child": {
+                  "title": "failer",
+                  "type": "decorator",
+                  "name": "failer",
+                  "parameters": {},
+                  "child": {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "inverter",
+                        "type": "decorator",
+                        "name": "inverter",
+                        "parameters": {},
+                        "child": {
+                          "title": "entityInRange",
+                          "type": "action",
+                          "name": "entityInRange",
+                          "parameters": {
+                            "entity": {"key": "target"},
+                            "position": {"key": "self"},
+                            "range": {"value": 80}
+                          }
+                        }
+                      },
+                      {
+                        "title": "v-titanofdarkness-teleport2",
+                        "type": "module",
+                        "name": "v-titanofdarkness-teleport2",
+                        "parameters": {
+                          "predictionDist": {"value": 80}
+                        }
+                      }
+                    ]
+                  }
                 }
+              },
+              {
+                "title": "parallel",
+                "type": "composite",
+                "name": "parallel",
+                "parameters": {
+                  "fail": {"value": 1},
+                  "success": {"value": -1}
+                },
+                "children": [
+                  {
+                    "title": "entityInRange",
+                    "type": "action",
+                    "name": "entityInRange",
+                    "parameters": {
+                      "entity": {"key": "target"},
+                      "position": {"key": "self"},
+                      "range": {"value": 80}
+                    }
+                  },
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "v_stop",
+                        "type": "action",
+                        "name": "v_stop",
+                        "parameters": {
+                          "stopForce": {"value": 20}
+                        }
+                      },
+                      {
+                        "title": "repeater",
+                        "type": "decorator",
+                        "name": "repeater",
+                        "parameters": {
+                          "maxLoops": {"value": -1},
+                          "untilSuccess": {"value": false}
+                        },
+                        "child": {
+                          "title": "selector",
+                          "type": "composite",
+                          "name": "selector",
+                          "parameters": {},
+                          "children": [
+                            {
+                              "title": "dynamic",
+                              "type": "composite",
+                              "name": "dynamic",
+                              "parameters": {},
+                              "children": [
+                                {
+                                  "title": "cooldown",
+                                  "type": "decorator",
+                                  "name": "cooldown",
+                                  "parameters": {
+                                    "cooldown": {"value": 30},
+                                    "onFail": {"value": true},
+                                    "onSuccess": {"value": true}
+                                  },
+                                  "child": {
+                                    "title": "v-titanofdarkness-searchsurface",
+                                    "type": "module",
+                                    "name": "v-titanofdarkness-searchsurface",
+                                    "parameters": {
+                                      "maxSearchRange": {"value": 55},
+                                      "xVelocity": {"key": "xVelocity"}
+                                    }
+                                  }
+                                },
+                                {
+                                  "title": "v_titanSearch",
+                                  "type": "action",
+                                  "name": "v_titanSearch",
+                                  "parameters": {
+                                    "flyControlForce": {"key": "searchFlyControlForce"},
+                                    "flySpeed": {"key": "searchFlySpeed"},
+                                    "startAngle": {"key": "targetAngle"},
+                                    "stopControlForce": {"key": "searchStopForce"},
+                                    "liquidWhitelist": {"value": ["water", "fuel", "healingliquid", "milk", "swampwater"]}
+                                  },
+                                  "output": {
+                                    "angle": "targetAngle"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "title": "failer",
+                              "type": "decorator",
+                              "name": "failer",
+                              "parameters": {},
+                              "child": {
+                                "title": "v_titanGrab",
+                                "type": "action",
+                                "name": "v_titanGrab",
+                                "parameters": {
+                                  "target": {"key": "target"},
+                                  "grabDelay": {"key": "grabDelay"}
+                                },
+                                "output": {
+                                  "angle": "targetAngle"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "parallel",
+                "type": "composite",
+                "name": "parallel",
+                "parameters": {
+                  "fail": {"value": -1},
+                  "success": {"value": 1}
+                },
+                "children": [
+                  {
+                    "title": "failer",
+                    "type": "decorator",
+                    "name": "failer",
+                    "parameters": {},
+                    "child": {
+                      "title": "sequence",
+                      "type": "composite",
+                      "name": "sequence",
+                      "parameters": {},
+                      "children": [
+                        {
+                          "title": "entityPosition",
+                          "type": "action",
+                          "name": "entityPosition",
+                          "parameters": {
+                            "entity": {"key": "target"}
+                          },
+                          "output": {
+                            "position": "targetPosition"
+                          }
+                        },
+                        {
+                          "title": "distance",
+                          "type": "action",
+                          "name": "distance",
+                          "parameters": {
+                            "from": {"key": "self"},
+                            "to": {"key": "targetPosition"}
+                          },
+                          "output": {
+                            "vector": "targetDistance"
+                          }
+                        },
+                        {
+                          "title": "vecAngle",
+                          "type": "action",
+                          "name": "vecAngle",
+                          "parameters": {
+                            "vector": {"key": "targetDistance"}
+                          },
+                          "output": {
+                            "angle": "targetAngle"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "title": "v_flyToPositionNoFlip",
+                    "type": "action",
+                    "name": "v_flyToPositionNoFlip",
+                    "parameters": {
+                      "position": {"key": "targetPosition"},
+                      "speed": {"value": 40},
+                      "tolerance": {"value": 1}
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "runner",
+                "type": "action",
+                "name": "runner",
+                "parameters": {}
               }
             ]
           },
           {
-            "title": "runner",
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "v_titanRotateEyes",
+              "type": "action",
+              "name": "v_titanRotateEyes",
+              "parameters": {
+                "leftEyeAngle": {"key": "targetAngle"},
+                "rightEyeAngle": {"key": "targetAngle"}
+              }
+            }
+          },
+          {
+            "title": "Try to spot target",
             "type": "action",
-            "name": "runner",
-            "parameters": {}
+            "name": "v_titanDetectTarget",
+            "parameters": {
+              "currentAngle": {"key": "targetAngle"},
+              "shouldSpotTarget": {"key": "shouldSpotTarget"}
+            },
+            "output": {
+              "target": "target"
+            }
           }
         ]
-      },
-      {
-        "title": "failer",
-        "type": "decorator",
-        "name": "failer",
-        "parameters": {},
-        "child": {
-          "title": "v_titanRotateEyes",
-          "type": "action",
-          "name": "v_titanRotateEyes",
-          "parameters": {
-            "leftEyeAngle": {"key": "targetAngle"},
-            "rightEyeAngle": {"key": "targetAngle"}
-          }
-        }
-      },
-      {
-        "title": "Try to spot target",
-        "type": "action",
-        "name": "v_titanDetectTarget",
-        "parameters": {
-          "currentAngle": {"key": "targetAngle"}
-        },
-        "output": {
-          "target": "target"
-        }
       }
     ]
   }

@@ -622,6 +622,7 @@ end
 -- param fov - Field of vision with which to search targets
 -- param exposureTime - The amount of time that a target must spend being seen for this node to stop.
 -- param currentAngle - The looking angle to use.
+-- param shouldSpotTarget - Use to temporarily disable target searching
 -- output target - The target entity found
 function v_titanDetectTarget(args)
   local rq = vBehavior.requireArgsGen("v_titanDetectTarget", args)
@@ -703,10 +704,12 @@ function v_titanDetectTarget(args)
 
   local target
   while not target do
-    local targets = leftSearcher:update(script.updateDt(), vec2.add(mcontroller.position(), animator.partPoint("body", "leftEyeCenter")), args.currentAngle)
-    or rightSearcher:update(script.updateDt(), vec2.add(mcontroller.position(), animator.partPoint("body", "rightEyeCenter")), args.currentAngle)
-    target = targets[1]
-    world.debugText("Running", mcontroller.position(), "green")
+    if args.shouldSpotTarget then
+      local targets = leftSearcher:update(script.updateDt(), vec2.add(mcontroller.position(), animator.partPoint("body", "leftEyeCenter")), args.currentAngle)
+      or rightSearcher:update(script.updateDt(), vec2.add(mcontroller.position(), animator.partPoint("body", "rightEyeCenter")), args.currentAngle)
+      target = targets[1]
+      world.debugText("Running", mcontroller.position(), "green")
+    end
 
     coroutine.yield()
   end
@@ -751,6 +754,38 @@ function v_titanGrab(args)
 
   -- Inspect contents.
   util.run(0.5, function() end)
+
+  return true
+end
+
+-- param target
+-- param maxSelectionAttempts
+-- param requiredAirRegion
+-- param spawnRegion
+function v_titanSpawnEye(args)
+  local rq = vBehavior.requireArgsGen("v_titanGrab", args)
+
+  if not rq{"target"} then return false end
+
+  local maxAttempts = args.maxSelectionAttempts or 200
+  local targetPos = world.entityPosition(args.target)
+
+  if not targetPos then
+    return false
+  end
+
+  local spawnPos = vWorld.randomPositionInRegion(rect.translate(args.spawnRegion, targetPos), function(pos)
+    return not world.rectCollision(rect.translate(args.requiredAirRegion, pos))
+  end, maxAttempts)
+
+  -- If no spawn position is found, fail.
+  if not spawnPos then
+    return false
+  end
+
+  world.spawnMonster("v-titanofdarknesseye", spawnPos, {
+    master = entity.id()
+  })
 
   return true
 end

@@ -1,6 +1,6 @@
 {
-  "name": "v-titanofdarkness-teleport2",
-  "description": "",
+  "name": "v-titanofdarkness-teleport3",
+  "description": null,
   "scripts": [
     "/scripts/actions/animator.lua",
     "/scripts/actions/v-movement.lua",
@@ -8,11 +8,11 @@
     "/scripts/actions/boss/v-titanofdarkness.lua",
     "/scripts/actions/world.lua",
     "/scripts/actions/position.lua",
-    "/scripts/actions/math.lua",
     "/scripts/actions/movement.lua"
   ],
   "parameters": {
-    "predictionDist": 80
+    "target": null,
+    "teleportOffset": [0, 20]
   },
   "root": {
     "title": "sequence",
@@ -81,73 +81,18 @@
         "type": "action",
         "name": "entityPosition",
         "parameters": {
-          "entity": {"key": "target"}
+          "entity": {"key": "<target>"}
         },
         "output": {
           "position": "targetPos"
         }
       },
       {
-        "title": "distance",
-        "type": "action",
-        "name": "distance",
-        "parameters": {
-          "from": {"key": "self"},
-          "to": {"key": "targetPos"}
-        },
-        "output": {
-          "vector": "targetDirection"
-        }
-      },
-      {
-        "title": "Hacky way of getting a vector with constant magnitude",
-        "type": "composite",
-        "name": "sequence",
-        "parameters": {},
-        "children": [
-          {
-            "title": "vecAngle",
-            "type": "action",
-            "name": "vecAngle",
-            "parameters": {
-              "vector": {"key": "targetDirection"}
-            },
-            "output": {
-              "angle": "targetAngle"
-            }
-          },
-          {
-            "title": "vecMultiply",
-            "type": "action",
-            "name": "vecMultiply",
-            "parameters": {
-              "first": {"value": [1, 0]},
-              "number": {"key": "<predictionDist>"}
-            },
-            "output": {
-              "vector": "targetDirection"
-            }
-          },
-          {
-            "title": "vecRotate",
-            "type": "action",
-            "name": "vecRotate",
-            "parameters": {
-              "angle": {"key": "targetAngle"},
-              "vector": {"key": "targetDirection"}
-            },
-            "output": {
-              "vector": "targetDirection"
-            }
-          }
-        ]
-      },
-      {
         "title": "offsetPosition",
         "type": "action",
         "name": "offsetPosition",
         "parameters": {
-          "offset": {"key": "targetDirection"},
+          "offset": {"key": "<teleportOffset>"},
           "position": {"key": "targetPos"}
         },
         "output": {
