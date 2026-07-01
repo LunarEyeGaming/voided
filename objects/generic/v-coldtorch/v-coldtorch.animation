@@ -6,7 +6,8 @@
         "states" : {
           "off" : {
             "properties" : {
-              "particleEmittersOff" : [ "torch" ]
+              "particleEmittersOff" : [ "torch" ],
+              "lightsOff" : [ "glow1", "glow2" ]
             }
           },
           "on" : {
@@ -14,7 +15,8 @@
             "cycle" : 0.5,
             "mode" : "loop",
             "properties" : {
-              "particleEmittersOn" : [ "torch" ]
+              "particleEmittersOn" : [ "torch" ],
+              "lightsOn" : [ "glow1", "glow2" ]
             }
           }
         }
