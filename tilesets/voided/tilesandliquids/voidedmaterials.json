@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedmaterials",
  "spacing":0,
- "tilecount":55,
+ "tilecount":57,
  "tiledversion":"1.11.2",
  "tileheight":8,
  "tileproperties":
@@ -221,6 +221,14 @@
      "54":
         {
          "material":"v-brittleice"
+        },
+     "55":
+        {
+         "material":"v-frozencrosshatch"
+        },
+     "56":
+        {
+         "material":"v-frozenwoodplatform"
         },
      "6":
         {
@@ -447,6 +455,14 @@
          "source":"string"
         },
      "54":
+        {
+         "material":"string"
+        },
+     "55":
+        {
+         "material":"string"
+        },
+     "56":
         {
          "material":"string"
         },
@@ -772,6 +788,18 @@
      "54":
         {
          "image":"..\/images\/tilesandliquids\/brittleice.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "55":
+        {
+         "image":"..\/images\/tilesandliquids\/frozencrosshatch.png",
+         "imageheight":8,
+         "imagewidth":8
+        },
+     "56":
+        {
+         "image":"..\/images\/tilesandliquids\/frozenwoodplatform.png",
          "imageheight":8,
          "imagewidth":8
         },

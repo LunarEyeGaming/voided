@@ -1,0 +1,26 @@
+{
+  "materialId" : 1236,
+  "materialName" : "v-frozencrosshatch",
+  "particleColor" : [31, 33, 97, 255],
+  "itemDrop" : "v-frozencrosshatchmaterial",
+  "shortdescription" : "Frozen Window Lattice",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_lightwood.ogg",
+  "health" : 2,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+  "blocksLiquidFlow" : false,
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-frozencrosshatch.png",
+    "variants" : 2,
+    "lightTransparent" : true,
+    "multiColored" : true,
+    "occludesBelow" : false,
+    "zLevel" : 510
+  }
+}

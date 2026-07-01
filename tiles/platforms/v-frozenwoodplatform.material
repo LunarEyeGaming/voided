@@ -1,0 +1,23 @@
+{
+  "materialId" : 1235,
+  "materialName" : "v-frozenwoodplatform",
+  "collisionKind" : "platform",
+  "itemDrop" : "v-frozenwoodplatform",
+  "shortdescription" : "Frozen Wood Platform",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_lightwood.ogg",
+  "category" : "Supports",
+
+  "renderTemplate" : "/tiles/platformtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-frozenwoodplatform.png",
+    "variants" : 3,
+    "lightTransparent" : true,
+    "occludesBelow" : false,
+    "multiColored" : true,
+    "zLevel" : 0
+  }
+}
