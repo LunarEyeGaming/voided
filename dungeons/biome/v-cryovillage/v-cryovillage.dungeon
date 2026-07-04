@@ -4,7 +4,7 @@
     "species" : "avian",
     "rules" : [
     ],
-    "anchor" : [ "temple" ],
+    "anchor" : [ "cryovolcano" ],
     "maxRadius" : 1000000,
     "maxParts" : 100,
     "protected" : false
@@ -12,11 +12,11 @@
 
   "parts" : [
     {
-      "name" : "temple",
+      "name" : "cryovolcano",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
-      "def" : [ "tmx", "temple.json" ]
+      "def" : [ "tmx", "cryovolcano.json" ]
     }
   ]
 }

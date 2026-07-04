@@ -1,15 +1,15 @@
 {
   "projectileName" : "v-cryovolcanowater",
   "image" : "cryovolcanowater.png",
-  "physics" : "grenade",
+  "physics" : "laser",
   "animationCycle" : 3,
   "animationLoops" : true,
   "damageKindImage" : "/interface/statuses/fire.png",
   "frameNumber" : 1,
   "power" : 0,
-  "speed" : 175,
+  "speed" : 75,
   "timeToLive" : 2,
-  "bounces" : -1,
+  "bounces" : 0,
   "onlyHitTerrain" : true,
   "hydrophobic" : false,
   "orientationLocked" : true,
@@ -55,6 +55,70 @@
           "fuzzAngle" : 45,
           "config" : {
             "timeToLive" : 50
+          }
+        },
+        {
+          "action" : "projectile",
+          "type" : "v-weatherparticle",
+          "config" : {
+            "weatherParticles" : [
+              {
+                "density" : 0.05,
+                "emissionTime" : 0.2,
+                "particle" : {
+                  "type" : "textured",
+                  "image" : "/particles/rain/1.png",
+                  "velocity" : [0, -35.5],
+                  "approach" : [15, 15],
+                  "angularVelocity" : 0,
+                  "timeToLive" : 20,
+                  "destructionAction" : "image",
+                  "destructionTime" : 0.1,
+                  "destructionImage" : "/particles/splash/1.png",
+                  "collidesForeground" : true,
+                  "collidesLiquid" : true,
+                  "ignoreWind" : false
+                }
+              },
+              {
+                "density" : 0.05,
+                "emissionTime" : 0.2,
+
+                "particle" : {
+                  "type" : "textured",
+                  "image" : "/particles/rain/2.png",
+                  "velocity" : [0, -25.5],
+                  "approach" : [15, 15],
+                  "angularVelocity" : 0,
+                  "timeToLive" : 20,
+                  "destructionAction" : "image",
+                  "destructionTime" : 0.1,
+                  "destructionImage" : "/particles/splash/1.png",
+                  "collidesForeground" : true,
+                  "collidesLiquid" : true,
+                  "ignoreWind" : false
+                }
+              },
+              {
+                "density" : 0.05,
+                "emissionTime" : 0.2,
+
+                "particle" : {
+                  "type" : "textured",
+                  "image" : "/particles/rain/3.png",
+                  "velocity" : [0, -20.5],
+                  "approach" : [15, 15],
+                  "angularVelocity" : 0,
+                  "timeToLive" : 20,
+                  "destructionAction" : "image",
+                  "destructionTime" : 0.1,
+                  "destructionImage" : "/particles/splash/1.png",
+                  "collidesForeground" : true,
+                  "collidesLiquid" : true,
+                  "ignoreWind" : false
+                }
+              }
+            ]
           }
         }
       ]
