@@ -14,10 +14,7 @@ local state
 function init()
   oldInit()
 
-  preFreezeMovementModifiers = {
-    speedModifier = 0.9,
-    airJumpModifier = 0.9
-  }
+  preFreezeMovementModifiers = { }
   freezeMovementModifiers = {
     movementSuppressed = true,
     jumpingSuppressed = true
