@@ -1,0 +1,84 @@
+{
+  "objectName" : "v-cryoitempedestal",
+  "colonyTags" : [ ],
+  "rarity" : "Common",
+  "objectType" : "container",
+  "tooltipKind" : "container",
+  "printable" : false,
+
+  "category" : "trap",
+  "price" : 70,
+  "description" : "<todo>",
+  "shortdescription" : "Cryo Item Pedestal",
+  "race" : "avian",
+  "health" : 1.5,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "cryoitempedestal.png:inactive.1",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "cryoitempedestal.png:inactive.1" } ],
+      "imagePosition" : [-8, 0],
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "pedestal" : "cryoitempedestal.png"
+      },
+
+      "direction" : "left",
+      "flipImages" : true,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "imageLayers" : [ { "image" : "cryoitempedestal.png:inactive.1" } ],
+      "imagePosition" : [-8, 0],
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "pedestal" : "cryoitempedestal.png"
+      },
+
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "animation" : "v-cryoitempedestal.animation",
+
+  "initialItems" : [ "v-aquagrapplespheretechchip" ],
+
+  "outputNodes" : [ [0, 0] ],
+  "scripts" : [ "/objects/wired/v-wiredlock.lua" ],
+  "acceptedItems" : [ "v-aquagrapplespheretechchip" ],
+  "deleteItem" : false,
+
+  "unlockStateType" : "pedestal",
+
+  "unlockingState" : "activating",
+  "lockingState" : "deactivating",
+  "unlockedState" : "active",
+  "lockedState" : "inactive",
+
+  "unlockSound" : "activate",
+  "lockSound" : "deactivate",
+
+  "openSounds" : [ "/sfx/other/v_silence.ogg" ],
+  "closeSounds" : [ "/sfx/other/v_silence.ogg" ],
+  "slotCount" : 1,
+  "uiConfig" : "/interface/chests/chest<slots>.config",
+  "frameCooldown" : 5,
+  "autoCloseCooldown" : 3600,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}
