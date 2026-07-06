@@ -1,0 +1,17 @@
+{
+  "projectileName" : "v-weatherparticle",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "laser",
+  "bounces" : 0,
+  "timeToLive" : 0,
+  "animationCycle" : 1,
+  "speed" : 200,
+  "frameNumber" : 1,
+
+  "onlyHitTerrain" : true,
+
+  "scripts" : ["v-weatherparticle.lua"],
+  "scriptDelta" : 0,
+
+  "weatherParticleMessageRange" : 250
+}

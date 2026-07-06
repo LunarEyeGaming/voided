@@ -1,0 +1,63 @@
+{
+  "projectileName" : "v-waterspawner",
+
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+
+  "physics" : "default",
+  "onlyHitTerrain" : true,
+
+  "timeToLive" : 0,
+
+  "actionOnReap" : [
+    {
+      "action" : "loop",
+      "count" : 3,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "v-permafrostshard"
+        }
+      ]
+    },
+    {
+      "action" : "loop",
+      "count" : 3,
+      "body" : [
+        {
+          "action" : "projectile",
+          "type" : "v-proxyprojectile",
+          "fuzzAngle" : 180,
+          "config" : {
+            "power" : 0,
+            "timeToLive" : 0.25,
+            "speed" : 10,
+            "movementSettings" : {
+              "collisionEnabled" : false
+            },
+            "bounces" : -1,
+            "actionOnReap" : [
+              {
+                "action" : "config",
+                "file" : "/projectiles/explosions/regularexplosion2/iceexplosionknockback.config"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+
+  "scripts" : [ "/scripts/projectiles/v-liquidplacer.lua" ],
+  "scriptDelta" : 1,
+
+  "liquidPlacer" : {
+    "name" : "water",
+    "quantity" : 2000,
+    "placeRadius" : 1,
+    "placeOnDestroy" : true
+  }
+}
+
+
