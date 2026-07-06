@@ -1,0 +1,41 @@
+{
+  "objectName" : "v-ancientcodehologram2",
+  "colonyTags" : ["light"],
+  "rarity" : "Common",
+  "description" : "Displays part of a code.",
+  "shortdescription" : "Code Hologram 2",
+  "race" : "generic",
+
+  "category" : "light",
+  "price" : 0,
+  "scannable" : false,
+  "lightColor" : [26, 221, 227],
+
+  "inventoryIcon" : "icon.png",
+  "orientations" : [
+    {
+      "image" : "ancientcodehologram2.png:<color>.<frame>",
+      "imagePosition" : [-40, -16],
+      "animationPosition" : [-40, -16],
+
+      "direction" : "right",
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
+    }
+  ],
+
+  "animation" : "v-ancientcodehologram.animation",
+  "animationParts" : {
+    "light" : "ancientcodehologram2.png"
+  },
+
+  "scripts" : [ "/objects/wired/light/light.lua" ],
+  "scriptDelta" : 60,
+
+  "interactive" : false,
+
+  "inputNodes" : [ [0, 0] ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}
