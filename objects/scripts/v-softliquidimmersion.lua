@@ -106,7 +106,8 @@ function attemptDestruction()
   if destroyTimer <= 0 then
     -- Destroy with a chance of destroyChance
     if math.random() < destroyChance then
-      object.smash()
+      object.setConfigParameter("smashDropPool", config.getParameter("softImmersion.destroyDropPool", "empty"))
+      object.smash(true)
     end
   end
 end
