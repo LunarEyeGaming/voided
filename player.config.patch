@@ -153,6 +153,13 @@
   },
   {
     "op": "add",
+    "path": "/statusControllerSettings/stats/v-warmthIncreaseRate",
+    "value": {
+      "baseValue": 50
+    }
+  },
+  {
+    "op": "add",
     "path": "/statusControllerSettings/stats/v-warmthIncreaseBlockTime",
     "value": {
       "baseValue": 1.3

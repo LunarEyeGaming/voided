@@ -133,15 +133,21 @@ function v_drawableMeters_updateMeterOffsets()
   end
 end
 
+---@class VDrawableMeter.Layer
+---@field image string
+---@field zLevel number?
+---@field offset Vec2F?
+
 ---@class VDrawableMeter
----@field baseLayerImage string
----@field fillLayerImage string
+---@field baseLayer VDrawableMeter.Layer
+---@field fillLayer VDrawableMeter.Layer
 ---@field renderLayer string
 ---@field baseOffset Vec2F
 ---
 ---@field offset Vec2F
 ---@field size Vec2I
 ---
+---@field drawables {drawable: Drawable, zLevel: number}[]
 ---@field active boolean
 ---@field fillRatio number
 VDrawableMeter = {renderLayer = "overlay+5", images = {}}
@@ -154,8 +160,9 @@ function VDrawableMeter:new(obj)
 end
 
 function VDrawableMeter:init()
-  self.size = root.imageSize(self.baseLayerImage)
+  self.size = root.imageSize(self.baseLayer.image)
   self.offset = vec2.add(self.baseOffset, vec2.mul(self.size, -1 / 16))
+  self.drawables = {}
 
   self.active = false
   self.fillRatio = 0
@@ -166,6 +173,8 @@ function VDrawableMeter:update(dt)
   if self.active then
     self:_updateAnim(dt)
   end
+
+  self:_draw()
 end
 
 function VDrawableMeter:show()
@@ -184,28 +193,47 @@ function VDrawableMeter:setOffset(offset)
   self.offset = vec2.add(offset, vec2.mul(self.size, -1 / 16))
 end
 
-function VDrawableMeter:_updateAnim(dt)
-  localAnimator.addDrawable({
-    image = self.baseLayerImage,
-    position = self.offset,
+---Adds a drawable.
+---@param layer VDrawableMeter.Layer
+---@param transformer? fun(drawable: Drawable): Drawable
+function VDrawableMeter:addDrawable(layer, transformer)
+  local drawable = {
+    image = layer.image,
+    position = vec2.add(self.offset, layer.offset or {0, 0}),
     fullbright = true,
     centered = false
-  }, self.renderLayer)
+  }
+  if transformer then
+    drawable = transformer(drawable)
+  end
+  table.insert(self.drawables, {drawable = drawable, zLevel = layer.zLevel or 0})
+end
+
+function VDrawableMeter:_updateAnim(dt)
+  self:addDrawable(self.baseLayer)
 
   local cropHeight = math.floor(self.size[2] * self.fillRatio)
 
-  localAnimator.addDrawable({
-    image = self.fillLayerImage .. string.format("?crop=0;0;%d;%d", self.size[1], cropHeight),
-    position = self.offset,
-    fullbright = true,
-    centered = false
-  }, self.renderLayer)
+  self:addDrawable(self.fillLayer, function(drawable)
+    drawable.image = drawable.image .. string.format("?crop=0;0;%d;%d", self.size[1], cropHeight)
+    return drawable
+  end)
+end
+
+function VDrawableMeter:_draw()
+  table.sort(self.drawables, function(a, b) return a.zLevel < b.zLevel end)
+
+  for _, drawable in ipairs(self.drawables) do
+    localAnimator.addDrawable(drawable.drawable, self.renderLayer)
+  end
+
+  self.drawables = {}
 end
 
 ---@class VDepthPoisonMeter: VDrawableMeter
----@field flashLayerImage string
----@field warningLayerImage string
----@field shimmerLayerImage string
+---@field flashLayer VDrawableMeter.Layer
+---@field warningLayer VDrawableMeter.Layer
+---@field shimmerLayer VDrawableMeter.Layer
 ---@field flashTime number
 ---@field warningPulseTime number
 ---@field warningThreshold number
@@ -256,21 +284,17 @@ function VDepthPoisonMeter:_updateAnim(dt)
 
   local warningOpacity = math.floor(util.lerp(vUtil.pingPong(self.warningPulseTimer / self.warningPulseTime), 0, 255))
 
-  localAnimator.addDrawable({
-    image = self.warningLayerImage .. string.format("?multiply=ffffff%02x", warningOpacity),
-    position = self.offset,
-    fullbright = true,
-    centered = false
-  }, self.renderLayer)
+  self:addDrawable(self.warningLayer, function(drawable)
+    drawable.image = drawable.image .. string.format("?multiply=ffffff%02x", warningOpacity)
+    return drawable
+  end)
 
   local flashOpacity = math.floor(util.lerp(self.flashTimer / self.flashTime, 0, 255))
 
-  localAnimator.addDrawable({
-    image = self.flashLayerImage .. string.format("?multiply=ffffff%02x", flashOpacity),
-    position = self.offset,
-    fullbright = true,
-    centered = false
-  }, self.renderLayer)
+  self:addDrawable(self.flashLayer, function(drawable)
+    drawable.image = drawable.image .. string.format("?multiply=ffffff%02x", flashOpacity)
+    return drawable
+  end)
 end
 
 function VDepthPoisonMeter:_updateTimers(dt)
@@ -294,23 +318,32 @@ function VDepthPoisonMeter:_drawShimmer(dt)
     end
 
     local frameNumber = math.floor(util.lerp(self.shimmerTimer / self.shimmerTime, 0, self.shimmerFrameCount))
-    localAnimator.addDrawable({
-      image = string.format("%s:%d", self.shimmerLayerImage, frameNumber),
-      position = self.offset,
-      fullbright = true,
-      centered = false
-    }, self.renderLayer)
+    self:addDrawable(self.shimmerLayer, function(drawable)
+      drawable.image = string.format("%s:%d", drawable.image, frameNumber)
+      return drawable
+    end)
   end
 end
 
 ---@class VFreezingMeter: VDrawableMeter
----@field warningLayerImage string
+---@field warningLayer VDrawableMeter.Layer
 ---@field warningPulseTime number
 ---@field warningThreshold number
+---@field shimmerLayer VDrawableMeter.Layer
+---@field shimmerFrameCount integer
+---@field warmthLayer VDrawableMeter.Layer
+---@field warmthFrameCount integer
+---@field warmthCycleTime number
+---@field frozenLayer VDrawableMeter.Layer
+---@field frozenFrameCount integer
+---@field frozenCycleTime number
 ---
 ---@field shouldShimmer boolean
 ---@field shimmerTime number?
 ---@field warningPulseTimer number
+---@field shimmerTimer number
+---@field warmthTimer number
+---@field isWarm boolean
 VFreezingMeter = VDrawableMeter:new()
 
 function VFreezingMeter:init()
@@ -320,6 +353,7 @@ function VFreezingMeter:init()
   self.shimmerTime = nil
   self.flashTimer = 0
   self.shimmerTimer = 0
+  self.warmthTimer = 0
   self.warningPulseTimer = self.warningPulseTime
 end
 
@@ -328,7 +362,28 @@ function VFreezingMeter:update(dt)
 
   if self.active then
     self:_updateTimers(dt)
+    self:_drawShimmer(dt)
+    self:_drawWarmth(dt)
+    self:_drawFrozen(dt)
   end
+end
+
+function VFreezingMeter:setShimmerTime(time)
+  if time then
+    self.shouldShimmer = true
+    self.shimmerTime = time
+  else
+    self.shouldShimmer = false
+    self.shimmerTimer = 0
+  end
+end
+
+function VFreezingMeter:setWarmth(isWarm)
+  self.isWarm = isWarm
+end
+
+function VFreezingMeter:setFrozen(isFrozen)
+  self.isFrozen = isFrozen
 end
 
 function VFreezingMeter:_updateAnim(dt)
@@ -336,17 +391,13 @@ function VFreezingMeter:_updateAnim(dt)
 
   local warningOpacity = math.floor(util.lerp(vUtil.pingPong(self.warningPulseTimer / self.warningPulseTime), 0, 255))
 
-  localAnimator.addDrawable({
-    image = self.warningLayerImage .. string.format("?multiply=ffffff%02x", warningOpacity),
-    position = self.offset,
-    fullbright = true,
-    centered = false
-  }, self.renderLayer)
+  self:addDrawable(self.warningLayer, function(drawable)
+    drawable.image = drawable.image .. string.format("?multiply=ffffff%02x", warningOpacity)
+    return drawable
+  end)
 end
 
 function VFreezingMeter:_updateTimers(dt)
-  self.flashTimer = math.max(0, self.flashTimer - dt)
-
   if self.fillRatio >= self.warningThreshold then
     self.warningPulseTimer = self.warningPulseTimer - dt
     if self.warningPulseTimer <= 0 then
@@ -354,5 +405,52 @@ function VFreezingMeter:_updateTimers(dt)
     end
   else
     self.warningPulseTimer = self.warningPulseTime
+  end
+end
+
+function VFreezingMeter:_drawShimmer(dt)
+  if self.shouldShimmer then
+    self.shimmerTimer = self.shimmerTimer + dt
+    if self.shimmerTimer > self.shimmerTime then
+      self.shimmerTimer = 0
+    end
+
+    local frameNumber = math.floor(util.lerp(self.shimmerTimer / self.shimmerTime, 0, self.shimmerFrameCount))
+    self:addDrawable(self.shimmerLayer, function(drawable)
+      drawable.image = string.format("%s:%d", drawable.image, frameNumber)
+      return drawable
+    end)
+  end
+end
+
+function VFreezingMeter:_drawWarmth(dt)
+  if self.isWarm then
+    self.warmthTimer = math.min(self.warmthCycleTime, self.warmthTimer + dt)
+  else
+    self.warmthTimer = math.max(0, self.warmthTimer - dt)
+  end
+
+  if self.warmthTimer > 0 then
+    local frameNumber = math.min(math.floor(util.lerp(self.warmthTimer / self.warmthCycleTime, 0, self.warmthFrameCount)), self.warmthFrameCount - 1)
+    self:addDrawable(self.warmthLayer, function(drawable)
+      drawable.image = string.format("%s:%d", drawable.image, frameNumber)
+      return drawable
+    end)
+  end
+end
+
+function VFreezingMeter:_drawFrozen(dt)
+  if self.isFrozen then
+    self.frozenTimer = math.min(self.frozenCycleTime, self.frozenTimer + dt)
+  else
+    self.frozenTimer = 0
+  end
+
+  if self.frozenTimer > 0 then
+    local frameNumber = math.min(math.floor(util.lerp(self.frozenTimer / self.frozenCycleTime, 0, self.frozenFrameCount)), self.frozenFrameCount - 1)
+    self:addDrawable(self.frozenLayer, function(drawable)
+      drawable.image = string.format("%s:%d", drawable.image, frameNumber)
+      return drawable
+    end)
   end
 end

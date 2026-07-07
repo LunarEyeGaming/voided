@@ -6,22 +6,28 @@ local preFreezeMovementModifiers
 local freezeMovementModifiers
 local freezeDuration
 local freezeDamage
-local warmthIncreaseRate
+local shimmerValues
+local shimmerHideTime
+local oldAmount
 
 local freezeTimer
+local shimmerHideTimer
 local state
 
 function init()
   oldInit()
 
-  preFreezeMovementModifiers = { }
-  freezeMovementModifiers = {
-    movementSuppressed = true,
-    jumpingSuppressed = true
-  }
-  freezeDuration = 2.0
-  freezeDamage = 60
-  warmthIncreaseRate = 50
+  local cfg = root.assetJson("/stats/v-freezing.config")
+
+  preFreezeMovementModifiers = cfg.preFreezeMovementModifiers or {}
+  freezeMovementModifiers = cfg.freezeMovementModifiers or {}
+  freezeDuration = cfg.freezeDuration
+  freezeDamage = cfg.freezeDamage
+  shimmerValues = cfg.shimmerValues
+  shimmerHideTime = cfg.shimmerHideTime
+  oldAmount = status.stat("v-warmth")
+
+  shimmerHideTimer = shimmerHideTime
 
   state = "inactive"
   freezeTimer = 0
@@ -52,6 +58,8 @@ function update(dt)
     if warmthPercentage <= 0 then
       onFreeze()
 
+      world.sendEntityMessage(entity.id(), "v-drawableMeter-invoke", "v-freezing", "setFrozen", true)
+
       freezeTimer = freezeDuration
       state = "freeze"
     elseif warmthPercentage == 1.0 then
@@ -64,6 +72,7 @@ function update(dt)
 
     if freezeTimer <= 0 then
       onFreezeDamage()
+      world.sendEntityMessage(entity.id(), "v-drawableMeter-invoke", "v-freezing", "setFrozen", false)
       state = "inactive"
     end
   else
@@ -72,8 +81,43 @@ function update(dt)
 
   -- Handle increasing of warmth resource manually.
   if not status.resourcePositive("v-warmthIncreaseBlock") then
-    status.modifyResource("v-warmth", warmthIncreaseRate * dt)
+    status.modifyResource("v-warmth", status.stat("v-warmthIncreaseRate") * dt)
   end
+
+  -- Display warmth
+  world.sendEntityMessage(entity.id(), "v-drawableMeter-invoke", "v-freezing", "setWarmth", status.statPositive("v-warm"))
+
+  -- Shimmering
+  setShimmerTime(status.resource("v-warmth"), dt)
+end
+
+function setShimmerTime(amount, dt)
+  local changeRate = (oldAmount - amount) / dt
+
+  local entryToUse = nil
+
+  for _, shimmerValue in ipairs(shimmerValues) do
+    -- This effectively finds the last entry such that changeRate >= minChangeRate is true.
+    if changeRate < shimmerValue.minChangeRate then
+      break
+    end
+
+    entryToUse = shimmerValue
+  end
+
+  -- Use entryToUse.shimmerTime if available. Otherwise, hide after a delay.
+  if entryToUse then
+    world.sendEntityMessage(entity.id(), "v-drawableMeter-invoke", "v-freezing", "setShimmerTime", entryToUse.shimmerTime)
+    shimmerHideTimer = shimmerHideTime
+  elseif shimmerHideTimer then
+    shimmerHideTimer = shimmerHideTimer - dt
+
+    if shimmerHideTimer <= 0 then
+      world.sendEntityMessage(entity.id(), "v-drawableMeter-invoke", "v-freezing", "setShimmerTime", nil)
+    end
+  end
+
+  oldAmount = amount
 end
 
 function onFreezeDamage()
