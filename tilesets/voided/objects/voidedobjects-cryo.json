@@ -8,7 +8,7 @@
  "margin":0,
  "name":"voidedobjects-cryo",
  "spacing":0,
- "tilecount":8,
+ "tilecount":10,
  "tiledversion":"1.11.2",
  "tileheight":40,
  "tileproperties":
@@ -67,6 +67,20 @@
          "imagePositionX":"-8",
          "imagePositionY":"0",
          "object":"v-cryoitempedestal",
+         "tilesetDirection":"right"
+        },
+     "8":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-cryochest",
+         "tilesetDirection":"right"
+        },
+     "9":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-cryochestsmall",
          "tilesetDirection":"right"
         }
     },
@@ -127,6 +141,20 @@
          "imagePositionY":"string",
          "object":"string",
          "tilesetDirection":"string"
+        },
+     "8":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
+     "9":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
         }
     },
  "tiles":
@@ -178,6 +206,18 @@
          "image":"..\/images\/objects\/cryoitempedestal.png",
          "imageheight":40,
          "imagewidth":24
+        },
+     "8":
+        {
+         "image":"..\/images\/objects\/cryochest.png",
+         "imageheight":16,
+         "imagewidth":24
+        },
+     "9":
+        {
+         "image":"..\/images\/objects\/cryochestsmall.png",
+         "imageheight":16,
+         "imagewidth":16
         }
     },
  "tilewidth":40,

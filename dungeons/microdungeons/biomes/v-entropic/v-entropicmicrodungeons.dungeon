@@ -5,7 +5,7 @@
     "rules" : [
     ],
 
-    "anchor" : [ "underground1", "underground2", "underground3" ],
+    "anchor" : [ "underground1", "underground2", "underground3", "underground4" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -34,6 +34,13 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "underground3.json" ]
+    },
+    {
+      "name" : "underground4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "underground4.json" ]
     }
   ]
 }

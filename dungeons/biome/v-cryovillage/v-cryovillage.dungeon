@@ -14,9 +14,16 @@
     {
       "name" : "cryovolcano",
       "rules" : [
-        [ "maxSpawnCount", [1] ]
+        [ "maxSpawnCount", [1] ],
+        [ "allowOverdrawing" ]
       ],
       "def" : [ "tmx", "cryovolcano.json" ]
+    },
+    {
+      "name" : "verticalfissure1",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "verticalfissure1.json" ]
     }
   ]
 }
