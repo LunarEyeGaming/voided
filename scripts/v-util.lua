@@ -185,3 +185,26 @@ function vUtil.deepEquals(a, b)
     return a == b
   end
 end
+
+---Returns a function that calls `root.materialConfig` on a material and caches it.
+---@param transformer fun(matConfigAndPath: {path: string, config: Json}): any
+---@return function
+function vUtil.materialConfigGen(transformer)
+  local cache = {}
+  setmetatable(cache, {__mode = "kv"})
+  if transformer then
+    return function(material)
+      if not cache[material] then
+        local matConfigAndPath = root.materialConfig(material)
+        if matConfigAndPath then
+          cache[material] = transformer(matConfigAndPath)
+        end
+      end
+
+      return cache[material]
+    end
+  else
+    return function(material)
+    end
+  end
+end

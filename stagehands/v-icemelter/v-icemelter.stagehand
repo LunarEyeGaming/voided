@@ -1,0 +1,10 @@
+{
+  // This stagehand melts ice.
+  "type" : "v-icemelter",
+  "keepAlive" : true,
+
+  "scripts" : ["/stagehands/v-icemelter/v-icemelter.lua"],
+  "scriptDelta" : 1,
+
+  "broadcastArea" : [-1, -1, 1, 1]
+}
