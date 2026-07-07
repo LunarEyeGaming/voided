@@ -44,13 +44,17 @@ end
 function update(dt)
   oldUpdate(dt)
 
+  if status.resourcePercentage("v-warmth") < 1.0 or status.statPositive("v-warm") then
+    world.sendEntityMessage(entity.id(), "v-drawableMeter-show", "v-freezing")
+  else
+    world.sendEntityMessage(entity.id(), "v-drawableMeter-hide", "v-freezing")
+  end
+
   local warmthPercentage = status.resourcePercentage("v-warmth")
   world.sendEntityMessage(entity.id(), "v-drawableMeter-setFillRatio", "v-freezing", 1 - warmthPercentage)
   freezeTimer = freezeTimer - dt
   if state == "inactive" then
     if warmthPercentage < 1.0 then
-      world.sendEntityMessage(entity.id(), "v-drawableMeter-show", "v-freezing")
-
       state = "preFreeze"
     end
   elseif state == "preFreeze" then
@@ -63,9 +67,11 @@ function update(dt)
       freezeTimer = freezeDuration
       state = "freeze"
     elseif warmthPercentage == 1.0 then
-      state = "inactive"
-
-      world.sendEntityMessage(entity.id(), "v-drawableMeter-hide", "v-freezing")
+      if status.statPositive("v-warm") then
+        state = "warm"
+      else
+        state = "inactive"
+      end
     end
   elseif state == "freeze" then
     mcontroller.controlModifiers(freezeMovementModifiers)
@@ -73,6 +79,10 @@ function update(dt)
     if freezeTimer <= 0 then
       onFreezeDamage()
       world.sendEntityMessage(entity.id(), "v-drawableMeter-invoke", "v-freezing", "setFrozen", false)
+      state = "inactive"
+    end
+  elseif state == "warm" then
+    if not status.statPositive("v-warm") then
       state = "inactive"
     end
   else
