@@ -1,9 +1,9 @@
 {
-  "projectileName" : "v-toxikitebomb",
+  "projectileName" : "v-auroritebomb",
   "physics" : "grenade",
   "bounces" : 1,
   "timeToLive" : 1.5,
-  "image" : "toxikitebomb.png",
+  "image" : "auroritebomb.png",
   "speed" : 20,
   "animationCycle" : 1.5,
   "lightColor" : [105, 64, 0],
@@ -17,7 +17,7 @@
     {
       "action" : "applySurfaceMod",
       "previousMod" : null,
-      "newMod" : "v-toxikite",
+      "newMod" : "v-aurorite",
       "radius" : 5
     }
   ],

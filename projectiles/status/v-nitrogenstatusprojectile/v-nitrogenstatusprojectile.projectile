@@ -1,0 +1,53 @@
+{
+  "projectileName" : "v-nitrogenstatusprojectile",
+  "physics" : "grenade",
+  "movementSettings" : {
+    "gravityMultiplier" : 2
+  },
+  "bounces" : -1,
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "fullbright" : true,
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+  "power" : 100,
+  "speed" : 0,
+  "onlyHitTerrain" : true,
+  "timeToLive" : 5,
+  "periodicActions" : [
+    {
+      "time" : 0.1,
+      "action" : "projectile",
+      "type" : "v-proxyprojectile",
+      "offset" : [0, -1],
+      "config" : {
+        "actionOnReap" : [
+          {
+            "action" : "explosion",
+            "foregroundRadius" : 5,
+            "backgroundRadius" : 0,
+            "delaySteps" : 1,
+            "explosiveDamageAmount" : 0.1
+          },
+          {
+            "action" : "explosion",
+            "foregroundRadius" : 5,
+            "backgroundRadius" : 0,
+            "delaySteps" : 2,
+            "explosiveDamageAmount" : 0.1
+          }
+        ]
+      }
+    }
+  ],
+
+  "scripts" : [ "/scripts/projectiles/v-liquidplacer.lua" ],
+  "scriptDelta" : 1,
+
+  "liquidPlacer" : {
+    "name" : "v-liquidnitrogen",
+    "quantity" : 2,
+    "interval" : 0.1,
+    "destroyRadius" : 5,
+    "placeRadius" : 1
+  }
+}

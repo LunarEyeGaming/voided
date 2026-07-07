@@ -1,0 +1,69 @@
+{
+  "projectileName" : "v-coldtouchstatusprojectile",
+  "physics" : "statuspod",
+  "bounces" : -1,
+  "timeToLive" : 1.5,
+  "speed" : 0,
+  "damageKindImage" : "icon.png",
+  "image" : "/projectiles/status/v-invisiblestatusprojectile.png",
+  "animationCycle" : 0.5,
+  "frameNumber" : 4,
+  "periodicActions" : [
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-coldtouchcloud",
+      "angle" : 0
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-coldtouchcloud",
+      "angle" : 45
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-coldtouchcloud",
+      "angle" : 90
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-coldtouchcloud",
+      "angle" : 135
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-coldtouchcloud",
+      "angle" : 180
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-coldtouchcloud",
+      "angle" : 225
+    },
+    {
+      "time" : 0.25,
+      "repeat" : false,
+      "action" : "projectile",
+      "type" : "v-coldtouchcloud",
+      "angle" : 270
+    }
+  ],
+  "power" : 0,
+  "piercing" : true,
+  "damageKind" : "hidden",
+  "damageType" : "ignoresdef",
+  "damagePoly" : [ [-80, -80], [-80, 80], [80, 80], [80, -80]  ],
+  "flippable" : true,
+  "damageTeam" : { "type" : "indiscriminate" }
+}
