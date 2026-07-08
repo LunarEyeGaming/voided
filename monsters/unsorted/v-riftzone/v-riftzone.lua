@@ -15,6 +15,8 @@ local scanRadius
 local tileSofteningRadius
 local invisibleOre
 local visibleOre
+local terrainMaterial
+local lightBlockerMaterial
 local appearTime
 local disappearTime
 local disappearDelay
@@ -67,8 +69,10 @@ function init()
   scanRadius = cfg.defaultZoneRadius
   tileSofteningRadius = config.getParameter("tileSofteningRadius")
   monster.setAnimationParameter("riftSize", 0)
-  invisibleOre = config.getParameter("invisibleOre")
-  visibleOre = config.getParameter("visibleOre")
+  invisibleOre = cfg.invisibleOre
+  visibleOre = cfg.visibleOre
+  terrainMaterial = config.getParameter("terrainMaterial")
+  lightBlockerMaterial = config.getParameter("lightBlockerMaterial")
   appearTime = config.getParameter("appearTime")
   disappearTime = config.getParameter("disappearTime")
   disappearDelay = config.getParameter("disappearDelay")
@@ -560,8 +564,8 @@ function updateMaterials(radius)
     --   table.insert(blocksToPlaceFG, )
     -- end
     if shouldPlaceBlock(frontScanPos) then
-      table.insert(blocksToPlaceFG, {pos = frontScanPos, material = "v-voidstone2"})
-      table.insert(blocksToPlaceBG, {pos = frontScanPos, material = "v-voidstone2"})
+      table.insert(blocksToPlaceFG, {pos = frontScanPos, material = terrainMaterial})
+      table.insert(blocksToPlaceBG, {pos = frontScanPos, material = terrainMaterial})
       if oreFGPerlinSource:get(frontScanPos[1], frontScanPos[2]) > 0 then
         table.insert(oresToPlaceFG, frontScanPos)
       end
@@ -569,7 +573,7 @@ function updateMaterials(radius)
         table.insert(oresToPlaceBG, frontScanPos)
       end
     else
-      table.insert(blocksToPlaceBG, {pos = frontScanPos, material = "v-riftzonelightblocker"})
+      table.insert(blocksToPlaceBG, {pos = frontScanPos, material = lightBlockerMaterial})
     end
   end
 
@@ -763,16 +767,37 @@ function cleanUp()
 
     clearMatMods(scanRadius)
     local blocksToClearFG = getBlocksToClear(placedBlocksFG, "foreground")
+    if not blocksToClearFG then return
+      sb.logWarn("blocksToClearFG not defined")
+    end
     local blocksToClearBG = getBlocksToClear(placedBlocksBG, "background")
-    clearOres(placedOresFG, "foreground")
-    clearOres(placedOresBG, "background")
+    if not blocksToClearBG then return
+      sb.logWarn("blocksToClearBG not defined")
+    end
+    local oresToClearFG = getOresToClear(placedOresFG, "foreground")
+    if not oresToClearFG then return
+      sb.logWarn("oresToClearFG not defined")
+    end
+    local oresToClearBG = getOresToClear(placedOresBG, "background")
+    if not oresToClearBG then return
+      sb.logWarn("oresToClearBG not defined")
+    end
 
     world.spawnMonster("v-riftzonecleanup", mcontroller.position(), {
       persistent = true,
       blocksToClearFG = blocksToClearFG,
       blocksToClearBG = blocksToClearBG,
-      -- oresToClearFG = oresToClearFG,
-      -- oresToClearBG = oresToClearBG
+      oresToClearFG = oresToClearFG,
+      oresToClearBG = oresToClearBG,
+      riftZoneData = {
+        position = mcontroller.position(),
+        velocity = velocity,
+        stateData = {
+          deathTime = world.time() + existenceTimer
+        },
+        level = monster.level(),
+        timeToLive = timeToLive
+      }
     })
   end
 end
@@ -820,15 +845,9 @@ function getBlocksToClear(blocks, layer)
     sb.logError("v-riftzone.lua: clearPlacedBlocks called with no blocks defined")
     return
   end
-  local i = 0
   for posString, _ in pairs(blocks) do
     local pos = vVec2.iFromString(posString)
     table.insert(blocksToClear, pos)
-    i = i + 1
-
-    if i >= MAX_TILES_TO_DESTROY then
-      break
-    end
   end
 
   return blocksToClear
@@ -836,7 +855,7 @@ function getBlocksToClear(blocks, layer)
   -- world.damageTiles(blocksToClear, layer, mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
 end
 
-function clearOres(ores, layer)
+function getOresToClear(ores, layer)
   local oresToClear = {}
   if not ores then
     sb.logError("v-riftzone.lua: clearPlacedOres called with no ores defined")
@@ -853,11 +872,11 @@ function clearOres(ores, layer)
     end
   end
 
-  -- return oresToClear
+  return oresToClear
 
-  for _, tile in ipairs(oresToClear) do
-    world.placeMod(tile, layer, invisibleOre)
-  end
+  -- for _, tile in ipairs(oresToClear) do
+  --   world.placeMod(tile, layer, invisibleOre)
+  -- end
 end
 
 function closeToAPlayer(position)

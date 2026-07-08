@@ -1,6 +1,10 @@
 require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
 
+require "/scripts/v-vec2.lua"
+require "/scripts/v-time.lua"
+require "/scripts/v-world.lua"
+
 local SMALL_RECT = {-1, -1, 1, 1}
 
 local defaultRiftZoneVelocity
@@ -8,6 +12,7 @@ local playerProximityRegion
 local lightningOffsetRegion
 local lightningStrikeProbability
 local relocationProbability
+local invisibleOre
 
 local postInitCalled
 
@@ -19,6 +24,9 @@ function init()
   lightningOffsetRegion = cfg.lightningOffsetRegion
   lightningStrikeProbability = cfg.lightningStrikeProbability
   relocationProbability = cfg.relocationProbability
+  invisibleOre = cfg.invisibleOre
+
+  vTime.addInterval(1, cleanUpAfterRiftZones)
 
   postInitCalled = false
 end
@@ -41,6 +49,8 @@ function update(dt)
     postInitCalled = true
     return
   end
+
+  vTime.update(dt)
 
   local riftZones = world.getProperty("v-riftZones") or jarray()
   local riftZonesToSpawn = {}
@@ -146,4 +156,55 @@ function closeToARiftZone(position, riftZones)
   end
 
   return false
+end
+
+function cleanUpAfterRiftZones()
+  clearBlocks("v-riftzone-blocksToRemoveFG", "foreground")
+  clearBlocks("v-riftzone-blocksToRemoveBG", "background")
+  clearOres("v-riftzone-oresToRemoveFG", "foreground")
+  clearOres("v-riftzone-oresToRemoveBG", "background")
+end
+
+function clearBlocks(propertyName, layer)
+  local blocksToClear = world.getProperty(propertyName) or {}
+
+  for sectorStr, blocks in pairs(blocksToClear) do
+    local sector = vVec2.iFromString(sectorStr)
+    local sectorRect = {
+      sector[1] * vWorld.SECTOR_SIZE,
+      sector[2] * vWorld.SECTOR_SIZE,
+      sector[1] * vWorld.SECTOR_SIZE + vWorld.SECTOR_SIZE - 1,
+      sector[2] * vWorld.SECTOR_SIZE + vWorld.SECTOR_SIZE - 1
+    }
+    if world.regionActive(sectorRect) then
+      world.damageTiles(blocks, layer, blocks[1], "blockish", 2 ^ 32, 0)
+
+      blocksToClear[sectorStr] = nil
+    end
+  end
+
+  world.setProperty(propertyName, blocksToClear)
+end
+
+function clearOres(propertyName, layer)
+  local oresToClear = world.getProperty(propertyName) or {}
+
+  for sectorStr, ores in pairs(oresToClear) do
+    local sector = vVec2.iFromString(sectorStr)
+    local sectorRect = {
+      sector[1] * vWorld.SECTOR_SIZE,
+      sector[2] * vWorld.SECTOR_SIZE,
+      sector[1] * vWorld.SECTOR_SIZE + vWorld.SECTOR_SIZE - 1,
+      sector[2] * vWorld.SECTOR_SIZE + vWorld.SECTOR_SIZE - 1
+    }
+    if world.regionActive(sectorRect) then
+      for _, ore in ipairs(ores) do
+        world.placeMod(ore, layer, invisibleOre)
+      end
+
+      oresToClear[sectorStr] = nil
+    end
+  end
+
+  world.setProperty(propertyName, oresToClear)
 end
