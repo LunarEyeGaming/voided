@@ -202,20 +202,6 @@ end
 
 function uninit()
   cleanUp()
-
-  if not g_shouldDieVar then
-    local riftZones = world.getProperty("v-riftZones") or jarray()
-    table.insert(riftZones, {
-      position = mcontroller.position(),
-      velocity = velocity,
-      stateData = {
-        deathTime = world.time() + existenceTimer
-      },
-      level = monster.level(),
-      timeToLive = timeToLive
-    })
-    world.setProperty("v-riftZones", riftZones)
-  end
 end
 
 states = {}
@@ -783,13 +769,16 @@ function cleanUp()
       sb.logWarn("oresToClearBG not defined")
     end
 
-    world.spawnMonster("v-riftzonecleanup", mcontroller.position(), {
+    local params = {
       persistent = true,
       blocksToClearFG = blocksToClearFG,
       blocksToClearBG = blocksToClearBG,
       oresToClearFG = oresToClearFG,
       oresToClearBG = oresToClearBG,
-      riftZoneData = {
+    }
+
+    if not g_shouldDieVar then
+      params.riftZoneData = {
         position = mcontroller.position(),
         velocity = velocity,
         stateData = {
@@ -798,7 +787,9 @@ function cleanUp()
         level = monster.level(),
         timeToLive = timeToLive
       }
-    })
+    end
+
+    world.spawnMonster("v-riftzonecleanup", mcontroller.position(), params)
   end
 end
 

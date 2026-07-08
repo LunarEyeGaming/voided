@@ -29,9 +29,11 @@ function update(dt)
     pushPartitionToWorldProperty("v-riftzone-oresToRemoveBG", partitionedOresBG)
 
     local riftZoneData = config.getParameter("riftZoneData")
-    local riftZones = world.getProperty("v-riftZones") or jarray()
-    table.insert(riftZones, riftZoneData)
-    world.setProperty("v-riftZones", riftZones)
+    if riftZoneData then
+      local riftZones = world.getProperty("v-riftZones") or jarray()
+      table.insert(riftZones, riftZoneData)
+      world.setProperty("v-riftZones", riftZones)
+    end
 
     shouldDieVar = true
   end
