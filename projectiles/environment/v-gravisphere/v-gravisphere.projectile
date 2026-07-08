@@ -66,6 +66,23 @@
           }
         ]
       }
+    },
+    {
+      "time" : 0.01,
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/v-gravispherewindstreak/v-gravispherewindstreak.animation",
+        "size" : 1,
+        "position" : [0, 0],
+        "timeToLive" : 0,
+        "destructionAction" : "shrink",
+        "destructionTime" : 0.5,
+        "layer" : "middle",
+        "variance" : {
+          "rotation" : 180
+        }
+      }
     }
   ],
 
@@ -80,6 +97,8 @@
       "categoryWhitelist" : [ "player", "monster", "npc", "itemdrop" ]
     }
   },
+
+  "persistentAudio" : "/sfx/statuseffects/v_voideffect_loop2.ogg",
 
   "scripts" : [ "v-gravisphere.lua" ],
   "maxDistance" : 42
