@@ -70,7 +70,19 @@ function v_resolvePolyCollision(args, board)
     return false
   end
 
-  local pos = world.resolvePolyCollision(mcontroller.collisionPoly(), args.position, args.maxCorrection)
+  local collisionPoly
+  if args.useBoundBox then
+    local boundBox = mcontroller.boundBox()
+    collisionPoly = {
+      rect.ll(boundBox),
+      rect.lr(boundBox),
+      rect.ur(boundBox),
+      rect.ul(boundBox)
+    }
+  else
+    collisionPoly = mcontroller.collisionPoly()
+  end
+  local pos = world.resolvePolyCollision(collisionPoly, args.position, args.maxCorrection)
   if not pos then
     world.debugPoint(args.position, "red")
     return false
@@ -79,4 +91,23 @@ function v_resolvePolyCollision(args, board)
   world.debugLine(args.position, pos, "green")
 
   return true, {result = pos}
+end
+
+-- param center
+-- param rayCount
+-- param minRaycastLength
+-- param maxRaycastLength
+-- param collisionSet
+function v_radialRaycast(args)
+  if not vBehavior.requireArgs("v_radialRaycast", args, {"center", "rayCount", "maxRaycastLength"}) then
+    return false
+  end
+
+  return true, {result = vWorld.radialRaycast{
+    raycastCount = args.rayCount,
+    center = args.center,
+    minRaycastLength = args.minRaycastLength,
+    maxRaycastLength = args.maxRaycastLength,
+    collisionSet = args.collisionSet
+  }}
 end

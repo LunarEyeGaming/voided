@@ -1,0 +1,19 @@
+{
+  "projectileName" : "v-morphumspike",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "frameNumber" : 1,
+  "animationCycle" : 0.1,
+  "speed" : 0,
+  "timeToLive" : 0.0,
+  "onlyHitTerrain" : true,
+
+  "scripts" : [ "v-morphumspike.lua" ],
+  "scriptDelta" : 1,
+
+  "monster" : {
+    "type" : "v-morphumspike",
+    "rotatedOffset" : [10, 0]
+  }
+}

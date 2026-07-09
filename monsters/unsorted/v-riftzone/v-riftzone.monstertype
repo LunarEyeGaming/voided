@@ -79,6 +79,15 @@
       }
     },
 
+    "monsterSpawns" : [
+      {
+        "mode" : "surface",
+        "spawnChance" : 0.07,
+        "monsterType" : "v-morphum",
+        "monsterParameters" : {"aggressive" : true}
+      }
+    ],
+
     "lightningStrikeProbability" : 0.1,
     "lightningConfig" : {
       "baseConfig" : {

@@ -41,20 +41,6 @@
     "script": "/scripts/actions/v-world.lua",
     "output": {}
   },
-  "v_resolvePolyCollision": {
-    "type": "action",
-    "name": "v_resolvePolyCollision",
-    "title": "v_resolvePolyCollision",
-    "properties": {
-      "position": {"type": "position", "key": "self"},
-      "maxCorrection": {"type": "number"}
-    },
-    "category": "v-world",
-    "script": "/scripts/actions/v-world.lua",
-    "output": {
-      "result": {"type": "position", "key": null}
-    }
-  },
   "v_entityVelocity": {
     "type": "action",
     "name": "v_entityVelocity",
@@ -67,6 +53,38 @@
     "output": {
       "velocity": {"type": "vec2", "key": null},
       "magnitude": {"type": "number", "key": null}
+    }
+  },
+  "v_radialRaycast": {
+    "type": "action",
+    "name": "v_radialRaycast",
+    "title": "v_radialRaycast",
+    "properties": {
+      "center": {"type": "position"},
+      "collisionSet": {"type": "list"},
+      "maxRaycastLength": {"type": "number"},
+      "minRaycastLength": {"type": "number"},
+      "rayCount": {"type": "number", "value": 20}
+    },
+    "category": "v-world",
+    "script": "/scripts/actions/v-world.lua",
+    "output": {
+      "result": {"type": "list", "key": null}
+    }
+  },
+  "v_resolvePolyCollision": {
+    "type": "action",
+    "name": "v_resolvePolyCollision",
+    "title": "v_resolvePolyCollision",
+    "properties": {
+      "maxCorrection": {"type": "number"},
+      "position": {"type": "position", "key": "self"},
+      "useBoundBox": {"type": "bool", "value": false}
+    },
+    "category": "v-world",
+    "script": "/scripts/actions/v-world.lua",
+    "output": {
+      "result": {"type": "position", "key": null}
     }
   }
 }

@@ -3,6 +3,19 @@ require "/scripts/v-util.lua"
 
 vBehavior = {}
 
+-- DataTypes does not include the "json" type
+vBehavior.DataTypes = {
+  "entity",
+  "position",
+  "vec2",
+  "number",
+  "bool",
+  "list",
+  "table",
+  "string",
+  "json"
+}
+
 -- TODO: This code is stupid and dumb. Make it use var-args at the end instead.
 ---Generates a function that checks if arguments with names `names` are all defined in `args`, sending a warning to the
 ---log if any of them are not defined. `nodeName` is used to help identify the node from which an argument is undefined.
@@ -85,7 +98,7 @@ end
 ---@return table
 function vBehavior.anyTypeTable(value)
   results = {}
-  for _, dataType in pairs(ListTypes) do
+  for _, dataType in pairs(vBehavior.DataTypes) do
     results[dataType] = value
   end
   return results

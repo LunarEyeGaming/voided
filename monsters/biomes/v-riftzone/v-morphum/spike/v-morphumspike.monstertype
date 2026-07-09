@@ -1,0 +1,139 @@
+{
+  "type" : "v-morphumspike",
+
+  "categories" : [ "v-morphumspike" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-morphumspike.animation",
+
+  "dropPools" : [ "empty" ],
+
+  "baseParameters" : {
+
+    "scripts" : [
+      "/monsters/biomes/v-riftzone/v-morphum/spike/v-morphumspike.lua"
+    ],
+
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 1,
+
+    "timeToLive" : 1.0,
+
+    "damageParts" : {
+      "body" : {
+        "damage" : 10,
+        "damageSourceKind" : "v-void",
+
+        "knockback" : 0
+      }
+    },
+
+    "touchDamage" : {
+      "poly" : [ [-10, 1.125], [10, 0], [-10, -1.125] ],
+      "damage" : 8,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "v-void",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "metaBoundBox" : [-10, -10, 10, 10],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [ [-10, 1.125], [10, 0], [-10, -1.125] ],
+      "gravityEnabled" : false,
+      "collisionEnabled" : false,
+
+      "mass" : 1.0,
+      "walkSpeed" : 3,
+      "runSpeed" : 3
+    },
+
+    "bodyMaterialKind" : "organic",
+
+    "knockoutTime" : 0.0,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/terra_worm_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 0
+        },
+        "maxHealth" : {
+          "baseValue" : 50
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "physicalResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "electricResistance" : {
+          "baseValue" : 0.5
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "poisonResistance" : {
+          "baseValue" : -0.25
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 0.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : false
+  }
+}

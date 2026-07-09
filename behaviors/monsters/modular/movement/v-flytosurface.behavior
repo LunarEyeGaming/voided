@@ -1,0 +1,287 @@
+{
+  "name": "v-approach-flytosurface",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/world.lua",
+    "/scripts/actions/v-world.lua",
+    "/scripts/behavior/bdata.lua",
+    "/scripts/actions/voidedutil.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/position.lua",
+    "/scripts/actions/sensor.lua",
+    "/scripts/actions/projectiles.lua",
+    "/scripts/actions/v-movement.lua"
+  ],
+  "parameters": {
+    "flightTolerance": 1,
+    "stopForce": 50,
+    "selectionRayCount": 20,
+    "selectionMinRaycastLength": null,
+    "selectionMaxRaycastLength": 50,
+    "selectionCollisionSet": null,
+    "flyState": "",
+    "idleState": "",
+    "stateType": "",
+    "selectionMaxCorrection": 3
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "entityPosition",
+            "type": "action",
+            "name": "entityPosition",
+            "parameters": {
+              "entity": {"key": "target"}
+            },
+            "output": {
+              "position": "targetPos"
+            }
+          },
+          {
+            "title": "v_radialRaycast",
+            "type": "action",
+            "name": "v_radialRaycast",
+            "parameters": {
+              "center": {"key": "targetPos"},
+              "collisionSet": {"key": "<selectionCollisionSet>"},
+              "maxRaycastLength": {"key": "<selectionMaxRaycastLength>"},
+              "minRaycastLength": {"key": "<selectionMinRaycastLength>"},
+              "rayCount": {"key": "<selectionRayCount>"}
+            },
+            "output": {
+              "result": "raycastResults"
+            }
+          },
+          {
+            "title": "listShuffle",
+            "type": "action",
+            "name": "listShuffle",
+            "parameters": {
+              "list": {"key": "raycastResults"}
+            },
+            "output": {
+              "list": "raycastResults"
+            }
+          },
+          {
+            "title": "v_listGet2",
+            "type": "action",
+            "name": "v_listGet2",
+            "parameters": {
+              "list": {"key": "raycastResults"}
+            },
+            "output": {
+              "json": "raycastResult"
+            }
+          },
+          {
+            "title": "v_getJsonKey",
+            "type": "action",
+            "name": "v_getJsonKey",
+            "parameters": {
+              "key": {"value": "position"},
+              "object": {"key": "raycastResult"}
+            },
+            "output": {
+              "position": "flightPosition"
+            }
+          },
+          {
+            "title": "v_resolvePolyCollision",
+            "type": "action",
+            "name": "v_resolvePolyCollision",
+            "parameters": {
+              "maxCorrection": {"key": "<selectionMaxCorrection>"},
+              "position": {"key": "flightPosition"},
+              "useBoundBox": {"value": true}
+            },
+            "output": {
+              "result": "flightPositionBB"
+            }
+          },
+          {
+            "title": "v_resolvePolyCollision",
+            "type": "action",
+            "name": "v_resolvePolyCollision",
+            "parameters": {
+              "position": {"key": "flightPosition"},
+              "maxCorrection": {"key": "<selectionMaxCorrection>"}
+            },
+            "output": {
+              "result": "flightPosition"
+            }
+          }
+        ]
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "controlParameters",
+                  "type": "action",
+                  "name": "controlParameters",
+                  "parameters": {
+                    "parameters": {"value": {"gravityEnabled": false}}
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "animate",
+              "type": "action",
+              "name": "animate",
+              "parameters": {
+                "fallback": {"key": "<idleState>"},
+                "state": {"key": "<flyState>"},
+                "type": {"key": "<stateType>"}
+              }
+            }
+          },
+          {
+            "title": "succeeder",
+            "type": "decorator",
+            "name": "succeeder",
+            "parameters": {},
+            "child": {
+              "title": "dynamic",
+              "type": "composite",
+              "name": "dynamic",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "parallel",
+                  "type": "composite",
+                  "name": "parallel",
+                  "parameters": {
+                    "fail": {"value": 1},
+                    "success": {"value": -1}
+                  },
+                  "children": [
+                    {
+                      "title": "sequence",
+                      "type": "composite",
+                      "name": "sequence",
+                      "parameters": {},
+                      "children": [
+                        {
+                          "title": "distance",
+                          "type": "action",
+                          "name": "distance",
+                          "parameters": {
+                            "from": {"key": "self"},
+                            "to": {"key": "flightPosition"}
+                          },
+                          "output": {
+                            "vector": "flightVector"
+                          }
+                        },
+                        {
+                          "title": "inverter",
+                          "type": "decorator",
+                          "name": "inverter",
+                          "parameters": {},
+                          "child": {
+                            "title": "lineTileCollision",
+                            "type": "action",
+                            "name": "lineTileCollision",
+                            "parameters": {
+                              "collisionType": {"value": ["Null", "Block", "Dynamic", "Slippery"]},
+                              "offset": {"key": "flightVector"},
+                              "position": {"key": "self"}
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "title": "spawnProjectile",
+                      "type": "action",
+                      "name": "spawnProjectile",
+                      "parameters": {
+                        "angle": {"value": 0},
+                        "offset": {"value": [0, 0]},
+                        "position": {"key": "flightPosition"},
+                        "projectileConfig": {"value": {}},
+                        "projectileType": {"value": "v-proxyprojectile"},
+                        "scalePower": {"value": true},
+                        "sourceEntity": {"key": "self"},
+                        "trackSource": {"value": false},
+                        "uniqueRepeatGroup": {"value": true}
+                      }
+                    },
+                    {
+                      "title": "flyToPosition",
+                      "type": "action",
+                      "name": "flyToPosition",
+                      "parameters": {
+                        "position": {"key": "flightPosition"},
+                        "tolerance": {"key": "<flightTolerance>"}
+                      }
+                    }
+                  ]
+                },
+                {
+                  "title": "moveToPosition",
+                  "type": "action",
+                  "name": "moveToPosition",
+                  "parameters": {
+                    "avoidLiquid": {"value": false},
+                    "groundPosition": {"value": false},
+                    "maxGround": {"value": 5},
+                    "minGround": {"value": -5},
+                    "closeDoors": {"value": false},
+                    "pathOptions": {"value": {}},
+                    "position": {"key": "flightPositionBB"},
+                    "run": {"value": false}
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "v_stop",
+        "type": "action",
+        "name": "v_stop",
+        "parameters": {
+          "stopForce": {"key": "<stopForce>"}
+        }
+      }
+    ]
+  }
+}

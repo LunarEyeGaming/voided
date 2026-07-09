@@ -2,15 +2,14 @@ require "/scripts/behavior/bdata.lua"
 require "/scripts/util.lua"
 require "/scripts/v-behavior.lua"
 
--- param list
--- param index
--- output entity
--- output number
--- output position
--- output vector
+-- Returns the value in `list` at `index`.
+-- param list (optional) - Defaults to an empty list
+-- param index (optional) - Defaults to the end of the list
+-- output anyType
 function v_listGet2(args, board)
   local list = args.list or jarray()
-  local value = list[args.index]
+  local index = args.index or #list
+  local value = list[index]
   if value == nil then return false end
   return true, vBehavior.anyTypeTable(value)
 end
@@ -77,6 +76,9 @@ end
 -- output value
 
 function v_getJsonKey(args, board)
+  if not vBehavior.requireArgs("v_getJsonKey", args, {"key"}) then
+    return false
+  end
   local object = args.object or {}
   local value = object[args.key]
   if value == nil then return false end

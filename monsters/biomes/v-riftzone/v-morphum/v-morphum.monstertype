@@ -1,0 +1,287 @@
+{
+  "type" : "v-morphum",
+  "shortdescription" : "Morphum",
+  "description" : "(Plural: Morpha) <todo>",
+
+  "categories" : [ "v-morphum" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-morphum.animation",
+
+  "dropPools" : [ "v-morphumTreasure" ],
+
+  "baseParameters" : {
+
+    "scripts" : [
+      "/monsters/monster.lua",
+      "/monsters/biomes/v-riftzone/v-morphum/v-morphumplugin.lua"
+    ],
+
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 3,
+
+    "behavior" : "monster",
+    "deathBehavior" : "monster-death",
+
+    "facingMode" : "transformation",
+
+    "behaviorConfig" : {
+      "damageOnTouch" : false,
+
+      "targetQueryRange" : 20,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 40,
+      "targetOutOfSightTime" : 5.0,
+
+      "foundTargetActions" : [ ],
+
+      "fleeActions" : [ ],
+
+      "hostileActions" : [
+        {
+          "name" : "v-action-stickyslam",
+          "cooldown" : 1.5,
+          "parameters" : {
+            "windupTime" : 0.66,
+            "windupState" : "jumpwindup",
+            "windupStateType" : "body",
+            "faceTarget" : false,
+            "requireLineOfSight" : false,
+            "maximumRange" : 8,
+            "windupStopForce" : 50,
+            "onGround" : true,
+
+            "jumpState" : "jump",
+            "jumpStateType" : "body",
+            "jumpDelay" : 0.0,
+            "slamProjectileType" : "v-proxyprojectile",
+            "slamProjectileParameters" : { },
+
+            "winddownState" : "impact",
+            "winddownStateType" : "body",
+            "winddownTime" : 0.75
+          }
+        },
+        {
+          "name" : "action-fire",
+          "cooldown" : 5.0,
+          "parameters" : {
+            "requireLineOfSight" : true,
+            "maximumRange" : 20,
+            "minimumRange" : 2,
+            "windupState" : "spikewindup",
+            "windupTime" : 1.0,
+            "windupStopForce" : 200,
+
+            "aimAtTarget" : false,
+            "aimDirection" : [0, 1],
+            "projectileType" : "v-morphumspike",
+            "fireOffset" : [0.0, 0.0],
+            "fireSound" : "spikefire",
+            "fireState" : "spike",
+
+            "winddownState" : "idle",
+            "winddownTime" : 1.0
+          }
+        }
+      ],
+
+      "periodicActions" : [ ],
+
+      "approachActions" : [
+        {
+          "name" : "v-approach-crawl",
+          "cooldown" : 1,
+          "parameters" : {
+            "stopForce" : 200,
+            "stickForce" : 200,
+            "resetHeading" : false
+          }
+        },
+        {
+          "name" : "v-approach-flytosurface",
+          "parameters" : {
+            "flyState" : "fly",
+            "idleState" : "idle",
+            "stateType" : "body",
+            "flightTolerance" : 1.5
+          }
+        }
+      ],
+
+      "followActions" : [
+        {
+          "name" : "approach-teleport",
+          "parameters" : {
+          }
+        },
+        {
+          "name" : "v-approach-crawl",
+          "parameters" : {
+            "stopForce" : 200,
+            "stickForce" : 200,
+            "resetHeading" : false
+          }
+        },
+        {
+          "name" : "v-approach-flytosurface",
+          "parameters" : {
+            "flyState" : "fly",
+            "idleState" : "idle",
+            "stateType" : "body"
+          }
+        }
+      ],
+
+      "wanderActions" : [
+        {
+          "name" : "wander-crawl",
+          "cooldown" : 1,
+          "parameters" : {
+            "wanderTime" : 1.5,
+            "stopForce" : 200,
+            "idleTime" : 1.0,
+            "resetHeading" : false
+          }
+        }
+      ],
+
+      "concurrentActions" : [
+      ],
+
+      "concurrentHostileActions" : [
+        {
+          "name" : "idle-crawl"
+        }
+      ]
+    },
+
+    "touchDamage" : {
+      "poly" : [[1.617, 0.67], [0.67, 1.617], [-0.67, 1.617], [-1.617, 0.67], [-1.617, -0.67], [-0.67, -1.617], [0.67, -1.617], [1.617, -0.67]],
+      "damage" : 8,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "v-voidspear",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "damageParts" : {
+      "body" : {
+        "damage" : 10,
+
+        "teamType" : "enemy",
+        "damageSourceKind" : "v-voidlash",
+        "knockback" : 20
+      }
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [[1.617, 0.67], [0.67, 1.617], [-0.67, 1.617], [-1.617, 0.67], [-1.617, -0.67], [-0.67, -1.617], [0.67, -1.617], [1.617, -0.67]],
+
+      "mass" : 1.0,
+      "flySpeed" : 15,
+      "airForce" : 50,
+      "walkSpeed" : 8,
+      "runSpeed" : 8
+    },
+
+    "bodyMaterialKind" : "organic",
+
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "knockbackStunTime" : {
+          "baseValue" : 0.25
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 9
+        },
+        "maxHealth" : {
+          "baseValue" : 75
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "physicalResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "electricResistance" : {
+          "baseValue" : 0.0
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 0.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "v-voidResistance" : {
+          "baseValue" : 0.5
+        },
+        "v-voidStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "v-riftdestabilizationImmunity" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-electriccrawler" }
+  }
+}

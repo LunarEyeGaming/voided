@@ -9,6 +9,7 @@ require "/scripts/v-vec2.lua"
 
 local INSTANT_BREAK_DAMAGE = 2 ^ 32
 local MAX_TILES_TO_DESTROY = 2000
+local CELL_SIZE = 8
 
 -- Parameters
 local scanRadius
@@ -27,6 +28,7 @@ local playerProximityRegion
 local terrainZRange
 local relocationProbability
 local lightningStrikeProbability
+local monsterSpawns
 
 -- State variables
 local prevPos
@@ -66,6 +68,7 @@ local initialized
 
 function init()
   local cfg = root.assetJson("/v-riftzones.config")
+  cfg = sb.jsonMerge(cfg, config.getParameter("configOverrides", {}))
   scanRadius = cfg.defaultZoneRadius
   tileSofteningRadius = config.getParameter("tileSofteningRadius")
   monster.setAnimationParameter("riftSize", 0)
@@ -83,6 +86,17 @@ function init()
   terrainZRange = config.getParameter("terrainZRange")
   relocationProbability = cfg.relocationProbability
   lightningStrikeProbability = config.getParameter("lightningStrikeProbability")
+  monsterSpawns = config.getParameter("monsterSpawns", {})
+
+  for _, spawn in ipairs(monsterSpawns) do
+    local monsterCfg = root.monsterParameters(spawn.monsterType)
+
+    local movementSettings = root.assetJson("/default_actor_movement.config")
+    movementSettings = sb.jsonMerge(movementSettings, monsterCfg.movementSettings)
+
+    spawn.testPoly = movementSettings.collisionPoly
+    spawn.maxCorrection = movementSettings.maximumCorrection
+  end
 
   cachedFrontScanPositions = {}
   cachedBackScanPositions = {}
@@ -170,6 +184,7 @@ function update(dt)
     updateDeltaScans(currentScanRadius)
     updateMaterials(currentScanRadius)
     updateWeather(dt)
+    spawnMonsters()
   end
 
   applyEffect("v-softenedtiles", currentTileSofteningRadius, {"player"})
@@ -432,6 +447,34 @@ function spawnGravispheres(cfg, spawnRadius)
       world.spawnProjectile(cfg.projectileType, randomPos, entity.id(), {1, 0}, false, {
         power = vAttack.scaledPower(cfg.projectilePower or 10)
       })
+    end
+  end
+end
+
+function spawnMonsters()
+  for _, pos in ipairs(frontScanPositions) do
+    if pos[1] % CELL_SIZE == 0 and pos[2] % CELL_SIZE == 0 then
+      for _, spawn in ipairs(monsterSpawns) do
+        if math.random() < spawn.spawnChance then
+          pos = rect.randomPoint(rect.translate({0, 0, CELL_SIZE, CELL_SIZE}, pos))
+          if spawn.mode == "surface" then
+            local spawnPos = world.resolvePolyCollision(spawn.testPoly, pos, spawn.maxCorrection)
+            -- If the position was moved then it is guaranteed to be in a surface.
+            if spawnPos and world.magnitude(spawnPos, pos) > 0.1 then
+              local params = copy(spawn.monsterParameters)
+              params.level = monster.level()
+              world.spawnMonster(spawn.monsterType, spawnPos, params)
+            end
+          elseif spawn.mode == "air" then
+            local spawnPos = world.resolvePolyCollision(spawn.testPoly, pos, spawn.maxCorrection)
+            if spawnPos then
+              local params = copy(spawn.monsterParameters)
+              params.level = monster.level()
+              world.spawnMonster(spawn.monsterType, spawnPos, params)
+            end
+          end
+        end
+      end
     end
   end
 end

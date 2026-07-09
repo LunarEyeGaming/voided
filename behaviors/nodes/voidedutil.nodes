@@ -1,21 +1,4 @@
 {
-  "v_listGet2": {
-    "type": "action",
-    "name": "v_listGet2",
-    "title": "v_listGet2",
-    "properties": {
-      "list": {"type": "list", "value": null},
-      "index": {"type": "number", "value": null}
-    },
-    "category": "voidedutil",
-    "script": "/scripts/actions/voidedutil.lua",
-    "output": {
-      "entity": {"type": "entity", "key": null},
-      "number": {"type": "number", "key": null},
-      "position": {"type": "position", "key": null},
-      "vector": {"type": "vec2", "key": null}
-    }
-  },
   "v_sendNotification2": {
     "type": "action",
     "name": "v_sendNotification2",
@@ -62,25 +45,6 @@
     "script": "/scripts/actions/voidedutil.lua",
     "output": {
       "object": {"type": "json", "key": null}
-    }
-  },
-  "v_getJsonKey": {
-    "type": "action",
-    "name": "v_getJsonKey",
-    "title": "v_getJsonKey",
-    "properties": {
-      "object": {"type": "json", "value": {}},
-      "key": {"type": "string", "value": null}
-    },
-    "category": "voidedutil",
-    "script": "/scripts/actions/voidedutil.lua",
-    "output": {
-      "entity": {"type": "entity", "key": null},
-      "number": {"type": "number", "key": null},
-      "position": {"type": "position", "key": null},
-      "vec2": {"type": "vec2", "key": null},
-      "bool": {"type": "bool", "key": null},
-      "string": {"type": "string", "key": null}
     }
   },
   "v_removeJsonKey": {
@@ -177,6 +141,50 @@
     "output": {
       "angle": {"type": "number", "key": null},
       "direction": {"type": "number", "key": null}
+    }
+  },
+  "v_listGet2": {
+    "type": "action",
+    "name": "v_listGet2",
+    "title": "v_listGet2",
+    "properties": {
+      "index": {"type": "number"},
+      "list": {"type": "list"}
+    },
+    "category": "voidedutil",
+    "script": "/scripts/actions/voidedutil.lua",
+    "output": {
+      "entity": {"type": "entity", "key": null},
+      "number": {"type": "number", "key": null},
+      "position": {"type": "position", "key": null},
+      "vec2": {"type": "vec2", "key": null},
+      "json": {"type": "json", "key": null},
+      "bool": {"type": "bool", "key": null},
+      "table": {"type": "table", "key": null},
+      "string": {"type": "string", "key": null},
+      "list": {"type": "list", "key": null}
+    }
+  },
+  "v_getJsonKey": {
+    "type": "action",
+    "name": "v_getJsonKey",
+    "title": "v_getJsonKey",
+    "properties": {
+      "key": {"type": "string"},
+      "object": {"type": "json", "value": {}}
+    },
+    "category": "voidedutil",
+    "script": "/scripts/actions/voidedutil.lua",
+    "output": {
+      "bool": {"type": "bool", "key": null},
+      "entity": {"type": "entity", "key": null},
+      "number": {"type": "number", "key": null},
+      "position": {"type": "position", "key": null},
+      "string": {"type": "string", "key": null},
+      "vec2": {"type": "vec2", "key": null},
+      "table": {"type": "table", "key": null},
+      "list": {"type": "list", "key": null},
+      "json": {"type": "json", "key": null}
     }
   }
 }

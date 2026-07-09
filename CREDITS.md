@@ -43,5 +43,6 @@ I would like to thank the following for their help:
 * mister gadfly: food items; playtesting and providing feedback for the mod
 * Numerous members of the Starbound Discord server: feedback, modding help, and ideas
 * patman and/or Silver Sokolova: providing a way to display custom messages at the bottom of the screen
+* Bottinator: Allowing me to use some of his code from the TerraLib mod with permission.
 
 This mod uses the bookofspirits_monster_support.lua script from the Book of Spirits mod to provide support for it.

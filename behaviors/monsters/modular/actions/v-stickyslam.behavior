@@ -1,6 +1,6 @@
 {
   "name": "v-action-stickyslam",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
@@ -14,17 +14,21 @@
     "/scripts/actions/projectiles.lua"
   ],
   "parameters": {
-    "slamProjectileType": "fireplasmaexplosion",
+    "slamProjectileType": "v-proxyprojectile",
     "slamProjectileParameters": {},
     "aimDirection": [0, -1],
     "jumpState": "jump",
     "jumpStateType": "body",
     "jumpDelay": 0,
-    "rayCount": 40,
+    "hopRayCount": 40,
     "preferDirectAttacks": true,
     "airborneState": "airborne",
     "airborneStateType": "body",
-    "preHopDelay": 0.1
+    "preHopDelay": 0.1,
+    "hopMinRaycastLength": 5,
+    "hopMaxRaycastLength": 50,
+    "hopGravityMultiplier": 1.5,
+    "hopSpeed": 60
   },
   "root": {
     "title": "sequence",
@@ -68,9 +72,13 @@
         "type": "action",
         "name": "v_stickyHopApproach",
         "parameters": {
+          "gravityMultiplier": {"key": "<hopGravityMultiplier>"},
+          "hopSpeed": {"key": "<hopSpeed>"},
+          "maxRaycastLength": {"key": "<hopMaxRaycastLength>"},
+          "minRaycastLength": {"key": "<hopMinRaycastLength>"},
           "preHopDelay": {"key": "<preHopDelay>"},
           "preferDirectAttacks": {"key": "<preferDirectAttacks>"},
-          "rayCount": {"key": "<rayCount>"},
+          "rayCount": {"key": "<hopRayCount>"},
           "target": {"key": "target"}
         }
       },
