@@ -1208,27 +1208,6 @@
   },
   {
     "op": "add",
-    "path": "/v-approach-rangedfly",
-    "value": {
-      "type": "module",
-      "name": "v-approach-rangedfly",
-      "title": "",
-      "properties": {
-        "minRange": {"type": "json", "value": 10},
-        "maxRange": {"type": "json", "value": 20},
-        "speed": {"type": "json", "value": 20},
-        "controlForce": {"type": "json", "value": null},
-        "flyState": {"type": "json", "value": "fly"},
-        "usePathfinding": {"type": "json", "value": true},
-        "idleState": {"type": "json", "value": ""},
-        "faceDirection": {"type": "json", "value": true},
-        "maxPolyCorrection": {"type": "json", "value": 0}
-      },
-      "pathToTree": "..\\monsters\\modular\\movement\\v-rangedflyapproach.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-spireminiboss-charge",
     "value": {
       "type": "module",
@@ -1774,6 +1753,54 @@
         "stopForce": {"type": "json", "value": 50}
       },
       "pathToTree": "..\\monsters\\v-pathfindingtest.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-nocrawlfall",
+    "value": {
+      "type": "module",
+      "name": "v-nocrawlfall",
+      "title": "",
+      "properties": {},
+      "pathToTree": "..\\monsters\\modular\\movement\\v-nocrawlfall.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-flynograv",
+    "value": {
+      "type": "module",
+      "name": "v-approach-flynograv",
+      "title": "",
+      "properties": {
+        "minRange": {"type": "json", "value": 0},
+        "maxRange": {"type": "json", "value": 0}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-flynogravapproach.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-rangedfly",
+    "value": {
+      "type": "module",
+      "name": "v-approach-rangedfly",
+      "title": "",
+      "properties": {
+        "minRange": {"type": "json", "value": 10},
+        "maxRange": {"type": "json", "value": 20},
+        "speed": {"type": "json", "value": 20},
+        "controlForce": {"type": "json", "value": null},
+        "flyState": {"type": "json", "value": "fly"},
+        "usePathfinding": {"type": "json", "value": true},
+        "idleState": {"type": "json", "value": ""},
+        "faceDirection": {"type": "json", "value": true},
+        "maxPolyCorrection": {"type": "json", "value": 0},
+        "approachTime": {"type": "json", "value": 0},
+        "pathfindingOptions": {"type": "json", "value": null}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-rangedflyapproach.behavior"
     }
   }
 ]

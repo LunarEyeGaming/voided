@@ -1,0 +1,86 @@
+{
+  "name": "v-approach-flycrawl",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/movement.lua",
+    "/scripts/behavior.lua"
+  ],
+  "parameters": {
+    "minRange": 0,
+    "maxRange": 0
+  },
+  "root": {
+    "title": "parallel",
+    "type": "composite",
+    "name": "parallel",
+    "parameters": {
+      "fail": {"value": 1},
+      "success": {"value": 1}
+    },
+    "children": [
+      {
+        "title": "repeater",
+        "type": "decorator",
+        "name": "repeater",
+        "parameters": {
+          "maxLoops": {"value": -1},
+          "untilSuccess": {"value": false}
+        },
+        "child": {
+          "title": "sequence",
+          "type": "composite",
+          "name": "sequence",
+          "parameters": {},
+          "children": [
+            {
+              "title": "halt",
+              "type": "action",
+              "name": "halt",
+              "parameters": {}
+            },
+            {
+              "title": "succeeder",
+              "type": "decorator",
+              "name": "succeeder",
+              "parameters": {},
+              "child": {
+                "title": "controlParameters",
+                "type": "action",
+                "name": "controlParameters",
+                "parameters": {
+                  "parameters": {"value": {"gravityEnabled": false}}
+                }
+              }
+            },
+            {
+              "title": "succeeder",
+              "type": "decorator",
+              "name": "succeeder",
+              "parameters": {},
+              "child": {
+                "title": "controlFlag",
+                "type": "action",
+                "name": "controlFlag",
+                "parameters": {
+                  "bool": {"value": true}
+                },
+                "output": {
+                  "bool": "shouldNotCrawl"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "v-approach-rangedfly",
+        "type": "module",
+        "name": "v-approach-rangedfly",
+        "parameters": {
+          "minRange": {"key": "<minRange>"},
+          "maxRange": {"key": "<maxRange>"}
+        }
+      }
+    ]
+  }
+}

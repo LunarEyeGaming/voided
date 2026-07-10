@@ -4,6 +4,7 @@ require "/scripts/v-vec2.lua"
 require "/scripts/poly.lua"
 require "/scripts/actions/crawling.lua"
 require "/scripts/actions/projectiles.lua"
+require "/scripts/actions/movement.lua"
 require "/scripts/v-behavior.lua"
 require "/scripts/v-movement.lua"
 require "/scripts/v-attack.lua"
@@ -38,7 +39,7 @@ function v_rangedFlyApproach(args, board, _, dt)
 
     -- Face the direction in which the entity is flying if told to do so.
     if faceDirection then
-      mcontroller.controlFace(util.toDirection(direction[1]))
+      controlFace(util.toDirection(direction[1]))
     end
   end
 
@@ -268,10 +269,12 @@ end
 -- param hopSpeed
 -- param postHopDelay
 -- param gravityMultiplier
+-- param simpleCollisionCheck
+-- param useHighArc
 function v_stickyHopApproach(args, _, _, dt)
   local rq = vBehavior.requireArgsGen("v_stickyHopApproach", args)
 
-  if not rq{"rayCount", "minRaycastLength", "maxRaycastLength", "hopSpeed", "preHopDelay", "gravityMultiplier"} then
+  if not rq{"rayCount", "minRaycastLength", "maxRaycastLength", "hopSpeed", "preHopDelay"} then
     return false
   end
 
@@ -280,13 +283,44 @@ function v_stickyHopApproach(args, _, _, dt)
     return false
   end
 
+  local gravityMultiplier = args.gravityMultiplier or mcontroller.baseParameters().gravityMultiplier
+
+  local collisionCheck
+  if args.simpleCollisionCheck then
+    collisionCheck = world.lineCollision
+  else
+    -- Uses the simulation algorithm in vanilla's projectileAimVector
+    collisionCheck = function(from, to)
+      local toTarget = world.distance(to, from)
+      local aimVector, foundVector = util.aimVector(toTarget, args.hopSpeed, gravityMultiplier, args.useHighArc)
+      if not foundVector then return world.lineCollision(from, to) end
+
+      local velocity = vec2.mul(aimVector, args.hopSpeed)
+      local startArc = mcontroller.position()
+      local x = 0
+      while x < math.abs(toTarget[1]) do
+        local time = x / math.abs(velocity[1])
+        local yVel = velocity[2] - (gravityMultiplier * world.gravity(mcontroller.position()) * time)
+        local step = vec2.add({util.toDirection(aimVector[1]) * x, ((velocity[2] + yVel) / 2) * time}, mcontroller.position())
+
+        if world.lineTileCollision(startArc, step) or world.polyCollision(poly.translate(mcontroller.collisionPoly(), step)) then
+          return false
+        end
+
+        startArc = step
+        local arcVector = vec2.norm({velocity[1], yVel})
+        x = x + math.abs(arcVector[1])
+      end
+    end
+  end
+
   local targetPos = args.targetPos or world.entityPosition(args.target)
   local ownPos = mcontroller.position()
 
   -- Find a valid hop position and get the corresponding velocity, accounting for gravity, upon success.
   local hopPos, hopVelocity
 
-  if not args.preferDirectAttacks or world.lineCollision(ownPos, targetPos) then
+  if not args.preferDirectAttacks or collisionCheck(ownPos, targetPos) then
     local raycasts = vWorld.radialRaycast{
       center = targetPos,
       raycastCount = args.rayCount,
@@ -301,10 +335,10 @@ function v_stickyHopApproach(args, _, _, dt)
     for _, raycast in ipairs(raycasts) do
       local pos = raycast.position
       -- If the position is in line of sight...
-      if not world.lineCollision(ownPos, pos) then
+      if not collisionCheck(ownPos, pos) then
         local success
         -- Get the hopping velocity, accounting for gravity.
-        hopVelocity, success = util.aimVector(world.distance(pos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
+        hopVelocity, success = util.aimVector(world.distance(pos, ownPos), args.hopSpeed, gravityMultiplier, args.useHighArc)
 
         -- world.debugLine(ownPos, pos, success and "green" or "red")
 
@@ -325,7 +359,7 @@ function v_stickyHopApproach(args, _, _, dt)
       -- If it is actually defined...
       if testPos then
         -- Get the hopping velocity, accounting for gravity.
-        hopVelocity, success = util.aimVector(world.distance(testPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
+        hopVelocity, success = util.aimVector(world.distance(testPos, ownPos), args.hopSpeed, gravityMultiplier, args.useHighArc)
 
         -- If successful...
         if success then
@@ -341,7 +375,7 @@ function v_stickyHopApproach(args, _, _, dt)
     -- Hop directly toward the target
     hopPos = targetPos
     -- Get the hopping velocity, accounting for gravity.
-    hopVelocity, success = util.aimVector(world.distance(hopPos, ownPos), args.hopSpeed, args.gravityMultiplier, false)
+    hopVelocity, success = util.aimVector(world.distance(hopPos, ownPos), args.hopSpeed, gravityMultiplier, args.useHighArc)
 
     -- If not successful, then ACTUALLY hop directly. This is to make the AI more predictable.
     if not success then
@@ -354,6 +388,7 @@ function v_stickyHopApproach(args, _, _, dt)
   -- Jump!
   world.debugLine(ownPos, vec2.add(ownPos, hopVelocity), "green")
   mcontroller.setVelocity(hopVelocity)
+  controlFace(util.toDirection(hopVelocity[1]))
 
   -- local testRect = rect.pad(mcontroller.boundBox(), 0.25)
   -- local tolerance = 4

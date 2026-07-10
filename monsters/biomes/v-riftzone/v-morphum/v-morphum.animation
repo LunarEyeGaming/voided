@@ -18,7 +18,7 @@
             "cycle" : 1.0,
             "mode" : "end",
             "properties" : {
-              "immediateSound" : "/sfx/npc/monsters/v_livingmushroom1_windup.ogg"
+              "immediateSound" : "/sfx/npc/monsters/v_morphum_windup1.ogg"
             }
           },
           "spike" : {
@@ -162,7 +162,8 @@
             },
             "fly" : {
               "properties" : {
-                "image" : "<partImage>:fly.<frame>"
+                "image" : "<partImage>:fly.<frame>",
+                "damageArea" : [ [0.41, 1.0],  [1.0, 0.41],  [1.0, -0.41],  [0.41, -1.0],  [-0.41, -1.0],  [-1.0, -0.41],  [-1.0, 0.41],  [-0.41, 1.0] ]
               }
             },
             "jumpwindup" : {

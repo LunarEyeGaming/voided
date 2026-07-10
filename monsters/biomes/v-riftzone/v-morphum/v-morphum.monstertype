@@ -49,8 +49,8 @@
           "name" : "action-fire",
           "cooldown" : 5.0,
           "parameters" : {
-            "requireLineOfSight" : true,
-            "maximumRange" : 8,
+            "requireLineOfSight" : false,
+            "maximumRange" : 30,
             "windupState" : "spikewindup",
             "windupTime" : 1.0,
             "windupStopForce" : 200,
@@ -74,7 +74,7 @@
             "windupState" : "jumpwindup",
             "windupStateType" : "body",
             "faceTarget" : false,
-            "requireLineOfSight" : false,
+            "requireLineOfSight" : true,
             "maximumRange" : 20,
             "windupStopForce" : 50,
             "onGround" : true,
@@ -106,7 +106,7 @@
           }
         },
         {
-          "name" : "v-approach-flynograv",
+          "name" : "v-approach-flycrawl",
           "cooldown" : 1.0,
           "parameters" : {
             "approachTime" : 4.0
@@ -135,13 +135,14 @@
           "name" : "v-approach-crawl",
           "parameters" : {
             "stopForce" : 200,
-            "stickForce" : 200,
+            "stickForce" : 1000,
             "resetHeading" : true,
             "maxRange" : 30
           }
         },
         {
-          "name" : "v-approach-flynograv",
+          "name" : "v-approach-flycrawl",
+          "cooldown" : 1.0,
           "parameters" : {
             "approachTime" : 4.0
           }
@@ -161,12 +162,13 @@
 
       "wanderActions" : [
         {
-          "name" : "wander-crawl",
-          "cooldown" : 1,
+          "name" : "v-wander-crawl",
+          "cooldown" : [3, 5],
           "parameters" : {
-            "wanderTime" : 1.5,
+            "wanderTime" : 2.0,
             "stopForce" : 200,
-            "idleTime" : 1.0,
+            "stickForce" : 1000,
+            "idleTime" : [3, 5],
             "resetHeading" : true
           }
         }
@@ -177,7 +179,7 @@
 
       "concurrentHostileActions" : [
         {
-          "name" : "idle-crawl"
+          "name" : "v-idle-crawloptional"
         }
       ]
     },
@@ -244,7 +246,7 @@
           "baseValue" : 0.25
         },
         "knockbackThreshold" : {
-          "baseValue" : 9
+          "baseValue" : 15
         },
         "maxHealth" : {
           "baseValue" : 75
