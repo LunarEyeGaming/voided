@@ -1,8 +1,14 @@
+require "/scripts/rect.lua"
+
+require "/scripts/v-world.lua"
+
 ModProperty = {}
 
 local cuedRadioMessage = false
 local sparkChance = 0.1
 local radioMessageRange = 25  -- How close the player has to be to trigger the warning message.
+local spawnRegion = {-20, -20, 20, 20}
+local maxSpawnAttempts = 10
 
 function ModProperty.update(position, layer)
   -- If the radio message was not sent and the player is close enough...
@@ -23,5 +29,8 @@ function ModProperty.update(position, layer)
 end
 
 function ModProperty.destroy(position, layer)
-  world.spawnProjectile("v-voidbubble", position, nil, {0, 0}, false, {damageTeam = {type = "indiscriminate"}})
+  local spawnPos = vWorld.randomPositionInRegion(rect.translate(spawnRegion, position), function(p) return not world.pointCollision(p) end, maxSpawnAttempts)
+  if spawnPos then
+    world.spawnProjectile("v-voidbubble", spawnPos, nil, {0, 0}, false, {damageTeam = {type = "indiscriminate"}})
+  end
 end
