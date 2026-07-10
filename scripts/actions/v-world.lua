@@ -65,6 +65,8 @@ end
 
 -- param position
 -- param maxCorrection
+-- param useBoundBox (optional)
+-- param boundBoxPadding (optional)
 function v_resolvePolyCollision(args, board)
   if not vBehavior.requireArgs("v_resolvePolyCollision", args, {"position", "maxCorrection"}) then
     return false
@@ -73,6 +75,7 @@ function v_resolvePolyCollision(args, board)
   local collisionPoly
   if args.useBoundBox then
     local boundBox = mcontroller.boundBox()
+    boundBox = rect.pad(boundBox, args.boundBoxPadding or 0.25)
     collisionPoly = {
       rect.ll(boundBox),
       rect.lr(boundBox),
