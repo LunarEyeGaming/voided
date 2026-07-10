@@ -137,7 +137,8 @@
       "type" : "DirectionalForceRegion",
       "yTargetVelocity" : 50,
       "controlForce" : 500,
-      "rectRegion" : [-4, -4, 4, 4]
+      "rectRegion" : [-4, -4, 4, 4],
+      "categoryWhitelist" : ["monster", "itemdrop", "projectile", "npc", "vehicle", "player"]
     }
   }
 }
