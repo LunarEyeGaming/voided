@@ -166,6 +166,8 @@ function init()
 end
 
 function update(dt)
+  if not initialized then return end
+
   revertDungeonIds()
   callDeferredTasks()
 
