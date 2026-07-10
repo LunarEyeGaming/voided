@@ -129,7 +129,7 @@ function init()
     v_ministarEffects_computeLightBounds()
   end)
 
-  message.setHandler("v-ministareffects-spawnWeatherParticles", function(_, _, particle, density, minDepth, maxDepth, ignoreWind)
+  message.setHandler("v-ministareffects-spawnWeatherParticle", function(_, _, particle, density, minDepth, maxDepth, ignoreWind)
     vLocalAnimator.spawnOffscreenParticles(particle, {
       density = density,
       exposedOnly = true,
