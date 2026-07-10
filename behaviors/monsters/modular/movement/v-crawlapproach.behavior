@@ -6,6 +6,7 @@
     "/scripts/actions/movement.lua",
     "/scripts/actions/math.lua",
     "/scripts/behavior/bdata.lua",
+    "/scripts/actions/world.lua",
     "/scripts/actions/entity.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/behavior.lua"
@@ -15,7 +16,8 @@
     "run": false,
     "resetHeading": true,
     "testDistance": 0.25,
-    "stickForce": 50
+    "stickForce": 50,
+    "maxRange": 0
   },
   "root": {
     "title": "sequence",
@@ -121,6 +123,39 @@
           "success": {"value": -1}
         },
         "children": [
+          {
+            "title": "selector",
+            "type": "composite",
+            "name": "selector",
+            "parameters": {},
+            "children": [
+              {
+                "title": "inverter",
+                "type": "decorator",
+                "name": "inverter",
+                "parameters": {},
+                "child": {
+                  "title": "greaterThan",
+                  "type": "action",
+                  "name": "greaterThan",
+                  "parameters": {
+                    "first": {"key": "<maxRange>"},
+                    "second": {"value": 0}
+                  }
+                }
+              },
+              {
+                "title": "entityInRange",
+                "type": "action",
+                "name": "entityInRange",
+                "parameters": {
+                  "entity": {"key": "target"},
+                  "position": {"key": "self"},
+                  "range": {"key": "<maxRange>"}
+                }
+              }
+            ]
+          },
           {
             "title": "controlDown",
             "type": "action",

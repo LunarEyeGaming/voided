@@ -14,9 +14,9 @@
             "mode" : "loop"
           },
           "spikewindup" : {
-            "frames" : 1,
-            "cycle" : 0.1,
-            "mode" : "loop",
+            "frames" : 10,
+            "cycle" : 1.0,
+            "mode" : "end",
             "properties" : {
               "immediateSound" : "/sfx/npc/monsters/v_livingmushroom1_windup.ogg"
             }
@@ -26,20 +26,47 @@
             "cycle" : 0.1,
             "mode" : "loop"
           },
+          "spikewinddown" : {
+            "frames" : 1,
+            "cycle" : 1.0,
+            "mode" : "transition",
+            "transition" : "spikewinddown2"
+          },
+          "spikewinddown2" : {
+            "frames" : 10,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
           "fall" : {
             "frames" : 1
           },
           "fly" : {
-            "frames" : 1
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop",
+            "frameProperties" : {
+              "immediateSound" : [ "", "", "/sfx/npc/monsters/batong_flap1.ogg", "" ]
+            }
           },
           "jumpwindup" : {
             "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "jumpwinduploop",
             "properties" : {
               "immediateSound" : "/sfx/npc/monsters/v_livingmushroom1_windup.ogg"
             }
           },
+          "jumpwinduploop" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
           "jump" : {
-            "frames" : 1,
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "end",
             "properties" : {
               "immediateSound" : "/sfx/npc/quadruped/beastiehead_attack1.ogg"
             }
@@ -110,12 +137,22 @@
             },
             "spikewindup" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:spikewindup.<frame>"
               }
             },
             "spike" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:spike.<frame>"
+              }
+            },
+            "spikewinddown" : {
+              "properties" : {
+                "image" : "<partImage>:spikewinddown.<frame>"
+              }
+            },
+            "spikewinddown2" : {
+              "properties" : {
+                "image" : "<partImage>:spikewinddown2.<frame>"
               }
             },
             "fall" : {
@@ -131,6 +168,11 @@
             "jumpwindup" : {
               "properties" : {
                 "image" : "<partImage>:jumpwindup.<frame>"
+              }
+            },
+            "jumpwinduploop" : {
+              "properties" : {
+                "image" : "<partImage>:jumpwinduploop.<frame>"
               }
             },
             "jump" : {

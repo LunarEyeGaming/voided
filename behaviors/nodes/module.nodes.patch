@@ -611,23 +611,6 @@
   },
   {
     "op": "add",
-    "path": "/v-approach-crawl",
-    "value": {
-      "type": "module",
-      "name": "v-approach-crawl",
-      "title": "",
-      "properties": {
-        "moveState": {"type": "json", "value": "walk"},
-        "resetHeading": {"type": "json", "value": true},
-        "run": {"type": "json", "value": false},
-        "stickForce": {"type": "json", "value": 50},
-        "testDistance": {"type": "json", "value": 0.25}
-      },
-      "pathToTree": "..\\monsters\\modular\\movement\\v-crawlapproach.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-mutanteel-eatfood",
     "value": {
       "type": "module",
@@ -1751,6 +1734,46 @@
         "hopSpeed": {"type": "json", "value": 60}
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-stickyslam.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-crawl",
+    "value": {
+      "type": "module",
+      "name": "v-approach-crawl",
+      "title": "",
+      "properties": {
+        "moveState": {"type": "json", "value": "walk"},
+        "run": {"type": "json", "value": false},
+        "resetHeading": {"type": "json", "value": true},
+        "testDistance": {"type": "json", "value": 0.25},
+        "stickForce": {"type": "json", "value": 50},
+        "maxRange": {"type": "json", "value": 0}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-crawlapproach.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-pathfindingtest",
+    "value": {
+      "type": "module",
+      "name": "v-pathfindingtest",
+      "title": "",
+      "properties": {
+        "flightTolerance": {"type": "json", "value": 1},
+        "flyState": {"type": "json", "value": ""},
+        "idleState": {"type": "json", "value": ""},
+        "selectionCollisionSet": {"type": "json", "value": null},
+        "selectionMaxCorrection": {"type": "json", "value": 3},
+        "selectionMaxRaycastLength": {"type": "json", "value": 50},
+        "selectionMinRaycastLength": {"type": "json", "value": null},
+        "selectionRayCount": {"type": "json", "value": 20},
+        "stateType": {"type": "json", "value": ""},
+        "stopForce": {"type": "json", "value": 50}
+      },
+      "pathToTree": "..\\monsters\\v-pathfindingtest.behavior"
     }
   }
 ]

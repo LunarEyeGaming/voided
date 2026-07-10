@@ -79,7 +79,8 @@
     "properties": {
       "maxCorrection": {"type": "number"},
       "position": {"type": "position", "key": "self"},
-      "useBoundBox": {"type": "bool", "value": false}
+      "useBoundBox": {"type": "bool", "value": false},
+      "boundBoxPadding": {"type": "number", "value": 0.25}
     },
     "category": "v-world",
     "script": "/scripts/actions/v-world.lua",

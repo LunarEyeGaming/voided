@@ -1,14 +1,19 @@
 {
   "frameGrid" : {
     "size" : [48, 32],
-    "dimensions" : [4, 7],
+    "dimensions" : [10, 12],
     "names" : [
       [ "idle.1", "idle.2", "idle.3", "idle.4" ],
+      [ "spikewindup.1", "spikewindup.2", "spikewindup.3", "spikewindup.4", "spikewindup.5", "spikewindup.6", "spikewindup.7", "spikewindup.8", "spikewindup.9", "spikewindup.10" ],
+      [ "spike.1" ],
+      [ "spikewinddown.1" ],
+      [ "spikewinddown2.1", "spikewinddown2.2", "spikewinddown2.3", "spikewinddown2.4", "spikewinddown2.5", "spikewinddown2.6", "spikewinddown2.7", "spikewinddown2.8", "spikewinddown2.9", "spikewinddown2.10" ],
       [ "jumpwindup.1" ],
-      [ "jump.1" ],
+      [ "jumpwinduploop.1", "jumpwinduploop.2" ],
+      [ "jump.1", "jump.2", "jump.3" ],
       [ "airborne.1" ],
       [ "impact.1" ],
-      [ "fly.1" ],
+      [ "fly.1", "fly.2", "fly.3", "fly.4" ],
       [ "hurt.1" ]
     ]
   }

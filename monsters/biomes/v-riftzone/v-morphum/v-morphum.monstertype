@@ -8,7 +8,7 @@
 
   "animation" : "v-morphum.animation",
 
-  "dropPools" : [ "v-morphumTreasure" ],
+  "dropPools" : [ { "default" : "v-morphumTreasure", "bow" : "v-morphumHunting" } ],
 
   "baseParameters" : {
 
@@ -26,12 +26,18 @@
     "facingMode" : "transformation",
 
     "behaviorConfig" : {
+      // "flyState" : "fly",
+      // "idleState" : "idle",
+      // "stateType" : "body",
+      // "flightTolerance" : 1.5,
+      // "selectionRayCount" : 20,
+      // "selectionMaxRaycastLength" : 20
       "damageOnTouch" : false,
 
       "targetQueryRange" : 20,
       "targetOnDamage" : true,
       "keepTargetInSight" : true,
-      "keepTargetInRange" : 40,
+      "keepTargetInRange" : 50,
       "targetOutOfSightTime" : 5.0,
 
       "foundTargetActions" : [ ],
@@ -40,36 +46,11 @@
 
       "hostileActions" : [
         {
-          "name" : "v-action-stickyslam",
-          "cooldown" : 1.5,
-          "parameters" : {
-            "windupTime" : 0.66,
-            "windupState" : "jumpwindup",
-            "windupStateType" : "body",
-            "faceTarget" : false,
-            "requireLineOfSight" : false,
-            "maximumRange" : 8,
-            "windupStopForce" : 50,
-            "onGround" : true,
-
-            "jumpState" : "jump",
-            "jumpStateType" : "body",
-            "jumpDelay" : 0.0,
-            "slamProjectileType" : "v-proxyprojectile",
-            "slamProjectileParameters" : { },
-
-            "winddownState" : "impact",
-            "winddownStateType" : "body",
-            "winddownTime" : 0.75
-          }
-        },
-        {
           "name" : "action-fire",
           "cooldown" : 5.0,
           "parameters" : {
             "requireLineOfSight" : true,
-            "maximumRange" : 20,
-            "minimumRange" : 2,
+            "maximumRange" : 8,
             "windupState" : "spikewindup",
             "windupTime" : 1.0,
             "windupStopForce" : 200,
@@ -81,8 +62,32 @@
             "fireSound" : "spikefire",
             "fireState" : "spike",
 
-            "winddownState" : "idle",
-            "winddownTime" : 1.0
+            "winddownState" : "spikewinddown",
+            "winddownTime" : 1.5
+          }
+        },
+        {
+          "name" : "v-action-stickyslam",
+          "cooldown" : 1.5,
+          "parameters" : {
+            "windupTime" : 0.66,
+            "windupState" : "jumpwindup",
+            "windupStateType" : "body",
+            "faceTarget" : false,
+            "requireLineOfSight" : false,
+            "maximumRange" : 20,
+            "windupStopForce" : 50,
+            "onGround" : true,
+
+            "jumpState" : "jump",
+            "jumpStateType" : "body",
+            "jumpDelay" : 0.2,
+            "slamProjectileType" : "v-proxyprojectile",
+            "slamProjectileParameters" : { },
+
+            "winddownState" : "impact",
+            "winddownStateType" : "body",
+            "winddownTime" : 0.75
           }
         }
       ],
@@ -96,7 +101,15 @@
           "parameters" : {
             "stopForce" : 200,
             "stickForce" : 200,
-            "resetHeading" : false
+            "resetHeading" : true,
+            "maxRange" : 30
+          }
+        },
+        {
+          "name" : "v-approach-flynograv",
+          "cooldown" : 1.0,
+          "parameters" : {
+            "approachTime" : 4.0
           }
         },
         {
@@ -105,7 +118,9 @@
             "flyState" : "fly",
             "idleState" : "idle",
             "stateType" : "body",
-            "flightTolerance" : 1.5
+            "flightTolerance" : 1.5,
+            "selectionRayCount" : 20,
+            "selectionMaxRaycastLength" : 50
           }
         }
       ],
@@ -121,7 +136,14 @@
           "parameters" : {
             "stopForce" : 200,
             "stickForce" : 200,
-            "resetHeading" : false
+            "resetHeading" : true,
+            "maxRange" : 30
+          }
+        },
+        {
+          "name" : "v-approach-flynograv",
+          "parameters" : {
+            "approachTime" : 4.0
           }
         },
         {
@@ -129,7 +151,10 @@
           "parameters" : {
             "flyState" : "fly",
             "idleState" : "idle",
-            "stateType" : "body"
+            "stateType" : "body",
+            "flightTolerance" : 1.5,
+            "selectionRayCount" : 20,
+            "selectionMaxRaycastLength" : 50
           }
         }
       ],
@@ -142,7 +167,7 @@
             "wanderTime" : 1.5,
             "stopForce" : 200,
             "idleTime" : 1.0,
-            "resetHeading" : false
+            "resetHeading" : true
           }
         }
       ],
@@ -162,7 +187,7 @@
       "damage" : 8,
 
       "teamType" : "enemy",
-      "damageSourceKind" : "v-voidspear",
+      "damageSourceKind" : "v-voidlash",
       "knockback" : 20,
       "statusEffects" : [ ]
     },
@@ -182,6 +207,7 @@
 
     "movementSettings" : {
       "collisionPoly" : [[1.617, 0.67], [0.67, 1.617], [-0.67, 1.617], [-1.617, 0.67], [-1.617, -0.67], [-0.67, -1.617], [0.67, -1.617], [1.617, -0.67]],
+      "gravityEnabled" : false,
 
       "mass" : 1.0,
       "flySpeed" : 15,

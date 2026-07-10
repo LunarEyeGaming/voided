@@ -3,7 +3,7 @@ require "/scripts/vec2.lua"
 local timeToLive
 local aimVector
 local masterId
--- local damageParts
+local retractTime
 
 local offset
 
@@ -17,10 +17,9 @@ function init()
   end
   timeToLive = config.getParameter("timeToLive")
   aimVector = config.getParameter("aimVector", {0, 0})
-  -- damageParts = config.getParameter("damageParts")
 
   offset = world.distance(mcontroller.position(), world.entityPosition(masterId))
-
+  retractTime = config.getParameter("retractTime")
 
   timer = timeToLive
 
@@ -43,7 +42,10 @@ function update(dt)
     return
   end
 
-  -- monster.setDamageParts(damageParts)
+  if timer <= retractTime then
+    animator.setAnimationState("body", "retract")
+  end
+
   mcontroller.setPosition(vec2.add(world.entityPosition(masterId), offset))
 end
 

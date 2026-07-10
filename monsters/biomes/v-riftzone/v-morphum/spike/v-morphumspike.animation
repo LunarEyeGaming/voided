@@ -3,17 +3,24 @@
     "stateTypes" : {
       "body" : {
         "priority" : 0,
-        "default" : "appear",
+        "default" : "extend",
         "states" : {
-          "appear" : {
-            "frames" : 1,
-            "cycle" : 0.1,
+          "extend" : {
+            "frames" : 4,
+            "cycle" : 0.4,
             "mode" : "transition",
             "transition" : "idle"
           },
           "idle" : {
             "frames" : 1
-          }
+          },
+          "retract" : {
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "transition",
+            "transition" : "invisible"
+          },
+          "invisible" : {}
         }
       },
       "damage" : {
@@ -59,14 +66,19 @@
         },
         "partStates" : {
           "body" : {
-            "appear" : {
+            "extend" : {
               "properties" : {
-                "image" : "<partImage>:appear.<frame>"
+                "image" : "<partImage>:extend.<frame>"
               }
             },
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "retract" : {
+              "properties" : {
+                "image" : "<partImage>:retract.<frame>"
               }
             }
           }

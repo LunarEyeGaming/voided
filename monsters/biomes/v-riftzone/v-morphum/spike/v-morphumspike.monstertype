@@ -18,11 +18,12 @@
     "behaviorUpdateDelta" : 1,
 
     "timeToLive" : 1.0,
+    "retractTime" : 0.4,
 
     "damageParts" : {
       "body" : {
         "damage" : 10,
-        "damageSourceKind" : "v-void",
+        "damageSourceKind" : "v-voidspear",
 
         "knockback" : 0
       }

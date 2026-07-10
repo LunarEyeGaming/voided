@@ -5,5 +5,16 @@ function init()
 end
 
 function update(dt, fireMode)
-  activeItem.setScriptedAnimationParameter("riftPolyCenter", activeItem.ownerAimPosition())
+  local queried = world.entityQuery(mcontroller.position(), 50, {
+    includedTypes = {"monster"}
+  })
+
+  if fireMode == "primary" then
+    for _, entityId in ipairs(queried) do
+      world.sendEntityMessage(entityId, "notify", {
+        type = "flyToPosition",
+        targetPosition = activeItem.ownerAimPosition()
+      })
+    end
+  end
 end
