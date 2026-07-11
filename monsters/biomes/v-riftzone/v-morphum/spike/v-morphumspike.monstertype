@@ -20,18 +20,9 @@
     "timeToLive" : 1.0,
     "retractTime" : 0.4,
 
-    "damageParts" : {
-      "body" : {
-        "damage" : 10,
-        "damageSourceKind" : "v-voidspear",
-
-        "knockback" : 0
-      }
-    },
-
     "touchDamage" : {
       "poly" : [ [-10, 1.125], [10, 0], [-10, -1.125] ],
-      "damage" : 8,
+      "damage" : 16,
 
       "teamType" : "enemy",
       "damageSourceKind" : "v-void",
