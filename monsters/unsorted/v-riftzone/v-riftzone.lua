@@ -189,7 +189,7 @@ function update(dt)
     spawnMonsters()
   end
 
-  applyEffect("v-softenedtiles", currentTileSofteningRadius, {"player"})
+  -- applyEffect("v-softenedtiles", currentTileSofteningRadius, {"player"})
   applyEffect("v-rifteffects", currentScanRadius, {"player"})
 
   crackleLightning(currentTileSofteningRadius)
