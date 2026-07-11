@@ -1,0 +1,20 @@
+{
+  "name" : "v-nulliumsetbonus",
+  "effectConfig" : {
+    "level" : 8,
+    "projectileType" : "astraltearstart",
+    "projectileConfig" : {
+      "power" : 20
+    }
+  },
+  "defaultDuration" : 1,
+
+  "scripts" : [
+    "v-nulliumsetbonus.lua"
+  ],
+
+  "animationConfig" : "v-nulliumsetbonus.animation",
+
+  "label" : "<todo>",
+  "icon" : "/interface/statuses/v-void.png"
+}
