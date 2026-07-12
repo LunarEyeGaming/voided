@@ -7,6 +7,7 @@ local followPlayer
 local fissureCrossingProjectileType
 local fissureCrossingProjectileParameters
 local lightningStrikeSpecs
+local postLightningWaitTime
 
 local shouldDieVar
 local lightningController
@@ -32,9 +33,13 @@ function init()
     endOC = cfg.endOutlineColor,
   }
 
+  postLightningWaitTime = cfg.duration
+
   monster.setDamageBar("None")
   state = FSM:new()
   state:set(states.postInit)
+
+  script.setUpdateDelta(3)
 end
 
 function update(dt)
@@ -69,6 +74,8 @@ function states.main()
     crackleLightning(lightningStrikeSpecs.radiusStart, lightningStrikeSpecs.radiusEnd)
     util.wait(lightningStrikeSpecs.interval)
   end
+
+  util.wait(postLightningWaitTime)
 
   state:set(states.die)
 end

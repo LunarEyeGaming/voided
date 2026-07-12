@@ -6,6 +6,7 @@ vAnimator = {}
 -- Camera can pan 600 px, or 75 blocks at 1x zoom. Will need double this value to ensure full coverage of viewing
 -- range.
 vAnimator.WINDOW_PADDING = 150
+vAnimator.MAX_CAMERA_SIZE_X = 242
 
 --- Updates a circular display of a stat. The circular display must have two parts.
 ---

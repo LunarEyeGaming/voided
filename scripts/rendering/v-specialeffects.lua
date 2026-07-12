@@ -19,9 +19,12 @@ local scaleMat
 local playSound
 
 local activeEffects
+local sunConfig
 
 function init()
   oldInit()
+
+  sunConfig = root.assetJson("/sky.config:sun")
 
   util.setDebug(true)
 
@@ -179,6 +182,7 @@ local interpModes = {
 ---@field image string
 ---@field keyFrames DistantDrawable_Keyframe[]
 ---@field fullbright boolean
+---@field positionedAtSun boolean
 ---
 ---@field _keyFrameIdx integer
 ---@field _timer number
@@ -207,6 +211,7 @@ function v_DistantDrawable:new(args, position)
   local effectConfig = {
     image = args.image,
     fullbright = args.fullbright,
+    positionedAtSun = args.positionedAtSun,
     keyFrames = keyFrames,
     _keyFrameIdx = 2,
     _timer = 0,
@@ -239,7 +244,15 @@ function v_DistantDrawable:process(dt)
       sb.logError(string.format("v-specialeffects.lua: Unknown interpMode '%s' in keyframe %s", keyFrameEnd.interpMode, self._keyFrameIdx))
     end
   end
-  local worldPos = self:lerpPosition(ratio, keyFrameStart, keyFrameEnd)
+  local worldPos, scale
+  scale = self:lerpKeyframeAttr("scale", vVec2.lerp, ratio, keyFrameStart, keyFrameEnd, {1, 1})
+  if self.positionedAtSun then
+    local sunScale
+    worldPos, sunScale = self:sunPositionAndScale()
+    scale = {sunScale * scale[1], sunScale * scale[2]}
+  else
+    worldPos = self:lerpPosition(ratio, keyFrameStart, keyFrameEnd)
+  end
   -- local scale
   -- if keyFrameStart.scale or keyFrameEnd.scale then
   --   scale = vVec2.lerp(ratio, keyFrameStart.scale or keyFrameEnd.scale, keyFrameEnd.scale or keyFrameStart.scale)
@@ -252,7 +265,6 @@ function v_DistantDrawable:process(dt)
   -- else
   --   rotation = 0
   -- end
-  local scale = self:lerpKeyframeAttr("scale", vVec2.lerp, ratio, keyFrameStart, keyFrameEnd, {1, 1})
   local rotation = self:lerpKeyframeAttr("rotation", util.lerp, ratio, keyFrameStart, keyFrameEnd, 0)
   local color = self:lerpKeyframeAttr("color", vAnimator.lerpColor, ratio, keyFrameStart, keyFrameEnd)
 
@@ -349,6 +361,47 @@ function v_DistantDrawable:lerpPosition(ratio, frameStart, frameEnd)
   )
 
   return finalWorldPos
+end
+
+function v_DistantDrawable:sunPositionAndScale()
+  local window = world.clientWindow()
+  -- Get pixel ratio. Estimate it if oSB isn't installed.
+  local pixelRatio
+  if camera and camera.pixelRatio then
+    pixelRatio = camera.pixelRatio()
+  else
+    pixelRatio = vAnimator.MAX_CAMERA_SIZE_X / (window[3] - window[1])
+  end
+
+  -- Get camera position.
+  local cameraPos
+  if camera and camera.position then
+    cameraPos = camera.position()
+  else
+    cameraPos = {(window[3] + window[1]) / 2, (window[4] - window[2]) / 2}
+  end
+
+  local time = world.timeOfDay()
+  local sunRadius = sunConfig.radius
+  local sunScale = sunConfig.scale
+  -- Get relative sun position
+  local sunPosRelative
+  if renderer then
+    -- Random mental gymnastics brought to you by the oSB source code!
+    -- This does the exact calculations that determine where the sun is, then
+    -- normalizes the position so that it maps properly depending on camera zoom.
+    local basis = camera.screenSize()[2] / 1080
+    local ratio = util.lerp(0.125, basis * 3, camera.pixelRatio())
+    sunPosRelative = vec2.mul(
+      vec2.rotate({sunRadius / 8, 0}, time * 2 * math.pi), ratio / camera.pixelRatio()
+    )
+    drawableScale = sunScale * ratio / pixelRatio
+  else
+    sunPosRelative = vec2.rotate({sunRadius / 8, 0}, time * 2 * math.pi)
+    drawableScale = 1
+  end
+
+  return vec2.add(cameraPos, sunPosRelative), drawableScale
 end
 
 function v_DistantDrawable.addKeyFrame(keyFrames, keyFrame, position)
@@ -488,9 +541,17 @@ function translateMat(vector, mat)
 end
 
 function playSound(args)
+  local sound
   if args.sounds then
+    sound = args.sounds[math.random(#args.sounds)]
     localAnimator.playAudio(args.sounds[math.random(#args.sounds)])
   else
+    sound = args.sound
     localAnimator.playAudio(args.sound, args.loops, args.volume)
   end
+
+  local guiConfig = root.assetJson("/interface/scripted/v-positionlesssound/v-positionlesssound.config")
+  guiConfig.args = {sound = sound, loops = args.loops, volume = args.volume}
+
+  player.interact("ScriptPane", guiConfig)
 end
