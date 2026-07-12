@@ -13,6 +13,7 @@ local lightningOffsetRegion
 local lightningStrikeProbability
 local relocationProbability
 local invisibleOre
+local defaultTimeToLive
 
 local postInitCalled
 
@@ -25,6 +26,7 @@ function init()
   lightningStrikeProbability = cfg.lightningStrikeProbability
   relocationProbability = cfg.relocationProbability
   invisibleOre = cfg.invisibleOre
+  defaultTimeToLive = cfg.defaultTimeToLive
 
   vTime.addInterval(1, cleanUpAfterRiftZones)
 
@@ -53,6 +55,24 @@ function update(dt)
   vTime.update(dt)
 
   local riftZones = world.getProperty("v-riftZones") or jarray()
+  local riftZoneSpawnPoints = world.getProperty("v-riftZoneSpawnPoints") or jarray()
+
+  for i = #riftZoneSpawnPoints, 1, -1 do
+    local point = riftZoneSpawnPoints[i]
+    if world.time() > point.spawnTime then
+      table.insert(riftZones, {
+        position = point.position,
+        velocity = defaultRiftZoneVelocity,
+        stateData = {deathTime = world.time() + defaultTimeToLive},
+        level = world.threatLevel(),
+        timeToLive = defaultTimeToLive
+      })
+      table.remove(riftZoneSpawnPoints, i)
+    end
+  end
+
+  world.setProperty("v-riftZoneSpawnPoints", riftZoneSpawnPoints)
+
   local riftZonesToSpawn = {}
 
   local zoomOut = function(anchor, pos, factor)

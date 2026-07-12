@@ -29,14 +29,13 @@ local minPlanetStayTime  -- The player must have been on the current planet type
 local worldTypeWhitelist  -- List of worlds on which the rift zone is allowed to spawn
 local spawnAttemptInterval  -- How often the script should attempt to spawn the rift zone
 local spawnProbability  -- The chance of the spawn succeeding
-local referenceRiftZoneCount  -- The number of rift zones to spawn in each attempt for the given referenceWorldSize
-local referenceWorldSize  -- The world size to use as a reference
-local duration  -- How long the rift zone event lasts
+local maxSpawnDelay  -- Maximum time to wait before spawning a rift zone
+local minSpawnDelay  -- Minimum time to wait before spawning a rift zone
 local numEventsPerOrbit  -- Number of events that can occur for each orbit
 local weatherTypes  -- The potential weather events that could occur in a rift zone.
-local defaultRiftZoneVelocity
 
-local riftZoneCount
+local riftZoneDensity
+local riftZoneSpacing
 local spawnAttemptTimer  -- Amount of time elapsed since the last spawn attempt
 local worldTypeStayTime  -- Amount of time that the player has spent on the current world so far
 
@@ -69,15 +68,12 @@ function init()
   referenceRiftZoneCount = cfg.referenceRiftZoneCount
   referenceWorldSize = cfg.referenceWorldSize
 
-  local referenceWorldArea = referenceWorldSize[1] * referenceWorldSize[2]
-  local worldSize = world.size()
-  local worldArea = worldSize[1] * worldSize[2]
-  local riftZoneDensity = referenceRiftZoneCount / referenceWorldArea
-  riftZoneCount = riftZoneDensity * worldArea
+  riftZoneDensity = cfg.riftZoneSpawnDensity
+  riftZoneSpacing = cfg.riftZoneSpawnSpacing
 
-  duration = cfg.defaultTimeToLive
+  maxSpawnDelay = cfg.spawnDelayRange[1]
+  minSpawnDelay = cfg.spawnDelayRange[2]
   numEventsPerOrbit = cfg.coordsModeParameters.numEventsPerOrbit
-  defaultRiftZoneVelocity = cfg.defaultZoneVelocity
 
   weatherTypes = {"meteors", "gravispheres", "destabilization"}
 
@@ -198,24 +194,26 @@ function noCoordsMode(dt)
 end
 
 function spawnRiftZones()
-  local riftZones = world.getProperty("v-riftZones") or jarray()
-  for _ = 1, riftZoneCount do
-    local size = world.size()
-    -- TODO: use a better randomizer that prevents rifts from intersecting.
-    -- Possible solution: Break up the world into cells. Then, shuffle the cells and spawn a rift at a random location
-    -- in each cell.
-    local timeToLive = math.random() * duration
-    local deathTime = world.time() + timeToLive
-    local pos = {math.random() * size[1], math.random() * size[2]}
-    table.insert(riftZones, {
-      position = pos,
-      velocity = defaultRiftZoneVelocity,
-      stateData = {deathTime = deathTime},
-      level = world.threatLevel(),
-      timeToLive = duration
-    })
+  local riftZoneSpawnPoints = world.getProperty("v-riftZoneSpawnPoints") or jarray()
+  local size = world.size()
+
+  -- Build a list of spawn points from which to select.
+  local spawnPoints = {}
+  for x = 0, size[1], riftZoneSpacing do
+    for y = 0, size[2], riftZoneSpacing do
+      table.insert(spawnPoints, {x, y})
+    end
   end
-  world.setProperty("v-riftZones", riftZones)
+
+  shuffle(spawnPoints)
+
+  -- Select density * #spawnPoints points and insert them into riftZoneSpawnPoints, each with a randomized spawn time.
+  for i = 1, math.floor(#spawnPoints * riftZoneDensity) do
+    local timeToLive = math.random() * (maxSpawnDelay - minSpawnDelay) + minSpawnDelay
+    local spawnTime = world.time() + timeToLive
+    table.insert(riftZoneSpawnPoints, {spawnTime = spawnTime, position = spawnPoints[i]})
+  end
+  world.setProperty("v-riftZoneSpawnPoints", riftZoneSpawnPoints)
 
   world.spawnMonster("v-riftzonecutscene", mcontroller.position(), {masterId = player.id()})
 
