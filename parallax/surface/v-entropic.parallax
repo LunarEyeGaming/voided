@@ -21,21 +21,24 @@
       "offset" : [0, 300],
       "noRandomOffset" : true,
       "parallax" : [2.5, 2.501],
-      "nohueshift" : true
+      "nohueshift" : true,
+      "fadePercent" : 0.03
     },
     {
       "kind" : "v-entropic/front2",
       "offset" : [0, 150],
       "noRandomOffset" : true,
       "parallax" : [4, 4.001],
-      "nohueshift" : true
+      "nohueshift" : true,
+      "fadePercent" : 0.04
     },
     {
       "kind" : "v-entropic/front2",
       "offset" : [0, 150],
       "noRandomOffset" : true,
       "parallax" : [7, 7.001],
-      "nohueshift" : true
+      "nohueshift" : true,
+      "fadePercent" : 0.05
     },
     // {
     //   "kind" : "v-entropic/front",
@@ -50,7 +53,7 @@
       "offset" : [0, 180],
       "parallax" : [10, 10],
       "nohueshift" : true,
-      "fadePercent" : 0.03
+      "fadePercent" : 0.08
     },
     {
       "kind" : "clouds1",
@@ -67,7 +70,7 @@
       "noRandomOffset" : true,
       "parallax" : [20, 20],
       "nohueshift" : true,
-      "fadePercent" : 0.04
+      "fadePercent" : 0.12
     },
     {
       "kind" : "clouds3",
