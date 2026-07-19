@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztWNERwiAMzRj9cZwOxhJu4Ej+OYD\/OIDHac40EhqQWqB5d++kIV7q8xVoAAwGPfwJ4AwvOhK\/k7GDT07IfwzKWrrMEKc0t3Uc5wL9yj3O7Lf4iC44Nwm6TJF6o+hC\/2+uC86ldIn5xQuU5raO83vbS5ej+2Xk9cX8YutL7f1I2qfpfuTe15yOfMZynDBOxXLpWP1afknpEvNUy6ipi+Y5Ml2WNXrTJXjfnqNv\/MMv9PzSiy5av\/zyfoQ1eE7L2MovvEZvfqFnC4kl6wuvQXNuHRB1uYDMNV1yznW9+UWCRhfNuouamC5jA3VJ7UdH1sX8skSpLqPD\/BJHzj4ddLmy74drXNu1\/Y\/cnklpTOq7YOzX8wsy9T4t9cRa7tdpcumY65LzPk1rt9zf1ebSsaTLSH3vPXUZjQZDKZ6X3PrF",
+         "data":"eJztWNtxAjEMdBn3k3IozE3QQUrKXwrg\/1JAxgOaLEIysq078EU7o8EnC8sse34opUDAjvUjpXO6Wgb\/Bdo5\/cWU+B9HQ3iOOzqXEV5OSTatT\/IjRsbBvmLrkzme2G9ZBV6ob1F4WYR8R+EF\/2\/OC\/XVeJH0siqm9Ul+PpfecbDv1bx46MXTv7detlxfZuYl9NLGi8f64unvWV8s+5G2T+N+lG\/P3DJ8SjFZadd8rZZZfi+91HiRNPXO8OTF8h4FL\/c5ZuOlaD\/eo0fsoRc8v8zCi1UvI\/cjysFj3hlb6YXnmE0veLbQrGd94Tkw5nsCI14+k27PeGk5182mFw0WXizrLnESvBwbxEttP\/rPvIRe7tHLy9ERepHRsk8XXr7Y98szre3W+kdrzaTXp9VdyDd6fiGr3ae1mthonU2bi0e9zhKLbT6Xlvs05vao7yI867vWWGxrvLyi7n1EXjwM4Tnu6FwCgRb8Al1H55E=",
          "encoding":"base64",
          "height":33,
          "id":2,
@@ -134,7 +134,7 @@
                  "y":192
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7721,
                  "height":8,
                  "id":761,
                  "name":"",
@@ -146,7 +146,7 @@
                  "y":248
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7721,
                  "height":8,
                  "id":764,
                  "name":"",
@@ -182,7 +182,7 @@
                  "y":96
                 }, 
                 {
-                 "gid":7955,
+                 "gid":7991,
                  "height":16,
                  "id":794,
                  "name":"",
@@ -194,7 +194,7 @@
                  "y":152
                 }, 
                 {
-                 "gid":7951,
+                 "gid":7987,
                  "height":24,
                  "id":805,
                  "name":"contains position-sensitive offsets",
@@ -214,7 +214,7 @@
                  "y":128
                 }, 
                 {
-                 "gid":7960,
+                 "gid":7996,
                  "height":8,
                  "id":808,
                  "name":"",
@@ -226,7 +226,7 @@
                  "y":200
                 }, 
                 {
-                 "gid":7960,
+                 "gid":7996,
                  "height":8,
                  "id":809,
                  "name":"",
@@ -238,7 +238,7 @@
                  "y":104
                 }, 
                 {
-                 "gid":7970,
+                 "gid":8006,
                  "height":40,
                  "id":810,
                  "name":"",
@@ -250,7 +250,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7969,
+                 "gid":8005,
                  "height":40,
                  "id":811,
                  "name":"",
@@ -308,6 +308,30 @@
                  "width":16,
                  "x":320,
                  "y":120
+                }, 
+                {
+                 "gid":7730,
+                 "height":32,
+                 "id":821,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":256,
+                 "y":48
+                }, 
+                {
+                 "gid":7733,
+                 "height":32,
+                 "id":822,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":256,
+                 "y":248
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -924,10 +948,10 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":821,
+ "nextobjectid":823,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -1035,15 +1059,15 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7690,
+         "firstgid":7719,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7699,
+         "firstgid":7735,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
         }, 
         {
-         "firstgid":7933,
+         "firstgid":7969,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,

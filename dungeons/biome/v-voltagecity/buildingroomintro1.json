@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztme0RgzAIhhkjfzpOB8sS3aAjdYf+1wF6Xo8TUyD4QaJp3jvOitjYRyLEAnR12TXcAB7wtUD8b\/I5whwzxY+NmsQlClwCw+UO8za12v5pS69TMnqPB4YLHpPyJcDy\/Ja40Pudctkyj87w+2tz4eYR3aZW2380F8vzJTAWmf1I\/Nxx7nu2xnCxk69kvlB2ZxY+EzuXpaxc9tQjzMk05swqnS\/\/yMX63L2COhdeJbjQvs5aQz2l1edadVrrq9C8uQTQx6+9PpLG8q7lyEW6Bs91QHod3PpIGqtUvli4aObB5Srz6Amy5bis7ess6xhPWddN6bsmKgsXy3N3vM3j7dGa9eLecby5HKkI+hwoNReRi1aPanDJ1QnvmrYmX6S+7kjlakmpmrZ1HnnJmi9n5dLzZVmDX8n50z7Wae3dIfVHxk\/NysVq0nh7+xc0bT0t9U1aX1XLPxpiubiUS4v\/q+ViuTiJi9bvdi6\/XLh8adG6urbqAwaV4jk=",
+         "data":"eJztWcsNwzAIZQxfOk4H8xLdoCN1h96TAaqoskJcIDg2zqc8CbkhxEYv2EAK4HDoMdwAHvCVgPRv9DvCbDPZjw0Fo+W8tb5gXiLDSyB4ucM85lKix6iZB+unEfvJCX7HA8FLusfFS4Dl81fiBb\/vnJct+8h5ofcRHnPZW9+aF835EgiJxHVEeuo+Nc9WG8p20vWMF8zdkZHOROdlCS0vNfkoxWRuc2T0jpd\/5EV77p4BzguNHrzguk6bQy0h5ee98rRUVyWx5iWAvP7e\/RG3lnUuT7xwPlj2AbkfVH\/ErdUrXjS8SGLBy1n20RN4WeOltK7T9DGW0PZN+bcmDA0vmnN3vM3r1aCkX6xdx5qXlogg74FeezHxIuWjPXhZyxPWOa0kXri6riXWckmvnLZ1H1lBGy9H5cXjZZmDX9nz03XK09K3Q6yPhB6LlhetcOvV1i9JpH6aq5ukukqj53ypmX9U2FJ2uS9X\/F9tzZay43iR6l3n5ZcXKl5aCUbLeWt9cThK8AGO79Cb",
          "encoding":"base64",
          "height":33,
          "id":2,
@@ -206,7 +206,7 @@
                  "y":192
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7721,
                  "height":8,
                  "id":777,
                  "name":"",
@@ -218,7 +218,7 @@
                  "y":24
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7721,
                  "height":8,
                  "id":779,
                  "name":"",
@@ -230,7 +230,7 @@
                  "y":248
                 }, 
                 {
-                 "gid":7717,
+                 "gid":7753,
                  "height":24,
                  "id":782,
                  "name":"contains position-sensitive offsets",
@@ -250,7 +250,7 @@
                  "y":144
                 }, 
                 {
-                 "gid":7721,
+                 "gid":7757,
                  "height":16,
                  "id":783,
                  "name":"",
@@ -262,7 +262,7 @@
                  "y":152
                 }, 
                 {
-                 "gid":7726,
+                 "gid":7762,
                  "height":8,
                  "id":784,
                  "name":"",
@@ -274,7 +274,7 @@
                  "y":200
                 }, 
                 {
-                 "gid":7726,
+                 "gid":7762,
                  "height":8,
                  "id":785,
                  "name":"",
@@ -286,7 +286,7 @@
                  "y":104
                 }, 
                 {
-                 "gid":7736,
+                 "gid":7772,
                  "height":40,
                  "id":786,
                  "name":"",
@@ -298,7 +298,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7735,
+                 "gid":7771,
                  "height":40,
                  "id":787,
                  "name":"",
@@ -356,6 +356,30 @@
                  "width":16,
                  "x":272,
                  "y":104
+                }, 
+                {
+                 "gid":7730,
+                 "height":32,
+                 "id":795,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":256,
+                 "y":48
+                }, 
+                {
+                 "gid":7733,
+                 "height":32,
+                 "id":796,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":256,
+                 "y":248
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -720,10 +744,10 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":795,
+ "nextobjectid":797,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -831,11 +855,11 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7690,
+         "firstgid":7719,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7699,
+         "firstgid":7735,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,

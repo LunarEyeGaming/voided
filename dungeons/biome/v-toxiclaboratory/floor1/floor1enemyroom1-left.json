@@ -1,12 +1,14 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":40,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztmNERwiAMhrOIA7iYEziAL67QKTpa37zzWT2Pu4gJJCGWVPrw31ksIR8BEroAwLJrWN0ALpRa+nv4sgYjNZ60XWLLo683ZzSNwmnhLdm5HwCwrvD5rGnzsmPl1XBGYaV4W1in53\/RpWHVxDNaXPP4Wlgpe0eIIysvx3qCt6JxYl7soxfrXFlDa2s2sJb2KsXa+xyaYGfN84+G9XXuYUVkzX20so4U1xFYufM82T5Df0lYKV6uJvxT1qSvuFK2e6\/ffA1jH7X3AGyPyt29OXNWLM39dQG+\/orKin3Ustb2a29OT9ZaXKPIO65Yve80kntdja2UX\/EZ1zvPcLlHcw5L82uuKN8lWmoJbr+m30lXsLd52Smxauthav6isWJJ6ggpb8Q1THFaWPH+jSzKbwsrF98ocdVwWnkjsHK+SuqIGu8WJK2Zevu5FmeN1zovVB\/JOL\/m5MbxetfSVzJ3Lay7tqsHni9aMA==",
+         "data":"eJztmNERwiAMhrOIA7iYEziAL67QKTpa33z31PO4i5hAEmJJpQ\/\/ncUS8hEgoQsALLuG1Q3gQqmlv4cvazBS40nbJbY8+npzRtMonBbekp37AQDrCp\/PmjYvO1ZeDWcUVoq3hXV6\/hddGlZNPKPFNY+vhZWyd4Q4svJyrCd4Kxon5sU+erHOlTW0tmYDa2mvUqy9z6EJdtY8\/2hYX+ceVkTW3Ecr60hxHYGVO8+T7TP0l4SV4uVqwj9lTfqKK2W79\/rN1zD2UXsPwPao3N2bM2fF0txfF+Drr6is2Ecta22\/9ub0ZK3FNYq844rV+04judfV2Er5FZ9xvfMMl3s057A0v+aK8l2ipZbg9mv6nXQFe5uXnRKrth6m5i8aK5akjpDyRlzDFKeFFe\/fyKL8trBy8Y0SVw2nlTcCK+erpI6o8W5B0pqpt59rcdZ4rfNC9ZGM82tObhyvdy19JXPXwrpru3oAfGFnSA==",
          "encoding":"base64",
          "height":40,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmNENwjAMRL0IA7AYEzAAP12BRZH4hqqqCJXdOFdXXIlPOikNxPWL1aSNSKpnPURumreMj8gFjVGLW+P19ntiRYyN5mRzL5wI71qc50mk9CDf1y19UXFQ3hZOFlaNdwvr\/f0bu1tYW+rJVtdlfRFWLd5ZeIzyWqwXmTy2GbXMMVk\/WntWk5VHFqvFa7GO615pRi1zRFl7qmsPrOX+dWRWjdd6J+yBtazrVSYzs5Y5It8BqVQq9Wt51+G5zeTWddi7v7KeS0Ttr2WcuT17ELwvKk7k+7A2f2ys2hkM+g2795lY9Nkaylo+v8zW8kZYrfqy1LWFE+VlYLVyrbF6eI9gD+c\/sHo5a7zovGhjPPfZm9O6T9R\/kbGeudvCmjquXoU1sOg=",
+         "data":"eJztmNENwjAMRL0IA7AYEzAAP12BRflHUFUVJrIbx3HFlfikk9JAXL9YTdoQpUbWg+gmuWd8RC7eGLW4NV5rvyVWxNhoTjSPwunh3YrzPBFxT\/R93dIXFcfL28KJwirx9rDe37+hu4W1pZ5odS3r62GV4p0Jx15ejfVCi+c2osock\/WjrWc1WXGksWq8Guu87nEjqszRyzpSXUdg5fvXkVklXu2dcARWXtcrLUZm5Tl6vgNSqVTq17Kuw2sbya3rsHV\/jThP4Io6l4jaX3mctb16ovY+rp44Ul6978PS\/KGxSmcw3m\/YyDMxrr3O1rys\/PlFtpS3h1WrL8qZaQunlxeBVcu1xmrhPYItnP\/AauWs8XrnRRpjuc\/enNp9ov7rGWuZux7W1HH1AqhLsTo=",
          "encoding":"base64",
          "height":40,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[
                 {
@@ -57,7 +62,7 @@
                  "y":96
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":691,
                  "name":"",
@@ -69,7 +74,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":692,
                  "name":"",
@@ -81,7 +86,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":693,
                  "name":"",
@@ -93,7 +98,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":694,
                  "name":"",
@@ -105,7 +110,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":695,
                  "name":"",
@@ -117,7 +122,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":696,
                  "name":"",
@@ -129,7 +134,7 @@
                  "y":168
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":697,
                  "name":"",
@@ -141,7 +146,7 @@
                  "y":168
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":698,
                  "name":"",
@@ -153,7 +158,7 @@
                  "y":168
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":699,
                  "name":"",
@@ -165,7 +170,7 @@
                  "y":168
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":700,
                  "name":"",
@@ -177,7 +182,7 @@
                  "y":168
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":701,
                  "name":"",
@@ -189,7 +194,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":702,
                  "name":"",
@@ -201,7 +206,7 @@
                  "y":168
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":703,
                  "name":"",
@@ -213,7 +218,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":704,
                  "name":"",
@@ -225,7 +230,7 @@
                  "y":168
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":705,
                  "name":"",
@@ -237,7 +242,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7888,
+                 "gid":7899,
                  "height":40,
                  "id":706,
                  "name":"",
@@ -273,7 +278,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7915,
+                 "gid":7926,
                  "height":40,
                  "id":710,
                  "name":"",
@@ -339,6 +344,18 @@
                  "width":16,
                  "x":312,
                  "y":120
+                }, 
+                {
+                 "gid":7673,
+                 "height":32,
+                 "id":717,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":232,
+                 "y":248
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -349,6 +366,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":5,
          "name":"wiring - lights & guns",
          "objects":[
                 {
@@ -400,6 +418,7 @@
         {
          "color":"#ffa0ff",
          "draworder":"topdown",
+         "id":6,
          "name":"monsters & npcs",
          "objects":[
                 {
@@ -432,6 +451,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":7,
          "name":"wiring - locked door",
          "objects":[
                 {
@@ -482,6 +502,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -492,6 +513,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"anchors etc",
          "objects":[
                 {
@@ -526,6 +548,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -534,10 +557,11 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":717,
+ "nextlayerid":11,
+ "nextobjectid":718,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -645,19 +669,19 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7670,
+         "firstgid":7678,
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedcoloredvanillamats.json"
         }, 
         {
-         "firstgid":7671,
+         "firstgid":7682,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
         }, 
         {
-         "firstgid":7905,
+         "firstgid":7916,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":59
 }

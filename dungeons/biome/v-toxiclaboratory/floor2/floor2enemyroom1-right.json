@@ -1,12 +1,14 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":45,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztmNGNwzAIhlnkBuhCHeEmuAH60hU6RUbrW6V7PlUVag4R84OdBDd++KU0sQmfcQD3TkT3ocPpIWSNqZnv9QWdF+HU3mGNsfxrbX8Nzsw6CqeHd2nu79d\/XSvutbJTy4twZmG1eL2stw4U4UXimS2uVnwRVs3eifKolleyfhNdnsrGOeed++jZyyXWydhDW2vagJXzwURY3rDGRex4WZG89AmsSA6+CrHtH3ppovd1Sda4iB1mlT62yk29xhWpO4N1sGZntXLxJ+WmI9VXyRqpr0gfh7B67ezRS5wBIaxeO0usvC7eXqJHVn4eYZW5QOYm1Ecr53jtaP4sxbVUc1hL54pscZ2Ln1tsGmtve5jjugZrtjy8ZlxLDOi4lvW1Jq7a95pFNd+rlYeRPm5rRfOwVV+lsvxnatXXyFmdr1nPd0fvtbIT7Zs0Vm39srHO5Tm7WrwZ93CJ08P6IKwe7K3SWQ7tiUvxzRLXCGeJVePNwGpxevdwz0J6pr19rOHycNbwbrVeNVwWL\/o7YkNbl9L8oSGpPzDWYa0=",
+         "data":"eJztmNGNwzAIhlnkBuhCHeEmuAH60hU6RUbrW99Pp6pCzSFifrCT4MYPv5QmNuEzDuDeieg+dDg9hKwxNfO9vqDzIpzaO6wxln+t7a\/BmVlH4fTwLs39\/fqva8W9VnZqeRHOLKwWr5f11oEivEg8s8XVii\/Cqtk7UR7V8krWb6LLU9k457xzHz17ucQ6GXtoa00bsHI+mAjLG9a4iB0vK5KXPoEVycFXIbb9Qy9N9L4uyRoXscOs0sdWuanXuCJ1Z7AO1uysVi7+pNx0pPoqWSP1FenjEFavnT16iTMghNVrZ4mV18XbS\/TIys8jrDIXyNyE+mjlHK8dzZ+luJZqDmvpXJEtrnPxc4tNY+1tD3Nc12DNlofXjGuJAR3Xsr7WxFX7XrOo5nu18jDSx22taB626qtUlv9MrfoaOavzNev57ui9VnaifZPGqq1fNta5PGdXizfjHi5xelgfhNWDvVU6y6E9cSm+WeIa4SyxarwZWC1O7x7uWUjPtLePNVwezhrerdarhsviRX9HbGjrUpo\/NCT1B6l8b6U=",
          "encoding":"base64",
          "height":45,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmW0OwiAMhrmIB\/BinsAD+GdX8KIm\/jbEkMym9HNzhfVNmiCOrs9KCmylpM6oFzDuGs94bSzScRL1fK\/vwV3Dxbe1\/z04I9tZODW8vbHvy68tjr6t\/Hh5JZxRWDleLetzALPwSvIZLa9cfiWsmL9riWNeXsh6K+VRrbYjCsaomcvJOj4rFFaXZmDFBK9ZgEUUjDFrU1\/Jun\/cFiWrvhbPVJvOtL5C1lnX11n3Eu1coN1LjMiKnWcxYaz38rXIrOsYsbxSa04qlUpFEleHWzuSWeswt75GfWfKra+Ws3prN6v3tvZt5ce6b8JYsecXjZV7P0yJ4o04hylODWu1o7\/VeL\/nSPfEVH6j5NXCSbFivBFYOU7tHB7ZJDo6Rg+XhtPD+6\/n5eHieKW\/LT7WfdR\/qVRPHyK2VEQ=",
+         "data":"eJztmVkOAiEMhrmIB\/BinsAD+DJX8KK+G0MMCTalC2WcwvRPmiCy9BtI2VIKnVEvYFwZS32tL9J6ErXarvvgynD+jW5\/D07PdhZODW+r7vvya5shb1Q7Vl4JpxdWjlfL+pzAengl4+ltXLnxlbBi7V2TH7PyQtZbSo9sOe1R0EfNXA7W+VmhsLi0AismWGYD5lHQx4hNbQXr\/n73KFj1sXil2HSm9RWyrrq+rrqXKOcC7V5iRlbsPIsJY72nr3lmrX3ExpVac0KhUMiTuDhc0p6sNw5z6+uIu85ao+5MufW156xe0sVy39q8ui9LO5hfmn0Txop9P2+s3P0wJYrX4xymODWs2Y5+q7G+50j3xNT4ennP6eGkWDFeD6wcp3YOz2wSHe2jhUvDaeH91\/eycHG80t89bdR51H+hUEsfk3xSFg==",
          "encoding":"base64",
          "height":45,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[
                 {
@@ -177,7 +182,7 @@
                  "y":248
                 }, 
                 {
-                 "gid":7681,
+                 "gid":7692,
                  "height":40,
                  "id":707,
                  "name":"contains position-sensitive offsets",
@@ -243,6 +248,18 @@
                  "width":16,
                  "x":224,
                  "y":208
+                }, 
+                {
+                 "gid":7673,
+                 "height":32,
+                 "id":714,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":216,
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -253,6 +270,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":5,
          "name":"wiring - lights & guns",
          "objects":[
                 {
@@ -304,6 +322,7 @@
         {
          "color":"#ffa0ff",
          "draworder":"topdown",
+         "id":6,
          "name":"monsters & npcs",
          "objects":[
                 {
@@ -378,6 +397,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":7,
          "name":"wiring - locked door",
          "objects":[
                 {
@@ -428,6 +448,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -438,6 +459,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"anchors etc",
          "objects":[
                 {
@@ -472,6 +494,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -480,10 +503,11 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":714,
+ "nextlayerid":11,
+ "nextobjectid":715,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -591,15 +615,15 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7670,
+         "firstgid":7678,
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedcoloredvanillamats.json"
         }, 
         {
-         "firstgid":7671,
+         "firstgid":7682,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":59
 }

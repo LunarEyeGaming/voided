@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmdENAiEMhhmDF8dxsFvCDZzGZ3fwHQcwRIkN0lK4Aj2kyR+VA7mPQinBmGWazJ2MuZi3LCh\/gO+b+dbx9Z9KVMphEY6z+VVNuZcj\/jMI9u0SHOEZxRH3N4oDjqeUP1xCNeXSHBuDw360gU8omxC3vDdHC\/N995xXrTgk\/XEEDql4NZpjFn9IccBYIGmL421a5lXvuDvaH9rj1Sz74CwcI9b5DVEqF4zzQqytJn\/AdZQS1bYHBzzX1r5LjkMyXlF5O2dMqXeR4pDyB7V\/aOeQWh+1Y1DKwTkP5t4FnnVTMUsLx9oHaZslv2q1zuM+es0rSkfgCP64Glw5jty8gmPV2h+YcTg46zwwtPYHZhIcGixwUPHqSByz+GNPvNJg\/+QPGFPvUXv\/G8YrLP\/D7jRK6u7dP4Ko\/QO7Q5K8j6Lqxc+oe05Ovgv7xs5LpeXwGZVjxfUwDk6+OyPHaC3Tay\/vJaWi",
+         "data":"eJztmdERgjAMhjsGL47DYCzhBk7jszv4jgN4HPb8qU0IJW1DJXf\/qSVYvqZN08O50yzZeHHu6mZ10P6E74P7+kz+L4HQJP4p2srRERy9+5VvR8P2mP+kkflPL+x7jHD4axxH2F8tDhzPkCM1HmNE3FhR\/tocg4Cj+2iAT1QXkbS9NEcOm\/ouOa9ycWjG4wgcWvmqNkcr8dDiwFygaSfHbFbmVem8Wzse1vNVK\/tgKxw11vmdUKwWDOtC6l5L8cB1FBN3bwkOPNemPssah2a+4up2yZhyz6LFoRUPbv+wzqG1PlLHYCuH5Dy49ix41o3lLCsc5z7IWyv1Va51HvZRal5xOgKHj8fN0VrjWJtXOFa540GZhEOyzj1D7nhQpsFhwTwHl6+OxNFKPPbkKwv2T\/HAnPoI7p9+Y76i6j\/qncYW3737hxe3f1DvkDTfR3F+4TXuPaek3sW+qfNSv+xi0R7zx2tcjRX6URySerdFDk5oEv8UnWbX3vzDlaA=",
          "encoding":"base64",
          "height":45,
          "id":2,
@@ -146,7 +146,7 @@
                  "y":288
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7721,
                  "height":8,
                  "id":761,
                  "name":"",
@@ -158,7 +158,7 @@
                  "y":344
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7721,
                  "height":8,
                  "id":764,
                  "name":"",
@@ -194,7 +194,7 @@
                  "y":216
                 }, 
                 {
-                 "gid":7951,
+                 "gid":7987,
                  "height":24,
                  "id":768,
                  "name":"contains position-sensitive offsets",
@@ -286,7 +286,7 @@
                  "y":304
                 }, 
                 {
-                 "gid":7955,
+                 "gid":7991,
                  "height":16,
                  "id":796,
                  "name":"",
@@ -298,7 +298,7 @@
                  "y":248
                 }, 
                 {
-                 "gid":7960,
+                 "gid":7996,
                  "height":8,
                  "id":797,
                  "name":"",
@@ -310,7 +310,7 @@
                  "y":296
                 }, 
                 {
-                 "gid":7960,
+                 "gid":7996,
                  "height":8,
                  "id":798,
                  "name":"",
@@ -322,7 +322,7 @@
                  "y":200
                 }, 
                 {
-                 "gid":7960,
+                 "gid":7996,
                  "height":8,
                  "id":799,
                  "name":"",
@@ -334,7 +334,7 @@
                  "y":104
                 }, 
                 {
-                 "gid":7970,
+                 "gid":8006,
                  "height":40,
                  "id":800,
                  "name":"",
@@ -346,7 +346,7 @@
                  "y":304
                 }, 
                 {
-                 "gid":7969,
+                 "gid":8005,
                  "height":40,
                  "id":801,
                  "name":"",
@@ -428,6 +428,30 @@
                  "width":16,
                  "x":184,
                  "y":240
+                }, 
+                {
+                 "gid":7730,
+                 "height":32,
+                 "id":813,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":176,
+                 "y":48
+                }, 
+                {
+                 "gid":7733,
+                 "height":32,
+                 "id":814,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":176,
+                 "y":344
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1105,10 +1129,10 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":813,
+ "nextobjectid":815,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -1216,15 +1240,15 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7690,
+         "firstgid":7719,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7699,
+         "firstgid":7735,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
         }, 
         {
-         "firstgid":7933,
+         "firstgid":7969,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,

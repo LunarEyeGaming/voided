@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmVEOwiAMhnuMvew4HoxLeAOP5JsH8NntAGaZjQ1pO5iNg65\/0iBYZfsohTGAUKhc0whwhdUG0v4knxN8fRb\/2anVchkYLrTM7eh2Wl5ANjrGE8MFv0sKl5npT+r36PYaLnS8LeKlhfs\/mguXX1q4\/xa5tJBHLPKL1TxKnzpaXs8tkTIV+Gv\/ybUnoS\/Mif\/k0oOW67RajzQunE\/LinjhVRovZ+NiGS\/avi64rOqdS8wjXqXxYvV85I1LbbzkfdB4eXRgdCwls+TS2\/7lBrJtcfG8r5NUwqUk7yKTM3KR8q5HIRdtPdqKF4+ymEcetZeLd0W88Kpdp+\/Z75c6Pmvk52KvsT2j1\/jr\/gVNO9\/VzlFbPd\/VfDm\/nIvH9wFbvpyfxKXknOGMXOL9dCi0T2\/RpfaP",
+         "data":"eJztWcsNwyAM9Ri5ZJwOxhLdoCP11gF6bjNAFaWolmUTA04TiJ9kERwHrIf5xAA4HHq8R4ArLDIg\/RM9B\/jZzPaToWBYtlvri4aXgeEFl1Ry9NSX0nY4v+byArLgMeZ8ie9CgpeJ6U\/qN0ePUdMO1ufwgseb8lISL84Lv75Y8bKFfk9erNaXLfR7zKPwrUehdSoBlUFhn2qT0wehr7gm\/pOXFjD7abUfpXjhbI4Mjxce2ng5Gy+W8ZI61zkvC1rnxecRD228WP0f9cZLbrzQPnC8PBoQPJaSWPLS2vnlBrKs8dLzuU6ChhfNuhs5OSMv0rrbIyIvqf1oLV56hMU86hGlvPQOjxceufv0nXw\/1+O\/Bs2LvcbjCfax9vwSJZXfTeVRa\/Kyki8W+d2ULWdHfdnzPgDD8j5gzZazk3jR5BnOyIvfTzscZfgAHsPjWw==",
          "encoding":"base64",
          "height":33,
          "id":2,
@@ -134,7 +134,7 @@
                  "y":192
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7721,
                  "height":8,
                  "id":761,
                  "name":"",
@@ -146,7 +146,7 @@
                  "y":248
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7721,
                  "height":8,
                  "id":764,
                  "name":"",
@@ -158,7 +158,7 @@
                  "y":24
                 }, 
                 {
-                 "gid":7955,
+                 "gid":7991,
                  "height":16,
                  "id":784,
                  "name":"",
@@ -194,7 +194,7 @@
                  "y":80
                 }, 
                 {
-                 "gid":7951,
+                 "gid":7987,
                  "height":24,
                  "id":795,
                  "name":"contains position-sensitive offsets",
@@ -758,7 +758,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7960,
+                 "gid":7996,
                  "height":8,
                  "id":837,
                  "name":"",
@@ -770,7 +770,7 @@
                  "y":200
                 }, 
                 {
-                 "gid":7960,
+                 "gid":7996,
                  "height":8,
                  "id":838,
                  "name":"",
@@ -782,7 +782,7 @@
                  "y":104
                 }, 
                 {
-                 "gid":7970,
+                 "gid":8006,
                  "height":40,
                  "id":839,
                  "name":"",
@@ -794,7 +794,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7969,
+                 "gid":8005,
                  "height":40,
                  "id":840,
                  "name":"",
@@ -852,6 +852,30 @@
                  "width":16,
                  "x":288,
                  "y":128
+                }, 
+                {
+                 "gid":7730,
+                 "height":32,
+                 "id":848,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":256,
+                 "y":48
+                }, 
+                {
+                 "gid":7733,
+                 "height":32,
+                 "id":849,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":256,
+                 "y":248
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1489,10 +1513,10 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":848,
+ "nextobjectid":850,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -1600,15 +1624,15 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7690,
+         "firstgid":7719,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7699,
+         "firstgid":7735,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
         }, 
         {
-         "firstgid":7933,
+         "firstgid":7969,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,
