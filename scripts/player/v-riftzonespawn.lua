@@ -194,31 +194,7 @@ function noCoordsMode(dt)
 end
 
 function spawnRiftZones()
-  local riftZoneSpawnPoints = world.getProperty("v-riftZoneSpawnPoints") or jarray()
-  local size = world.size()
-
-  -- Build a list of spawn points from which to select.
-  local spawnPoints = {}
-  for x = 0, size[1], riftZoneSpacing do
-    for y = 0, size[2], riftZoneSpacing do
-      table.insert(spawnPoints, {x, y})
-    end
-  end
-
-  shuffle(spawnPoints)
-
-  -- Select density * #spawnPoints points and insert them into riftZoneSpawnPoints, each with a randomized spawn time.
-  for i = 1, math.floor(#spawnPoints * riftZoneDensity) do
-    local timeToLive = math.random() * (maxSpawnDelay - minSpawnDelay) + minSpawnDelay
-    local spawnTime = world.time() + timeToLive
-    table.insert(riftZoneSpawnPoints, {spawnTime = spawnTime, position = spawnPoints[i]})
-  end
-  world.setProperty("v-riftZoneSpawnPoints", riftZoneSpawnPoints)
-
-  world.spawnMonster("v-riftzonecutscene", mcontroller.position(), {masterId = player.id()})
-
-  -- Set weather
-  world.setProperty("v-riftZoneWeather", weatherTypes[math.random(1, #weatherTypes)])
+  world.sendEntityMessage("v-riftzonemanager-stagehand", "beginEvent")
 end
 
 function actLikeIStayedLongEnough(worldType)

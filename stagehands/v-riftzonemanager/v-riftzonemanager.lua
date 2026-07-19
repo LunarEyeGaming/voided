@@ -1,3 +1,4 @@
+require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/rect.lua"
 
@@ -15,6 +16,12 @@ local relocationProbability
 local invisibleOre
 local defaultTimeToLive
 
+local maxSpawnDelay  -- Maximum time to wait before spawning a rift zone
+local minSpawnDelay  -- Minimum time to wait before spawning a rift zone
+local riftZoneDensity
+local riftZoneSpacing
+local weatherTypes  -- The potential weather events that could occur in a rift zone.
+
 local postInitCalled
 
 function init()
@@ -27,6 +34,18 @@ function init()
   relocationProbability = cfg.relocationProbability
   invisibleOre = cfg.invisibleOre
   defaultTimeToLive = cfg.defaultTimeToLive
+
+  riftZoneDensity = cfg.riftZoneSpawnDensity
+  riftZoneSpacing = cfg.riftZoneSpawnSpacing
+
+  maxSpawnDelay = cfg.spawnDelayRange[1]
+  minSpawnDelay = cfg.spawnDelayRange[2]
+
+  weatherTypes = {"meteors", "gravispheres", "destabilization"}
+
+  message.setHandler("beginEvent", function()
+    beginEvent()
+  end)
 
   vTime.addInterval(1, cleanUpAfterRiftZones)
 
@@ -160,6 +179,34 @@ function countRiftZones()
   end
 
   sb.setLogMap("v-riftzone-count", "%s", count)
+end
+
+function beginEvent()
+  local riftZoneSpawnPoints = world.getProperty("v-riftZoneSpawnPoints") or jarray()
+  local size = world.size()
+
+  -- Build a list of spawn points from which to select.
+  local spawnPoints = {}
+  for x = 0, size[1], riftZoneSpacing do
+    for y = 0, size[2], riftZoneSpacing do
+      table.insert(spawnPoints, {x, y})
+    end
+  end
+
+  shuffle(spawnPoints)
+
+  -- Select density * #spawnPoints points and insert them into riftZoneSpawnPoints, each with a randomized spawn time.
+  for i = 1, math.floor(#spawnPoints * riftZoneDensity) do
+    local timeToLive = math.random() * (maxSpawnDelay - minSpawnDelay) + minSpawnDelay
+    local spawnTime = world.time() + timeToLive
+    table.insert(riftZoneSpawnPoints, {spawnTime = spawnTime, position = spawnPoints[i]})
+  end
+  world.setProperty("v-riftZoneSpawnPoints", riftZoneSpawnPoints)
+
+  world.spawnMonster("v-riftzonecutscene", stagehand.position(), {masterId = world.players()[1]})
+
+  -- Set weather
+  world.setProperty("v-riftZoneWeather", weatherTypes[math.random(1, #weatherTypes)])
 end
 
 function canSpawn(position)
