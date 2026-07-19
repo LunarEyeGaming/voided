@@ -126,5 +126,13 @@
       "/spawnitem v-invisiblespeedsensor 1 '{\"detectVelocityComparison\" : {\"valueToCompare\" : \"xy\", \"mode\" : \"gte\", \"value\" : 10}}'",
       "/spawnitem v-invisiblespeedsensor 1 '{\"detectVelocityComparison\" : null}'"
     ]
+  },
+  {
+    "op" : "add",
+    "path" : "/v_clearriftzones",
+    "value" : [
+      "/entityeval world.setProperty(\"v-riftZones\", nil)",
+      "/entityeval world.setProperty(\"v-riftZoneSpawnPoints\", nil)"
+    ]
   }
 ]
