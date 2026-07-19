@@ -14,12 +14,6 @@ function init()
 end
 
 function update(dt)
-  world.debugPoly({
-    vec2.add(object.position(), {-queryRange, -queryRange}),
-    vec2.add(object.position(), {-queryRange, queryRange}),
-    vec2.add(object.position(), {queryRange, queryRange}),
-    vec2.add(object.position(), {queryRange, -queryRange})
-  }, "green")
   local queried = world.entityQuery(lowerLeftPos, upperRightPos, {
     includedTypes = {"monster"},
     callScript = "v_isRiftZone"
