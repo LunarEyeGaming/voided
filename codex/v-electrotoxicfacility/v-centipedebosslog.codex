@@ -1,0 +1,37 @@
+{
+  "id" : "v-centipedebosslog",
+  "species" : "human",
+  "title" : "100_lg_black_box.log",
+  "description" : "A log extracted from the black box of 100-LG.",
+  "icon" : "centipedebosslog.png",
+  "contentPages" : [
+        "[INFO] Powered on
+[INFO] Initializing...
+[INFO] Loading targeting module
+[INFO] Loading rocket cannon module
+[INFO] Loading plasma cannon modules
+[INFO] Initialization complete
+[INFO] Entering patrol state
+[INFO] Target detected. Beginning attack phase
+[INFO] Engaging rocket cannon
+[INFO] Engaging plasma cannons
+[INFO] Engaging rocket cannon
+[INFO] Engaging plasma cannons
+[WARN] Sustained damage to hull detected. Switching to electric mode.
+[INFO] Engaging rocket cannon
+[INFO] Engaging plasma cannons
+[INFO] Engaging rocket cannon
+[INFO] Engaging plasma cannons
+[WARN] Hull integrity critical
+[CRITICAL] Significant energy spike detected
+[CRITICAL] FLUX CORE MELTDOWN IMMINENT
+[CRITICAL] FLUX CORE MELTDOWN IMMINENT
+[CRITICAL] FLUX CORE MELTDOWN IMMINENT
+[CRITICAL] FLUX CORE MELTDOWN IMMINENT"
+  ],
+  "itemConfig" : {
+    "rarity" : "common",
+    "price" : 25,
+    "builder" : "/items/buildscripts/v-builditem.lua"
+  }
+}
