@@ -54,6 +54,16 @@
 
       "spaceScan" : 0.1,
       "anchors" : [ "right" ]
+    },
+    {
+      "imageLayers" : [ {"image" : "back/image.png:<frame>"}, {"image" : "back/imageunlit.png:<frame>", "fullbright" : true} ],
+      "imagePosition" : [-8, -8],
+
+      "frames" : 4,
+      "animationCycle" : 1.0,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "background" ]
     }
   ],
 
@@ -61,7 +71,6 @@
   "scriptDelta" : 3,
 
   "killRange" : 32,
-  "riftZoneSize" : 35,
 
   "builder" : "/items/buildscripts/v-builditem.lua"
 }
