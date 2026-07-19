@@ -29,13 +29,8 @@ local minPlanetStayTime  -- The player must have been on the current planet type
 local worldTypeWhitelist  -- List of worlds on which the rift zone is allowed to spawn
 local spawnAttemptInterval  -- How often the script should attempt to spawn the rift zone
 local spawnProbability  -- The chance of the spawn succeeding
-local maxSpawnDelay  -- Maximum time to wait before spawning a rift zone
-local minSpawnDelay  -- Minimum time to wait before spawning a rift zone
 local numEventsPerOrbit  -- Number of events that can occur for each orbit
-local weatherTypes  -- The potential weather events that could occur in a rift zone.
 
-local riftZoneDensity
-local riftZoneSpacing
 local spawnAttemptTimer  -- Amount of time elapsed since the last spawn attempt
 local worldTypeStayTime  -- Amount of time that the player has spent on the current world so far
 
@@ -67,21 +62,9 @@ function init()
 
   referenceRiftZoneCount = cfg.referenceRiftZoneCount
   referenceWorldSize = cfg.referenceWorldSize
-
-  riftZoneDensity = cfg.riftZoneSpawnDensity
-  riftZoneSpacing = cfg.riftZoneSpawnSpacing
-
-  maxSpawnDelay = cfg.spawnDelayRange[1]
-  minSpawnDelay = cfg.spawnDelayRange[2]
   numEventsPerOrbit = cfg.coordsModeParameters.numEventsPerOrbit
 
-  weatherTypes = {"meteors", "gravispheres", "destabilization"}
-
   spawnAttemptTimer = 0
-
-  if storage.firstEncounter == nil then
-    storage.firstEncounter = true
-  end
 
   if not storage.lastRiftZoneSpawnTime then
     storage.lastRiftZoneSpawnTime = world.time()
