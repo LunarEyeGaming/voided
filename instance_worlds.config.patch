@@ -680,6 +680,40 @@
   // -------------------------------------------------------------------------------------------------------------------
   {
     "op" : "add",
+    "path" : "/v-voltagecitytest",
+    "value" : {
+      "type" : "FloatingDungeon",
+      "dungeonWorld" : "v-voltagecitytest",
+      "beamUpRule" : "AnywhereWithWarning",
+      "disableDeathDrops" : true,
+      "seed" : 1235,
+
+      "skyParameters" : {
+        "spaceLevel" : 1500,
+        "ambientLightLevel" : [ 24, 28, 24 ],
+        "skyType" : "atmospheric",
+        "horizonImages" : [ ],
+        "dayLength" : 99999999,
+        "surfaceLevel" : 100,
+        "seed" : -5288806180628666923,
+        "skyColoring" : {
+          "mainColor" : [200, 200, 255],
+
+          "morningColors" : [[0, 0, 0], [0, 0, 0]],
+          "dayColors" : [[0, 0, 0], [0, 0, 0]],
+          "eveningColors" : [[0, 0, 0], [0, 0, 0]],
+          "nightColors" : [[0, 0, 0], [0, 0, 0]],
+
+          "morningLightColor" : [0, 0, 0],
+          "dayLightColor" : [0, 0, 0],
+          "eveningLightColor" : [0, 0, 0],
+          "nightLightColor" : [0, 0, 0]
+        }
+      }
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/v-strongholdgatewaytest",
     "value" : {
       "type" : "FloatingDungeon",

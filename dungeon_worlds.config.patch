@@ -108,6 +108,21 @@
   },
   {
     "op" : "add",
+    "path" : "/v-voltagecitytest",
+    "value" : {
+      "primaryDungeon" : "v-voltagecitytest",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [2000, 3000],
+      "dungeonBaseHeight" : 250,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "/music/the-apex.ogg",
+      "biome" : "v-voltagecorelayer",
+      "environmentStatusEffects" : ["dontstarve", "v-quickhealnerf"]
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/v-laboratoryminibosstest",
     "value" : {
       "primaryDungeon" : "v-laboratoryminibosstest",
