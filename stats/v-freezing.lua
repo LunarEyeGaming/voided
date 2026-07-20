@@ -44,7 +44,7 @@ end
 function update(dt)
   oldUpdate(dt)
 
-  if status.resourcePercentage("v-warmth") < 1.0 or status.statPositive("v-warm") then
+  if status.resourcePercentage("v-warmth") < 1.0 then
     world.sendEntityMessage(entity.id(), "v-drawableMeter-show", "v-freezing")
   else
     world.sendEntityMessage(entity.id(), "v-drawableMeter-hide", "v-freezing")
