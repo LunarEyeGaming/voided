@@ -2,6 +2,9 @@
   "projectileName" : "v-titanriftprojectile",
   "image" : "titanriftprojectile.png",
   "physics" : "boomerang",
+  "movementSettings" : {
+    "liquidFriction" : 1
+  },
   "animationCycle" : 1,
   "frameNumber" : 1,
   "lightColor" : [51, 41, 71],
