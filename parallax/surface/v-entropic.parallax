@@ -16,6 +16,27 @@
       "tileLimitTop" : 275,
       "repeatY" : true
     },
+
+    {
+      "kind" : "v-entropic/clouds1",
+      "frequency" : 0.5,
+      "offset" : [0, 0],
+      "parallax" : 30,
+      "minSpeed" : 3000,
+      "maxSpeed" : 5000,
+      "directives" : "multiply=ffffff77",
+      "timeOfDayCorrelation" : "dayVisible"
+    },
+
+    {
+      "kind" : "northern",
+      "frequency" : 0.5,
+      "offset" : [0, 175],
+      "parallax" : 30,
+      "timeOfDayCorrelation" : "nightVisible",
+      "unlit" : true
+    },
+
     {
       "kind" : "v-entropic/front",
       "offset" : [0, 300],
