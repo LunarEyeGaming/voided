@@ -26,6 +26,7 @@ local state
 
 local shouldDieVar
 
+local masterId
 local rotateHandSmoothly  -- Whether or not the hand should rotate smoothly to handTargetAngle or jump to it instantly.
 local useAppearAnimation  -- Whether or not to use the appear animation automatically.
 local currentHandAngle  -- Current rotation of the hand
@@ -61,6 +62,8 @@ function init()
   state = FSM:new()
 
   shouldDieVar = false
+
+  masterId = config.getParameter("master")
 
   if cfg.rotateHandSmoothly ~= nil then
     rotateHandSmoothly = cfg.rotateHandSmoothly
@@ -334,7 +337,7 @@ function tasks.burrowingRift()
     -- Calculate aim vector.
     local aimVector = vec2.withAngle(targetAngle)
     -- Spawn the projectile with the calculated aim vector.
-    local projectileId = world.spawnProjectile(cfg.projectileType, spawnPos, config.getParameter("master"),
+    local projectileId = world.spawnProjectile(cfg.projectileType, spawnPos, masterId,
     aimVector, false, projectileConfig)
 
     local prevPosList  -- List of previous projectile positions, including current projectile positions. Used to estimate projectile velocity
@@ -436,18 +439,18 @@ function tasks.bomb()
       coroutine.create(function()
         v_titanAppear(appearSpecs)
       end),
-      coroutine.create(function()
-        while true do
-          if world.entityExists(args.target) then
-            local targetPos = world.entityPosition(args.target)
-            local toTarget = vec2.norm(world.distance(targetPos, mcontroller.position()))
-            handTargetAngle = vec2.angle(toTarget)  -- Update hand target angle
-            mcontroller.setPosition(vec2.add(targetPos, vec2.mul(toTarget, -cfg.followDistance)))
-          end
+      -- coroutine.create(function()
+      --   while true do
+      --     if world.entityExists(args.target) then
+      --       local targetPos = world.entityPosition(args.target)
+      --       local toTarget = vec2.norm(world.distance(targetPos, mcontroller.position()))
+      --       handTargetAngle = vec2.angle(toTarget)  -- Update hand target angle
+      --       mcontroller.setPosition(vec2.add(targetPos, vec2.mul(toTarget, -cfg.followDistance)))
+      --     end
 
-          coroutine.yield()
-        end
-      end)
+      --     coroutine.yield()
+      --   end
+      -- end)
     }
 
     while util.parallel(table.unpack(threads)) do
@@ -458,18 +461,22 @@ function tasks.bomb()
     projectileParameters.power = vAttack.scaledPower(projectileParameters.power or 10)
 
     util.wait(cfg.releaseDelay, function()
-      if world.entityExists(args.target) then
-        local targetPos = world.entityPosition(args.target)
-        local toTarget = vec2.norm(world.distance(targetPos, mcontroller.position()))
-        handTargetAngle = vec2.angle(toTarget)  -- Update hand target angle
-        mcontroller.setPosition(vec2.add(targetPos, vec2.mul(toTarget, -cfg.followDistance)))
-      end
+      -- if world.entityExists(args.target) then
+      --   local targetPos = world.entityPosition(args.target)
+      --   local toTarget = vec2.norm(world.distance(targetPos, mcontroller.position()))
+      --   handTargetAngle = vec2.angle(toTarget)  -- Update hand target angle
+      --   mcontroller.setPosition(vec2.add(targetPos, vec2.mul(toTarget, -cfg.followDistance)))
+      -- end
     end)
 
     if world.entityExists(args.target) then
-      local toTarget = vec2.norm(world.distance(world.entityPosition(args.target), mcontroller.position()))
-      local projectilePos = vec2.add(mcontroller.position(), vec2.mul(toTarget, cfg.followDistance))
-      world.spawnProjectile(cfg.projectileType, projectilePos, entity.id(), {0, 0}, false, projectileParameters)
+      -- local toTarget = vec2.norm(world.distance(world.entityPosition(args.target), mcontroller.position()))
+      -- local projectilePos = vec2.add(mcontroller.position(), vec2.mul(toTarget, cfg.followDistance))
+      local projectilePos = mcontroller.position()
+      local projectileId = world.spawnProjectile(cfg.projectileType, projectilePos, masterId, {0, 0}, false, projectileParameters)
+      if projectileId then
+        world.sendEntityMessage(masterId, "v-titanofdarkness-projectileSpawned", projectileId)
+      end
 
       animator.setAnimationState("hand", "openhand")
     end
@@ -511,7 +518,7 @@ function finish()
     endAlpha = 0
   }
   -- Die
-  world.sendEntityMessage(config.getParameter("master"), "notify", {type = "v-titanofdarkness-armFinished"})
+  world.sendEntityMessage(masterId, "notify", {type = "v-titanofdarkness-armFinished"})
   shouldDieVar = true
   coroutine.yield()
 end

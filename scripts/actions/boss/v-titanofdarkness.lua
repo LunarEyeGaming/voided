@@ -123,24 +123,49 @@ function v_titanLaserRotation(args, board)
 end
 
 -- param target - The target entity to attack
--- param interval - Time to wait between spawning projectiles
+-- param intervalStart - Time to wait between spawning projectiles (initial)
+-- param intervalEnd - Time to wait between spawning projectiles (final)
 -- param repeats - Number of times to repeat the attack
 -- param armAnchorRadius (optional) - The range at which to place the anchor point relative to the spawning position.
 function v_titanExplosionAttack(args, board)
   local rq = vBehavior.requireArgsGen("v_titanExplosionAttack", args)
-  if not rq{"target", "interval", "repeats"} then
+  if not rq{"target", "intervalStart", "intervalEnd", "repeats"} then
     return false
   end
 
   local anchorRadius = args.armAnchorRadius or 15
 
-  for _ = 1, args.repeats do
-    -- Slightly offset the arm to allow it to snap to the target properly.
-    local pos = vec2.add(world.entityPosition(args.target), {-0.01, 0})
-    spawnArm(pos, vec2.withAngle(2 * math.pi * math.random(), anchorRadius),
-    "bomb", {target = args.target})
+  local spawnedProjectiles = {}
 
-    util.run(args.interval, function() end)
+  message.setHandler("v-titanofdarkness-projectileSpawned", function(_, _, projectileId)
+    table.insert(spawnedProjectiles, projectileId)
+  end)
+
+  for i = 1, args.repeats do
+    local pos = vWorld.randomPositionInRegion(rect.translate({-15, -15, 15, 15}, world.entityPosition(args.target)), function(pos)
+      return not world.rectCollision(rect.translate({-2, -2, 2, 2}, pos))
+    end, 100)
+    if pos then
+      spawnArm(pos, vec2.add(pos, vec2.withAngle(2 * math.pi * math.random(), anchorRadius)),
+      "bomb", {target = args.target})
+    end
+
+    local nextInterval = util.lerp(i / args.repeats, args.intervalStart, args.intervalEnd)
+
+    util.run(nextInterval, function() end)
+  end
+
+  for _, projectileId in ipairs(spawnedProjectiles) do
+    vWorld.sendEntityMessage(projectileId, "freeze")
+  end
+
+  util.run(args.detonateDelay or 0, function() end)
+
+  shuffle(spawnedProjectiles)
+
+  for _, projectileId in ipairs(spawnedProjectiles) do
+    vWorld.sendEntityMessage(projectileId, "activate")
+    util.run(args.detonateInterval or 0, function() end)
   end
 
   return true
