@@ -79,7 +79,9 @@
                 "title": "v-titanofdarkness-bouncespread",
                 "type": "module",
                 "name": "v-titanofdarkness-bouncespread",
-                "parameters": {}
+                "parameters": {
+                  "orbParameters": {"value": {"power": 6.666666667}}
+                }
               }
             },
             {
@@ -145,7 +147,7 @@
           "type": "action",
           "name": "timer",
           "parameters": {
-            "time": {"value": 5}
+            "time": {"value": 4}
           }
         }
       ]

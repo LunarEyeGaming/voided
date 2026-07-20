@@ -3,8 +3,7 @@
   "description": "",
   "scripts": [
     "/scripts/behavior/bdata.lua",
-    "/scripts/actions/time.lua",
-    "/scripts/actions/voidedutil.lua"
+    "/scripts/actions/time.lua"
   ],
   "parameters": {},
   "root": {
@@ -89,7 +88,7 @@
                   "flingCount": {"value": 12},
                   "relocateProjectiles": {"value": true},
                   "flingDelay": {"value": 4},
-                  "orbParameters": {"value": {"homing": true}}
+                  "orbParameters": {"value": {"homing": true, "power": 6.666667}}
                 }
               }
             },
@@ -165,14 +164,6 @@
           "name": "timer",
           "parameters": {
             "time": {"value": 2.5}
-          }
-        },
-        {
-          "title": "v_logInfo",
-          "type": "action",
-          "name": "v_logInfo",
-          "parameters": {
-            "msg": {"value": "Active2"}
           }
         }
       ]

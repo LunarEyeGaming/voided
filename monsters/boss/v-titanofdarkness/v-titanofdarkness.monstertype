@@ -52,16 +52,18 @@
 
     "damageParts" : {
       "leftbeam" : {
-        "damage" : 20,
+        "damage" : 13.33333,
 
         "teamType" : "enemy",
-        "damageSourceKind" : "v-voidplasma"
+        "damageSourceKind" : "v-voidplasma",
+        "statusEffects" : [ "v-voideffect" ]
       },
       "rightbeam" : {
-        "damage" : 20,
+        "damage" : 13.33333,
 
         "teamType" : "enemy",
-        "damageSourceKind" : "v-voidplasma"
+        "damageSourceKind" : "v-voidplasma",
+        "statusEffects" : [ "v-voideffect" ]
       }
     },
 

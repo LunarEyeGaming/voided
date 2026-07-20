@@ -70,7 +70,7 @@
         "pointDistance" : 12.0,
         "maxNumPrevPos" : 3,
         "projectileType" : "v-titanburrowingrift",
-        "projectileConfig" : {"power" : 10},
+        "projectileConfig" : {"power" : 6.66666666667},
         "initialFuzzAngle" : 10,
         "pointOffsetAngle" : -90,
         "rotateHandSmoothly" : false,
@@ -90,7 +90,7 @@
       "bomb" : {
         "initialState" : "fist",
         "releaseDelay" : 0.3,
-        "projectileParameters" : {"power" : 17},
+        "projectileParameters" : {"power" : 11.33333333333},
         "projectileType" : "v-titanbomb",
         "rotateHandSmoothly" : false,
         "useAppearAnimation" : false,
@@ -117,12 +117,12 @@
 
     "touchDamage" : {
       "poly" : [ [2, 2], [2, -2], [-2, -2], [-2, 2] ],
-      "damage" : 15,
+      "damage" : 10,
 
       "teamType" : "enemy",
       "damageSourceKind" : "v-voidhammer",
       "knockback" : 20,
-      "statusEffects" : [ ]
+      "statusEffects" : [ "v-voideffect" ]
     },
 
     "statusSettings" : {
