@@ -742,7 +742,7 @@
                                         "type": "action",
                                         "name": "resourcePercentage",
                                         "parameters": {
-                                          "percentage": {"value": 0},
+                                          "percentage": {"value": 0.75},
                                           "resource": {"value": "health"}
                                         }
                                       },
@@ -888,6 +888,40 @@
                                               }
                                             }
                                           ]
+                                        }
+                                      },
+                                      {
+                                        "title": "addEphemeralEffect",
+                                        "type": "action",
+                                        "name": "addEphemeralEffect",
+                                        "parameters": {
+                                          "duration": {"value": 2147483647},
+                                          "name": {"value": "invulnerable"}
+                                        }
+                                      },
+                                      {
+                                        "title": "timer",
+                                        "type": "action",
+                                        "name": "timer",
+                                        "parameters": {
+                                          "time": {"value": 0.1}
+                                        }
+                                      },
+                                      {
+                                        "title": "setDamageBar",
+                                        "type": "action",
+                                        "name": "setDamageBar",
+                                        "parameters": {
+                                          "type": {"value": "None"}
+                                        }
+                                      },
+                                      {
+                                        "title": "setResourcePercentage",
+                                        "type": "action",
+                                        "name": "setResourcePercentage",
+                                        "parameters": {
+                                          "percentage": {"value": 0},
+                                          "resource": {"value": "health"}
                                         }
                                       },
                                       {
