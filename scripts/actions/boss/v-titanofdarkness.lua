@@ -141,12 +141,35 @@ function v_titanExplosionAttack(args, board)
     table.insert(spawnedProjectiles, projectileId)
   end)
 
+  local maxAttempts = 100
+
   for i = 1, args.repeats do
-    local pos = vWorld.randomPositionInRegion(rect.translate({-15, -15, 15, 15}, world.entityPosition(args.target)), function(pos)
-      return not world.rectCollision(rect.translate({-2, -2, 2, 2}, pos))
-    end, 100)
+    local targetPos = world.entityPosition(args.target)
+    if not targetPos then
+      return false
+    end
+
+    local targetVelocity = world.entityVelocity(args.target)  --[[@as Vec2F]]
+    local predictedAngle = vec2.angle(targetVelocity)
+    local testPoly = {{-2, -2}, {-2, 2}, {2, 2}, {2, -2}}
+
+    local pos, angle
+    local attempts = 0
+    repeat
+      if vec2.mag(targetVelocity) < 5 then
+        angle = vVec2.randomAngle(predictedAngle, 2 * math.pi)
+      else
+        angle = vVec2.randomAngle(predictedAngle, 45 * math.pi / 180)
+      end
+
+      local initialPos = vec2.add(targetPos, vec2.withAngle(angle, 35))
+      pos = world.resolvePolyCollision(testPoly, initialPos, 3)
+
+      attempts = attempts + 1
+    until pos or attempts > maxAttempts
+
     if pos then
-      spawnArm(pos, vec2.add(pos, vec2.withAngle(2 * math.pi * math.random(), anchorRadius)),
+      spawnArm(pos, vec2.add(pos, vec2.withAngle(angle, anchorRadius)),
       "bomb", {target = args.target})
     end
 

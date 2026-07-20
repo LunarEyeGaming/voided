@@ -1798,7 +1798,9 @@
       "name": "v-titanofdarkness-explosion",
       "title": "",
       "properties": {
-        "repeats": {"type": "json", "value": 10}
+        "repeats": {"type": "json", "value": 10},
+        "intervalStart": {"type": "json", "value": 1.3},
+        "intervalEnd": {"type": "json", "value": 0.5}
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-explosion.behavior"
     }

@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarkness-explosion",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/world.lua",
     "/scripts/actions/position.lua",
@@ -78,6 +78,7 @@
         "type": "action",
         "name": "v_titanExplosionAttack",
         "parameters": {
+          "armAnchorRadius": {"value": 50},
           "intervalEnd": {"key": "<intervalEnd>"},
           "intervalStart": {"key": "<intervalStart>"},
           "repeats": {"key": "<repeats>"},
