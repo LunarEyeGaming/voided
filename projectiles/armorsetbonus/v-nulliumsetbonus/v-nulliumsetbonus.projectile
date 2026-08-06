@@ -1,0 +1,22 @@
+{
+  "projectileName" : "v-nulliumsetbonus",
+  "image" : "nulliumsetbonus.png",
+  "windupFrames" : 2,
+  "winddownFrames" : 2,
+  "animationCycle" : 0.4,
+  "frameNumber" : 4,
+  "lightColor" : [51, 41, 71],
+
+  "piercing" : true,
+
+  "physics" : "illusion",
+  "bounces" : -1,
+  "speed" : 75,
+  "fullbright" : true,
+  "timeToLive" : 5,
+  "damagePoly" : [ [0, 9], [6, 6], [9, 0], [6, -6], [0, -9], [-6, -6], [-9, 0], [-6, 6] ],
+  "power" : 20,
+  "knockback" : 10,
+  "knockbackDirectional" : true,
+  "damageKind" : "v-void"
+}

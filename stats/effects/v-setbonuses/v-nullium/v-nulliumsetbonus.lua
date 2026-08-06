@@ -22,13 +22,14 @@ function init()
   listener = damageListener("inflictedDamage", function(notifications)
     for _, notification in ipairs(notifications) do
       if notification.hitType == "Kill" then
-        if not spawnedMines[notification.targetEntityId] then
-          local entityPos = world.entityPosition(notification.targetEntityId)
+        local entityId = notification.targetEntityId
+        if world.entityType(entityId) ~= "object" and not spawnedMines[entityId] then
+          local entityPos = world.entityPosition(entityId)
           if entityPos then
-            projectileConfig.affectedEntityId = notification.targetEntityId
+            projectileConfig.affectedEntityId = entityId
             world.spawnProjectile(projectileType, entityPos, entity.id(), {0, 0}, false, projectileConfig)
           end
-          spawnedMines[notification.targetEntityId] = true
+          spawnedMines[entityId] = true
         end
       end
     end
