@@ -9,7 +9,19 @@
         "states" : {
           "broken" : {},
           "inactive" : {},
-          "active" : {}
+          "grow" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "active"
+          },
+          "active" : {},
+          "shrink" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "inactive"
+          }
         }
       }
     },
@@ -25,14 +37,42 @@
                 "image" : "auroritesetbonus.png:inactive.<numHits>.<frame>"
               }
             },
+            "grow" : {
+              "properties" : {
+                "image" : "auroritesetbonus.png:grow.<numHits>.<frame>"
+              }
+            },
             "active" : {
               "properties" : {
                 "image" : "auroritesetbonus.png:active.<numHits>.<frame>"
+              }
+            },
+            "shrink" : {
+              "properties" : {
+                "image" : "auroritesetbonus.png:shrink.<numHits>.<frame>"
               }
             }
           }
         }
       }
     }
+  },
+  "particleEmitters" : {
+    "crack" : {
+      "particles" : [
+        { "count" : 2, "particle" : "prismshard" },
+        { "count" : 5, "particle" : "prismfineshard" }
+      ]
+    },
+    "break" : {
+      "particles" : [
+        { "count" : 10, "particle" : "prismshard" },
+        { "count" : 20, "particle" : "prismfineshard" }
+      ]
+    }
+  },
+  "sounds" : {
+    "crack" : [ "/sfx/objects/prism_break_small1.ogg", "/sfx/objects/prism_break_small2.ogg", "/sfx/objects/prism_break_small3.ogg" ],
+    "break" : [ "/sfx/objects/prism_break_large1.ogg", "/sfx/objects/prism_break_large2.ogg" ]
   }
 }

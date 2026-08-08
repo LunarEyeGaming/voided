@@ -1,9 +1,14 @@
 {
   "frameGrid" : {
     "size" : [48, 48],
-    "dimensions" : [6, 1],
+    "dimensions" : [9, 1],
     "names" : [
-      [ "inactive.0.1", "inactive.1.1", "inactive.2.1", "active.0.1", "active.1.1", "active.2.1" ]
+      [ "inactive.0.1", "inactive.1.1", "inactive.2.1", "grow.0.1", "grow.1.1", "grow.2.1", "active.0.1", "active.1.1", "active.2.1" ]
     ]
+  },
+  "aliases" : {
+    "shrink.0.1" : "grow.0.1",
+    "shrink.1.1" : "grow.1.1",
+    "shrink.2.1" : "grow.2.1"
   }
 }

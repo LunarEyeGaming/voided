@@ -35,6 +35,7 @@ function init()
   hitTimer = hitInvulnerabilityTime
   prevAbsorption = 0
   state = FSM:new()
+  animator.setAnimationState("shield", "inactive")
   state:set(states.inactive)
 end
 
@@ -65,7 +66,6 @@ end
 states = {}
 
 function states.inactive()
-  animator.setAnimationState("shield", "inactive")
 
   killProjectile()
   status.setResource("damageAbsorption", 0)
@@ -75,7 +75,7 @@ function states.inactive()
     coroutine.yield()
   end
 
-  animator.setAnimationState("shield", "active")
+  animator.setAnimationState("shield", "grow")
 
   state:set(states.activeIntangible)
 end
@@ -91,6 +91,7 @@ function states.activeIntangible()
   killProjectile()
 
   if not mcontroller.crouching() then
+    animator.setAnimationState("shield", "shrink")
     state:set(states.inactive)
   else
     state:set(states.active)
@@ -112,9 +113,13 @@ function states.active()
     hitTimer = hitInvulnerabilityTime
     hitCounter = hitCounter + 1
     if hitCounter >= maxHits then
+      animator.burstParticleEmitter("break")
+      animator.playSound("break")
       state:set(states.broken)
     else
       status.addEphemeralEffect("invulnerable", hitInvulnerabilityTime)
+      animator.burstParticleEmitter("crack")
+      animator.playSound("crack")
       state:set(states.activeIntangible)
     end
   else
