@@ -31,7 +31,13 @@ function View:v_drawStarRift(system)
     local scale = riftDrawable.scale * starSize * View.systemCamera.scale
     local opacity = 1.0
     local color = {255, 255, 255, opacity * 255}
-    View.canvas:drawImage(riftDrawable.image, self:sToScreen({0, 0}), scale, color, true)
+    local image
+    if g_inOtherUniverse then
+      image = riftDrawable.invertedImage
+    else
+      image = riftDrawable.image
+    end
+    View.canvas:drawImage(image, self:sToScreen({0, 0}), scale, color, true)
   end
 
   if not system then
