@@ -66,7 +66,6 @@ end
 states = {}
 
 function states.inactive()
-
   killProjectile()
   status.setResource("damageAbsorption", 0)
 
@@ -123,6 +122,7 @@ function states.active()
       state:set(states.activeIntangible)
     end
   else
+    animator.setAnimationState("shield", "shrink")
     state:set(states.inactive)
   end
 end
