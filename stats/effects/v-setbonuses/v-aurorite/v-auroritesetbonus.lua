@@ -75,6 +75,7 @@ function states.inactive()
   end
 
   animator.setAnimationState("shield", "grow")
+  animator.playSound("deploy")
 
   state:set(states.activeIntangible)
 end
@@ -91,6 +92,7 @@ function states.activeIntangible()
 
   if not mcontroller.crouching() then
     animator.setAnimationState("shield", "shrink")
+    animator.playSound("retract")
     state:set(states.inactive)
   else
     state:set(states.active)
@@ -123,12 +125,14 @@ function states.active()
     end
   else
     animator.setAnimationState("shield", "shrink")
+    animator.playSound("retract")
     state:set(states.inactive)
   end
 end
 
 function states.broken()
   animator.setAnimationState("shield", "broken")
+  animator.setAnimationState("orb", "invisible")
 
   status.setResource("damageAbsorption", 0)
 
@@ -137,6 +141,8 @@ function states.broken()
   end)
 
   hitCounter = 0
+
+  animator.setAnimationState("orb", "idle")
 
   state:set(states.inactive)
 end

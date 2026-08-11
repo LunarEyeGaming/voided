@@ -4,20 +4,31 @@
   },
   "animatedParts" : {
     "stateTypes" : {
+      "orb" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "loop"
+          },
+          "invisible" : {}
+        }
+      },
       "shield" : {
         "default" : "inactive",
         "states" : {
           "broken" : {},
           "inactive" : {},
           "grow" : {
-            "frames" : 1,
+            "frames" : 3,
             "cycle" : 0.1,
             "mode" : "transition",
             "transition" : "active"
           },
           "active" : {},
           "shrink" : {
-            "frames" : 1,
+            "frames" : 3,
             "cycle" : 0.1,
             "mode" : "transition",
             "transition" : "inactive"
@@ -26,9 +37,26 @@
       }
     },
     "parts" : {
+      "orb" : {
+        "properties" : {
+          "centered" : true,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "orb" : {
+            "idle" : {
+              "properties" : {
+                "image" : "auroritesetbonusorb.png:<frame>"
+              }
+            }
+          }
+        }
+      },
       "shield" : {
         "properties" : {
-          "centered" : true
+          "zLevel" : 1,
+          "centered" : true,
+          "fullbright" : true
         },
         "partStates" : {
           "shield" : {
@@ -72,6 +100,8 @@
     }
   },
   "sounds" : {
+    "deploy" : [ "/sfx/statuseffects/v_iceshield_deploy.ogg" ],
+    "retract" : [ "/sfx/statuseffects/v_iceshield_retract.ogg" ],
     "crack" : [ "/sfx/objects/prism_break_small1.ogg", "/sfx/objects/prism_break_small2.ogg", "/sfx/objects/prism_break_small3.ogg" ],
     "break" : [ "/sfx/objects/prism_break_large1.ogg", "/sfx/objects/prism_break_large2.ogg" ]
   }
