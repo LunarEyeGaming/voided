@@ -8,6 +8,7 @@ require "/scripts/v-world.lua"
 
 local SMALL_RECT = {-1, -1, 1, 1}
 
+local worldCoordinates
 local defaultRiftZoneVelocity
 local playerProximityRegion
 local lightningOffsetRegion
@@ -18,13 +19,22 @@ local defaultTimeToLive
 
 local maxSpawnDelay  -- Maximum time to wait before spawning a rift zone
 local minSpawnDelay  -- Minimum time to wait before spawning a rift zone
+local maxTriggerInterval
+local minTriggerInterval
+local densityTriggerThreshold  -- Maximum rift zone density at which a rift zone event can trigger
 local riftZoneDensity
 local riftZoneSpacing
 local weatherTypes  -- The potential weather events that could occur in a rift zone.
+local minPlanetStayTime
 
+local nextTriggerTime
+
+local rng
 local postInitCalled
+local thread
 
 function init()
+  worldCoordinates = config.getParameter("worldCoordinates")
   local cfg = root.assetJson("/v-riftzones.config")
   defaultRiftZoneVelocity = cfg.defaultZoneVelocity
   local lightningTriggerRange = cfg.lightningTriggerRange
@@ -38,16 +48,27 @@ function init()
   riftZoneDensity = cfg.riftZoneSpawnDensity
   riftZoneSpacing = cfg.riftZoneSpawnSpacing
 
-  maxSpawnDelay = cfg.spawnDelayRange[1]
-  minSpawnDelay = cfg.spawnDelayRange[2]
+  maxSpawnDelay = cfg.spawnDelayRange[2]
+  minSpawnDelay = cfg.spawnDelayRange[1]
+
+  maxTriggerInterval = cfg.triggerIntervalRange[2]
+  minTriggerInterval = cfg.triggerIntervalRange[1]
+  densityTriggerThreshold = cfg.densityTriggerThreshold
 
   weatherTypes = {"meteors", "gravispheres", "destabilization"}
 
-  message.setHandler("beginEvent", function()
-    beginEvent()
-  end)
+  minPlanetStayTime = cfg.minPlanetStayTime
 
   vTime.addInterval(1, cleanUpAfterRiftZones)
+  vTime.addInterval(1, attemptRiftZoneSpawn)
+
+  rng = sb.makeRandomSource(world.time() % maxTriggerInterval + worldCoordinates.location[1] + worldCoordinates.location[2] + worldCoordinates.location[3])
+
+  triggerTime = world.getProperty("v-riftZoneTriggerTime")
+  if not triggerTime then
+    triggerTime = world.time() + rng:randf(minTriggerInterval, maxTriggerInterval)
+    world.setProperty("v-riftZoneTriggerTime", triggerTime)
+  end
 
   postInitCalled = false
 end
@@ -73,25 +94,30 @@ function update(dt)
 
   vTime.update(dt)
 
-  local riftZones = world.getProperty("v-riftZones") or jarray()
-  local riftZoneSpawnPoints = world.getProperty("v-riftZoneSpawnPoints") or jarray()
+  updateThread()
 
-  for i = #riftZoneSpawnPoints, 1, -1 do
-    local point = riftZoneSpawnPoints[i]
-    if world.time() > point.spawnTime then
-      table.insert(riftZones, {
-        position = point.position,
-        velocity = defaultRiftZoneVelocity,
-        stateData = {deathTime = world.time() + defaultTimeToLive},
-        level = world.threatLevel(),
-        timeToLive = defaultTimeToLive
-      })
-      table.remove(riftZoneSpawnPoints, i)
+  local riftZones = world.getProperty("v-riftZones") or jarray()
+  updateRiftZoneSpawnPoints(riftZones)
+
+  updateRiftZones(riftZones, dt)
+
+  strikeRiftZoneLightning(riftZones)
+end
+
+function updateThread()
+  if thread then
+    if coroutine.status(thread) == "dead" then
+      thread = nil
+    else
+      local status, result = coroutine.resume(thread)
+      if not status then
+        error(result)
+      end
     end
   end
+end
 
-  world.setProperty("v-riftZoneSpawnPoints", riftZoneSpawnPoints)
-
+function updateRiftZones(riftZones, dt)
   local riftZonesToSpawn = {}
 
   local zoomOut = function(anchor, pos, factor)
@@ -127,6 +153,19 @@ function update(dt)
     -- countRiftZones()
   end
 
+  world.setProperty("v-riftZones", riftZones)
+
+  for _, riftZone in ipairs(riftZonesToSpawn) do
+    world.spawnMonster("v-riftzone", riftZone.position, {
+      velocity = riftZone.velocity or defaultRiftZoneVelocity,
+      stateData = riftZone.stateData,
+      level = riftZone.level,
+      timeToLive = riftZone.timeToLive
+    })
+  end
+end
+
+function strikeRiftZoneLightning(riftZones)
   local players = world.players()
   for _, playerId in ipairs(players) do
     local playerPos = world.entityPosition(playerId)
@@ -138,19 +177,26 @@ function update(dt)
       end
     end
   end
+end
 
-  world.setProperty("v-riftZones", riftZones)
+function updateRiftZoneSpawnPoints(riftZones)
+  local riftZoneSpawnPoints = world.getProperty("v-riftZoneSpawnPoints") or jarray()
 
-  for _, riftZone in ipairs(riftZonesToSpawn) do
-    world.spawnMonster("v-riftzone", riftZone.position, {
-      velocity = riftZone.velocity or defaultRiftZoneVelocity,
-      stateData = riftZone.stateData,
-      level = riftZone.level,
-      timeToLive = riftZone.timeToLive
-    })
+  for i = #riftZoneSpawnPoints, 1, -1 do
+    local point = riftZoneSpawnPoints[i]
+    if world.time() > point.spawnTime then
+      table.insert(riftZones, {
+        position = point.position,
+        velocity = defaultRiftZoneVelocity,
+        stateData = {deathTime = world.time() + defaultTimeToLive},
+        level = world.threatLevel(),
+        timeToLive = defaultTimeToLive
+      })
+      table.remove(riftZoneSpawnPoints, i)
+    end
   end
 
-  sb.setLogMap("v-riftzonemanager-spawnedRiftZones", "%s", #riftZonesToSpawn)
+  world.setProperty("v-riftZoneSpawnPoints", riftZoneSpawnPoints)
 end
 
 function createRiftZone(riftZones, oldRiftZone)
@@ -274,4 +320,50 @@ function clearOres(propertyName, layer)
   end
 
   world.setProperty(propertyName, oresToClear)
+end
+
+function attemptRiftZoneSpawn()
+  if world.time() > triggerTime
+  and not titanOfDarknessActive()
+  and currentDensity() <= densityTriggerThreshold then
+    thread = coroutine.create(riftZoneSpawnCo)
+  end
+end
+
+function titanOfDarknessActive()
+  return world.loadUniqueEntity("v-titanofdarkness") ~= 0
+end
+
+function currentDensity()
+  -- Returns approximate density of rift zones (number of rift zones per riftZoneSpacing-sized cell). Does not include
+  -- active rift zones.
+  local riftZones = world.getProperty("v-riftZones") or jarray()
+
+  local riftZoneCount = #riftZones
+
+  local size = world.size()
+  local maxNumRiftZones = (size[1] // riftZoneSpacing) * (size[2] // riftZoneSpacing)
+
+  local density = riftZoneCount / maxNumRiftZones
+
+  return density
+end
+
+function riftZoneSpawnCo()
+  -- Broadcast a message requesting planet stay time among all players. At least one must have stayed on the planet for minPlanetStayTime seconds.
+  local playerStayedLongEnough
+  vWorldA.sendEntityMessageToTargets(function(promise)
+    local res = promise:result()
+    if res and res >= minPlanetStayTime then
+      playerStayedLongEnough = true
+    end
+  end, function(promise)
+    sb.logError("v-riftzonemanager: Promise failed: %s", promise:error())
+  end, world.players(), "v-riftzonespawn-planetStayTime")
+
+  if playerStayedLongEnough then
+    beginEvent()
+    triggerTime = world.time() + rng:randf(minTriggerInterval, maxTriggerInterval)
+    world.setProperty("v-riftZoneTriggerTime", triggerTime)
+  end
 end

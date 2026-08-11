@@ -90,28 +90,35 @@ function init()
     actLikeIStayedLongEnough(worldType)
   end)
 
+  message.setHandler("v-riftzonespawn-planetStayTime", function()
+    return worldTypeStayTime
+  end)
+
   script.setUpdateDelta(60)
 end
 
 function update(dt)
+  if not currentCoordinates then
+    currentCoordinates = getCelestialCoordinates()
+    return
+  end
+
   -- Spawn stagehand.
   if not stagehandSpawned then
-    world.spawnStagehand(mcontroller.position(), "v-riftzonemanager")
+    world.spawnStagehand(mcontroller.position(), "v-riftzonemanager", {
+      worldCoordinates = currentCoordinates
+    })
     stagehandSpawned = true
     return
   end
 
-  if not currentCoordinates then
-    currentCoordinates = getCelestialCoordinates()
-  end
-
-  if worldTypeStayTime > minPlanetStayTime then
-    if currentCoordinates then
-      coordsMode()
-    else
-      noCoordsMode(dt)
-    end
-  end
+  -- if worldTypeStayTime > minPlanetStayTime then
+  --   if currentCoordinates then
+  --     coordsMode()
+  --   else
+  --     noCoordsMode(dt)
+  --   end
+  -- end
 
   worldTypeStayTime = worldTypeStayTime + dt
 end
