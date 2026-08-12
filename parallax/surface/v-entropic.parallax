@@ -19,9 +19,31 @@
 
     {
       "kind" : "v-entropic/clouds1",
-      "frequency" : 0.5,
+      "frequency" : 0.25,
       "offset" : [0, 0],
       "parallax" : 30,
+      "minSpeed" : 3000,
+      "maxSpeed" : 5000,
+      "directives" : "multiply=ffffff77",
+      "timeOfDayCorrelation" : "dayVisible"
+    },
+
+    {
+      "kind" : "v-entropic/clouds1",
+      "frequency" : 0.25,
+      "offset" : [0, -50],
+      "parallax" : 35,
+      "minSpeed" : 3000,
+      "maxSpeed" : 5000,
+      "directives" : "multiply=ffffff77",
+      "timeOfDayCorrelation" : "dayVisible"
+    },
+
+    {
+      "kind" : "v-entropic/clouds1",
+      "frequency" : 0.25,
+      "offset" : [0, -100],
+      "parallax" : 40,
       "minSpeed" : 3000,
       "maxSpeed" : 5000,
       "directives" : "multiply=ffffff77",
