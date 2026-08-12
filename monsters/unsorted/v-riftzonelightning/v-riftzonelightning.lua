@@ -6,6 +6,8 @@ require "/scripts/v-animator.lua"
 
 local lightningController
 
+local remainingTime
+
 local thread
 
 local shouldDieVar

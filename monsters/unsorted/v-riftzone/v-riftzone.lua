@@ -934,6 +934,10 @@ function v_isRiftZone()
   return true
 end
 
+function v_timeToLive()
+  return existenceTimer
+end
+
 function v_killRiftZone()
   wasForceKilled = true
   existenceTimer = 0

@@ -29,6 +29,7 @@ local minPlanetStayTime
 
 local nextTriggerTime
 
+local activeRiftZones
 local rng
 local postInitCalled
 local thread
@@ -78,12 +79,13 @@ function init()
     world.setProperty("v-riftZones", riftZones)
   end)
 
+  activeRiftZones = {}
   rng = sb.makeRandomSource(world.time() % maxTriggerInterval + worldCoordinates.location[1] + worldCoordinates.location[2] + worldCoordinates.location[3])
 
-  triggerTime = world.getProperty("v-riftZoneTriggerTime")
-  if not triggerTime then
-    triggerTime = world.time() + rng:randf(minTriggerInterval, maxTriggerInterval)
-    world.setProperty("v-riftZoneTriggerTime", triggerTime)
+  nextTriggerTime = world.getProperty("v-riftZoneTriggerTime")
+  if not nextTriggerTime then
+    nextTriggerTime = world.time() + rng:randf(minTriggerInterval, maxTriggerInterval)
+    world.setProperty("v-riftZoneTriggerTime", nextTriggerTime)
   end
 
   if not storage.cleanupInfo then
@@ -118,6 +120,8 @@ function update(dt)
   end
 
   vTime.update(dt)
+
+  sb.setLogMap("v-riftzone_nextTriggerTime", "%s", nextTriggerTime - world.time())
 
   updateThread()
 
@@ -181,12 +185,26 @@ function updateRiftZones(riftZones, dt)
   world.setProperty("v-riftZones", riftZones)
 
   for _, riftZone in ipairs(riftZonesToSpawn) do
-    world.spawnMonster("v-riftzone", riftZone.position, {
+    local entityId = world.spawnMonster("v-riftzone", riftZone.position, {
       velocity = riftZone.velocity or defaultRiftZoneVelocity,
       stateData = riftZone.stateData,
       level = riftZone.level,
       timeToLive = riftZone.timeToLive
     })
+    if entityId then
+      table.insert(activeRiftZones, entityId)
+    end
+  end
+
+
+  activeRiftZones = util.filter(activeRiftZones, function(x) return world.entityExists(x) end)
+  for _, entityId in ipairs(activeRiftZones) do
+    local timeToLive = world.callScriptedEntity(entityId, "v_timeToLive")
+    if playerPos then
+      local zoomedOutPos = zoomOut(playerPos, world.entityPosition(entityId), 120)
+      world.debugText("%s", timeToLive, zoomedOutPos, "magenta")
+      -- world.debugPoint(zoomedOutPos, "magenta")
+    end
   end
 end
 
@@ -379,7 +397,7 @@ function clearOres(propertyName, layer)
 end
 
 function attemptRiftZoneSpawn()
-  if world.time() > triggerTime
+  if world.time() > nextTriggerTime
   and not titanOfDarknessActive()
   and currentDensity() <= densityTriggerThreshold then
     thread = coroutine.create(riftZoneSpawnCo)
@@ -419,7 +437,7 @@ function riftZoneSpawnCo()
 
   if playerStayedLongEnough then
     beginEvent()
-    triggerTime = world.time() + rng:randf(minTriggerInterval, maxTriggerInterval)
-    world.setProperty("v-riftZoneTriggerTime", triggerTime)
+    nextTriggerTime = world.time() + rng:randf(minTriggerInterval, maxTriggerInterval)
+    world.setProperty("v-riftZoneTriggerTime", nextTriggerTime)
   end
 end
