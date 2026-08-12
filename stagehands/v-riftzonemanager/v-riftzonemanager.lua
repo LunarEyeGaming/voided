@@ -62,12 +62,37 @@ function init()
   vTime.addInterval(1, cleanUpAfterRiftZones)
   vTime.addInterval(1, attemptRiftZoneSpawn)
 
+  message.setHandler("cleanUp", function(_, _, blocksToClearFG, blocksToClearBG, oresToClearFG, oresToClearBG, riftZoneData)
+    local partitionedBlocksFG = partitionByChunk(blocksToClearFG)
+    local partitionedBlocksBG = partitionByChunk(blocksToClearBG)
+    local partitionedOresFG = partitionByChunk(oresToClearFG)
+    local partitionedOresBG = partitionByChunk(oresToClearBG)
+
+    pushPartitionToStorageProperty("blocksToRemoveFG", partitionedBlocksFG)
+    pushPartitionToStorageProperty("blocksToRemoveBG", partitionedBlocksBG)
+    pushPartitionToStorageProperty("oresToRemoveFG", partitionedOresFG)
+    pushPartitionToStorageProperty("oresToRemoveBG", partitionedOresBG)
+
+    local riftZones = world.getProperty("v-riftZones") or jarray()
+    table.insert(riftZones, riftZoneData)
+    world.setProperty("v-riftZones", riftZones)
+  end)
+
   rng = sb.makeRandomSource(world.time() % maxTriggerInterval + worldCoordinates.location[1] + worldCoordinates.location[2] + worldCoordinates.location[3])
 
   triggerTime = world.getProperty("v-riftZoneTriggerTime")
   if not triggerTime then
     triggerTime = world.time() + rng:randf(minTriggerInterval, maxTriggerInterval)
     world.setProperty("v-riftZoneTriggerTime", triggerTime)
+  end
+
+  if not storage.cleanupInfo then
+    storage.cleanupInfo = {
+      blocksToRemoveFG = {},
+      blocksToRemoveBG = {},
+      oresToRemoveFG = {},
+      oresToRemoveBG = {}
+    }
   end
 
   postInitCalled = false
@@ -271,15 +296,50 @@ function closeToARiftZone(position, riftZones)
   return false
 end
 
+---Partitions blocks by chunks.
+---@param blocks Vec2F[]
+---@return table<string, Vec2F[]>
+function partitionByChunk(blocks)
+  local partition = {}
+
+  for _, block in ipairs(blocks) do
+    local sector = {block[1] // vWorld.SECTOR_SIZE, block[2] // vWorld.SECTOR_SIZE}
+
+    local sectorStr = vVec2.iToString(sector)
+    if not partition[sectorStr] then
+      partition[sectorStr] = jarray()
+    end
+
+    table.insert(partition[sectorStr], block)
+  end
+
+  return partition
+end
+
+function pushPartitionToStorageProperty(propertyName, partition)
+  local prop = storage.cleanupInfo[propertyName]
+  for sectorStr, blocks in pairs(partition) do
+    local propBlocks = prop[sectorStr]
+    if not propBlocks then
+      propBlocks = jarray()
+      prop[sectorStr] = propBlocks
+    end
+    -- Append contents of blocks to propBlocks
+    for _, block in ipairs(blocks) do
+      table.insert(propBlocks, block)
+    end
+  end
+end
+
 function cleanUpAfterRiftZones()
-  clearBlocks("v-riftzone-blocksToRemoveFG", "foreground")
-  clearBlocks("v-riftzone-blocksToRemoveBG", "background")
-  clearOres("v-riftzone-oresToRemoveFG", "foreground")
-  clearOres("v-riftzone-oresToRemoveBG", "background")
+  clearBlocks("blocksToRemoveFG", "foreground")
+  clearBlocks("blocksToRemoveBG", "background")
+  clearOres("oresToRemoveFG", "foreground")
+  clearOres("oresToRemoveBG", "background")
 end
 
 function clearBlocks(propertyName, layer)
-  local blocksToClear = world.getProperty(propertyName) or {}
+  local blocksToClear = storage.cleanupInfo[propertyName]
 
   for sectorStr, blocks in pairs(blocksToClear) do
     local sector = vVec2.iFromString(sectorStr)
@@ -295,12 +355,10 @@ function clearBlocks(propertyName, layer)
       blocksToClear[sectorStr] = nil
     end
   end
-
-  world.setProperty(propertyName, blocksToClear)
 end
 
 function clearOres(propertyName, layer)
-  local oresToClear = world.getProperty(propertyName) or {}
+  local oresToClear = storage.cleanupInfo[propertyName]
 
   for sectorStr, ores in pairs(oresToClear) do
     local sector = vVec2.iFromString(sectorStr)
@@ -318,8 +376,6 @@ function clearOres(propertyName, layer)
       oresToClear[sectorStr] = nil
     end
   end
-
-  world.setProperty(propertyName, oresToClear)
 end
 
 function attemptRiftZoneSpawn()

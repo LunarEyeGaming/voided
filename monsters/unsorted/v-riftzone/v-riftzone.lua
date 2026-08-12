@@ -814,16 +814,9 @@ function cleanUp()
       sb.logWarn("oresToClearBG not defined")
     end
 
-    local params = {
-      persistent = true,
-      blocksToClearFG = blocksToClearFG,
-      blocksToClearBG = blocksToClearBG,
-      oresToClearFG = oresToClearFG,
-      oresToClearBG = oresToClearBG,
-    }
-
+    local riftZoneData
     if not g_shouldDieVar then
-      params.riftZoneData = {
+      riftZoneData = {
         position = mcontroller.position(),
         velocity = velocity,
         stateData = {
@@ -834,7 +827,7 @@ function cleanUp()
       }
     end
 
-    world.spawnMonster("v-riftzonecleanup", mcontroller.position(), params)
+    world.sendEntityMessage("v-riftzonemanager-stagehand", "cleanUp", blocksToClearFG, blocksToClearBG, oresToClearFG, oresToClearBG, riftZoneData)
   end
 end
 
