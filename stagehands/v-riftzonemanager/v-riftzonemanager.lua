@@ -215,7 +215,8 @@ function updateRiftZones(riftZones, dt)
   allRiftZones = {}
 
   for _, riftZone in ipairs(riftZones) do
-    table.insert(allRiftZones, {position = riftZone.position, timeToLiveRatio = riftZone.timeToLive / defaultTimeToLive})
+    -- timeToLive is static here, so use deathTime instead.
+    table.insert(allRiftZones, {position = riftZone.position, timeToLiveRatio = (riftZone.stateData.deathTime - world.time()) / defaultTimeToLive})
   end
 
   for _, riftZone in ipairs(activeRiftZones) do
