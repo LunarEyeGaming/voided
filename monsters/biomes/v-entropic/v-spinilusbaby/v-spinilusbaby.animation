@@ -37,6 +37,19 @@
         }
       },
 
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      },
+
       "attack" : {
         "priority" : 1,
         "default" : "idle",
@@ -149,6 +162,14 @@
             "shooting" : {
               "properties" : {
                 "image" : "<partImage>:ranged.<frame>"
+              }
+            }
+          },
+
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
               }
             }
           }
