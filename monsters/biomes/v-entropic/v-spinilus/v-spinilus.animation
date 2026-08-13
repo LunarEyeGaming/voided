@@ -14,15 +14,27 @@
             "cycle" : 0.25,
             "mode" : "loop"
           },
-          "swimFast" : {
-            "frames" : 1,
-            "cycle" : 0.6,
-            "mode" : "loop"
+          "boostwindup" : {
+            "frames" : 4,
+            "cycle" : 1.5,
+            "mode" : "end"
           },
-          "swimSlow" : {
+          "boost" : {
+            "frames" : 2,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "boostend"
+          },
+          "boostend" : {
             "frames" : 1,
-            "cycle" : 0.9,
-            "mode" : "loop"
+            "cycle" : 1,
+            "mode" : "end"
+          },
+          "boostwinddown" : {
+            "frames" : 5,
+            "cycle" : 0.75,
+            "mode" : "transition",
+            "transition" : "idle"
           }
         }
       },
@@ -88,19 +100,29 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
-            "swimFast" : {
+            "boostwindup" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:boostwindup.<frame>"
               }
             },
-            "swimSlow" : {
+            "boost" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:boost.<frame>"
+              }
+            },
+            "boostend" : {
+              "properties" : {
+                "image" : "<partImage>:boostend.<frame>"
+              }
+            },
+            "boostwinddown" : {
+              "properties" : {
+                "image" : "<partImage>:boostwinddown.<frame>"
               }
             },
             "flopping" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:flopping.<frame>"
               }
             }
           }
@@ -122,19 +144,29 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
-            "swimFast" : {
+            "boostwindup" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:boostwindup.<frame>"
               }
             },
-            "swimSlow" : {
+            "boost" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:boost.<frame>"
+              }
+            },
+            "boostend" : {
+              "properties" : {
+                "image" : "<partImage>:boostend.<frame>"
+              }
+            },
+            "boostwinddown" : {
+              "properties" : {
+                "image" : "<partImage>:boostwinddown.<frame>"
               }
             },
             "flopping" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:flopping.<frame>"
               }
             }
           }

@@ -2,22 +2,12 @@ require "/scripts/util.lua"
 require "/scripts/poly.lua"
 require "/scripts/rect.lua"
 
---[[
-  Behavior:
-  * Swim back and forth.
-  * If at any point it exits water:
-    * If it is not inflated:
-      * Set state to flop
-      * Play flopping animation
-      * Flop around
-      * In this state, it is not able to inflate.
-    * Else:
-      * Stand still
-]]
-
 local swimSpeed
 local swimForce
 
+local changeDirectionTestDistance
+
+local currentDirection
 local state
 
 function init()
@@ -25,6 +15,7 @@ function init()
 
   swimSpeed = config.getParameter("swimSpeed")
   swimForce = config.getParameter("swimForce")
+  changeDirectionTestDistance = config.getParameter("changeDirectionTestDistance")
 
   monster.setDeathParticleBurst("deathPoof")
 
@@ -35,6 +26,8 @@ function init()
   animator.setGlobalTag("inflateStatus", "normal")
 
   message.setHandler("despawn", despawn)
+
+  currentDirection = util.randomDirection()
 
   state = FSM:new()
   state:set(states.swim)
@@ -55,28 +48,81 @@ end
 states = {}
 
 function states.swim()
-  local direction = 1
+  -- local direction = 1
 
-  -- Reset animation state
-  animator.setAnimationState("movement", "swimFast")
+  -- -- Reset animation state
+  -- animator.setAnimationState("movement", "swimFast")
 
-  -- Swim back and forth
+  -- -- Swim back and forth
+  -- while true do
+  --   -- If the monster is out of liquid...
+  --   if not mcontroller.liquidMovement() then
+  --     state:set(states.outOfLiquid)
+  --   end
+
+  --   -- If colliding with a wall...
+  --   if util.blockSensorTest("blockedSensors", direction) then
+  --     direction = -direction
+  --   end
+
+  --   --mcontroller.controlApproachVelocity(vec2.mul({direction, 0}, swimSpeed), swimForce)
+  --   -- Swim
+  --   mcontroller.controlFly({direction, 0})
+  --   mcontroller.controlFace(direction)
+
+  --   coroutine.yield()
+  -- end
+  local changeDirectionTime = 0.15
+  local boostDelay = 1.5
+  local boostDuration = 0.25
+  local postBoostDelay = 1.0
+  local waitTime = 2.0
+  local boostSpeed = nil
+
   while true do
-    -- If the monster is out of liquid...
-    if not mcontroller.liquidMovement() then
-      state:set(states.outOfLiquid)
+    local thread1 = coroutine.create(function()
+      local testRect = getTestRect(currentDirection)
+      if world.rectCollision(testRect) then
+        currentDirection = -currentDirection
+        util.wait(changeDirectionTime)
+      end
+
+      animator.setAnimationState("movement", "boostwindup")
+
+      util.wait(boostDelay, function()
+        mcontroller.controlFace(currentDirection)
+      end)
+
+      animator.setAnimationState("movement", "boost")
+
+      util.wait(boostDuration, function()
+        if boostSpeed then
+          mcontroller.controlParameters({flySpeed = boostSpeed})
+        end
+        mcontroller.controlFly({currentDirection, 0})
+        mcontroller.controlFace(currentDirection)
+      end)
+
+      util.wait(postBoostDelay)
+
+      animator.setAnimationState("movement", "boostwinddown")
+
+      util.wait(waitTime)
+    end)
+    local thread2 = coroutine.create(function()
+      while true do
+        if not mcontroller.liquidMovement() then
+          state:set(states.outOfLiquid)
+          return
+        end
+
+        coroutine.yield()
+      end
+    end)
+
+    while util.parallel(thread1, thread2) do
+      coroutine.yield()
     end
-
-    -- If colliding with a wall...
-    if util.blockSensorTest("blockedSensors", direction) then
-      direction = -direction
-    end
-
-    --mcontroller.controlApproachVelocity(vec2.mul({direction, 0}, swimSpeed), swimForce)
-    -- Swim
-    mcontroller.controlFly({direction, 0})
-    mcontroller.controlFace(direction)
-
     coroutine.yield()
   end
 end
@@ -86,16 +132,27 @@ function states.outOfLiquid()
 
   -- Flop around.
   while not mcontroller.liquidMovement() do
-    if mcontroller.onGround() then
-      local jumpDirection = util.randomDirection()
-      mcontroller.controlMove(jumpDirection)
-      mcontroller.controlJump()
-    end
+    -- if mcontroller.onGround() then
+    --   local jumpDirection = util.randomDirection()
+    --   mcontroller.controlMove(jumpDirection)
+    --   mcontroller.controlJump()
+    -- end
 
     coroutine.yield()
   end
 
   state:set(states.swim)
+end
+
+function getTestRect(direction)
+  local ownRect = mcontroller.boundBox()
+  if direction > 0 then
+    ownRect[3] = ownRect[3] + changeDirectionTestDistance
+  else
+    ownRect[1] = ownRect[1] - changeDirectionTestDistance
+  end
+
+  return rect.translate(ownRect, mcontroller.position())
 end
 
 function despawn()

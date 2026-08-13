@@ -26,9 +26,9 @@
 
       "mass" : 1.5,
       "liquidBuoyancy" : 1.0,
-      "flySpeed" : 18,
-      "liquidFriction" : 2.0,
-      "liquidForce" : 150.0,
+      "flySpeed" : 36,
+      "liquidFriction" : 1.0,
+      "liquidForce" : 300.0,
 
       "airJumpProfile" : {
         "jumpSpeed" : 15.0,
@@ -61,6 +61,8 @@
     "deathParticles" : "deathPoof",
 
     "colors" : "generated",
+
+    "changeDirectionTestDistance" : 10,
 
     "blockedSensors" : [ [2.75, -1.0], [3.0, 0.0], [2.75, 1.0] ],
     "upSensors" : [ [-1.25, -1.25], [1.0, -1.25], [2.75, -1.25] ],
