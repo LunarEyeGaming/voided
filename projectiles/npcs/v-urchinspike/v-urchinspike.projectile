@@ -16,7 +16,9 @@
   ],
   "power" : 5.0,
   "speed" : 20,
+  "speedRange" : [15, 25],
   "damageKind" : "icespear",
   "emitters" : [ "iceplasmarocket", "iceplasma", "v-bubbles" ],
-  "statusEffects" : ["frostslow", "v-coldtouch"]
+  "statusEffects" : ["frostslow", "v-coldtouch"],
+  "scripts" : [ "/scripts/projectiles/v-variedspeed.lua" ]
 }
