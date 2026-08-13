@@ -19,13 +19,13 @@ function init()
   mergeRange = config.getParameter("mergeRange")
   exitId = config.getParameter("linkingNode")
 
-  merger = VMerger:new(mergerType, mergeRange, false, true)
+  -- merger = VMerger:new(mergerType, mergeRange, false, true)
 
   teleportTimer = teleportDelay
 end
 
 function update(dt)
-  merger:process()
+  -- merger:process()
 end
 
 function destroy()
