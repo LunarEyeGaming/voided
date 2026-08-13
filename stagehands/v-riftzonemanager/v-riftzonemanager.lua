@@ -30,6 +30,7 @@ local minPlanetStayTime
 local nextTriggerTime
 
 local activeRiftZones
+local allRiftZones
 local rng
 local postInitCalled
 local thread
@@ -79,6 +80,11 @@ function init()
     world.setProperty("v-riftZones", riftZones)
   end)
 
+  message.setHandler("getAllRiftZones", function()
+    return allRiftZones
+  end)
+
+  allRiftZones = {}
   activeRiftZones = {}
   rng = sb.makeRandomSource(world.time() % maxTriggerInterval + worldCoordinates.location[1] + worldCoordinates.location[2] + worldCoordinates.location[3])
 
@@ -161,7 +167,6 @@ function updateRiftZones(riftZones, dt)
     if playerPos then
       local zoomedOutPos = zoomOut(playerPos, riftZone.position, 120)
       world.debugText("%s", riftZone.stateData.deathTime - world.time(), zoomedOutPos, "magenta")
-      -- world.debugPoint(zoomedOutPos, "magenta")
     end
 
     -- Update position
@@ -178,8 +183,6 @@ function updateRiftZones(riftZones, dt)
         createRiftZone(riftZones, riftZone)
       end
     end
-
-    -- countRiftZones()
   end
 
   world.setProperty("v-riftZones", riftZones)
@@ -192,19 +195,31 @@ function updateRiftZones(riftZones, dt)
       timeToLive = riftZone.timeToLive
     })
     if entityId then
-      table.insert(activeRiftZones, entityId)
+      table.insert(activeRiftZones, {entityId = entityId, timeToLive = riftZone.timeToLive})
     end
   end
 
+  activeRiftZones = util.filter(activeRiftZones, function(x) return world.entityExists(x.entityId) end)
 
-  activeRiftZones = util.filter(activeRiftZones, function(x) return world.entityExists(x) end)
-  for _, entityId in ipairs(activeRiftZones) do
-    local timeToLive = world.callScriptedEntity(entityId, "v_timeToLive")
+  for _, riftZone in ipairs(activeRiftZones) do
+    -- Update time to live.
+    local timeToLive = world.callScriptedEntity(riftZone.entityId, "v_timeToLive")
+    riftZone.timeToLive = timeToLive
+
     if playerPos then
-      local zoomedOutPos = zoomOut(playerPos, world.entityPosition(entityId), 120)
+      local zoomedOutPos = zoomOut(playerPos, world.entityPosition(riftZone.entityId), 120)
       world.debugText("%s", timeToLive, zoomedOutPos, "magenta")
-      -- world.debugPoint(zoomedOutPos, "magenta")
     end
+  end
+
+  allRiftZones = {}
+
+  for _, riftZone in ipairs(riftZones) do
+    table.insert(allRiftZones, {position = riftZone.position, timeToLiveRatio = riftZone.timeToLive / defaultTimeToLive})
+  end
+
+  for _, riftZone in ipairs(activeRiftZones) do
+    table.insert(allRiftZones, {position = world.entityPosition(riftZone.entityId), timeToLiveRatio = riftZone.timeToLive / defaultTimeToLive})
   end
 end
 
