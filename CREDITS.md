@@ -21,6 +21,8 @@ Licensed under Creative Commons: By Attribution 4.0 License
 
 http://creativecommons.org/licenses/by/4.0/
 
+Edited to loop properly
+
 Electrochem Facility: Desert Battle 2 by Curtis Schweitzer. Edited to loop properly
 
 Titan of Darkness:
