@@ -175,11 +175,6 @@ function update(dt)
 
   lightningController:update(dt)
 
-  -- if world.players()[1] and not world.entityExists(world.players()[1]) then
-  --   sb.logInfo("Spawning monster")
-  --   world.spawnMonster("v-riftzonecleanup", mcontroller.position(), {persistent = true})
-  -- end
-
   -- Suppress updates to tiles if too far away from any players to prevent loading chunks, causing a chain reaction of
   -- rift zones loading into existence.
   if closeToAPlayer(mcontroller.position()) then
@@ -334,6 +329,8 @@ function states.die()
     local riftZones = world.getProperty("v-riftZones") or jarray()
     createRiftZone(riftZones)
     world.setProperty("v-riftZones", riftZones)
+  else
+    world.spawnMonster("v-riftremnant", mcontroller.position())
   end
 
   -- The script should stop running within the next tick or two. This just ensures the coroutine doesn't die prematurely

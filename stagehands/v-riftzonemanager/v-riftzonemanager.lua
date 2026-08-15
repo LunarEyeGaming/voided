@@ -16,6 +16,7 @@ local lightningStrikeProbability
 local relocationProbability
 local invisibleOre
 local defaultTimeToLive
+local riftRemnantTimeToLive
 
 local maxSpawnDelay  -- Maximum time to wait before spawning a rift zone
 local minSpawnDelay  -- Minimum time to wait before spawning a rift zone
@@ -30,7 +31,9 @@ local minPlanetStayTime
 local nextTriggerTime
 
 local activeRiftZones
+local activeRiftRemnants
 local allRiftZones
+local allRiftRemnants
 local rng
 local postInitCalled
 local thread
@@ -57,6 +60,8 @@ function init()
   minTriggerInterval = cfg.triggerIntervalRange[1]
   densityTriggerThreshold = cfg.densityTriggerThreshold
 
+  riftRemnantTimeToLive = cfg.riftRemnantTimeToLive
+
   weatherTypes = {"meteors", "gravispheres", "destabilization"}
 
   minPlanetStayTime = cfg.minPlanetStayTime
@@ -80,12 +85,20 @@ function init()
     world.setProperty("v-riftZones", riftZones)
   end)
 
-  message.setHandler("getAllRiftZones", function()
-    return allRiftZones
+  message.setHandler("getAllRiftZonesAndRemnants", function()
+    return {riftZones = allRiftZones, remnants = allRiftRemnants}
+  end)
+
+  message.setHandler("pushRiftRemnant", function(_, _, data)
+    local pendingRiftRemnants = world.getProperty("v-pendingRiftRemnants") or jarray()
+    table.insert(pendingRiftRemnants, data)
+    world.setProperty("v-pendingRiftRemnants", pendingRiftRemnants)
   end)
 
   allRiftZones = {}
+  allRiftRemnants = {}
   activeRiftZones = {}
+  activeRiftRemnants = {}
   rng = sb.makeRandomSource(world.time() % maxTriggerInterval + worldCoordinates.location[1] + worldCoordinates.location[2] + worldCoordinates.location[3])
 
   nextTriggerTime = world.getProperty("v-riftZoneTriggerTime")
@@ -154,6 +167,7 @@ end
 
 function updateRiftZones(riftZones, dt)
   local riftZonesToSpawn = {}
+  local pendingRiftRemnants = world.getProperty("v-pendingRiftRemnants") or jarray()
 
   local zoomOut = function(anchor, pos, factor)
     local posRelative = world.distance(pos, anchor)
@@ -181,6 +195,8 @@ function updateRiftZones(riftZones, dt)
       table.remove(riftZones, i)
       if math.random() < relocationProbability then
         createRiftZone(riftZones, riftZone)
+      else
+        table.insert(pendingRiftRemnants, {position = riftZone.position, disappearTime = world.time() + riftRemnantTimeToLive})
       end
     end
   end
@@ -199,7 +215,30 @@ function updateRiftZones(riftZones, dt)
     end
   end
 
+  for i = #pendingRiftRemnants, 1, -1 do
+    local remnant = pendingRiftRemnants[i]
+    local pos = remnant.position
+    if playerPos then
+      local zoomedOutPos = zoomOut(playerPos, pos, 120)
+      world.debugPoint(zoomedOutPos, "magenta")
+    end
+    if canSpawn(pos) then
+      local entityId = world.spawnMonster("v-riftremnant", pos, {
+        disappearTime = remnant.disappearTime
+      })
+      table.remove(pendingRiftRemnants, i)
+      if entityId then
+        table.insert(activeRiftRemnants, {entityId = entityId, disappearTime = remnant.disappearTime})
+      end
+    elseif remnant.disappearTime and world.time() > remnant.disappearTime then
+      table.remove(pendingRiftRemnants, i)
+    end
+  end
+
+  world.setProperty("v-pendingRiftRemnants", pendingRiftRemnants)
+
   activeRiftZones = util.filter(activeRiftZones, function(x) return world.entityExists(x.entityId) end)
+  activeRiftRemnants = util.filter(activeRiftRemnants, function(x) return world.entityExists(x.entityId) end)
 
   for _, riftZone in ipairs(activeRiftZones) do
     -- Update time to live.
@@ -221,6 +260,16 @@ function updateRiftZones(riftZones, dt)
 
   for _, riftZone in ipairs(activeRiftZones) do
     table.insert(allRiftZones, {position = world.entityPosition(riftZone.entityId), timeToLiveRatio = riftZone.timeToLive / defaultTimeToLive})
+  end
+
+  allRiftRemnants = {}
+
+  for _, riftRemnant in ipairs(pendingRiftRemnants) do
+    table.insert(allRiftRemnants, {position = riftRemnant.position})
+  end
+
+  for _, riftRemnant in ipairs(activeRiftRemnants) do
+    table.insert(allRiftRemnants, {position = world.entityPosition(riftRemnant.entityId)})
   end
 end
 

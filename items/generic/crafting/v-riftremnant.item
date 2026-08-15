@@ -1,0 +1,13 @@
+{
+  "itemName" : "v-riftremnant",
+  "price" : 50,
+  "rarity" : "Rare",
+  "category" : "craftingMaterial",
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "inventoryIcon" : "v-riftremnant.png",
+  "description" : "The remains of a rift that has dissipated into nothing. Useful for void resistance.",
+  "shortdescription" : "Rift Remnant",
+  "itemTags" : [ "reagent" ],
+
+  "learnBlueprintsOnPickup" : [ "v-nulliumhead", "v-nulliumchest", "v-nulliumpants" ]
+}
