@@ -1,0 +1,75 @@
+{
+  "globalTagDefaults" : {
+    "directives" : ""
+  },
+
+  "animatedParts" : {
+    "stateTypes" : {
+      "detector" : {
+        "default" : "on",
+        "states" : {
+          "on" : {
+            "frames" : 8,
+            "cycle" : 1.5,
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/objects/checkpoint_loop.ogg"
+            },
+            "frameProperties" : {
+              "immediateSound" : [ "/sfx/objects/screen2.ogg", "", "", "", "", "", "", "" ]
+            }
+          },
+          "off" : {}
+        }
+      }
+    },
+    "parts" : {
+      "detector" : {
+        "properties" : {
+          "centered" : true,
+          "offset" : [0, 0.0]
+        },
+        "partStates" : {
+          "detector" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>:on.<frame>"
+              }
+            },
+            "off" : {
+              "properties" : {
+                "image" : "<partImage>:off.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "detectorfullbright" : {
+        "properties" : {
+          "anchorPart" : "detector",
+          "fullbright" : true,
+          "zLevel" : 1
+        },
+        "partStates" : {
+          "detector" : {
+            "on" : {
+              "properties" : {
+                "image" : "<partImage>:on.<frame>"
+              }
+            },
+            "off" : {
+              "properties" : {
+                "image" : "<partImage>:off.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "sounds" : {
+    "on" : [ "/sfx/objects/console_generic_switchon.ogg" ],
+    "off" : [ "/sfx/objects/console_generic_switchoff.ogg" ]
+  }
+}
