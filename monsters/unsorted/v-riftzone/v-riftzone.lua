@@ -332,10 +332,10 @@ function states.die()
     createRiftZone(riftZones)
     world.setProperty("v-riftZones", riftZones)
   else
+    sb.logInfo("Test")
     local pendingRiftRemnants = world.getProperty("v-pendingRiftRemnants") or jarray()
-    table.insert(pendingRiftRemnants, {position = mcontroller.position(), disappearTime = riftRemnantTimeToLive})
+    table.insert(pendingRiftRemnants, {position = mcontroller.position(), disappearTime = world.time() + riftRemnantTimeToLive})
     world.setProperty("v-pendingRiftRemnants", pendingRiftRemnants)
-
   end
 
   -- The script should stop running within the next tick or two. This just ensures the coroutine doesn't die prematurely
