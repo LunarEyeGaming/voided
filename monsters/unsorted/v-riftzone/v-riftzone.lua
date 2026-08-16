@@ -29,6 +29,7 @@ local terrainZRange
 local relocationProbability
 local lightningStrikeProbability
 local monsterSpawns
+local riftRemnantTimeToLive
 
 -- State variables
 local prevPos
@@ -87,6 +88,7 @@ function init()
   relocationProbability = cfg.relocationProbability
   lightningStrikeProbability = config.getParameter("lightningStrikeProbability")
   monsterSpawns = config.getParameter("monsterSpawns", {})
+  riftRemnantTimeToLive = cfg.riftRemnantTimeToLive
 
   for _, spawn in ipairs(monsterSpawns) do
     local monsterCfg = root.monsterParameters(spawn.monsterType)
@@ -330,7 +332,10 @@ function states.die()
     createRiftZone(riftZones)
     world.setProperty("v-riftZones", riftZones)
   else
-    world.spawnMonster("v-riftremnant", mcontroller.position())
+    local pendingRiftRemnants = world.getProperty("v-pendingRiftRemnants") or jarray()
+    table.insert(pendingRiftRemnants, {position = mcontroller.position(), disappearTime = riftRemnantTimeToLive})
+    world.setProperty("v-pendingRiftRemnants", pendingRiftRemnants)
+
   end
 
   -- The script should stop running within the next tick or two. This just ensures the coroutine doesn't die prematurely

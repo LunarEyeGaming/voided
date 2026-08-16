@@ -1,10 +1,49 @@
 {
   "animatedParts" : {
+    "stateTypes" : {
+      "body" : {
+        "default" : "appear",
+        "states" : {
+          "appear" : {
+            "frames" : 7,
+            "cycle" : 0.7,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/environmental/v_riftremnant_form.ogg"
+            }
+          },
+          "idle" : {
+            "frames" : 14,
+            "cycle" : 1.4,
+            "mode" : "loop",
+            "properties" : {
+              "particleEmittersOn" : [ "emitter" ],
+              "persistentSoundFadeTime" : 0.5,
+              "persistentSound" : "/sfx/environmental/v_riftremnant_loop.ogg"
+            }
+          }
+        }
+      }
+    },
     "parts" : {
       "body" : {
         "properties" : {
-          "image" : "<partImage>",
           "fullbright" : true
+        },
+        "partStates" : {
+          "body" : {
+            "appear" : {
+              "properties" : {
+                "image" : "<partImage>:appear.<frame>"
+              }
+            },
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            }
+          }
         }
       }
     }
@@ -18,14 +57,23 @@
     }
   },
 
+  "particleEmitters" : {
+    "emitter" : {
+      "emissionRate" : 5,
+      "particles" : [
+        {"particle" : "v-riftremnant"}
+      ]
+    }
+  },
+
   "lights" : {
     "glow" : {
       "active" : true,
-      "color" : [94, 113, 128]
+      "color" : [92, 54, 111]
     }
   },
 
   "sounds" : {
-    "deathPuff" : [ ]
+    "deathPuff" : [ "/sfx/environmental/v_riftremnant_shatter.ogg" ]
   }
 }

@@ -43,7 +43,7 @@
       "physicsEffectCategories" : ["stationarymonster"]
     },
 
-    "knockoutTime" : 0.0,
+    "knockoutTime" : 0.25,
     "knockoutEffect" : "",
     "deathParticles" : "deathPoof",
 
@@ -59,7 +59,7 @@
 
     "statusSettings" : {
       "statusProperties" : {
-        "targetMaterialKind" : "organic"
+        "targetMaterialKind" : "stone"
       },
 
       "appliesEnvironmentStatusEffects" : false,
@@ -113,9 +113,6 @@
         },
         "poisonStatusImmunity" : {
           "baseValue" : 0.0
-        },
-        "v-voidResistance" : {
-          "baseValue" : 0.5
         },
         "v-voidStatusImmunity" : {
           "baseValue" : 1.0

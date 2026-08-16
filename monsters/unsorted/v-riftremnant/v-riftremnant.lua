@@ -3,23 +3,13 @@ require "/scripts/vec2.lua"
 local disappearTime
 local projectileParameters
 
-local lightRingInterval
-local lightRingProjectileType
-local lightRingProjectileCount
-
-local lightRingTimer
-
 local shouldDieVar
 
 function init()
   disappearTime = config.getParameter("disappearTime")
   projectileParameters = config.getParameter("projectileParameters")
 
-  lightRingInterval = 10
-  lightRingProjectileType = "v-riftremnantlight"
-  lightRingProjectileCount = 20
-
-  lightRingTimer = lightRingInterval
+  monster.setDeathSound("deathPuff")
 end
 
 function update(dt)
@@ -31,16 +21,6 @@ function update(dt)
   if status.resource("health") <= 0.0 then
     shouldDieVar = true
   end
-  -- lightRingTimer = lightRingTimer - dt
-
-  -- if lightRingTimer <= 0 then
-  --   for i = 0, lightRingProjectileCount do
-  --     local angle = i / lightRingProjectileCount * 2 * math.pi
-
-  --     world.spawnProjectile(lightRingProjectileType, mcontroller.position(), entity.id(), vec2.withAngle(angle))
-  --   end
-  --   lightRingTimer = lightRingInterval
-  -- end
 end
 
 function shouldDie()

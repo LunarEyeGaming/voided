@@ -1,0 +1,20 @@
+{
+  "kind" : "v-riftremnant",
+  "definition" : {
+    "type" : "textured",
+    "image" : "/particles/v-riftremnant/v-riftremnant.png",
+    "position" : [0, 0],
+    "layer" : "front",
+    "fullbright" : true,
+    "angularVelocity" : -45,
+    "timeToLive" : 3.0,
+    "size" : 0.75,
+    "destructionTime" : 3.0,
+    "destructionAction" : "fade",
+    "variance" : {
+      "rotation" : 180,
+      "angularVelocity" : 30,
+      "size" : 0.5
+    }
+  }
+}
