@@ -19,12 +19,14 @@
   ],
   "damageKind" : "plasma",
   "piercing" : true,
-  
+
   "bounces" : 0,
-  
+
   "timeToLive" : 1.5,
 
   "speed" : 100,
+
+  "damageRepeatGroup" : "v-ancientphaseshot",
 
   "scripts" : [ "/projectiles/tracksourcestatus.lua" ],
   "scriptDelta" : 1
