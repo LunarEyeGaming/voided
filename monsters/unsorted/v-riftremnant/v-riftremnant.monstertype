@@ -7,33 +7,18 @@
   "animation" : "v-riftremnant.animation",
   "reversed" : true,
 
-  "dropPools" : [ "empty" ],
+  "dropPools" : [ "v-riftremnantTreasure" ],
 
   "baseParameters" : {
     "scripts" : [
-      "/monsters/unsorted/v-riftremnant/v-riftremnant.lua"
+      "/monsters/unsorted/v-riftremnant/v-riftremnant.lua",
+      "/monsters/unsorted/v-riftremnant/v-restricterplugin.lua"
     ],
 
     "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
     "scale" : 1.0,
 
     "renderLayer" : "ForegroundEntity+10",
-
-    "projectileParameters" : {
-      "actionOnReap" : [
-        {
-          "action" : "loop",
-          "count" : 10,
-          "body" : [
-            {
-              "action" : "item",
-              "name" : "v-riftremnant",
-              "count" : 1
-            }
-          ]
-        }
-      ]
-    },
 
     "movementSettings" : {
       "gravityEnabled" : false,

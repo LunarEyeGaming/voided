@@ -1,0 +1,23 @@
+{
+  "kind" : "v-riftremnantshard",
+  "definition" : {
+    "type" : "animated",
+    "animation" : "/animations/shards/v-riftremnantshard.animation",
+    "initialVelocity" : [0.0, 8.0],
+    "finalVelocity" : [0.0, -60.0],
+    "approach" : [0.3, 60],
+    "light" : [65, 26, 74],
+    "fullbright" : true,
+    "fade" : 2,
+    "timeToLive" : 0.5,
+    "layer" : "middle",
+    "collidesForeground" : true,
+    "variance" : {
+      "position" : [1, 1],
+      "initialVelocity" : [5, 3],
+      "finalVelocity" : [0, 20],
+      "rotation" : 180,
+      "angularVelocity" : 180
+    }
+  }
+}

@@ -4,16 +4,13 @@
 
 require "/scripts/rect.lua"
 
-local scanRadius
-
 local oldInit = init or function() end
 
 function init()
   local cfg = root.assetJson("/v-riftzones.config")
   cfg = sb.jsonMerge(cfg, config.getParameter("configOverrides", {}))
-  scanRadius = cfg.defaultZoneRadius
 
-  local queried = world.entityQuery(mcontroller.position(), scanRadius, {
+  local queried = world.entityQuery(mcontroller.position(), 1, {
     includedTypes = {"monster"}
   })
 
