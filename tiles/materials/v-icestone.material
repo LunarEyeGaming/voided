@@ -1,0 +1,25 @@
+{
+  "materialId" : 1237,
+  "materialName" : "v-icestone",
+  "particleColor" : [94, 82, 156, 255],
+  "itemDrop" : "v-icestonematerial",
+  "shortdescription" : "Icestone",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_stone.ogg",
+  "health" : 16,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-icestone.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 1550
+  }
+}
