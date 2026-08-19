@@ -27,5 +27,5 @@ function ModProperty.update(position, layer)
 end
 
 function ModProperty.destroy(position, layer)
-    world.spawnProjectile("v-voidbubble", position, nil, {0, 0}, false, {damageTeam = {type = "indiscriminate"}})
+  world.spawnProjectile("v-voidbubble", position, nil, {0, 0}, false, {damageTeam = {type = "indiscriminate"}})
 end
