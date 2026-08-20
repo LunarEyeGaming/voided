@@ -472,7 +472,8 @@ function tasks.bomb()
     if world.entityExists(args.target) then
       -- local toTarget = vec2.norm(world.distance(world.entityPosition(args.target), mcontroller.position()))
       -- local projectilePos = vec2.add(mcontroller.position(), vec2.mul(toTarget, cfg.followDistance))
-      local projectilePos = mcontroller.position()
+      local aimVector = vec2.withAngle(currentHandAngle)
+      local projectilePos = vec2.add(mcontroller.position(), vec2.mul(aimVector, cfg.followDistance))
       local projectileId = world.spawnProjectile(cfg.projectileType, projectilePos, masterId, {0, 0}, false, projectileParameters)
       if projectileId then
         world.sendEntityMessage(masterId, "v-titanofdarkness-projectileSpawned", projectileId)
