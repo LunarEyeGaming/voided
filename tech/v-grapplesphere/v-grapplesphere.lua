@@ -14,6 +14,7 @@ local reelForce
 local finishTolerance
 local hookLaunchCost
 local grappleOnActivate
+local manualRelease
 
 local state
 local hookId
@@ -33,6 +34,7 @@ function init()
   finishTolerance = config.getParameter("finishTolerance")
   hookLaunchCost = config.getParameter("hookLaunchCost")
   grappleOnActivate = config.getParameter("grappleOnActivate")
+  manualRelease = config.getParameter("manualRelease")
 
   state = nil
 end
@@ -49,8 +51,6 @@ function update(args)
     and status.overConsumeResource("energy", hookLaunchCost) then
       state = "launch"
     end
-
-    prevDown = args.moves["run"]
 
     if state == "launch" then
       local direction = world.distance(tech.aimPosition(), ownPos)
@@ -72,20 +72,44 @@ function update(args)
       elseif state == "reel" then
         -- Reel toward hook
         local direction = vec2.norm(distance)
-        mcontroller.controlApproachVelocity(vec2.mul(direction, reelSpeed), reelForce)
+
+        if manualRelease then
+          if vec2.mag(distance) < finishTolerance then
+            mcontroller.setVelocity({0, 0})
+          else
+            mcontroller.controlApproachVelocity(vec2.mul(direction, reelSpeed), reelForce)
+          end
+        else
+          mcontroller.controlApproachVelocity(vec2.mul(direction, reelSpeed), reelForce)
+        end
 
         -- Checks.
         local inLineOfSight = not world.lineCollision(hookPos, ownPos)
         local paddedBoundBox = rect.pad(mcontroller.boundBox(), BOUND_BOX_PADDING)
 
-        -- If the player has reached the destination or has come into contact with an obstruction...
-        if (inLineOfSight and vec2.mag(distance) < finishTolerance)
-        or (not inLineOfSight and world.rectCollision(rect.translate(paddedBoundBox, ownPos))) then
+        local shouldReleaseHook
+        if manualRelease then
+          shouldReleaseHook = args.moves["jump"]
+        else
+          -- The player has reached the destination or has come into contact with an obstruction
+          shouldReleaseHook = (inLineOfSight and vec2.mag(distance) < finishTolerance)
+          or (not inLineOfSight and world.rectCollision(rect.translate(paddedBoundBox, ownPos)))
+        end
+
+        if shouldReleaseHook then
           world.callScriptedEntity(hookId, "kill")
           hookId = nil
           state = nil  -- Finish grapple.
         end
+
+        if manualRelease and not args.moves["run"] and prevDown ~= args.moves["run"] then
+          world.callScriptedEntity(hookId, "kill")
+          hookId = nil
+          state = "launch"  -- Re-launch grapple.
+        end
       end
+
+      prevDown = args.moves["run"]
 
       animator.setAnimationState("beam", "on")
       animator.setAnimationState("hookbase", "on")
