@@ -1,0 +1,39 @@
+{
+  "metadata" : {
+    "name" : "v-briniclefieldmicrodungeons",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "organism1", "organism2", "organism3" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "organism1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "organism1.json" ]
+    },
+    {
+      "name" : "organism2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "organism2.json" ]
+    },
+    {
+      "name" : "organism3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "organism3.json" ]
+    }
+  ]
+}
