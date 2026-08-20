@@ -132,7 +132,8 @@
     "path" : "/v_clearriftzones",
     "value" : [
       "/entityeval world.setProperty(\"v-riftZones\", nil)",
-      "/entityeval world.setProperty(\"v-riftZoneSpawnPoints\", nil)"
+      "/entityeval world.setProperty(\"v-riftZoneSpawnPoints\", nil)",
+      "/entityeval world.setProperty(\"v-pendingRiftRemnants\", nil)"
     ]
   }
 ]
