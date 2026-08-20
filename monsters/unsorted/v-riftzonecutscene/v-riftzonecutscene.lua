@@ -8,6 +8,7 @@ local fissureCrossingProjectileType
 local fissureCrossingProjectileParameters
 local lightningStrikeSpecs
 local postLightningWaitTime
+local starCutscene
 
 local shouldDieVar
 local lightningController
@@ -18,6 +19,8 @@ function init()
   fissureCrossingProjectileType = config.getParameter("fissureCrossingProjectileType")
   fissureCrossingProjectileParameters = config.getParameter("fissureCrossingProjectileParameters")
   lightningStrikeSpecs = config.getParameter("lightningStrikeSpecs")
+  starCutscene = config.getParameter("starCutscene", {})
+  table.sort(starCutscene, function(a, b) return a.timecode < b.timecode end)
 
   shouldDieVar = false
 
@@ -47,9 +50,11 @@ function update(dt)
 
   lightningController:update(dt)
 
-  local pos = world.entityPosition(followPlayer)
-  if pos then
-    mcontroller.setPosition(pos)
+  if followPlayer then
+    local pos = world.entityPosition(followPlayer)
+    if pos then
+      mcontroller.setPosition(pos)
+    end
   end
 
   -- world.loadRegion(rect.translate({-32, -32, 32, 32}, mcontroller.position()))
@@ -66,7 +71,30 @@ function states.postInit()
 end
 
 function states.main()
-  world.spawnProjectile(fissureCrossingProjectileType, mcontroller.position(), nil, nil, nil, fissureCrossingProjectileParameters)
+  local cutscene = copy(starCutscene)
+  local timer = 0
+  local timeEnd = starCutscene[#starCutscene].timecode
+  while timer <= timeEnd do
+    timer = timer + script.updateDt()
+
+    -- Invoke each effect whose timecode has passed, then remove it so it isn't invoked again.
+    for i = #cutscene, 1, -1 do
+      local specialEffect = cutscene[i]
+      if timer >= specialEffect.timecode then
+        local players = world.players()
+        for _, playerId in ipairs(players) do
+          if world.entityExists(playerId) then
+            world.sendEntityMessage(playerId, "v-invokeSpecialEffect", specialEffect.kind, specialEffect.arguments, false, mcontroller.position())
+          end
+        end
+        table.remove(cutscene, i)
+        -- sb.logInfo(sb.printJson(cutscene, 2))
+      end
+    end
+
+    coroutine.yield()
+  end
+  -- world.spawnProjectile(fissureCrossingProjectileType, mcontroller.position(), nil, nil, nil, fissureCrossingProjectileParameters)
 
   util.wait(lightningStrikeSpecs.startDelay)
 
@@ -91,13 +119,13 @@ function states.die()
 end
 
 function crackleLightning(radiusStart, radiusEnd)
-  local randomPosStart = vec2.add(mcontroller.position(), vec2.withAngle(math.random() * 2 * math.pi, math.random() * radiusStart))
-  -- Base end position on start position.
-  local randomPosEnd = vec2.add(randomPosStart, vec2.withAngle(math.random() * 2 * math.pi, math.random() * radiusEnd))
-
-  lightningController:addRandomSeed(randomPosStart, randomPosEnd)
-
-  animator.playSound("crackle")
+  local players = world.players()
+  for _, playerId in ipairs(players) do
+    if world.entityExists(playerId) then
+      local randomPos = vec2.add(world.entityPosition(playerId), vec2.withAngle(math.random() * 2 * math.pi, math.random() * radiusStart))
+      world.spawnMonster("v-riftzonelightning", randomPos)
+    end
+  end
 end
 
 function shouldDie()

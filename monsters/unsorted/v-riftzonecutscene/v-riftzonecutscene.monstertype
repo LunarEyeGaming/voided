@@ -27,10 +27,184 @@
         }
       ]
     },
+
+    "starCutscene" : [
+      {
+        "timecode" : 6.0,
+        "kind" : "screenFlash",
+        "arguments" : {
+          "startColor" : [0, 0, 0, 0],
+          "endColor" : [0, 0, 0, 127],
+          "duration" : 3,
+          "fullbright" : true
+        },
+        "onScreenOnly" : false
+      },
+      {
+        "timecode" : 6.0,
+        "kind" : "screenFlash",
+        "arguments" : {
+          "delay" : 2.99,
+          "startColor" : [0, 0, 0, 127],
+          "endColor" : [0, 0, 0, 0],
+          "duration" : 0.25,
+          "fullbright" : true
+        },
+        "onScreenOnly" : false
+      },
+      {
+        "timecode" : 6.0,
+        "kind" : "distantDrawable",
+        "effectRadius" : 100,
+        "arguments" : {
+          "firstKeyFrame" : {
+            "color" : [83, 29, 125, 0]
+          },
+          "keyFrames" : [
+            {
+              "time" : 3.0,
+              "color" : [83, 29, 125, 127]
+            },
+            {
+              "time" : 0.25,
+              "color" : [83, 29, 125, 0]
+            }
+          ],
+          "image" : "/scripts/rendering/v-outsidersunglow.png",
+          "fullbright" : true,
+          "positionedAtSun" : true
+        }
+      },
+      {
+        "timecode" : 6.0,
+        "kind" : "screenFlash",
+        "effectRadius" : 100,
+        "arguments" : {
+          "delay" : 3.25,
+          "startColor" : [83, 29, 125, 63],
+          "endColor" : [83, 29, 125, 0],
+          "duration" : 0.25,
+          "fullbright" : true
+        },
+        "onScreenOnly" : false
+      },
+      {
+        "timecode" : 6.0,
+        "kind" : "screenFlash",
+        "effectRadius" : 100,
+        "arguments" : {
+          "delay" : 3.25,
+          "startColor" : [83, 29, 125, 63],
+          "endColor" : [83, 29, 125, 0],
+          "duration" : 0.25,
+          "fullbright" : true
+        },
+        "onScreenOnly" : false
+      },
+      {
+        "timecode" : 9.25,
+        "kind" : "distantDrawable",
+        "effectRadius" : 100,
+        "arguments" : {
+          "firstKeyFrame" : {
+            "color" : [255, 255, 255, 255]
+          },
+          "keyFrames" : [
+            {
+              "time" : 1.0,
+              "color" : [255, 255, 255, 0]
+            }
+          ],
+          "image" : "/scripts/rendering/v-outsidersunflash.png",
+          "fullbright" : true,
+          "positionedAtSun" : true
+        }
+      },
+      {
+        "timecode" : 9.25,
+        "kind" : "screenFlash",
+        "effectRadius" : 100,
+        "arguments" : {
+          "startColor" : [83, 29, 125, 255],
+          "endColor" : [83, 29, 125, 0],
+          "duration" : 1.0,
+          "fullbright" : true,
+          "renderLayer" : "BackgroundOverlay-258"
+        }
+      },
+      {
+        "timecode" : 9.25,
+        "kind" : "distantDrawable",
+        "effectRadius" : 100,
+        "arguments" : {
+          "firstKeyFrame" : {
+            "scale" : [0.5, 0.5],
+            "color" : [83, 29, 125, 255]
+          },
+          "keyFrames" : [
+            {
+              "time" : 3.0,
+              "scale" : [4, 4],
+              "color" : [83, 29, 125, 0]
+            }
+          ],
+          "image" : "/scripts/rendering/v-outsidersunshockwave.png",
+          "fullbright" : true,
+          "positionedAtSun" : true
+        }
+      },
+      {
+        "timecode" : 12,
+        "kind" : "distantDrawable",
+        "effectRadius" : 100,
+        "arguments" : {
+          "firstKeyFrame" : {
+            "zPosition" : 0,
+            "scale" : [240, 0.5],
+            "color" : [83, 29, 125, 0]
+          },
+          "keyFrames" : [
+            {
+              "time" : 1.5,
+              "zPosition" : 0,
+              "scale" : [240, 500],
+              "color" : [83, 29, 125, 255],
+              "interpMode" : "exp",
+              "interpArgs" : [20]
+            },
+            {
+              "time" : 0.5,
+              "zPosition" : 0,
+              "scale" : [240, 500],
+              "color" : [83, 29, 125, 0]
+            }
+          ],
+          "image" : "/scripts/rendering/v-outsidersunshockwavenear.png",
+          "fullbright" : true,
+          "positionedAtSun" : true
+        }
+      },
+      {
+        "timecode" : 9.25,
+        "kind" : "playSound",
+        "effectRadius" : 100,
+        "arguments" : {
+          "sound" : "/sfx/environmental/v_outsiderstar_pulse.ogg"
+        }
+      },
+      {
+        "timecode" : 12,
+        "kind" : "playSound",
+        "effectRadius" : 100,
+        "arguments" : {
+          "sound" : "/sfx/environmental/v_outsiderstar_pulsehit.ogg"
+        }
+      }
+    ],
     "lightningStrikeSpecs" : {
       "radiusStart" : 50,
       "radiusEnd" : 20,
-      "startDelay" : 7.5,
+      "startDelay" : 1.5,
       "interval" : 0.1,
       "count" : 30
     },
