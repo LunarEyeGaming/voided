@@ -20,7 +20,7 @@
   "inventoryIcon" : "vitalisseedicon.png",
 
   "tooltipKind" : "seed",
-  "largeImage" : "vitalisseed.png:default.4.0",
+  "largeImage" : "vitalisseed.png:default.6.0",
 
   "orientations" : [
     {
@@ -89,7 +89,7 @@
 
   "elementalPaletteSwaps" : [
     {
-      "worldTypes" : ["v-voltage"],
+      "worldTypes" : ["v-voltage", "desert", "savannah"],
       "swaps" : {
         "0c440d" : "323232",
         "2c7e22" : "565656",
@@ -98,7 +98,7 @@
       }
     },
     {
-      "worldTypes" : ["v-ministar"],
+      "worldTypes" : ["v-ministar", "volcanic", "magma", "scorchedcity"],
       "swaps" : {
         "0c440d" : "40130c",
         "2c7e22" : "842f22",
@@ -107,7 +107,7 @@
       }
     },
     {
-      "worldTypes" : ["v-entropic"],
+      "worldTypes" : ["v-entropic", "snow", "tundra", "arctic", "midnight"],
       "swaps" : {
         "0c440d" : "21103b",
         "2c7e22" : "3c276b",
@@ -116,7 +116,7 @@
       }
     },
     {
-      "worldTypes" : ["v-toxicwasteland"],
+      "worldTypes" : ["v-toxicwasteland", "toxic", "alien", "jungle"],
       "swaps" : {
         "0c440d" : "492d54",
         "2c7e22" : "744c85",
