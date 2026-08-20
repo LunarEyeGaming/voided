@@ -1,0 +1,24 @@
+{
+  "materialId" : 1239,
+  "materialName" : "v-brinicleflesh",
+  "particleColor" : [166, 27, 32, 255],
+  "itemDrop" : "v-briniclefleshmaterial",
+  "description" : "<todo>",
+  "shortdescription" : "Flesh Chunk",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_mud.ogg",
+  "health" : 4,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-brinicleflesh.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "multiColored" : true,
+    "occludesBelow" : true,
+    "zLevel" : 1000
+  }
+}

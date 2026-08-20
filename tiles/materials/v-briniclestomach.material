@@ -1,0 +1,24 @@
+{
+  "materialId" : 1238,
+  "materialName" : "v-briniclestomach",
+  "particleColor" : [111, 94, 74, 255],
+  "itemDrop" : "v-briniclestomachmaterial",
+  "description" : "<todo>",
+  "shortdescription" : "Stomach Lining",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_brains.ogg",
+  "health" : 4,
+  "category" : "materials",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-briniclestomach.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : false,
+    "zLevel" : 900
+  }
+}
