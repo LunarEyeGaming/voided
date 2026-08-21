@@ -25,12 +25,14 @@ function init()
   remnants = {}
 
   ticker:addInterval(0.1, function()
-    promiseKeeper:add(world.sendEntityMessage("v-riftzonemanager-stagehand", "getAllRiftZonesAndRemnants"), function(res)
-      local riftZones_ = res.riftZones
-      local remnants_ = res.remnants
-      riftZones = riftZones_
-      remnants = remnants_
-    end)
+    if player.getItemWithParameter("v-riftZoneDetectorIsActive", true) then
+      promiseKeeper:add(world.sendEntityMessage("v-riftzonemanager-stagehand", "getAllRiftZonesAndRemnants"), function(res)
+        local riftZones_ = res.riftZones
+        local remnants_ = res.remnants
+        riftZones = riftZones_
+        remnants = remnants_
+      end)
+    end
   end)
 end
 
