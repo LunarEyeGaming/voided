@@ -1,5 +1,5 @@
 {
-  "name" : "v-brinicleCaves",
+  "name" : "v-brinicleSubBlocks",
 
   "type" : "minmax",
   "sources" : [
@@ -25,8 +25,8 @@
         "numberOfWormsPerSectorRange" : [0.7, 0.7],
         "wormSpeed" : 1.0,
 
-        "wormSizeRange" : [25, 30],
-        "wormLengthRange" : [240, 360],
+        "wormSizeRange" : [5, 8],
+        "wormLengthRange" : [480, 640],
         "wormTaperDistance" : 15,
         "wormAngleRange" : [2.94524, 3.33794],
         "wormTurnChance" : 0.2,
@@ -56,7 +56,7 @@
         "wormSpeed" : 1.0,
 
         "wormSizeRange" : [5, 8],
-        "wormLengthRange" : [80, 120],
+        "wormLengthRange" : [160, 240],
         "wormTaperDistance" : 15,
         "wormAngleRange" : [0, 6.28319],
         "wormTurnChance" : 0.2,
