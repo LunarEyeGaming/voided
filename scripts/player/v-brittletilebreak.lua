@@ -13,6 +13,8 @@ local collisionThreshold
 
 local destroyedMatsHash  -- Hash map of destroyed materials
 local tilesDestroyed  -- Number of tiles destroyed in one tick
+local bufferedTilesToDestroy  -- List of tiles to destroy, partitioned such that each sub-list has at most maxTilesDestroyed tiles.
+local nextBuffer
 
 -- TODO: Rework this script to defer attempts at destroying tiles if more than maxTilesDestroyed tiles were destroyed in one tick.
 
@@ -22,28 +24,28 @@ function init()
   destroyChance = 1 / 25
   -- destroyChance = 1 / 20
   groundlessDestroyChance = 1 / 2
-  maxTilesDestroyed = 60
+  maxTilesDestroyed = 30
   collisionThreshold = 10
 
   destroyedMatsHash = {}
   tilesDestroyed = 0
+  bufferedTilesToDestroy = {}
+  nextBuffer = {}
 
   script.setUpdateDelta(2)
 end
 
 function update(dt)
-  -- local oldDestroyedMats = copy(destroyedMats)
-  -- destroyedMats = {}
-  -- for i, pos in ipairs(oldDestroyedMats) do
-  --   handleBrokenTile(nil, nil, pos, "foreground", true)
+  -- Take one list from the queue of groups to process. Empty out nextBuffer if there are no more lists to take.
+  local bufferToProcess = table.remove(bufferedTilesToDestroy, 1)
+  if not bufferToProcess then
+    bufferToProcess = nextBuffer
+    nextBuffer = {}
+  end
 
-  --   if i > maxTilesDestroyed then
-  --     break
-  --   end
-  -- end
+  breakTiles(bufferToProcess)
+
   destroyedMatsHash = {}
-
-  -- processCollisions()
 
   tilesDestroyed = 0
 end
@@ -63,34 +65,8 @@ function processCollisions()
       math.floor(boundBox[3]),
       math.floor(boundBox[4])
     }
-    -- do
-    --   local x = boundBox[1] - 1
-    --   for y = boundBox[2], boundBox[4] do
-    --     markTile({x, y}, fgMatsToDestroy)
-    --   end
-    -- end
 
-    -- do
-    --   local x = boundBox[3] + 1
-    --   for y = boundBox[2], boundBox[4] do
-    --     markTile({x, y}, fgMatsToDestroy)
-    --   end
-    -- end
-
-    -- do
-    --   local y = boundBox[2] - 1
-    --   for x = boundBox[1], boundBox[3] do
-    --     markTile({x, y}, fgMatsToDestroy)
-    --   end
-    -- end
-
-    -- do
-    --   local y = boundBox[4] + 1
-    --   for x = boundBox[1], boundBox[3] do
-    --     markTile({x, y}, fgMatsToDestroy)
-    --   end
-    -- end
-
+    -- Chance is greater than zero for speeds above the collisionThreshold and increases for higher speeds.
     local chance = 1 - 1 / (speed - collisionThreshold + 1)
 
     for x = boundBox[1], boundBox[3] do
@@ -98,18 +74,13 @@ function processCollisions()
         markTile({x, y}, fgMatsToDestroy, chance)
       end
     end
-
-    breakTiles(fgMatsToDestroy, {})
   end
 end
 
 function handleBrokenTile(_, _, pos, layer)
-  if tilesDestroyed >= maxTilesDestroyed then
-    return
-  end
   local fgMatsToDestroy = {}
-  local bgMatsToDestroy = {}
 
+  -- Pick nearby tiles to destroy.
   for x = -2, 2 do
     for y = -2, 2 do
       local nextPos = vec2.add(pos, {x, y})
@@ -125,36 +96,32 @@ function handleBrokenTile(_, _, pos, layer)
       end
     end
   end
-
-  breakTiles(fgMatsToDestroy, bgMatsToDestroy)
 end
 
 function markTile(pos, fgMatsToDestroy, chance)
   if world.material(pos, "foreground") == "v-brittleice" then
-    -- local shouldDestroy
-    -- if world.material(vec2.add(pos, {0, -1}), "foreground") == false then
-    --   shouldDestroy = math.random() <= groundlessDestroyChance
-    -- else
-    --   shouldDestroy = math.random() <= destroyChance
-    -- end
     if math.random() <= chance then
-      table.insert(fgMatsToDestroy, pos)
-      -- table.insert(bgMatsToDestroy, pos)
-      -- table.insert(destroyedMats, pos)
+      -- Add to nextBuffer. If the buffer is full, add to bufferedTilesToDestroy and reset.
+      table.insert(nextBuffer, pos)
+      if #nextBuffer > maxTilesDestroyed then
+        table.insert(bufferedTilesToDestroy, nextBuffer)
+        nextBuffer = {}
+      end
+
       tilesDestroyed = tilesDestroyed + 1
       destroyedMatsHash[vVec2.iToString(pos)] = true
     end
   end
 end
 
-function breakTiles(fgTilesToDestroy, bgTilesToDestroy)
+function breakTiles(fgTilesToDestroy)
+  if #fgTilesToDestroy == 0 then
+    return
+  end
+
   world.damageTiles(fgTilesToDestroy, "foreground", mcontroller.position(), "blockish", 5, 99, player.id())
 
   for _, pos in ipairs(fgTilesToDestroy) do
-    world.spawnProjectile("v-icebreak", pos)
-  end
-
-  for _, pos in ipairs(bgTilesToDestroy) do
     world.spawnProjectile("v-icebreak", pos)
   end
 end
