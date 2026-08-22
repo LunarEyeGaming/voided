@@ -96,6 +96,10 @@ function initDrift()
 end
 
 function updateDrift(dt)
+  if status.resourcePositive("stunned") then
+    return
+  end
+
   driftTimer = (driftTimer + dt) % driftPeriod
 
   local driftVelocity = driftAmplitude * math.cos(2 * math.pi * driftTimer / driftPeriod)
