@@ -22,6 +22,8 @@ function init()
   destroyChance = config.getParameter("softImmersion.destroyChance")
   destroyDelay = config.getParameter("softImmersion.destroyDelay")
   minimumImmersionLevel = config.getParameter("softImmersion.minimumLevel")
+  -- Slightly lower requirement to accommodate for very slightly lower liquid levels
+  minimumImmersionLevel = minimumImmersionLevel - 0.001
   checkInterval = config.getParameter("softImmersion.checkInterval")
   destroyInterval = config.getParameter("softImmersion.destroyInterval")
 
