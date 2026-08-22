@@ -134,7 +134,7 @@
                  "y":424
                 }, 
                 {
-                 "gid":8957,
+                 "gid":8962,
                  "height":16,
                  "id":891,
                  "name":"",
@@ -154,7 +154,7 @@
                  "y":112
                 }, 
                 {
-                 "gid":8957,
+                 "gid":8962,
                  "height":16,
                  "id":897,
                  "name":"",
@@ -174,7 +174,7 @@
                  "y":112
                 }, 
                 {
-                 "gid":8957,
+                 "gid":8962,
                  "height":16,
                  "id":898,
                  "name":"",
@@ -194,7 +194,7 @@
                  "y":224
                 }, 
                 {
-                 "gid":8957,
+                 "gid":8962,
                  "height":16,
                  "id":899,
                  "name":"",
@@ -262,48 +262,76 @@
                  "y":296
                 }, 
                 {
-                 "gid":8998,
-                 "height":24,
-                 "id":900,
+                 "gid":8981,
+                 "height":48,
+                 "id":902,
                  "name":"",
-                 "properties":
-                    {
-                     "object":"v-tooltipsign",
-                     "parameters":"{\"tooltip\" : \"Insert lore here\"}"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string",
-                     "parameters":"string"
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":32,
-                 "x":232,
-                 "y":160
+                 "width":48,
+                 "x":144,
+                 "y":168
                 }, 
                 {
-                 "gid":8998,
-                 "height":24,
-                 "id":901,
+                 "gid":8982,
+                 "height":48,
+                 "id":903,
                  "name":"",
-                 "properties":
-                    {
-                     "object":"v-tooltipsign",
-                     "parameters":"{\"tooltip\" : \"Insert lore here\"}"
-                    },
-                 "propertytypes":
-                    {
-                     "object":"string",
-                     "parameters":"string"
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":32,
-                 "x":232,
-                 "y":272
+                 "width":48,
+                 "x":200,
+                 "y":168
+                }, 
+                {
+                 "gid":8983,
+                 "height":48,
+                 "id":904,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":256,
+                 "y":168
+                }, 
+                {
+                 "gid":8984,
+                 "height":48,
+                 "id":905,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":312,
+                 "y":168
+                }, 
+                {
+                 "gid":8985,
+                 "height":48,
+                 "id":906,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":200,
+                 "y":280
+                }, 
+                {
+                 "gid":8986,
+                 "height":48,
+                 "id":907,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":256,
+                 "y":280
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -381,7 +409,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":902,
+ "nextobjectid":908,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -528,19 +556,19 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":8848,
+         "firstgid":8853,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }, 
         {
-         "firstgid":8896,
+         "firstgid":8901,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }, 
         {
-         "firstgid":8956,
+         "firstgid":8961,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-entropic.json"
         }, 
         {
-         "firstgid":8960,
+         "firstgid":8987,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-colonytag\/outpost.json"
         }],
  "tilewidth":8,
