@@ -478,6 +478,9 @@ function tasks.bomb()
 
   if rq{"target"} then
     animator.setAnimationState("hand", cfg.initialState or "fist")
+    local aimVector = vec2.withAngle(currentHandAngle)
+    local newPos = vec2.sub(mcontroller.position(), vec2.mul(aimVector, cfg.followDistance))
+    mcontroller.setPosition(newPos)
 
     local threads = {
       coroutine.create(function()
