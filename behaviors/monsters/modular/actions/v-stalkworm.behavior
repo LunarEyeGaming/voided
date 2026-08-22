@@ -1,10 +1,9 @@
 {
   "name": "v-action-stalkworm",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/behavior.lua",
     "/scripts/actions/math.lua",
-    "/scripts/actions/voidedutil.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/position.lua",
     "/scripts/actions/world.lua",
@@ -75,23 +74,6 @@
             }
           }
         ]
-      },
-      {
-        "title": "v_logInfo",
-        "type": "action",
-        "name": "v_logInfo",
-        "parameters": {
-          "msg": {"value": "Stalking"}
-        }
-      },
-      {
-        "title": "v_logInfo",
-        "type": "action",
-        "name": "v_logInfo",
-        "parameters": {
-          "formatArgs": {"value": ["$vec2:stalkVector"]},
-          "msg": {"value": "offset: %s"}
-        }
       },
       {
         "title": "parallel",
@@ -177,15 +159,6 @@
                         }
                       }
                     ]
-                  },
-                  {
-                    "title": "v_logInfo",
-                    "type": "action",
-                    "name": "v_logInfo",
-                    "parameters": {
-                      "formatArgs": {"value": ["$vec2:stalkVector"]},
-                      "msg": {"value": "offset: %s"}
-                    }
                   }
                 ]
               },
@@ -362,14 +335,6 @@
             ]
           }
         ]
-      },
-      {
-        "title": "v_logInfo",
-        "type": "action",
-        "name": "v_logInfo",
-        "parameters": {
-          "msg": {"value": "Finished stalking"}
-        }
       }
     ]
   }
