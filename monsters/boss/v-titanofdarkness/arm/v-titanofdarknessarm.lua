@@ -1,3 +1,4 @@
+require "/scripts/rect.lua"
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/v-vec2.lua"
@@ -258,9 +259,25 @@ function tasks.grab()
 
     animator.playSound("grab")
 
+
+    local extendSpeed, retractSpeed
+    local speedAdjustFunc = function()
+      while true do
+        if mcontroller.liquidMovement() then
+          extendSpeed = cfg.liquidExtendSpeed
+          retractSpeed = cfg.liquidRetractSpeed
+        else
+          extendSpeed = cfg.extendSpeed
+          retractSpeed = cfg.retractSpeed
+        end
+        coroutine.yield()
+      end
+    end
+
     local threads = {
+      coroutine.create(speedAdjustFunc),
       coroutine.create(function()
-        vMovementA.flyToPosition(grabEndPosition, cfg.extendSpeed, cfg.extendForce, cfg.tolerance)
+        vMovementA.flyToPosition(grabEndPosition, extendSpeed, cfg.extendForce, cfg.tolerance)
         vMovementA.stop(cfg.stopForce)
       end),
       coroutine.create(function()
@@ -288,9 +305,18 @@ function tasks.grab()
 
     animator.setAnimationState("hand", "fist")
 
-    -- Fly back to starting position.
-    vMovementA.flyToPosition(startPos, cfg.retractSpeed, cfg.retractForce, cfg.tolerance)
-    vMovementA.stop(cfg.stopForce)
+    threads = {
+      coroutine.create(speedAdjustFunc),
+      coroutine.create(function()
+        -- Fly back to starting position.
+        vMovementA.flyToPosition(startPos, retractSpeed, cfg.retractForce, cfg.tolerance)
+        vMovementA.stop(cfg.stopForce)
+      end)
+    }
+
+    while util.parallel(table.unpack(threads)) do
+      coroutine.yield()
+    end
 
     -- For each grabbed entity...
     for _, entityId in ipairs(grabbedEntities) do
@@ -416,12 +442,30 @@ function tasks.punch()
 
     monster.setDamageOnTouch(true)
 
-    vMovementA.flyToPosition(punchEndPosition, cfg.extendSpeed, cfg.extendForce, cfg.tolerance)
-    vMovementA.stop(cfg.stopForce)
+    local extendSpeed, retractSpeed
+    local speedAdjustThread = coroutine.create(function()
+      while true do
+        if mcontroller.liquidMovement() then
+          extendSpeed = cfg.liquidExtendSpeed
+          retractSpeed = cfg.liquidRetractSpeed
+        else
+          extendSpeed = cfg.extendSpeed
+          retractSpeed = cfg.retractSpeed
+        end
+        coroutine.yield()
+      end
+    end)
+    local swingThread = coroutine.create(function()
+      vMovementA.flyToPosition(punchEndPosition, extendSpeed, cfg.extendForce, cfg.tolerance)
+      vMovementA.stop(cfg.stopForce)
+      -- Fly back to starting position.
+      vMovementA.flyToPosition(startPos, retractSpeed, cfg.retractForce, cfg.tolerance)
+      vMovementA.stop(cfg.stopForce)
+    end)
 
-    -- Fly back to starting position.
-    vMovementA.flyToPosition(startPos, cfg.retractSpeed, cfg.retractForce, cfg.tolerance)
-    vMovementA.stop(cfg.stopForce)
+    while util.parallel(speedAdjustThread, swingThread) do
+      coroutine.yield()
+    end
 
     monster.setDamageOnTouch(false)
   end
@@ -438,19 +482,7 @@ function tasks.bomb()
     local threads = {
       coroutine.create(function()
         v_titanAppear(appearSpecs)
-      end),
-      -- coroutine.create(function()
-      --   while true do
-      --     if world.entityExists(args.target) then
-      --       local targetPos = world.entityPosition(args.target)
-      --       local toTarget = vec2.norm(world.distance(targetPos, mcontroller.position()))
-      --       handTargetAngle = vec2.angle(toTarget)  -- Update hand target angle
-      --       mcontroller.setPosition(vec2.add(targetPos, vec2.mul(toTarget, -cfg.followDistance)))
-      --     end
-
-      --     coroutine.yield()
-      --   end
-      -- end)
+      end)
     }
 
     while util.parallel(table.unpack(threads)) do
@@ -460,13 +492,17 @@ function tasks.bomb()
     local projectileParameters = copy(cfg.projectileParameters or {})
     projectileParameters.power = vAttack.scaledPower(projectileParameters.power or 10)
 
+    local offsetRegion = cfg.shakeOffsetRegion
+    local timer = 0
+    local prevOffset = {0, 0}
+
     util.wait(cfg.releaseDelay, function()
-      -- if world.entityExists(args.target) then
-      --   local targetPos = world.entityPosition(args.target)
-      --   local toTarget = vec2.norm(world.distance(targetPos, mcontroller.position()))
-      --   handTargetAngle = vec2.angle(toTarget)  -- Update hand target angle
-      --   mcontroller.setPosition(vec2.add(targetPos, vec2.mul(toTarget, -cfg.followDistance)))
-      -- end
+      local pos = mcontroller.position()
+      local newOffset = vec2.mul(rect.randomPoint(offsetRegion), timer / cfg.releaseDelay)
+      mcontroller.setPosition(vec2.add(vec2.sub(pos, prevOffset), newOffset))
+      prevOffset = newOffset
+
+      timer = timer + script.updateDt()
     end)
 
     if world.entityExists(args.target) then
@@ -474,7 +510,7 @@ function tasks.bomb()
       -- local projectilePos = vec2.add(mcontroller.position(), vec2.mul(toTarget, cfg.followDistance))
       local aimVector = vec2.withAngle(currentHandAngle)
       local projectilePos = vec2.add(mcontroller.position(), vec2.mul(aimVector, cfg.followDistance))
-      local projectileId = world.spawnProjectile(cfg.projectileType, projectilePos, masterId, {0, 0}, false, projectileParameters)
+      local projectileId = world.spawnProjectile(cfg.projectileType, projectilePos, masterId, aimVector, false, projectileParameters)
       if projectileId then
         world.sendEntityMessage(masterId, "v-titanofdarkness-projectileSpawned", projectileId)
       end

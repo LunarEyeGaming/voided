@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarkness-laser",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/world.lua",
     "/scripts/actions/math.lua",
@@ -11,10 +11,12 @@
     "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
     "/scripts/behavior/bdata.lua",
+    "/scripts/actions/movement.lua",
     "/scripts/actions/boss/v-titanofdarkness.lua"
   ],
   "parameters": {
-    "switchTime": null
+    "switchTime": null,
+    "inLiquidSwitchTime": null
   },
   "root": {
     "title": "sequence",
@@ -227,14 +229,48 @@
                 }
               },
               {
-                "title": "v_titanLaserRotation",
-                "type": "action",
-                "name": "v_titanLaserRotation",
-                "parameters": {
-                  "attackTime": {"value": 5},
-                  "target": {"key": "target"},
-                  "switchTime": {"key": "<switchTime>"}
-                }
+                "title": "selector",
+                "type": "composite",
+                "name": "selector",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "inLiquid",
+                        "type": "action",
+                        "name": "inLiquid",
+                        "parameters": {
+                          "percentage": {"value": 1}
+                        }
+                      },
+                      {
+                        "title": "v_titanLaserRotation",
+                        "type": "action",
+                        "name": "v_titanLaserRotation",
+                        "parameters": {
+                          "attackTime": {"value": 10},
+                          "target": {"key": "target"},
+                          "switchTime": {"key": "<switchTime>"}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "v_titanLaserRotation",
+                    "type": "action",
+                    "name": "v_titanLaserRotation",
+                    "parameters": {
+                      "attackTime": {"value": 5},
+                      "target": {"key": "target"},
+                      "switchTime": {"key": "<switchTime>"}
+                    }
+                  }
+                ]
               }
             ]
           }

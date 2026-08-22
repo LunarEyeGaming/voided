@@ -47,6 +47,9 @@
   "speed" : 20,
   "timeToLive" : 10,
 
-  "scripts" : [ "/projectiles/tracksourcestatus.lua", "v-titanbouncingprojectile.lua" ],
-  "scriptDelta" : 1
+  "scripts" : [ "/projectiles/tracksourcestatus.lua", "v-titanbouncingprojectile.lua", "/scripts/projectiles/v-liquidspeed.lua" ],
+  "scriptDelta" : 1,
+
+  "liquidSpeed" : 10,
+  "adjustControlForce" : 50
 }

@@ -28,7 +28,9 @@ function init()
   stopForce = config.getParameter("stopForce")
   initialSpeed = config.getParameter("speed")
 
-  mcontroller.setVelocity(vec2.withAngle(math.random() * 2 * math.pi, initialSpeed))
+  mcontroller.setRotation(0)
+
+  -- mcontroller.setVelocity(vec2.withAngle(math.random() * 2 * math.pi, initialSpeed))
 
   wasActivated = false
 

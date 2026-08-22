@@ -57,9 +57,11 @@
         "grabDelay" : 2.5,
         "grabRange" : 5,
         "grabEndDistance" : 10,  // The number of additional blocks to travel beyond the player when grabbing.
+        "liquidExtendSpeed" : 36,
         "extendSpeed" : 75,
         "extendForce" : 800,
         "retractSpeed" : 50,
+        "liquidRetractSpeed" : 25,
         "retractForce" : 200,
         "stopForce" : 200,
         "tolerance" : 10
@@ -81,8 +83,10 @@
         "punchDelay" : 1.0,
         "punchEndDistance" : 10,
         "extendSpeed" : 75,
+        "liquidExtendSpeed" : 36,
         "extendForce" : 800,
         "retractSpeed" : 50,
+        "liquidRetractSpeed" : 25,
         "retractForce" : 200,
         "stopForce" : 200,
         "tolerance" : 10
@@ -94,7 +98,8 @@
         "projectileType" : "v-titanbomb",
         "rotateHandSmoothly" : false,
         "useAppearAnimation" : false,
-        "followDistance" : 5
+        "followDistance" : 5,
+        "shakeOffsetRegion" : [-1, -1, 1, 1]
       }
     },
 

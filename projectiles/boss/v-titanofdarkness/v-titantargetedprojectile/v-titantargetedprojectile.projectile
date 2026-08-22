@@ -65,7 +65,7 @@
   "timeToLive" : 1.5,
 
   "projectileType" : "v-titanriftprojectile",
-  "projectileParameters" : {"speed" : 50},
+  "projectileParameters" : {"speed" : 50, "liquidSpeed" : 25},
   "inheritDamageFactor" : 1.0,
 
   "scripts" : [ "/scripts/projectiles/v-targetedprojectile.lua" ],

@@ -41,8 +41,13 @@
   "damageKind" : "v-voidplasma",
   "statusEffects" : [ "v-voideffect" ],
   "damagePoly" : [ [6.5, 0], [0.5, 2], [-6.5, 0], [0.5, -2] ],
-  "scripts" : [ "/scripts/projectiles/homingprojectile.lua" ],
+  "scripts" : [ "/scripts/projectiles/homingprojectile.lua", "/scripts/projectiles/v-liquidspeed.lua" ],
+  "scriptDelta" : 1,
+
   "homingDistance" : 100,
   "rotationRate" : 0.785398163397,  // 45 degrees per sec
-  "trackingLimit" : 3.141592653
+  "trackingLimit" : 3.141592653,
+
+  "liquidSpeed" : 50,
+  "adjustControlForce" : 50
 }
