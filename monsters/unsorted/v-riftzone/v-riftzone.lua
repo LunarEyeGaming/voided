@@ -593,27 +593,7 @@ function updateMaterials(radius)
     placeOres(oresToPlaceFG, oresToPlaceBG)
   end})
 
-  local blocksToRemove = {}
-  local blocksToRemoveBG = {}
-
-  for _, backScanPos in ipairs(backScanPositions) do
-    world.debugPoint(backScanPos, "green")
-    attemptRemoveMatMod(backScanPos)
-    if placedBlocksFG[vVec2.iToString(backScanPos)] then
-      table.insert(blocksToRemove, backScanPos)
-      placedBlocksFG[vVec2.iToString(backScanPos)] = nil
-    end
-    if placedBlocksBG[vVec2.iToString(backScanPos)] then
-      table.insert(blocksToRemoveBG, backScanPos)
-      placedBlocksBG[vVec2.iToString(backScanPos)] = nil
-    end
-  end
-
-  world.damageTiles(blocksToRemove, "foreground", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
-  world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
-
-  recordDungeonIdsToRevert(blocksToRemove)
-  recordDungeonIdsToRevert(blocksToRemoveBG)
+  cleanUpTrail()
 end
 
 function cleanUpTrail()
@@ -635,6 +615,12 @@ function cleanUpTrail()
 
   world.damageTiles(blocksToRemove, "foreground", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
   world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
+
+  -- Destroy one tick later to clear tiles with matmods that are destroyed separately (e.g., grass, snow).
+  table.insert(deferredTasks, function()
+    world.damageTiles(blocksToRemove, "foreground", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
+    world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
+  end)
 
   recordDungeonIdsToRevert(blocksToRemove)
   recordDungeonIdsToRevert(blocksToRemoveBG)
