@@ -1,9 +1,18 @@
 {
 
-  "v-cryophoenixCodex" : [
+  "v-cryoCodex" : [
     [0, {
       "pool" : [
-        {"weight" : 1.0, "item" : "v-cryophoenixmanifesto-codex"}
+        {"weight" : 1.0, "item" : "v-cryophoenixmanifesto-codex"},
+        {"weight" : 1.0, "item" : "v-titanencounter-codex"}
+      ]
+    }]
+  ],
+  "v-phoenixCodex" : [
+    [0, {
+      "pool" : [
+        {"weight" : 1.0, "item" : "v-cryophoenixmanifesto-codex"},
+        {"weight" : 1.0, "item" : "v-titanencounter-codex"}
       ]
     }]
   ]
