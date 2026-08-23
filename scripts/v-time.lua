@@ -1,13 +1,15 @@
----Ticker class. Allows for the simple addition of periodic function calls.
+---Ticker class. Allows for the simple addition of periodic and delayed function calls.
 ---@class VTicker
 ---@field _intervals table
+---@field _delayedTasks table
 VTicker = {}
 
 ---Creates a new VTicker instance.
 ---@return VTicker
 function VTicker:new()
   local instance = {
-    _intervals = {}
+    _intervals = {},
+    _delayedTasks = {}
   }
 
   setmetatable(instance, self)
@@ -23,6 +25,13 @@ function VTicker:addInterval(duration, func)
   table.insert(self._intervals, {duration = duration, func = func, timer = duration})
 end
 
+---Adds a delayed task. These tasks are called on the next call to the `update` method or after `ticks` calls to
+---`update`.
+---@param task fun() | {ticks: number, func: fun()}
+function VTicker:addDelayedTask(task)
+  table.insert(self._delayedTasks, task)
+end
+
 ---Processes the current intervals for one tick
 ---@param dt number
 function VTicker:update(dt)
@@ -33,6 +42,20 @@ function VTicker:update(dt)
       interval.func()
 
       interval.timer = interval.duration
+    end
+  end
+
+  for i = #self._delayedTasks, 1, -1 do
+    local task = self._delayedTasks[i]
+    if type(task) == "table" then
+      task.ticks = task.ticks - 1
+      if task.ticks <= 0 then
+        task.func()
+        table.remove(self._delayedTasks, i)
+      end
+    else
+      task()
+      table.remove(self._delayedTasks, i)
     end
   end
 end
@@ -48,6 +71,13 @@ vTime = {}
 ---@param func fun()
 function vTime.addInterval(duration, func)
   ticker:addInterval(duration, func)
+end
+
+---Adds a delayed task. These tasks are called on the next call to the `update` method or after `ticks` calls to
+---`update`.
+---@param task fun() | {ticks: number, func: fun()}
+function vTime.addDelayedTask(task)
+  ticker:addDelayedTask(task)
 end
 
 ---Processes the current intervals for one tick
