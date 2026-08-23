@@ -39,24 +39,22 @@ end
 ---Processes the current intervals for one tick
 ---@param dt number
 function VTicker:update(dt)
-  for _, interval in ipairs(self._intervals) do
-    interval.timer = interval.timer - dt
-
-    if interval.timer <= 0 then
-      -- self._inIntervalFunc = true
-      interval.func()
-      -- self._inIntervalFunc = false
-
-      interval.timer = interval.duration
-    end
-  end
-
   for i = #self._delayedTasks, 1, -1 do
     local task = self._delayedTasks[i]
     task.ticks = task.ticks - 1
     if task.ticks <= 0 then
       task.func()
       table.remove(self._delayedTasks, i)
+    end
+  end
+
+  for _, interval in ipairs(self._intervals) do
+    interval.timer = interval.timer - dt
+
+    if interval.timer <= 0 then
+      interval.func()
+
+      interval.timer = interval.duration
     end
   end
 end
