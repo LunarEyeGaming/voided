@@ -1,0 +1,95 @@
+{
+  "metadata" : {
+    "name" : "v-entropicsurfacemicrodungeons",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "surface1", "surface2", "surface3" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "surface1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "surface1.json" ]
+    },
+    {
+      "name" : "surface2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "surface2.json" ]
+    },
+    {
+      "name" : "surface3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "surface3.json" ]
+    },
+    {
+      "name" : "surface4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "surface4.json" ]
+    },
+    {
+      "name" : "surface5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "surface5.json" ]
+    },
+    {
+      "name" : "surface6",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "surface6.json" ]
+    },
+    {
+      "name" : "surface7",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "surface7.json" ]
+    },
+    {
+      "name" : "surface8",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "surface8.json" ]
+    },
+    {
+      "name" : "surface9",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "surface9.json" ]
+    },
+    {
+      "name" : "surface10",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "surface10.json" ]
+    },
+    {
+      "name" : "surface11",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "surface11.json" ]
+    }
+  ]
+}
