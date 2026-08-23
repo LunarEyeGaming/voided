@@ -549,6 +549,7 @@ function updateMaterials(radius)
   local oresToPlaceBG = {}
 
   for _, frontScanPos in ipairs(frontScanPositions) do
+    frontScanPos = world.xwrap(frontScanPos)
     world.debugPoint(frontScanPos, "blue")
     if shouldPlaceBlock(frontScanPos) then
       -- Place terrain and ores
@@ -584,6 +585,7 @@ function cleanUpTrail()
   local blocksToRemoveBG = {}
 
   for _, backScanPos in ipairs(backScanPositions) do
+    backScanPos = world.xwrap(backScanPos)  --[[@as Vec2I]]
     world.debugPoint(backScanPos, "green")
     attemptRemoveMatMod(backScanPos)
     if placedBlocksFG[vVec2.iToString(backScanPos)] then
@@ -876,9 +878,9 @@ function closeToAPlayer(position)
   for _, playerId in ipairs(players) do
     local playerPos = world.entityPosition(playerId)
     if playerPos then
+      playerPos = world.nearestTo(mcontroller.position(), playerPos)  -- Account for world wrapping
       local region = rect.translate(playerProximityRegion, playerPos)
-      if region[1] <= position[1] and position[1] <= region[3]
-        and region[2] <= position[2] and position[2] <= region[4] then
+      if rect.contains(region, position) then
         return true
       end
     end
