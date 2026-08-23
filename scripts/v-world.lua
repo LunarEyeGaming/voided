@@ -151,6 +151,9 @@ end
 ---@field _halfFov number
 local FovSearcher = {}
 
+---Create a new FovSearcher
+---@param obj table
+---@return FovSearcher
 function FovSearcher:new(obj)
   obj = obj or {}
 
@@ -159,6 +162,7 @@ function FovSearcher:new(obj)
   return obj
 end
 
+---Initialize the FovSearcher.
 function FovSearcher:init()
   self._queriedTimings = {}
   self._halfFov = self.fov * math.pi / 360  -- Convert to radians, then divide by 2.
@@ -166,6 +170,11 @@ function FovSearcher:init()
   self._lineCollision = self.useLineCollision and world.lineCollision or world.lineTileCollision
 end
 
+---Update the FovSearcher.
+---@param dt number
+---@param position Vec2F query position
+---@param angle number query angle
+---@return table
 function FovSearcher:update(dt, position, angle)
   local queried = world.entityQuery(position, self.sightRange, self.queryArguments)
   world.debugPoly({
@@ -205,6 +214,10 @@ function FovSearcher:update(dt, position, angle)
   return foundTargets
 end
 
+---Returns whether or not the target is valid (can be seen, is close enough, and matches the target predicate).
+---@param target EntityId
+---@param pos Vec2F
+---@return boolean
 function FovSearcher:_isValidTarget(target, pos)
   if world.entityExists(target) then
       local targetPos = world.entityPosition(target)
@@ -216,12 +229,6 @@ function FovSearcher:_isValidTarget(target, pos)
     return false
 end
 
--- ---Returns a searcher that queries entities in a field of view.
--- ---@param args table
--- ---@return FovSearcher
--- function vWorld.makeFovSearcher(args)
---   return FovSearcher:new(args)
--- end
 vWorld.FovSearcher = FovSearcher
 
 --- Utility coroutine functions related to the world.
