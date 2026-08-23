@@ -29,7 +29,11 @@ end
 ---`update`.
 ---@param task fun() | {ticks: number, func: fun()}
 function VTicker:addDelayedTask(task)
-  table.insert(self._delayedTasks, task)
+  if type(task) == "table" then
+    table.insert(self._delayedTasks, task)
+  else
+    table.insert(self._delayedTasks, {ticks = 1, func = task})
+  end
 end
 
 ---Processes the current intervals for one tick
@@ -39,7 +43,9 @@ function VTicker:update(dt)
     interval.timer = interval.timer - dt
 
     if interval.timer <= 0 then
+      -- self._inIntervalFunc = true
       interval.func()
+      -- self._inIntervalFunc = false
 
       interval.timer = interval.duration
     end
@@ -47,14 +53,9 @@ function VTicker:update(dt)
 
   for i = #self._delayedTasks, 1, -1 do
     local task = self._delayedTasks[i]
-    if type(task) == "table" then
-      task.ticks = task.ticks - 1
-      if task.ticks <= 0 then
-        task.func()
-        table.remove(self._delayedTasks, i)
-      end
-    else
-      task()
+    task.ticks = task.ticks - 1
+    if task.ticks <= 0 then
+      task.func()
       table.remove(self._delayedTasks, i)
     end
   end
