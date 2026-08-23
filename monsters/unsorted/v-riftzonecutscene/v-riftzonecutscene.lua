@@ -4,8 +4,6 @@ require "/scripts/util.lua"
 require "/scripts/v-animator.lua"
 
 local followPlayer
-local fissureCrossingProjectileType
-local fissureCrossingProjectileParameters
 local lightningStrikeSpecs
 local postLightningWaitTime
 local starCutscene
@@ -16,8 +14,6 @@ local state
 
 function init()
   followPlayer = config.getParameter("masterId")
-  fissureCrossingProjectileType = config.getParameter("fissureCrossingProjectileType")
-  fissureCrossingProjectileParameters = config.getParameter("fissureCrossingProjectileParameters")
   lightningStrikeSpecs = config.getParameter("lightningStrikeSpecs")
   starCutscene = config.getParameter("starCutscene", {})
   table.sort(starCutscene, function(a, b) return a.timecode < b.timecode end)
@@ -56,8 +52,6 @@ function update(dt)
       mcontroller.setPosition(pos)
     end
   end
-
-  -- world.loadRegion(rect.translate({-32, -32, 32, 32}, mcontroller.position()))
 end
 
 states = {}

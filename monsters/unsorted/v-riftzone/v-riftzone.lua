@@ -186,7 +186,6 @@ function update(dt)
     spawnMonsters()
   end
 
-  -- applyEffect("v-softenedtiles", currentTileSofteningRadius, {"player"})
   applyEffect("v-rifteffects", currentScanRadius, {"player"})
 
   crackleLightning(currentTileSofteningRadius)
@@ -206,8 +205,6 @@ function update(dt)
     placedAssistsCount = placedAssistsCount + 1
   end
   world.debugText("placedBlocks: %s\nplacedBlocksBG: %s\nplacedAssists: %s", placedBlocksCount, placedBlocksBGCount, placedAssistsCount, mcontroller.position(), "green")
-
-  -- world.loadRegion(rect.translate({-32, -32, 32, 32}, mcontroller.position()))
 end
 
 function shouldDie()
@@ -270,17 +267,10 @@ function states.move()
   currentTileSofteningRadius = tileSofteningRadius
 
   local ownPos = vec2.floor(mcontroller.position())
-  -- local normVel = vec2.norm(velocity)
-  -- sb.logInfo(string.format("%.7f, %.7f", normVel[1], normVel[2]))
-  -- local nextPos = vec2.add(ownPos, {-1, 0})
   local nextPos = vec2.floor(vec2.add(vec2.add(ownPos, vec2.norm(velocity)), {0.5, 0.5}))
   computeDeltaScans(currentScanRadius, currentScanRadius, ownPos, nextPos)
 
-  -- rotationTimer = 0
-
   while existenceTimer > 0 do
-    -- rotationTimer = (rotationTimer + script.updateDt()) % rotationPeriod
-    -- velocity = vec2.rotate(initialVelocity, rotationTimer * 2 * math.pi / rotationPeriod)
     mcontroller.setVelocity(velocity)
 
     existenceTimer = existenceTimer - script.updateDt()
@@ -407,9 +397,6 @@ function setExistenceTimer()
 end
 
 function updateWeather(dt)
-  -- applyRiftDestabilization(currentScanRadius)
-  -- spawnMeteors(currentScanRadius)
-  -- spawnGravispheres()
   weatherFunction()
 end
 
@@ -499,24 +486,8 @@ function updateDeltaScans(radius)
   local ownPos = vec2.floor(mcontroller.position())
   world.debugPoint(ownPos, "green")
 
-  -- for x = ownPos[1] - radius, ownPos[1] + radius do
-  --   for y = ownPos[2] - radius, ownPos[2] + radius do
-  --     local frontScanPos = {x, y}
-
-  --     local dungeonId = world.dungeonId(frontScanPos)
-  --     world.debugPoint(frontScanPos, dungeonId == 65535 and "green" or "red")
-  --   end
-  -- end
-
   frontScanPositions = {}
   backScanPositions = {}
-  -- if radius ~= radiusSinceLastCache or not vec2.eq(velocitySinceLastCache or {}, mcontroller.velocity()) then
-  --   local nextPos = vec2.floor(vec2.add(vec2.add(ownPos, vec2.norm(mcontroller.velocity())), {0.5, 0.5}))
-  --   computeDeltaScans(prevRadius, radius, ownPos, nextPos)
-  --   radiusSinceLastCache = radius
-  --   velocitySinceLastCache = mcontroller.velocity()
-  --   sb.logInfo("%s, %s", #cachedFrontScanPositions, #cachedBackScanPositions)
-  -- end
 
   if ownPos[1] ~= prevPos[1] or ownPos[2] ~= prevPos[2] or radius ~= prevRadius then
     for _, pos in ipairs(cachedFrontScanPositions) do
@@ -570,22 +541,6 @@ function updateMaterials(radius)
   local ownPos = vec2.floor(mcontroller.position())
   world.debugPoint(ownPos, "green")
 
-  -- placeOres()
-
-  -- placeBlocks()
-
-  -- for _, frontScanPos in ipairs(frontScanPositions) do
-  --   world.debugPoint(frontScanPos, "green")
-  --   attemptPlaceMatMod(frontScanPos)
-  --   if not world.material(frontScanPos, "foreground") and shouldPlaceBlock(frontScanPos) then
-  --     table.insert(fgBlocksToPlace, frontScanPos)
-  --     placedBlocksFG[vVec2.iToString(frontScanPos)] = true
-  --     placedBlocksBG[vVec2.iToString(frontScanPos)] = true
-  --   end
-  -- end
-
-  -- placeAssists()
-
   local blocksToPlaceFG = {}
   local blocksToPlaceBG = {}
   local oresToPlaceFG = {}
@@ -593,10 +548,8 @@ function updateMaterials(radius)
 
   for _, frontScanPos in ipairs(frontScanPositions) do
     world.debugPoint(frontScanPos, "green")
-    -- if shouldPlaceBlock(frontScanPos) then
-    --   table.insert(blocksToPlaceFG, )
-    -- end
     if shouldPlaceBlock(frontScanPos) then
+      -- Place terrain and ores
       table.insert(blocksToPlaceFG, {pos = frontScanPos, material = terrainMaterial})
       table.insert(blocksToPlaceBG, {pos = frontScanPos, material = terrainMaterial})
       if oreFGPerlinSource:get(frontScanPos[1], frontScanPos[2]) > 0 then
@@ -606,6 +559,7 @@ function updateMaterials(radius)
         table.insert(oresToPlaceBG, frontScanPos)
       end
     else
+      -- Place light blocker.
       table.insert(blocksToPlaceBG, {pos = frontScanPos, material = lightBlockerMaterial})
     end
   end
@@ -639,17 +593,8 @@ function updateMaterials(radius)
   world.damageTiles(blocksToRemove, "foreground", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
   world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
 
-  -- table.insert(deferredTasks, {ticks = 1, func = function()
-  --   recordDungeonIdsToRevert(blocksToRemove)
-  --   recordDungeonIdsToRevert(blocksToRemoveBG)
-  -- end})
   recordDungeonIdsToRevert(blocksToRemove)
   recordDungeonIdsToRevert(blocksToRemoveBG)
-
-  -- world.setDungeonId(rect.translate({-radius, -radius, radius, radius}, prevPos), 65535)
-
-  prevPos = ownPos
-  prevRadius = radius
 end
 
 function recordDungeonIdsToRevert(blocks)
@@ -663,7 +608,6 @@ function revertDungeonIds()
   -- Revert dungeon ID
   for blockStr, dungeonId in pairs(dungeonIdsToRevert) do
     local block = vVec2.iFromString(blockStr)
-    -- world.debugText("%s", dungeonId, block, "green")
     world.setDungeonId({block[1], block[2], block[1] + 1, block[2] + 1}, dungeonId)
   end
 
@@ -882,8 +826,6 @@ function getBlocksToClear(blocks, layer)
   end
 
   return blocksToClear
-
-  -- world.damageTiles(blocksToClear, layer, mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
 end
 
 function getOresToClear(ores, layer)
@@ -904,10 +846,6 @@ function getOresToClear(ores, layer)
   end
 
   return oresToClear
-
-  -- for _, tile in ipairs(oresToClear) do
-  --   world.placeMod(tile, layer, invisibleOre)
-  -- end
 end
 
 function closeToAPlayer(position)
