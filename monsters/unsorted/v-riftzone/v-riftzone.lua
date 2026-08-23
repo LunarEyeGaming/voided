@@ -184,6 +184,9 @@ function update(dt)
     updateMaterials(currentScanRadius)
     updateWeather(dt)
     spawnMonsters()
+  else
+    updateDeltaScans(currentScanRadius)
+    cleanUpTrail()
   end
 
   applyEffect("v-rifteffects", currentScanRadius, {"player"})
@@ -259,10 +262,20 @@ function states.appear()
     coroutine.yield()
   end
 
+  -- Do one more pass for the maximum radius.
+  currentScanRadius = scanRadius
+  currentTileSofteningRadius = tileSofteningRadius
+
+  local ownPos = vec2.floor(mcontroller.position())
+  computeDeltaScans(prevScanRadius, currentScanRadius, ownPos, ownPos)
+
+  coroutine.yield()
+
   state:set(states.move)
 end
 
 function states.move()
+  -- Set currentScanRadius and currentTileSofteningRadius because this could be the starting state.
   currentScanRadius = scanRadius
   currentTileSofteningRadius = tileSofteningRadius
 
@@ -292,7 +305,7 @@ function states.disappear()
 
   mcontroller.setVelocity({0, 0})
 
-  local prevScanRadius = 0
+  local prevScanRadius = currentScanRadius
   local timer = disappearTime
   while timer > 0 do
     currentScanRadius = interp.sin(timer / disappearTime, 0, scanRadius)
@@ -322,7 +335,6 @@ function states.die()
     createRiftZone(riftZones)
     world.setProperty("v-riftZones", riftZones)
   else
-    sb.logInfo("Test")
     local pendingRiftRemnants = world.getProperty("v-pendingRiftRemnants") or jarray()
     table.insert(pendingRiftRemnants, {position = mcontroller.position(), disappearTime = world.time() + riftRemnantTimeToLive})
     world.setProperty("v-pendingRiftRemnants", pendingRiftRemnants)
@@ -489,7 +501,7 @@ function updateDeltaScans(radius)
   frontScanPositions = {}
   backScanPositions = {}
 
-  if ownPos[1] ~= prevPos[1] or ownPos[2] ~= prevPos[2] or radius ~= prevRadius then
+  if ownPos[1] ~= prevPos[1] or ownPos[2] ~= prevPos[2] or radius ~= prevRadius or radius == 0 then
     for _, pos in ipairs(cachedFrontScanPositions) do
       table.insert(frontScanPositions, vec2.add(pos, ownPos))
     end
@@ -511,8 +523,15 @@ function computeDeltaScans(radius0, radius, center0, center)
   cachedFrontScanPositions = {}
   cachedBackScanPositions = {}
 
-  for x = -radius, radius do
-    for y = -radius, radius do
+  if radius0 == radius and radius == 0 and vec2.eq(center0, center) then
+    table.insert(cachedFrontScanPositions, {0, 0})
+    return
+  end
+
+  local biggerRadius = math.max(radius0, radius)
+
+  for x = -biggerRadius, biggerRadius do
+    for y = -biggerRadius, biggerRadius do
       local frontScanPos = {center[1] + x, center[2] + y}
 
       local frontScanDist = world.magnitude(center, frontScanPos)
@@ -523,8 +542,8 @@ function computeDeltaScans(radius0, radius, center0, center)
     end
   end
 
-  for x = -radius, radius do
-    for y = -radius, radius do
+  for x = -biggerRadius, biggerRadius do
+    for y = -biggerRadius, biggerRadius do
       local backScanPos = {center0[1] + x, center0[2] + y}
 
       local backScanDist = world.magnitude(center, backScanPos)
@@ -547,7 +566,7 @@ function updateMaterials(radius)
   local oresToPlaceBG = {}
 
   for _, frontScanPos in ipairs(frontScanPositions) do
-    world.debugPoint(frontScanPos, "green")
+    world.debugPoint(frontScanPos, "blue")
     if shouldPlaceBlock(frontScanPos) then
       -- Place terrain and ores
       table.insert(blocksToPlaceFG, {pos = frontScanPos, material = terrainMaterial})
@@ -574,6 +593,30 @@ function updateMaterials(radius)
     placeOres(oresToPlaceFG, oresToPlaceBG)
   end})
 
+  local blocksToRemove = {}
+  local blocksToRemoveBG = {}
+
+  for _, backScanPos in ipairs(backScanPositions) do
+    world.debugPoint(backScanPos, "green")
+    attemptRemoveMatMod(backScanPos)
+    if placedBlocksFG[vVec2.iToString(backScanPos)] then
+      table.insert(blocksToRemove, backScanPos)
+      placedBlocksFG[vVec2.iToString(backScanPos)] = nil
+    end
+    if placedBlocksBG[vVec2.iToString(backScanPos)] then
+      table.insert(blocksToRemoveBG, backScanPos)
+      placedBlocksBG[vVec2.iToString(backScanPos)] = nil
+    end
+  end
+
+  world.damageTiles(blocksToRemove, "foreground", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
+  world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
+
+  recordDungeonIdsToRevert(blocksToRemove)
+  recordDungeonIdsToRevert(blocksToRemoveBG)
+end
+
+function cleanUpTrail()
   local blocksToRemove = {}
   local blocksToRemoveBG = {}
 
