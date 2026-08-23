@@ -435,6 +435,10 @@ function clearBlocks(propertyName, layer)
         dungeonIdsToRevert[vVec2.iToString(block)] = world.dungeonId(block)
       end
       world.damageTiles(blocks, layer, blocks[1], "blockish", 2 ^ 32, 0)
+      -- Do it again to take care of any matmods like snow, grass, etc.
+      vTime.addDelayedTask(function()
+        world.damageTiles(blocks, layer, blocks[1], "blockish", 2 ^ 32, 0)
+      end)
 
       blocksToClear[sectorStr] = nil
     end
