@@ -5,6 +5,7 @@ require "/scripts/rect.lua"
 
 require "/scripts/v-attack.lua"
 require "/scripts/v-animator.lua"
+require "/scripts/v-time.lua"
 require "/scripts/v-vec2.lua"
 
 local INSTANT_BREAK_DAMAGE = 2 ^ 32
@@ -61,8 +62,6 @@ local weatherFunction
 local weatherConfig
 
 local state
-
-local deferredTasks
 
 local wasForceKilled
 local initialized
@@ -162,8 +161,6 @@ function init()
   state = FSM:new()
   state:set(states.postInit)
 
-  deferredTasks = {}
-
   initialized = true
 end
 
@@ -171,7 +168,7 @@ function update(dt)
   if not initialized then return end
 
   revertDungeonIds()
-  callDeferredTasks()
+  vTime.update(dt)
 
   state:update(dt)
 
@@ -344,22 +341,6 @@ function states.die()
   -- and cause an error.
   while true do
     coroutine.yield()
-  end
-end
-
-function callDeferredTasks()
-  for i = #deferredTasks, 1, -1 do
-    local task = deferredTasks[i]
-    if type(task) == "table" then
-      task.ticks = task.ticks - 1
-      if task.ticks <= 0 then
-        task.func()
-        table.remove(deferredTasks, i)
-      end
-    else
-      task()
-      table.remove(deferredTasks, i)
-    end
   end
 end
 
@@ -585,13 +566,13 @@ function updateMaterials(radius)
 
   placeBlocks(blocksToPlaceFG, placedBlocksFG, true)
   -- Defer to next update to avoid interference
-  table.insert(deferredTasks, function()
+  vTime.addDelayedTask(function()
     placeBlocks(blocksToPlaceBG, placedBlocksBG, false)
   end)
 
-  table.insert(deferredTasks, {ticks = 2, func = function()
+  vTime.addDelayedTask{ticks = 2, func = function()
     placeOres(oresToPlaceFG, oresToPlaceBG)
-  end})
+  end}
 
   cleanUpTrail()
 end
@@ -617,7 +598,7 @@ function cleanUpTrail()
   world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
 
   -- Destroy one tick later to clear tiles with matmods that are destroyed separately (e.g., grass, snow).
-  table.insert(deferredTasks, function()
+  vTime.addDelayedTask(function()
     world.damageTiles(blocksToRemove, "foreground", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
     world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
   end)
@@ -732,7 +713,7 @@ function placeBlocks(blocksToPlace, placedBlocks, foreground)
   end
 
   -- Defer to next update
-  table.insert(deferredTasks, function()
+  vTime.addDelayedTask(function()
     for _, block in ipairs(blocksToPlace) do
       if not placedBlocks[vVec2.iToString(block.pos)] then
         local dungeonId = world.dungeonId(block.pos)  -- Record dungeonId BEFORE placing the material.
