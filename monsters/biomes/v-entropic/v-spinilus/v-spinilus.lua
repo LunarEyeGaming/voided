@@ -39,7 +39,7 @@ function update(dt)
   -- Update stunned state and damage on touch.
   animator.setAnimationState("damage", isStunned and "stunned" or "none")
 
-  monster.setDamageOnTouch(isStunned)
+  monster.setDamageOnTouch(not isStunned)
 
   if not isStunned then
     state:update()
