@@ -22,7 +22,7 @@
      "tilesetDirection":"string"
     },
  "spacing":0,
- "tilecount":26,
+ "tilecount":27,
  "tiledversion":"1.11.2",
  "tileheight":64,
  "tileproperties":
@@ -158,6 +158,13 @@
          "imagePositionX":"-24",
          "imagePositionY":"-24",
          "object":"v-entropicdrawing6",
+         "tilesetDirection":"right"
+        },
+     "26":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-liquidgunpickup",
          "tilesetDirection":"right"
         },
      "3":
@@ -345,6 +352,13 @@
          "object":"string",
          "tilesetDirection":"string"
         },
+     "26":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
+        },
      "3":
         {
          "imagePositionX":"string",
@@ -510,6 +524,12 @@
          "image":"..\/images\/objects\/entropicdrawing6.png",
          "imageheight":48,
          "imagewidth":48
+        },
+     "26":
+        {
+         "image":"..\/images\/objects\/liquidgunpickup.png",
+         "imageheight":32,
+         "imagewidth":16
         },
      "3":
         {

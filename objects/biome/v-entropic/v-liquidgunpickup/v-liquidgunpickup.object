@@ -1,0 +1,38 @@
+{
+  "objectName" : "v-liquidgunpickup",
+  "colonyTags" : ["misc"],
+  "printable" : false,
+  "price" : 0,
+  "rarity" : "Common",
+  "description" : "<todo>",
+  "shortdescription" : "Liquid Shooter (Object)",
+  "race" : "human",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "category" : "decorative",
+
+  "inventoryIcon" : "liquidgunpickup.png",
+  "orientations" : [
+    {
+      "dualImage" : "liquidgunpickup.png",
+
+      "imagePosition" : [-8, 0],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "scripts" : [ "/objects/scripts/v-pickupobject.lua" ],
+
+  "breakDropOptions" : [ [ [ "v-liquidgun", 1, {} ] ] ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

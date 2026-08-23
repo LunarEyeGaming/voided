@@ -5,7 +5,9 @@
     "rules" : [
     ],
 
-    "anchor" : [ "organism1", "organism2", "organism3" ],
+    "anchor" : [ "organism1", "organism1", "organism1", "organism1", "organism1", "organism1", "organism1", "organism1", "organism1", "organism1pickup",
+                 "organism2", "organism2", "organism2", "organism2", "organism2", "organism2", "organism2", "organism2", "organism2", "organism2pickup",
+                 "organism3", "organism3", "organism3", "organism3", "organism3", "organism3", "organism3", "organism3", "organism3", "organism3pickup" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -34,6 +36,27 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "organism3.json" ]
+    },
+    {
+      "name" : "organism1pickup",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "organism1pickup.json" ]
+    },
+    {
+      "name" : "organism2pickup",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "organism2pickup.json" ]
+    },
+    {
+      "name" : "organism3pickup",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "organism3pickup.json" ]
     }
   ]
 }
