@@ -35,8 +35,9 @@ local activeRiftRemnants
 local allRiftZones
 local allRiftRemnants
 local rng
-local postInitCalled
 local thread
+local dungeonIdsToRevert
+local postInitCalled
 
 function init()
   worldCoordinates = config.getParameter("worldCoordinates")
@@ -116,6 +117,8 @@ function init()
     }
   end
 
+  dungeonIdsToRevert = {}
+
   postInitCalled = false
 end
 
@@ -137,6 +140,8 @@ function update(dt)
     postInitCalled = true
     return
   end
+
+  revertDungeonIds()
 
   vTime.update(dt)
 
@@ -320,19 +325,12 @@ function createRiftZone(riftZones, oldRiftZone)
   })
 end
 
-function countRiftZones()
-  local queried = world.entityQuery(stagehand.position(), 6000, {
-    includedTypes = {"monster"}
-  })
-
-  local count = 0
-  for _, entityId in ipairs(queried) do
-    if world.monsterType(entityId) == "v-riftzone" then
-      count = count + 1
-    end
+function revertDungeonIds()
+  for blockStr, dungeonId in pairs(dungeonIdsToRevert) do
+    local block = vVec2.iFromString(blockStr)
+    world.setDungeonId({block[1], block[2], block[1] + 1, block[2] + 1}, dungeonId)
   end
-
-  sb.setLogMap("v-riftzone-count", "%s", count)
+  dungeonIdsToRevert = {}
 end
 
 function beginEvent()
@@ -433,6 +431,9 @@ function clearBlocks(propertyName, layer)
       sector[2] * vWorld.SECTOR_SIZE + vWorld.SECTOR_SIZE - 1
     }
     if world.regionActive(sectorRect) then
+      for _, block in ipairs(blocks) do
+        dungeonIdsToRevert[vVec2.iToString(block)] = world.dungeonId(block)
+      end
       world.damageTiles(blocks, layer, blocks[1], "blockish", 2 ^ 32, 0)
 
       blocksToClear[sectorStr] = nil
