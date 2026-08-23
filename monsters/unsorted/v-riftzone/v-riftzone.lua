@@ -54,6 +54,7 @@ local cachedFrontScanPositions
 local cachedBackScanPositions
 local cleanedUp
 local dungeonIdsToRevert
+local lostLiquids
 
 local weatherFunctions
 local weatherConfigs
@@ -129,6 +130,7 @@ function init()
   placedOresBG = {}
   placedAssists = {}
   dungeonIdsToRevert = {}
+  lostLiquids = {}
 
   weatherFunctions = {
     meteors = function()
@@ -603,6 +605,15 @@ function cleanUpTrail()
     world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
   end)
 
+  vTime.addDelayedTask({ticks = 2, func = function()
+    for _, block in ipairs(blocksToRemove) do
+      local liquidLevel = lostLiquids[vVec2.iToString(block)]
+      if liquidLevel then
+        world.spawnLiquid(block, liquidLevel[1], liquidLevel[2])
+      end
+    end
+  end})
+
   recordDungeonIdsToRevert(blocksToRemove)
   recordDungeonIdsToRevert(blocksToRemoveBG)
 end
@@ -717,6 +728,7 @@ function placeBlocks(blocksToPlace, placedBlocks, foreground)
     for _, block in ipairs(blocksToPlace) do
       if not placedBlocks[vVec2.iToString(block.pos)] then
         local dungeonId = world.dungeonId(block.pos)  -- Record dungeonId BEFORE placing the material.
+        local liquidLevel = world.liquidAt(block.pos)  -- Record liquid level.
         local success = world.placeMaterial(block.pos, currentLayer, block.material)
         if success then
           local blockStr = vVec2.iToString(block.pos)
@@ -724,6 +736,7 @@ function placeBlocks(blocksToPlace, placedBlocks, foreground)
           if not dungeonIdsToRevert[blockStr] then
             dungeonIdsToRevert[blockStr] = dungeonId
           end
+          lostLiquids[blockStr] = liquidLevel
         else
           world.debugText("FAILED", block.pos, "red")
         end
