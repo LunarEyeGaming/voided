@@ -250,6 +250,14 @@
                  "height":40,
                  "id":960,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"treasurePools\" : [ \"v-phoenixCodex\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -262,6 +270,14 @@
                  "height":40,
                  "id":961,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"treasurePools\" : [ \"v-phoenixCodex\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -360,7 +376,7 @@
  "nextobjectid":965,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -504,11 +520,11 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":8833,
+         "firstgid":8853,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/breakable.json"
         }, 
         {
-         "firstgid":9143,
+         "firstgid":9163,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }],
  "tilewidth":8,

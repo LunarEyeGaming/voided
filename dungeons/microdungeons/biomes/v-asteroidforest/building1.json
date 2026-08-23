@@ -182,7 +182,7 @@
                  "y":160
                 }, 
                 {
-                 "gid":9144,
+                 "gid":9164,
                  "height":16,
                  "id":955,
                  "name":"",
@@ -194,7 +194,7 @@
                  "y":136
                 }, 
                 {
-                 "gid":9158,
+                 "gid":9186,
                  "height":48,
                  "id":956,
                  "name":"",
@@ -206,7 +206,7 @@
                  "y":144
                 }, 
                 {
-                 "gid":9159,
+                 "gid":9187,
                  "height":48,
                  "id":957,
                  "name":"",
@@ -218,7 +218,7 @@
                  "y":144
                 }, 
                 {
-                 "gid":9160,
+                 "gid":9188,
                  "height":48,
                  "id":958,
                  "name":"",
@@ -230,7 +230,7 @@
                  "y":144
                 }, 
                 {
-                 "gid":9161,
+                 "gid":9189,
                  "height":48,
                  "id":959,
                  "name":"",
@@ -242,7 +242,7 @@
                  "y":144
                 }, 
                 {
-                 "gid":9162,
+                 "gid":9190,
                  "height":48,
                  "id":960,
                  "name":"",
@@ -254,7 +254,7 @@
                  "y":216
                 }, 
                 {
-                 "gid":9163,
+                 "gid":9191,
                  "height":48,
                  "id":961,
                  "name":"",
@@ -330,6 +330,14 @@
                  "height":40,
                  "id":968,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"treasurePools\" : [ \"v-phoenixCodex\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -342,6 +350,14 @@
                  "height":40,
                  "id":969,
                  "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"treasurePools\" : [ \"v-phoenixCodex\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -428,7 +444,7 @@
  "nextobjectid":970,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -572,15 +588,15 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":8833,
+         "firstgid":8853,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/breakable.json"
         }, 
         {
-         "firstgid":9143,
+         "firstgid":9163,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-phoenix.json"
         }, 
         {
-         "firstgid":9157,
+         "firstgid":9185,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-ministar.json"
         }],
  "tilewidth":8,
