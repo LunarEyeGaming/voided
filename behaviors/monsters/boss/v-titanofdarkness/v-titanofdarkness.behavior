@@ -891,20 +891,12 @@
                                         }
                                       },
                                       {
-                                        "title": "addEphemeralEffect",
+                                        "title": "setResourcePercentage",
                                         "type": "action",
-                                        "name": "addEphemeralEffect",
+                                        "name": "setResourcePercentage",
                                         "parameters": {
-                                          "duration": {"value": 2147483647},
-                                          "name": {"value": "invulnerable"}
-                                        }
-                                      },
-                                      {
-                                        "title": "timer",
-                                        "type": "action",
-                                        "name": "timer",
-                                        "parameters": {
-                                          "time": {"value": 0.1}
+                                          "percentage": {"value": 0},
+                                          "resource": {"value": "health"}
                                         }
                                       },
                                       {
@@ -916,12 +908,20 @@
                                         }
                                       },
                                       {
-                                        "title": "setResourcePercentage",
+                                        "title": "timer",
                                         "type": "action",
-                                        "name": "setResourcePercentage",
+                                        "name": "timer",
                                         "parameters": {
-                                          "percentage": {"value": 0},
-                                          "resource": {"value": "health"}
+                                          "time": {"value": 0.1}
+                                        }
+                                      },
+                                      {
+                                        "title": "addEphemeralEffect",
+                                        "type": "action",
+                                        "name": "addEphemeralEffect",
+                                        "parameters": {
+                                          "duration": {"value": 2147483647},
+                                          "name": {"value": "invulnerable"}
                                         }
                                       },
                                       {
