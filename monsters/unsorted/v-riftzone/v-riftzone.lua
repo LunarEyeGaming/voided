@@ -1,12 +1,14 @@
-require "/scripts/vec2.lua"
 require "/scripts/interp.lua"
-require "/scripts/util.lua"
 require "/scripts/rect.lua"
+require "/scripts/poly.lua"
+require "/scripts/vec2.lua"
+require "/scripts/util.lua"
 
-require "/scripts/v-attack.lua"
 require "/scripts/v-animator.lua"
+require "/scripts/v-attack.lua"
 require "/scripts/v-time.lua"
 require "/scripts/v-vec2.lua"
+require "/scripts/v-world.lua"
 
 local INSTANT_BREAK_DAMAGE = 2 ^ 32
 local MAX_TILES_TO_DESTROY = 2000
@@ -443,21 +445,25 @@ function spawnMonsters()
       for _, spawn in ipairs(monsterSpawns) do
         if math.random() < spawn.spawnChance then
           pos = rect.randomPoint(rect.translate({0, 0, CELL_SIZE, CELL_SIZE}, pos))
+          local spawnPos
           if spawn.mode == "surface" then
-            local spawnPos = world.resolvePolyCollision(spawn.testPoly, pos, spawn.maxCorrection)
+            local candidateSpawnPos = world.resolvePolyCollision(spawn.testPoly, pos, spawn.maxCorrection)
             -- If the position was moved then it is guaranteed to be in a surface.
-            if spawnPos and world.magnitude(spawnPos, pos) > 0.1 then
-              local params = copy(spawn.monsterParameters)
-              params.level = monster.level()
-              world.spawnMonster(spawn.monsterType, spawnPos, params)
+            if candidateSpawnPos and world.magnitude(candidateSpawnPos, pos) > 0.1 then
+              spawnPos = candidateSpawnPos
             end
           elseif spawn.mode == "air" then
-            local spawnPos = world.resolvePolyCollision(spawn.testPoly, pos, spawn.maxCorrection)
-            if spawnPos then
-              local params = copy(spawn.monsterParameters)
-              params.level = monster.level()
-              world.spawnMonster(spawn.monsterType, spawnPos, params)
+            local candidateSpawnPos = world.resolvePolyCollision(spawn.testPoly, pos, spawn.maxCorrection)
+            if candidateSpawnPos then
+              spawnPos = candidateSpawnPos
             end
+          end
+
+          local boundBox = poly.boundBox(spawn.testPoly)
+          if spawnPos and vWorld.canSpawnMonster(boundBox, spawnPos) then
+            local params = copy(spawn.monsterParameters)
+            params.level = monster.level()
+            world.spawnMonster(spawn.monsterType, spawnPos, params)
           end
         end
       end

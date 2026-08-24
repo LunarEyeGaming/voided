@@ -67,21 +67,3 @@ function update(dt)
 
   prevPlayers = queried
 end
-
----Returns `true` if all spaces that the stagehand's broadcast area occupies have a dungeon ID of REQUIRED_DUNGEON_ID or
----REQUIRED_DUNGEON_ID2, `false` otherwise.
----@return boolean
-function isInMonsterSpawnZone()
-  local boundBox = rect.translate(broadcastArea, stagehand.position())
-
-  for x = boundBox[1], boundBox[3] do
-    for y = boundBox[2], boundBox[4] do
-      local dungeonId = world.dungeonId({x, y})
-      if dungeonId ~= REQUIRED_DUNGEON_ID and dungeonId ~= REQUIRED_DUNGEON_ID2 then
-        return false
-      end
-    end
-  end
-
-  return true
-end

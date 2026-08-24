@@ -9,10 +9,9 @@
 
 require "/scripts/rect.lua"
 
-local oldInit = init or function() end
+require "/scripts/v-world.lua"
 
-local REQUIRED_DUNGEON_ID = 65535
-local REQUIRED_DUNGEON_ID2 = 65533
+local oldInit = init or function() end
 
 function init()
   -- If the Titan does not have a uniqueId assigned...
@@ -36,7 +35,7 @@ function init()
   end
 
   -- If the Titan is not in a monster spawn zone (and spawnAnywhere is false)...
-  if not config.getParameter("spawnAnywhere") and not isInMonsterSpawnZone() then
+  if not config.getParameter("spawnAnywhere") and not vWorld.canSpawnMonster(mcontroller.boundBox(), mcontroller.position()) then
     -- Disappear.
     monster.setUniqueId()
     status.setResourcePercentage("health", 0.0)
@@ -48,22 +47,4 @@ function init()
   end
 
   oldInit()
-end
-
----Returns `true` if all spaces that the Titan's bounding box occupies have a dungeon ID of REQUIRED_DUNGEON_ID or
----REQUIRED_DUNGEON_ID2, `false` otherwise.
----@return boolean
-function isInMonsterSpawnZone()
-  local boundBox = rect.translate(mcontroller.boundBox(), mcontroller.position())
-
-  for x = boundBox[1], boundBox[3] do
-    for y = boundBox[2], boundBox[4] do
-      local dungeonId = world.dungeonId({x, y})
-      if dungeonId ~= REQUIRED_DUNGEON_ID and dungeonId ~= REQUIRED_DUNGEON_ID2 then
-        return false
-      end
-    end
-  end
-
-  return true
 end

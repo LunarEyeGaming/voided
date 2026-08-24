@@ -14,6 +14,8 @@ vWorld.SECTOR_SIZE = 32
 
 vWorld.SOLID_COLLISION_SET = {"Block", "Dynamic", "Slippery"}
 
+vWorld.SPAWNABLE_DUNGEON_IDS = {65535, 65533}
+
 -- Certain scripts may not work under specific script contexts due to some built-in tables being
 -- unavailable. The legend below is intended to help in knowing when using each function is appropriate.
 -- * = works under any script context
@@ -139,6 +141,31 @@ function vWorld.forcePlaceObject(objectName, position, direction, parameters)
   if isTileProtected then
     world.setTileProtection(dungeonId, true)
   end
+end
+
+---Returns `true` if all spaces occupied by `boundBox` at `position` have a dungeon ID in
+---`vWorld.SPAWNABLE_DUNGEON_IDS`, or `false` otherwise.
+---@return boolean
+function vWorld.canSpawnMonster(boundBox, position)
+  boundBox = rect.translate(boundBox, position)
+
+  for x = boundBox[1], boundBox[3] do
+    for y = boundBox[2], boundBox[4] do
+      local dungeonId = world.dungeonId({x, y})
+      -- Return false if vWorld.SPAWNABLE_DUNGEON_IDS does not contain dungeonId.
+      local result
+      for _, spawnableDungeonId in ipairs(vWorld.SPAWNABLE_DUNGEON_IDS) do
+        if dungeonId == spawnableDungeonId then
+          result = true
+        end
+      end
+      if not result then
+        return false
+      end
+    end
+  end
+
+  return true
 end
 
 ---@class FovSearcher
