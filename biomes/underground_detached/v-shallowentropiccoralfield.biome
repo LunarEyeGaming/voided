@@ -209,6 +209,15 @@
             }
           }
         ]
+      },
+      {
+        "mode" : "floor",
+        "priority" : 99.0,
+        "variants" : 1,
+        "distribution" : "/biomes/distributions.config:mainBiomeMicrodungeon",
+
+        "type" : "microdungeon",
+        "microdungeons" : [ "v-entropicoceanmicrodungeons" ]
       }
     ]
   },

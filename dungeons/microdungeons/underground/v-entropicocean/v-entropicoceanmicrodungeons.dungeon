@@ -1,0 +1,211 @@
+{
+  "metadata" : {
+    "name" : "v-entropicoceanmicrodungeons",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "open1", "open1", "open2", "open2", "open1Caves", "open1Caves", "open2Caves", "open2Caves",
+                 "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1",
+                 "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1",
+                 "tunnel1", "tunnel1", "tunnel1", "tunnel1", "tunnel1", "tunnel1", "tunnel1", "tunnel1",
+                 "spikes1", "spikes2", "spikes3", "spikes4", "spikes5", "spikes1Caves", "spikes2Caves", "spikes3Caves", "spikes4Caves", "spikes5Caves" ],
+
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "open1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "open1.json" ]
+    },
+    {
+      "name" : "open2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "open2.json" ]
+    },
+    {
+      "name" : "open1Caves",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "open1Caves.json" ]
+    },
+    {
+      "name" : "open2Caves",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "open2Caves.json" ]
+    },
+    {
+      "name" : "tunnelBackSlope1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelBackSlope1.json" ]
+    },
+    {
+      "name" : "tunnelForwardSlope1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelForwardSlope1.json" ]
+    },
+    {
+      "name" : "tunnel1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnel1.json" ]
+    },
+    {
+      "name" : "spikes1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "spikes1.json" ]
+    },
+    {
+      "name" : "spikes2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "spikes2.json" ]
+    },
+    {
+      "name" : "spikes3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "spikes3.json" ]
+    },
+    {
+      "name" : "spikes4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "spikes4.json" ]
+    },
+    {
+      "name" : "spikes5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "spikes5.json" ]
+    },
+    {
+      "name" : "spikes1Caves",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "spikes1Caves.json" ]
+    },
+    {
+      "name" : "spikes2Caves",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "spikes2Caves.json" ]
+    },
+    {
+      "name" : "spikes3Caves",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "spikes3Caves.json" ]
+    },
+    {
+      "name" : "spikes4Caves",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "spikes4Caves.json" ]
+    },
+    {
+      "name" : "spikes5Caves",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "spikes5Caves.json" ]
+    // },
+    // {
+    //   "name" : "tunnelWeakBackSlope1",
+    //   "rules" : [
+    //     [ "maxSpawnCount", [1] ]
+    //   ],
+    //   "def" : [ "tmx", "tunnelWeakBackSlope1.json" ]
+    // },
+    // {
+    //   "name" : "tunnelWeakBackSlope2",
+    //   "rules" : [
+    //     [ "maxSpawnCount", [1] ]
+    //   ],
+    //   "def" : [ "tmx", "tunnelWeakBackSlope2.json" ]
+    // },
+    // {
+    //   "name" : "tunnelWeakForwardSlope1",
+    //   "rules" : [
+    //     [ "maxSpawnCount", [1] ]
+    //   ],
+    //   "def" : [ "tmx", "tunnelWeakForwardSlope1.json" ]
+    // },
+    // {
+    //   "name" : "tunnelWeakForwardSlope2",
+    //   "rules" : [
+    //     [ "maxSpawnCount", [1] ]
+    //   ],
+    //   "def" : [ "tmx", "tunnelWeakForwardSlope2.json" ]
+    // },
+    // {
+    //   "name" : "tunnelForwardSlope1",
+    //   "rules" : [
+    //     [ "maxSpawnCount", [1] ]
+    //   ],
+    //   "def" : [ "tmx", "tunnelForwardSlope1.json" ]
+    // },
+    // {
+    //   "name" : "tunnelForwardSlope2",
+    //   "rules" : [
+    //     [ "maxSpawnCount", [1] ]
+    //   ],
+    //   "def" : [ "tmx", "tunnelForwardSlope2.json" ]
+    // },
+    // {
+    //   "name" : "tunnelBackSlope1",
+    //   "rules" : [
+    //     [ "maxSpawnCount", [1] ]
+    //   ],
+    //   "def" : [ "tmx", "tunnelBackSlope1.json" ]
+    // },
+    // {
+    //   "name" : "tunnelBackSlope2",
+    //   "rules" : [
+    //     [ "maxSpawnCount", [1] ]
+    //   ],
+    //   "def" : [ "tmx", "tunnelBackSlope2.json" ]
+    // },
+    // {
+    //   "name" : "tunnel1",
+    //   "rules" : [
+    //     [ "maxSpawnCount", [1] ]
+    //   ],
+    //   "def" : [ "tmx", "tunnel1.json" ]
+    // },
+    // {
+    //   "name" : "tunnel2",
+    //   "rules" : [
+    //     [ "maxSpawnCount", [1] ]
+    //   ],
+    //   "def" : [ "tmx", "tunnel2.json" ]
+    }
+  ]
+}
