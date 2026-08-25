@@ -5,10 +5,11 @@
     "rules" : [
     ],
 
-    "anchor" : [ "underground1", "underground1", "underground1",
-                 "underground2", "underground2", "underground2",
-                 "underground3", "underground3", "underground3",
-                 "underground4", "underground5", "underground6" ],
+    "anchor" : [ "building1", "building1", "building1",
+                 "building2", "building2", "building2",
+                 "building3", "building3", "building3",
+                 "bridge1", "bridge1", "bridge1",
+                 "diamond1", "diamond2", "diamond3" ],
 
     "gravity" : 80,
     "maxRadius" : 1000000,
@@ -18,46 +19,53 @@
 
   "parts" : [
     {
-      "name" : "underground1",
+      "name" : "building1",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
-      "def" : [ "tmx", "underground1.json" ]
+      "def" : [ "tmx", "building1.json" ]
     },
     {
-      "name" : "underground2",
+      "name" : "building2",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
-      "def" : [ "tmx", "underground2.json" ]
+      "def" : [ "tmx", "building2.json" ]
     },
     {
-      "name" : "underground3",
+      "name" : "building3",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
-      "def" : [ "tmx", "underground3.json" ]
+      "def" : [ "tmx", "building3.json" ]
     },
     {
-      "name" : "underground4",
+      "name" : "bridge1",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
-      "def" : [ "tmx", "underground4.json" ]
+      "def" : [ "tmx", "bridge1.json" ]
     },
     {
-      "name" : "underground5",
+      "name" : "diamond1",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
-      "def" : [ "tmx", "underground5.json" ]
+      "def" : [ "tmx", "diamond1.json" ]
     },
     {
-      "name" : "underground6",
+      "name" : "diamond2",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
-      "def" : [ "tmx", "underground6.json" ]
+      "def" : [ "tmx", "diamond2.json" ]
+    },
+    {
+      "name" : "diamond3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "diamond3.json" ]
     }
   ]
 }
