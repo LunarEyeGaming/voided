@@ -3,7 +3,8 @@
   "image" : "cryovolcanohail2.png",
   "physics" : "grenade",
   "movementSettings" : {
-    "airFriction" : 0.75
+    "airFriction" : 0.75,
+    "physicsEffectCategories" : [ "projectile", "v-cryovolcanohail" ]
   },
   "animationCycle" : 0.25,
   "frameNumber" : 1,
