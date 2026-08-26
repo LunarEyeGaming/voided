@@ -5,7 +5,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt2LENwzAMRFGO5tGySRZ0lwXiIoVhJIpMiHcUdcW1wn+CG2s3e+yaay8z84zdjTDO6B5pzeqOMmZ0I61MO9OJtrNtSDfbg3azHUgv24A2s\/uRXna7vHFmdrO88o7ysnuRZnYn2sxulDfWzO6Td07v8zi7Z2hzRW\/LjPrOon29ZnnlndXLNMsrr7wxXoR5NS9rK\/07yFvfvNqbh7zyVjEfjm0V78fR7Z3dvKB3k7em+WSVt5j3Yi3t\/WKVt4j5h9XlzW5uWN3ejO4\/ziHeLO5O6zAv6x5uOCHekXfQODO112N3uFJ6W3Z2T6W9AU4sROc=",
+         "data":"eJzt2DEOAiEUBFCu4p5kb+QVtrFR72Dr4bbzAv5EC2MUVwIzn88UUxASMg9oYE1pWZWi3FJKJWH2PU1pOVt2Nt5brpaDjY\/TY76W0ZO79Xn25G5l9OhGWpl2phNtZ9uQbrYH7WY7kF62AW1m90d62d3lbWdmd5ZX3lpedl+kmd0TbWZ3lLetmd1P3j69F1t7S9DmiN6cGXXPWvu2muWVt1cv0yyvvPK28SLMo3lZGentIG9882h\/HvLKG8VsjnkU79Ox2du7eUDvLG9M84tV3mDeN2to7wervEHMX6xFXu\/mjLXY69H9w1nF68W90VrNy9qHP5wQb809yKzp2ltiL3C59Obs7D6RcgdVqkFn",
          "encoding":"base64",
          "height":60,
          "id":1,
@@ -19,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt1EEKwzAMRNHc\/6pZ9gJdFULBjT2akUZOP2ipxUPYx\/EP7QVOp1BjRzfT6uo+L6PyurjPwajd2faRs8Ktts9ad3Aj1mwz0x3xdnvbDGuXv5xtzXC7elVmV6vS7e5lu7t4WWa0KnPUvdpnr9Ibda9ancyou7MXMSNeJ7PixqO9aqvqxu7eVTPqdTIzb3y3W21lm3f1jswze9VW5o07eVfNqNfJnHXjruYdvCvmiNfJnOXtZh7V0TtjZnidzKh31VztnDWzvF3Md3U1o97dzAqviznT62qebQfzSqjXwY32NHPUW+mu9FaY0ZjmLHcktjfD7OZVmqOpvAo3I7WXaWaVYY662TmblTm5M6s2u8T0XnNz\/orh7dqTrN89wVjVG5+CLaA=",
+         "data":"eJzt1DEOwjAMheEwcwq4IFdgYQEWbsHdOnIBslSqQKGJ82w\/p\/ySJRgs8cm0Kf2T9hKOV49jOt\/y3PMcUjqf8jzzXPL3a5797ntHamRy14a0srqnxWh5WdxTYbTd1vaS08Otba+1juCWWK3NSHePN9qzjbBGeZejrRZuVq+WmdWq6Wb3ot1RvCizNC9zr7u1eU\/yO1Phs7W71Soxz7HcW9vL9h+XeJnMGjcu7XlbtW7M7m01S71MZuSN13a9rWjzqN6SuWbP24q8cSRvq1nqZTJb3TiqeQRvi7nHy2S28kYzl4rorTEjvExmqbfV7O2sNaO8UcxrRTVLvaOZNbwsZksvq7m2EcwtSb0MbmlbM\/d6Pd2eXg+zNKTZyt0T2mthZvNqmnvT8mq4EWl7kWZUFuZeNzpms2ZMbsu8zSwhvcvYnL9CeKO2JetnWzB69QaS1zKZ",
          "encoding":"base64",
          "height":60,
          "id":2,
@@ -48,7 +48,295 @@
          "draworder":"topdown",
          "id":4,
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":5650,
+                 "height":40,
+                 "id":778,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":54,
+                 "x":8,
+                 "y":416
+                }, 
+                {
+                 "gid":7887,
+                 "height":16,
+                 "id":779,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":16,
+                 "y":408
+                }, 
+                {
+                 "gid":7772,
+                 "height":16,
+                 "id":780,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":16,
+                 "y":432
+                }, 
+                {
+                 "gid":7368,
+                 "height":40,
+                 "id":781,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePools\" : [ \"v-entropicTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":96,
+                 "y":456
+                }, 
+                {
+                 "gid":6018,
+                 "height":24,
+                 "id":782,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":40,
+                 "y":456
+                }, 
+                {
+                 "gid":5945,
+                 "height":16,
+                 "id":783,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":71,
+                 "y":408
+                }, 
+                {
+                 "gid":6062,
+                 "height":20,
+                 "id":784,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":15,
+                 "x":56,
+                 "y":408
+                }, 
+                {
+                 "gid":7330,
+                 "height":16,
+                 "id":785,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePools\" : [ \"v-entropicTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":120,
+                 "y":408
+                }, 
+                {
+                 "gid":4135,
+                 "height":16,
+                 "id":786,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":144,
+                 "y":408
+                }, 
+                {
+                 "gid":5956,
+                 "height":24,
+                 "id":787,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":136,
+                 "y":456
+                }, 
+                {
+                 "gid":5870,
+                 "height":18,
+                 "id":788,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":192,
+                 "y":456
+                }, 
+                {
+                 "gid":7365,
+                 "height":40,
+                 "id":789,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"treasurePools\" : [ \"v-cryoCodex\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":168,
+                 "y":408
+                }, 
+                {
+                 "gid":8854,
+                 "height":16,
+                 "id":790,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":200,
+                 "y":408
+                }, 
+                {
+                 "gid":7361,
+                 "height":16,
+                 "id":791,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePools\" : [ \"v-entropicTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":120,
+                 "y":384
+                }, 
+                {
+                 "gid":7339,
+                 "height":40,
+                 "id":792,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"treasurePools\" : [ \"v-cryoCodex\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":168,
+                 "y":360
+                }, 
+                {
+                 "gid":7367,
+                 "height":16,
+                 "id":793,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{ \"treasurePools\" : [ \"v-entropicTreasure\" ] }"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":120,
+                 "y":360
+                }, 
+                {
+                 "gid":5865,
+                 "height":16,
+                 "id":794,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":224,
+                 "y":456
+                }, 
+                {
+                 "gid":5852,
+                 "height":20,
+                 "id":795,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":216,
+                 "y":432
+                }, 
+                {
+                 "gid":7814,
+                 "height":4,
+                 "id":796,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":224,
+                 "y":408
+                }, 
+                {
+                 "gid":7883,
+                 "height":8,
+                 "id":797,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":216,
+                 "y":408
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -197,7 +485,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":778,
+ "nextobjectid":798,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -338,6 +626,14 @@
         {
          "firstgid":8692,
          "source":"..\/..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/huge-objects.json"
+        }, 
+        {
+         "firstgid":8793,
+         "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
+        }, 
+        {
+         "firstgid":8853,
+         "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-entropic.json"
         }],
  "tilewidth":8,
  "type":"map",

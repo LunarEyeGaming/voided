@@ -5,8 +5,8 @@
     "rules" : [
     ],
 
-    "anchor" : [ "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1",
-                 "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1",
+    "anchor" : [ "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope1", "tunnelBackSlope2", "tunnelBackSlope2", "tunnelBackSlope2", "tunnelBackSlope2",
+                 "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope1", "tunnelForwardSlope2", "tunnelForwardSlope2", "tunnelForwardSlope2", "tunnelForwardSlope2",
                  "tunnel1", "tunnel1", "tunnel1", "tunnel1", "tunnel1", "tunnel1", "tunnel1", "tunnel1",
                  "open1", "open2", "open1Caves", "open2Caves",
                  "spikes1", "spikes2", "spikes3", "spikes4", "spikes5", "spikes1Caves", "spikes2Caves", "spikes3Caves", "spikes4Caves", "spikes5Caves" ],
@@ -54,11 +54,25 @@
       "def" : [ "tmx", "tunnelBackSlope1.json" ]
     },
     {
+      "name" : "tunnelBackSlope2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelBackSlope2.json" ]
+    },
+    {
       "name" : "tunnelForwardSlope1",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "tunnelForwardSlope1.json" ]
+    },
+    {
+      "name" : "tunnelForwardSlope2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "tunnelForwardSlope2.json" ]
     },
     {
       "name" : "tunnel1",
