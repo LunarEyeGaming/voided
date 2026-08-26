@@ -591,19 +591,33 @@ function cleanUpTrail()
   local blocksToRemove = {}
   local blocksToRemoveBG = {}
 
+  local removedOres = {}
+
   for _, backScanPos in ipairs(backScanPositions) do
     backScanPos = world.xwrap(backScanPos)  --[[@as Vec2I]]
     world.debugPoint(backScanPos, "green")
-    attemptRemoveMatMod(backScanPos)
-    if placedBlocksFG[vVec2.iToString(backScanPos)] then
+    local backScanPosStr = vVec2.iToString(backScanPos)
+    -- Unmark placed blocks, then queue them to be removed.
+    if placedBlocksFG[backScanPosStr] then
       table.insert(blocksToRemove, backScanPos)
-      placedBlocksFG[vVec2.iToString(backScanPos)] = nil
+      placedBlocksFG[backScanPosStr] = nil
     end
-    if placedBlocksBG[vVec2.iToString(backScanPos)] then
+    if placedBlocksBG[backScanPosStr] then
       table.insert(blocksToRemoveBG, backScanPos)
-      placedBlocksBG[vVec2.iToString(backScanPos)] = nil
+      placedBlocksBG[backScanPosStr] = nil
     end
+
+    -- Add to list
+    if placedOresFG[backScanPosStr] then
+      table.insert(removedOres, backScanPos)
+    end
+    if placedOresBG[backScanPosStr] then
+      table.insert(removedOres, backScanPos)
+    end
+    attemptRemoveMatMod(backScanPos)
   end
+
+  notifyOreUpdates(removedOres)
 
   world.damageTiles(blocksToRemove, "foreground", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
   world.damageTiles(blocksToRemoveBG, "background", mcontroller.position(), "blockish", INSTANT_BREAK_DAMAGE, 0)
@@ -645,10 +659,12 @@ function revertDungeonIds()
 end
 
 function placeOres(fg, bg)
+  local placedOres = {}
   if fg then
     for _, block in ipairs(fg) do
       local blockString = vVec2.iToString(block)
       if placedBlocksFG[blockString] then
+        table.insert(placedOres, block)
         world.placeMod(block, "foreground", visibleOre)
         placedOresFG[vVec2.iToString(block)] = true
       end
@@ -659,9 +675,26 @@ function placeOres(fg, bg)
     for _, block in ipairs(bg) do
       local blockString = vVec2.iToString(block)
       if placedBlocksBG[blockString] then
+        table.insert(placedOres, block)
         world.placeMod(block, "background", visibleOre)
         placedOresBG[vVec2.iToString(block)] = true
       end
+    end
+  end
+
+  notifyOreUpdates(placedOres)
+end
+
+function notifyOreUpdates(ores)
+  local sectorsToUpdate = {}
+
+  for _, block in ipairs(ores) do
+    sectorsToUpdate[vVec2.iToString{block[1] // vWorld.SECTOR_SIZE, block[2] // vWorld.SECTOR_SIZE}] = true
+  end
+
+  for sectorStr, _ in pairs(sectorsToUpdate) do
+    for _, playerId in ipairs(world.players()) do
+      vWorld.sendEntityMessage(playerId, "v-updateSector", vVec2.iFromString(sectorStr))
     end
   end
 end
