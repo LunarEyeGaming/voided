@@ -56,9 +56,17 @@
 
       "anchors" : ["bottom"],
 
-      "spaceScan" : 0.1
+      "spaceScan" : 0.1,
+
+      "animationPosition" : [-8, 0],
+      "animationParts" : {
+        "bg" : "warmcoral2.png",
+        "fg" : "warmcoral2unlit.png"
+      }
     }
   ],
+
+  "animation" : "v-warmcoral.animation",
 
   "scripts" : [ "/objects/scripts/v-statuseffectobject.lua", "/objects/scripts/v-softliquidimmersion.lua" ],
   "scriptDelta" : 2,

@@ -7,6 +7,7 @@ local queryArg2
 local effectType
 local effectDuration
 local requireInput
+local isActive
 
 local oldInit = init or function() end
 local oldUpdate = update or function() end
@@ -39,10 +40,16 @@ function update(dt)
 
   -- Optionally require input to activate.
   if not requireInput or object.getInputNodeLevel(0) then
-    local queried = world.entityQuery(queryArg1, queryArg2, {includedTypes = {"player"}})
+    if isActive then
+      local queried = world.entityQuery(queryArg1, queryArg2, {includedTypes = {"player"}})
 
-    for _, playerId in ipairs(queried) do
-      world.sendEntityMessage(playerId, "applyStatusEffect", effectType, effectDuration)
+      for _, playerId in ipairs(queried) do
+        world.sendEntityMessage(playerId, "applyStatusEffect", effectType, effectDuration)
+      end
     end
   end
+end
+
+function v_statusEffectObject_setActive(active)
+  isActive = active
 end

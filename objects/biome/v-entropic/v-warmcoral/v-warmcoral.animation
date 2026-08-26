@@ -1,0 +1,40 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "coralState" : {
+        "default" : "inactive",
+        "states" : {
+          "inactive" : {
+            "properties" : {}
+          },
+          "active" : {
+            "properties" : {}
+          }
+        }
+      }
+    },
+    "parts" : {
+      "bg" : {
+        "properties" : {
+          "centered" : false,
+          "image" : "<partImage>"
+        }
+      },
+      "fg" : {
+        "properties" : {
+          "centered" : false,
+          "fullbright" : true
+        },
+        "partStates" : {
+          "coralState" : {
+            "active" : {
+              "properties": {
+                "image": "<partImage>"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
