@@ -24,8 +24,10 @@ end
 
 function fetchParticleEmitters()
   emitterConfig = animationConfig.animationParameter("riftEmitterConfig")
-  emitterInterval = 1 / emitterConfig.emissionRate
-  emitterTimer = emitterInterval
+  if emitterConfig then
+    emitterInterval = 1 / emitterConfig.emissionRate
+    emitterTimer = emitterInterval
+  end
 end
 
 function updateParticles()
