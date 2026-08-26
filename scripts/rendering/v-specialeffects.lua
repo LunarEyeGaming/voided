@@ -378,7 +378,7 @@ function v_DistantDrawable:sunPositionAndScale()
   if camera and camera.position then
     cameraPos = camera.position()
   else
-    cameraPos = {(window[3] + window[1]) / 2, (window[4] - window[2]) / 2}
+    cameraPos = {(window[3] + window[1]) / 2, (window[4] + window[2]) / 2}
   end
 
   local time = world.timeOfDay()
