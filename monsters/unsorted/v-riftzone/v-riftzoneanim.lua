@@ -3,46 +3,43 @@ require "/scripts/vec2.lua"
 require "/scripts/util.lua"
 require "/scripts/v-ellipse.lua"
 
-local particleEmitters
+local emitterConfig
+local emitterInterval
+local emitterTimer
 
 local oldUpdate = update or function() end
 
 function update()
   localAnimator.clearDrawables()
 
-  oldUpdate(dt)
+  oldUpdate()
 
-  -- if not particleEmitters then
-  --   fetchParticleEmitters()
-  -- else
-  --   updateParticles()
-  -- end
+  if not emitterConfig then
+    fetchParticleEmitters()
+  else
+    updateParticles()
+  end
   updateRift()
 end
 
 function fetchParticleEmitters()
-  particleEmitters = animationConfig.animationParameter("riftParticleEmitters")
-
-  -- for name, emitter in pairs(particleEmitters) do
-  --   local particle = emitter.particle
-  --   if particle.approach[1] ~= 0 or particle.approach[2] ~= 0 then
-  --     sb.logWarn("%s: Emitters with changing velocities are not supported", name)
-  --     particleEmitters[name] = nil
-  --     goto continue
-  --   end
-
-  --   ::continue::
-  -- end
+  emitterConfig = animationConfig.animationParameter("riftEmitterConfig")
+  emitterInterval = 1 / emitterConfig.emissionRate
+  emitterTimer = emitterInterval
 end
 
 function updateParticles()
-  local activeParticleEmitters = animationConfig.animationParameter("riftActiveParticleEmitters")
-  local velocity = world.entityVelocity(entity.id())
+  if animationConfig.animationParameter("riftEmitterActive") then
+    emitterTimer = emitterTimer - script.updateDt()
+    local riftSize = animationConfig.animationParameter("riftSize")
 
-  for name, emitter in pairs(particleEmitters) do
-    if activeParticleEmitters[name] then
-      -- Get velocity
+    if emitterTimer <= 0 then
+      local nextPos = vec2.add(entity.position(), vec2.withAngle(math.random() * 2 * math.pi, math.random() * riftSize))
+      for _, particle in ipairs(emitterConfig.particles) do
+        localAnimator.spawnParticle(particle, nextPos)
+      end
 
+      emitterTimer = emitterInterval
     end
   end
 end

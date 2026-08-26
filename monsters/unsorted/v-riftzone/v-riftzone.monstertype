@@ -88,6 +88,13 @@
       }
     ],
 
+    "emptyWindEmitterConfig" : {
+      "emissionRate" : 20,
+      "particles" : [
+        "v-emptywind"
+      ]
+    },
+
     "lightningStrikeProbability" : 0.1,
     "lightningConfig" : {
       "baseConfig" : {

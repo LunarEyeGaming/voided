@@ -142,7 +142,8 @@ function init()
       spawnGravispheres(weatherConfig, currentScanRadius)
     end,
     destabilization = function()
-      animator.setParticleEmitterActive("emptyWind", true)
+      monster.setAnimationParameter("riftEmitterConfig", config.getParameter("emptyWindEmitterConfig"))
+      monster.setAnimationParameter("riftEmitterActive", true)
       applyEffect(weatherConfig.statusEffect, currentScanRadius, {"creature"})
     end
   }
