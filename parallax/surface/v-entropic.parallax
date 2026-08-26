@@ -58,9 +58,15 @@
       "timeOfDayCorrelation" : "nightVisible",
       "unlit" : true
     },
-
     {
       "kind" : "v-entropic/front",
+      "offset" : [0, 300],
+      "noRandomOffset" : true,
+      "parallax" : [2.5, 2.501],
+      "fadePercent" : 0.03
+    },
+    {
+      "kind" : "v-entropic/frontnohueshift",
       "offset" : [0, 300],
       "noRandomOffset" : true,
       "parallax" : [2.5, 2.501],
@@ -72,6 +78,13 @@
       "offset" : [0, 150],
       "noRandomOffset" : true,
       "parallax" : [4, 4.001],
+      "fadePercent" : 0.04
+    },
+    {
+      "kind" : "v-entropic/front2nohueshift",
+      "offset" : [0, 150],
+      "noRandomOffset" : true,
+      "parallax" : [4, 4.001],
       "nohueshift" : true,
       "fadePercent" : 0.04
     },
@@ -80,21 +93,28 @@
       "offset" : [0, 150],
       "noRandomOffset" : true,
       "parallax" : [7, 7.001],
+      "fadePercent" : 0.05
+    },
+    {
+      "kind" : "v-entropic/front2nohueshift",
+      "offset" : [0, 150],
+      "noRandomOffset" : true,
+      "parallax" : [7, 7.001],
       "nohueshift" : true,
       "fadePercent" : 0.05
     },
-    // {
-    //   "kind" : "v-entropic/front",
-    //   "offset" : [0, 125],
-    //   "noRandomOffset" : true,
-    //   "parallax" : [5, 5.001],
-    //   "nohueshift" : true,
-    //   "fadePercent" : 0.02
-    // },
     {
       "kind" : "v-entropic/middle",
       "offset" : [0, 180],
       "parallax" : [10, 10],
+      "noRandomOffset" : true,
+      "fadePercent" : 0.08
+    },
+    {
+      "kind" : "v-entropic/middlenohueshift",
+      "offset" : [0, 180],
+      "parallax" : [10, 10],
+      "noRandomOffset" : true,
       "nohueshift" : true,
       "fadePercent" : 0.08
     },
@@ -112,7 +132,6 @@
       "offset" : [50, 275],
       "noRandomOffset" : true,
       "parallax" : [20, 20],
-      "nohueshift" : true,
       "fadePercent" : 0.12
     },
     {

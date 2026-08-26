@@ -54,10 +54,19 @@
       "directives" : "fade=023975=0.3"
     },
     {
+      "kind" : "v-entropicocean/frontnohueshift",
+      "parallax" : 3,
+      "repeatY" : true,
+      "nohueshift" : true,
+      "lightMapped" : true,
+      "noRandomOffset" : true
+    },
+    {
       "kind" : "v-entropicocean/frontunlit",
       "parallax" : 3,
       "repeatY" : true,
       "unlit" : true,
+      "nohueshift" : true,
       "noRandomOffset" : true
     },
     {
