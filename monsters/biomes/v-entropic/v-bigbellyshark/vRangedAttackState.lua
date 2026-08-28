@@ -56,7 +56,8 @@ function vRangedAttackState.update(dt, stateData)
       stateData.stage = "windup"
       stateData.timer = config.getParameter("rangedWindupTime")
 
-      setBodyDirection({0, 1})
+      setBodyDirection({toTarget[1], 0})
+      -- setBodyDirection({0, 1})
     else
       move(moveDir, nil, true)
     end
@@ -97,6 +98,7 @@ function vRangedAttackState.update(dt, stateData)
 
       stateData.stage = "winddown"
       stateData.timer = config.getParameter("rangedWinddownTime")
+      animator.setAnimationState("attack", "shootwinddown")
     end
   end
 

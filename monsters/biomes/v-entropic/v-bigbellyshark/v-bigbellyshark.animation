@@ -15,13 +15,13 @@
             "mode" : "loop"
           },
           "swimFast" : {
-            "frames" : 1,
-            "cycle" : 0.6,
+            "frames" : 8,
+            "cycle" : 0.8,
             "mode" : "loop"
           },
           "swimSlow" : {
-            "frames" : 1,
-            "cycle" : 0.9,
+            "frames" : 8,
+            "cycle" : 1.6,
             "mode" : "loop"
           }
         }
@@ -36,11 +36,12 @@
             "frames" : 1
           },
           "meleewindup" : {
-            "frames" : 1,
-            "cycle" : 1
+            "frames" : 6,
+            "cycle" : 0.6,
+            "mode" : "end"
           },
           "melee" : {
-            "frames" : 1,
+            "frames" : 16,
             "cycle" : 0.75,
             "mode" : "transition",
             "transition" : "meleesnap",
@@ -58,10 +59,18 @@
             }
           },
           "shootwindup" : {
-            "frames" : 1
+            "frames" : 8,
+            "cycle" : 0.8,
+            "mode" : "end"
           },
           "shooting" : {
             "frames" : 1
+          },
+          "shootwinddown" : {
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle"
           }
         }
       },
@@ -145,6 +154,11 @@
               "properties" : {
                 "image" : "<partImage>:ranged.<frame>"
               }
+            },
+            "shootwinddown" : {
+              "properties" : {
+                "image" : "<partImage>:rangedwinddown.<frame>"
+              }
             }
           }
         }
@@ -206,6 +220,11 @@
             "shooting" : {
               "properties" : {
                 "image" : "<partImage>:ranged.<frame>"
+              }
+            },
+            "shootwinddown" : {
+              "properties" : {
+                "image" : "<partImage>:rangedwinddown.<frame>"
               }
             }
           }

@@ -60,7 +60,7 @@
     "attackMaxXDistance" : 6,
     "attackMinYDistance" : 20,
     "attackMaxYDistance" : 30,
-    "attackApproachTime" : 3.0,
+    "attackApproachTime" : 4.5,
     "attackWindupTime" : 1.0,
     "attackChargeTime" : 1.2,
     "attackChargeSpeed" : 90,
@@ -69,7 +69,7 @@
     "rangedMinXDistance" : 20,
     "rangedMaxYDistance" : 10,
     "rangedMinYDistance" : 0,
-    "rangedApproachTime" : 3.0,
+    "rangedApproachTime" : 4.5,
     "rangedWindupTime" : 1.0,
     "rangedAttackDelay" : 0.01,
     "rangedProjectileType" : "v-proxyprojectile",
@@ -85,16 +85,16 @@
               "type" : "v-archerfishspit",
               "inheritDamageFactor" : 1,
               "angle" : 0,
-              "offsetRange" : [4, -4, 4, 4],
-              "fuzzAngle" : 15
+              "offsetRange" : [1, 1, 1, 3],
+              "fuzzAngle" : 30
             },
             {
               "action" : "projectile",
               "type" : "v-archerfishspit",
               "inheritDamageFactor" : 1,
               "angle" : 180,
-              "offsetRange" : [-4, -4, -4, 4],
-              "fuzzAngle" : 15
+              "offsetRange" : [-1, 1, -1, 3],
+              "fuzzAngle" : 30
             }
           ]
         }
@@ -148,13 +148,13 @@
 
       "stats" : {
         "knockbackStunTime" : {
-          "baseValue" : 0.25
+          "baseValue" : 2.0
         },
         "knockbackThreshold" : {
-          "baseValue" : 9
+          "baseValue" : 35
         },
         "maxHealth" : {
-          "baseValue" : 72
+          "baseValue" : 120
         },
         "protection" : {
           "baseValue" : 0.0
