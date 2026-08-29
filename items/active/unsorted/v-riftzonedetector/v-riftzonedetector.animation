@@ -9,14 +9,11 @@
         "default" : "on",
         "states" : {
           "on" : {
-            "frames" : 8,
-            "cycle" : 1.5,
+            "frames" : 4,
+            "cycle" : 0.4,
             "mode" : "loop",
             "properties" : {
-              "persistentSound" : "/sfx/objects/checkpoint_loop.ogg"
-            },
-            "frameProperties" : {
-              "immediateSound" : [ "/sfx/objects/screen2.ogg", "", "", "", "", "", "", "" ]
+              "persistentSound" : "/sfx/other/v_riftzonedetector_loop.ogg"
             }
           },
           "off" : {}
@@ -69,7 +66,7 @@
   },
 
   "sounds" : {
-    "on" : [ "/sfx/objects/console_generic_switchon.ogg" ],
-    "off" : [ "/sfx/objects/console_generic_switchoff.ogg" ]
+    "on" : [ "/sfx/npc/quadruped/bugthinghead_pain1.ogg" ],
+    "off" : [ "/sfx/npc/quadruped/bugthinghead_pain2.ogg" ]
   }
 }
