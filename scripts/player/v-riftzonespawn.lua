@@ -93,16 +93,12 @@ function init()
   message.setHandler("v-riftzonespawn-planetStayTime", function()
     return worldTypeStayTime
   end)
+  currentCoordinates = getCelestialCoordinates()
 
   script.setUpdateDelta(60)
 end
 
 function update(dt)
-  if not currentCoordinates then
-    currentCoordinates = getCelestialCoordinates()
-    return
-  end
-
   -- Spawn stagehand.
   if not stagehandSpawned then
     world.spawnStagehand(mcontroller.position(), "v-riftzonemanager", {

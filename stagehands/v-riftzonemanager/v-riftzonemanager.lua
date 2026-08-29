@@ -100,7 +100,11 @@ function init()
   allRiftRemnants = {}
   activeRiftZones = {}
   activeRiftRemnants = {}
-  rng = sb.makeRandomSource(world.time() % maxTriggerInterval + worldCoordinates.location[1] + worldCoordinates.location[2] + worldCoordinates.location[3])
+  local seed = world.time() % maxTriggerInterval
+  if worldCoordinates then
+    seed = seed + worldCoordinates.location[1] + worldCoordinates.location[2] + worldCoordinates.location[3]
+  end
+  rng = sb.makeRandomSource(seed)
 
   nextTriggerTime = world.getProperty("v-riftZoneTriggerTime")
   if not nextTriggerTime then
