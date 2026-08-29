@@ -57,46 +57,6 @@
          "name":"objects",
          "objects":[
                 {
-                 "gid":7709,
-                 "height":8,
-                 "id":904,
-                 "name":"",
-                 "properties":
-                    {
-                     "parameters":"{ \"fireTime\" : 35, \"fireTimeVariance\" : 15, \"projectile\" : \"v-brinicle\" }"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":56,
-                 "y":112
-                }, 
-                {
-                 "gid":7862,
-                 "height":8,
-                 "id":913,
-                 "name":"",
-                 "properties":
-                    {
-                     "parameters":"{ \"detectArea\" : [[-2, -15], [1, 0]], \"detectDuration\" : 8 }"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":56,
-                 "y":120
-                }, 
-                {
                  "gid":8987,
                  "height":32,
                  "id":920,
@@ -107,6 +67,18 @@
                  "width":16,
                  "x":32,
                  "y":72
+                }, 
+                {
+                 "gid":8988,
+                 "height":16,
+                 "id":921,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":56,
+                 "y":120
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -119,27 +91,7 @@
          "draworder":"topdown",
          "id":5,
          "name":"wiring - lights & guns",
-         "objects":[
-                {
-                 "height":0,
-                 "id":916,
-                 "name":"",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":-8,
-                         "y":-8
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":64,
-                 "y":112
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -264,7 +216,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":921,
+ "nextobjectid":922,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
