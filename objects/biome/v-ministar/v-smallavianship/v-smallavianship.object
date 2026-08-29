@@ -2,7 +2,7 @@
   "objectName" : "v-smallavianship",
   "colonyTags" : [ ],
   "rarity" : "Common",
-  "category" : "breakable",
+  "category" : "decorative",
   "printable" : false,
 
   "description" : "A small Avian ship, old and worn down.",
@@ -34,5 +34,7 @@
       "anchors" : [ "bottom" ]
 
     }
-  ]
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }
