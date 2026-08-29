@@ -33,6 +33,7 @@ function init()
   effectType = config.getParameter("statusEffectConfig.effectType")
   effectDuration = config.getParameter("statusEffectConfig.effectDuration")
   requireInput = config.getParameter("statusEffectConfig.requireInput")
+  isActive = true
 end
 
 function update(dt)
