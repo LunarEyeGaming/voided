@@ -68,6 +68,7 @@ local state
 
 local wasForceKilled
 local initialized
+local trackedProjectiles
 
 function init()
   local cfg = root.assetJson("/v-riftzones.config")
@@ -133,6 +134,7 @@ function init()
   placedAssists = {}
   dungeonIdsToRevert = {}
   lostLiquids = {}
+  trackedProjectiles = {}
 
   weatherFunctions = {
     meteors = function()
@@ -161,6 +163,9 @@ function init()
   end
 
   message.setHandler("v-riftzone-kill", v_killRiftZone)
+  message.setHandler("projectileSpawned", function(_, _, projectileId)
+    table.insert(trackedProjectiles, projectileId)
+  end)
 
   monster.setDamageBar("None")
   state = FSM:new()
@@ -185,6 +190,7 @@ function update(dt)
     updateDeltaScans(currentScanRadius)
     updateMaterials(currentScanRadius)
     updateWeather(dt)
+    cullProjectiles()
     spawnMonsters()
   else
     updateDeltaScans(currentScanRadius)
@@ -433,9 +439,10 @@ function spawnGravispheres(cfg, spawnRadius)
     until attempts > maxAttempts or not world.rectCollision(rect.translate(requiredRegion, randomPos))
 
     if attempts <= maxAttempts then
-      world.spawnProjectile(cfg.projectileType, randomPos, entity.id(), {1, 0}, false, {
+      local projectileId = world.spawnProjectile(cfg.projectileType, randomPos, entity.id(), {1, 0}, false, {
         power = vAttack.scaledPower(cfg.projectilePower or 10)
       })
+      table.insert(trackedProjectiles, projectileId)
     end
   end
 end
@@ -639,6 +646,17 @@ function cleanUpTrail()
 
   recordDungeonIdsToRevert(blocksToRemove)
   recordDungeonIdsToRevert(blocksToRemoveBG)
+end
+
+function cullProjectiles()
+  trackedProjectiles = util.filter(trackedProjectiles, function(x) return world.entityExists(x) end)
+
+  for _, projectileId in ipairs(trackedProjectiles) do
+    local entityPos = world.entityPosition(projectileId)
+    if world.magnitude(mcontroller.position(), entityPos) > scanRadius then
+      world.sendEntityMessage(projectileId, "kill")
+    end
+  end
 end
 
 function recordDungeonIdsToRevert(blocks)

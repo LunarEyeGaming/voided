@@ -58,14 +58,7 @@
     }
   ],
 
-  "actionOnReap" : [
-    {
-      "action" : "projectile",
-      "type" : "v-gravisphere",
-      "inheritDamageFactor" : 1
-    }
-  ],
-
-  "scripts" : [ "v-gravisphere.lua" ],
-  "maxDistance" : 42
+  "scripts" : [ "/projectiles/killable.lua", "v-gravisphere.lua" ],
+  "maxDistance" : 42,
+  "nextProjectile" : "v-gravisphere"
 }
