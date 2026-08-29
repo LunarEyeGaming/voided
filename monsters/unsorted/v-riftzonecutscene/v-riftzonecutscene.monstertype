@@ -45,7 +45,6 @@
       {
         "timecode" : 6.0,
         "kind" : "distantDrawable",
-        "effectRadius" : 100,
         "arguments" : {
           "firstKeyFrame" : {
             "color" : [83, 29, 125, 0]
@@ -68,7 +67,6 @@
       {
         "timecode" : 6.0,
         "kind" : "screenFlash",
-        "effectRadius" : 100,
         "arguments" : {
           "delay" : 3.25,
           "startColor" : [83, 29, 125, 63],
@@ -81,7 +79,6 @@
       {
         "timecode" : 6.0,
         "kind" : "screenFlash",
-        "effectRadius" : 100,
         "arguments" : {
           "delay" : 3.25,
           "startColor" : [83, 29, 125, 63],
@@ -94,7 +91,6 @@
       {
         "timecode" : 9.25,
         "kind" : "distantDrawable",
-        "effectRadius" : 100,
         "arguments" : {
           "firstKeyFrame" : {
             "color" : [255, 255, 255, 255]
@@ -113,7 +109,6 @@
       {
         "timecode" : 9.25,
         "kind" : "screenFlash",
-        "effectRadius" : 100,
         "arguments" : {
           "startColor" : [83, 29, 125, 255],
           "endColor" : [83, 29, 125, 0],
@@ -125,7 +120,6 @@
       {
         "timecode" : 9.25,
         "kind" : "distantDrawable",
-        "effectRadius" : 100,
         "arguments" : {
           "firstKeyFrame" : {
             "scale" : [0.5, 0.5],
@@ -146,7 +140,6 @@
       {
         "timecode" : 12,
         "kind" : "distantDrawable",
-        "effectRadius" : 100,
         "arguments" : {
           "firstKeyFrame" : {
             "zPosition" : 0,
@@ -175,9 +168,31 @@
         }
       },
       {
+        "timecode" : 13.25,
+        "kind" : "screenFlash",
+        "arguments" : {
+          "startColor" : [83, 29, 125, 0],
+          "endColor" : [83, 29, 125, 63],
+          "duration" : 0.25,
+          "fullbright" : true
+        },
+        "onScreenOnly" : false
+      },
+      {
+        "timecode" : 13.25,
+        "kind" : "screenFlash",
+        "arguments" : {
+          "delay" : 0.24,
+          "startColor" : [83, 29, 125, 63],
+          "endColor" : [83, 29, 125, 0],
+          "duration" : 0.25,
+          "fullbright" : true
+        },
+        "onScreenOnly" : false
+      },
+      {
         "timecode" : 9.25,
         "kind" : "playSound",
-        "effectRadius" : 100,
         "arguments" : {
           "sound" : "/sfx/environmental/v_outsiderstar_pulse.ogg"
         }
@@ -185,7 +200,6 @@
       {
         "timecode" : 12,
         "kind" : "playSound",
-        "effectRadius" : 100,
         "arguments" : {
           "sound" : "/sfx/environmental/v_outsiderstar_pulsehit.ogg"
         }
@@ -194,7 +208,7 @@
     "lightningStrikeSpecs" : {
       "radiusStart" : 50,
       "radiusEnd" : 20,
-      "startDelay" : 1.5,
+      "startDelay" : 0.25,
       "interval" : 0.1,
       "count" : 30
     },
