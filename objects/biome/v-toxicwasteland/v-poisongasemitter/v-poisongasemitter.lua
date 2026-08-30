@@ -70,7 +70,7 @@ function inactive()
 end
 
 function active()
-  local timer = gasEmissionInterval
+  local timer = util.randomInRange(gasEmissionInterval)
 
   if stateSpecifications then
     animator.setAnimationState(stateSpecifications.stateType, stateSpecifications.onState)
@@ -85,7 +85,7 @@ function active()
     if timer <= 0 then
       world.spawnProjectile(gasProjectileType, vec2.add(object.position(), rect.randomPoint(gasOffsetRegion)),
           entity.id(), gasDirection, false, gasProjectileConfig)
-      timer = gasEmissionInterval
+      timer = util.randomInRange(gasEmissionInterval)
     end
   end)
 
