@@ -1,18 +1,18 @@
 {
   "layers" : [
     {
-      "kind" : "divider/ice",
+      "kind" : "divider/blackrock",
       "offset" : [0, -190],
       "nohueshift" : true,
       "lightMapped" : true,
       "parallax" : 1.199
     },
     {
-      "kind" : "tile/ice",
+      "kind" : "tile/magmarock",
       "nohueshift" : true,
       "lightMapped" : true,
       "repeatY" : true,
-      "tileLimitTop" : 225,
+      "tileLimitTop" : -265,
       "parallax" : 1.2
     },
 
@@ -28,78 +28,91 @@
       "kind" : "arcticoceanfloorbelow1",
       "offset" : [0, -300],
       "parallax" : [1.8, 2.1],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloorbelow2",
       "offset" : [0, -300],
       "parallax" : [1.8001, 2.1],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloorbelow3",
       "offset" : [0, -300],
       "parallax" : [1.8002, 2.1],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloorbelow3",
       "offset" : [0, -160],
       "parallax" : [1.8, 2.1],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloor1",
       "offset" : [0, -440],
       "parallax" : [1.8, 2.1],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloor2",
       "offset" : [0, -440],
       "parallax" : [2, 2.1],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloor3",
       "offset" : [0, -440],
       "parallax" : [3, 2.15],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloor4",
       "offset" : [0, -440],
       "parallax" : [4, 2.2],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloor5",
       "offset" : [0, -440],
       "parallax" : [5, 2.25],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloor6",
       "offset" : [0, -440],
       "parallax" : [5.5, 2.3],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloor7",
       "offset" : [0, -440],
       "parallax" : [6, 2.35],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloor8",
       "offset" : [0, -440],
       "parallax" : [6.5, 2.4],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     },
     {
       "kind" : "arcticoceanfloor9",
       "offset" : [0, -440],
       "parallax" : [8, 2.4],
+      "directives" : "hueshift=-165",
       "lightMapped" : true
     }
   ]
