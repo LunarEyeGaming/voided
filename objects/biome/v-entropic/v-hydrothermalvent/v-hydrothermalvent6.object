@@ -1,5 +1,5 @@
 {
-  "objectName" : "v-hydrothermalvent",
+  "objectName" : "v-hydrothermalvent6",
   "colonyTags" : ["ancient","evil"],
   "printable" : false,
   "rarity" : "Legendary",
@@ -21,36 +21,36 @@
   "inventoryIcon" : "hydrothermalventicon.png",
   "orientations" : [
     {
-      "image" : "hydrothermalvent.png:<color>.<frame>",
+      "image" : "hydrothermalvent6.png:<color>.<frame>",
       "imagePosition" : [-8, 0],
       "direction" : "left",
       "flipImages" : true,
 
       "animationPosition" : [-8, 0],
       "animationParts" : {
-        "bg" : "hydrothermalvent.png",
-        "fg" : "hydrothermalvent.png"
+        "bg" : "hydrothermalvent6.png",
+        "fg" : "hydrothermalvent6.png"
       },
 
       "projectileDirection" : [0, 1],
-      "projectilePosition" : [0, 6],
+      "projectilePosition" : [0, 2],
 
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]
     },
     {
-      "image" : "hydrothermalvent.png:<color>.<frame>",
+      "image" : "hydrothermalvent6.png:<color>.<frame>",
       "imagePosition" : [0, 0],
       "direction" : "right",
 
       "animationPosition" : [0, 0],
       "animationParts" : {
-        "bg" : "hydrothermalvent.png",
-        "fg" : "hydrothermalvent.png"
+        "bg" : "hydrothermalvent6.png",
+        "fg" : "hydrothermalvent6.png"
       },
 
       "projectileDirection" : [0, 1],
-      "projectilePosition" : [1, 6],
+      "projectilePosition" : [1, 2],
 
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]
