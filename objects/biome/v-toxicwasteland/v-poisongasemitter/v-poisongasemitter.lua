@@ -10,7 +10,8 @@ local gasProjectileType
 local gasProjectileConfig
 
 local gasDirection
-local gasOffset
+local gasOffsetRegion
+local stateSpecifications
 
 local requiredEmptySpace
 
@@ -26,6 +27,7 @@ function init()
 
   gasDirection = config.getParameter("gasDirection")
   gasOffsetRegion = config.getParameter("gasOffsetRegion")
+  stateSpecifications = config.getParameter("stateSpecifications")
 
   requiredEmptySpace = rect.translate(config.getParameter("requiredEmptySpace"), object.position())
 
@@ -70,6 +72,10 @@ end
 function active()
   local timer = gasEmissionInterval
 
+  if stateSpecifications then
+    animator.setAnimationState(stateSpecifications.stateType, stateSpecifications.onState)
+  end
+
   animator.playSound("gasEmitterStart")
   animator.playSound("gasEmitterLoop", -1)
 
@@ -82,6 +88,10 @@ function active()
       timer = gasEmissionInterval
     end
   end)
+
+  if stateSpecifications then
+    animator.setAnimationState(stateSpecifications.stateType, stateSpecifications.offState)
+  end
 
   animator.stopAllSounds("gasEmitterLoop")
   animator.playSound("gasEmitterStop")

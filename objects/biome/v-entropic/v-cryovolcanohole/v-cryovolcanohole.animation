@@ -1,0 +1,26 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "trapState" : {
+        "default" : "off",
+        "states" : {
+          "on" : {
+            "properties" : {
+              "persistentSound" : "/sfx/objects/v_cryovolcano_loop.ogg",
+              "persistentSoundRangeMultiplier" : 2,
+              "persistentSoundStartTime" : 0.5,
+              "persistentSoundStopTime" : 2.0
+            }
+          },
+          "off" : {
+          }
+        }
+      }
+    }
+  },
+  "sounds" : {
+    "gasEmitterStart" : [ ],
+    "gasEmitterLoop" : [ ],
+    "gasEmitterStop" : [ ]
+  }
+}

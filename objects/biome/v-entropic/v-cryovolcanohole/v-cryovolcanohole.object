@@ -42,7 +42,7 @@
     }
   ],
 
-  "animation" : "/objects/biome/v-toxicwasteland/v-poisongasemitter/v-poisongasemitter.animation",
+  "animation" : "v-cryovolcanohole.animation",
 
   "scripts" : [ "/objects/biome/v-toxicwasteland/v-poisongasemitter/v-poisongasemitter.lua" ],
   "scriptDelta" : 2,
@@ -52,6 +52,12 @@
   "smashOnBreak" : true,
   "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
   "smashParticles" : [ { "count" : 10, "particle" : "v-toxicrockshard" } ],
+
+  "stateSpecifications" : {
+    "stateType" : "trapState",
+    "onState" : "on",
+    "offState" : "off"
+  },
 
   "gasProjectileType" : "v-cryovolcanowater",
   "gasProjectileConfig" : {},

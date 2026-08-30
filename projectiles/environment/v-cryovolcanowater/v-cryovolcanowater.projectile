@@ -129,7 +129,48 @@
     }
   ],
 
-  "persistentAudio" : "/sfx/projectiles/v_poisongas_loop.ogg",
+  "periodicActions" : [
+    {
+      "time" : 0.1,
+      "action" : "particle",
+      "specification" : {
+        "type" : "textured",
+        "image" : "/projectiles/environment/v-cryovolcanowater/cryovolcanowaterparticle.png",
+        "layer" : "middle",
+        "initialVelocity" : [0, 60],
+        "approach" : [0, 40],
+        "finalVelocity" : [0, -30],
+        "timeToLive" : 2.5,
+        "destructionAction" : "shrink",
+        "destructionTime" : 1.5,
+        // "collidesForeground" : false,
+        // "collidesLiquid" : false,
+        "variance" : {
+          "initialVelocity" : [10, 10]
+        }
+      }
+    },
+    {
+      "time" : 0.1,
+      "action" : "particle",
+      "specification" : {
+        "type" : "textured",
+        "image" : "/particles/v-cryovolcanowaterhaze/cryovolcanowaterhaze.png",
+        "layer" : "back",
+        "initialVelocity" : [0, 75],
+        "approach" : [0, 80],
+        "finalVelocity" : [0, -15],
+        "timeToLive" : 5,
+        "destructionAction" : "shrink",
+        "destructionTime" : 2.0,
+        "variance" : {
+          "initialVelocity" : [10, 10]
+        }
+      }
+    }
+  ],
+
+  "persistentAudio" : "/sfx/projectiles/v_cryovolcano_loopquiet.ogg",
 
   "boundBox" : [-4, -4, 4, 4],
   "physicsForces" : {
