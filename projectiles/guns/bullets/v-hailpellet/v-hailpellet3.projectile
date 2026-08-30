@@ -14,6 +14,15 @@
   "timeToLive" : 5,
   "speed" : 30,
 
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_hailpellet_grow1.ogg", "/sfx/projectiles/v_hailpellet_grow2.ogg" ]
+    }
+  ],
+
   "damagePoly" : [ [-5, 0], [-3.333, -3.333], [0, -5], [3.333, -3.333], [5, 0], [3.333, 3.333], [0, 5], [-3.333, 3.333] ],
 
   "scripts" : [ "/scripts/projectiles/v-mergehandler.lua" ],
