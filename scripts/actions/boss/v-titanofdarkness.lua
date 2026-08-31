@@ -681,7 +681,7 @@ function v_titanDetectTarget(args)
     coroutine.yield()
   end
 
-  sb.logInfo("Titan: Target found: %s", target)
+  -- sb.logInfo("Titan: Target found: %s", target)
 
   return true, {target = target}
 end

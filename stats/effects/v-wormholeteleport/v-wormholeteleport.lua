@@ -73,7 +73,7 @@ function statusCourse()
 end
 
 function teleport()
-  sb.logInfo("%s, %s", exitId, world.entityExists(exitId))
+  -- sb.logInfo("%s, %s", exitId, world.entityExists(exitId))
   if exitId and world.entityExists(exitId) then
     local teleportTarget = world.callScriptedEntity(exitId, "teleportPosition", mcontroller.collisionPoly())
     if teleportTarget then
