@@ -1,3 +1,6 @@
+require "/scripts/util.lua"
+require "/scripts/vec2.lua"
+
 VWormholeAltAbility = WeaponAbility:new()
 
 function VWormholeAltAbility:init()
@@ -19,6 +22,7 @@ function VWormholeAltAbility:update(dt, fireMode, shiftHeld)
   end
 
   self:checkProjectile()
+  self:updateAbilityAttributes()
 end
 
 function VWormholeAltAbility:checkProjectile()
@@ -77,6 +81,22 @@ end
 
 function VWormholeAltAbility:firePosition()
   return vec2.add(mcontroller.position(), activeItem.handPosition(self.weapon.muzzleOffset))
+end
+
+function VWormholeAltAbility:updateAbilityAttributes()
+  if storage.projectileId and world.entityExists(storage.projectileId) then
+    if not self.abilityMerged then
+      self.abilityMerged = true
+
+      util.mergeTable(self.weapon.abilities[self.mergeAbilityIndex], self.activeAbilityParameters)
+      animator.setSoundPool("fire", self.activeAbilityFireSounds)
+    end
+  elseif self.abilityMerged then
+    self.abilityMerged = false
+    util.mergeTable(self.weapon.abilities[self.mergeAbilityIndex], self.inactiveAbilityParameters)
+
+    animator.setSoundPool("fire", self.inactiveAbilityFireSounds)
+  end
 end
 
 function VWormholeAltAbility:uninit()

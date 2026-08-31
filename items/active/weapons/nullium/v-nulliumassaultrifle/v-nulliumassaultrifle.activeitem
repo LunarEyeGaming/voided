@@ -29,7 +29,7 @@
   },
   "animationCustom" : {
     "sounds" : {
-      "fire" : ["/sfx/gun/plasma_ar1.ogg"],
+      "fire" : ["/sfx/gun/v_nulliumrifle_fire.ogg"],
       "altFire" : ["/sfx/projectiles/gravitymine_detonate.ogg"],
       "altFireCancel" : ["/sfx/projectiles/astraltear_stop2.ogg"]
     },
@@ -59,7 +59,7 @@
     "class" : "VWormholeGunFire",
 
     "fireTime" : 0.11,
-    "baseDps" : 8,
+    "baseDps" : 10,
     "energyUsage" : 60,
     "projectileCount" : 1,
     "inaccuracy" : 0.01,
@@ -108,6 +108,17 @@
     "inaccuracy" : 0.05,
 
     "projectileType" : "v-spacetimeredirect",
+    "mergeAbilityIndex" : 1,
+    "activeAbilityParameters" : {
+      "baseDps" : 12,
+      "projectileType" : "v-nulliumbulletlarge"
+    },
+    "inactiveAbilityParameters" : {
+      "baseDps" : 10,
+      "projectileType" : "v-nulliumbullet"
+    },
+    "activeAbilityFireSounds" : [ "/sfx/gun/v_nulliumrifle_fire2.ogg" ],
+    "inactiveAbilityFireSounds" : [ "/sfx/gun/v_nulliumrifle_fire.ogg" ],
 
     "stances" : {
       "windup" : {
