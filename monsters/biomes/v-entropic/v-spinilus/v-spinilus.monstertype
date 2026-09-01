@@ -57,8 +57,11 @@
 
     "flopJumpInterval" : [0.3, 1.5],
 
-    "knockoutTime" : 0.5,
-    "knockoutEffect" : "blink",
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "knockoutEffect" : "",
     "deathParticles" : "deathPoof",
 
     "colors" : "generated",

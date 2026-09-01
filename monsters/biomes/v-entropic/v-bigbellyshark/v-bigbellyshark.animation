@@ -75,6 +75,19 @@
         }
       },
 
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1
+          }
+        }
+      },
+
       "releaseParticles" : {
         "default" : "off",
         "states" : {
@@ -124,7 +137,7 @@
             },
             "flopping" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:flop.<frame>"
               }
             }
           },
@@ -158,6 +171,14 @@
             "shootwinddown" : {
               "properties" : {
                 "image" : "<partImage>:rangedwinddown.<frame>"
+              }
+            }
+          },
+
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
               }
             }
           }
@@ -191,7 +212,7 @@
             },
             "flopping" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:flop.<frame>"
               }
             }
           },
@@ -225,6 +246,14 @@
             "shootwinddown" : {
               "properties" : {
                 "image" : "<partImage>:rangedwinddown.<frame>"
+              }
+            }
+          },
+
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
               }
             }
           }
@@ -450,7 +479,7 @@
   "sounds" : {
     "turnHostile" : [  ],
     "spit" : [ "/sfx/projectiles/spit1.ogg", "/sfx/projectiles/spit2.ogg" ],
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ]
+    "deathPuff" : [ "/sfx/melee/blunt_kill_organic1.ogg" ]
   },
   "effects" : {
     "blink" : {
