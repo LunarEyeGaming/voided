@@ -10,17 +10,17 @@
             "frames" : 1
           },
           "flopping" : {
-            "frames" : 2,
+            "frames" : 1,
             "cycle" : 0.25,
             "mode" : "loop"
           },
           "swimFast" : {
-            "frames" : 8,
+            "frames" : 6,
             "cycle" : 0.6,
             "mode" : "loop"
           },
           "swimSlow" : {
-            "frames" : 8,
+            "frames" : 6,
             "cycle" : 0.9,
             "mode" : "loop"
           }
@@ -35,14 +35,39 @@
           "idle" : {
             "frames" : 1
           },
+          "meleewindup" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "meleewinduploop"
+          },
+          "meleewinduploop" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
           "melee" : {
-            "frames" : 4,
+            "frames" : 8,
             "cycle" : 0.8,
             "mode" : "transition",
             "transition" : "idle"
           },
+          "shootwindup" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "shootwinduploop"
+          },
+          "shootwinduploop" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
+          },
           "shooting" : {
-            "frames" : 1
+            "frames" : 5,
+            "cycle" : 0.5,
+            "mode" : "transition",
+            "transition" : "idle"
           }
         }
       },
@@ -70,73 +95,7 @@
     },
 
     "parts" : {
-      "backfin" : {
-        "properties" : {
-          "rotationGroup" : "all",
-          "offset" : [-0.5, 0],
-          "zLevel" : 0
-        },
-
-        "partStates" : {
-          "movement" : {
-            "idle" : {
-              "properties" : {
-                "image" : "<partImage>:idle?flipx"
-              }
-            },
-            "flopping" : {
-              "properties" : {
-                "image" : "<partImage>:flop.<frame>?flipx"
-              }
-            },
-            "swimFast" : {
-              "properties" : {
-                "image" : "<partImage>:swim.<frame>?flipx"
-              }
-            },
-            "swimSlow" : {
-              "properties" : {
-                "image" : "<partImage>:swim.<frame>?flipx"
-              }
-            }
-          }
-        }
-      },
-
-      "tail" : {
-        "properties" : {
-          "rotationGroup" : "all",
-          "offset" : [-0.5, 0],
-          "zLevel" : 1
-        },
-
-        "partStates" : {
-          "movement" : {
-            "idle" : {
-              "properties" : {
-                "image" : "<partImage>:idle?flipx"
-              }
-            },
-            "flopping" : {
-              "properties" : {
-                "image" : "<partImage>:flop.<frame>?flipx"
-              }
-            },
-            "swimFast" : {
-              "properties" : {
-                "image" : "<partImage>:swim.<frame>?flipx"
-              }
-            },
-            "swimSlow" : {
-              "properties" : {
-                "image" : "<partImage>:swim.<frame>?flipx"
-              }
-            }
-          }
-        }
-      },
-
-      "head" : {
+      "body" : {
         "properties" : {
           "rotationGroup" : "all",
           "offset" : [-0.5, 0],
@@ -147,47 +106,62 @@
           "movement" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>:idle?flipx"
+                "image" : "<partImage>:idle.<frame>"
               }
             },
             "flopping" : {
               "properties" : {
-                "image" : "<partImage>:flop.<frame>?flipx"
+                "image" : "<partImage>:flop.<frame>"
               }
             },
             "swimFast" : {
               "properties" : {
-                "image" : "<partImage>:swim.<frame>?flipx"
+                "image" : "<partImage>:swim.<frame>"
               }
             },
             "swimSlow" : {
               "properties" : {
-                "image" : "<partImage>:swim.<frame>?flipx"
+                "image" : "<partImage>:swim.<frame>"
               }
             }
           },
 
           "attack" : {
-            "idle" : {
+            "meleewindup" : {
               "properties" : {
-                "image" : "<partImage>:idle?flipx"
+                "image" : "<partImage>:meleewindup.<frame>"
+              }
+            },
+            "meleewinduploop" : {
+              "properties" : {
+                "image" : "<partImage>:meleewinduploop.<frame>"
               }
             },
             "melee" : {
               "properties" : {
-                "image" : "<partImage>:melee.<frame>?flipx"
+                "image" : "<partImage>:melee.<frame>"
+              }
+            },
+            "shootwindup" : {
+              "properties" : {
+                "image" : "<partImage>:rangedwindup.<frame>"
+              }
+            },
+            "shootwinduploop" : {
+              "properties" : {
+                "image" : "<partImage>:rangedwinduploop.<frame>"
               }
             },
             "shooting" : {
               "properties" : {
-                "image" : "<partImage>:ranged.<frame>?flipx"
+                "image" : "<partImage>:ranged.<frame>"
               }
             }
           }
         }
       },
 
-      "headfullbright" : {
+      "bodyfullbright" : {
         "properties" : {
           "rotationGroup" : "all",
           "offset" : [-0.5, 0],
@@ -199,73 +173,55 @@
           "movement" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>:idle?flipx"
+                "image" : "<partImage>:idle.<frame>"
               }
             },
             "flopping" : {
               "properties" : {
-                "image" : "<partImage>:flop.<frame>?flipx"
+                "image" : "<partImage>:flop.<frame>"
               }
             },
             "swimFast" : {
               "properties" : {
-                "image" : "<partImage>:swim.<frame>?flipx"
+                "image" : "<partImage>:swim.<frame>"
               }
             },
             "swimSlow" : {
               "properties" : {
-                "image" : "<partImage>:swim.<frame>?flipx"
+                "image" : "<partImage>:swim.<frame>"
               }
             }
           },
 
           "attack" : {
-            "idle" : {
+            "meleewindup" : {
               "properties" : {
-                "image" : "<partImage>:idle?flipx"
+                "image" : "<partImage>:meleewindup.<frame>"
+              }
+            },
+            "meleewinduploop" : {
+              "properties" : {
+                "image" : "<partImage>:meleewinduploop.<frame>"
               }
             },
             "melee" : {
               "properties" : {
-                "image" : "<partImage>:melee.<frame>?flipx"
+                "image" : "<partImage>:melee.<frame>"
+              }
+            },
+            "shootwindup" : {
+              "properties" : {
+                "image" : "<partImage>:rangedwindup.<frame>"
+              }
+            },
+            "shootwinduploop" : {
+              "properties" : {
+                "image" : "<partImage>:rangedwinduploop.<frame>"
               }
             },
             "shooting" : {
               "properties" : {
-                "image" : "<partImage>:ranged.<frame>?flipx"
-              }
-            }
-          }
-        }
-      },
-
-      "frontfin" : {
-        "properties" : {
-          "rotationGroup" : "all",
-          "offset" : [-0.5, 0],
-          "zLevel" : 3
-        },
-
-        "partStates" : {
-          "movement" : {
-            "idle" : {
-              "properties" : {
-                "image" : "<partImage>:idle?flipx"
-              }
-            },
-            "flopping" : {
-              "properties" : {
-                "image" : "<partImage>:flop.<frame>?flipx"
-              }
-            },
-            "swimFast" : {
-              "properties" : {
-                "image" : "<partImage>:swim.<frame>?flipx"
-              }
-            },
-            "swimSlow" : {
-              "properties" : {
-                "image" : "<partImage>:swim.<frame>?flipx"
+                "image" : "<partImage>:ranged.<frame>"
               }
             }
           }

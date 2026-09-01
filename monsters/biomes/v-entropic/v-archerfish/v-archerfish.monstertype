@@ -4,7 +4,7 @@
   "description" : "",
 
   "categories" : [ "v-archerfish" ],
-  "parts" : [ "head", "tail", "fin" ],
+  "parts" : [ "body" ],
 
   "dropPools" : [ { "default" : "v-archerfishTreasure", "bow" : "v-archerfishHunting" } ],
 
@@ -19,7 +19,7 @@
       "/monsters/v-manualstun.lua",
       "/monsters/generated/swimming/wanderState.lua",
       "/monsters/biomes/v-entropic/v-archerfish/vRangedAttackState.lua",
-      "/monsters/generated/swimming/attackState.lua",
+      "/monsters/biomes/v-entropic/v-archerfish/vMeleeAttackState.lua",
       "/monsters/generated/swimming/fleeState.lua",
       "/monsters/generated/swimming/flopState.lua"
     ],
@@ -28,7 +28,7 @@
     "scale" : 1.0,
 
     "movementSettings" : {
-      "collisionPoly" : [ [-2.5, -1.0], [2.5, -1.0], [2.5, 0.5], [-2.5, 0.5] ],
+      "collisionPoly" : [ [-2.5, -1.375], [2.5, -1.375], [2.5, 1.75], [-2.5, 1.75] ],
 
       "mass" : 1.5,
       "liquidBuoyancy" : 1.0,
@@ -66,7 +66,8 @@
     "rangedMaxDistance" : 30,
     "rangedApproachTime" : 3.0,
     "rangedWindupTime" : 0.75,
-    "rangedAttackDelay" : 0.25,
+    "rangedAttackDelay" : 0.01,
+    "rangedWinddownTime" : 0.5,
     "rangedProjectileType" : "v-archerfishspit",
     "rangedProjectileParameters" : { "power" : 5 },
     "rangedProjectileOffset" : [0, 0],
@@ -86,13 +87,13 @@
 
     "colors" : "generated",
 
-    "blockedSensors" : [ [2.75, -1.0], [3.0, 0.0], [2.75, 1.0] ],
-    "upSensors" : [ [-1.25, -1.25], [1.0, -1.25], [2.75, -1.25] ],
-    "downSensors" : [ [-1.25, 0.75], [1.0, 0.75], [2.75, 0.75] ],
+    "blockedSensors" : [ [2.75, -1.5], [3.0, 0.0], [2.75, 1.875] ],
+    "upSensors" : [ [-1.25, -1.625], [1.0, -1.625], [2.75, -1.625] ],
+    "downSensors" : [ [-1.25, 2.0], [1.0, 2.0], [2.75, 2.0] ],
 
     "touchDamage" : {
       "poly" : [ [-2.5, -1.0], [2.5, -1.0], [2.5, 0.5], [-2.5, 0.5] ],
-      "damage" : 15,
+      "damage" : 9,
 
       "teamType" : "enemy",
       "damageSourceKind" : "slash",

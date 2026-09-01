@@ -33,11 +33,12 @@ function vRangedAttackState.update(dt, stateData)
     elseif distance > maxDistance then
       move(toTarget, true)
     else
+      animator.setAnimationState("movement", "swimSlow")
+      animator.setAnimationState("attack", "shootwindup")
       stateData.stage = "windup"
       stateData.timer = config.getParameter("rangedWindupTime")
     end
   elseif stateData.stage == "windup" then
-    animator.setAnimationState("movement", "swimSlow")
     world.debugLine(mcontroller.position(), vec2.add(mcontroller.position(), toTarget), "green")
     mcontroller.controlFace(toTarget[1])
     setBodyDirection(toTarget)
@@ -72,6 +73,9 @@ function vRangedAttackState.update(dt, stateData)
       if soundName and animator.hasSound(soundName) then
         animator.playSound(soundName)
       end
+
+      stateData.stage = "winddown"
+      stateData.timer = config.getParameter("rangedWinddownTime")
     end
   end
 
