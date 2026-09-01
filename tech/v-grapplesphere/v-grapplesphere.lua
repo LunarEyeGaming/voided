@@ -58,6 +58,7 @@ function update(args)
         speed = launchSpeed,
         launchDistance = launchDistance
       })
+      animator.playSound("hookLaunch")
       state = "grapple"
     elseif hookId and world.entityExists(hookId) then
       local hookPos = world.entityPosition(hookId)
@@ -109,8 +110,6 @@ function update(args)
         end
       end
 
-      prevDown = args.moves["run"]
-
       animator.setAnimationState("beam", "on")
       animator.setAnimationState("hookbase", "on")
       animator.resetTransformationGroup("beam")
@@ -124,6 +123,10 @@ function update(args)
 
       state = nil
     end
+
+    prevDown = args.moves["run"]
+
+    world.debugText("state: %s", state, mcontroller.position(), "green")
   end
 end
 

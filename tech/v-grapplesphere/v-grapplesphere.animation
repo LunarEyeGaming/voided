@@ -37,11 +37,7 @@
         "states" : {
           "invisible" : { },
           "off" : { },
-          "on" : {
-            "properties" : {
-              "immediateSound" : "/sfx/melee/energywhip_swing1.ogg"
-            }
-          }
+          "on" : { }
         }
       }
     },
@@ -175,6 +171,7 @@
   "sounds" : {
     "activate" : [ "/sfx/tech/tech_sphere_transform.ogg" ],
     "deactivate" : [ "/sfx/tech/tech_sphere_transform.ogg" ],
-    "forceDeactivate" : [ "/sfx/tech/tech_sonicsphere_charge1.ogg" ]
+    "forceDeactivate" : [ "/sfx/tech/tech_sonicsphere_charge1.ogg" ],
+    "hookLaunch" : ["/sfx/melee/energywhip_swing1.ogg"]
   }
 }
