@@ -8,7 +8,7 @@
   "category" : "storage",
   "price" : 70,
   "description" : "A chest made of permafrost and with Avian art carved into it.",
-  "shortdescription" : "Cryo Chest",
+  "shortdescription" : "Cryonic Chest",
   "race" : "avian",
   "health" : 1.5,
 
@@ -36,5 +36,7 @@
   "slotCount" : 16,
   "uiConfig" : "/interface/chests/chest<slots>.config",
   "frameCooldown" : 5,
-  "autoCloseCooldown" : 3600
+  "autoCloseCooldown" : 3600,
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
 }

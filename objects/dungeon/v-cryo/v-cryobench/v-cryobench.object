@@ -1,0 +1,57 @@
+{
+  "objectName" : "v-cryobench",
+  "colonyTags" : ["avian","avianvillage"],
+  "rarity" : "Common",
+  "category" : "furniture",
+  "price" : 125,
+  "description" : "<todo>",
+  "shortdescription" : "Cryonic Bench",
+  "race" : "avian",
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "cryobenchicon.png",
+
+  "objectType" : "loungeable",
+  "sitFlipDirection" : false,
+
+  "orientations" : [
+    {
+      "image" : "cryobench.png:<color>",
+      "imagePosition" : [-16, 0],
+      "direction" : "left",
+      "flipImages" : true,
+
+      "sitPositions" : [
+        // Positions from front to back.
+        [-13, 22], // Right
+        [5, 22] // Left
+      ],
+
+      "spaces" : [ [-2,0],[-1,0],[0,0],[1,0],[2,0],[-2,1],[-1,1],[0,1],[1,1],[2,1],[-2,2],[-1,2],[0,2],[1,2],[2,2] ],
+      "anchors" : [ "bottom" ]
+    },
+    {
+      "image" : "cryobench.png:<color>",
+      "imagePosition" : [-16, 0],
+      "direction" : "right",
+
+      "sitPositions" : [
+        // Positions from front to back.
+        [-5, 22], // Left
+        [13, 22] // Right
+      ],
+
+      "spaces" : [ [-2,0],[-1,0],[0,0],[1,0],[2,0],[-2,1],[-1,1],[0,1],[1,1],[2,1],[-2,2],[-1,2],[0,2],[1,2],[2,2] ],
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}

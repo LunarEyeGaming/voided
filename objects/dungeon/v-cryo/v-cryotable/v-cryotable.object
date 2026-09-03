@@ -1,0 +1,36 @@
+{
+  "objectName" : "v-cryotable",
+  "colonyTags" : ["avian","avianvillage","commerce"],
+  "rarity" : "Common",
+  "description" : "<todo>",
+  "shortdescription" : "Cryonic Table",
+  "race" : "avian",
+  "category" : "furniture",
+  "price" : 110,
+
+  "apexDescription" : "<todo>",
+  "avianDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "humanDescription" : "<todo>",
+  "hylotlDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+
+  "inventoryIcon" : "cryotableicon.png",
+  "orientations" : [
+    {
+      "dualImage" : "cryotable.png:<color>",
+
+      "imagePosition" : [-24, 0],
+      "frames" : 1,
+      "animationCycle" : 1.0,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ],
+      "collision" : "platform"
+
+    }
+  ],
+
+  "builder" : "/items/buildscripts/v-builditem.lua"
+}
