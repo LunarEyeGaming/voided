@@ -3,7 +3,9 @@
   "definition" : {
     "type" : "animated",
     "animation" : "/animations/v-auroratrail/v-auroratrail.animation",
-    "timeToLive" : 0.7,
+    "timeToLive" : 0.0,
+    "destructionAction" : "fade",
+    "destructionTime" : 0.7,
     "layer" : "back",
     "position" : [0, 0],
     "initialVelocity" : [0, 0],

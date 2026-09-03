@@ -1,0 +1,23 @@
+{
+  "kind" : "v-auroriterocketshard",
+  "definition" : {
+    "type" : "animated",
+    "animation" : "/animations/shards/v-auroriterocketshard.animation",
+    "initialVelocity" : [0.0, 32.0],
+    "finalVelocity" : [0.0, -60.0],
+    "approach" : [0.3, 60],
+    "light" : [34, 116, 161],
+    "fade" : 2,
+    "timeToLive" : 0.5,
+    "layer" : "middle",
+    "collidesForeground" : true,
+    "fullbright" : true,
+    "variance" : {
+      "position" : [1, 1],
+      "initialVelocity" : [20, 12],
+      "finalVelocity" : [0, 20],
+      "rotation" : 180,
+      "angularVelocity" : 180
+    }
+  }
+}
