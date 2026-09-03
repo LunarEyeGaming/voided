@@ -15,6 +15,14 @@
   "power" : 0,
   "damageType" : "NoDamage",
   "damageKind" : "default",
+  "periodicActions" : [
+    {
+      "time" : 0.0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_prismaticexplosion_windup.ogg" ]
+    }
+  ],
   "actionOnReap" : [
     {
       "action" : "config",

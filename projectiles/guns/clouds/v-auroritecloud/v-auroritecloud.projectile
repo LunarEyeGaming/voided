@@ -12,5 +12,14 @@
   "damagePoly" : [ [-40, 0], [-25, -25], [0, -40], [25, -25], [40, 0], [25, 25], [0, 40], [-25, 25] ],
   "piercing" : true,
   "damageKind" : "ice",
-  "statusEffects" : [ "v-coldtouch" ]
+  "statusEffects" : [ "v-coldtouch" ],
+
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_auroritecloud.ogg" ]
+    }
+  ]
 }
