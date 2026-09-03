@@ -6,6 +6,7 @@ local oldInit = init or function() end
 local oldUpdate = update or function() end
 
 local fadeTime
+local clientWindowWidthAt3x
 local baseScale
 local pulsatePeriod
 local pulsateAmpStart
@@ -24,10 +25,12 @@ function init()
   -- message.setHandler("v-titanOfDarknessAura-activate", function(_, _, id)
   --   titanId = id
   -- end)
+  clientWindowWidthAt3x = 81
+  -- width / clientWindowWidthAt3x (so a larger window corresponds to a higher scale)
   baseScale = 1
   pulsatePeriod = 1
   pulsateAmpStart = 0.0
-  pulsateAmpEnd = 0.02
+  pulsateAmpEnd = 0.05
   pulsateCrescendoTime = 10
 
   fadeTime = 1
@@ -62,14 +65,17 @@ function v_inRiftZone_drawOverlays()
   local windowRegion = world.clientWindow()
   -- Make window region relative to the current entity. Account for world wrapping.
   local relativeWindowRegion = rect.translate(windowRegion, vec2.mul(world.nearestTo(rect.center(windowRegion), entity.position()), -1))
-  local drawingBounds = rect.pad(relativeWindowRegion, vAnimator.WINDOW_PADDING)  -- Pad region to account for camera panning
+
+  -- Calculate scaleMultiplier based on the width of the camera
+  local width = relativeWindowRegion[3] - relativeWindowRegion[1]
+  local scaleMultiplier = width / clientWindowWidthAt3x
 
   -- local horizontalMidPoint = (drawingBounds[3] + drawingBounds[1]) / 2
-  local verticalMidPoint = (drawingBounds[4] + drawingBounds[2]) / 2
 
   local crescendoProgress = pulsateTimer / pulsateCrescendoTime
   local pulsatePeriodicTimer = (pulsateTimer % pulsatePeriod)
   local scale = baseScale + util.lerp(crescendoProgress, pulsateAmpStart, pulsateAmpEnd) * math.sin(pulsatePeriodicTimer / pulsatePeriod * 2 * math.pi)
+  scale = scale * scaleMultiplier
 
   -- Foreground overlay
   localAnimator.addDrawable({
