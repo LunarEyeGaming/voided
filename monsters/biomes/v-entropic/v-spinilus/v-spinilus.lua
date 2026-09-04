@@ -116,6 +116,7 @@ function states.outOfLiquid()
 
   -- Flop around.
   while not mcontroller.liquidMovement() do
+    mcontroller.controlParameters({ bounceFactor = 0.9 })
     coroutine.yield()
   end
 

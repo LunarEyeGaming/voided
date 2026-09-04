@@ -205,10 +205,11 @@
     "movementSettings" : {
       "collisionPoly" : [[2.772, 1.148], [1.148, 2.772], [-1.148, 2.772], [-2.772, 1.148], [-2.772, -1.148], [-1.148, -2.772], [1.148, -2.772], [2.772, -1.148]],
 
-      "mass" : 2.0,
+      "mass" : 1.0,
       "walkSpeed" : 4,
       "runSpeed" : 12,
-      "gravityEnabled" : false,
+      "gravityEnabled" : true,
+      "liquidBuoyancy" : 1,
 
       "bounceFactor" : 0.5,
       "groundFriction" : 10,

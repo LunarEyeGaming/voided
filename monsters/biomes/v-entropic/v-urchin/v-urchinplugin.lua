@@ -31,7 +31,11 @@ function update(dt)
 
   updateTether(dt)
 
-  updateDrift(dt)
+  if not mcontroller.liquidMovement() then
+    mcontroller.controlParameters({ bounceFactor = 0.9 })
+  else
+    updateDrift(dt)
+  end
 end
 
 function initTether()
@@ -76,6 +80,10 @@ function updateTether(dt)
 end
 
 function tetherSpringForce(tetherLength, tetherDistance)
+  if not mcontroller.liquidMovement() then
+    return
+  end
+
   local currentTetherDirection = vec2.norm(tetherDistance)
   if tetherLength > tetherPreferredMaxLength then
     local adjustDistance = tetherLength - tetherPreferredMaxLength
