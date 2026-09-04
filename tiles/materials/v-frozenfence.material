@@ -1,0 +1,25 @@
+{
+  "materialId" : 1240,
+  "materialName" : "v-frozenfence",
+  "particleColor" : [31, 33, 97, 255],
+  "itemDrop" : "v-frozenfencematerial",
+  "shortdescription" : "Frozen Fence",
+  "description" : "<todo>",
+  "glitchDescription" : "<todo>",
+  "floranDescription" : "<todo>",
+  "novakidDescription" : "<todo>",
+  "footstepSound" : "/sfx/blocks/footstep_wood.ogg",
+  "health" : 6,
+  "category" : "materials",
+  "damageTable" : "/tiles/flammableDamage.config",
+
+  "renderTemplate" : "/tiles/classicmaterialtemplate.config",
+  "renderParameters" : {
+    "texture" : "v-frozenfence.png",
+    "variants" : 5,
+    "lightTransparent" : false,
+    "occludesBelow" : true,
+    "multiColored" : true,
+    "zLevel" : 520
+  }
+}
