@@ -80,8 +80,9 @@ function update(dt)
   -- Reset warningParams
   warningParams = {}
 
+  capturable.update(dt)
+
   if not isStunned then
-    capturable.update(dt)
     updateVelocity()
     mcontroller.controlDown()  -- Go through platforms
   end
