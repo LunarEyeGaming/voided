@@ -1,0 +1,26 @@
+[
+  {
+    "op" : "add",
+    "path" : "/parts/-",
+    "value" : {
+      "name" : "v-hylotlroofgallery2",
+      "rules" : [
+        [ "doNotCombineWith", [ "v-hylotlroofgallery2", "v-hylotlroofgallery2clue" ] ]
+      ],
+      "def" : [ "tmx", "v-hylotlroofgallery2.json" ],
+      "chance" : 0.1
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/parts/-",
+    "value" : {
+      "name" : "v-hylotlroofgallery2clue",
+      "rules" : [
+        [ "doNotCombineWith", [ "hylotllibrary1clue", "hylotlrestaurant1clue", "hylotlroofgallery1", "hylotlroofgallery1clue", "hylotlroofgarden1clue", "hylotltoproof1clue" ] ]
+      ],
+      "def" : [ "tmx", "v-hylotlroofgallery2clue.json" ],
+      "chance" : 1
+    }
+  }
+]
