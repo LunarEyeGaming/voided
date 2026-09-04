@@ -380,9 +380,8 @@ do
             velocity = particle.velocity
           end
 
-          local oldRotation
-          if velocity then
-            oldRotation = particle.rotation
+          local oldRotation = particle.rotation
+          if velocity and autoRotate then
             local rotation = particle.rotation or 0
             local adjustAngle = util.angleDiff(math.pi / 2, vec2.angle(velocity))
             rotation = rotation + adjustAngle
@@ -403,53 +402,6 @@ do
       prevWindowRegion = windowRegion
     end
 
-    --
-    -- local windowRegionMinX = windowRegion[1] - particlePadding
-    -- local windowRegionMinY = windowRegion[2] - particlePadding
-    -- local windowRegionMaxX = windowRegion[3] + particlePadding
-    -- local windowRegionMaxY = windowRegion[4] + particlePadding
-    -- local windowRegionWidth = windowRegionMaxX - windowRegionMinX
-    -- local windowRegionHeight = windowRegionMaxY - windowRegionMinY
-    -- local particleCount = density * (2 * windowRegionWidth + 2 * windowRegionHeight)
-
-    -- for _ = 1, particleCount do
-    --   local side = math_random(1, 4)
-    --   local RIGHT = 1
-    --   local BOTTOM = 2
-    --   local LEFT = 3
-    --   local TOP = 4
-    --   local xPosition, yPosition
-    --   if side == RIGHT then  -- Right
-    --     xPosition = windowRegionMaxX
-    --     yPosition = math_random() * windowRegionHeight + windowRegionMinY
-    --   elseif side == BOTTOM then  -- Bottom
-    --     xPosition = math_random() * windowRegionWidth + windowRegionMinX
-    --     yPosition = windowRegionMinY
-    --   elseif side == LEFT then  -- Left
-    --     xPosition = windowRegionMinX
-    --     yPosition = math_random() * windowRegionHeight + windowRegionMinY
-    --   else  -- Top
-    --     xPosition = math_random() * windowRegionWidth + windowRegionMinX
-    --     yPosition = windowRegionMaxY
-    --   end
-    --   local position = {xPosition, yPosition}
-
-    --   -- if (not exposedOnly or not world_material(position, "background")) and pred(position) then
-    --   --   if not ignoreWind then
-    --   --     -- Note: windLevel is zero if there is a background block.
-    --   --     local horizontalSpeed = world_windLevel(position)
-
-    --   --     if horizontalSpeed ~= 0 then
-    --   --       local initialVelocity = particle.initialVelocity or {0, 0}
-    --   --       initialVelocity[1] = horizontalSpeed
-    --   --       particle.initialVelocity = initialVelocity
-    --   --     end
-    --   --   end
-
-    --   --   localAnimator_spawnParticle(particle, position)
-    --   -- end
-    --   spawnParticle(position)
-    -- end
     local windowRegionXL, windowRegionYB, windowRegionXR, windowRegionYT
     windowRegionXL = windowRegion[1]
     windowRegionYB = windowRegion[2]
@@ -457,43 +409,7 @@ do
     windowRegionYT = windowRegion[4]
     local prevWindowXLeft = world.nearestTo(windowRegion[1], prevWindowRegion[1])
     local prevWindowXRight = world.nearestTo(windowRegion[3], prevWindowRegion[3])
-    -- for y = windowRegion[2], windowRegion[4] do
-    --   -- Left
-    --   for x = prevWindowXLeft, windowRegionXL do
-    --     spawnParticle({x, y})
-    --   end
 
-    --   -- Right
-    --   for x = windowRegionXR, prevWindowXRight do
-    --     spawnParticle({x, y})
-    --   end
-    -- end
-
-    -- if vertical then
-    --   for x = windowRegion[1], windowRegion[3] do
-    --     -- Bottom
-    --     for y = prevWindowRegion[2], windowRegionYB do
-    --       spawnParticle({x, y})
-    --     end
-
-    --     -- Top
-    --     for y = windowRegionYT, prevWindowRegion[4] do
-    --       spawnParticle({x, y})
-    --     end
-    --   end
-    -- end
-
-    --[[
-      0, 0: none
-      1, 0: left
-      1, 1: left, bottom
-      0, 1: bottom
-      -1, 1: right, bottom
-      -1, 0: right
-      -1, -1: right, top
-      0, -1: top
-      1, -1: left, top
-    ]]
     spawnParticles({windowRegionXL - 1, windowRegionYB, prevWindowXLeft, windowRegionYT})
     spawnParticles({prevWindowXRight, windowRegionYB, windowRegionXR + 1, windowRegionYT})
     spawnParticles({windowRegionXL, windowRegionYB - 1, windowRegionXR, prevWindowRegion[2]})

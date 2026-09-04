@@ -27,7 +27,8 @@ function update(dt)
     vLocalAnimator.spawnOffscreenParticles(particle.particle, {
       density = particle.density,
       exposedOnly = true,
-      ignoreWind = particle.ignoreWind
+      ignoreWind = particle.ignoreWind,
+      autoRotate = particle.autoRotate
     })
 
     particle.emissionTime = particle.emissionTime - dt
