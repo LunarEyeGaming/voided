@@ -5,6 +5,8 @@ function vMeleeAttackState.enter()
     return nil
   end
 
+  monster.setAggressive(true)
+
   return { timer = config.getParameter("attackApproachTime"), stage = "approach" }
 end
 
@@ -85,4 +87,5 @@ end
 
 function vMeleeAttackState.leavingState(stateData)
   monster.setDamageOnTouch(false)
+  monster.setAggressive(false)
 end

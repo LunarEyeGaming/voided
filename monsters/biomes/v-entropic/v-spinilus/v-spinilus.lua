@@ -1,9 +1,7 @@
 require "/scripts/util.lua"
 require "/scripts/poly.lua"
 require "/scripts/rect.lua"
-
-local swimSpeed
-local swimForce
+require "/scripts/companions/capturable.lua"
 
 local changeDirectionTestDistance
 
@@ -13,8 +11,6 @@ local state
 function init()
   monster.setDamageOnTouch(true)
 
-  swimSpeed = config.getParameter("swimSpeed")
-  swimForce = config.getParameter("swimForce")
   changeDirectionTestDistance = config.getParameter("changeDirectionTestDistance")
 
   monster.setDeathParticleBurst("deathPoof")
@@ -31,6 +27,8 @@ function init()
 
   state = FSM:new()
   state:set(states.swim)
+
+  capturable.init()
 end
 
 function update(dt)
@@ -47,33 +45,17 @@ function update(dt)
 
 end
 
+function die()
+  capturable.die()
+end
+
+function shouldDie()
+  return status.resource("health") <= 0 or capturable.justCaptured
+end
+
 states = {}
 
 function states.swim()
-  -- local direction = 1
-
-  -- -- Reset animation state
-  -- animator.setAnimationState("movement", "swimFast")
-
-  -- -- Swim back and forth
-  -- while true do
-  --   -- If the monster is out of liquid...
-  --   if not mcontroller.liquidMovement() then
-  --     state:set(states.outOfLiquid)
-  --   end
-
-  --   -- If colliding with a wall...
-  --   if util.blockSensorTest("blockedSensors", direction) then
-  --     direction = -direction
-  --   end
-
-  --   --mcontroller.controlApproachVelocity(vec2.mul({direction, 0}, swimSpeed), swimForce)
-  --   -- Swim
-  --   mcontroller.controlFly({direction, 0})
-  --   mcontroller.controlFace(direction)
-
-  --   coroutine.yield()
-  -- end
   local changeDirectionTime = 0.15
   local boostDelay = 1.5
   local boostDuration = 0.25
@@ -134,12 +116,6 @@ function states.outOfLiquid()
 
   -- Flop around.
   while not mcontroller.liquidMovement() do
-    -- if mcontroller.onGround() then
-    --   local jumpDirection = util.randomDirection()
-    --   mcontroller.controlMove(jumpDirection)
-    --   mcontroller.controlJump()
-    -- end
-
     coroutine.yield()
   end
 

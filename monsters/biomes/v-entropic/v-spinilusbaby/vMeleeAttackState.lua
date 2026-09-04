@@ -7,6 +7,8 @@ function vMeleeAttackState.enter()
     return nil
   end
 
+  monster.setAggressive(true)
+
   return { timer = config.getParameter("attackWindupTime"), stage = "windup" }
 end
 
@@ -58,5 +60,6 @@ end
 
 function vMeleeAttackState.leavingState(stateData)
   monster.setDamageOnTouch(false)
+  monster.setAggressive(false)
   animator.setAnimationState("attack", "idle")
 end

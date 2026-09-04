@@ -13,7 +13,7 @@
   "baseParameters" : {
     "scripts" : [
       "/monsters/biomes/v-entropic/v-spinilus/v-spinilus.lua",
-      "/monsters/v-manualstun.lua",
+      "/monsters/v-fishplugin.lua",
       "/monsters/v-displayselfdamagepoly.lua"
     ],
 
@@ -134,6 +134,7 @@
     "feetOffset" : [0, -4],
     "capturable" : true,
     "captureHealthFraction" : 0.5,
-    "nametagColor" : [64, 200, 255]
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-spinilus" }
   }
 }

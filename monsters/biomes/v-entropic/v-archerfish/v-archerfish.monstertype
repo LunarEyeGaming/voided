@@ -16,7 +16,7 @@
       "/scripts/util.lua",
       "/scripts/vec2.lua",
       "/scripts/stateMachine.lua",
-      "/monsters/v-manualstun.lua",
+      "/monsters/v-fishplugin.lua",
       "/monsters/generated/swimming/wanderState.lua",
       "/monsters/biomes/v-entropic/v-archerfish/vRangedAttackState.lua",
       "/monsters/biomes/v-entropic/v-archerfish/vMeleeAttackState.lua",
@@ -156,6 +156,7 @@
     "feetOffset" : [0, -4],
     "capturable" : true,
     "captureHealthFraction" : 0.5,
-    "nametagColor" : [64, 200, 255]
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-archerfish" }
   }
 }

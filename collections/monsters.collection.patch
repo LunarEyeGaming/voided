@@ -227,5 +227,87 @@
       "monsterType" : "v-dracucumber",
       "icon" : "/monsters/biomes/v-ministar/v-dracucumber/captureicon.png"
     }
+  },
+
+  // -------------------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------ENTROPIC-----------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+
+  {
+    "op" : "add",
+    "path" : "/collectables/v-archerfish",
+    "value" : {
+      "order" : 85,
+      "monsterType" : "v-archerfish",
+      "icon" : "/monsters/biomes/v-entropic/v-archerfish/archerfish.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-bigbellyshark",
+    "value" : {
+      "order" : 86,
+      "monsterType" : "v-bigbellyshark",
+      "icon" : "/monsters/biomes/v-entropic/v-bigbellyshark/body.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-icegnat",
+    "value" : {
+      "order" : 87,
+      "monsterType" : "v-icegnat",
+      "icon" : "/monsters/biomes/v-entropic/v-icegnat/icegnat.png:fly.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-iceworm",
+    "value" : {
+      "order" : 88,
+      "monsterType" : "v-icewormhead",
+      "icon" : "/monsters/biomes/v-entropic/v-iceworm/captureicon.png"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-spinilus",
+    "value" : {
+      "order" : 89,
+      "monsterType" : "v-spinilus",
+      "icon" : "/monsters/biomes/v-entropic/v-spinilus/body.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-spinilusbaby",
+    "value" : {
+      "order" : 90,
+      "monsterType" : "v-spinilusbaby",
+      "icon" : "/monsters/biomes/v-entropic/v-spinilusbaby/body.png:idle.1"
+    }
+  },
+  {
+    "op" : "add",
+    "path" : "/collectables/v-urchin",
+    "value" : {
+      "order" : 91,
+      "monsterType" : "v-urchin",
+      "icon" : "/monsters/biomes/v-entropic/v-urchin/urchin.png:idle.1"
+    }
+  },
+
+  // -------------------------------------------------------------------------------------------------------------------
+  // -----------------------------------------------------RIFT ZONE-----------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+
+  {
+    "op" : "add",
+    "path" : "/collectables/v-morphum",
+    "value" : {
+      "order" : 92,
+      "monsterType" : "v-morphum",
+      "icon" : "/monsters/biomes/v-riftzone/v-morphum/morphum.png:idle.1"
+    }
   }
 ]

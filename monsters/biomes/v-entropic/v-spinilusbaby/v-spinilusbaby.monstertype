@@ -14,7 +14,7 @@
     "scripts" : [
       "/monsters/generated/swimming/swimmingMonster.lua",
       "/monsters/biomes/v-entropic/v-spinilusbaby/v-spinilusbabyplugin.lua",
-      "/monsters/v-manualstun.lua",
+      "/monsters/v-fishplugin.lua",
       "/scripts/util.lua",
       "/scripts/vec2.lua",
       "/scripts/stateMachine.lua",
@@ -156,7 +156,8 @@
     "mouthOffset" : [0, 0],
     "feetOffset" : [0, -4],
     "capturable" : true,
-    "captureHealthFraction" : 0.5,
-    "nametagColor" : [64, 200, 255]
+    "captureHealthFraction" : 0.6,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-spinilusbaby" }
   }
 }

@@ -7,6 +7,8 @@ function vRangedAttackState.enter()
     return nil
   end
 
+  monster.setAggressive(true)
+
   return { timer = config.getParameter("rangedApproachTime"), stage = "approach" }
 end
 
@@ -107,4 +109,5 @@ end
 
 function vRangedAttackState.leavingState(stateData)
   animator.setAnimationState("attack", "idle")
+  monster.setAggressive(false)
 end

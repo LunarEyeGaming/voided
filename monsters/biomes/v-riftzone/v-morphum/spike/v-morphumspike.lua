@@ -1,4 +1,5 @@
 require "/scripts/vec2.lua"
+require "/scripts/companions/capturable.lua"
 
 local timeToLive
 local aimVector
@@ -30,11 +31,19 @@ function init()
   mcontroller.setRotation(vec2.angle(aimVector))
   mcontroller.controlFace(1)
 
+  capturable.init()
+
+  message.setHandler("pet.attemptCapture", function(_,_,...)
+    return world.callScriptedEntity(masterId, "capturable.attemptCapture", ...)
+  end)
+
   monster.setDamageOnTouch(true)
 end
 
 function update(dt)
   mcontroller.controlFace(1)
+
+  capturable.update(dt)
 
   timer = timer - dt
   if not masterId or not world.entityExists(masterId) then
@@ -50,5 +59,9 @@ function update(dt)
 end
 
 function shouldDie()
-  return timer <= 0
+  return timer <= 0 or capturable.justCaptured
+end
+
+function die()
+  capturable.die()
 end

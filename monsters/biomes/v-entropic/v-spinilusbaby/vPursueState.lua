@@ -7,6 +7,8 @@ function vPursueState.enter()
     return nil
   end
 
+  monster.setAggressive(true)
+
   return { timer = config.getParameter("pursueTime") }
 end
 
@@ -34,4 +36,5 @@ function vPursueState.update(dt, stateData)
 end
 
 function vPursueState.leavingState(stateData)
+  monster.setAggressive(false)
 end
