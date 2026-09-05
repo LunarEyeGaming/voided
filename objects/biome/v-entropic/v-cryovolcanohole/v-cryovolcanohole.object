@@ -3,17 +3,17 @@
   "colonyTags" : ["evil"],
   "printable" : false,
   "rarity" : "Legendary",
-  "description" : "<todo>",
-  "shortdescription" : "cryovolcanohole",
+  "description" : "A hole in the ground that emits cold water.",
+  "shortdescription" : "Cryovolcano Hole",
   "race" : "generic",
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "An active cryovolcano site. It periodically erupts with cold water.",
+  "avianDescription" : "This hole erupts with cold water.",
+  "floranDescription" : "Big hole ssspewss cold water.",
+  "glitchDescription" : "Cautious. I am detecting cryovolcanic activity within this hole.",
+  "humanDescription" : "That's a big geyser. Err...cryovolcano.",
+  "hylotlDescription" : "Out of this hole emerges a giant fountain of water. A rare sight to behold.",
+  "novakidDescription" : "A big ol' fountain of water.",
 
   "category" : "trap",
   "price" : 0,
@@ -51,7 +51,7 @@
 
   "smashOnBreak" : true,
   "smashSounds" : [ "/sfx/objects/rock_break1.ogg", "/sfx/objects/rock_break2.ogg", "/sfx/objects/rock_break3.ogg", "/sfx/objects/rock_break4.ogg", "/sfx/objects/rock_break5.ogg", "/sfx/objects/rock_crumble1.ogg", "/sfx/objects/rock_crumble2.ogg", "/sfx/objects/rock_crumble3.ogg", "/sfx/objects/rock_crumble4.ogg", "/sfx/objects/rock_crumble5.ogg" ],
-  "smashParticles" : [ { "count" : 10, "particle" : "v-toxicrockshard" } ],
+  "smashParticles" : [ { "count" : 10, "particle" : "v-permafrostshard" } ],
 
   "stateSpecifications" : {
     "stateType" : "trapState",
