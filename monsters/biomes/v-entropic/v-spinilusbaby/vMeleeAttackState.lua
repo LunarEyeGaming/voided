@@ -28,14 +28,17 @@ function vMeleeAttackState.update(dt, stateData)
     animator.setAnimationState("attack", "meleewindup")
     setBodyDirection(toTarget)
     if stateData.timer <= 0 then
-      -- sb.logInfo("charging...")
       stateData.stage = "charge"
       animator.setAnimationState("attack", "melee")
+      animator.playSound("charge", -1)
       stateData.chargeDirection = toTarget
       stateData.timer = config.getParameter("attackChargeTime")
     end
   elseif stateData.stage == "charge" then
-    if collides("blockedSensors") then return true, config.getParameter("attackCooldownTime") end
+    if collides("blockedSensors") then
+      animator.playSound("crash")
+      return true, config.getParameter("attackCooldownTime")
+    end
 
     stateData.chargeDirection = vVec2.rotateTowardTarget(stateData.chargeDirection, toTarget, util.toRadians(config.getParameter("attackTurnRate")), dt)
 
@@ -44,12 +47,15 @@ function vMeleeAttackState.update(dt, stateData)
     move(stateData.chargeDirection, true, true)
 
     if stateData.timer <= 0 then
-      stateData.stage = "charge"
+      stateData.stage = "chargeWinddown"
       stateData.timer = config.getParameter("attackWinddownTime")
       animator.setAnimationState("attack", "idle")
     end
   elseif stateData.stage == "chargeWinddown" then
-    if collides("blockedSensors") then return true, config.getParameter("attackCooldownTime") end
+    if collides("blockedSensors") then
+      animator.playSound("crash")
+      return true, config.getParameter("attackCooldownTime")
+    end
 
     monster.setDamageOnTouch(false)
     move(stateData.chargeDirection, false)
@@ -62,4 +68,5 @@ function vMeleeAttackState.leavingState(stateData)
   monster.setDamageOnTouch(false)
   monster.setAggressive(false)
   animator.setAnimationState("attack", "idle")
+  animator.stopAllSounds("charge")
 end

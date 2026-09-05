@@ -78,6 +78,7 @@ function states.swim()
       end)
 
       animator.setAnimationState("movement", "boost")
+      animator.playSound("boost")
 
       util.wait(boostDuration, function()
         if boostSpeed then

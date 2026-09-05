@@ -9,6 +9,8 @@ function turnAndBoost(direction, boostDelay, boostDuration, boostSpeed, waitTime
 
     util.wait(boostDelay)
 
+    animator.playSound("boost")
+
     util.wait(boostDuration, function()
         if boostSpeed then
           mcontroller.controlParameters({flySpeed = boostSpeed})

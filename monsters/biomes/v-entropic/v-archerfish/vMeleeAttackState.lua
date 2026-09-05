@@ -36,6 +36,7 @@ function vMeleeAttackState.update(dt, stateData)
       -- sb.logInfo("charging...")
       stateData.stage = "charge"
       animator.setAnimationState("attack", "melee")
+      animator.playSound("charge")
       stateData.chargeDirection = toTarget
       stateData.timer = config.getParameter("attackChargeTime")
     end

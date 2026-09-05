@@ -13,6 +13,7 @@ All custom sounds in Voided were made in Audacity using Starbound's assets and/o
 * SKR-03-324.wav by Bill Kurth / University of Iowa / NASA. URL: https://space.physics.uiowa.edu/space-audio/cassini/SKR1/. License: Attribution 3.0
 * "De-Iceing-Small-Freezer_Stereo_192000.wav" by Sonicquinn on Freesound.org (URL: https://freesound.org/people/Sonicquinn/sounds/439224/).
 * "Circuit Breaker handling noise mechanical rattle.wav" by clgood on Freesound.org (URL: https://freesound.org/people/clgood/sounds/454590/).
+* "Jellyfish" by kaekhor on Freesound.org (URL: https://freesound.org/s/533979/).
 
 Fungal Laboratory:
 "Ossuary 3 - Words" Kevin MacLeod (incompetech.com)
