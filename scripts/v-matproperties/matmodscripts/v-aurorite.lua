@@ -15,12 +15,14 @@ function ModProperty.update(position, layer, dt)
     cuedRadioMessage = true
   end
 
-  if world.magnitude(position, mcontroller.position()) < chillRange then
+  local distance = world.magnitude(position, mcontroller.position())
+  if distance < chillRange then
     status.addEphemeralEffect("v-auroriteeffect")
+    local chillFactor = (chillRange - distance) / chillRange
     -- Consuming warmth directly so that the server isn't unnecessarily flooded with entity messages.
     if not status.statPositive("v-auroriteeffectImmunity") then
-      status.overConsumeResource("v-warmth", chillAmount * dt)
-      if math.random() < chillWarningChance then
+      status.overConsumeResource("v-warmth", chillAmount * dt * chillFactor)
+      if math.random() < chillWarningChance * chillFactor then
         world.spawnProjectile("v-auroritewarning", mcontroller.position(), nil, world.distance(position, mcontroller.position()))
       end
     end
