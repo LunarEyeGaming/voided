@@ -13,13 +13,14 @@
         { "file" : "/sfx/environmental/tree_crystal_breaking.ogg" }
       ],
       "hitGround" : [ { "file" : "/sfx/environmental/tree_crystal_hitground.ogg" } ],
-      "damageTree" : [ { "file" : "/sfx/tools/axe_chop_normal.ogg" }, { "file" : "/sfx/tools/axe_chop_tough.ogg" }, { "file" : "/sfx/tools/axe_chop_light.ogg" } ]
+      "damageTree" : [ { "file" : "/sfx/tools/v_axe_chop_crystal_normal.ogg" }, { "file" : "/sfx/tools/v_axe_chop_crystal_tough.ogg" }, { "file" : "/sfx/tools/v_axe_chop_crystal_light.ogg" } ]
     },
     "particles" : {
       "breakTree" : {
         "density" : 3,
         "options" : [ {
-            "image" : "/particles/treestems/wood.png",
+            "type" : "ember",
+            "color" : [128, 138, 191],
             "timeToLive" : 10,
             "initialVelocity" : [0, 0],
             "finalVelocity" : [0, -30],
@@ -50,17 +51,17 @@
       "damageTree" : {
         "density" : 1,
         "options" : [ {
-          "type" : "textured",
-          "image" : "/particles/treestems/something.png",
+          "type" : "ember",
+          "color" : [128, 138, 191],
           "timeToLive" : 10,
-            "initialVelocity" : [0, 0],
-            "finalVelocity" : [0, -30],
-            "approach" : [0, 5],
-            "variance" : {
-              "timeToLive" : 3.0,
-              "initialPosition" : [1.0, 1.0],
-              "initialVelocity" : [1.0, 1.0]
-            }
+          "initialVelocity" : [0, 0],
+          "finalVelocity" : [0, -30],
+          "approach" : [0, 5],
+          "variance" : {
+            "timeToLive" : 3.0,
+            "initialPosition" : [1.0, 1.0],
+            "initialVelocity" : [1.0, 1.0]
+          }
         } ]
       }
     }
