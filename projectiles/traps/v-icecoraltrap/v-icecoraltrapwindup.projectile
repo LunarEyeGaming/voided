@@ -1,0 +1,51 @@
+{
+  "projectileName" : "v-icecoraltrapwindup",
+
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "animationCycle" : 1,
+  "frameNumber" : 1,
+
+  "physics" : "default",
+  "onlyHitTerrain" : true,
+
+  "timeToLive" : 0.75,
+
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/npc/monsters/wisper_windup1.ogg" ]
+    },
+    {
+      "time" : 0.05,
+      "action" : "particle",
+      "specification" : {
+        "type" : "animated",
+        "animation" : "/animations/frozendust2/frozendust2.animation",
+        "approach" : [0.5, 0.5],
+        "initialVelocity" : [0, 10],
+        "finalVelocity" : [0, 0],
+        "timeToLive" : 2.0,
+        "variance" : {
+          "position" : [1.5, 1.5],
+          "initialVelocity" : [2, 4],
+          "rotation" : 180
+        }
+      }
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-icecoraltrap",
+      "inheritDamageFactor" : 1
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/npc/monsters/wisper_fire.ogg" ]
+    }
+  ]
+}
+
+
