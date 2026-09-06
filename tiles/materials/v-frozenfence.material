@@ -12,13 +12,14 @@
   "health" : 6,
   "category" : "materials",
   "damageTable" : "/tiles/flammableDamage.config",
+  "blocksLiquidFlow" : false,
 
   "renderTemplate" : "/tiles/classicmaterialtemplate.config",
   "renderParameters" : {
     "texture" : "v-frozenfence.png",
     "variants" : 5,
-    "lightTransparent" : false,
-    "occludesBelow" : true,
+    "lightTransparent" : true,
+    "occludesBelow" : false,
     "multiColored" : true,
     "zLevel" : 520
   }
