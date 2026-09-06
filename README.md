@@ -10,8 +10,9 @@ This project is a reworked version of Extended Story. The following content has 
 * Electrochem Facility
 * Ministar biome
 * Solar Spire
-The following content has yet to be added:
 * Ice biome
+
+The following content has yet to be added:
 * Ice dungeon
 * A boss battle themed around fire and ice
 * Final planet
