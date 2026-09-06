@@ -19,7 +19,7 @@ local sunLiquidId
 
 local liquidParticlePoints
 
--- User-configurable parameters (TODO)
+-- User-configurable parameters
 local lightInterval
 local useLights
 local useImagesForRays
@@ -58,6 +58,12 @@ local isActive
 function init()
   oldInit()
 
+  particleDensity = 0.02
+  startBurningColor = {255, 0, 0, 0}
+  endBurningColor = {255, 119, 0, 255}
+  sunRayDimColor = {255, 0, 0, 0}
+  sunRayBrightColor = {255, 216, 107, 128}
+
   local versionProperties = {}
 
   versionProperties.MinistarRenderConfig = {
@@ -86,12 +92,6 @@ function init()
     isActive = false
     return
   end
-
-  particleDensity = 0.02
-  startBurningColor = {255, 0, 0, 0}
-  endBurningColor = {255, 119, 0, 255}
-  sunRayDimColor = {255, 0, 0, 0}
-  sunRayBrightColor = {255, 216, 107, 128}
 
   rayColorTableSize = 256  -- Roughly the max number of entries that each rayRatio maps to.
   rayColorTable = {}
@@ -322,7 +322,7 @@ function v_ministarEffects_applyRenderConfig(cfg)
     nonOceanSunRayDrawableFunc = function(x, bottomY, topY, predictedPos)
       local relativePos = {x - predictedPos[1], bottomY - predictedPos[2]}
 
-      nonOceanLineEnd[2] = topY - bottomY
+      nonOceanLineEnd[2] = topY - bottomY  -- Height
       nonOceanSunRayDrawable.position = relativePos
       localAnimator_addDrawable(nonOceanSunRayDrawable, "Liquid-1")
     end
