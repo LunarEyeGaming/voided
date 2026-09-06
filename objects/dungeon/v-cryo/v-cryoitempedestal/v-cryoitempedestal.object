@@ -8,18 +8,18 @@
 
   "category" : "trap",
   "price" : 70,
-  "description" : "<todo>",
-  "shortdescription" : "Cryo Item Pedestal",
+  "description" : "A pedestal holding a tech chip.",
+  "shortdescription" : "Cryonic Item Pedestal",
   "race" : "avian",
   "health" : 1.5,
 
-  "apexDescription" : "<todo>",
-  "avianDescription" : "<todo>",
-  "floranDescription" : "<todo>",
-  "glitchDescription" : "<todo>",
-  "humanDescription" : "<todo>",
-  "hylotlDescription" : "<todo>",
-  "novakidDescription" : "<todo>",
+  "apexDescription" : "A pedestal holding a tech chip.",
+  "avianDescription" : "A simple pedestal holding a tech chip.",
+  "floranDescription" : "Floran will take sssilly thing.",
+  "glitchDescription" : "Excited. A pedestal holding a tech chip.",
+  "humanDescription" : "A pedestal with a tech chip on top of it.",
+  "hylotlDescription" : "A surprisingly advanced tech chip for a primitive people.",
+  "novakidDescription" : "This 'ere pedestal holds a tech chip.",
 
   "inventoryIcon" : "cryoitempedestal.png:inactive.1",
   "orientations" : [
@@ -53,6 +53,9 @@
       "anchors" : [ "bottom" ]
     }
   ],
+
+  "smashOnBreak" : true,
+  "smashParticles" : [ { "particle" : "v-permafrostshard", "count" : 7 } ],
 
   "animation" : "v-cryoitempedestal.animation",
 
