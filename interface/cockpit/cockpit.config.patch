@@ -34,6 +34,15 @@
     },
     {
       "op" : "add",
+      "path" : "/displayDungeons/v-thorncore",
+      "value" : {
+        "name" : "Thorn Core",
+        "description" : "A large mass of rock containing a thorny infestation.",
+        "icon" : "/objects/biome/v-toxicwasteland/v-toxicthorns/toxicthornsicon.png"
+      }
+    },
+    {
+      "op" : "add",
       "path" : "/displayDungeons/v-ministarspawn",
       "value" : {
         "description" : "",
@@ -56,6 +65,15 @@
         "name" : "Solar Spire",
         "description" : "A large tower with signs of Avian technology.",
         "icon" : "/interface/cockpit/dungeons/v-solarspire.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayDungeons/v-cryovillage",
+      "value" : {
+        "name" : "Cryovolcano",
+        "description" : "An active cryovolcano site with signs of Avian residence.",
+        "icon" : "/interface/cockpit/dungeons/v-cryovillage.png"
       }
     }
   ],
@@ -150,7 +168,9 @@
     {"op" : "add", "path" : "/weatherThreatValues/v-ministarwind", "value": 1.0},
     {"op" : "add", "path" : "/weatherThreatValues/v-ministarwindextreme", "value": 4.0},
     {"op" : "add", "path" : "/weatherThreatValues/v-ministarflaresmall", "value": 1.5},
-    {"op" : "add", "path" : "/weatherThreatValues/v-breadcrustbombs", "value": 1.0}
+    {"op" : "add", "path" : "/weatherThreatValues/v-breadcrustbombs", "value": 1.0},
+
+    {"op" : "add", "path" : "/weatherThreatValues/v-nitrogenrain", "value": 0.75}
   ],
 
   // Planet Search Patches
@@ -632,6 +652,23 @@
       "value" : {
         "displayName" : "Bread Crust Bombs",
         "icon" : "/interface/cockpit/weather/v-breadcrustbombs.png"
+      }
+    },
+
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-nitrogenrain",
+      "value" : {
+        "displayName" : "Liquid Nitrogen Rain",
+        "icon" : "/interface/cockpit/weather/v-nitrogenrain.png"
+      }
+    },
+    {
+      "op" : "add",
+      "path" : "/displayWeathers/v-entropichail",
+      "value" : {
+        "displayName" : "Permafrost Hail",
+        "icon" : "/interface/cockpit/weather/v-entropichail.png"
       }
     },
     // Scripts
