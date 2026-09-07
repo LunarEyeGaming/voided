@@ -1,0 +1,192 @@
+{
+  "name" : "v-entropic",
+  "swaps" : [
+    /*
+      Colors (shades are darkest to brightest):
+      -- Primary colors --
+      Sky Blue: 18196b 37669e 5a95c4 99e2f3
+      Purple: 21103b 3c276b 5e529c 808abf
+      Icy Purple: 5e529c 808abf b3cde3 def5ff
+      -- Accent colors --
+      Aurora Blue: 2274a1 45b0ba 87dece d3f5e2
+      Aurora Purple: 4d22a1 7245ba b787de f5d3ec
+      Frostburn purple: 6842c2 946ded c1a6ff e8deff
+      Vanilla glowy ice: 549ec6 73bad8 99e2f3 ffffff
+    */
+
+      // Sky blue, aurora blue, aurora purple
+    {
+      "6f2919" : "18196b", "a85636" : "37669e", "e0975c" : "5a95c4", "ffca8a" : "99e2f3",
+      "735e3a" : "2274a1", "a38d59" : "45b0ba", "d9c189" : "87dece", "f7e7b2" : "d3f5e2",
+      "951500" : "4d22a1", "be1b00" : "7245ba", "dc1f00" : "b787de", "f32200" : "f5d3ec"
+    },
+      // Sky blue, aurora blue, frostburn purple
+    {
+      "6f2919" : "18196b", "a85636" : "37669e", "e0975c" : "5a95c4", "ffca8a" : "99e2f3",
+      "735e3a" : "2274a1", "a38d59" : "45b0ba", "d9c189" : "87dece", "f7e7b2" : "d3f5e2",
+      "951500" : "6842c2", "be1b00" : "946ded", "dc1f00" : "c1a6ff", "f32200" : "e8deff"
+    },
+      // Sky blue, aurora blue, vanilla glowy ice
+    {
+      "6f2919" : "18196b", "a85636" : "37669e", "e0975c" : "5a95c4", "ffca8a" : "99e2f3",
+      "735e3a" : "2274a1", "a38d59" : "45b0ba", "d9c189" : "87dece", "f7e7b2" : "d3f5e2",
+      "951500" : "549ec6", "be1b00" : "73bad8", "dc1f00" : "99e2f3", "f32200" : "ffffff"
+    },
+
+      // Sky blue, aurora purple, aurora blue
+    {
+      "6f2919" : "18196b", "a85636" : "37669e", "e0975c" : "5a95c4", "ffca8a" : "99e2f3",
+      "735e3a" : "4d22a1", "a38d59" : "7245ba", "d9c189" : "b787de", "f7e7b2" : "f5d3ec",
+      "951500" : "2274a1", "be1b00" : "45b0ba", "dc1f00" : "87dece", "f32200" : "d3f5e2"
+    },
+      // Sky blue, aurora purple, frostburn purple
+    {
+      "6f2919" : "18196b", "a85636" : "37669e", "e0975c" : "5a95c4", "ffca8a" : "99e2f3",
+      "735e3a" : "4d22a1", "a38d59" : "7245ba", "d9c189" : "b787de", "f7e7b2" : "f5d3ec",
+      "951500" : "6842c2", "be1b00" : "946ded", "dc1f00" : "c1a6ff", "f32200" : "e8deff"
+    },
+      // Sky blue, aurora purple, vanilla glowy ice
+    {
+      "6f2919" : "18196b", "a85636" : "37669e", "e0975c" : "5a95c4", "ffca8a" : "99e2f3",
+      "735e3a" : "4d22a1", "a38d59" : "7245ba", "d9c189" : "b787de", "f7e7b2" : "f5d3ec",
+      "951500" : "549ec6", "be1b00" : "73bad8", "dc1f00" : "99e2f3", "f32200" : "ffffff"
+    },
+
+      // Sky blue, vanilla glowy ice, aurora blue
+    {
+      "6f2919" : "18196b", "a85636" : "37669e", "e0975c" : "5a95c4", "ffca8a" : "99e2f3",
+      "735e3a" : "549ec6", "a38d59" : "73bad8", "d9c189" : "99e2f3", "f7e7b2" : "ffffff",
+      "951500" : "2274a1", "be1b00" : "45b0ba", "dc1f00" : "87dece", "f32200" : "d3f5e2"
+    },
+      // Sky blue, vanilla glowy ice, aurora purple
+    {
+      "6f2919" : "18196b", "a85636" : "37669e", "e0975c" : "5a95c4", "ffca8a" : "99e2f3",
+      "735e3a" : "549ec6", "a38d59" : "73bad8", "d9c189" : "99e2f3", "f7e7b2" : "ffffff",
+      "951500" : "6842c2", "be1b00" : "946ded", "dc1f00" : "c1a6ff", "f32200" : "e8deff"
+    },
+      // Sky blue, vanilla glowy ice, frostburn purple
+    {
+      "6f2919" : "18196b", "a85636" : "37669e", "e0975c" : "5a95c4", "ffca8a" : "99e2f3",
+      "735e3a" : "549ec6", "a38d59" : "73bad8", "d9c189" : "99e2f3", "f7e7b2" : "ffffff",
+      "951500" : "4d22a1", "be1b00" : "7245ba", "dc1f00" : "b787de", "f32200" : "f5d3ec"
+    },
+
+    //////////////
+
+      // Purple, aurora blue, aurora purple
+    {
+      "6f2919" : "21103b", "a85636" : "3c276b", "e0975c" : "5e529c", "ffca8a" : "808abf",
+      "735e3a" : "2274a1", "a38d59" : "45b0ba", "d9c189" : "87dece", "f7e7b2" : "d3f5e2",
+      "951500" : "4d22a1", "be1b00" : "7245ba", "dc1f00" : "b787de", "f32200" : "f5d3ec"
+    },
+      // Purple, aurora blue, frostburn purple
+    {
+      "6f2919" : "21103b", "a85636" : "3c276b", "e0975c" : "5e529c", "ffca8a" : "808abf",
+      "735e3a" : "2274a1", "a38d59" : "45b0ba", "d9c189" : "87dece", "f7e7b2" : "d3f5e2",
+      "951500" : "6842c2", "be1b00" : "946ded", "dc1f00" : "c1a6ff", "f32200" : "e8deff"
+    },
+      // Purple, aurora blue, vanilla glowy ice
+    {
+      "6f2919" : "21103b", "a85636" : "3c276b", "e0975c" : "5e529c", "ffca8a" : "808abf",
+      "735e3a" : "2274a1", "a38d59" : "45b0ba", "d9c189" : "87dece", "f7e7b2" : "d3f5e2",
+      "951500" : "549ec6", "be1b00" : "73bad8", "dc1f00" : "99e2f3", "f32200" : "ffffff"
+    },
+
+      // Purple, aurora purple, aurora blue
+    {
+      "6f2919" : "21103b", "a85636" : "3c276b", "e0975c" : "5e529c", "ffca8a" : "808abf",
+      "735e3a" : "4d22a1", "a38d59" : "7245ba", "d9c189" : "b787de", "f7e7b2" : "f5d3ec",
+      "951500" : "2274a1", "be1b00" : "45b0ba", "dc1f00" : "87dece", "f32200" : "d3f5e2"
+    },
+      // Purple, aurora purple, frostburn purple
+    {
+      "6f2919" : "21103b", "a85636" : "3c276b", "e0975c" : "5e529c", "ffca8a" : "808abf",
+      "735e3a" : "4d22a1", "a38d59" : "7245ba", "d9c189" : "b787de", "f7e7b2" : "f5d3ec",
+      "951500" : "6842c2", "be1b00" : "946ded", "dc1f00" : "c1a6ff", "f32200" : "e8deff"
+    },
+      // Purple, aurora purple, vanilla glowy ice
+    {
+      "6f2919" : "21103b", "a85636" : "3c276b", "e0975c" : "5e529c", "ffca8a" : "808abf",
+      "735e3a" : "4d22a1", "a38d59" : "7245ba", "d9c189" : "b787de", "f7e7b2" : "f5d3ec",
+      "951500" : "549ec6", "be1b00" : "73bad8", "dc1f00" : "99e2f3", "f32200" : "ffffff"
+    },
+
+      // Purple, vanilla glowy ice, aurora blue
+    {
+      "6f2919" : "21103b", "a85636" : "3c276b", "e0975c" : "5e529c", "ffca8a" : "808abf",
+      "735e3a" : "549ec6", "a38d59" : "73bad8", "d9c189" : "99e2f3", "f7e7b2" : "ffffff",
+      "951500" : "2274a1", "be1b00" : "45b0ba", "dc1f00" : "87dece", "f32200" : "d3f5e2"
+    },
+      // Purple, vanilla glowy ice, aurora purple
+    {
+      "6f2919" : "21103b", "a85636" : "3c276b", "e0975c" : "5e529c", "ffca8a" : "808abf",
+      "735e3a" : "549ec6", "a38d59" : "73bad8", "d9c189" : "99e2f3", "f7e7b2" : "ffffff",
+      "951500" : "6842c2", "be1b00" : "946ded", "dc1f00" : "c1a6ff", "f32200" : "e8deff"
+    },
+      // Purple, vanilla glowy ice, frostburn purple
+    {
+      "6f2919" : "21103b", "a85636" : "3c276b", "e0975c" : "5e529c", "ffca8a" : "808abf",
+      "735e3a" : "549ec6", "a38d59" : "73bad8", "d9c189" : "99e2f3", "f7e7b2" : "ffffff",
+      "951500" : "4d22a1", "be1b00" : "7245ba", "dc1f00" : "b787de", "f32200" : "f5d3ec"
+    },
+
+    //////////////
+
+      // Icy Purple, aurora blue, aurora purple
+    {
+      "6f2919" : "5e529c", "a85636" : "808abf", "e0975c" : "b3cde3", "ffca8a" : "def5ff",
+      "735e3a" : "2274a1", "a38d59" : "45b0ba", "d9c189" : "87dece", "f7e7b2" : "d3f5e2",
+      "951500" : "4d22a1", "be1b00" : "7245ba", "dc1f00" : "b787de", "f32200" : "f5d3ec"
+    },
+      // Icy Purple, aurora blue, frostburn purple
+    {
+      "6f2919" : "5e529c", "a85636" : "808abf", "e0975c" : "b3cde3", "ffca8a" : "def5ff",
+      "735e3a" : "2274a1", "a38d59" : "45b0ba", "d9c189" : "87dece", "f7e7b2" : "d3f5e2",
+      "951500" : "6842c2", "be1b00" : "946ded", "dc1f00" : "c1a6ff", "f32200" : "e8deff"
+    },
+      // Icy Purple, aurora blue, vanilla glowy ice
+    {
+      "6f2919" : "5e529c", "a85636" : "808abf", "e0975c" : "b3cde3", "ffca8a" : "def5ff",
+      "735e3a" : "2274a1", "a38d59" : "45b0ba", "d9c189" : "87dece", "f7e7b2" : "d3f5e2",
+      "951500" : "549ec6", "be1b00" : "73bad8", "dc1f00" : "99e2f3", "f32200" : "ffffff"
+    },
+
+      // Icy Purple, aurora purple, aurora blue
+    {
+      "6f2919" : "5e529c", "a85636" : "808abf", "e0975c" : "b3cde3", "ffca8a" : "def5ff",
+      "735e3a" : "4d22a1", "a38d59" : "7245ba", "d9c189" : "b787de", "f7e7b2" : "f5d3ec",
+      "951500" : "2274a1", "be1b00" : "45b0ba", "dc1f00" : "87dece", "f32200" : "d3f5e2"
+    },
+      // Icy Purple, aurora purple, frostburn purple
+    {
+      "6f2919" : "5e529c", "a85636" : "808abf", "e0975c" : "b3cde3", "ffca8a" : "def5ff",
+      "735e3a" : "4d22a1", "a38d59" : "7245ba", "d9c189" : "b787de", "f7e7b2" : "f5d3ec",
+      "951500" : "6842c2", "be1b00" : "946ded", "dc1f00" : "c1a6ff", "f32200" : "e8deff"
+    },
+      // Icy Purple, aurora purple, vanilla glowy ice
+    {
+      "6f2919" : "5e529c", "a85636" : "808abf", "e0975c" : "b3cde3", "ffca8a" : "def5ff",
+      "735e3a" : "4d22a1", "a38d59" : "7245ba", "d9c189" : "b787de", "f7e7b2" : "f5d3ec",
+      "951500" : "549ec6", "be1b00" : "73bad8", "dc1f00" : "99e2f3", "f32200" : "ffffff"
+    },
+
+      // Icy Purple, vanilla glowy ice, aurora blue
+    {
+      "6f2919" : "5e529c", "a85636" : "808abf", "e0975c" : "b3cde3", "ffca8a" : "def5ff",
+      "735e3a" : "549ec6", "a38d59" : "73bad8", "d9c189" : "99e2f3", "f7e7b2" : "ffffff",
+      "951500" : "2274a1", "be1b00" : "45b0ba", "dc1f00" : "87dece", "f32200" : "d3f5e2"
+    },
+      // Icy Purple, vanilla glowy ice, aurora purple
+    {
+      "6f2919" : "5e529c", "a85636" : "808abf", "e0975c" : "b3cde3", "ffca8a" : "def5ff",
+      "735e3a" : "549ec6", "a38d59" : "73bad8", "d9c189" : "99e2f3", "f7e7b2" : "ffffff",
+      "951500" : "6842c2", "be1b00" : "946ded", "dc1f00" : "c1a6ff", "f32200" : "e8deff"
+    },
+      // Icy Purple, vanilla glowy ice, frostburn purple
+    {
+      "6f2919" : "5e529c", "a85636" : "808abf", "e0975c" : "b3cde3", "ffca8a" : "def5ff",
+      "735e3a" : "549ec6", "a38d59" : "73bad8", "d9c189" : "99e2f3", "f7e7b2" : "ffffff",
+      "951500" : "4d22a1", "be1b00" : "7245ba", "dc1f00" : "b787de", "f32200" : "f5d3ec"
+    }
+  ]
+}
