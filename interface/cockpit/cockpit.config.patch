@@ -272,6 +272,38 @@
     }},
     {"op" : "add", "path" : "/displayBiomes/v-undergroundministarempty", "value" : {
       "name" : "Ministar Mantle", "icon" : "/items/liquids/v-liquidsunicon.png"
+    }},
+    // ENTROPIC
+    {"op" : "add", "path" : "/displayBiomes/v-entropic", "value" : {
+      "name" : "Entropic", "icon" : "/interface/bookmarks/icons/v-entropic.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowundergroundentropic", "value" : {
+      "name" : "Entropic Caves Shallow", "icon" : "/interface/bookmarks/icons/v-entropic.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowentropicocean", "value" : {
+      "name" : "Flooded Entropic Caves", "icon" : "/interface/bookmarks/icons/v-entropic.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-entropicocean", "value" : {
+      "name" : "Entropic Ocean", "icon" : "/items/materials/v-permafrostmaterial.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-deepentropicocean", "value" : {
+      "name" : "Entropic Ocean Deep", "icon" : "/interface/bookmarks/icons/v-entropic.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-entropiccorelayer", "value" : {
+      "name" : "Entropic Core", "icon" : "/objects/biome/v-entropic/v-hydrothermalvent/hydrothermalventicon.png"
+    }},
+
+    {"op" : "add", "path" : "/displayBiomes/v-briniclefield", "value" : {
+      "name" : "Brinicle Field", "icon" : "/objects/biome/v-entropic/v-brinicletrap/brinicletrapicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-entropicgrassfield", "value" : {
+      "name" : "Entropic Grass Field", "icon" : "/objects/biome/v-entropic/v-coldgrass/coldgrassicon.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-icegnatnest", "value" : {
+      "name" : "Numbgnat Nest", "icon" : "/items/generic/crafting/v-icegnatshell.png"
+    }},
+    {"op" : "add", "path" : "/displayBiomes/v-shallowentropiccoralfield", "value" : {
+      "name" : "Entropic Coral Field", "icon" : "/items/generic/crafting/v-warmcoralsample.png"
     }}
   ],
 
@@ -292,6 +324,10 @@
 
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-ministaratmosphere"},
     {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundministar"},
+
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowentropicocean"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-deepentropicocean"},
+    {"op" : "add", "path" : "/planetSearch_ignore/biomes/-", "value" : "v-shallowundergroundentropic"},
 
     {"op" : "add", "path" : "/planetSearch_ignore/dungeons/-", "value" : "v-ministarspawn"}
   ],
