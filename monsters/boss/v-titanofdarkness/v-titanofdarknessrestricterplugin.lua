@@ -21,12 +21,7 @@ function init()
 
     -- If there is one...
     if titanId ~= 0 then
-      -- Disappear.
-      monster.setUniqueId()
-      status.setResourcePercentage("health", 0.0)
-      monster.setDropPool(nil)
-      self.shouldDie = true
-      script.setUpdateDelta(0)  -- Suppress calls to update
+      disappear()
 
       return
     else
@@ -36,15 +31,31 @@ function init()
 
   -- If the Titan is not in a monster spawn zone (and spawnAnywhere is false)...
   if not config.getParameter("spawnAnywhere") and not vWorld.canSpawnMonster(mcontroller.boundBox(), mcontroller.position()) then
-    -- Disappear.
-    monster.setUniqueId()
-    status.setResourcePercentage("health", 0.0)
-    monster.setDropPool(nil)
-    self.shouldDie = true
-    script.setUpdateDelta(0)  -- Suppress calls to update
+    disappear()
 
     return  -- Don't initialize
   end
 
+  local riftZoneManagerId = world.loadUniqueEntity("v-riftzonemanager-stagehand")
+  local riftZoneDensity = 0
+  if riftZoneManagerId ~= 0 then
+    riftZoneDensity = world.callScriptedEntity(riftZoneManagerId, "currentDensity")
+  end
+  local densityTriggerThreshold = root.assetJson("/v-riftzones.config:densityTriggerThreshold")
+  if riftZoneDensity > densityTriggerThreshold then
+    disappear()
+
+    return
+  end
+
   oldInit()
+end
+
+function disappear()
+  -- Disappear.
+  monster.setUniqueId()
+  status.setResourcePercentage("health", 0.0)
+  monster.setDropPool(nil)
+  self.shouldDie = true
+  script.setUpdateDelta(0)  -- Suppress calls to update
 end
