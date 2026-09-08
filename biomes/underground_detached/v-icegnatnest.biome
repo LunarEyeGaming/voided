@@ -90,7 +90,8 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [0.20, "v-warmcoral1" ], [0.20, "v-warmcoral2" ], [0.20, "v-warmcoral3" ], [0.20, "v-warmcoral4" ], [0.20, "v-warmcoral5" ]]
+            "pool" : [ [0.20, "v-warmcoral1" ], [0.20, "v-warmcoral2" ], [0.20, "v-warmcoral3" ], [0.20, "v-warmcoral4" ], [0.20, "v-warmcoral5" ]],
+            "parameters" : { "originBiome" : "underground_detached/v-icegnatnest" }
           }
         ]
       },
@@ -105,7 +106,8 @@
           {
             "pool" : [ [0.20, "v-coldgrass1" ], [0.20, "v-coldgrass2" ], [0.20, "v-coldgrass3" ],
             [0.20, "v-coldgrass4" ], [0.20, "v-coldgrass5" ], [0.20, "v-coldgrass6" ], [0.20, "v-coldgrass7" ],
-            [0.20, "v-coldgrass8" ]]
+            [0.20, "v-coldgrass8" ]],
+            "parameters" : { "originBiome" : "underground_detached/v-icegnatnest" }
           }
         ]
       },
@@ -160,7 +162,8 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ]
+            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ],
+            "parameters" : { "originBiome" : "underground_detached/v-icegnatnest" }
           }
         ]
       },
@@ -173,7 +176,8 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ]
+            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ],
+            "parameters" : { "originBiome" : "underground_detached/v-icegnatnest" }
           }
         ]
       },
@@ -228,7 +232,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground_detached/v-icegnatnest" }
           }
         ]
       },
@@ -242,7 +246,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-iceboulder" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "underground_detached/v-icegnatnest" }
           }
         ]
       },

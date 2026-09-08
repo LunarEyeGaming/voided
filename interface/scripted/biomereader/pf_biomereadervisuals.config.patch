@@ -184,23 +184,46 @@
   // MAIN LAYERS
 
   { "op" : "add", "path" : "/v-entropic", "value" : {
-    "description" : "Choked by Its Own Life",
+    "description" : "Glacial Shell",
     "icon" : ""
   } },
   { "op" : "add", "path" : "/v-shallowundergroundentropic", "value" : {
-    "description" : "Not Much Lives Here",
+    "description" : "Brutally Cold, Howling Caves",
     "icon" : ""
   } },
-  { "op" : "add", "path" : "/v-undergroundentropic", "value" : {
-    "description" : "An Ecosystem Below",
+  { "op" : "add", "path" : "/v-shallowentropicocean", "value" : {
+    "description" : "Sunken Arctic",
     "icon" : ""
   } },
-  { "op" : "add", "path" : "/v-deepundergroundentropic", "value" : {
-    "description" : "Where the Haze Grows Thick",
+  { "op" : "add", "path" : "/v-entropicocean", "value" : {
+    "description" : "It Keeps Going Deeper",
+    "icon" : ""
+  } },
+  { "op" : "add", "path" : "/v-deepentropicocean", "value" : {
+    "description" : "Hadopelagic Reaches",
     "icon" : ""
   } },
   { "op" : "add", "path" : "/v-entropiccorelayer", "value" : {
-    "description" : "Source of the Mycotoxin",
+    "description" : "End of an Ocean Fathoms Deep",
+    "icon" : ""
+  } },
+
+  // MINIBIOMES
+
+  { "op" : "add", "path" : "/v-briniclefield", "value" : {
+    "description" : "Icy Fingers of Death",
+    "icon" : ""
+  } },
+  { "op" : "add", "path" : "/v-entropicgrassfield", "value" : {
+    "description" : "Blowing Gently in the Current",
+    "icon" : ""
+  } },
+  { "op" : "add", "path" : "/v-shallowentropiccoralfield", "value" : {
+    "description" : "Hotspot at the Surface",
+    "icon" : ""
+  } },
+  { "op" : "add", "path" : "/v-icegnatnest", "value" : {
+    "description" : "Brittle Nest of Pests",
     "icon" : ""
   } }
 ]

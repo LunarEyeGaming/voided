@@ -222,7 +222,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-coldshrub1" ], [1.0, "v-coldshrub2" ], [1.0, "v-coldshrub3" ], [1.0, "v-coldshrub4" ], [1.0, "v-coldshrub5" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
       },
@@ -309,7 +309,7 @@
         "objectSets" : [
           {
             "pool" : [ [1.0, "v-coldshrub1" ], [1.0, "v-coldshrub2" ], [1.0, "v-coldshrub3" ], [1.0, "v-coldshrub4" ], [1.0, "v-coldshrub5" ] ],
-            "parameters" : { }
+            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
       },
@@ -338,7 +338,8 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ]
+            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ],
+            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
       },
@@ -351,7 +352,8 @@
         "type" : "object",
         "objectSets" : [
           {
-            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ]
+            "pool" : [ [0.20, "v-icespike1" ], [0.20, "v-icespike2" ], [0.20, "v-icespike3" ], [0.20, "v-icespike4" ], [0.20, "v-icespike5" ] ],
+            "parameters" : { "originBiome" : "surface/v-entropic" }
           }
         ]
       },
