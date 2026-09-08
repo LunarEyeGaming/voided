@@ -451,7 +451,18 @@ function v_titanSearch(args)
       searchRayCount = args.searchRayCount,
       maxSearchRaycastLength = args.maxSearchRaycastLength
     })
-    if not status then return false end
+    if not status then
+      if args.logFailures then
+        sb.logInfo([[[Voided: Expansion Mod] v_titanSearch: v_titanLookAround failed. Arguments: {
+  currentAngle = %s,
+  eyeAngularVelocity = %s,
+  eyeTurnWaitTime = %s,
+  searchRayCount = %s,
+  maxSearchRaycastLength = %s
+}]], currentAngle, args.eyeAngularVelocity, args.eyeTurnWaitTime, args.searchRayCount, args.maxSearchRaycastLength)
+      end
+      return false
+    end
     ---@diagnostic disable-next-line: need-check-nil
     currentAngle = result.angle
 
@@ -463,6 +474,11 @@ function v_titanSearch(args)
     lerpStep, maxDistance, args.liquidBlacklist, args.liquidWhitelist)
 
     if not nextPos then
+      if args.logFailures then
+        sb.logInfo("[Voided: Expansion Mod] v_titanSearch: findRandomAirPosition failed. Arguments: %s, %s, %s, %s, %s, %s, %s, %s",
+        maxAttempts, targetPos, args.flySelectionArea, args.flyRequiredAirRegion, lerpStep, maxDistance,
+        args.liquidBlacklist, args.liquidWhitelist)
+      end
       return false
     end
 
@@ -499,6 +515,17 @@ function v_titanSearch(args)
 
     -- Fail if no path to the player is found.
     if not pathfindResults then
+      if args.logFailures then
+        sb.logInfo("[Voided: Expansion Mod] v_titanSearch: world.findPlatformerPath failed. Arguments: %s, %s, %s, %s",
+        mcontroller.position(), world.entityPosition(args.target), mcontroller.baseParameters(), {
+          returnBest = false,
+          mustEndOnGround = false,
+          maxFScore = 400,
+          maxDistance = 200,
+          maxNodesToSearch = 70000,
+          boundBox = mcontroller.boundBox()
+        })
+      end
       return false
     end
 
@@ -509,6 +536,9 @@ function v_titanSearch(args)
 
       -- If there is at least one door...
       if #doors > 0 then
+        if args.logFailures then
+          sb.logInfo("[Voided: Expansion Mod] v_titanSearch: Failed. Detected a door")
+        end
         return false
       end
     end

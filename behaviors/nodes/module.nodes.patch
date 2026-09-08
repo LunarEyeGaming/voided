@@ -1244,19 +1244,6 @@
   },
   {
     "op": "add",
-    "path": "/v-titanofdarknesspassive",
-    "value": {
-      "type": "module",
-      "name": "v-titanofdarknesspassive",
-      "title": "",
-      "properties": {
-        "activeTime": {"type": "json", "value": [300, 600]}
-      },
-      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarknesspassive.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-spireminiboss-dying",
     "value": {
       "type": "module",
@@ -1804,6 +1791,19 @@
         "inLiquidSwitchTime": {"type": "json", "value": null}
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-laser.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarknesspassive",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarknesspassive",
+      "title": "",
+      "properties": {
+        "activeTime": {"type": "json", "value": 10}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarknesspassive.behavior"
     }
   }
 ]

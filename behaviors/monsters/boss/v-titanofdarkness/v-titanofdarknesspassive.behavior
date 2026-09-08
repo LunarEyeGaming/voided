@@ -1,6 +1,6 @@
 {
   "name": "v-titanofdarknesspassive",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/behavior.lua",
     "/scripts/actions/entity.lua",
@@ -12,7 +12,7 @@
     "/scripts/actions/time.lua"
   ],
   "parameters": {
-    "activeTime": [300, 600]
+    "activeTime": 10
   },
   "root": {
     "title": "sequence",
@@ -263,9 +263,10 @@
                       "flyControlForce": {"value": 6},
                       "flySelectionArea": {"value": [-75, -75, 75, 75]},
                       "flySpeed": {"value": 13},
+                      "logFailures": {"value": true},
                       "startAngle": {"key": "targetAngle"},
-                      "target": {"key": "self"},
-                      "stopControlForce": {"value": 12}
+                      "stopControlForce": {"value": 12},
+                      "target": {"key": "self"}
                     },
                     "output": {
                       "angle": "targetAngle"
