@@ -208,3 +208,36 @@ function vUtil.materialConfigGen(transformer)
     end
   end
 end
+
+---Takes in a config function (e.g., `root.itemConfig`) and an optional `transformer` (in case the data needs to be
+---trimmed down in some way) and returns a function that stores the result in a cache.
+---@param configFunc fun(key: string): any
+---@param transformer? fun(result: any): any
+---@return function
+function vUtil.cacheFunctionGen(configFunc, transformer)
+  local cache = {}
+  setmetatable(cache, {__mode = "kv"})
+  if transformer then
+    return function(key)
+      if not cache[key] then
+        local result = configFunc(key)
+        if result then
+          cache[key] = transformer(result)
+        end
+      end
+
+      return cache[key]
+    end
+  else
+    return function(key)
+      if not cache[key] then
+        local result = configFunc(key)
+        if result then
+          cache[key] = result
+        end
+      end
+
+      return cache[key]
+    end
+  end
+end
