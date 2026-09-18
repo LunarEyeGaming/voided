@@ -56,7 +56,7 @@ function update(dt)
     mcontroller.approachVelocity({0, 0}, stopControlForce)
 
     -- If the tank has stopped (and the hasStopped flag has not been set, to prevent this code from activating multiple times)...
-    if vec2.mag(mcontroller.velocity()) == 0 and not hasStopped then
+    if vec2.mag(mcontroller.velocity()) <= 0.001 and not hasStopped then
       -- Place the object variant (forcibly).
       placeObject()
       hasStopped = true

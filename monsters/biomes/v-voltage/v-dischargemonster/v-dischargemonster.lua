@@ -180,7 +180,7 @@ function updateVelocity()
   local params = mcontroller.baseParameters()
 
   -- If speed is not zero...
-  if vec2.mag(mcontroller.velocity()) ~= 0 then
+  if vec2.mag(mcontroller.velocity()) > 0.001 then
     -- Try to travel at the target speed without changing direction.
     local velocityDirection = vec2.norm(mcontroller.velocity())
     mcontroller.controlApproachVelocity(vec2.mul(velocityDirection, params.flySpeed), params.airForce)

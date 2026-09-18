@@ -223,7 +223,7 @@ function v_stop(args)
   if not rq{"stopForce"} then return false end
 
   -- Slow down until the entity has stopped moving.
-  while vec2.mag(mcontroller.velocity()) > 0 do
+  while vec2.mag(mcontroller.velocity()) > 0.001 do
     mcontroller.controlApproachVelocity({0, 0}, args.stopForce)
     coroutine.yield()
   end

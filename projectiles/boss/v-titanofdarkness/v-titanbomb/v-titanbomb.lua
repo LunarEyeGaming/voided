@@ -62,7 +62,7 @@ function update(dt)
 
       mcontroller.approachVelocity(vec2.mul(toTarget, approachSpeed), approachForce)
     end
-  elseif vec2.mag(mcontroller.velocity()) > 0 then
+  elseif vec2.mag(mcontroller.velocity()) > 0.001 then
     mcontroller.approachVelocity({0, 0}, stopForce)
   elseif not setTimeToLive then
     projectile.setTimeToLive(1.0)

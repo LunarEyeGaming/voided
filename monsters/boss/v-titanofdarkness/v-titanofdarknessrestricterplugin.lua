@@ -36,16 +36,18 @@ function init()
     return  -- Don't initialize
   end
 
-  local riftZoneManagerId = world.loadUniqueEntity("v-riftzonemanager-stagehand")
-  local riftZoneDensity = 0
-  if riftZoneManagerId ~= 0 then
-    riftZoneDensity = world.callScriptedEntity(riftZoneManagerId, "currentDensity")
-  end
-  local densityTriggerThreshold = root.assetJson("/v-riftzones.config:densityTriggerThreshold")
-  if riftZoneDensity > densityTriggerThreshold then
-    disappear()
+  if not config.getParameter("ignoreRiftZones") then
+    local riftZoneManagerId = world.loadUniqueEntity("v-riftzonemanager-stagehand")
+    local riftZoneDensity = 0
+    if riftZoneManagerId ~= 0 then
+      riftZoneDensity = world.callScriptedEntity(riftZoneManagerId, "currentDensity")
+    end
+    local densityTriggerThreshold = root.assetJson("/v-riftzones.config:densityTriggerThreshold")
+    if riftZoneDensity > densityTriggerThreshold then
+      disappear()
 
-    return
+      return
+    end
   end
 
   oldInit()

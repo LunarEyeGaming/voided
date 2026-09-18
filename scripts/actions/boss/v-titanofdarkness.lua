@@ -497,7 +497,7 @@ function v_titanSearch(args)
     until math.abs(distance[1]) < flyTolerance and math.abs(distance[2]) < flyTolerance
 
     -- Stop
-    while vec2.mag(mcontroller.velocity()) > 0 do
+    while vec2.mag(mcontroller.velocity()) > 0.001 do
       mcontroller.controlApproachVelocity({0, 0}, stopControlForce)
       coroutine.yield()
     end

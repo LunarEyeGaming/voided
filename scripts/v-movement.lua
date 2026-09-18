@@ -89,7 +89,7 @@ end
 ---Stops the current entity with a force of `stopForce.
 ---@param stopForce number
 function vMovementA.stop(stopForce)
-  while vec2.mag(mcontroller.velocity()) > 0 do
+  while vec2.mag(mcontroller.velocity()) > 0.001 do
     mcontroller.controlApproachVelocity({0, 0}, stopForce)
     coroutine.yield()
   end
