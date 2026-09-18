@@ -1805,5 +1805,22 @@
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-titanofdarknesspassive.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-titanofdarkness-defeated",
+    "value": {
+      "type": "module",
+      "name": "v-titanofdarkness-defeated",
+      "title": "",
+      "properties": {
+        "shakeTime": {"type": "json", "value": 1.5},
+        "shakeMinStart": {"type": "json", "value": [0, 0]},
+        "shakeMaxStart": {"type": "json", "value": [0, 0]},
+        "shakeMinEnd": {"type": "json", "value": [-1, -1]},
+        "shakeMaxEnd": {"type": "json", "value": [1, 1]}
+      },
+      "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-defeated.behavior"
+    }
   }
 ]

@@ -925,6 +925,18 @@
                                         }
                                       },
                                       {
+                                        "title": "v-titanofdarkness-defeated",
+                                        "type": "module",
+                                        "name": "v-titanofdarkness-defeated",
+                                        "parameters": {
+                                          "shakeTime": {"value": 1.5},
+                                          "shakeMinStart": {"value": [0, 0]},
+                                          "shakeMaxStart": {"value": [0, 0]},
+                                          "shakeMinEnd": {"value": [-1, -1]},
+                                          "shakeMaxEnd": {"value": [1, 1]}
+                                        }
+                                      },
+                                      {
                                         "title": "v-titanofdarkness-disappear",
                                         "type": "module",
                                         "name": "v-titanofdarkness-disappear",

@@ -1,0 +1,263 @@
+{
+  "name": "v-titanofdarkness-defeated",
+  "description": null,
+  "scripts": [
+    "/scripts/behavior/bdata.lua",
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/math.lua"
+  ],
+  "parameters": {
+    "shakeTime": 1.5,
+    "shakeMinStart": [0, 0],
+    "shakeMaxStart": [0, 0],
+    "shakeMinEnd": [-1, -1],
+    "shakeMaxEnd": [1, 1],
+    "stopForce": 35
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "breakVector",
+            "type": "action",
+            "name": "breakVector",
+            "parameters": {
+              "vector": {"key": "<shakeMinStart>"}
+            },
+            "output": {
+              "x": "shakeMinXStart",
+              "y": "shakeMinYStart"
+            }
+          },
+          {
+            "title": "breakVector",
+            "type": "action",
+            "name": "breakVector",
+            "parameters": {
+              "vector": {"key": "<shakeMaxStart>"}
+            },
+            "output": {
+              "x": "shakeMaxXStart",
+              "y": "shakeMaxYStart"
+            }
+          },
+          {
+            "title": "breakVector",
+            "type": "action",
+            "name": "breakVector",
+            "parameters": {
+              "vector": {"key": "<shakeMinEnd>"}
+            },
+            "output": {
+              "x": "shakeMinXEnd",
+              "y": "shakeMinYEnd"
+            }
+          },
+          {
+            "title": "breakVector",
+            "type": "action",
+            "name": "breakVector",
+            "parameters": {
+              "vector": {"key": "<shakeMaxEnd>"}
+            },
+            "output": {
+              "x": "shakeMaxXEnd",
+              "y": "shakeMaxYEnd"
+            }
+          }
+        ]
+      },
+      {
+        "title": "v_stop",
+        "type": "action",
+        "name": "v_stop",
+        "parameters": {
+          "stopForce": {"key": "<stopForce>"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": 0},
+          "sound": {"value": "rumble"}
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": -1},
+          "success": {"value": 1}
+        },
+        "children": [
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"key": "<shakeTime>"}
+            },
+            "output": {
+              "ratio": "progress"
+            }
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "lerp",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "shakeMinXEnd"},
+                    "min": {"key": "shakeMinXStart"},
+                    "ratio": {"key": "progress"}
+                  },
+                  "output": {
+                    "number": "shakeMinX"
+                  }
+                },
+                {
+                  "title": "lerp",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "shakeMinYEnd"},
+                    "min": {"key": "shakeMinYStart"},
+                    "ratio": {"key": "progress"}
+                  },
+                  "output": {
+                    "number": "shakeMinY"
+                  }
+                },
+                {
+                  "title": "lerp",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "shakeMaxXEnd"},
+                    "min": {"key": "shakeMaxXStart"},
+                    "ratio": {"key": "progress"}
+                  },
+                  "output": {
+                    "number": "shakeMaxX"
+                  }
+                },
+                {
+                  "title": "lerp",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "shakeMaxYEnd"},
+                    "min": {"key": "shakeMaxYStart"},
+                    "ratio": {"key": "progress"}
+                  },
+                  "output": {
+                    "number": "shakeMaxY"
+                  }
+                },
+                {
+                  "title": "random",
+                  "type": "action",
+                  "name": "random",
+                  "parameters": {
+                    "max": {"key": "shakeMaxX"},
+                    "min": {"key": "shakeMinX"}
+                  },
+                  "output": {
+                    "number": "shakeX"
+                  }
+                },
+                {
+                  "title": "random",
+                  "type": "action",
+                  "name": "random",
+                  "parameters": {
+                    "max": {"key": "shakeMaxY"},
+                    "min": {"key": "shakeMinY"}
+                  },
+                  "output": {
+                    "number": "shakeY"
+                  }
+                },
+                {
+                  "title": "resetTransformationGroup",
+                  "type": "action",
+                  "name": "resetTransformationGroup",
+                  "parameters": {
+                    "transformationGroup": {"value": "body"}
+                  }
+                },
+                {
+                  "title": "translateTransformationGroup",
+                  "type": "action",
+                  "name": "translateTransformationGroup",
+                  "parameters": {
+                    "offset": {"value": ["shakeX", "shakeY"]},
+                    "transformationGroup": {"value": "body"}
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "damaged"},
+          "type": {"value": "body"}
+        }
+      },
+      {
+        "title": "burstParticleEmitter",
+        "type": "action",
+        "name": "burstParticleEmitter",
+        "parameters": {
+          "emitter": {"value": "crack"}
+        }
+      },
+      {
+        "title": "playSound",
+        "type": "action",
+        "name": "playSound",
+        "parameters": {
+          "loops": {"value": 0},
+          "sound": {"value": "crack"}
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"value": 1}
+        }
+      }
+    ]
+  }
+}

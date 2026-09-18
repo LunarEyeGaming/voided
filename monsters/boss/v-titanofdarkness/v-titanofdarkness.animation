@@ -53,6 +53,13 @@
               "persistentSoundStartTime" : 5.0,
               "persistentSoundStopTime" : 5.0
             }
+          },
+          "damaged" : {
+            "properties" : {
+              "persistentSound" : "/sfx/npc/boss/v_titanofdarkness_ambience.ogg",
+              "persistentSoundStartTime" : 5.0,
+              "persistentSoundStopTime" : 5.0
+            }
           }
         }
       },
@@ -103,13 +110,19 @@
           "centered" : true,
           "offset" : [0, 0],
           "leftEyeCenter" : [-2.875, 1.75],
-          "rightEyeCenter" : [4.625, 1]
+          "rightEyeCenter" : [4.625, 1],
+          "transformationGroups" : [ "body" ]
         },
         "partStates" : {
           "body" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>?multiply=ffffff<opacity>"
+                "image" : "<partImage>:idle.<frame>?multiply=ffffff<opacity>"
+              }
+            },
+            "damaged" : {
+              "properties" : {
+                "image" : "<partImage>:damaged.<frame>?multiply=ffffff<opacity>"
               }
             }
           }
@@ -130,6 +143,11 @@
               "properties" : {
                 "image" : "<partImage>?multiply=ffffff<opacity>"
               }
+            },
+            "damaged" : {
+              "properties" : {
+                "image" : "<partImage>?multiply=ffffff<opacity>"
+              }
             }
           }
         }
@@ -146,6 +164,11 @@
         "partStates" : {
           "body" : {
             "idle" : {
+              "properties" : {
+                "image" : "<partImage>?multiply=ffffff<opacity>"
+              }
+            },
+            "damaged" : {
               "properties" : {
                 "image" : "<partImage>?multiply=ffffff<opacity>"
               }
@@ -271,6 +294,7 @@
   },
 
   "transformationGroups" : {
+    "body" : { "interpolated" : true },
     "lefteye" : {"interpolated" : true},
     "righteye" : {"interpolated" : true},
     "leftpupil" : {"interpolated" : true},
@@ -278,6 +302,17 @@
   },
 
   "particleEmitters" : {
+    "crack" : {
+      "burstCount" : 1,
+      "particles" : [
+        {"particle" : "v-titanshard", "offset" : [1.125, -6.25], "count" : 7},
+        {"particle" : "v-titanshard", "offset" : [2.5, -5], "count" : 7},
+        {"particle" : "v-titanshard", "offset" : [-1.125, -6.875], "count" : 7},
+        {"particle" : "v-titanshard", "offset" : [4.625, -3.125], "count" : 7},
+        {"particle" : "v-titanshard", "offset" : [-6.875, -1.125], "count" : 7},
+        {"particle" : "v-titanshard", "offset" : [3, 8.625], "count" : 7}
+      ]
+    },
     "deathPoof" : {
       "particles" : [
       ]
@@ -329,6 +364,14 @@
     "deathPuff" : [ ],
     "bouncingOrbFire" : {
       "pool" : [ "/sfx/npc/boss/v_titanofdarkness_bouncing_fire.ogg" ],
+      "rangeMultiplier" : 5
+    },
+    "rumble" : {
+      "pool" : [ "/sfx/npc/boss/v_titanofdarkness_rumble.ogg" ],
+      "rangeMultiplier" : 5
+    },
+    "crack" : {
+      "pool" : [ "/sfx/npc/boss/v_titanofdarkness_crack.ogg" ],
       "rangeMultiplier" : 5
     }
   }
