@@ -1,10 +1,11 @@
 {
   "name": "v-titanofdarkness-defeated",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/behavior/bdata.lua",
     "/scripts/actions/v-movement.lua",
     "/scripts/actions/animator.lua",
+    "/scripts/actions/boss/v-titanofdarkness.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/math.lua"
   ],
@@ -84,6 +85,32 @@
         "name": "v_stop",
         "parameters": {
           "stopForce": {"key": "<stopForce>"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "inactive"},
+          "type": {"value": "lasers"}
+        }
+      },
+      {
+        "title": "setAnimationState",
+        "type": "action",
+        "name": "setAnimationState",
+        "parameters": {
+          "state": {"value": "inactive"},
+          "type": {"value": "beamcharge"}
+        }
+      },
+      {
+        "title": "v_titanSetLookActive",
+        "type": "action",
+        "name": "v_titanSetLookActive",
+        "parameters": {
+          "active": {"value": false}
         }
       },
       {
