@@ -10,7 +10,7 @@ local nextAnimKeyframeId = 0
 -- param target - The target entity to attack
 -- param windupTime - Amount of time to display the laser telegraphs
 -- param attackTime - Amount of time to spend rotating the lasers
--- param rotateDelay - Amount of time to wait before rotating the lasers after starting the laser's fire aenimation
+-- param rotateDelay - Amount of time to wait before rotating the lasers after starting the laser's fire animation
 -- param postRotateDelay - Amount of time to wait after rotating the lasers
 -- param switchTime (optional) - Amount of time to wait before doing a recast.
 function v_titanLaserRotation(args, board)
@@ -126,10 +126,16 @@ end
 -- param intervalStart - Time to wait between spawning projectiles (initial)
 -- param intervalEnd - Time to wait between spawning projectiles (final)
 -- param repeats - Number of times to repeat the attack
+-- param requiredAirRegion - The required rectangle that must be empty for the projectile to spawn
+-- param projectileSpawnRadius - The distance from the target at which a projectile will spawn
+-- param maxCollisionResolution - Maximum distance to adjust the projectile's spawn position to fit requiredAirRegion
 -- param armAnchorRadius (optional) - The range at which to place the anchor point relative to the spawning position.
+-- param maxCheckAttempts (optional) - Maximum number of attempts to make when finding a position for spawning a projectile.
+-- param predictionThreshold (optional) - The minimum target speed at which position prediction should occur
+-- param predictionFuzzAngle (optional) - Fuzz angle for the spawn location of the projectile relative to the player. Used if position prediction occurs.
 function v_titanExplosionAttack(args, board)
   local rq = vBehavior.requireArgsGen("v_titanExplosionAttack", args)
-  if not rq{"target", "intervalStart", "intervalEnd", "repeats"} then
+  if not rq{"target", "intervalStart", "intervalEnd", "repeats", "requiredAirRegion", "projectileSpawnRadius", "maxCollisionResolution"} then
     return false
   end
 
@@ -141,7 +147,15 @@ function v_titanExplosionAttack(args, board)
     table.insert(spawnedProjectiles, projectileId)
   end)
 
-  local maxAttempts = 100
+  local predictionThreshold = args.predictionThreshold or 0
+  local maxAttempts = args.maxCheckAttempts or 100
+  local predictionFuzzAngle = (args.predictionFuzzAngle or 0) * math.pi / 180  -- Convert to radians
+  local testPoly = {
+    {args.requiredAirRegion[1], args.requiredAirRegion[2]},
+    {args.requiredAirRegion[1], args.requiredAirRegion[4]},
+    {args.requiredAirRegion[3], args.requiredAirRegion[4]},
+    {args.requiredAirRegion[3], args.requiredAirRegion[2]}
+  }
 
   for i = 1, args.repeats do
     local targetPos = world.entityPosition(args.target)
@@ -151,19 +165,18 @@ function v_titanExplosionAttack(args, board)
 
     local targetVelocity = world.entityVelocity(args.target)  --[[@as Vec2F]]
     local predictedAngle = vec2.angle(targetVelocity)
-    local testPoly = {{-2, -2}, {-2, 2}, {2, 2}, {2, -2}}
 
     local pos, angle
     local attempts = 0
     repeat
-      if vec2.mag(targetVelocity) < 5 then
+      if vec2.mag(targetVelocity) < predictionThreshold then
         angle = vVec2.randomAngle(predictedAngle, 2 * math.pi)
       else
-        angle = vVec2.randomAngle(predictedAngle, 45 * math.pi / 180)
+        angle = vVec2.randomAngle(predictedAngle, predictionFuzzAngle)
       end
 
-      local initialPos = vec2.add(targetPos, vec2.withAngle(angle, 35))
-      pos = world.resolvePolyCollision(testPoly, initialPos, 3)
+      local initialPos = vec2.add(targetPos, vec2.withAngle(angle, args.projectileSpawnRadius))
+      pos = world.resolvePolyCollision(testPoly, initialPos, args.maxCollisionResolution)
 
       attempts = attempts + 1
     until pos or attempts > maxAttempts
@@ -630,7 +643,7 @@ end
 function v_titanRotateEyes(args)
   if not ((args.leftEyeAngle and args.rightEyeAngle) or args.target or args.position) then
     sb.logWarn("v_titanRotateEyes: Requires 'leftEyeAngle' and 'rightEyeAngle', 'target', or 'position' to be defined"
-    .. "arguments")
+    .. " arguments")
     return false
   end
 
