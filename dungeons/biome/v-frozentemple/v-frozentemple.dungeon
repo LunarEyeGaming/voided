@@ -1,0 +1,22 @@
+{
+  "metadata" : {
+    "name" : "v-frozentemple",
+    "species" : "avian",
+    "rules" : [
+    ],
+    "anchor" : [ "test" ],
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : false
+  },
+
+  "parts" : [
+    {
+      "name" : "test",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "test.json" ]
+    }
+  ]
+}

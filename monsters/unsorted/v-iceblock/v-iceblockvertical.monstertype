@@ -1,0 +1,152 @@
+{
+  "type" : "v-iceblockvertical",
+
+  "categories" : [ "v-iceblock" ],
+  "parts" : [ "bodyvertical" ],
+
+  "animation" : "v-iceblock.animation",
+  "reversed" : true,
+
+  "dropPools" : [ "empty" ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/unsorted/v-iceblock/v-iceblock.lua"
+    ],
+
+    "metaBoundBox" : [-5, -5, 5, 5],
+    "scale" : 1.0,
+
+    "forceRegions" : [
+      {
+        "type" : "DirectionalForceRegion",
+        "rectRegion" : [-2, -4, 0, 4],
+        "xTargetVelocity" : -25,
+        "controlForce" : 1000,
+        "categoryWhitelist" : [ "player" ]
+      },
+      {
+        "type" : "DirectionalForceRegion",
+        "rectRegion" : [0, -4, 2, 4],
+        "xTargetVelocity" : 25,
+        "controlForce" : 1000,
+        "categoryWhitelist" : [ "player" ]
+      }
+    ],
+
+    "movementSettings" : {
+      "gravityEnabled" : false,
+      "collisionEnabled" : false,
+      "collisionPoly" : [ [-2, -4], [2, -4], [2, 4], [-2, 4] ],
+
+      "physicsEffectCategories" : ["stationarymonster"]
+    },
+
+    "knockoutTime" : 0.0,
+    "knockoutEffect" : "",
+    "deathParticles" : "deathPoof",
+
+    "touchDamage" : {
+      "poly" : [ [-1.0, -1.0], [1.0, -1.0], [1.0, 1.0], [-1.0, 1.0] ],
+      "damage" : 15,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "hammer",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "stone"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : false,
+      "minimumLiquidStatusEffectPercentage" : 1.0,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "knockbackStunTime" : {
+          "baseValue" : 0.0
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 0
+        },
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "maxHealth" : {
+          "baseValue" : 75
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "physicalResistance" : {
+          "baseValue" : 1.0
+        },
+        "fireResistance" : {
+          "baseValue" : 0.0
+        },
+        "fireStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "iceResistance" : {
+          "baseValue" : 1.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "electricResistance" : {
+          "baseValue" : 1.0
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 1.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "v-voidResistance" : {
+          "baseValue" : 1.0
+        },
+        "v-voidStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "v-riftdestabilizationImmunity" : {
+          "baseValue" : 1.0
+        },
+        "v-titanstunImmunity" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8]
+  }
+}
