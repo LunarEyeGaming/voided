@@ -1818,7 +1818,8 @@
         "shakeMinStart": {"type": "json", "value": [0, 0]},
         "shakeMaxStart": {"type": "json", "value": [0, 0]},
         "shakeMinEnd": {"type": "json", "value": [-1, -1]},
-        "shakeMaxEnd": {"type": "json", "value": [1, 1]}
+        "shakeMaxEnd": {"type": "json", "value": [1, 1]},
+        "stopForce": {"type": "json", "value": 35}
       },
       "pathToTree": "..\\monsters\\boss\\v-titanofdarkness\\v-defeated.behavior"
     }
