@@ -1,6 +1,9 @@
 {
   "projectileName" : "v-thornrootjelly",
   "image" : "thornrootjelly.png",
+  "movementSettings" : {
+    "bounceFactor" : 0.0
+  },
   "animationCycle" : 1,
   "frameNumber" : 1,
   "timeToLive" : 5,
@@ -9,7 +12,7 @@
   "physics" : "grenade",
   "bounces" : 0,
   "onlyHitTerrain" : true,
-  
+
   "actionOnReap" : [
     {
       "action" : "projectile",
