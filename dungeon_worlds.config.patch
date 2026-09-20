@@ -123,6 +123,21 @@
   },
   {
     "op" : "add",
+    "path" : "/v-frozentempletest",
+    "value" : {
+      "primaryDungeon" : "v-frozentemple",
+      "threatLevel" : 8,
+      "gravity" : 80,
+      "worldSize" : [2000, 3000],
+      "dungeonBaseHeight" : 1200,
+      "ambientLightLevel" : [128, 128, 128],
+      "musicTrack" : "",
+      "biome" : "v-entropic",
+      "environmentStatusEffects" : ["v-quickhealnerf", "v-coldwater"]
+    }
+  },
+  {
+    "op" : "add",
     "path" : "/v-laboratoryminibosstest",
     "value" : {
       "primaryDungeon" : "v-laboratoryminibosstest",

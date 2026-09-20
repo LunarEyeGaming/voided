@@ -23,14 +23,14 @@
         "rectRegion" : [-4, -2, 4, 0],
         "yTargetVelocity" : -25,
         "controlForce" : 5000,
-        "categoryWhitelist" : [ "player" ]
+        "categoryWhitelist" : [ "player", "monster", "npc" ]
       },
       {
         "type" : "DirectionalForceRegion",
         "rectRegion" : [-4, 0, 4, 2],
         "yTargetVelocity" : 25,
         "controlForce" : 5000,
-        "categoryWhitelist" : [ "player" ]
+        "categoryWhitelist" : [ "player", "monster", "npc" ]
       }
     ],
 

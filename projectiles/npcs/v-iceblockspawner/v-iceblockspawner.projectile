@@ -1,0 +1,25 @@
+{
+  "projectileName" : "v-iceblockspawner",
+  "image" : "iceblockspawner.png",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "windupFrames" : 1,
+  "frameNumber" : 1,
+  "animationCycle" : 0.1,
+  "winddownFrames" : 1,
+  "power" : 1,
+  "speed" : 0,
+  "timeToLive" : 1.0,
+  "damageKind" : "ice",
+  "damagePoly" : [[16, 32], [-16, 32], [-16, -32], [16, -32]],
+  "actionOnReap" : [
+    {
+      "action" : "spawnmonster",
+      "type" : "v-iceblockvertical",
+      "level" : 8
+    }
+  ],
+  "statusEffects" : [ "v-coldtouch" ],
+  "piercing" : true,
+  "damageRepeatGroup" : "v-iceblockspawner"
+}

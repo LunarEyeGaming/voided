@@ -4,7 +4,7 @@
     "species" : "avian",
     "rules" : [
     ],
-    "anchor" : [ "test" ],
+    "anchor" : [ "entrancetest" ],
     "maxRadius" : 1000000,
     "maxParts" : 100,
     "protected" : false
@@ -12,11 +12,25 @@
 
   "parts" : [
     {
-      "name" : "test",
+      "name" : "entrancetest",
       "rules" : [
         [ "maxSpawnCount", [1] ]
       ],
-      "def" : [ "tmx", "test.json" ]
+      "def" : [ "tmx", "entrancetest.json" ]
+    },
+    {
+      "name" : "room2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "room2.json" ]
+    },
+    {
+      "name" : "room3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "room3.json" ]
     }
   ]
 }
