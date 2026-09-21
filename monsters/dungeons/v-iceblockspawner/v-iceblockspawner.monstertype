@@ -22,6 +22,7 @@
 
     "renderLayer" : "foregroundEntity",
 
+    "seeThroughLiquid" : true,
     "behaviorConfig" : {
       "damageOnTouch" : false,
 
@@ -41,12 +42,13 @@
       "hostileActions" : [
         {
           "name" : "v-action-verticalfire",
-          "cooldown" : 2.5,
+          "cooldown" : 5.0,
           "parameters" : {
             "minimumRange" : 5,
             "maximumRange" : 40,
             "windupStopForce" : 50,
             "windupTime" : 0.75,
+            "targetOffset" : [0, 0],
 
             "requireLineOfSight" : false,
             "onGround" : false,
@@ -61,8 +63,6 @@
             "projectileType" : "v-iceblockspawner",
             "projectileCount" : 1,
             "projectileConfig" : {
-              "speed" : 40,
-              "timeToLive" : 0.25,
               "power" : 15
             }
           }
@@ -85,7 +85,8 @@
         {
           "name" : "approach-fly",
           "parameters" : {
-            "usePathfinding" : false
+            "usePathfinding" : false,
+            "avoidLiquid" : false
           }
         }
       ],
