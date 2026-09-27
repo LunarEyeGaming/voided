@@ -8,9 +8,9 @@
  "margin":0,
  "name":"voidedobjects-frozentemple",
  "spacing":0,
- "tilecount":2,
+ "tilecount":3,
  "tiledversion":"1.11.2",
- "tileheight":72,
+ "tileheight":64,
  "tileproperties":
     {
      "0":
@@ -24,6 +24,13 @@
          "imagePositionX":"-16",
          "imagePositionY":"-32",
          "monster":"v-iceblockvertical"
+        },
+     "2":
+        {
+         "imagePositionX":"-8",
+         "imagePositionY":"0",
+         "object":"v-hotcoil",
+         "tilesetDirection":"right"
         }
     },
  "tilepropertytypes":
@@ -39,6 +46,13 @@
          "imagePositionX":"string",
          "imagePositionY":"string",
          "monster":"string"
+        },
+     "2":
+        {
+         "imagePositionX":"string",
+         "imagePositionY":"string",
+         "object":"string",
+         "tilesetDirection":"string"
         }
     },
  "tiles":
@@ -46,17 +60,23 @@
      "0":
         {
          "image":"..\/images\/monsters\/iceblockhorizontal.png",
-         "imageheight":40,
-         "imagewidth":72
+         "imageheight":32,
+         "imagewidth":64
         },
      "1":
         {
          "image":"..\/images\/monsters\/iceblockvertical.png",
-         "imageheight":72,
-         "imagewidth":40
+         "imageheight":64,
+         "imagewidth":32
+        },
+     "2":
+        {
+         "image":"..\/images\/objects\/hotcoil.png",
+         "imageheight":8,
+         "imagewidth":16
         }
     },
- "tilewidth":72,
+ "tilewidth":64,
  "type":"tileset",
  "version":1.1
 }

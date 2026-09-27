@@ -1274,26 +1274,6 @@
   },
   {
     "op": "add",
-    "path": "/v-approach-turnworm",
-    "value": {
-      "type": "module",
-      "name": "v-approach-turnworm",
-      "title": "",
-      "properties": {
-        "turnSpeed": {"type": "json", "value": 1},
-        "leftState": {"type": "json", "value": ""},
-        "rightState": {"type": "json", "value": ""},
-        "flyState": {"type": "json", "value": ""},
-        "idleState": {"type": "json", "value": ""},
-        "wavePeriod": {"type": "json", "value": 1},
-        "waveAmplitude": {"type": "json", "value": 1},
-        "digMode": {"type": "json", "value": null}
-      },
-      "pathToTree": "..\\monsters\\modular\\movement\\v-turnapproachworm.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-action-retreatunderground",
     "value": {
       "type": "module",
@@ -1823,6 +1803,27 @@
         "joinTime": {"type": "json", "value": 1}
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-verticalfire.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-approach-turnworm",
+    "value": {
+      "type": "module",
+      "name": "v-approach-turnworm",
+      "title": "",
+      "properties": {
+        "turnSpeed": {"type": "json", "value": 1},
+        "leftState": {"type": "json", "value": ""},
+        "rightState": {"type": "json", "value": ""},
+        "flyState": {"type": "json", "value": ""},
+        "idleState": {"type": "json", "value": ""},
+        "wavePeriod": {"type": "json", "value": 1},
+        "waveAmplitude": {"type": "json", "value": 1},
+        "digMode": {"type": "json", "value": null},
+        "controlDown": {"type": "json", "value": false}
+      },
+      "pathToTree": "..\\monsters\\modular\\movement\\v-turnapproachworm.behavior"
     }
   }
 ]

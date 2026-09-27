@@ -6,7 +6,7 @@
     ],
     "anchor" : [ "entrancetest" ],
     "maxRadius" : 1000000,
-    "maxParts" : 100,
+    "maxParts" : 10,
     "protected" : false
   },
 
@@ -19,16 +19,39 @@
       "def" : [ "tmx", "entrancetest.json" ]
     },
     {
+      "name" : "room1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "room1.json" ]
+    },
+    {
       "name" : "room2",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "room2.json" ]
     },
     {
       "name" : "room3",
       "rules" : [
+        [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "room3.json" ]
+    },
+    {
+      "name" : "room4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "room4.json" ]
+    },
+    {
+      "name" : "room5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "room5.json" ]
     }
   ]
 }

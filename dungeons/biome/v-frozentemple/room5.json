@@ -5,7 +5,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt2cEJwgAQRcGtJGAFXtS20kLKsbgUYcAGjCA8YQ5z2PM7LX+fmR0AAAAAOOUys\/Fb2nRp06VNlzZd2nRp06VNlzZd2nRp06VNlzZd2nRp06VNlzZp8wlttEGbP6FNlzZd2nRpE+W\/6dKmS5subbq06dKmS5subbq06dKmS5subbq+bQMAAAAAAHDWfZntsbw3ivXwPFyP+7bYLACg7gVgbVdo",
+         "data":"eJztl7ENwlAUxN4kkZiABliLFTIOwzEEEQxAROPc4cLF73yyXvGfM\/MUkTenmfWoNPjagPe1Ae9rA97XBryvDXhfG\/C+NuB9bcD72oD3tQHvawPe1wa8rw14XxvwvjbgfW3A+9qA901vkIYNeGzAYwMeG\/DYgMcGPDbgscEhmD3YwAbl2IDHBjw24LEBjw1g\/B\/w2IDHBjw24LEBjw14bMBjAx4b8NiAxwY8iQ1+dW7bk+jctifRuW1PonPbnkTntj2Jzm17Ep3b9iQ6t+1JdG7bk+jctifRuW1PonPbnkTntj2Jzv+0R0S+c11mvS2fO7xvPDbO2\/uyeJciIiJ7eQG8jV+c",
          "encoding":"base64",
          "height":68,
          "id":1,
@@ -13,13 +13,13 @@
          "opacity":0.5,
          "type":"tilelayer",
          "visible":true,
-         "width":103,
+         "width":97,
          "x":0,
          "y":0
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt2TGqwlAURdFn7QSshIzARm0c1J+Cw3GYPrAQRCWaLzlX14Jd2N3kNEJaAwAAAABeNbR21Gebss1q0Vq1Hr2Hue+6d+evbVMl2+Rmm9xsk5ttcrNNbrbJzTa52SY32+Rmm9xsk5ttcrNNbrbJbbh8u2hjujX37bqWss0Q8D1ybL+2zX\/tO\/cNtrFNtb59m8rPV+H2YcL\/tArPV32bO699lArPZ5t6VbjdNrnZJjfb5Gab3GyTm21ys01utsnNNrlN3Uaf7d1tAAAAAAAAXnFYt+Out19fvlH89U69Tf+97S0Xc18IADxzBrXh5zU=",
+         "data":"eJztmkFqwlAURb9jN+BI+CtwYjvporqFLMfduCV\/EaEUaisaTt7NuXAHjnIuJx+SYGvGmFt6a9NSm8D7Xwe7TWtL6z0HNNsjvDrgeXXA8+qA59UBz6sDnlcHPK8OeF4d8Lw64Hl1wPPqgOfVAc+rA55XBzyvDnheHfC81R38VpptLQ6qVQd8dcBXB3x1wFcHfHXA91kHVM\/j+q8uuadfr\/9nf4a+f9ZYHfDVAV8d8NUBX5+Llvdc1H0\/eEl78Dva93ucZlmrgypNduA5sDrwHFgdfNVzYHXgObDZDvqM3210MD9z2p6KzGl7KjKn7anInLanInPanorMaXsqMqftqcictqcic9qeisxpeyoyp+2pyJy2pyJz2p7O\/B9tmtNB0h5jzP187Nv0Nvq+v57Dz9HT6GH8Po5uNzShMcYYUyMXx1Tg5w==",
          "encoding":"base64",
          "height":68,
          "id":2,
@@ -27,7 +27,7 @@
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":103,
+         "width":97,
          "x":0,
          "y":0
         }, 
@@ -56,7 +56,7 @@
                  "name":"contains position-sensitive offsets",
                  "properties":
                     {
-                     "parameters":"{\"interiorRegion\" : [0, 0, 87, 34], \"exteriorRegions\" : [[-4, 0, 0, 15]]}"
+                     "parameters":"{\"interiorRegion\" : [0, 0, 81, 57], \"exteriorRegions\" : [[-4, 0, 0, 15]]}"
                     },
                  "propertytypes":
                     {
@@ -67,7 +67,7 @@
                  "visible":true,
                  "width":16,
                  "x":24,
-                 "y":376
+                 "y":480
                 }, 
                 {
                  "gid":5880,
@@ -84,13 +84,37 @@
                 {
                  "gid":5880,
                  "height":40,
-                 "id":718,
+                 "id":707,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":54,
-                 "x":696,
+                 "x":232,
+                 "y":272
+                }, 
+                {
+                 "gid":5880,
+                 "height":40,
+                 "id":708,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":54,
+                 "x":408,
+                 "y":272
+                }, 
+                {
+                 "gid":5880,
+                 "height":40,
+                 "id":709,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":54,
+                 "x":648,
                  "y":272
                 }, 
                 {
@@ -103,7 +127,7 @@
                  "visible":true,
                  "width":8,
                  "x":16,
-                 "y":360
+                 "y":392
                 }, 
                 {
                  "gid":7142,
@@ -115,7 +139,7 @@
                  "visible":true,
                  "width":16,
                  "x":16,
-                 "y":432
+                 "y":416
                 }, 
                 {
                  "gid":8100,
@@ -135,7 +159,7 @@
                  "visible":true,
                  "width":32,
                  "x":96,
-                 "y":408
+                 "y":440
                 }, 
                 {
                  "gid":8096,
@@ -147,7 +171,7 @@
                  "visible":true,
                  "width":48,
                  "x":40,
-                 "y":408
+                 "y":440
                 }, 
                 {
                  "gid":8103,
@@ -159,7 +183,7 @@
                  "visible":true,
                  "width":48,
                  "x":71,
-                 "y":360
+                 "y":392
                 }, 
                 {
                  "gid":8099,
@@ -171,7 +195,7 @@
                  "visible":true,
                  "width":16,
                  "x":56,
-                 "y":360
+                 "y":392
                 }, 
                 {
                  "gid":8101,
@@ -191,7 +215,7 @@
                  "visible":true,
                  "width":24,
                  "x":120,
-                 "y":360
+                 "y":392
                 }, 
                 {
                  "gid":8102,
@@ -203,7 +227,7 @@
                  "visible":true,
                  "width":16,
                  "x":144,
-                 "y":360
+                 "y":392
                 }, 
                 {
                  "gid":8098,
@@ -223,7 +247,7 @@
                  "visible":true,
                  "width":32,
                  "x":168,
-                 "y":360
+                 "y":392
                 }, 
                 {
                  "gid":8059,
@@ -235,7 +259,7 @@
                  "visible":true,
                  "width":16,
                  "x":200,
-                 "y":360
+                 "y":392
                 }, 
                 {
                  "gid":8097,
@@ -247,7 +271,7 @@
                  "visible":true,
                  "width":40,
                  "x":136,
-                 "y":384
+                 "y":416
                 }, 
                 {
                  "gid":7184,
@@ -259,7 +283,7 @@
                  "visible":true,
                  "width":8,
                  "x":224,
-                 "y":360
+                 "y":392
                 }, 
                 {
                  "gid":7253,
@@ -271,66 +295,18 @@
                  "visible":true,
                  "width":8,
                  "x":216,
-                 "y":360
-                }, 
-                {
-                 "gid":8106,
-                 "height":64,
-                 "id":707,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":256,
-                 "y":376
-                }, 
-                {
-                 "gid":8106,
-                 "height":64,
-                 "id":711,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":384,
-                 "y":240
-                }, 
-                {
-                 "gid":8106,
-                 "height":64,
-                 "id":709,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":256,
-                 "y":312
-                }, 
-                {
-                 "gid":8106,
-                 "height":64,
-                 "id":710,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":384,
-                 "y":176
+                 "y":392
                 }, 
                 {
                  "gid":8107,
                  "height":8,
-                 "id":723,
+                 "id":727,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":760,
+                 "x":712,
                  "y":256
                 }],
          "opacity":1,
@@ -344,7 +320,26 @@
          "draworder":"topdown",
          "id":11,
          "name":"stagehands",
-         "objects":[],
+         "objects":[
+                {
+                 "height":200,
+                 "id":726,
+                 "name":"wave activation zone",
+                 "properties":
+                    {
+                     "stagehand":"v-waveactivationzone"
+                    },
+                 "propertytypes":
+                    {
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":152,
+                 "x":272,
+                 "y":168
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -372,10 +367,10 @@
                 {
                  "height":8,
                  "id":682,
-                 "name":"urchin (wave 2)",
+                 "name":"iceeel (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-urchin\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
+                     "parameters":"{\"monsterType\" : \"v-iceeelhead\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -387,16 +382,16 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":568,
-                 "y":336
+                 "x":344,
+                 "y":248
                 }, 
                 {
                  "height":8,
-                 "id":713,
-                 "name":"spinilus (wave 2)",
+                 "id":711,
+                 "name":"spinilusbaby (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-spinilus\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
+                     "parameters":"{\"monsterType\" : \"v-spinilusbaby\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -408,37 +403,16 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":336,
-                 "y":328
-                }, 
-                {
-                 "height":8,
-                 "id":714,
-                 "name":"spinilus (wave 2)",
-                 "properties":
-                    {
-                     "parameters":"{\"monsterType\" : \"v-spinilus\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
-                     "stagehand":"v-wavemonsterspawnpoint"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string",
-                     "stagehand":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":360,
-                 "y":272
+                 "x":608,
+                 "y":64
                 }, 
                 {
                  "height":8,
                  "id":712,
-                 "name":"urchin (wave 2)",
+                 "name":"spinilusbaby (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-urchin\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
+                     "parameters":"{\"monsterType\" : \"v-spinilusbaby\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -450,16 +424,16 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":552,
-                 "y":192
+                 "x":608,
+                 "y":88
                 }, 
                 {
                  "height":8,
-                 "id":715,
-                 "name":"archerfish (wave 1)",
+                 "id":713,
+                 "name":"spinilusbaby (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-archerfish\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "parameters":"{\"monsterType\" : \"v-spinilusbaby\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -471,16 +445,16 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":184,
-                 "y":176
+                 "x":520,
+                 "y":56
                 }, 
                 {
                  "height":8,
-                 "id":722,
-                 "name":"archerfish (wave 1)",
+                 "id":714,
+                 "name":"spinilusbaby (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-archerfish\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "parameters":"{\"monsterType\" : \"v-spinilusbaby\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -492,16 +466,16 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":656,
-                 "y":312
+                 "x":120,
+                 "y":72
                 }, 
                 {
                  "height":8,
                  "id":716,
-                 "name":"archerfish (wave 2)",
+                 "name":"spinilus (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-archerfish\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
+                     "parameters":"{\"monsterType\" : \"v-spinilus\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -513,12 +487,75 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":288,
-                 "y":184
+                 "x":192,
+                 "y":384
+                }, 
+                {
+                 "height":8,
+                 "id":719,
+                 "name":"spinilus (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-spinilus\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":616,
+                 "y":448
                 }, 
                 {
                  "height":8,
                  "id":717,
+                 "name":"spinilus (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-spinilus\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":120,
+                 "y":424
+                }, 
+                {
+                 "height":8,
+                 "id":718,
+                 "name":"spinilus (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-spinilus\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":512,
+                 "y":384
+                }, 
+                {
+                 "height":8,
+                 "id":720,
                  "name":"archerfish (wave 2)",
                  "properties":
                     {
@@ -534,8 +571,50 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":632,
-                 "y":264
+                 "x":512,
+                 "y":176
+                }, 
+                {
+                 "height":8,
+                 "id":721,
+                 "name":"archerfish (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-archerfish\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 2}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":216,
+                 "y":176
+                }, 
+                {
+                 "height":8,
+                 "id":715,
+                 "name":"spinilusbaby (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-spinilusbaby\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":88,
+                 "y":104
                 }, 
                 {
                  "height":32,
@@ -572,7 +651,7 @@
          "objects":[
                 {
                  "height":0,
-                 "id":719,
+                 "id":723,
                  "name":"",
                  "polyline":[
                         {
@@ -580,19 +659,19 @@
                          "y":0
                         }, 
                         {
-                         "x":-8,
-                         "y":-136
+                         "x":232,
+                         "y":-240
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
                  "x":24,
-                 "y":368
+                 "y":472
                 }, 
                 {
                  "height":0,
-                 "id":720,
+                 "id":724,
                  "name":"",
                  "polyline":[
                         {
@@ -600,15 +679,15 @@
                          "y":0
                         }, 
                         {
-                         "x":688,
-                         "y":-136
+                         "x":400,
+                         "y":-240
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
                  "x":32,
-                 "y":368
+                 "y":472
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -647,13 +726,13 @@
                 {
                  "gid":247,
                  "height":8,
-                 "id":721,
+                 "id":710,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":808,
+                 "x":760,
                  "y":256
                 }],
          "opacity":1,
@@ -674,7 +753,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":724,
+ "nextobjectid":728,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -815,5 +894,5 @@
  "tilewidth":8,
  "type":"map",
  "version":1.1,
- "width":103
+ "width":97
 }

@@ -1,6 +1,6 @@
 {
   "name": "v-approach-turnworm",
-  "description": "",
+  "description": null,
   "scripts": [
     "/scripts/actions/v-worm.lua",
     "/scripts/actions/animator.lua",
@@ -15,7 +15,8 @@
     "idleState": "",
     "wavePeriod": 1,
     "waveAmplitude": 1,
-    "digMode": null
+    "digMode": null,
+    "controlDown": false
   },
   "root": {
     "title": "sequence",
@@ -170,6 +171,26 @@
                 }
               }
             ]
+          },
+          {
+            "title": "succeeder",
+            "type": "decorator",
+            "name": "succeeder",
+            "parameters": {},
+            "child": {
+              "title": "optional",
+              "type": "decorator",
+              "name": "optional",
+              "parameters": {
+                "shouldRun": {"key": "<controlDown>"}
+              },
+              "child": {
+                "title": "controlDown",
+                "type": "action",
+                "name": "controlDown",
+                "parameters": {}
+              }
+            }
           }
         ]
       }
