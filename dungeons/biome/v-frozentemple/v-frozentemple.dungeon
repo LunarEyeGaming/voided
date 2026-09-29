@@ -7,7 +7,7 @@
     "anchor" : [ "entrancetest" ],
     "maxRadius" : 1000000,
     "maxParts" : 10,
-    "protected" : false
+    "protected" : true
   },
 
   "parts" : [
@@ -52,6 +52,13 @@
         [ "maxSpawnCount", [1] ]
       ],
       "def" : [ "tmx", "room5.json" ]
+    },
+    {
+      "name" : "room6",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "room6.json" ]
     }
   ]
 }
