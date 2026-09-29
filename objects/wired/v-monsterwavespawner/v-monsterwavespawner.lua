@@ -172,8 +172,28 @@ function states.waves()
   local dt = script.updateDt()
 
   for waveNum, wave in ipairs(storage.waves) do
-    local remainingMonsters = spawnWave(wave.spawners, waveNum)
-    local temp = spawnWaveSilent(wave.silentSpawners)
+    local isLevel10Spawner = shouldUseLevel10Spawns(interiorRegion)
+
+    local level10Filter = function(spawner)
+      if spawner.spawnMode == "either" then
+        return true
+      elseif spawner.spawnMode == "level10Only" then
+        return isLevel10Spawner
+      elseif spawner.spawnMode == "notLevel10" then
+        return not isLevel10Spawner
+      elseif spawner.spawnMode == nil or spawner.spawnMode == "" then
+        sb.logWarn("Spawner at %s does not have defined spawnMode", spawner.position)
+        return true
+      else
+        sb.logWarn("Spawner at %s has invalid spawnMode: '%s'. Valid options: 'either', 'level10Only', 'notLevel10'", spawner.position, spawner.spawnMode)
+        return true
+      end
+    end
+
+    local spawners = util.filter(wave.spawners, level10Filter)
+    local silentSpawners = util.filter(wave.silentSpawners, level10Filter)
+    local remainingMonsters = spawnWave(spawners, waveNum)
+    local temp = spawnWaveSilent(silentSpawners)
     local temp2 = activateTriggers(wave.triggers)
 
     -- Concatenate temp to remainingMonsters
@@ -309,14 +329,16 @@ function getWaves()
       table.insert(waves[spawnpointInfo.waveNumber].silentSpawners, {
         type = spawnpointInfo.type,
         position = spawnpointInfo.position,
-        parameters = spawnpointInfo.parameters
+        parameters = spawnpointInfo.parameters,
+        spawnMode = spawnpointInfo.spawnMode
       })
     else
       -- Insert spawn info into the list of normal spawners
       table.insert(waves[spawnpointInfo.waveNumber].spawners, {
         type = spawnpointInfo.type,
         position = spawnpointInfo.position,
-        parameters = spawnpointInfo.parameters
+        parameters = spawnpointInfo.parameters,
+        spawnMode = spawnpointInfo.spawnMode
       })
     end
   end
@@ -575,6 +597,25 @@ function friendlyInsideRegion(region)
 end
 
 --[[
+  Returns true if at least one player with strong enough equipment (according to the equipment strength provider) is in
+  the given region and false otherwise.
+
+  region: A pair of Vec2F's
+]]
+function shouldUseLevel10Spawns(region)
+  local queried = world.entityQuery(region[1], region[2], {includedTypes = {"player"}})
+  local hasStrongEnoughPlayer = false
+
+  vWorldA.sendEntityMessageToTargets(function(promise)
+    if promise:result() then
+      hasStrongEnoughPlayer = true
+    end
+  end, _errorHandler("Promise failed for shouldUseLevel10Spawns"), queried, "v-equipmentstrengthprovider-check")
+
+  return hasStrongEnoughPlayer
+end
+
+--[[
   Returns true if at least one creature with a friendly damage team is inside at least one of the given regions and
   false otherwise.
 
@@ -612,6 +653,7 @@ function reset()
 end
 
 -- HELPER FUNCTIONS
+
 --[[
   Helper function. Logs an error from a promise.
 ]]
