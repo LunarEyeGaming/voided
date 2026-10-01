@@ -37,6 +37,9 @@
       "v-strongholdboss"
     ],
 
+    "minKills" : 7,
+    "detectionRange" : 200,
+
     "touchDamage" : {
       "poly" : [ [1.125, 2.9375], [1.625, 2.4375], [1.625, -2.4375], [1.125, -2.9375], [-1.125, -2.9375], [-1.625, -2.4375], [-1.625, 2.4375], [-1.125, 2.9375] ],
       "damage" : 17,
@@ -103,7 +106,7 @@
           "baseValue" : 9
         },
         "maxHealth" : {
-          "baseValue" : 900
+          "baseValue" : 450
         },
         "protection" : {
           "baseValue" : 0.0

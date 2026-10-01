@@ -2,6 +2,7 @@ require "/scripts/util.lua"
 
 -- Parameters
 local doNotResurrectMonsters
+local minKills
 
 -- State variables
 local trackedMonsterTypes
@@ -10,10 +11,14 @@ local trackedMonsterPositions
 local livingMonsters
 local deadMonsters
 local respawnedMonsters
+local kills
 local state
 
 function init()
   doNotResurrectMonsters = config.getParameter("doNotResurrectMonsters")
+  minKills = config.getParameter("minKills")
+  detectionRange = config.getParameter("detectionRange")
+  kills = 0
 
   trackedMonsterTypes = {}
   trackedMonsterParameters = {}
@@ -30,9 +35,13 @@ end
 function update(dt)
   state:update(dt)
 
+  if kills < minKills then
+    status.addEphemeralEffect("v-ancientshield")
+  end
+
   local ownDamageTeam = entity.damageTeam()
 
-  local queried = world.entityQuery(mcontroller.position(), 35, {includedTypes = {"monster"}, withoutEntityId = entity.id()})
+  local queried = world.entityQuery(mcontroller.position(), detectionRange, {includedTypes = {"monster"}, withoutEntityId = entity.id()})
 
   -- Record information about newly detected monsters
   for _, entityId in ipairs(queried) do
@@ -58,7 +67,7 @@ function update(dt)
     trackedMonsterTypes[entityId] = monsterType
     trackedMonsterParameters[entityId] = world.callScriptedEntity(entityId, "monster.uniqueParameters")
     local monsterLevel = world.callScriptedEntity(entityId, "monster.level")
-    trackedMonsterParameters[entityId].level = monsterLevel
+    trackedMonsterParameters[entityId].level = math.max(monsterLevel, monster.level())
 
     table.insert(livingMonsters, entityId)
 
@@ -74,6 +83,15 @@ function update(dt)
       table.insert(deadMonsters, entityId)
     else
       trackedMonsterPositions[entityId] = world.entityPosition(entityId)
+    end
+  end
+
+  -- Track the status of respawned monsters.
+  for i = #respawnedMonsters, 1, -1 do
+    local entityId = respawnedMonsters[i]
+    if not world.entityExists(entityId) then
+      table.remove(respawnedMonsters, i)
+      kills = kills + 1
     end
   end
 

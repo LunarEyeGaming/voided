@@ -137,10 +137,21 @@
     },
     "singularity" : {
       "active" : false,
-      "emissionRate" : 12.0,
-      "offsetRegion" : [-20, -20, 20, 20],
+      "emissionRate" : 100,
       "particles" : [
-        { "particle" : "v-voidcritical" }
+        { "particle" : {
+          "type" : "animated",
+          "animation" : "/animations/v-gravispherewindstreak/v-gravispherewindstreak.animation",
+          "size" : 2,
+          "position" : [0, 0],
+          "timeToLive" : 0,
+          "destructionAction" : "shrink",
+          "destructionTime" : 0.5,
+          "layer" : "middle",
+          "variance" : {
+            "rotation" : 180
+          }
+        } }
       ]
     },
     "deathPoof" : {
