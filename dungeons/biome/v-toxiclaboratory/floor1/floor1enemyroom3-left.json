@@ -1,12 +1,14 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":55,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztmc0NwjAMRr0IA7AYEzAAF1Zgio7WGxJnQCiSCU5rOy5xUh+eBKlw8vo1PxUzwGUOggruAEC15Wjq1tZYq83pt9RWGiNn3JI6Fp41Y9ei7cPStResXB8HuGCu8P1d0mZZq8aZ6+rJt8aZ+t3t1d4DUl9urh7zpXKW+lL1juALrXMp2xN88OiKnfE4rXwnxnP5byZD3\/dcwaTaZ\/BB8s3HaZ1v63U4oc13ac8N3\/ae4WvjO8J6RTmPnG\/4\/l4vnVtG9cX19uCL883XBo\/rVT5O6Xshvn\/UWbV1rlS+GM57Pqb3+Sv17X3+Rr77nr97W59j\/+17\/sb5OXzj\/XfcfEvO4dufL\/fMMbLvyOuVxLeUrycs883rtM5zKectfHM8\/d+9xXqVPieuoG+zrGXpS91Dj76YNVeJs9fnOXfV+r5pvc9y4ZyrOL6lnD3lK3XVOHvx1bqu+faAxLV3Z41rK2dNvzV+Gn\/NNap9ra8tvYJxeAKwVS9k",
+         "data":"eJztmdsNwjAMRb0IA7AYEzAAP6zAFB2tfwzAQyiSCU5rOy5xUn8cCVLh5PQ2j4oZ4DIHQQV3AKDacjR1a2us1eb0W2orjZEzbkkdC8+asWvR9mHp2gtWro8DXDBX+P4uabOsVePMdfXkW+NM\/e72au8BqS83V4\/5UjlLfal6R\/CF1rmU7Qk+eHTFznicVr4T47n8N5Oh73uuYFLtM\/gg+ebjtM639Tqc0Oa7tOeGb3vP8LXxHWG9opxHzjd8f6+Xzi2j+uJ6e\/DF+eZrg8f1Kh+n9L0Q3z\/qrNo6VypfDOc9H9P7\/JX69j5\/I999z9+9rc+x\/\/Y9f+P8HL7x\/jtuviXn8O3Pl3vmGNl35PVK4lvK1xOW+eZ1Wue5lPMWvjme\/u\/eYr1KnxNX0LdZ1rL0pe6hR1\/MmqvE2evznLtqfd+03me5cM5VHN9Szp7ylbpqnL34al3XfHtA4tq7s8a1lbOm3xo\/jb\/mGtW+1teWXsE4PAFHW0FA",
          "encoding":"base64",
          "height":55,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmtsNwjAMRb0IA7AYEzAAP6zAUoyDxDdUKFIISeNXYrf4SlcqQbV9aggJLUAoJNOjMVaaE1caoxcbk7c11qoRUzcljkRr8bC1c83Nocm6FWuxPg9wyX2F79eUMc1YEmYsqydeCXPtvNs7xxZM5cX21WN\/a32m8tbiHcGXucyt3p7g4+UYcclMVNYZvL+q8S7fldzDC2eqrDP6+62139zg9afg5fHuYb6qMe+5v8H7y5mv1f6BN+03\/oU37+8ZPvbOm9dJ3ReGQqGQV2Hn5zv4NHV+pvz+3h2to1Mto9dXHpjzGmasny2Zy9yz9gsWzLWcWryY\/e9M5lau2fvfGcxrOaj9BZDx9uqRqhfbghdTF0eYmJb3FzSZsbGs\/6\/TYKbEoN5fkM5X0nql5476\/zmtUb15FO+oe9QasUbMV+k4+Qr8Mc1Ymry1a+iRN3ePlcLs9fNcsnJ5F1s\/dzPz+Zy1PnvqL5WVw+yFl8va492CObKueSarFTMn70hRa2y9Vxvv5QqFMHoBjpZSUQ==",
+         "data":"eJztmtsNwjAMRb0IA7AYEzAAP6zAUozDAECFIoWQNH4ldouvdKUSVNunhpDQAoRCMj0aY6U5caUxerExeVtjrRoxdVPiSLQWD1s719wcmqxbsRbr8wCX3Ff4fk0Z04wlYcayeuKVMNfOu71zbMFUXmxfPfa31mcqby3eEXyZy9zq7Qk+Xo4Rl8xEZZ3B+6sa7\/JdyT28cKbKOqO\/31r7zQ1efwpeHu8e5qsa8577G7y\/nPla7R94037jX3jz\/p7hY++8eZ3UfWEoFAp5FXZ+voNPU+dnyu\/v3dE6OtUyen3lgTmvYcb62ZK5zD1rv2DBXMupxYvZ\/85kbuWavf+dwbyWg9pfABlvrx6perEteDF1cYSJaXl\/QZMZG8v6\/zoNZkoM6v0F6XwlrVd67qj\/n9Ma1ZtH8Y66R60Ra8R8lY6Tr8Af04ylyVu7hh55c\/dYKcxeP88lK5d3sfVzNzOfz1nrs6f+Ulk5zF54uaw93i2YI+uaZ7JaMXPyjhS1xtZ7tfFerlAIoxd\/wV7D",
          "encoding":"base64",
          "height":55,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[
                 {
@@ -81,7 +86,7 @@
                  "y":232
                 }, 
                 {
-                 "gid":7681,
+                 "gid":7693,
                  "height":40,
                  "id":707,
                  "name":"contains position-sensitive offsets",
@@ -181,6 +186,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":5,
          "name":"wiring - lights & guns",
          "objects":[
                 {
@@ -232,6 +238,7 @@
         {
          "color":"#ffa0ff",
          "draworder":"topdown",
+         "id":6,
          "name":"monsters & npcs",
          "objects":[
                 {
@@ -296,48 +303,6 @@
                  "width":8,
                  "x":248,
                  "y":200
-                }, 
-                {
-                 "height":8,
-                 "id":692,
-                 "name":"v-livingmushroom2 (wave 1)",
-                 "properties":
-                    {
-                     "parameters":"{\"monsterType\" : \"v-livingmushroom2\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
-                     "stagehand":"v-wavemonsterspawnpoint"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string",
-                     "stagehand":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":248,
-                 "y":320
-                }, 
-                {
-                 "height":8,
-                 "id":693,
-                 "name":"v-livingmushroom2 (wave 1)",
-                 "properties":
-                    {
-                     "parameters":"{\"monsterType\" : \"v-livingmushroom2\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
-                     "stagehand":"v-wavemonsterspawnpoint"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string",
-                     "stagehand":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":248,
-                 "y":88
                 }, 
                 {
                  "height":8,
@@ -422,6 +387,27 @@
                  "width":8,
                  "x":216,
                  "y":200
+                }, 
+                {
+                 "height":8,
+                 "id":717,
+                 "name":"v-riftmage (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-riftmage\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"waveNumber\" : 1, \"spawnMode\" : \"level10Only\"}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":248,
+                 "y":224
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -432,6 +418,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":7,
          "name":"wiring - locked door",
          "objects":[
                 {
@@ -482,6 +469,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -492,6 +480,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"anchors etc",
          "objects":[
                 {
@@ -526,6 +515,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -534,10 +524,11 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":716,
+ "nextlayerid":11,
+ "nextobjectid":718,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -645,15 +636,15 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7670,
+         "firstgid":7679,
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedcoloredvanillamats.json"
         }, 
         {
-         "firstgid":7671,
+         "firstgid":7683,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":60
 }
