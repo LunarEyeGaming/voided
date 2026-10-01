@@ -327,6 +327,48 @@
                 }, 
                 {
                  "height":8,
+                 "id":717,
+                 "name":"v-livingmushroom2 (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-livingmushroom2\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1, \"spawnMode\" : \"notLevel10\"}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":232,
+                 "y":88
+                }, 
+                {
+                 "height":8,
+                 "id":718,
+                 "name":"v-livingmushroom2 (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-livingmushroom2\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1, \"spawnMode\" : \"notLevel10\"}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":232,
+                 "y":320
+                }, 
+                {
+                 "height":8,
                  "id":697,
                  "name":"v-livingmushroom2 (wave 2)",
                  "properties":
@@ -390,11 +432,11 @@
                 }, 
                 {
                  "height":8,
-                 "id":714,
-                 "name":"v-riftmage (wave 1)",
+                 "id":719,
+                 "name":"v-morphum (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-riftmage\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"waveNumber\" : 1, \"spawnMode\" : \"level10Only\"}",
+                     "parameters":"{\"monsterType\" : \"v-morphum\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1, \"spawnMode\" : \"level10Only\"}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -406,8 +448,29 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":232,
-                 "y":224
+                 "x":216,
+                 "y":88
+                }, 
+                {
+                 "height":8,
+                 "id":720,
+                 "name":"v-morphum (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-morphum\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1, \"spawnMode\" : \"level10Only\"}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":216,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -525,7 +588,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":715,
+ "nextobjectid":721,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
