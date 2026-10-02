@@ -13,7 +13,8 @@
     "offset": [0, 0],
     "monsterType": "smallbiped",
     "replacement": false,
-    "messageBroadcastRange": 50
+    "messageBroadcastRange": 50,
+    "monsterParameters": {}
   },
   "root": {
     "title": "sequence",
@@ -50,9 +51,10 @@
         "type": "action",
         "name": "spawnMonster",
         "parameters": {
+          "parameters": {"key": "<monsterParameters>"},
           "position": {"key": "spawnPosition"},
           "replacement": {"key": "<replacement>"},
-          "type": {"value": "<monsterType>"}
+          "type": {"key": "<monsterType>"}
         },
         "output": {
           "entityId": "spawnedMonster"

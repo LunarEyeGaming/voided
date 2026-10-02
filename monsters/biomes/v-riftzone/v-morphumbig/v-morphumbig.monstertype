@@ -1,0 +1,333 @@
+{
+  "type" : "v-morphumbig",
+  "shortdescription" : "Megamorphum",
+  "description" : "A triplet of conjoined morpha. Each has its own consciousness.",
+
+  "categories" : [ "v-morphumbig" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-morphumbig.animation",
+
+  "dropPools" : [ "empty" ],
+
+  "baseParameters" : {
+
+    "scripts" : [
+      "/monsters/monster.lua",
+      "/monsters/biomes/v-riftzone/v-morphumbig/v-morphumbigplugin.lua"
+    ],
+
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 3,
+
+    "behavior" : "monster",
+    "deathBehavior" : "monster-death",
+
+    "facingMode" : "transformation",
+
+    "behaviorConfig" : {
+      "damageOnTouch" : false,
+
+      "targetQueryRange" : 20,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 50,
+      "targetOutOfSightTime" : 5.0,
+
+      "foundTargetActions" : [ ],
+
+      "fleeActions" : [ ],
+
+      "hostileActions" : [
+        {
+          "name" : "action-fire",
+          "cooldown" : 8.0,
+          "parameters" : {
+            "requireLineOfSight" : false,
+            "onGround" : false,
+            "maximumRange" : 30,
+            "windupState" : "windup",
+            "windupTime" : 1.0,
+            "windupStopForce" : 200,
+
+            "aimAtTarget" : false,
+            "aimDirection" : [0, 1],
+            "projectileType" : "v-proxyprojectile",
+            "projectileParameters" : {
+              "actionOnReap" : [
+                {
+                  "action" : "projectile",
+                  "type" : "v-morphumbigblob",
+                  "angleAdjust" : 0
+                },
+                {
+                  "action" : "projectile",
+                  "type" : "v-morphumbigblob",
+                  "angleAdjust" : 120
+                },
+                {
+                  "action" : "projectile",
+                  "type" : "v-morphumbigblob",
+                  "angleAdjust" : -120
+                }
+              ]
+            },
+            "fireOffset" : [0.0, 0.0],
+            "fireSound" : "",
+            "fireState" : "attack",
+
+            "winddownState" : "",
+            "winddownTime" : 1.5
+          }
+        }
+      ],
+
+      "periodicActions" : [ ],
+
+      "approachActions" : [
+        {
+          "name" : "v-approach-rangedfly",
+          "parameters" : {
+            "minRange" : 15,
+            "maxRange" : 20
+          }
+        }
+      ],
+
+      "followActions" : [
+        {
+          "name" : "approach-teleport",
+          "parameters" : {
+          }
+        },
+        {
+          "name" : "approach-fly",
+          "parameters" : {
+          }
+        }
+      ],
+
+      "wanderActions" : [
+        {
+          "name" : "wander-fly",
+          "parameters" : {
+            "wanderTime" : 10,
+            "groundDistance" : 4,
+            "ceilingDistance" : 4,
+            "xVelocity" : 2,
+            "yVelocity" : 12
+          }
+        }
+      ],
+
+      "concurrentActions" : [
+      ],
+
+      "concurrentHostileActions" : [
+      ],
+
+      "deathActions" : [
+        {
+          "name" : "v-action-spawnmonsterdungeon",
+          "parameters" : {
+            "offset" : [0,0],
+            "monsterType" : "v-morphum",
+            "replacement" : true,
+            "messageBroadcastRange" : 256,
+            "monsterParameters" : {
+              "behaviorConfig" : {
+                "spawnActions" : [
+                  {
+                    "name" : "action-nudge",
+                    "parameters" : {
+                      "minX" : 0,
+                      "maxX" : 0,
+                      "minY" : 40,
+                      "maxY" : 40
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name" : "v-action-spawnmonsterdungeon",
+          "parameters" : {
+            "offset" : [0,0],
+            "monsterType" : "v-morphum",
+            "replacement" : true,
+            "messageBroadcastRange" : 256,
+            "monsterParameters" : {
+              "behaviorConfig" : {
+                "spawnActions" : [
+                  {
+                    "name" : "action-nudge",
+                    "parameters" : {
+                      "minX" : 34.641,
+                      "maxX" : 34.641,
+                      "minY" : -20,
+                      "maxY" : -20
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name" : "v-action-spawnmonsterdungeon",
+          "parameters" : {
+            "offset" : [0,0],
+            "monsterType" : "v-morphum",
+            "replacement" : true,
+            "messageBroadcastRange" : 256,
+            "monsterParameters" : {
+              "behaviorConfig" : {
+                "spawnActions" : [
+                  {
+                    "name" : "action-nudge",
+                    "parameters" : {
+                      "minX" : -34.641,
+                      "maxX" : -34.641,
+                      "minY" : -20,
+                      "maxY" : -20
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+
+    "touchDamage" : {
+      "poly" : [[1.617, 0.67], [0.67, 1.617], [-0.67, 1.617], [-1.617, 0.67], [-1.617, -0.67], [-0.67, -1.617], [0.67, -1.617], [1.617, -0.67]],
+      "damage" : 8,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "v-voidlash",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "damageParts" : {
+      "body" : {
+        "damage" : 10,
+
+        "teamType" : "enemy",
+        "damageSourceKind" : "v-voidlash",
+        "knockback" : 20
+      }
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [[1.617, 0.67], [0.67, 1.617], [-0.67, 1.617], [-1.617, 0.67], [-1.617, -0.67], [-0.67, -1.617], [0.67, -1.617], [1.617, -0.67]],
+      "gravityEnabled" : false,
+
+      "mass" : 1.0,
+      "flySpeed" : 15,
+      "airForce" : 25,
+      "walkSpeed" : 8,
+      "runSpeed" : 8
+    },
+
+    "bodyMaterialKind" : "organic",
+
+    "knockoutTime" : 0.3,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "knockbackStunTime" : {
+          "baseValue" : 0.25
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 15
+        },
+        "maxHealth" : {
+          "baseValue" : 225
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "physicalResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "electricResistance" : {
+          "baseValue" : 0.0
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 0.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "v-voidResistance" : {
+          "baseValue" : 0.5
+        },
+        "v-voidStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "v-riftdestabilizationImmunity" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-morphum" }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "type" : "v-morphumbigblob",
+
+  "categories" : [ "v-morphumbigblob" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-morphumbigblob.animation",
+
+  "dropPools" : [ "empty" ],
+
+  "baseParameters" : {
+
+    "scripts" : [
+      "/monsters/biomes/v-riftzone/v-morphumbig/blob/v-morphumbigblob.lua"
+    ],
+
+    "animationScripts" : [
+      "/items/active/effects/chain.lua"
+    ],
+
+    "initialScriptDelta" : 1,
+
+    "chains" : [
+      {
+        "segmentImage" : "/monsters/biomes/v-riftzone/v-morphumbig/blob/tether.png",
+        "segmentSize" : 1,
+        "sourcePart" : "tether",
+        "endPart" : "tether",
+        "waveform" : {
+          "movement" : 2.5,
+          "amplitude" : 0.125,
+          "frequency" : 2.0
+        },
+        "renderLayer" : "Monster-10"
+      }
+    ],
+
+    "touchDamage" : {
+      "poly" : [[1.125, 0.0], [0.795, 0.795], [0.0, 1.125], [-0.795, 0.795], [-1.125, 0.0], [-0.795, -0.795], [-0.0, -1.125], [0.795, -0.795]],
+      "damage" : 16,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "v-void",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "metaBoundBox" : [-10, -10, 10, 10],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [[1.125, 0.0], [0.795, 0.795], [0.0, 1.125], [-0.795, 0.795], [-1.125, 0.0], [-0.795, -0.795], [-0.0, -1.125], [0.795, -0.795]],
+      "gravityEnabled" : false,
+      "collisionEnabled" : false,
+
+      "mass" : 1.0,
+      "walkSpeed" : 3,
+      "runSpeed" : 3
+    },
+
+    "bodyMaterialKind" : "organic",
+
+    "knockoutTime" : 0.0,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/terra_worm_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "grit" : {
+          "baseValue" : 1.0
+        },
+        "knockbackStunTime" : {
+          "baseValue" : 0
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 0
+        },
+        "maxHealth" : {
+          "baseValue" : 50
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "physicalResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "electricResistance" : {
+          "baseValue" : 0.0
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 0.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "v-voidResistance" : {
+          "baseValue" : 0.5
+        },
+        "v-voidStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "v-riftdestabilizationImmunity" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : false
+  }
+}
