@@ -1,12 +1,14 @@
 { "backgroundcolor":"#000000",
+ "compressionlevel":-1,
  "height":21,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJz7JsvA8G0Uj+JRPIoHGdZkIA6Tq48WmFp+wIbXYFGHTYwemBK3TGPAjwmZT0g\/NTGt3TLq16Hp1xICmJD5hPRTE1PqlpEUrwNt\/mByy6hfh6ZfR8um4RmvA23+YHLLqF9H\/TrY\/QoAury7Aw==",
+         "data":"eJztlNENgCAMBbuIA7gfsziFO+ICDc9IkaL3cT+EvrxLk9bNrAIAJGO3ezydG0GUg8fp\/PPe3qCny2FtVL6aj2R0F1zXdC0Cla\/mI+nt8qe9zs7P1AXXNV25Td\/c6+z8TF1wxTW76wXI982B",
          "encoding":"base64",
          "height":21,
+         "id":1,
          "name":"back",
          "opacity":0.5,
          "type":"tilelayer",
@@ -17,9 +19,10 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztlsEJwCAMRd8iDtDFOkcvrtBRPRcPBW09SKuJkDz4IAH1fyLBFCACKdSSqEndU9asZD2pBe9ar\/7sHX1ea6+lvm7YUS\/xIU1me8lvYIcjK681me3Fs+rgWcdRzoFVZhP4bFr9\/JW8eFYdpGaT\/5tkkXrD91qT2V4s9tWzyvLVywUrDUQe",
+         "data":"eJztlsEJwCAMRd8iDtDFOkcvrtB1LR4K2nqQVhMhefBBAur\/RIIpQARSqCVRk7qnrFnJelIL3rVe\/dk7+rzWXkt93bCjXuJDmsz2kt\/ADkdWXmsy24tn1cGzjqOcA6vMJvDZtPr5K3nxrDpIzSb\/N8ki9YbvtSazvVjsq2eV5auXC1dhSuc=",
          "encoding":"base64",
          "height":21,
+         "id":2,
          "name":"front",
          "opacity":1,
          "type":"tilelayer",
@@ -31,6 +34,7 @@
         {
          "color":"#5555ff",
          "draworder":"topdown",
+         "id":3,
          "name":"mods",
          "objects":[],
          "opacity":1,
@@ -42,6 +46,7 @@
         {
          "color":"#ff0000",
          "draworder":"topdown",
+         "id":4,
          "name":"objects",
          "objects":[
                 {
@@ -128,7 +133,7 @@
                  "y":0
                 }, 
                 {
-                 "gid":7677,
+                 "gid":7689,
                  "height":8,
                  "id":720,
                  "name":"",
@@ -140,7 +145,7 @@
                  "y":24
                 }, 
                 {
-                 "gid":7677,
+                 "gid":7689,
                  "height":8,
                  "id":721,
                  "name":"",
@@ -152,7 +157,7 @@
                  "y":24
                 }, 
                 {
-                 "gid":7677,
+                 "gid":7689,
                  "height":8,
                  "id":722,
                  "name":"",
@@ -164,7 +169,7 @@
                  "y":24
                 }, 
                 {
-                 "gid":7677,
+                 "gid":7689,
                  "height":8,
                  "id":723,
                  "name":"",
@@ -293,7 +298,7 @@
                  "y":48
                 }, 
                 {
-                 "gid":7677,
+                 "gid":7689,
                  "height":8,
                  "id":757,
                  "name":"",
@@ -305,7 +310,7 @@
                  "y":144
                 }, 
                 {
-                 "gid":7677,
+                 "gid":7689,
                  "height":8,
                  "id":758,
                  "name":"",
@@ -317,7 +322,7 @@
                  "y":88
                 }, 
                 {
-                 "gid":7677,
+                 "gid":7689,
                  "height":8,
                  "id":759,
                  "name":"",
@@ -329,7 +334,7 @@
                  "y":88
                 }, 
                 {
-                 "gid":7677,
+                 "gid":7689,
                  "height":8,
                  "id":760,
                  "name":"",
@@ -585,6 +590,18 @@
                  "width":32,
                  "x":208,
                  "y":168
+                }, 
+                {
+                 "gid":7669,
+                 "height":16,
+                 "id":806,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":416,
+                 "y":168
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -595,6 +612,7 @@
         {
          "color":"#ffff00",
          "draworder":"topdown",
+         "id":5,
          "name":"wiring - lights & guns",
          "objects":[
                 {
@@ -796,6 +814,26 @@
                  "width":0,
                  "x":192,
                  "y":160
+                }, 
+                {
+                 "height":0,
+                 "id":807,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-208,
+                         "y":-104
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":424,
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -806,6 +844,7 @@
         {
          "color":"#ffa0ff",
          "draworder":"topdown",
+         "id":6,
          "name":"monsters & npcs",
          "objects":[],
          "opacity":1,
@@ -817,6 +856,7 @@
         {
          "color":"#00ffff",
          "draworder":"topdown",
+         "id":7,
          "name":"wiring - locked door",
          "objects":[],
          "opacity":1,
@@ -827,6 +867,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
          "name":"outside the map",
          "objects":[],
          "opacity":1,
@@ -837,6 +878,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
          "name":"anchors etc",
          "objects":[],
          "opacity":1,
@@ -847,6 +889,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
          "name":"items",
          "objects":[],
          "opacity":1,
@@ -855,10 +898,11 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":806,
+ "nextlayerid":11,
+ "nextobjectid":808,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.6",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -966,19 +1010,19 @@
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7670,
+         "firstgid":7679,
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedcoloredvanillamats.json"
         }, 
         {
-         "firstgid":7671,
+         "firstgid":7683,
          "source":"..\/..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-toxic.json"
         }, 
         {
-         "firstgid":7685,
+         "firstgid":7743,
          "source":"..\/..\/..\/..\/tilesets\/voided\/tilesandliquids\/voideddungeon.json"
         }],
  "tilewidth":8,
  "type":"map",
- "version":1,
+ "version":1.1,
  "width":59
 }
