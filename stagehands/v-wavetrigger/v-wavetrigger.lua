@@ -17,7 +17,8 @@ function init()
       waveNumber = config.getParameter("waveNumber"),
 
       delay = config.getParameter("delay"),
-      priority = config.getParameter("priority")
+      priority = config.getParameter("priority"),
+      mode = config.getParameter("mode")
     }
   end)
 

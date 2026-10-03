@@ -12,7 +12,7 @@ function init()
       parameters = params,
       waveNumber = config.getParameter("waveNumber"),
       silent = config.getParameter("silent"),
-      spawnMode = config.getParameter("spawnMode")
+      mode = config.getParameter("mode")
     }
   end)
 

@@ -611,7 +611,7 @@
                  "name":"downspitterreturnable (wave 2)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-downspitterreturnable\", \"monsterParameters\" : {\"aggressive\" : true, \"statusSettings\" : {\"stats\" : {\"v-strongpoisonStatusImmunity\" : {\"baseValue\" : 1.0}}}}, \"spawnMode\" : \"notLevel10\", \"waveNumber\" : 2, \"silent\" : true}",
+                     "parameters":"{\"monsterType\" : \"v-downspitterreturnable\", \"monsterParameters\" : {\"aggressive\" : true, \"statusSettings\" : {\"stats\" : {\"v-strongpoisonStatusImmunity\" : {\"baseValue\" : 1.0}}}}, \"mode\" : \"notLevel10\", \"waveNumber\" : 2, \"silent\" : true}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -632,7 +632,7 @@
                  "name":"riftmage (wave 3)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-riftmage\", \"monsterParameters\" : {\"aggressive\" : true, \"statusSettings\" : {\"stats\" : {\"v-strongpoisonStatusImmunity\" : {\"baseValue\" : 1.0}}}, \"level\" : 10}, \"spawnMode\" : \"level10Only\", \"waveNumber\" : 3}",
+                     "parameters":"{\"monsterType\" : \"v-riftmage\", \"monsterParameters\" : {\"aggressive\" : true, \"statusSettings\" : {\"stats\" : {\"v-strongpoisonStatusImmunity\" : {\"baseValue\" : 1.0}}}, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 3}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":

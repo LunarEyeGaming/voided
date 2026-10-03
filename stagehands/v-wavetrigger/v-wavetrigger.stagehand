@@ -16,5 +16,6 @@
   "resetOnSubsequentWaves" : false,
 
   "delay" : null,  // Amount by which to wait before activating. A delay of 0 (or null) is instant.
-  "priority" : null  // Priority. Lowest = activated first.
+  "priority" : null,  // Priority. Lowest = activated first.
+  "mode" : "either"  // "level10Only", "notLevel10", or "either"
 }

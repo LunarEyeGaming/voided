@@ -274,22 +274,6 @@
   },
   {
     "op": "add",
-    "path": "/v-action-spawnmonsterdungeon",
-    "value": {
-      "type": "module",
-      "name": "v-action-spawnmonsterdungeon",
-      "title": "",
-      "properties": {
-        "monsterType": {"type": "json", "value": "smallbiped"},
-        "offset": {"type": "json", "value": [0, 0]},
-        "position": {"type": "json", "value": null},
-        "replacement": {"type": "json", "value": false}
-      },
-      "pathToTree": "..\\monsters\\modular\\actions\\v-spawnmonsterdungeon.behavior"
-    }
-  },
-  {
-    "op": "add",
     "path": "/v-laboratoryminiboss-teleport",
     "value": {
       "type": "module",
@@ -1824,6 +1808,24 @@
         "controlDown": {"type": "json", "value": false}
       },
       "pathToTree": "..\\monsters\\modular\\movement\\v-turnapproachworm.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-spawnmonsterdungeon",
+    "value": {
+      "type": "module",
+      "name": "v-action-spawnmonsterdungeon",
+      "title": "",
+      "properties": {
+        "position": {"type": "json", "value": null},
+        "offset": {"type": "json", "value": [0, 0]},
+        "monsterType": {"type": "json", "value": "smallbiped"},
+        "replacement": {"type": "json", "value": false},
+        "messageBroadcastRange": {"type": "json", "value": 50},
+        "monsterParameters": {"type": "json", "value": {}}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-spawnmonsterdungeon.behavior"
     }
   }
 ]

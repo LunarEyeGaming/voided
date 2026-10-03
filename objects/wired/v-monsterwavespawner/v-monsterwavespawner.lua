@@ -174,27 +174,36 @@ function states.waves()
   for waveNum, wave in ipairs(storage.waves) do
     local isLevel10Spawner = shouldUseLevel10Spawns(interiorRegion)
 
-    local level10Filter = function(spawner)
-      if spawner.spawnMode == "either" then
+    local level10Filter = function(obj)
+      if obj.mode == "either" then
         return true
-      elseif spawner.spawnMode == "level10Only" then
+      elseif obj.mode == "level10Only" then
         return isLevel10Spawner
-      elseif spawner.spawnMode == "notLevel10" then
+      elseif obj.mode == "notLevel10" then
         return not isLevel10Spawner
-      elseif spawner.spawnMode == nil or spawner.spawnMode == "" then
-        sb.logWarn("Spawner at %s does not have defined spawnMode", spawner.position)
+      elseif obj.mode == nil or obj.mode == "" then
+        sb.logWarn("Wave object at %s does not have defined mode", obj.position)
         return true
       else
-        sb.logWarn("Spawner at %s has invalid spawnMode: '%s'. Valid options: 'either', 'level10Only', 'notLevel10'", spawner.position, spawner.spawnMode)
+        local pos
+        if obj.position then
+          pos = obj.position
+        else
+          local points = vEntity.getRegionPoints(obj.queryArea)
+          pos = vec2.mul(vec2.add(points[1], points[2]), 1 / 2)
+        end
+        sb.logWarn("Wave object at %s has invalid mode: '%s'. Valid options: 'either', 'level10Only', 'notLevel10'", pos, obj.mode)
         return true
       end
     end
 
     local spawners = util.filter(wave.spawners, level10Filter)
     local silentSpawners = util.filter(wave.silentSpawners, level10Filter)
+    local triggers = util.filter(wave.triggers, level10Filter)
+
     local remainingMonsters = spawnWave(spawners, waveNum)
     local temp = spawnWaveSilent(silentSpawners)
-    local temp2 = activateTriggers(wave.triggers)
+    local temp2 = activateTriggers(triggers)
 
     -- Concatenate temp to remainingMonsters
     for _, monsterId in ipairs(temp) do
@@ -330,7 +339,7 @@ function getWaves()
         type = spawnpointInfo.type,
         position = spawnpointInfo.position,
         parameters = spawnpointInfo.parameters,
-        spawnMode = spawnpointInfo.spawnMode
+        mode = spawnpointInfo.mode
       })
     else
       -- Insert spawn info into the list of normal spawners
@@ -338,7 +347,7 @@ function getWaves()
         type = spawnpointInfo.type,
         position = spawnpointInfo.position,
         parameters = spawnpointInfo.parameters,
-        spawnMode = spawnpointInfo.spawnMode
+        mode = spawnpointInfo.mode
       })
     end
   end
@@ -360,6 +369,7 @@ function getWaves()
       queryOptions = triggerInfo.queryOptions,
       resetOnSubsequentWaves = triggerInfo.resetOnSubsequentWaves,
       deactivateOnCompletion = triggerInfo.deactivateOnCompletion,
+      mode = triggerInfo.mode,
 
       delay = triggerInfo.delay or 0.0,
       priority = triggerInfo.priority or 0
