@@ -5,6 +5,7 @@ require "/scripts/companions/capturable.lua"
 local maxRadius
 local expandTime
 local shrinkTime
+local invulnerableDistance
 local maxOrbitRate
 local orbitTime
 local masterId
@@ -21,6 +22,7 @@ function init()
   expandTime = 1.0
   orbitTime = 8.0
   shrinkTime = 1.0
+  invulnerableDistance = 3
   maxOrbitRate = util.toRadians(360)
   masterId = config.getParameter("masterId")
   startAngle = vec2.angle(config.getParameter("aimVector", {1, 0}))
@@ -46,6 +48,8 @@ function init()
 
   monster.setAnimationParameter("chains", config.getParameter("chains"))
 
+  status.addEphemeralEffect("invulnerable")
+
   initTether()
 end
 
@@ -57,6 +61,13 @@ function update(dt)
   if not masterId or not world.entityExists(masterId) then
     shouldDieVar = true
     return
+  end
+
+  local distance = world.magnitude(mcontroller.position(), world.entityPosition(masterId))
+  if distance <= invulnerableDistance then
+    status.addEphemeralEffect("invulnerable")
+  else
+    status.removeEphemeralEffect("invulnerable")
   end
 
   state:update(dt)
