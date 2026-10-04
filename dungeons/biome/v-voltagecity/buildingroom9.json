@@ -134,7 +134,7 @@
                  "y":192
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7725,
                  "height":8,
                  "id":761,
                  "name":"",
@@ -146,7 +146,7 @@
                  "y":248
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7725,
                  "height":8,
                  "id":764,
                  "name":"",
@@ -158,7 +158,7 @@
                  "y":24
                 }, 
                 {
-                 "gid":7955,
+                 "gid":7996,
                  "height":16,
                  "id":784,
                  "name":"",
@@ -194,7 +194,7 @@
                  "y":80
                 }, 
                 {
-                 "gid":7951,
+                 "gid":7992,
                  "height":24,
                  "id":795,
                  "name":"contains position-sensitive offsets",
@@ -758,7 +758,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7960,
+                 "gid":8001,
                  "height":8,
                  "id":837,
                  "name":"",
@@ -770,7 +770,7 @@
                  "y":200
                 }, 
                 {
-                 "gid":7960,
+                 "gid":8001,
                  "height":8,
                  "id":838,
                  "name":"",
@@ -782,7 +782,7 @@
                  "y":104
                 }, 
                 {
-                 "gid":7970,
+                 "gid":8011,
                  "height":40,
                  "id":839,
                  "name":"",
@@ -794,7 +794,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":7969,
+                 "gid":8010,
                  "height":40,
                  "id":840,
                  "name":"",
@@ -1167,6 +1167,27 @@
                 }, 
                 {
                  "height":8,
+                 "id":848,
+                 "name":"morphum (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-morphum\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":264,
+                 "y":72
+                }, 
+                {
+                 "height":8,
                  "id":796,
                  "name":"electricelemental (wave 1)",
                  "properties":
@@ -1489,10 +1510,10 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":848,
+ "nextobjectid":849,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -1600,15 +1621,15 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7690,
+         "firstgid":7723,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7699,
+         "firstgid":7740,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
         }, 
         {
-         "firstgid":7933,
+         "firstgid":7974,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,

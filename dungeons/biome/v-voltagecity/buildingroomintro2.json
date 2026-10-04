@@ -302,7 +302,7 @@
                  "y":240
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7725,
                  "height":8,
                  "id":800,
                  "name":"",
@@ -314,7 +314,7 @@
                  "y":24
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7725,
                  "height":8,
                  "id":802,
                  "name":"",
@@ -326,7 +326,7 @@
                  "y":296
                 }, 
                 {
-                 "gid":7951,
+                 "gid":7992,
                  "height":24,
                  "id":804,
                  "name":"contains position-sensitive offsets",
@@ -358,7 +358,7 @@
                  "y":240
                 }, 
                 {
-                 "gid":7952,
+                 "gid":7993,
                  "height":16,
                  "id":810,
                  "name":"",
@@ -370,7 +370,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":2147491600,
+                 "gid":2147491641,
                  "height":16,
                  "id":811,
                  "name":"",
@@ -382,7 +382,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":7960,
+                 "gid":8001,
                  "height":8,
                  "id":812,
                  "name":"",
@@ -394,7 +394,7 @@
                  "y":248
                 }, 
                 {
-                 "gid":7960,
+                 "gid":8001,
                  "height":8,
                  "id":813,
                  "name":"",
@@ -406,7 +406,7 @@
                  "y":152
                 }, 
                 {
-                 "gid":7960,
+                 "gid":8001,
                  "height":8,
                  "id":814,
                  "name":"",
@@ -418,7 +418,7 @@
                  "y":56
                 }, 
                 {
-                 "gid":7970,
+                 "gid":8011,
                  "height":40,
                  "id":815,
                  "name":"",
@@ -430,7 +430,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":7969,
+                 "gid":8010,
                  "height":40,
                  "id":816,
                  "name":"",
@@ -656,6 +656,27 @@
                 }, 
                 {
                  "height":8,
+                 "id":824,
+                 "name":"morphumbig (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-morphumbig\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 2}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":344,
+                 "y":104
+                }, 
+                {
+                 "height":8,
                  "id":755,
                  "name":"electrojelly (wave 2)",
                  "properties":
@@ -789,7 +810,7 @@
                  "y":-16
                 }, 
                 {
-                 "gid":7955,
+                 "gid":7996,
                  "height":16,
                  "id":809,
                  "name":"",
@@ -864,10 +885,10 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":824,
+ "nextobjectid":825,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -975,15 +996,15 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7690,
+         "firstgid":7723,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7699,
+         "firstgid":7740,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
         }, 
         {
-         "firstgid":7933,
+         "firstgid":7974,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,

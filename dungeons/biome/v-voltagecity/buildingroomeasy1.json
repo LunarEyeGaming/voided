@@ -350,7 +350,7 @@
                  "y":240
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7725,
                  "height":8,
                  "id":780,
                  "name":"",
@@ -362,7 +362,7 @@
                  "y":24
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7725,
                  "height":8,
                  "id":782,
                  "name":"",
@@ -374,7 +374,7 @@
                  "y":296
                 }, 
                 {
-                 "gid":7717,
+                 "gid":7758,
                  "height":24,
                  "id":785,
                  "name":"contains position-sensitive offsets",
@@ -406,7 +406,7 @@
                  "y":240
                 }, 
                 {
-                 "gid":7721,
+                 "gid":7762,
                  "height":16,
                  "id":790,
                  "name":"",
@@ -418,7 +418,7 @@
                  "y":200
                 }, 
                 {
-                 "gid":7726,
+                 "gid":7767,
                  "height":8,
                  "id":791,
                  "name":"",
@@ -430,7 +430,7 @@
                  "y":248
                 }, 
                 {
-                 "gid":7726,
+                 "gid":7767,
                  "height":8,
                  "id":792,
                  "name":"",
@@ -442,7 +442,7 @@
                  "y":152
                 }, 
                 {
-                 "gid":7726,
+                 "gid":7767,
                  "height":8,
                  "id":793,
                  "name":"",
@@ -454,7 +454,7 @@
                  "y":56
                 }, 
                 {
-                 "gid":7736,
+                 "gid":7777,
                  "height":40,
                  "id":794,
                  "name":"",
@@ -466,7 +466,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":7735,
+                 "gid":7776,
                  "height":40,
                  "id":795,
                  "name":"",
@@ -710,6 +710,27 @@
                  "width":8,
                  "x":400,
                  "y":88
+                }, 
+                {
+                 "height":8,
+                 "id":803,
+                 "name":"morphumbig",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-morphumbig\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":272,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -867,10 +888,10 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":803,
+ "nextobjectid":804,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -978,11 +999,11 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7690,
+         "firstgid":7723,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7699,
+         "firstgid":7740,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }],
  "tilewidth":8,

@@ -182,7 +182,7 @@
                  "y":384
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7725,
                  "height":8,
                  "id":762,
                  "name":"",
@@ -194,7 +194,7 @@
                  "y":440
                 }, 
                 {
-                 "gid":7692,
+                 "gid":7725,
                  "height":8,
                  "id":767,
                  "name":"",
@@ -206,7 +206,7 @@
                  "y":24
                 }, 
                 {
-                 "gid":7951,
+                 "gid":7992,
                  "height":24,
                  "id":769,
                  "name":"contains position-sensitive offsets",
@@ -226,7 +226,7 @@
                  "y":144
                 }, 
                 {
-                 "gid":7955,
+                 "gid":7996,
                  "height":16,
                  "id":770,
                  "name":"",
@@ -238,7 +238,7 @@
                  "y":344
                 }, 
                 {
-                 "gid":7979,
+                 "gid":8022,
                  "height":20,
                  "id":774,
                  "name":"",
@@ -260,7 +260,7 @@
                  "y":400
                 }, 
                 {
-                 "gid":7979,
+                 "gid":8022,
                  "height":20,
                  "id":775,
                  "name":"",
@@ -282,7 +282,7 @@
                  "y":400
                 }, 
                 {
-                 "gid":7979,
+                 "gid":8022,
                  "height":20,
                  "id":778,
                  "name":"",
@@ -328,7 +328,7 @@
                  "y":288
                 }, 
                 {
-                 "gid":7960,
+                 "gid":8001,
                  "height":8,
                  "id":782,
                  "name":"",
@@ -340,7 +340,7 @@
                  "y":392
                 }, 
                 {
-                 "gid":7960,
+                 "gid":8001,
                  "height":8,
                  "id":783,
                  "name":"",
@@ -352,7 +352,7 @@
                  "y":296
                 }, 
                 {
-                 "gid":7960,
+                 "gid":8001,
                  "height":8,
                  "id":784,
                  "name":"",
@@ -364,7 +364,7 @@
                  "y":200
                 }, 
                 {
-                 "gid":7960,
+                 "gid":8001,
                  "height":8,
                  "id":785,
                  "name":"",
@@ -376,7 +376,7 @@
                  "y":104
                 }, 
                 {
-                 "gid":7970,
+                 "gid":8011,
                  "height":40,
                  "id":786,
                  "name":"",
@@ -388,7 +388,7 @@
                  "y":400
                 }, 
                 {
-                 "gid":7969,
+                 "gid":8010,
                  "height":40,
                  "id":787,
                  "name":"",
@@ -614,6 +614,48 @@
                 }, 
                 {
                  "height":8,
+                 "id":796,
+                 "name":"riftnecromancer (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-riftnecromancer\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10, \"minKills\" : 1}, \"mode\" : \"level10Only\", \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":144,
+                 "y":392
+                }, 
+                {
+                 "height":8,
+                 "id":797,
+                 "name":"riftnecromancer (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-riftnecromancer\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10, \"minKills\" : 1}, \"mode\" : \"level10Only\", \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":368,
+                 "y":392
+                }, 
+                {
+                 "height":8,
                  "id":754,
                  "name":"dischargemonster (wave 2)",
                  "properties":
@@ -695,6 +737,48 @@
                  "width":8,
                  "x":408,
                  "y":88
+                }, 
+                {
+                 "height":8,
+                 "id":798,
+                 "name":"morphum (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-morphum\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 2}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":408,
+                 "y":192
+                }, 
+                {
+                 "height":8,
+                 "id":799,
+                 "name":"morphum (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-morphum\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 2}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":112,
+                 "y":216
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -852,10 +936,10 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":795,
+ "nextobjectid":800,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":8,
  "tilesets":[
         {
@@ -963,19 +1047,19 @@
          "source":"..\/..\/..\/tilesets\/voided\/tilesandliquids\/voidedmaterials.json"
         }, 
         {
-         "firstgid":7690,
+         "firstgid":7723,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-other.json"
         }, 
         {
-         "firstgid":7699,
+         "firstgid":7740,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/storage.json"
         }, 
         {
-         "firstgid":7933,
+         "firstgid":7974,
          "source":"..\/..\/..\/tilesets\/voided\/objects\/voidedobjects-voltage.json"
         }, 
         {
-         "firstgid":7979,
+         "firstgid":8022,
          "source":"..\/..\/..\/..\/..\/assets\/packed\/tilesets\/packed\/objects-by-category\/sapling.json"
         }],
  "tilewidth":8,
