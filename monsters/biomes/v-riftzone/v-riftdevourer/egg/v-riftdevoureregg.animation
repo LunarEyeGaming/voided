@@ -1,0 +1,148 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "body" : {
+        "priority" : 0,
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 1,
+            "cycle" : 1,
+            "mode" : "loop"
+          },
+          "consumewindup" : {
+            "frames" : 1,
+            "cycle" : 1,
+            "mode" : "end"
+          },
+          "consume" : {
+            "frames" : 1,
+            "cycle" : 1.0,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "hatch" : {
+            "frames" : 2,
+            "cycle" : 2.0,
+            "mode" : "end"
+          }
+        }
+      },
+      "damage" : {
+        "priority" : 3,
+        "default" : "none",
+        "states" : {
+          "none" : {
+            "frames" : 1
+          },
+          "stunned" : {
+            "frames" : 1,
+            "cycle" : 1,
+            "mode" : "loop"
+          }
+        }
+      },
+      "tongue" : {
+        "priority" : 0,
+        "default" : "off",
+        "states" : {
+          "off" : {},
+          "on" : {}
+        }
+      }
+    },
+
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          "offset" : [0.0, 0.0]
+        },
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "consumewindup" : {
+              "properties" : {
+                "image" : "<partImage>:consumewindup.<frame>"
+              }
+            },
+            "consume" : {
+              "properties" : {
+                "image" : "<partImage>:consume.<frame>"
+              }
+            },
+            "hatch" : {
+              "properties" : {
+                "image" : "<partImage>:hatch.<frame>"
+              }
+            }
+          },
+          "damage" : {
+            "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "globalTagDefaults" : {
+  },
+
+  "transformationGroups" : {
+    "body" : { "interpolated" : true },
+    "facing" : { "interpolated" : false }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0,
+      "directives" : "fade=ffffff;0.5"
+    }
+  },
+
+  /* "lights" : {
+    "idle" : {
+      "active" : true,
+      "position" : [0, 0],
+      "color" : [74, 74, 181]
+    }
+  }, */
+
+  "particleEmitters" : {
+    "deathPoof" : {
+      "particles" : [
+        { "particle" : "monstersplosion" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathember" },
+        { "particle" : "deathfizz1left" },
+        { "particle" : "deathfizz1right" },
+        { "particle" : "deathfizz2left" },
+        { "particle" : "deathfizz2right" },
+        { "particle" : "deathfizz3left" },
+        { "particle" : "deathfizz3right" },
+        { "particle" : "deathfizz4left" },
+        { "particle" : "deathfizz4right" }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
+    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+    "fire" : [ "/sfx/npc/monsters/v_livingmushroom2_fire.ogg" ]
+  }
+}

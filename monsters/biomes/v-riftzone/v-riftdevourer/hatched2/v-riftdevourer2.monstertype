@@ -1,0 +1,274 @@
+{
+  "type" : "v-riftdevourer2",
+  "shortdescription" : "<todo>",
+  "description" : "<todo>",
+
+  "categories" : [ "v-riftdevourer2" ],
+  "parts" : [ "body" ],
+
+  "animation" : "v-riftdevourer2.animation",
+
+  "dropPools" : [ "empty" ],
+
+  "baseParameters" : {
+
+    "scripts" : [
+      "/monsters/monster.lua"
+    ],
+
+    "initialScriptDelta" : 1,
+    "behaviorUpdateDelta" : 3,
+
+    "behavior" : "monster",
+
+    "facingMode" : "transformation",
+
+    "behaviorConfig" : {
+      "damageOnTouch" : false,
+
+      "targetQueryRange" : 20,
+      "targetOnDamage" : true,
+      "keepTargetInSight" : true,
+      "keepTargetInRange" : 50,
+      "targetOutOfSightTime" : 5.0,
+
+      "foundTargetActions" : [ ],
+
+      "fleeActions" : [ ],
+
+      "hostileActions" : [
+        {
+          "name" : "action-fire",
+          "cooldown" : 3.0,
+          "parameters" : {
+            "requireLineOfSight" : true,
+            "onGround" : false,
+            "maximumRange" : 30,
+            "windupState" : "tonguewindup",
+            "windupTime" : 0.8,
+            "windupStopForce" : 200,
+
+            "aimAtTarget" : true,
+            "projectileType" : "v-morphumbigblob",
+            "projectileParameters" : {
+              "monster" : {
+                "type" : "v-morphumbigblob",
+                "rotatedOffset" : [0, 0],
+                "parameters" : {
+                  "maxRadius" : 20,
+                  "expandTime" : 1.0,
+                  "orbitTime" : 0.0,
+                  "shrinkTime" : 1.0,
+                  "invulnerableDistance" : 99
+                }
+              }
+            },
+            "fireOffset" : [0.0, 0.0],
+            "fireSound" : "",
+            "fireState" : "tongue",
+
+            "winddownState" : "",
+            "winddownTime" : 2.5
+          }
+        },
+        {
+          "name" : "action-charge",
+          "cooldown" : 3.0,
+          "parameters" : {
+            "maximumRange" : 20,
+            "windupStopForce" : 50,
+            "windupState" : "chargewindup",
+            "windupTime" : 0.75,
+
+            "onGround" : false,
+            "wallCollide" : false,
+            "aimAtTarget" : true,
+            "inaccuracy" : 0.0,
+            "airDirection" : [1, 0],
+            "chargeState" : "charge",
+            "chargeTime" : 0.5,
+            "chargeSpeed" : 45,
+            "chargeControlForce" : 250,
+            "wallCrashSound" : "",
+
+            "winddownState" : "",
+            "winddownTime" : 0.5,
+            "winddownStopForce" : 0
+          }
+        }
+      ],
+
+      "periodicActions" : [ ],
+
+      "approachActions" : [
+        {
+          "name" : "v-approach-rangedfly",
+          "parameters" : {
+            "minRange" : 0,
+            "maxRange" : 15
+          }
+        }
+      ],
+
+      "followActions" : [
+        {
+          "name" : "approach-teleport",
+          "parameters" : {
+          }
+        },
+        {
+          "name" : "approach-fly",
+          "parameters" : {
+          }
+        }
+      ],
+
+      "wanderActions" : [
+        {
+          "name" : "wander-fly",
+          "parameters" : {
+            "wanderTime" : 10,
+            "groundDistance" : 4,
+            "ceilingDistance" : 4,
+            "xVelocity" : 2,
+            "yVelocity" : 12
+          }
+        }
+      ],
+
+      "concurrentActions" : [
+      ],
+
+      "concurrentHostileActions" : [
+      ]
+    },
+
+    "touchDamage" : {
+      "poly" : [[1.617, 0.67], [0.67, 1.617], [-0.67, 1.617], [-1.617, 0.67], [-1.617, -0.67], [-0.67, -1.617], [0.67, -1.617], [1.617, -0.67]],
+      "damage" : 8,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "v-voidlash",
+      "knockback" : 20,
+      "statusEffects" : [ ]
+    },
+
+    "damageParts" : {
+      "body" : {
+        "damage" : 10,
+
+        "teamType" : "enemy",
+        "damageSourceKind" : "v-voidlash",
+        "knockback" : 20
+      }
+    },
+
+    "metaBoundBox" : [-4, -4, 4, 4],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [[1.617, 0.67], [0.67, 1.617], [-0.67, 1.617], [-1.617, 0.67], [-1.617, -0.67], [-0.67, -1.617], [0.67, -1.617], [1.617, -0.67]],
+      "gravityEnabled" : false,
+
+      "mass" : 1.0,
+      "flySpeed" : 15,
+      "airForce" : 25,
+      "walkSpeed" : 8,
+      "runSpeed" : 8
+    },
+
+    "bodyMaterialKind" : "organic",
+
+    "knockoutTime" : 0.75,
+    "knockoutAnimationStates" : {
+      "damage" : "stunned"
+    },
+    "deathParticles" : "deathPoof",
+    "knockoutEffect" : "",
+
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
+
+      "appliesEnvironmentStatusEffects" : false,
+      "appliesWeatherStatusEffects" : true,
+      "minimumLiquidStatusEffectPercentage" : 0.1,
+
+      "primaryScriptSources" : [
+        "/stats/monster_primary.lua"
+      ],
+      "primaryScriptDelta" : 5,
+
+      "stats" : {
+        "knockbackStunTime" : {
+          "baseValue" : 0.75
+        },
+        "knockbackThreshold" : {
+          "baseValue" : 25
+        },
+        "maxHealth" : {
+          "baseValue" : 225
+        },
+        "protection" : {
+          "baseValue" : 0.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        },
+        "powerMultiplier" : {
+          "baseValue" : 1.0
+        },
+        "physicalResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceResistance" : {
+          "baseValue" : 0.0
+        },
+        "iceStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "electricResistance" : {
+          "baseValue" : 0.0
+        },
+        "electricStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "poisonResistance" : {
+          "baseValue" : 0.0
+        },
+        "poisonStatusImmunity" : {
+          "baseValue" : 0.0
+        },
+        "v-voidResistance" : {
+          "baseValue" : 0.5
+        },
+        "v-voidStatusImmunity" : {
+          "baseValue" : 1.0
+        },
+        "v-riftdestabilizationImmunity" : {
+          "baseValue" : 1.0
+        }
+      },
+
+      "resources" : {
+        "stunned" : {
+          "deltaValue" : -1.0,
+          "initialValue" : 0.0
+        },
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
+      }
+    },
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+    "capturable" : true,
+    "captureHealthFraction" : 0.5,
+    "nametagColor" : [64, 200, 255],
+    "captureCollectables" : { "monsters" : "v-morphum" }
+  }
+}
