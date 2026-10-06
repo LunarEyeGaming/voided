@@ -2,6 +2,7 @@ require "/scripts/util.lua"
 
 -- Parameters
 local doNotResurrectMonsters
+local detectionRange
 local minKills
 
 -- State variables
@@ -18,8 +19,8 @@ function init()
   doNotResurrectMonsters = config.getParameter("doNotResurrectMonsters")
   minKills = config.getParameter("minKills")
   detectionRange = config.getParameter("detectionRange")
-  kills = 0
 
+  kills = 0
   trackedMonsterTypes = {}
   trackedMonsterParameters = {}
   trackedMonsterPositions = {}
