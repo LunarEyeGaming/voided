@@ -12,7 +12,7 @@
           },
           "windup" : {
             "frames" : 10,
-            "count" : 0.75,
+            "cycle" : 0.75,
             "mode" : "end",
             "properties" : {
               "immediateSound" : "/sfx/npc/monsters/v_livingmushroom2_windup.ogg"
@@ -95,7 +95,7 @@
       "directives" : "fade=ffffff;0.5"
     }
   },
-  
+
   /* "lights" : {
     "idle" : {
       "active" : true,
