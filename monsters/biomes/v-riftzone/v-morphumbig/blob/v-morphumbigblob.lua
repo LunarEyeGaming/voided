@@ -18,11 +18,11 @@ local currentRadius
 local shouldDieVar
 
 function init()
-  maxRadius = 15
-  expandTime = 1.0
-  orbitTime = 8.0
-  shrinkTime = 1.0
-  invulnerableDistance = 3
+  maxRadius = config.getParameter("maxRadius")
+  expandTime = config.getParameter("expandTime")
+  orbitTime = config.getParameter("orbitTime")
+  shrinkTime = config.getParameter("shrinkTime")
+  invulnerableDistance = config.getParameter("invulnerableDistance")
   maxOrbitRate = util.toRadians(360)
   masterId = config.getParameter("masterId")
   startAngle = vec2.angle(config.getParameter("aimVector", {1, 0}))

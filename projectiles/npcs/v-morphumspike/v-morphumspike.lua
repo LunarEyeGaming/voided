@@ -10,6 +10,7 @@ function destroy()
   local offset = config.getParameter("monster.offset", {0, 0})
   local rotatedOffset = config.getParameter("monster.rotatedOffset", {0, 0})
   local monsterType = config.getParameter("monster.type")
+  local overrideParameters = config.getParameter("monster.parameters")
 
   local level = world.callScriptedEntity(sourceId, "monster.level")
   local monsterParams = world.callScriptedEntity(sourceId, "monster.uniqueParameters")
@@ -19,5 +20,6 @@ function destroy()
     masterId = sourceId
   }
   params = sb.jsonMerge(monsterParams, params)
+  params = sb.jsonMerge(params, overrideParameters)
   world.spawnMonster(monsterType, vec2.add(mcontroller.position(), vec2.add(offset, vec2.rotate(rotatedOffset, mcontroller.rotation()))), params)
 end
