@@ -1742,6 +1742,27 @@
                 }, 
                 {
                  "height":8,
+                 "id":917,
+                 "name":"riftdevoureregg (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-riftdevoureregg\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":336,
+                 "y":192
+                }, 
+                {
+                 "height":8,
                  "id":772,
                  "name":"amperecharger2 (wave 4)",
                  "properties":
@@ -2169,7 +2190,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":917,
+ "nextobjectid":918,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

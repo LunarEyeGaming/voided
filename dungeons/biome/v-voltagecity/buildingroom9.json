@@ -1003,7 +1003,7 @@
                  "name":"amperecharger2 (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-amperecharger2\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "parameters":"{\"monsterType\" : \"v-amperecharger2\", \"monsterParameters\" : {\"aggressive\" : true}, \"mode\" : \"notLevel10\", \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -1024,7 +1024,7 @@
                  "name":"amperecharger2 (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-amperecharger2\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 1}",
+                     "parameters":"{\"monsterType\" : \"v-amperecharger2\", \"monsterParameters\" : {\"aggressive\" : true}, \"mode\" : \"notLevel10\", \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -1185,6 +1185,27 @@
                  "width":8,
                  "x":264,
                  "y":72
+                }, 
+                {
+                 "height":8,
+                 "id":849,
+                 "name":"riftdevoureregg (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-riftdevoureregg\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 2}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":264,
+                 "y":136
                 }, 
                 {
                  "height":8,
@@ -1510,7 +1531,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":849,
+ "nextobjectid":850,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

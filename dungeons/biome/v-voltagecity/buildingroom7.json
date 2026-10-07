@@ -846,6 +846,27 @@
                 }, 
                 {
                  "height":8,
+                 "id":815,
+                 "name":"riftdevoureregg (wave 1)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-riftdevoureregg\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 1}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":184,
+                 "y":88
+                }, 
+                {
+                 "height":8,
                  "id":781,
                  "name":"currentcrawler (wave 1)",
                  "properties":
@@ -1147,7 +1168,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":815,
+ "nextobjectid":816,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

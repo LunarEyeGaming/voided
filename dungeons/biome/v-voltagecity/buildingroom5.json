@@ -614,48 +614,6 @@
                 }, 
                 {
                  "height":8,
-                 "id":796,
-                 "name":"riftnecromancer (wave 1)",
-                 "properties":
-                    {
-                     "parameters":"{\"monsterType\" : \"v-riftnecromancer\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10, \"minKills\" : 1}, \"mode\" : \"level10Only\", \"waveNumber\" : 1}",
-                     "stagehand":"v-wavemonsterspawnpoint"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string",
-                     "stagehand":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":144,
-                 "y":392
-                }, 
-                {
-                 "height":8,
-                 "id":797,
-                 "name":"riftnecromancer (wave 1)",
-                 "properties":
-                    {
-                     "parameters":"{\"monsterType\" : \"v-riftnecromancer\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10, \"minKills\" : 1}, \"mode\" : \"level10Only\", \"waveNumber\" : 1}",
-                     "stagehand":"v-wavemonsterspawnpoint"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string",
-                     "stagehand":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":368,
-                 "y":392
-                }, 
-                {
-                 "height":8,
                  "id":754,
                  "name":"dischargemonster (wave 2)",
                  "properties":
@@ -741,10 +699,10 @@
                 {
                  "height":8,
                  "id":798,
-                 "name":"morphum (wave 2)",
+                 "name":"morphum (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-morphum\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 2}",
+                     "parameters":"{\"monsterType\" : \"v-morphum\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -757,15 +715,36 @@
                  "visible":true,
                  "width":8,
                  "x":408,
+                 "y":208
+                }, 
+                {
+                 "height":8,
+                 "id":800,
+                 "name":"riftdevoureregg (wave 2)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-riftdevoureregg\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 2}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":256,
                  "y":192
                 }, 
                 {
                  "height":8,
                  "id":799,
-                 "name":"morphum (wave 2)",
+                 "name":"morphum (wave 1)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-morphum\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 2}",
+                     "parameters":"{\"monsterType\" : \"v-morphum\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 1}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -936,7 +915,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":800,
+ "nextobjectid":801,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
