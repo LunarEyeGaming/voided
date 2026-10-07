@@ -43,6 +43,7 @@
           "properties" : {
             "transformationGroups" : ["laserpoison", "swoosh"],
             "offset" : [1.375, 0],
+            "zLevel" : -5,
             "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserbarrelpoison.png<beamVisibility>"
           }
         },
@@ -58,6 +59,7 @@
           "properties" : {
             "transformationGroups" : ["laserelectric", "swoosh"],
             "offset" : [1.375, 0],
+            "zLevel" : -5,
             "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserbarrelelectric.png<beamVisibility>"
           }
         },
@@ -67,6 +69,38 @@
             "offset" : [1.375, 0],
             "zLevel" : 5,
             "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserbarrelelectric.png<beamVisibility>"
+          }
+        },
+        "laserpoisonbarreloverheat" : {
+          "properties" : {
+            "transformationGroups" : ["laserpoison", "swoosh"],
+            "zLevel" : -4,
+            "offset" : [1.375, 0],
+            "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserbarreloverheat.png<beamVisibility>?multiply=ffffff<overheatOpacity>"
+          }
+        },
+        "laserpoisonbarreloverheattop" : {
+          "properties" : {
+            "transformationGroups" : ["laserpoison", "swoosh"],
+            "offset" : [1.375, 0],
+            "zLevel" : 6,
+            "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserbarreloverheat.png<beamVisibility>?multiply=ffffff<overheatOpacity>"
+          }
+        },
+        "laserelectricbarreloverheat" : {
+          "properties" : {
+            "transformationGroups" : ["laserelectric", "swoosh"],
+            "zLevel" : -4,
+            "offset" : [1.375, 0],
+            "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserbarreloverheat.png<beamVisibility>?multiply=ffffff<overheatOpacity>"
+          }
+        },
+        "laserelectricbarreloverheattop" : {
+          "properties" : {
+            "transformationGroups" : ["laserelectric", "swoosh"],
+            "offset" : [1.375, 0],
+            "zLevel" : 6,
+            "image" : "/items/active/weapons/melee/abilities/broadsword/v-duallaserbeam/laserbarreloverheat.png<beamVisibility>?multiply=ffffff<overheatOpacity>"
           }
         },
         "laserpoison" : {
@@ -239,7 +273,8 @@
     },
     "globalTagDefaults" : {
       "beamDirectives" : "",
-      "beamVisibility" : ""
+      "beamVisibility" : "",
+      "overheatOpacity" : "00"
     },
     "sounds" : {
       "laserCharge" : [ "/sfx/melee/v_toxicution_dualbeam_charge.ogg" ],
@@ -262,11 +297,11 @@
 
     "partDamageConfigs" : {
       "laserelectric" : {
-        "poly" : [[0, 2], [127, 2], [127, 0], [0, 0]],
+        "poly" : [[0, 2], [64, 2], [64, 0], [0, 0]],
         "damageSourceKind" : "electricplasma"
       },
       "laserpoison" : {
-        "poly" : [[0, 2], [127, 2], [127, 0], [0, 0]],
+        "poly" : [[0, 2], [64, 2], [64, 0], [0, 0]],
         "damageSourceKind" : "poisonplasma"
       }
     },
@@ -276,8 +311,11 @@
       "laserpoison" : {"type" : "poisonplasmaexplosion", "statusEffects" : ["weakpoison"]}
     },
 
-    "beamLength" : 127,
+    "beamLength" : 64,
     "beamMuzzleOffset" : [0, 1],
+    "maxOverheat" : 30,
+    "overheatIncreaseRate" : 5,
+    "overheatDecreaseRate" : 1,
 
     "boostSpeed" : 20,
     "boostForce" : 100,

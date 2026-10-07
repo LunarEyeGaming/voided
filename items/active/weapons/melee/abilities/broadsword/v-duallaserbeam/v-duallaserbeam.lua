@@ -26,6 +26,17 @@ function DualBeam:init()
         (projectile.damageMultiplier or 1.0) * self.weapon.damageLevelMultiplier * activeItem.ownerPowerMultiplier()
   end
 
+  if storage.overheat then
+    sb.logInfo("%s", world.time() - storage.lastOverheatUpdateTime)
+    if world.time() - storage.lastOverheatUpdateTime >= 0 then
+      self.overheat = storage.overheat - (world.time() - storage.lastOverheatUpdateTime) * self.overheatDecreaseRate
+    else
+      self.overheat = storage.overheat
+    end
+  else
+    self.overheat = 0
+  end
+
   self.cooldownTimer = self.cooldownTime
   self.rotateTimer = 0
 end
@@ -35,10 +46,23 @@ function DualBeam:update(dt, fireMode, shiftHeld)
 
   self.cooldownTimer = math.max(0, self.cooldownTimer - self.dt)
 
+  animator.setGlobalTag("overheatOpacity", string.format("%02x", math.floor(255 * self.overheat / self.maxOverheat)))
+
+  world.debugText("overheat: %s, onCooldown: %s", self.overheat, self.onCooldown, mcontroller.position(), "green")
+
+  if self.weapon.currentAbility ~= self then
+    self.overheat = math.max(0, self.overheat - self.dt * self.overheatDecreaseRate)
+    if self.onCooldown and self.overheat == 0 then
+      self.onCooldown = false
+    end
+  end
+
   if self.weapon.currentAbility == nil
       and self.fireMode == "alt"
       and self.cooldownTimer == 0
-      and not status.resourceLocked("energy") then
+      and not status.resourceLocked("energy")
+      and self.overheat <= self.maxOverheat
+      and not self.onCooldown then
 
     self:setState(self.windup)
   end
@@ -95,6 +119,11 @@ function DualBeam:fire()
 
   local explosionTimer = 0
   while self.fireMode == "alt" and status.overConsumeResource("energy", self.energyUsage * self.dt) do
+    if self.overheat > self.maxOverheat then
+      self.onCooldown = true
+      break
+    end
+
     self.weapon:updateAim()
 
     -- Push away (copied from RocketSpear ability).
@@ -143,15 +172,8 @@ function DualBeam:fire()
       explosionTimer = self.fireTime
     end
 
-    -- fireTimer = math.max(0, fireTimer - self.dt)
-    -- if fireTimer == 0 then
-    --   fireTimer = self.fireTime
-    --   local position = vec2.add(mcontroller.position(), activeItem.handPosition(animator.partPoint("chargeSwoosh", "projectileSource")))
-    --   local aim = self.weapon.aimAngle + util.randomInRange({-self.inaccuracy, self.inaccuracy})
-    --   if not world.lineTileCollision(mcontroller.position(), position) then
-    --     world.spawnProjectile(self.projectileType, position, activeItem.ownerEntityId(), {mcontroller.facingDirection() * math.cos(aim), math.sin(aim)}, false, params)
-    --   end
-    -- end
+    -- Increase overheat
+    self.overheat = self.overheat + self.dt * self.overheatIncreaseRate
 
     coroutine.yield()
   end
@@ -201,14 +223,18 @@ function DualBeam:updateLasers()
       -- Make the second beam visible and the first beam invisible.
       animator.setPartTag(partName, "beamVisibility", "")
       animator.setPartTag(partName.."barrel", "beamVisibility", "")
+      animator.setPartTag(partName.."barreloverheat", "beamVisibility", "")
       animator.setPartTag(partName.."top", "beamVisibility", "?multiply=0000")
       animator.setPartTag(partName.."barreltop", "beamVisibility", "?multiply=0000")
+      animator.setPartTag(partName.."barreloverheattop", "beamVisibility", "?multiply=0000")
     else
       -- Make the first beam visible and the second beam invisible.
       animator.setPartTag(partName, "beamVisibility", "?multiply=0000")
       animator.setPartTag(partName.."barrel", "beamVisibility", "?multiply=0000")
+      animator.setPartTag(partName.."barreloverheat", "beamVisibility", "?multiply=0000")
       animator.setPartTag(partName.."top", "beamVisibility", "")
       animator.setPartTag(partName.."barreltop", "beamVisibility", "")
+      animator.setPartTag(partName.."barreloverheattop", "beamVisibility", "")
     end
 
     -- If a collision distance is defined...
@@ -261,5 +287,7 @@ function DualBeam:reset()
 end
 
 function DualBeam:uninit()
+  storage.overheat = self.overheat
+  storage.lastOverheatUpdateTime = world.time()
   self:reset()
 end
