@@ -22,6 +22,32 @@
     "initialScriptDelta" : 1,
 
     "detectionRange" : 250,
+    "doNotKillMonsters" : [
+      "v-riftzonelightning",
+      "v-shockwave",
+      "v-riftzone",
+      "v-riftremnant",
+      "v-riftnecromancer",
+      "v-riftdevoureregg",
+      "v-riftdevourer1",
+      "v-riftdevourer2",
+      "v-riftdevourer3",
+
+      // Monster segments
+      "v-morphumspike",
+      "v-mutanteelbody",
+      "v-mutanteeltail",
+      "v-iceeelbody",
+      "v-iceeeltail",
+      "v-icewormbody",
+      "v-icewormtail",
+
+      // Bosses
+      "v-centipedebosshead",
+      "v-centipedebossbody",
+      "v-centipedebosstail",
+      "v-strongholdboss"
+    ],
 
     "tongue" : {
       "segmentImage" : "/monsters/biomes/v-riftzone/v-riftdevourer/tongue.png",

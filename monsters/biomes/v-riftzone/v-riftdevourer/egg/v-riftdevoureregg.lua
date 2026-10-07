@@ -1,6 +1,8 @@
 require "/scripts/util.lua"
 
 local detectionRange
+local hatchNotifyRange
+local doNotKillMonsters
 
 local nearbyMonsters
 local consumedCount
@@ -9,6 +11,8 @@ local state
 
 function init()
   detectionRange = config.getParameter("detectionRange")
+  doNotKillMonsters = config.getParameter("doNotKillMonsters")
+  hatchNotifyRange = 256
 
   nearbyMonsters = {}
   consumedCount = 0
@@ -31,6 +35,14 @@ function update(dt)
     end
 
     if damageTeam.type ~= ownDamageTeam.type then
+      goto continue_query
+    end
+
+    if world.lineCollision(mcontroller.position(), world.nearestTo(mcontroller.position(), world.entityPosition(entityId))) then
+      goto continue_query
+    end
+
+    if contains(doNotKillMonsters, world.monsterType(entityId)) then
       goto continue_query
     end
 
@@ -63,11 +75,15 @@ function states.consume()
 
   animator.setAnimationState("body", "consume")
 
+  if #nearbyMonsters == 0 then
+    state:set(states.hatch)
+    return
+  end
+
   local targetEntity = nearbyMonsters[math.random(1, #nearbyMonsters)]
 
   -- Stick tongue on entity.
-  util.wait(1.5, function()
-    world.debugText("Consuming", mcontroller.position(), "green")
+  util.wait(2.5, function()
     if not world.entityExists(targetEntity) then
       clearTongue()
       state:set(states.wait)
@@ -89,7 +105,11 @@ function states.consume()
     consumedCount = consumedCount + 1
   end
 
-  state:set(states.wait)
+  if consumedCount >= 3 then
+    state:set(states.hatch)
+  else
+    state:set(states.wait)
+  end
 end
 
 function states.hatch()
@@ -102,21 +122,12 @@ function states.hatch()
   -- for _ = 1, consumedCount do
   --   world.spawnMonster("v-morphum", mcontroller.position(), {aggressive = true})
   -- end
-  if consumedCount < 2 then
-    world.spawnMonster("v-riftdevourer1", mcontroller.position(), {
-      aggressive = true,
-      level = monster.level()
-    })
-  elseif consumedCount < 4 then
-    world.spawnMonster("v-riftdevourer2", mcontroller.position(), {
-      aggressive = true,
-      level = monster.level()
-    })
+  if consumedCount < 1 then
+    hatch("v-riftdevourer1")
+  elseif consumedCount < 2 then
+    hatch("v-riftdevourer2")
   else
-    world.spawnMonster("v-riftdevourer3", mcontroller.position(), {
-      aggressive = true,
-      level = monster.level()
-    })
+    hatch("v-riftdevourer3")
   end
 end
 
@@ -133,6 +144,21 @@ function drawTongue(posStart, posEnd)
   tongue.endPosition = posEnd
 
   monster.setAnimationParameter("chains", {tongue})
+end
+
+function hatch(monsterType)
+  local monsterId = world.spawnMonster(monsterType, mcontroller.position(), {
+    aggressive = true,
+    level = monster.level()
+  })
+  if monsterId then
+    local queried = world.entityQuery(mcontroller.position(), hatchNotifyRange, {
+      includedTypes = {"object"}
+    })
+    for _, entityId in ipairs(queried) do
+      world.sendEntityMessage(entityId, "v-monsterwavespawner-monsterspawned", monsterId)
+    end
+  end
 end
 
 function clearTongue()
