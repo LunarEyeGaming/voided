@@ -787,6 +787,27 @@
                 }, 
                 {
                  "height":8,
+                 "id":805,
+                 "name":"morphumbig (wave 3)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-morphumbig\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 3}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":216,
+                 "y":224
+                }, 
+                {
+                 "height":8,
                  "id":758,
                  "name":"currentcrawler (wave 1)",
                  "properties":
@@ -804,6 +825,27 @@
                  "visible":true,
                  "width":8,
                  "x":216,
+                 "y":144
+                }, 
+                {
+                 "height":8,
+                 "id":806,
+                 "name":"currentcrawler (wave 3)",
+                 "properties":
+                    {
+                     "parameters":"{\"monsterType\" : \"v-currentcrawler\", \"monsterParameters\" : {\"aggressive\" : true}, \"spawnMode\" : \"level10Only\", \"waveNumber\" : 3}",
+                     "stagehand":"v-wavemonsterspawnpoint"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":232,
                  "y":144
                 }, 
                 {
@@ -833,7 +875,7 @@
                  "name":"electrojelly (wave 3)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-electrojelly\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 3}",
+                     "parameters":"{\"monsterType\" : \"v-electrojelly\", \"monsterParameters\" : {\"aggressive\" : true}, \"mode\" : \"notLevel10\", \"waveNumber\" : 3}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -854,7 +896,7 @@
                  "name":"electrojelly (wave 3)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-electrojelly\", \"monsterParameters\" : {\"aggressive\" : true}, \"waveNumber\" : 3}",
+                     "parameters":"{\"monsterType\" : \"v-electrojelly\", \"monsterParameters\" : {\"aggressive\" : true}, \"mode\" : \"notLevel10\", \"waveNumber\" : 3}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -889,27 +931,6 @@
                  "width":8,
                  "x":304,
                  "y":112
-                }, 
-                {
-                 "height":8,
-                 "id":804,
-                 "name":"wardrone (wave 2)",
-                 "properties":
-                    {
-                     "parameters":"{\"monsterType\" : \"v-wardrone\", \"monsterParameters\" : {\"aggressive\" : true}, \"mode\" : \"level10Only\", \"waveNumber\" : 2}",
-                     "stagehand":"v-wavemonsterspawnpoint"
-                    },
-                 "propertytypes":
-                    {
-                     "parameters":"string",
-                     "stagehand":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":216,
-                 "y":208
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1067,7 +1088,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":805,
+ "nextobjectid":807,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
