@@ -18,11 +18,14 @@
       "/items/active/effects/chain.lua"
     ],
 
+    "renderLayer": "Monster+10",
+
     "initialScriptDelta" : 1,
 
     "maxRadius" : 15,
     "expandTime" : 1.0,
-    "orbitTime" : 8.0,
+    "orbitTime" : 4.0,
+    "maxOrbitRate" : 360,
     "shrinkTime" : 1.0,
     "invulnerableDistance" : 3,
 
@@ -32,12 +35,13 @@
         "segmentSize" : 1,
         "sourcePart" : "tether",
         "endPart" : "tether",
+        "fullbright" : true,
         "waveform" : {
           "movement" : 2.5,
           "amplitude" : 0.125,
           "frequency" : 2.0
         },
-        "renderLayer" : "Monster-10"
+        "renderLayer" : "Monster+5"
       }
     ],
 

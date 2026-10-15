@@ -23,7 +23,7 @@ function init()
   orbitTime = config.getParameter("orbitTime")
   shrinkTime = config.getParameter("shrinkTime")
   invulnerableDistance = config.getParameter("invulnerableDistance")
-  maxOrbitRate = util.toRadians(360)
+  maxOrbitRate = util.toRadians(config.getParameter("maxOrbitRate"))
   masterId = config.getParameter("masterId")
   startAngle = vec2.angle(config.getParameter("aimVector", {1, 0}))
   if not masterId or not world.entityExists(masterId) then
@@ -72,10 +72,10 @@ function update(dt)
 
   state:update(dt)
 
-  updateTether(dt)
-
   local offset = vec2.withAngle(currentAngle, currentRadius)
   mcontroller.setPosition(vec2.add(world.entityPosition(masterId), offset))
+
+  updateTether(dt)
 end
 
 function initTether()

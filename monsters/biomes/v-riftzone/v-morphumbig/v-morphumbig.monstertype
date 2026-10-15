@@ -14,7 +14,8 @@
 
     "scripts" : [
       "/monsters/monster.lua",
-      "/monsters/biomes/v-riftzone/v-morphumbig/v-morphumbigplugin.lua"
+      "/monsters/biomes/v-riftzone/v-morphumbig/v-morphumbigplugin.lua",
+      "/monsters/v-displayselfdamagepoly.lua"
     ],
 
     "initialScriptDelta" : 1,
@@ -22,8 +23,6 @@
 
     "behavior" : "monster",
     "deathBehavior" : "monster-death",
-
-    "facingMode" : "transformation",
 
     "behaviorConfig" : {
       "damageOnTouch" : false,
@@ -41,12 +40,13 @@
       "hostileActions" : [
         {
           "name" : "action-fire",
-          "cooldown" : 8.0,
+          "cooldown" : 9.0,
           "parameters" : {
             "requireLineOfSight" : false,
             "onGround" : false,
             "maximumRange" : 30,
             "windupState" : "windup",
+            "windupStateType" : "blobs",
             "windupTime" : 1.0,
             "windupStopForce" : 200,
 
@@ -75,8 +75,10 @@
             "fireOffset" : [0.0, 0.0],
             "fireSound" : "",
             "fireState" : "attack",
+            "fireStateType" : "blobs",
 
             "winddownState" : "",
+            "winddownStateType" : "blobs",
             "winddownTime" : 1.5
           }
         }
@@ -210,16 +212,6 @@
       "damageSourceKind" : "v-voidlash",
       "knockback" : 20,
       "statusEffects" : [ ]
-    },
-
-    "damageParts" : {
-      "body" : {
-        "damage" : 10,
-
-        "teamType" : "enemy",
-        "damageSourceKind" : "v-voidlash",
-        "knockback" : 20
-      }
     },
 
     "metaBoundBox" : [-4, -4, 4, 4],
