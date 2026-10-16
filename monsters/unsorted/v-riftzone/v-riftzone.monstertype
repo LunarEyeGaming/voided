@@ -85,6 +85,20 @@
         "spawnChance" : 0.07,
         "monsterType" : "v-morphum",
         "monsterParameters" : {"aggressive" : true}
+      },
+      {
+        "mode" : "air",
+        "spawnChance" : 0.01,
+        "monsterType" : "v-morphumbig",
+        "monsterParameters" : {"aggressive" : true},
+        "levelMode" : "level10Only"
+      },
+      {
+        "mode" : "air",
+        "spawnChance" : 0.005,
+        "monsterType" : "v-riftmage",
+        "monsterParameters" : {"aggressive" : true},
+        "levelMode" : "level10Only"
       }
     ],
 

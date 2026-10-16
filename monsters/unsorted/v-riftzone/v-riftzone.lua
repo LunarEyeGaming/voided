@@ -69,6 +69,8 @@ local state
 local wasForceKilled
 local initialized
 local trackedProjectiles
+local level10Spawns
+local level10SpawnsPending  -- Pending result
 
 function init()
   local cfg = root.assetJson("/v-riftzones.config")
@@ -135,6 +137,7 @@ function init()
   dungeonIdsToRevert = {}
   lostLiquids = {}
   trackedProjectiles = {}
+  level10Spawns = false
 
   weatherFunctions = {
     meteors = function()
@@ -167,6 +170,18 @@ function init()
     table.insert(trackedProjectiles, projectileId)
   end)
 
+  vTime.addInterval(5, function()
+    if not level10CheckPromises then
+      level10CheckPromises = {}
+      level10SpawnsPending = false
+      local queried = world.entityQuery(mcontroller.position(), 256, {includedTypes = {"player"}})
+      for _, entityId in ipairs(queried) do
+        local promise = world.sendEntityMessage(entityId, "v-equipmentstrengthprovider-check")
+        table.insert(level10CheckPromises, promise)
+      end
+    end
+  end)
+
   monster.setDamageBar("None")
   state = FSM:new()
   state:set(states.postInit)
@@ -192,6 +207,7 @@ function update(dt)
     updateWeather(dt)
     cullProjectiles()
     spawnMonsters()
+    updateLevel10CheckPromises()
   else
     updateDeltaScans(currentScanRadius)
     cleanUpTrail()
@@ -448,9 +464,26 @@ function spawnGravispheres(cfg, spawnRadius)
 end
 
 function spawnMonsters()
+  local level10Filter = function(obj)
+    if obj.levelMode == "either" then
+      return true
+    elseif obj.levelMode == "level10Only" then
+      return level10Spawns
+    elseif obj.levelMode == "notLevel10" then
+      return not level10Spawns
+    elseif not obj.levelMode then
+      return true
+    else
+      sb.logWarn("Monster spawn has invalid mode: '%s'. Valid options: 'either', 'level10Only', 'notLevel10'. Config: %s", obj.mode, obj)
+      return true
+    end
+  end
+
+  local monsterSpawnsCopy = copy(monsterSpawns)
+  monsterSpawnsCopy = util.filter(monsterSpawnsCopy, level10Filter)
   for _, pos in ipairs(frontScanPositions) do
     if pos[1] % CELL_SIZE == 0 and pos[2] % CELL_SIZE == 0 then
-      for _, spawn in ipairs(monsterSpawns) do
+      for _, spawn in ipairs(monsterSpawnsCopy) do
         if math.random() < spawn.spawnChance then
           pos = rect.randomPoint(rect.translate({0, 0, CELL_SIZE, CELL_SIZE}, pos))
           local spawnPos
@@ -476,6 +509,28 @@ function spawnMonsters()
         end
       end
     end
+  end
+end
+
+function updateLevel10CheckPromises()
+  -- If the promises have not finished processing yet...
+  if level10CheckPromises and #level10CheckPromises > 0 then
+    for i = #level10CheckPromises, 1, -1 do
+      local promise = level10CheckPromises[i]
+      if promise:finished() then
+        if promise:succeeded() then
+          if promise:result() then
+            level10SpawnsPending = true
+          end
+        else
+          sb.logError("v-riftzone.lua: Promise failed: %s", promise:error())
+        end
+        table.remove(level10CheckPromises, i)
+      end
+    end
+  else
+    level10CheckPromises = nil
+    level10Spawns = level10SpawnsPending
   end
 end
 
