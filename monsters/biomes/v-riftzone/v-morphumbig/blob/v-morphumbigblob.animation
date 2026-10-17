@@ -6,7 +6,12 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1
+            "frames" : 4,
+            "cycle" : 0.4,
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/npc/monsters/v_morphumbig_attackloop.ogg"
+            }
           },
           "invisible" : {}
         }
