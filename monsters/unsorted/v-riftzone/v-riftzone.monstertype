@@ -79,26 +79,31 @@
       }
     },
 
+    "maxMonsterOccupation" : 10,
+
     "monsterSpawns" : [
       {
         "mode" : "surface",
         "spawnChance" : 0.07,
         "monsterType" : "v-morphum",
-        "monsterParameters" : {"aggressive" : true}
+        "monsterParameters" : {"aggressive" : true},
+        "occupation" : 1
       },
       {
         "mode" : "air",
         "spawnChance" : 0.01,
         "monsterType" : "v-morphumbig",
         "monsterParameters" : {"aggressive" : true},
-        "levelMode" : "level10Only"
+        "levelMode" : "level10Only",
+        "occupation" : 4
       },
       {
         "mode" : "air",
         "spawnChance" : 0.005,
         "monsterType" : "v-riftmage",
         "monsterParameters" : {"aggressive" : true},
-        "levelMode" : "level10Only"
+        "levelMode" : "level10Only",
+        "occupation" : 5
       }
     ],
 

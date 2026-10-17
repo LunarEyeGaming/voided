@@ -33,6 +33,7 @@ local relocationProbability
 local lightningStrikeProbability
 local monsterSpawns
 local riftRemnantTimeToLive
+local maxMonsterOccupation
 
 -- State variables
 local prevPos
@@ -71,6 +72,8 @@ local initialized
 local trackedProjectiles
 local level10Spawns
 local level10SpawnsPending  -- Pending result
+local monsterOccupations
+local currentMonsterOccupation
 
 function init()
   local cfg = root.assetJson("/v-riftzones.config")
@@ -94,6 +97,7 @@ function init()
   lightningStrikeProbability = config.getParameter("lightningStrikeProbability")
   monsterSpawns = config.getParameter("monsterSpawns", {})
   riftRemnantTimeToLive = cfg.riftRemnantTimeToLive
+  maxMonsterOccupation = config.getParameter("maxMonsterOccupation")
 
   for _, spawn in ipairs(monsterSpawns) do
     local monsterCfg = root.monsterParameters(spawn.monsterType)
@@ -138,6 +142,8 @@ function init()
   lostLiquids = {}
   trackedProjectiles = {}
   level10Spawns = false
+  monsterOccupations = {}
+  currentMonsterOccupation = 0
 
   weatherFunctions = {
     meteors = function()
@@ -206,6 +212,7 @@ function update(dt)
     updateMaterials(currentScanRadius)
     updateWeather(dt)
     cullProjectiles()
+    updateMonsterTracking()
     spawnMonsters()
     updateLevel10CheckPromises()
   else
@@ -463,7 +470,23 @@ function spawnGravispheres(cfg, spawnRadius)
   end
 end
 
+function updateMonsterTracking()
+  currentMonsterOccupation = 0
+  for i = #monsterOccupations, 1, -1 do
+    local occupation = monsterOccupations[i]
+    if world.entityExists(occupation.id) then
+      currentMonsterOccupation = currentMonsterOccupation + occupation.occupation
+    else
+      table.remove(monsterOccupations, i)
+    end
+  end
+end
+
 function spawnMonsters()
+  if currentMonsterOccupation >= maxMonsterOccupation then
+    return
+  end
+
   local level10Filter = function(obj)
     if obj.levelMode == "either" then
       return true
@@ -504,7 +527,10 @@ function spawnMonsters()
           if spawnPos and vWorld.canSpawnMonster(boundBox, spawnPos) then
             local params = copy(spawn.monsterParameters)
             params.level = monster.level()
-            world.spawnMonster(spawn.monsterType, spawnPos, params)
+            local monsterId = world.spawnMonster(spawn.monsterType, spawnPos, params)
+            if monsterId then
+              table.insert(monsterOccupations, {id = monsterId, occupation = spawn.occupation})
+            end
           end
         end
       end
