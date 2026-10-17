@@ -16,11 +16,13 @@ All custom sounds in Voided were made in Audacity using Starbound's assets and/o
 * "Jellyfish" by kaekhor on Freesound.org (URL: https://freesound.org/s/533979/).
 
 Fungal Laboratory:
-"Ossuary 3 - Words" Kevin MacLeod (incompetech.com)
 
-Licensed under Creative Commons: By Attribution 4.0 License
+> "Ossuary 3 - Words" Kevin MacLeod (incompetech.com)
+>
+> Licensed under Creative Commons: By Attribution 4.0 License
+>
+> http://creativecommons.org/licenses/by/4.0/
 
-http://creativecommons.org/licenses/by/4.0/
 
 Edited to loop properly
 
@@ -28,13 +30,21 @@ Electrochem Facility: Desert Battle 2 by Curtis Schweitzer. Edited to loop prope
 
 Titan of Darkness:
 
-"Symmetry" Kevin MacLeod (incompetech.com)
-
-Licensed under Creative Commons: By Attribution 4.0 License
-
-http://creativecommons.org/licenses/by/4.0/
+> "Symmetry" Kevin MacLeod (incompetech.com)
+>
+> Licensed under Creative Commons: By Attribution 4.0 License
+>
+> http://creativecommons.org/licenses/by/4.0/
 
 Edited into several loop sections
+
+Rift Zones:
+
+> "SCP-x1x (Gateway to Hell)" Kevin MacLeod (incompetech.com)
+>
+> Licensed under Creative Commons: By Attribution 4.0 License
+>
+> http://creativecommons.org/licenses/by/4.0/
 
 Disclaimer: the authors of these sound samples and music do not endorse Voided.
 

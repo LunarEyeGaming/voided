@@ -11,6 +11,9 @@ local SMALL_RECT = {-1, -1, 1, 1}
 local worldCoordinates
 local defaultRiftZoneVelocity
 local playerProximityRegion
+local playerMusicProximityRegion
+local musicTracks
+local musicFadeTime
 local lightningOffsetRegion
 local lightningStrikeProbability
 local relocationProbability
@@ -37,6 +40,7 @@ local allRiftRemnants
 local rng
 local thread
 local dungeonIdsToRevert
+local playerMusicStatus
 local postInitCalled
 
 function init()
@@ -47,6 +51,12 @@ function init()
   playerProximityRegion = {-lightningTriggerRange, -lightningTriggerRange, lightningTriggerRange, lightningTriggerRange}
   lightningOffsetRegion = cfg.lightningOffsetRegion
   lightningStrikeProbability = cfg.lightningStrikeProbability
+
+  local musicTriggerRange = cfg.musicTriggerRange
+  playerMusicProximityRegion = {-musicTriggerRange, -musicTriggerRange, musicTriggerRange, musicTriggerRange}
+  musicTracks = cfg.musicTracks
+  musicFadeTime = cfg.musicFadeTime
+
   relocationProbability = cfg.relocationProbability
   invisibleOre = cfg.invisibleOre
   defaultTimeToLive = cfg.defaultTimeToLive
@@ -122,6 +132,7 @@ function init()
   end
 
   dungeonIdsToRevert = {}
+  playerMusicStatus = {}
 
   postInitCalled = false
 end
@@ -159,6 +170,7 @@ function update(dt)
   updateRiftZones(riftZones, dt)
 
   strikeRiftZoneLightning(riftZones)
+  updateRiftZoneMusic(allRiftZones)
 end
 
 function updateThread()
@@ -287,11 +299,34 @@ function strikeRiftZoneLightning(riftZones)
   for _, playerId in ipairs(players) do
     local playerPos = world.entityPosition(playerId)
 
-    if playerPos and closeToARiftZone(playerPos, riftZones) then
+    if playerPos and closeToARiftZone(playerPos, riftZones, playerProximityRegion) then
       if math.random() < lightningStrikeProbability then
         local pos = vec2.add(rect.randomPoint(lightningOffsetRegion), playerPos)
         world.spawnMonster("v-riftzonelightning", pos)
       end
+    end
+  end
+end
+
+function updateRiftZoneMusic(riftZones)
+  local players = world.players()
+  for _, playerId in ipairs(players) do
+    local playerPos = world.entityPosition(playerId)
+
+    if playerPos then
+      if closeToARiftZone(playerPos, riftZones, playerMusicProximityRegion) then
+        if not playerMusicStatus[playerId] then
+          world.sendEntityMessage(playerId, "v-dungeonmusicplayer-playDefaultMusic", {"/music/v-scp-x1x.ogg"}, 5.0)
+          playerMusicStatus[playerId] = true
+        end
+      else
+        if playerMusicStatus[playerId] then
+          world.sendEntityMessage(playerId, "v-dungeonmusicplayer-stopDefaultMusic", 5.0)
+          playerMusicStatus[playerId] = nil
+        end
+      end
+    else
+      playerMusicStatus[playerId] = nil
     end
   end
 end
@@ -369,9 +404,9 @@ function canSpawn(position)
   return world.regionActive(rect.translate(SMALL_RECT, position))
 end
 
-function closeToARiftZone(position, riftZones)
+function closeToARiftZone(position, riftZones, proximityRegion)
   for _, riftZone in ipairs(riftZones) do
-    local region = rect.translate(playerProximityRegion, riftZone.position)
+    local region = rect.translate(proximityRegion, riftZone.position)
     if region[1] <= position[1] and position[1] <= region[3]
       and region[2] <= position[2] and position[2] <= region[4] then
       return true

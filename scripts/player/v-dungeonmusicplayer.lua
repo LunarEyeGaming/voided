@@ -18,11 +18,28 @@ local prevDungeonId
 
 local musicOverridden
 local playingDungeonMusic
+local defaultMusic
+local defaultMusicFadeTime
 
 local manualMusicSwitchTrigger
 
 function init()
   musicOverridden = false
+
+  message.setHandler("v-dungeonmusicplayer-playDefaultMusic", function(_, _, defaultMusic_, fadeTime)
+    if not playingDungeonMusic and not musicOverridden then
+      world.sendEntityMessage(player.id(), "playAltMusic", defaultMusic_, fadeTime)
+      defaultMusic = defaultMusic_
+      defaultMusicFadeTime = fadeTime
+    end
+  end)
+
+  message.setHandler("v-dungeonmusicplayer-stopDefaultMusic", function(_, _, defaultMusic_, fadeTime)
+    if not playingDungeonMusic and not musicOverridden then
+      world.sendEntityMessage(player.id(), "stopAltMusic", defaultMusic_, fadeTime)
+      defaultMusic = nil
+    end
+  end)
 
   message.setHandler("v-dungeonmusicplayer-setOverride", function(_, _, overrideMusic, fadeTime)
     -- Start override music.
@@ -66,14 +83,15 @@ function update(dt)
     local dungeonMusicEntry = dungeonMusic[tostring(dungeonId)]
     -- If the dungeon music for the current dungeon ID is defined...
     if dungeonMusicEntry then
-      -- Play the music
       world.sendEntityMessage(player.id(), "playAltMusic", dungeonMusicEntry.music, dungeonMusicEntry.fadeTime)
       playingDungeonMusic = true
     else
-      -- If dungeon music is playing...
       if playingDungeonMusic then
-        -- Stop the music
-        world.sendEntityMessage(player.id(), "stopAltMusic", stopAltMusicFadeTime)
+        if defaultMusic then
+          world.sendEntityMessage(player.id(), "playAltMusic", defaultMusic, defaultMusicFadeTime)
+        else
+          world.sendEntityMessage(player.id(), "stopAltMusic", stopAltMusicFadeTime)
+        end
       end
       playingDungeonMusic = false
     end
