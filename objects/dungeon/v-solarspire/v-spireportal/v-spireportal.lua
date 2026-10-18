@@ -315,9 +315,93 @@ function states.open()
 
   animator.setAnimationState("portal", "open")
 
-  util.wait(3)
+  local skipped = false
+  local skipSwitchThreshold = 6
+  local switchCounter = 0
+  local prevInputLevel = true
+  util.wait(3, function()
+    local inputLevel = object.getInputNodeLevel(0)
 
-  states.destabilize1()
+    if inputLevel ~= prevInputLevel then
+      switchCounter = switchCounter + 1
+    end
+
+    prevInputLevel = inputLevel
+
+    if switchCounter >= skipSwitchThreshold then
+      skipped = true
+      return true
+    end
+  end)
+
+  if skipped then
+    states.destabilize1Fast()
+  else
+    states.destabilize1()
+  end
+end
+
+function states.destabilize1Fast()
+  animator.burstParticleEmitter("portalsparks")
+  animator.playSound("firstSpark")
+  animator.setParticleEmitterActive("portalsparks", true)
+  animator.playSound("sparks", -1)
+
+  util.wait(0.3)
+
+  object.setOutputNodeLevel(NODE_OUTER_DOOR, false)
+  object.setOutputNodeLevel(NODE_INNER_DOOR, false)
+
+  animator.setAnimationState("portalshockwave", "visible")
+  animator.playSound("explosion")
+  storage.isDestabilized = true  -- Separate flag for messaging purposes.
+  local timer = 0
+  local shockwaveTime = 1
+  local minScale = 0
+  local maxScale = 5
+  util.wait(shockwaveTime, function(dt)
+    local progress = timer / shockwaveTime
+    local scale = util.lerp(progress, minScale, maxScale)
+    animator.resetTransformationGroup("portalshockwave")
+    animator.scaleTransformationGroup("portalshockwave", scale, centerOffset)
+    animator.setPartTag("portalshockwave", "opacity", string.format("%02x", math.floor(255 * (1 - progress))))
+
+    timer = timer + dt
+  end)
+
+  local dungeonId = tostring(world.dungeonId(object.position()))
+  world.setProperty("v-dungeonMusic", {[dungeonId] = postIntroDungeonMusic})
+  for _, entityId in ipairs(world.players()) do
+    world.sendEntityMessage(entityId, "v-dungeonmusicplayer-forceSwitch")
+  end
+
+  animator.setPartTag("portalshockwave", "opacity", "00")
+
+  for _ = 1, 7 do
+    strikeLightnings(3)
+    util.wait(0.1)
+  end
+
+  local queried = world.entityQuery(playerTeleportQueryRegion[1], playerTeleportQueryRegion[2], {
+    includedTypes = {"player"}
+  })
+
+  if (#queried < 3) then
+    strikeLightnings(3 - #queried)
+  end
+
+  for _, entityId in ipairs(queried) do
+    strikeLightning(world.entityPosition(entityId))
+    world.sendEntityMessage(entityId, "applyStatusEffect", "v-solarspireteleport")
+    util.wait(0.15)
+  end
+
+  util.wait(2.0)
+
+  animator.setParticleEmitterActive("portalsparks", false)
+  animator.stopAllSounds("sparks")
+
+  states.destabilize2()
 end
 
 function states.destabilize1()
