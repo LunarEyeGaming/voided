@@ -1,0 +1,153 @@
+{
+  "metadata" : {
+    "name" : "v-solarspiretest",
+    "species" : "generic",
+    "rules" : [
+    ],
+
+    "anchor" : [ "middle_room1" ],
+    // "anchor" : [ "buildingbottom" ],
+
+    "gravity" : 70,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : true
+  },
+
+  "parts" : [
+    {
+      "name" : "middle_room1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "middle_room1.json" ]
+    },
+    {
+      "name" : "lower_room1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "lower_room1.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "lower_room2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "lower_room2.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "lower_room3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "lower_room3.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "lower_room4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "lower_room4.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "lower_room5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "lower_room5.json" ],
+      "chance" : 2
+    },
+    // {
+    //   "name" : "lower_room6",
+    //   "rules" : [
+    //     [ "maxSpawnCount", [1] ]
+    //   ],
+    //   "def" : [ "tmx", "lower_room6.json" ],
+    //   "chance" : 1
+    // },
+    {
+      "name" : "lens_intro_room",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "lens_intro_room.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "upper_room1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "upper_room1.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "upper_room2",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "upper_room2.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "upper_room3",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "upper_room3.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "upper_room4",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "upper_room4.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "upper_room5",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "upper_room5.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "upper_room6",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "upper_room6.json" ],
+      "chance" : 2
+    },
+    {
+      "name" : "miniboss_room",
+      "rules" : [
+        [ "maxSpawnCount", [1] ], [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "miniboss_room.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "enemy_intro1",
+      "rules" : [
+        [ "maxSpawnCount", [1] ], [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "enemy_intro1.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "bottom_room",
+      "rules" : [
+        [ "maxSpawnCount", [1] ], [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "bottom_room.json" ],
+      "chance" : 0
+    }
+  ]
+}

@@ -88,7 +88,7 @@ function init()
   v_ministarEffects_initLiquidParticles()
 
   -- Do not run the remainder of this script on planets that are not of type "v-ministar."
-  if world.type() ~= "v-ministar" then
+  if world.type() ~= "v-ministar" and world.type() ~= "v-solarspiretest" then
     isActive = false
     return
   end
