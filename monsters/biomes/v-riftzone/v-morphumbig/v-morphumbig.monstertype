@@ -116,7 +116,7 @@
             "wanderTime" : 10,
             "groundDistance" : 4,
             "ceilingDistance" : 4,
-            "xVelocity" : 2,
+            "xVelocity" : 8,
             "yVelocity" : 12
           }
         }
@@ -232,7 +232,7 @@
 
     "knockoutTime" : 0.75,
     "knockoutAnimationStates" : {
-      "damage" : "stunned"
+      "damage" : "killed"
     },
     "deathParticles" : "deathPoof",
     "knockoutEffect" : "",

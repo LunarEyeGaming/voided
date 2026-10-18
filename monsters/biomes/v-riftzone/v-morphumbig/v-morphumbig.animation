@@ -13,7 +13,7 @@
             "cycle" : 0.8,
             "mode" : "loop",
             "frameProperties" : {
-              "immediateSound" : [ "", "", "/sfx/npc/monsters/batong_flap1.ogg", "", "", "", "/sfx/npc/monsters/batong_flap1.ogg", "" ]
+              "immediateSound" : [ "", "", "/sfx/npc/boss/dragonboss_flap1.ogg", "", "", "", "/sfx/npc/boss/dragonboss_flap2.ogg", "" ]
             }
           }
         }
@@ -30,7 +30,10 @@
           "windup" : {
             "frames" : 2,
             "cycle" : 0.2,
-            "mode" : "end"
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_morphumbig_windup.ogg"
+            }
           },
           "attack" : {
             "frames" : 1,
@@ -55,6 +58,11 @@
           },
           "stunned" : {
             "frames" : 1
+          },
+          "killed" : {
+            "frames" : 7,
+            "cycle" : 0.7,
+            "mode" : "end"
           }
         }
       },
@@ -105,6 +113,11 @@
               "properties" : {
                 "image" : "<partImage>:hurt.<frame>"
               }
+            },
+            "killed" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
             }
           }
         }
@@ -131,6 +144,11 @@
           },
           "damage" : {
             "stunned" : {
+              "properties" : {
+                "image" : "<partImage>:hurt.<frame>"
+              }
+            },
+            "killed" : {
               "properties" : {
                 "image" : "<partImage>:hurt.<frame>"
               }
@@ -165,13 +183,6 @@
             "winddown" : {
               "properties" : {
                 "image" : "<partImage>:windup.<frame>"
-              }
-            }
-          },
-          "damage" : {
-            "stunned" : {
-              "properties" : {
-                "image" : "<partImage>:hurt.<frame>"
               }
             }
           }
@@ -252,6 +263,6 @@
 
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ]
+    "deathPuff" : [ "/sfx/npc/monsters/v_livingmushroom1_die.ogg" ]
   }
 }
