@@ -110,11 +110,11 @@ end
   returns: a list of the IDs of the monsters spawned
 ]]
 function spawnWave(waveSpawners)
-  -- If the list of spawners is not empty...
-    if #waveSpawners > 0 then
-    local projectileIds = {}
+  local monsterIds = {}  -- Gets populated by the message handler
 
-    local monsterIds = {}  -- Gets populated by the message handler
+  -- If the list of spawners is not empty...
+  if #waveSpawners > 0 then
+    local projectileIds = {}
 
     animator.setAnimationState("capsule", "opening")
     animator.playSound("open")
@@ -151,7 +151,7 @@ function spawnWave(waveSpawners)
 
       coroutine.yield()
     end
-
-    return monsterIds
   end
+
+  return monsterIds
 end
