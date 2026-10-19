@@ -8,6 +8,7 @@ local nearbyMonsters
 local consumedCount
 
 local state
+local shouldDieVar
 
 function init()
   detectionRange = config.getParameter("detectionRange")
@@ -52,6 +53,10 @@ function update(dt)
   end
 
   state:update(dt)
+end
+
+function shouldDie()
+  return shouldDieVar
 end
 
 states = {}
@@ -128,6 +133,16 @@ function states.hatch()
     hatch("v-riftdevourer2")
   else
     hatch("v-riftdevourer3")
+  end
+
+  state:set(states.die)
+end
+
+function states.die()
+  shouldDieVar = true
+
+  while true do
+    coroutine.yield()
   end
 end
 
