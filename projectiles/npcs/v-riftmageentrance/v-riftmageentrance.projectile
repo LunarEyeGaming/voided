@@ -1,0 +1,179 @@
+{
+  "projectileName" : "v-riftmageentrance",
+  "image" : "riftmageentrance.png",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "frameNumber" : 2,
+  "animationCycle" : 2.0,
+  "power" : 1,
+  "speed" : 0,
+  "timeToLive" : 2.0,
+  "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "particle",
+      "specification" : "v-realityshatter1"
+    },
+    {
+      "time" : 1,
+      "repeat" : false,
+      "action" : "particle",
+      "specification" : "v-realityshatter2"
+    },
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "loop",
+      "count" : 10,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : {
+            "type" : "animated",
+            "animation" : "/animations/shards/v-realityshard.animation",
+            "initialVelocity" : [0.0, 8.0],
+            "finalVelocity" : [0.0, -60.0],
+            "approach" : [0.3, 60],
+            "fade" : 2,
+            "timeToLive" : 0.5,
+            "fullbright" : true,
+            "layer" : "middle",
+            "collidesForeground" : true,
+            "variance" : {
+              "position" : [4, 4],
+              "initialVelocity" : [5, 3],
+              "finalVelocity" : [0, 20],
+              "rotation" : 180,
+              "angularVelocity" : 180
+            }
+          }
+        }
+      ]
+    },
+    {
+      "time" : 1,
+      "repeat" : false,
+      "action" : "loop",
+      "count" : 20,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : {
+            "type" : "animated",
+            "animation" : "/animations/shards/v-realityshard.animation",
+            "initialVelocity" : [0.0, 8.0],
+            "finalVelocity" : [0.0, -60.0],
+            "approach" : [0.3, 60],
+            "fade" : 2,
+            "timeToLive" : 0.5,
+            "fullbright" : true,
+            "layer" : "middle",
+            "collidesForeground" : true,
+            "variance" : {
+              "position" : [8, 8],
+              "initialVelocity" : [5, 3],
+              "finalVelocity" : [0, 20],
+              "rotation" : 180,
+              "angularVelocity" : 180
+            }
+          }
+        }
+      ]
+    },
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/npc/monsters/v_riftmage_crack1.ogg", "/sfx/npc/monsters/v_riftmage_crack2.ogg" ]
+    },
+    {
+      "time" : 1,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/npc/monsters/v_riftmage_crack1.ogg", "/sfx/npc/monsters/v_riftmage_crack2.ogg" ]
+    }
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "particle",
+      "specification" : "v-realityshatter3"
+    },
+    {
+      "action" : "particle",
+      "specification" : "v-titanbombhole"
+    },
+    {
+      "action" : "sound",
+      "options" : [ "/sfx/npc/monsters/v_riftmage_break.ogg" ]
+    },
+    {
+      "action" : "loop",
+      "count" : 20,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : {
+            "type" : "animated",
+            "animation" : "/animations/shards/v-realityshard.animation",
+            "initialVelocity" : [0.0, 8.0],
+            "finalVelocity" : [0.0, -60.0],
+            "approach" : [0.3, 60],
+            "fade" : 2,
+            "timeToLive" : 0.5,
+            "fullbright" : true,
+            "layer" : "middle",
+            "collidesForeground" : true,
+            "variance" : {
+              "position" : [8, 8],
+              "initialVelocity" : [5, 3],
+              "finalVelocity" : [0, 20],
+              "rotation" : 180,
+              "angularVelocity" : 180
+            }
+          }
+        }
+      ]
+    },
+    {
+      "action" : "particle",
+      "specification" : "v-realityshatter2"
+    },
+    {
+      "action" : "loop",
+      "count" : 20,
+      "body" : [
+        {
+          "action" : "option",
+          "options" : [
+            {
+              "action" : "particle",
+              "specification" : "v-realityshardbig1"
+            },
+            {
+              "action" : "particle",
+              "specification" : "v-realityshardbig2"
+            },
+            {
+              "action" : "particle",
+              "specification" : "v-realityshardbig3"
+            },
+            {
+              "action" : "particle",
+              "specification" : "v-realityshardbig4"
+            },
+            {
+              "action" : "particle",
+              "specification" : "v-realityshardbig5"
+            },
+            {
+              "action" : "particle",
+              "specification" : "v-realityshardbig6"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "onlyHitTerrain" : true
+}

@@ -1,0 +1,19 @@
+{
+  "kind" : "v-realityshardbig4",
+  "definition" : {
+    "type" : "textured",
+    "image" : "/particles/v-realityshardbig/realityshardbig4.png",
+    "fullbright" : true,
+    "layer" : "back",
+    "initialVelocity" : [0, 0],
+    "finalVelocity" : [0, 0],
+    "approach" : [10, 10],
+    "timeToLive" : 1.0,
+    "destructionAction" : "fade",
+    "destructionTime" : 1.0,
+    "variance" : {
+      "initialVelocity" : [20, 20],
+      "rotation" : 180
+    }
+  }
+}

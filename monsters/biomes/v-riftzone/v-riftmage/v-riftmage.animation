@@ -3,8 +3,14 @@
     "stateTypes" : {
       "body" : {
         "priority" : 0,
-        "default" : "idle",
+        "default" : "spawn",
         "states" : {
+          "spawn" : {
+            "frames" : 2,
+            "cycle" : 2.0,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
           "idle" : {
             "frames" : 1
           },
