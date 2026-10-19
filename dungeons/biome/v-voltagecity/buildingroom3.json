@@ -855,7 +855,7 @@
                  "name":"riftmage (wave 1, >=10)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-riftmagedungeon\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 1}",
+                     "parameters":"{\"monsterType\" : \"v-riftmagedungeon\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 1, \"silent\" : true}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
@@ -876,7 +876,7 @@
                  "name":"riftmage (wave 2, >=10)",
                  "properties":
                     {
-                     "parameters":"{\"monsterType\" : \"v-riftmagedungeon\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 2}",
+                     "parameters":"{\"monsterType\" : \"v-riftmagedungeon\", \"monsterParameters\" : {\"aggressive\" : true, \"level\" : 10}, \"mode\" : \"level10Only\", \"waveNumber\" : 2, \"silent\" : true}",
                      "stagehand":"v-wavemonsterspawnpoint"
                     },
                  "propertytypes":
