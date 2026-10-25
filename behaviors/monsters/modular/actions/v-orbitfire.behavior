@@ -29,7 +29,8 @@
     "fireSound": "",
     "windupTime": 0.5,
     "preFireTime": 0.7,
-    "postFireTime": 0.8
+    "postFireTime": 0.8,
+    "repeats": -1
   },
   "root": {
     "title": "parallel",
@@ -45,9 +46,9 @@
         "type": "module",
         "name": "v-movement-orbittarget",
         "parameters": {
-          "maxPolyCorrection": {"key": "<maxPolyCorrection>"},
           "orbitPeriod": {"key": "<orbitPeriod>"},
           "orbitRadius": {"key": "<orbitRadius>"},
+          "maxPolyCorrection": {"key": "<maxPolyCorrection>"},
           "usePathfinding": {"key": "<usePathfinding>"}
         }
       },
@@ -64,7 +65,7 @@
         "type": "decorator",
         "name": "repeater",
         "parameters": {
-          "maxLoops": {"value": -1},
+          "maxLoops": {"key": "<repeats>"},
           "untilSuccess": {"value": false}
         },
         "child": {

@@ -16,10 +16,11 @@
     "maxAngle": 6.3,
     "teleportDistance": 1,
     "stopForce": 50,
-    "teleportDelay": 0.5,
+    "teleportOutTime": 0.5,
     "disappearState": "",
     "appearState": "",
-    "stateType": ""
+    "stateType": "",
+    "teleportInTime": 0.5
   },
   "root": {
     "title": "sequence",
@@ -55,7 +56,7 @@
         "type": "action",
         "name": "timer",
         "parameters": {
-          "time": {"key": "<teleportDelay>"}
+          "time": {"key": "<teleportOutTime>"}
         }
       },
       {
@@ -193,6 +194,14 @@
             "state": {"key": "<appearState>"},
             "type": {"key": "<stateType>"}
           }
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"key": "<teleportInTime>"}
         }
       }
     ]

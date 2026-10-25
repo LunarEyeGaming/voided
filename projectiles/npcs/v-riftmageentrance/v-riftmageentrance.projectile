@@ -8,17 +8,20 @@
   "power" : 1,
   "speed" : 0,
   "timeToLive" : 2.0,
+  "fullbright" : true,
   "periodicActions" : [
     {
       "time" : 0,
       "repeat" : false,
       "action" : "particle",
+      "rotate" : true,
       "specification" : "v-realityshatter1"
     },
     {
       "time" : 1,
       "repeat" : false,
       "action" : "particle",
+      "rotate" : true,
       "specification" : "v-realityshatter2"
     },
     {
@@ -29,6 +32,7 @@
       "body" : [
         {
           "action" : "particle",
+          "rotate" : true,
           "specification" : {
             "type" : "animated",
             "animation" : "/animations/shards/v-realityshard.animation",
@@ -59,6 +63,7 @@
       "body" : [
         {
           "action" : "particle",
+          "rotate" : true,
           "specification" : {
             "type" : "animated",
             "animation" : "/animations/shards/v-realityshard.animation",
@@ -97,10 +102,12 @@
   "actionOnReap" : [
     {
       "action" : "particle",
+      "rotate" : true,
       "specification" : "v-realityshatter3"
     },
     {
       "action" : "particle",
+      "rotate" : true,
       "specification" : "v-titanbombhole"
     },
     {
@@ -113,6 +120,7 @@
       "body" : [
         {
           "action" : "particle",
+          "rotate" : true,
           "specification" : {
             "type" : "animated",
             "animation" : "/animations/shards/v-realityshard.animation",
@@ -134,10 +142,6 @@
           }
         }
       ]
-    },
-    {
-      "action" : "particle",
-      "specification" : "v-realityshatter2"
     },
     {
       "action" : "loop",

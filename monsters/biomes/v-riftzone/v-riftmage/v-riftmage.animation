@@ -6,16 +6,94 @@
         "default" : "spawn",
         "states" : {
           "spawn" : {
-            "frames" : 2,
+            "frames" : 1,
             "cycle" : 2.0,
             "mode" : "transition",
             "transition" : "idle"
           },
           "idle" : {
-            "frames" : 1
+            "frames" : 14,
+            "cycle" : 1.4,
+            "mode" : "loop"
+          },
+          "attackwindup" : {
+            "frames" : 7,
+            "cycle" : 0.35,
+            "mode" : "end"
+          },
+          "attack" : {
+            "frames" : 5,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "singularitywindup" : {
+            "frames" : 7,
+            "cycle" : 0.7,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_riftmage_singularity_windup.ogg"
+            }
+          },
+          "singularityactivate" : {
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "transition",
+            "transition" : "singularity",
+            "properties" : {
+              "immediateSound" : "/sfx/projectiles/gravitymine_detonate.ogg"
+            }
           },
           "singularity" : {
-            "frames" : 1
+            "frames" : 1,
+            "properties" : {
+              "persistentSound" : "/sfx/npc/monsters/v_riftmage_singularity_loop.ogg"
+            }
+          },
+          "singularitywinddown" : {
+            "frames" : 8,
+            "cycle" : 0.8,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/projectiles/astraltear_stop2.ogg"
+            }
+          },
+          "bitewindup" : {
+            "frames" : 3,
+            "cycle" : 0.3,
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_riftmage_bite_windup.ogg"
+            }
+          },
+          "bite" : {
+            "frames" : 1,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/monster_bite2.ogg"
+            }
+          },
+          "teleportout" : {
+            "frames" : 12,
+            "cycle" : 0.6,
+            "mode" : "transition",
+            "transition" : "invisible",
+            "frameProperties" : {
+              "immediateSound" : ["", "", "", "", "/sfx/npc/monsters/v_riftmage_teleportout.ogg"]
+            }
+          },
+          "invisible" : {},
+          "teleportin" : {
+            "frames" : 12,
+            "cycle" : 0.6,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_riftmage_teleportin.ogg"
+            }
           }
         }
       },
@@ -56,8 +134,8 @@
     "parts" : {
       "body" : {
         "properties" : {
-          "transformationGroups" : [ "body" ],
-          "offset" : [0.0, 0.125]
+          "transformationGroups" : [ "body", "fastspin" ],
+          "offset" : [0.0, 0.0]
         },
         "partStates" : {
           "body" : {
@@ -66,10 +144,55 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
+            "attackwindup" : {
+              "properties" : {
+                "image" : "<partImage>:attackwindup.<frame>"
+              }
+            },
+            "attack" : {
+              "properties" : {
+                "image" : "<partImage>:attack.<frame>"
+              }
+            },
+            "bitewindup" : {
+              "properties" : {
+                "image" : "<partImage>:bitewindup.<frame>"
+              }
+            },
+            "bite" : {
+              "properties" : {
+                "image" : "<partImage>:bite.<frame>",
+                "damageArea" : [[6.0, 0.0], [4.243, 4.243], [0.0, 6.0], [-4.243, 4.243], [-6.0, 0.0], [-4.243, -4.243], [-0.0, -6.0], [4.243, -4.243]]
+              }
+            },
+            "singularitywindup" : {
+              "properties" : {
+                "image" : "<partImage>:singularitywindup.<frame>"
+              }
+            },
+            "singularityactivate" : {
+              "properties" : {
+                "image" : "<partImage>:singularityactivate.<frame>"
+              }
+            },
             "singularity" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>",
-                "damageArea" : [[2.0, 0.0], [1.414, 1.414], [0.0, 2.0], [-1.414, 1.414], [-2.0, 0.0], [-1.414, -1.414], [-0.0, -2.0], [1.414, -1.414]]
+                "image" : "<partImage>:singularity.<frame>"
+              }
+            },
+            "singularitywinddown" : {
+              "properties" : {
+                "image" : "<partImage>:singularitywinddown.<frame>"
+              }
+            },
+            "teleportout" : {
+              "properties" : {
+                "image" : "<partImage>:teleportout.<frame>"
+              }
+            },
+            "teleportin" : {
+              "properties" : {
+                "image" : "<partImage>:teleportin.<frame>"
               }
             }
           },
@@ -77,6 +200,17 @@
             "stunned" : {
               "properties" : {
                 "image" : "<partImage>:hurt.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "singularity" : {
+        "partStates" : {
+          "body" : {
+            "singularity" : {
+              "properties" : {
+                "damageArea" : [[2.0, 0.0], [1.414, 1.414], [0.0, 2.0], [-1.414, 1.414], [-2.0, 0.0], [-1.414, -1.414], [-0.0, -2.0], [1.414, -1.414]]
               }
             }
           }
@@ -95,9 +229,54 @@
                 "image" : "<partImage>:idle.<frame>"
               }
             },
+            "attackwindup" : {
+              "properties" : {
+                "image" : "<partImage>:attackwindup.<frame>"
+              }
+            },
+            "attack" : {
+              "properties" : {
+                "image" : "<partImage>:attack.<frame>"
+              }
+            },
+            "bitewindup" : {
+              "properties" : {
+                "image" : "<partImage>:bitewindup.<frame>"
+              }
+            },
+            "bite" : {
+              "properties" : {
+                "image" : "<partImage>:bite.<frame>"
+              }
+            },
+            "singularitywindup" : {
+              "properties" : {
+                "image" : "<partImage>:singularitywindup.<frame>"
+              }
+            },
+            "singularityactivate" : {
+              "properties" : {
+                "image" : "<partImage>:singularityactivate.<frame>"
+              }
+            },
             "singularity" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<partImage>:singularity.<frame>"
+              }
+            },
+            "singularitywinddown" : {
+              "properties" : {
+                "image" : "<partImage>:singularitywinddown.<frame>"
+              }
+            },
+            "teleportout" : {
+              "properties" : {
+                "image" : "<partImage>:teleportout.<frame>"
+              }
+            },
+            "teleportin" : {
+              "properties" : {
+                "image" : "<partImage>:teleportin.<frame>"
               }
             }
           },
@@ -121,7 +300,8 @@
   // },
 
   "transformationGroups" : {
-    "body" : { "interpolated" : true }
+    "body" : { "interpolated" : true },
+    "fastspin" : { "interpolated" : true }
   },
 
   "effects" : {
@@ -133,14 +313,6 @@
   },
 
   "particleEmitters" : {
-    "flames" : {
-      "active" : true,
-      "emissionRate" : 12.0,
-      "offsetRegion" : [-1.5, -2.0, 1.5, 1.0],
-      "particles" : [
-        { "particle" : "v-burningdustfrontfullbright" }
-      ]
-    },
     "singularity" : {
       "active" : false,
       "emissionRate" : 100,
@@ -152,12 +324,12 @@
           "position" : [0, 0],
           "timeToLive" : 0,
           "destructionAction" : "shrink",
-          "destructionTime" : 0.5,
+          "destructionTime" : 0.2,
           "layer" : "middle",
           "variance" : {
             "rotation" : 180
           }
-        } }
+        }, "count" : 5 }
       ]
     },
     "deathPoof" : {
@@ -210,6 +382,7 @@
 
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ]
+    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+    "fire" : [ "/sfx/projectiles/v_titanrift_fire.ogg" ]
   }
 }

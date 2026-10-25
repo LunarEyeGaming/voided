@@ -2,6 +2,7 @@
   "name": "v-riftmage-singularity",
   "description": null,
   "scripts": [
+    "/scripts/actions/math.lua",
     "/scripts/actions/animator.lua",
     "/scripts/actions/time.lua",
     "/scripts/actions/monster.lua"
@@ -17,7 +18,12 @@
     "winddownStateType": "",
     "winddownTime": 0.5,
     "activeEmitter": null,
-    "activeForceRegion": null
+    "activeForceRegion": null,
+    "rotateRate": 0,
+    "rotateGroup": "body",
+    "rotateCenter": [0, 0],
+    "teleportStopForce": 50,
+    "teleportStateType": ""
   },
   "root": {
     "title": "sequence",
@@ -26,17 +32,26 @@
     "parameters": {},
     "children": [
       {
+        "title": "multiply",
+        "type": "action",
+        "name": "multiply",
+        "parameters": {
+          "factor": {"key": "<rotateRate>"},
+          "number": {"key": "<activeTime>"}
+        },
+        "output": {
+          "result": "totalRotation"
+        }
+      },
+      {
         "title": "v-action-teleport",
         "type": "module",
         "name": "v-action-teleport",
         "parameters": {
-          "appearState": {"value": ""},
-          "disappearState": {"value": ""},
           "maxAngle": {"value": 6.3},
           "minAngle": {"value": 0},
-          "stateType": {"value": ""},
-          "stopForce": {"value": 50},
-          "teleportDelay": {"value": 0.5},
+          "stateType": {"key": "<teleportStateType>"},
+          "stopForce": {"key": "<teleportStopForce>"},
           "teleportDistance": {"value": 0}
         }
       },
@@ -115,6 +130,54 @@
             "name": "timer",
             "parameters": {
               "time": {"key": "<activeTime>"}
+            },
+            "output": {
+              "ratio": "progress"
+            }
+          },
+          {
+            "title": "failer",
+            "type": "decorator",
+            "name": "failer",
+            "parameters": {},
+            "child": {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "lerp",
+                  "type": "action",
+                  "name": "lerp",
+                  "parameters": {
+                    "max": {"key": "totalRotation"},
+                    "min": {"value": 0},
+                    "ratio": {"key": "progress"}
+                  },
+                  "output": {
+                    "number": "rotation"
+                  }
+                },
+                {
+                  "title": "resetTransformationGroup",
+                  "type": "action",
+                  "name": "resetTransformationGroup",
+                  "parameters": {
+                    "transformationGroup": {"key": "<rotateGroup>"}
+                  }
+                },
+                {
+                  "title": "rotateTransformationGroup",
+                  "type": "action",
+                  "name": "rotateTransformationGroup",
+                  "parameters": {
+                    "angle": {"key": "rotation"},
+                    "rotationCenter": {"key": "<rotateCenter>"},
+                    "transformationGroup": {"key": "<rotateGroup>"}
+                  }
+                }
+              ]
             }
           }
         ]

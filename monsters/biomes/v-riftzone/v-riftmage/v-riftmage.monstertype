@@ -1,7 +1,7 @@
 {
   "type" : "v-riftmage",
   "shortdescription" : "<todo>",
-  "description" : "<todo>",
+  "description" : "It contorts itself in the form of a spiral.",
 
   "categories" : [ "v-riftmage" ],
   "parts" : [ "body" ],
@@ -15,7 +15,7 @@
       "/monsters/monster.lua"
     ],
     "initialScriptDelta" : 1,
-    "behaviorUpdateDelta" : 3,
+    "behaviorUpdateDelta" : 2,
 
     "behavior" : "monster",
 
@@ -43,15 +43,45 @@
 
       "hostileActions" : [
         {
+          "name" : "action-charge",
+          "cooldown" : 2.0,
+          "parameters" : {
+            "maximumRange" : 10,
+            "windupStopForce" : 50,
+            "windupState" : "bitewindup",
+            "windupTime" : 0.5,
+
+            "onGround" : false,
+            "wallCollide" : false,
+            "aimAtTarget" : true,
+            "inaccuracy" : 0.0,
+            "chargeState" : "bite",
+            "chargeTime" : 0.2,
+            "chargeSpeed" : 45,
+            "chargeControlForce" : 250,
+            "wallCrashSound" : "",
+
+            "winddownState" : "",
+            "winddownTime" : 0.5,
+            "winddownStopForce" : 0
+          }
+        },
+        {
           "name" : "v-action-orbitfire",
           "cooldown" : 10.0,
           "parameters" : {
             "projectileType" : "v-riftmageprojectile",
-            "preFireTime" : 0.1,
-            "windupTime" : 0.4,
-            "postFireTime" : 0.0,
+            "preFireTime" : 0.0,
+            "windupState" : "attackwindup",
+            "windupStateType" : "body",
+            "windupTime" : 0.35,
+            "fireState" : "attack",
+            "fireStateType" : "body",
+            "fireSound" : "fire",
+            "postFireTime" : 0.25,
             "orbitPeriod" : 5.0,
-            "duration" : 5.0,
+            "duration" : 9999,
+            "repeats" : 8,
             "usePathfinding" : false
           }
         },
@@ -59,18 +89,28 @@
           "name" : "v-riftmage-singularity",
           "cooldown" : 10.0,
           "parameters" : {
+            "disappearState" : "teleportout",
+            "appearState" : "teleportin",
+            "teleportStateType" : "body",
             "activeEmitter" : "singularity",
             "activeForceRegion" : "vacuum",
-            "activeState" : "singularity",
+            "windupState" : "singularitywindup",
+            "windupStateType" : "body",
+            "activeState" : "singularityactivate",
             "activeStateType" : "body",
-            "winddownState" : "idle",
-            "winddownStateType" : "body"
+            "winddownState" : "singularitywinddown",
+            "winddownStateType" : "body",
+            "rotateRate" : 5.0,
+            "rotateGroup" : "fastspin"
           }
         },
         {
           "name" : "v-action-teleport",
           "cooldown" : 5.0,
           "parameters" : {
+            "disappearState" : "teleportout",
+            "appearState" : "teleportin",
+            "stateType" : "body",
             "teleportDistance" : 20
           }
         }
@@ -118,10 +158,25 @@
             "state" : "idle",
             "animationTimer" : 1.0
           }
+        },
+        {
+          "name" : "rotate-part",
+          "parameters" : {
+            "group" : "body",
+            "speed" : 1.0
+          }
         }
       ],
 
-      "concurrentHostileActions" : [ ]
+      "concurrentHostileActions" : [
+        {
+          "name" : "rotate-part",
+          "parameters" : {
+            "group" : "body",
+            "speed" : 2.0
+          }
+        }
+      ]
     },
 
     "forceRegions" : {
