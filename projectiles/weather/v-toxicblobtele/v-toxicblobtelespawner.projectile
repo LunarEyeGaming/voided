@@ -1,0 +1,20 @@
+{
+  "projectileName" : "v-toxicblobtelespawner",
+  "image" : "/projectiles/invisibleprojectile/invisibleprojectile.png",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "timeToLive" : 1.0,
+  "animationCycle" : 1,
+  "speed" : 0,
+  "frameNumber" : 1,
+
+  "onlyHitTerrain" : true,
+
+  "scripts" : ["v-toxicblobtelespawner.lua"],
+
+  "teleProjectileType" : "v-toxicblobtele",
+  "destroyProjectileType" : "v-toxicblob",
+
+  "teleSpawnInterval" : 0.2,
+  "teleSpawnOffsetRange" : [-1, -1, 1, 1]
+}
