@@ -1834,5 +1834,39 @@
       },
       "pathToTree": "..\\monsters\\modular\\actions\\v-teleport.behavior"
     }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-teleportin",
+    "value": {
+      "type": "module",
+      "name": "v-action-teleportin",
+      "title": "",
+      "properties": {
+        "maxAngle": {"type": "json", "value": 6.3},
+        "minAngle": {"type": "json", "value": 0},
+        "teleportDistance": {"type": "json", "value": 1},
+        "teleportInTime": {"type": "json", "value": 0.5},
+        "appearState": {"type": "json", "value": ""},
+        "stateType": {"type": "json", "value": ""}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-teleportin.behavior"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/v-action-teleportout",
+    "value": {
+      "type": "module",
+      "name": "v-action-teleportout",
+      "title": "",
+      "properties": {
+        "stopForce": {"type": "json", "value": 50},
+        "disappearState": {"type": "json", "value": ""},
+        "stateType": {"type": "json", "value": ""},
+        "teleportOutTime": {"type": "json", "value": 0.5}
+      },
+      "pathToTree": "..\\monsters\\modular\\actions\\v-teleportout.behavior"
+    }
   }
 ]

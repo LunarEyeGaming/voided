@@ -1,0 +1,54 @@
+{
+  "name": "v-action-teleportout",
+  "description": null,
+  "scripts": [
+    "/scripts/actions/v-movement.lua",
+    "/scripts/actions/animator.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {
+    "stopForce": 50,
+    "disappearState": "",
+    "stateType": "",
+    "teleportOutTime": 0.5
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "v_stop",
+        "type": "action",
+        "name": "v_stop",
+        "parameters": {
+          "stopForce": {"key": "<stopForce>"}
+        }
+      },
+      {
+        "title": "succeeder",
+        "type": "decorator",
+        "name": "succeeder",
+        "parameters": {},
+        "child": {
+          "title": "setAnimationState",
+          "type": "action",
+          "name": "setAnimationState",
+          "parameters": {
+            "state": {"key": "<disappearState>"},
+            "type": {"key": "<stateType>"}
+          }
+        }
+      },
+      {
+        "title": "timer",
+        "type": "action",
+        "name": "timer",
+        "parameters": {
+          "time": {"key": "<teleportOutTime>"}
+        }
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "v-riftmage-singularity",
-  "description": null,
+  "description": "",
   "scripts": [
     "/scripts/actions/math.lua",
     "/scripts/actions/animator.lua",
@@ -44,16 +44,40 @@
         }
       },
       {
-        "title": "v-action-teleport",
-        "type": "module",
-        "name": "v-action-teleport",
-        "parameters": {
-          "maxAngle": {"value": 6.3},
-          "minAngle": {"value": 0},
-          "stateType": {"key": "<teleportStateType>"},
-          "stopForce": {"key": "<teleportStopForce>"},
-          "teleportDistance": {"value": 0}
-        }
+        "title": "sequence",
+        "type": "composite",
+        "name": "sequence",
+        "parameters": {},
+        "children": [
+          {
+            "title": "v-action-teleportout",
+            "type": "module",
+            "name": "v-action-teleportout",
+            "parameters": {
+              "stateType": {"key": "<teleportStateType>"},
+              "stopForce": {"key": "<teleportStopForce>"}
+            }
+          },
+          {
+            "title": "resetTransformationGroup",
+            "type": "action",
+            "name": "resetTransformationGroup",
+            "parameters": {
+              "transformationGroup": {"key": "<rotateGroup>"}
+            }
+          },
+          {
+            "title": "v-action-teleportin",
+            "type": "module",
+            "name": "v-action-teleportin",
+            "parameters": {
+              "maxAngle": {"value": 6.3},
+              "minAngle": {"value": 0},
+              "teleportDistance": {"value": 0},
+              "stateType": {"key": "<teleportStateType>"}
+            }
+          }
+        ]
       },
       {
         "title": "succeeder",
