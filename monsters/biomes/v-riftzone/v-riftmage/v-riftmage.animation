@@ -45,7 +45,9 @@
             }
           },
           "singularity" : {
-            "frames" : 1,
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop",
             "properties" : {
               "persistentSound" : "/sfx/npc/monsters/v_riftmage_singularity_loop.ogg"
             }

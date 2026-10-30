@@ -1,0 +1,23 @@
+{
+  "projectileName" : "v-riftmageprojectilecharge",
+  "image" : "riftmageprojectilecharge.png",
+  "physics" : "illusion",
+  "bounces" : -1,
+  "frameNumber" : 15,
+  "animationCycle" : 0.5,
+  "power" : 1,
+  "speed" : 0,
+  "timeToLive" : 0.5,
+  "fullbright" : true,
+  "renderLayer": "ForegroundEntity-10",
+  "periodicActions" : [
+  ],
+  "actionOnReap" : [
+    {
+      "action" : "projectile",
+      "type" : "v-riftmageprojectile",
+      "inheritDamageFactor" : 1
+    }
+  ],
+  "onlyHitTerrain" : true
+}
