@@ -1,0 +1,20 @@
+{
+  "particleEmitters" : {
+    "flakes" : {
+      "emissionRate" : 10,
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "ember",
+            "color" : [94, 113, 128],
+            "velocity" : [20, 0],
+            "timeToLive" : 2,
+            "collidesForeground" : true,
+            "collidesLiquid" : true,
+            "size" : 2
+          }
+        }
+      ]
+    }
+  }
+}

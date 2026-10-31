@@ -3,8 +3,14 @@
   "blockingStat" : "v-riftdestabilizationImmunity",
 
   "effectConfig" : {
+    "fadeColor" : "5e7180",
+    "fadeColorMaxOpacity" : 0.75,
+    "playerDestabilizeTime" : 20,
+    "nonPlayerDestabilizeTime" : 10
   },
   "defaultDuration" : 0.5,
+
+  "animationConfig" : "v-riftdestabilization.animation",
 
   "scripts" : [
     "v-riftdestabilization.lua"
