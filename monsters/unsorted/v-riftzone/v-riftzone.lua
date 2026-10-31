@@ -529,6 +529,7 @@ function spawnMonsters()
             params.level = monster.level()
             local monsterId = world.spawnMonster(spawn.monsterType, spawnPos, params)
             if monsterId then
+              world.callScriptedEntity(monsterId, "status.addEphemeralEffect", "v-blackmonsterreleasenogravity")
               table.insert(monsterOccupations, {id = monsterId, occupation = spawn.occupation})
             end
           end
