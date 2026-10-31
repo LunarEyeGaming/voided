@@ -194,7 +194,14 @@
     "damageParts" : {
       "body" : {
         "damage" : 10,
+        "damageSourceKind" : "bite",
+
+        "knockback" : 20
+      },
+      "singularity" : {
+        "damage" : 15,
         "damageSourceKind" : "v-void",
+        "damageRepeatTimeout" : 0.5,
 
         "knockback" : 20
       }

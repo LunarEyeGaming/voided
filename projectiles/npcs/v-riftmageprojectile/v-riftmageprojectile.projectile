@@ -9,6 +9,12 @@
   "renderLayer" : "ForegroundEntity-10",
   "periodicActions" : [
     {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_riftmageprojectile_fire.ogg" ]
+    },
+    {
       "time" : 0.02,
       "repeat" : true,
       "action" : "particle",
@@ -30,5 +36,6 @@
   "speed" : 1,
   "acceleration" : 50,
   "damageKind" : "v-voidplasma",
+  "statusEffects" : [ "v-voideffect" ],
   "damagePoly" : [ [12, 0], [7, 6], [-3, 0], [7, -6] ]
 }

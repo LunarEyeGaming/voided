@@ -11,12 +11,28 @@
   "fullbright" : true,
   "renderLayer": "ForegroundEntity-10",
   "periodicActions" : [
+    {
+      "time" : 0,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_riftmageprojectile_windup.ogg" ]
+    }
   ],
   "actionOnReap" : [
     {
       "action" : "projectile",
       "type" : "v-riftmageprojectile",
       "inheritDamageFactor" : 1
+    },
+    {
+      "action" : "loop",
+      "count" : 5,
+      "body" : [
+        {
+          "action" : "particle",
+          "specification" : "v-voidorb"
+        }
+      ]
     }
   ],
   "onlyHitTerrain" : true
