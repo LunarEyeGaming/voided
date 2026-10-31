@@ -37,7 +37,10 @@ function DualBeam:init()
     self.overheat = 0
   end
 
+  self.onCooldown = storage.onCooldown
+
   self.cooldownTimer = self.cooldownTime
+  self.cooldownSoundTimer = 0
   self.rotateTimer = 0
 end
 
@@ -56,6 +59,21 @@ function DualBeam:update(dt, fireMode, shiftHeld)
       self.onCooldown = false
     end
   end
+
+  if self.onCooldown then
+    self.cooldownSoundTimer = self.cooldownSoundTimer - self.dt
+
+    if self.cooldownSoundTimer <= 0 then
+      animator.playSound("cooldown")
+
+      self.cooldownSoundTimer = self.cooldownSoundInterval
+    end
+  end
+
+  animator.setParticleEmitterActive("overheat1", self.onCooldown)
+  animator.setParticleEmitterActive("overheat2", self.onCooldown)
+
+  self.wasOnCooldown = self.onCooldown
 
   if self.weapon.currentAbility == nil
       and self.fireMode == "alt"
@@ -289,5 +307,6 @@ end
 function DualBeam:uninit()
   storage.overheat = self.overheat
   storage.lastOverheatUpdateTime = world.time()
+  storage.onCooldown = self.onCooldown
   self:reset()
 end

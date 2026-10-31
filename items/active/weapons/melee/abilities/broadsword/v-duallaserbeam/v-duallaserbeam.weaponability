@@ -280,7 +280,28 @@
       "laserCharge" : [ "/sfx/melee/v_toxicution_dualbeam_charge.ogg" ],
       "laserStart" : [ "/sfx/gun/erchiuseyebeam_start.ogg" ],
       "laserLoop" : [ "/sfx/melee/v_toxicution_dualbeam_loop.ogg" ],
-      "laserStop" : [ "/sfx/gun/erchiuseyebeam_stop.ogg" ]
+      "laserStop" : [ "/sfx/gun/erchiuseyebeam_stop.ogg" ],
+      "cooldown" : [ "/sfx/melee/v_toxicution_dualbeam_cooldown.ogg" ]
+    },
+    "particleEmitters" : {
+      "overheat1" : {
+        "active" : false,
+        "transformationGroups" : ["laserpoison", "swoosh"],
+        "offsetRegion" : [-0.5, -0.5, 0.5, 0.5],
+        "emissionRate" : 5,
+        "particles" : [
+          { "particle" : "rocketbarrelpuff" }
+        ]
+      },
+      "overheat2" : {
+        "active" : false,
+        "transformationGroups" : ["laserpoison", "swoosh"],
+        "offsetRegion" : [-0.5, -0.5, 0.5, 0.5],
+        "emissionRate" : 5,
+        "particles" : [
+          { "particle" : "rocketbarrelpuff" }
+        ]
+      }
     }
   },
 
@@ -293,6 +314,7 @@
     "baseDps" : 10,
     "fireTime" : 0.2,
     "cooldownTime" : 0.5,
+    "cooldownSoundInterval" : 1.0,
     "energyUsage" : 45,
 
     "partDamageConfigs" : {
@@ -315,7 +337,7 @@
     "beamMuzzleOffset" : [0, 1],
     "maxOverheat" : 30,
     "overheatIncreaseRate" : 5,
-    "overheatDecreaseRate" : 1,
+    "overheatDecreaseRate" : 2.5,
 
     "boostSpeed" : 20,
     "boostForce" : 100,
