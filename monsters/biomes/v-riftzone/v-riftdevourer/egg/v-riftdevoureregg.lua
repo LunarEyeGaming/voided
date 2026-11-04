@@ -1,4 +1,7 @@
 require "/scripts/util.lua"
+require "/scripts/vec2.lua"
+
+require "/scripts/v-vec2.lua"
 
 local detectionRange
 local hatchNotifyRange
@@ -20,6 +23,8 @@ function init()
 
   state = FSM:new()
   state:set(states.wait)
+
+  monster.setDeathSound("deathPuff")
 
   status.addEphemeralEffect("invulnerable", 2 ^ 32)
 end
@@ -51,6 +56,8 @@ function update(dt)
 
     ::continue_query::
   end
+
+  animator.setGlobalTag("glowCounter", consumedCount)
 
   state:update(dt)
 end
@@ -87,15 +94,25 @@ function states.consume()
 
   local targetEntity = nearbyMonsters[math.random(1, #nearbyMonsters)]
 
+  local stickTime = 0.5
+  local timer = 0
+
+  animator.playSound("fire")
+
   -- Stick tongue on entity.
   util.wait(2.5, function()
     if not world.entityExists(targetEntity) then
       clearTongue()
       state:set(states.wait)
     else
-      drawTongue(mcontroller.position(), world.entityPosition(targetEntity))
+      timer = math.min(stickTime, timer + script.updateDt())
+      local posEnd = vVec2.lerp(timer / stickTime, mcontroller.position(), world.entityPosition(targetEntity))
+      drawTongue(mcontroller.position(), posEnd)
+      rotateBody(mcontroller.position(), posEnd)
     end
   end)
+
+  animator.setAnimationState("body", "consumewinddown")
 
   clearTongue()
 
@@ -159,6 +176,13 @@ function drawTongue(posStart, posEnd)
   tongue.endPosition = posEnd
 
   monster.setAnimationParameter("chains", {tongue})
+end
+
+function rotateBody(posStart, posEnd)
+  local angle = vec2.angle(world.distance(posEnd, posStart))
+  angle = angle - math.pi / 2
+  animator.resetTransformationGroup("body")
+  animator.rotateTransformationGroup("body", angle)
 end
 
 function hatch(monsterType)

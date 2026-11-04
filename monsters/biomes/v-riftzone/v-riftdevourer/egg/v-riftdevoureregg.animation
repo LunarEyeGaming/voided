@@ -11,20 +11,29 @@
             "mode" : "loop"
           },
           "consumewindup" : {
-            "frames" : 1,
+            "frames" : 10,
             "cycle" : 1,
-            "mode" : "end"
+            "mode" : "end",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/orbide_wakeup.ogg"
+            }
           },
           "consume" : {
-            "frames" : 1,
-            "cycle" : 1.0,
+            "frames" : 1
+          },
+          "consumewinddown" : {
+            "frames" : 2,
+            "cycle" : 0.2,
             "mode" : "transition",
             "transition" : "idle"
           },
           "hatch" : {
             "frames" : 2,
             "cycle" : 2.0,
-            "mode" : "end"
+            "mode" : "end",
+            "frameProperties" : {
+              "immediateSound" : [ "/sfx/projectiles/bonerain_full.ogg", "/sfx/projectiles/bonerain1.ogg" ]
+            }
           }
         }
       },
@@ -75,6 +84,11 @@
                 "image" : "<partImage>:consume.<frame>"
               }
             },
+            "consumewinddown" : {
+              "properties" : {
+                "image" : "<partImage>:consumewinddown.<frame>"
+              }
+            },
             "hatch" : {
               "properties" : {
                 "image" : "<partImage>:hatch.<frame>"
@@ -89,10 +103,20 @@
             }
           }
         }
+      },
+      "glow" : {
+        "properties" : {
+          "transformationGroups" : [ "body" ],
+          "offset" : [0.0, 0.0],
+          "zLevel" : 1,
+          "fullbright" : true,
+          "image" : "<partImage>:<glowCounter>"
+        }
       }
     }
   },
   "globalTagDefaults" : {
+    "glowCounter" : "0"
   },
 
   "transformationGroups" : {
@@ -142,7 +166,7 @@
 
   "sounds" : {
     "aggroHop" : [ "/sfx/npc/monsters/monster_surprise.ogg" ],
-    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
-    "fire" : [ "/sfx/npc/monsters/v_livingmushroom2_fire.ogg" ]
+    "deathPuff" : [ "/sfx/objects/egg_hatch1.ogg", "/sfx/objects/egg_hatch2.ogg" ],
+    "fire" : [ "/sfx/melee/fleshwhip_swing1.ogg", "/sfx/melee/fleshwhip_swing2.ogg", "/sfx/melee/fleshwhip_swing3.ogg" ]
   }
 }
