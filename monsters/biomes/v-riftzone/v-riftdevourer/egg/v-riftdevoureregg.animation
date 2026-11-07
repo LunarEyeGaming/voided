@@ -28,11 +28,11 @@
             "transition" : "idle"
           },
           "hatch" : {
-            "frames" : 2,
-            "cycle" : 2.0,
+            "frames" : 15,
+            "cycle" : 1.5,
             "mode" : "end",
             "frameProperties" : {
-              "immediateSound" : [ "/sfx/projectiles/bonerain_full.ogg", "/sfx/projectiles/bonerain1.ogg" ]
+              "immediateSound" : [ "", "", "/sfx/projectiles/bonerain_full.ogg", "", "", "", "", "", "", "/sfx/npc/monsters/orbide_rest.ogg" ]
             }
           }
         }

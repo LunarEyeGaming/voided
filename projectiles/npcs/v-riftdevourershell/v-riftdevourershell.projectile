@@ -1,0 +1,17 @@
+{
+  "projectileName" : "v-riftdevourershell",
+  "image" : "riftdevourershell.png",
+  "physics" : "grenade",
+  "bounces" : -1,
+  "movementSettings" : {
+    "collisionPoly" : [ [-3, -3], [-3, 3], [3, 3], [3, -3] ]
+  },
+  "frameNumber" : 1,
+  "animationCycle" : 0.1,
+  "winddownFrames" : 9,
+  "power" : 1,
+  "speed" : 0,
+  "timeToLive" : 5.0,
+  "orientationLocked" : true,
+  "onlyHitTerrain" : true
+}

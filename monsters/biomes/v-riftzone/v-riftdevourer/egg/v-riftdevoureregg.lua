@@ -4,23 +4,27 @@ require "/scripts/vec2.lua"
 require "/scripts/v-vec2.lua"
 
 local detectionRange
-local hatchNotifyRange
 local doNotKillMonsters
+local hatchNotifyRange
+local stickTime
 
 local nearbyMonsters
 local consumedCount
 
 local state
 local shouldDieVar
+local currentAngle
 
 function init()
   detectionRange = config.getParameter("detectionRange")
   doNotKillMonsters = config.getParameter("doNotKillMonsters")
   hatchNotifyRange = 256
+  stickTime = 0.5
 
   nearbyMonsters = {}
   consumedCount = 0
 
+  currentAngle = 0
   state = FSM:new()
   state:set(states.wait)
 
@@ -94,27 +98,26 @@ function states.consume()
 
   local targetEntity = nearbyMonsters[math.random(1, #nearbyMonsters)]
 
-  local stickTime = 0.5
   local timer = 0
 
   animator.playSound("fire")
+
+  local lastTargetPosition
 
   -- Stick tongue on entity.
   util.wait(2.5, function()
     if not world.entityExists(targetEntity) then
       clearTongue()
+      retractCo(lastTargetPosition)
       state:set(states.wait)
     else
       timer = math.min(stickTime, timer + script.updateDt())
+      lastTargetPosition = world.entityPosition(targetEntity)
       local posEnd = vVec2.lerp(timer / stickTime, mcontroller.position(), world.entityPosition(targetEntity))
       drawTongue(mcontroller.position(), posEnd)
       rotateBody(mcontroller.position(), posEnd)
     end
   end)
-
-  animator.setAnimationState("body", "consumewinddown")
-
-  clearTongue()
 
   -- Consume.
   if world.entityExists(targetEntity) then
@@ -126,6 +129,8 @@ function states.consume()
     })
     consumedCount = consumedCount + 1
   end
+
+  retractCo(lastTargetPosition)
 
   if consumedCount >= 3 then
     state:set(states.hatch)
@@ -139,11 +144,8 @@ function states.hatch()
 
   animator.setAnimationState("body", "hatch")
 
-  util.wait(2.0)
+  util.wait(1.5)
 
-  -- for _ = 1, consumedCount do
-  --   world.spawnMonster("v-morphum", mcontroller.position(), {aggressive = true})
-  -- end
   if consumedCount < 1 then
     hatch("v-riftdevourer1")
   elseif consumedCount < 2 then
@@ -151,6 +153,8 @@ function states.hatch()
   else
     hatch("v-riftdevourer3")
   end
+
+  world.spawnProjectile("v-riftdevourershell", mcontroller.position(), entity.id(), vec2.withAngle(currentAngle))
 
   state:set(states.die)
 end
@@ -180,9 +184,29 @@ end
 
 function rotateBody(posStart, posEnd)
   local angle = vec2.angle(world.distance(posEnd, posStart))
+  currentAngle = angle
   angle = angle - math.pi / 2
   animator.resetTransformationGroup("body")
   animator.rotateTransformationGroup("body", angle)
+end
+
+function retractCo(pos)
+  if not pos then
+    return
+  end
+
+  -- Retract tongue
+  timer = 0
+
+  util.wait(stickTime, function()
+    timer = math.min(stickTime, timer + script.updateDt())
+    local posEnd = vVec2.lerp(1 - timer / stickTime, mcontroller.position(), pos)
+    drawTongue(mcontroller.position(), posEnd)
+  end)
+
+  clearTongue()
+
+  animator.setAnimationState("body", "consumewinddown")
 end
 
 function hatch(monsterType)
