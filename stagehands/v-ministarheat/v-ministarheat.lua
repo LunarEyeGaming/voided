@@ -266,21 +266,11 @@ function update(dt)
       -- sb.logInfo("size of boundaryTiles: %s", #boundaryTiles)
       sb.setLogMap("v-ministarheat(stagehand)_boundaryTilesSize", "%s", #boundaryTiles)
 
-      -- local points = {}
       -- Process particleSpawnPoints.
       for chunkStr, tiles in pairs(particleSpawnPoints) do
         if tiles == "clear" then
           liquidSurfacePoints[chunkStr] = nil
         elseif #tiles > 0 then
-          -- for _, tile in ipairs(tiles) do
-          --   local tileStr = vVec2.iToString(tile)
-          --   if not points[tileStr] then
-          --     points[tileStr] = 1
-          --   else
-          --     points[tileStr] = points[tileStr] + 1
-          --   end
-          --   world.debugText("%s", points[tileStr], tile, "green")
-          -- end
           liquidSurfacePoints[chunkStr] = tiles
         end
       end
@@ -628,27 +618,6 @@ function oceanSurfaceQuery(startX, endX, yBottom, yTop, affectedTiles)
   local heightMap = vMinistar.XMap:new(startX, endX)
   local heightMap_list = heightMap.list
 
-  -- local lowestSectors = findLowestLoadedSectors(startX, endX, yTop)
-  -- -- Convert lowestSectors into a horizontal position map.
-  -- local lowestSectorsMap = {}
-
-  -- for _, sector in ipairs(lowestSectors) do
-  --   local checkMinY = (sector[2] + 1) * SECTOR_SIZE
-  --   -- Variant of checkMinY that stops at minDepth; whether or not the value was capped.
-  --   local cappedCheckMinY, checkMinYWasCapped
-  --   if checkMinY < minDepth then
-  --     cappedCheckMinY = minDepth
-  --     checkMinYWasCapped = true
-  --   else
-  --     cappedCheckMinY = checkMinY
-  --     checkMinYWasCapped = false
-  --   end
-  --   local x = sector[1] * SECTOR_SIZE
-  --   world.debugText("%s", checkMinY, {x, stagehand.position()[2] + x % 6}, "yellow")
-
-  --   lowestSectorsMap[sector[1]] = {y = cappedCheckMinY, uncappedY = checkMinY, capped = checkMinYWasCapped}
-  -- end
-
   local cappedCheckMinY
   local checkMinYWasCapped
   if yBottom < minDepth then
@@ -667,12 +636,6 @@ function oceanSurfaceQuery(startX, endX, yBottom, yTop, affectedTiles)
 
   -- Generate a set of tiles that are heated right now.
   for x = startX, endX do
-    -- -- Find associated lowest sector.
-    -- local xSector = x // SECTOR_SIZE
-    -- local sectorValue = lowestSectorsMap[xSector]
-    -- local cappedCheckMinY = sectorValue.y
-    -- local checkMinYWasCapped = sectorValue.capped
-
     -- Proceed only if cappedCheckMinY is not actually capped or there is a liquid with ID sunLiquidId at the position
     -- directly below cappedCheckMinY.
     local shouldProceed = not checkMinYWasCapped
@@ -702,7 +665,6 @@ function oceanSurfaceQuery(startX, endX, yBottom, yTop, affectedTiles)
           if matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure" then
             -- Add to height map.
             heightMap_list[world_xwrap(x)] = collideTile[2]
-            -- heightMap:set(x, collideTile[2])
             foundSolidTile = true
             break
           end
@@ -712,13 +674,9 @@ function oceanSurfaceQuery(startX, endX, yBottom, yTop, affectedTiles)
       -- Manually set the heightMap entry if no solid, opaque tile was found, or if collidePoints is empty.
       if not foundSolidTile then
         heightMap_list[world_xwrap(x)] = yTop
-        -- heightMap:set(x, checkMaxY + pos[2])
-        -- world.debugText("1", {x, stagehand.position()[2] - 20 + x % 6 - yTop / 50}, "yellow")
       end
     else
       heightMap_list[world_xwrap(x)] = cappedCheckMinY
-        -- world.debugText("2", {x, stagehand.position()[2] - 20 + x % 6 - yTop / 50}, "red")
-      -- heightMap:set(x, cappedCheckMinY)
     end
   end
 
@@ -762,22 +720,6 @@ function syncHeightMapsToGlobal(heightMaps)
       end
     end
 
-    -- -- Map from horizontal positions to `HeightMapItem`.
-    -- ---@type table<integer, HeightMapItem>
-    -- local testVar2 = {}
-    -- local stagehandPos = stagehand.position()
-    -- for _, section in pairs(testVar) do
-    --   for _, value in ipairs(section) do
-    --     world.debugText("%s", value.value, {value.x, stagehandPos[2] - 5 + value.x % 2}, "yellow")
-    --     testVar2[value.x] = value.value
-    --   end
-    -- end
-
-    -- local stagehandPos = stagehand.position()
-    -- for x, v in heightMap:xvalues() do
-    --   world.debugText("x: %s\nlv: %s\ngv: %s\n", x, v, globalHeightMap[x], {x, stagehandPos[2] - 20 + 4 * (x % 5)}, "yellow")
-    -- end
-
     -- For each entry in the list of `heightMap`...
     local heightMap_list = heightMap.list
     for x, v in heightMap:xvalues() do
@@ -801,18 +743,6 @@ function syncHeightMapsToGlobal(heightMaps)
           -- world.debugText("X", {x, stagehand.position()[2]}, "red")
         end
       end
-
-      -- if testVar2[x] then
-      --   local globalV = testVar2[x]
-      --   -- If v < globalV or the region at globalV is loaded and that point is empty and either there is a liquid at minDepth - 1 or the position at minDepth - 1 is unloaded...
-      --   if v < globalV or
-      --     (not world_pointTileCollision({x, globalV}, blockOrNullCollisionSet) and
-      --       (world_liquidAt({x, minDepth - 1}) or world_pointTileCollision({x, minDepth - 1}, nullCollisionSet))) then
-      --     world.debugText("O", {x, stagehand.position()[2]}, "green")
-      --   else
-      --     world.debugText("X", {x, stagehand.position()[2]}, "red")
-      --   end
-      -- end
     end
 
     -- Store globalHeightMap sections.
@@ -846,11 +776,6 @@ function isSolidAndOpaque(pos)
   end
 
   local matCfg = getMaterialProperties(material)
-  -- if matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure" then
-  --   world.debugText("O", {pos[1], stagehand.position()[2] - 1}, "green")
-  -- else
-  --   world.debugText("X", {pos[1], stagehand.position()[2] - 1}, "magenta")
-  -- end
   return matCfg and matCfg.isSolidAndOpaque or material == "metamaterial:structure"
 end
 
@@ -912,7 +837,6 @@ function processHeatMap(affectedTiles, dt)
         table_remove(heatMap, i)
       end
 
-      -- liquidScanner:markRegionByTile(tilePos, 3)
       liquidScanner:markRetrievalByTile(tilePos, 3)
 
       -- Remove entry from affectedTiles to avoid excess inserts.
@@ -1011,22 +935,15 @@ function findLowestLoadedSectors(xStart, xEnd, yTop)
 
   local lowestSectors = {}
 
-  -- local stagehandX = stagehand.position()[1]
-  -- local stagehandY = stagehand.position()[2]
-  -- local stagehandXSector = stagehandX // SECTOR_SIZE
-  -- local stagehandYSector = stagehandY // SECTOR_SIZE
   -- For each column of sectors intersecting the area between xStart and xEnd...
   for xSector = xSectorStart, xSectorEnd do
     local x = xSector * SECTOR_SIZE
 
     local ySector = 0
     -- While the current sector is not loaded...
-    -- while world.material({xSector * SECTOR_SIZE, ySector * SECTOR_SIZE}, "foreground") ~= nil do
     while world_pointCollision({x, ySector * SECTOR_SIZE}, nullCollisionSet) and ySector <= ySectorStart do
-      -- world.debugPoint({stagehandX + (xSector - stagehandXSector), stagehandY + (ySector - stagehandYSector)}, "red")
       ySector = ySector + 1
     end
-      -- world.debugPoint({stagehandX + (xSector - stagehandXSector), stagehandY + (ySector - stagehandYSector)}, "green")
 
     -- Add result to lowestSectors
     table_insert(lowestSectors, {xSector, ySector - 1})
@@ -1071,14 +988,11 @@ function getHeatConfig(material)
         default.tolerance = cfg.fallingTileDefaultTolerance
       end
       local footstepSound = matCfg.footstepSound
-      -- sb.logInfo("footstepSound: %s", matCfg.footstepSound)
       if cfg.inferredTileConfigs[footstepSound] then
         inferred = cfg.inferredTileConfigs[footstepSound]
       end
     end
     override = cfg.tileConfigs[material] or {}
-    -- sb.logInfo("inferredTileConfigs: %s", cfg.inferredTileConfigs)
-    -- sb.logInfo("%s: default %s, inferred %s, override %s", material, default, inferred, override)
 
     heatConfigs[material] = sb.jsonMerge(sb.jsonMerge(default, inferred), override)
   end

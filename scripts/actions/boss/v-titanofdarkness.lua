@@ -724,8 +724,6 @@ function v_titanDetectTarget(args)
     coroutine.yield()
   end
 
-  -- sb.logInfo("Titan: Target found: %s", target)
-
   return true, {target = target}
 end
 
@@ -929,8 +927,6 @@ function v_titanMusic(args)
     prevPlayers = queried
     prevMusicState = args.musicState
 
-    -- world.debugText("players: %s, prevPlayers: %s", queried, prevPlayers, mcontroller.position(), "green")
-
     coroutine.yield()
   end
 end
@@ -987,7 +983,6 @@ function v_titanPassiveSpawnLocation(args)
 
   local region = rect.translate({-1000, -500, 1000, 500}, mcontroller.position())
   region[2] = math.max(100, region[2])
-  -- local region = {0, 100, world.size()[1], world.size()[2]}
   local spawnPos = vWorld.randomPositionInRegion(region, function(pos)
     for _, pos2 in ipairs(positions) do
       if world.magnitude(pos2, pos) < args.minPlayerDistance then

@@ -71,10 +71,6 @@ function v_speedEffect(args)
 
     animator.resetTransformationGroup(args.transformationGroup)
     animator.rotateTransformationGroup(args.transformationGroup, angle)
-
-  -- animator.rotateTransformationGroup("hand", adjustedAngle)
-  -- animator.scaleTransformationGroup("facing", {direction, 1})
-
   end
 
   return true

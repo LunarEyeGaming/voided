@@ -16,7 +16,7 @@ function v_rotateLaser(args, board)
     animator.resetTransformationGroup("laser")
     animator.rotateTransformationGroup("laser", angle)
   end)
-  
+
   util.run(args.duration / 2, function(dt)
     timer = timer + dt
     local angularVelocity = interp.reverse(util.lerp)(timer / args.duration, 0, maxAngularVelocity)
@@ -24,7 +24,7 @@ function v_rotateLaser(args, board)
     animator.resetTransformationGroup("laser")
     animator.rotateTransformationGroup("laser", angle)
   end)
-  
+
   return true
 end
 
@@ -45,14 +45,14 @@ function v_rotateWithLaser(args, board)
     angle = angle + angularVelocity
     mcontroller.setPosition(vec2.add(args.center, {args.xRadius * math.cos(angle), args.yRadius * math.sin(angle)}))
   end)
-  
+
   util.run(args.duration / 2, function(dt)
     timer = timer + dt
     local angularVelocity = interp.reverse(util.lerp)(timer / args.duration, 0, maxAngularVelocity)
     angle = angle + angularVelocity
     mcontroller.setPosition(vec2.add(args.center, {args.xRadius * math.cos(angle), args.yRadius * math.sin(angle)}))
   end)
-  
+
   return true
 end
 
@@ -70,20 +70,11 @@ function v_teleAngle(args, board, _, dt)
   while timer < args.teleTime do
     timer = timer + dt
     local stepAngle = interp.sin(timer / args.teleTime, 0, finalAngle) + args.angleOffset
-    --local offset = voidedUtil.polarRect(args.xLength, args.yLength, stepAngle)
     local offset = {args.xLength / 2 * math.cos(stepAngle), args.yLength / 2 * math.sin(stepAngle)}
     mcontroller.setPosition(vec2.add(args.center, offset))
     coroutine.yield(nil, {headingVector = vec2.withAngle(stepAngle)})
   end
-  -- util.run(args.teleTime, function(dt)
-    -- timer = timer + dt
-    -- local stepAngle = interp.sin(timer / args.teleTime, 0, finalAngle)
-    -- --local offset = voidedUtil.polarRect(args.xLength, args.yLength, stepAngle)
-    -- local offset = {15 + 15 * math.cos(stepAngle), 12 + 12 * math.sin(stepAngle)}
-    -- sb.logInfo("%s", offset)
-    -- mcontroller.setPosition(vec2.add(args.center, offset))
-  -- end)
-  
+
   return true
 end
 
@@ -91,34 +82,34 @@ end
 -- param color
 function v_teleportToPosition(args, board)
   animator.setAnimationState("shell", "teleportstart")
-  
+
   local chain = copy(config.getParameter("teleportBeam"))
   chain.sourcePart = "core"
   chain.endPosition = args.position
-  
+
   local projId1 = world.spawnProjectile("v-teleportpoint", args.position, entity.id())
   monster.setAnimationParameter("chains", {chain})
-  
+
   util.run(0.125, function() end)
-  
+
   monster.setAnimationParameter("chains", {})
   animator.setAnimationState("core", "teleportstart" .. args.color)
-  
+
   util.run(0.1, function() end)
 
   local projId2 = world.spawnProjectile("v-teleportpoint", mcontroller.position(), entity.id())
   mcontroller.setPosition(args.position)
-  
+
   util.run(0.1, function() end)
 
   world.sendEntityMessage(projId1, "kill")
   animator.setAnimationState("core", "teleportend" .. args.color)
   animator.setAnimationState("shell", "teleportend")
-  
+
   util.run(0.1, function() end)
 
   world.sendEntityMessage(projId2, "kill")
-  
+
   return true
 end
 

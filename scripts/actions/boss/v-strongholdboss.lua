@@ -15,10 +15,7 @@ function UniqueRand:randInt(min, max)
   local res
   repeat
     res = math.random(min, max)
-    --sb.logInfo("%s ?= %s", self.prevValue, res)
   until res ~= self.prevValue
-  --sb.logInfo("self.prevValue: %s", self.prevValue)
-  --sb.logInfo("res: %s", res)
   self.prevValue = res
   return res
 end
@@ -67,7 +64,6 @@ end
 -- output laserH1Id, laserV1Id, laserH2Id, laserV2Id, coreIds, corePositions
 -- Spawn the lasers and cores.
 function v_spawnStrongholdParts(args, board)
-  local laserIds = {}
   local coreIds = {}
   local corePositions = {}
 
@@ -121,15 +117,7 @@ function v_spawnStrongholdParts2(args, board)
   local coreIds = {}
   local corePositions = {}
 
-  --laserH1Offset = {-18, 0}
-  --laserV1Offset = {0, 15}
-
   local center = mcontroller.position()
-
-  --local nRows = 3
-  --local nCols = 3
-  --local coreXOffsets = {-14, 0, 14}
-  --local coreYOffsets = {-11, 0, 11}
 
   for i = 1, #args.coreXOffsets do
     for j = 1, #args.coreYOffsets do
@@ -200,8 +188,6 @@ function v_laserAttack(args, board)
       world.spawnProjectile(extraTeleProjectile, extraPosition)
       world.sendEntityMessage(extraId2, "move", extraPosition)
     end
-
-    --sb.logInfo("IDs: %s, %s, %s, %s", hId, vId, extraId1, extraId2)
 
     vBehavior.awaitNotification("finished", activeLasers)
 
@@ -466,17 +452,16 @@ function v_laserAttack5(args, board)
   local center = mcontroller.position()
 
   -- Very hacky way of implementation. TODO: Clean up this code
-  for i, attack in ipairs(args.attackSet) do
+  for _, attack in ipairs(args.attackSet) do
     local id = board:getEntity(attack.idKey)
     local startPosition = vec2.add(center, attack.startOffset)
-    local endPosition = vec2.add(center, attack.endOffset)
 
     world.sendEntityMessage(id, "move", startPosition)
   end
 
   vBehavior.awaitNotification("finished", #args.attackSet)
 
-  for i, attack in ipairs(args.attackSet) do
+  for _, attack in ipairs(args.attackSet) do
     local id = board:getEntity(attack.idKey)
 
     animator.playSound("warning")
@@ -490,9 +475,8 @@ function v_laserAttack5(args, board)
   util.run(args.waitTime, function() end)
   util.run(args.waitTime, function() end)
 
-  for i, attack in ipairs(args.attackSet) do
+  for _, attack in ipairs(args.attackSet) do
     local id = board:getEntity(attack.idKey)
-    local startPosition = vec2.add(center, attack.startOffset)
     local endPosition = vec2.add(center, attack.endOffset)
 
     world.sendEntityMessage(id, "move", endPosition)
@@ -501,7 +485,7 @@ function v_laserAttack5(args, board)
   util.run(args.waitTime, function() end)
   util.run(args.waitTime, function() end)
 
-  for i, attack in ipairs(args.attackSet) do
+  for _, attack in ipairs(args.attackSet) do
     local id = board:getEntity(attack.idKey)
 
     world.sendEntityMessage(id, "deactivate")
@@ -528,7 +512,7 @@ end
 function v_laserAttack6(args, board)
   local center = mcontroller.position()
 
-  for i = 1, args.loops do
+  for _ = 1, args.loops do
     local nextAttackH = util.randomFromList(args.attackSetH)
     local nextAttackV = util.randomFromList(args.attackSetV)
 
@@ -603,17 +587,6 @@ end
 -- output coreIds
 -- Activate cores based on the input phase and the result of v_partitionCores
 function v_activateCores(args, board)
-  -- local randGen = UniqueRand:new()
-  -- local selected = {}
-
-  -- for i = 1, args.nResults do
-    -- local coreId = util.randomFromList(args.coreIds, randGen)
-    -- table.insert(selected, coreId)
-    -- world.sendEntityMessage(coreId, "notify", {
-      -- sourceId = entity.id(),
-      -- type = "activate"
-    -- })
-  -- end
   local selected = args.corePartition[args.phase]
   local selectedPositions = args.corePositionPartition[args.phase]
   for _, id in ipairs(selected) do
@@ -678,7 +651,7 @@ end
 -- Instruct the cores to activate attack 6 (circle around the center then fire at the player)
 function v_coreAttack6(args, board)
   local center = vec2.add(mcontroller.position(), args.centerOffset)
-  for i = 1, args.loops do
+  for _ = 1, args.loops do
     local nCoreIds = #args.coreIds
     local endAngle = util.randomInRange({0, 2 * math.pi})
     for j, coreId in ipairs(args.coreIds) do
@@ -701,7 +674,7 @@ function v_coreAttack6(args, board)
     util.run(args.waitTime, function() end)
   end
 
-  for i, coreId in ipairs(args.coreIds) do
+  for _, coreId in ipairs(args.coreIds) do
     if world.entityExists(coreId) then
       notification = {
         type = "resetPos",
@@ -718,14 +691,10 @@ end
 -- output shieldCoreIds
 -- Instruct the cores to start spawning shields.
 function v_spawnShieldCores(args, board)
-  --local shieldCoreIds = {}
   for _, coreId in ipairs(args.coreIds) do
-    --local shieldCoreId = world.spawnMonster(args.monsterType, world.entityPosition(coreId), {level = monster.level(), target = coreId})
-    --table.insert(shieldCoreIds, shieldCoreId)
     world.sendEntityMessage(coreId, "notify", {type = "activateShieldCore"})
   end
 
-  --return true, {shieldCoreIds = shieldCoreIds}
   return true, {shieldCoreIds = {}}
 end
 

@@ -390,17 +390,6 @@ function v_stickyHopApproach(args, _, _, dt)
   mcontroller.setVelocity(hopVelocity)
   controlFace(util.toDirection(hopVelocity[1]))
 
-  -- local testRect = rect.pad(mcontroller.boundBox(), 0.25)
-  -- local tolerance = 4
-
-  -- -- Wait until the entity has attached to something or has reached its destination (as a more reliable check).
-  -- while not world.rectCollision(rect.translate(testRect, mcontroller.position()))
-  -- and world.magnitude(hopPos, mcontroller.position()) > tolerance do
-  --   coroutine.yield()
-  -- end
-
-  -- mcontroller.setVelocity({0, 0})
-
   return true
 end
 
