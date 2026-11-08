@@ -509,6 +509,7 @@ function spawnMonsters()
       for _, spawn in ipairs(monsterSpawnsCopy) do
         if math.random() < spawn.spawnChance then
           pos = rect.randomPoint(rect.translate({0, 0, CELL_SIZE, CELL_SIZE}, pos))
+
           local spawnPos
           if spawn.mode == "surface" then
             local candidateSpawnPos = world.resolvePolyCollision(spawn.testPoly, pos, spawn.maxCorrection)
@@ -523,8 +524,12 @@ function spawnMonsters()
             end
           end
 
+          -- spawnPos is nil if (when the mode is "surface") the position does not touch a surface or (when the mode is
+          -- "air") the position is too deep in solid blocks to be corrected.
+          -- Also, avoid spawning a monster if the monster's occupation would push the currentMonsterOccupation over the
+          -- limit.
           local boundBox = poly.boundBox(spawn.testPoly)
-          if spawnPos and vWorld.canSpawnMonster(boundBox, spawnPos) then
+          if spawnPos and vWorld.canSpawnMonster(boundBox, spawnPos) and currentMonsterOccupation + spawn.occupation <= maxMonsterOccupation then
             local params = copy(spawn.monsterParameters)
             params.level = monster.level()
             local monsterId = world.spawnMonster(spawn.monsterType, spawnPos, params)
