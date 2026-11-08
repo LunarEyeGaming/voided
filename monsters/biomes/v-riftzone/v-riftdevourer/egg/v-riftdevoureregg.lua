@@ -52,6 +52,10 @@ function update(dt)
       goto continue_query
     end
 
+    if not world.callScriptedEntity(entityId, "status.isResource", "health") then
+      goto continue_query
+    end
+
     if contains(doNotKillMonsters, world.monsterType(entityId)) then
       goto continue_query
     end
