@@ -37,6 +37,14 @@
       ],
 
       "foundTargetActions" : [
+        {
+          "name" : "action-animate",
+          "parameters" : {
+            "stateType" : "body",
+            "state" : "aggro",
+            "animationTimer" : 1.0
+          }
+        }
       ],
 
       "fleeActions" : [ ],
@@ -294,7 +302,7 @@
           "baseValue" : 0.0
         },
         "fireStatusImmunity" : {
-          "baseValue" : 1.0
+          "baseValue" : 0.0
         },
         "iceResistance" : {
           "baseValue" : 0.0

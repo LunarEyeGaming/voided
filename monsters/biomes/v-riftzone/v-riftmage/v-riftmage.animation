@@ -96,6 +96,15 @@
             "properties" : {
               "immediateSound" : "/sfx/npc/monsters/v_riftmage_teleportin.ogg"
             }
+          },
+          "aggro" : {
+            "frames" : 7,
+            "cycle" : 0.7,
+            "mode" : "transition",
+            "transition" : "idle",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/monsters/v_riftmage_turnhostile.ogg"
+            }
           }
         }
       },
@@ -144,6 +153,11 @@
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "aggro" : {
+              "properties" : {
+                "image" : "<partImage>:roar.<frame>"
               }
             },
             "attackwindup" : {
@@ -229,6 +243,11 @@
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
+              }
+            },
+            "aggro" : {
+              "properties" : {
+                "image" : "<partImage>:roar.<frame>"
               }
             },
             "attackwindup" : {
