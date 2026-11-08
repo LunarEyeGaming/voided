@@ -109,7 +109,15 @@ function v_flyToPositionNoFlip(args)
   local rq = vBehavior.requireArgsGen("v_flyToPositionNoFlip", args)
   if not rq{"position"} then return false end
 
-  vMovementA.flyToPosition(args.position, args.speed, args.controlForce, args.tolerance)
+  local speed = args.speed or mcontroller.baseParameters().flySpeed
+  local controlForce = args.controlForce or mcontroller.baseParameters().airForce
+  local tolerance = args.tolerance or 1
+  local distance
+  repeat
+    distance = world.distance(args.position, mcontroller.position())
+    mcontroller.controlApproachVelocity(vec2.mul(vec2.norm(distance), speed), controlForce)
+    coroutine.yield()
+  until math.abs(distance[1]) < tolerance and math.abs(distance[2]) < tolerance
 
   return true
 end
