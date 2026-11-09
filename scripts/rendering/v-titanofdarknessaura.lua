@@ -60,7 +60,7 @@ function init()
   fgRenderLayer = "ForegroundOverlay+10"
 
   minFallOffDistance = 250
-  maxFallOffDistance = 2500
+  maxFallOffDistance = 650
 
   titanPositionTimeout = 2
   titanPositionTimeoutTimer = titanPositionTimeout
@@ -103,7 +103,7 @@ function v_titanOfDarknessAura_updateTitanPosition(dt)
   end
 
   -- sb.setLogMap("titanPositionPromise", "%s", titanPositionPromise)
-  -- sb.setLogMap("titanPosition", "%s", titanPosition)
+  sb.setLogMap("titanPosition", "%s", titanPosition)
   -- sb.setLogMap("titanPositionPromise:finished()", "%s", titanPositionPromise:finished())
   -- sb.setLogMap("titanPositionPromise:succeeded()", "%s", titanPositionPromise:succeeded())
 
@@ -135,8 +135,8 @@ function v_titanOfDarknessAura_drawOverlays()
   -- local horizontalMidPoint = (drawingBounds[3] + drawingBounds[1]) / 2
   local verticalMidPoint = (drawingBounds[4] + drawingBounds[2]) / 2
 
-  local fallOffAmount = 1 - math.max(0, distance - minFallOffDistance) / (maxFallOffDistance - minFallOffDistance)
-  fallOffAmount = fallOffAmount * fallOffAmount
+  local fallOffAmount = math.max(0, 1 - math.max(0, distance - minFallOffDistance) / (maxFallOffDistance - minFallOffDistance))
+  -- fallOffAmount = fallOffAmount * fallOffAmount
 
   -- Background overlay
   localAnimator.addDrawable({

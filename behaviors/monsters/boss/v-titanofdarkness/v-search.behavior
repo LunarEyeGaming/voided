@@ -8,13 +8,12 @@
     "/scripts/actions/boss/v-titanofdarkness.lua",
     "/scripts/actions/notification.lua",
     "/scripts/actions/world.lua",
-    "/scripts/actions/v-movement.lua",
-    "/scripts/actions/position.lua"
+    "/scripts/actions/v-movement.lua"
   ],
   "parameters": {
-    "startSearchFlySpeed": 13,
-    "startSearchFlyControlForce": 6,
-    "startSearchStopForce": 12,
+    "startSearchFlySpeed": 19,
+    "startSearchFlyControlForce": 9,
+    "startSearchStopForce": 19,
     "startMaxSearchRange": 55,
     "endSearchFlySpeed": 26,
     "endSearchFlyControlForce": 12,
@@ -24,7 +23,7 @@
     "endEyeTurnWaitTime": 0.5,
     "startGrabDelay": 2.5,
     "endGrabDelay": 1.5,
-    "startXVelocity": 10,
+    "startXVelocity": 15,
     "endXVelocity": 20,
     "encounterLevel": 0
   },
@@ -96,7 +95,7 @@
                     "type": "action",
                     "name": "timer",
                     "parameters": {
-                      "time": {"value": 120}
+                      "time": {"value": 3600}
                     },
                     "output": {
                       "ratio": "impatience"
@@ -306,7 +305,7 @@
                 "type": "decorator",
                 "name": "cooldown",
                 "parameters": {
-                  "cooldown": {"value": 6},
+                  "cooldown": {"value": 60},
                   "onFail": {"value": true},
                   "onSuccess": {"value": true}
                 },
@@ -338,6 +337,16 @@
                         }
                       },
                       {
+                        "title": "entityInRange",
+                        "type": "action",
+                        "name": "entityInRange",
+                        "parameters": {
+                          "entity": {"key": "target"},
+                          "position": {"key": "self"},
+                          "range": {"value": 160}
+                        }
+                      },
+                      {
                         "title": "v-titanofdarkness-teleport2",
                         "type": "module",
                         "name": "v-titanofdarkness-teleport2",
@@ -365,7 +374,7 @@
                     "parameters": {
                       "entity": {"key": "target"},
                       "position": {"key": "self"},
-                      "range": {"value": 80}
+                      "range": {"value": 160}
                     }
                   },
                   {
@@ -428,9 +437,9 @@
                                   "parameters": {
                                     "flyControlForce": {"key": "searchFlyControlForce"},
                                     "flySpeed": {"key": "searchFlySpeed"},
+                                    "liquidWhitelist": {"value": ["water", "fuel", "healingliquid", "milk", "swampwater"]},
                                     "startAngle": {"key": "targetAngle"},
-                                    "stopControlForce": {"key": "searchStopForce"},
-                                    "liquidWhitelist": {"value": ["water", "fuel", "healingliquid", "milk", "swampwater"]}
+                                    "stopControlForce": {"key": "searchStopForce"}
                                   },
                                   "output": {
                                     "angle": "targetAngle"
@@ -478,56 +487,30 @@
                     "name": "failer",
                     "parameters": {},
                     "child": {
-                      "title": "sequence",
-                      "type": "composite",
-                      "name": "sequence",
-                      "parameters": {},
-                      "children": [
-                        {
-                          "title": "entityPosition",
-                          "type": "action",
-                          "name": "entityPosition",
-                          "parameters": {
-                            "entity": {"key": "target"}
-                          },
-                          "output": {
-                            "position": "targetPosition"
-                          }
-                        },
-                        {
-                          "title": "distance",
-                          "type": "action",
-                          "name": "distance",
-                          "parameters": {
-                            "from": {"key": "self"},
-                            "to": {"key": "targetPosition"}
-                          },
-                          "output": {
-                            "vector": "targetDistance"
-                          }
-                        },
-                        {
-                          "title": "vecAngle",
-                          "type": "action",
-                          "name": "vecAngle",
-                          "parameters": {
-                            "vector": {"key": "targetDistance"}
-                          },
-                          "output": {
-                            "angle": "targetAngle"
-                          }
-                        }
-                      ]
+                      "title": "v_titanRotateEyes",
+                      "type": "action",
+                      "name": "v_titanRotateEyes",
+                      "parameters": {
+                        "leftEyeAngle": {"key": "targetAngle"},
+                        "rightEyeAngle": {"key": "targetAngle"}
+                      }
                     }
                   },
                   {
-                    "title": "v_flyToPositionNoFlip",
+                    "title": "v_titanSearch",
                     "type": "action",
-                    "name": "v_flyToPositionNoFlip",
+                    "name": "v_titanSearch",
                     "parameters": {
-                      "position": {"key": "targetPosition"},
-                      "speed": {"value": 40},
-                      "tolerance": {"value": 1}
+                      "flyControlForce": {"value": 20},
+                      "flySelectionArea": {"value": [-75, -75, 75, 75]},
+                      "flySpeed": {"value": 25},
+                      "logFailures": {"value": true},
+                      "startAngle": {"key": "targetAngle"},
+                      "stopControlForce": {"value": 28},
+                      "target": {"key": "self"}
+                    },
+                    "output": {
+                      "angle": "targetAngle"
                     }
                   }
                 ]
