@@ -12,7 +12,7 @@ function init()
   masterId = config.getParameter("masterId")
   monsterType = config.getParameter("monsterType")
   monsterParameters = config.getParameter("monsterParameters")
-  monsterParameters.behavior = "v-titanofdarknesspassive"
+  -- monsterParameters.behavior = "v-titanofdarknesspassive"
   monsterParameters.spawnAnywhere = true
 
   local minPlayerDistance = config.getParameter("minPlayerDistance")

@@ -57,7 +57,7 @@ function init()
   minSpawnCooldown = 60 * 60
   minPlanetStayTime = 60 * 30
   spawnAttemptInterval = 30
-  spawnProbability = 0.05
+  spawnProbability = 0.5
   titanMonsterType = "v-titanofdarkness"
   titanLevel = 10
   firstEncounterStagehand = "v-titanfirstencounter"
@@ -108,13 +108,18 @@ function update(dt)
             monsterParameters = {level = titanLevel}
           })
         else
-          world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel})
+          world.spawnStagehand(mcontroller.position(), "v-titanpassivespawner", {
+            masterId = player.id(),
+            monsterType = titanMonsterType,
+            monsterParameters = {level = titanLevel},
+            spawnRegion  = {-1000, -500, 1000, 500}
+          })
         end
       else
         world.spawnStagehand(mcontroller.position(), "v-titanpassivespawner", {
           masterId = player.id(),
           monsterType = titanMonsterType,
-          monsterParameters = {level = titanLevel}
+          monsterParameters = {level = titanLevel, behavior = "v-titanofdarknesspassive"}
         })
         -- world.spawnMonster(titanMonsterType, mcontroller.position(), {level = titanLevel, behavior = "v-titanofdarknesspassive"})
       end
