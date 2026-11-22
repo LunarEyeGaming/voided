@@ -217,7 +217,7 @@ function updateRiftZones(riftZones, dt)
       if math.random() < relocationProbability then
         createRiftZone(riftZones, riftZone)
       else
-        table.insert(pendingRiftRemnants, {position = riftZone.position, disappearTime = world.time() + riftRemnantTimeToLive})
+        table.insert(pendingRiftRemnants, {position = riftZone.position, disappearTime = (riftZone.stateData.timeToLive or world.time()) + riftRemnantTimeToLive})
       end
     end
   end
@@ -354,7 +354,7 @@ end
 function createRiftZone(riftZones, oldRiftZone)
   local size = world.size()
   local pos = {math.random() * size[1], math.random() * size[2]}
-  local deathTime = world.time() + oldRiftZone.timeToLive
+  local deathTime = (oldRiftZone.stateData.deathTime or world.time()) + oldRiftZone.timeToLive
   table.insert(riftZones, {
     position = pos,
     velocity = oldRiftZone.velocity,
