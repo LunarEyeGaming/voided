@@ -6,21 +6,29 @@
         "default" : "idle",
         "states" : {
           "idle" : {
-            "frames" : 1
+            "frames" : 4,
+            "cycle" : 1,
+            "mode" : "loop"
           },
           "fly" : {
-            "frames" : 1,
+            "frames" : 4,
             "cycle" : 1,
             "mode" : "loop"
           },
           "tonguewindup" : {
-            "frames" : 1
+            "frames" : 5,
+            "cycle" : 1.0,
+            "mode" : "end"
           },
           "tongue" : {
-            "frames" : 1
+            "frames" : 1,
+            "cycle" : 0.2,
+            "mode" : "loop"
           },
           "chargewindup" : {
-            "frames" : 1
+            "frames" : 2,
+            "cycle" : 0.2,
+            "mode" : "loop"
           },
           "charge" : {
             "frames" : 1
