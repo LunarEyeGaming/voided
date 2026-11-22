@@ -13,20 +13,21 @@
 
       "skyParameters" : {
         "spaceLevel" : 3000,
+        "sunType" : "v-extradimensional",
         "ambientLightLevel" : [ 24, 28, 24 ],
         "skyColoring" : {
-          // Orange, gray, orange, gray
+          // Blue
           "mainColor" : [255, 255, 255],
 
-          "morningColors" : [ [99, 12, 12, 200], [131, 131, 12, 255] ],
-          "dayColors" : [ [131, 131, 131, 200], [188, 188, 188, 255] ],
-          "eveningColors" : [ [99, 12, 12, 200], [131, 131, 12, 255] ],
-          "nightColors" : [ [33, 33, 33, 200], [33, 33, 33, 255] ],
+          "morningColors" : [ [48, 48, 140, 80], [93, 93, 199, 160] ],
+          "dayColors" : [ [88, 88, 199, 120], [121, 121, 219, 200] ],
+          "eveningColors" : [ [48, 48, 140, 80], [93, 93, 199, 160] ],
+          "nightColors" : [ [13, 13, 54, 60], [13, 13, 54, 120] ],
 
-          "morningLightColor" : [125, 85, 65],
-          "dayLightColor" : [183, 183, 183],
-          "eveningLightColor" : [125, 85, 65],
-          "nightLightColor" : [66, 66, 66]
+          "morningLightColor" : [75, 75, 171],
+          "dayLightColor" : [131, 131, 201],
+          "eveningLightColor" : [75, 75, 171],
+          "nightLightColor" : [24, 24, 71]
         },
         "satellites" : [ {
           "pos" : [ 0.310561, 0.35497 ],
@@ -83,20 +84,21 @@
 
       "skyParameters" : {
         "spaceLevel" : 3000,
+        "sunType" : "v-extradimensional",
         "ambientLightLevel" : [ 24, 28, 24 ],
         "skyColoring" : {
-          // orange, sickly green, orange, magenta
+          // magenta, sickly green, magenta, yellow
           "mainColor" : [255, 255, 255],
 
-          "morningColors" : [ [99, 12, 12], [131, 131, 12] ],
+          "morningColors" : [ [125, 17, 158], [210, 52, 50] ],
           "dayColors" : [ [147, 240, 34], [164, 255, 36] ],
-          "eveningColors" : [ [99, 12, 12], [131, 131, 12] ],
-          "nightColors" : [ [64, 9, 42, 80], [92, 25, 58, 160] ],
+          "eveningColors" : [ [125, 17, 158], [210, 52, 50] ],
+          "nightColors" : [ [59, 84, 22, 160], [37, 56, 10, 80] ],
 
-          "morningLightColor" : [125, 85, 65],
+          "morningLightColor" : [160, 120, 180],
           "dayLightColor" : [147, 240, 34],
-          "eveningLightColor" : [125, 85, 65],
-          "nightLightColor" : [31, 3, 21]
+          "eveningLightColor" : [160, 120, 180],
+          "nightLightColor" : [28, 4, 4]
         },
         "satellites" : [ {
           "pos" : [ 0.310561, 0.35497 ],
@@ -153,6 +155,7 @@
 
       "skyParameters" : {
         "spaceLevel" : 2000,
+        "sunType" : "v-extradimensional",
         "ambientLightLevel" : [ 24, 28, 24 ],
         "skyColoring" : {
           // yellow
@@ -228,20 +231,21 @@
 
       "skyParameters" : {
         "spaceLevel" : 2000,
+        "sunType" : "v-extradimensional",
         "ambientLightLevel" : [ 24, 28, 24 ],
         "skyColoring" : {
-          // sunny pink day, pink/peach sunrise and blue/pink sunset
+          // Blurple day, Green-blue sunrise / sunset, green-yellow night
           "mainColor" : [255, 255, 255],
 
-          "morningColors" : [ [197, 48, 174], [253, 161, 96] ],
-          "dayColors" : [ [255, 116, 122], [255, 255, 255] ],
-          "eveningColors" : [ [88, 42, 91], [175, 20, 50] ],
-          "nightColors" : [ [24, 38, 53, 80], [58, 42, 70, 160] ],
+          "morningColors" : [ [0, 107, 126, 80], [66, 255, 49, 160] ],
+          "dayColors" : [ [151, 122, 255, 120], [117, 79, 255, 200] ],
+          "eveningColors" : [ [0, 107, 126, 80], [66, 255, 49, 160] ],
+          "nightColors" : [ [48, 53, 24, 60], [53, 70, 42, 120] ],
 
-          "morningLightColor" : [140, 71, 0],
-          "dayLightColor" : [200, 200, 200],
-          "eveningLightColor" : [180, 120, 120],
-          "nightLightColor" : [40, 20, 60]
+          "morningLightColor" : [0, 140, 82],
+          "dayLightColor" : [187, 150, 255],
+          "eveningLightColor" : [0, 140, 82],
+          "nightLightColor" : [49, 60, 20]
         },
         "satellites" : [ {
           "pos" : [ 0.310561, 0.35497 ],
