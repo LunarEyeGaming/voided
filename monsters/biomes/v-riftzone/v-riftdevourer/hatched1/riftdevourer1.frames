@@ -1,9 +1,12 @@
 {
   "frameGrid" : {
-    "size" : [64, 64],
-    "dimensions" : [3, 1],
+    "size" : [96, 96],
+    "dimensions" : [10, 4],
     "names" : [
-      [ "idle.1", "tonguewindup.1", "tongue.1" ]
+      [ "idle.1", "idle.2", "idle.3", "idle.4" ],
+      [ "tonguewindup.1", "tonguewindup.2", "tonguewindup.3", "tonguewindup.4", "tonguewindup.5", "tonguewindup.6", "tonguewindup.7", "tonguewindup.8", "tonguewindup.9", "tonguewindup.10" ],
+      [ "tongue.1", "tongue.2" ],
+      [ "hurt.1" ]
     ]
   }
 }
