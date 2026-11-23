@@ -1,0 +1,21 @@
+{
+  "projectileName" : "v-nulliumbomb",
+  "physics" : "stickygrenade",
+  "bounces" : -1,
+  "timeToLive" : 4.5,
+  "image" : "nulliumbomb.png",
+  "animationCycle" : 4.5,
+  "animationLoops" : false,
+  "lightColor" : [92, 54, 111],
+  "frameNumber" : 9,
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/v-nulliumbombexplosion/v-nulliumbombexplosion.config"
+    }
+  ],
+  "power" : 60,
+  "damageType" : "NoDamage",
+  "damageKind" : "default",
+  "emitters" : [ "v-nulliumbombsparks" ]
+}

@@ -1,0 +1,39 @@
+{
+  "itemName" : "v-nulliumbomb",
+  "rarity" : "Rare",
+  "category" : "throwableItem",
+  "inventoryIcon" : "v-nulliumbomb.png",
+  "builder" : "/items/buildscripts/v-builditem.lua",
+  "image" : "v-nulliumbomb.png",
+  "shortdescription" : "Void Bomb",
+  "description" : "Erases tiles in a large radius.",
+  "price" : 250,
+
+  "ammoUsage" : 1,
+
+  "edgeTrigger" : true,
+  "windupTime" : 0.0,
+  "cooldown" : 0.8,
+
+  "projectileType" : "v-nulliumbomb",
+  "projectileConfig" : {
+    "speed" : 40,
+    "power" : 60,
+    "periodicActions" : [
+      {
+        "time" : 0,
+        "repeat" : false,
+        "action" : "sound",
+        "options" : [ "/sfx/projectiles/throw_item_small.ogg" ]
+      },
+      {
+        "time" : 4.5,
+        "repeat" : false,
+        "action" : "config",
+        "file" : "/projectiles/explosions/v-nulliumbombexplosion/v-nulliumbombexplosion.config"
+      }
+    ]
+  },
+
+  "learnBlueprintsOnPickup" : [ "v-nulliumbomb" ]
+}

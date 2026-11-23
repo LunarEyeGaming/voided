@@ -1,0 +1,41 @@
+{
+  "projectileName" : "v-nulliumbombexplosion",
+  "image" : "nulliumbombexplosion.png",
+  "timeToLive" : 1.0,
+  "animationCycle" : 1.0,
+  "frameNumber" : 10,
+  "fullbright" : true,
+  "speed" : 0,
+  "damagePoly" : [[52.0, 0.0], [36.77, 36.77], [0.0, 52.0], [-36.77, 36.77], [-52.0, 0.0], [-36.77, -36.77], [-0.0, -52.0], [36.77, -36.77]],
+  "periodicActions" : [
+    {
+      "time" : 0.5,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : [ "/sfx/projectiles/v_nulliumbombexplosion_winddown.ogg" ]
+    }
+  ],
+  "animationLoops" : true,
+  "piercing" : true,
+  "orientationLocked" : true,
+  "bounces" : -1,
+  "lightColor" : [52, 21, 59],
+  "power" : 2,
+  "damageKind" : "v-voidplasma",
+  "damageTeam" : { "type" : "indiscriminate" },
+  "renderLayer" : "ForegroundEntity+10",
+  "scripts" : [ "/scripts/projectiles/v-rotatingprojectile.lua" ],
+  "rotateRate" : 1,
+
+  "boundBox" : [-10, -10, 10, 10],
+  "physicsForces" : {
+    "vacuum" : {
+      "type" : "RadialForceRegion",
+      "outerRadius" : 10,
+      "innerRadius" : 4,
+      "targetRadialVelocity" : -25,
+      "controlForce" : 1000,
+      "categoryWhitelist" : ["itemdrop"]
+    }
+  }
+}
